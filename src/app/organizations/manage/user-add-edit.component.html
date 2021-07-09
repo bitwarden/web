@@ -1,5 +1,5 @@
 <div class="modal fade" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="userAddEditTitle">
-    <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
             <div class="modal-header">
                 <h2 class="modal-title" id="userAddEditTitle">
@@ -172,7 +172,8 @@
                                 <div class="form-group mb-0">
                                     <div class="form-check mt-1 form-check-block">
                                         <input class="form-check-input" type="checkbox" name="manageUsers"
-                                            id="manageUsers" [(ngModel)]="permissions.manageUsers">
+                                            id="manageUsers" [(ngModel)]="permissions.manageUsers"
+                                            (change)="handleDependentPermissions()">
                                         <label class="form-check-label font-weight-normal" for="manageUsers">
                                             {{'manageUsers' | i18n}}
                                         </label>
@@ -181,7 +182,8 @@
                                 <div class="form-group mb-0">
                                     <div class="form-check mt-1 form-check-block">
                                         <input class="form-check-input" type="checkbox" name="manageResetPassword"
-                                            id="manageResetPassword" [(ngModel)]="permissions.manageResetPassword">
+                                            id="manageResetPassword" [(ngModel)]="permissions.manageResetPassword"
+                                            (change)="handleDependentPermissions()">
                                         <label class="form-check-label font-weight-normal" for="manageResetPassword">
                                             {{'manageResetPassword' | i18n}}
                                         </label>

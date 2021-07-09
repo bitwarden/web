@@ -6,11 +6,11 @@ import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { ImportOption, ImportService } from 'jslib/abstractions/import.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { ImportOption, ImportService } from 'jslib-common/abstractions/import.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
-import Swal, { SweetAlertIcon } from 'sweetalert2/dist/sweetalert2.js';
+import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 @Component({
     selector: 'app-import',
@@ -132,7 +132,7 @@ export class ImportComponent implements OnInit {
             inputAttributes: {
                 'readonly': 'true',
             },
-            title: this.i18nService.t('importError'),
+            titleText: this.i18nService.t('importError'),
             text: this.i18nService.t('importErrorDesc'),
             showConfirmButton: true,
             confirmButtonText: this.i18nService.t('ok'),

@@ -360,6 +360,9 @@
   "share": {
     "message": "Del"
   },
+  "moveToOrganization": {
+    "message": "Flyt til organisation"
+  },
   "valueCopied": {
     "message": "$VALUE$ kopieret",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Boks"
   },
-  "shareSelected": {
-    "message": "Del valgte"
+  "moveSelectedToOrg": {
+    "message": "Flyt valgte til organisation"
   },
   "deleteSelected": {
     "message": "Slet valgte"
@@ -437,7 +440,7 @@
     "message": "Vælg en fil."
   },
   "maxFileSize": {
-    "message": "Maksimum filstørrelse er 100 MB."
+    "message": "Maksimum filstørrelse er 500 MB."
   },
   "updateKey": {
     "message": "Du kan ikke bruge denne funktion, før du opdaterer din krypteringsnøgle."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Redigerede element"
   },
-  "sharedItem": {
-    "message": "Delte element"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ flyttet til $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Delte elementer"
+  "movedItemsToOrg": {
+    "message": "Valgte emner flyttet til $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Slet element"
@@ -725,6 +744,15 @@
   "u2fTitle": {
     "message": "FIDO U2F sikkerhedsnøgle"
   },
+  "webAuthnTitle": {
+    "message": "FIDO2 WebAuthn"
+  },
+  "webAuthnDesc": {
+    "message": "Brug en hvilken som helst WebAuthn-aktiveret sikkerhedsnøgle til at få adgang til din konto."
+  },
+  "webAuthnMigrated": {
+    "message": "(Migreret fra FIDO)"
+  },
   "emailTitle": {
     "message": "E-mail"
   },
@@ -740,11 +768,11 @@
   "organizations": {
     "message": "Organisationer"
   },
-  "shareDesc": {
-    "message": "Vælg en organisation, som du ønsker at dele dette element med. Deling overfører ejerskab af elementet til organisationen. Du vil ikke længere være den direkte ejer af dette element, når det er blevet delt."
+  "moveToOrgDesc": {
+    "message": "Vælg den organisation, som du vil flytte dette emne til. Flytning overfører ejerskab af emnet til organisationen, og du vil efter flytningen ikke længere være den direkte ejer af emnet."
   },
-  "shareManyDesc": {
-    "message": "Vælg en organisation, som du ønsker at dele disse elementer med. Deling overfører ejerskab af elementerne til organisationen. Du vil ikke længere være den direkte ejer af disse elementer, når de er blevet delt."
+  "moveManyToOrgDesc": {
+    "message": "Vælg en organisation, som du vil flytte disse emner til. Flytning overfører ejerskabet af emnerne til organisationen, og du vil efter flytningen ikke længere være den direkte ejer af disse emner."
   },
   "collectionsDesc": {
     "message": "Redigér de samlinger, som dette element deles med. Kun organisationsbrugere med adgang til disse samlinger vil kunne se dette element."
@@ -767,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Du har valgt $COUNT$ element(er). $SHAREABLE_COUNT$ element(er) kan deles, $NONSHAREABLE_COUNT$ kan ikke.",
+  "moveSelectedItemsCountDesc": {
+    "message": "Du har valgt $COUNT$ emne(r). $MOVEABLE_COUNT$ emne(r) kan flyttes til en organisation, $NONMOVEABLE_COUNT$ kan ikke.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -800,13 +828,16 @@
     "message": "Denne eksport indeholder dine boksdata i ukrypteret form. Du bør ikke gemme eller sende den eksporterede fil over usikre kanaler (f.eks. e-mail). Slet den straks efter at du er færdig med at bruge den."
   },
   "encExportKeyWarningDesc": {
-    "message": "Denne eksport krypterer dine data vha. din kontos krypteringsnøgle. Roterer du på et tidspunkt denne krypteringsnøgle, skal du eksportere igen, da du ellers ikke vil kunne dekryptere denne eksportfil."
+    "message": "Denne eksport krypterer dine data vha. din kontos krypteringsnøgle. Roterer du på et tidspunkt denne kontokrypteringsnøgle, skal du eksportere igen, da du ikke vil kunne dekryptere denne eksportfil."
   },
   "encExportAccountWarningDesc": {
     "message": "Kontokrypteringsnøgler er unikke for hver Bitwarden-brugerkonto, så du kan ikke importere en krypteret eksport til en anden konto."
   },
   "exportMasterPassword": {
     "message": "Indtast din hovedadgangskode for at eksportere dine data fra boksen."
+  },
+  "export": {
+    "message": "Eksportér"
   },
   "exportVault": {
     "message": "Eksportér boks"
@@ -1007,13 +1038,13 @@
     "message": "Importfejl"
   },
   "importErrorDesc": {
-    "message": "Der var et problem med de data, du forsøgte at importere. Ret fejlene nedenfor i din kildefil, og forsøg igen."
+    "message": "Der var et problem med de data, du forsøgte at importere. Ret nedenstående fejl i din kildefil, og prøv igen."
   },
   "importSuccess": {
     "message": "Data er blevet importeret til din boks med success."
   },
   "importWarning": {
-    "message": "Du importerer data til $ORGANIZATION$. Dine data vil kunne deles med organisationsmedlemmerne. Fortsæt alligevel?",
+    "message": "Du importerer data til $ORGANIZATION$. Dine data kan blive delt med medlemmer af denne organisation. Vil du fortsætte?",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -1026,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Intet blev importeret."
+  },
+  "importEncKeyError": {
+    "message": "Fejl ved dekryptering af den eksporterede fil. Din krypteringsnøglen matcher ikke den krypteringsnøgle, som blev anvendt til dataeksporten."
   },
   "selectFormat": {
     "message": "Vælg formatet for importfilen"
@@ -1260,6 +1294,15 @@
       }
     }
   },
+  "webAuthnkeyX": {
+    "message": "WebAuthn-nøgle $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFC understøttelse"
   },
@@ -1305,6 +1348,9 @@
   "removeU2fConfirmation": {
     "message": "Er du sikker på, at du vil fjerne denne sikkerhedsnøgle?"
   },
+  "twoFactorWebAuthnAdd": {
+    "message": "Føj en WebAuthn-sikkerhedsnøgle til din konto"
+  },
   "readKey": {
     "message": "Læs nøgle"
   },
@@ -1337,6 +1383,12 @@
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "Der opstod et problem med at læse sikkerhedsnøglen. Prøv igen."
+  },
+  "twoFactorWebAuthnWarning": {
+    "message": "På grund af platformsbegrænsninger kan WebAuthn ikke bruges på alle Bitwarden-applikationer. Du bør aktivere en anden to-trins loginudbyder, så du kan få adgang til din konto, når WebAuthn ikke kan benyttes. Understøttede platforme:"
+  },
+  "twoFactorWebAuthnSupportWeb": {
+    "message": "Web-boks og browserudvidelser på en stationær/bærbar computer med en WebAuthn-aktiveret browser (Chrome, Opera, Vivaldi eller Firefox med FIDO U2F aktiveret)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Din Bitwarden to-trins-login gendannelseskode"
@@ -1382,7 +1434,7 @@
     "message": "Logins uden 2FA fundet"
   },
   "inactive2faFoundDesc": {
-    "message": "Vi har fundet $COUNT$ hjemmeside(r) i din boks, der muligvis ikke er konfigureret med to-faktor autentificering (ifølge twofactorauth.org). For at beskytte disse konti yderligere bør du aktivere to-faktor autentificering.",
+    "message": "Vi fandt $COUNT$ websted(er) i din boks, der muligvis ikke er konfigureret med to-faktor autentificering (ifølge 2fa.directory). For yderligere at beskytte disse konti bør du aktivere to-faktor autentificering.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2300,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Delte element $ID$.",
+  "movedItemIdToOrg": {
+    "message": "Flyttede emnet $ID$ til en organisation.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2608,6 +2660,12 @@
   },
   "emailVerifiedFailed": {
     "message": "Kan ikke bekræfte din e-mail. Prøv at sende en ny verifikations-email."
+  },
+  "emailVerificationRequired": {
+    "message": "E-mailbekræftelse kræves"
+  },
+  "emailVerificationRequiredDesc": {
+    "message": "Du skal bekræfte din e-mail for at bruge denne funktion."
   },
   "updateBrowser": {
     "message": "Opdatér browser"
@@ -3389,6 +3447,9 @@
   "removePasswordConfirmation": {
     "message": "Er du sikker på, at du vil fjerne adgangskoden?"
   },
+  "hideEmail": {
+    "message": "Skjul min e-mailadresse for modtagere."
+  },
   "disableThisSend": {
     "message": "Deaktivér denne Send så ingen kan tilgå den.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
@@ -3429,7 +3490,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "missingSendFile": {
-    "message": "Filen tilknyttet denne Send kunne ikke findes.",
+    "message": "Filen, der er knyttet til denne Send, blev ikke fundet.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3440,10 +3501,10 @@
     "message": "Nødadgang"
   },
   "emergencyAccessDesc": {
-    "message": "Tildel og håndter nødadgang for betroede kontakter. Betroede kontakter kan anmode om adgang til enten at vise eller overtage din konto i nødstilfælde. Besøg vores hjælpeside for yderligere oplysninger om, hvordan nul-vidensdeling fungerer."
+    "message": "Tildel og håndtér nødadgang for betroede kontakter. Betroede kontakter kan anmode om adgang til enten at se eller overtage din konto i nødstilfælde. Besøg vores hjælpeside for mere information og detaljer om, hvordan nul-videndeling fungerer."
   },
   "emergencyAccessOwnerWarning": {
-    "message": "Du er Ejer af en eller flere organisationer. Tildeler du overtagelsesadgang til en nødkontakt, vil vedkommende efter en overtagelsen kunne bruge alle dine tilladelser som Ejer."
+    "message": "Du er ejer af en eller flere organisationer. Hvis du tildeler overtagelsesadgang til en nødkontakt, kan de bruge alle dine tilladelser som ejer efter en overtagelse."
   },
   "trustedEmergencyContacts": {
     "message": "Betroede nødkontakter"
@@ -3588,7 +3649,7 @@
     "message": "Organisationsejere og administratorer er undtaget fra denne politik."
   },
   "personalOwnershipSubmitError": {
-    "message": "En virksomhedspolitik forhindrer dig i at gemme emner i din personlige boks. Skift indstillingen Ejerskab til en organisation, og vælg fra de tilgængelige samlinger."
+    "message": "Grundet en virksomhedspolitik kan du ikke gemme emner i din personlige boks. Skift ejerskabsindstillingen til en organisation, og vælg fra de tilgængelige samlinger."
   },
   "disableSend": {
     "message": "Deaktivér Send"
@@ -3598,7 +3659,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
-    "message": "Organisationsbrugere, som kan håndtere organisationspolitikker, er undtaget fra denne politiks håndhævelse."
+    "message": "Organisationsbrugere, der kan håndtere organisationens politikker, er undtaget fra denne politiks håndhævelse."
   },
   "sendDisabled": {
     "message": "Send deaktiveret",
@@ -3606,6 +3667,28 @@
   },
   "sendDisabledWarning": {
     "message": "Du kan grundet en virksomhedspolitik kun slette en eksisterende Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptions": {
+    "message": "Send-valgmuligheder",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyDesc": {
+    "message": "Angiv valg for oprettelse og redigering af Sends.",
+    "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsExemption": {
+    "message": "Organisationsbrugere, som kan håndtere organisationens politikker, er undtaget fra denne politiks håndhævelse."
+  },
+  "disableHideEmail": {
+    "message": "Tillad ikke brugere at skjule deres e-mailadresse for modtagere når en Send oprettes eller redigeres.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyInEffect": {
+    "message": "Følgende organisationspolitikker er i øjeblikket gældende:"
+  },
+  "sendDisableHideEmailInEffect": {
+    "message": "Brugere har ikke lov til at skjule deres e-mailadresser for modtagere når en Send oprettes eller redigeres.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3662,6 +3745,9 @@
   "manageUsers": {
     "message": "Håndtér brugere"
   },
+  "manageResetPassword": {
+    "message": "Håndtér nulstilling af adgangskode"
+  },
   "disableRequireSsoError": {
     "message": "Single Sign-On godkendelsespolitikken skal manuelt deaktiveres, før denne politik kan deaktiveres."
   },
@@ -3680,10 +3766,10 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
-    "message": "Teksten, du vil sende."
+    "message": "Den tekst, du vil sende."
   },
   "sendFileDesc": {
-    "message": "Filen, du vil sende."
+    "message": "Den fil, du vil sende."
   },
   "copySendLinkOnSave": {
     "message": "Kopier linket for at dele denne Send til min udklipsholder ved gem."
@@ -3697,7 +3783,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineProductDesc": {
-    "message": "Bitwarden Send transmitterer nemt og sikkert sensitive, midlertidige oplysninger til andre.",
+    "message": "Bitwarden Send overfører nemt og sikkert følsomme, midlertidige oplysninger til andre.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineLearnMore": {
@@ -3708,7 +3794,7 @@
     "message": "Del tekst eller filer direkte med nogen."
   },
   "sendVaultCardLearnMore": {
-    "message": "Få mere at vide,",
+    "message": "Få mere at vide",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
   },
   "sendVaultCardSee": {
@@ -3716,7 +3802,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
   },
   "sendVaultCardHowItWorks": {
-    "message": "hvordan det fungere",
+    "message": "hvordan det fungerer",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
   },
   "sendVaultCardOr": {
@@ -3736,11 +3822,11 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
   },
   "sendAccessTaglineTryToday": {
-    "message": "at prøve det i dag.",
+    "message": "for at prøve det i dag.",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
   },
   "sendCreatorIdentifier": {
-    "message": "Bitwarden-bruger $USER_IDENTIFIER$ delte flg. med dig",
+    "message": "Bitwarden bruger $USER_IDENTIFIER$ delte følgende med dig",
     "placeholders": {
       "user_identifier": {
         "content": "$1",
@@ -3748,19 +3834,188 @@
       }
     }
   },
+  "viewSendHiddenEmailWarning": {
+    "message": "Bitwarden-brugeren, der oprettede denne Send, har valgt at skjule sin e-mailadresse. Du bør sikre dig, at du stoler på kilden til dette link, inden du bruger eller downloader dets indhold.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "expirationDateIsInvalid": {
-    "message": "Angivne udløbsdato er ugyldig."
+    "message": "Den angivne udløbsdato er ugyldig."
   },
   "deletionDateIsInvalid": {
-    "message": "Angivne sletningsdato er ugyldig."
+    "message": "Den angivne sletningsdato er ugyldig."
   },
   "expirationDateAndTimeRequired": {
-    "message": "Udløbsdato og -tidspunkt er obligatorisk."
+    "message": "Der kræves en udløbsdato og -tid."
   },
   "deletionDateAndTimeRequired": {
-    "message": "Sletningsdato og -tidspunkt er obligatorisk."
+    "message": "En sletningsdato og -tid er påkrævet."
   },
   "dateParsingError": {
-    "message": "En fejl opstod under forsøget på at gemme din sletning og udløbsdatoer."
+    "message": "Der opstod en fejl under forsøget på at gemme dine sletnings- og udløbsdatoer."
+  },
+  "webAuthnFallbackMsg": {
+    "message": "Klik på knappen nedenfor for at bekræfte din 2FA."
+  },
+  "webAuthnAuthenticate": {
+    "message": "Godkend WebAuthn"
+  },
+  "webAuthnNotSupported": {
+    "message": "Denne browser understøtter ikke WebAuthn."
+  },
+  "webAuthnSuccess": {
+    "message": "WebAuthn bekræftet Du kan lukke denne fane."
+  },
+  "hintEqualsPassword": {
+    "message": "Dit kodeordstip må ikke være identisk med din adgangskode."
+  },
+  "enrollPasswordReset": {
+    "message": "Tilmeld til Adgangskodenulstilling"
+  },
+  "enrolledPasswordReset": {
+    "message": "Tilmeldt Adgangskodenulstilling"
+  },
+  "withdrawPasswordReset": {
+    "message": "Afmeld fra Adgangskodenulstilling"
+  },
+  "enrollPasswordResetSuccess": {
+    "message": "Tilmelding lykkedes!"
+  },
+  "withdrawPasswordResetSuccess": {
+    "message": "Afmelding lykkedes!"
+  },
+  "eventEnrollPasswordReset": {
+    "message": "Bruger $ID$ tilmeldt hjælp til nulstilling af adgangskode.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventWithdrawPasswordReset": {
+    "message": "Bruger $ID$ afmeldt hjælp til nulstilling af adgangskode.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventAdminPasswordReset": {
+    "message": "Hovedadgangskode nulstillet for bruger $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Nulstil adgangskode"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Ved at fortsætte logges $NAME$ ud af sin nuværende session, hvilket kræver, at vedkommende logger ind igen. Aktive sessioner på andre enheder forbliver muligvis aktive i op til en time.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "denne bruger"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "Én eller flere organisationspolitikker kræver, at hovedadgangskoden opfylder følgende krav:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Adgangskode nulstillet!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Indrullering vil tillade organisationsadministratorer at ændre din hovedadgangskode. Er du sikker på, at du vil indrullere dig?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Nulstil hovedadgangskode"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Tillad administratorer i organisationen at nulstille organisationsbrugeres hovedadgangskode."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Brugere i organisationen skal selvindrullere eller være auto-indrulleret, før administratorer kan nulstille deres hovedadgangskode."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Auto-indrullering"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "Alle brugere opsættes automatisk til adgangskodenulstilling, når deres invitation er accepteret."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Brugere, som allerede er i organisationen, opsættes ikke med tilbagevirkende kraft til adgangskodenulstilling. De skal selvindrullere, før administratorer kan nulstille deres hovedadgangskode."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Auto-indrullér nye brugere"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Denne organisation har en virksomhedspolitik, der auto-opsætter dig til adgangskodenulstilling. Opsætningen giver organisationsadministratorer mulighed for at ændre din hovedadgangskode."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Organisationsnøgler svar er null"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Nulstil adgangskode detaljer svar er null"
+  },
+  "trashCleanupWarning": {
+    "message": "Elementer, som har været i papirkurven i mere end 30 dage, slettes automatisk."
+  },
+  "trashCleanupWarningSelfHosted": {
+    "message": "Elementer, som har været i papirkurven i et stykke tid, slettes automatisk."
+  },
+  "passwordPrompt": {
+    "message": "Genanmodning om hovedadgangskode"
+  },
+  "passwordConfirmation": {
+    "message": "Bekræftelse af hovedadgangskode"
+  },
+  "passwordConfirmationDesc": {
+    "message": "Denne handling er beskyttet. For at fortsætte, angiv din hovedadgangskode igen for at bekræfte din identitet."
+  },
+  "reinviteSelected": {
+    "message": "Gensend invitationer"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "Denne handling er ikke anvendelig for nogen af de valgte brugere."
+  },
+  "removeUsersWarning": {
+    "message": "Er du sikker på, at du vil fjerne følgende brugere? Processen kan tage et par sekunder at fuldføre og kan ikke afbrydes eller annulleres."
+  },
+  "confirmSelected": {
+    "message": "Bekræft valgte"
+  },
+  "bulkConfirmStatus": {
+    "message": "Status for massehandling"
+  },
+  "bulkConfirmMessage": {
+    "message": "Bekræftet med succes."
+  },
+  "bulkReinviteMessage": {
+    "message": "Geninviteret med succes."
+  },
+  "bulkRemovedMessage": {
+    "message": "Fjernet med succes"
+  },
+  "bulkFilteredMessage": {
+    "message": "Udelukket, ikke anvendeligt til denne handling."
+  },
+  "fingerprint": {
+    "message": "Fingeraftryk"
+  },
+  "removeUsers": {
+    "message": "Fjern brugere"
+  },
+  "error": {
+    "message": "Fejl"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Administrér brugere skal også være aktiveret med tilladelsen Håndtér adgangskodenulstilling"
   }
 }

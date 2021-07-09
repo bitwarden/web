@@ -360,6 +360,9 @@
   "share": {
     "message": "Partajare"
   },
+  "moveToOrganization": {
+    "message": "Mutare la organizație"
+  },
   "valueCopied": {
     "message": "$VALUE$ s-a copiat",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Seif"
   },
-  "shareSelected": {
-    "message": "Partajare selecție"
+  "moveSelectedToOrg": {
+    "message": "Mutați cele selectate în organizație"
   },
   "deleteSelected": {
     "message": "Ștergere selecție"
@@ -437,7 +440,7 @@
     "message": "Selectare fișier."
   },
   "maxFileSize": {
-    "message": "Mărimea maximă a fișierului este de 100 MB."
+    "message": "Mărimea maximă a fișierului este de 500 MB."
   },
   "updateKey": {
     "message": "Veți putea utiliza această caracteristică după ce veți actualiza cheia de criptare."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Articol editat"
   },
-  "sharedItem": {
-    "message": "Articol partajat"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ mutat la $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Articole partajate"
+  "movedItemsToOrg": {
+    "message": "Articolele selectate au fost mutate în $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Ștergere articol"
@@ -725,6 +744,15 @@
   "u2fTitle": {
     "message": "Cheie de securitate FIDO U2F"
   },
+  "webAuthnTitle": {
+    "message": "FIDO2 WebAuthn"
+  },
+  "webAuthnDesc": {
+    "message": "Utilizați orice cheie de securitate activată WebAuthn pentru a vă accesa contul."
+  },
+  "webAuthnMigrated": {
+    "message": "(Migrate din FIDO)"
+  },
   "emailTitle": {
     "message": "E-mail"
   },
@@ -740,11 +768,11 @@
   "organizations": {
     "message": "Organizații"
   },
-  "shareDesc": {
-    "message": "Alegeți o organizație cu care doriți să partajați acest articol. Partajarea transferă proprietatea asupra articolului către organizație. Nu veți mai fi proprietarul direct al acestuia după ce a fost partajat."
+  "moveToOrgDesc": {
+    "message": "Alegeți o organizație la care doriți să mutați acest articol. Mutarea într-o organizație, transferă proprietatea asupra articolului către organizația respectivă. Nu veți mai fi proprietarul direct al acestui articol odată ce a fost mutat."
   },
-  "shareManyDesc": {
-    "message": "Alegeți o organizație cu care doriți să partajați aceste articole. Partajarea transferă proprietatea asupra articolelor către organizație. Nu veți mai fi proprietarul direct al acestora după ce au fost partajate."
+  "moveManyToOrgDesc": {
+    "message": "Alegeți o organizație la care doriți să mutați aceste articole. Mutarea într-o organizație, transferă proprietatea asupra articolelor către organizația respectivă. Nu veți mai fi proprietarul direct al acestor articole odată ce au fost mutate."
   },
   "collectionsDesc": {
     "message": "Editați colecțiile cu care este partajat acest articol. Numai utilizatorii organizației cu acces la aceste colecții vor putea vedea acest articol."
@@ -767,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Ați selectat $COUNT$ articole. $SHAREABLE_COUNT$ articole sunt partajabile, $NONSHAREABLE_COUNT$ nu sunt.",
+  "moveSelectedItemsCountDesc": {
+    "message": "Ați selectat $COUNT$ articol(e). $MOVEABLE_COUNT$ articol(e) poate/pot fi mutat(e) într-o organizație, $NONMOVEABLE_COUNT$ nu.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -807,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "Introducere parolă principală pentru exportarea datelor seifului."
+  },
+  "export": {
+    "message": "Exportați"
   },
   "exportVault": {
     "message": "Export seif"
@@ -1026,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Nu s-a importat nimic."
+  },
+  "importEncKeyError": {
+    "message": "Eroare la decriptarea fișierului exportat. Cheia dvs. de criptare nu corespunde cu cheia de criptare folosită pentru a exporta datele."
   },
   "selectFormat": {
     "message": "Alegeți din listă formatul fișierului de import"
@@ -1260,6 +1294,15 @@
       }
     }
   },
+  "webAuthnkeyX": {
+    "message": "Cheie WebAuthn $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "Suport NFC"
   },
@@ -1305,6 +1348,9 @@
   "removeU2fConfirmation": {
     "message": "Sigur doriți să eliminați această cheie de securitate?"
   },
+  "twoFactorWebAuthnAdd": {
+    "message": "Adăugare de cheie de securitate WebAuthn în contul dvs."
+  },
   "readKey": {
     "message": "Citire cheie"
   },
@@ -1337,6 +1383,12 @@
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "A apărut o problemă la citirea cheii de securitate. Încercați din nou."
+  },
+  "twoFactorWebAuthnWarning": {
+    "message": "Drept consecință a limitărilor platformei, WebAuthn nu se poate utiliza pe toate aplicațiile Bitwarden. Ar trebui să activați un alt furnizor de conectare în două etape pentru a vă accesa contul, atunci când WebAuthn nu se poate utiliza. Platforme acceptate:"
+  },
+  "twoFactorWebAuthnSupportWeb": {
+    "message": "Seiful web și extensiile de browser pe un desktop/laptop cu un browser activat WebAuthn (Chrome, Opera, Vivaldi sau Firefox cu FIDO U2F activat)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Codul dvs. Bitwarden de recuperare a autentificării în două etape"
@@ -2300,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Element $ID$ partajat.",
+  "movedItemIdToOrg": {
+    "message": "Articolul $ID$ a fost mutat la o organizație.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2608,6 +2660,12 @@
   },
   "emailVerifiedFailed": {
     "message": "E-mailul dvs. nu a putut fi verificat. Încercați să trimiteți un nou e-mail de verificare."
+  },
+  "emailVerificationRequired": {
+    "message": "Este necesară verificarea adresei de e-mail"
+  },
+  "emailVerificationRequiredDesc": {
+    "message": "Trebuie să vă verificați e-mailul pentru a utiliza această caracteristică."
   },
   "updateBrowser": {
     "message": "Actualizare browser"
@@ -3389,6 +3447,9 @@
   "removePasswordConfirmation": {
     "message": "Sigur doriți să eliminați parola?"
   },
+  "hideEmail": {
+    "message": "Ascundeți adresa mea de e-mail de la destinatari."
+  },
   "disableThisSend": {
     "message": "Dezactivați acest Send astfel încât nimeni să nu îl poată accesa.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
@@ -3608,6 +3669,28 @@
     "message": "Datorită unei politici de întreprindere, puteți șterge numai un Send existent.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "sendOptions": {
+    "message": "Opțiuni Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyDesc": {
+    "message": "Setați opțiunile pentru crearea și editarea Send-urilor.",
+    "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsExemption": {
+    "message": "Utilizatorii organizației care pot gestiona politicile organizației sunt exceptați de la aplicarea acestei politici."
+  },
+  "disableHideEmail": {
+    "message": "Nu permiteți utilizatorilor să-și ascundă adresa de e-mail de la destinatari, atunci când creează sau editează un Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyInEffect": {
+    "message": "În prezent, sunt în vigoare următoarele politici de organizare:"
+  },
+  "sendDisableHideEmailInEffect": {
+    "message": "Utilizatorii nu au voie să-și ascundă adresa de e-mail de la destinatari atunci când creează sau editează un Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "modifiedPolicyId": {
     "message": "Politica $ID$ a fost editată.",
     "placeholders": {
@@ -3661,6 +3744,9 @@
   },
   "manageUsers": {
     "message": "Gestionați utilizatorii"
+  },
+  "manageResetPassword": {
+    "message": "Gestionați resetarea parolei"
   },
   "disableRequireSsoError": {
     "message": "Politica de autentificare la conectare unică (SSO) trebuie dezactivată manual înainte ca această politică să poată fi dezactivată."
@@ -3748,6 +3834,10 @@
       }
     }
   },
+  "viewSendHiddenEmailWarning": {
+    "message": "Utilizatorul Bitwarden care a creat acest Send a ales să-și ascundă adresa de e-mail. Ar trebui să vă asigurați că aveți încredere în sursa acestui link înainte de utilizarea sau descărcarea conținutului acestuia.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "expirationDateIsInvalid": {
     "message": "Data de expirare furnizată nu este validă."
   },
@@ -3762,5 +3852,170 @@
   },
   "dateParsingError": {
     "message": "A survenit o eroare la salvarea datelor de ștergere și de expirare."
+  },
+  "webAuthnFallbackMsg": {
+    "message": "Pentru a verifica 2FA, vă rugăm să faceți clic pe butonul de mai jos."
+  },
+  "webAuthnAuthenticate": {
+    "message": "Autentificare WebAuthn"
+  },
+  "webAuthnNotSupported": {
+    "message": "WebAuthn nu este acceptat în acest browser."
+  },
+  "webAuthnSuccess": {
+    "message": "WebAuthn a fost verificat cu succes! Puteți închide această filă."
+  },
+  "hintEqualsPassword": {
+    "message": "Indiciul dvs. de parolă nu poate fi aceeași cu parola."
+  },
+  "enrollPasswordReset": {
+    "message": "Înscriere în resetarea parolei"
+  },
+  "enrolledPasswordReset": {
+    "message": "Înregistrat la resetarea parolei"
+  },
+  "withdrawPasswordReset": {
+    "message": "Retragere din resetarea parolei"
+  },
+  "enrollPasswordResetSuccess": {
+    "message": "Înregistrare reușită!"
+  },
+  "withdrawPasswordResetSuccess": {
+    "message": "Retragere reușită!"
+  },
+  "eventEnrollPasswordReset": {
+    "message": "Utilizator $ID$ s-a înscris în asistența de resetare a parolei.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventWithdrawPasswordReset": {
+    "message": "Utilizatorul $ID$ s-a retras din asistența pentru resetarea parolei.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventAdminPasswordReset": {
+    "message": "Resetarea parolei principale pentru utilizatorul $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Resetați parola"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Procedând, $NAME$ va fi deconectat de la sesiunea curentă, solicitându-i să se conecteze din nou. Sesiunile active pe alte dispozitive pot continua să rămână active timp de până la o oră.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "acest utilizator"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "Una sau mai multe politici ale organizației, necesită ca parola principală să îndeplinească următoarele cerințe:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Parolă resetată cu succes!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Înscrierea va permite administratorilor organizației să vă schimbe parola principală. Sigur doriți să vă înscrieți?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Resetare parolă principală"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Permite administratorilor din organizație să reseteze parola principală a utilizatorilor organizației."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Utilizatorii din organizație vor trebui să se înregistreze singuri sau, să fie înregistrați automat, înainte ca administratorii să le poată reseta parola principală."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Înregistrare automată"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "Toți utilizatorii vor fi înregistrați automat în resetarea parolei odată ce invitația lor este acceptată."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Utilizatorii care fac deja parte din organizație, nu vor fi înscriși retroactiv în resetarea parolei. Ei vor trebui să se înregistreze singuri, înainte ca administratorii să poată reseta parola lor principală."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Înregistrare automată a utilizatorilor noi"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Această organizație are o politică de întreprindere care vă va înregistra automat în resetarea parolei. Înregistrarea va permite administratorilor organizației să vă schimbe parola principală."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Răspunsul Cheilor organizației este nul"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Răspunsul detaliat la resetarea parolei este nul"
+  },
+  "trashCleanupWarning": {
+    "message": "Articolele care au fost în coșul de reciclare mai mult de 30 de zile vor fi șterse automat."
+  },
+  "trashCleanupWarningSelfHosted": {
+    "message": "Articolele care au fost în coșul de reciclare de ceva vreme vor fi șterse automat."
+  },
+  "passwordPrompt": {
+    "message": "Re-solicitare parolă principală"
+  },
+  "passwordConfirmation": {
+    "message": "Confirmare parolă principală"
+  },
+  "passwordConfirmationDesc": {
+    "message": "Această acțiune este protejată. Pentru a continua, vă rugăm să reintroduceți parola principală pentru a vă verifica identitatea."
+  },
+  "reinviteSelected": {
+    "message": "Retrimitere invitații"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "Această acțiune nu se aplică niciunui utilizator selectat."
+  },
+  "removeUsersWarning": {
+    "message": "Sunteți sigur că doriți să eliminați următorii utilizatori? Finalizarea procesului poate dura câteva secunde și nu poate fi întrerupt sau anulat."
+  },
+  "confirmSelected": {
+    "message": "Confirmați selecția"
+  },
+  "bulkConfirmStatus": {
+    "message": "Starea operației în masă"
+  },
+  "bulkConfirmMessage": {
+    "message": "Confirmat cu succes."
+  },
+  "bulkReinviteMessage": {
+    "message": "Reinvitat cu succes."
+  },
+  "bulkRemovedMessage": {
+    "message": "Eliminat cu succes"
+  },
+  "bulkFilteredMessage": {
+    "message": "Exclus, nu se aplică pentru această acțiune."
+  },
+  "fingerprint": {
+    "message": "Amprentă"
+  },
+  "removeUsers": {
+    "message": "Eliminați utilizatorii"
+  },
+  "error": {
+    "message": "Eroare"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Gestionare Utilizatori trebuie de asemenea activată cu Gestionare Permisiune de Resetare a Parolei"
   }
 }

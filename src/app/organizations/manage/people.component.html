@@ -25,6 +25,36 @@
             <input type="search" class="form-control form-control-sm" id="search" placeholder="{{'search' | i18n}}"
                 [(ngModel)]="searchText">
         </div>
+        <div class="dropdown ml-3" appListDropdown>
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="bulkActionsButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" appA11yTitle="{{'options' | i18n}}">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bulkActionsButton">
+                <button class="dropdown-item" appStopClick (click)="bulkReinvite()">
+                    <i class="fa fa-fw fa-envelope-o" aria-hidden="true"></i>
+                    {{'reinviteSelected' | i18n}}
+                </button>
+                <button class="dropdown-item text-success" appStopClick (click)="bulkConfirm()"
+                    *ngIf="showBulkConfirmUsers">
+                    <i class="fa fa-fw fa-check" aria-hidden="true"></i>
+                    {{'confirmSelected' | i18n}}
+                </button>
+                <button class="dropdown-item text-danger" appStopClick (click)="bulkRemove()">
+                    <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
+                    {{'remove' | i18n}}
+                </button>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" appStopClick (click)="selectAll(true)">
+                    <i class="fa fa-fw fa-check-square-o" aria-hidden="true"></i>
+                    {{'selectAll' | i18n}}
+                </button>
+                <button class="dropdown-item" appStopClick (click)="selectAll(false)">
+                    <i class="fa fa-fw fa-minus-square-o" aria-hidden="true"></i>
+                    {{'unselectAll' | i18n}}
+                </button>
+            </div>
+        </div>
         <button type="button" class="btn btn-sm btn-outline-primary ml-3" (click)="invite()">
             <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
             {{'inviteUser' | i18n}}
@@ -46,6 +76,9 @@
             [infiniteScrollDisabled]="!isPaging()" (scrolled)="loadMore()">
             <tbody>
                 <tr *ngFor="let u of searchedUsers">
+                    <td (click)="checkUser(u)" class="table-list-checkbox">
+                        <input type="checkbox" [(ngModel)]="u.checked" appStopProp>
+                    </td>
                     <td width="30">
                         <app-avatar [data]="u.name || u.email" [email]="u.email" size="25" [circle]="true"
                             [fontSize]="14"></app-avatar>
@@ -62,6 +95,10 @@
                         <ng-container *ngIf="u.twoFactorEnabled">
                             <i class="fa fa-lock" title="{{'userUsingTwoStep' | i18n}}" aria-hidden="true"></i>
                             <span class="sr-only">{{'userUsingTwoStep' | i18n}}</span>
+                        </ng-container>
+                        <ng-container *ngIf="showEnrolledStatus(u)">
+                            <i class="fa fa-key" title="{{'enrolledPasswordReset' | i18n}}" aria-hidden="true"></i>
+                            <span class="sr-only">{{'enrolledPasswordReset' | i18n}}</span>
                         </ng-container>
                     </td>
                     <td>
@@ -98,6 +135,11 @@
                                     <i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i>
                                     {{'eventLogs' | i18n}}
                                 </a>
+                                <a class="dropdown-item" href="#" appStopClick (click)="resetPassword(u)"
+                                    *ngIf="allowResetPassword(u)">
+                                    <i class="fa fa-fw fa-key" aria-hidden="true"></i>
+                                    {{'resetPassword' | i18n}}
+                                </a>
                                 <a class="dropdown-item text-danger" href="#" appStopClick (click)="remove(u)">
                                     <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
                                     {{'remove' | i18n}}
@@ -114,3 +156,7 @@
 <ng-template #groupsTemplate></ng-template>
 <ng-template #eventsTemplate></ng-template>
 <ng-template #confirmTemplate></ng-template>
+<ng-template #resetPasswordTemplate></ng-template>
+<ng-template #bulkStatusTemplate></ng-template>
+<ng-template #bulkConfirmTemplate></ng-template>
+<ng-template #bulkRemoveTemplate></ng-template>

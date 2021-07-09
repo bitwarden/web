@@ -13,7 +13,7 @@
     "message": "Koja je ovo vrsta stavke?"
   },
   "name": {
-    "message": "Ime"
+    "message": "Naziv"
   },
   "uri": {
     "message": "URI"
@@ -360,6 +360,9 @@
   "share": {
     "message": "Podijeli"
   },
+  "moveToOrganization": {
+    "message": "Move to Organization"
+  },
   "valueCopied": {
     "message": " kopirano",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Trezor"
   },
-  "shareSelected": {
-    "message": "Podijeli odabrano"
+  "moveSelectedToOrg": {
+    "message": "Move Selected to Organization"
   },
   "deleteSelected": {
     "message": "Obriši odabrano"
@@ -437,7 +440,7 @@
     "message": "Odaberi datoteku."
   },
   "maxFileSize": {
-    "message": "Najveća veličina datoteke je 100 MB."
+    "message": "Najveća veličina datoteke je 500 MB."
   },
   "updateKey": {
     "message": "Ne možeš koristiti ovu značajku prije nego ažuriraš ključ za šifriranje."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Uređena stavka"
   },
-  "sharedItem": {
-    "message": "Podijeljena stavka"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Podijeljene stavke"
+  "movedItemsToOrg": {
+    "message": "Selected items moved to $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Izbriši stavku"
@@ -725,6 +744,15 @@
   "u2fTitle": {
     "message": "FIDO U2F sigurnosni ključ"
   },
+  "webAuthnTitle": {
+    "message": "FIDO2 WebAuthn"
+  },
+  "webAuthnDesc": {
+    "message": "Koristi WebAuthn sigurnosni ključ za pristup svojem računu."
+  },
+  "webAuthnMigrated": {
+    "message": "(migrirano s FIDO)"
+  },
   "emailTitle": {
     "message": "E-pošta"
   },
@@ -740,11 +768,11 @@
   "organizations": {
     "message": "Organizacije"
   },
-  "shareDesc": {
-    "message": "Odaberi organizaciju s kojom želiš podijeliti ovu stavku. Dijeljenje prenosi vlasništvo stavke na organizaciju. Nakon dijeljenja više nećeš biti izravni vlasnik ove stavke."
+  "moveToOrgDesc": {
+    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
   },
-  "shareManyDesc": {
-    "message": "Odaberi organizaciju s kojom želiš podijeliti ove stavke. Dijeljenje prenosi vlasništvo stavki na organizaciju. Nakon dijeljenja više nećeš biti izravni vlasnik ovih stavki."
+  "moveManyToOrgDesc": {
+    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
   },
   "collectionsDesc": {
     "message": "Uredi zbirke s kojima se ova stavka koristi. Samo korisnici organizacije s pristupom ovim zbirkama će ih moći vidjeti."
@@ -767,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Odabrano je $COUNT$ stavke/i. $SHAREABLE_COUNT$ se može dijeliti, $NONSHAREABLE_COUNT$ se ne može dijeliti.",
+  "moveSelectedItemsCountDesc": {
+    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -800,13 +828,16 @@
     "message": "Ovaj izvoz sadrži podatke trezora u nešifriranom obliku! Izvezenu datoteku se ne bi smjelo pohranjivati ili slati putem nesigurnih kanala (npr. e-poštom). Izbriši ju odmah nakon završetka korištenja."
   },
   "encExportKeyWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Ovaj izvoz šifrira tvoje podatke koristeći ključ za šifriranje. Promijeniš li naknadno ključ za šifriranje, potrebno je ponovno napraviti izvoz jer nećeš moći dešifrirati ovu izvezenu datoteku."
   },
   "encExportAccountWarningDesc": {
-    "message": "Account encryption keys are unique to each Bitwarden user account, so you can't import an encrypted export into a different account."
+    "message": "Ključ za šifriranje jedinstven je za svakog Bitwarden korisnika, kako bi se šifrirani izvoz mogao uvesti u drugi korisnički račun."
   },
   "exportMasterPassword": {
     "message": "Unesi glavnu lozinku za izvoz podataka iz trezora."
+  },
+  "export": {
+    "message": "Export"
   },
   "exportVault": {
     "message": "Izvezi trezor"
@@ -1004,16 +1035,16 @@
     "message": "Uvezi podatke"
   },
   "importError": {
-    "message": "Import Error"
+    "message": "Greška prilikom uvoza"
   },
   "importErrorDesc": {
-    "message": "There was a problem with the data you tried to import. Please resolve the errors listed below in your source file and try again."
+    "message": "Postoji problem s podacima za uvoz. Potrebno je razriješiti doljenavedene greške u izvornoj datoteci i pokušati ponovno."
   },
   "importSuccess": {
     "message": "Uvoz podataka u trezor je uspjelo."
   },
   "importWarning": {
-    "message": "You are importing data to $ORGANIZATION$. Your data may be shared with members of this organization. Do you want to proceed?",
+    "message": "Uvoziš podatke u $ORGANIZATION$. Tvoji podaci možda će biti podijeljeni s članovima ove organizacije. Želiš li svejedno uvesti podatke?",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -1026,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Ništa nije uvezeno."
+  },
+  "importEncKeyError": {
+    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
   },
   "selectFormat": {
     "message": "Odaberi format datoteke za uvoz"
@@ -1260,6 +1294,15 @@
       }
     }
   },
+  "webAuthnkeyX": {
+    "message": "WebAuthn ključ $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFC podrška"
   },
@@ -1305,6 +1348,9 @@
   "removeU2fConfirmation": {
     "message": "Sigurno želiš ukloniti ovaj sigurnosni ključ?"
   },
+  "twoFactorWebAuthnAdd": {
+    "message": "Dodaj WebAuthn sigurnosni ključ svojem računu"
+  },
   "readKey": {
     "message": "Očitaj ključ"
   },
@@ -1337,6 +1383,12 @@
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "Došlo je do pogreške kod očitavanja sigurnosnog ključa. Pokušaj ponovno."
+  },
+  "twoFactorWebAuthnWarning": {
+    "message": "Zbog platformskih ograničenja, WebAuthn nije moguće koristiti s Bitwarden aplikacijama na svim platformama. Za pristup računu kada nije moguće koristiti WebAuthn, trebalo bi uključiti drugog pružatelja prijave u dva koraka. Platforme na kojima je WebAuthn podržan:"
+  },
+  "twoFactorWebAuthnSupportWeb": {
+    "message": "Web trezor i proširenja preglednika na stolnim/prijenosnim računalima s WebAuthn omogućenim preglednikom (npr. Chrome, Opera, Vivaldi ili Firefox s omogućenim WebAuthn)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Tvoj kôd za oporavak Bitwarden prijave u dva koraka"
@@ -1584,7 +1636,7 @@
     "message": "Dodatne mogućnosti za prijavu u dva koraka kao što su YubiKey, FIDO U2F i Duo."
   },
   "premiumSignUpEmergency": {
-    "message": "Emergency Access"
+    "message": "Pristup u nuždi"
   },
   "premiumSignUpReports": {
     "message": "Higijenu lozinki, zdravlje računa i izvještaje o krađi podatak radi zaštite svojeg trezora."
@@ -2300,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Dijeljena stavka $ID$.",
+  "movedItemIdToOrg": {
+    "message": "Moved item $ID$ to an organization.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2608,6 +2660,12 @@
   },
   "emailVerifiedFailed": {
     "message": "Ne možeš potvrditi svoju e-poštu? Pošalji novu poruku."
+  },
+  "emailVerificationRequired": {
+    "message": "Potrebna je potvrda e-pošte"
+  },
+  "emailVerificationRequiredDesc": {
+    "message": "Za korištenje ove značajke, potrebna je ovjera e-pošte."
   },
   "updateBrowser": {
     "message": "Ažuriraj preglednik"
@@ -3306,78 +3364,78 @@
     "message": "Tekst"
   },
   "createSend": {
-    "message": "Stvori novi „Send”",
+    "message": "Stvori novi Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editSend": {
-    "message": "Uredi „Send”",
+    "message": "Uredi Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "createdSend": {
-    "message": "„Send” stvoren",
+    "message": "Send stvoren",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editedSend": {
-    "message": "„Send” uređen",
+    "message": "Send uređen",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletedSend": {
-    "message": "„Send” izbrisan",
+    "message": "Send izbrisan",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSend": {
-    "message": "Izbriši „Send”",
+    "message": "Izbriši Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSendConfirmation": {
-    "message": "Sigurno želiš izbrisati ovaj „Send”?",
+    "message": "Sigurno želiš izbrisati ovaj Send?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "whatTypeOfSend": {
-    "message": "Koja je ovo vrsta „Send-a”?",
+    "message": "Koja je ovo vrsta Send-a?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletionDate": {
     "message": "Datum brisanja"
   },
   "deletionDateDesc": {
-    "message": "„Send” će biti trajno izbrisan specificiranog datuma.",
+    "message": "Send će biti trajno izbrisan navedenog datuma.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
     "message": "Datum isteka"
   },
   "expirationDateDesc": {
-    "message": "Ako je određen, pristup ovom „Send-u” će isteći specificranog datuma.",
+    "message": "Ako je određeno, pristup ovom Sendu će isteći navedenog dana u navedeno vrijeme.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
     "message": "Najveći proj pristupanja"
   },
   "maxAccessCountDesc": {
-    "message": "Ako je određen, korisnici neće moći pristupiti ovom „Send-u” nakon što se postigne najveći broj pristupanja.",
+    "message": "Ako je određen, korisnici neće moći pristupiti ovom Sendu nakon što se postigne najveći broj pristupanja.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
     "message": "Trenutni broj pristupanja"
   },
   "sendPasswordDesc": {
-    "message": "Neobavezno zahtijevaj korisnika lozinku za pristup ovom „Send-u”.",
+    "message": "Neobavezno zahtijevaj korisnika lozinku za pristup ovom Sendu.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
-    "message": "Privatne bilješne o „Send-u”.",
+    "message": "Privatne bilješke o Sendu.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
     "message": "Onemogućeno"
   },
   "sendLink": {
-    "message": "Pošalji vezu",
+    "message": "Veza na Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "copySendLink": {
-    "message": "Kopiraj poslanu vezu",
+    "message": "Kopiraj vezu na Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "removePassword": {
@@ -3389,12 +3447,15 @@
   "removePasswordConfirmation": {
     "message": "Sigurno želiš ukloniti lozinku?"
   },
+  "hideEmail": {
+    "message": "Sakrij moju adresu e-pošte od primatelja."
+  },
   "disableThisSend": {
-    "message": "Disable this Send so that no one can access it.",
+    "message": "Onemogući ovaj Send da mu nitko ne može pristupiti.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
-    "message": "Svi „Send-ovi”"
+    "message": "Svi Sendovi"
   },
   "maxAccessCountReached": {
     "message": "Dostignut najveći broj pristupanja"
@@ -3406,34 +3467,34 @@
     "message": "Isteklo"
   },
   "searchSends": {
-    "message": "Pretraži „Send-ove”",
+    "message": "Pretraži Sendove",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPassword": {
-    "message": "Ovaj „Send” je zaštićen lozinkom. Unesi lozinku za nastavak.",
+    "message": "Ovaj Send je zaštićen lozinkom. Unesi lozinku za nastavak.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPasswordDontKnow": {
-    "message": "Ne znaš lozinku? Upitaj pošiljatelja za lozinku za pristup ovom „Send-u”.",
+    "message": "Ne znaš lozinku? Upitaj pošiljatelja za lozinku za pristup ovom Sendu.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendHiddenByDefault": {
-    "message": "Ovaj je „Send” zadano skriven. Moguće mu je promijeniti vidljivost.",
+    "message": "Ovaj je Send zadano skriven. Moguće mu je promijeniti vidljivost.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "downloadFile": {
     "message": "Preuzmi datoteku"
   },
   "sendAccessUnavailable": {
-    "message": "„Send” kojem pokušavaš pristupiti više ne postoji ili više nije dostupan.",
+    "message": "Send kojem pokušavaš pristupiti više ne postoji ili više nije dostupan.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "missingSendFile": {
-    "message": "The file associated with this Send could not be found.",
+    "message": "Datoteka povezana s ovim Sendom nije pronađena.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
-    "message": "Nema „Send-ova”.",
+    "message": "Nema Sendova.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
@@ -3443,7 +3504,7 @@
     "message": "Odobri i upravljaj pristupu u nuždi za pouzdane kontakte. Oni, u slučaju nužde, mogu vidjeti ili preuzeti tvoj račun. Posjeti našu stranicu pomoći za više detalja kako funkcionira dijeljene na principu nula-znanja."
   },
   "emergencyAccessOwnerWarning": {
-    "message": "You are an Owner of one or more organizations. If you give takeover access to an emergency contact, they will be able to use all your permissions as Owner after a takeover."
+    "message": "Vlasnik si jedne ili više organizacija. Ako dozvoliš preuzimanje računa kontaktu u nuždi, moći će koristiti sva tvoja dopuštenja kao Vlasnika nakon preuzimanja."
   },
   "trustedEmergencyContacts": {
     "message": "Pouzdani kontakti u nuždi"
@@ -3591,21 +3652,43 @@
     "message": "Pravila tvrtke onemogućuju spremanje stavki u osobni trezor. Promijeni vlasništvo stavke na tvrtku i odaberi dostupnu Zbirku."
   },
   "disableSend": {
-    "message": "Disable Send"
+    "message": "Onemogući Send"
   },
   "disableSendPolicyDesc": {
-    "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
+    "message": "Ne dozvoli korisnicima stvaranje ili uređivanje Sendova. Brisanje postojećeg Senda je dozvoljeno.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Organizacijski korisnici koji mogu mijenjati pravila tvrtke nisu obuhvaćeni za provedbu ovog pravila."
   },
   "sendDisabled": {
-    "message": "Send disabled",
+    "message": "Send onemogućen",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "message": "Pravila tvrtke omogućuju brisanje samo postojećeg Senda.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptions": {
+    "message": "Opcije Senda",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyDesc": {
+    "message": "Postavljanje opcija za stvaranje i mijenjanje Sendova.",
+    "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsExemption": {
+    "message": "Organizacijski korisnici koji mogu mijenjati pravila tvrtke nisu obuhvaćeni za provedbu ovog pravila."
+  },
+  "disableHideEmail": {
+    "message": "Ne dopusti skrivanje e-pošte kod stvaranja Senda.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyInEffect": {
+    "message": "Organizacijske smjernice trenutno na snazi:"
+  },
+  "sendDisableHideEmailInEffect": {
+    "message": "Korisnicima nije dopušteno skrivati adresu e-pošte od primatelja kod stvaranja ili uređivanja Senda.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3662,6 +3745,9 @@
   "manageUsers": {
     "message": "Upravljanje korisnicima"
   },
+  "manageResetPassword": {
+    "message": "Upravljanje ponovnim postavljanjem lozinke"
+  },
   "disableRequireSsoError": {
     "message": "Pravilo SSO autentifikacije mora biti isključeno prije deaktivacije ovog pravila."
   },
@@ -3672,24 +3758,24 @@
     "message": "Onemogući osobno vlasnišvo za organizacijske korisnike"
   },
   "textHiddenByDefault": {
-    "message": "Zadano sakrij tekst pri pristupanju „Send-u”",
+    "message": "Zadano sakrij tekst pri pristupanju Sendu",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
-    "message": "A friendly name to describe this Send.",
+    "message": "Nadimak za ovaj Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
-    "message": "The text you want to send."
+    "message": "Tekst kojeg želiš poslati."
   },
   "sendFileDesc": {
-    "message": "The file you want to send."
+    "message": "Datoteka koju želiš poslati."
   },
   "copySendLinkOnSave": {
-    "message": "Copy the link to share this Send to my clipboard upon save."
+    "message": "Kopiraj vezu za dijeljenje ovog Senda nakon spremanja."
   },
   "sendLinkLabel": {
-    "message": "Send link",
+    "message": "Veza na Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "send": {
@@ -3697,50 +3783,50 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineProductDesc": {
-    "message": "Bitwarden Send transmits sensitive, temporary information to others easily and securely.",
+    "message": "Pomoću Bitwarden Send jednostavno i sigurno pošalji osjetljive, privremene podatke.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineLearnMore": {
-    "message": "Learn more about",
+    "message": "Saznaj više o",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
   },
   "sendVaultCardProductDesc": {
-    "message": "Share text or files directly with anyone."
+    "message": "Dijeli tekst ili datoteke s bilo kim."
   },
   "sendVaultCardLearnMore": {
-    "message": "Learn more",
+    "message": "Saznaj više",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
   },
   "sendVaultCardSee": {
-    "message": "see",
+    "message": "pogledaj",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
   },
   "sendVaultCardHowItWorks": {
-    "message": "how it works",
+    "message": "kako funkcionira",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
   },
   "sendVaultCardOr": {
-    "message": "or",
+    "message": "ili",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
   },
   "sendVaultCardTryItNow": {
-    "message": "try it now",
+    "message": "isprobaj odmah",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
   },
   "sendAccessTaglineOr": {
-    "message": "or",
+    "message": "ili",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
   },
   "sendAccessTaglineSignUp": {
-    "message": "sign up",
+    "message": "registriraj se",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
   },
   "sendAccessTaglineTryToday": {
-    "message": "to try it today.",
+    "message": "za isprobavanje.",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
   },
   "sendCreatorIdentifier": {
-    "message": "Bitwarden user $USER_IDENTIFIER$ shared the following with you",
+    "message": "Bitwarden korisnik $USER_IDENTIFIER$ je s tobom podijelio",
     "placeholders": {
       "user_identifier": {
         "content": "$1",
@@ -3748,19 +3834,188 @@
       }
     }
   },
+  "viewSendHiddenEmailWarning": {
+    "message": "Bitwarden korisnik koji je stvorio ovaj Send odabrao/la je sakriti svoju e-poštu. Koristi i/ili preuzmi ove podatke samo ako vjeruješ izvoru iz kojeg je primljena ova vezu.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "expirationDateIsInvalid": {
-    "message": "The expiration date provided is not valid."
+    "message": "Navedeni rok isteka nije valjan."
   },
   "deletionDateIsInvalid": {
-    "message": "The deletion date provided is not valid."
+    "message": "Navedeni datum brisanja nije valjan."
   },
   "expirationDateAndTimeRequired": {
-    "message": "An expiration date and time are required."
+    "message": "Potrebno je unijeti datum i vrijeme isteka."
   },
   "deletionDateAndTimeRequired": {
-    "message": "A deletion date and time are required."
+    "message": "Potrebno je unijeti datum i vrijeme brisanja."
   },
   "dateParsingError": {
-    "message": "There was an error saving your deletion and expiration dates."
+    "message": "Došlo je do greške kod spremanja vaših datuma isteka i brisanja."
+  },
+  "webAuthnFallbackMsg": {
+    "message": "Za ovjeru tvoje 2FA, odaberi donju tipku."
+  },
+  "webAuthnAuthenticate": {
+    "message": "Ovjeri WebAuthn"
+  },
+  "webAuthnNotSupported": {
+    "message": "WebAuthn nije podržan u ovom pregledniku."
+  },
+  "webAuthnSuccess": {
+    "message": "<strong>WebAuthn uspješno ovjeren!</strong><br>Možeš zatvoriti ovu karticu."
+  },
+  "hintEqualsPassword": {
+    "message": "Podsjetnik za lozinku ne može biti isti kao lozinka."
+  },
+  "enrollPasswordReset": {
+    "message": "Uključi mogućnost ponovnog postavljanja lozinke"
+  },
+  "enrolledPasswordReset": {
+    "message": "Mogućnost ponovnog postavljanja lozinke je uključena"
+  },
+  "withdrawPasswordReset": {
+    "message": "Isključi mogućnost ponovnog postavljanja lozinke"
+  },
+  "enrollPasswordResetSuccess": {
+    "message": "Prijava uspješna!"
+  },
+  "withdrawPasswordResetSuccess": {
+    "message": "Odjava uspješna!"
+  },
+  "eventEnrollPasswordReset": {
+    "message": "Korisnik $ID$ ima uključenu mogućnost pomoći za ponovno postavljanje lozinke.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventWithdrawPasswordReset": {
+    "message": "Korisnik $ID$ ima isključenu mogućnost pomoći za ponovno postavljanje lozinke.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventAdminPasswordReset": {
+    "message": "Master password reset for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Reset Password"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "this user"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require the master password to meet the following requirements:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Password reset success!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Master Password Reset"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Allow administrators in the organization to reset organization users' master password."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatic Enrollment"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Automatically enroll new users"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Organization Keys response is null"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Reset Password Details response is null"
+  },
+  "trashCleanupWarning": {
+    "message": "Šifre koje se nalaze u Smeću duže od 30 dana će biti automatski izbrisane."
+  },
+  "trashCleanupWarningSelfHosted": {
+    "message": "Šifre koje se duže vrijeme nalaze u Smeću će btii automatski obrisane."
+  },
+  "passwordPrompt": {
+    "message": "Ponovno zatraži glavnu lozinku"
+  },
+  "passwordConfirmation": {
+    "message": "Potvrda glavne lozinke"
+  },
+  "passwordConfirmationDesc": {
+    "message": "Ova radnja je zaštićena. Za nastavak i potvrdu identiteta, unesi svoju glavnu lozinku."
+  },
+  "reinviteSelected": {
+    "message": "Resend Invitations"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "This action is not applicable to any of the selected users."
+  },
+  "removeUsersWarning": {
+    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+  },
+  "confirmSelected": {
+    "message": "Confirm Selected"
+  },
+  "bulkConfirmStatus": {
+    "message": "Bulk action status"
+  },
+  "bulkConfirmMessage": {
+    "message": "Confirmed successfully."
+  },
+  "bulkReinviteMessage": {
+    "message": "Reinvited successfully."
+  },
+  "bulkRemovedMessage": {
+    "message": "Removed successfully"
+  },
+  "bulkFilteredMessage": {
+    "message": "Excluded, not applicable for this action."
+  },
+  "fingerprint": {
+    "message": "Fingerprint"
+  },
+  "removeUsers": {
+    "message": "Remove Users"
+  },
+  "error": {
+    "message": "Error"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
   }
 }

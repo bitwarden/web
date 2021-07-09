@@ -360,6 +360,9 @@
   "share": {
     "message": "Compartilhar"
   },
+  "moveToOrganization": {
+    "message": "Mover para a Organização"
+  },
   "valueCopied": {
     "message": "$VALUE$ copiado(a)",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Cofre"
   },
-  "shareSelected": {
-    "message": "Compartilhar Selecionados"
+  "moveSelectedToOrg": {
+    "message": "Mover Selecionados para a organização"
   },
   "deleteSelected": {
     "message": "Excluir Selecionados"
@@ -437,7 +440,7 @@
     "message": "Selecione um arquivo."
   },
   "maxFileSize": {
-    "message": "O tamanho máximo do arquivo é de 100 MB."
+    "message": "O tamanho máximo do arquivo é de 500 MB."
   },
   "updateKey": {
     "message": "Você não pode usar este recurso, até você atualizar sua chave de criptografia."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Item editado"
   },
-  "sharedItem": {
-    "message": "Item compartilhado"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ movido para $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Itens compartilhados"
+  "movedItemsToOrg": {
+    "message": "Itens selecionados movidos para $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Excluir Item"
@@ -725,6 +744,15 @@
   "u2fTitle": {
     "message": "Chave de Segurança FIDO U2F"
   },
+  "webAuthnTitle": {
+    "message": "FIDO2 WebAuthn"
+  },
+  "webAuthnDesc": {
+    "message": "Utilize qualquer chave de segurança ativada por WebAuthn para acessar a sua conta."
+  },
+  "webAuthnMigrated": {
+    "message": "(Migrado de FIDO)"
+  },
   "emailTitle": {
     "message": "E-mail"
   },
@@ -740,11 +768,11 @@
   "organizations": {
     "message": "Organizações"
   },
-  "shareDesc": {
-    "message": "Escolha uma organização com a qual você deseja compartilhar este item. O compartilhamento transfere a propriedade do item para a organização. Você não será mais o proprietário direto deste item depois que ele for compartilhado."
+  "moveToOrgDesc": {
+    "message": "Escolha uma organização para a qual deseja mover este item. Mudar para uma organização transfere a propriedade do item para essa organização. Você não será mais o proprietário direto deste item depois que ele for movido."
   },
-  "shareManyDesc": {
-    "message": "Escolha uma organização com a qual você deseja compartilhar estes itens. O compartilhamento transfere a propriedade dos itens para a organização. Você não será mais o proprietário direto destes itens depois de serem compartilhados."
+  "moveManyToOrgDesc": {
+    "message": "Escolha uma organização para a qual deseja mover esses itens. Mudar para uma organização transfere a propriedade dos itens para essa organização. Você não será mais o proprietário direto desses itens depois que eles forem movidos."
   },
   "collectionsDesc": {
     "message": "Edite as coleções com as quais este item está sendo compartilhado. Somente usuários da organização com acesso a estas coleções poderão ver esse item."
@@ -767,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Você selecionou $COUNT$ item(ns). $SHAREABLE_COUNT$ itens são compartilháveis, $NONSHAREABLE_COUNT$ não são.",
+  "moveSelectedItemsCountDesc": {
+    "message": "Você selecionou $COUNT$ item(ns). $MOVEABLE_COUNT$ item(ns) podem ser movidos para uma organização, mas, $NONMOVEABLE_COUNT$ não pode.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -807,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "Insira a sua senha mestra para exportar os dados do seu cofre."
+  },
+  "export": {
+    "message": "Exportar"
   },
   "exportVault": {
     "message": "Exportar cofre"
@@ -1026,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Nada foi importado."
+  },
+  "importEncKeyError": {
+    "message": "Erro ao descriptografar o arquivo exportado. Sua chave de criptografia não corresponde à chave de criptografia usada para exportar os dados."
   },
   "selectFormat": {
     "message": "Selecione o formato do arquivo de importação"
@@ -1260,6 +1294,15 @@
       }
     }
   },
+  "webAuthnkeyX": {
+    "message": "Chave WebAuthn $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "Suporte a NFC"
   },
@@ -1305,6 +1348,9 @@
   "removeU2fConfirmation": {
     "message": "Tem certeza que deseja remover esta chave de segurança?"
   },
+  "twoFactorWebAuthnAdd": {
+    "message": "Adicione uma chave de segurança WebAuthn à sua conta"
+  },
   "readKey": {
     "message": "Chave de Leitura"
   },
@@ -1337,6 +1383,12 @@
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "Houve um problema ao ler a chave de segurança. Tente novamente."
+  },
+  "twoFactorWebAuthnWarning": {
+    "message": "Devido às limitações da plataforma, o WebAuthn não pode ser usado em todos os aplicativos do Bitwarden. Você deve habilitar outro provedor de login em duas etapas, para que você possa acessar a sua conta quando o WebAuthn não puder ser usado. Plataformas suportadas:"
+  },
+  "twoFactorWebAuthnSupportWeb": {
+    "message": "Cofre web e extensões de navegador em um desktop/laptop com um navegador habilitado para WebAuthn (Chrome, Opera, Vivaldi ou Firefox com o FIDO U2F ativado)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Seu código de recuperação de login em duas etapas do Bitwarden"
@@ -2300,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Item compatilhado $ID$.",
+  "movedItemIdToOrg": {
+    "message": "Item $ID$ movido para uma organização.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2608,6 +2660,12 @@
   },
   "emailVerifiedFailed": {
     "message": "Não é possível confirmar o seu e-mail. Tente enviar um novo e-mail de verificação."
+  },
+  "emailVerificationRequired": {
+    "message": "Verificação de E-mail Necessária"
+  },
+  "emailVerificationRequiredDesc": {
+    "message": "Você precisa verificar o seu e-mail para usar este recurso."
   },
   "updateBrowser": {
     "message": "Atualizar Navegador"
@@ -3389,6 +3447,9 @@
   "removePasswordConfirmation": {
     "message": "Você tem certeza que deseja remover a senha?"
   },
+  "hideEmail": {
+    "message": "Ocultar meu endereço de e-mail dos destinatários."
+  },
   "disableThisSend": {
     "message": "Desabilite este Send para que ninguém possa acessá-lo.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
@@ -3608,6 +3669,28 @@
     "message": "Devido a uma política corporativa, você só é capaz de excluir um Send existente.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "sendOptions": {
+    "message": "Opções de Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyDesc": {
+    "message": "Definir opções para a criação e edição de Sends.",
+    "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsExemption": {
+    "message": "Os usuários da organização que podem gerenciar as políticas da organização estão isentos da aplicação desta política."
+  },
+  "disableHideEmail": {
+    "message": "Não permitir que os usuários ocultem seus endereços de e-mail dos destinatários ao criar ou editar um Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyInEffect": {
+    "message": "As seguintes políticas da organização estão em vigor atualmente:"
+  },
+  "sendDisableHideEmailInEffect": {
+    "message": "Os usuários não têm permissão para ocultar seus endereços de e-mail dos destinatários ao criar ou editar um Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "modifiedPolicyId": {
     "message": "Política modificada $ID$.",
     "placeholders": {
@@ -3661,6 +3744,9 @@
   },
   "manageUsers": {
     "message": "Gerenciar Usuários"
+  },
+  "manageResetPassword": {
+    "message": "Gerenciar Redefinição de Senha"
   },
   "disableRequireSsoError": {
     "message": "Você deve desativar manualmente a política de autenticação de logon único antes que esta política possa ser desativada."
@@ -3748,6 +3834,10 @@
       }
     }
   },
+  "viewSendHiddenEmailWarning": {
+    "message": "O usuário Bitwarden que criou este Send optou por ocultar seu endereço de e-mail. Você deve certificar-se de que confia na fonte deste link antes de usar ou baixar seu conteúdo.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "expirationDateIsInvalid": {
     "message": "A data de validade fornecida não é válida."
   },
@@ -3762,5 +3852,170 @@
   },
   "dateParsingError": {
     "message": "Ocorreu um erro ao salvar as suas datas de exclusão e validade."
+  },
+  "webAuthnFallbackMsg": {
+    "message": "Para verificar seu 2FA, por favor, clique no botão abaixo."
+  },
+  "webAuthnAuthenticate": {
+    "message": "Autenticar WebAuthn"
+  },
+  "webAuthnNotSupported": {
+    "message": "O WebAuthn não é suportado neste navegador."
+  },
+  "webAuthnSuccess": {
+    "message": "<strong>WebAuthn verificado com sucesso!</strong><br>Você pode fechar esta guia."
+  },
+  "hintEqualsPassword": {
+    "message": "Sua dica de senha senha não pode ser a mesma que a sua senha."
+  },
+  "enrollPasswordReset": {
+    "message": "Inscrever-se na Redefinição de Senha"
+  },
+  "enrolledPasswordReset": {
+    "message": "Inscrito na Redefinição de Senha"
+  },
+  "withdrawPasswordReset": {
+    "message": "Retirar da Redefinição de Senha"
+  },
+  "enrollPasswordResetSuccess": {
+    "message": "Inscrição com sucesso!"
+  },
+  "withdrawPasswordResetSuccess": {
+    "message": "Retirada com sucesso!"
+  },
+  "eventEnrollPasswordReset": {
+    "message": "O usuário $ID$ inscreveu-se na assistência para redefinição de senha.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventWithdrawPasswordReset": {
+    "message": "O usuário $ID$ retirou-se da assistência para redefinição de senha.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventAdminPasswordReset": {
+    "message": "Redefinir senha mestra para o usuário $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Redefinir Senha"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "O processo desconectará $NAME$ de sua sessão atual, exigindo que eles iniciem a sessão novamente. As sessões ativas em outros dispositivos podem continuar ativas por até uma hora.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "este usuário"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "Uma ou mais políticas da organização exigem que a senha mestra cumpra aos seguintes requisitos:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Senha redefinida com sucesso!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "A inscrição permitirá que os administradores da organização alterem sua senha mestra. Tem certeza que deseja se inscrever?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Redefinir Senha Mestra"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Permitir que os administradores da organização redefinam a senha mestra dos usuários da organização."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Os usuários da organização terão de se inscrever automaticamente ou serem inscritos automaticamente para que os administradores possam redefinir sua senha mestra."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Inscrição Automática"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "Todos os usuários serão inscritos automaticamente na redefinição de senha assim que o convite for aceito."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Os usuários que já estão na organização não serão inscritos retroativamente na redefinição de senha. Eles precisarão se inscrever para que os administradores possam redefinir sua senha mestra."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Inscrever automaticamente novos usuários"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Esta organização possui uma política empresarial que irá inscrevê-lo automaticamente na redefinição de senha. A inscrição permitirá que os administradores da organização alterem sua senha mestra."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "A resposta das Chaves da Organização é nula"
+  },
+  "resetPasswordDetailsError": {
+    "message": "A resposta para Redefinir os Detalhes da Senha é nula"
+  },
+  "trashCleanupWarning": {
+    "message": "As cifras que ficarem na lixeira por mais de 30 dias serão excluídas automaticamente."
+  },
+  "trashCleanupWarningSelfHosted": {
+    "message": "As cifras que estiverem na Lixeira por um tempo serão excluídas automaticamente."
+  },
+  "passwordPrompt": {
+    "message": "Nova solicitação de senha mestra"
+  },
+  "passwordConfirmation": {
+    "message": "Confirmação de senha mestra"
+  },
+  "passwordConfirmationDesc": {
+    "message": "Esta ação está protegida. Para continuar, por favor, reinsira a sua senha mestra para verificar sua identidade."
+  },
+  "reinviteSelected": {
+    "message": "Reenviar Convites"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "Esta ação não é aplicável a nenhum dos usuários selecionados."
+  },
+  "removeUsersWarning": {
+    "message": "Tem certeza de que deseja remover os seguintes usuários? O processo pode levar alguns segundos para ser concluído e não pode ser interrompido ou cancelado."
+  },
+  "confirmSelected": {
+    "message": "Confirmar Selecionado(s)"
+  },
+  "bulkConfirmStatus": {
+    "message": "Status de ação em massa"
+  },
+  "bulkConfirmMessage": {
+    "message": "Confirmado com sucesso."
+  },
+  "bulkReinviteMessage": {
+    "message": "Convidado novamente com sucesso."
+  },
+  "bulkRemovedMessage": {
+    "message": "Removido com sucesso"
+  },
+  "bulkFilteredMessage": {
+    "message": "Excluído, não aplicável para esta ação."
+  },
+  "fingerprint": {
+    "message": "Impressão digital"
+  },
+  "removeUsers": {
+    "message": "Remover Usuários"
+  },
+  "error": {
+    "message": "Erro"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Gerenciar Usuários também deve ser habilitado com a permissão para Gerenciar a Redefinição de Senha"
   }
 }

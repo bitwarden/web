@@ -11,8 +11,8 @@ import { DeauthorizeSessionsComponent } from './deauthorize-sessions.component';
 import { DeleteAccountComponent } from './delete-account.component';
 import { PurgeVaultComponent } from './purge-vault.component';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
 @Component({
     selector: 'app-account',

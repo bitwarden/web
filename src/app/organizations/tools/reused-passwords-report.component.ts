@@ -4,13 +4,13 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { CipherService } from 'jslib/abstractions/cipher.service';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { CipherService } from 'jslib-common/abstractions/cipher.service';
+import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { Cipher } from 'jslib/models/domain/cipher';
+import { Cipher } from 'jslib-common/models/domain/cipher';
 
-import { CipherView } from 'jslib/models/view/cipherView';
+import { CipherView } from 'jslib-common/models/view/cipherView';
 
 import {
     ReusedPasswordsReportComponent as BaseReusedPasswordsReportComponent,

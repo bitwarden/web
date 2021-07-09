@@ -360,6 +360,9 @@
   "share": {
     "message": "Chia sẻ"
   },
+  "moveToOrganization": {
+    "message": "Move to Organization"
+  },
   "valueCopied": {
     "message": "Đã sao chép $VALUE$",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Kho"
   },
-  "shareSelected": {
-    "message": "Chia sẻ mục đã chọn"
+  "moveSelectedToOrg": {
+    "message": "Move Selected to Organization"
   },
   "deleteSelected": {
     "message": "Xóa mục đã chọn"
@@ -437,7 +440,7 @@
     "message": "Chọn một tập tin."
   },
   "maxFileSize": {
-    "message": "Kích thước tối đa của tệp tin là 100 MB."
+    "message": "Kích thước tối đa của tệp tin là 500 MB."
   },
   "updateKey": {
     "message": "Bạn không thể sử dụng tính năng này cho đến khi bạn cập nhật khoá mã hóa."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Mục được chỉnh sửa"
   },
-  "sharedItem": {
-    "message": "Mục đã chia sẻ"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Các mục đã chia sẻ"
+  "movedItemsToOrg": {
+    "message": "Selected items moved to $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Xóa mục"
@@ -725,6 +744,15 @@
   "u2fTitle": {
     "message": "Mật khẩu FIDO U2F"
   },
+  "webAuthnTitle": {
+    "message": "FIDO2 WebAuthn"
+  },
+  "webAuthnDesc": {
+    "message": "Use any WebAuthn enabled security key to access your account."
+  },
+  "webAuthnMigrated": {
+    "message": "(Migrated from FIDO)"
+  },
   "emailTitle": {
     "message": "Email"
   },
@@ -740,11 +768,11 @@
   "organizations": {
     "message": "Tổ chức"
   },
-  "shareDesc": {
-    "message": "Chọn một tổ chức mà bạn muốn chia sẻ mục này. Việc chia sẻ sẽ chuyển quyền sở hữu của mục sang tổ chức mà bạn chọn. Bạn sẽ không còn là chủ sở hữu trực tiếp của mục này một khi nó đã được chia sẻ."
+  "moveToOrgDesc": {
+    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
   },
-  "shareManyDesc": {
-    "message": "Chọn một tổ chức mà bạn muốn chia sẻ những mục này. Việc chia sẻ sẽ chuyển quyền sở hữu của các mục sang tổ chức mà bạn chọn. Bạn sẽ không còn là chủ sở hữu trực tiếp của những mục này một khi nó đã được chia sẻ."
+  "moveManyToOrgDesc": {
+    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
   },
   "collectionsDesc": {
     "message": "Chỉnh sửa những bộ sưu tập mà bạn sẽ chia sẻ mục này với. Chỉ những thành viên của tổ chức với quyền cho những bộ sưu tập đó mới có thể xem được mục này."
@@ -767,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Bạn đã chọn $COUNT$ mục. $SHAREABLE_COUNT$ mục có thể chia sẻ, $NONSHAREABLE_COUNT$ mục không thể chia sẻ.",
+  "moveSelectedItemsCountDesc": {
+    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -807,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "Vui lòng nhập mật khẩu chính để trích xuất kho của bạn."
+  },
+  "export": {
+    "message": "Export"
   },
   "exportVault": {
     "message": "Trích xuất kho"
@@ -1026,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Không có gì đã được nhập."
+  },
+  "importEncKeyError": {
+    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
   },
   "selectFormat": {
     "message": "Chọn định dạng cho file xuất"
@@ -1260,6 +1294,15 @@
       }
     }
   },
+  "webAuthnkeyX": {
+    "message": "WebAuthn Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "Hỗ trợ NFC"
   },
@@ -1305,6 +1348,9 @@
   "removeU2fConfirmation": {
     "message": "Bạn có chắc chắn muốn xóa khóa bảo mật này?"
   },
+  "twoFactorWebAuthnAdd": {
+    "message": "Add a WebAuthn security key to your account"
+  },
   "readKey": {
     "message": "Read Key"
   },
@@ -1337,6 +1383,12 @@
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "There was a problem reading the security key. Try again."
+  },
+  "twoFactorWebAuthnWarning": {
+    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+  },
+  "twoFactorWebAuthnSupportWeb": {
+    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Your Bitwarden two-step login recovery code"
@@ -1656,17 +1708,17 @@
     "message": "Total"
   },
   "year": {
-    "message": "year"
+    "message": "năm"
   },
   "month": {
-    "message": "month"
+    "message": "tháng"
   },
   "monthAbbr": {
     "message": "mo.",
     "description": "Short abbreviation for 'month'"
   },
   "paymentChargedAnnually": {
-    "message": "Your payment method will be charged immediately and then on a recurring basis each year. You may cancel at any time."
+    "message": "Phương thức thanh toán của bạn sẽ được thu phí ngay lập tức và sau đó sẽ định kỳ thu phí mỗi năm. Bạn có thể hủy bỏ bất cứ lúc nào."
   },
   "paymentCharged": {
     "message": "Your payment method will be charged immediately and then on a recurring basis each $INTERVAL$. You may cancel at any time.",
@@ -1678,7 +1730,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Your plan comes with a free 7 day trial. Your payment method will not be charged until the trial has ended. Billing will occur on a recurring basis each $INTERVAL$. You may cancel at any time.",
+    "message": "Gói của bạn đi kèm với 7 ngày dùng thử miễn phí. Phương thức thanh toán của bạn sẽ không bị tính phí cho đến khi hết thời gian dùng thử. Việc thanh toán sẽ thực hiện định kỳ mỗi $INTERVAL$. Bạn có thể hủy bỏ bất cứ lúc nào.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1687,16 +1739,16 @@
     }
   },
   "paymentInformation": {
-    "message": "Payment Information"
+    "message": "Thông Tin Thanh Toán"
   },
   "billingInformation": {
-    "message": "Billing Information"
+    "message": "Thông Tin Hóa Đơn"
   },
   "creditCard": {
-    "message": "Credit Card"
+    "message": "Thẻ Tín Dụng"
   },
   "paypalClickSubmit": {
-    "message": "Click the PayPal button to log into your PayPal account, then click the Submit button below to continue."
+    "message": "Nhấn vào nút PayPal để đăng nhập vào tài khoản PayPal của bạn, sau đó nhấn vào nút Submit bên dưới để tiếp tục."
   },
   "cancelSubscription": {
     "message": "Cancel Subscription"
@@ -1729,7 +1781,7 @@
     "message": "Never Expires"
   },
   "status": {
-    "message": "Status"
+    "message": "Trạng Thái"
   },
   "nextCharge": {
     "message": "Next Charge"
@@ -1750,7 +1802,7 @@
     "message": "Manage Subscription"
   },
   "storage": {
-    "message": "Storage"
+    "message": "Lưu trữ"
   },
   "addStorage": {
     "message": "Add Storage"
@@ -1938,7 +1990,7 @@
     "message": "Families"
   },
   "planDescFamilies": {
-    "message": "For personal use, to share with family & friends."
+    "message": "Để sử dụng cá nhân, chia sẻ với gia đình và bạn bè."
   },
   "planNameTeams": {
     "message": "Teams"
@@ -1953,7 +2005,7 @@
     "message": "For businesses and other large organizations."
   },
   "freeForever": {
-    "message": "Free Forever"
+    "message": "Miễn Phí Mãi Mãi"
   },
   "includesXUsers": {
     "message": "includes $COUNT$ users",
@@ -2049,10 +2101,10 @@
     }
   },
   "monthly": {
-    "message": "Monthly"
+    "message": "Hàng tháng"
   },
   "annually": {
-    "message": "Annually"
+    "message": "Hàng năm"
   },
   "basePrice": {
     "message": "Base Price"
@@ -2106,13 +2158,13 @@
     "message": "New Group"
   },
   "addGroup": {
-    "message": "Add Group"
+    "message": "Thêm Nhóm"
   },
   "editGroup": {
-    "message": "Edit Group"
+    "message": "Chỉnh Sửa Nhóm"
   },
   "deleteGroupConfirmation": {
-    "message": "Are you sure you want to delete this group?"
+    "message": "Bạn có chắc chắn muốn xóa nhóm này?"
   },
   "removeUserConfirmation": {
     "message": "Are you sure you want to remove this user?"
@@ -2253,7 +2305,7 @@
     "message": "Enabled/updated two-step login."
   },
   "disabled2fa": {
-    "message": "Disabled two-step login."
+    "message": "Đã tắt đăng nhập 2 bước."
   },
   "recovered2fa": {
     "message": "Recovered account from two-step login."
@@ -2300,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Shared item $ID$.",
+  "movedItemIdToOrg": {
+    "message": "Moved item $ID$ to an organization.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2526,7 +2578,7 @@
     }
   },
   "device": {
-    "message": "Device"
+    "message": "Thiết bị"
   },
   "view": {
     "message": "View"
@@ -2609,6 +2661,12 @@
   "emailVerifiedFailed": {
     "message": "Unable to verify your email. Try sending a new verification email."
   },
+  "emailVerificationRequired": {
+    "message": "Email Verification Required"
+  },
+  "emailVerificationRequiredDesc": {
+    "message": "You must verify your email to use this feature."
+  },
   "updateBrowser": {
     "message": "Update Browser"
   },
@@ -2652,16 +2710,16 @@
     "message": "Two-step login has been disabled on your account."
   },
   "learnMore": {
-    "message": "Learn more"
+    "message": "Tìm hiểu thêm"
   },
   "deleteRecoverDesc": {
-    "message": "Enter your email address below to recover and delete your account."
+    "message": "Nhập địa chỉ email của bạn vào bên dưới để khôi phục và xóa tài khoản của bạn."
   },
   "deleteRecoverEmailSent": {
-    "message": "If your account exists, we've sent you an email with further instructions."
+    "message": "Nếu tài khoản của bạn có tồn tại, chúng tôi đã gửi cho bạn một email với hướng dẫn chi tiết."
   },
   "deleteRecoverConfirmDesc": {
-    "message": "You have requested to delete your Bitwarden account. Click the button below to confirm."
+    "message": "Bạn đã yêu cầu xóa tài khoản Bitwarden của mình. Nhấn vào nút bên dưới để xác nhận."
   },
   "myOrganization": {
     "message": "My Organization"
@@ -2685,17 +2743,17 @@
     "message": "Organization updated"
   },
   "taxInformation": {
-    "message": "Tax Information"
+    "message": "Thông Tin Thuế"
   },
   "taxInformationDesc": {
-    "message": "For customers within the US, ZIP code is required to satisfy sales tax requirements, for other countries you may optionally provide a tax identification number (VAT/GST) and/or address to appear on your invoices."
+    "message": "Đối với các khách hàng ở Mỹ, mã ZIP là bắt buộc để đáp ứng các yêu cầu về thuế bán hàng, đối với các quốc gia khác, bạn có thể tùy chọn cung cấp mã số thuế (VAT / GST) và/hoặc địa chỉ để xuất hiện trên hóa đơn của mình."
   },
   "billingPlan": {
-    "message": "Plan",
+    "message": "Gói",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Change Plan",
+    "message": "Thay Đổi Gói",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
@@ -2703,11 +2761,11 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanDesc": {
-    "message": "Contact customer support if you would like to change your plan. Please ensure that you have an active payment method added to the account.",
+    "message": "Liên hệ với bộ phận hỗ trợ khách hàng nếu bạn muốn thay đổi gói của mình. Hãy chắc chắn là trong tài khoản của bạn đã có một phương thức thanh toán.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
-    "message": "Invoice #$NUMBER$",
+    "message": "Hóa đơn số #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
     "placeholders": {
       "number": {
@@ -2717,13 +2775,13 @@
     }
   },
   "viewInvoice": {
-    "message": "View Invoice"
+    "message": "Xem Hóa đơn"
   },
   "downloadInvoice": {
-    "message": "Download Invoice"
+    "message": "Tải Hóa đơn"
   },
   "verifyBankAccount": {
-    "message": "Verify Bank Account"
+    "message": "Xác minh tài khoản ngân hàng"
   },
   "verifyBankAccountDesc": {
     "message": "We have made two micro-deposits to your bank account (it may take 1-2 business days to show up). Enter these amounts to verify the bank account."
@@ -2761,7 +2819,7 @@
     "message": "Account Holder Name"
   },
   "bankAccountType": {
-    "message": "Account Type"
+    "message": "Loại tài khoản"
   },
   "bankAccountTypeCompany": {
     "message": "Company (Business)"
@@ -2880,32 +2938,32 @@
     "message": "Choose when your vault will timeout and perform the selected action."
   },
   "oneMinute": {
-    "message": "1 minute"
+    "message": "1 phút"
   },
   "fiveMinutes": {
-    "message": "5 minutes"
+    "message": "5 phút"
   },
   "fifteenMinutes": {
-    "message": "15 minutes"
+    "message": "15 phút"
   },
   "thirtyMinutes": {
-    "message": "30 minutes"
+    "message": "30 phút"
   },
   "oneHour": {
-    "message": "1 hour"
+    "message": "1 giờ"
   },
   "fourHours": {
-    "message": "4 hours"
+    "message": "4 giờ"
   },
   "onRefresh": {
-    "message": "On Browser Refresh"
+    "message": "Mỗi khi khởi động lại trình duyệt"
   },
   "dateUpdated": {
     "message": "Updated",
     "description": "ex. Date this item was updated"
   },
   "datePasswordUpdated": {
-    "message": "Password Updated",
+    "message": "Mật khẩu đã cập nhật",
     "description": "ex. Date this password was updated"
   },
   "organizationIsDisabled": {
@@ -2935,11 +2993,11 @@
     "description": "ex. A good password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weak": {
-    "message": "Weak",
+    "message": "Yếu",
     "description": "ex. A weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "veryWeak": {
-    "message": "Very Weak",
+    "message": "Rất Yếu",
     "description": "ex. A very weak password. Scale: Very Weak -> Weak -> Good -> Strong"
   },
   "weakMasterPassword": {
@@ -2983,7 +3041,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
-    "message": "Free",
+    "message": "Miễn phí",
     "description": "Free, as in 'Free beer'"
   },
   "apiKey": {
@@ -3114,18 +3172,18 @@
     "message": "A logged out vault requires that you re-authenticate to access it again."
   },
   "lock": {
-    "message": "Lock",
+    "message": "Khóa",
     "description": "Verb form: to make secure or inaccesible by"
   },
   "trash": {
-    "message": "Trash",
+    "message": "Thùng rác",
     "description": "Noun: A special folder for holding deleted items that have not yet been permanently deleted"
   },
   "searchTrash": {
-    "message": "Search Trash"
+    "message": "Tìm kiếm thùng rác"
   },
   "permanentlyDelete": {
-    "message": "Permanently Delete"
+    "message": "Xóa Vĩnh Viễn"
   },
   "permanentlyDeleteSelected": {
     "message": "Permanently Delete Selected"
@@ -3134,7 +3192,7 @@
     "message": "Permanently Delete Item"
   },
   "permanentlyDeleteItemConfirmation": {
-    "message": "Are you sure you want to permanently delete this item?"
+    "message": "Bạn có chắc chắn muốn xóa vĩnh viễn mục này không?"
   },
   "permanentlyDeletedItem": {
     "message": "Permanently Deleted item"
@@ -3161,10 +3219,10 @@
     }
   },
   "restore": {
-    "message": "Restore"
+    "message": "Khôi phục"
   },
   "restoreSelected": {
-    "message": "Restore Selected"
+    "message": "Khôi phục những mục đã chọn"
   },
   "restoreItem": {
     "message": "Restore Item"
@@ -3221,7 +3279,7 @@
     "message": "Tax information updated."
   },
   "setMasterPassword": {
-    "message": "Set Master Password"
+    "message": "Thiết lập mật khẩu chính"
   },
   "ssoCompleteRegistration": {
     "message": "In order to complete logging in with SSO, please set a master password to access and protect your vault."
@@ -3300,66 +3358,66 @@
     "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
   },
   "sendTypeFile": {
-    "message": "File"
+    "message": "Tập tin"
   },
   "sendTypeText": {
-    "message": "Text"
+    "message": "Văn bản"
   },
   "createSend": {
-    "message": "Create New Send",
+    "message": "Tạo Send mới",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editSend": {
-    "message": "Edit Send",
+    "message": "Chỉnh sửa Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "createdSend": {
-    "message": "Created Send",
+    "message": "Đã tạo Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editedSend": {
-    "message": "Edited Send",
+    "message": "Đã chỉnh sửa Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletedSend": {
-    "message": "Deleted Send",
+    "message": "Đã xóa Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSend": {
-    "message": "Delete Send",
+    "message": "Xóa Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSendConfirmation": {
-    "message": "Are you sure you want to delete this Send?",
+    "message": "Bạn có chắc chắn muốn xóa Send này?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "whatTypeOfSend": {
-    "message": "What type of Send is this?",
+    "message": "Đây là loại Send gì?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletionDate": {
     "message": "Deletion Date"
   },
   "deletionDateDesc": {
-    "message": "The Send will be permanently deleted on the specified date and time.",
+    "message": "Send sẽ được xóa vĩnh viễn vào ngày và giờ được chỉ định.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
     "message": "Expiration Date"
   },
   "expirationDateDesc": {
-    "message": "If set, access to this Send will expire on the specified date and time.",
+    "message": "Nếu được thiết lập, truy cập vào Send này sẽ hết hạn vào ngày và giờ được chỉ định.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
     "message": "Maximum Access Count"
   },
   "maxAccessCountDesc": {
-    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "message": "Nếu được thiết lập, khi đã đạt tới số lượng truy cập tối đa, người dùng sẽ không thể truy cập Send này nữa.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
-    "message": "Current Access Count"
+    "message": "Số lượng truy cập hiện tại"
   },
   "sendPasswordDesc": {
     "message": "Optionally require a password for users to access this Send.",
@@ -3370,14 +3428,14 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
-    "message": "Disabled"
+    "message": "Đã tắt"
   },
   "sendLink": {
-    "message": "Send link",
+    "message": "Gửi liên kết",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "copySendLink": {
-    "message": "Copy Send Link",
+    "message": "Sao chép liên kết Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "removePassword": {
@@ -3389,12 +3447,15 @@
   "removePasswordConfirmation": {
     "message": "Are you sure you want to remove the password?"
   },
+  "hideEmail": {
+    "message": "Hide my email address from recipients."
+  },
   "disableThisSend": {
     "message": "Disable this Send so that no one can access it.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "allSends": {
-    "message": "All Sends"
+    "message": "Toàn bộ Send"
   },
   "maxAccessCountReached": {
     "message": "Max access count reached"
@@ -3406,11 +3467,11 @@
     "message": "Expired"
   },
   "searchSends": {
-    "message": "Search Sends",
+    "message": "Tìm kiếm Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPassword": {
-    "message": "This Send is protected with a password. Please type the password below to continue.",
+    "message": "Send này được bảo vệ bằng mật khẩu. Hãy nhập mật khẩu vào bên dưới để tiếp tục.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPasswordDontKnow": {
@@ -3437,7 +3498,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
-    "message": "Emergency Access"
+    "message": "Truy Cập Khẩn Cấp"
   },
   "emergencyAccessDesc": {
     "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of an emergency. Visit our help page for more information and details into how zero knowledge sharing works."
@@ -3491,10 +3552,10 @@
     "message": "Time required before automatically granting access."
   },
   "oneDay": {
-    "message": "1 day"
+    "message": "1 ngày"
   },
   "days": {
-    "message": "$DAYS$ days",
+    "message": "$DAYS$ ngày",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -3545,10 +3606,10 @@
     }
   },
   "approve": {
-    "message": "Approve"
+    "message": "Chấp nhận"
   },
   "reject": {
-    "message": "Reject"
+    "message": "Từ chối"
   },
   "approveAccessConfirmation": {
     "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
@@ -3591,7 +3652,7 @@
     "message": "Due to an enterprise policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
   },
   "disableSend": {
-    "message": "Disable Send"
+    "message": "Tắt Send"
   },
   "disableSendPolicyDesc": {
     "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
@@ -3601,11 +3662,33 @@
     "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
   },
   "sendDisabled": {
-    "message": "Send disabled",
+    "message": "Đã tắt Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "message": "Do chính sách doanh nghiệp, bạn chỉ có thể xóa những Send hiện có.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptions": {
+    "message": "Send Options",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyDesc": {
+    "message": "Set options for creating and editing Sends.",
+    "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsExemption": {
+    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+  },
+  "disableHideEmail": {
+    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyInEffect": {
+    "message": "The following organization policies are currently in effect:"
+  },
+  "sendDisableHideEmailInEffect": {
+    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3660,7 +3743,10 @@
     "message": "Manage SSO"
   },
   "manageUsers": {
-    "message": "Manage Users"
+    "message": "Quản Lý Người Dùng"
+  },
+  "manageResetPassword": {
+    "message": "Manage Password Reset"
   },
   "disableRequireSsoError": {
     "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
@@ -3676,14 +3762,14 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
-    "message": "A friendly name to describe this Send.",
+    "message": "Một tên gợi nhớ để mô tả về Send này.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
-    "message": "The text you want to send."
+    "message": "Văn bản bạn muốn gửi."
   },
   "sendFileDesc": {
-    "message": "The file you want to send."
+    "message": "Tập tin bạn muốn gửi."
   },
   "copySendLinkOnSave": {
     "message": "Copy the link to share this Send to my clipboard upon save."
@@ -3693,7 +3779,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "send": {
-    "message": "Send",
+    "message": "Chia sẻ",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineProductDesc": {
@@ -3701,7 +3787,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineLearnMore": {
-    "message": "Learn more about",
+    "message": "Tìm hiểu thêm về",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
   },
   "sendVaultCardProductDesc": {
@@ -3720,23 +3806,23 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
   },
   "sendVaultCardOr": {
-    "message": "or",
+    "message": "hoặc",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
   },
   "sendVaultCardTryItNow": {
-    "message": "try it now",
+    "message": "thử ngay",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
   },
   "sendAccessTaglineOr": {
-    "message": "or",
+    "message": "hoặc",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
   },
   "sendAccessTaglineSignUp": {
-    "message": "sign up",
+    "message": "đăng ký",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
   },
   "sendAccessTaglineTryToday": {
-    "message": "to try it today.",
+    "message": "thử ngay hôm nay.",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
   },
   "sendCreatorIdentifier": {
@@ -3747,6 +3833,10 @@
         "example": "An email address"
       }
     }
+  },
+  "viewSendHiddenEmailWarning": {
+    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
     "message": "The expiration date provided is not valid."
@@ -3762,5 +3852,170 @@
   },
   "dateParsingError": {
     "message": "There was an error saving your deletion and expiration dates."
+  },
+  "webAuthnFallbackMsg": {
+    "message": "To verify your 2FA please click the button below."
+  },
+  "webAuthnAuthenticate": {
+    "message": "Authenticate WebAuthn"
+  },
+  "webAuthnNotSupported": {
+    "message": "WebAuthn is not supported in this browser."
+  },
+  "webAuthnSuccess": {
+    "message": "WebAuthn verified successfully! You may close this tab."
+  },
+  "hintEqualsPassword": {
+    "message": "Your password hint cannot be the same as your password."
+  },
+  "enrollPasswordReset": {
+    "message": "Enroll in Password Reset"
+  },
+  "enrolledPasswordReset": {
+    "message": "Enrolled in Password Reset"
+  },
+  "withdrawPasswordReset": {
+    "message": "Withdraw from Password Reset"
+  },
+  "enrollPasswordResetSuccess": {
+    "message": "Enrollment success!"
+  },
+  "withdrawPasswordResetSuccess": {
+    "message": "Withdrawal success!"
+  },
+  "eventEnrollPasswordReset": {
+    "message": "User $ID$ enrolled in password reset assistance.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventWithdrawPasswordReset": {
+    "message": "User $ID$ withdrew from password reset assistance.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventAdminPasswordReset": {
+    "message": "Master password reset for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Reset Password"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "this user"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require the master password to meet the following requirements:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Password reset success!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Master Password Reset"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Allow administrators in the organization to reset organization users' master password."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatic Enrollment"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Automatically enroll new users"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Organization Keys response is null"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Reset Password Details response is null"
+  },
+  "trashCleanupWarning": {
+    "message": "Items that have been in Trash more than 30 days will be automatically deleted."
+  },
+  "trashCleanupWarningSelfHosted": {
+    "message": "Items that have been in Trash for a while will be automatically deleted."
+  },
+  "passwordPrompt": {
+    "message": "Master password re-prompt"
+  },
+  "passwordConfirmation": {
+    "message": "Master password confirmation"
+  },
+  "passwordConfirmationDesc": {
+    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+  },
+  "reinviteSelected": {
+    "message": "Resend Invitations"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "This action is not applicable to any of the selected users."
+  },
+  "removeUsersWarning": {
+    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+  },
+  "confirmSelected": {
+    "message": "Confirm Selected"
+  },
+  "bulkConfirmStatus": {
+    "message": "Bulk action status"
+  },
+  "bulkConfirmMessage": {
+    "message": "Confirmed successfully."
+  },
+  "bulkReinviteMessage": {
+    "message": "Reinvited successfully."
+  },
+  "bulkRemovedMessage": {
+    "message": "Removed successfully"
+  },
+  "bulkFilteredMessage": {
+    "message": "Excluded, not applicable for this action."
+  },
+  "fingerprint": {
+    "message": "Fingerprint"
+  },
+  "removeUsers": {
+    "message": "Remove Users"
+  },
+  "error": {
+    "message": "Error"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
   }
 }

@@ -155,7 +155,7 @@
     "message": "Arvo"
   },
   "dragToSort": {
-    "message": "Järjestä raahaamalla"
+    "message": "Järjestele raahaamalla"
   },
   "cfTypeText": {
     "message": "Teksti"
@@ -224,7 +224,7 @@
     "message": "Tarkasta, onko salasana paljastunut."
   },
   "passwordExposed": {
-    "message": "Salasana on paljastunut $VALUE$ tietovuodossa. Se tulisi vaihtaa.",
+    "message": "Salasana on paljastunut $VALUE$ tietovuodossa ja se tulisi vaihtaa.",
     "placeholders": {
       "value": {
         "content": "$1",
@@ -233,7 +233,7 @@
     }
   },
   "passwordSafe": {
-    "message": "Salasanaa ei löytynyt tunnetuista tietovuodoista. Sen pitäisi olla turvallinen."
+    "message": "Salasanaa ei löytynyt tunnetuista tietovuodoista ja sen pitäisi olla turvallinen."
   },
   "save": {
     "message": "Tallenna"
@@ -360,6 +360,9 @@
   "share": {
     "message": "Jaa"
   },
+  "moveToOrganization": {
+    "message": "Siirrä organisaatioon"
+  },
   "valueCopied": {
     "message": "$VALUE$ kopioitiin",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Holvi"
   },
-  "shareSelected": {
-    "message": "Jaa valitut"
+  "moveSelectedToOrg": {
+    "message": "Siirrä valitut organisaatioon"
   },
   "deleteSelected": {
     "message": "Poista valitut"
@@ -437,7 +440,7 @@
     "message": "Valitse tiedosto."
   },
   "maxFileSize": {
-    "message": "Tiedoston enimmäiskoko on 100 Mt."
+    "message": "Tiedoston enimmäiskoko on 500 Mt."
   },
   "updateKey": {
     "message": "Et voi käyttää tätä toimintoa ennen kuin päivität salausavaimesi."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Muokattiin kohdetta"
   },
-  "sharedItem": {
-    "message": "Jaettu kohde"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ siirrettiin organisaatioon $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Jaetut kohteet"
+  "movedItemsToOrg": {
+    "message": "Valitut kohteet siirrettiin organisaatioon $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Poista kohde"
@@ -491,7 +510,7 @@
     "message": "Poistettiin kansio"
   },
   "loggedOut": {
-    "message": "Kirjauduttu ulos"
+    "message": "Kirjauduttiin ulos"
   },
   "loginExpired": {
     "message": "Kirjautumisistuntosi on erääntynyt."
@@ -712,7 +731,7 @@
     "message": "Käytä YubiKey-todennuslaitetta tilisi avaukseen. Toimii YubiKey 4 ja 5 -sarjojen sekä NEO -laitteiden kanssa."
   },
   "duoDesc": {
-    "message": "Vahvista Duo Securityn avulla käyttäen Duo Mobile ‑sovellusta, tekstiviestiä, puhelua tai U2F-todennuslaitetta.",
+    "message": "Vahvista kirjautuminen Duo Securityn avulla käyttäen Duo Mobile ‑sovellusta, tekstiviestiä, puhelua tai U2F-todennuslaitetta.",
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "duoOrganizationDesc": {
@@ -724,6 +743,15 @@
   },
   "u2fTitle": {
     "message": "FIDO U2F ‑todennuslaite"
+  },
+  "webAuthnTitle": {
+    "message": "FIDO2 WebAuthn"
+  },
+  "webAuthnDesc": {
+    "message": "Käytä mitä tahansa WebAuthn‑yhteensopivaa todennuslaitetta päästäksesi käsiksi tiliisi."
+  },
+  "webAuthnMigrated": {
+    "message": "(siirretty FIDO:sta)"
   },
   "emailTitle": {
     "message": "Sähköpostiosoite"
@@ -740,11 +768,11 @@
   "organizations": {
     "message": "Organisaatiot"
   },
-  "shareDesc": {
-    "message": "Valitse organisaatio, jonka kanssa haluat jakaa kohteen. Jako siirtää kohteen organisaation omistukseen, etkä tämän jälkeen ole enää sen suora omistaja."
+  "moveToOrgDesc": {
+    "message": "Valitse organisaatio, johon haluat siirtää kohteen. Tämä siirtää kohteen organisaation omistukseen, etkä tämän jälkeen ole enää sen suora omistaja."
   },
-  "shareManyDesc": {
-    "message": "Valitse organisaatio, jonka kanssa haluat jakaa kohteet. Jako siirtää kohteet organisaation omistukseen, etkä tämän jälkeen ole enää niiden suora omistaja."
+  "moveManyToOrgDesc": {
+    "message": "Valitse organisaatio, johon haluat siirtää kohteet. Tämä siirtää kohteet organisaation omistukseen, etkä tämän jälkeen ole enää niiden suora omistaja."
   },
   "collectionsDesc": {
     "message": "Muokkaa kokoelmia, joihin tämä kohde on jaettu. Kohteen näkevät vain ne organisaation käyttäjät, joilla on käyttöoikeus näihin kokoelmiin."
@@ -767,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Olet valinnut $COUNT$ kohdetta. $SHAREABLE_COUNT$ kohdetta on jaettavissa, $NONSHAREABLE_COUNT$ ei ole.",
+  "moveSelectedItemsCountDesc": {
+    "message": "Olet valinnut $COUNT$ kohdetta. $MOVEABLE_COUNT$ kohdetta voidaan siirtää organisaatioon, $NONMOVEABLE_COUNT$ ei.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -807,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "Syötä pääsalasanasi viedäksesi holvisi tiedot."
+  },
+  "export": {
+    "message": "Vie"
   },
   "exportVault": {
     "message": "Vie holvi"
@@ -887,7 +918,7 @@
     "message": "Jatkamalla kirjaudut ulos nykyisestä istunnostasi ja joudut kirjautumaan uudelleen. Aktiiviset istunnot toisilla laitteilla saattavat pysyä aktiivisina vielä tunnin ajan."
   },
   "emailChanged": {
-    "message": "Sähköposti vaihdettiin"
+    "message": "Sähköpostiosoite vaihdettiin"
   },
   "logBackIn": {
     "message": "Kirjaudu sisään uudelleen."
@@ -1027,6 +1058,9 @@
   "importNothingError": {
     "message": "Mitään ei tuotu."
   },
+  "importEncKeyError": {
+    "message": "Virhe purettaessa viedyn tiedoston salausta. Salausavaimesi ei vastaa viennissä käytettyä salausavainta."
+  },
   "selectFormat": {
     "message": "Valitse tuotavan tiedoston muoto"
   },
@@ -1088,7 +1122,7 @@
     "message": "Verkkotunnusten säännöt"
   },
   "domainRulesDesc": {
-    "message": "Jos kirjautumistietosi ovat samat useille verkkotunnuksille, voit merkata sivustot vastaavanlaisiksi. Bitwarden on luonut sinulle valmiiksi globaaleita verkkotunnuksia."
+    "message": "Jos kirjautumistietosi ovat samat useille verkkotunnuksille, voit merkata sivustot vastaavanlaisiksi. Bitwarden on luonut sinulle valmiiksi joitakin globaaleja verkkotunnuksia."
   },
   "globalEqDomains": {
     "message": "Globaalit vastaavat verkkotunnukset"
@@ -1260,6 +1294,15 @@
       }
     }
   },
+  "webAuthnkeyX": {
+    "message": "WebAuthn-todennuslaite $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFC-tuki"
   },
@@ -1285,7 +1328,7 @@
     "message": "Secret Key"
   },
   "twoFactorDuoApiHostname": {
-    "message": "API hostname"
+    "message": "API Hostname"
   },
   "twoFactorEmailDesc": {
     "message": "Seuraa näitä vaiheita ottaaksesi käyttöön kaksivaiheisen kirjautumisen todennuksen sähköpostitse:"
@@ -1304,6 +1347,9 @@
   },
   "removeU2fConfirmation": {
     "message": "Haluatko varmasti poistaa todennuslaitteen?"
+  },
+  "twoFactorWebAuthnAdd": {
+    "message": "Lisää tilillesi WebAuthn-todennuslaite"
   },
   "readKey": {
     "message": "Lue todennuslaite"
@@ -1337,6 +1383,12 @@
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "Todennuslaittetta luettaessa havaittiin ongelma. Yritä uudelleen."
+  },
+  "twoFactorWebAuthnWarning": {
+    "message": "Alustan rajoitusten vuoksi, WebAuthn-todennuslaitteen käyttö ei ole mahdollista kaikissa Bitwarden-sovelluksissa. Sinun tulisi ottaa käyttöön eri kaksivaiheisen kirjautumisen todennusmenetelmä, jotta pääset tilillesi myös silloin kun WebAuthn-laitteen käyttö ei onnistu. Tuetut alustat:"
+  },
+  "twoFactorWebAuthnSupportWeb": {
+    "message": "Verkkoholvi ja selainlaajennukset pöytäkoneissa/kannettavissa, joissa on WebAuthn-tekniikkaa tukeva selain (Chrome, Opera, Vivaldi tai Firefox FIDO U2F käyttöön otettuna)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Bitwardenin kaksivaiheisen kirjautumisen palautuskoodisi"
@@ -1373,7 +1425,7 @@
     "message": "Holviisi tallennetuista kirjautumistiedoista ei löydetty suojaamattomia URI-osoitteita."
   },
   "inactive2faReport": {
-    "message": "Tunnusten 2FA tila"
+    "message": "Tunnusten 2FA-tila"
   },
   "inactive2faReportDesc": {
     "message": "Kaksivaiheinen kirjautuminen (2FA) on tärkeä suojausasetus, joka auttaa käyttäjätiliesi suojauksessa. Jos sivusto tarjoaa mahdollisuuden kaksivaiheisen kirjautmisen käyttöön, sinun tulisi aina ottaa se käyttöön."
@@ -1572,10 +1624,10 @@
     "description": "Another way of saying \"Get a premium membership\""
   },
   "premiumUpdated": {
-    "message": "Olet päivittänyt Premiumiin"
+    "message": "Olet päivittänyt Premiumiin."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Päivitä tilisi Premium-jäsenyyteen ja avaa joitakin hienoja lisätoimintoja."
+    "message": "Päivitä tilisi Premium-jäsenyyteen ja avaa joitakin hienoja lisäominaisuuksia."
   },
   "premiumSignUpStorage": {
     "message": "1 Gt salattua tallennustilaa tiedostoliitteille."
@@ -1596,7 +1648,7 @@
     "message": "Ensisijainen asiakastuki."
   },
   "premiumSignUpFuture": {
-    "message": "Kaikki tulossa olevat Premium-toiminnot. Lisää tulossa pian!"
+    "message": "Kaikki tulossa olevat Premium-ominaisuudet. Lisää tulossa pian!"
   },
   "premiumPrice": {
     "message": "Kaikki tämä vain $PRICE$/vuosi!",
@@ -1608,7 +1660,7 @@
     }
   },
   "addons": {
-    "message": "Lisäykset"
+    "message": "Laajennukset"
   },
   "premiumAccess": {
     "message": "Premium-käyttöoikeus"
@@ -1627,7 +1679,7 @@
     }
   },
   "additionalStorageGb": {
-    "message": "Lisättävä tallennustila, Gt"
+    "message": "Lisää tallennustilaa (Gt)"
   },
   "additionalStorageGbDesc": {
     "message": "Gigatavujen määrä"
@@ -1822,7 +1874,7 @@
     }
   },
   "gbStorageAdd": {
-    "message": "Lisättävä tallennustila, Gt"
+    "message": "Lisättävän tallennustilan määrä (Gt)"
   },
   "gbStorageRemove": {
     "message": "Poistettava tallennustila, Gt"
@@ -1882,7 +1934,7 @@
     "message": "Organisaation nimi"
   },
   "accountOwnedBusiness": {
-    "message": "Tämän tilin omistaa yritys."
+    "message": "Tlin omistaa yritys."
   },
   "billingEmail": {
     "message": "Laskutuksen sähköpostiosoite"
@@ -2022,7 +2074,7 @@
     "message": "Suoritus omassa palvelinympäristössä (valinnainen)"
   },
   "usersGetPremium": {
-    "message": "Käyttäjät saavat käyttöoikeuden Premium-toimintoihin"
+    "message": "Käyttäjät saavat käyttöoikeuden Premium-ominaisuuksiin"
   },
   "controlAccessWithGroups": {
     "message": "Hallitse käyttäjien oikeuksia ryhmillä"
@@ -2250,13 +2302,13 @@
     "message": "Tilin salasana vaihdettiin."
   },
   "enabledUpdated2fa": {
-    "message": "Kaksivaiheinen kirjautuminen on otettu käyttöön/päivitetty."
+    "message": "Kaksivaiheinen kirjautuminen otettiin käyttöön/päivitettiin."
   },
   "disabled2fa": {
-    "message": "Kaksivaiheinen kirjautuminen on poistettu käytöstä."
+    "message": "Kaksivaiheinen kirjautuminen poistettiin käytöstä."
   },
   "recovered2fa": {
-    "message": "Tili on vapautettu kaksivaiheisesta kirjautumisesta."
+    "message": "Tili vapautettiin kaksivaiheisesta kirjautumisesta."
   },
   "failedLogin": {
     "message": "Sisäänkirjautumisyritys epäonnistui väärän salasanan vuoksi."
@@ -2300,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Kohde $ID$ jaettiin.",
+  "movedItemIdToOrg": {
+    "message": "Kohde $ID$ siirrettiin organisaatioon.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2346,7 +2398,7 @@
     }
   },
   "copiedPasswordItemId": {
-    "message": "Kohteen $ID$ salasana kopioitiin.",
+    "message": "Kopioitiin kohteen $ID$ salasana.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2355,7 +2407,7 @@
     }
   },
   "copiedHiddenFieldItemId": {
-    "message": "Kohteen $ID$ piilotettu kenttä kopioitiin.",
+    "message": "Kopioitiin kohteen $ID$ piilotettu kenttä.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2364,7 +2416,7 @@
     }
   },
   "copiedSecurityCodeItemId": {
-    "message": "Kohteen $ID$ turvakoodi kopioitiin.",
+    "message": "Kopioitiin kohteen $ID$ turvakoodi.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2517,7 +2569,7 @@
     }
   },
   "unlinkedSsoUser": {
-    "message": "Poistettu yrityksen kertakirjautuminen (SSO) käyttäjältä $ID$.",
+    "message": "Poistettiin yrityksen kertakirjautuminen (SSO) käyttäjältä $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2609,6 +2661,12 @@
   "emailVerifiedFailed": {
     "message": "Sähköpostiosoitteesi vahvistus ei onnistunut. Yritä lähettää uusi vahvistussähköposti."
   },
+  "emailVerificationRequired": {
+    "message": "Sähköpostiosoitteen vahvistus vaaditaan"
+  },
+  "emailVerificationRequiredDesc": {
+    "message": "Sinun on vahvistettava sähköpostiosoitteesi käyttääksesi tätä ominaisuutta."
+  },
   "updateBrowser": {
     "message": "Päivitä selain"
   },
@@ -2640,7 +2698,7 @@
     }
   },
   "rememberEmail": {
-    "message": "Muista sähköposti"
+    "message": "Muista sähköpostiosoite"
   },
   "recoverAccountTwoStepDesc": {
     "message": "Jos et pääse tilillesi käyttämilläsi kaksivaiheisen kirjautumisen todennusmenetelmillä, voit kaksivaiheisen kirjautumisen palautuskoodia käyttäen kytkeä kaikki tilillesi määritetyt todennusmenetelmät pois käytöstä."
@@ -2996,7 +3054,7 @@
     "message": "API-avaimen kierrättäminen mitätöi edellisen avaimen. Voit kierrättää API-avaimen, jos uskot, ettei nykyisen avaimen käyttö ole enää turvallista."
   },
   "apiKeyWarning": {
-    "message": "API-avaimellasi on täysi käyttöoikeus organisaatioon. Avain tulee pitää turvassa."
+    "message": "API-avaimellasi on täysi käyttöoikeus organisaatioon ja se tulee pitää turvassa."
   },
   "userApiKeyDesc": {
     "message": "API-avaintasi voi käyttää tunnistautumiseen Bitwardenin komentokehotteessa (CLI)."
@@ -3212,10 +3270,10 @@
     "message": "Tarvitsemme näitä tietoja ainoastaan liikevaihtoveroa ja tilinpäätöstä varten."
   },
   "includeVAT": {
-    "message": "Sisällytä VAT/GST -tiedot (valinnainen)"
+    "message": "Sisällytä ALV/GST-tiedot (valinnainen)"
   },
   "taxIdNumber": {
-    "message": "ALV/GST -verotus tunniste"
+    "message": "ALV/GST-verotustunniste"
   },
   "taxInfoUpdated": {
     "message": "Verotiedot päivitettiin."
@@ -3246,7 +3304,7 @@
     "description": "The web portal used by business organizations for configuring certain features."
   },
   "includeAllTeamsFeatures": {
-    "message": "Kaikki \"Tiimit\" -tilauksen ominaisuudet, sekä:"
+    "message": "Kaikki Tiimit-tilauksen ominaisuudet, sekä:"
   },
   "includeSsoAuthentication": {
     "message": "Kertakirjautumisen (SSO) todennus SAML2.0 ja OpenID Connect -standardeilla"
@@ -3388,6 +3446,9 @@
   },
   "removePasswordConfirmation": {
     "message": "Haluatko varmasti poistaa salasanan?"
+  },
+  "hideEmail": {
+    "message": "Piilota sähköpostiosoitteeni vastaanottajilta."
   },
   "disableThisSend": {
     "message": "Poista Send käytöstä, jottei kukaan voi avata sitä.",
@@ -3608,6 +3669,28 @@
     "message": "Yrityksen käytännön vuoksi voit poistaa vain olemassa olevan Sendin.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "sendOptions": {
+    "message": "Send-asetukset",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyDesc": {
+    "message": "Määritä Sendien luonti- ja muokkausasetukset.",
+    "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsExemption": {
+    "message": "Käytäntöä ei pakoteta käyttöön niille organisaation käyttäjille, joilla on organisaation käytäntöjen hallintaoikeudet."
+  },
+  "disableHideEmail": {
+    "message": "Estä käyttäjiltä sähköpostiosoitteen piilotus kun he luovat tai muokkaavat Sendiä.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyInEffect": {
+    "message": "Seuraavat organisaatiokäytännöt ovat aktiivisia:"
+  },
+  "sendDisableHideEmailInEffect": {
+    "message": "Käyttäjiltä on estetty sähköpostiosoitteen piilotus kun he luovat tai muokkaavat Sendiä.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "modifiedPolicyId": {
     "message": "Muokattiin käytäntöä $ID$.",
     "placeholders": {
@@ -3661,6 +3744,9 @@
   },
   "manageUsers": {
     "message": "Käyttäjien hallinta"
+  },
+  "manageResetPassword": {
+    "message": "Hallinnoi salasanan palautusta"
   },
   "disableRequireSsoError": {
     "message": "Yrityksen kertakirjautuminen (SSO) on poistettava käytöstä manuaalisesti ennen kuin tämän käytännön voi poistaa käytöstä."
@@ -3748,6 +3834,10 @@
       }
     }
   },
+  "viewSendHiddenEmailWarning": {
+    "message": "Sendin luonut Bitwarden-käyttäjä on piilottanut sähköpostiosoitteensa. Varmista, että linkin lähde on luotettava ennen kuin käytät tai lataat sen sisältöä.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "expirationDateIsInvalid": {
     "message": "Asetettu erääntymispäivä on virhellinen."
   },
@@ -3762,5 +3852,170 @@
   },
   "dateParsingError": {
     "message": "Tapahtui virhe tallennettaessa poisto- ja erääntymispäiviä."
+  },
+  "webAuthnFallbackMsg": {
+    "message": "Vahvista kaksivaiheinen kirjautuminen (2FA) klikkaamalla alla olevaa painiketta."
+  },
+  "webAuthnAuthenticate": {
+    "message": "WebAuthn-todennus"
+  },
+  "webAuthnNotSupported": {
+    "message": "WebAuthn ei ole tuettu tässä selaimessa."
+  },
+  "webAuthnSuccess": {
+    "message": "WebAuthn-todennus onnistui! Voit sulkea välilehden."
+  },
+  "hintEqualsPassword": {
+    "message": "Salasanavihjeesi ei voi olla sama kuin salasanasi."
+  },
+  "enrollPasswordReset": {
+    "message": "Liity salasanan palautukseen"
+  },
+  "enrolledPasswordReset": {
+    "message": "Liitetty salasanan palautukseen"
+  },
+  "withdrawPasswordReset": {
+    "message": "Poistu salasanan palautuksesta"
+  },
+  "enrollPasswordResetSuccess": {
+    "message": "Liittyminen onnistui!"
+  },
+  "withdrawPasswordResetSuccess": {
+    "message": "Poistuttu onnistuneesti!"
+  },
+  "eventEnrollPasswordReset": {
+    "message": "Käyttäjä $ID$ liittyi salasanan palautusapuun.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventWithdrawPasswordReset": {
+    "message": "Käyttäjä $ID$ poistui salasanan palautusavusta.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventAdminPasswordReset": {
+    "message": "Pääsalasanan palautus käyttäjälle $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Palauta salasana"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Jatkamalla kirjataan käyttäjät $NAME$ ulos nykyisistä istunnoistaan, jonka jälkeen heidän on kirjauduttava uudelleen. Aktiiviset istunnot toisilla laitteilla saattavat pysyä aktiivisina vielä tunnin ajan.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "tämä käyttäjä"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "Yksi tai useampi organisaatiokäytäntö edellyttää, että pääsalasanasi täyttää seuraavat vaatimukset:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Salasanan palautus onnistui!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Liittyminen sallii organisaation ylläpitäjien vaihtaa pääsalasanasi. Haluatko varmasti liittyä?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Pääsalasanan palautus"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Salli organisaation ylläpitäjien palauttaa organisaation käyttäjien pääsalasana."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Organisaation käyttäjien on liityttävä itse tai automaattisen liitännän välityksellä ennen kuin ylläpitäjät voivat palauttaa heidän pääsalasanansa."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automaattinen liittyminen"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "Kaikki käyttäjät liitetään salasanan palautukseen automaattisesti kun heidän kutsunsa hyväksytään."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Vanhoja organisaation käyttäjiä ei liitetä salasanan palautukseen takautuvasti, vaan heidän on itse liityttävä siihen ennen kuin järjestelmänvalvojat voivat palauttaa heidän pääsalasanaansa."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Liitä uudet käyttäjät automaattisesti"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Organisaatiolla on käytäntö, joka liittää sinut automaattisesti salasanan palautukseen. Liitos sallii organisaation ylläpitäjien vaihtaa pääsalasanasi."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Organisaatioavainten vastaus on tyhjä"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Salasanan palautuksen tietojen vastaus on tyhjä"
+  },
+  "trashCleanupWarning": {
+    "message": "Roskakorissa yli 30 päivää olleet kohteet poistetaan automaattisesti."
+  },
+  "trashCleanupWarningSelfHosted": {
+    "message": "Roskakorissa jonkin aikaa olleet kohteet poistetaan automaattisesti."
+  },
+  "passwordPrompt": {
+    "message": "Pääsalasanan uudelleenkysely"
+  },
+  "passwordConfirmation": {
+    "message": "Pääsalasanan vahvistus"
+  },
+  "passwordConfirmationDesc": {
+    "message": "Toiminto on suojattu. Jatkaaksesi, syötä pääsalasanasi uudelleen vahvistaaksesi henkilöllisyytesi."
+  },
+  "reinviteSelected": {
+    "message": "Lähetä kutsut uudelleen"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "Toiminto ei koske valittuja käyttäjiä."
+  },
+  "removeUsersWarning": {
+    "message": "Haluatko varmasti poistaa poistaa seuraavat käyttäjät? Toiminto saattaa kestää muutamia sekunteja, eikä sitä voi keskeyttää tai peruuttaa."
+  },
+  "confirmSelected": {
+    "message": "Vahvista valitut"
+  },
+  "bulkConfirmStatus": {
+    "message": "Joukkotoiminnon tila"
+  },
+  "bulkConfirmMessage": {
+    "message": "Vahvistettu onnistuneesti."
+  },
+  "bulkReinviteMessage": {
+    "message": "Kutsuttu uudelleen onnistuneesti."
+  },
+  "bulkRemovedMessage": {
+    "message": "Poistettu onnistuneesti"
+  },
+  "bulkFilteredMessage": {
+    "message": "Ohitettu, ei koske tätä toimintoa."
+  },
+  "fingerprint": {
+    "message": "Sormenjälki"
+  },
+  "removeUsers": {
+    "message": "Poista käyttäjiä"
+  },
+  "error": {
+    "message": "Virhe"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Käyttäjien hallinnan on myös oltava käytössä \"Hallinnoi salasanan palautusta\" -oikeuden kanssa"
   }
 }

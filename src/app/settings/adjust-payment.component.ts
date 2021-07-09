@@ -8,12 +8,12 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 
-import { PaymentRequest } from 'jslib/models/request/paymentRequest';
+import { PaymentRequest } from 'jslib-common/models/request/paymentRequest';
 
-import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
+import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
 
 import { PaymentComponent } from './payment.component';
 import { TaxInfoComponent } from './tax-info.component';

@@ -1,20 +1,20 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { StorageService } from 'jslib/abstractions/storage.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { StorageService } from 'jslib-common/abstractions/storage.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { EmergencyAccessStatusType } from 'jslib/enums/emergencyAccessStatusType';
-import { EmergencyAccessType } from 'jslib/enums/emergencyAccessType';
-import { Utils } from 'jslib/misc/utils';
-import { EmergencyAccessConfirmRequest } from 'jslib/models/request/emergencyAccessConfirmRequest';
-import { EmergencyAccessGranteeDetailsResponse, EmergencyAccessGrantorDetailsResponse } from 'jslib/models/response/emergencyAccessResponse';
-import { ConstantsService } from 'jslib/services/constants.service';
+import { EmergencyAccessStatusType } from 'jslib-common/enums/emergencyAccessStatusType';
+import { EmergencyAccessType } from 'jslib-common/enums/emergencyAccessType';
+import { Utils } from 'jslib-common/misc/utils';
+import { EmergencyAccessConfirmRequest } from 'jslib-common/models/request/emergencyAccessConfirmRequest';
+import { EmergencyAccessGranteeDetailsResponse, EmergencyAccessGrantorDetailsResponse } from 'jslib-common/models/response/emergencyAccessResponse';
+import { ConstantsService } from 'jslib-common/services/constants.service';
 
 import { ModalComponent } from '../modal.component';
 import { EmergencyAccessAddEditComponent } from './emergency-access-add-edit.component';

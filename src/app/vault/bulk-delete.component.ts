@@ -6,12 +6,12 @@ import {
 } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CipherService } from 'jslib/abstractions/cipher.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CipherService } from 'jslib-common/abstractions/cipher.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 
-import { Organization } from 'jslib/models/domain/organization';
-import { CipherBulkDeleteRequest } from 'jslib/models/request/cipherBulkDeleteRequest';
+import { Organization } from 'jslib-common/models/domain/organization';
+import { CipherBulkDeleteRequest } from 'jslib-common/models/request/cipherBulkDeleteRequest';
 
 @Component({
     selector: 'app-vault-bulk-delete',

@@ -8,21 +8,21 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CollectionService } from 'jslib/abstractions/collection.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CollectionService } from 'jslib-common/abstractions/collection.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
-import { CollectionData } from 'jslib/models/data/collectionData';
-import { Collection } from 'jslib/models/domain/collection';
-import { OrganizationUserInviteRequest } from 'jslib/models/request/organizationUserInviteRequest';
-import { OrganizationUserUpdateRequest } from 'jslib/models/request/organizationUserUpdateRequest';
-import { SelectionReadOnlyRequest } from 'jslib/models/request/selectionReadOnlyRequest';
-import { CollectionDetailsResponse } from 'jslib/models/response/collectionResponse';
-import { CollectionView } from 'jslib/models/view/collectionView';
+import { CollectionData } from 'jslib-common/models/data/collectionData';
+import { Collection } from 'jslib-common/models/domain/collection';
+import { OrganizationUserInviteRequest } from 'jslib-common/models/request/organizationUserInviteRequest';
+import { OrganizationUserUpdateRequest } from 'jslib-common/models/request/organizationUserUpdateRequest';
+import { SelectionReadOnlyRequest } from 'jslib-common/models/request/selectionReadOnlyRequest';
+import { CollectionDetailsResponse } from 'jslib-common/models/response/collectionResponse';
+import { CollectionView } from 'jslib-common/models/view/collectionView';
 
-import { OrganizationUserType } from 'jslib/enums/organizationUserType';
-import { PermissionsApi } from 'jslib/models/api/permissionsApi';
+import { OrganizationUserType } from 'jslib-common/enums/organizationUserType';
+import { PermissionsApi } from 'jslib-common/models/api/permissionsApi';
 
 @Component({
     selector: 'app-user-add-edit',
@@ -141,6 +141,15 @@ export class UserAddEditComponent implements OnInit {
             false :
             this.permissions.manageResetPassword;
         return p;
+    }
+
+    handleDependentPermissions() {
+        // Manage Password Reset must have Manage Users enabled
+        if (this.permissions.manageResetPassword && !this.permissions.manageUsers) {
+            this.permissions.manageUsers = true;
+            (document.getElementById('manageUsers') as HTMLInputElement).checked = true;
+            this.platformUtilsService.showToast('info', null, this.i18nService.t('resetPasswordManageUsers'));
+        }
     }
 
     async submit() {

@@ -360,6 +360,9 @@
   "share": {
     "message": "Κοινοποίηση"
   },
+  "moveToOrganization": {
+    "message": "Move to Organization"
+  },
   "valueCopied": {
     "message": "$VALUE$ αντιγράφηκε",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Vault"
   },
-  "shareSelected": {
-    "message": "Κοινοποίηση Επιλεγμένων"
+  "moveSelectedToOrg": {
+    "message": "Move Selected to Organization"
   },
   "deleteSelected": {
     "message": "Διαγραφή Επιλεγμένων"
@@ -437,7 +440,7 @@
     "message": "Επιλέξτε ένα αρχείο."
   },
   "maxFileSize": {
-    "message": "Το μέγιστο μέγεθος αρχείου είναι 100 MB."
+    "message": "Το μέγιστο μέγεθος αρχείου είναι 500 MB."
   },
   "updateKey": {
     "message": "Δεν μπορείτε να χρησιμοποιήσετε αυτήν τη δυνατότητα μέχρι να ενημερώσετε το κλειδί κρυπτογράφησης."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Επεξεργασμένο στοιχείο"
   },
-  "sharedItem": {
-    "message": "Κοινόχρηστο στοιχείο"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Κοινόχρηστα στοιχεία"
+  "movedItemsToOrg": {
+    "message": "Selected items moved to $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Διαγραφή στοιχείου"
@@ -725,6 +744,15 @@
   "u2fTitle": {
     "message": "Κλειδί Aσφαλείας FIDO U2F"
   },
+  "webAuthnTitle": {
+    "message": "FIDO2 WebAuthn"
+  },
+  "webAuthnDesc": {
+    "message": "Χρησιμοποιήστε οποιοδήποτε κλειδί ασφαλείας WebAuthn για να αποκτήσετε πρόσβαση στο λογαριασμό σας."
+  },
+  "webAuthnMigrated": {
+    "message": "(Μετεγκατάσταση από το FIDO)"
+  },
   "emailTitle": {
     "message": "Email"
   },
@@ -740,11 +768,11 @@
   "organizations": {
     "message": "Οργανισμοί"
   },
-  "shareDesc": {
-    "message": "Επιλέξτε έναν οργανισμό στον οποίο θέλετε να μοιραστείτε αυτό το στοιχείο. Η κοινή χρήση μεταβιβάζει την ιδιοκτησία του στοιχείου στον οργανισμό. Δεν θα είστε πλέον ο άμεσος ιδιοκτήτης αυτού του στοιχείου μόλις το μοιραστείτε."
+  "moveToOrgDesc": {
+    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
   },
-  "shareManyDesc": {
-    "message": "Επιλέξτε έναν οργανισμό στον οποίο θέλετε να μοιραστείτε αυτά τα στοιχεία. Η κοινή χρήση μεταβιβάζει την ιδιοκτησία των αντικειμένων στον οργανισμό. Δεν θα είστε πλέον ο άμεσος ιδιοκτήτης αυτών των αντικειμένων μόλις τα μοιραστείτε."
+  "moveManyToOrgDesc": {
+    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
   },
   "collectionsDesc": {
     "message": "Επεξεργαστείτε τις συλλογές με τις οποίες μοιράζεται αυτό το στοιχείο. Μόνο οι χρήστες των οργανισμών που έχουν πρόσβαση σε αυτές τις συλλογές θα μπορούν να βλέπουν αυτό το στοιχείο."
@@ -767,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Έχετε επιλέξει $COUNT$ στοιχείο(α). Τα $SHAREABLE_COUNT$ στοιχεία είναι κοινόχρηστα και $NONSHAREABLE_COUNT$ δεν είναι.",
+  "moveSelectedItemsCountDesc": {
+    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -800,13 +828,16 @@
     "message": "Αυτή η εξαγωγή περιέχει τα δεδομένα σε μη κρυπτογραφημένη μορφή. Δεν πρέπει να αποθηκεύετε ή να στείλετε το εξαγόμενο αρχείο μέσω μη ασφαλών τρόπων (όπως μέσω email). Διαγράψτε το αμέσως μόλις τελειώσετε με τη χρήση του."
   },
   "encExportKeyWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Αυτή η εξαγωγή κρυπτογραφεί τα δεδομένα σας χρησιμοποιώντας το κλειδί κρυπτογράφησης του λογαριασμού σας. Εάν ποτέ περιστρέψετε το κλειδί κρυπτογράφησης του λογαριασμού σας, θα πρέπει να κάνετε εξαγωγή ξανά, καθώς δεν θα μπορείτε να αποκρυπτογραφήσετε αυτό το αρχείο εξαγωγής."
   },
   "encExportAccountWarningDesc": {
-    "message": "Account encryption keys are unique to each Bitwarden user account, so you can't import an encrypted export into a different account."
+    "message": "Τα κλειδιά κρυπτογράφησης λογαριασμού είναι μοναδικά για κάθε λογαριασμό χρήστη Bitwarden, οπότε δεν μπορείτε να εισάγετε μια κρυπτογραφημένη εξαγωγή σε διαφορετικό λογαριασμό."
   },
   "exportMasterPassword": {
     "message": "Πληκτρολογήστε τον κύριο κωδικό για εξαγωγή των δεδομένων vault."
+  },
+  "export": {
+    "message": "Export"
   },
   "exportVault": {
     "message": "Εξαγωγή Vault"
@@ -1004,16 +1035,16 @@
     "message": "Εισαγωγή Δεδομένων"
   },
   "importError": {
-    "message": "Import Error"
+    "message": "Σφάλμα Εισαγωγής"
   },
   "importErrorDesc": {
-    "message": "There was a problem with the data you tried to import. Please resolve the errors listed below in your source file and try again."
+    "message": "Παρουσιάστηκε πρόβλημα με τα δεδομένα που επιχειρήσατε να εισαγάγετε. Παρακαλώ επιλύστε τα σφάλματα που αναφέρονται παρακάτω στο αρχείο προέλευσης και προσπαθήστε ξανά."
   },
   "importSuccess": {
     "message": "Τα δεδομένα έχουν εισαχθεί με επιτυχία στο vault σας."
   },
   "importWarning": {
-    "message": "You are importing data to $ORGANIZATION$. Your data may be shared with members of this organization. Do you want to proceed?",
+    "message": "Εισάγετε δεδομένα στο $ORGANIZATION$. Τα δεδομένα σας μπορεί να μοιραστούν με μέλη αυτού του οργανισμού. Θέλετε να προχωρήσετε;",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -1026,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Δεν υπάρχει κάτι για εισαγωγή."
+  },
+  "importEncKeyError": {
+    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
   },
   "selectFormat": {
     "message": "Επιλέξτε μορφή του αρχείου εισαγωγής"
@@ -1260,6 +1294,15 @@
       }
     }
   },
+  "webAuthnkeyX": {
+    "message": "WebAuthn Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "Υποστήριξη NFC"
   },
@@ -1305,6 +1348,9 @@
   "removeU2fConfirmation": {
     "message": "Είστε βέβαιοι ότι θέλετε να καταργήσετε αυτό το κλειδί ασφαλείας;"
   },
+  "twoFactorWebAuthnAdd": {
+    "message": "Προσθέστε ένα κλειδί ασφαλείας WebAuthn στο λογαριασμό σας"
+  },
   "readKey": {
     "message": "Ανάγνωση Κλειδιού"
   },
@@ -1337,6 +1383,12 @@
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "Παρουσιάστηκε πρόβλημα κατά την ανάγνωση του κλειδιού ασφαλείας. Προσπάθησε ξανά."
+  },
+  "twoFactorWebAuthnWarning": {
+    "message": "Λόγω περιορισμών της πλατφόρμας, το WebAuthn δεν μπορεί να χρησιμοποιηθεί σε όλες τις εφαρμογές Bitwarden. Θα πρέπει να ενεργοποιήσετε έναν άλλο πάροχο σύνδεσης δύο βημάτων, ώστε να έχετε πρόσβαση στο λογαριασμό σας όταν δεν μπορεί να χρησιμοποιηθεί το WebAuthn. Υποστηριζόμενες πλατφόρμες:"
+  },
+  "twoFactorWebAuthnSupportWeb": {
+    "message": "Web vault και επεκτάσεις browser σε έναν σταθερό / φορητό υπολογιστή με ένα πρόγραμμα περιήγησης WebAuthn (Chrome, Opera, Vivaldi, ή Firefox με FIDO U2F ενεργοποιημένο)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Ο Bitwarden κωδικός ανάκτησης, εισόδου δύο βημάτων"
@@ -1584,7 +1636,7 @@
     "message": "Πρόσθετες επιλογές σύνδεσης δύο παραγόντων, όπως το YubiKey, το FIDO U2F και το Duo."
   },
   "premiumSignUpEmergency": {
-    "message": "Emergency Access"
+    "message": "Πρόσβαση Έκτακτης Ανάγκης"
   },
   "premiumSignUpReports": {
     "message": "Ασφάλεια κωδικών, υγεία λογαριασμού και αναφορές διαρροής δεδομένων, προκειμένου να διατηρήσετε ασφαλές το vault σας."
@@ -2300,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Κοινοποιημένο στοιχείο $ID$.",
+  "movedItemIdToOrg": {
+    "message": "Moved item $ID$ to an organization.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2608,6 +2660,12 @@
   },
   "emailVerifiedFailed": {
     "message": "Δεν είναι δυνατή η επαλήθευση του email σας. Δοκιμάστε να στείλετε νέο email επαλήθευσης."
+  },
+  "emailVerificationRequired": {
+    "message": "Απαιτείται Επαλήθευση Email"
+  },
+  "emailVerificationRequiredDesc": {
+    "message": "Πρέπει να επαληθεύσετε το email σας για να χρησιμοποιήσετε αυτή τη δυνατότητα."
   },
   "updateBrowser": {
     "message": "Ενημερώστε τον Browser"
@@ -3389,6 +3447,9 @@
   "removePasswordConfirmation": {
     "message": "Είστε βέβαιοι ότι θέλετε να καταργήσετε τον κωδικό πρόσβασης;"
   },
+  "hideEmail": {
+    "message": "Απόκρυψη της διεύθυνσης email μου από τους παραλήπτες."
+  },
   "disableThisSend": {
     "message": "Απενεργοποιήστε αυτό το Send έτσι ώστε κανείς να μην μπορεί να έχει πρόσβαση σε αυτό.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
@@ -3429,7 +3490,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "missingSendFile": {
-    "message": "The file associated with this Send could not be found.",
+    "message": "Το αρχείο που σχετίζεται με αυτό το Send δεν βρέθηκε.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3443,7 +3504,7 @@
     "message": "Εκχώρηση και διαχείριση πρόσβασης έκτακτης ανάγκης για αξιόπιστες επαφές. Οι επαφές εμπίστευσης μπορούν να ζητήσουν πρόσβαση είτε στην Προβολή είτε στην ανάληψη του λογαριασμού σας σε περίπτωση έκτακτης ανάγκης. Επισκεφθείτε τη σελίδα βοήθειας μας για περισσότερες πληροφορίες και λεπτομέρειες σχετικά με το πώς λειτουργεί o μηδενικός διαμοιρασμός πληροφοριών."
   },
   "emergencyAccessOwnerWarning": {
-    "message": "You are an Owner of one or more organizations. If you give takeover access to an emergency contact, they will be able to use all your permissions as Owner after a takeover."
+    "message": "Είστε ιδιοκτήτης ενός ή περισσότερων οργανισμών. Αν δώσετε πρόσβαση σε μια επαφή έκτακτης ανάγκης, θα είναι σε θέση να χρησιμοποιήσουν όλα τα δικαιώματά σας ως Ιδιοκτήτη μετά από μια εξαγορά."
   },
   "trustedEmergencyContacts": {
     "message": "Έμπιστες επαφές έκτακτης ανάγκης"
@@ -3591,21 +3652,43 @@
     "message": "Λόγω μιας Πολιτικής Επιχειρήσεων, δεν επιτρέπεται η αποθήκευση στοιχείων στο προσωπικό σας vault. Αλλάξτε την επιλογή Ιδιοκτησίας σε έναν οργανισμό και επιλέξτε από τις διαθέσιμες Συλλογές."
   },
   "disableSend": {
-    "message": "Disable Send"
+    "message": "Απενεργοποίηση Αποστολής"
   },
   "disableSendPolicyDesc": {
-    "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
+    "message": "Μην επιτρέπετε στους χρήστες να δημιουργήσουν ή να επεξεργαστούν μια Αποστολή Bitwarden. Η διαγραφή μιας υπάρχουσας Αποστολής εξακολουθεί να επιτρέπεται.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Οι χρήστες του οργανισμού που μπορούν να διαχειριστούν τις πολιτικές του οργανισμού εξαιρούνται από την εφαρμογή αυτής της πολιτικής."
   },
   "sendDisabled": {
-    "message": "Send disabled",
+    "message": "Send Απενεργοποιημένο",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "message": "Λόγω μιας επιχειρηματικής πολιτικής, είστε σε θέση να διαγράψετε μόνο ένα υπάρχον Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptions": {
+    "message": "Επιλογές Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyDesc": {
+    "message": "Καθορίστε επιλογές για τη δημιουργία και επεξεργασία sends.",
+    "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsExemption": {
+    "message": "Οι χρήστες του οργανισμού που μπορούν να διαχειριστούν τις πολιτικές του οργανισμού εξαιρούνται από την εφαρμογή αυτής της πολιτικής."
+  },
+  "disableHideEmail": {
+    "message": "Μην επιτρέπετε στους χρήστες να αποκρύψουν τη διεύθυνση email τους από τους παραλήπτες κατά τη δημιουργία ή την επεξεργασία ενός send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyInEffect": {
+    "message": "Οι ακόλουθες οργανωτικές πολιτικές εφαρμόζονται επί του παρόντος:"
+  },
+  "sendDisableHideEmailInEffect": {
+    "message": "Οι χρήστες δεν επιτρέπεται να αποκρύψουν τη διεύθυνση email τους από τους παραλήπτες κατά τη δημιουργία ή την επεξεργασία ενός send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3662,6 +3745,9 @@
   "manageUsers": {
     "message": "Διαχείριση Χρηστών"
   },
+  "manageResetPassword": {
+    "message": "Διαχείριση Επαναφοράς Κωδικού Πρόσβασης"
+  },
   "disableRequireSsoError": {
     "message": "Πρέπει να απενεργοποιήσετε χειροκίνητα την πολιτική ελέγχου ταυτότητας μιας σύνδεσης πριν αυτή η πολιτική μπορεί να απενεργοποιηθεί."
   },
@@ -3676,20 +3762,20 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
-    "message": "A friendly name to describe this Send.",
+    "message": "Ένα φιλικό όνομα για την περιγραφή αυτού του Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
-    "message": "The text you want to send."
+    "message": "Το κείμενο που θέλετε να στείλετε."
   },
   "sendFileDesc": {
-    "message": "The file you want to send."
+    "message": "Το αρχείο που θέλετε να στείλετε."
   },
   "copySendLinkOnSave": {
-    "message": "Copy the link to share this Send to my clipboard upon save."
+    "message": "Αντιγράψτε το σύνδεσμο, για να μοιραστείτε αυτό το Send στο πρόχειρο μου, κατά την αποθήκευση."
   },
   "sendLinkLabel": {
-    "message": "Send link",
+    "message": "Σύνδεσμος Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "send": {
@@ -3697,50 +3783,50 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineProductDesc": {
-    "message": "Bitwarden Send transmits sensitive, temporary information to others easily and securely.",
+    "message": "Το Bitwarden Send μεταδίδει ευαίσθητες, προσωρινές πληροφορίες σε άλλους, εύκολα και με ασφάλεια.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineLearnMore": {
-    "message": "Learn more about",
+    "message": "Περισσότερες πληροφορίες για",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
   },
   "sendVaultCardProductDesc": {
-    "message": "Share text or files directly with anyone."
+    "message": "Κοινή χρήση κειμένου ή αρχείων απευθείας με οποιονδήποτε."
   },
   "sendVaultCardLearnMore": {
-    "message": "Learn more",
+    "message": "Μάθετε περισσότερα",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
   },
   "sendVaultCardSee": {
-    "message": "see",
+    "message": "δείτε",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
   },
   "sendVaultCardHowItWorks": {
-    "message": "how it works",
+    "message": "πώς λειτουργεί",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
   },
   "sendVaultCardOr": {
-    "message": "or",
+    "message": "ή",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
   },
   "sendVaultCardTryItNow": {
-    "message": "try it now",
+    "message": "δοκιμάστε το τώρα",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
   },
   "sendAccessTaglineOr": {
-    "message": "or",
+    "message": "ή",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
   },
   "sendAccessTaglineSignUp": {
-    "message": "sign up",
+    "message": "εγγραφείτε",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
   },
   "sendAccessTaglineTryToday": {
-    "message": "to try it today.",
+    "message": "για να το δοκιμάσετε σήμερα.",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
   },
   "sendCreatorIdentifier": {
-    "message": "Bitwarden user $USER_IDENTIFIER$ shared the following with you",
+    "message": "Ο χρήστης Bitwarden $USER_IDENTIFIER$ κοινοποίησε τα ακόλουθα μαζί σας",
     "placeholders": {
       "user_identifier": {
         "content": "$1",
@@ -3748,19 +3834,188 @@
       }
     }
   },
+  "viewSendHiddenEmailWarning": {
+    "message": "Ο χρήστης Bitwarden που δημιούργησε αυτό το send έχει επιλέξει να κρύψει τη διεύθυνση email του. Πρέπει να διασφαλίσετε ότι εμπιστεύεστε την πηγή αυτού του συνδέσμου πριν χρησιμοποιήσετε ή κατεβάσετε το περιεχόμενό του.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "expirationDateIsInvalid": {
-    "message": "The expiration date provided is not valid."
+    "message": "Η ημερομηνία λήξης που δόθηκε δεν είναι έγκυρη."
   },
   "deletionDateIsInvalid": {
-    "message": "The deletion date provided is not valid."
+    "message": "Η ημερομηνία διαγραφής που δόθηκε δεν είναι έγκυρη."
   },
   "expirationDateAndTimeRequired": {
-    "message": "An expiration date and time are required."
+    "message": "Απαιτείται ημερομηνία και ώρα λήξης."
   },
   "deletionDateAndTimeRequired": {
-    "message": "A deletion date and time are required."
+    "message": "Απαιτείται ημερομηνία και ώρα διαγραφής."
   },
   "dateParsingError": {
-    "message": "There was an error saving your deletion and expiration dates."
+    "message": "Παρουσιάστηκε σφάλμα κατά την αποθήκευση των ημερομηνιών διαγραφής και λήξης."
+  },
+  "webAuthnFallbackMsg": {
+    "message": "Για να επαληθεύσετε τον 2FA σας παρακαλώ κάντε κλικ στο παρακάτω κουμπί."
+  },
+  "webAuthnAuthenticate": {
+    "message": "Ταυτοποίηση WebAutn"
+  },
+  "webAuthnNotSupported": {
+    "message": "Το WebAuthn δεν υποστηρίζεται σε αυτό το πρόγραμμα περιήγησης."
+  },
+  "webAuthnSuccess": {
+    "message": "<strong>Το WebAuthn επαληθεύτηκε επιτυχώς!</strong><br>Μπορείτε να κλείσετε αυτή την καρτέλα."
+  },
+  "hintEqualsPassword": {
+    "message": "Η υπόδειξη κωδικού πρόσβασης, δεν μπορεί να είναι η ίδια με τον κωδικό πρόσβασης σας."
+  },
+  "enrollPasswordReset": {
+    "message": "Επαναφορά κωδικού πρόσβασης"
+  },
+  "enrolledPasswordReset": {
+    "message": "Εγγεγραμμένος στην επαναφορά κωδικού πρόσβασης"
+  },
+  "withdrawPasswordReset": {
+    "message": "Επαναφορά κωδικού πρόσβασης"
+  },
+  "enrollPasswordResetSuccess": {
+    "message": "Επιτυχής εγγραφή!"
+  },
+  "withdrawPasswordResetSuccess": {
+    "message": "Επιτυχής απόσυρση!"
+  },
+  "eventEnrollPasswordReset": {
+    "message": "Ο χρήστης $ID$ έχει εγγραφεί στη βοήθεια επαναφοράς κωδικού πρόσβασης.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventWithdrawPasswordReset": {
+    "message": "Ο χρήστης $ID$ αποσύρθηκε από τη βοήθεια επαναφοράς κωδικού πρόσβασης.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventAdminPasswordReset": {
+    "message": "Master password reset for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Reset Password"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "this user"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require the master password to meet the following requirements:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Password reset success!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Master Password Reset"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Allow administrators in the organization to reset organization users' master password."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatic Enrollment"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Automatically enroll new users"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Organization Keys response is null"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Reset Password Details response is null"
+  },
+  "trashCleanupWarning": {
+    "message": "Τα Ciphers που βρίσκονται σε κάδο απορριμμάτων περισσότερες από 30 ημέρες θα διαγράφονται αυτόματα."
+  },
+  "trashCleanupWarningSelfHosted": {
+    "message": "Τα Ciphers που βρίσκονται στον κάδο απορριμμάτων για λίγο θα διαγράφονται αυτόματα."
+  },
+  "passwordPrompt": {
+    "message": "Προτροπή νέου κωδικού πρόσβασης"
+  },
+  "passwordConfirmation": {
+    "message": "Επιβεβαίωση κύριου κωδικού πρόσβασης"
+  },
+  "passwordConfirmationDesc": {
+    "message": "Αυτή η ενέργεια προστατεύεται. Για να συνεχίσετε, πληκτρολογήστε ξανά τον κύριο κωδικό πρόσβασης για να επαληθεύσετε την ταυτότητά σας."
+  },
+  "reinviteSelected": {
+    "message": "Resend Invitations"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "This action is not applicable to any of the selected users."
+  },
+  "removeUsersWarning": {
+    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+  },
+  "confirmSelected": {
+    "message": "Confirm Selected"
+  },
+  "bulkConfirmStatus": {
+    "message": "Bulk action status"
+  },
+  "bulkConfirmMessage": {
+    "message": "Confirmed successfully."
+  },
+  "bulkReinviteMessage": {
+    "message": "Reinvited successfully."
+  },
+  "bulkRemovedMessage": {
+    "message": "Removed successfully"
+  },
+  "bulkFilteredMessage": {
+    "message": "Excluded, not applicable for this action."
+  },
+  "fingerprint": {
+    "message": "Fingerprint"
+  },
+  "removeUsers": {
+    "message": "Remove Users"
+  },
+  "error": {
+    "message": "Error"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
   }
 }

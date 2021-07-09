@@ -13,17 +13,18 @@ import {
     Router,
 } from '@angular/router';
 
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { SyncService } from 'jslib/abstractions/sync.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { SyncService } from 'jslib-common/abstractions/sync.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { BroadcasterService } from 'jslib/angular/services/broadcaster.service';
+import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 
-import { Organization } from 'jslib/models/domain/organization';
-import { CipherView } from 'jslib/models/view/cipherView';
+import { Organization } from 'jslib-common/models/domain/organization';
+import { CipherView } from 'jslib-common/models/view/cipherView';
 
-import { CipherType } from 'jslib/enums/cipherType';
+import { CipherType } from 'jslib-common/enums/cipherType';
 
 import { ModalComponent } from '../../modal.component';
 
@@ -52,6 +53,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     collectionId: string = null;
     type: CipherType = null;
     deleted: boolean = false;
+    trashCleanupWarning: string = null;
 
     modal: ModalComponent = null;
 
@@ -59,9 +61,14 @@ export class VaultComponent implements OnInit, OnDestroy {
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
         private syncService: SyncService, private i18nService: I18nService,
         private componentFactoryResolver: ComponentFactoryResolver, private messagingService: MessagingService,
-        private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
+        private broadcasterService: BroadcasterService, private ngZone: NgZone,
+        private platformUtilsService: PlatformUtilsService) { }
 
     ngOnInit() {
+        this.trashCleanupWarning = this.i18nService.t(
+            this.platformUtilsService.isSelfHost() ? 'trashCleanupWarningSelfHosted' : 'trashCleanupWarning'
+        );
+
         const queryParams = this.route.parent.params.subscribe(async params => {
             this.organization = await this.userService.getOrganization(params.organizationId);
             this.groupingsComponent.organization = this.organization;

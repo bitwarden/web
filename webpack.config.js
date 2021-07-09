@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -11,13 +11,11 @@ const pjson = require('./package.json');
 const config = require('./config.js');
 const WorkerPlugin = require('worker-plugin');
 
-if (process.env.NODE_ENV == null) {
-    process.env.NODE_ENV = 'development';
-}
+const ENV = process.env.ENV == null ? 'development' : process.env.ENV;
+const NODE_ENV = process.env.NODE_ENV == null ? 'development' : process.env.NODE_ENV;
 
-const NODE_ENV = process.env.NODE_ENV;
-const envConfig = config.load(process.env.ENV)
-config.log(envConfig)
+const envConfig = config.load(process.env.ENV);
+config.log(envConfig);
 
 const moduleRules = [
     {
@@ -69,12 +67,14 @@ const moduleRules = [
         test: /[\/\\]@angular[\/\\].+\.js$/,
         parser: { system: true },
     },
+    {
+        test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
+        loader: '@ngtools/webpack',
+    },
 ];
 
 const plugins = [
-    new CleanWebpackPlugin([
-        path.resolve(__dirname, 'build/*'),
-    ]),
+    new CleanWebpackPlugin(),
     // ref: https://github.com/angular/angular/issues/20357
     new webpack.ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)fesm5/,
         path.resolve(__dirname, './src')),
@@ -108,55 +108,45 @@ const plugins = [
         filename: 'sso-connector.html',
         chunks: ['connectors/sso'],
     }),
-    new CopyWebpackPlugin([
-        { from: './src/.nojekyll' },
-        { from: './src/manifest.json' },
-        { from: './src/favicon.ico' },
-        { from: './src/browserconfig.xml' },
-        { from: './src/app-id.json' },
-        { from: './src/404.html' },
-        { from: './src/404', to: '404' },
-        { from: './src/images', to: 'images' },
-        { from: './src/locales', to: 'locales' },
-        { from: './src/scripts', to: 'scripts' },
-        { from: './node_modules/qrious/dist/qrious.min.js', to: 'scripts' },
-        { from: './node_modules/braintree-web-drop-in/dist/browser/dropin.js', to: 'scripts' },
-    ]),
+    new HtmlWebpackPlugin({
+        template: './src/connectors/captcha.html',
+        filename: 'captcha-connector.html',
+        chunks: ['connectors/captcha'],
+    }),
+    new CopyWebpackPlugin({
+        patterns:[
+            { from: './src/.nojekyll' },
+            { from: './src/manifest.json' },
+            { from: './src/favicon.ico' },
+            { from: './src/browserconfig.xml' },
+            { from: './src/app-id.json' },
+            { from: './src/404.html' },
+            { from: './src/404', to: '404' },
+            { from: './src/images', to: 'images' },
+            { from: './src/locales', to: 'locales' },
+            { from: './src/scripts', to: 'scripts' },
+            { from: './node_modules/qrious/dist/qrious.min.js', to: 'scripts' },
+            { from: './node_modules/braintree-web-drop-in/dist/browser/dropin.js', to: 'scripts' },
+        ],
+    }),
     new MiniCssExtractPlugin({
         filename: '[name].[hash].css',
         chunkFilename: '[id].[hash].css',
     }),
     new webpack.DefinePlugin({
         'process.env': {
-            'ENV': JSON.stringify(NODE_ENV),
+            'ENV': JSON.stringify(ENV),
             'SELF_HOST': JSON.stringify(process.env.SELF_HOST === 'true' ? true : false),
             'APPLICATION_VERSION': JSON.stringify(pjson.version),
             'CACHE_TAG': JSON.stringify(Math.random().toString(36).substring(7)),
         }
     }),
-    new WorkerPlugin({
-        plugins: NODE_ENV === 'production' ? ['AngularCompilerPlugin'] : null,
-        globalObject: 'self'
-    }),
-];
-
-if (NODE_ENV === 'production') {
-    moduleRules.push({
-        test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-        loader: '@ngtools/webpack',
-    });
-    plugins.push(new AngularCompilerPlugin({
+    new AngularCompilerPlugin({
         tsConfigPath: 'tsconfig.json',
         entryModule: 'src/app/app.module#AppModule',
         sourceMap: true,
-    }));
-} else {
-    moduleRules.push({
-        test: /\.ts$/,
-        loaders: ['ts-loader', 'angular2-template-loader'],
-        exclude: path.resolve(__dirname, 'node_modules'),
-    });
-}
+    }),
+];
 
 // ref: https://webpack.js.org/configuration/dev-server/#devserver
 let certSuffix = fs.existsSync('dev-server.local.pem') ? '.local' : '.shared';
@@ -214,6 +204,7 @@ const webpackConfig = {
         'connectors/webauthn-fallback': './src/connectors/webauthn-fallback.ts',
         'connectors/duo': './src/connectors/duo.ts',
         'connectors/sso': './src/connectors/sso.ts',
+        'connectors/captcha': './src/connectors/captcha.ts',
     },
     externals: {
         'u2f': 'u2f',
@@ -241,10 +232,6 @@ const webpackConfig = {
     },
     resolve: {
         extensions: ['.ts', '.js'],
-        alias: {
-            jslib: path.join(__dirname, 'jslib/src'),
-            tldjs: path.join(__dirname, 'jslib/src/misc/tldjs.noop'),
-        },
         symlinks: false,
         modules: [path.resolve('node_modules')],
     },

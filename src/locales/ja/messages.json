@@ -360,6 +360,9 @@
   "share": {
     "message": "共有"
   },
+  "moveToOrganization": {
+    "message": "組織に移動"
+  },
   "valueCopied": {
     "message": "$VALUE$ をコピーしました",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "保管庫"
   },
-  "shareSelected": {
-    "message": "選択したものを共有"
+  "moveSelectedToOrg": {
+    "message": "選択したものを組織に移動"
   },
   "deleteSelected": {
     "message": "選択したものを削除"
@@ -437,7 +440,7 @@
     "message": "ファイルを選択してください。"
   },
   "maxFileSize": {
-    "message": "最大ファイルサイズ: 100 MB"
+    "message": "最大ファイルサイズ: 500 MB"
   },
   "updateKey": {
     "message": "暗号キーを更新するまでこの機能は使用できません。"
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "編集されたアイテム"
   },
-  "sharedItem": {
-    "message": "共有されたアイテム"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ を $ORGNAME$ に移動しました",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "共有されたアイテム"
+  "movedItemsToOrg": {
+    "message": "選択したアイテムを $ORGNAME$ に移動しました",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "アイテムの削除"
@@ -725,6 +744,15 @@
   "u2fTitle": {
     "message": "FIDO U2F セキュリティキー"
   },
+  "webAuthnTitle": {
+    "message": "FIDO2 WebAuthn"
+  },
+  "webAuthnDesc": {
+    "message": "Use any WebAuthn enabled security key to access your account."
+  },
+  "webAuthnMigrated": {
+    "message": "(Migrated from FIDO)"
+  },
   "emailTitle": {
     "message": "メールアドレス"
   },
@@ -740,11 +768,11 @@
   "organizations": {
     "message": "組織"
   },
-  "shareDesc": {
-    "message": "このアイテムを共有する組織を選択してください。共有するとアイテムの所有権は組織に移行し、あなたはもはやこのアイテムの直接のオーナーではなくなります。"
+  "moveToOrgDesc": {
+    "message": "このアイテムを移動する組織を選択してください。組織に移動すると、アイテムの所有権がその組織に移行します。 このアイテムが移動された後、あなたはこのアイテムの直接の所有者にはなりません。"
   },
-  "shareManyDesc": {
-    "message": "これらのアイテムを共有する組織を選択してください。共有するとアイテムの所有権は組織に移行し、あなたはもはやこれらのアイテムの直接のオーナーではなくなります。"
+  "moveManyToOrgDesc": {
+    "message": "このアイテムを移動する組織を選択してください。組織に移動すると、アイテムの所有権がその組織に移行します。 このアイテムが移動された後、あなたはこのアイテムの直接の所有者にはなりません。"
   },
   "collectionsDesc": {
     "message": "このアイテムを共有するコレクションを編集します。共有したアイテムは、当該コレクションにアクセスできる組織ユーザーにのみ表示されます。"
@@ -767,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "$COUNT$アイテムを選択しました。$SHAREABLE_COUNT$個が共有可能で、$NONSHAREABLE_COUNT$個は共有できません。",
+  "moveSelectedItemsCountDesc": {
+    "message": "$COUNT$ アイテムを選択しました。 $MOVEABLE_COUNT$ アイテムは組織に移動できます。 $NONMOVEABLE_COUNT$ アイテムはできません。",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -807,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "保管庫のデータをエクスポートするにはマスターパスワードを入力してください。"
+  },
+  "export": {
+    "message": "エクスポート"
   },
   "exportVault": {
     "message": "保管庫のエクスポート"
@@ -1026,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "何もインポートされませんでした。"
+  },
+  "importEncKeyError": {
+    "message": "エクスポートされたファイルの復号でエラーが発生しました。暗号化キーが、データをエクスポートするために使用された暗号化キーと一致しません。"
   },
   "selectFormat": {
     "message": "インポートするファイルの形式を選択"
@@ -1260,6 +1294,15 @@
       }
     }
   },
+  "webAuthnkeyX": {
+    "message": "WebAuthn Key $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFC対応"
   },
@@ -1305,6 +1348,9 @@
   "removeU2fConfirmation": {
     "message": "本当にこのセキュリティキーを削除しますか？"
   },
+  "twoFactorWebAuthnAdd": {
+    "message": "Add a WebAuthn security key to your account"
+  },
   "readKey": {
     "message": "読み取りキー"
   },
@@ -1337,6 +1383,12 @@
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "セキュリティキーの読み取り中に問題が発生しました。もう一度やり直して下さい。"
+  },
+  "twoFactorWebAuthnWarning": {
+    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+  },
+  "twoFactorWebAuthnSupportWeb": {
+    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "二段階認証のリカバリーコード"
@@ -2300,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "アイテム「$ID$」の共有",
+  "movedItemIdToOrg": {
+    "message": "アイテム $ID$ を組織に移動しました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2608,6 +2660,12 @@
   },
   "emailVerifiedFailed": {
     "message": "メールアドレスを確認できませんでした。確認メールを再送信してください。"
+  },
+  "emailVerificationRequired": {
+    "message": "Email Verification Required"
+  },
+  "emailVerificationRequiredDesc": {
+    "message": "You must verify your email to use this feature."
   },
   "updateBrowser": {
     "message": "ブラウザを更新"
@@ -3389,6 +3447,9 @@
   "removePasswordConfirmation": {
     "message": "パスワードを削除してもよろしいですか？"
   },
+  "hideEmail": {
+    "message": "Hide my email address from recipients."
+  },
   "disableThisSend": {
     "message": "誰もアクセスできないように、この Send を無効にします。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
@@ -3400,13 +3461,13 @@
     "message": "最大アクセス数に達しました"
   },
   "pendingDeletion": {
-    "message": "Pending deletion"
+    "message": "保留中の削除"
   },
   "expired": {
-    "message": "Expired"
+    "message": "期限切れ"
   },
   "searchSends": {
-    "message": "Search Sends",
+    "message": "Sendを検索",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPassword": {
@@ -3414,18 +3475,18 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPasswordDontKnow": {
-    "message": "Don't know the password? Ask the Sender for the password needed to access this Send.",
+    "message": "パスワードがわかりませんか？このSendにアクセスするには送信者にパスワードをご確認ください。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendHiddenByDefault": {
-    "message": "This send is hidden by default. You can toggle its visibility using the button below.",
+    "message": "このSendはデフォルトでは非表示になっています。下のボタンで表示・非表示が切り替え可能です。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "downloadFile": {
-    "message": "Download File"
+    "message": "ファイルをダウンロード"
   },
   "sendAccessUnavailable": {
-    "message": "The Send you are trying to access does not exist or is no longer available.",
+    "message": "アクセスしようとしているSendは存在しないか、利用できません。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "missingSendFile": {
@@ -3433,11 +3494,11 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
-    "message": "There are no Sends to list.",
+    "message": "表示するSendがありません",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
-    "message": "Emergency Access"
+    "message": "緊急アクセス"
   },
   "emergencyAccessDesc": {
     "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of an emergency. Visit our help page for more information and details into how zero knowledge sharing works."
@@ -3452,7 +3513,7 @@
     "message": "You have not added any emergency contacts yet, invite a trusted contact to get started."
   },
   "addEmergencyContact": {
-    "message": "Add emergency contact"
+    "message": "緊急連絡先を追加"
   },
   "designatedEmergencyContacts": {
     "message": "Designated as emergency contact"
@@ -3491,10 +3552,10 @@
     "message": "Time required before automatically granting access."
   },
   "oneDay": {
-    "message": "1 day"
+    "message": "1日"
   },
   "days": {
-    "message": "$DAYS$ days",
+    "message": "$DAYS$日",
     "placeholders": {
       "days": {
         "content": "$1",
@@ -3608,6 +3669,28 @@
     "message": "組織のポリシーにより、既存の Send のみを削除できます。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "sendOptions": {
+    "message": "Send Options",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyDesc": {
+    "message": "Set options for creating and editing Sends.",
+    "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsExemption": {
+    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+  },
+  "disableHideEmail": {
+    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyInEffect": {
+    "message": "The following organization policies are currently in effect:"
+  },
+  "sendDisableHideEmailInEffect": {
+    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "modifiedPolicyId": {
     "message": "Modified policy $ID$.",
     "placeholders": {
@@ -3661,6 +3744,9 @@
   },
   "manageUsers": {
     "message": "ユーザーを管理"
+  },
+  "manageResetPassword": {
+    "message": "Manage Password Reset"
   },
   "disableRequireSsoError": {
     "message": "このポリシーを無効にするには、シングルサインオン認証ポリシーを手動で無効にする必要があります。"
@@ -3748,6 +3834,10 @@
       }
     }
   },
+  "viewSendHiddenEmailWarning": {
+    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "expirationDateIsInvalid": {
     "message": "入力された有効期限は正しくありません。"
   },
@@ -3762,5 +3852,170 @@
   },
   "dateParsingError": {
     "message": "削除と有効期限の保存中にエラーが発生しました。"
+  },
+  "webAuthnFallbackMsg": {
+    "message": "To verify your 2FA please click the button below."
+  },
+  "webAuthnAuthenticate": {
+    "message": "Authenticate WebAuthn"
+  },
+  "webAuthnNotSupported": {
+    "message": "WebAuthn is not supported in this browser."
+  },
+  "webAuthnSuccess": {
+    "message": "WebAuthn verified successfully! You may close this tab."
+  },
+  "hintEqualsPassword": {
+    "message": "Your password hint cannot be the same as your password."
+  },
+  "enrollPasswordReset": {
+    "message": "Enroll in Password Reset"
+  },
+  "enrolledPasswordReset": {
+    "message": "Enrolled in Password Reset"
+  },
+  "withdrawPasswordReset": {
+    "message": "Withdraw from Password Reset"
+  },
+  "enrollPasswordResetSuccess": {
+    "message": "Enrollment success!"
+  },
+  "withdrawPasswordResetSuccess": {
+    "message": "Withdrawal success!"
+  },
+  "eventEnrollPasswordReset": {
+    "message": "User $ID$ enrolled in password reset assistance.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventWithdrawPasswordReset": {
+    "message": "User $ID$ withdrew from password reset assistance.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventAdminPasswordReset": {
+    "message": "ユーザー $ID$ のマスターパスワードをリセット",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "パスワードをリセット"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "続行すると、現在のセッションから $NAME$ をログアウトし、再度ログインする必要があります。 他のデバイスでのアクティブなセッションは、最大1時間アクティブになり続けます。",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "このユーザー\n"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "組織ポリシーの要件を満たすためにマスターパスワードが必要です:"
+  },
+  "resetPasswordSuccess": {
+    "message": "パスワードをリセットしました"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "登録すると、組織管理者はマスターパスワードを変更できます。登録してもよろしいですか？"
+  },
+  "resetPasswordPolicy": {
+    "message": "マスターパスワードのリセット"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "組織内の管理者に組織ユーザーのマスターパスワードのリセットを許可します。"
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "管理者がマスターパスワードをリセットするには、組織内のユーザーは自己登録または自動登録する必要があります。"
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "自動登録"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "招待が承認されると、すべてのユーザーは自動的にパスワードリセットに登録されます。"
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "すでに組織にいるユーザーは、パスワードリセットに遡って登録されません。管理者がマスターパスワードをリセットできるようにするには、自己登録する必要があります。"
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "自動的に新規ユーザーを登録する"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "この組織には自動的にパスワードリセットに登録するポリシーがあります。登録すると、組織の管理者はマスターパスワードを変更できます。"
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "組織鍵の応答が null です"
+  },
+  "resetPasswordDetailsError": {
+    "message": "パスワードリセットの詳細な応答が null です"
+  },
+  "trashCleanupWarning": {
+    "message": "Items that have been in Trash more than 30 days will be automatically deleted."
+  },
+  "trashCleanupWarningSelfHosted": {
+    "message": "Items that have been in Trash for a while will be automatically deleted."
+  },
+  "passwordPrompt": {
+    "message": "Master password re-prompt"
+  },
+  "passwordConfirmation": {
+    "message": "Master password confirmation"
+  },
+  "passwordConfirmationDesc": {
+    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+  },
+  "reinviteSelected": {
+    "message": "招待を再送信"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "この操作は、選択されたユーザーには適用されません。"
+  },
+  "removeUsersWarning": {
+    "message": "次のユーザーを削除してもよろしいですか？プロセスは完了まで数秒かかることがあり、中断またはキャンセルすることはできません。"
+  },
+  "confirmSelected": {
+    "message": "選択を確認"
+  },
+  "bulkConfirmStatus": {
+    "message": "一括操作の状態"
+  },
+  "bulkConfirmMessage": {
+    "message": "確認に成功しました"
+  },
+  "bulkReinviteMessage": {
+    "message": "再招待に成功しました"
+  },
+  "bulkRemovedMessage": {
+    "message": "削除しました "
+  },
+  "bulkFilteredMessage": {
+    "message": "除外します。このアクションには適用されません。"
+  },
+  "fingerprint": {
+    "message": "指紋"
+  },
+  "removeUsers": {
+    "message": "ユーザーを削除"
+  },
+  "error": {
+    "message": "エラー"
+  },
+  "resetPasswordManageUsers": {
+    "message": "パスワードリセットの管理権限を持つユーザーの管理も有効にする必要があります"
   }
 }

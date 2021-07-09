@@ -14,17 +14,17 @@ import { TwoFactorOptionsComponent } from './two-factor-options.component';
 
 import { ModalComponent } from '../modal.component';
 
-import { TwoFactorProviderType } from 'jslib/enums/twoFactorProviderType';
+import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { AuthService } from 'jslib/abstractions/auth.service';
-import { EnvironmentService } from 'jslib/abstractions/environment.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { StateService } from 'jslib/abstractions/state.service';
-import { StorageService } from 'jslib/abstractions/storage.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { AuthService } from 'jslib-common/abstractions/auth.service';
+import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
+import { StorageService } from 'jslib-common/abstractions/storage.service';
 
-import { TwoFactorComponent as BaseTwoFactorComponent } from 'jslib/angular/components/two-factor.component';
+import { TwoFactorComponent as BaseTwoFactorComponent } from 'jslib-angular/components/two-factor.component';
 
 @Component({
     selector: 'app-two-factor',
@@ -60,24 +60,16 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
     }
 
     async goAfterLogIn() {
-        const orgInvite = await this.stateService.get<any>('orgInvitation');
-        const emergencyInvite = await this.stateService.get<any>('emergencyInvitation');
-        if (orgInvite != null) {
-            this.router.navigate(['accept-organization'], { queryParams: orgInvite });
-        } else if (emergencyInvite != null) {
-            this.router.navigate(['accept-emergency'], { queryParams: emergencyInvite });
+        const loginRedirect = await this.stateService.get<any>('loginRedirect');
+        if (loginRedirect != null) {
+            this.router.navigate([loginRedirect.route], { queryParams: loginRedirect.qParams });
+            await this.stateService.remove('loginRedirect');
         } else {
-            const loginRedirect = await this.stateService.get<any>('loginRedirect');
-            if (loginRedirect != null) {
-                this.router.navigate([loginRedirect.route], { queryParams: loginRedirect.qParams });
-                await this.stateService.remove('loginRedirect');
-            } else {
-                this.router.navigate([this.successRoute], {
-                    queryParams: {
-                        identifier: this.identifier,
-                    },
-                });
-            }
+            this.router.navigate([this.successRoute], {
+                queryParams: {
+                    identifier: this.identifier,
+                },
+            });
         }
     }
 }

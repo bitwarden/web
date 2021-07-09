@@ -13,7 +13,7 @@
     "message": "Який це тип запису?"
   },
   "name": {
-    "message": "Ім’я"
+    "message": "Назва"
   },
   "uri": {
     "message": "URI"
@@ -360,6 +360,9 @@
   "share": {
     "message": "Поділитися"
   },
+  "moveToOrganization": {
+    "message": "Перемістити до організації"
+  },
   "valueCopied": {
     "message": "$VALUE$ скопійовано",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Сховище"
   },
-  "shareSelected": {
-    "message": "Поділитися вибраним"
+  "moveSelectedToOrg": {
+    "message": "Перемістити вибране до організації"
   },
   "deleteSelected": {
     "message": "Видалити вибране"
@@ -437,7 +440,7 @@
     "message": "Оберіть файл."
   },
   "maxFileSize": {
-    "message": "Максимальний розмір файлу 100 Мб."
+    "message": "Максимальний розмір файлу 500 Мб."
   },
   "updateKey": {
     "message": "Ви не можете використовувати цю функцію доки не оновите свій ключ шифрування."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Запис змінено"
   },
-  "sharedItem": {
-    "message": "Спільний запис"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ переміщено до $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Спільні записи"
+  "movedItemsToOrg": {
+    "message": "Вибрані записи переміщено до $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Видалити запис"
@@ -725,6 +744,15 @@
   "u2fTitle": {
     "message": "Ключ безпеки FIDO U2F"
   },
+  "webAuthnTitle": {
+    "message": "FIDO2 WebAuthn"
+  },
+  "webAuthnDesc": {
+    "message": "Використовуйте будь-який ключ безпеки WebAuthn для доступу до сховища."
+  },
+  "webAuthnMigrated": {
+    "message": "(Перенесено з FIDO)"
+  },
   "emailTitle": {
     "message": "Е-пошта"
   },
@@ -740,11 +768,11 @@
   "organizations": {
     "message": "Організації"
   },
-  "shareDesc": {
-    "message": "Оберіть організацію, з якою хочете поділитися. Зробивши це, ви передасте доступ до цього запису іншій організації та більше не будете його одноосібним власником."
+  "moveToOrgDesc": {
+    "message": "Виберіть організацію, до якої ви бажаєте перемістити цей запис. При переміщенні до організації власність запису передається тій організації. Ви більше не будете єдиним власником цього запису після переміщення."
   },
-  "shareManyDesc": {
-    "message": "Оберіть організацію, з якою хочете поділитися. Зробивши це, ви передасте доступ до цих записів іншій організації та більше не будете їх одноосібним власником."
+  "moveManyToOrgDesc": {
+    "message": "Виберіть організацію, до якої ви бажаєте перемістити ці записи. При переміщенні до організації власність записів передається тій організації. Ви більше не будете єдиним власником цих записів після переміщення."
   },
   "collectionsDesc": {
     "message": "Редагуйте збірки, з якими цей запис знаходиться в спільному доступі. Лише учасники організацій з доступом до цих збірок матимуть можливість бачити цей запис."
@@ -767,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Ви обрали $COUNT$ елементів. $SHAREABLE_COUNT$ елементів є спільними, $NONSHAREABLE_COUNT$ не є спільними.",
+  "moveSelectedItemsCountDesc": {
+    "message": "Ви вибрали $COUNT$ запис(ів). $MOVEABLE_COUNT$ запис(ів) можна перемістити до організації, $NONMOVEABLE_COUNT$ не можна.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -807,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "Введіть головний пароль, щоб експортувати дані сховища."
+  },
+  "export": {
+    "message": "Експорт"
   },
   "exportVault": {
     "message": "Експорт сховища"
@@ -1027,6 +1058,9 @@
   "importNothingError": {
     "message": "Нічого не імпортовано."
   },
+  "importEncKeyError": {
+    "message": "Помилка при розшифруванні експортованого файлу. Ваш ключ шифрування відрізняється від ключа, використаного при експортуванні даних."
+  },
   "selectFormat": {
     "message": "Оберіть формат імпортованого файлу"
   },
@@ -1234,7 +1268,7 @@
     "message": "Збережіть форму."
   },
   "twoFactorYubikeyWarning": {
-    "message": "У зв'язку з обмеженнями платформи, засоби YubiKey не можна використовувати у всіх програмах Bitwarden. Вам слід активувати іншого провайдера двоетапної перевірки, щоб ви могли отримати доступ до свого облікового запису, коли неможливо скористатися YubiKey. Підтримувані платформи:"
+    "message": "У зв'язку з обмеженнями платформи, YubiKey не можна використовувати в усіх програмах Bitwarden. Вам слід активувати іншого провайдера двоетапної перевірки, щоб ви могли отримати доступ до свого облікового запису, коли неможливо скористатися YubiKey. Підтримувані платформи:"
   },
   "twoFactorYubikeySupportUsb": {
     "message": "Веб сховище, програма для комп'ютера, CLI, а також усі розширення браузера на пристроях, де можливо під'єднати YubiKey до USB."
@@ -1253,6 +1287,15 @@
   },
   "u2fkeyX": {
     "message": "U2F Ключ $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "webAuthnkeyX": {
+    "message": "Ключ WebAuthn $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1305,6 +1348,9 @@
   "removeU2fConfirmation": {
     "message": "Ви впевнені, що хочете вилучити цей ключ безпеки?"
   },
+  "twoFactorWebAuthnAdd": {
+    "message": "Додайте ключ безпеки WebAuthn до свого облікового запису"
+  },
   "readKey": {
     "message": "Читати ключ"
   },
@@ -1324,7 +1370,7 @@
     "message": "Зберегти форму."
   },
   "twoFactorU2fWarning": {
-    "message": "У зв'язку з обмеженнями платформи, засоби FIDO U2F не можна використовувати у всіх програмах Bitwarden. Вам слід активувати іншого провайдера двоетапної перевірки, щоб ви могли отримати доступ до свого облікового запису, коли неможливо скористатися FIDO U2F. Підтримувані платформи:"
+    "message": "У зв'язку з обмеженнями платформи, FIDO U2F не можна використовувати в усіх програмах Bitwarden. Вам слід активувати іншого провайдера двоетапної перевірки, щоб ви могли отримати доступ до свого облікового запису, коли неможливо скористатися FIDO U2F. Підтримувані платформи:"
   },
   "twoFactorU2fSupportWeb": {
     "message": "Веб сховище і розширення браузера на комп'ютерах і ноутбуках з браузерами, що мають підтримку U2F (Chrome, Opera, Vivaldi, або Firefox з увімкненим FIDO U2F)."
@@ -1337,6 +1383,12 @@
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "Сталася проблема при читанні ключа безпеки. Спробуйте знову."
+  },
+  "twoFactorWebAuthnWarning": {
+    "message": "У зв'язку з обмеженнями платформи, WebAuthn не можна використовувати в усіх програмах Bitwarden. Вам слід активувати іншого провайдера двоетапної перевірки, щоб ви могли отримати доступ до свого облікового запису, коли неможливо скористатися WebAuthn. Підтримувані платформи:"
+  },
+  "twoFactorWebAuthnSupportWeb": {
+    "message": "Веб сховище і розширення браузера на комп'ютерах і ноутбуках з браузерами, що мають підтримку WebAuthn (Chrome, Opera, Vivaldi, або Firefox з увімкненим FIDO U2F)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Ваш код відновлення двоетапної перевірки Bitwarden"
@@ -2300,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Спільний елемент $ID$.",
+  "movedItemIdToOrg": {
+    "message": "Запис $ID$ переміщено до організації.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2608,6 +2660,12 @@
   },
   "emailVerifiedFailed": {
     "message": "Неможливо підтвердити вашу е-пошту. Спробуйте надіслати нове повідомлення для підтвердження."
+  },
+  "emailVerificationRequired": {
+    "message": "Необхідно підтвердити е-пошту"
+  },
+  "emailVerificationRequiredDesc": {
+    "message": "Для використання цієї функції необхідно підтвердити електронну пошту."
   },
   "updateBrowser": {
     "message": "Оновити браузер"
@@ -3051,7 +3109,7 @@
     "message": "Встановіть мінімальні вимоги для параметрів генерування пароля."
   },
   "passwordGeneratorPolicyInEffect": {
-    "message": "Політика однієї або декількох організацій впливає на ваші параметри генерування."
+    "message": "На параметри генератора впливають одна чи декілька політик організації."
   },
   "masterPasswordPolicyInEffect": {
     "message": "Політика однієї або декількох організацій зобов'язує дотримання таких вимог для головного пароля:"
@@ -3389,6 +3447,9 @@
   "removePasswordConfirmation": {
     "message": "Ви дійсно хочете вилучити пароль?"
   },
+  "hideEmail": {
+    "message": "Приховувати мою адресу електронної пошти від отримувачів."
+  },
   "disableThisSend": {
     "message": "Деактивувати це відправлення для скасування доступу до нього.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
@@ -3608,6 +3669,28 @@
     "message": "У зв'язку з політикою компанії, ви можете лише видалити наявне відправлення.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
+  "sendOptions": {
+    "message": "Налаштування відправлень",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyDesc": {
+    "message": "Встановити налаштування для створення та редагування відправлень.",
+    "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsExemption": {
+    "message": "Користувачі організації, які можуть керувати політиками організації, звільняються від дотримання цієї політики."
+  },
+  "disableHideEmail": {
+    "message": "Не дозволяти користувачам приховувати свою адресу електронної пошти від отримувачів під час створення чи редагування відправлень.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyInEffect": {
+    "message": "Наразі діють такі політики організації:"
+  },
+  "sendDisableHideEmailInEffect": {
+    "message": "Користувачам не дозволяється приховувати свою адресу електронної пошти від отримувачів під час створення чи редагування відправлень.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "modifiedPolicyId": {
     "message": "Змінено політику $ID$.",
     "placeholders": {
@@ -3661,6 +3744,9 @@
   },
   "manageUsers": {
     "message": "Керування користувачами"
+  },
+  "manageResetPassword": {
+    "message": "Керувати скиданням пароля"
   },
   "disableRequireSsoError": {
     "message": "Для вимкнення цієї політики ви повинні вручну вимкнути політику ідентифікації єдиного входу (SSO)."
@@ -3748,6 +3834,10 @@
       }
     }
   },
+  "viewSendHiddenEmailWarning": {
+    "message": "Користувач Bitwarden, який створив це відправлення, вирішив приховати свою адресу електронної пошти. Вам слід упевнитися в надійності джерела цього посилання перед його використанням чи завантаженням вмісту.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "expirationDateIsInvalid": {
     "message": "Вказано недійсний термін дії."
   },
@@ -3762,5 +3852,170 @@
   },
   "dateParsingError": {
     "message": "При збереженні дат видалення і терміну дії виникла помилка."
+  },
+  "webAuthnFallbackMsg": {
+    "message": "Щоб засвідчити ваш 2FA, натисніть кнопку внизу."
+  },
+  "webAuthnAuthenticate": {
+    "message": "Авторизація WebAuthn"
+  },
+  "webAuthnNotSupported": {
+    "message": "WebAuthn не підтримується в цьому браузері."
+  },
+  "webAuthnSuccess": {
+    "message": "WebAuthn успішно підтверджено! Ви можете закрити цю вкладку."
+  },
+  "hintEqualsPassword": {
+    "message": "Підказка для пароля не може бути такою самою, як ваш пароль."
+  },
+  "enrollPasswordReset": {
+    "message": "Подати запит на скидання пароля"
+  },
+  "enrolledPasswordReset": {
+    "message": "Запит на скидання пароля подано"
+  },
+  "withdrawPasswordReset": {
+    "message": "Відмовитись від скидання пароля"
+  },
+  "enrollPasswordResetSuccess": {
+    "message": "Запит успішно подано!"
+  },
+  "withdrawPasswordResetSuccess": {
+    "message": "Відмову успішно прийнято!"
+  },
+  "eventEnrollPasswordReset": {
+    "message": "Користувач $ID$ подав запит на допомогу зі скиданням пароля.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventWithdrawPasswordReset": {
+    "message": "Користувач $ID$ відмовився від допомоги зі скиданням пароля.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventAdminPasswordReset": {
+    "message": "Головний пароль для користувача $ID$ скинуто.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Скинути пароль"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Продовжуючи, користувач $NAME$ вийде зі свого поточного сеансу і йому необхідно буде виконати вхід знову. Активні сеанси на інших пристроях можуть залишатися активними протягом години.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "цей користувач"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "Одна або декілька політик організації вимагають дотримання таких вимог для головного пароля:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Пароль успішно скинуто!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Розгортання дозволить адміністраторам організації змінювати ваш головний пароль. Ви дійсно хочете розгорнути?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Скидання головного пароля"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Дозволити адміністраторам організації скидати головний пароль користувачів."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Користувачі в організації повинні виконати самостійне розгортання, або отримати автоматичне розгортання, перш ніж адміністратори зможуть скинути їхній пароль."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Автоматичне розгортання"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "Усі користувачі отримають автоматичне розгортання на скидання пароля одразу після схвалення запрошення."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Вже наявні користувачі організації не отримають активного розгортання на скидання пароля. Їм необхідно буде виконати самостійне розгортання, перш ніж адміністратори зможуть скинути їхній пароль."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Автоматично розгортати нових користувачів"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Ця організація має корпоративну політику, яка автоматично розгортає вас на скидання пароля. Розгортання дозволятиме адміністраторам організації змінювати ваш головний пароль."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Порожня відповідь на ключі організації"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Порожня відповідь на скидання пароля"
+  },
+  "trashCleanupWarning": {
+    "message": "Записи, що знаходяться в смітнику понад 30 днів, автоматично видалятимуться."
+  },
+  "trashCleanupWarningSelfHosted": {
+    "message": "Записи, що знаходяться в смітнику деякий час, автоматично видалятимуться."
+  },
+  "passwordPrompt": {
+    "message": "Повторний запит головного пароля"
+  },
+  "passwordConfirmation": {
+    "message": "Підтвердження головного пароля"
+  },
+  "passwordConfirmationDesc": {
+    "message": "Ця дія захищена. Щоб продовжити, повторно введіть головний пароль."
+  },
+  "reinviteSelected": {
+    "message": "Повторно надіслати запрошення"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "Ця дія не застосовується для жодного з вибраних користувачів."
+  },
+  "removeUsersWarning": {
+    "message": "Ви дійсно хочете вилучити зазначених користувачів? Цей процес може тривати кілька секунд і його неможливо перервати чи скасувати."
+  },
+  "confirmSelected": {
+    "message": "Підтвердити вибір"
+  },
+  "bulkConfirmStatus": {
+    "message": "Стан масової дії"
+  },
+  "bulkConfirmMessage": {
+    "message": "Успішно підтверджено."
+  },
+  "bulkReinviteMessage": {
+    "message": "Повторне запрошення успішне."
+  },
+  "bulkRemovedMessage": {
+    "message": "Успішно вилучено"
+  },
+  "bulkFilteredMessage": {
+    "message": "Виключено, не застосовується для цієї дії."
+  },
+  "fingerprint": {
+    "message": "Цифровий відбиток"
+  },
+  "removeUsers": {
+    "message": "Вилучити користувачів"
+  },
+  "error": {
+    "message": "Помилка"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Керування користувачами повинно також бути увімкнено з дозволом Керувати скиданням пароля"
   }
 }

@@ -1,33 +1,33 @@
 import { Component } from '@angular/core';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { CipherService } from 'jslib/abstractions/cipher.service';
-import { CryptoService } from 'jslib/abstractions/crypto.service';
-import { FolderService } from 'jslib/abstractions/folder.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
-import { MessagingService } from 'jslib/abstractions/messaging.service';
-import { PasswordGenerationService } from 'jslib/abstractions/passwordGeneration.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
-import { PolicyService } from 'jslib/abstractions/policy.service';
-import { SyncService } from 'jslib/abstractions/sync.service';
-import { UserService } from 'jslib/abstractions/user.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CipherService } from 'jslib-common/abstractions/cipher.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { FolderService } from 'jslib-common/abstractions/folder.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib-common/abstractions/policy.service';
+import { SyncService } from 'jslib-common/abstractions/sync.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
 import {
     ChangePasswordComponent as BaseChangePasswordComponent,
-} from 'jslib/angular/components/change-password.component';
+} from 'jslib-angular/components/change-password.component';
 
-import { EmergencyAccessStatusType } from 'jslib/enums/emergencyAccessStatusType';
-import { Utils } from 'jslib/misc/utils';
+import { EmergencyAccessStatusType } from 'jslib-common/enums/emergencyAccessStatusType';
+import { Utils } from 'jslib-common/misc/utils';
 
-import { EncString } from 'jslib/models/domain/encString';
-import { SymmetricCryptoKey } from 'jslib/models/domain/symmetricCryptoKey';
+import { EncString } from 'jslib-common/models/domain/encString';
+import { SymmetricCryptoKey } from 'jslib-common/models/domain/symmetricCryptoKey';
 
-import { CipherWithIdRequest } from 'jslib/models/request/cipherWithIdRequest';
-import { EmergencyAccessUpdateRequest } from 'jslib/models/request/emergencyAccessUpdateRequest';
-import { FolderWithIdRequest } from 'jslib/models/request/folderWithIdRequest';
-import { OrganizationUserResetPasswordEnrollmentRequest } from 'jslib/models/request/organizationUserResetPasswordEnrollmentRequest';
-import { PasswordRequest } from 'jslib/models/request/passwordRequest';
-import { UpdateKeyRequest } from 'jslib/models/request/updateKeyRequest';
+import { CipherWithIdRequest } from 'jslib-common/models/request/cipherWithIdRequest';
+import { EmergencyAccessUpdateRequest } from 'jslib-common/models/request/emergencyAccessUpdateRequest';
+import { FolderWithIdRequest } from 'jslib-common/models/request/folderWithIdRequest';
+import { OrganizationUserResetPasswordEnrollmentRequest } from 'jslib-common/models/request/organizationUserResetPasswordEnrollmentRequest';
+import { PasswordRequest } from 'jslib-common/models/request/passwordRequest';
+import { UpdateKeyRequest } from 'jslib-common/models/request/updateKeyRequest';
 
 @Component({
     selector: 'app-change-password',
@@ -201,13 +201,16 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
 
         for (const org of orgs) {
             // If not already enrolled, skip
-            if (!org.isResetPasswordEnrolled) {
+            if (!org.resetPasswordEnrolled) {
                 continue;
             }
 
-            // Re-enroll - encrpyt user's encKey.key with organization key
-            const orgSymKey = await this.cryptoService.getOrgKey(org.id);
-            const encryptedKey = await this.cryptoService.encrypt(encKey.key, orgSymKey);
+            // Retrieve public key
+            const response = await this.apiService.getOrganizationKeys(org.id);
+            const publicKey = Utils.fromB64ToArray(response?.publicKey);
+
+            // Re-enroll - encrpyt user's encKey.key with organization public key
+            const encryptedKey = await this.cryptoService.rsaEncrypt(encKey.key, publicKey.buffer);
 
             // Create/Execute request
             const request = new OrganizationUserResetPasswordEnrollmentRequest();

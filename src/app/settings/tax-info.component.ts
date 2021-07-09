@@ -4,10 +4,10 @@ import {
     Output,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApiService } from 'jslib/abstractions/api.service';
-import { OrganizationTaxInfoUpdateRequest } from 'jslib/models/request/organizationTaxInfoUpdateRequest';
-import { TaxInfoUpdateRequest } from 'jslib/models/request/taxInfoUpdateRequest';
-import { TaxRateResponse } from 'jslib/models/response/taxRateResponse';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { OrganizationTaxInfoUpdateRequest } from 'jslib-common/models/request/organizationTaxInfoUpdateRequest';
+import { TaxInfoUpdateRequest } from 'jslib-common/models/request/taxInfoUpdateRequest';
+import { TaxRateResponse } from 'jslib-common/models/response/taxRateResponse';
 
 @Component({
     selector: 'app-tax-info',
@@ -118,7 +118,7 @@ export class TaxInfoComponent {
 
     submitTaxInfo(): Promise<any> {
         if (!this.hasChanged()) {
-            return new Promise(resolve => { resolve(); });
+            return new Promise<void>(resolve => { resolve(); });
         }
         const request = this.getTaxInfoRequest();
         return this.organizationId ? this.apiService.putOrganizationTaxInfo(this.organizationId,

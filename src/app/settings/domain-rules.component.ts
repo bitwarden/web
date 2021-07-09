@@ -5,10 +5,10 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { I18nService } from 'jslib/abstractions/i18n.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 
-import { UpdateDomainsRequest } from 'jslib/models/request/updateDomainsRequest';
+import { UpdateDomainsRequest } from 'jslib-common/models/request/updateDomainsRequest';
 
 @Component({
     selector: 'app-domain-rules',

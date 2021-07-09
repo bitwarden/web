@@ -4,10 +4,10 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { PaymentMethodType } from 'jslib/enums/paymentMethodType';
+import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
 
-import { ApiService } from 'jslib/abstractions/api.service';
-import { PlatformUtilsService } from 'jslib/abstractions/platformUtils.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { WebConstants } from '../../services/webConstants';
 
@@ -67,8 +67,8 @@ export class PaymentComponent implements OnInit {
         this.stripeScript.src = 'https://js.stripe.com/v3/';
         this.stripeScript.async = true;
         this.stripeScript.onload = () => {
-            this.stripe = (window as any).Stripe(this.platformUtilsService.isDev() ?
-                WebConstants.stripeTestKey : WebConstants.stripeLiveKey);
+            this.stripe = (window as any).Stripe(process.env.ENV === 'production'  ?
+                WebConstants.stripeLiveKey : WebConstants.stripeTestKey);
             this.stripeElements = this.stripe.elements();
             this.setStripeElement();
         };
@@ -192,7 +192,7 @@ export class PaymentComponent implements OnInit {
     }
 
     handleStripeCardPayment(clientSecret: string, successCallback: () => Promise<any>): Promise<any> {
-        return new Promise((resolve, reject) => {
+        return new Promise<void>((resolve, reject) => {
             if (this.showMethods && this.stripeCardNumberElement == null) {
                 reject();
                 return;

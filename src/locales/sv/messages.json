@@ -360,6 +360,9 @@
   "share": {
     "message": "Dela"
   },
+  "moveToOrganization": {
+    "message": "Flytta till organisation"
+  },
   "valueCopied": {
     "message": "$VALUE$ kopierades",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Valv"
   },
-  "shareSelected": {
-    "message": "Dela markerade"
+  "moveSelectedToOrg": {
+    "message": "Flytta valda till organisation"
   },
   "deleteSelected": {
     "message": "Radera markerade"
@@ -437,7 +440,7 @@
     "message": "Välj en fil."
   },
   "maxFileSize": {
-    "message": "Filen får vara maximalt 100 MB."
+    "message": "Filen får vara maximalt 500 MB."
   },
   "updateKey": {
     "message": "Du kan inte använda denna funktion förrän du uppdaterar din krypteringsnyckel."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Redigerade objekt"
   },
-  "sharedItem": {
-    "message": "Delade objekt"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ flyttades till $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Delade objekt"
+  "movedItemsToOrg": {
+    "message": "De valda objekten flyttades till $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Radera objekt"
@@ -725,6 +744,15 @@
   "u2fTitle": {
     "message": "FIDO U2F-säkerhetsnyckel"
   },
+  "webAuthnTitle": {
+    "message": "FIDO2 WebAuthn"
+  },
+  "webAuthnDesc": {
+    "message": "Använd en WebAuthn-aktiverad säkerhetsnyckel för att komma åt ditt konto."
+  },
+  "webAuthnMigrated": {
+    "message": "(Migrerad från FIDO)"
+  },
   "emailTitle": {
     "message": "E-post"
   },
@@ -740,11 +768,11 @@
   "organizations": {
     "message": "Organisationer"
   },
-  "shareDesc": {
-    "message": "Välj en organisation som du vill dela detta objekt med. Delning överför ägandet av objektet till organisationen. Du kommer inte längre vara direkt ägare till detta objekt när det har delats."
+  "moveToOrgDesc": {
+    "message": "Välj en organisation som du vill flytta detta objektet till. Flytt till en organisation överför ägandet av objektet till den organisationen. Du kommer inte längre att vara direkt ägare till detta objekt när det har flyttats."
   },
-  "shareManyDesc": {
-    "message": "Välj en organisation som du vill dela dessa objekt med. Delning överför ägandet av objekten till organisationen. Du kommer inte längre vara direkt ägare till dessa objekt när de har delats."
+  "moveManyToOrgDesc": {
+    "message": "Välj en organisation som du vill flytta dessa objekt till. Flytt till en organisation överför ägandet av objekten till den organisationen. Du kommer inte längre att vara direkt ägare till dessa objekt när de har flyttats."
   },
   "collectionsDesc": {
     "message": "Redigera de samlingar som detta objekt delas med. Endast organisationsanvändare med tillgång till dessa samlingar kommer att kunna se detta objekt."
@@ -767,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Du har markerat $COUNT$ objekt. $SHAREABLE_COUNT$ objekt kan delas, $NONSHAREABLE_COUNT$ kan inte delas.",
+  "moveSelectedItemsCountDesc": {
+    "message": "Du har valt $COUNT$ objekt. $MOVEABLE_COUNT$ objekt kan flyttas till en organisation, $NONMOVEABLE_COUNT$ kan det inte.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -800,13 +828,16 @@
     "message": "Denna export innehåller ditt valv i ett okrypterat format. Du bör inte lagra eller skicka den exporterade filen över osäkra kanaler (t.ex. e-post). Radera den omedelbart när du är färdig med den."
   },
   "encExportKeyWarningDesc": {
-    "message": "This export encrypts your data using your account's encryption key. If you ever rotate your account's encryption key you should export again since you will not be able to decrypt this export file."
+    "message": "Denna export krypterar dina data med kontots krypteringsnyckel. Om du någonsin roterar kontots krypteringsnyckel bör du exportera igen eftersom du inte kommer att kunna dekryptera denna exportfil."
   },
   "encExportAccountWarningDesc": {
-    "message": "Account encryption keys are unique to each Bitwarden user account, so you can't import an encrypted export into a different account."
+    "message": "Kypteringsnycklar är unika för varje Bitwarden-konto, så du kan inte importera en krypterad export till ett annat konto."
   },
   "exportMasterPassword": {
     "message": "Ange ditt huvudlösenord för att exportera ditt valv."
+  },
+  "export": {
+    "message": "Exportera"
   },
   "exportVault": {
     "message": "Exportera valv"
@@ -884,7 +915,7 @@
     }
   },
   "loggedOutWarning": {
-    "message": "Om du fortsätter kommer du loggas ut från din nuvarande session och du kommer behöver logga in igen. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme."
+    "message": "Om du fortsätter kommer du loggas ut från sin nuvarande session vilket kräver att du loggar in igen. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme."
   },
   "emailChanged": {
     "message": "E-postadressen ändrades"
@@ -956,7 +987,7 @@
     "message": "Orolig att ditt konto är inloggat på en annan enhet? Fortsätt nedan för att avauktorisera alla datorer eller enheter som du har använt tidigare. Detta rekommenderas om du har använt en offentlig dator eller av misstag sparat ditt lösenord på en enhet som inte är din. Detta steg kommer också att rensa alla tidigare ihågkomna sessioner med tvåstegsverifiering."
   },
   "deauthorizeSessionsWarning": {
-    "message": "Om du fortsätter kommer du även loggas ut från din nuvarande session och du kommer behöver logga in igen. Du kommer även behöva verifiera med tvåstegsverifiering om det är aktiverat. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme."
+    "message": "Om du fortsätter kommer du loggas ut från sin nuvarande session vilket kräver att du loggar in igen. Du kommer även behöva verifiera med tvåstegsverifiering om det är aktiverat. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme."
   },
   "sessionsDeauthorized": {
     "message": "Alla sessioner avauktoriserades"
@@ -1004,16 +1035,16 @@
     "message": "Importera data"
   },
   "importError": {
-    "message": "Import Error"
+    "message": "Fel vid import"
   },
   "importErrorDesc": {
-    "message": "There was a problem with the data you tried to import. Please resolve the errors listed below in your source file and try again."
+    "message": "Det uppstod ett problem med datan du försökte importera. Lös nedanstående fel i källfilen och försök igen."
   },
   "importSuccess": {
     "message": "Data har importerats till ditt valv."
   },
   "importWarning": {
-    "message": "You are importing data to $ORGANIZATION$. Your data may be shared with members of this organization. Do you want to proceed?",
+    "message": "Du importerar data till $ORGANIZATION$. Din data kan komma att delas med medlemmar i den här organisationen. Vill du fortsätta?",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -1026,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Ingenting importerades."
+  },
+  "importEncKeyError": {
+    "message": "Ett fel uppstod vid dekryptering av den exporterade filen. Din krypteringsnyckel matchar inte krypteringsnyckeln som användes för att exportera datan."
   },
   "selectFormat": {
     "message": "Välj importfilens format"
@@ -1260,6 +1294,15 @@
       }
     }
   },
+  "webAuthnkeyX": {
+    "message": "WebAuthn-nyckel $INDEX$",
+    "placeholders": {
+      "index": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
   "nfcSupport": {
     "message": "NFC-stöd"
   },
@@ -1305,6 +1348,9 @@
   "removeU2fConfirmation": {
     "message": "Är du säker på att du vill ta bort denna säkerhetsnyckel?"
   },
+  "twoFactorWebAuthnAdd": {
+    "message": "Lägg till en WebAuthn säkerhetsnyckel till ditt konto"
+  },
   "readKey": {
     "message": "Läs nyckel"
   },
@@ -1337,6 +1383,12 @@
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "Det gick inte att läsa säkerhetsnyckeln. Försök igen."
+  },
+  "twoFactorWebAuthnWarning": {
+    "message": "På grund av plattformsbegränsningar kan WebAuthn inte användas i alla Bitwarden-applikationer. Du bör aktivera en annan metod för tvåstegsverifiering så att du kan komma åt ditt konto när WebAuthn inte kan användas. Plattformar som stöds:"
+  },
+  "twoFactorWebAuthnSupportWeb": {
+    "message": "Webbvalvet och webbläsartillägg på en stationär eller bärbar dator med en WebAuthn-aktiverad webbläsare (Chrome, Opera, Vivaldi eller Firefox med FIDO U2F aktiverat)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Din återställningskod för tvåstegsverifiering"
@@ -1382,7 +1434,7 @@
     "message": "Inloggningar utan 2FA hittades"
   },
   "inactive2faFoundDesc": {
-    "message": "Vi hittade $COUNT$ webbplats(er) i ditt valv som kanske inte har tvåstegsverifiering konfigurerat (enligt twofactorauth.org). För att skydda dessa konton ytterligare bör du aktivera tvåstegsverifiering.",
+    "message": "Vi hittade $COUNT$ webbplats(er) i ditt valv som kanske inte har tvåstegsverifiering konfigurerat (enligt 2fa.directory). För att skydda dessa konton ytterligare bör du aktivera tvåstegsverifiering.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1584,7 +1636,7 @@
     "message": "Ytterligare alternativ för tvåstegsverifiering såsom YubiKey, FIDO U2F och Duo."
   },
   "premiumSignUpEmergency": {
-    "message": "Emergency Access"
+    "message": "Nödåtkomst"
   },
   "premiumSignUpReports": {
     "message": "Lösenordshygien, kontohälsa och dataintrångsrapporter för att skydda ditt valv."
@@ -2300,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Delade objektet $ID$.",
+  "movedItemIdToOrg": {
+    "message": "Flyttade objektet $ID$ till en organisation.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2608,6 +2660,12 @@
   },
   "emailVerifiedFailed": {
     "message": "Det gick inte att verifiera din e-postadress. Prova att skicka ett nytt verifieringsmeddelande."
+  },
+  "emailVerificationRequired": {
+    "message": "E-postverifiering krävs"
+  },
+  "emailVerificationRequiredDesc": {
+    "message": "Du måste verifiera din e-post för att använda den här funktionen."
   },
   "updateBrowser": {
     "message": "Uppdatera webbläsaren"
@@ -3334,28 +3392,28 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "whatTypeOfSend": {
-    "message": "Vilken typ av försändelse är detta?",
+    "message": "Vilken typ av försändelse är det här?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletionDate": {
     "message": "Raderingsdatum"
   },
   "deletionDateDesc": {
-    "message": "Försändelsen kommer att raderas permanent på den angivna tiden, det angivna datumet.",
+    "message": "Försändelsen kommer att raderas permanent på angivet datum och tid.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
     "message": "Utgångsdatum"
   },
   "expirationDateDesc": {
-    "message": "Om angivet kommer åtkomst till denna försändelse upphöra på det angivna datumet, den angivna tiden.",
+    "message": "Om angivet kommer åtkomst till denna försändelse upphöra på angivet datum och tid.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
     "message": "Maximalt antal åtkomster"
   },
   "maxAccessCountDesc": {
-    "message": "Om angivet kommer användare inte längre komma åt denna försändelse när den maximala antalet åtkomster har uppnåtts.",
+    "message": "Om angivet kommer användare inte längre komma åt denna försändelse när det maximala antalet åtkomster har uppnåtts.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
@@ -3388,6 +3446,9 @@
   },
   "removePasswordConfirmation": {
     "message": "Är du säker på att du vill ta bort lösenordet?"
+  },
+  "hideEmail": {
+    "message": "Dölj min e-postadress för mottagare."
   },
   "disableThisSend": {
     "message": "Inaktivera denna försändelse så att ingen kan komma åt den.",
@@ -3429,7 +3490,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "missingSendFile": {
-    "message": "The file associated with this Send could not be found.",
+    "message": "Den här försändelsens associerade fil kunde inte hittas.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
@@ -3443,7 +3504,7 @@
     "message": "Bevilja och hantera åtkomst för betrodda kontakter i nödsituationer. Betrodda kontakter kan begära att antingen visa eller ta över ditt konto vid en nödsituation. Besök vår hjälpsida för mer information och information om hur delning utan kännedom fungerar."
   },
   "emergencyAccessOwnerWarning": {
-    "message": "You are an Owner of one or more organizations. If you give takeover access to an emergency contact, they will be able to use all your permissions as Owner after a takeover."
+    "message": "Du är ägare till en eller flera organisationer. Om du ger tillgång till en nödkontakt kommer de att kunna använda alla dina behörigheter som ägare efter ett övertagande."
   },
   "trustedEmergencyContacts": {
     "message": "Betrodda nödkontakter"
@@ -3591,21 +3652,43 @@
     "message": "På grund av en av företagets policyer är du begränsad från att spara objekt till ditt personliga valv. Ändra ägarskap till en organisation och välj från tillgängliga samlingar."
   },
   "disableSend": {
-    "message": "Disable Send"
+    "message": "Inaktivera försändelser"
   },
   "disableSendPolicyDesc": {
-    "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
+    "message": "Tillåt inte användare att skapa eller redigera försändelser. Att radera existerande försändelser kommer fortfarande vara tillåtet.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Användare som kan hantera organisationens policyer är berörs inte av den här policyn."
   },
   "sendDisabled": {
-    "message": "Send disabled",
+    "message": "Försändelser inaktiverade",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "message": "På grund av en företagspolicy kan du bara radera befintliga försändelser.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptions": {
+    "message": "Alternativ för Send",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyDesc": {
+    "message": "Ange alternativ för att skapa och redigera Sends.",
+    "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsExemption": {
+    "message": "Organisationsanvändare som kan hantera organisationens policyer berörs inte av den här policyn."
+  },
+  "disableHideEmail": {
+    "message": "Tillåt inte användare att dölja sin e-postadress från mottagare när de skapar eller redigerar en Send.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
+  "sendOptionsPolicyInEffect": {
+    "message": "Följande organisationspolicyer är aktiva just nu:"
+  },
+  "sendDisableHideEmailInEffect": {
+    "message": "Användare får inte dölja sin e-postadress från mottagare när de skapar eller redigerar en Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3662,6 +3745,9 @@
   "manageUsers": {
     "message": "Hantera användare"
   },
+  "manageResetPassword": {
+    "message": "Hantera lösenordsåterställning"
+  },
   "disableRequireSsoError": {
     "message": "Du måste inaktivera policyn \"Autentisering med Single Sign-On\" manuellt innan denna policy kan inaktiveras."
   },
@@ -3676,71 +3762,71 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
-    "message": "A friendly name to describe this Send.",
+    "message": "Ett användarvänligt namn för att beskriva denna försändelse.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
-    "message": "The text you want to send."
+    "message": "Texten du vill skicka."
   },
   "sendFileDesc": {
-    "message": "The file you want to send."
+    "message": "Filen du vill skicka."
   },
   "copySendLinkOnSave": {
-    "message": "Copy the link to share this Send to my clipboard upon save."
+    "message": "Kopiera länken för att dela den här försändelsen när den har sparats."
   },
   "sendLinkLabel": {
-    "message": "Send link",
+    "message": "Försändelselänk",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "send": {
-    "message": "Send",
+    "message": "Försändelse",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineProductDesc": {
-    "message": "Bitwarden Send transmits sensitive, temporary information to others easily and securely.",
+    "message": "Försändelser överför känslig, tillfällig information till andra på ett enkelt och säkert sätt.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineLearnMore": {
-    "message": "Learn more about",
+    "message": "Läs mer om",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more about** Bitwarden Send or sign up to try it today.'"
   },
   "sendVaultCardProductDesc": {
-    "message": "Share text or files directly with anyone."
+    "message": "Dela text eller filer direkt med vem som helst."
   },
   "sendVaultCardLearnMore": {
-    "message": "Learn more",
+    "message": "Läs mer",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read '**Learn more**, see how it works, or try it now. '"
   },
   "sendVaultCardSee": {
-    "message": "see",
+    "message": "se",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, **see** how it works, or try it now.'"
   },
   "sendVaultCardHowItWorks": {
-    "message": "how it works",
+    "message": "hur det fungerar",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see **how it works**, or try it now.'"
   },
   "sendVaultCardOr": {
-    "message": "or",
+    "message": "eller",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, **or** try it now.'"
   },
   "sendVaultCardTryItNow": {
-    "message": "try it now",
+    "message": "prova det nu",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more, see how it works, or **try it now**.'"
   },
   "sendAccessTaglineOr": {
-    "message": "or",
+    "message": "eller",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send **or** sign up to try it today.'"
   },
   "sendAccessTaglineSignUp": {
-    "message": "sign up",
+    "message": "registrera dig",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or **sign up** to try it today.'"
   },
   "sendAccessTaglineTryToday": {
-    "message": "to try it today.",
+    "message": "att prova det idag.",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Learn more about Bitwarden Send or sign up to **try it today.**'"
   },
   "sendCreatorIdentifier": {
-    "message": "Bitwarden user $USER_IDENTIFIER$ shared the following with you",
+    "message": "Bitwarden-användaren $USER_IDENTIFIER$ delade följande med dig",
     "placeholders": {
       "user_identifier": {
         "content": "$1",
@@ -3748,19 +3834,188 @@
       }
     }
   },
+  "viewSendHiddenEmailWarning": {
+    "message": "Bitwarden-användaren som skapade denna Send har valt att dölja sin e-postadress. Du bör se till att du litar på källan till denna länk innan du använder eller hämtar innehållet.",
+    "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
+  },
   "expirationDateIsInvalid": {
-    "message": "The expiration date provided is not valid."
+    "message": "Det angivna utgångsdatumet är inte giltigt."
   },
   "deletionDateIsInvalid": {
-    "message": "The deletion date provided is not valid."
+    "message": "Det angivna raderingsdatumet är inte giltigt."
   },
   "expirationDateAndTimeRequired": {
-    "message": "An expiration date and time are required."
+    "message": "Ett utgångsdatum och tid krävs."
   },
   "deletionDateAndTimeRequired": {
-    "message": "A deletion date and time are required."
+    "message": "Ett raderingsdatum och tid krävs."
   },
   "dateParsingError": {
-    "message": "There was an error saving your deletion and expiration dates."
+    "message": "Det gick inte att spara raderings- och utgångsdatum."
+  },
+  "webAuthnFallbackMsg": {
+    "message": "Klicka på knappen nedan för att verifiera din 2FA."
+  },
+  "webAuthnAuthenticate": {
+    "message": "Autentisera WebAutn"
+  },
+  "webAuthnNotSupported": {
+    "message": "WebAuthn stöds inte i denna webbläsare."
+  },
+  "webAuthnSuccess": {
+    "message": "<strong>WebAuthn har verifierats!</strong><br>Du kan stänga den här fliken."
+  },
+  "hintEqualsPassword": {
+    "message": "Din lösenordsledtråd får inte vara samma som ditt lösenord."
+  },
+  "enrollPasswordReset": {
+    "message": "Delta i lösenordsåterställning"
+  },
+  "enrolledPasswordReset": {
+    "message": "Deltar ​i lösenordsåterställning"
+  },
+  "withdrawPasswordReset": {
+    "message": "Utträd från lösenordsåterställning"
+  },
+  "enrollPasswordResetSuccess": {
+    "message": "Deltagandet lyckades!"
+  },
+  "withdrawPasswordResetSuccess": {
+    "message": "Utträdet lyckades!"
+  },
+  "eventEnrollPasswordReset": {
+    "message": "Användare $ID$ anmälde sig till hjälp för återställning av lösenord.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventWithdrawPasswordReset": {
+    "message": "Användaren $ID$ drog sig tillbaka från hjälp med återställning av lösenord.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventAdminPasswordReset": {
+    "message": "Huvudlösenordet återställdes för användaren $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Återställ lösenord"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Om du fortsätter kommer $NAME$ loggas ut från sin nuvarande session vilket kräver att de loggar in igen. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "denna användare"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "En eller flera organisationspolicyer kräver att huvudlösenordet uppfyller följande krav:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Lösenordsåterställningen lyckades!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Deltagande tillåter organisationsadministratörer att ändra ditt huvudlösenord. Är du säker på att du vill delta?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Återställning av huvudlösenord"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Tillåt administratörer i organisationen att återställa organisationens användares huvudlösenord."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Användare i organisationen måste själva delta eller delta automatiskt innan administratörer kan återställa deras huvudlösenord."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatiskt deltagande"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "Alla användare kommer automatiskt att delta i lösenordsåterställning när deras inbjudan accepteras."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Användare som redan är med i organisationen kommer inte att retroaktivt delta i lösenordsåterställning. De kommer behöva delta själva innan administratörer kan återställa sitt huvudlösenord."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Automatiskt deltagande för nya användare"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Denna organisation har en företagspolicy som automatiskt registrerar dig för lösenordsåterställning. Deltagandet gör det möjligt för organisationsadministratörer att ändra ditt huvudlösenord."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Svaret om organisationnycklar är null"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Svaret om detaljer om lösenordsåterställning är null"
+  },
+  "trashCleanupWarning": {
+    "message": "Objekt som har varit i papperskorgen i mer än 30 dagar raderas automatiskt."
+  },
+  "trashCleanupWarningSelfHosted": {
+    "message": "Objekt som har varit i papperskorgen ett tag raderas automatiskt."
+  },
+  "passwordPrompt": {
+    "message": "Återupprepa huvudlösenord"
+  },
+  "passwordConfirmation": {
+    "message": "Bekräfta huvudlösenord"
+  },
+  "passwordConfirmationDesc": {
+    "message": "Denna åtgärd är skyddad. För att fortsätta, ange ditt huvudlösenord igen för att verifiera din identitet."
+  },
+  "reinviteSelected": {
+    "message": "Skicka inbjudningar igen"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "Denna åtgärd är inte tillämplig på någon av de valda användarna."
+  },
+  "removeUsersWarning": {
+    "message": "Är du säker på att du vill ta bort följande användare? Processen kan ta några sekunder att slutföra och kan inte pausas eller avbrytas."
+  },
+  "confirmSelected": {
+    "message": "Bekräfta valda"
+  },
+  "bulkConfirmStatus": {
+    "message": "Status för massåtgärd"
+  },
+  "bulkConfirmMessage": {
+    "message": "Bekräftade."
+  },
+  "bulkReinviteMessage": {
+    "message": "Bjöd in igen."
+  },
+  "bulkRemovedMessage": {
+    "message": "Tog bort"
+  },
+  "bulkFilteredMessage": {
+    "message": "Exkluderad, inte tillämplig för denna åtgärd."
+  },
+  "fingerprint": {
+    "message": "Fingeravtryck"
+  },
+  "removeUsers": {
+    "message": "Ta bort användare"
+  },
+  "error": {
+    "message": "Fel"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Hantera användare måste också aktiveras med rättigheten Hantera lösenordsåterställning"
   }
 }
