@@ -16,7 +16,6 @@ import { CreateOrganizationComponent } from './clients/create-organization.compo
 import { AcceptProviderComponent } from './manage/accept-provider.component';
 import { BulkConfirmComponent } from './manage/bulk/bulk-confirm.component';
 import { BulkRemoveComponent } from './manage/bulk/bulk-remove.component';
-import { BulkStatusComponent } from './manage/bulk/bulk-status.component';
 import { EventsComponent } from './manage/events.component';
 import { ManageComponent } from './manage/manage.component';
 import { PeopleComponent } from './manage/people.component';
@@ -43,7 +42,6 @@ import { OssModule } from 'src/app/oss.module';
         AddOrganizationComponent,
         BulkConfirmComponent,
         BulkRemoveComponent,
-        BulkStatusComponent,
         ClientsComponent,
         CreateOrganizationComponent,
         EventsComponent,

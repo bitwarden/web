@@ -55,17 +55,6 @@ export class ClientsComponent implements OnInit {
     async ngOnInit() {
         this.route.parent.params.subscribe(async params => {
             this.providerId = params.providerId;
-            const provider = await this.userService.getProvider(this.providerId);
-
-            /*
-            if (!organization.canManageUsers) {
-                this.router.navigate(['../collections'], { relativeTo: this.route });
-                return;
-            }
-
-            this.accessEvents = organization.useEvents;
-            this.accessGroups = organization.useGroups;
-            */
 
             await this.load();
         });
