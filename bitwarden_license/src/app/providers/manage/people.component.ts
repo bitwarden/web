@@ -33,11 +33,11 @@ import { ProviderUserBulkResponse } from 'jslib-common/models/response/provider/
 import { BasePeopleComponent } from 'src/app/common/base.people.component';
 import { ModalComponent } from 'src/app/modal.component';
 
+import { EntityEventsComponent } from 'src/app/organizations/manage/entity-events.component';
 import { BulkConfirmComponent } from './bulk/bulk-confirm.component';
 import { BulkRemoveComponent } from './bulk/bulk-remove.component';
 import { BulkStatusComponent } from './bulk/bulk-status.component';
 import { UserAddEditComponent } from './user-add-edit.component';
-import { EntityEventsComponent } from 'src/app/organizations/manage/entity-events.component';
 
 @Component({
     selector: 'provider-people',

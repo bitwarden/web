@@ -66,8 +66,8 @@ export class EventsComponent implements OnInit {
         });
 
         if (this.organization.providerId != null && (await this.userService.getProvider(this.organization.providerId)) != null) {
-            const response = await this.apiService.getProviderUsers(this.organization.providerId);
-            response.data.forEach(u => {
+            const providerUsersResponse = await this.apiService.getProviderUsers(this.organization.providerId);
+            providerUsersResponse.data.forEach(u => {
                 const name = u.name == null || u.name.trim() === '' ? u.email : u.name;
                 this.orgUsersUserIdMap.set(u.userId, { name: `${name} (${this.organization.providerName})`, email: u.email });
             });
@@ -183,7 +183,7 @@ export class EventsComponent implements OnInit {
             return this.orgUsersUserIdMap.get(userId);
         }
 
-        if (r.providerId != null && r.providerId == this.organization.providerId) {
+        if (r.providerId != null && r.providerId === this.organization.providerId) {
             return {
                 'name': this.organization.providerName,
             };

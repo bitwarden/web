@@ -1,18 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output
+} from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
+import { ProviderService } from '../services/provider.service';
+
+import { Organization } from 'jslib-common/models/domain/organization';
 import { Provider } from 'jslib-common/models/domain/provider';
 
-import { OrganizationResponse } from 'jslib-common/models/response/organizationResponse';
-
-import { ProviderService } from '../services/provider.service';
 
 @Component({
     selector: 'provider-add-organization',
@@ -20,52 +25,57 @@ import { ProviderService } from '../services/provider.service';
 })
 export class AddOrganizationComponent implements OnInit {
 
-    providerId: string;
+    @Input() providerId: string;
+    @Output() onAddedOrganization = new EventEmitter();
+
     provider: Provider;
-    organizationId: string;
-    organization: OrganizationResponse;
     formPromise: Promise<any>;
     loading = true;
+    organizations: Organization[];
 
-    constructor(private route: ActivatedRoute, private router: Router, private apiService: ApiService, private userService: UserService,
-        private providerService: ProviderService, private toasterService: ToasterService, private i18nService: I18nService,
-        private validationService: ValidationService) { }
+    constructor(private userService: UserService, private providerService: ProviderService,
+        private toasterService: ToasterService, private i18nService: I18nService,
+        private platformUtilsService: PlatformUtilsService, private validationService: ValidationService) { }
 
     async ngOnInit() {
-        this.route.params.subscribe(async params => {
-            this.organizationId = params.organizationId;
-            await this.load();
-        });
-
-        this.route.parent.params.subscribe(async params => {
-            this.providerId = params.providerId;
-            await this.load();
-        });
+        await this.load();
     }
 
     async load() {
-        if (this.providerId == null || this.organizationId == null) {
+        if (this.providerId == null) {
             return;
         }
 
-        this.organization = await this.apiService.getOrganization(this.organizationId);
         this.provider = await this.userService.getProvider(this.providerId);
+
+        this.organizations = (await this.userService.getAllOrganizations()).filter(p => p.providerId == null);
         this.loading = false;
     }
 
-    async submit() {
-        try {
-            await this.providerService.addOrganizationToProvider(this.providerId, this.organizationId);
-        } catch (e) {
-            this.validationService.showError(e);
+    async add(organization: Organization) {
+        if (this.formPromise) {
             return;
         }
 
-        this.toasterService.popAsync('success', null, this.i18nService.t('organizationJoinedProvider'));
-        this.router.navigate(['providers', this.providerId]);
-    }
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('addOrganizationConfirmation', organization.name, this.provider.name), organization.name,
+            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
 
-    async cancel() {
-        this.router.navigate(['organizations', this.organizationId]);
+        if (!confirmed) {
+            return false;
+        }
+
+        try {
+            this.formPromise = this.providerService.addOrganizationToProvider(this.providerId, organization.id);
+            await this.formPromise;
+        } catch (e) {
+            this.validationService.showError(e);
+            return;
+        } finally {
+            this.formPromise = null;
+        }
+
+        this.toasterService.popAsync('success', null, this.i18nService.t('organizationJoinedProvider'));
+        this.onAddedOrganization.emit();
     }
 }

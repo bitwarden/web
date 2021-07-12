@@ -1,18 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+import {
+    Component,
+    ComponentFactoryResolver,
+    OnInit,
+    ViewChild,
+    ViewContainerRef
+} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { ValidationService } from 'jslib-angular/services/validation.service';
 
 import {
     ProviderOrganizationOrganizationDetailsResponse
 } from 'jslib-common/models/response/provider/providerOrganizationResponse';
 
+import { LogService } from 'jslib-common/abstractions';
+import { ModalComponent } from 'src/app/modal.component';
+import { ProviderService } from '../services/provider.service';
+import { AddOrganizationComponent } from './add-organization.component';
+
 @Component({
     templateUrl: 'clients.component.html',
 })
 export class ClientsComponent implements OnInit {
+
+    @ViewChild('add', { read: ViewContainerRef, static: true }) addModalRef: ViewContainerRef;
 
     providerId: any;
     searchText: string;
@@ -20,13 +38,19 @@ export class ClientsComponent implements OnInit {
 
     clients: ProviderOrganizationOrganizationDetailsResponse[];
     pagedClients: ProviderOrganizationOrganizationDetailsResponse[];
+    modal: ModalComponent;
 
     protected didScroll = false;
     protected pageSize = 100;
+    protected actionPromise: Promise<any>;
     private pagedClientsCount = 0;
 
     constructor(private route: ActivatedRoute, private userService: UserService,
-        private apiService: ApiService, private searchService: SearchService) { }
+        private apiService: ApiService, private searchService: SearchService,
+        private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
+        private toasterService: ToasterService, private validationService: ValidationService,
+        private providerService: ProviderService, private componentFactoryResolver: ComponentFactoryResolver,
+        private logService: LogService) { }
 
     async ngOnInit() {
         this.route.parent.params.subscribe(async params => {
@@ -85,5 +109,45 @@ export class ClientsComponent implements OnInit {
         }
         this.pagedClientsCount = this.pagedClients.length;
         this.didScroll = this.pagedClients.length > this.pageSize;
+    }
+
+    addExistingOrganization() {
+        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
+        this.modal = this.addModalRef.createComponent(factory).instance;
+        const childComponent = this.modal.show<AddOrganizationComponent>(AddOrganizationComponent, this.addModalRef);
+
+        childComponent.providerId = this.providerId;
+        childComponent.onAddedOrganization.subscribe(async () => {
+            try {
+                await this.load();
+                this.modal.close();
+            } catch (e) {
+                this.logService.error(`Handled exception: ${e}`);
+            }
+        });
+
+        this.modal.onClosed.subscribe(() => {
+            this.modal = null;
+        });
+    }
+
+    async remove(organization: ProviderOrganizationOrganizationDetailsResponse) {
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('detachOrganizationConfirmation'), organization.organizationName,
+            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+
+        if (!confirmed) {
+            return false;
+        }
+
+        this.actionPromise = this.providerService.detachOrganizastion(this.providerId, organization.id);
+        try {
+            await this.actionPromise;
+            this.toasterService.popAsync('success', null, this.i18nService.t('detachedOrganization', organization.organizationName));
+            await this.load();
+        } catch (e) {
+            this.validationService.showError(e);
+        }
+        this.actionPromise = null;
     }
 }

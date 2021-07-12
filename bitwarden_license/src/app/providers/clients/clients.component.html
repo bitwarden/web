@@ -11,6 +11,10 @@
             <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
             {{'newClientOrganization' | i18n}}
         </a>
+        <button class="btn btn-sm btn-outline-primary ml-3" (click)="addExistingOrganization()">
+            <i class="fa fa-arrow-circle-o-right fa-fw" aria-hidden="true"></i>
+            {{'addExistingOrganization' | i18n}}
+        </button>
     </div>
 </div>
 
@@ -33,8 +37,25 @@
                     <td>
                         <a [routerLink]="['/organizations', o.organizationId]">{{o.organizationName}}</a>
                     </td>
+                    <td class="table-list-options">
+                        <div class="dropdown" appListDropdown>
+                            <button class="btn btn-outline-secondary dropdown-toggle" type="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                                appA11yTitle="{{'options' | i18n}}">
+                                <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item text-danger" href="#" appStopClick (click)="remove(o)">
+                                    <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
+                                    {{'remove' | i18n}}
+                                </a>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>
     </ng-container>
 </ng-container>
+
+<ng-template #add></ng-template>

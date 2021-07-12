@@ -104,10 +104,6 @@ const routes: Routes = [
                             },
                         ],
                     },
-                    {
-                        path: 'add/:organizationId',
-                        component: AddOrganizationComponent,
-                    },
                 ],
             },
         ],
