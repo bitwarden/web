@@ -102,9 +102,10 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
             this.canResetPassword = organization.canManageUsersPassword;
             this.orgUseResetPassword = organization.useResetPassword;
             this.callingUserType = organization.type;
+            this.orgHasKeys = organization.hasPublicAndPrivateKeys;
 
             // Backfill pub/priv key if necessary
-            if (!organization.hasPublicAndPrivateKeys) {
+            if (this.canResetPassword && !this.orgHasKeys) {
                 const orgShareKey = await this.cryptoService.getOrgKey(this.organizationId);
                 const orgKeys = await this.cryptoService.makeKeyPair(orgShareKey);
                 const request = new OrganizationKeysRequest(orgKeys[0], orgKeys[1].encryptedString);
@@ -115,8 +116,6 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
                 } else {
                     throw new Error(this.i18nService.t('resetPasswordOrgKeysError'));
                 }
-            } else {
-                this.orgHasKeys = true;
             }
 
             await this.load();

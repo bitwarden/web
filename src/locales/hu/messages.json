@@ -361,7 +361,7 @@
     "message": "Megosztás"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "Áthelyezés szervezetbe"
   },
   "valueCopied": {
     "message": "$VALUE$ másolásra került.",
@@ -404,7 +404,7 @@
     "message": "Széf"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "A kiválasztott áthelyezése szervezetbe"
   },
   "deleteSelected": {
     "message": "Kijelöltek törlése"
@@ -452,7 +452,7 @@
     "message": "Az elem szerkesztésre került."
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ átkerült $ORGNAME$ szervezethez",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "A kiválasztott elemek átkerültek $ORGNAME$ szervezethez",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -769,10 +769,10 @@
     "message": "Szervezetek"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Válasszunk egy szervezetet, ahová áthelyezni szeretnénk ezt az elemet. A szervezetbe áthelyezés átruházza az elem tulajdonjogát az adott szervezetre. Az áthelyezés után többé nem leszünk az elem közvetlen tulajdonosa."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Válasszunk egy szervezetet, ahová áthelyezni szeretnénk ezeket az elemeket. A szervezetbe áthelyezés átruházza az elemek tulajdonjogát az adott szervezetre. Az áthelyezés után többé nem leszünk az elemek közvetlen tulajdonosa."
   },
   "collectionsDesc": {
     "message": "A megosztásra kerülő elem gyűjteményének szerkesztése. Csak az ezeket a gyűjteményeket elérő szervezeti felhasználók látják ezt az elemet."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "$COUNT$ elem került kiválasztásra. $MOVEABLE_COUNT$ elem áthelyezhető szervezethezi, $NONMOVEABLE_COUNT$ nem.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "A mesterjelszó megadása a széfadatok exportálásához."
   },
   "export": {
-    "message": "Export"
+    "message": "Exportálás"
   },
   "exportVault": {
     "message": "Széf exportálása"
@@ -1059,7 +1059,7 @@
     "message": "Semmi nem lett importálva."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Hiba történt az exportált fájl visszafejtése során. A titkosítási kulcs nem egyezik meg az adatok exportálásához használt titkosítási kulccsal."
   },
   "selectFormat": {
     "message": "Válasszuk ki az import fájl formátumát."
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "$ID$ elem átkerült egy szervezethez.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "A mesterjelszó alaphelyzetbe került $ID$ felhasználónál.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Jelszó visszaállítása"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "A folytatással $NAME$ kijelentkezik az aktuális munkamenetből és újra be kell jelentkeznie. A más eszközökön végzett aktív munkamenetek akár egy órán keresztül is aktívak maradhatnak.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,46 +3923,46 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "ez a felhasználó"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Egy vagy több szervezeti rendszabályhoz mesterjelszó szükséges a következő követelmények megfeleléséhez:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "A jelszó alaphelyzetbe állítása sikeres volt."
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "A regisztráció lehetővé teszi a szervezet adminisztrátorainak a saját mesterjelszó megváltoztatását. Biztosan feliratkozunk?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Mesterjelszó alaphelyzetbe állítás"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "A szervezet adminisztrátorai alaphelyzetbe állíthatják a szervezet mesterjelszavát."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "A szervezet felhasználóinak regisztrálniuk kell magukat vagy automatikus regisztrálás szükséges mielőtt az adminisztrátorok alaphelyzetbe állíthatják a mesterjelszavukat."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Automatikus regisztráció"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "A meghívó elfogadását követően minden felhasználó automatikusan regisztrálásra kerül a jelszó alaphelyzetbe állításnál."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "A szervezetben már szereplő felhasználók nem kerülnek visszamenőleg regisztrálva a jelszó alaphelyzetbe állításnál. Regisztráln kell magunkat, mielőtt az adminisztrátorok alaphelyzetbe állíthatják a mesterjelszavukat."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Új felhasználók automatikus regisztrálása"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Ennek a szervezetnek van egy vállalati házirendje, amely automatikusan regisztrál a jelszó alaphelyzetbe állítására. A regisztráció lehetővé teszi a szervezet adminisztrátorainak a mesterjelszó megváltoztatását."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "A szervezeti kulcs válasza null"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "A jelszó alaphelyzetbe állítás válasza null"
   },
   "trashCleanupWarning": {
     "message": "A 30 napnál régebben lomtárba került elemek automatikusan törlésre kerülnek."
@@ -3980,42 +3980,42 @@
     "message": "A művelet védett. A személyazonosság igazolásához adjuk meg ismét a mesterjelszót."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Meghívó újraküldése"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Ez a művelet a kiválasztott felhasználók egyikére sem alkalmazható."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Biztosan eltávolításra kerüljenek a következő felhasználók? A folyamat néhány másodpercet vehet igénybe és nem szakítható meg vagy törölhető."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Kiválasztás megerősítése"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Tömeges művelet állapot"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "A megerősítés sikeres volt."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Az ismételt meghívás sikeres volt."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Az eltávolítás sikeres volt."
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Kizárva, nem alkalmazható erre a műveletre."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Ujjlenyomat"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Felhasználók eltávolítása"
   },
   "error": {
-    "message": "Error"
+    "message": "Hiba"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "A felhasználók kezelését engedélyezni kell a Jelszó visszaállításának kezelése jogosultsággal is."
   }
 }
