@@ -87,6 +87,7 @@ $darkDangerHover: #FF291A;
 $darkSuccess: #23C653;
 $darkPending: #42BFDD;
 $darkWarning: #FFEC3A;
+$darkInfo: #8D94A5;
 $darkLinks: #175DDC;
 $darkGrey1: #BAC0CE;
 $darkGrey2: #8D94A5;
@@ -103,6 +104,7 @@ $themes: (
         success: $success,
         pending: $pending,
         warning: $warning,
+        info: #343a40,
         textColor: $text-color,
         headingColor: #333333,
         darkTextColor: #495057,
@@ -131,6 +133,7 @@ $themes: (
         btnSecondaryHover: #B8C1CA,
         btnSecondaryText: #212529,
         btnSecondaryTextHover: #212529,
+        calloutBackground: #fafafa,
         cdkDraggingBackground: $white,
         codeColor: #e83e8c,
         dropdownBackground: $white,
@@ -147,6 +150,7 @@ $themes: (
         inputBackgroundColor: #FBFBFB,
         inputBorderColor: $border-color,
         inputDisabledBackground: #e0e0e0,
+        inputDisabledColor: #6c757d,
         inputPlaceholderColor: #B6B8B8,
         inputSearchBackgroundColor: #FBFBFB,
         inputSearchBorderColor: $border-color,
@@ -177,6 +181,7 @@ $themes: (
         success: $darkSuccess,
         pending: $darkPending,
         warning: $darkWarning,
+        info: $darkInfo,
         textColor: $darkGrey1,
         headingColor: $white,
         darkTextColor: $darkDarkBlue2,
@@ -205,6 +210,7 @@ $themes: (
         btnSecondaryHover: $darkBlue2,
         btnSecondaryText: $white,
         btnSecondaryTextHover: $white,
+        calloutBackground: $darkDarkBlue2,
         cdkDraggingBackground: $darkDarkBlue1,
         codeColor: #e83e8c,
         dropdownBackground: $darkGrey1,
@@ -221,6 +227,7 @@ $themes: (
         inputBackgroundColor: $darkBlue1,
         inputBorderColor: $darkBlue1,
         inputDisabledBackground: $darkDarkBlue2,
+        inputDisabledColor: $darkGrey1,
         inputPlaceholderColor: $darkGrey1,
         inputSearchBackgroundColor: $darkGrey1,
         inputSearchBorderColor: $darkGrey1,
@@ -259,8 +266,8 @@ $themes: (
             $theme-map: null !global;
         }
     }
-}
+};
 
 @function themed($key) {
     @return map-get($theme-map, $key);
-}
+};

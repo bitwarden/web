@@ -98,6 +98,11 @@ h1, h2, h3, h4, h5 {
     @include themify($themes) {
         color: themed('textColor');
     }
+    &.spaced-header {
+        @include themify($themes) {
+            color: themed('headingColor');
+        }
+    }
 }
 
 a {
@@ -507,7 +512,9 @@ input[type="search"]::-webkit-search-cancel-button {
 
     &:focus,
     &.focus {
-        box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq($primary), $primary, 15%), .5);
+        @include themify($themes) {
+            box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq(themed('primary')), themed('primary'), 15%), .5);
+        }
     }
 }
 
@@ -810,6 +817,14 @@ app-vault-groupings, app-org-vault-groupings, .groupings {
                 color: themed('inputSearchTextColor');
             }
             margin-bottom: 1rem;
+
+            &::placeholder {
+                @include themify($themes) {
+                    color: themed('inputSearchPlaceholderColor');
+                }
+                font-family: 'Open Sans', 'FontAwesome';
+                padding-left: 3px;
+            }
         }
 
         h3 {
@@ -1048,11 +1063,11 @@ app-user-billing {
 
 .callout {
     @include themify($themes) {
-        background-color: themed('foregroundColor');
+        background-color: themed('calloutBackground');
+        border: 1px solid themed('borderColor');
         color: themed('textColor');
     }
-    border: 1px solid $card-border-color;
-    border-left-width: 5px;
+    border-left-width: 5px !important;
     border-radius: $card-inner-border-radius;
     margin-bottom: $alert-margin-bottom;
     padding: $alert-padding-y $alert-padding-x;
@@ -1067,18 +1082,25 @@ app-user-billing {
     }
 
     &.callout-primary {
-        border-left-color: $primary;
-
+        @include themify($themes) {
+            border-left-color: themed('primary');
+        }
         .callout-heading {
-            color: $primary;
+            @include themify($themes) {
+                color: themed('primary');
+            }
         }
     }
 
     &.callout-info {
-        border-left-color: $gray-800;
+        @include themify($themes) {
+            border-left-color: themed('info');
+        }
 
         .callout-heading {
-            color: $gray-800;
+            @include themify($themes) {
+            color: themed('info');
+            }
         }
     }
 
@@ -1187,12 +1209,17 @@ input[type="radio"], input[type="checkbox"] {
         outline: 0;
     
         &.is-invalid {
-            box-shadow: 0 0 0 $input-focus-width rgba($form-feedback-invalid-color, .25);
+            @include themify($themes) {
+                box-shadow: 0 0 0 $input-focus-width themed('danger');
+                opacity: 0.75;
+            }
         }
     }
     
     &.is-invalid {
-        border-color: $form-feedback-invalid-color;
+        @include themify($themes) {
+            border-color: themed('danger');
+        }
     }
 }
 
@@ -1230,7 +1257,9 @@ input[type="radio"], input[type="checkbox"] {
             }
 
             &.disabled {
-                color: $input-placeholder-color;
+                @include themify($themes) {
+                    color: themed('inputDisabledColor');
+                }
             }
         }
     }
