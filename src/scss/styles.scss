@@ -156,7 +156,7 @@ hr {
 .bg-danger {
     @include themify($themes) {
         background-color: themed('danger') !important;
-        color: themed('$dangerTextColor') !important;
+        color: themed('dangerTextColor') !important;
     }
 }
 
@@ -1026,7 +1026,9 @@ app-user-billing {
 
         .totp-circle {
             fill: none;
-            stroke: $primary;
+            @include themify($themes) {
+                stroke: themed('primary');
+            }
 
             &.inner {
                 stroke-dasharray: 78.6;
@@ -1203,9 +1205,9 @@ input[type="radio"], input[type="checkbox"] {
         @include themify($themes) {
             background-color: themed('inputBackgroundColor');
             border-color: themed('inputBorderColor');
+            box-shadow: 0 0 0 $input-focus-width rgba(mix(color-yiq(themed('primary')), themed('primary'), 15%), .5);
             color: themed('inputTextColor');
         }
-        box-shadow: $input-focus-box-shadow;
         outline: 0;
     
         &.is-invalid {
