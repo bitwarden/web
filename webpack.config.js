@@ -19,7 +19,7 @@ config.log(envConfig);
 
 const moduleRules = [
     {
-        test: /\.ts$/,
+        test: /(?<!\.worker)\.ts$/,
         enforce: 'pre',
         loader: 'tslint-loader',
     },
@@ -147,9 +147,14 @@ const plugins = [
         sourceMap: true,
     }),
     new WorkerPlugin({
-        plugins: ['AngularCompilerPlugin'],
+        plugins: [
+            new AngularCompilerPlugin({
+                tsConfigPath: 'jslib/common/tsconfig.worker.json',
+                sourceMap: true
+            })
+        ],
         globalObject: 'self'
-    }),
+    })
 ];
 
 // ref: https://webpack.js.org/configuration/dev-server/#devserver
