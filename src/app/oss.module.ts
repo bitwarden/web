@@ -191,6 +191,7 @@ import { I18nPipe } from 'jslib-angular/pipes/i18n.pipe';
 import { SearchCiphersPipe } from 'jslib-angular/pipes/search-ciphers.pipe';
 import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
 
+import localeAz from '@angular/common/locales/az';
 import localeBg from '@angular/common/locales/bg';
 import localeCa from '@angular/common/locales/ca';
 import localeCs from '@angular/common/locales/cs';
@@ -229,9 +230,10 @@ import localeUk from '@angular/common/locales/uk';
 import localeZhCn from '@angular/common/locales/zh-Hans';
 import localeZhTw from '@angular/common/locales/zh-Hant';
 
+registerLocaleData(localeAz, 'az');
+registerLocaleData(localeBg, 'bg');
 registerLocaleData(localeCa, 'ca');
 registerLocaleData(localeCs, 'cs');
-registerLocaleData(localeBg, 'bg');
 registerLocaleData(localeDa, 'da');
 registerLocaleData(localeDe, 'de');
 registerLocaleData(localeEl, 'el');
