@@ -96,10 +96,10 @@ const routes: Routes = [
                             {
                                 path: 'account',
                                 component: AccountComponent,
-                                // canActivate: [ProviderTypeGuardService],
+                                canActivate: [ProviderTypeGuardService],
                                 data: {
                                     titleId: 'myProvider',
-                                    // permissions: [Permissions.ManageOrganization],
+                                    permissions: [Permissions.ManageProvider],
                                 },
                             },
                         ],

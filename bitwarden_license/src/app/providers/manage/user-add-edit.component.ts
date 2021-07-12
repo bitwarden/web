@@ -62,43 +62,6 @@ export class UserAddEditComponent implements OnInit {
         this.loading = false;
     }
 
-    setRequestPermissions(p: PermissionsApi, clearPermissions: boolean) {
-        p.accessBusinessPortal = clearPermissions ?
-            false :
-            this.permissions.accessBusinessPortal;
-        p.accessEventLogs = this.permissions.accessEventLogs = clearPermissions ?
-            false :
-            this.permissions.accessEventLogs;
-        p.accessImportExport = clearPermissions ?
-            false :
-            this.permissions.accessImportExport;
-        p.accessReports = clearPermissions ?
-            false :
-            this.permissions.accessReports;
-        p.manageAllCollections = clearPermissions ?
-            false :
-            this.permissions.manageAllCollections;
-        p.manageAssignedCollections = clearPermissions ?
-            false :
-            this.permissions.manageAssignedCollections;
-        p.manageGroups = clearPermissions ?
-            false :
-            this.permissions.manageGroups;
-        p.manageSso = clearPermissions ?
-            false :
-            this.permissions.manageSso;
-        p.managePolicies = clearPermissions ?
-            false :
-            this.permissions.managePolicies;
-        p.manageUsers = clearPermissions ?
-            false :
-            this.permissions.manageUsers;
-        p.manageResetPassword = clearPermissions ?
-            false :
-            this.permissions.manageResetPassword;
-        return p;
-    }
-
     async submit() {
         try {
             if (this.editMode) {
