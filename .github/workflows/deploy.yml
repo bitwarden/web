@@ -47,7 +47,8 @@ jobs:
 
       - name: Install and Build
         run: |
-          npm ci
+          npm install
+          #npm ci
           npm run dist
 
       - name: Deploy GitHub Pages
