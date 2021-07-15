@@ -95,10 +95,6 @@ export class PaymentComponent implements OnInit {
             this.hideBank = this.method !== PaymentMethodType.BankAccount;
             this.hideCredit = this.method !== PaymentMethodType.Credit;
         }
-        window.document.head.appendChild(this.stripeScript);
-        if (!this.hidePaypal) {
-            window.document.head.appendChild(this.btScript);
-        }
         this.theme = await this.storageService.get<string>(ConstantsService.themeKey);
         if (this.theme == null) {
             this.theme = await this.platformUtilsService.getDefaultSystemTheme();
@@ -111,6 +107,10 @@ export class PaymentComponent implements OnInit {
             this.StripeElementStyle.base.color = darkInputColor;
             this.StripeElementStyle.base['::placeholder'].color = darkInputPlaceholderColor;
             this.StripeElementStyle.invalid.color = darkInputColor;
+        }
+        window.document.head.appendChild(this.stripeScript);
+        if (!this.hidePaypal) {
+            window.document.head.appendChild(this.btScript);
         }
     }
 
