@@ -11,7 +11,7 @@
             <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
             {{'newClientOrganization' | i18n}}
         </a>
-        <button class="btn btn-sm btn-outline-primary ml-3" (click)="addExistingOrganization()">
+        <button class="btn btn-sm btn-outline-primary ml-3" (click)="addExistingOrganization()" *ngIf="showAddExisting">
             <i class="fa fa-arrow-circle-o-right fa-fw" aria-hidden="true"></i>
             {{'addExistingOrganization' | i18n}}
         </button>

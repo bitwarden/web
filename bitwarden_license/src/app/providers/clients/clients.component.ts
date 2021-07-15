@@ -35,6 +35,7 @@ export class ClientsComponent implements OnInit {
     providerId: any;
     searchText: string;
     loading = true;
+    showAddExisting = false;
 
     clients: ProviderOrganizationOrganizationDetailsResponse[];
     pagedClients: ProviderOrganizationOrganizationDetailsResponse[];
@@ -63,6 +64,7 @@ export class ClientsComponent implements OnInit {
     async load() {
         const response = await this.apiService.getProviderClients(this.providerId);
         this.clients = response.data != null && response.data.length > 0 ? response.data : [];
+        this.showAddExisting = (await this.userService.getAllOrganizations()).some(org => org.providerId == null);
         this.loading = false;
     }
 
