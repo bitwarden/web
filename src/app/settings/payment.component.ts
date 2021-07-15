@@ -18,7 +18,6 @@ const lightInputPlaceholderColor = '#B6B8B8';
 const darkInputColor = '#FFFFFF';
 const darkInputPlaceholderColor = '#BAC0CE';
 
-
 @Component({
     selector: 'app-payment',
     templateUrl: 'payment.component.html',
@@ -51,8 +50,6 @@ export class PaymentComponent implements OnInit {
     private stripeCardExpiryElement: any = null;
     private stripeCardCvcElement: any = null;
     private theme: any = null;
-    private color: any = null;
-    private placeholder: any = null;
     private StripeElementStyle: any;
     private StripeElementClasses: any;
 
@@ -69,6 +66,27 @@ export class PaymentComponent implements OnInit {
         this.btScript = window.document.createElement('script');
         this.btScript.src = 'scripts/dropin.js';
         this.btScript.async = true;
+        this.StripeElementStyle = {
+            base: {
+                color: null,
+                fontFamily: '"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif, ' +
+                    '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+                fontSize: '14px',
+                fontSmoothing: 'antialiased',
+                '::placeholder': {
+                    color: null,
+                },
+            },
+            invalid: {
+                color: null,
+
+            },
+        };
+        this.StripeElementClasses = {
+            focus: 'is-focused',
+            empty: 'is-empty',
+            invalid: 'is-invalid',
+        };
     }
 
     async ngOnInit() {
@@ -86,33 +104,14 @@ export class PaymentComponent implements OnInit {
             this.theme = await this.platformUtilsService.getDefaultSystemTheme();
         }
         if (this.theme === 'light') {
-            this.color = lightInputColor;
-            this.placeholder = lightInputPlaceholderColor;
+            this.StripeElementStyle.base.color = lightInputColor;
+            this.StripeElementStyle.base['::placeholder'].color = lightInputPlaceholderColor;
+            this.StripeElementStyle.invalid.color = lightInputColor;
         } else {
-            this.color = darkInputColor;
-            this.placeholder = darkInputPlaceholderColor;
+            this.StripeElementStyle.base.color = darkInputColor;
+            this.StripeElementStyle.base['::placeholder'].color = darkInputPlaceholderColor;
+            this.StripeElementStyle.invalid.color = darkInputColor;
         }
-        this.StripeElementStyle = {
-            base: {
-                color: this.color,
-                fontFamily: '"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif, ' +
-                    '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-                fontSize: '14px',
-                fontSmoothing: 'antialiased',
-                '::placeholder': {
-                    color: this.placeholder,
-                },
-            },
-            invalid: {
-                color: this.color,
-
-            },
-        };
-        this.StripeElementClasses = {
-            focus: 'is-focused',
-            empty: 'is-empty',
-            invalid: 'is-invalid',
-        };
     }
 
     ngOnDestroy() {
