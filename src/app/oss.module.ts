@@ -5,7 +5,7 @@ import {
 } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ToasterModule } from 'angular2-toaster';
@@ -99,6 +99,7 @@ import { VaultComponent as OrgVaultComponent } from './organizations/vault/vault
 
 import { AccessComponent } from './send/access.component';
 import { AddEditComponent as SendAddEditComponent } from './send/add-edit.component';
+import { EffluxDatesComponent as SendEffluxDatesComponent } from './send/efflux-dates.component';
 import { SendComponent } from './send/send.component';
 
 import { AccountComponent } from './settings/account.component';
@@ -276,6 +277,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         InfiniteScrollModule,
         DragDropModule,
         ToasterModule.forChild(),
+        ReactiveFormsModule,
         RouterModule,
     ],
     declarations: [
@@ -399,6 +401,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SearchPipe,
         SelectCopyDirective,
         SendAddEditComponent,
+        SendEffluxDatesComponent,
         SendComponent,
         SettingsComponent,
         ShareComponent,
