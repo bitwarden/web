@@ -3,14 +3,14 @@ import {
     ComponentFactoryResolver,
     Injectable,
     Injector,
-    Type,
 } from '@angular/core';
 import * as jq from 'jquery';
 import { first } from 'rxjs/operators';
 
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 
-import { ModalConfig, ModalService as BaseModalService } from 'jslib-angular/services/modal.service';
+import { ModalService as BaseModalService } from 'jslib-angular/services/modal.service';
+import { ModalRef } from 'jslib-angular/components/modal/modal.ref';
 
 import { Utils } from 'jslib-common/misc/utils';
 
@@ -25,16 +25,7 @@ export class ModalService extends BaseModalService {
         super(componentFactoryResolver, applicationRef, injector);
     }
 
-    open(componentType: Type<any>, config: ModalConfig) {
-        if (this.modalOpen) {
-            return;
-        }
-        this.modalOpen = true;
-
-        const modalRef = this.appendModalComponentToBody(config);
-
-        this.dialogComponentRef.instance.childComponentType = componentType;
-
+    protected setupHandlers(modalRef: ModalRef) {
         modalRef.onCreated.pipe(first()).subscribe(() => {
             const modals = Array.from(document.querySelectorAll('.modal'));
             if (modals.length > 0) {
@@ -67,11 +58,5 @@ export class ModalService extends BaseModalService {
                 this.el.modal('hide');
             }
         });
-
-        modalRef.onClosed.pipe(first()).subscribe(() => {
-            this.modalOpen = false;
-        });
-
-        return modalRef;
     }
 }
