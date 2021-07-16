@@ -60,10 +60,7 @@ export abstract class BaseEventsComponent {
         this.loading = false;
     }
 
-    protected abstract requestEvents(startDate: string, endDate: string, continuationToken: string): Promise<ListResponse<EventResponse>>;
-    protected abstract getUserName(r: EventResponse, userId: string): { name: string, email: string };
-
-    protected async loadEvents(clearExisting: boolean) {
+    async loadEvents(clearExisting: boolean) {
         if (this.appApiPromiseUnfulfilled()) {
             return;
         }
@@ -100,6 +97,9 @@ export abstract class BaseEventsComponent {
         this.morePromise = null;
         this.refreshPromise = null;
     }
+
+    protected abstract requestEvents(startDate: string, endDate: string, continuationToken: string): Promise<ListResponse<EventResponse>>;
+    protected abstract getUserName(r: EventResponse, userId: string): { name: string, email: string };
 
     protected async loadAndParseEvents(startDate: string, endDate: string, continuationToken: string) {
         const response = await this.requestEvents(startDate, endDate, continuationToken);
