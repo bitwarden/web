@@ -8,6 +8,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { ExportService } from 'jslib-common/abstractions/export.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
@@ -30,8 +31,9 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
 
     constructor(private apiService: ApiService, private route: ActivatedRoute, eventService: EventService,
         i18nService: I18nService, toasterService: ToasterService, private userService: UserService,
-        exportService: ExportService, platformUtilsService: PlatformUtilsService, private router: Router) {
-        super(eventService, i18nService, toasterService, exportService, platformUtilsService);
+        exportService: ExportService, platformUtilsService: PlatformUtilsService, private router: Router,
+        logService: LogService) {
+        super(eventService, i18nService, toasterService, exportService, platformUtilsService, logService);
     }
 
     async ngOnInit() {

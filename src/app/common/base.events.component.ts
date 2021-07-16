@@ -10,6 +10,7 @@ import { EventView } from 'jslib-common/models/view/eventView';
 import { ListResponse } from 'jslib-common/models/response';
 import { EventResponse } from 'jslib-common/models/response/eventResponse';
 
+import { LogService } from 'jslib-common/abstractions';
 import { EventService } from 'src/app/services/event.service';
 
 @Directive()
@@ -29,7 +30,7 @@ export abstract class BaseEventsComponent {
 
     constructor(protected eventService: EventService, protected i18nService: I18nService,
         protected toasterService: ToasterService, protected exportService: ExportService,
-        protected platformUtilsService: PlatformUtilsService) {
+        protected platformUtilsService: PlatformUtilsService, protected logService: LogService) {
         const defaultDates = this.eventService.getDefaultDateFilters();
         this.start = defaultDates[0];
         this.end = defaultDates[1];
@@ -51,7 +52,9 @@ export abstract class BaseEventsComponent {
             this.exportPromise = this.export(dates[0], dates[1]);
 
             await this.exportPromise;
-        } catch { }
+        } catch (e) {
+            this.logService.error(`Handled exception: ${e}`);
+        }
 
         this.exportPromise = null;
         this.loading = false;
@@ -82,7 +85,9 @@ export abstract class BaseEventsComponent {
             const result = await promise;
             this.continuationToken = result.continuationToken;
             events = result.events;
-        } catch { }
+        } catch (e) {
+            this.logService.error(`Handled exception: ${e}`);
+        }
 
         if (!clearExisting && this.events != null && this.events.length > 0) {
             this.events = this.events.concat(events);
