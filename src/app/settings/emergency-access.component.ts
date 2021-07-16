@@ -16,6 +16,8 @@ import { EmergencyAccessConfirmRequest } from 'jslib-common/models/request/emerg
 import { EmergencyAccessGranteeDetailsResponse, EmergencyAccessGrantorDetailsResponse } from 'jslib-common/models/response/emergencyAccessResponse';
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
+import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
+
 import { ModalComponent } from '../modal.component';
 import { EmergencyAccessAddEditComponent } from './emergency-access-add-edit.component';
 import { EmergencyAccessConfirmComponent } from './emergency-access-confirm.component';
@@ -45,7 +47,7 @@ export class EmergencyAccessComponent implements OnInit {
         private platformUtilsService: PlatformUtilsService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
         private storageService: StorageService, private userService: UserService,
-        private messagingService: MessagingService) { }
+        private messagingService: MessagingService, private userNamePipe: UserNamePipe) { }
 
     async ngOnInit() {
         this.canAccessPremium = await this.userService.canAccessPremium();
@@ -76,7 +78,7 @@ export class EmergencyAccessComponent implements OnInit {
         const childComponent = this.modal.show<EmergencyAccessAddEditComponent>(
             EmergencyAccessAddEditComponent, this.addEditModalRef);
 
-        childComponent.name = details?.name ?? details?.email;
+        childComponent.name = this.userNamePipe.transform(details);
         childComponent.emergencyAccessId = details?.id;
         childComponent.readOnly = !this.canAccessPremium;
         childComponent.onSaved.subscribe(() => {
@@ -127,7 +129,7 @@ export class EmergencyAccessComponent implements OnInit {
             const childComponent = this.modal.show<EmergencyAccessConfirmComponent>(
                 EmergencyAccessConfirmComponent, this.confirmModalRef);
 
-            childComponent.name = contact?.name ?? contact?.email;
+            childComponent.name = this.userNamePipe.transform(contact);
             childComponent.emergencyAccessId = contact.id;
             childComponent.userId = contact?.granteeId;
             childComponent.onConfirmed.subscribe(async () => {
@@ -137,7 +139,7 @@ export class EmergencyAccessComponent implements OnInit {
                 await childComponent.formPromise;
 
                 updateUser();
-                this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', contact.name || contact.email));
+                this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', this.userNamePipe.transform(contact)));
             });
 
             this.modal.onClosed.subscribe(() => {
@@ -150,13 +152,13 @@ export class EmergencyAccessComponent implements OnInit {
         await this.actionPromise;
         updateUser();
 
-        this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', contact.name || contact.email));
+        this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', this.userNamePipe.transform(contact)));
         this.actionPromise = null;
     }
 
     async remove(details: EmergencyAccessGranteeDetailsResponse | EmergencyAccessGrantorDetailsResponse) {
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('removeUserConfirmation'), details.name || details.email,
+            this.i18nService.t('removeUserConfirmation'), this.userNamePipe.transform(details),
             this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
         if (!confirmed) {
             return false;
@@ -164,7 +166,7 @@ export class EmergencyAccessComponent implements OnInit {
 
         try {
             await this.apiService.deleteEmergencyAccess(details.id);
-            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', details.name || details.email));
+            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', this.userNamePipe.transform(details)));
 
             if (details instanceof EmergencyAccessGranteeDetailsResponse) {
                 this.removeGrantee(details);
@@ -177,7 +179,7 @@ export class EmergencyAccessComponent implements OnInit {
     async requestAccess(details: EmergencyAccessGrantorDetailsResponse) {
         const confirmed = await this.platformUtilsService.showDialog(
             this.i18nService.t('requestAccessConfirmation', details.waitTimeDays.toString()),
-            details.name || details.email,
+            this.userNamePipe.transform(details),
             this.i18nService.t('requestAccess'),
             this.i18nService.t('no'),
             'warning',
@@ -190,15 +192,15 @@ export class EmergencyAccessComponent implements OnInit {
         await this.apiService.postEmergencyAccessInitiate(details.id);
 
         details.status = EmergencyAccessStatusType.RecoveryInitiated;
-        this.toasterService.popAsync('success', null, this.i18nService.t('requestSent', details.name || details.email));
+        this.toasterService.popAsync('success', null, this.i18nService.t('requestSent', this.userNamePipe.transform(details)));
     }
 
     async approve(details: EmergencyAccessGranteeDetailsResponse) {
         const type = this.i18nService.t(details.type === EmergencyAccessType.View ? 'view' : 'takeover');
 
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('approveAccessConfirmation', details.name || details.email, type),
-            details.name || details.email,
+            this.i18nService.t('approveAccessConfirmation', this.userNamePipe.transform(details), type),
+            this.userNamePipe.transform(details),
             this.i18nService.t('approve'),
             this.i18nService.t('no'),
             'warning',
@@ -211,14 +213,14 @@ export class EmergencyAccessComponent implements OnInit {
         await this.apiService.postEmergencyAccessApprove(details.id);
         details.status = EmergencyAccessStatusType.RecoveryApproved;
 
-        this.toasterService.popAsync('success', null, this.i18nService.t('emergencyApproved', details.name || details.email));
+        this.toasterService.popAsync('success', null, this.i18nService.t('emergencyApproved', this.userNamePipe.transform(details)));
     }
 
     async reject(details: EmergencyAccessGranteeDetailsResponse) {
         await this.apiService.postEmergencyAccessReject(details.id);
         details.status = EmergencyAccessStatusType.Confirmed;
 
-        this.toasterService.popAsync('success', null, this.i18nService.t('emergencyRejected', details.name || details.email));
+        this.toasterService.popAsync('success', null, this.i18nService.t('emergencyRejected', this.userNamePipe.transform(details)));
     }
 
     async takeover(details: EmergencyAccessGrantorDetailsResponse) {
@@ -231,13 +233,13 @@ export class EmergencyAccessComponent implements OnInit {
         const childComponent = this.modal.show<EmergencyAccessTakeoverComponent>(
             EmergencyAccessTakeoverComponent, this.takeoverModalRef);
 
-        childComponent.name = details != null ? details.name || details.email : null;
+        childComponent.name = this.userNamePipe.transform(details);
         childComponent.email = details.email;
         childComponent.emergencyAccessId = details != null ? details.id : null;
 
         childComponent.onDone.subscribe(() => {
             this.modal.close();
-            this.toasterService.popAsync('success', null, this.i18nService.t('passwordResetFor', details.name || details.email));
+            this.toasterService.popAsync('success', null, this.i18nService.t('passwordResetFor', this.userNamePipe.transform(details)));
         });
 
         this.modal.onClosed.subscribe(() => {

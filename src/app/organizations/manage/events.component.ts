@@ -6,14 +6,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
+import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
+
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { ExportService } from 'jslib-common/abstractions/export.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { EventResponse } from 'jslib-common/models/response/eventResponse';
-import { ListResponse } from 'jslib-common/models/response/listResponse';
 import { EventView } from 'jslib-common/models/view/eventView';
 
 import { EventService } from '../../services/event.service';
@@ -41,7 +41,7 @@ export class EventsComponent implements OnInit {
     constructor(private apiService: ApiService, private route: ActivatedRoute, private eventService: EventService,
         private i18nService: I18nService, private toasterService: ToasterService, private userService: UserService,
         private exportService: ExportService, private platformUtilsService: PlatformUtilsService,
-        private router: Router) { }
+        private router: Router, private userNamePipe: UserNamePipe) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -61,7 +61,7 @@ export class EventsComponent implements OnInit {
     async load() {
         const response = await this.apiService.getOrganizationUsers(this.organizationId);
         response.data.forEach(u => {
-            const name = u.name == null || u.name.trim() === '' ? u.email : u.name;
+            const name = this.userNamePipe.transform(u);
             this.orgUsersIdMap.set(u.id, { name: name, email: u.email });
             this.orgUsersUserIdMap.set(u.userId, { name: name, email: u.email });
         });

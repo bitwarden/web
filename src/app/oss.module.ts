@@ -189,6 +189,7 @@ import { ColorPasswordPipe } from 'jslib-angular/pipes/color-password.pipe';
 import { I18nPipe } from 'jslib-angular/pipes/i18n.pipe';
 import { SearchCiphersPipe } from 'jslib-angular/pipes/search-ciphers.pipe';
 import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
+import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
 
 import localeAz from '@angular/common/locales/az';
 import localeBg from '@angular/common/locales/bg';
@@ -423,13 +424,14 @@ registerLocaleData(localeZhTw, 'zh-TW');
         UserBillingComponent,
         UserLayoutComponent,
         UserSubscriptionComponent,
+        UserNamePipe,
         VaultComponent,
         VerifyEmailComponent,
         VerifyEmailTokenComponent,
         VerifyRecoverDeleteComponent,
         WeakPasswordsReportComponent,
     ],
-    providers: [DatePipe, SearchPipe],
+    providers: [DatePipe, SearchPipe, UserNamePipe],
     bootstrap: [],
 })
 export class OssModule { }
