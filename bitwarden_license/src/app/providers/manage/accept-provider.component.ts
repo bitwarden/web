@@ -31,9 +31,7 @@ export class AcceptProviderComponent extends BaseAcceptComponent {
         const request = new ProviderUserAcceptRequest();
         request.token = qParams.token;
 
-        this.actionPromise = this.apiService.postProviderUserAccept(qParams.providerId, qParams.providerUserId, request);
-
-        await this.actionPromise;
+        await this.apiService.postProviderUserAccept(qParams.providerId, qParams.providerUserId, request);
         const toast: Toast = {
             type: 'success',
             title: this.i18nService.t('inviteAccepted'),
