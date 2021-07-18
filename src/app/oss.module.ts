@@ -5,7 +5,7 @@ import {
 } from '@angular/common';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { ToasterModule } from 'angular2-toaster';
@@ -99,6 +99,7 @@ import { VaultComponent as OrgVaultComponent } from './organizations/vault/vault
 
 import { AccessComponent } from './send/access.component';
 import { AddEditComponent as SendAddEditComponent } from './send/add-edit.component';
+import { EffluxDatesComponent as SendEffluxDatesComponent } from './send/efflux-dates.component';
 import { SendComponent } from './send/send.component';
 
 import { AccountComponent } from './settings/account.component';
@@ -167,7 +168,6 @@ import { CiphersComponent } from './vault/ciphers.component';
 import { CollectionsComponent } from './vault/collections.component';
 import { FolderAddEditComponent } from './vault/folder-add-edit.component';
 import { GroupingsComponent } from './vault/groupings.component';
-import { SendInfoComponent } from './vault/send-info.component';
 import { ShareComponent } from './vault/share.component';
 import { VaultComponent } from './vault/vault.component';
 
@@ -191,6 +191,7 @@ import { I18nPipe } from 'jslib-angular/pipes/i18n.pipe';
 import { SearchCiphersPipe } from 'jslib-angular/pipes/search-ciphers.pipe';
 import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
 
+import localeAz from '@angular/common/locales/az';
 import localeBg from '@angular/common/locales/bg';
 import localeCa from '@angular/common/locales/ca';
 import localeCs from '@angular/common/locales/cs';
@@ -210,6 +211,7 @@ import localeHu from '@angular/common/locales/hu';
 import localeId from '@angular/common/locales/id';
 import localeIt from '@angular/common/locales/it';
 import localeJa from '@angular/common/locales/ja';
+import localeKn from '@angular/common/locales/kn';
 import localeKo from '@angular/common/locales/ko';
 import localeLv from '@angular/common/locales/lv';
 import localeMl from '@angular/common/locales/ml';
@@ -228,9 +230,10 @@ import localeUk from '@angular/common/locales/uk';
 import localeZhCn from '@angular/common/locales/zh-Hans';
 import localeZhTw from '@angular/common/locales/zh-Hant';
 
+registerLocaleData(localeAz, 'az');
+registerLocaleData(localeBg, 'bg');
 registerLocaleData(localeCa, 'ca');
 registerLocaleData(localeCs, 'cs');
-registerLocaleData(localeBg, 'bg');
 registerLocaleData(localeDa, 'da');
 registerLocaleData(localeDe, 'de');
 registerLocaleData(localeEl, 'el');
@@ -247,6 +250,7 @@ registerLocaleData(localeHu, 'hu');
 registerLocaleData(localeId, 'id');
 registerLocaleData(localeIt, 'it');
 registerLocaleData(localeJa, 'ja');
+registerLocaleData(localeKn, 'kn');
 registerLocaleData(localeKo, 'ko');
 registerLocaleData(localeLv, 'lv');
 registerLocaleData(localeMl, 'ml');
@@ -272,6 +276,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         InfiniteScrollModule,
         DragDropModule,
         ToasterModule.forChild(),
+        ReactiveFormsModule,
         RouterModule,
     ],
     declarations: [
@@ -395,8 +400,8 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SearchPipe,
         SelectCopyDirective,
         SendAddEditComponent,
+        SendEffluxDatesComponent,
         SendComponent,
-        SendInfoComponent,
         SettingsComponent,
         ShareComponent,
         SsoComponent,
@@ -426,54 +431,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         VerifyEmailTokenComponent,
         VerifyRecoverDeleteComponent,
         WeakPasswordsReportComponent,
-    ],
-    entryComponents: [
-        AddEditComponent,
-        ApiKeyComponent,
-        AttachmentsComponent,
-        BulkActionsComponent,
-        BulkDeleteComponent,
-        BulkMoveComponent,
-        BulkRestoreComponent,
-        BulkShareComponent,
-        CollectionsComponent,
-        DeauthorizeSessionsComponent,
-        DeleteAccountComponent,
-        DeleteOrganizationComponent,
-        EmergencyAccessAddEditComponent,
-        EmergencyAccessAttachmentsComponent,
-        EmergencyAccessConfirmComponent,
-        EmergencyAccessTakeoverComponent,
-        EmergencyAddEditComponent,
-        FolderAddEditComponent,
-        ModalComponent,
-        OrgAddEditComponent,
-        OrgAttachmentsComponent,
-        OrgBulkStatusComponent,
-        OrgBulkConfirmComponent,
-        OrgBulkRemoveComponent,
-        OrgCollectionAddEditComponent,
-        OrgCollectionsComponent,
-        OrgEntityEventsComponent,
-        OrgEntityUsersComponent,
-        OrgGroupAddEditComponent,
-        OrgPolicyEditComponent,
-        OrgResetPasswordComponent,
-        OrgUserAddEditComponent,
-        OrgUserConfirmComponent,
-        OrgUserGroupsComponent,
-        PasswordGeneratorHistoryComponent,
-        PurgeVaultComponent,
-        SendAddEditComponent,
-        ShareComponent,
-        TwoFactorAuthenticatorComponent,
-        TwoFactorDuoComponent,
-        TwoFactorEmailComponent,
-        TwoFactorOptionsComponent,
-        TwoFactorRecoveryComponent,
-        TwoFactorWebAuthnComponent,
-        TwoFactorYubiKeyComponent,
-        UpdateKeyComponent,
     ],
     providers: [DatePipe, SearchPipe],
     bootstrap: [],

@@ -360,6 +360,9 @@
   "share": {
     "message": "共有"
   },
+  "moveToOrganization": {
+    "message": "組織に移動"
+  },
   "valueCopied": {
     "message": "$VALUE$ をコピーしました",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "保管庫"
   },
-  "shareSelected": {
-    "message": "選択したものを共有"
+  "moveSelectedToOrg": {
+    "message": "選択したものを組織に移動"
   },
   "deleteSelected": {
     "message": "選択したものを削除"
@@ -437,7 +440,7 @@
     "message": "ファイルを選択してください。"
   },
   "maxFileSize": {
-    "message": "最大ファイルサイズ: 100 MB"
+    "message": "最大ファイルサイズ: 500 MB"
   },
   "updateKey": {
     "message": "暗号キーを更新するまでこの機能は使用できません。"
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "編集されたアイテム"
   },
-  "sharedItem": {
-    "message": "共有されたアイテム"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ を $ORGNAME$ に移動しました",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "共有されたアイテム"
+  "movedItemsToOrg": {
+    "message": "選択したアイテムを $ORGNAME$ に移動しました",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "アイテムの削除"
@@ -749,11 +768,11 @@
   "organizations": {
     "message": "組織"
   },
-  "shareDesc": {
-    "message": "このアイテムを共有する組織を選択してください。共有するとアイテムの所有権は組織に移行し、あなたはもはやこのアイテムの直接のオーナーではなくなります。"
+  "moveToOrgDesc": {
+    "message": "このアイテムを移動する組織を選択してください。組織に移動すると、アイテムの所有権がその組織に移行します。 このアイテムが移動された後、あなたはこのアイテムの直接の所有者にはなりません。"
   },
-  "shareManyDesc": {
-    "message": "これらのアイテムを共有する組織を選択してください。共有するとアイテムの所有権は組織に移行し、あなたはもはやこれらのアイテムの直接のオーナーではなくなります。"
+  "moveManyToOrgDesc": {
+    "message": "このアイテムを移動する組織を選択してください。組織に移動すると、アイテムの所有権がその組織に移行します。 このアイテムが移動された後、あなたはこのアイテムの直接の所有者にはなりません。"
   },
   "collectionsDesc": {
     "message": "このアイテムを共有するコレクションを編集します。共有したアイテムは、当該コレクションにアクセスできる組織ユーザーにのみ表示されます。"
@@ -776,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "$COUNT$アイテムを選択しました。$SHAREABLE_COUNT$個が共有可能で、$NONSHAREABLE_COUNT$個は共有できません。",
+  "moveSelectedItemsCountDesc": {
+    "message": "$COUNT$ アイテムを選択しました。 $MOVEABLE_COUNT$ アイテムは組織に移動できます。 $NONMOVEABLE_COUNT$ アイテムはできません。",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -816,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "保管庫のデータをエクスポートするにはマスターパスワードを入力してください。"
+  },
+  "export": {
+    "message": "エクスポート"
   },
   "exportVault": {
     "message": "保管庫のエクスポート"
@@ -1035,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "何もインポートされませんでした。"
+  },
+  "importEncKeyError": {
+    "message": "エクスポートされたファイルの復号でエラーが発生しました。暗号化キーが、データをエクスポートするために使用された暗号化キーと一致しません。"
   },
   "selectFormat": {
     "message": "インポートするファイルの形式を選択"
@@ -2327,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "アイテム「$ID$」の共有",
+  "movedItemIdToOrg": {
+    "message": "アイテム $ID$ を組織に移動しました。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3832,13 +3857,13 @@
     "message": "To verify your 2FA please click the button below."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAutn"
+    "message": "Authenticate WebAuthn"
   },
   "webAuthnNotSupported": {
     "message": "WebAuthn is not supported in this browser."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+    "message": "WebAuthn verified successfully! You may close this tab."
   },
   "hintEqualsPassword": {
     "message": "Your password hint cannot be the same as your password."
@@ -3876,11 +3901,74 @@
       }
     }
   },
+  "eventAdminPasswordReset": {
+    "message": "ユーザー $ID$ のマスターパスワードをリセット",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "パスワードをリセット"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "続行すると、現在のセッションから $NAME$ をログアウトし、再度ログインする必要があります。 他のデバイスでのアクティブなセッションは、最大1時間アクティブになり続けます。",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "このユーザー\n"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "組織ポリシーの要件を満たすためにマスターパスワードが必要です:"
+  },
+  "resetPasswordSuccess": {
+    "message": "パスワードをリセットしました"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "登録すると、組織管理者はマスターパスワードを変更できます。登録してもよろしいですか？"
+  },
+  "resetPasswordPolicy": {
+    "message": "マスターパスワードのリセット"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "組織内の管理者に組織ユーザーのマスターパスワードのリセットを許可します。"
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "管理者がマスターパスワードをリセットするには、組織内のユーザーは自己登録または自動登録する必要があります。"
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "自動登録"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "招待が承認されると、すべてのユーザーは自動的にパスワードリセットに登録されます。"
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "すでに組織にいるユーザーは、パスワードリセットに遡って登録されません。管理者がマスターパスワードをリセットできるようにするには、自己登録する必要があります。"
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "自動的に新規ユーザーを登録する"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "この組織には自動的にパスワードリセットに登録するポリシーがあります。登録すると、組織の管理者はマスターパスワードを変更できます。"
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "組織鍵の応答が null です"
+  },
+  "resetPasswordDetailsError": {
+    "message": "パスワードリセットの詳細な応答が null です"
+  },
   "trashCleanupWarning": {
-    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+    "message": "Items that have been in Trash more than 30 days will be automatically deleted."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+    "message": "Items that have been in Trash for a while will be automatically deleted."
   },
   "passwordPrompt": {
     "message": "Master password re-prompt"
@@ -3890,5 +3978,44 @@
   },
   "passwordConfirmationDesc": {
     "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+  },
+  "reinviteSelected": {
+    "message": "招待を再送信"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "この操作は、選択されたユーザーには適用されません。"
+  },
+  "removeUsersWarning": {
+    "message": "次のユーザーを削除してもよろしいですか？プロセスは完了まで数秒かかることがあり、中断またはキャンセルすることはできません。"
+  },
+  "confirmSelected": {
+    "message": "選択を確認"
+  },
+  "bulkConfirmStatus": {
+    "message": "一括操作の状態"
+  },
+  "bulkConfirmMessage": {
+    "message": "確認に成功しました"
+  },
+  "bulkReinviteMessage": {
+    "message": "再招待に成功しました"
+  },
+  "bulkRemovedMessage": {
+    "message": "削除しました "
+  },
+  "bulkFilteredMessage": {
+    "message": "除外します。このアクションには適用されません。"
+  },
+  "fingerprint": {
+    "message": "指紋"
+  },
+  "removeUsers": {
+    "message": "ユーザーを削除"
+  },
+  "error": {
+    "message": "エラー"
+  },
+  "resetPasswordManageUsers": {
+    "message": "パスワードリセットの管理権限を持つユーザーの管理も有効にする必要があります"
   }
 }

@@ -360,6 +360,9 @@
   "share": {
     "message": "Kopīgot"
   },
+  "moveToOrganization": {
+    "message": "Pārvietot uz apvienību"
+  },
   "valueCopied": {
     "message": "$VALUE$ ievietota starpliktuvē",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Glabātava"
   },
-  "shareSelected": {
-    "message": "Kopīgot atlasītos"
+  "moveSelectedToOrg": {
+    "message": "Pārvietot atzīmēto uz apvienību"
   },
   "deleteSelected": {
     "message": "Izdzēst atlasītos"
@@ -437,7 +440,7 @@
     "message": "Atlasīt datni."
   },
   "maxFileSize": {
-    "message": "Lielākais pieļaujamais datnes izmērs ir 100 MB."
+    "message": "Lielākais pieļaujamais datnes izmērs ir 500 MB."
   },
   "updateKey": {
     "message": "Šo iespēju nevar izmantot, kamēr nav atjaunināta šifrēšanas atslēga."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Vienums labots"
   },
-  "sharedItem": {
-    "message": "Vienums kopīgots"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ pārvietots uz $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Vienumi kopīgoti"
+  "movedItemsToOrg": {
+    "message": "Atzīmētie vienumi pārvietoti uz $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Izdzēst vienumu"
@@ -720,7 +739,7 @@
     "description": "'Duo Security' and 'Duo Mobile' are product names and should not be translated."
   },
   "u2fDesc": {
-    "message": "Izmanto jebkuru FIDO U2F atbalstošu drošības atslēgu, lai piekļūtu kontam!"
+    "message": "Izmantot jebkuru FIDO U2F atbalstošu drošības atslēgu, lai piekļūtu kontam."
   },
   "u2fTitle": {
     "message": "FIDO U2F drošības atslēga"
@@ -729,10 +748,10 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "Izmantot jebkuru WebAuthn atbalstošu drošības atslēgu, lai piekļūtu kontam."
   },
   "webAuthnMigrated": {
-    "message": "(Migrated from FIDO)"
+    "message": "(Pārgājis no FIDO)"
   },
   "emailTitle": {
     "message": "E-pasts"
@@ -749,11 +768,11 @@
   "organizations": {
     "message": "Apvienības"
   },
-  "shareDesc": {
-    "message": "Izvēlies apvienību, ar kuru koplietot šo vienumu. Koplietošana nodod šī vienuma piederību apvienībai. Tu vairs nebūsi šī vienuma tiešais īpašnieks pēc tā kopīgošanas."
+  "moveToOrgDesc": {
+    "message": "Izvēlies apvienību, uz kuru pārvietot šo vienumu. Pārvietošana nodod šī vienuma piederību apvienībai. Tu vairs nebūsi šī vienuma tiešais īpašnieks pēc tā pārvietošanas."
   },
-  "shareManyDesc": {
-    "message": "Izvēlies apvienību, ar kuru kopīgot šos vienumus. Kopīgošana nodod šo vienumu piederību apvienībai. Pēc to koplietodanas Tu vairs nebūsi šo vienumu tiešais īpašnieks."
+  "moveManyToOrgDesc": {
+    "message": "Izvēlies apvienību, uz kuru pārvietot šos vienumus. Pārvietošana nodod šo vienumu piederību apvienībai. Tu vairs nebūsi šo vienumu tiešais īpašnieks pēc to pārvietošanas."
   },
   "collectionsDesc": {
     "message": "Labot krājumus, ar kuriem šis vienums ir kopīgots. Tikai apvienības lietotāji, kam ir piekļuve šiem krājumiem, redzēs šo vienumu."
@@ -776,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Ir atlasīts(i) $COUNT$ vienums(i). $SHAREABLE_COUNT$ no tiem ir kopīgojams(i), atlikušais(ie) $NONSHAREABLE_COUNT$ nē.",
+  "moveSelectedItemsCountDesc": {
+    "message": "Ir atzīmēts(i) $COUNT$ vienums(i). $MOVEABLE_COUNT$ vienums(i) var tikt pārvietoti uz apvienību, bet $NONMOVEABLE_COUNT$ nē.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -816,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "Ievadīt galveno paroli, lai izdotu glabātavas saturu."
+  },
+  "export": {
+    "message": "Izdot"
   },
   "exportVault": {
     "message": "Izdot glabātavas saturu"
@@ -1035,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Nekas netika ievietots."
+  },
+  "importEncKeyError": {
+    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
   },
   "selectFormat": {
     "message": "Atlasīt ievietošanas datnes veidolu"
@@ -1270,7 +1295,7 @@
     }
   },
   "webAuthnkeyX": {
-    "message": "WebAuthn Key $INDEX$",
+    "message": "WebAuthn atslēga $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1324,7 +1349,7 @@
     "message": "Vai tiešām noņemt šo drošības atslēgu?"
   },
   "twoFactorWebAuthnAdd": {
-    "message": "Add a WebAuthn security key to your account"
+    "message": "Pievienot kontam WebAuthn drošības atslēgu"
   },
   "readKey": {
     "message": "Nolasīt atslēgu"
@@ -1360,10 +1385,10 @@
     "message": "Radās sarežģījumi, nolasot drošības atslēgu. Jāmēģina vēlreiz."
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+    "message": "Platformas ierobežojumu dēļ WebAuth nevar izmantot visās Bitwarden lietotnēs. Ir ieteicams iespējot vēl kādu divpakāpju pierakstīšanās nodrošinātāju, lai varētu piekļūt kontam, kad nav iespējams izmantot WebAuth. Atbalstītās platformas:"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Tīmekļa glabātava un pārlūku paplašinājums galddatorā/klēpjdatorā ar WebAuthn iespējotu pārlūku (Chrome, Opera, Vivaldi vai Firefox ar iespējotu FIDO U2F)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Bitwarden divpakāpju pierakstīšanās atkopšanas kods"
@@ -2327,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Kopīgots vienums $ID$.",
+  "movedItemIdToOrg": {
+    "message": "Moved item $ID$ to an organization.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2556,7 +2581,7 @@
     "message": "Ierīce"
   },
   "view": {
-    "message": "Skats"
+    "message": "Skatīt"
   },
   "invalidDateRange": {
     "message": "Nederīgs datumu apgabals."
@@ -2637,10 +2662,10 @@
     "message": "Nevarēja apstiprināt e-pasta adresi. Var mēģināt sūtīt atkārtotu apstiprinājuma e-pasta ziņojumu."
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "Nepieciešama e-pasta adreses apstiprināšana"
   },
   "emailVerificationRequiredDesc": {
-    "message": "You must verify your email to use this feature."
+    "message": "Ir jāapstiprina e-pasta adrese, lai izmantotu šo iespēju."
   },
   "updateBrowser": {
     "message": "Atjaunināt pārlūku"
@@ -3423,7 +3448,7 @@
     "message": "Vai tiešām noņemt paroli?"
   },
   "hideEmail": {
-    "message": "Hide my email address from recipients."
+    "message": "Slēpt e-pasta adresi no saņēmējiem."
   },
   "disableThisSend": {
     "message": "Atspējot šo \"Send\", lai neviens tam nevarētu piekļūt.",
@@ -3645,25 +3670,25 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
-    "message": "Send Options",
+    "message": "\"Send\" iestatījumi",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
-    "message": "Set options for creating and editing Sends.",
+    "message": "Uzstādīt iestatījumus \"Send\" izveidošanai un labošanai.",
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Apvienību lietotāji, kas var pārvaldīt apvienības nosacījumu kopas, nav pakļauti šīs nosacījumu kopas piemērošanai."
   },
   "disableHideEmail": {
-    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "message": "Neļaut lietotājiem slēpt e-pasta adresi no saņēmējiem, kad tiek izveidots vai labots \"Send\".",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
-    "message": "The following organization policies are currently in effect:"
+    "message": "Ir spēkā zemāk uzskaitītie apvienības nosacījumi:"
   },
   "sendDisableHideEmailInEffect": {
-    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "message": "Lietotājiem nav ļauts slēpt e-pasta adresi no saņēmējiem, kad tiek izveidots vai labots \"Send\".",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3721,7 +3746,7 @@
     "message": "Pārvaldīt lietotājus"
   },
   "manageResetPassword": {
-    "message": "Manage Password Reset"
+    "message": "Pārvaldīt paroles atiestatīšanu"
   },
   "disableRequireSsoError": {
     "message": "Vispirms ir pašrocīgi jātspējo vienotās pieteikšanās nosacījumu kopa, pirms šī var tikt atspējota."
@@ -3810,7 +3835,7 @@
     }
   },
   "viewSendHiddenEmailWarning": {
-    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "message": "Bitwarden lietotājs, kurš izveidoja šo \"Send\", ir izvēlējies slēpt savu e-pasta adresi. Ir jāpārliecinās par avota uzticamību, pirms tiek izmantots vai lejupielādēts tā saturs.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
@@ -3829,37 +3854,37 @@
     "message": "Atgadījās kļūda, saglabājot dzēšanas un derīguma beigu datumus."
   },
   "webAuthnFallbackMsg": {
-    "message": "To verify your 2FA please click the button below."
+    "message": "Lai apstiprinātu 2FA, lūgums klikšķināt uz zemāk esošās pogas."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAutn"
+    "message": "Autentificēt WebAuthn"
   },
   "webAuthnNotSupported": {
-    "message": "WebAuthn is not supported in this browser."
+    "message": "WebAuthn šajā pārlūkā netiek atbalstīts."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+    "message": "<strong>WebAuthn tika veiksmīgi apstiprināts.</strong><br>Šo cilni var aizvērt."
   },
   "hintEqualsPassword": {
-    "message": "Your password hint cannot be the same as your password."
+    "message": "Paroles norāde nedrīkst būt tāda pati kā parole."
   },
   "enrollPasswordReset": {
-    "message": "Enroll in Password Reset"
+    "message": "Pievienot paroles atiestatīšanās sarakstam"
   },
   "enrolledPasswordReset": {
-    "message": "Enrolled in Password Reset"
+    "message": "Pievienots paroles atiestatīšanās sarakstam"
   },
   "withdrawPasswordReset": {
-    "message": "Withdraw from Password Reset"
+    "message": "Izņemt no paroles atiestatīšanas saraksta"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "Pievienošana bija veiksmīga."
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Withdrawal success!"
+    "message": "Izņemšana bija veiksmīga."
   },
   "eventEnrollPasswordReset": {
-    "message": "User $ID$ enrolled in password reset assistance.",
+    "message": "Lietotājs $ID$ tika pievienots paroles atiestatīšanas atbalsta sarakstam.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3868,7 +3893,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "User $ID$ withdrew from password reset assistance.",
+    "message": "Lietotājs $ID$ tika izņemts no paroles atiestatīšanas atbalsta saraksta.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3876,19 +3901,121 @@
       }
     }
   },
+  "eventAdminPasswordReset": {
+    "message": "Master password reset for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Reset Password"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "this user"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "One or more organization policies require the master password to meet the following requirements:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Password reset success!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Master Password Reset"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Allow administrators in the organization to reset organization users' master password."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatic Enrollment"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Automatically enroll new users"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Organization Keys response is null"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Reset Password Details response is null"
+  },
   "trashCleanupWarning": {
-    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+    "message": "Šifri, kas atkritnē atrodas vairāk nekā 30 dienas, tiks izdzēsti."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+    "message": "Šifri, kas atkritnē atrodas jau kādu laika posmu, tiks izdzēsti."
   },
   "passwordPrompt": {
-    "message": "Master password re-prompt"
+    "message": "Galvenās paroles pārvaicāšana"
   },
   "passwordConfirmation": {
-    "message": "Master password confirmation"
+    "message": "Galvenās paroles apstiprināšana"
   },
   "passwordConfirmationDesc": {
-    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+    "message": "Šī darbība ir aizsargāta. Lai turpinātu, ir jāievada galvenā parole, lai apstiprinātu identitāti."
+  },
+  "reinviteSelected": {
+    "message": "Resend Invitations"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "This action is not applicable to any of the selected users."
+  },
+  "removeUsersWarning": {
+    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+  },
+  "confirmSelected": {
+    "message": "Confirm Selected"
+  },
+  "bulkConfirmStatus": {
+    "message": "Bulk action status"
+  },
+  "bulkConfirmMessage": {
+    "message": "Confirmed successfully."
+  },
+  "bulkReinviteMessage": {
+    "message": "Reinvited successfully."
+  },
+  "bulkRemovedMessage": {
+    "message": "Removed successfully"
+  },
+  "bulkFilteredMessage": {
+    "message": "Excluded, not applicable for this action."
+  },
+  "fingerprint": {
+    "message": "Fingerprint"
+  },
+  "removeUsers": {
+    "message": "Remove Users"
+  },
+  "error": {
+    "message": "Error"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
   }
 }

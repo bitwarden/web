@@ -360,6 +360,9 @@
   "share": {
     "message": "共享"
   },
+  "moveToOrganization": {
+    "message": "移動至組織"
+  },
   "valueCopied": {
     "message": "$VALUE$ 已複製",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "密碼庫"
   },
-  "shareSelected": {
-    "message": "共享選取的項目"
+  "moveSelectedToOrg": {
+    "message": "移動已選項目到組織"
   },
   "deleteSelected": {
     "message": "刪除選取的項目"
@@ -437,7 +440,7 @@
     "message": "選擇檔案。"
   },
   "maxFileSize": {
-    "message": "檔案最大為 100MB。"
+    "message": "檔案最大為 500MB。"
   },
   "updateKey": {
     "message": "更新加密金鑰前不能使用此功能。"
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "項目已編輯"
   },
-  "sharedItem": {
-    "message": "項目已共享"
+  "movedItemToOrg": {
+    "message": "已將 $ITEMNAME$ 移動至 $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "項目已共享"
+  "movedItemsToOrg": {
+    "message": "已將選擇項目移動至 $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "刪除項目"
@@ -729,10 +748,10 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "使用任何具有 WebAuthn 功能的安全金鑰來存取您的帳戶。"
   },
   "webAuthnMigrated": {
-    "message": "(Migrated from FIDO)"
+    "message": "（遷移自 FIDO）"
   },
   "emailTitle": {
     "message": "電子郵件"
@@ -749,11 +768,11 @@
   "organizations": {
     "message": "組織"
   },
-  "shareDesc": {
-    "message": "選擇您希望共享這個項目的組織。項目的擁有權將會轉移到組織。一經共享，您將不再是此項目的直接擁有者。"
+  "moveToOrgDesc": {
+    "message": "選擇您希望將這個項目移動到哪個組織。項目的擁有權將會轉移到該組織。一經移動，您將不再是此項目的直接擁有者。"
   },
-  "shareManyDesc": {
-    "message": "選擇您希望共享這些項目的組織。項目的擁有權將會轉移到組織。一經共享，您將不再是這些項目的直接擁有者。"
+  "moveManyToOrgDesc": {
+    "message": "選擇您希望將這些項目移動到哪個組織。項目的擁有權將會轉移到該組織。一經移動，您將不再是這些項目的直接擁有者。"
   },
   "collectionsDesc": {
     "message": "編輯與此項目共享的集合。只有具有這些集合存取權限的組織使用者才能夠看到此項目。"
@@ -776,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "您已經選取了 $COUNT$ 個項目。其中 $SHAREABLE_COUNT$ 個項目處於共享狀態，$NONSHAREABLE_COUNT$ 個項目處於非共享狀態。",
+  "moveSelectedItemsCountDesc": {
+    "message": "你選擇了 $COUNT$ 個項目。當中有 $MOVEABLE_COUNT$ 個項目可移動到組織當中，而有 $NONMOVEABLE_COUNT$ 個無法移動。",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -816,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "輸入您的主密碼以匯出密碼庫資料。"
+  },
+  "export": {
+    "message": "匯出"
   },
   "exportVault": {
     "message": "匯出密碼庫"
@@ -1035,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "沒有匯入任何內容。"
+  },
+  "importEncKeyError": {
+    "message": "解密匯出檔案時發生錯誤，您的加密金鑰與匯出資料時使用的金鑰不同。"
   },
   "selectFormat": {
     "message": "選擇匯入檔案的格式"
@@ -1270,7 +1295,7 @@
     }
   },
   "webAuthnkeyX": {
-    "message": "WebAuthn Key $INDEX$",
+    "message": "WebAuthn 金鑰 $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1324,7 +1349,7 @@
     "message": "您確定要移除這把安全鑰匙嗎？"
   },
   "twoFactorWebAuthnAdd": {
-    "message": "Add a WebAuthn security key to your account"
+    "message": "在您的帳戶中新增 WebAuthn 安全金鑰"
   },
   "readKey": {
     "message": "讀取鑰匙"
@@ -1360,10 +1385,10 @@
     "message": "讀取安全鑰匙時發生問題。請重試。"
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+    "message": "由於平台限制，無法於所有 Bitwarden 應用程式中使用 WebAuthn。請設定另一套兩步驟登入方式，以確保在 WebAuthn 無法使用時還能存取您的帳戶。支援的平台有:"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "桌面/筆記型電腦上具有 WebAuthn 功能的瀏覽器（Chrome、Opera、Vivaldi 或開啟 FIDO U2F 功能的 Firefox）上的網頁版密碼庫和瀏覽器擴充套件。"
   },
   "twoFactorRecoveryYourCode": {
     "message": "您的 Bitwarden 兩步驟登入復原代碼"
@@ -2327,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "已共享項目 $ID$。",
+  "movedItemIdToOrg": {
+    "message": "移動項目 $ID$ 至一個組織。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2622,7 +2647,7 @@
     "message": "驗證電子郵件"
   },
   "verifyEmailDesc": {
-    "message": "驗證您帳戶的電子郵件位址以存取所有功能。"
+    "message": "驗證您帳戶的電子郵件位址以使用所有功能。"
   },
   "verifyEmailFirst": {
     "message": "首先必須驗證您帳戶的電子郵件位址。"
@@ -2637,10 +2662,10 @@
     "message": "無法驗證電子郵件。請嘗試傳送一封新的驗證電子郵件。"
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "需要驗證電子郵件"
   },
   "emailVerificationRequiredDesc": {
-    "message": "You must verify your email to use this feature."
+    "message": "必須驗證您的電子郵件才能使用此功能。"
   },
   "updateBrowser": {
     "message": "更新瀏覽器"
@@ -3423,7 +3448,7 @@
     "message": "您確定要移除密碼嗎？"
   },
   "hideEmail": {
-    "message": "Hide my email address from recipients."
+    "message": "對收件人隱藏我的電子郵件位址。"
   },
   "disableThisSend": {
     "message": "停用此 Send 以阻止任何人存取它。",
@@ -3518,7 +3543,7 @@
     "message": "接管"
   },
   "takeoverDesc": {
-    "message": "可以使用新的主密碼重置您的帳戶。"
+    "message": "可以使用新的主密碼重設您的帳戶。"
   },
   "waitTime": {
     "message": "等候時間"
@@ -3545,7 +3570,7 @@
     "message": "您已被邀請成為上述使用者的緊急聯絡人。要接受邀請，您需要登入或創建新的 Bitwarden 帳戶。"
   },
   "emergencyInviteAcceptFailed": {
-    "message": "無法接受邀請。請使用者傳送一個新的邀請。"
+    "message": "無法接受邀請。請向使用者請求傳送一個新的邀請。"
   },
   "emergencyInviteAcceptFailedShort": {
     "message": "無法接受邀請。$DESCRIPTION$",
@@ -3606,7 +3631,7 @@
     "message": "緊急存取已拒絕"
   },
   "passwordResetFor": {
-    "message": "$USER$ 的密碼已重置。您現在可以使用新密碼登入了。",
+    "message": "$USER$ 的密碼已重設。您現在可以使用新密碼登入了。",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3645,25 +3670,25 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
-    "message": "Send Options",
+    "message": "Send 選項",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
-    "message": "Set options for creating and editing Sends.",
+    "message": "設定用於創建和編輯 Send 的選項。",
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "可以管理組織原則的組織使用者豁免此原則的執行。"
   },
   "disableHideEmail": {
-    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "message": "不允許使用者在創建或編輯 Send 時隱藏他們的電子郵件位址。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
-    "message": "The following organization policies are currently in effect:"
+    "message": "以下組織原則當前正起作用："
   },
   "sendDisableHideEmailInEffect": {
-    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "message": "使用者在創建或編輯 Send 時不允許隱藏他們的電子郵件位址。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3721,7 +3746,7 @@
     "message": "管理使用者"
   },
   "manageResetPassword": {
-    "message": "Manage Password Reset"
+    "message": "管理密碼重設"
   },
   "disableRequireSsoError": {
     "message": "您必須手動停用單一登入認證原則，然後才能停用此原則。"
@@ -3810,7 +3835,7 @@
     }
   },
   "viewSendHiddenEmailWarning": {
-    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "message": "創建此 Send 的 Bitwarden 使用者已選擇隱藏他們的電子郵件位址。在使用或下載此連結的內容之前，應確保您信任此連結的來源。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
@@ -3829,37 +3854,37 @@
     "message": "儲存刪除日期和逾期日期時發生錯誤。"
   },
   "webAuthnFallbackMsg": {
-    "message": "To verify your 2FA please click the button below."
+    "message": "要驗證您的 2FA，請點擊下面的按鈕。"
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAutn"
+    "message": "驗證 WebAuthn"
   },
   "webAuthnNotSupported": {
-    "message": "WebAuthn is not supported in this browser."
+    "message": "此瀏覽器不支援 WebAuthn。"
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+    "message": "WebAuthn 驗證成功！您可以關閉此分頁。"
   },
   "hintEqualsPassword": {
-    "message": "Your password hint cannot be the same as your password."
+    "message": "密碼提示不能與密碼相同。"
   },
   "enrollPasswordReset": {
-    "message": "Enroll in Password Reset"
+    "message": "注冊密碼重設"
   },
   "enrolledPasswordReset": {
-    "message": "Enrolled in Password Reset"
+    "message": "已注冊密碼重設"
   },
   "withdrawPasswordReset": {
-    "message": "Withdraw from Password Reset"
+    "message": "撤銷密碼重設"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "注冊成功！"
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Withdrawal success!"
+    "message": "撤銷成功！"
   },
   "eventEnrollPasswordReset": {
-    "message": "User $ID$ enrolled in password reset assistance.",
+    "message": "用戶 $ID$ 注冊了密碼重設協助。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3868,7 +3893,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "User $ID$ withdrew from password reset assistance.",
+    "message": "用戶 $ID$ 撤銷了密碼重設協助。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3876,19 +3901,121 @@
       }
     }
   },
+  "eventAdminPasswordReset": {
+    "message": "重新設定使用者 $ID$ 的主密碼",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "重設密碼"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "接下來會將 $NAME$ 登出目前的會話，並要求他們重新登入。其他裝置上的活動會話最多會保持一個小時。",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "這個使用者"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "一個或多個組織原則要求主密碼須符合下列條件："
+  },
+  "resetPasswordSuccess": {
+    "message": "密碼重設成功！"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "註冊將允許組織管理者去變更您的主密碼。確定要註冊嗎？"
+  },
+  "resetPasswordPolicy": {
+    "message": "主密碼重設"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "允許組織管理者去重新設定組織使用者的主密碼。"
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "組織使用者需要先自行註冊或將被自動註冊後管理者才能重新設定他們的主密碼。"
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "自動註冊"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "所有邀請被接受后的使用者將會被自動註冊密碼重設。"
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "已經在組織中的使用者將不會被註冊密碼重設。他們需要先自行註冊後管理者才能重設他們的主密碼。"
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "自動註冊新使用者"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "此組織設定了讓您可自動重設密碼的企業政策。設定政策後，將允許組織管理員更改您的主控密碼。"
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "組織金鑰回覆為空"
+  },
+  "resetPasswordDetailsError": {
+    "message": "重設密碼細節回覆為空"
+  },
   "trashCleanupWarning": {
-    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+    "message": "垃圾桶中超過 30 天的密碼將會被自動刪除。"
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+    "message": "垃圾桶中超過一定時間的密碼將會被自動刪除。"
   },
   "passwordPrompt": {
-    "message": "Master password re-prompt"
+    "message": "重新詢問主密碼"
   },
   "passwordConfirmation": {
-    "message": "Master password confirmation"
+    "message": "確認主密碼"
   },
   "passwordConfirmationDesc": {
-    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+    "message": "此操作受到保護。若要繼續，請重新輸入您的主密碼以驗證您的身份。"
+  },
+  "reinviteSelected": {
+    "message": "重新傳送邀請"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "這個動作不適用於任何已選取的使用者。"
+  },
+  "removeUsersWarning": {
+    "message": "您確定要移除以下使用者嗎？處理程序需要幾秒鐘去完成而且無法被中斷或取消。"
+  },
+  "confirmSelected": {
+    "message": "確認所選"
+  },
+  "bulkConfirmStatus": {
+    "message": "批次作業狀態"
+  },
+  "bulkConfirmMessage": {
+    "message": "已成功確認。"
+  },
+  "bulkReinviteMessage": {
+    "message": "已成功重新邀請。"
+  },
+  "bulkRemovedMessage": {
+    "message": "已成功移除。"
+  },
+  "bulkFilteredMessage": {
+    "message": "排除，不適用於這個動作。"
+  },
+  "fingerprint": {
+    "message": "指紋"
+  },
+  "removeUsers": {
+    "message": "移除使用者"
+  },
+  "error": {
+    "message": "錯誤"
+  },
+  "resetPasswordManageUsers": {
+    "message": "必須開啟管理密碼重設權限後，才能開啟管理使用者權限"
   }
 }

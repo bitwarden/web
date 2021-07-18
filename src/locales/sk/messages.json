@@ -360,6 +360,9 @@
   "share": {
     "message": "Zdieľať"
   },
+  "moveToOrganization": {
+    "message": "Presunúť do organizácie"
+  },
   "valueCopied": {
     "message": "$VALUE$ skopírované",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Trezor"
   },
-  "shareSelected": {
-    "message": "Zdieľať vybrané"
+  "moveSelectedToOrg": {
+    "message": "Presunúť vybraté do organizácie"
   },
   "deleteSelected": {
     "message": "Odstrániť vybrané"
@@ -437,7 +440,7 @@
     "message": "Vybrať súbor."
   },
   "maxFileSize": {
-    "message": "Maximálna veľkosť súboru je 100 MB."
+    "message": "Maximálna veľkosť súboru je 500 MB."
   },
   "updateKey": {
     "message": "Túto funkciu nemožno použiť, kým neaktualizujete svoj šifrovací kľúč."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Položka upravená"
   },
-  "sharedItem": {
-    "message": "Položka zdieľaná"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ presunuté do $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Položky zdieľané"
+  "movedItemsToOrg": {
+    "message": "Vybraté položky boli presunuté do $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Odstrániť položku"
@@ -729,10 +748,10 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "Použiť akýkoľvek WebAuthn bezpečnostný kľúč pre prístup k vášmu účtu."
   },
   "webAuthnMigrated": {
-    "message": "(Migrated from FIDO)"
+    "message": "(Migrované z FIDO)"
   },
   "emailTitle": {
     "message": "Email"
@@ -749,11 +768,11 @@
   "organizations": {
     "message": "Organizácie"
   },
-  "shareDesc": {
-    "message": "Vyberte organizáciu s ktorou chcete zdieľať túto položku. Zdieľanie presunie vlastníctvo položky na organizáciu. Po zdieľaní už nebudete priamy vlastník položky."
+  "moveToOrgDesc": {
+    "message": "Vyberte organizáciu, do ktorej chcete presunúť túto položku. Presunom do organizácie sa vlastníctvo položky prenáša na túto organizáciu. Po presunutí už nebudete priamym vlastníkom danej položky."
   },
-  "shareManyDesc": {
-    "message": "Vyberte organizáciu s ktorou chcete zdieľať tieto položky. Zdieľanie presunie vlastníctvo položiek na organizáciu. Po zdieľaní už nebudete priamy vlastník položiek."
+  "moveManyToOrgDesc": {
+    "message": "Vyberte organizáciu, do ktorej chcete presunúť tieto položky. Presunom do organizácie sa vlastníctvo položky prenáša na túto organizáciu. Po presunutí už nebudete priamym vlastníkom daných položiek."
   },
   "collectionsDesc": {
     "message": "Upravte zbierky s ktorými bude táto položka zdieľaná. Iba členovia organizácie s prístupom k vybraným zbierkam budú vidieť túto položku."
@@ -776,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Vybrali ste $COUNT$ položiek. $SHAREABLE_COUNT$ sa dá zdieľať, $NONSHAREABLE_COUNT$ sa nedá zdieľať.",
+  "moveSelectedItemsCountDesc": {
+    "message": "Vybrali ste $COUNT$ položku(iek). $MOVEABLE_COUNT$ položka(iek) môže(u) byť presunuté do organizácie, $NONMOVEABLE_COUNT$ nemôže(u).",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -816,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "Zadajte vaše hlavné heslo pre export údajov trezoru."
+  },
+  "export": {
+    "message": "Exportovať"
   },
   "exportVault": {
     "message": "Export trezoru"
@@ -1035,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Nič na importovanie."
+  },
+  "importEncKeyError": {
+    "message": "Chyba pri dešifrovaní exportovaného súboru. Váš šifrovací kľúč sa nezhoduje so šifrovacím kľúčom použitým pri exporte údajov."
   },
   "selectFormat": {
     "message": "Vyberte formát súboru importu"
@@ -1324,7 +1349,7 @@
     "message": "Naozaj chcete odstrániť tento bezpečnostný kľúč?"
   },
   "twoFactorWebAuthnAdd": {
-    "message": "Add a WebAuthn security key to your account"
+    "message": "Pridať bezpečnostný kľúč WebAuthn do vášho účtu"
   },
   "readKey": {
     "message": "Načítať kľúč"
@@ -1360,10 +1385,10 @@
     "message": "Problém pri čítaní bezpečnostného kľúča. Skúste to znova."
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+    "message": "Vzhľadom na obmedzenia platform, WebAuthn nemôže byť použitý vo všetkých Bitwarden aplikáciách. Mali by ste povoliť inú formu dvojitého overenia, aby ste sa mohli prihlásiť k svojmu účtu ak nie je možné použiť WebAuthn. Podporované platformy:"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Webový trezor a rozšírenia prehliadača na pracovnej stanici s prehliadačom podporujúcim WebAuthn (Chrome, Opera, Vivaldi, alebo Firefox so zapnutou podporou FIDO U2F)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Váš Bitwarden záchranný kód pre dvojstupňové overovanie"
@@ -2327,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Položka $ID$ zdieľaná.",
+  "movedItemIdToOrg": {
+    "message": "Položka $ID$ presunutá do organizácie.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2637,10 +2662,10 @@
     "message": "Overovanie zlyhalo. Skúste si odoslať nový verifikačný e-mail."
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "Vyžaduje sa overenie e-mailu"
   },
   "emailVerificationRequiredDesc": {
-    "message": "You must verify your email to use this feature."
+    "message": "Na používanie tejto funkcie musíte overiť svoj e-mail."
   },
   "updateBrowser": {
     "message": "Aktualizovať prehliadač"
@@ -3388,7 +3413,7 @@
     "message": "Maximálny počet prístupov"
   },
   "maxAccessCountDesc": {
-    "message": "Ak je nastavené, používatelia už nebudú mať prístup k tomuto odoslaniu po dosiahnutí maximálneho počtu prístupov.",
+    "message": "Ak je nastavené, používatelia už nebudú mať prístup k tomuto Sendu po dosiahnutí maximálneho počtu prístupov.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
@@ -3423,7 +3448,7 @@
     "message": "Naozaj chcete odstrániť heslo?"
   },
   "hideEmail": {
-    "message": "Hide my email address from recipients."
+    "message": "Skryť moju emailovú adresu pred príjemcami."
   },
   "disableThisSend": {
     "message": "Vypnúť toto Odoslanie, aby k nemu nikto nemal prístup.",
@@ -3645,25 +3670,25 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
-    "message": "Send Options",
+    "message": "Možnosti Sendu",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
-    "message": "Set options for creating and editing Sends.",
+    "message": "Nastavte možnosti pre vytváranie a úpravy Sendov.",
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Používatelia organizácie, ktorí môžu spravovať politiku organizácie, sú vyňatí z uplatňovania týchto zásad."
   },
   "disableHideEmail": {
-    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "message": "Nedovoľte používateľom skryť svoju e-mailovú adresu pred príjemcami pri vytváraní alebo úpravách Sendu.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
-    "message": "The following organization policies are currently in effect:"
+    "message": "V súčasnosti platia nasledujúce pravidlá organizácie:"
   },
   "sendDisableHideEmailInEffect": {
-    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "message": "Používatelia nemajú povolené skryť svoju e-mailovú adresu pred príjemcami pri vytváraní alebo úpravách Sendu.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3721,7 +3746,7 @@
     "message": "Spravovať používateľov"
   },
   "manageResetPassword": {
-    "message": "Manage Password Reset"
+    "message": "Správa resetovania hesla"
   },
   "disableRequireSsoError": {
     "message": "Predtým, ako bude možné túto politiku deaktivovať, musíte manuálne vypnúť politiku overovania jediným prihlásením."
@@ -3810,7 +3835,7 @@
     }
   },
   "viewSendHiddenEmailWarning": {
-    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "message": "Používateľ Bitwardenu, ktorý vytvoril tento Send, skryl e-mailové adresy pred príjemcami. Mali by ste zvážiť, či dôverujete zdrojovému odkazu pred jeho použitím alebo stiahnutím jeho obsahu.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
@@ -3829,37 +3854,37 @@
     "message": "Pri ukladaní dátumov odstránenia a vypršania platnosti sa vyskytla chyba."
   },
   "webAuthnFallbackMsg": {
-    "message": "To verify your 2FA please click the button below."
+    "message": "Na overenie 2FA, prosím, kliknite na tlačidlo nižšie."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAutn"
+    "message": "Overiť cez WebAuthn"
   },
   "webAuthnNotSupported": {
-    "message": "WebAuthn is not supported in this browser."
+    "message": "Tento prehliadač nepodporuje WebAuthn."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+    "message": "WebAuthn bol úspešne overený! Túto kartu môžete zavrieť."
   },
   "hintEqualsPassword": {
-    "message": "Your password hint cannot be the same as your password."
+    "message": "Nápoveda pre heslo nemôže byť rovnaká ako heslo."
   },
   "enrollPasswordReset": {
-    "message": "Enroll in Password Reset"
+    "message": "Zaregistrovať sa pre obnovu hesla"
   },
   "enrolledPasswordReset": {
-    "message": "Enrolled in Password Reset"
+    "message": "Zaregistrovaný pre obnovu hesla"
   },
   "withdrawPasswordReset": {
-    "message": "Withdraw from Password Reset"
+    "message": "Odhlásiť sa z obnovy hesla"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "Registrácia úspešná!"
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Withdrawal success!"
+    "message": "Odhlásenie úspešné!"
   },
   "eventEnrollPasswordReset": {
-    "message": "User $ID$ enrolled in password reset assistance.",
+    "message": "Používateľ $ID$ sa registroval na pomoc s obnovou hesla.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3868,7 +3893,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "User $ID$ withdrew from password reset assistance.",
+    "message": "Používateľ $ID$ sa odhlásil z pomoci obnovy hesla.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3876,19 +3901,121 @@
       }
     }
   },
+  "eventAdminPasswordReset": {
+    "message": "Obnoviť hlavné heslo pre používateľa $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Obnoviť heslo"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Pokračovaním sa $NAME$ odhlási z aktuálnej relácie a bude sa musieť znova prihlásiť. Aktívne relácie na iných zariadeniach môžu zostať aktívne až jednu hodinu.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "tento používateľ"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "Jedno alebo viac pravidiel organizácie požadujú, aby hlavné heslo spĺňalo nasledujúce požiadavky:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Heslo bolo úspešne obnovené!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Registrácia umožní správcom organizácie zmeniť vaše hlavné heslo. Naozaj sa chcete zaregistrovať?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Hlavné heslo obnovené"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Umožní správcom v organizácii resetovať hlavné heslo používateľov organizácie."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Používatelia v organizácii sa budú musieť sami zaregistrovať alebo byť automaticky zaregistrovaní predtým, ako budú môcť správcovia resetovať ich hlavné heslo."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatická registrácia"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "Všetci používatelia budú po prijatí pozvánky automaticky zaregistrovaní na obnovenie hesla."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Používatelia, ktorí už v organizácii sú, nebudú spätne zaregistrovaní na obnovenie hesla. Budú sa musieť sami zaregistrovať predtým, ako im administrátori obnovia hlavné heslo."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Automaticky zaregistrovať nových používateľov"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Táto organizácia má podnikovú politiku, ktorá vás automaticky zaregistruje na obnovenia hesla. Registrácia umožní správcom organizácie zmeniť vaše hlavné heslo."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Prázdná odpoveď Organization Keys"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Odpoveď na obnovenie hesla je prázdna"
+  },
   "trashCleanupWarning": {
-    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+    "message": "Položky ktoré boli v Koši viac ako 30 dní budú automaticky vymazané."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+    "message": "Položky v Koši budú po nejakej dobe automaticky vymazané."
   },
   "passwordPrompt": {
-    "message": "Master password re-prompt"
+    "message": "Znova zadajte hlavné heslo"
   },
   "passwordConfirmation": {
-    "message": "Master password confirmation"
+    "message": "Potvrdenie hlavného hesla"
   },
   "passwordConfirmationDesc": {
-    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+    "message": "Táto akcia je chránená. Ak chcete pokračovať, znova zadajte hlavné heslo a overte svoju totožnosť."
+  },
+  "reinviteSelected": {
+    "message": "Znovu poslať pozvánky"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "Táto akcia sa nevzťahuje na žiadneho z vybraných používateľov."
+  },
+  "removeUsersWarning": {
+    "message": "Naozaj chcete odstrániť týchto používateľov? Dokončenie procesu môže trvať niekoľko sekúnd a nie je možné ho prerušiť ani zrušiť."
+  },
+  "confirmSelected": {
+    "message": "Potvrdiť vybrané"
+  },
+  "bulkConfirmStatus": {
+    "message": "Stav hromadnej akcie"
+  },
+  "bulkConfirmMessage": {
+    "message": "Úspešne potvrdené."
+  },
+  "bulkReinviteMessage": {
+    "message": "Opätovné pozvanie úspešné."
+  },
+  "bulkRemovedMessage": {
+    "message": "Odstránenie úspešné"
+  },
+  "bulkFilteredMessage": {
+    "message": "Vylúčené, neplatí pre túto akciu."
+  },
+  "fingerprint": {
+    "message": "Odtlačok prsta"
+  },
+  "removeUsers": {
+    "message": "Odstrániť používateľov"
+  },
+  "error": {
+    "message": "Chyba"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Správa používateľov musí byť povolená aj s oprávnením spravovať obnovenie hesla"
   }
 }

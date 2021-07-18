@@ -57,7 +57,10 @@ export class OrganizationsComponent implements OnInit {
 
     allowEnrollmentChanges(org: Organization): boolean {
         if (org.usePolicies && org.useResetPassword && org.hasPublicAndPrivateKeys) {
-            return this.policies.some(p => p.organizationId === org.id && p.enabled);
+            const policy = this.policies.find(p => p.organizationId === org.id);
+            if (policy != null && policy.enabled) {
+                return org.resetPasswordEnrolled && policy.data.autoEnrollEnabled ? false : true;
+            }
         }
 
         return false;

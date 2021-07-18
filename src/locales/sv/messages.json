@@ -360,6 +360,9 @@
   "share": {
     "message": "Dela"
   },
+  "moveToOrganization": {
+    "message": "Flytta till organisation"
+  },
   "valueCopied": {
     "message": "$VALUE$ kopierades",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Valv"
   },
-  "shareSelected": {
-    "message": "Dela markerade"
+  "moveSelectedToOrg": {
+    "message": "Flytta valda till organisation"
   },
   "deleteSelected": {
     "message": "Radera markerade"
@@ -437,7 +440,7 @@
     "message": "Välj en fil."
   },
   "maxFileSize": {
-    "message": "Filen får vara maximalt 100 MB."
+    "message": "Filen får vara maximalt 500 MB."
   },
   "updateKey": {
     "message": "Du kan inte använda denna funktion förrän du uppdaterar din krypteringsnyckel."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Redigerade objekt"
   },
-  "sharedItem": {
-    "message": "Delade objekt"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ flyttades till $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Delade objekt"
+  "movedItemsToOrg": {
+    "message": "De valda objekten flyttades till $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Radera objekt"
@@ -729,10 +748,10 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "Använd en WebAuthn-aktiverad säkerhetsnyckel för att komma åt ditt konto."
   },
   "webAuthnMigrated": {
-    "message": "(Migrated from FIDO)"
+    "message": "(Migrerad från FIDO)"
   },
   "emailTitle": {
     "message": "E-post"
@@ -749,11 +768,11 @@
   "organizations": {
     "message": "Organisationer"
   },
-  "shareDesc": {
-    "message": "Välj en organisation som du vill dela detta objekt med. Delning överför ägandet av objektet till organisationen. Du kommer inte längre vara direkt ägare till detta objekt när det har delats."
+  "moveToOrgDesc": {
+    "message": "Välj en organisation som du vill flytta detta objektet till. Flytt till en organisation överför ägandet av objektet till den organisationen. Du kommer inte längre att vara direkt ägare till detta objekt när det har flyttats."
   },
-  "shareManyDesc": {
-    "message": "Välj en organisation som du vill dela dessa objekt med. Delning överför ägandet av objekten till organisationen. Du kommer inte längre vara direkt ägare till dessa objekt när de har delats."
+  "moveManyToOrgDesc": {
+    "message": "Välj en organisation som du vill flytta dessa objekt till. Flytt till en organisation överför ägandet av objekten till den organisationen. Du kommer inte längre att vara direkt ägare till dessa objekt när de har flyttats."
   },
   "collectionsDesc": {
     "message": "Redigera de samlingar som detta objekt delas med. Endast organisationsanvändare med tillgång till dessa samlingar kommer att kunna se detta objekt."
@@ -776,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Du har markerat $COUNT$ objekt. $SHAREABLE_COUNT$ objekt kan delas, $NONSHAREABLE_COUNT$ kan inte delas.",
+  "moveSelectedItemsCountDesc": {
+    "message": "Du har valt $COUNT$ objekt. $MOVEABLE_COUNT$ objekt kan flyttas till en organisation, $NONMOVEABLE_COUNT$ kan det inte.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -816,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "Ange ditt huvudlösenord för att exportera ditt valv."
+  },
+  "export": {
+    "message": "Exportera"
   },
   "exportVault": {
     "message": "Exportera valv"
@@ -893,7 +915,7 @@
     }
   },
   "loggedOutWarning": {
-    "message": "Om du fortsätter kommer du loggas ut från din nuvarande session och du kommer behöver logga in igen. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme."
+    "message": "Om du fortsätter kommer du loggas ut från sin nuvarande session vilket kräver att du loggar in igen. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme."
   },
   "emailChanged": {
     "message": "E-postadressen ändrades"
@@ -965,7 +987,7 @@
     "message": "Orolig att ditt konto är inloggat på en annan enhet? Fortsätt nedan för att avauktorisera alla datorer eller enheter som du har använt tidigare. Detta rekommenderas om du har använt en offentlig dator eller av misstag sparat ditt lösenord på en enhet som inte är din. Detta steg kommer också att rensa alla tidigare ihågkomna sessioner med tvåstegsverifiering."
   },
   "deauthorizeSessionsWarning": {
-    "message": "Om du fortsätter kommer du även loggas ut från din nuvarande session och du kommer behöver logga in igen. Du kommer även behöva verifiera med tvåstegsverifiering om det är aktiverat. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme."
+    "message": "Om du fortsätter kommer du loggas ut från sin nuvarande session vilket kräver att du loggar in igen. Du kommer även behöva verifiera med tvåstegsverifiering om det är aktiverat. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme."
   },
   "sessionsDeauthorized": {
     "message": "Alla sessioner avauktoriserades"
@@ -1035,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Ingenting importerades."
+  },
+  "importEncKeyError": {
+    "message": "Ett fel uppstod vid dekryptering av den exporterade filen. Din krypteringsnyckel matchar inte krypteringsnyckeln som användes för att exportera datan."
   },
   "selectFormat": {
     "message": "Välj importfilens format"
@@ -1270,7 +1295,7 @@
     }
   },
   "webAuthnkeyX": {
-    "message": "WebAuthn Key $INDEX$",
+    "message": "WebAuthn-nyckel $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1324,7 +1349,7 @@
     "message": "Är du säker på att du vill ta bort denna säkerhetsnyckel?"
   },
   "twoFactorWebAuthnAdd": {
-    "message": "Add a WebAuthn security key to your account"
+    "message": "Lägg till en WebAuthn säkerhetsnyckel till ditt konto"
   },
   "readKey": {
     "message": "Läs nyckel"
@@ -1360,10 +1385,10 @@
     "message": "Det gick inte att läsa säkerhetsnyckeln. Försök igen."
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+    "message": "På grund av plattformsbegränsningar kan WebAuthn inte användas i alla Bitwarden-applikationer. Du bör aktivera en annan metod för tvåstegsverifiering så att du kan komma åt ditt konto när WebAuthn inte kan användas. Plattformar som stöds:"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Webbvalvet och webbläsartillägg på en stationär eller bärbar dator med en WebAuthn-aktiverad webbläsare (Chrome, Opera, Vivaldi eller Firefox med FIDO U2F aktiverat)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Din återställningskod för tvåstegsverifiering"
@@ -2327,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Delade objektet $ID$.",
+  "movedItemIdToOrg": {
+    "message": "Flyttade objektet $ID$ till en organisation.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2637,10 +2662,10 @@
     "message": "Det gick inte att verifiera din e-postadress. Prova att skicka ett nytt verifieringsmeddelande."
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "E-postverifiering krävs"
   },
   "emailVerificationRequiredDesc": {
-    "message": "You must verify your email to use this feature."
+    "message": "Du måste verifiera din e-post för att använda den här funktionen."
   },
   "updateBrowser": {
     "message": "Uppdatera webbläsaren"
@@ -3423,7 +3448,7 @@
     "message": "Är du säker på att du vill ta bort lösenordet?"
   },
   "hideEmail": {
-    "message": "Hide my email address from recipients."
+    "message": "Dölj min e-postadress för mottagare."
   },
   "disableThisSend": {
     "message": "Inaktivera denna försändelse så att ingen kan komma åt den.",
@@ -3645,25 +3670,25 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
-    "message": "Send Options",
+    "message": "Alternativ för Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
-    "message": "Set options for creating and editing Sends.",
+    "message": "Ange alternativ för att skapa och redigera Sends.",
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Organisationsanvändare som kan hantera organisationens policyer berörs inte av den här policyn."
   },
   "disableHideEmail": {
-    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "message": "Tillåt inte användare att dölja sin e-postadress från mottagare när de skapar eller redigerar en Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
-    "message": "The following organization policies are currently in effect:"
+    "message": "Följande organisationspolicyer är aktiva just nu:"
   },
   "sendDisableHideEmailInEffect": {
-    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "message": "Användare får inte dölja sin e-postadress från mottagare när de skapar eller redigerar en Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3721,7 +3746,7 @@
     "message": "Hantera användare"
   },
   "manageResetPassword": {
-    "message": "Manage Password Reset"
+    "message": "Hantera lösenordsåterställning"
   },
   "disableRequireSsoError": {
     "message": "Du måste inaktivera policyn \"Autentisering med Single Sign-On\" manuellt innan denna policy kan inaktiveras."
@@ -3810,7 +3835,7 @@
     }
   },
   "viewSendHiddenEmailWarning": {
-    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "message": "Bitwarden-användaren som skapade denna Send har valt att dölja sin e-postadress. Du bör se till att du litar på källan till denna länk innan du använder eller hämtar innehållet.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
@@ -3829,37 +3854,37 @@
     "message": "Det gick inte att spara raderings- och utgångsdatum."
   },
   "webAuthnFallbackMsg": {
-    "message": "To verify your 2FA please click the button below."
+    "message": "Klicka på knappen nedan för att verifiera din 2FA."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAutn"
+    "message": "Autentisera WebAutn"
   },
   "webAuthnNotSupported": {
-    "message": "WebAuthn is not supported in this browser."
+    "message": "WebAuthn stöds inte i denna webbläsare."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+    "message": "<strong>WebAuthn har verifierats!</strong><br>Du kan stänga den här fliken."
   },
   "hintEqualsPassword": {
-    "message": "Your password hint cannot be the same as your password."
+    "message": "Din lösenordsledtråd får inte vara samma som ditt lösenord."
   },
   "enrollPasswordReset": {
-    "message": "Enroll in Password Reset"
+    "message": "Delta i lösenordsåterställning"
   },
   "enrolledPasswordReset": {
-    "message": "Enrolled in Password Reset"
+    "message": "Deltar ​i lösenordsåterställning"
   },
   "withdrawPasswordReset": {
-    "message": "Withdraw from Password Reset"
+    "message": "Utträd från lösenordsåterställning"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "Deltagandet lyckades!"
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Withdrawal success!"
+    "message": "Utträdet lyckades!"
   },
   "eventEnrollPasswordReset": {
-    "message": "User $ID$ enrolled in password reset assistance.",
+    "message": "Användare $ID$ anmälde sig till hjälp för återställning av lösenord.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3868,7 +3893,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "User $ID$ withdrew from password reset assistance.",
+    "message": "Användaren $ID$ drog sig tillbaka från hjälp med återställning av lösenord.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3876,19 +3901,121 @@
       }
     }
   },
+  "eventAdminPasswordReset": {
+    "message": "Huvudlösenordet återställdes för användaren $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Återställ lösenord"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Om du fortsätter kommer $NAME$ loggas ut från sin nuvarande session vilket kräver att de loggar in igen. Aktiva sessioner på andra enheter kan fortsätta vara aktiva i upp till en timme.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "denna användare"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "En eller flera organisationspolicyer kräver att huvudlösenordet uppfyller följande krav:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Lösenordsåterställningen lyckades!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Deltagande tillåter organisationsadministratörer att ändra ditt huvudlösenord. Är du säker på att du vill delta?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Återställning av huvudlösenord"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Tillåt administratörer i organisationen att återställa organisationens användares huvudlösenord."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Användare i organisationen måste själva delta eller delta automatiskt innan administratörer kan återställa deras huvudlösenord."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatiskt deltagande"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "Alla användare kommer automatiskt att delta i lösenordsåterställning när deras inbjudan accepteras."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Användare som redan är med i organisationen kommer inte att retroaktivt delta i lösenordsåterställning. De kommer behöva delta själva innan administratörer kan återställa sitt huvudlösenord."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Automatiskt deltagande för nya användare"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Denna organisation har en företagspolicy som automatiskt registrerar dig för lösenordsåterställning. Deltagandet gör det möjligt för organisationsadministratörer att ändra ditt huvudlösenord."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Svaret om organisationnycklar är null"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Svaret om detaljer om lösenordsåterställning är null"
+  },
   "trashCleanupWarning": {
-    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+    "message": "Objekt som har varit i papperskorgen i mer än 30 dagar raderas automatiskt."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+    "message": "Objekt som har varit i papperskorgen ett tag raderas automatiskt."
   },
   "passwordPrompt": {
-    "message": "Master password re-prompt"
+    "message": "Återupprepa huvudlösenord"
   },
   "passwordConfirmation": {
-    "message": "Master password confirmation"
+    "message": "Bekräfta huvudlösenord"
   },
   "passwordConfirmationDesc": {
-    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+    "message": "Denna åtgärd är skyddad. För att fortsätta, ange ditt huvudlösenord igen för att verifiera din identitet."
+  },
+  "reinviteSelected": {
+    "message": "Skicka inbjudningar igen"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "Denna åtgärd är inte tillämplig på någon av de valda användarna."
+  },
+  "removeUsersWarning": {
+    "message": "Är du säker på att du vill ta bort följande användare? Processen kan ta några sekunder att slutföra och kan inte pausas eller avbrytas."
+  },
+  "confirmSelected": {
+    "message": "Bekräfta valda"
+  },
+  "bulkConfirmStatus": {
+    "message": "Status för massåtgärd"
+  },
+  "bulkConfirmMessage": {
+    "message": "Bekräftade."
+  },
+  "bulkReinviteMessage": {
+    "message": "Bjöd in igen."
+  },
+  "bulkRemovedMessage": {
+    "message": "Tog bort"
+  },
+  "bulkFilteredMessage": {
+    "message": "Exkluderad, inte tillämplig för denna åtgärd."
+  },
+  "fingerprint": {
+    "message": "Fingeravtryck"
+  },
+  "removeUsers": {
+    "message": "Ta bort användare"
+  },
+  "error": {
+    "message": "Fel"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Hantera användare måste också aktiveras med rättigheten Hantera lösenordsåterställning"
   }
 }
