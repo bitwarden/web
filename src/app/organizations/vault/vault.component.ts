@@ -272,7 +272,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     }
 
     editCipher(cipher: CipherView) {
-        return this.editCipherById(cipher.id);
+        return this.editCipherById(cipher == null ? null : cipher.id);
     }
 
     cloneCipher(cipher: CipherView) {
