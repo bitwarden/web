@@ -375,32 +375,6 @@ export class VaultComponent implements OnInit, OnDestroy {
         });
     }
 
-    private clearFilters() {
-        this.folderId = null;
-        this.collectionId = null;
-        this.favorites = false;
-        this.type = null;
-        this.deleted = false;
-    }
-
-    private go(queryParams: any = null) {
-        if (queryParams == null) {
-            queryParams = {
-                favorites: this.favorites ? true : null,
-                type: this.type,
-                folderId: this.folderId,
-                collectionId: this.collectionId,
-                deleted: this.deleted ? true : null,
-            };
-        }
-
-        this.router.navigate([], {
-            relativeTo: this.route,
-            queryParams: queryParams,
-            replaceUrl: true,
-        });
-    }
-
     private editCipherById(cipherId: string) {
         if (this.modal != null) {
             this.modal.close();
@@ -430,5 +404,31 @@ export class VaultComponent implements OnInit, OnDestroy {
         });
 
         return childComponent;
+    }
+
+    private clearFilters() {
+        this.folderId = null;
+        this.collectionId = null;
+        this.favorites = false;
+        this.type = null;
+        this.deleted = false;
+    }
+
+    private go(queryParams: any = null) {
+        if (queryParams == null) {
+            queryParams = {
+                favorites: this.favorites ? true : null,
+                type: this.type,
+                folderId: this.folderId,
+                collectionId: this.collectionId,
+                deleted: this.deleted ? true : null,
+            };
+        }
+
+        this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: queryParams,
+            replaceUrl: true,
+        });
     }
 }
