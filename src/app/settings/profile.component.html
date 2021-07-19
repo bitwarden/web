@@ -21,7 +21,7 @@
         </div>
         <div class="col-6">
             <div class="mb-3">
-                <app-avatar data="{{profile.name || profile.email}}" [email]="profile.email" dynamic="true" size="75"
+                <app-avatar data="{{profile | userName}}" [email]="profile.email" dynamic="true" size="75"
                     fontSize="35"></app-avatar>
             </div>
             <hr>

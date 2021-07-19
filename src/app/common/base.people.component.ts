@@ -1,28 +1,36 @@
-import { ComponentFactoryResolver, Directive, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+    ComponentFactoryResolver,
+    Directive,
+    ViewChild,
+    ViewContainerRef
+} from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 
+import { ValidationService } from 'jslib-angular/services/validation.service';
+import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
+import { StorageService } from 'jslib-common/abstractions/storage.service';
 
-import { ValidationService } from 'jslib-angular/services/validation.service';
+import { ConstantsService } from 'jslib-common/services/constants.service';
+
+import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
+import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
 
 import { OrganizationUserStatusType } from 'jslib-common/enums/organizationUserStatusType';
 import { OrganizationUserType } from 'jslib-common/enums/organizationUserType';
 import { ProviderUserStatusType } from 'jslib-common/enums/providerUserStatusType';
 import { ProviderUserType } from 'jslib-common/enums/providerUserType';
 
-import { Utils } from 'jslib-common/misc/utils';
-
-import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
-import { LogService } from 'jslib-common/abstractions';
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { ListResponse } from 'jslib-common/models/response/listResponse';
 import { OrganizationUserUserDetailsResponse } from 'jslib-common/models/response/organizationUserResponse';
 import { ProviderUserUserDetailsResponse } from 'jslib-common/models/response/provider/providerUserResponse';
-import { ConstantsService } from 'jslib-common/services/constants.service';
+
+import { Utils } from 'jslib-common/misc/utils';
+
 import { ModalComponent } from '../modal.component';
 import { UserConfirmComponent } from '../organizations/manage/user-confirm.component';
 
@@ -86,8 +94,8 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
         protected i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
         protected toasterService: ToasterService, protected cryptoService: CryptoService,
         private storageService: StorageService, protected validationService: ValidationService,
-        protected componentFactoryResolver: ComponentFactoryResolver,
-        private logService: LogService, private searchPipe: SearchPipe) { }
+        protected componentFactoryResolver: ComponentFactoryResolver, private logService: LogService,
+        private searchPipe: SearchPipe, protected userNamePipe: UserNamePipe) { }
 
     abstract edit(user: UserType): void;
     abstract getUsers(): Promise<ListResponse<UserType>>;
@@ -169,7 +177,7 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
 
     async remove(user: UserType) {
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('removeUserConfirmation'), user.name || user.email,
+            this.i18nService.t('removeUserConfirmation'), this.userNamePipe.transform(user),
             this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
 
         if (!confirmed) {
@@ -179,7 +187,7 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
         this.actionPromise = this.deleteUser(user.id);
         try {
             await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', user.name || user.email));
+            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', this.userNamePipe.transform(user)));
             this.removeUser(user);
         } catch (e) {
             this.validationService.showError(e);
@@ -195,7 +203,7 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
         this.actionPromise = this.reinviteUser(user.id);
         try {
             await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenReinvited', user.name || user.email));
+            this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenReinvited', this.userNamePipe.transform(user)));
         } catch (e) {
             this.validationService.showError(e);
         }
@@ -217,7 +225,7 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
                 this.actionPromise = this.confirmUser(user, publicKey);
                 await this.actionPromise;
                 updateUser(this);
-                this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', user.name || user.email));
+                this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', this.userNamePipe.transform(user)));
             } catch (e) {
                 this.validationService.showError(e);
                 throw e;
@@ -245,7 +253,7 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
                 const childComponent = this.modal.show<UserConfirmComponent>(
                     UserConfirmComponent, this.confirmModalRef);
 
-                childComponent.name = user != null ? user.name || user.email : null;
+                childComponent.name = this.userNamePipe.transform(user);
                 childComponent.userId = user != null ? user.userId : null;
                 childComponent.publicKey = publicKey;
                 childComponent.onConfirmedUser.subscribe(async () => {

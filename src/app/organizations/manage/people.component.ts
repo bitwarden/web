@@ -18,6 +18,7 @@ import { ValidationService } from 'jslib-angular/services/validation.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
@@ -36,11 +37,11 @@ import { OrganizationUserUserDetailsResponse } from 'jslib-common/models/respons
 import { OrganizationUserStatusType } from 'jslib-common/enums/organizationUserStatusType';
 import { OrganizationUserType } from 'jslib-common/enums/organizationUserType';
 import { PolicyType } from 'jslib-common/enums/policyType';
+import { ProviderUserType } from 'jslib-common/enums/providerUserType';
 
 import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
+import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
 
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { ProviderUserType } from 'jslib-common/enums/providerUserType';
 import { BasePeopleComponent } from '../../common/base.people.component';
 import { ModalComponent } from '../../modal.component';
 import { BulkConfirmComponent } from './bulk/bulk-confirm.component';
@@ -84,9 +85,9 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
         cryptoService: CryptoService, private userService: UserService, private router: Router,
         storageService: StorageService, searchService: SearchService,
         validationService: ValidationService, private policyService: PolicyService,
-        logService: LogService, searchPipe: SearchPipe, private syncService: SyncService) {
+        logService: LogService, searchPipe: SearchPipe, userNamePipe: UserNamePipe, private syncService: SyncService) {
             super(apiService, searchService, i18nService, platformUtilsService, toasterService, cryptoService,
-                storageService, validationService, componentFactoryResolver, logService, searchPipe);
+                storageService, validationService, componentFactoryResolver, logService, searchPipe, userNamePipe);
         }
 
     async ngOnInit() {
@@ -198,7 +199,7 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
         const childComponent = this.modal.show<UserAddEditComponent>(
             UserAddEditComponent, this.addEditModalRef);
 
-        childComponent.name = user != null ? user.name || user.email : null;
+        childComponent.name = this.userNamePipe.transform(user);
         childComponent.organizationId = this.organizationId;
         childComponent.organizationUserId = user != null ? user.id : null;
         childComponent.onSavedUser.subscribe(() => {
@@ -225,7 +226,7 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
         const childComponent = this.modal.show<UserGroupsComponent>(
             UserGroupsComponent, this.groupsModalRef);
 
-        childComponent.name = user != null ? user.name || user.email : null;
+        childComponent.name = this.userNamePipe.transform(user);
         childComponent.organizationId = this.organizationId;
         childComponent.organizationUserId = user != null ? user.id : null;
         childComponent.onSavedUser.subscribe(() => {
@@ -316,7 +317,7 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
         const childComponent = this.modal.show<EntityEventsComponent>(
             EntityEventsComponent, this.eventsModalRef);
 
-        childComponent.name = user.name || user.email;
+        childComponent.name = this.userNamePipe.transform(user);
         childComponent.organizationId = this.organizationId;
         childComponent.entityId = user.id;
         childComponent.showUser = false;
@@ -337,7 +338,7 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
         const childComponent = this.modal.show<ResetPasswordComponent>(
             ResetPasswordComponent, this.resetPasswordModalRef);
 
-        childComponent.name = user != null ? user.name || user.email : null;
+        childComponent.name = this.userNamePipe.transform(user);
         childComponent.email = user != null ? user.email : null;
         childComponent.organizationId = this.organizationId;
         childComponent.id = user != null ? user.id : null;

@@ -12,6 +12,8 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
+import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
+
 import { EventResponse } from 'jslib-common/models/response/eventResponse';
 
 import { EventService } from 'src/app/services/event.service';
@@ -32,7 +34,7 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
     constructor(private apiService: ApiService, private route: ActivatedRoute, eventService: EventService,
         i18nService: I18nService, toasterService: ToasterService, private userService: UserService,
         exportService: ExportService, platformUtilsService: PlatformUtilsService, private router: Router,
-        logService: LogService) {
+        logService: LogService, private userNamePipe: UserNamePipe) {
         super(eventService, i18nService, toasterService, exportService, platformUtilsService, logService);
     }
 
@@ -51,7 +53,7 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
     async load() {
         const response = await this.apiService.getProviderUsers(this.providerId);
         response.data.forEach(u => {
-            const name = u.name == null || u.name.trim() === '' ? u.email : u.name;
+            const name = this.userNamePipe.transform(u);
             this.providerUsersIdMap.set(u.id, { name: name, email: u.email });
             this.providerUsersUserIdMap.set(u.userId, { name: name, email: u.email });
         });

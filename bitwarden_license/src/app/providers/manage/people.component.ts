@@ -11,6 +11,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
@@ -21,18 +22,18 @@ import { ValidationService } from 'jslib-angular/services/validation.service';
 import { ProviderUserStatusType } from 'jslib-common/enums/providerUserStatusType';
 import { ProviderUserType } from 'jslib-common/enums/providerUserType';
 
-import { ListResponse } from 'jslib-common/models/response';
+import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
+import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
+
+import { ListResponse } from 'jslib-common/models/response/listResponse';
 import { ProviderUserUserDetailsResponse } from 'jslib-common/models/response/provider/providerUserResponse';
 
-import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
-import { LogService } from 'jslib-common/abstractions';
 import { ProviderUserBulkRequest } from 'jslib-common/models/request/provider/providerUserBulkRequest';
 import { ProviderUserConfirmRequest } from 'jslib-common/models/request/provider/providerUserConfirmRequest';
 import { ProviderUserBulkResponse } from 'jslib-common/models/response/provider/providerUserBulkResponse';
 
 import { BasePeopleComponent } from 'src/app/common/base.people.component';
 import { ModalComponent } from 'src/app/modal.component';
-
 import { BulkStatusComponent } from 'src/app/organizations/manage/bulk/bulk-status.component';
 import { EntityEventsComponent } from 'src/app/organizations/manage/entity-events.component';
 import { BulkConfirmComponent } from './bulk/bulk-confirm.component';
@@ -62,9 +63,9 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
         platformUtilsService: PlatformUtilsService, toasterService: ToasterService,
         cryptoService: CryptoService, private userService: UserService, private router: Router,
         storageService: StorageService, searchService: SearchService, validationService: ValidationService,
-        logService: LogService, searchPipe: SearchPipe) {
+        logService: LogService, searchPipe: SearchPipe, userNamePipe: UserNamePipe) {
         super(apiService, searchService, i18nService, platformUtilsService, toasterService, cryptoService,
-            storageService, validationService, componentFactoryResolver, logService, searchPipe);
+            storageService, validationService, componentFactoryResolver, logService, searchPipe, userNamePipe);
     }
 
     ngOnInit() {
@@ -126,7 +127,7 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
         const childComponent = this.modal.show<UserAddEditComponent>(
             UserAddEditComponent, this.addEditModalRef);
 
-        childComponent.name = user != null ? user.name || user.email : null;
+        childComponent.name = this.userNamePipe.transform(user);
         childComponent.providerId = this.providerId;
         childComponent.providerUserId = user != null ? user.id : null;
         childComponent.onSavedUser.subscribe(() => {
@@ -153,7 +154,7 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
         const childComponent = this.modal.show<EntityEventsComponent>(
             EntityEventsComponent, this.eventsModalRef);
 
-        childComponent.name = user.name || user.email;
+        childComponent.name = this.userNamePipe.transform(user);
         childComponent.providerId = this.providerId;
         childComponent.entityId = user.id;
         childComponent.showUser = false;

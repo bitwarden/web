@@ -5,6 +5,8 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 
+import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
+
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { ExportService } from 'jslib-common/abstractions/export.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -33,7 +35,7 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
     constructor(private apiService: ApiService, private route: ActivatedRoute, eventService: EventService,
         i18nService: I18nService, toasterService: ToasterService, private userService: UserService,
         exportService: ExportService, platformUtilsService: PlatformUtilsService, private router: Router,
-        logService: LogService) {
+        logService: LogService, private userNamePipe: UserNamePipe) {
         super(eventService, i18nService, toasterService, exportService, platformUtilsService, logService);
     }
 
@@ -53,14 +55,14 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
     async load() {
         const response = await this.apiService.getOrganizationUsers(this.organizationId);
         response.data.forEach(u => {
-            const name = u.name == null || u.name.trim() === '' ? u.email : u.name;
+            const name = this.userNamePipe.transform(u);
             this.orgUsersUserIdMap.set(u.userId, { name: name, email: u.email });
         });
 
         if (this.organization.providerId != null && (await this.userService.getProvider(this.organization.providerId)) != null) {
             const providerUsersResponse = await this.apiService.getProviderUsers(this.organization.providerId);
             providerUsersResponse.data.forEach(u => {
-                const name = u.name == null || u.name.trim() === '' ? u.email : u.name;
+                const name = this.userNamePipe.transform(u);
                 this.orgUsersUserIdMap.set(u.userId, { name: `${name} (${this.organization.providerName})`, email: u.email });
             });
         }
