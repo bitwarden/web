@@ -11,6 +11,8 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 
 import { EventService } from '../../services/event.service';
 
+import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
+
 import { EventResponse } from 'jslib-common/models/response/eventResponse';
 import { ListResponse } from 'jslib-common/models/response/listResponse';
 
@@ -38,7 +40,8 @@ export class EntityEventsComponent implements OnInit {
     private orgUsersIdMap = new Map<string, any>();
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private eventService: EventService, private toasterService: ToasterService) { }
+        private eventService: EventService, private toasterService: ToasterService,
+        private userNamePipe: UserNamePipe) { }
 
     async ngOnInit() {
         const defaultDates = this.eventService.getDefaultDateFilters();
@@ -51,7 +54,7 @@ export class EntityEventsComponent implements OnInit {
         if (this.showUser) {
             const response = await this.apiService.getOrganizationUsers(this.organizationId);
             response.data.forEach(u => {
-                const name = u.name == null || u.name.trim() === '' ? u.email : u.name;
+                const name = this.userNamePipe.transform(u);
                 this.orgUsersIdMap.set(u.id, { name: name, email: u.email });
                 this.orgUsersUserIdMap.set(u.userId, { name: name, email: u.email });
             });
