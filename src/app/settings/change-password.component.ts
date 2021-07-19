@@ -9,6 +9,7 @@ import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
+import { SendService } from 'jslib-common/abstractions/send.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
@@ -27,6 +28,7 @@ import { EmergencyAccessUpdateRequest } from 'jslib-common/models/request/emerge
 import { FolderWithIdRequest } from 'jslib-common/models/request/folderWithIdRequest';
 import { OrganizationUserResetPasswordEnrollmentRequest } from 'jslib-common/models/request/organizationUserResetPasswordEnrollmentRequest';
 import { PasswordRequest } from 'jslib-common/models/request/passwordRequest';
+import { SendWithIdRequest } from 'jslib-common/models/request/sendWithIdRequest';
 import { UpdateKeyRequest } from 'jslib-common/models/request/updateKeyRequest';
 
 @Component({
@@ -42,7 +44,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
         userService: UserService, passwordGenerationService: PasswordGenerationService,
         platformUtilsService: PlatformUtilsService, policyService: PolicyService,
         private folderService: FolderService, private cipherService: CipherService,
-        private syncService: SyncService, private apiService: ApiService) {
+        private syncService: SyncService, private apiService: ApiService, private sendService: SendService) {
         super(i18nService, cryptoService, messagingService, userService, passwordGenerationService,
             platformUtilsService, policyService);
     }
@@ -163,6 +165,13 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
             const cipher = await this.cipherService.encrypt(ciphers[i], encKey[0]);
             request.ciphers.push(new CipherWithIdRequest(cipher));
         }
+
+        const sends = await this.sendService.getAll();
+        await Promise.all(sends.map(async send => {
+            const cryptoKey = await this.cryptoService.decryptToBytes(send.key, null);
+            send.key = await this.cryptoService.encrypt(cryptoKey, encKey[0]) ?? send.key;
+            request.sends.push(new SendWithIdRequest(send));
+        }));
 
         await this.apiService.postAccountKey(request);
 
