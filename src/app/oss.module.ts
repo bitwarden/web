@@ -446,6 +446,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         StopPropDirective,
         I18nPipe,
         SearchPipe,
+        UserNamePipe,
         ModalComponent,
         NavbarComponent,
         FooterComponent,
