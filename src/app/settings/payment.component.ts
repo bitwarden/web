@@ -64,7 +64,7 @@ export class PaymentComponent implements OnInit {
             this.setStripeElement();
         };
         this.btScript = window.document.createElement('script');
-        this.btScript.src = 'scripts/dropin.js';
+        this.btScript.src = `scripts/dropin.js?cache=${process.env.CACHE_TAG}`;
         this.btScript.async = true;
         this.StripeElementStyle = {
             base: {

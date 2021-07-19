@@ -23,7 +23,7 @@
                     </thead>
                     <tr *ngFor="let item of users">
                         <td width="30">
-                            <app-avatar [data]="item.user.name || item.user.email" [email]="item.user.email" size="25" [circle]="true"
+                            <app-avatar [data]="item.user | userName" [email]="item.user.email" size="25" [circle]="true"
                                 [fontSize]="14"></app-avatar>
                         </td>
                         <td>

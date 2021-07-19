@@ -44,7 +44,7 @@ npm install
 ENV=production npm run build:watch
 ```
 
-You can also manually adjusting your API endpoint settings by adding `config/development.js` overriding any of the values in `config/base.json`. For example:
+You can also manually adjusting your API endpoint settings by adding `config/development.json` overriding any of the values in `config/base.json`. For example:
 
 ```typescript
 {
@@ -57,7 +57,7 @@ You can also manually adjusting your API endpoint settings by adding `config/dev
 }
 ```
 
-To pick up the overrides in the newly created `config/development.js` file, run the app with:
+To pick up the overrides in the newly created `config/development.json` file, run the app with:
 
 ```
 npm run build:dev:watch

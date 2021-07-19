@@ -39,6 +39,7 @@ import { OrganizationUserType } from 'jslib-common/enums/organizationUserType';
 import { PolicyType } from 'jslib-common/enums/policyType';
 
 import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
+import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
 
 import { Utils } from 'jslib-common/misc/utils';
 
@@ -99,7 +100,7 @@ export class PeopleComponent implements OnInit {
         private cryptoService: CryptoService, private userService: UserService, private router: Router,
         private storageService: StorageService, private searchService: SearchService,
         private validationService: ValidationService, private policyService: PolicyService,
-        private searchPipe: SearchPipe, private syncService: SyncService) { }
+        private searchPipe: SearchPipe, private userNamePipe: UserNamePipe, private syncService: SyncService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -258,7 +259,7 @@ export class PeopleComponent implements OnInit {
         const childComponent = this.modal.show<UserAddEditComponent>(
             UserAddEditComponent, this.addEditModalRef);
 
-        childComponent.name = user != null ? user.name || user.email : null;
+        childComponent.name = this.userNamePipe.transform(user);
         childComponent.organizationId = this.organizationId;
         childComponent.organizationUserId = user != null ? user.id : null;
         childComponent.onSavedUser.subscribe(() => {
@@ -289,7 +290,7 @@ export class PeopleComponent implements OnInit {
         const childComponent = this.modal.show<UserGroupsComponent>(
             UserGroupsComponent, this.groupsModalRef);
 
-        childComponent.name = user != null ? user.name || user.email : null;
+        childComponent.name = this.userNamePipe.transform(user);
         childComponent.organizationId = this.organizationId;
         childComponent.organizationUserId = user != null ? user.id : null;
         childComponent.onSavedUser.subscribe(() => {
@@ -303,7 +304,7 @@ export class PeopleComponent implements OnInit {
 
     async remove(user: OrganizationUserUserDetailsResponse) {
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('removeUserConfirmation'), user.name || user.email,
+            this.i18nService.t('removeUserConfirmation'), this.userNamePipe.transform(user),
             this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
         if (!confirmed) {
             return false;
@@ -312,7 +313,7 @@ export class PeopleComponent implements OnInit {
         this.actionPromise = this.apiService.deleteOrganizationUser(this.organizationId, user.id);
         try {
             await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', user.name || user.email));
+            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', this.userNamePipe.transform(user)));
             this.removeUser(user);
         } catch (e) {
             this.validationService.showError(e);
@@ -328,7 +329,7 @@ export class PeopleComponent implements OnInit {
         this.actionPromise = this.apiService.postOrganizationUserReinvite(this.organizationId, user.id);
         try {
             await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenReinvited', user.name || user.email));
+            this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenReinvited', this.userNamePipe.transform(user)));
         } catch (e) {
             this.validationService.showError(e);
         }
@@ -419,7 +420,7 @@ export class PeopleComponent implements OnInit {
                 this.actionPromise = this.doConfirmation(user, publicKey);
                 await this.actionPromise;
                 updateUser(this);
-                this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', user.name || user.email));
+                this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', this.userNamePipe.transform(user)));
             } catch (e) {
                 this.validationService.showError(e);
                 throw e;
@@ -443,7 +444,7 @@ export class PeopleComponent implements OnInit {
             const childComponent = this.modal.show<UserConfirmComponent>(
                 UserConfirmComponent, this.confirmModalRef);
 
-            childComponent.name = user != null ? user.name || user.email : null;
+            childComponent.name = this.userNamePipe.transform(user);
             childComponent.organizationId = this.organizationId;
             childComponent.organizationUserId = user != null ? user.id : null;
             childComponent.userId = user != null ? user.userId : null;
@@ -488,7 +489,7 @@ export class PeopleComponent implements OnInit {
         const childComponent = this.modal.show<EntityEventsComponent>(
             EntityEventsComponent, this.eventsModalRef);
 
-        childComponent.name = user.name || user.email;
+        childComponent.name = this.userNamePipe.transform(user);
         childComponent.organizationId = this.organizationId;
         childComponent.entityId = user.id;
         childComponent.showUser = false;
@@ -526,7 +527,7 @@ export class PeopleComponent implements OnInit {
         const childComponent = this.modal.show<ResetPasswordComponent>(
             ResetPasswordComponent, this.resetPasswordModalRef);
 
-        childComponent.name = user != null ? user.name || user.email : null;
+        childComponent.name = this.userNamePipe.transform(user);
         childComponent.email = user != null ? user.email : null;
         childComponent.organizationId = this.organizationId;
         childComponent.id = user != null ? user.id : null;
