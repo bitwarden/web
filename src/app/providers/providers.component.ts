@@ -1,10 +1,10 @@
 import {
     Component,
+    Input,
     OnInit,
 } from '@angular/core';
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { Provider } from 'jslib-common/models/domain/provider';
@@ -16,14 +16,16 @@ import { Utils } from 'jslib-common/misc/utils';
     templateUrl: 'providers.component.html',
 })
 export class ProvidersComponent implements OnInit {
+    @Input() vault = false;
+
     providers: Provider[];
     loaded: boolean = false;
     actionPromise: Promise<any>;
 
-    constructor(private userService: UserService, private i18nService: I18nService, private syncService: SyncService) { }
+    constructor(private userService: UserService, private i18nService: I18nService) { }
 
     async ngOnInit() {
-        await this.syncService.fullSync(false);
+        document.body.classList.remove('layout_frontend');
         await this.load();
     }
 
