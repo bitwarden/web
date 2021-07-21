@@ -58,6 +58,13 @@ export class ClientsComponent implements OnInit {
             this.providerId = params.providerId;
 
             await this.load();
+
+            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+                this.searchText = qParams.search;
+                if (queryParamsSub != null) {
+                    queryParamsSub.unsubscribe();
+                }
+            });
         });
     }
 
