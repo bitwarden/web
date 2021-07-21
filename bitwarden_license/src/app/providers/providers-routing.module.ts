@@ -18,11 +18,17 @@ import { SetupComponent } from './setup/setup.component';
 
 import { FrontendLayoutComponent } from 'src/app/layouts/frontend-layout.component';
 
+import { ProvidersComponent } from 'src/app/providers/providers.component';
 import { ProviderGuardService } from './services/provider-guard.service';
 import { ProviderTypeGuardService } from './services/provider-type-guard.service';
 import { AccountComponent } from './settings/account.component';
 
 const routes: Routes = [
+    {
+        path: '',
+        canActivate: [AuthGuardService],
+        component: ProvidersComponent,
+    },
     {
         path: '',
         component: FrontendLayoutComponent,

@@ -5,7 +5,11 @@ import {
 
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { TokenService } from 'jslib-common/abstractions/token.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { Provider } from 'jslib-common/models/domain/provider';
 
 @Component({
     selector: 'app-navbar',
@@ -15,9 +19,10 @@ export class NavbarComponent implements OnInit {
     selfHosted = false;
     name: string;
     email: string;
+    providers: Provider[] = [];
 
     constructor(private messagingService: MessagingService, private platformUtilsService: PlatformUtilsService,
-        private tokenService: TokenService) {
+        private tokenService: TokenService, private userService: UserService, private syncService: SyncService) {
         this.selfHosted = this.platformUtilsService.isSelfHost();
     }
 
@@ -27,6 +32,12 @@ export class NavbarComponent implements OnInit {
         if (this.name == null || this.name.trim() === '') {
             this.name = this.email;
         }
+
+        // Ensure provides are loaded
+        if (await this.syncService.getLastSync() == null) {
+            await this.syncService.fullSync(false);
+        }
+        this.providers = await this.userService.getAllProviders();
     }
 
     lock() {
