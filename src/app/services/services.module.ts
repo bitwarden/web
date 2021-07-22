@@ -103,7 +103,8 @@ const cryptoService = new CryptoService(storageService,
     consoleLogService);
 const tokenService = new TokenService(storageService);
 const appIdService = new AppIdService(storageService);
-const apiService = new ApiService(tokenService, platformUtilsService,
+const environmentService = new EnvironmentService(storageService);
+const apiService = new ApiService(tokenService, platformUtilsService, environmentService,
     async (expired: boolean) => messagingService.send('logout', { expired: expired }));
 const userService = new UserService(tokenService, storageService);
 const settingsService = new SettingsService(userService, storageService);
@@ -133,9 +134,8 @@ const authService = new AuthService(cryptoService, apiService,
 const exportService = new ExportService(folderService, cipherService, apiService, cryptoService);
 const importService = new ImportService(cipherService, folderService, apiService, i18nService, collectionService,
     platformUtilsService, cryptoService);
-const notificationsService = new NotificationsService(userService, syncService, appIdService,
-    apiService, vaultTimeoutService, async () => messagingService.send('logout', { expired: true }), consoleLogService);
-const environmentService = new EnvironmentService(apiService, storageService, notificationsService);
+const notificationsService = new NotificationsService(userService, syncService, appIdService, apiService, vaultTimeoutService,
+    environmentService, async () => messagingService.send('logout', { expired: true }), consoleLogService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService);
 const passwordRepromptService = new PasswordRepromptService(i18nService, cryptoService, platformUtilsService);
@@ -147,19 +147,16 @@ export function initFactory(): Function {
         await (storageService as HtmlStorageService).init();
 
         if (process.env.ENV !== 'production' || platformUtilsService.isSelfHost()) {
-            environmentService.baseUrl = window.location.origin;
+            environmentService.setUrls({ base: window.location.origin }, false);
         } else {
-            environmentService.notificationsUrl = 'https://notifications.bitwarden.com';
-            environmentService.enterpriseUrl = 'https://portal.bitwarden.com';
+            environmentService.setUrls({
+                base: window.location.origin,
+                notifications: 'https://notifications.bitwarden.com',
+                enterprise: 'https://portal.bitwarden.com',
+            }, false);
         }
 
-        apiService.setUrls({
-            base: window.location.origin,
-            api: null,
-            identity: null,
-            events: null,
-        });
-        setTimeout(() => notificationsService.init(environmentService), 3000);
+        setTimeout(() => notificationsService.init(), 3000);
 
         vaultTimeoutService.init(true);
         const locale = await storageService.get<string>(ConstantsService.localeKey);
