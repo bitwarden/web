@@ -87,7 +87,7 @@ $darkDangerHover: #FF291A;
 $darkSuccess: #23C653;
 $darkPending: #42BFDD;
 $darkWarning: #FFEC3A;
-$darkInfo: #8D94A5;
+$darkInfo: #3C424E;
 $darkLinks: #175DDC;
 $darkGrey1: #BAC0CE;
 $darkGrey2: #8D94A5;
@@ -111,6 +111,7 @@ $themes: (
         warningTextColor: $white,
         successTextColor: $white,
         dangerTextColor: $white,
+        infoTextColor: $white,
         textMuted: #6C757D,
         backgroundColor: $body-bg,
         badgeInfoBackground: #555555,
@@ -188,6 +189,7 @@ $themes: (
         warningTextColor: $darkDarkBlue1,
         successTextColor: $darkDarkBlue1,
         dangerTextColor: $white,
+        infoTextColor: $white,
         textMuted: $darkGrey1,
         backgroundColor: $darkDarkBlue1,
         badgeInfoBackground: $darkDarkBlue2,
@@ -250,7 +252,7 @@ $themes: (
         separator: $darkBlue1,
         separatorHr: $darkBlue1,
         tableColorHover: $darkGrey1,
-        tableRowHover: $darkDarkBlue1
+        tableRowHover: rgba(0,0,0,0.03)
     ),
 );
 

@@ -181,6 +181,13 @@ hr {
     }
 }
 
+.bg-info, .toast-info, .toast-container .toast-info:before {
+    @include themify($themes) {
+        background-color: themed('info') !important;
+        color: themed('infoTextColor') !important;
+    }
+}
+
 .text-danger {
     & > h1,h2,h3,h4 {
         @include themify($themes) {
@@ -204,6 +211,12 @@ hr {
 .border-danger {
     @include themify($themes) {
         border-color: themed('danger') !important;
+    }
+}
+
+.border-info {
+    @include themify($themes) {
+        border-color: themed('info') !important;
     }
 }
 
@@ -320,7 +333,7 @@ hr {
         border-left: 3px solid themed('borderPrimaryColor');
         color: themed('textColor');
     }
-    font-weight: bold;
+    font-weight: bold !important;
     padding-left: calc(#{$list-group-item-padding-x} - 3px);
     
 }
@@ -412,6 +425,7 @@ hr {
 .modal-header {
     @include themify($themes) {
         background-color: themed('backgroundColor');
+        border-bottom: 1px solid themed('separator');
         color: themed('textColor');
     }
 }
@@ -941,7 +955,9 @@ app-user-billing {
 }
 
 #duo-frame {
-    background: url('../images/loading.svg') 0 0 no-repeat;
+    @include themify($themes) {
+        background: themed('imgLoading') 0 0 no-repeat;
+    }
     height: 330px;
 
     iframe {
@@ -965,7 +981,9 @@ app-user-billing {
 }
 
 #bt-dropin-container {
-    background: url('../images/loading-white.svg') 0 0 no-repeat;
+    @include themify($themes) {
+        background: themed('imgLoading') 0 0 no-repeat;
+    }
     min-height: 50px;
 }
 
@@ -990,6 +1008,30 @@ app-user-billing {
 [data-braintree-id="upper-container"]::before {
     @include themify($themes) {
         background-color: themed('backgroundColor');
+    }
+}
+
+.card [data-braintree-id="upper-container"]::before {
+    @include themify($themes) {
+        background-color: themed('foregroundColor');
+    }
+}
+
+[data-braintree-id="paypal-button"] {
+    @include themify($themes) {
+        background-color: themed('backgroundColor');
+    }
+}
+
+.card [data-braintree-id="paypal-button"] {
+    @include themify($themes) {
+        background-color: themed('foregroundColor');
+    }
+}
+
+.paypal-button-text {
+    @include themify($themes) {
+        color: themed('textColor');
     }
 }
 
