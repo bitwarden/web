@@ -21,7 +21,6 @@ let parentUrl: string = null;
 let parentOrigin: string = null;
 let callbackUri: string = null;
 let sentSuccess = false;
-let captchaRequiredText: string = null;
 
 async function init() {
     await start();
@@ -65,7 +64,7 @@ async function start() {
     }
 
     // Set captchaRequired subtitle for mobile
-    let subtitleEl = document.getElementById('captchaRequired');
+    const subtitleEl = document.getElementById('captchaRequired');
     if (decodedData.captchaRequiredText && subtitleEl) {
         subtitleEl.textContent = decodedData.captchaRequiredText;
     }

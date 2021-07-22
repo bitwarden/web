@@ -86,8 +86,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     content.classList.remove('d-none');
 });
 
-async function loadLocales(locale: string) {
-    const filePath = `locales/${locale}/messages.json?cache=${process.env.CACHE_TAG}`;
+async function loadLocales(newLocale: string) {
+    const filePath = `locales/${newLocale}/messages.json?cache=${process.env.CACHE_TAG}`;
     const localesResult = await fetch(filePath);
     return await localesResult.json();
 }
