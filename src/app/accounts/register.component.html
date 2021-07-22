@@ -135,6 +135,7 @@
                                     </div>
                                 </div>
                                 <hr>
+                                <div [hidden]="!showCaptcha()"><iframe id="hcaptcha_iframe" height=80></iframe></div>
                                 <div class="d-flex mb-2">
                                     <button type="submit" class="btn btn-primary btn-block btn-submit"
                                         [disabled]="form.loading">
