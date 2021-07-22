@@ -2,8 +2,13 @@ import { b64Decode, getQsParam } from './common';
 
 declare var hcaptcha: any;
 
-// tslint:disable-next-line
-require('./captcha.scss');
+if (window.location.pathname.includes('mobile')) {
+    // tslint:disable-next-line
+    require('./captcha-mobile.scss');
+} else {
+    // tslint:disable-next-line
+    require('./captcha.scss');
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     init();
@@ -16,6 +21,7 @@ let parentUrl: string = null;
 let parentOrigin: string = null;
 let callbackUri: string = null;
 let sentSuccess = false;
+let captchaRequiredText: string = null;
 
 async function init() {
     await start();
@@ -56,6 +62,12 @@ async function start() {
     // Set language code
     if (decodedData.locale) {
         src += `&hl=${decodedData.locale ?? 'en'}`;
+    }
+
+    // Set captchaRequired subtitle for mobile
+    let subtitleEl = document.getElementById('captchaRequired');
+    if (decodedData.captchaRequiredText && subtitleEl) {
+        subtitleEl.textContent = decodedData.captchaRequiredText;
     }
 
     const script = document.createElement('script');
