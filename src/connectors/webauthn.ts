@@ -4,6 +4,15 @@ import { buildDataString, parseWebauthnJson } from './common-webauthn';
 // tslint:disable-next-line
 require('./webauthn.scss');
 
+let parsed = false;
+let webauthnJson: any;
+let btnText: string = null;
+let parentUrl: string = null;
+let parentOrigin: string = null;
+let stopWebAuthn = false;
+let sentSuccess = false;
+let obj: any = null;
+
 document.addEventListener('DOMContentLoaded', () => {
     init();
 
@@ -14,15 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
         button.onclick = executeWebAuthn;
     }
 });
-
-let parsed = false;
-let webauthnJson: any;
-let btnText: string = null;
-let parentUrl: string = null;
-let parentOrigin: string = null;
-let stopWebAuthn = false;
-let sentSuccess = false;
-let obj: any = null;
 
 function init() {
     start();
