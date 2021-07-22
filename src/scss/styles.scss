@@ -189,9 +189,34 @@ hr {
 }
 
 .text-danger {
+    @include themify($themes) {
+        color: themed('danger') !important;
+    }
     & > h1,h2,h3,h4 {
         @include themify($themes) {
             color: themed('danger') !important;
+        }
+    }
+}
+
+.text-warning {
+    @include themify($themes) {
+        color: themed('warning') !important;
+    }
+    & > h1,h2,h3,h4 {
+        @include themify($themes) {
+            color: themed('warning') !important;
+        }
+    }
+}
+
+.text-success {
+    @include themify($themes) {
+        color: themed('success') !important;
+    }
+    & > h1,h2,h3,h4 {
+        @include themify($themes) {
+            color: themed('success') !important;
         }
     }
 }
