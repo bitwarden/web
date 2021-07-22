@@ -121,6 +121,7 @@
                                     <input id="hint" class="form-control" type="text" name="Hint" [(ngModel)]="hint">
                                     <small class="form-text text-muted">{{'masterPassHintDesc' | i18n}}</small>
                                 </div>
+                                <div [hidden]="!showCaptcha()"><iframe id="hcaptcha_iframe" height=80></iframe></div>
                                 <div class="form-group" *ngIf="showTerms">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" id="acceptPolicies"
@@ -135,7 +136,6 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div [hidden]="!showCaptcha()"><iframe id="hcaptcha_iframe" height=80></iframe></div>
                                 <div class="d-flex mb-2">
                                     <button type="submit" class="btn btn-primary btn-block btn-submit"
                                         [disabled]="form.loading">
