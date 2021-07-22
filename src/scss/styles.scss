@@ -840,6 +840,24 @@ input[type="search"]::-webkit-search-cancel-button {
         color: themed('btnPrimaryText');
     }
 }
+.badge-danger {
+    @include themify($themes) {
+        background-color: themed('danger');
+        color: themed('dangerTextColor');
+    }
+}
+.badge-info {
+    @include themify($themes) {
+        background-color: themed('warning');
+        color: themed('warningTextColor');
+    }
+}
+.badge-success {
+    @include themify($themes) {
+        background-color: themed('success');
+        color: themed('successTextColor');
+    }
+}
 
 .close {
     @include themify($themes) {
