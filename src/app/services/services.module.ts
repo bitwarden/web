@@ -54,7 +54,6 @@ import { UserService } from 'jslib-common/services/user.service';
 import { VaultTimeoutService } from 'jslib-common/services/vaultTimeout.service';
 import { WebCryptoFunctionService } from 'jslib-common/services/webCryptoFunction.service';
 
-import { LogService } from 'jslib-common/abstractions';
 import { ApiService as ApiServiceAbstraction } from 'jslib-common/abstractions/api.service';
 import { AuditService as AuditServiceAbstraction } from 'jslib-common/abstractions/audit.service';
 import { AuthService as AuthServiceAbstraction } from 'jslib-common/abstractions/auth.service';
@@ -69,6 +68,7 @@ import { FileUploadService as FileUploadServiceAbstraction }  from 'jslib-common
 import { FolderService as FolderServiceAbstraction } from 'jslib-common/abstractions/folder.service';
 import { I18nService as I18nServiceAbstraction } from 'jslib-common/abstractions/i18n.service';
 import { ImportService as ImportServiceAbstraction } from 'jslib-common/abstractions/import.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService as MessagingServiceAbstraction } from 'jslib-common/abstractions/messaging.service';
 import { NotificationsService as NotificationsServiceAbstraction } from 'jslib-common/abstractions/notifications.service';
 import {
@@ -194,6 +194,7 @@ export function initFactory(): Function {
         { provide: AuthServiceAbstraction, useValue: authService },
         { provide: CipherServiceAbstraction, useValue: cipherService },
         { provide: FolderServiceAbstraction, useValue: folderService },
+        { provide: LogService, useValue: consoleLogService },
         { provide: CollectionServiceAbstraction, useValue: collectionService },
         { provide: EnvironmentServiceAbstraction, useValue: environmentService },
         { provide: TotpServiceAbstraction, useValue: totpService },

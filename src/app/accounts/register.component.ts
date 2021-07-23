@@ -107,6 +107,8 @@ export class RegisterComponent extends BaseRegisterComponent {
         if (this.policies != null) {
             this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(this.policies);
         }
+
+        await super.ngOnInit();
     }
 
     async submit() {
