@@ -25,7 +25,6 @@ let sentSuccess = false;
 async function init() {
     await start();
     onMessage();
-    watchHeight();
 }
 
 async function start() {
@@ -73,19 +72,15 @@ async function start() {
     script.src = src;
     script.async = true;
     script.defer = true;
-    document.head.appendChild(script);
-
-    let i = 0;
-    while (typeof hcaptcha === 'undefined' && i < 20) {
-        i += 1;
-        await sleep(100);
-    }
-
-    hcaptcha.render('captcha', {
-        sitekey: decodedData.siteKey,
-        callback: 'captchaSuccess',
-        'error-callback': 'captchaError',
+    script.addEventListener('load', e => {
+        hcaptcha.render('captcha', {
+            sitekey: decodedData.siteKey,
+            callback: 'captchaSuccess',
+            'error-callback': 'captchaError',
+        });
+        watchHeight();
     });
+    document.head.appendChild(script);
 }
 
 function captchaSuccess(response: string) {
