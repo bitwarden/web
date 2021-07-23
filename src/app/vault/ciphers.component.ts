@@ -38,9 +38,16 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     @Output() onCollectionsClicked = new EventEmitter<CipherView>();
     @Output() onCloneClicked = new EventEmitter<CipherView>();
 
+    pagedCiphers: CipherView[] = [];
+    pageSize = 200;
     cipherType = CipherType;
     actionPromise: Promise<any>;
     userHasPremiumAccess = false;
+
+    protected didScroll = false;
+
+    private pagedCiphersCount = 0;
+    private refreshing = false;
 
     constructor(searchService: SearchService, protected toasterService: ToasterService,
         protected i18nService: I18nService, protected platformUtilsService: PlatformUtilsService,
@@ -48,7 +55,6 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         protected totpService: TotpService, protected userService: UserService,
         protected passwordRepromptService: PasswordRepromptService) {
         super(searchService);
-        this.pageSize = 200;
     }
 
     async ngOnInit() {
@@ -57,6 +63,49 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
     ngOnDestroy() {
         this.selectAll(false);
+    }
+
+    loadMore() {
+        if (this.ciphers.length <= this.pageSize) {
+            return;
+        }
+        const pagedLength = this.pagedCiphers.length;
+        let pagedSize = this.pageSize;
+        if (this.refreshing && pagedLength === 0 && this.pagedCiphersCount > this.pageSize) {
+            pagedSize = this.pagedCiphersCount;
+        }
+        if (this.ciphers.length > pagedLength) {
+            this.pagedCiphers = this.pagedCiphers.concat(this.ciphers.slice(pagedLength, pagedLength + pagedSize));
+        }
+        this.pagedCiphersCount = this.pagedCiphers.length;
+        this.didScroll = this.pagedCiphers.length > this.pageSize;
+    }
+
+    async refresh() {
+        try {
+            this.refreshing = true;
+            await this.reload(this.filter, this.deleted);
+        } finally {
+            this.refreshing = false;
+        }
+    }
+
+    isPaging() {
+        const searching = this.isSearching();
+        if (searching && this.didScroll) {
+            this.resetPaging();
+        }
+        return !searching && this.ciphers.length > this.pageSize;
+    }
+
+    async resetPaging() {
+        this.pagedCiphers = [];
+        this.loadMore();
+    }
+
+    async doSearch(indexedCiphers?: CipherView[]) {
+        this.ciphers = await this.searchService.searchCiphers(this.searchText, [this.filter, this.deletedFilter], indexedCiphers);
+        this.resetPaging();
     }
 
     launch(uri: string) {
