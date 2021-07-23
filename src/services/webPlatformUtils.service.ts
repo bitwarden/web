@@ -249,7 +249,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     isDev(): boolean {
-        return process.env.ENV === 'development';
+        return process.env.NODE_ENV === 'development';
     }
 
     isSelfHost(): boolean {

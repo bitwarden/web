@@ -10,7 +10,7 @@ require('src/scss/styles.scss');
 
 import { AppModule } from './app.module';
 
-if (process.env.ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
     enableProdMode();
 }
 
