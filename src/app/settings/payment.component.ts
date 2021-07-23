@@ -67,7 +67,7 @@ export class PaymentComponent implements OnInit {
         this.stripeScript.src = 'https://js.stripe.com/v3/';
         this.stripeScript.async = true;
         this.stripeScript.onload = () => {
-            this.stripe = (window as any).Stripe(process.env.ENV === 'production'  ?
+            this.stripe = (window as any).Stripe(process.env.ENV === 'production' && !platformUtilsService.isDev()  ?
                 WebConstants.stripeLiveKey : WebConstants.stripeTestKey);
             this.stripeElements = this.stripe.elements();
             this.setStripeElement();
