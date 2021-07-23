@@ -44,8 +44,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     actionPromise: Promise<any>;
     userHasPremiumAccess = false;
 
-    protected didScroll = false;
-
+    private didScroll = false;
     private pagedCiphersCount = 0;
     private refreshing = false;
 
