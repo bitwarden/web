@@ -149,12 +149,7 @@ export class PoliciesComponent implements OnInit {
         });
 
         // Remove when removing deprecation warning
-        this.enterpriseUrl = 'https://portal.bitwarden.com';
-        if (this.environmentService.enterpriseUrl != null) {
-            this.enterpriseUrl = this.environmentService.enterpriseUrl;
-        } else if (this.environmentService.baseUrl != null) {
-            this.enterpriseUrl = this.environmentService.baseUrl + '/portal';
-        }
+        this.enterpriseUrl = this.environmentService.getEnterpriseUrl();
     }
 
     async load() {
