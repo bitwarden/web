@@ -138,11 +138,11 @@ const plugins = [
         chunkFilename: '[id].[hash].css',
     }),
     new webpack.EnvironmentPlugin({
-        'ENV': JSON.stringify(ENV),
+        'ENV': ENV,
         'NODE_ENV': NODE_ENV === 'production' ? 'production' : 'development',
-        'SELF_HOST': JSON.stringify(process.env.SELF_HOST === 'true' ? true : false),
-        'APPLICATION_VERSION': JSON.stringify(pjson.version),
-        'CACHE_TAG': JSON.stringify(Math.random().toString(36).substring(7)),
+        'SELF_HOST': process.env.SELF_HOST === 'true' ? true : false,
+        'APPLICATION_VERSION': pjson.version,
+        'CACHE_TAG': Math.random().toString(36).substring(7),
     }),
     new AngularCompilerPlugin({
         tsConfigPath: 'tsconfig.json',
