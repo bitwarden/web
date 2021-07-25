@@ -30,11 +30,12 @@
                             <a routerLink="/hint">{{'getMasterPasswordHint' | i18n}}</a>
                         </small>
                     </div>
-                    <div class="form-check">
+                    <div class="form-check mb-3">
                         <input type="checkbox" class="form-check-input" id="rememberEmail" name="RememberEmail"
                             [(ngModel)]="rememberEmail">
                         <label class="form-check-label" for="rememberEmail">{{'rememberEmail' | i18n}}</label>
                     </div>
+                    <div class="mb-n3" [hidden]="!showCaptcha()"><iframe id="hcaptcha_iframe" height="80"></iframe></div>
                     <hr>
                     <div class="d-flex">
                         <button type="submit" class="btn btn-primary btn-block btn-submit" [disabled]="form.loading">

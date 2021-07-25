@@ -22,13 +22,13 @@
                         {{'clients' | i18n}}
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="showManageTab">
                     <a class="nav-link" [routerLink]="manageRoute" routerLinkActive="active">
                         <i class="fa fa-sliders" aria-hidden="true"></i>
                         {{'manage' | i18n}}
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="showSettingsTab">
                     <a class="nav-link" routerLink="settings" routerLinkActive="active">
                         <i class="fa fa-cogs" aria-hidden="true"></i>
                         {{'settings' | i18n}}

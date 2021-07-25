@@ -1,18 +1,70 @@
-import { getQsParam } from './common';
-import { b64Decode, buildDataString, parseWebauthnJson } from './common-webauthn';
+import { b64Decode, getQsParam } from './common';
+import { buildDataString, parseWebauthnJson } from './common-webauthn';
 
 // tslint:disable-next-line
 require('./webauthn.scss');
 
+let parsed = false;
+let webauthnJson: any;
 let parentUrl: string = null;
 let parentOrigin: string = null;
 let sentSuccess = false;
+let locale: string = 'en';
 
 let locales: any = {};
 
+function parseParameters() {
+    if (parsed) {
+        return;
+    }
+
+    parentUrl = getQsParam('parent');
+    if (!parentUrl) {
+        error('No parent.');
+        return;
+    } else {
+        parentUrl = decodeURIComponent(parentUrl);
+        parentOrigin = new URL(parentUrl).origin;
+    }
+
+    locale = getQsParam('locale').replace('-', '_');
+
+    const version = getQsParam('v');
+
+    if (version === '1') {
+        parseParametersV1();
+    } else {
+        parseParametersV2();
+    }
+    parsed = true;
+}
+
+function parseParametersV1() {
+    const data = getQsParam('data');
+    if (!data) {
+        error('No data.');
+        return;
+    }
+
+    webauthnJson = b64Decode(data);
+}
+
+function parseParametersV2() {
+    let dataObj: { data: any, btnText: string; } = null;
+    try {
+        dataObj = JSON.parse(b64Decode(getQsParam('data')));
+    }
+    catch (e) {
+        error('Cannot parse data.');
+        return;
+    }
+
+    webauthnJson = dataObj.data;
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
 
-    const locale = getQsParam('locale').replace('-', '_');
+    parseParameters();
     try {
         locales = await loadLocales(locale);
     } catch {
@@ -34,8 +86,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     content.classList.remove('d-none');
 });
 
-async function loadLocales(locale: string) {
-    const filePath = `locales/${locale}/messages.json?cache=${process.env.CACHE_TAG}`;
+async function loadLocales(newLocale: string) {
+    const filePath = `locales/${newLocale}/messages.json?cache=${process.env.CACHE_TAG}`;
     const localesResult = await fetch(filePath);
     return await localesResult.json();
 }
@@ -54,25 +106,15 @@ function start() {
         return;
     }
 
-    const data = getQsParam('data');
-    if (!data) {
+    parseParameters();
+    if (!webauthnJson) {
         error('No data.');
         return;
     }
 
-    parentUrl = getQsParam('parent');
-    if (!parentUrl) {
-        error('No parent.');
-        return;
-    } else {
-        parentUrl = decodeURIComponent(parentUrl);
-        parentOrigin = new URL(parentUrl).origin;
-    }
-
     let json: any;
     try {
-        const jsonString = b64Decode(data);
-        json = parseWebauthnJson(jsonString);
+        json = parseWebauthnJson(webauthnJson);
     }
     catch (e) {
         error('Cannot parse data.');

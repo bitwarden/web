@@ -1,8 +1,4 @@
-import {
-    Component,
-    NgZone,
-} from '@angular/core';
-
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { UserService } from 'jslib-common/abstractions/user.service';
@@ -33,7 +29,15 @@ export class ProvidersLayoutComponent {
     }
 
     get showMenuBar() {
-        return true; // TODO: Replace with permissions
+        return this.showManageTab || this.showSettingsTab;
+    }
+
+    get showManageTab() {
+        return this.provider.canManageUsers || this.provider.canAccessEventLogs;
+    }
+
+    get showSettingsTab() {
+        return this.provider.isProviderAdmin;
     }
 
     get manageRoute(): string {
