@@ -112,6 +112,11 @@ const plugins = [
         filename: 'captcha-connector.html',
         chunks: ['connectors/captcha'],
     }),
+    new HtmlWebpackPlugin({
+        template: './src/connectors/captcha-mobile.html',
+        filename: 'captcha-mobile-connector.html',
+        chunks: ['connectors/captcha'],
+    }),
     new CopyWebpackPlugin({
         patterns:[
             { from: './src/.nojekyll' },
@@ -135,6 +140,7 @@ const plugins = [
     new webpack.DefinePlugin({
         'process.env': {
             'ENV': JSON.stringify(ENV),
+            'NODE_ENV': NODE_ENV === 'production' ? 'production' : 'development',
             'SELF_HOST': JSON.stringify(process.env.SELF_HOST === 'true' ? true : false),
             'APPLICATION_VERSION': JSON.stringify(pjson.version),
             'CACHE_TAG': JSON.stringify(Math.random().toString(36).substring(7)),

@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { AuthService } from 'jslib-common/abstractions/auth.service';
 import { CryptoFunctionService } from 'jslib-common/abstractions/cryptoFunction.service';
+import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
@@ -30,12 +31,12 @@ export class LinkSsoComponent extends SsoComponent implements AfterContentInit {
         apiService: ApiService, authService: AuthService,
         router: Router, route: ActivatedRoute,
         cryptoFunctionService: CryptoFunctionService, passwordGenerationService: PasswordGenerationService,
-        storageService: StorageService, stateService: StateService) {
+        storageService: StorageService, stateService: StateService, environmentService: EnvironmentService) {
         super(authService, router,
             i18nService, route,
             storageService, stateService,
             platformUtilsService, apiService,
-            cryptoFunctionService, passwordGenerationService);
+            cryptoFunctionService, environmentService, passwordGenerationService);
 
         this.returnUri = '/settings/organizations';
         this.redirectUri = window.location.origin + '/sso-connector.html';
