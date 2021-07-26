@@ -161,6 +161,7 @@ export class PaymentComponent implements OnInit {
                             size: 'medium',
                             shape: 'pill',
                             color: 'blue',
+                            tagline: 'false',
                         },
                     },
                 }, (createErr: any, instance: any) => {
