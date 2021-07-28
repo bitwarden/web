@@ -59,12 +59,19 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
             this.orgUsersUserIdMap.set(u.userId, { name: name, email: u.email });
         });
 
-        if (this.organization.providerId != null && (await this.userService.getProvider(this.organization.providerId)) != null) {
-            const providerUsersResponse = await this.apiService.getProviderUsers(this.organization.providerId);
-            providerUsersResponse.data.forEach(u => {
-                const name = this.userNamePipe.transform(u);
-                this.orgUsersUserIdMap.set(u.userId, { name: `${name} (${this.organization.providerName})`, email: u.email });
-            });
+        if (this.organization.providerId != null) {
+            try {
+                const provider = await this.userService.getProvider(this.organization.providerId);
+                if (provider != null && (await this.userService.getProvider(this.organization.providerId)).canManageUsers) {
+                    const providerUsersResponse = await this.apiService.getProviderUsers(this.organization.providerId);
+                    providerUsersResponse.data.forEach(u => {
+                        const name = this.userNamePipe.transform(u);
+                        this.orgUsersUserIdMap.set(u.userId, { name: `${name} (${this.organization.providerName})`, email: u.email });
+                    });
+                }
+            } catch (e) {
+                this.logService.warning(e);
+            }
         }
 
         await this.loadEvents(true);
