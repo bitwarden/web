@@ -77,24 +77,21 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
         if (this.services.size > 0) {
             return;
         }
-        const response = await fetch(new Request('https://2fa.directory/api/v2/totp.json'));
+        const response = await fetch(new Request('https://2fa.directory/api/v3/totp.json'));
         if (response.status !== 200) {
             throw new Error();
         }
         const responseJson = await response.json();
-        for (const categoryName in responseJson) {
-            if (responseJson.hasOwnProperty(categoryName)) {
-                const category = responseJson[categoryName];
-                for (const serviceName in category) {
-                    if (category.hasOwnProperty(serviceName)) {
-                        const service = category[serviceName];
-                        if (service.url != null) {
-                            const hostname = Utils.getHostname(service.url);
-                            if (hostname != null) {
-                                this.services.set(hostname, service.doc);
-                            }
+        for (const service of responseJson) {
+            const serviceData = service[1];
+            if (serviceData.domain != null) {
+                if (serviceData.documentation != null) {
+                    if (serviceData['additional-domains'] != null) {
+                        for (const additionalDomain of serviceData['additional-domains']) {
+                            this.services.set(additionalDomain, serviceData.documentation);
                         }
                     }
+                    this.services.set(serviceData.domain, serviceData.documentation);
                 }
             }
         }
