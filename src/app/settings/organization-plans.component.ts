@@ -36,6 +36,8 @@ import { OrganizationKeysRequest } from 'jslib-common/models/request/organizatio
 import { OrganizationUpgradeRequest } from 'jslib-common/models/request/organizationUpgradeRequest';
 
 import { PlanResponse } from 'jslib-common/models/response/planResponse';
+import { OrganizationUserInviteRequest } from 'jslib-common/models/request/organizationUserInviteRequest';
+import { PermissionsApi } from 'jslib-common/models/api/permissionsApi';
 
 @Component({
     selector: 'app-organization-plans',
@@ -48,6 +50,7 @@ export class OrganizationPlansComponent implements OnInit {
     @Input() organizationId: string;
     @Input() showFree = true;
     @Input() showCancel = false;
+    @Input() showOwnerInvite = false;
     @Input() product: ProductType = ProductType.Free;
     @Input() plan: PlanType = PlanType.Free;
     @Input() providerId: string;
@@ -62,6 +65,7 @@ export class OrganizationPlansComponent implements OnInit {
     additionalSeats: number = 0;
     name: string;
     billingEmail: string;
+    clientOwnerEmail: string;
     businessName: string;
     productTypes = ProductType;
     formPromise: Promise<any>;
@@ -338,7 +342,17 @@ export class OrganizationPlansComponent implements OnInit {
         if (this.providerId) {
             const providerKey = await this.cryptoService.getProviderKey(this.providerId);
             request.key = (await this.cryptoService.encrypt(orgKey.key, providerKey)).encryptedString;
-            return (await this.apiService.postProviderCreateOrganization(this.providerId, request)).id;
+            const orgId = (await this.apiService.postProviderCreateOrganization(this.providerId, request)).organizationId;
+
+            const userRequest = new OrganizationUserInviteRequest();
+            userRequest.emails = [this.clientOwnerEmail];
+            userRequest.accessAll = true;
+            userRequest.type = OrganizationUserType.Owner;
+            userRequest.permissions = new PermissionsApi();
+            userRequest.collections = [];
+            await this.apiService.postOrganizationUserInvite(orgId, userRequest);
+
+            return orgId;
         } else {
             return (await this.apiService.postOrganization(request)).id;
         }
