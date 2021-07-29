@@ -222,7 +222,7 @@ export class EventService {
                 const policies = await this.policyService.getAll();
                 const policy = policies.filter(p => p.id === ev.policyId)[0];
                 let p1 = this.getShortId(ev.policyId);
-                if (policy !== null) {
+                if (policy != null) {
                     p1 = PolicyType[policy.type];
                 }
 
