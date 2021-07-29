@@ -17,7 +17,10 @@ import { ProviderService } from '../services/provider.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 import { Provider } from 'jslib-common/models/domain/provider';
+import { ApiService } from 'jslib-common/abstractions';
+import { PlanType } from 'jslib-common/enums/planType';
 
+const DisallowedPlanTypes = [PlanType.Free, PlanType.FamiliesAnnually2019, PlanType.FamiliesAnnually];
 
 @Component({
     selector: 'provider-add-organization',
@@ -35,7 +38,8 @@ export class AddOrganizationComponent implements OnInit {
 
     constructor(private userService: UserService, private providerService: ProviderService,
         private toasterService: ToasterService, private i18nService: I18nService,
-        private platformUtilsService: PlatformUtilsService, private validationService: ValidationService) { }
+        private platformUtilsService: PlatformUtilsService, private validationService: ValidationService,
+        private apiService: ApiService) { }
 
     async ngOnInit() {
         await this.load();
@@ -48,7 +52,12 @@ export class AddOrganizationComponent implements OnInit {
 
         this.provider = await this.userService.getProvider(this.providerId);
 
-        this.organizations = (await this.userService.getAllOrganizations()).filter(p => p.providerId == null);
+        const candidateOrgs = (await this.userService.getAllOrganizations()).filter(o => o.providerId == null);
+        const allowedOrgsIds = await Promise.all(candidateOrgs.map(o => this.apiService.getOrganization(o.id))).then(orgs =>
+            orgs.filter(o => !DisallowedPlanTypes.includes(o.planType))
+                .map(o => o.id));
+        this.organizations = candidateOrgs.filter(o => allowedOrgsIds.includes(o.id));
+
         this.loading = false;
     }
 
