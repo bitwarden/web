@@ -34,10 +34,9 @@ import { ProductType } from 'jslib-common/enums/productType';
 import { OrganizationCreateRequest } from 'jslib-common/models/request/organizationCreateRequest';
 import { OrganizationKeysRequest } from 'jslib-common/models/request/organizationKeysRequest';
 import { OrganizationUpgradeRequest } from 'jslib-common/models/request/organizationUpgradeRequest';
+import { ProviderOrganizationCreateRequest } from 'jslib-common/models/request/provider/providerOrganizationCreateRequest';
 
 import { PlanResponse } from 'jslib-common/models/response/planResponse';
-import { OrganizationUserInviteRequest } from 'jslib-common/models/request/organizationUserInviteRequest';
-import { PermissionsApi } from 'jslib-common/models/api/permissionsApi';
 
 @Component({
     selector: 'app-organization-plans',
@@ -340,17 +339,10 @@ export class OrganizationPlansComponent implements OnInit {
         }
 
         if (this.providerId) {
+            const providerRequest = new ProviderOrganizationCreateRequest(this.clientOwnerEmail, request);
             const providerKey = await this.cryptoService.getProviderKey(this.providerId);
-            request.key = (await this.cryptoService.encrypt(orgKey.key, providerKey)).encryptedString;
-            const orgId = (await this.apiService.postProviderCreateOrganization(this.providerId, request)).organizationId;
-
-            const userRequest = new OrganizationUserInviteRequest();
-            userRequest.emails = [this.clientOwnerEmail];
-            userRequest.accessAll = true;
-            userRequest.type = OrganizationUserType.Owner;
-            userRequest.permissions = new PermissionsApi();
-            userRequest.collections = [];
-            await this.apiService.postOrganizationUserInvite(orgId, userRequest);
+            providerRequest.organizationCreateRequest.key = (await this.cryptoService.encrypt(orgKey.key, providerKey)).encryptedString;
+            const orgId = (await this.apiService.postProviderCreateOrganization(this.providerId, providerRequest)).organizationId;
 
             return orgId;
         } else {
