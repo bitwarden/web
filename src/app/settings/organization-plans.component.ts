@@ -49,7 +49,6 @@ export class OrganizationPlansComponent implements OnInit {
     @Input() organizationId: string;
     @Input() showFree = true;
     @Input() showCancel = false;
-    @Input() showOwnerInvite = false;
     @Input() product: ProductType = ProductType.Free;
     @Input() plan: PlanType = PlanType.Free;
     @Input() providerId: string;
