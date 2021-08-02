@@ -112,6 +112,11 @@ const plugins = [
         filename: 'captcha-connector.html',
         chunks: ['connectors/captcha'],
     }),
+    new HtmlWebpackPlugin({
+        template: './src/connectors/captcha-mobile.html',
+        filename: 'captcha-mobile-connector.html',
+        chunks: ['connectors/captcha'],
+    }),
     new CopyWebpackPlugin({
         patterns:[
             { from: './src/.nojekyll' },
@@ -132,13 +137,12 @@ const plugins = [
         filename: '[name].[hash].css',
         chunkFilename: '[id].[hash].css',
     }),
-    new webpack.DefinePlugin({
-        'process.env': {
-            'ENV': JSON.stringify(ENV),
-            'SELF_HOST': JSON.stringify(process.env.SELF_HOST === 'true' ? true : false),
-            'APPLICATION_VERSION': JSON.stringify(pjson.version),
-            'CACHE_TAG': JSON.stringify(Math.random().toString(36).substring(7)),
-        }
+    new webpack.EnvironmentPlugin({
+        'ENV': ENV,
+        'NODE_ENV': NODE_ENV === 'production' ? 'production' : 'development',
+        'SELF_HOST': process.env.SELF_HOST === 'true' ? true : false,
+        'APPLICATION_VERSION': pjson.version,
+        'CACHE_TAG': Math.random().toString(36).substring(7),
     }),
     new AngularCompilerPlugin({
         tsConfigPath: 'tsconfig.json',

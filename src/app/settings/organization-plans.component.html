@@ -29,16 +29,27 @@
             <input id="billingEmail" class="form-control" type="text" name="BillingEmail" [(ngModel)]="billingEmail"
                 required>
         </div>
-    </div>
-    <div class="form-group form-check">
-        <input id="ownedBusiness" class="form-check-input" type="checkbox" name="OwnedBusiness"
-            [(ngModel)]="ownedBusiness" (change)="changedOwnedBusiness()">
-        <label for="ownedBusiness" class="form-check-label">{{'accountOwnedBusiness' | i18n}}</label>
-    </div>
-    <div class="row" *ngIf="ownedBusiness">
-        <div class="form-group col-6">
+        <div class="form-group col-6" *ngIf="!!providerId">
+            <label for="email">{{'clientOwnerEmail' | i18n}}</label>
+            <input id="email" class="form-control" type="text" name="Email" [(ngModel)]="clientOwnerEmail" required>
+            <small class="text-muted">{{'ownerDesc' | i18n : '20'}}</small>
+        </div>
+        <div class="form-group col-6" *ngIf="!!providerId">
             <label for="businessName">{{'businessName' | i18n}}</label>
             <input id="businessName" class="form-control" type="text" name="BusinessName" [(ngModel)]="businessName">
+        </div>
+        </div>
+        <div *ngIf="!providerId">
+        <div class="form-group form-check">
+            <input id="ownedBusiness" class="form-check-input" type="checkbox" name="OwnedBusiness" [(ngModel)]="ownedBusiness"
+                (change)="changedOwnedBusiness()">
+            <label for="ownedBusiness" class="form-check-label">{{'accountOwnedBusiness' | i18n}}</label>
+        </div>
+        <div class="row" *ngIf="ownedBusiness">
+            <div class="form-group col-6">
+                <label for="businessName">{{'businessName' | i18n}}</label>
+                <input id="businessName" class="form-control" type="text" name="BusinessName" [(ngModel)]="businessName">
+                </div>
         </div>
     </div>
     <h2 class="mt-5">{{'chooseYourPlan' | i18n}}</h2>

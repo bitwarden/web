@@ -37,8 +37,8 @@ export class RegisterComponent extends BaseRegisterComponent {
         i18nService: I18nService, cryptoService: CryptoService,
         apiService: ApiService, private route: ActivatedRoute,
         stateService: StateService, platformUtilsService: PlatformUtilsService,
-        passwordGenerationService: PasswordGenerationService, environmentService: EnvironmentService,
-        private policyService: PolicyService) {
+        passwordGenerationService: PasswordGenerationService, private policyService: PolicyService,
+        environmentService: EnvironmentService) {
         super(authService, router, i18nService, cryptoService, apiService, stateService, platformUtilsService,
             passwordGenerationService, environmentService);
     }
@@ -107,6 +107,8 @@ export class RegisterComponent extends BaseRegisterComponent {
         if (this.policies != null) {
             this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(this.policies);
         }
+
+        await super.ngOnInit();
     }
 
     async submit() {
