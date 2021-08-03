@@ -72,7 +72,7 @@ export class EventService {
                 msg = humanReadableMsg = this.i18nService.t('exportedVault');
                 break;
             case EventType.User_UpdatedTempPassword:
-                msg = humanReadableMsg = this.i18nService.t('updateTempPassword');
+                msg = humanReadableMsg = this.i18nService.t('updatedMasterPassword');
                 break;
             // Cipher
             case EventType.Cipher_Created:
