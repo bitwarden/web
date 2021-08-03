@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 
+import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
@@ -17,7 +18,7 @@ import { ProviderService } from '../services/provider.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 import { Provider } from 'jslib-common/models/domain/provider';
-import { ApiService } from 'jslib-common/abstractions';
+
 import { PlanType } from 'jslib-common/enums/planType';
 
 const DisallowedPlanTypes = [PlanType.Free, PlanType.FamiliesAnnually2019, PlanType.FamiliesAnnually];
