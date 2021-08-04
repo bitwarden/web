@@ -106,6 +106,10 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
     async load() {
         const response = await this.getUsers();
         this.statusMap.clear();
+        for (const status of Utils.iterateEnum(this.userStatusType)) {
+            this.statusMap.set(status, []);
+        }
+
         this.allUsers = response.data != null && response.data.length > 0 ? response.data : [];
         this.allUsers.sort(Utils.getSortFunction(this.i18nService, 'email'));
         this.allUsers.forEach(u => {
