@@ -124,7 +124,6 @@ const plugins = [
             { from: './src/favicon.ico' },
             { from: './src/browserconfig.xml' },
             { from: './src/app-id.json' },
-            { from: './src/assetlinks.json' },
             { from: './src/404.html' },
             { from: './src/404', to: '404' },
             { from: './src/images', to: 'images' },
