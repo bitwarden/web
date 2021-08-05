@@ -998,6 +998,9 @@
   "purgedOrganizationVault": {
     "message": "Purged organization vault."
   },
+  "vaultAccessedByProvider": {
+    "message": "Vault accessed by provider."
+  },
   "purgeVaultDesc": {
     "message": "Proceed below to delete all items and folders in your vault. Items that belong to an organization that you share with will not be deleted."
   },
@@ -2588,7 +2591,7 @@
     "placeholders": {
       "id": {
         "content": "$1",
-        "example": "John Smith"
+        "example": "Google"
       }
     }
   },
@@ -2597,7 +2600,7 @@
     "placeholders": {
       "id": {
         "content": "$1",
-        "example": "John Smith"
+        "example": "Google"
       }
     }
   },
@@ -2606,7 +2609,16 @@
     "placeholders": {
       "id": {
         "content": "$1",
-        "example": "John Smith"
+        "example": "Google"
+      }
+    }
+  },
+  "accessedClientVault": {
+    "message": "Accessed $ID$ organization vault.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
       }
     }
   },
