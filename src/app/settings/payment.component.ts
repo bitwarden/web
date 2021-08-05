@@ -9,6 +9,7 @@ import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
+
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
 import { WebConstants } from '../../services/webConstants';
@@ -53,7 +54,8 @@ export class PaymentComponent implements OnInit {
     private StripeElementStyle: any;
     private StripeElementClasses: any;
 
-    constructor(private platformUtilsService: PlatformUtilsService, private apiService: ApiService, private storageService: StorageService) {
+    constructor(private platformUtilsService: PlatformUtilsService, private apiService: ApiService,
+        private storageService: StorageService) {
         this.stripeScript = window.document.createElement('script');
         this.stripeScript.src = 'https://js.stripe.com/v3/';
         this.stripeScript.async = true;
