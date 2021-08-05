@@ -10,9 +10,12 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { ProviderUserType } from 'jslib-common/enums/providerUserType';
 
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
@@ -20,9 +23,10 @@ import {
     ProviderOrganizationOrganizationDetailsResponse
 } from 'jslib-common/models/response/provider/providerOrganizationResponse';
 
-import { LogService } from 'jslib-common/abstractions';
 import { ModalComponent } from 'src/app/modal.component';
+
 import { ProviderService } from '../services/provider.service';
+
 import { AddOrganizationComponent } from './add-organization.component';
 
 @Component({
@@ -35,6 +39,7 @@ export class ClientsComponent implements OnInit {
     providerId: any;
     searchText: string;
     loading = true;
+    manageOrganizations = false;
     showAddExisting = false;
 
     clients: ProviderOrganizationOrganizationDetailsResponse[];
@@ -71,6 +76,7 @@ export class ClientsComponent implements OnInit {
     async load() {
         const response = await this.apiService.getProviderClients(this.providerId);
         this.clients = response.data != null && response.data.length > 0 ? response.data : [];
+        this.manageOrganizations = (await this.userService.getProvider(this.providerId)).type === ProviderUserType.ProviderAdmin;
         this.showAddExisting = (await this.userService.getAllOrganizations()).some(org => org.providerId == null);
         this.loading = false;
     }
