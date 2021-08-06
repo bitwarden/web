@@ -76,6 +76,8 @@ $grid-breakpoints: (
 $text-color: #333333;
 $border-color: $secondary;
 
+$fa-font-path: "~font-awesome/fonts";
+
 // Theme Variables
 
 $lightDangerHover: #C43421;
@@ -100,6 +102,7 @@ $darkDarkBlue2: #1F242E;
 $themes: (
     light: (
         primary: $primary,
+        primaryAlt: $primary-accent,
         danger: $danger,
         success: $success,
         pending: $pending,
@@ -118,6 +121,7 @@ $themes: (
         badgePrimaryBackground: $primary,
         badgeSecondaryBackground: #ced4da,
         bgPrimaryColor: $primary,
+        bgLightColor: #f8f9fa,
         borderColor: $border-color,
         borderPrimaryColor: $primary,
         btnDanger: $danger,
@@ -171,6 +175,8 @@ $themes: (
         navWeight: 600,
         pwNumber: #007FDE,
         pwSpecial: #c40800,
+        registerHeadingColor: $white,
+        registerLogo: url("../images/register-layout/logo-horizontal-white.png"),
         separator: $secondary,
         separatorHr: rgb(0,0,0,0.1),
         tableColorHover: #333333,
@@ -178,6 +184,7 @@ $themes: (
     ),
     dark: (
         primary: $darkPrimary,
+        primaryAlt: $darkPrimary-alt,
         danger: $darkDanger,
         success: $darkSuccess,
         pending: $darkPending,
@@ -196,6 +203,7 @@ $themes: (
         badgePrimaryBackground: $darkLinks,
         badgeSecondaryBackground: $darkDarkBlue2,
         bgPrimaryColor: $darkPrimary,
+        bgLightColor: $darkDarkBlue2,
         borderColor: $darkBlue1,
         borderPrimaryColor: $darkPrimary,
         btnDanger: $darkDanger,
@@ -249,6 +257,8 @@ $themes: (
         navWeight: 400,
         pwNumber: #52bdfb,
         pwSpecial: #FF7C70,
+        registerHeadingColor: $white,
+        registerLogo: url("../images/register-layout/logo-horizontal-white.png"),
         separator: $darkBlue1,
         separatorHr: $darkBlue1,
         tableColorHover: $darkGrey1,

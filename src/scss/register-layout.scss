@@ -1,39 +1,47 @@
 .layout {
     &.enterprise2 {
-
         header {
-            color: $secondary;
-            background-color: $primary;
-
-            &:before {
-                content: "";
-                position: absolute;
-                z-index: -1;
-                width: 100%;
-                height: 340px;
-                left: 0;
-                transform: skewY(-3deg);
-                background: $primary;
+            @include themify($themes) {
+                background: themed('primary');
+                color: themed('registerHeadingColor');
             }
 
-            img.logo {
-                
+            &:before {
+                @include themify($themes) {
+                    background: themed('primary');
+                }
+                content: "";
+                height: 416px;
+                left: 0;
+                position: absolute;
+                top: -76px;
+                transform: skewY(-3deg);
+                width: 100%;
+                z-index: -1;
+            }
+            .logo#registerLogo {
+                @include themify($themes) {
+                    background: themed('registerLogo') no-repeat center center;
+                    background-size: cover;
+                }
                 margin: 12px 0 0;
-                width: 284px;
                 max-width: 284px;
-                height: auto;
+                height: 57px;
+                width: 284px;
             }
         }
 
         h2 {
-            color: #ffffff;
+            @include themify($themes) {
+                color: themed('registerHeadingColor');
+            }
             font-size: 1.8rem;
             margin: 100px 0 150px 0;
         }
 
         p {
-            margin: 20px 0 40px 0;
             font-size: 1.4rem;
+            margin: 20px 0 40px 0;
 
             &:before {
                 content: "/";
@@ -41,7 +49,9 @@
             }
             &:not(.highlight) {
                 &:before {
-                    color: $primary-accent;
+                    @include themify($themes) {
+                        color: themed('primaryAlt');
+                    }
                 }
             }
 
@@ -55,8 +65,8 @@
         }
 
         blockquote {
-            margin: 20px 0 0 0;
             font-size: 1.4rem;
+            margin: 20px 0 0 0;
             padding-right: 40px;
         }
     }
