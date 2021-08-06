@@ -21,8 +21,6 @@ import { Provider } from 'jslib-common/models/domain/provider';
 
 import { PlanType } from 'jslib-common/enums/planType';
 
-const DisallowedPlanTypes = [PlanType.Free, PlanType.FamiliesAnnually2019, PlanType.FamiliesAnnually];
-
 @Component({
     selector: 'provider-add-organization',
     templateUrl: 'add-organization.component.html',
@@ -30,12 +28,12 @@ const DisallowedPlanTypes = [PlanType.Free, PlanType.FamiliesAnnually2019, PlanT
 export class AddOrganizationComponent implements OnInit {
 
     @Input() providerId: string;
+    @Input() organizations: Organization[];
     @Output() onAddedOrganization = new EventEmitter();
 
     provider: Provider;
     formPromise: Promise<any>;
     loading = true;
-    organizations: Organization[];
 
     constructor(private userService: UserService, private providerService: ProviderService,
         private toasterService: ToasterService, private i18nService: I18nService,
@@ -52,12 +50,6 @@ export class AddOrganizationComponent implements OnInit {
         }
 
         this.provider = await this.userService.getProvider(this.providerId);
-
-        const candidateOrgs = (await this.userService.getAllOrganizations()).filter(o => o.providerId == null);
-        const allowedOrgsIds = await Promise.all(candidateOrgs.map(o => this.apiService.getOrganization(o.id))).then(orgs =>
-            orgs.filter(o => !DisallowedPlanTypes.includes(o.planType))
-                .map(o => o.id));
-        this.organizations = candidateOrgs.filter(o => allowedOrgsIds.includes(o.id));
 
         this.loading = false;
     }
