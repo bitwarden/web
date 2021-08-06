@@ -90,6 +90,7 @@ export class OrganizationPlansComponent implements OnInit {
 
         if (this.providerId) {
             this.ownedBusiness = true;
+            this.changedOwnedBusiness();
         }
 
         this.loading = false;
