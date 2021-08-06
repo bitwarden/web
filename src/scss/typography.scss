@@ -1,0 +1,100 @@
+h1, h2, h3, h4, h5 {
+    @include themify($themes) {
+        color: themed('textColor');
+    }
+
+    small {
+        font-size: 80%;
+    }
+
+    &.spaced-header {
+        @include themify($themes) {
+            color: themed('headingColor');
+        }
+    }
+}
+
+a {
+    @include themify($themes) {
+        color: themed('linkColor');
+    }
+
+    &.text-body {
+        @include themify($themes) {
+            color: themed('headingColor') !important;
+            font-weight: themed('linkWeight');
+        }
+    }
+}
+
+a:hover {
+    @include themify($themes) {
+        color: themed('linkColorHover');
+    }
+}
+
+code {
+    @include themify($themes) {
+        color: themed('codeColor');
+    }
+}
+
+.text-danger {
+    &:not(.dropdown-item) {
+        @include themify($themes) {
+            color: themed('danger') !important;
+        }
+
+        & > h1,h2,h3,h4 {
+            @include themify($themes) {
+                color: themed('danger') !important;
+            }
+        }
+    }
+}
+
+.text-warning {
+    @include themify($themes) {
+        color: themed('warning') !important;
+    }
+
+    & > h1,h2,h3,h4 {
+        @include themify($themes) {
+            color: themed('warning') !important;
+        }
+    }
+}
+
+.text-success {
+    @include themify($themes) {
+        color: themed('success') !important;
+    }
+    
+    & > h1,h2,h3,h4 {
+        @include themify($themes) {
+            color: themed('success') !important;
+        }
+    }
+}
+
+.fa-icon-above-input {
+    height: 1.5em;
+}
+
+.text-lg {
+    font-size: $font-size-lg;
+}
+
+.text-strike {
+    text-decoration: line-through;
+}
+
+.font-weight-semibold {
+    font-weight: 600;
+}
+
+.text-muted {
+    @include themify($themes) {
+        color: themed('textMuted') !important;
+    }
+}

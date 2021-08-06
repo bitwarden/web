@@ -1,0 +1,151 @@
+.password-wrapper {
+    min-width: 0;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+.password-row {
+    min-width: 0;
+}
+
+.password-number {
+    @include themify($themes) {
+        color: themed('pwNumber');
+    }
+}
+
+.password-special {
+    @include themify($themes) {
+        color: themed('pwSpecial');
+    }
+}
+
+app-vault-groupings, app-org-vault-groupings, .groupings {
+    .card {
+        #search {
+            margin-bottom: 1rem;
+            @include themify($themes) {
+                background-color: themed('inputSearchBackgroundColor');
+                border-color: themed('inputSearchBorderColor');
+                color: themed('inputSearchTextColor');
+            }
+
+            &::placeholder {
+                @include themify($themes) {
+                    color: themed('inputSearchPlaceholderColor');
+                }
+            }
+        }
+
+        h3 {
+            font-weight: normal;
+            text-transform: uppercase;
+            @include themify($themes) {
+                color: themed('textMuted');
+            }
+        }
+
+        ul:last-child {
+            margin-bottom: 0;
+        }
+
+        .card-body a {
+            @include themify($themes) {
+                color: themed('headingColor');
+                font-weight: themed('linkWeight');
+            }
+
+            &:hover {
+                &.text-muted {
+                    @include themify($themes) {
+                        color: themed('iconHover') !important;
+                    }
+                }
+            }
+        }
+
+        .show-active {
+            display: none;
+        }
+
+        li {
+            > .fa, > div > .fa {
+                cursor: pointer;
+            }
+        }
+
+        li.active {
+            > .show-active, > div .show-active {
+                display: inline;
+            }
+        }
+
+        li.active {
+            > a:first-of-type, > div a:first-of-type {
+                font-weight: bold;
+                @include themify($themes) {
+                    color: themed('linkColor');
+                }
+            }
+
+            > .fa, > div > .fa {
+                @include themify($themes) {
+                    color: themed('linkColor');
+                }
+            }
+        }
+    }
+}
+
+app-password-generator {
+    #lengthRange {
+        width: 100%;
+    }
+
+    .card-password {
+        .card-body {
+            align-items: center;
+            display: flex;
+            flex-wrap: wrap;
+            font-family: $font-family-monospace;
+            font-size: $font-size-lg;
+            justify-content: center;
+            text-align: center;
+        }
+    }
+}
+
+app-password-generator-history {
+    .list-group-item {
+        line-height: 1;
+        @include themify($themes) {
+            background: themed('backgroundColor');
+        }
+
+        .password {
+            font-family: $font-family-monospace;
+        }
+    }
+}
+
+app-import {
+    textarea {
+        height: 150px;
+    }
+}
+
+app-avatar {
+    img {
+        @extend .rounded;
+    }
+}
+
+app-user-billing {
+    .progress {
+        height: 20px;
+        
+        .progress-bar {
+            min-width: 50px;
+        }
+    }
+}

@@ -1,0 +1,173 @@
+.btn-primary, .swal2-confirm {
+    &:not(:disabled) {
+        @include themify($themes) {
+            background-color: themed('btnPrimary');
+            border-color: themed('btnPrimary');
+            color: themed('btnPrimaryText');
+        }
+    }
+
+    &:hover:not(:disabled), &:active:not(:disabled) {
+        @include themify($themes) {
+            background-color: themed('btnPrimaryHover');
+            border-color: themed('btnPrimaryBorderHover');
+            color: themed('btnPrimaryText');
+        }
+    }
+
+    &:disabled {
+        opacity: 0.65;
+    }
+}
+
+.btn-secondary, .swal2-cancel {
+    &:not(:disabled) {
+        @include themify($themes) {
+            background-color: themed('btnSecondary');
+            border-color: themed('btnSecondary');
+            color: themed('btnSecondaryText');
+        }
+    }
+
+    &:hover:not(:disabled), &:active:not(:disabled) {
+        @include themify($themes) {
+            background-color: themed('btnSecondaryHover');
+            border-color: themed('btnSecondaryBorderHover');
+            color: themed('btnSecondaryTextHover');
+        }
+    }
+
+    &:disabled {
+        opacity: 0.65;
+    }
+
+    &:focus,
+    &.focus {
+        @include themify($themes) {
+            box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq(themed('primary')), themed('primary'), 15%), .5);
+        }
+    }
+}
+
+.show > .btn-secondary {
+    &.dropdown-toggle, &:focus {
+        @include themify($themes) {
+            color: themed('btnSecondaryText');
+        }
+    }
+
+    &:hover {
+        @include themify($themes) {
+            background-color: themed('btnSecondaryHover');
+            border-color: themed('btnSecondaryBorderHover');
+            color: themed('btnSecondaryTextHover');
+        }
+    }
+}
+
+.btn-danger, .swal2-deny {
+    &:not(:disabled) {
+        @include themify($themes) {
+            background-color: themed('btnDanger');
+            border-color: themed('btnDanger');
+            color: themed('btnDangerText');
+        }   
+    }
+
+    &:hover:not(:disabled), &:active:not(:disabled) {
+        @include themify($themes) {
+            background-color: themed('btnDangerHover');
+            border-color: themed('btnDangerHover');
+            color: themed('btnDangerText');
+        }
+    }
+}
+
+.btn-link {
+    &:focus,
+    &.focus {
+        outline-color: -webkit-focus-ring-color;
+        outline-offset: 1px;
+        outline-style: auto;
+        outline-width: 1px;
+    }
+
+    &:not(.text-danger):not(.cursor-move) {
+        @include themify($themes) {
+            color: themed('btnLinkText');
+        }
+    }
+
+    &:hover:not(.text-danger):not(.cursor-move) {
+        @include themify($themes) {
+            color: themed('btnLinkTextHover');
+        }
+    }
+}
+
+.btn-submit {
+    position: relative;
+
+    .fa-spinner {
+        align-items: center;
+        display: none;
+        justify-content: center;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        top: 0;
+    }
+
+    &:disabled:not(.manual), &.loading {
+        .fa-spinner {
+            display: flex;
+        }
+
+        span {
+            visibility: hidden;
+        }
+    }
+}
+
+.badge-primary {
+    @include themify($themes) {
+        background-color: themed('badgePrimaryBackground');
+        color: themed('btnPrimaryText');
+    }
+}
+
+.badge-secondary {
+    @include themify($themes) {
+        background-color: themed('badgeSecondaryBackground');
+        color: themed('btnSecondaryText');
+    }
+}
+
+.badge-info {
+    @include themify($themes) {
+        background-color: themed('badgeInfoBackground');
+        color: themed('btnPrimaryText');
+    }
+}
+
+.badge-danger {
+    @include themify($themes) {
+        background-color: themed('danger');
+        color: themed('dangerTextColor');
+    }
+}
+
+.badge-info {
+    @include themify($themes) {
+        background-color: themed('warning');
+        color: themed('warningTextColor');
+    }
+}
+
+.badge-success {
+    @include themify($themes) {
+        background-color: themed('success');
+        color: themed('successTextColor');
+    }
+}

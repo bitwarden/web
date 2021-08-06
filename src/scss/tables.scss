@@ -1,0 +1,124 @@
+.table.table-list {
+    @include themify($themes) {
+        color: themed('textColor');
+    }
+
+    &.table td, .table th {
+        &:not(tr:first-child td) {
+            @include themify($themes) {
+                border-top: 1px solid themed('separator');
+            }
+        }
+    }
+
+    thead th {
+        border-top: none;
+    }
+
+    tr:first-child {
+        td {
+            border: none;
+        }
+    }
+
+    td {
+        vertical-align: middle;
+        @include themify($themes) {
+            color: themed('textColor');
+        }
+
+        &.reduced-lh {
+            line-height: 1;
+            
+            small {
+                font-size: 80%;
+            }
+        }
+
+        small, > .fa, .icon {
+            @include themify($themes) {
+                color: themed('textMuted');
+            }
+        }
+
+        .fa-globe {
+            @include themify($themes) {
+                color: themed('iconColor');
+            }
+        }
+    }
+
+    td.wrap {
+        word-break: break-all;
+    }
+
+    td.table-list-options {
+        height: 50px;
+        max-width: 76px;
+        text-align: right;
+        width: 76px;
+
+        &.wider {
+            max-width: 100px;
+            width: 100px;
+        }
+
+        .btn {
+            line-height: 1;
+            transition: initial;
+        }
+
+        .dropdown-menu {
+            line-height: $line-height-base;
+        }
+    }
+
+    tr:not(:hover) td.table-list-options {
+        > .dropdown:not(.show) button:not(:focus):not(:active), > button:not(:focus):not(:active) {
+            @extend .sr-only;
+        }
+    }
+
+    td.table-list-icon {
+        max-width: 45px;
+        text-align: center;
+        width: 45px;
+        
+        img {
+            @extend .rounded;
+            @extend .img-fluid;
+            max-height: 24px;
+        }
+    }
+
+    td.table-list-checkbox {
+        max-width: 35px;
+        width: 35px;
+    }
+
+    td.table-list-strike {
+        text-decoration: line-through;
+        @include themify($themes) {
+            color: themed('textMuted');
+        }
+    }
+}
+
+.table-hover tbody tr:hover {
+    @include themify($themes) {
+        background-color: themed('tableRowHover');
+        color: themed('tableColorHover');
+    }
+}
+
+.list-group-item {
+    &:focus,
+    &.focus {
+        z-index: 100;
+    }
+    @include themify($themes) {
+        background-color: themed('foregroundColor');
+        color: themed('linkColor');
+        font-weight: themed('linkWeight');
+    }
+}

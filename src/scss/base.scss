@@ -1,0 +1,105 @@
+html {
+    font-size: 14px;
+}
+
+body {
+    min-width: 1010px;
+
+    &.layout_frontend {
+        @media (prefers-color-scheme: dark) {
+            background-color: #2F343D;
+        }
+        @media (prefers-color-scheme: light) {
+            background-color: #FFFFFF;
+        }
+        @include themify($themes) {
+            background-color: themed('layoutFrontendColor');
+            color: themed('headingColor');
+        }
+    }
+
+    @include themify($themes) {
+        background-color: themed('backgroundColor');
+        color: themed('textColor');
+    }
+
+    &.full-width:not(.layout_frontend) {
+        .container {
+            min-width: 980px;
+            width: 90%;
+        }
+    }
+}
+
+.container {
+    margin: 0 auto;
+    max-width: none !important;
+    padding: 0;
+    width: 980px;
+}
+
+.page-content {
+    margin-top: 20px;
+}
+
+.footer {
+    margin-top: 40px;
+    padding: 40px 0 40px 0;
+    @include themify($themes) {
+        border-top: 1px solid themed('separator');
+    }
+}
+
+hr {
+    @include themify($themes) {
+        border-top: 1px solid themed('separatorHr');
+    }
+}
+
+.min-height-fix {
+    min-height: 1px;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.cursor-move {
+    cursor: move !important;
+}
+
+.bg-primary {
+    @include themify($themes) {
+        background-color: themed('bgPrimaryColor') !important;
+    }
+}
+
+.bg-light {
+    @include themify($themes) {
+        background-color: themed('bgLightColor') !important;
+    }
+}
+
+.border-primary {
+    @include themify($themes) {
+        border-color: themed('borderPrimaryColor') !important;
+    }
+}
+
+.border-warning {
+    @include themify($themes) {
+        border-color: themed('warning') !important;
+    }
+}
+
+.border-danger {
+    @include themify($themes) {
+        border-color: themed('danger') !important;
+    }
+}
+
+.border-info {
+    @include themify($themes) {
+        border-color: themed('info') !important;
+    }
+}
