@@ -998,6 +998,9 @@
   "purgedOrganizationVault": {
     "message": "Purged organization vault."
   },
+  "vaultAccessedByProvider": {
+    "message": "Vault accessed by provider."
+  },
   "purgeVaultDesc": {
     "message": "Proceed below to delete all items and folders in your vault. Items that belong to an organization that you share with will not be deleted."
   },
@@ -2238,11 +2241,17 @@
   "confirmed": {
     "message": "Confirmed"
   },
+  "clientOwnerEmail": {
+    "message": "Client Owner Email"
+  },
   "owner": {
     "message": "Owner"
   },
   "ownerDesc": {
     "message": "The highest access user that can manage all aspects of your organization."
+  },
+  "clientOwnerDesc": {
+    "message": "This email should NOT be associated with the provider. This user will have permissions to access and manage all aspects of this organization."
   },
   "admin": {
     "message": "Admin"
@@ -2582,7 +2591,7 @@
     "placeholders": {
       "id": {
         "content": "$1",
-        "example": "John Smith"
+        "example": "Google"
       }
     }
   },
@@ -2591,7 +2600,7 @@
     "placeholders": {
       "id": {
         "content": "$1",
-        "example": "John Smith"
+        "example": "Google"
       }
     }
   },
@@ -2600,7 +2609,16 @@
     "placeholders": {
       "id": {
         "content": "$1",
-        "example": "John Smith"
+        "example": "Google"
+      }
+    }
+  },
+  "accessedClientVault": {
+    "message": "Accessed $ID$ organization vault.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
       }
     }
   },
@@ -4061,19 +4079,19 @@
     "message": "Manage Users must also be enabled with the Manage Password Reset permission"
   },
   "setupProvider": {
-    "message": "Setup Provider"
+    "message": "Provider Setup"
   },
   "setupProviderLoginDesc": {
     "message": "You've been invited to setup a new provider. To continue, you need to log in or create a new Bitwarden account."
   },
   "setupProviderDesc": {
-    "message": "You have been invited to create a Provider, please enter the details below to complete the setup. Contact customer support if you have any questions."
+    "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
   },
   "providerName": {
     "message": "Provider Name"
   },
   "providerSetup": {
-    "message": "The provider has been setup."
+    "message": "The provider has been set up."
   },
   "clients": {
     "message": "Clients"
@@ -4082,7 +4100,7 @@
     "message": "Provider Admin"
   },
   "providerAdminDesc": {
-    "message": "The highest access user that can manage all aspects of your provider, and client organizations."
+    "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
   },
   "serviceUser": {
     "message": "Service User"
@@ -4112,13 +4130,13 @@
     "message": "Provider"
   },
   "newClientOrganization": {
-    "message": "New client organization"
+    "message": "New Client Organization"
   },
   "newClientOrganizationDesc": {
-    "message": "Organizations allow you to share parts of your vault with others as well as manage related users for a specific entity such as a family, small team, or large company."
+    "message": "Create a new client organization that will be associated with you as the provider. You will be able to access and manage this organization."
   },
   "addExistingOrganization": {
-    "message": "Add existing organization"
+    "message": "Add Existing Organization"
   },
   "myProvider": {
     "message": "My Provider"
