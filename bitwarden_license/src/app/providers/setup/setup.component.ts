@@ -33,7 +33,6 @@ export class SetupComponent implements OnInit {
     token: string;
     name: string;
     billingEmail: string;
-    businessName: string;
 
     constructor(private router: Router, private toasterService: ToasterService,
         private i18nService: I18nService, private route: ActivatedRoute,
@@ -80,12 +79,11 @@ export class SetupComponent implements OnInit {
             const request = new ProviderSetupRequest();
             request.name = this.name;
             request.billingEmail = this.billingEmail;
-            request.businessName = this.businessName;
             request.token = this.token;
             request.key = key;
 
             const provider = await this.apiService.postProviderSetup(this.providerId, request);
-            this.toasterService.popAsync('success', this.i18nService.t('providerSetup'));
+            this.toasterService.popAsync('success', null, this.i18nService.t('providerSetup'));
             await this.syncService.fullSync(true);
 
             this.router.navigate(['/providers', provider.id]);
