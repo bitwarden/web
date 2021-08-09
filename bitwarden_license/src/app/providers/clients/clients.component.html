@@ -38,7 +38,7 @@
                     <td>
                         <a [routerLink]="['/organizations', o.organizationId]">{{o.organizationName}}</a>
                     </td>
-                    <td class="table-list-options">
+                    <td class="table-list-options" *ngIf="manageOrganizations">
                         <div class="dropdown" appListDropdown>
                             <button class="btn btn-outline-secondary dropdown-toggle" type="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
