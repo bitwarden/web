@@ -2,7 +2,10 @@ name: QA Deploy
 
 on: 
   workflow_dispatch:
-    inputs: {}
+    inputs:
+      image_extension:
+        description: "extension to append to the branch name for docker image name"
+        required: false
 
 env:
   QA_CLUSTER_RESOURCE_GROUP: "bitwarden-devops"
@@ -28,7 +31,6 @@ jobs:
           creds: ${{ secrets.AZURE_QA_KV_CREDENTIALS }}
 
       - name: Retrieve secrets
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         id: retrieve-secrets
         uses: Azure/get-keyvault-secrets@80ccd3fafe5662407cc2e55f202ee34bfff8c403
         with:
@@ -49,8 +51,20 @@ jobs:
           echo "---az get-creds---"
           az aks get-credentials -n $QA_CLUSTER_NAME -g $QA_CLUSTER_RESOURCE_GROUP
 
-      - name: Redeploy Web image
+      - name: Get image tag
+        id: image_tag
         run: |
-          POD_NAME=$(kubectl get po -n $QA_K8S_NAMESPACE -l app=$QA_K8S_APP_NAME -o jsonpath="{.items[0].metadata.name}")
-          echo "Deleting pod: $POD_NAME"
-          kubectl delete po -n bw-qa $POD_NAME
+          IMAGE_TAG="$GITHUB_REF"
+          TAG_EXTENSION=${{ github.events.inputs.image_extension }}
+
+          if [[ $TAG_EXTENSION ]]; then
+            IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
+          fi  
+          echo "::set-output name=value::$IMAGE_TAG"
+
+      - name: Deploy Web image
+        env:
+          IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
+        run: |
+          kubectl set image deployment/web web=bitwardenqa.azurecr.io/web:$IMAGE_TAG --record
+          kubectl rollout status deployment/web -n bw-qa

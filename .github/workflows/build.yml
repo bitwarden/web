@@ -1,6 +1,11 @@
 name: Build
 
 on:
+  workflow_dispatch:
+    inputs:
+      custom_tag_extension:
+        description: "custom extension to add to the QA docker image"
+        required: false
   push:
     branches-ignore:
       - 'l10n_master'
@@ -169,13 +174,11 @@ jobs:
           echo "GitHub event: $GITHUB_EVENT"
 
       - name: Login to Azure
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
         with:
           creds: ${{ secrets.AZURE_QA_KV_CREDENTIALS }}
 
       - name: Log into container registry
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         run: az acr login -n bitwardenqa
 
       - name: Checkout repo
@@ -198,28 +201,39 @@ jobs:
           docker --version
           docker build -t bitwardenqa.azurecr.io/web .
 
-      - name: Tag rc branch
-        if: github.ref == 'refs/heads/rc'
-        run: docker tag bitwardenqa.azurecr.io/web bitwardenqa.azurecr.io/web:rc
+      - name: Get image tag
+        id: image_tag
+        run: |
+          IMAGE_TAG="$GITHUB_REF"
+          TAG_EXTENSION=${{ github.events.inputs.custom_tag_extension }}
+
+          if [[ $TAG_EXTENSION ]]; then
+            IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
+          fi  
+          echo "::set-output name=value::$IMAGE_TAG"
+
+      - name: Tag image
+        env:
+          IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
+        run: docker tag bitwardenqa.azurecr.io/web bitwardenqa.azurecr.io/web:$IMAGE_TAG
 
       - name: Tag dev
         if: github.ref == 'refs/heads/master'
         run: docker tag bitwardenqa.azurecr.io/web bitwardenqa.azurecr.io/web:dev
 
       - name: List Docker images
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         run: docker images
 
-      - name: Push rc images
-        if: github.ref == 'refs/heads/rc'
-        run: docker push bitwardenqa.azurecr.io/web:rc
+      - name: Push image
+        env:
+          IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
+        run: docker push bitwardenqa.azurecr.io/web:$IMAGE_TAG
 
       - name: Push dev images
         if: github.ref == 'refs/heads/master'
         run: docker push bitwardenqa.azurecr.io/web:dev
 
       - name: Log out of Docker
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         run: docker logout
 
 
