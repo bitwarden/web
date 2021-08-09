@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       custom_tag_extension:
-        description: "custom extension to add to the QA docker image"
+        description: "Custom image tag extension"
         required: false
   push:
     branches-ignore:
