@@ -204,7 +204,7 @@ jobs:
       - name: Get image tag
         id: image_tag
         run: |
-          IMAGE_TAG="$GITHUB_REF"
+          IMAGE_TAG=$(echo "$GITHUB_REF" | awk '{split($0, a, "/"); print a[3];}')
           TAG_EXTENSION=${{ github.events.inputs.custom_tag_extension }}
 
           if [[ $TAG_EXTENSION ]]; then
@@ -215,8 +215,7 @@ jobs:
       - name: Tag image
         env:
           IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
-        run: |
-          docker tag bitwardenqa.azurecr.io/web "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
+        run: docker tag bitwardenqa.azurecr.io/web "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
 
       - name: Tag dev
         if: github.ref == 'refs/heads/master'
@@ -228,8 +227,7 @@ jobs:
       - name: Push image
         env:
           IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
-        run: |
-          docker push "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
+        run: docker push "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
 
       - name: Push dev images
         if: github.ref == 'refs/heads/master'
