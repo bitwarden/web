@@ -215,7 +215,7 @@ jobs:
       - name: Tag image
         env:
           IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
-        run: docker tag bitwardenqa.azurecr.io/web bitwardenqa.azurecr.io/web:$IMAGE_TAG
+        run: docker tag bitwardenqa.azurecr.io/web "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
 
       - name: Tag dev
         if: github.ref == 'refs/heads/master'
@@ -227,7 +227,7 @@ jobs:
       - name: Push image
         env:
           IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
-        run: docker push bitwardenqa.azurecr.io/web:$IMAGE_TAG
+        run: docker push "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
 
       - name: Push dev images
         if: github.ref == 'refs/heads/master'
