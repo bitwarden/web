@@ -7,12 +7,13 @@
             <input type="search" class="form-control form-control-sm" id="search" placeholder="{{'search' | i18n}}"
                 [(ngModel)]="searchText">
         </div>
-        <a class="btn btn-sm btn-outline-primary ml-3" routerLink="create">
+        <a class="btn btn-sm btn-outline-primary ml-3" routerLink="create" *ngIf="manageOrganizations">
             <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
             {{'newClientOrganization' | i18n}}
         </a>
-        <button class="btn btn-sm btn-outline-primary ml-3" (click)="addExistingOrganization()" *ngIf="showAddExisting">
-            <i class="fa fa-arrow-circle-o-right fa-fw" aria-hidden="true"></i>
+        <button class="btn btn-sm btn-outline-primary ml-3" (click)="addExistingOrganization()"
+            *ngIf="manageOrganizations && showAddExisting">
+            <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
             {{'addExistingOrganization' | i18n}}
         </button>
     </div>
@@ -37,7 +38,7 @@
                     <td>
                         <a [routerLink]="['/organizations', o.organizationId]">{{o.organizationName}}</a>
                     </td>
-                    <td class="table-list-options">
+                    <td class="table-list-options" *ngIf="manageOrganizations">
                         <div class="dropdown" appListDropdown>
                             <button class="btn btn-outline-secondary dropdown-toggle" type="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
