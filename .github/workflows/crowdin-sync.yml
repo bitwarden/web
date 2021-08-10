@@ -81,7 +81,7 @@ jobs:
                   break
               fi
 
-              if [[ $try -eq $MAX_TRIES ]]; then
+              if [[ "$try" == "$MAX_TRIES" ]]; then
                   echo "[!] Exceeded tries: $try"
                   exit 1
               else
