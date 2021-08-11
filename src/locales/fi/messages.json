@@ -978,7 +978,7 @@
     "message": "Vaaravyöhyke"
   },
   "dangerZoneDesc": {
-    "message": "Ole varovainen, nämä toiminnot eivät ole peruttavissa!"
+    "message": "Ole varovainen, näiden toimintojen peruminen ei ole mahdollista!"
   },
   "deauthorizeSessions": {
     "message": "Mitätöi kaikki istunnot"
@@ -1005,7 +1005,7 @@
     "message": "Jatka alla poistaaksesi kaikki organisaatiosi holvissa olevat kohteet."
   },
   "purgeVaultWarning": {
-    "message": "Tilin poisto on pysyvä toimenpide, eikä sitä ole mahdollista perua."
+    "message": "Tilin poisto on pysyvä toimenpide, eikä sen peruminen ole mahdollista."
   },
   "vaultPurged": {
     "message": "Holvisi tiedot on tyhjennetty."
@@ -1017,7 +1017,7 @@
     "message": "Jatka alla poistaaksesi tilisi ja kaikki siihen liittyvät tiedot."
   },
   "deleteAccountWarning": {
-    "message": "Tilin poisto on pysyvä toimenpide, eikä sitä ole mahdollista perua."
+    "message": "Tilin poisto on pysyvä toimenpide, eikä sen peruminen ole mahdollista."
   },
   "accountDeleted": {
     "message": "Tili poistettiin"
@@ -1636,7 +1636,7 @@
     "message": "Muita kaksivaiheisen kirjautumisen todennusmenetelmiä kuten YubiKey, FIDO U2F ja Duo Security."
   },
   "premiumSignUpEmergency": {
-    "message": "Hätäyhteys"
+    "message": "Varmuuskäyttö"
   },
   "premiumSignUpReports": {
     "message": "Salasanahygienian, tilin terveyden ja tietovuotojen raportointitoiminnot pitävät holvisi turvassa."
@@ -1718,10 +1718,10 @@
     "description": "Short abbreviation for 'month'"
   },
   "paymentChargedAnnually": {
-    "message": "Maksutapaasi veloitetaan välittömästi ja jatkossa kerran vuodessa. Voit peruuttaa tilauksen milloin tahansa."
+    "message": "Maksutapaasi veloitetaan välittömästi ja jatkossa kerran vuodessa. Voit irtisanoa tilauksen koska tahansa."
   },
   "paymentCharged": {
-    "message": "Maksutapaasi veloitetaan välittömästi ja jatkossa joka $INTERVAL$. Voit peruuttaa tilauksen milloin tahansa.",
+    "message": "Maksutapaasi veloitetaan välittömästi ja jatkossa joka $INTERVAL$. Voit irtisanoa tilauksen koska tahansa.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1730,7 +1730,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Tilauksesi sisältää ilmaisen 7 päivän kokeilujakson. Maksutapaasi ei veloiteta ennen kokeilujakson päättymistä. Jatkossa veloitus tapahtuu joka $INTERVAL$. Voit peruuttaa tilauksen milloin tahansa.",
+    "message": "Tilauksesi sisältää ilmaisen 7 päivän kokeilujakson. Maksutapaasi ei veloiteta ennen kokeilujakson päättymistä. Jatkossa veloitus tapahtuu joka $INTERVAL$. Voit irtisanoa tilauksen koska tahansa.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1751,31 +1751,31 @@
     "message": "Klikkaa PayPal-painiketta kirjautuaksesi PayPal-tilillesi ja sen jälkeen alta \"Jatka\"."
   },
   "cancelSubscription": {
-    "message": "Peruuta tilaus"
+    "message": "Irtisano tilaus"
   },
   "subscriptionCanceled": {
-    "message": "Tilaus on peruttu."
+    "message": "Tilaus on irtisanottu."
   },
   "pendingCancellation": {
-    "message": "Odottaa peruutusta"
+    "message": "Odottaa irtisanomista"
   },
   "subscriptionPendingCanceled": {
-    "message": "Tilaus on merkitty päättyväksi kuluvan laskutuskauden lopussa."
+    "message": "Tilaus on merkitty päättymään kuluvan laskutuskauden lopussa."
   },
   "reinstateSubscription": {
     "message": "Palauta tilaus voimaan"
   },
   "reinstateConfirmation": {
-    "message": "Haluatko varmasti poistaa odottavan peruutuspyynnön ja pitää tilauksesi voimassa?"
+    "message": "Haluatko varmasti poistaa odottavan irtisanomispyynnön ja pitää tilauksesi voimassa?"
   },
   "reinstated": {
     "message": "Tilauksesi on palautettu voimaan."
   },
   "cancelConfirmation": {
-    "message": "Haluatko varmasti peruuttaa tilauksen? Menetät pääsyn kaikkiin tilauksen tarjoamiin ominaisuuksiin kuluvan laskutuskauden lopussa."
+    "message": "Haluatko varmasti irtisanoa tilauksen? Menetät pääsyn kaikkiin tilauksen tarjoamiin ominaisuuksiin kuluvan laskutuskauden lopussa."
   },
   "canceledSubscription": {
-    "message": "Tilaus on peruttu."
+    "message": "Tilaus on irtisanottu."
   },
   "neverExpires": {
     "message": "Ei eräänny koskaan"
@@ -2092,7 +2092,7 @@
     "message": "Ensisijainen asiakastuki"
   },
   "xDayFreeTrial": {
-    "message": "$COUNT$ päivän ilmainen kokeilujakso, peruuta milloin tahansa",
+    "message": "$COUNT$ päivän ilmainen kokeilujakso, irtisano koska tahansa",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2107,7 +2107,7 @@
     "message": "Vuosittainen"
   },
   "basePrice": {
-    "message": "Perushinta"
+    "message": "Lähtöhinta"
   },
   "organizationCreated": {
     "message": "Organisaatio luotiin"
@@ -2731,7 +2731,7 @@
     "message": "Jatka alla poistaaksesi organisaation ja kaikki siihen liittyvät tiedot. Yksittäiset käyttäjätilit säilyvät, mutta ne eivät ole enää kytköksissä tähän organisaatioon."
   },
   "deleteOrganizationWarning": {
-    "message": "Tilin poisto on pysyvä toimenpide, eikä sitä ole mahdollista perua."
+    "message": "Organisaation poisto on pysyvä toimenpide, eikä sen peruminen ole mahdollista."
   },
   "organizationDeleted": {
     "message": "Organisaatio poistettiin"
@@ -3396,17 +3396,17 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletionDate": {
-    "message": "Poistopäivä"
+    "message": "Poistoajankohta"
   },
   "deletionDateDesc": {
-    "message": "Send poistetaan pysyvästi määritettynä ajankohtana.",
+    "message": "Send poistuu pysyvästi määritettynä ajankohtana.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDate": {
-    "message": "Erääntymispäivä"
+    "message": "Erääntymisajankohta"
   },
   "expirationDateDesc": {
-    "message": "Jos määritetty, Send erääntyy määritettynä ajankohtana.",
+    "message": "Send erääntyy määritettynä ajankohtana.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
@@ -3498,43 +3498,43 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
-    "message": "Hätäyhteys"
+    "message": "Varmuuskäyttö"
   },
   "emergencyAccessDesc": {
-    "message": "Myönnä ja hallitse luotettujen kontaktien hätäkäyttöoikeuksia. Luotetut kontaktit voivat anoa oikeutta tilisi tarkasteluun tai hallintaan hätätilanteessa. Käy ohjesivullamme saadaksesi lisätietoja ja tarkempia tietoja siitä, miten nollatiedon jako toimii."
+    "message": "Myönnä ja hallitse luotettujen kontaktien varmuuskäyttöoikeuksia. Luotetut kontaktit voivat anoa oikeutta tilisi tarkasteluun tai hallintaan ongelmatilanteissa. Käy ohjesivullamme saadaksesi lisätietoja ja tarkempia tietoja siitä, miten Zero Knowledge -jako toimii (englanniksi)."
   },
   "emergencyAccessOwnerWarning": {
-    "message": "Olet yhden tai useamman organisaation omistaja. Jos myönnät hätäkontaktille hallintaoikeuden, on heillä haltuunoton jälkeen samat oikeudet."
+    "message": "Olet yhden tai useamman organisaation omistaja. Jos myönnät varmuuskontaktille hallintaoikeuden, on heillä haltuunoton jälkeen samat oikeudet."
   },
   "trustedEmergencyContacts": {
-    "message": "Luotetut hätäkontaktit"
+    "message": "Luotetut varmuuskontaktit"
   },
   "noTrustedContacts": {
-    "message": "Et ole vielä lisännyt hätäkontakteja. Kutsu luotettu kontakti aloittaaksesi."
+    "message": "Et ole vielä lisännyt varmuuskontakteja. Kutsu luotettu kontakti aloittaaksesi."
   },
   "addEmergencyContact": {
-    "message": "Lisää hätäkontakti"
+    "message": "Lisää varmuuskontakti"
   },
   "designatedEmergencyContacts": {
-    "message": "Määritetty hätäkontaktiksi"
+    "message": "Määritetty varmuuskontaktiksi"
   },
   "noGrantedAccess": {
-    "message": "Sinua ei ole vielä määritetty kenenkään hätäkontaktiksi."
+    "message": "Sinua ei ole vielä määritetty kenenkään varmuuskontaktiksi."
   },
   "inviteEmergencyContact": {
-    "message": "Kutsu hätäkontakti"
+    "message": "Kutsu varmuuskontakti"
   },
   "editEmergencyContact": {
-    "message": "Muokkaa hätäkontaktia"
+    "message": "Muokkaa varmuuskontaktia"
   },
   "inviteEmergencyContactDesc": {
-    "message": "Kutsu uusi hätäkontakti syöttämällä alle heidän Bitwarden-tilinsä sähköpostiosoite. Jos heillä ei vielä ole Bitwarden-tiliä, heitä pyydetään luomaan uusi tili."
+    "message": "Kutsu uusi varmuuskontakti syöttämällä alle heidän Bitwarden-tilinsä sähköpostiosoite. Jos heillä ei vielä ole Bitwarden-tiliä, heitä pyydetään luomaan uusi tili."
   },
   "emergencyAccessRecoveryInitiated": {
-    "message": "Hätäkäyttö aloitettu"
+    "message": "Varmuuskäyttö aloitettu"
   },
   "emergencyAccessRecoveryApproved": {
-    "message": "Hätäkäyttö sallittu"
+    "message": "Varmuuskäyttö sallittu"
   },
   "viewDesc": {
     "message": "Voi tarkastella kaikkia holvisi kohteita."
@@ -3567,7 +3567,7 @@
     "message": "Kutsuttu käyttäjä."
   },
   "acceptEmergencyAccess": {
-    "message": "Sinut on kutsuttu yllä mainitun käyttäjän hätäkontaktiksi. Hyväksyäksesi kutsun, sinun tulee kirjautua tilillesi tai luoda uusi Bitwarden tili."
+    "message": "Sinut on kutsuttu yllä mainitun käyttäjän varmuuskontaktiksi. Hyväksyäksesi kutsun, sinun tulee kirjautua tilillesi tai luoda uusi Bitwarden tili."
   },
   "emergencyInviteAcceptFailed": {
     "message": "Kutsun hyväksyntä ei onnistu. Pyydä käyttäjää lähettämään uusi kutsu."
@@ -3582,13 +3582,13 @@
     }
   },
   "emergencyInviteAcceptedDesc": {
-    "message": "Voit käyttää tämän käyttäjän hätävalintoja kun henkilöllisyytesi on vahvistettu. Saat vahvistuksesta ilmoituksen sähköpostitse."
+    "message": "Voit käyttää tämän käyttäjän varmuusvalintoja kun henkilöllisyytesi on vahvistettu. Saat vahvistuksesta ilmoituksen sähköpostitse."
   },
   "requestAccess": {
     "message": "Pyydä käyttöoikeutta"
   },
   "requestAccessConfirmation": {
-    "message": "Haluatko varmasti anoa hätäkäyttöoikeutta? Pääsy myönnetään $WAITTIME$ päivän kuluttua tai käyttäjän hyväksyessä käyttöoikeuden manuaalisesti.",
+    "message": "Haluatko varmasti anoa varmuuskäyttöä? Pääsy myönnetään $WAITTIME$ päivän kuluttua tai käyttäjän hyväksyessä käyttöoikeuden manuaalisesti.",
     "placeholders": {
       "waittime": {
         "content": "$1",
@@ -3597,7 +3597,7 @@
     }
   },
   "requestSent": {
-    "message": "Hätäkäyttöoikeutta pyydetty käyttäjältä $USER$. Kun voit jatkaa, saat ilmoituksen sähköpostitse.",
+    "message": "Varmuuskäyttöä pyydetty käyttäjältä $USER$. Kun voit jatkaa, saat ilmoituksen sähköpostitse.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3612,7 +3612,7 @@
     "message": "Hylkää"
   },
   "approveAccessConfirmation": {
-    "message": "Haluatko varmasti sallia hätäyhteyden? Tämä sallii käyttäjälle $USER$ tiliisi oikeuden: $ACTION$.",
+    "message": "Haluatko varmasti sallia varmuuskäytön? Tämä sallii käyttäjälle $USER$ tiliisi oikeuden: $ACTION$.",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3625,10 +3625,10 @@
     }
   },
   "emergencyApproved": {
-    "message": "Hätäkäyttö sallittu."
+    "message": "Varmuuskäyttö sallittu."
   },
   "emergencyRejected": {
-    "message": "Hätäyhteys hylätty"
+    "message": "Varmuuskäyttö hylätty."
   },
   "passwordResetFor": {
     "message": "Käyttäjän $USER$ salasana on palautettu. Voit nyt kirjautua sisään käyttäen uutta salasanaa.",
@@ -3746,7 +3746,7 @@
     "message": "Käyttäjien hallinta"
   },
   "manageResetPassword": {
-    "message": "Hallinnoi salasanan palautusta"
+    "message": "Salasanan palautusavun hallinta"
   },
   "disableRequireSsoError": {
     "message": "Yrityksen kertakirjautuminen (SSO) on poistettava käytöstä manuaalisesti ennen kuin tämän käytännön voi poistaa käytöstä."
@@ -3839,19 +3839,19 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
-    "message": "Asetettu erääntymispäivä on virhellinen."
+    "message": "Määritetty erääntymismisajankohta on virheellinen."
   },
   "deletionDateIsInvalid": {
-    "message": "Asetettu poistopäivä on virheellinen."
+    "message": "Määritetty poistoajankohta on virheellinen."
   },
   "expirationDateAndTimeRequired": {
-    "message": "Viimeinen voimassaolopäivä ja aika vaaditaan."
+    "message": "Erääntymispäivä ja -aika vaaditaan."
   },
   "deletionDateAndTimeRequired": {
     "message": "Poistopäivä ja -aika vaaditaan."
   },
   "dateParsingError": {
-    "message": "Tapahtui virhe tallennettaessa poisto- ja erääntymispäiviä."
+    "message": "Tapahtui virhe tallennettaessa poisto- ja erääntymisajankohtia."
   },
   "webAuthnFallbackMsg": {
     "message": "Vahvista kaksivaiheinen kirjautuminen (2FA) klikkaamalla alla olevaa painiketta."
@@ -3869,19 +3869,19 @@
     "message": "Salasanavihjeesi ei voi olla sama kuin salasanasi."
   },
   "enrollPasswordReset": {
-    "message": "Liity salasanan palautukseen"
+    "message": "Liity salasanan palautusapuun"
   },
   "enrolledPasswordReset": {
-    "message": "Liitetty salasanan palautukseen"
+    "message": "Liitetty salasanan palautusapuun"
   },
   "withdrawPasswordReset": {
-    "message": "Poistu salasanan palautuksesta"
+    "message": "Poistu salasanan palautusavusta"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Liittyminen onnistui!"
+    "message": "Liitos onnistui!"
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Poistuttu onnistuneesti!"
+    "message": "Poistuminen onnistui!"
   },
   "eventEnrollPasswordReset": {
     "message": "Käyttäjä $ID$ liittyi salasanan palautusapuun.",
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Pääsalasanan palautus käyttäjälle $ID$.",
+    "message": "Käyttäjän $ID$ pääsalasanan palautus.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3932,31 +3932,31 @@
     "message": "Salasanan palautus onnistui!"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Liittyminen sallii organisaation ylläpitäjien vaihtaa pääsalasanasi. Haluatko varmasti liittyä?"
+    "message": "Liitos sallii organisaation ylläpitäjien vaihtaa pääsalasanasi. Haluatko varmasti liittyä?"
   },
   "resetPasswordPolicy": {
     "message": "Pääsalasanan palautus"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Salli organisaation ylläpitäjien palauttaa organisaation käyttäjien pääsalasana."
+    "message": "Salli organisaation ylläpitäjien palauttaa organisaation käyttäjien pääsalasanat."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Organisaation käyttäjien on liityttävä itse tai automaattisen liitännän välityksellä ennen kuin ylläpitäjät voivat palauttaa heidän pääsalasanansa."
+    "message": "Organisaation käyttäjien on liityttävä itse tai automaattisen liitoksen välityksellä ennen kuin ylläpitäjät voivat palauttaa heidän pääsalasanojaan."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automaattinen liittyminen"
+    "message": "Automaattinen liitos"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "Kaikki käyttäjät liitetään salasanan palautukseen automaattisesti kun heidän kutsunsa hyväksytään."
+    "message": "Kaikki käyttäjät liitetään salasanan palautusapuun automaattisesti kun heidän kutsunsa on hyväksytty."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Vanhoja organisaation käyttäjiä ei liitetä salasanan palautukseen takautuvasti, vaan heidän on itse liityttävä siihen ennen kuin järjestelmänvalvojat voivat palauttaa heidän pääsalasanaansa."
+    "message": "Vanhoja organisaation käyttäjiä ei liitetä salasanan palautusapuun takautuvasti, vaan heidän on itse liityttävä siihen ennen kuin järjestelmänvalvojat voivat palauttaa heidän pääsalasanojaan."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
     "message": "Liitä uudet käyttäjät automaattisesti"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "Organisaatiolla on käytäntö, joka liittää sinut automaattisesti salasanan palautukseen. Liitos sallii organisaation ylläpitäjien vaihtaa pääsalasanasi."
+    "message": "Organisaatiolla on käytäntö, joka liittää tilisi automaattisesti salasanan palautusapuun. Liitos sallii organisaation ylläpitäjien vaihtaa pääsalasanasi."
   },
   "resetPasswordOrgKeysError": {
     "message": "Organisaatioavainten vastaus on tyhjä"
@@ -3986,7 +3986,7 @@
     "message": "Toiminto ei koske valittuja käyttäjiä."
   },
   "removeUsersWarning": {
-    "message": "Haluatko varmasti poistaa poistaa seuraavat käyttäjät? Toiminto saattaa kestää muutamia sekunteja, eikä sitä voi keskeyttää tai peruuttaa."
+    "message": "Haluatko varmasti poistaa poistaa seuraavat käyttäjät? Toiminto saattaa kestää muutamia sekunteja, eikä sen keskeytys tai peruminen ole mahdollista."
   },
   "confirmSelected": {
     "message": "Vahvista valitut"
@@ -4001,7 +4001,7 @@
     "message": "Kutsuttu uudelleen onnistuneesti."
   },
   "bulkRemovedMessage": {
-    "message": "Poistettu onnistuneesti"
+    "message": "Poistettu onnistuneesti."
   },
   "bulkFilteredMessage": {
     "message": "Ohitettu, ei koske tätä toimintoa."
@@ -4016,6 +4016,6 @@
     "message": "Virhe"
   },
   "resetPasswordManageUsers": {
-    "message": "Käyttäjien hallinnan on myös oltava käytössä \"Hallinnoi salasanan palautusta\" -oikeuden kanssa"
+    "message": "Myös \"Käyttäjien hallinta\" -oikeuden on oltava käytössä \"Salasanan palautusavun hallinta\" -oikeuden kanssa"
   }
 }
