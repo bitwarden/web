@@ -19,27 +19,27 @@ jobs:
 
       - name: Setup git config
         run: |
-          git config user.name = "GitHub Action Bot"
+          git config user.name  = "Github Actions Bot"
           git config user.email = "<>"
 
       - name: Get Crowndin Sync Branch
         id: branch
         run: |
           BRANCH_NAME=crowdin-auto-sync
-          BRANCH_EXISTED=true
+          BRANCH_EXISTS=true
 
           git fetch -a
           git switch master
           if [ $(git branch -a | egrep "remotes/origin/${BRANCH_NAME}$" | wc -l) -eq 0 ]; then
-            BRANCH_EXISTED=false
+            BRANCH_EXISTS=false
             git switch -c $BRANCH_NAME
           else
             git switch $BRANCH_NAME
           fi
           git branch
 
-          echo "::set-output name=branch-existed::${BRANCH_EXISTED}"
-          echo "::set-output name=branch-name::${BRANCH_NAME}"
+          echo "::set-output name=branch-exists::$BRANCH_EXISTS"
+          echo "::set-output name=branch-name::$BRANCH_NAME"
 
       - name: Login to Azure
         uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
@@ -143,11 +143,11 @@ jobs:
 
       - name: Create/Update PR
         env:
-          BRANCH_NAME: ${{ steps.cherry-pick.outputs.branch-name }}
-          BRANCH_EXISTED: ${{ steps.cherry-pick.outputs.branch-existed }}
+          BRANCH_NAME: ${{ steps.branch.outputs.branch-name }}
+          BRANCH_EXISTS: ${{ steps.branch.outputs.branch-exists }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          if [ "$BRANCH_EXISTED" == "false" ]; then
+          if [ "$BRANCH_EXISTS" == "false" ]; then
             echo "[*] Creating PR"
             gh pr create --title "Autosync Crowdin Translations" \
             --body "Autosync the updated translations"
