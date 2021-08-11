@@ -54,6 +54,7 @@ jobs:
         env:
           CROWDIN_BASE_URL: "https://api.crowdin.com/api/v2/projects"
           CROWDIN_PROJECT_ID: "308189"
+          CROWDIN_API_TOKEN: ${{ steps.retrieve-secrets.outputs.crowdin-api-token }}
         run: |
           # Step 1: GET master branchId
           BRANCH_ID=$(
