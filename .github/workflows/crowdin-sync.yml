@@ -115,16 +115,15 @@ jobs:
           )
           echo "::set-output name=value::$DOWNLOAD_URL"
 
-      - name: Download Crowding translations
+      - name: Download Crowdin translations
         env:
           CROWDIN_API_TOKEN: ${{ steps.retrieve-secrets.outputs.crowdin-api-token }}
-          CROWDIN_DOWNLOAD_URL: ${{ steps.crowdin-download-url.outputs }}
+          CROWDIN_DOWNLOAD_URL: ${{ steps.crowdin-download-url.outputs.value }}
+          SAVE_FILE: "translations.zip"
         run: |
           # Step 5: download the translations via the download url
-          SAVE_FILE=translations.zip
           curl -s $CROWDIN_DOWNLOAD_URL --output $SAVE_FILE
           echo "[*]    Saved to: $SAVE_FILE"
-
           unzip -o $SAVE_FILE
           rm $SAVE_FILE
 
