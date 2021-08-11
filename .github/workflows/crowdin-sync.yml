@@ -111,7 +111,7 @@ jobs:
           # Step 4: when build is finished, get download url
           DOWNLOAD_URL=$(
               curl -s -H "Authorization: Bearer $CROWDIN_API_TOKEN" \
-              $CROWDIN_BASE_URL/$CROWDIN_PROJECT_ID/translations/builds/$BUILD_ID/download | jq -r '.data.url'
+              $CROWDIN_BASE_URL/$CROWDIN_PROJECT_ID/translations/builds/$CROWDIN_BUILD_ID/download | jq -r '.data.url'
           )
           echo "::set-output name=value::$DOWNLOAD_URL"
 
