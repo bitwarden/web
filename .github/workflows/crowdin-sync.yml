@@ -130,6 +130,7 @@ jobs:
       - name: Commit changes
         env:
           BRANCH_NAME: ${{ steps.branch.outputs.branch-name }}
+          BRANCH_EXISTS: ${{ steps.branch.outputs.branch-exists }}
         run: |
           echo "[*] Adding new translations"
           git add .
@@ -138,8 +139,13 @@ jobs:
           echo "=============================="
           echo "[*] Committing"
           git commit -m "Autosync Crowdin translations"
+
           echo "[*] Pushing"
-          git push -u origin $BRANCH_NAME
+          if [ "$BRANCH_EXISTS" == "false" ]; then
+            git push -u origin $BRANCH_NAME
+          else
+            git push
+          fi
 
       - name: Create/Update PR
         env:
