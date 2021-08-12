@@ -84,9 +84,10 @@ async function start() {
 }
 
 function captchaSuccess(response: string) {
-    success(response);
     if (callbackUri) {
         document.location.replace(callbackUri + '?token=' + encodeURIComponent(response));
+    } else {
+        success(response);
     }
 }
 
