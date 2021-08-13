@@ -33,7 +33,7 @@
         <div class="form-group col-6" *ngIf="!!providerId">
             <label for="email">{{'clientOwnerEmail' | i18n}}</label>
             <input id="email" class="form-control" type="text" name="Email" [(ngModel)]="clientOwnerEmail" required>
-            <small class="text-muted">{{'ownerDesc' | i18n : '20'}}</small>
+            <small class="text-muted">{{'clientOwnerDesc' | i18n : '20'}}</small>
         </div>
     </div>
     <div *ngIf="!providerId">

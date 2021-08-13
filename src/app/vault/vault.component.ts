@@ -88,6 +88,10 @@ export class VaultComponent implements OnInit, OnDestroy {
         const queryParamsSub = this.route.queryParams.subscribe(async params => {
             await this.syncService.fullSync(false);
 
+            if (await this.userService.getForcePasswordReset()) {
+                this.router.navigate(['update-temp-password']);
+            }
+
             this.showUpdateKey = !(await this.cryptoService.hasEncKey());
             const canAccessPremium = await this.userService.canAccessPremium();
             this.showPremiumCallout = !this.showVerifyEmail && !canAccessPremium &&

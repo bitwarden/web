@@ -2251,7 +2251,7 @@
     "message": "The highest access user that can manage all aspects of your organization."
   },
   "clientOwnerDesc": {
-    "message": "This email should NOT be associated with the provider. This user will have permissions to access and manage all aspects of this organization."
+    "message": "This user should be independent of the Provider. If the Provider is disassociated with the organization, this user will maintain ownership of the organization."
   },
   "admin": {
     "message": "Admin"
@@ -4195,5 +4195,14 @@
   },
   "add": {
     "message": "Add"
+  },
+  "updatedMasterPassword": {
+    "message": "Updated Master Password"
+  },
+  "updateMasterPassword": {
+    "message": "Update Master Password"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
   }
 }

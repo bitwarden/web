@@ -15,6 +15,7 @@ import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.se
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
+import { PlanType } from 'jslib-common/enums/planType';
 import { ProviderUserType } from 'jslib-common/enums/providerUserType';
 
 import { ValidationService } from 'jslib-angular/services/validation.service';
@@ -22,12 +23,15 @@ import { ValidationService } from 'jslib-angular/services/validation.service';
 import {
     ProviderOrganizationOrganizationDetailsResponse
 } from 'jslib-common/models/response/provider/providerOrganizationResponse';
+import { Organization } from 'jslib-common/models/domain/organization';
 
 import { ModalComponent } from 'src/app/modal.component';
 
 import { ProviderService } from '../services/provider.service';
 
 import { AddOrganizationComponent } from './add-organization.component';
+
+const DisallowedPlanTypes = [PlanType.Free, PlanType.FamiliesAnnually2019, PlanType.FamiliesAnnually];
 
 @Component({
     templateUrl: 'clients.component.html',
@@ -38,6 +42,7 @@ export class ClientsComponent implements OnInit {
 
     providerId: any;
     searchText: string;
+    addableOrganizations: Organization[];
     loading = true;
     manageOrganizations = false;
     showAddExisting = false;
@@ -77,7 +82,13 @@ export class ClientsComponent implements OnInit {
         const response = await this.apiService.getProviderClients(this.providerId);
         this.clients = response.data != null && response.data.length > 0 ? response.data : [];
         this.manageOrganizations = (await this.userService.getProvider(this.providerId)).type === ProviderUserType.ProviderAdmin;
-        this.showAddExisting = (await this.userService.getAllOrganizations()).some(org => org.providerId == null);
+        const candidateOrgs = (await this.userService.getAllOrganizations()).filter(o => o.providerId == null);
+        const allowedOrgsIds = await Promise.all(candidateOrgs.map(o => this.apiService.getOrganization(o.id))).then(orgs =>
+            orgs.filter(o => !DisallowedPlanTypes.includes(o.planType))
+                .map(o => o.id));
+        this.addableOrganizations = candidateOrgs.filter(o => allowedOrgsIds.includes(o.id));
+
+        this.showAddExisting = this.addableOrganizations.length != 0;
         this.loading = false;
     }
 
@@ -121,6 +132,7 @@ export class ClientsComponent implements OnInit {
         const childComponent = this.modal.show<AddOrganizationComponent>(AddOrganizationComponent, this.addModalRef);
 
         childComponent.providerId = this.providerId;
+        childComponent.organizations = this.addableOrganizations;
         childComponent.onAddedOrganization.subscribe(async () => {
             try {
                 await this.load();
