@@ -65,9 +65,14 @@ export class SetupComponent implements OnInit {
             this.token = qParams.token;
             
             // Check if provider exists, redirect if it does
-            const provider = await this.apiService.getProvider(this.providerId);
-            if (provider.name != null) {
-                this.router.navigate(['/providers', provider.id], { replaceUrl: true });
+            try {
+                const provider = await this.apiService.getProvider(this.providerId);
+                if (provider.name != null) {
+                    this.router.navigate(['/providers', provider.id], { replaceUrl: true });
+                }
+            } catch (e) {
+                this.validationService.showError(e);
+                this.router.navigate(['/']);
             }
         });
     }
