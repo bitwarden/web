@@ -58,9 +58,16 @@ export class SetupComponent implements OnInit {
                 };
                 this.toasterService.popAsync(toast);
                 this.router.navigate(['/']);
-            } else {
-                this.providerId = qParams.providerId;
-                this.token = qParams.token;
+                return;
+            }
+
+            this.providerId = qParams.providerId;
+            this.token = qParams.token;
+            
+            // Check if provider exists, redirect if it does
+            const provider = await this.apiService.getProvider(this.providerId);
+            if (provider.name != null) {
+                this.router.navigate(['/providers', provider.id], { replaceUrl: true });
             }
         });
     }
