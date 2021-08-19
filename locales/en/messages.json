@@ -360,6 +360,9 @@
   "share": {
     "message": "Share"
   },
+  "moveToOrganization": {
+    "message": "Move to Organization"
+  },
   "valueCopied": {
     "message": "$VALUE$ copied",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Vault"
   },
-  "shareSelected": {
-    "message": "Share Selected"
+  "moveSelectedToOrg": {
+    "message": "Move Selected to Organization"
   },
   "deleteSelected": {
     "message": "Delete Selected"
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Edited item"
   },
-  "sharedItem": {
-    "message": "Shared item"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Shared items"
+  "movedItemsToOrg": {
+    "message": "Selected items moved to $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Delete Item"
@@ -749,11 +768,11 @@
   "organizations": {
     "message": "Organizations"
   },
-  "shareDesc": {
-    "message": "Choose an organization that you wish to share this item with. Sharing transfers ownership of the item to the organization. You will no longer be the direct owner of this item once it has been shared."
+  "moveToOrgDesc": {
+    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
   },
-  "shareManyDesc": {
-    "message": "Choose an organization that you wish to share these items with. Sharing transfers ownership of the items to the organization. You will no longer be the direct owner of these items once they have been shared."
+  "moveManyToOrgDesc": {
+    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
   },
   "collectionsDesc": {
     "message": "Edit the collections that this item is being shared with. Only organization users with access to these collections will be able to see this item."
@@ -776,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $SHAREABLE_COUNT$ items are sharable, $NONSHAREABLE_COUNT$ are not.",
+  "moveSelectedItemsCountDesc": {
+    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -978,6 +997,9 @@
   },
   "purgedOrganizationVault": {
     "message": "Purged organization vault."
+  },
+  "vaultAccessedByProvider": {
+    "message": "Vault accessed by provider."
   },
   "purgeVaultDesc": {
     "message": "Proceed below to delete all items and folders in your vault. Items that belong to an organization that you share with will not be deleted."
@@ -2219,11 +2241,17 @@
   "confirmed": {
     "message": "Confirmed"
   },
+  "clientOwnerEmail": {
+    "message": "Client Owner Email"
+  },
   "owner": {
     "message": "Owner"
   },
   "ownerDesc": {
     "message": "The highest access user that can manage all aspects of your organization."
+  },
+  "clientOwnerDesc": {
+    "message": "This user should be independent of the Provider. If the Provider is disassociated with the organization, this user will maintain ownership of the organization."
   },
   "admin": {
     "message": "Admin"
@@ -2333,8 +2361,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Shared item $ID$.",
+  "movedItemIdToOrg": {
+    "message": "Moved item $ID$ to an organization.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2555,6 +2583,42 @@
       "id": {
         "content": "$1",
         "example": "John Smith"
+      }
+    }
+  },
+  "createdOrganizationId": {
+    "message": "Created organization $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "addedOrganizationId": {
+    "message": "Added organization $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "removedOrganizationId": {
+    "message": "Removed organization $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "accessedClientVault": {
+    "message": "Accessed $ID$ organization vault.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
       }
     }
   },
@@ -3394,7 +3458,7 @@
     "message": "Maximum Access Count"
   },
   "maxAccessCountDesc": {
-    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "message": "If set, users will no longer be able to access this Send once the maximum access count is reached.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
@@ -3928,13 +3992,13 @@
     "message": "Automatic Enrollment"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "All users will be automatically enrolled in password reset once their invite is accepted and will not be allowed to withdraw."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
     "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Require new users to be enrolled automatically"
   },
   "resetPasswordAutoEnrollInviteWarning": {
     "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
@@ -3998,5 +4062,132 @@
   },
   "resetPasswordManageUsers": {
     "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+  },
+  "setupProvider": {
+    "message": "Provider Setup"
+  },
+  "setupProviderLoginDesc": {
+    "message": "You've been invited to setup a new provider. To continue, you need to log in or create a new Bitwarden account."
+  },
+  "setupProviderDesc": {
+    "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
+  },
+  "providerName": {
+    "message": "Provider Name"
+  },
+  "providerSetup": {
+    "message": "The provider has been set up."
+  },
+  "clients": {
+    "message": "Clients"
+  },
+  "providerAdmin": {
+    "message": "Provider Admin"
+  },
+  "providerAdminDesc": {
+    "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
+  },
+  "serviceUser": {
+    "message": "Service User"
+  },
+  "serviceUserDesc": {
+    "message": "Service users can access and manage all client organizations."
+  },
+  "providerInviteUserDesc": {
+    "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+  },
+  "joinProvider": {
+    "message": "Join Provider"
+  },
+  "joinProviderDesc": {
+    "message": "You've been invited to join the provider listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+  },
+  "providerInviteAcceptFailed": {
+    "message": "Unable to accept invitation. Ask a provider admin to send a new invitation."
+  },
+  "providerInviteAcceptedDesc": {
+    "message": "You can access this provider once an administrator confirms your membership. We'll send you an email when that happens."
+  },
+  "providerUsersNeedConfirmed": {
+    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the provider until they are confirmed."
+  },
+  "provider": {
+    "message": "Provider"
+  },
+  "newClientOrganization": {
+    "message": "New Client Organization"
+  },
+  "newClientOrganizationDesc": {
+    "message": "Create a new client organization that will be associated with you as the provider. You will be able to access and manage this organization."
+  },
+  "addExistingOrganization": {
+    "message": "Add Existing Organization"
+  },
+  "myProvider": {
+    "message": "My Provider"
+  },
+  "addOrganizationConfirmation": {
+    "message": "Are you sure you want to add $ORGANIZATION$ as a client to $PROVIDER$?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      },
+      "provider": {
+        "content": "$2",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "organizationJoinedProvider": {
+    "message": "Organization was successfully added to the provider"
+  },
+  "accessingUsingProvider": {
+    "message": "Accessing organization using provider $PROVIDER$",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "providerIsDisabled": {
+    "message": "Provider is disabled."
+  },
+  "providerUpdated": {
+    "message": "Provider updated"
+  },
+  "yourProviderIs": {
+    "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "detachedOrganization": {
+    "message": "The organization $ORGANIZATION$ has been detached from your provider.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "detachOrganizationConfirmation": {
+    "message": "Are you sure you want to detach this organization? The organization will continue to exist but will no longer be managed by the provider."
+  },
+  "add": {
+    "message": "Add"
+  },
+  "updatedMasterPassword": {
+    "message": "Updated Master Password"
+  },
+  "updateMasterPassword": {
+    "message": "Update Master Password"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
   }
 }

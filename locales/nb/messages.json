@@ -361,7 +361,7 @@
     "message": "Del"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "Flytt til organisasjon"
   },
   "valueCopied": {
     "message": "$VALUE$ har blitt kopiert",
@@ -404,7 +404,7 @@
     "message": "Hvelv"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "Flytt valgte til organisasjon"
   },
   "deleteSelected": {
     "message": "Slett de valgte"
@@ -452,7 +452,7 @@
     "message": "Redigerte gjenstanden"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ flyttet til $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +465,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "Valgte elementer flyttet til $ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -748,10 +748,10 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "Bruk en hvilken som helst WebAuthn aktivert sikkerhetsnøkkel til å få tilgang til kontoen din."
   },
   "webAuthnMigrated": {
-    "message": "(Migrated from FIDO)"
+    "message": "(Migrert fra FIDO)"
   },
   "emailTitle": {
     "message": "E-post"
@@ -769,10 +769,10 @@
     "message": "Organisasjoner"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Velg en organisasjon som du ønsker å flytte denne gjenstanden til. Flytting til en organisasjon overfører eierskap til den aktuelle organisasjonen. Du vil ikke lenger være den direkte eieren av denne varen når den er flyttet."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Velg en organisasjon som du ønsker å flytte denne gjenstanden til. Flytting til en organisasjon overfører eierskap til den aktuelle organisasjonen. Du vil ikke lenger være den direkte eieren av denne varen når den er flyttet."
   },
   "collectionsDesc": {
     "message": "Rediger samlingene som dette objektet blir delt med. Kun organisasjonsbrukere med tilgang til disse samlingene vil kunne se dette objektet."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "Du har valgt $COUNT$ gjenstand(er). $MOVEABLE_COUNT$ gjenstand(er) kan flyttes til en organisasjon, $NONMOVEABLE_COUNT$ kan ikke.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -837,7 +837,7 @@
     "message": "Skriv inn ditt superpassord for å eksportere dine hvelvdataer."
   },
   "export": {
-    "message": "Export"
+    "message": "Eksporter"
   },
   "exportVault": {
     "message": "Eksporter hvelvet"
@@ -1059,7 +1059,7 @@
     "message": "Ingenting ble importert."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Feil under dekryptering av den eksporterte filen. Krypteringsnøkkelen samsvarte ikke med krypteringsnøkkelen som ble brukt eksport av data."
   },
   "selectFormat": {
     "message": "Velg formatet til importfilen"
@@ -3337,7 +3337,7 @@
     "message": "Din nåværende organisasjon har en policy som ikke lar deg bli med i mer enn én organisasjon. Kontakt din organisasjons admins eller registrer deg fra en annen Bitwarden-konto."
   },
   "singleOrgPolicyWarning": {
-    "message": "Organization members who are not Owners or Administrators and are already a member of another organization will be removed from your organization."
+    "message": "Organisasjonsmedlemmer som ikke er eiere eller administratorer, og som allerede er medlem av en annen organisasjon, blir fjernet fra din organisasjon."
   },
   "requireSso": {
     "message": "Single Sign-On Authentication"
@@ -3448,7 +3448,7 @@
     "message": "Er du sikker på at du vil fjerne passordet?"
   },
   "hideEmail": {
-    "message": "Hide my email address from recipients."
+    "message": "Skjul min e-postadresse fra mottakere."
   },
   "disableThisSend": {
     "message": "Deaktiver denne Send-en, slik at ingen får tilgang til den.",
@@ -3666,7 +3666,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "message": "På grunn av en virksomhetsregel kan du kun slette en eksisterende Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
@@ -3762,14 +3762,14 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
-    "message": "A friendly name to describe this Send.",
+    "message": "Et vennlig navn for å beskrive dette Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
-    "message": "The text you want to send."
+    "message": "Teksten du ønsker å send."
   },
   "sendFileDesc": {
-    "message": "The file you want to send."
+    "message": "Filen du vil send."
   },
   "copySendLinkOnSave": {
     "message": "Copy the link to share this Send to my clipboard upon save."
@@ -3854,19 +3854,19 @@
     "message": "Det oppstod en feil ved lagring av slettingen og utløpsdatoene."
   },
   "webAuthnFallbackMsg": {
-    "message": "To verify your 2FA please click the button below."
+    "message": "For å verifisere din 2FA vennligst klikk knappen nedenfor."
   },
   "webAuthnAuthenticate": {
     "message": "Authenticate WebAuthn"
   },
   "webAuthnNotSupported": {
-    "message": "WebAuthn is not supported in this browser."
+    "message": "WebAuthn støttes ikke i denne nettleseren."
   },
   "webAuthnSuccess": {
-    "message": "WebAuthn verified successfully! You may close this tab."
+    "message": "WebAuthn bekreftet vellykket! Du kan lukke denne fanen."
   },
   "hintEqualsPassword": {
-    "message": "Your password hint cannot be the same as your password."
+    "message": "Passordhintet ditt kan ikke være det samme som passordet ditt."
   },
   "enrollPasswordReset": {
     "message": "Enroll in Password Reset"
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Tilbakestill passord"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "Å fortsette vil logge $NAME$ av deres nåværende økt, og krever at de logger på igjen. Aktive økter på andre enheter kan forbli aktive i opptil en time.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,13 +3923,13 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "denne brukeren"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "En eller flere av organisasjonens vilkår krever hovedpassordet ditt for å oppfylle følgende krav:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Tilbakestilling av passord vellykket!"
   },
   "resetPasswordEnrollmentWarning": {
     "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
@@ -3989,28 +3989,28 @@
     "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Bekreft valgte"
   },
   "bulkConfirmStatus": {
     "message": "Bulk action status"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Bekreftet vellykket."
   },
   "bulkReinviteMessage": {
     "message": "Reinvited successfully."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Fjernet"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Unntatt dette, gjelder ikke for dette tiltaket."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Fingeravtrykk"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Fjern brukere"
   },
   "error": {
     "message": "Error"
