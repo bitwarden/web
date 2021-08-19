@@ -151,6 +151,7 @@ export function initFactory(): Function {
         } else {
             environmentService.setUrls({
                 base: window.location.origin,
+                icons: 'https://icons.bitwarden.net',
                 notifications: 'https://notifications.bitwarden.com',
                 enterprise: 'https://portal.bitwarden.com',
             }, false);
