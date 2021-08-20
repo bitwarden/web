@@ -66,7 +66,7 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
     @ViewChild('bulkConfirmTemplate', { read: ViewContainerRef, static: true }) bulkConfirmModalRef: ViewContainerRef;
     @ViewChild('bulkRemoveTemplate', { read: ViewContainerRef, static: true }) bulkRemoveModalRef: ViewContainerRef;
 
-    userType = ProviderUserType;
+    userType = OrganizationUserType;
     userStatusType = OrganizationUserStatusType;
 
     organizationId: string;
