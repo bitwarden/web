@@ -48,6 +48,16 @@ import { ConstantsService } from 'jslib-common/services/constants.service';
 
 import { RouterService } from './services/router.service';
 
+import { DisableSendPolicy } from './organizations/policies/disable-send.component';
+import { MasterPasswordPolicy } from './organizations/policies/master-password.component';
+import { PasswordGeneratorPolicy } from './organizations/policies/password-generator.component';
+import { PersonalOwnershipPolicy } from './organizations/policies/personal-ownership.component';
+import { RequireSsoPolicy } from './organizations/policies/require-sso.component';
+import { ResetPasswordPolicy } from './organizations/policies/reset-password.component';
+import { SendOptionsPolicy } from './organizations/policies/send-options.component';
+import { SingleOrgPolicy } from './organizations/policies/single-org.component';
+import { TwoFactorAuthenticationPolicy } from './organizations/policies/two-factor-authentication.component';
+
 const BroadcasterSubscriptionId = 'AppComponent';
 const IdleTimeout = 60000 * 10; // 10 minutes
 
@@ -56,6 +66,7 @@ const IdleTimeout = 60000 * 10; // 10 minutes
     templateUrl: 'app.component.html',
 })
 export class AppComponent implements OnDestroy, OnInit {
+
     toasterConfig: ToasterConfig = new ToasterConfig({
         showCloseButton: true,
         mouseoverTimerStop: true,
@@ -169,6 +180,19 @@ export class AppComponent implements OnDestroy, OnInit {
                 }
             }
         });
+
+        // Add policies
+        this.policyService.policies = [
+            new TwoFactorAuthenticationPolicy(),
+            new MasterPasswordPolicy(),
+            new PasswordGeneratorPolicy(),
+            new SingleOrgPolicy(),
+            new RequireSsoPolicy(),
+            new PersonalOwnershipPolicy(),
+            new DisableSendPolicy(),
+            new SendOptionsPolicy(),
+            new ResetPasswordPolicy(),
+        ];
 
         this.setFullWidth();
     }
