@@ -6,7 +6,7 @@ import { BasePolicy } from 'jslib-common/abstractions/policy.service';
 
 import { PolicyType } from 'jslib-common/enums/policyType';
 
-import { BasePolicyComponent } from '../manage/policies.component';
+import { BasePolicyComponent } from '../manage/policy-edit.component';
 
 export class PasswordGeneratorPolicy extends BasePolicy {
     name = 'passwordGenerator';

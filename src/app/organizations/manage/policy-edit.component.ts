@@ -2,12 +2,15 @@ import {
     ChangeDetectorRef,
     Component,
     ComponentFactoryResolver,
+    Directive,
     EventEmitter,
     Input,
+    OnInit,
     Output,
     ViewChild,
-    ViewContainerRef
+    ViewContainerRef,
 } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 import { ToasterService } from 'angular2-toaster';
 
@@ -21,7 +24,34 @@ import { PolicyRequest } from 'jslib-common/models/request/policyRequest';
 
 import { PolicyResponse } from 'jslib-common/models/response/policyResponse';
 
-import { BasePolicyComponent } from './policies.component';
+@Directive()
+export abstract class BasePolicyComponent implements OnInit {
+    @Input() policyResponse: PolicyResponse;
+    @Input() policy: BasePolicy;
+
+    enabled = new FormControl(false);
+    data: FormGroup = null;
+
+    ngOnInit(): void {
+        this.enabled.setValue(this.policyResponse.enabled);
+
+        if (this.data != null) {
+            this.data.patchValue(this.policyResponse.data ?? {});
+        }
+    }
+
+    buildRequest(policiesEnabledMap: Map<PolicyType, boolean>) {
+        const request = new PolicyRequest();
+        request.enabled = this.enabled.value;
+        request.type = this.policy.type;
+
+        if (this.data != null) {
+            request.data = this.data.value;
+        }
+
+        return Promise.resolve(request);
+    }
+}
 
 @Component({
     selector: 'app-policy-edit',

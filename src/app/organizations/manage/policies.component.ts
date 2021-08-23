@@ -1,13 +1,10 @@
 import {
     Component,
     ComponentFactoryResolver,
-    Directive,
-    Input,
     OnInit,
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import {
     ActivatedRoute,
     Router,
@@ -27,38 +24,8 @@ import { PolicyResponse } from 'jslib-common/models/response/policyResponse';
 import { ModalComponent } from '../../modal.component';
 
 import { Organization } from 'jslib-common/models/domain/organization';
-import { PolicyRequest } from 'jslib-common/models/request/policyRequest';
 
 import { PolicyEditComponent } from './policy-edit.component';
-
-@Directive()
-export abstract class BasePolicyComponent implements OnInit {
-    @Input() policyResponse: PolicyResponse;
-    @Input() policy: BasePolicy;
-
-    enabled = new FormControl(false);
-    data: FormGroup = null;
-
-    ngOnInit(): void {
-        this.enabled.setValue(this.policyResponse.enabled);
-
-        if (this.data != null) {
-            this.data.patchValue(this.policyResponse.data ?? {});
-        }
-    }
-
-    buildRequest(policiesEnabledMap: Map<PolicyType, boolean>) {
-        const request = new PolicyRequest();
-        request.enabled = this.enabled.value;
-        request.type = this.policy.type;
-
-        if (this.data != null) {
-            request.data = this.data.value;
-        }
-
-        return Promise.resolve(request);
-    }
-}
 
 @Component({
     selector: 'app-org-policies',
@@ -149,8 +116,6 @@ export class PoliciesComponent implements OnInit {
 
         childComponent.policy = p;
         childComponent.organizationId = this.organizationId;
-        // FixMe: Build policy map
-        // childComponent.policiesEnabledMap = this.policiesEnabledMap;
         childComponent.onSavedPolicy.subscribe(() => {
             this.modal.close();
             this.load();

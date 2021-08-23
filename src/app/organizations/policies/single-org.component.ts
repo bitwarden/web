@@ -7,7 +7,7 @@ import { PolicyType } from 'jslib-common/enums/policyType';
 
 import { PolicyRequest } from 'jslib-common/models/request/policyRequest';
 
-import { BasePolicyComponent } from '../manage/policies.component';
+import { BasePolicyComponent } from '../manage/policy-edit.component';
 
 export class SingleOrgPolicy extends BasePolicy {
     name = 'singleOrg';
