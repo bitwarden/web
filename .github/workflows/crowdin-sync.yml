@@ -30,7 +30,7 @@ jobs:
           BRANCH_EXISTS=true
 
           git fetch -a
-          git switch master
+          git switch $_DIFF_BRANCH
           if [ $(git branch -a | egrep "remotes/origin/${BRANCH_NAME}$" | wc -l) -eq 0 ]; then
             BRANCH_EXISTS=false
             git switch -c $BRANCH_NAME
@@ -104,7 +104,7 @@ jobs:
               fi
           done
 
-          sleep 60 # Wait for the build download url to become live
+          sleep 15 # Wait for the build download url to become live
 
       - name: Get Crowdin download URL
         id: crowdin-download-url
