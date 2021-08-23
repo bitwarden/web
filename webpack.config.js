@@ -155,7 +155,7 @@ const plugins = [
 
 // ref: https://webpack.js.org/configuration/dev-server/#devserver
 let certSuffix = fs.existsSync('dev-server.local.pem') ? '.local' : '.shared';
-const devServer = ENV !== 'development' ? null : {
+const devServer = ENV !== 'development' ? {} : {
     https: {
         key: fs.readFileSync('dev-server' + certSuffix + '.pem'),
         cert: fs.readFileSync('dev-server' + certSuffix + '.pem'),
