@@ -104,6 +104,8 @@ jobs:
               fi
           done
 
+          sleep 60 # Wait for the build download url to become live
+
       - name: Get Crowdin download URL
         id: crowdin-download-url
         env:
@@ -180,8 +182,9 @@ jobs:
         run: |
           if [ "$BRANCH_EXISTS" == "false" ]; then
             echo "[*] Creating PR"
-            gh pr create --title "Autosync Crowdin Translations" \
-            --body "Autosync the updated translations"
+            gh pr create --base $_DIFF_BRANCH \
+              --title "Autosync Crowdin Translations" \
+              --body "Autosync the updated translations"
           else
             echo "[*] Existing PR updated"
           fi
