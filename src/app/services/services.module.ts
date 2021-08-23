@@ -61,7 +61,7 @@ import { CipherService as CipherServiceAbstraction } from 'jslib-common/abstract
 import { CollectionService as CollectionServiceAbstraction } from 'jslib-common/abstractions/collection.service';
 import { CryptoService as CryptoServiceAbstraction } from 'jslib-common/abstractions/crypto.service';
 import { CryptoFunctionService as CryptoFunctionServiceAbstraction } from 'jslib-common/abstractions/cryptoFunction.service';
-import { EnvironmentService as EnvironmentServiceAbstraction } from 'jslib-common/abstractions/environment.service';
+import { EnvironmentService as EnvironmentServiceAbstraction, Urls } from 'jslib-common/abstractions/environment.service';
 import { EventService as EventLoggingServiceAbstraction } from 'jslib-common/abstractions/event.service';
 import { ExportService as ExportServiceAbstraction } from 'jslib-common/abstractions/export.service';
 import { FileUploadService as FileUploadServiceAbstraction }  from 'jslib-common/abstractions/fileUpload.service';
@@ -146,15 +146,12 @@ export function initFactory(): Function {
     return async () => {
         await (storageService as HtmlStorageService).init();
 
-        if (process.env.ENV !== 'production' || platformUtilsService.isSelfHost()) {
+        const urls = process.env.URLS as Urls;
+        urls.base ??= window.location.origin;
+        if (platformUtilsService.isSelfHost()) {
             environmentService.setUrls({ base: window.location.origin }, false);
         } else {
-            environmentService.setUrls({
-                base: window.location.origin,
-                icons: 'https://icons.bitwarden.net',
-                notifications: 'https://notifications.bitwarden.com',
-                enterprise: 'https://portal.bitwarden.com',
-            }, false);
+            environmentService.setUrls(urls, false);
         }
 
         setTimeout(() => notificationsService.init(), 3000);
