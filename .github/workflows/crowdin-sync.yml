@@ -137,13 +137,12 @@ jobs:
         env:
           BRANCH_NAME: ${{ steps.branch.outputs.branch-name }}
           BRANCH_EXISTS: ${{ steps.branch.outputs.branch-exists }}
-          DIFF_BRANCH: ${{ env._DIFF_BRANCH }}
         run: |
           if [[ "$BRANCH_EXISTS" == "true" ]]; then
-            DIFF_BRANCH=$BRANCH_NAME
+            _DIFF_BRANCH=$BRANCH_NAME
           fi
 
-          DIFF_LEN=$(git diff origin/${DIFF_BRANCH} | wc -l | xargs)
+          DIFF_LEN=$(git diff origin/${_DIFF_BRANCH} | wc -l | xargs)
           echo "[*] git diff lines: ${DIFF_LEN}"
           echo "::set-output name=num::$DIFF_LEN"
 
@@ -151,11 +150,10 @@ jobs:
         env:
           BRANCH_NAME: ${{ steps.branch.outputs.branch-name }}
           BRANCH_EXISTS: ${{ steps.branch.outputs.branch-exists }}
-          DIFF_BRANCH: ${{ env._DIFF_BRANCH }}
           DIFF_LEN: ${{ steps.files-changed.outputs.num }}
         run: |
           echo "=====Translations Changed====="
-          git diff --name-only origin/${DIFF_BRANCH}
+          git diff --name-only origin/${_DIFF_BRANCH}
           echo "=============================="
 
           if [ "$DIFF_LEN" != "0" ]; then
