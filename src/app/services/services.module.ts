@@ -15,6 +15,7 @@ import { WebPlatformUtilsService } from '../../services/webPlatformUtils.service
 import { EventService } from './event.service';
 import { OrganizationGuardService } from './organization-guard.service';
 import { OrganizationTypeGuardService } from './organization-type-guard.service';
+import { PolicyListService } from './policy-list.service';
 import { RouterService } from './router.service';
 
 import { AuthGuardService } from 'jslib-angular/services/auth-guard.service';
@@ -191,6 +192,7 @@ export function initFactory(): Function {
         RouterService,
         EventService,
         LockGuardService,
+        PolicyListService,
         { provide: AuditServiceAbstraction, useValue: auditService },
         { provide: AuthServiceAbstraction, useValue: authService },
         { provide: CipherServiceAbstraction, useValue: cipherService },

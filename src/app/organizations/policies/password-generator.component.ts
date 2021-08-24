@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { BasePolicy } from 'jslib-common/abstractions/policy.service';
 
 import { PolicyType } from 'jslib-common/enums/policyType';
 
-import { BasePolicyComponent } from '../manage/policy-edit.component';
+import { BasePolicy, BasePolicyComponent } from './base-policy.component';
 
 export class PasswordGeneratorPolicy extends BasePolicy {
     name = 'passwordGenerator';

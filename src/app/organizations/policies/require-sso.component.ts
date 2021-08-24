@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { BasePolicy } from 'jslib-common/abstractions/policy.service';
 
 import { PolicyType } from 'jslib-common/enums/policyType';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 import { PolicyRequest } from 'jslib-common/models/request/policyRequest';
 
-import { BasePolicyComponent } from '../manage/policy-edit.component';
+import { BasePolicy, BasePolicyComponent } from './base-policy.component';
 
 export class RequireSsoPolicy extends BasePolicy {
     name = 'requireSso';

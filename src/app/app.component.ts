@@ -46,6 +46,7 @@ import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.serv
 
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
+import { PolicyListService } from './services/policy-list.service';
 import { RouterService } from './services/router.service';
 
 import { DisableSendPolicy } from './organizations/policies/disable-send.component';
@@ -91,7 +92,7 @@ export class AppComponent implements OnDestroy, OnInit {
         private sanitizer: DomSanitizer, private searchService: SearchService,
         private notificationsService: NotificationsService, private routerService: RouterService,
         private stateService: StateService, private eventService: EventService,
-        private policyService: PolicyService) { }
+        private policyService: PolicyService, protected policyListService: PolicyListService) { }
 
     ngOnInit() {
         this.ngZone.runOutsideAngular(() => {
@@ -181,8 +182,7 @@ export class AppComponent implements OnDestroy, OnInit {
             }
         });
 
-        // Add policies
-        this.policyService.policies = [
+        this.policyListService.addPolicies([
             new TwoFactorAuthenticationPolicy(),
             new MasterPasswordPolicy(),
             new PasswordGeneratorPolicy(),
@@ -192,7 +192,7 @@ export class AppComponent implements OnDestroy, OnInit {
             new DisableSendPolicy(),
             new SendOptionsPolicy(),
             new ResetPasswordPolicy(),
-        ];
+        ]);
 
         this.setFullWidth();
     }

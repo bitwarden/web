@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { BasePolicy } from 'jslib-common/abstractions/policy.service';
 
 import { PolicyType } from 'jslib-common/enums/policyType';
 
 import { PolicyRequest } from 'jslib-common/models/request/policyRequest';
 
-import { BasePolicyComponent } from '../manage/policy-edit.component';
+import { BasePolicy, BasePolicyComponent } from './base-policy.component';
 
 export class SingleOrgPolicy extends BasePolicy {
     name = 'singleOrg';
@@ -27,8 +26,10 @@ export class SingleOrgPolicyComponent extends BasePolicyComponent {
     }
 
     buildRequest(policiesEnabledMap: Map<PolicyType, boolean>): Promise<PolicyRequest> {
-        const requireSsoEnabled = policiesEnabledMap.get(PolicyType.RequireSso) ?? false;
-        if (!this.enabled.value && requireSsoEnabled) {
+        const dependentPolicies = [PolicyType.RequireSso, PolicyType.MaximumVaultTimeout];
+        const hasEnabledDependentPolicy = dependentPolicies.some(p => policiesEnabledMap.get(p) ?? false);
+
+        if (!this.enabled.value && hasEnabledDependentPolicy) {
             throw new Error(this.i18nService.t('disableRequireSsoError'));
         }
 

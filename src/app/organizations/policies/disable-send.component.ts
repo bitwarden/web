@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 
-import { BasePolicy } from 'jslib-common/abstractions/policy.service';
-
 import { PolicyType } from 'jslib-common/enums/policyType';
 
-import { BasePolicyComponent } from '../manage/policy-edit.component';
+import { BasePolicy, BasePolicyComponent } from './base-policy.component';
 
 export class DisableSendPolicy extends BasePolicy {
     name = 'disableSend';

@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
-import { BasePolicy } from 'jslib-common/abstractions/policy.service';
-
 import { PolicyType } from 'jslib-common/enums/policyType';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 
-import { BasePolicyComponent } from '../manage/policy-edit.component';
+import { BasePolicy, BasePolicyComponent } from './base-policy.component';
 
 export class ResetPasswordPolicy extends BasePolicy {
     name = 'resetPasswordPolicy';
