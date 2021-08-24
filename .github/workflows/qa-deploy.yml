@@ -8,11 +8,11 @@ on:
         required: false
 
 env:
-  QA_CLUSTER_RESOURCE_GROUP: "bitwarden-devops"
-  QA_CLUSTER_NAME: "dev-aks"
-  QA_K8S_NAMESPACE: "bw-qa"
-  QA_K8S_APP_NAME: "bw-web"
-
+  _QA_CLUSTER_RESOURCE_GROUP: "bitwarden-devops"
+  _QA_CLUSTER_NAME: "dev-aks"
+  _QA_K8S_NAMESPACE: "bw-qa"
+  _QA_K8S_APP_NAME: "bw-web"
+master
 jobs:
   deploy:
     name: Deploy QA Web
@@ -49,7 +49,7 @@ jobs:
           echo "---az install---"
           az aks install-cli --install-location ./kubectl --kubelogin-install-location ./kubelogin
           echo "---az get-creds---"
-          az aks get-credentials -n $QA_CLUSTER_NAME -g $QA_CLUSTER_RESOURCE_GROUP
+          az aks get-credentials -n $_QA_CLUSTER_NAME -g $_QA_CLUSTER_RESOURCE_GROUP
 
       - name: Get image tag
         id: image_tag
@@ -66,5 +66,6 @@ jobs:
         env:
           IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
         run: |
-          kubectl set image -n $QA_K8S_NAMESPACE deployment/web web=bitwardenqa.azurecr.io/web:$IMAGE_TAG --record
-          kubectl rollout status deployment/web -n $QA_K8S_NAMESPACE
+          kubectl set image -n $_QA_K8S_NAMESPACE deployment/web web=bitwardenqa.azurecr.io/web:$IMAGE_TAG --record
+          kubectl rollout restart -n $QA_K8s_NAMESPACE deployment/web
+          kubectl rollout status deployment/web -n $_QA_K8S_NAMESPACE
