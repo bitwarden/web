@@ -55,7 +55,7 @@ You can also manually adjusting your API endpoint settings by adding `config/loc
     "proxyPortal": "http://your-portal-url",
     "allowedHosts": ["hostnames-to-allow-in-webpack"],
     "urls": {
-      ...
+      
     }
 }
 ```
