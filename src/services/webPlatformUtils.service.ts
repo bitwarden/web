@@ -253,7 +253,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     isSelfHost(): boolean {
-        return process.env.SELF_HOST.toString() === 'true';
+        return process.env.ENV.toString() === 'selfhosted';
     }
 
     copyToClipboard(text: string, options?: any): void | boolean {

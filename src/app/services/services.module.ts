@@ -148,11 +148,7 @@ export function initFactory(): Function {
 
         const urls = process.env.URLS as Urls;
         urls.base ??= window.location.origin;
-        if (platformUtilsService.isSelfHost()) {
-            environmentService.setUrls({ base: window.location.origin }, false);
-        } else {
-            environmentService.setUrls(urls, false);
-        }
+        environmentService.setUrls(urls, false);
 
         setTimeout(() => notificationsService.init(), 3000);
 

@@ -1,18 +1,8 @@
 function load(envName) {
-    const envOverrides = {
-        'production': () => loadConfig('production'),
-        'qa': () => loadConfig('qa'),
-        'development': () => loadConfig('development'),
-        'local': () => loadConfig('local'),
-    };
-
-    const baseConfig = require('./config/base.json');
-
-
     return {
-        ...baseConfig,
-        ...envOverrides[envName](),
-        ...envOverrides['local'](),
+        ...require('./config/base.json'),
+        ...loadConfig(envName),
+        ...loadConfig('local'),
     };
 }
 

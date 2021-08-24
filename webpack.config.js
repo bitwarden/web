@@ -141,7 +141,6 @@ const plugins = [
     new webpack.EnvironmentPlugin({
         'ENV': ENV,
         'NODE_ENV': NODE_ENV === 'production' ? 'production' : 'development',
-        'SELF_HOST': process.env.SELF_HOST === 'true' ? true : false,
         'APPLICATION_VERSION': pjson.version,
         'CACHE_TAG': Math.random().toString(36).substring(7),
         'URLS': envConfig['urls'] ?? {},
