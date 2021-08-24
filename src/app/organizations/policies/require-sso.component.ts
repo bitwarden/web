@@ -26,7 +26,6 @@ export class RequireSsoPolicy extends BasePolicy {
     templateUrl: 'require-sso.component.html',
 })
 export class RequireSsoPolicyComponent extends BasePolicyComponent {
-
     constructor(private i18nService: I18nService) {
         super();
     }
@@ -39,5 +38,4 @@ export class RequireSsoPolicyComponent extends BasePolicyComponent {
 
         return super.buildRequest(policiesEnabledMap);
     }
-
 }
