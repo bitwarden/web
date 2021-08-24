@@ -176,8 +176,7 @@ export class TwoFactorSetupComponent implements OnInit {
 
     private async evaluatePolicies() {
         if (this.organizationId == null && this.providers.filter(p => p.enabled).length === 1) {
-            const policies = await this.policyService.getAll(PolicyType.TwoFactorAuthentication);
-            this.showPolicyWarning = policies != null && policies.some(p => p.enabled);
+            this.showPolicyWarning = await this.policyService.policyAppliesToUser(PolicyType.TwoFactorAuthentication);
         } else {
             this.showPolicyWarning = false;
         }
