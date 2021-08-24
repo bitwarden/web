@@ -9,6 +9,9 @@ import { ToasterService } from 'angular2-toaster';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { ImportOption, ImportService } from 'jslib-common/abstractions/import.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib-common/abstractions/policy.service';
+
+import { PolicyType } from 'jslib-common/enums/policyType';
 
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 
@@ -23,15 +26,16 @@ export class ImportComponent implements OnInit {
     fileContents: string;
     formPromise: Promise<Error>;
     loading: boolean = false;
+    importBlockedByPolicy: boolean = false;
 
     protected organizationId: string = null;
     protected successNavigate: any[] = ['vault'];
 
     constructor(protected i18nService: I18nService, protected toasterService: ToasterService,
         protected importService: ImportService, protected router: Router,
-        protected platformUtilsService: PlatformUtilsService) { }
+        protected platformUtilsService: PlatformUtilsService, protected policyService: PolicyService) { }
 
-    ngOnInit() {
+    async ngOnInit() {
         this.setImportOptions();
         this.importOptions.sort((a, b) => {
             if (a.name == null && b.name != null) {
@@ -47,9 +51,17 @@ export class ImportComponent implements OnInit {
             return this.i18nService.collator ? this.i18nService.collator.compare(a.name, b.name) :
                 a.name.localeCompare(b.name);
         });
+
+        this.importBlockedByPolicy = await this.policyService.policyAppliesToUser(PolicyType.PersonalOwnership);
     }
 
     async submit() {
+        if (this.importBlockedByPolicy) {
+            this.platformUtilsService.showToast('error', null,
+                this.i18nService.t('personalOwnershipPolicyInEffectImports'));
+            return;
+        }
+
         this.loading = true;
 
         const importer = this.importService.getImporter(this.format, this.organizationId);
