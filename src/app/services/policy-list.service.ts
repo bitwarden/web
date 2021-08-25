@@ -4,7 +4,7 @@ export class PolicyListService {
     private policies: BasePolicy[] = [];
 
     addPolicies(policies: BasePolicy[]) {
-        policies.forEach(p => policies.push(p));
+        this.policies.push(...policies);
     }
 
     getPolicies(): BasePolicy[] {
