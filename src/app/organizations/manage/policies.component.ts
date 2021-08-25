@@ -106,7 +106,7 @@ export class PoliciesComponent implements OnInit {
         this.loading = false;
     }
 
-    edit(p: BasePolicy) {
+    edit(policy: BasePolicy) {
         if (this.modal != null) {
             this.modal.close();
         }
@@ -116,7 +116,7 @@ export class PoliciesComponent implements OnInit {
         const childComponent = this.modal.show<PolicyEditComponent>(
             PolicyEditComponent, this.editModalRef);
 
-        childComponent.policy = p;
+        childComponent.policy = policy;
         childComponent.organizationId = this.organizationId;
         childComponent.policiesEnabledMap = this.policiesEnabledMap;
         childComponent.onSavedPolicy.subscribe(() => {
