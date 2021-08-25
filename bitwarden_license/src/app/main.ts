@@ -6,11 +6,11 @@ import 'jquery';
 import 'popper.js';
 
 // tslint:disable-next-line
-require('../../../src/scss/styles.scss');
+require('src/scss/styles.scss');
 
 import { AppModule } from './app.module';
 
-if (process.env.ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
     enableProdMode();
 }
 

@@ -361,7 +361,7 @@
     "message": "Partager"
   },
   "moveToOrganization": {
-    "message": "Déplacer vers l'Organisation"
+    "message": "Déplacer vers l'organisation"
   },
   "valueCopied": {
     "message": "$VALUE$ copié",
@@ -404,7 +404,7 @@
     "message": "Coffre"
   },
   "moveSelectedToOrg": {
-    "message": "Déplacer la Sélection vers l'Organisation"
+    "message": "Déplacer la sélection vers l'organisation"
   },
   "deleteSelected": {
     "message": "Supprimer les éléments sélectionnés"
@@ -452,7 +452,7 @@
     "message": "Élément modifié"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ déplacés vers $ORGNAME$",
+    "message": "$ITEMNAME$ a été déplacé vers $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -769,10 +769,10 @@
     "message": "Organisations"
   },
   "moveToOrgDesc": {
-    "message": "Choisissez une organisation vers laquelle vous souhaitez déplacer cet élément. Déplacer vers une organisation transfère la propriété de l'élément à cette organisation. Vous ne serez plus le propriétaire direct de cet objet une fois qu'il a été déplacé."
+    "message": "Choisissez une organisation vers laquelle vous souhaitez déplacer cet élément. Déplacer un élément vers une organisation transfère la propriété de l'élément à cette organisation. Vous ne serez plus le propriétaire direct de cet élément une fois qu'il aura été déplacé."
   },
   "moveManyToOrgDesc": {
-    "message": "Choisissez une organisation vers laquelle vous souhaitez déplacer ces éléments. Le déplacement vers une organisation transfère la propriété des éléments à cette organisation. Vous ne serez plus le propriétaire direct de ces objets une fois qu'ils ont été déplacés."
+    "message": "Choisissez une organisation vers laquelle vous souhaitez déplacer ces éléments. Déplacer des éléments vers une organisation transfère la propriété des éléments à cette organisation. Vous ne serez plus le propriétaire direct de ces éléments une fois qu'ils auront été déplacés."
   },
   "collectionsDesc": {
     "message": "Modifier les collections avec lesquelles cet élément est partagé. Seuls les utilisateurs de l'organisation avec un accès à ces collections pourront voir cet élément."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "Vous avez sélectionné $COUNT$ élément(s). $MOVEABLE_COUNT$ élément(s) peuvent être déplacés vers une organisation, $NONMOVEABLE_COUNT$ ne peuvent pas.",
+    "message": "Vous avez sélectionné $COUNT$ élément(s). $MOVEABLE_COUNT$ élément(s) peuvent être déplacés vers une organisation, $NONMOVEABLE_COUNT$ ne le peuvent pas.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3863,7 +3863,7 @@
     "message": "WebAuthn n'est pas pris en charge dans ce navigateur."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn vérifié avec succès !</strong><br>Vous pouvez fermer cet onglet."
+    "message": "WebAuthn vérifié avec succès ! Vous pouvez fermer cet onglet."
   },
   "hintEqualsPassword": {
     "message": "Votre indice de mot de passe ne peut pas être identique à votre mot de passe."
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Réinitialiser le Mot de Passe"
+    "message": "Réinitialiser le mot de passe"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "En continuant, $NAME$ seront déconnectés de leur session actuelle, ce qui leur demandera de se reconnecter. Les sessions actives sur d'autres appareils peuvent rester actives jusqu'à une heure.",
+    "message": "En continuant, $NAME$ sera déconnecté de sa session actuelle, ce qui lui demandera de se reconnecter. Les sessions actives sur d'autres appareils peuvent rester actives jusqu'à une heure.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3926,25 +3926,25 @@
     "message": "cet utilisateur"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "Une ou plusieurs politiques d'organisation requièrent le mot de passe maître pour répondre aux exigences suivantes :"
+    "message": "Une ou plusieurs politiques de l'organisation exigent que le mot de passe maître réponde aux exigences suivantes :"
   },
   "resetPasswordSuccess": {
-    "message": "Réinitialisation du Mot de Passe réussie!"
+    "message": "Mot de passe réinitialisé avec succès !"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "L'inscription permettra aux administrateurs de l'organisation de changer votre mot de passe principal. Êtes-vous sûr de vouloir vous inscrire ?"
+    "message": "L'inscription permettra aux administrateurs de l'organisation de changer votre mot de passe maître. Êtes-vous sûr de vouloir vous inscrire ?"
   },
   "resetPasswordPolicy": {
-    "message": "Réinitialisation du Mot de Passe Maître"
+    "message": "Réinitialisation du mot de passe maître"
   },
   "resetPasswordPolicyDescription": {
     "message": "Permettre aux administrateurs de l'organisation de réinitialiser le mot de passe maître des utilisateurs de l'organisation."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Les utilisateurs de l'organisation devront s'inscrire personnellement ou être inscrits automatiquement avant que les administrateurs puissent réinitialiser leur mot de passe principal."
+    "message": "Les utilisateurs de l'organisation devront s'inscrire personnellement ou être inscrits automatiquement avant que les administrateurs puissent réinitialiser leur mot de passe maître."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Inscription Automatique"
+    "message": "Inscription automatique"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
     "message": "Tous les utilisateurs seront automatiquement inscrits à la réinitialisation du mot de passe une fois leur invitation acceptée."
@@ -3956,19 +3956,19 @@
     "message": "Inscrire automatiquement les nouveaux utilisateurs"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "Cette organisation a une politique d'entreprise qui vous inscrira automatiquement dans la réinitialisation du mot de passe. L'inscription permettra aux administrateurs de l'organisation de changer votre mot de passe principal."
+    "message": "Cette organisation a une politique d'entreprise qui vous inscrira automatiquement à la réinitialisation du mot de passe. L'inscription permettra aux administrateurs de l'organisation de changer votre mot de passe maître."
   },
   "resetPasswordOrgKeysError": {
-    "message": "La réponse des Clés de l'Organisation est nulle"
+    "message": "Erreur lors du traitement de votre demande : \"Organization Keys response is null\""
   },
   "resetPasswordDetailsError": {
-    "message": "La réponse aux Détails de Réinitialisation du Mot de Passe est nulle"
+    "message": "Erreur lors du traitement de votre demande : \"Reset Password Details response is null\""
   },
   "trashCleanupWarning": {
-    "message": "Items that have been in Trash more than 30 days will be automatically deleted."
+    "message": "Les éléments présents dans la corbeille depuis plus de 30 jours seront automatiquement supprimés."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Items that have been in Trash for a while will be automatically deleted."
+    "message": "Les éléments présents dans la corbeille depuis un moment seront automatiquement supprimés."
   },
   "passwordPrompt": {
     "message": "Ressaisie du mot de passe maître"
@@ -3980,7 +3980,7 @@
     "message": "Cette action est protégée. Pour continuer, veuillez ressaisir votre mot de passe maître pour vérifier votre identité."
   },
   "reinviteSelected": {
-    "message": "Renvoyer les Invitations"
+    "message": "Renvoyer les invitations"
   },
   "noSelectedUsersApplicable": {
     "message": "Cette action n'est applicable à aucun des utilisateurs sélectionnés."
@@ -3989,10 +3989,10 @@
     "message": "Êtes-vous sûr de vouloir supprimer les utilisateurs suivants ? Le processus peut prendre quelques secondes et ne peut être interrompu ou annulé."
   },
   "confirmSelected": {
-    "message": "Confirmer la Sélection"
+    "message": "Confirmer la sélection"
   },
   "bulkConfirmStatus": {
-    "message": "Statut de l'action groupée"
+    "message": "Statut de l'action de masse"
   },
   "bulkConfirmMessage": {
     "message": "Confirmé avec succès."

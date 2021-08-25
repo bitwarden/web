@@ -71,6 +71,9 @@ export class EventService {
             case EventType.User_ClientExportedVault:
                 msg = humanReadableMsg = this.i18nService.t('exportedVault');
                 break;
+            case EventType.User_UpdatedTempPassword:
+                msg = humanReadableMsg = this.i18nService.t('updatedMasterPassword');
+                break;
             // Cipher
             case EventType.Cipher_Created:
                 msg = this.i18nService.t('createdItemId', this.formatCipherId(ev, options));
@@ -215,6 +218,9 @@ export class EventService {
                 msg = this.i18nService.t('exportedOrganizationVault');
                 break;
             */
+            case EventType.Organization_VaultAccessed:
+                msg = humanReadableMsg = this.i18nService.t('vaultAccessedByProvider');
+                break;
             // Policies
             case EventType.Policy_Updated:
                 msg = this.i18nService.t('modifiedPolicyId', this.formatPolicyId(ev));
@@ -222,13 +228,45 @@ export class EventService {
                 const policies = await this.policyService.getAll();
                 const policy = policies.filter(p => p.id === ev.policyId)[0];
                 let p1 = this.getShortId(ev.policyId);
-                if (policy !== null) {
+                if (policy != null) {
                     p1 = PolicyType[policy.type];
                 }
 
                 humanReadableMsg = this.i18nService.t('modifiedPolicyId', p1);
                 break;
-
+            // Provider users:
+            case EventType.ProviderUser_Invited:
+                msg = this.i18nService.t('invitedUserId', this.formatProviderUserId(ev));
+                humanReadableMsg = this.i18nService.t('invitedUserId', this.getShortId(ev.providerUserId));
+                break;
+            case EventType.ProviderUser_Confirmed:
+                msg = this.i18nService.t('confirmedUserId', this.formatProviderUserId(ev));
+                humanReadableMsg = this.i18nService.t('confirmedUserId', this.getShortId(ev.providerUserId));
+                break;
+            case EventType.ProviderUser_Updated:
+                msg = this.i18nService.t('editedUserId', this.formatProviderUserId(ev));
+                humanReadableMsg = this.i18nService.t('editedUserId', this.getShortId(ev.providerUserId));
+                break;
+            case EventType.ProviderUser_Removed:
+                msg = this.i18nService.t('removedUserId', this.formatProviderUserId(ev));
+                humanReadableMsg = this.i18nService.t('removedUserId', this.getShortId(ev.providerUserId));
+                break;
+            case EventType.ProviderOrganization_Created:
+                msg = this.i18nService.t('createdOrganizationId', this.formatProviderOrganizationId(ev));
+                humanReadableMsg = this.i18nService.t('createdOrganizationId', this.getShortId(ev.providerOrganizationId));
+                break;
+            case EventType.ProviderOrganization_Added:
+                msg = this.i18nService.t('addedOrganizationId', this.formatProviderOrganizationId(ev));
+                humanReadableMsg = this.i18nService.t('addedOrganizationId', this.getShortId(ev.providerOrganizationId));
+                break;
+            case EventType.ProviderOrganization_Removed:
+                msg = this.i18nService.t('removedOrganizationId', this.formatProviderOrganizationId(ev));
+                humanReadableMsg = this.i18nService.t('removedOrganizationId', this.getShortId(ev.providerOrganizationId));
+                break;
+            case EventType.ProviderOrganization_VaultAccessed:
+                msg = this.i18nService.t('accessedClientVault', this.formatProviderOrganizationId(ev));
+                humanReadableMsg = this.i18nService.t('accessedClientVault', this.getShortId(ev.providerOrganizationId));
+                break;
             default:
                 break;
         }
@@ -318,6 +356,21 @@ export class EventService {
         return a.outerHTML;
     }
 
+    private formatProviderUserId(ev: EventResponse) {
+        const shortId = this.getShortId(ev.providerUserId);
+        const a = this.makeAnchor(shortId);
+        a.setAttribute('href', '#/providers/' + ev.providerId + '/manage/people?search=' + shortId +
+            '&viewEvents=' + ev.providerUserId);
+        return a.outerHTML;
+    }
+
+    private formatProviderOrganizationId(ev: EventResponse) {
+        const shortId = this.getShortId(ev.providerOrganizationId);
+        const a = this.makeAnchor(shortId);
+        a.setAttribute('href', '#/providers/' + ev.providerId + '/clients?search=' + shortId);
+        return a.outerHTML;
+    }
+
     private formatPolicyId(ev: EventResponse) {
         const shortId = this.getShortId(ev.policyId);
         const a = this.makeAnchor(shortId);
@@ -333,7 +386,7 @@ export class EventService {
     }
 
     private getShortId(id: string) {
-        return id.substring(0, 8);
+        return id?.substring(0, 8);
     }
 
     private toDateTimeLocalString(date: Date) {

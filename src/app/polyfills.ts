@@ -7,7 +7,7 @@ if (!Element.prototype.matches && (Element.prototype as any).msMatchesSelector) 
     Element.prototype.matches = (Element.prototype as any).msMatchesSelector;
 }
 
-if (process.env.ENV === 'production') {
+if (process.env.NODE_ENV === 'production') {
     // Production
 } else {
     // Development and test

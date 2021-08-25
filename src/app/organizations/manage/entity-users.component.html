@@ -61,7 +61,7 @@
                                         (change)="selectedChanged(u)" appStopProp>
                                 </td>
                                 <td width="30" (click)="check(u)">
-                                    <app-avatar [data]="u.name || u.email" [email]="u.email" size="25" [circle]="true"
+                                    <app-avatar [data]="u | userName" [email]="u.email" size="25" [circle]="true"
                                         [fontSize]="14"></app-avatar>
                                 </td>
                                 <td>

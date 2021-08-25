@@ -47,7 +47,7 @@ export class AddCreditComponent implements OnInit {
 
     constructor(private userService: UserService, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService) {
-        if (platformUtilsService.isDev()) {
+        if (process.env.ENV !== 'cloud' || platformUtilsService.isDev()) {
             this.ppButtonFormAction = WebConstants.paypal.buttonActionSandbox;
             this.ppButtonBusinessId = WebConstants.paypal.businessIdSandbox;
         }

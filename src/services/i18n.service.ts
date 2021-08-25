@@ -10,8 +10,9 @@ export class I18nService extends BaseI18nService {
             return locales;
         });
 
+        // Please leave 'en' where it is, as it's our fallback language in case no translation can be found
         this.supportedTranslationLocales = [
-            'en', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'eo', 'en-GB', 'en-IN', 'es', 'et', 'fi', 'fr', 'he', 'hr', 'hu', 'id', 'it', 'ja', 'kn', 'ko', 'lv', 'ml', 'nb',
+            'en', 'az', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'eo', 'en-GB', 'en-IN', 'es', 'et', 'fi', 'fr', 'he', 'hr', 'hu', 'id', 'it', 'ja', 'kn', 'ko', 'lv', 'ml', 'nb',
             'nl', 'pl', 'pt-PT', 'pt-BR', 'ro', 'ru', 'sk', 'sr', 'sv', 'tr', 'uk', 'zh-CN', 'zh-TW',
         ];
     }
