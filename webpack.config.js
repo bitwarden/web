@@ -13,7 +13,7 @@ const config = require('./config.js');
 const ENV = process.env.ENV == null ? 'development' : process.env.ENV;
 const NODE_ENV = process.env.NODE_ENV == null ? 'development' : process.env.NODE_ENV;
 
-const envConfig = config.load(process.env.ENV);
+const envConfig = config.load(ENV);
 config.log(envConfig);
 
 const moduleRules = [
@@ -141,9 +141,9 @@ const plugins = [
     new webpack.EnvironmentPlugin({
         'ENV': ENV,
         'NODE_ENV': NODE_ENV === 'production' ? 'production' : 'development',
-        'SELF_HOST': process.env.SELF_HOST === 'true' ? true : false,
         'APPLICATION_VERSION': pjson.version,
         'CACHE_TAG': Math.random().toString(36).substring(7),
+        'URLS': envConfig['urls'] ?? {},
     }),
     new AngularCompilerPlugin({
         tsConfigPath: 'tsconfig.json',
@@ -154,7 +154,7 @@ const plugins = [
 
 // ref: https://webpack.js.org/configuration/dev-server/#devserver
 let certSuffix = fs.existsSync('dev-server.local.pem') ? '.local' : '.shared';
-const devServer = {
+const devServer = ENV !== 'development' ? {} : {
     https: {
         key: fs.readFileSync('dev-server' + certSuffix + '.pem'),
         cert: fs.readFileSync('dev-server' + certSuffix + '.pem'),
@@ -186,7 +186,7 @@ const devServer = {
             changeOrigin: true
         },
         '/portal': {
-            target: envConfig['proxyPortal'],
+            target: envConfig['proxyEnterprise'],
             pathRewrite: {'^/portal' : ''},
             secure: false,
             changeOrigin: true

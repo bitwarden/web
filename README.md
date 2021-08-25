@@ -44,20 +44,23 @@ npm install
 ENV=production npm run build:watch
 ```
 
-You can also manually adjusting your API endpoint settings by adding `config/development.json` overriding any of the values in `config/base.json`. For example:
+You can also manually adjusting your API endpoint settings by adding `config/local.json` overriding any of the following values:
 
-```typescript
+```json
 {
     "proxyApi": "http://your-api-url",
     "proxyIdentity": "http://your-identity-url",
     "proxyEvents": "http://your-events-url",
     "proxyNotifications": "http://your-notifications-url",
     "proxyPortal": "http://your-portal-url",
-    "allowedHosts": ["hostnames-to-allow-in-webpack"]
+    "allowedHosts": ["hostnames-to-allow-in-webpack"],
+    "urls": {
+      
+    }
 }
 ```
 
-To pick up the overrides in the newly created `config/development.json` file, run the app with:
+Where the `urls` object is defined by the [Urls type in jslib](https://github.com/bitwarden/jslib/blob/master/common/src/abstractions/environment.service.ts). To pick up the overrides in the newly created `config/local.json` file, run the app with:
 
 ```
 npm run build:dev:watch
