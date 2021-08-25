@@ -234,6 +234,16 @@ import localeUk from '@angular/common/locales/uk';
 import localeZhCn from '@angular/common/locales/zh-Hans';
 import localeZhTw from '@angular/common/locales/zh-Hant';
 
+import { DisableSendPolicyComponent } from './organizations/policies/disable-send.component';
+import { MasterPasswordPolicyComponent } from './organizations/policies/master-password.component';
+import { PasswordGeneratorPolicyComponent } from './organizations/policies/password-generator.component';
+import { PersonalOwnershipPolicyComponent } from './organizations/policies/personal-ownership.component';
+import { RequireSsoPolicyComponent } from './organizations/policies/require-sso.component';
+import { ResetPasswordPolicyComponent } from './organizations/policies/reset-password.component';
+import { SendOptionsPolicyComponent } from './organizations/policies/send-options.component';
+import { SingleOrgPolicyComponent } from './organizations/policies/single-org.component';
+import { TwoFactorAuthenticationPolicyComponent } from './organizations/policies/two-factor-authentication.component';
+
 registerLocaleData(localeAz, 'az');
 registerLocaleData(localeBg, 'bg');
 registerLocaleData(localeCa, 'ca');
@@ -438,6 +448,15 @@ registerLocaleData(localeZhTw, 'zh-TW');
         VerifyRecoverDeleteComponent,
         WeakPasswordsReportComponent,
         ProvidersComponent,
+        TwoFactorAuthenticationPolicyComponent,
+        MasterPasswordPolicyComponent,
+        SingleOrgPolicyComponent,
+        PasswordGeneratorPolicyComponent,
+        RequireSsoPolicyComponent,
+        PersonalOwnershipPolicyComponent,
+        DisableSendPolicyComponent,
+        SendOptionsPolicyComponent,
+        ResetPasswordPolicyComponent,
     ],
     exports: [
         A11yTitleDirective,
