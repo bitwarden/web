@@ -2,7 +2,10 @@
     <div class="card-body">
         <button type="button" class="close" appA11yTitle="{{'cancel' | i18n}}" (click)="cancel()"><span
                 aria-hidden="true">&times;</span></button>
-        <h3 class="card-body-header">{{(add ? 'addSeats' : 'removeSeats') | i18n}}</h3>
+        <h2>{{(add ? 'addSeats' : 'removeSeats') | i18n}}</h2>
+        <small class="d-block text-muted mb-4">
+            {{(add ? 'seatsAddNote' : 'seatsRemoveNote') | i18n}}
+        </small>
         <div class="row">
             <div class="form-group col-6">
                 <label for="seatAdjustment">{{(add ? 'seatsToAdd' : 'seatsToRemove') | i18n}}</label>
@@ -21,9 +24,6 @@
         <button type="button" class="btn btn-outline-secondary" (click)="cancel()">
             {{'cancel' | i18n}}
         </button>
-        <small class="d-block text-muted mt-3">
-            {{(add ? 'seatsAddNote' : 'seatsRemoveNote') | i18n}}
-        </small>
     </div>
 </form>
 <app-payment [showMethods]="false"></app-payment>
