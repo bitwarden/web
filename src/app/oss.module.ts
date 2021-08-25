@@ -61,6 +61,7 @@ import { UserConfirmComponent as OrgUserConfirmComponent } from './organizations
 import { UserGroupsComponent as OrgUserGroupsComponent } from './organizations/manage/user-groups.component';
 
 import { AccountComponent as OrgAccountComponent } from './organizations/settings/account.component';
+import { AdjustSeatsAutoscaleComponent } from './organizations/settings/adjust-seat-autoscale.component';
 import { AdjustSeatsComponent } from './organizations/settings/adjust-seats.component';
 import { ChangePlanComponent } from './organizations/settings/change-plan.component';
 import { DeleteOrganizationComponent } from './organizations/settings/delete-organization.component';
@@ -293,6 +294,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         AddCreditComponent,
         AddEditComponent,
         AdjustPaymentComponent,
+        AdjustSeatsAutoscaleComponent,
         AdjustSeatsComponent,
         AdjustStorageComponent,
         ApiActionDirective,

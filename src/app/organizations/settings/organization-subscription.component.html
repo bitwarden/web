@@ -113,20 +113,31 @@
                 (onCanceled)="closeDownloadLicense()"></app-download-license>
         </div>
         <h2 class="spaced-header">{{'userSeats' | i18n}}</h2>
-        <p>{{'subscriptionUserSeats' | i18n : sub.seats}}</p>
+        <p *ngIf="!sub.enableSeatAutoscaling">{{'subscriptionUserSeats' | i18n : sub.seats}}</p>
+        <p *ngIf="sub.enableSeatAutoscaling && sub.maxAutoscaleSeats == null">
+            {{'subscriptionUserSeatsUnlimitedAutoscale' | i18n : sub.seats}}</p>
+        <p *ngIf="sub.enableSeatAutoscaling && sub.maxAutoscaleSeats != null">
+            {{'subscriptionUserSeatsLimitedAutoscale' | i18n : sub.seats : sub.maxAutoscaleSeats}}
+        </p>
         <ng-container *ngIf="subscription && canAdjustSeats && !subscription.cancelled && !subscriptionMarkedForCancel">
             <div class="mt-3">
-                <div class="d-flex" *ngIf="!showAdjustSeats">
+                <div class="d-flex" *ngIf="!showAdjustSeats && !showAdjustSeatAutoscale">
                     <button type="button" class="btn btn-outline-secondary" (click)="adjustSeats(true)">
                         {{'addSeats' | i18n}}
                     </button>
                     <button type="button" class="btn btn-outline-secondary ml-1" (click)="adjustSeats(false)">
                         {{'removeSeats' | i18n}}
                     </button>
+                    <button type="button" class="btn btn-outline-secondary ml-1" (click)="adjustSeatAutoscale()">
+                        {{'configureSeatAutoscaling' | i18n}}
+                    </button>
                 </div>
                 <app-adjust-seats [seatPrice]="seatPrice" [add]="adjustSeatsAdd" [organizationId]="organizationId"
                     [interval]="billingInterval" (onAdjusted)="closeSeats(true)" (onCanceled)="closeSeats(false)"
                     *ngIf="showAdjustSeats"></app-adjust-seats>
+                <app-adjust-seat-autoscale [organizationId]="organizationId" [enableSeatAutoscaling]="sub.enableSeatAutoscaling"
+                    [maxAutoscaleSeats]="sub.maxAutoscaleSeats" [currentSeatCount]="sub.seats" (onAdjusted)="closeAutoscale(true)"
+                    (onCanceled)="closeAutoscale(false)" *ngIf="showAdjustSeatAutoscale"></app-adjust-seat-autoscale>
             </div>
         </ng-container>
         <h2 class="spaced-header">{{'storage' | i18n}}</h2>

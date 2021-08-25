@@ -2875,6 +2875,36 @@
   "enterInstallationId": {
     "message": "Enter your installation id"
   },
+  "configureSeatAutoscaling": {
+    "message": "Autoscale Seats",
+    "description": "Seat = User Seat. Change the auto scaling behavior of the organization"
+  },
+  "autoscaleDesc": {
+    "message": "Automatically add seats to your subscription when inviting users. New seats will result in an immediate prorated charge.",
+    "description": "Seat = User Seat"
+  },
+  "turnOn": {
+    "message": "Turn on"
+  },
+  "maxAutoscaleSeats": {
+    "message": "Set Autoscale Limit (optional)",
+    "description": "Upper limit of seats to allow through autoscaling"
+  },
+  "enabledUnlimitedAutoscaling": {
+    "message": "Enabled unlimited user seat autoscaling."
+  },
+  "disabledSeatAutoscaling": {
+    "message": "Disable user seat autoscaling."
+  },
+  "enabledLimitedAutoscaling": {
+    "message": "Enabled user seat autoscaling up to a maximum of $COUNT$ seats",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
   "addSeats": {
     "message": "Add Seats",
     "description": "Seat = User Seat"
@@ -2888,6 +2918,28 @@
     "placeholders": {
       "count": {
         "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "subscriptionUserSeatsUnlimitedAutoscale": {
+    "message": "Your subscription allows for a total of $COUNT$ users. Your subscription will scale to allow any number of invited users.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "subscriptionUserSeatsLimitedAutoscale": {
+    "message": "Your subscription allows for a total of $COUNT$ users. Your subscription will scale automatically to maximum of $MAX$ users.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      },
+      "max": {
+        "content": "$2",
         "example": "50"
       }
     }

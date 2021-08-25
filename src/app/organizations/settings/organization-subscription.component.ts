@@ -26,6 +26,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     organizationId: string;
     adjustSeatsAdd = true;
     showAdjustSeats = false;
+    showAdjustSeatAutoscale = false;
     adjustStorageAdd = true;
     showAdjustStorage = false;
     showUpdateLicense = false;
@@ -147,8 +148,19 @@ export class OrganizationSubscriptionComponent implements OnInit {
         this.showAdjustSeats = true;
     }
 
+    adjustSeatAutoscale() {
+        this.showAdjustSeatAutoscale = true;
+    }
+
     closeSeats(load: boolean) {
         this.showAdjustSeats = false;
+        if (load) {
+            this.load();
+        }
+    }
+
+    closeAutoscale(load: boolean) {
+        this.showAdjustSeatAutoscale = false;
         if (load) {
             this.load();
         }
