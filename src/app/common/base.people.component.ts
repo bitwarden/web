@@ -262,11 +262,10 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
                 childComponent.publicKey = publicKey;
                 childComponent.onConfirmedUser.subscribe(async () => {
                     try {
-                        await confirmUser(publicKey);
+                        childComponent.formPromise = confirmUser(publicKey);
+                        await childComponent.formPromise;
                         this.modal.close();
-                    } catch (e) {
-                        this.logService.error(`Handled exception: ${e}`);
-                    }
+                    } catch { }
                 });
 
                 this.modal.onClosed.subscribe(() => {
