@@ -9,6 +9,7 @@ let webauthnJson: any;
 let btnText: string = null;
 let parentUrl: string = null;
 let parentOrigin: string = null;
+let callbackUri: string = null;
 let stopWebAuthn = false;
 let sentSuccess = false;
 let obj: any = null;
@@ -66,7 +67,7 @@ function parseParametersV1() {
 }
 
 function parseParametersV2() {
-    let dataObj: { data: any, btnText: string; } = null;
+    let dataObj: { data: any, btnText: string; callbackUri?: string } = null;
     try {
         dataObj = JSON.parse(b64Decode(getQsParam('data')));
     }
@@ -75,6 +76,7 @@ function parseParametersV2() {
         return;
     }
 
+    callbackUri = dataObj.callbackUri;
     webauthnJson = dataObj.data;
     btnText = dataObj.btnText;
 }
@@ -104,7 +106,7 @@ function start() {
     stopWebAuthn = false;
 
     if (navigator.userAgent.indexOf(' Safari/') !== -1 && navigator.userAgent.indexOf('Chrome') === -1) {
-        // TODO: Hide image, show button
+        // Safari blocks non-user initiated WebAuthn requests.
     } else {
         executeWebAuthn();
     }
@@ -136,7 +138,11 @@ function onMessage() {
 }
 
 function error(message: string) {
-    parent.postMessage('error|' + message, parentUrl);
+    if (callbackUri) {
+        document.location.replace(callbackUri + '?error=' + encodeURIComponent(message));
+    } else {
+        parent.postMessage('error|' + message, parentUrl);
+    }
 }
 
 function success(assertedCredential: PublicKeyCredential) {
@@ -145,11 +151,21 @@ function success(assertedCredential: PublicKeyCredential) {
     }
 
     const dataString = buildDataString(assertedCredential);
-    parent.postMessage('success|' + dataString, parentUrl);
+
+    if (callbackUri) {
+        document.location.replace(callbackUri + '?data=' + encodeURIComponent(dataString));
+    } else {
+        parent.postMessage('success|' + dataString, parentUrl);
+    }
+
     sentSuccess = true;
 }
 
 function info(message: string) {
+    if (callbackUri) {
+        return;
+    }
+
     parent.postMessage('info|' + message, parentUrl);
 }
 

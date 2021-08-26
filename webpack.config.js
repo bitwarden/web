@@ -98,6 +98,11 @@ const plugins = [
         chunks: ['connectors/webauthn'],
     }),
     new HtmlWebpackPlugin({
+        template: './src/connectors/webauthn-mobile.html',
+        filename: 'webauthn-mobile-connector.html',
+        chunks: ['connectors/webauthn'],
+    }),
+    new HtmlWebpackPlugin({
         template: './src/connectors/webauthn-fallback.html',
         filename: 'webauthn-fallback-connector.html',
         chunks: ['connectors/webauthn-fallback'],
