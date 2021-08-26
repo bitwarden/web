@@ -105,8 +105,8 @@ function start() {
 
     stopWebAuthn = false;
 
-    if (navigator.userAgent.indexOf(' Safari/') !== -1 && navigator.userAgent.indexOf('Chrome') === -1) {
-        // Safari blocks non-user initiated WebAuthn requests.
+    if (callbackUri != null || (navigator.userAgent.indexOf(' Safari/') !== -1 && navigator.userAgent.indexOf('Chrome') === -1)) {
+        // Safari and mobile chrome blocks non-user initiated WebAuthn requests.
     } else {
         executeWebAuthn();
     }
