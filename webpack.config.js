@@ -146,11 +146,6 @@ const plugins = [
         'CACHE_TAG': Math.random().toString(36).substring(7),
         'URLS': envConfig['urls'] ?? {},
     }),
-    new AngularCompilerPlugin({
-        tsConfigPath: 'tsconfig.json',
-        entryModule: 'src/app/app.module#AppModule',
-        sourceMap: true,
-    }),
     new WorkerPlugin({
         plugins: [
             new AngularCompilerPlugin({
@@ -159,7 +154,12 @@ const plugins = [
             })
         ],
         globalObject: 'self'
-    })
+    }),
+    new AngularCompilerPlugin({
+        tsConfigPath: 'tsconfig.json',
+        entryModule: 'src/app/app.module#AppModule',
+        sourceMap: true,
+    }),
 ];
 
 // ref: https://webpack.js.org/configuration/dev-server/#devserver
