@@ -98,6 +98,11 @@ const plugins = [
         chunks: ['connectors/webauthn'],
     }),
     new HtmlWebpackPlugin({
+        template: './src/connectors/webauthn-mobile.html',
+        filename: 'webauthn-mobile-connector.html',
+        chunks: ['connectors/webauthn'],
+    }),
+    new HtmlWebpackPlugin({
         template: './src/connectors/webauthn-fallback.html',
         filename: 'webauthn-fallback-connector.html',
         chunks: ['connectors/webauthn-fallback'],
@@ -132,6 +137,7 @@ const plugins = [
             { from: './src/scripts', to: 'scripts' },
             { from: './node_modules/qrious/dist/qrious.min.js', to: 'scripts' },
             { from: './node_modules/braintree-web-drop-in/dist/browser/dropin.js', to: 'scripts' },
+            { from: './src/assetlinks.json', to: '.well-known/assetlinks.json' },
         ],
     }),
     new MiniCssExtractPlugin({
