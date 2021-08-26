@@ -67,13 +67,13 @@ export class PaymentComponent implements OnInit {
         this.stripeScript.src = 'https://js.stripe.com/v3/';
         this.stripeScript.async = true;
         this.stripeScript.onload = () => {
-            this.stripe = (window as any).Stripe(process.env.ENV === 'production'  ?
+            this.stripe = (window as any).Stripe(process.env.ENV === 'cloud' && !platformUtilsService.isDev() ?
                 WebConstants.stripeLiveKey : WebConstants.stripeTestKey);
             this.stripeElements = this.stripe.elements();
             this.setStripeElement();
         };
         this.btScript = window.document.createElement('script');
-        this.btScript.src = 'scripts/dropin.js';
+        this.btScript.src = `scripts/dropin.js?cache=${process.env.CACHE_TAG}`;
         this.btScript.async = true;
     }
 
@@ -126,8 +126,8 @@ export class PaymentComponent implements OnInit {
         if (this.method === PaymentMethodType.PayPal) {
             window.setTimeout(() => {
                 (window as any).braintree.dropin.create({
-                    authorization: this.platformUtilsService.isDev() ?
-                        WebConstants.btSandboxKey : WebConstants.btProductionKey,
+                    authorization: process.env.ENV === 'cloud' ?
+                        WebConstants.btProductionKey : WebConstants.btSandboxKey,
                     container: '#bt-dropin-container',
                     paymentOptionPriority: ['paypal'],
                     paypal: {

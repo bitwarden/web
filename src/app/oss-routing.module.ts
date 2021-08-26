@@ -19,6 +19,7 @@ import { RegisterComponent } from './accounts/register.component';
 import { SetPasswordComponent } from './accounts/set-password.component';
 import { SsoComponent } from './accounts/sso.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
+import { UpdateTempPasswordComponent } from './accounts/update-temp-password.component';
 import { VerifyEmailTokenComponent } from './accounts/verify-email-token.component';
 import { VerifyRecoverDeleteComponent } from './accounts/verify-recover-delete.component';
 
@@ -162,6 +163,12 @@ const routes: Routes = [
                 path: 'send/:sendId/:key',
                 component: AccessComponent,
                 data: { title: 'Bitwarden Send' },
+            },
+            {
+                path: 'update-temp-password',
+                component: UpdateTempPasswordComponent,
+                canActivate: [AuthGuardService],
+                data: { titleId: 'updateTempPassword' },
             },
         ],
     },
@@ -438,4 +445,4 @@ const routes: Routes = [
     })],
     exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class OssRoutingModule { }

@@ -360,6 +360,9 @@
   "share": {
     "message": "Del"
   },
+  "moveToOrganization": {
+    "message": "Flytt til organisasjon"
+  },
   "valueCopied": {
     "message": "$VALUE$ har blitt kopiert",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Hvelv"
   },
-  "shareSelected": {
-    "message": "Del de valgte"
+  "moveSelectedToOrg": {
+    "message": "Flytt valgte til organisasjon"
   },
   "deleteSelected": {
     "message": "Slett de valgte"
@@ -437,7 +440,7 @@
     "message": "Velg en fil."
   },
   "maxFileSize": {
-    "message": "Den maksimale filstørrelsen er 100 MB."
+    "message": "Den maksimale filstørrelsen er 500 MB."
   },
   "updateKey": {
     "message": "Du kan ikke bruke denne funksjonen før du oppdaterer krypteringsnøkkelen din."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Redigerte gjenstanden"
   },
-  "sharedItem": {
-    "message": "Delte gjenstanden"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ flyttet til $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Delte gjenstander"
+  "movedItemsToOrg": {
+    "message": "Valgte elementer flyttet til $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Slett objektet"
@@ -729,10 +748,10 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "Bruk en hvilken som helst WebAuthn aktivert sikkerhetsnøkkel til å få tilgang til kontoen din."
   },
   "webAuthnMigrated": {
-    "message": "(Migrated from FIDO)"
+    "message": "(Migrert fra FIDO)"
   },
   "emailTitle": {
     "message": "E-post"
@@ -749,11 +768,11 @@
   "organizations": {
     "message": "Organisasjoner"
   },
-  "shareDesc": {
-    "message": "Velg en organisasjon som du ønsker å dele dette objektet med. Deling overfører objektets eierskap til organisasjonen. Du vil ikke lenger være den direkte eieren av dette objektet når det først har blitt delt."
+  "moveToOrgDesc": {
+    "message": "Velg en organisasjon som du ønsker å flytte denne gjenstanden til. Flytting til en organisasjon overfører eierskap til den aktuelle organisasjonen. Du vil ikke lenger være den direkte eieren av denne varen når den er flyttet."
   },
-  "shareManyDesc": {
-    "message": "Velg en organisasjon som du ønsker å dele disse objektene med. Deling overfører objektenes eierskap til organisasjonen. Du vil ikke lenger være den direkte eieren av disse objektene når de først har blitt delt."
+  "moveManyToOrgDesc": {
+    "message": "Velg en organisasjon som du ønsker å flytte denne gjenstanden til. Flytting til en organisasjon overfører eierskap til den aktuelle organisasjonen. Du vil ikke lenger være den direkte eieren av denne varen når den er flyttet."
   },
   "collectionsDesc": {
     "message": "Rediger samlingene som dette objektet blir delt med. Kun organisasjonsbrukere med tilgang til disse samlingene vil kunne se dette objektet."
@@ -776,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Du har valgt $COUNT$ gjenstand(er). $SHAREABLE_COUNT$ gjenstander kan deles, $NONSHAREABLE_COUNT$ kan ikke deles.",
+  "moveSelectedItemsCountDesc": {
+    "message": "Du har valgt $COUNT$ gjenstand(er). $MOVEABLE_COUNT$ gjenstand(er) kan flyttes til en organisasjon, $NONMOVEABLE_COUNT$ kan ikke.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -816,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "Skriv inn ditt superpassord for å eksportere dine hvelvdataer."
+  },
+  "export": {
+    "message": "Eksporter"
   },
   "exportVault": {
     "message": "Eksporter hvelvet"
@@ -1035,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Ingenting ble importert."
+  },
+  "importEncKeyError": {
+    "message": "Feil under dekryptering av den eksporterte filen. Krypteringsnøkkelen samsvarte ikke med krypteringsnøkkelen som ble brukt eksport av data."
   },
   "selectFormat": {
     "message": "Velg formatet til importfilen"
@@ -2327,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Delte $ID$-gjenstanden.",
+  "movedItemIdToOrg": {
+    "message": "Moved item $ID$ to an organization.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3312,7 +3337,7 @@
     "message": "Din nåværende organisasjon har en policy som ikke lar deg bli med i mer enn én organisasjon. Kontakt din organisasjons admins eller registrer deg fra en annen Bitwarden-konto."
   },
   "singleOrgPolicyWarning": {
-    "message": "Organization members who are not Owners or Administrators and are already a member of another organization will be removed from your organization."
+    "message": "Organisasjonsmedlemmer som ikke er eiere eller administratorer, og som allerede er medlem av en annen organisasjon, blir fjernet fra din organisasjon."
   },
   "requireSso": {
     "message": "Single Sign-On Authentication"
@@ -3388,7 +3413,7 @@
     "message": "Maximum Access Count"
   },
   "maxAccessCountDesc": {
-    "message": "If set, users will no longer be able to access this send once the maximum access count is reached.",
+    "message": "If set, users will no longer be able to access this Send once the maximum access count is reached.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
@@ -3423,7 +3448,7 @@
     "message": "Er du sikker på at du vil fjerne passordet?"
   },
   "hideEmail": {
-    "message": "Hide my email address from recipients."
+    "message": "Skjul min e-postadresse fra mottakere."
   },
   "disableThisSend": {
     "message": "Deaktiver denne Send-en, slik at ingen får tilgang til den.",
@@ -3641,7 +3666,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
+    "message": "På grunn av en virksomhetsregel kan du kun slette en eksisterende Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
@@ -3737,14 +3762,14 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
-    "message": "A friendly name to describe this Send.",
+    "message": "Et vennlig navn for å beskrive dette Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
-    "message": "The text you want to send."
+    "message": "Teksten du ønsker å send."
   },
   "sendFileDesc": {
-    "message": "The file you want to send."
+    "message": "Filen du vil send."
   },
   "copySendLinkOnSave": {
     "message": "Copy the link to share this Send to my clipboard upon save."
@@ -3829,19 +3854,19 @@
     "message": "Det oppstod en feil ved lagring av slettingen og utløpsdatoene."
   },
   "webAuthnFallbackMsg": {
-    "message": "To verify your 2FA please click the button below."
+    "message": "For å verifisere din 2FA vennligst klikk knappen nedenfor."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAutn"
+    "message": "Authenticate WebAuthn"
   },
   "webAuthnNotSupported": {
-    "message": "WebAuthn is not supported in this browser."
+    "message": "WebAuthn støttes ikke i denne nettleseren."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+    "message": "WebAuthn bekreftet vellykket! Du kan lukke denne fanen."
   },
   "hintEqualsPassword": {
-    "message": "Your password hint cannot be the same as your password."
+    "message": "Passordhintet ditt kan ikke være det samme som passordet ditt."
   },
   "enrollPasswordReset": {
     "message": "Enroll in Password Reset"
@@ -3876,11 +3901,74 @@
       }
     }
   },
+  "eventAdminPasswordReset": {
+    "message": "Master password reset for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Tilbakestill passord"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Å fortsette vil logge $NAME$ av deres nåværende økt, og krever at de logger på igjen. Aktive økter på andre enheter kan forbli aktive i opptil en time.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "denne brukeren"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "En eller flere av organisasjonens vilkår krever hovedpassordet ditt for å oppfylle følgende krav:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Tilbakestilling av passord vellykket!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Master Password Reset"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Allow administrators in the organization to reset organization users' master password."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatic Enrollment"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Automatically enroll new users"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Organization Keys response is null"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Reset Password Details response is null"
+  },
   "trashCleanupWarning": {
-    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+    "message": "Items that have been in Trash more than 30 days will be automatically deleted."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+    "message": "Items that have been in Trash for a while will be automatically deleted."
   },
   "passwordPrompt": {
     "message": "Master password re-prompt"
@@ -3890,5 +3978,44 @@
   },
   "passwordConfirmationDesc": {
     "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+  },
+  "reinviteSelected": {
+    "message": "Resend Invitations"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "This action is not applicable to any of the selected users."
+  },
+  "removeUsersWarning": {
+    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+  },
+  "confirmSelected": {
+    "message": "Bekreft valgte"
+  },
+  "bulkConfirmStatus": {
+    "message": "Bulk action status"
+  },
+  "bulkConfirmMessage": {
+    "message": "Bekreftet vellykket."
+  },
+  "bulkReinviteMessage": {
+    "message": "Reinvited successfully."
+  },
+  "bulkRemovedMessage": {
+    "message": "Fjernet"
+  },
+  "bulkFilteredMessage": {
+    "message": "Unntatt dette, gjelder ikke for dette tiltaket."
+  },
+  "fingerprint": {
+    "message": "Fingeravtrykk"
+  },
+  "removeUsers": {
+    "message": "Fjern brukere"
+  },
+  "error": {
+    "message": "Error"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
   }
 }

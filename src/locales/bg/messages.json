@@ -360,6 +360,9 @@
   "share": {
     "message": "Споделяне"
   },
+  "moveToOrganization": {
+    "message": "Преместване в организация"
+  },
   "valueCopied": {
     "message": "$VALUE$ — копирано",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Трезор"
   },
-  "shareSelected": {
-    "message": "Споделяне на избраното"
+  "moveSelectedToOrg": {
+    "message": "Преместване на избраните в организация"
   },
   "deleteSelected": {
     "message": "Изтриване на избраното"
@@ -437,7 +440,7 @@
     "message": "Избор на файл."
   },
   "maxFileSize": {
-    "message": "Големината на файла е най-много 100 MB."
+    "message": "Големината на файла е най-много 500 MB."
   },
   "updateKey": {
     "message": "Трябва да обновите шифриращия си ключ, за да използвате тази възможност."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Елементът е редактиран"
   },
-  "sharedItem": {
-    "message": "Споделен запис"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ се премести в $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Споделени записи"
+  "movedItemsToOrg": {
+    "message": "Избраните записи бяха преместени в $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Изтриване на елемента"
@@ -729,10 +748,10 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "Използвайте всяко устройство, поддържащо WebAuthn, за да влезете в абонамента си."
   },
   "webAuthnMigrated": {
-    "message": "(Migrated from FIDO)"
+    "message": "(Мигрирано от FIDO)"
   },
   "emailTitle": {
     "message": "Електронна поща"
@@ -749,11 +768,11 @@
   "organizations": {
     "message": "Организации"
   },
-  "shareDesc": {
-    "message": "Изберете организацията, с която искате да споделите записа. Споделянето ѝ прехвърля собствеността. След това няма вече директно да го притежавате."
+  "moveToOrgDesc": {
+    "message": "Изберете организацията, в която искате да преместите записа. Преместването прехвърля собствеността му към новата организация. След това няма вече директно да го притежавате."
   },
-  "shareManyDesc": {
-    "message": "Изберете организацията, с която искате да споделите записите. Споделянето им прехвърля собствеността. След това няма вече директно да ги притежавате."
+  "moveManyToOrgDesc": {
+    "message": "Изберете организацията, в която искате да преместите избраните записи. Преместването прехвърля собствеността им към новата организация. След това няма вече директно да ги притежавате."
   },
   "collectionsDesc": {
     "message": "Редактиране на колекциите, с които записът е споделен. Само потребителите на организациите, с които колекцията е споделена, ще виждат записа."
@@ -776,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Избрали сте $COUNT$ запис/и. От тях споделими са $SHAREABLE_COUNT$, а $NONSHAREABLE_COUNT$ не са.",
+  "moveSelectedItemsCountDesc": {
+    "message": "Избрали сте $COUNT$ запис(а). От тях могат да се преместят: $MOVEABLE_COUNT$, не могат да се преместят: $NONMOVEABLE_COUNT$.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -816,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "Въведете главната парола, за да изнесете данните."
+  },
+  "export": {
+    "message": "Изнасяне"
   },
   "exportVault": {
     "message": "Изнасяне на трезора"
@@ -1035,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Нищо не бе внесено."
+  },
+  "importEncKeyError": {
+    "message": "Грешка при дешифрирането на изнесения файл. Ключът за шифриране не отговаря на този, който е използван за изнасянето на данните."
   },
   "selectFormat": {
     "message": "Избор на форма̀та на файла за внасяне"
@@ -1270,7 +1295,7 @@
     }
   },
   "webAuthnkeyX": {
-    "message": "WebAuthn Key $INDEX$",
+    "message": "Устройство WebAuthn $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1324,7 +1349,7 @@
     "message": "Сигурни ли сте, че искате да изтриете този ключ за сигурност?"
   },
   "twoFactorWebAuthnAdd": {
-    "message": "Add a WebAuthn security key to your account"
+    "message": "Добавяне на ново устройство WebAuthn към регистрацията ви"
   },
   "readKey": {
     "message": "Прочитане на ключ"
@@ -1360,10 +1385,10 @@
     "message": "Проблем при изчитането на ключа за сигурност. Пробвайте отново."
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+    "message": "Поради платформени ограничения устройствата на WebAuthn не могат да се използват с всички приложения на Битуорден. В такъв случай ще трябва да добавите друг доставчик на двустепенно удостоверяване, за да имате достъп до абонамента си, дори когато WebAuthn не работи. Поддържани платформи:"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Трезорът по уеб както и разширенията за браузърите с поддръжка на WebAuthn (Chrome, Opera, Vivaldi и Firefox с поддръжка на FIDO U2F)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Код за възстановяване на достъпа до Битуорден при двустепенна идентификация"
@@ -2327,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Запис № $ID$ е споделен.",
+  "movedItemIdToOrg": {
+    "message": "Записът $ID$ беше преместен в организация.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2637,10 +2662,10 @@
     "message": "Адресът на електронната ви поща не е потвърден. Пробвайте да изпратите ново писмо за потвърждение."
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "Изисква се потвърждение на е-пощата"
   },
   "emailVerificationRequiredDesc": {
-    "message": "You must verify your email to use this feature."
+    "message": "Трябва да потвърдите е-пощата си, за да можете да използвате тази функционалност."
   },
   "updateBrowser": {
     "message": "Обновяване на браузъра"
@@ -3423,7 +3448,7 @@
     "message": "Сигурни ли сте, че искате да премахнете паролата?"
   },
   "hideEmail": {
-    "message": "Hide my email address from recipients."
+    "message": "Скриване на е-пощата ми от получателите."
   },
   "disableThisSend": {
     "message": "Пълно спиране на това изпращане — никой няма да има достъп.",
@@ -3645,25 +3670,25 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
-    "message": "Send Options",
+    "message": "Настройки за изпращането",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
-    "message": "Set options for creating and editing Sends.",
+    "message": "Настройки за създаване и редактиране на изпращания.",
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Потребителите в организацията, които имат права да управляват политиките ѝ, не са ограничени от тази политика."
   },
   "disableHideEmail": {
-    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "message": "Потребителите да не могат да скриват адреса на е-пощата си от получателите, когато създават или редактират изпращания.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
-    "message": "The following organization policies are currently in effect:"
+    "message": "В момента са в сила следните политики на организацията:"
   },
   "sendDisableHideEmailInEffect": {
-    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "message": "Потребителите не могат да скриват адреса на е-пощата си от получателите, когато създават или редактират изпращания.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3721,7 +3746,7 @@
     "message": "Управление на потребителите"
   },
   "manageResetPassword": {
-    "message": "Manage Password Reset"
+    "message": "Управление на помощта при смяната на паролата"
   },
   "disableRequireSsoError": {
     "message": "За да изключите тази политика, първо трябва ръчно да изключите политиката за еднократна идентификация."
@@ -3810,7 +3835,7 @@
     }
   },
   "viewSendHiddenEmailWarning": {
-    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "message": "Потребителят, който е създал това изпращане, е избрал да скрие адреса на своята е-поща. Уверете се, че източникът на тази връзка е достоверен, преди да я последвате или да свалите съдържание чрез нея.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
@@ -3829,37 +3854,37 @@
     "message": "Грешка при запазване на датата на валидност и изтриване."
   },
   "webAuthnFallbackMsg": {
-    "message": "To verify your 2FA please click the button below."
+    "message": "За да потвърдите двустепенното удостоверяване, натиснете бутона по-долу."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAutn"
+    "message": "Идентификация WebAuthn"
   },
   "webAuthnNotSupported": {
-    "message": "WebAuthn is not supported in this browser."
+    "message": "Този браузър не поддържа WebAuthn."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+    "message": "<strong>Успешно удостоверяване чрез WebAuthn!</strong><br>Можете да затворите този раздел."
   },
   "hintEqualsPassword": {
-    "message": "Your password hint cannot be the same as your password."
+    "message": "Подсказването за паролата не може да съвпада с нея."
   },
   "enrollPasswordReset": {
-    "message": "Enroll in Password Reset"
+    "message": "Включване на помощта при смяната на паролата"
   },
   "enrolledPasswordReset": {
-    "message": "Enrolled in Password Reset"
+    "message": "Помощта при смяната на паролата е включена"
   },
   "withdrawPasswordReset": {
-    "message": "Withdraw from Password Reset"
+    "message": "Изключване на помощта при смяната на паролата"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "Успешно включване!"
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Withdrawal success!"
+    "message": "Успешно изключване!"
   },
   "eventEnrollPasswordReset": {
-    "message": "User $ID$ enrolled in password reset assistance.",
+    "message": "Потребителят $ID$ включи помощта при смяна на паролата.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3868,7 +3893,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "User $ID$ withdrew from password reset assistance.",
+    "message": "Потребителят $ID$ изключи помощта при смяна на паролата.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3876,19 +3901,121 @@
       }
     }
   },
+  "eventAdminPasswordReset": {
+    "message": "Главната парола на потребителя $ID$ беше сменена.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Смяна на паролата"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Действието ще прекрати текущата сесия на $NAME$, след което ще се наложи той отново да се впише. Активните сесии на другите устройства може да останат такива до един час.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "този потребител"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "Поне една политика на организация има следните изисквания към главната парола:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Успешна смяна на паролата!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Включването ще позволи на администраторите на организацията да променят главната Ви парола. Наистина ли искате да се включите?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Смяна на главната парола"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Позволяване на администраторите на организацията да сменят главните пароли на участващите потребители."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Потребителите в организацията ще трябва да се включат сами или да бъдат включени автоматично, преди администраторите да могат да сменят главните им пароли."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Автоматично включване"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "Всички потребители ще бъдат включени автоматично в смяната на пароли след като приемат поканите си."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Потребителите, които вече са част от организацията, няма да бъдат включени в смяната на паролите. Те ще трябва да се включат сами, преди администраторите да могат да сменят главните им пароли."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Автоматично включване на новите потребители"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Тази организация включва автоматично новите си потребители в смяната на пароли. Това означава, че администраторите на организацията ще могат да променят главната Ви парола."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Празен отговор на заявката за ключовете на организацията"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Празен отговор на заявката за детайли относно смяната на паролата"
+  },
   "trashCleanupWarning": {
-    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+    "message": "Записите, които са били в кошчето за повече от 30 дни, ще бъдат изтривани автоматично."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+    "message": "Записите, които са били известно време в кошчето, ще бъдат изтривани автоматично."
   },
   "passwordPrompt": {
-    "message": "Master password re-prompt"
+    "message": "Повторно запитване за главната парола"
   },
   "passwordConfirmation": {
-    "message": "Master password confirmation"
+    "message": "Потвърждение на главната парола"
   },
   "passwordConfirmationDesc": {
-    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+    "message": "Това действие е защитено. За да продължите, въведете отново главната си парола, за да потвърдите самоличността си."
+  },
+  "reinviteSelected": {
+    "message": "Изпращане на поканите наново"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "Това действие не може да се изпълни за никого от избраните потребители."
+  },
+  "removeUsersWarning": {
+    "message": "Наистина ли искате да премахнете следните потребители? Процесът може да отнеме няколко секунди и не може да бъде прекъснат или отменен."
+  },
+  "confirmSelected": {
+    "message": "Потвърждаване на избраните"
+  },
+  "bulkConfirmStatus": {
+    "message": "Състояние на груповото действие"
+  },
+  "bulkConfirmMessage": {
+    "message": "Успешно потвърдено."
+  },
+  "bulkReinviteMessage": {
+    "message": "Успешно изпратени наново покани."
+  },
+  "bulkRemovedMessage": {
+    "message": "Успешно премахване"
+  },
+  "bulkFilteredMessage": {
+    "message": "Изключени като неподходящи за това действие."
+  },
+  "fingerprint": {
+    "message": "Отпечатък"
+  },
+  "removeUsers": {
+    "message": "Премахване на потребителите"
+  },
+  "error": {
+    "message": "Грешка"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Управлението на потребителите трябва също да бъде включено с разрешението за „Управление на помощта при смяната на паролата“"
   }
 }

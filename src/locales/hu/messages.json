@@ -360,6 +360,9 @@
   "share": {
     "message": "Megosztás"
   },
+  "moveToOrganization": {
+    "message": "Áthelyezés szervezetbe"
+  },
   "valueCopied": {
     "message": "$VALUE$ másolásra került.",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Széf"
   },
-  "shareSelected": {
-    "message": "Kijelöltek megosztása"
+  "moveSelectedToOrg": {
+    "message": "A kiválasztott áthelyezése szervezetbe"
   },
   "deleteSelected": {
     "message": "Kijelöltek törlése"
@@ -437,7 +440,7 @@
     "message": "Válasszunk egy fájlt."
   },
   "maxFileSize": {
-    "message": "A maximális fájl méret 100 MB."
+    "message": "A maximális fájl méret 500 MB."
   },
   "updateKey": {
     "message": "Ez a funkció nem használható a titkosítási kulcs frissítéséig."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Az elem szerkesztésre került."
   },
-  "sharedItem": {
-    "message": "Megosztott elem"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ átkerült $ORGNAME$ szervezethez",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Megosztott elemek"
+  "movedItemsToOrg": {
+    "message": "A kiválasztott elemek átkerültek $ORGNAME$ szervezethez",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Elem törlése"
@@ -729,10 +748,10 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "Használjunk bármilyen WebAuthn engedélyezett biztonsági kulcsot a saját fiók eléréséhez."
   },
   "webAuthnMigrated": {
-    "message": "(Migrated from FIDO)"
+    "message": "(FIDO-ból áthelyezve)"
   },
   "emailTitle": {
     "message": "Email cím"
@@ -749,11 +768,11 @@
   "organizations": {
     "message": "Szervezetek"
   },
-  "shareDesc": {
-    "message": "Szervezet választása az elem megosztásához. Az elemtulajdon átadása a szervezetnek. Innentől nem közvetlen tulajdonosa leszünk az elemnek a megosztás után."
+  "moveToOrgDesc": {
+    "message": "Válasszunk egy szervezetet, ahová áthelyezni szeretnénk ezt az elemet. A szervezetbe áthelyezés átruházza az elem tulajdonjogát az adott szervezetre. Az áthelyezés után többé nem leszünk az elem közvetlen tulajdonosa."
   },
-  "shareManyDesc": {
-    "message": "Szervezet választása az elem megosztásához. Az elemtulajdon átadása a szervezetnek. Innentől nem közvetlen tulajdonosa leszünk az elemnek a megosztás után."
+  "moveManyToOrgDesc": {
+    "message": "Válasszunk egy szervezetet, ahová áthelyezni szeretnénk ezeket az elemeket. A szervezetbe áthelyezés átruházza az elemek tulajdonjogát az adott szervezetre. Az áthelyezés után többé nem leszünk az elemek közvetlen tulajdonosa."
   },
   "collectionsDesc": {
     "message": "A megosztásra kerülő elem gyűjteményének szerkesztése. Csak az ezeket a gyűjteményeket elérő szervezeti felhasználók látják ezt az elemet."
@@ -776,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "$COUNT$ elem lett kiválasztva. $SHAREABLE_COUNT$ elem megosztható, $NONSHAREABLE_COUNT$ nem.",
+  "moveSelectedItemsCountDesc": {
+    "message": "$COUNT$ elem került kiválasztásra. $MOVEABLE_COUNT$ elem áthelyezhető szervezethezi, $NONMOVEABLE_COUNT$ nem.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -816,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "A mesterjelszó megadása a széfadatok exportálásához."
+  },
+  "export": {
+    "message": "Exportálás"
   },
   "exportVault": {
     "message": "Széf exportálása"
@@ -1035,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Semmi nem lett importálva."
+  },
+  "importEncKeyError": {
+    "message": "Hiba történt az exportált fájl visszafejtése során. A titkosítási kulcs nem egyezik meg az adatok exportálásához használt titkosítási kulccsal."
   },
   "selectFormat": {
     "message": "Válasszuk ki az import fájl formátumát."
@@ -1270,7 +1295,7 @@
     }
   },
   "webAuthnkeyX": {
-    "message": "WebAuthn Key $INDEX$",
+    "message": "WebAuthn Kulcs $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1324,7 +1349,7 @@
     "message": "Biztosan eltávolításra kerüljön a biztonsági kulcs?"
   },
   "twoFactorWebAuthnAdd": {
-    "message": "Add a WebAuthn security key to your account"
+    "message": "Adjunk meg egy Webauthn biztonsági kulcsot a felhasználói fiókhoz"
   },
   "readKey": {
     "message": "Kulcs beolvasása"
@@ -1360,10 +1385,10 @@
     "message": "Probléma lépett fel a biztonsági kulcs olvasásakor. Próbáljuk újra."
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+    "message": "A platform korlátozások miatt nem lehetséges minden Bitwarden alkalmazásban YubiKey eszközt használni. Engedélyezzünk egy másik kétlépcsős bejelentkezés szolgáltatót, hogy hozzáférhessünk a fiókhoz akkor is, ha a YubiKey nem használható. Támogatott platformok:"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Web széf és böngésző kiegészítők asztali gépen / laptopon engedélyezett U2F böngészővel (Chrome, Opera, Vivaldi, vagy Firefox bekapcsolt FIDO U2F-fel)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Bitwarden kétlépcsős bejelentkezés helyreállító kód"
@@ -1409,7 +1434,7 @@
     "message": "2FA nélküli bejelentkezések találhatók."
   },
   "inactive2faFoundDesc": {
-    "message": "$COUNT$ olyan webhelyet találtunk széfben, amely nincs kétlépcsős hitelesítéssel konfigurálva (a 2fa.directory adatbázisa alapján). Ezen fiókok további védelme érdekében, javasolt a kétlépcsős hitelesítés használata.",
+    "message": "$COUNT$ olyan webhelyet találtunk a széfben, amely nincs kétlépcsős hitelesítéssel konfigurálva (a 2fa.directory adatbázisa alapján). Ezen fiókok további védelme érdekében, javasolt a kétlépcsős hitelesítés használata.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2327,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "$ID$ azonosítójú elem megosztásra került.",
+  "movedItemIdToOrg": {
+    "message": "$ID$ elem átkerült egy szervezethez.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2637,10 +2662,10 @@
     "message": "Nem sikerült az email cím ellenőrzése. Új ellenőrző email küldése."
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "E-mail hitelesítés szükséges"
   },
   "emailVerificationRequiredDesc": {
-    "message": "You must verify your email to use this feature."
+    "message": "A funkció használatához ellenőrizni kell az email címet."
   },
   "updateBrowser": {
     "message": "Böngésző frissítése"
@@ -3388,7 +3413,7 @@
     "message": "Maximális elérési szám"
   },
   "maxAccessCountDesc": {
-    "message": "Amennyiben be van állítva, a Küldés elérhetetlen lesz, amint elérik a meghatározott hozzáférések számát.",
+    "message": "Amennyiben be van állítva, a Send elérhetetlen lesz, amint elérik a meghatározott hozzáférések számát.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
@@ -3423,7 +3448,7 @@
     "message": "Biztosan eltávolításra kerüljön ez a jelszó?"
   },
   "hideEmail": {
-    "message": "Hide my email address from recipients."
+    "message": "Saját email cím elrejtése a címzettek elől."
   },
   "disableThisSend": {
     "message": "A Küldés letiltásával mindenki hozzáférése megvonható.",
@@ -3645,25 +3670,25 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
-    "message": "Send Options",
+    "message": "Send opciók",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
-    "message": "Set options for creating and editing Sends.",
+    "message": "Opciók beállítása Send elem létrehozásához és szerkesztéséhez.",
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "A szervezet házirendjét kezelő szervezeti felhasználók mentesülnek az irányelvek végrehajtása alól."
   },
   "disableHideEmail": {
-    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "message": "Ne engedjük, hogy a felhasználók elrejtsék email címüket a címzettek elől a Send elem létrehozása vagy szerkesztése során.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
-    "message": "The following organization policies are currently in effect:"
+    "message": "A következő szervezeti irányelvek vannak érvényben:"
   },
   "sendDisableHideEmailInEffect": {
-    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "message": "A felhasználók nem rejthetik el email címüket a címzettek elől egy Send elem létrehozásakor vagy szerkesztésekor.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3721,7 +3746,7 @@
     "message": "Felhasználók kezelése"
   },
   "manageResetPassword": {
-    "message": "Manage Password Reset"
+    "message": "Jelszó alaphelyzet kezelés"
   },
   "disableRequireSsoError": {
     "message": "Manuálisan le kell tiltani az egyszeri bejelentkezés hitelesítési házirendjét mielőtt ez a házirend letiltásra kerülhet."
@@ -3810,7 +3835,7 @@
     }
   },
   "viewSendHiddenEmailWarning": {
-    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "message": "Az ezt a Send elemet létrehozó Bitwarden felhasználó úgy döntött, hogy elrejti email címét. Mielőtt felhasználnánk vagy letöltenénk a tartalmát, ellenőrizzük a hivatkozás megbízhatóságát.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
@@ -3829,37 +3854,37 @@
     "message": "Hiba történt a törlés és a lejárati dátum mentésekor."
   },
   "webAuthnFallbackMsg": {
-    "message": "To verify your 2FA please click the button below."
+    "message": "A 2FA ellenőrzéséhez kattintsunk az alábbi gombra."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAutn"
+    "message": "WebAutn hitelesítés"
   },
   "webAuthnNotSupported": {
-    "message": "WebAuthn is not supported in this browser."
+    "message": "Ezen a böngészőn a WebAuthn nem támogatott."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+    "message": "<strong>A WebAuthn sikeresen ellenőrzésre került.!</strong><br>A fül már bezárható."
   },
   "hintEqualsPassword": {
-    "message": "Your password hint cannot be the same as your password."
+    "message": "A jelszavas tipp nem lehet azonos a jelszóval."
   },
   "enrollPasswordReset": {
-    "message": "Enroll in Password Reset"
+    "message": "Bejelentkezés a Jelszó alaphelyzetbe állításba"
   },
   "enrolledPasswordReset": {
-    "message": "Enrolled in Password Reset"
+    "message": "A bejelentkezés megtörtént a Jelszó alaphelyzetbe állításba"
   },
   "withdrawPasswordReset": {
-    "message": "Withdraw from Password Reset"
+    "message": "Kijelentkezés a Jelszó alaphelyzetbe állításból"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "A bejelentkezés sikeres."
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Withdrawal success!"
+    "message": "A kijelentkezés sikeres."
   },
   "eventEnrollPasswordReset": {
-    "message": "User $ID$ enrolled in password reset assistance.",
+    "message": "$ID$ felhasználó bejelentkezett a jelszó alaphelyzetbe állítás támogatáshoz.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3868,7 +3893,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "User $ID$ withdrew from password reset assistance.",
+    "message": "$ID$ felhasználó kijelentkezett a jelszó alaphelyzetbe állítás támogatásból.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3876,19 +3901,121 @@
       }
     }
   },
+  "eventAdminPasswordReset": {
+    "message": "A mesterjelszó alaphelyzetbe került $ID$ felhasználónál.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Jelszó visszaállítása"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "A folytatással $NAME$ kijelentkezik az aktuális munkamenetből és újra be kell jelentkeznie. A más eszközökön végzett aktív munkamenetek akár egy órán keresztül is aktívak maradhatnak.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "ez a felhasználó"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "Egy vagy több szervezeti rendszabályhoz mesterjelszó szükséges a következő követelmények megfeleléséhez:"
+  },
+  "resetPasswordSuccess": {
+    "message": "A jelszó alaphelyzetbe állítása sikeres volt."
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "A regisztráció lehetővé teszi a szervezet adminisztrátorainak a saját mesterjelszó megváltoztatását. Biztosan feliratkozunk?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Mesterjelszó alaphelyzetbe állítás"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "A szervezet adminisztrátorai alaphelyzetbe állíthatják a szervezet mesterjelszavát."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "A szervezet felhasználóinak regisztrálniuk kell magukat vagy automatikus regisztrálás szükséges mielőtt az adminisztrátorok alaphelyzetbe állíthatják a mesterjelszavukat."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatikus regisztráció"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "A meghívó elfogadását követően minden felhasználó automatikusan regisztrálásra kerül a jelszó alaphelyzetbe állításnál."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "A szervezetben már szereplő felhasználók nem kerülnek visszamenőleg regisztrálva a jelszó alaphelyzetbe állításnál. Regisztráln kell magunkat, mielőtt az adminisztrátorok alaphelyzetbe állíthatják a mesterjelszavukat."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Új felhasználók automatikus regisztrálása"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Ennek a szervezetnek van egy vállalati házirendje, amely automatikusan regisztrál a jelszó alaphelyzetbe állítására. A regisztráció lehetővé teszi a szervezet adminisztrátorainak a mesterjelszó megváltoztatását."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "A szervezeti kulcs válasza null"
+  },
+  "resetPasswordDetailsError": {
+    "message": "A jelszó alaphelyzetbe állítás válasza null"
+  },
   "trashCleanupWarning": {
-    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+    "message": "A 30 napnál régebben lomtárba került elemek automatikusan törlésre kerülnek."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+    "message": "A már jó ideje a lomtárban lévő elemek automatikusan törlésre kerülnek."
   },
   "passwordPrompt": {
-    "message": "Master password re-prompt"
+    "message": "Mesterjelszó ismételt megadás"
   },
   "passwordConfirmation": {
-    "message": "Master password confirmation"
+    "message": "Mesterjelszó megerősítése"
   },
   "passwordConfirmationDesc": {
-    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+    "message": "A művelet védett. A személyazonosság igazolásához adjuk meg ismét a mesterjelszót."
+  },
+  "reinviteSelected": {
+    "message": "Meghívó újraküldése"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "Ez a művelet a kiválasztott felhasználók egyikére sem alkalmazható."
+  },
+  "removeUsersWarning": {
+    "message": "Biztosan eltávolításra kerüljenek a következő felhasználók? A folyamat néhány másodpercet vehet igénybe és nem szakítható meg vagy törölhető."
+  },
+  "confirmSelected": {
+    "message": "Kiválasztás megerősítése"
+  },
+  "bulkConfirmStatus": {
+    "message": "Tömeges művelet állapot"
+  },
+  "bulkConfirmMessage": {
+    "message": "A megerősítés sikeres volt."
+  },
+  "bulkReinviteMessage": {
+    "message": "Az ismételt meghívás sikeres volt."
+  },
+  "bulkRemovedMessage": {
+    "message": "Az eltávolítás sikeres volt."
+  },
+  "bulkFilteredMessage": {
+    "message": "Kizárva, nem alkalmazható erre a műveletre."
+  },
+  "fingerprint": {
+    "message": "Ujjlenyomat"
+  },
+  "removeUsers": {
+    "message": "Felhasználók eltávolítása"
+  },
+  "error": {
+    "message": "Hiba"
+  },
+  "resetPasswordManageUsers": {
+    "message": "A felhasználók kezelését engedélyezni kell a Jelszó visszaállításának kezelése jogosultsággal is."
   }
 }

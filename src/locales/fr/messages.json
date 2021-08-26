@@ -360,6 +360,9 @@
   "share": {
     "message": "Partager"
   },
+  "moveToOrganization": {
+    "message": "Déplacer vers l'organisation"
+  },
   "valueCopied": {
     "message": "$VALUE$ copié",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Coffre"
   },
-  "shareSelected": {
-    "message": "Partager les éléments sélectionnés"
+  "moveSelectedToOrg": {
+    "message": "Déplacer la sélection vers l'organisation"
   },
   "deleteSelected": {
     "message": "Supprimer les éléments sélectionnés"
@@ -437,7 +440,7 @@
     "message": "Sélectionnez un fichier."
   },
   "maxFileSize": {
-    "message": "La taille maximale du fichier est de 100 Mo."
+    "message": "La taille maximale du fichier est de 500 Mo."
   },
   "updateKey": {
     "message": "Vous ne pouvez pas utiliser cette fonctionnalité avant de mettre à jour votre clé de chiffrement."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Élément modifié"
   },
-  "sharedItem": {
-    "message": "Élément partagé"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ a été déplacé vers $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Éléments partagés"
+  "movedItemsToOrg": {
+    "message": "Les éléments sélectionnés ont été déplacés vers $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Supprimer l'élément"
@@ -726,13 +745,13 @@
     "message": "Clé de sécurité FIDO U2F"
   },
   "webAuthnTitle": {
-    "message": "FIDO2 WebAuthn"
+    "message": "WebAuthn FIDO2"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "Utilisez n'importe quelle clé de sécurité compatible WebAuthn pour accéder à votre compte."
   },
   "webAuthnMigrated": {
-    "message": "(Migrated from FIDO)"
+    "message": "(Migré depuis FIDO)"
   },
   "emailTitle": {
     "message": "E-mail"
@@ -749,11 +768,11 @@
   "organizations": {
     "message": "Organisations"
   },
-  "shareDesc": {
-    "message": "Choisissez une organisation avec laquelle vous voulez partager cet élément. Le partage transfère la propriété de l'élément à l'organisation. Vous ne serez plus le propriétaire direct de cet élément après le partage."
+  "moveToOrgDesc": {
+    "message": "Choisissez une organisation vers laquelle vous souhaitez déplacer cet élément. Déplacer un élément vers une organisation transfère la propriété de l'élément à cette organisation. Vous ne serez plus le propriétaire direct de cet élément une fois qu'il aura été déplacé."
   },
-  "shareManyDesc": {
-    "message": "Choisissez une organisation avec laquelle vous voulez partager ces éléments. Le partage transfère la propriété des éléments à l'organisation. Vous ne serez plus le propriétaire direct de ces éléments après le partage."
+  "moveManyToOrgDesc": {
+    "message": "Choisissez une organisation vers laquelle vous souhaitez déplacer ces éléments. Déplacer des éléments vers une organisation transfère la propriété des éléments à cette organisation. Vous ne serez plus le propriétaire direct de ces éléments une fois qu'ils auront été déplacés."
   },
   "collectionsDesc": {
     "message": "Modifier les collections avec lesquelles cet élément est partagé. Seuls les utilisateurs de l'organisation avec un accès à ces collections pourront voir cet élément."
@@ -776,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Vous avez sélectionné $COUNT$ élément(s). $SHAREABLE_COUNT$ éléments sont partageables, $NONSHAREABLE_COUNT$ ne le sont pas.",
+  "moveSelectedItemsCountDesc": {
+    "message": "Vous avez sélectionné $COUNT$ élément(s). $MOVEABLE_COUNT$ élément(s) peuvent être déplacés vers une organisation, $NONMOVEABLE_COUNT$ ne le peuvent pas.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -816,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "Saisissez votre mot de passe maître pour exporter les données de votre coffre."
+  },
+  "export": {
+    "message": "Exporter"
   },
   "exportVault": {
     "message": "Exporter le coffre"
@@ -1035,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Rien à importer."
+  },
+  "importEncKeyError": {
+    "message": "Erreur lors du déchiffrement du fichier exporté. Votre clé de chiffrement ne correspond pas à la clé de chiffrement utilisée pour exporter les données."
   },
   "selectFormat": {
     "message": "Sélectionnez le format du fichier à importer"
@@ -1270,7 +1295,7 @@
     }
   },
   "webAuthnkeyX": {
-    "message": "WebAuthn Key $INDEX$",
+    "message": "Clé WebAuthn $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1324,7 +1349,7 @@
     "message": "Êtes-vous sûr de vouloir supprimer cette clé de sécurité ?"
   },
   "twoFactorWebAuthnAdd": {
-    "message": "Add a WebAuthn security key to your account"
+    "message": "Ajoutez une clé de sécurité WebAuthn à votre compte"
   },
   "readKey": {
     "message": "Lire la clé"
@@ -1360,10 +1385,10 @@
     "message": "Un problème est survenu lors de la lecture de la clé de sécurité. Veuillez réessayer."
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+    "message": "En raison de limitations de plateforme, WebAuthn n'est pas utilisable sur toutes les applications Bitwarden. Vous devriez activer un autre fournisseur de connexion en deux étapes afin de pouvoir accéder à votre compte lorsque vous ne pouvez pas utiliser WebAuthn. Plateformes prises en charge :"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Coffre web et extensions sur un ordinateur fixe/portable avec un navigateur compatible WebAuthn (Chrome, Opera, Vivaldi ou Firefox avec FIDO U2F activé)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Votre code de récupération de connexion en deux étapes Bitwarden"
@@ -2327,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Élément $ID$ partagé.",
+  "movedItemIdToOrg": {
+    "message": "L'élément $ID$ a été déplacé vers une organisation.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2637,10 +2662,10 @@
     "message": "Impossible de vérifier votre adresse e-mail. Essayez de renvoyer un nouvel e-mail de vérification."
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "Vérification de l'adresse e-mail nécessaire"
   },
   "emailVerificationRequiredDesc": {
-    "message": "You must verify your email to use this feature."
+    "message": "Vous devez vérifier votre adresse e-mail pour utiliser cette fonctionnalité."
   },
   "updateBrowser": {
     "message": "Mettre à jour le navigateur"
@@ -3423,7 +3448,7 @@
     "message": "Êtes-vous sûr de vouloir supprimer le mot de passe ?"
   },
   "hideEmail": {
-    "message": "Hide my email address from recipients."
+    "message": "Cacher mon adresse e-mail aux destinataires."
   },
   "disableThisSend": {
     "message": "Désactiver ce Send pour que personne ne puisse y accéder.",
@@ -3645,25 +3670,25 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
-    "message": "Send Options",
+    "message": "Options Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
-    "message": "Set options for creating and editing Sends.",
+    "message": "Définir les options pour la création et la modification des Sends.",
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Les utilisateurs de l'organisation qui peuvent gérer les politiques de l'organisation sont exonérés de l'application de cette politique."
   },
   "disableHideEmail": {
-    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "message": "Interdire aux utilisateurs de masquer leur adresse e-mail aux destinataires lors de la création ou de la modification d'un Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
-    "message": "The following organization policies are currently in effect:"
+    "message": "Les politiques d'organisation suivantes sont actuellement en vigueur :"
   },
   "sendDisableHideEmailInEffect": {
-    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "message": "Les utilisateurs ne sont pas autorisés à masquer leur adresse e-mail aux destinataires lors de la création ou de la modification d'un Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3721,7 +3746,7 @@
     "message": "Gérer les utilisateurs"
   },
   "manageResetPassword": {
-    "message": "Manage Password Reset"
+    "message": "Gérer la réinitialisation du mot de passe"
   },
   "disableRequireSsoError": {
     "message": "Vous devez désactiver manuellement la politique d'authentification unique (SSO) avant que cette politique ne puisse être désactivée."
@@ -3810,7 +3835,7 @@
     }
   },
   "viewSendHiddenEmailWarning": {
-    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "message": "L'utilisateur Bitwarden qui a créé ce Send a choisi de masquer son adresse e-mail. Vous devez vous assurer que vous faites confiance à la source de ce lien avant d'utiliser ou de télécharger son contenu.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
@@ -3829,37 +3854,37 @@
     "message": "Une erreur s'est produite lors de l'enregistrement de vos dates de suppression et d'expiration."
   },
   "webAuthnFallbackMsg": {
-    "message": "To verify your 2FA please click the button below."
+    "message": "Pour vérifier votre 2FA, veuillez cliquer sur le bouton ci-dessous."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAutn"
+    "message": "Authentifier WebAuthn"
   },
   "webAuthnNotSupported": {
-    "message": "WebAuthn is not supported in this browser."
+    "message": "WebAuthn n'est pas pris en charge dans ce navigateur."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+    "message": "WebAuthn vérifié avec succès ! Vous pouvez fermer cet onglet."
   },
   "hintEqualsPassword": {
-    "message": "Your password hint cannot be the same as your password."
+    "message": "Votre indice de mot de passe ne peut pas être identique à votre mot de passe."
   },
   "enrollPasswordReset": {
-    "message": "Enroll in Password Reset"
+    "message": "S'inscrire à la réinitialisation du mot de passe"
   },
   "enrolledPasswordReset": {
-    "message": "Enrolled in Password Reset"
+    "message": "Inscrit à la réinitialisation du mot de passe"
   },
   "withdrawPasswordReset": {
-    "message": "Withdraw from Password Reset"
+    "message": "Se retirer de la réinitialisation du mot de passe"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "Inscription réussie !"
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Withdrawal success!"
+    "message": "Retrait réussi !"
   },
   "eventEnrollPasswordReset": {
-    "message": "User $ID$ enrolled in password reset assistance.",
+    "message": "L'utilisateur $ID$ s'est inscrit à l'aide de réinitialisation du mot de passe.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3868,7 +3893,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "User $ID$ withdrew from password reset assistance.",
+    "message": "L'utilisateur $ID$ s'est retiré de l'aide à la réinitialisation du mot de passe.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3876,19 +3901,121 @@
       }
     }
   },
+  "eventAdminPasswordReset": {
+    "message": "Réinitialisation du mot de passe maître pour l'utilisateur $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Réinitialiser le mot de passe"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "En continuant, $NAME$ sera déconnecté de sa session actuelle, ce qui lui demandera de se reconnecter. Les sessions actives sur d'autres appareils peuvent rester actives jusqu'à une heure.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "cet utilisateur"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "Une ou plusieurs politiques de l'organisation exigent que le mot de passe maître réponde aux exigences suivantes :"
+  },
+  "resetPasswordSuccess": {
+    "message": "Mot de passe réinitialisé avec succès !"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "L'inscription permettra aux administrateurs de l'organisation de changer votre mot de passe maître. Êtes-vous sûr de vouloir vous inscrire ?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Réinitialisation du mot de passe maître"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Permettre aux administrateurs de l'organisation de réinitialiser le mot de passe maître des utilisateurs de l'organisation."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Les utilisateurs de l'organisation devront s'inscrire personnellement ou être inscrits automatiquement avant que les administrateurs puissent réinitialiser leur mot de passe maître."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Inscription automatique"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "Tous les utilisateurs seront automatiquement inscrits à la réinitialisation du mot de passe une fois leur invitation acceptée."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Les utilisateurs déjà dans l'organisation ne seront pas inscrits rétroactivement à la réinitialisation du mot de passe. Ils devront s'inscrire personnellement avant que les administrateurs puissent réinitialiser leur mot de passe maître."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Inscrire automatiquement les nouveaux utilisateurs"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Cette organisation a une politique d'entreprise qui vous inscrira automatiquement à la réinitialisation du mot de passe. L'inscription permettra aux administrateurs de l'organisation de changer votre mot de passe maître."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Erreur lors du traitement de votre demande : \"Organization Keys response is null\""
+  },
+  "resetPasswordDetailsError": {
+    "message": "Erreur lors du traitement de votre demande : \"Reset Password Details response is null\""
+  },
   "trashCleanupWarning": {
-    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+    "message": "Les éléments présents dans la corbeille depuis plus de 30 jours seront automatiquement supprimés."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+    "message": "Les éléments présents dans la corbeille depuis un moment seront automatiquement supprimés."
   },
   "passwordPrompt": {
-    "message": "Master password re-prompt"
+    "message": "Ressaisie du mot de passe maître"
   },
   "passwordConfirmation": {
-    "message": "Master password confirmation"
+    "message": "Confirmation du mot de passe maître"
   },
   "passwordConfirmationDesc": {
-    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+    "message": "Cette action est protégée. Pour continuer, veuillez ressaisir votre mot de passe maître pour vérifier votre identité."
+  },
+  "reinviteSelected": {
+    "message": "Renvoyer les invitations"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "Cette action n'est applicable à aucun des utilisateurs sélectionnés."
+  },
+  "removeUsersWarning": {
+    "message": "Êtes-vous sûr de vouloir supprimer les utilisateurs suivants ? Le processus peut prendre quelques secondes et ne peut être interrompu ou annulé."
+  },
+  "confirmSelected": {
+    "message": "Confirmer la sélection"
+  },
+  "bulkConfirmStatus": {
+    "message": "Statut de l'action de masse"
+  },
+  "bulkConfirmMessage": {
+    "message": "Confirmé avec succès."
+  },
+  "bulkReinviteMessage": {
+    "message": "Réinvité avec succès."
+  },
+  "bulkRemovedMessage": {
+    "message": "Supprimé avec succès"
+  },
+  "bulkFilteredMessage": {
+    "message": "Exclu, non applicable pour cette action."
+  },
+  "fingerprint": {
+    "message": "Empreinte digitale"
+  },
+  "removeUsers": {
+    "message": "Supprimer les utilisateurs"
+  },
+  "error": {
+    "message": "Erreur"
+  },
+  "resetPasswordManageUsers": {
+    "message": "La Gestion des Utilisateurs doit également être activée avec Gérer la Permission de Réinitialisation du Mot de Passe"
   }
 }

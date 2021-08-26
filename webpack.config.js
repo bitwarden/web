@@ -13,7 +13,7 @@ const config = require('./config.js');
 const ENV = process.env.ENV == null ? 'development' : process.env.ENV;
 const NODE_ENV = process.env.NODE_ENV == null ? 'development' : process.env.NODE_ENV;
 
-const envConfig = config.load(process.env.ENV);
+const envConfig = config.load(ENV);
 config.log(envConfig);
 
 const moduleRules = [
@@ -107,6 +107,16 @@ const plugins = [
         filename: 'sso-connector.html',
         chunks: ['connectors/sso'],
     }),
+    new HtmlWebpackPlugin({
+        template: './src/connectors/captcha.html',
+        filename: 'captcha-connector.html',
+        chunks: ['connectors/captcha'],
+    }),
+    new HtmlWebpackPlugin({
+        template: './src/connectors/captcha-mobile.html',
+        filename: 'captcha-mobile-connector.html',
+        chunks: ['connectors/captcha'],
+    }),
     new CopyWebpackPlugin({
         patterns:[
             { from: './src/.nojekyll' },
@@ -114,6 +124,7 @@ const plugins = [
             { from: './src/favicon.ico' },
             { from: './src/browserconfig.xml' },
             { from: './src/app-id.json' },
+            { from: './src/assetlinks.json' },
             { from: './src/404.html' },
             { from: './src/404', to: '404' },
             { from: './src/images', to: 'images' },
@@ -127,13 +138,12 @@ const plugins = [
         filename: '[name].[hash].css',
         chunkFilename: '[id].[hash].css',
     }),
-    new webpack.DefinePlugin({
-        'process.env': {
-            'ENV': JSON.stringify(ENV),
-            'SELF_HOST': JSON.stringify(process.env.SELF_HOST === 'true' ? true : false),
-            'APPLICATION_VERSION': JSON.stringify(pjson.version),
-            'CACHE_TAG': JSON.stringify(Math.random().toString(36).substring(7)),
-        }
+    new webpack.EnvironmentPlugin({
+        'ENV': ENV,
+        'NODE_ENV': NODE_ENV === 'production' ? 'production' : 'development',
+        'APPLICATION_VERSION': pjson.version,
+        'CACHE_TAG': Math.random().toString(36).substring(7),
+        'URLS': envConfig['urls'] ?? {},
     }),
     new AngularCompilerPlugin({
         tsConfigPath: 'tsconfig.json',
@@ -144,7 +154,7 @@ const plugins = [
 
 // ref: https://webpack.js.org/configuration/dev-server/#devserver
 let certSuffix = fs.existsSync('dev-server.local.pem') ? '.local' : '.shared';
-const devServer = {
+const devServer = ENV !== 'development' ? {} : {
     https: {
         key: fs.readFileSync('dev-server' + certSuffix + '.pem'),
         cert: fs.readFileSync('dev-server' + certSuffix + '.pem'),
@@ -176,7 +186,7 @@ const devServer = {
             changeOrigin: true
         },
         '/portal': {
-            target: envConfig['proxyPortal'],
+            target: envConfig['proxyEnterprise'],
             pathRewrite: {'^/portal' : ''},
             secure: false,
             changeOrigin: true
@@ -198,6 +208,7 @@ const webpackConfig = {
         'connectors/webauthn-fallback': './src/connectors/webauthn-fallback.ts',
         'connectors/duo': './src/connectors/duo.ts',
         'connectors/sso': './src/connectors/sso.ts',
+        'connectors/captcha': './src/connectors/captcha.ts',
     },
     externals: {
         'u2f': 'u2f',

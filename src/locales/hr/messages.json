@@ -360,6 +360,9 @@
   "share": {
     "message": "Podijeli"
   },
+  "moveToOrganization": {
+    "message": "Premjesti u organizaciju"
+  },
   "valueCopied": {
     "message": " kopirano",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Trezor"
   },
-  "shareSelected": {
-    "message": "Podijeli odabrano"
+  "moveSelectedToOrg": {
+    "message": "Premjesti odabrano u Organizaciju"
   },
   "deleteSelected": {
     "message": "Obriši odabrano"
@@ -437,7 +440,7 @@
     "message": "Odaberi datoteku."
   },
   "maxFileSize": {
-    "message": "Najveća veličina datoteke je 100 MB."
+    "message": "Najveća veličina datoteke je 500 MB."
   },
   "updateKey": {
     "message": "Ne možeš koristiti ovu značajku prije nego ažuriraš ključ za šifriranje."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Uređena stavka"
   },
-  "sharedItem": {
-    "message": "Podijeljena stavka"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ premješteno u $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Podijeljene stavke"
+  "movedItemsToOrg": {
+    "message": "Odabrane stavke premještene u $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Izbriši stavku"
@@ -729,10 +748,10 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "Koristi WebAuthn sigurnosni ključ za pristup svojem računu."
   },
   "webAuthnMigrated": {
-    "message": "(Migrated from FIDO)"
+    "message": "(migrirano s FIDO)"
   },
   "emailTitle": {
     "message": "E-pošta"
@@ -749,11 +768,11 @@
   "organizations": {
     "message": "Organizacije"
   },
-  "shareDesc": {
-    "message": "Odaberi organizaciju s kojom želiš podijeliti ovu stavku. Dijeljenje prenosi vlasništvo stavke na organizaciju. Nakon dijeljenja više nećeš biti izravni vlasnik ove stavke."
+  "moveToOrgDesc": {
+    "message": "Odaberi organizaciju u koju želiš premjestiti ovu stavku. Premještanje prenosi vlasništvo stavke na organizaciju. Nakon premještanja više nećeš biti izravni vlasnik ove stavke."
   },
-  "shareManyDesc": {
-    "message": "Odaberi organizaciju s kojom želiš podijeliti ove stavke. Dijeljenje prenosi vlasništvo stavki na organizaciju. Nakon dijeljenja više nećeš biti izravni vlasnik ovih stavki."
+  "moveManyToOrgDesc": {
+    "message": "Odaberi organizaciju u koju želiš premjestiti ovu stavku. Premještanje prenosi vlasništvo stavke na organizaciju. Nakon premještanja više nećeš biti izravni vlasnik ove stavke."
   },
   "collectionsDesc": {
     "message": "Uredi zbirke s kojima se ova stavka koristi. Samo korisnici organizacije s pristupom ovim zbirkama će ih moći vidjeti."
@@ -776,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Odabrano je $COUNT$ stavke/i. $SHAREABLE_COUNT$ se može dijeliti, $NONSHAREABLE_COUNT$ se ne može dijeliti.",
+  "moveSelectedItemsCountDesc": {
+    "message": "$MOVEABLE_COUNT$ od $COUNT$ odabranih stavki može biti premješteno u Organiziaciju; $NONMOVEABLE_COUNT$ nije moguće premjestiti.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -816,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "Unesi glavnu lozinku za izvoz podataka iz trezora."
+  },
+  "export": {
+    "message": "Izvoz"
   },
   "exportVault": {
     "message": "Izvezi trezor"
@@ -971,7 +993,7 @@
     "message": "Sve sesije deautorizirane"
   },
   "purgeVault": {
-    "message": "Pročisti trezor"
+    "message": "Izbriši sve iz trezora"
   },
   "purgedOrganizationVault": {
     "message": "Pročišćen organizacijski trezor."
@@ -1035,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Ništa nije uvezeno."
+  },
+  "importEncKeyError": {
+    "message": "Greška u dešifriranju izvozne datoteke. Ovaj ključ za šifriranje ne odgovara ključu za šifriranje korištenom pri izvozu datoteke."
   },
   "selectFormat": {
     "message": "Odaberi format datoteke za uvoz"
@@ -1142,7 +1167,7 @@
     "message": "Zahtjevaj prijavu u dva koraka za svoje korisnike u organiziaciji konfigurirajući pružatelje usluga na razini organizacije."
   },
   "twoStepLoginRecoveryWarning": {
-    "message": "Uklkjučivanje prijave u dva koraka ti može trajno onemogućiti pristup tvojem Bitwarden računu. Kôd za oporavak ti omogućuje pristup računu u slučaju da više ne možeš koristiti redovnog pružatelja prijave u dva koraka (npr. izgubiš svoj uređaj). Bitwarden podrška ti neće moći pomoći ako izgubiš pristup svojem računu. Savjetujemo da zapišeš ili ispišeš kôd za oporavak i spremiš ga na sigurno mjesto."
+    "message": "Uključivanje prijave u dva koraka ti može trajno onemogućiti pristup Bitwarden računu. Kôd za oporavak ti omogućuje pristup računu u slučaju da više ne možeš koristiti redovnog pružatelja prijave u dva koraka (npr. izgubiš svoj uređaj). Bitwarden podrška ti neće moći pomoći ako izgubiš pristup svojem računu. Savjetujemo da zapišeš ili ispišeš kôd za oporavak i spremiš ga na sigurno mjesto."
   },
   "viewRecoveryCode": {
     "message": "Kôd za oporavak"
@@ -1270,7 +1295,7 @@
     }
   },
   "webAuthnkeyX": {
-    "message": "WebAuthn Key $INDEX$",
+    "message": "WebAuthn ključ $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1324,7 +1349,7 @@
     "message": "Sigurno želiš ukloniti ovaj sigurnosni ključ?"
   },
   "twoFactorWebAuthnAdd": {
-    "message": "Add a WebAuthn security key to your account"
+    "message": "Dodaj WebAuthn sigurnosni ključ svojem računu"
   },
   "readKey": {
     "message": "Očitaj ključ"
@@ -1360,10 +1385,10 @@
     "message": "Došlo je do pogreške kod očitavanja sigurnosnog ključa. Pokušaj ponovno."
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+    "message": "Zbog platformskih ograničenja, WebAuthn nije moguće koristiti s Bitwarden aplikacijama na svim platformama. Za pristup računu kada nije moguće koristiti WebAuthn, trebalo bi uključiti drugog pružatelja prijave u dva koraka. Platforme na kojima je WebAuthn podržan:"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Web trezor i proširenja preglednika na stolnim/prijenosnim računalima s WebAuthn omogućenim preglednikom (npr. Chrome, Opera, Vivaldi ili Firefox s omogućenim WebAuthn)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Tvoj kôd za oporavak Bitwarden prijave u dva koraka"
@@ -2327,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Dijeljena stavka $ID$.",
+  "movedItemIdToOrg": {
+    "message": "Stavka $ID$ je premještena u Organizaciju.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2637,10 +2662,10 @@
     "message": "Ne možeš potvrditi svoju e-poštu? Pošalji novu poruku."
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "Potrebna je potvrda e-pošte"
   },
   "emailVerificationRequiredDesc": {
-    "message": "You must verify your email to use this feature."
+    "message": "Za korištenje ove značajke, potrebna je ovjera e-pošte."
   },
   "updateBrowser": {
     "message": "Ažuriraj preglednik"
@@ -3388,7 +3413,7 @@
     "message": "Najveći proj pristupanja"
   },
   "maxAccessCountDesc": {
-    "message": "Ako je određen, korisnici neće moći pristupiti ovom Sendu nakon što se postigne najveći broj pristupanja.",
+    "message": "Ako je uključeno, korisnici neće moći pristupiti ovom Sendu nakon što se postigne najveći broj pristupanja.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
@@ -3423,7 +3448,7 @@
     "message": "Sigurno želiš ukloniti lozinku?"
   },
   "hideEmail": {
-    "message": "Hide my email address from recipients."
+    "message": "Sakrij moju adresu e-pošte od primatelja."
   },
   "disableThisSend": {
     "message": "Onemogući ovaj Send da mu nitko ne može pristupiti.",
@@ -3645,25 +3670,25 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
-    "message": "Send Options",
+    "message": "Opcije Senda",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
-    "message": "Set options for creating and editing Sends.",
+    "message": "Postavljanje opcija za stvaranje i mijenjanje Sendova.",
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Organizacijski korisnici koji mogu mijenjati pravila tvrtke nisu obuhvaćeni za provedbu ovog pravila."
   },
   "disableHideEmail": {
-    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "message": "Ne dopusti skrivanje e-pošte kod stvaranja Senda.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
-    "message": "The following organization policies are currently in effect:"
+    "message": "Organizacijske smjernice trenutno na snazi:"
   },
   "sendDisableHideEmailInEffect": {
-    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "message": "Korisnicima nije dopušteno skrivati adresu e-pošte od primatelja kod stvaranja ili uređivanja Senda.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3721,7 +3746,7 @@
     "message": "Upravljanje korisnicima"
   },
   "manageResetPassword": {
-    "message": "Manage Password Reset"
+    "message": "Upravljanje ponovnim postavljanjem lozinke"
   },
   "disableRequireSsoError": {
     "message": "Pravilo SSO autentifikacije mora biti isključeno prije deaktivacije ovog pravila."
@@ -3810,7 +3835,7 @@
     }
   },
   "viewSendHiddenEmailWarning": {
-    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "message": "Bitwarden korisnik koji je stvorio ovaj Send odabrao/la je sakriti svoju e-poštu. Koristi i/ili preuzmi ove podatke samo ako vjeruješ izvoru iz kojeg je primljena ova vezu.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
@@ -3829,37 +3854,37 @@
     "message": "Došlo je do greške kod spremanja vaših datuma isteka i brisanja."
   },
   "webAuthnFallbackMsg": {
-    "message": "To verify your 2FA please click the button below."
+    "message": "Za ovjeru tvoje 2FA, odaberi donju tipku."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAutn"
+    "message": "Ovjeri WebAuthn"
   },
   "webAuthnNotSupported": {
-    "message": "WebAuthn is not supported in this browser."
+    "message": "WebAuthn nije podržan u ovom pregledniku."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+    "message": "WebAuthn uspješno ovjeren! Možeš zatvoriti ovu karticu."
   },
   "hintEqualsPassword": {
-    "message": "Your password hint cannot be the same as your password."
+    "message": "Podsjetnik za lozinku ne može biti isti kao lozinka."
   },
   "enrollPasswordReset": {
-    "message": "Enroll in Password Reset"
+    "message": "Uključi mogućnost ponovnog postavljanja lozinke"
   },
   "enrolledPasswordReset": {
-    "message": "Enrolled in Password Reset"
+    "message": "Mogućnost ponovnog postavljanja lozinke je uključena"
   },
   "withdrawPasswordReset": {
-    "message": "Withdraw from Password Reset"
+    "message": "Isključi mogućnost ponovnog postavljanja lozinke"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "Prijava uspješna!"
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Withdrawal success!"
+    "message": "Odjava uspješna!"
   },
   "eventEnrollPasswordReset": {
-    "message": "User $ID$ enrolled in password reset assistance.",
+    "message": "Korisnik $ID$ ima uključenu mogućnost pomoći za ponovno postavljanje lozinke.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3868,7 +3893,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "User $ID$ withdrew from password reset assistance.",
+    "message": "Korisnik $ID$ ima isključenu mogućnost pomoći za ponovno postavljanje lozinke.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3876,19 +3901,121 @@
       }
     }
   },
+  "eventAdminPasswordReset": {
+    "message": "Ponovno postavljanje glavne lozinke za korisnika $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Ponovno postavljanje lozinke"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Ako nastaviš, biti će zatvorena trenutna sesija za $NAME$, što će zahtijevati ponovnu prijavu. Aktivne sesije na drugim uređajima ostati će aktivne još jedan sat.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "ovaj korisnik"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "Jedna ili više organizacijskih smjernica zahtijeva da glavna lozinka ispunjava sljedeće uvjete:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Uspješno ponovno postalvjena lozinka!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Učlanjenje će administratorima organizacije omogućiti promjenu tvoje glavne lozinke. Sigurno se želiš učlaniti?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Ponovno postavljanje glavne lozinke"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Dozvoli organizacijskim administratorima ponovno postavljanje glavnih lozniki korisnika."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Korisnici u organizaciji se trebaju ili sami učlaniti ili biti automatski učlanjeni da bi administratori mogli ponovno postavljati njihove lozinke."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatsko učlanjenje"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "Svi korisnci biti će automatski učlanjeni u ponovno postavljanje lozinke čim njihov poziv bude prihvaćen."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Postojeći korisnici organizacije neće biti retroaktivno učlanjeni u ponovno postavljanje lozinke. Morati će se sami učlaniti da bi administratori mogli ponovno postaviti njihove glaven lozinke."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Automatski učlani nove korisnike"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Pravilo ove organizacija automatski će te učlaniti u ponovno postalvjanje lozinke. Učlanjenje će omogućiti administratorima organizacije promjenu tvoje glavne lozinke."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Organization Keys response is null"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Reset Password Details response is null"
+  },
   "trashCleanupWarning": {
-    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+    "message": "Stavke koje se nalaze u Smeću duže od 30 dana će biti automatski izbrisane."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+    "message": "Stavke koje se duže vrijeme nalaze u Smeću će btii automatski obrisane."
   },
   "passwordPrompt": {
-    "message": "Master password re-prompt"
+    "message": "Ponovno zatraži glavnu lozinku"
   },
   "passwordConfirmation": {
-    "message": "Master password confirmation"
+    "message": "Potvrda glavne lozinke"
   },
   "passwordConfirmationDesc": {
-    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+    "message": "Ova radnja je zaštićena. Za nastavak i potvrdu identiteta, unesi svoju glavnu lozinku."
+  },
+  "reinviteSelected": {
+    "message": "Ponovno slanje pozivnica"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "Ova radnja nije primjenjiva niti na jednog odabranog korisnika."
+  },
+  "removeUsersWarning": {
+    "message": "Sigurno želiš ukloniti sljedeće korisnike? Ova radnja može potrajati i nije ga moguće prekinuti ili poništiti."
+  },
+  "confirmSelected": {
+    "message": "Odabrano potvrđivanje"
+  },
+  "bulkConfirmStatus": {
+    "message": "Status skupne radnje"
+  },
+  "bulkConfirmMessage": {
+    "message": "Uspještno potvđeno."
+  },
+  "bulkReinviteMessage": {
+    "message": "Uspješno ponovno pozvano."
+  },
+  "bulkRemovedMessage": {
+    "message": "Uspješno uklonjeno"
+  },
+  "bulkFilteredMessage": {
+    "message": "Isključeno, nije primijenjivo na ovu radnju."
+  },
+  "fingerprint": {
+    "message": "Otisak prsta"
+  },
+  "removeUsers": {
+    "message": "Ukloni korisnike"
+  },
+  "error": {
+    "message": "Greška"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Upravljanje korisnicima mora također biti uključeno s dozvolom za Upravljanje ponovnim postavljanjem lozinke"
   }
 }

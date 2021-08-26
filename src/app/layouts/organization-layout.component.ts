@@ -34,12 +34,7 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
         private environmentService: EnvironmentService) { }
 
     ngOnInit() {
-        this.businessUrl = 'https://portal.bitwarden.com';
-        if (this.environmentService.enterpriseUrl != null) {
-            this.businessUrl = this.environmentService.enterpriseUrl;
-        } else if (this.environmentService.baseUrl != null) {
-            this.businessUrl = this.environmentService.baseUrl + '/portal';
-        }
+        this.businessUrl = this.environmentService.getEnterpriseUrl();
 
         document.body.classList.remove('layout_frontend');
         this.route.params.subscribe(async params => {

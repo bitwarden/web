@@ -64,6 +64,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     showBrowserOutdated = false;
     showUpdateKey = false;
     showPremiumCallout = false;
+    showProviders = false;
     deleted: boolean = false;
     trashCleanupWarning: string = null;
 
@@ -87,10 +88,16 @@ export class VaultComponent implements OnInit, OnDestroy {
         const queryParamsSub = this.route.queryParams.subscribe(async params => {
             await this.syncService.fullSync(false);
 
+            if (await this.userService.getForcePasswordReset()) {
+                this.router.navigate(['update-temp-password']);
+            }
+
             this.showUpdateKey = !(await this.cryptoService.hasEncKey());
             const canAccessPremium = await this.userService.canAccessPremium();
             this.showPremiumCallout = !this.showVerifyEmail && !canAccessPremium &&
                 !this.platformUtilsService.isSelfHost();
+
+            this.showProviders = (await this.userService.getAllProviders()).length > 0;
 
             await Promise.all([
                 this.groupingsComponent.load(),

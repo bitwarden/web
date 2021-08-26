@@ -360,6 +360,9 @@
   "share": {
     "message": "Delen"
   },
+  "moveToOrganization": {
+    "message": "Naar organisatie verplaatsen"
+  },
   "valueCopied": {
     "message": "$VALUE$ gekopieerd",
     "description": "Value has been copied to the clipboard.",
@@ -400,8 +403,8 @@
   "vault": {
     "message": "Kluis"
   },
-  "shareSelected": {
-    "message": "Selectie delen"
+  "moveSelectedToOrg": {
+    "message": "Selectie naar organisatie verplaatsen"
   },
   "deleteSelected": {
     "message": "Selectie verwijderen"
@@ -437,7 +440,7 @@
     "message": "Selecteer een bestand."
   },
   "maxFileSize": {
-    "message": "Maximale bestandsgrootte is 100 MB."
+    "message": "Maximale bestandsgrootte is 500 MB."
   },
   "updateKey": {
     "message": "Je kunt deze functie pas gebruiken als je je encryptiesleutel bijwerkt."
@@ -448,11 +451,27 @@
   "editedItem": {
     "message": "Item is bewerkt"
   },
-  "sharedItem": {
-    "message": "Item is gedeeld"
+  "movedItemToOrg": {
+    "message": "$ITEMNAME$ verplaatst naar $ORGNAME$",
+    "placeholders": {
+      "itemname": {
+        "content": "$1",
+        "example": "Secret Item"
+      },
+      "orgname": {
+        "content": "$2",
+        "example": "Company Name"
+      }
+    }
   },
-  "sharedItems": {
-    "message": "Items zijn gedeeld"
+  "movedItemsToOrg": {
+    "message": "Geselecteerde items verplaatst naar $ORGNAME$",
+    "placeholders": {
+      "orgname": {
+        "content": "$1",
+        "example": "Company Name"
+      }
+    }
   },
   "deleteItem": {
     "message": "Item verwijderen"
@@ -729,10 +748,10 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "Gebruik een WebAuthn-beveilingssleutel om toegang te krijgen tot je account."
   },
   "webAuthnMigrated": {
-    "message": "(Migrated from FIDO)"
+    "message": "(Gemigreerd van FIDO)"
   },
   "emailTitle": {
     "message": "E-mailadres"
@@ -749,11 +768,11 @@
   "organizations": {
     "message": "Organisaties"
   },
-  "shareDesc": {
-    "message": "Kies een organisatie waarmee je dit item wilt delen. Door het delen draag je het eigendom van dit item over aan de organisatie. Je bent niet langer de directe eigenaar van het item wanneer deze is gedeeld."
+  "moveToOrgDesc": {
+    "message": "Kies een organisatie waarnaar je dit item wilt verplaatsen. Door het verplaatsen krijgt de organisatie de eigendomsrechten van het item. Je bent niet langer de directe eigenaar meer van het item als het is verplaatst."
   },
-  "shareManyDesc": {
-    "message": "Kies een organisatie waarmee je deze items wilt delen. Door het delen draag je het eigendom van deze item over aan de organisatie. Je bent niet langer de directe eigenaar van de items wanneer deze zijn gedeeld."
+  "moveManyToOrgDesc": {
+    "message": "Kies een organisatie waarnaar je deze items wilt verplaatsen. Door het verplaatsen krijgt de organisatie de eigendomsrechten van deze items. Je bent niet langer de directe eigenaar meer van deze items als ze zijn verplaatst."
   },
   "collectionsDesc": {
     "message": "Wijzig de verzamelingen waarmee dit item gedeeld is. Alleen organisatiegebruikers met toegang tot deze verzamelingen kunnen dit item inzien."
@@ -776,18 +795,18 @@
       }
     }
   },
-  "shareSelectedItemsCountDesc": {
-    "message": "Je hebt $COUNT$ item(s) geselecteerd. $SHAREABLE_COUNT$ items kunnen worden gedeeld, $NONSHAREABLE_COUNT$ niet.",
+  "moveSelectedItemsCountDesc": {
+    "message": "Je hebt $COUNT$ item(s) geselecteerd. Je kunt $MOVEABLE_COUNT$ verplaatsen naar een organisatie, $NONMOVEABLE_COUNT$ niet.",
     "placeholders": {
       "count": {
         "content": "$1",
         "example": "10"
       },
-      "shareable_count": {
+      "moveable_count": {
         "content": "$2",
         "example": "8"
       },
-      "nonshareable_count": {
+      "nonmoveable_count": {
         "content": "$3",
         "example": "2"
       }
@@ -816,6 +835,9 @@
   },
   "exportMasterPassword": {
     "message": "Voer je hoofdwachtwoord in om de kluisgegevens te exporteren."
+  },
+  "export": {
+    "message": "Exporteren"
   },
   "exportVault": {
     "message": "Kluis exporteren"
@@ -1035,6 +1057,9 @@
   },
   "importNothingError": {
     "message": "Er is niets geïmporteerd."
+  },
+  "importEncKeyError": {
+    "message": "Fout bij het decoderen van het geëxporteerde bestand. Je encryptiesleutel komt niet overeen met de gebruikte sleutel waarmee de gegevens zijn geëxporteerd."
   },
   "selectFormat": {
     "message": "Selecteer het formaat van het importbestand"
@@ -1270,7 +1295,7 @@
     }
   },
   "webAuthnkeyX": {
-    "message": "WebAuthn Key $INDEX$",
+    "message": "WebAuthn-sleutel $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1324,7 +1349,7 @@
     "message": "Weet je zeker dat je deze beveiligingssleutel wilt verwijderen?"
   },
   "twoFactorWebAuthnAdd": {
-    "message": "Add a WebAuthn security key to your account"
+    "message": "Voeg een WebAuthn-beveiligingssleutel toe aan je account"
   },
   "readKey": {
     "message": "Sleutel lezen"
@@ -1360,10 +1385,10 @@
     "message": "Er was een probleem met het lezen van de beveiligingssleutel. Probeer het nogmaals."
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+    "message": "Vanwege platformbeperkingen kan WebAuthn niet in alle Bitwarden applicaties gebruikt worden. Stel een andere tweestapsaanmeldingsaanbieder in zodat je je account kunt benaderen wanneer WebAuthn niet beschikbaar is. De volgende platformen worden ondersteund:"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Webkluis en browser-extensies op een desktop/laptop met een browser met ondersteuning voor WebAuthn (Chrome, Opera, Vivaldi of Firefox met FIDO U2F ingeschakeld)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Je herstelcode voor Bitwarden-tweestapsaanmelding"
@@ -2327,8 +2352,8 @@
       }
     }
   },
-  "sharedItemId": {
-    "message": "Gedeeld item $ID$.",
+  "movedItemIdToOrg": {
+    "message": "Item $ID$ naar een organisatie verplaatst.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2637,10 +2662,10 @@
     "message": "Je e-mailadres kon niet worden geverifieerd. Probeer een nieuwe e-mail met verificatielink te versturen."
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "E-mailverificatie vereist"
   },
   "emailVerificationRequiredDesc": {
-    "message": "You must verify your email to use this feature."
+    "message": "Je moet je e-mailadres verifiëren om deze functionaliteit te gebruiken."
   },
   "updateBrowser": {
     "message": "Webbrowser bijwerken"
@@ -3423,7 +3448,7 @@
     "message": "Weet je zeker dat je dit wachtwoord wilt verwijderen?"
   },
   "hideEmail": {
-    "message": "Hide my email address from recipients."
+    "message": "Verberg mijn e-mailadres voor ontvangers."
   },
   "disableThisSend": {
     "message": "Schakel deze Send uit zodat niemand hem kan benaderen.",
@@ -3645,25 +3670,25 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
-    "message": "Send Options",
+    "message": "Send-opties",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
-    "message": "Set options for creating and editing Sends.",
+    "message": "Stel opties in voor het maken en bewerken van Sends.",
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Gebruikers die het beleid van de organisatie kunnen beheren, zijn vrijgesteld van de handhaving van dit beleid."
   },
   "disableHideEmail": {
-    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "message": "Gebruikers mogen hun e-mailadres niet verbergen voor ontvangers bij het aanmaken of bewerken van een Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
-    "message": "The following organization policies are currently in effect:"
+    "message": "Het volgende organisatiebeleid is momenteel van toepassing:"
   },
   "sendDisableHideEmailInEffect": {
-    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "message": "Gebruikers mogen hun e-mailadres niet verbergen voor ontvangers bij het aanmaken of bewerken van een Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3721,7 +3746,7 @@
     "message": "Gebruikers beheren"
   },
   "manageResetPassword": {
-    "message": "Manage Password Reset"
+    "message": "Wachtwoordherstel beheren"
   },
   "disableRequireSsoError": {
     "message": "Je moet handmatig het Single Sign-On-verificatiebeleid uitschakelen voordat je dit beleid kunt uitgeschakeld."
@@ -3810,7 +3835,7 @@
     }
   },
   "viewSendHiddenEmailWarning": {
-    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "message": "De Bitwarden-gebruiker die deze Send heeft gemaakt heeft ervoor gekozen het e-mailadres te verbergen. Je moet je ervan verzekeren dat je de bron van deze link vertrouwt voordat je de inhoud gebruikt of downloadt.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
@@ -3829,37 +3854,37 @@
     "message": "Er is een fout opgetreden bij het opslaan van je verwijder- en vervaldatum."
   },
   "webAuthnFallbackMsg": {
-    "message": "To verify your 2FA please click the button below."
+    "message": "Klik op onderstaande knop om je 2FA te verifiëren."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAutn"
+    "message": "Authenticeer WebAuthn"
   },
   "webAuthnNotSupported": {
-    "message": "WebAuthn is not supported in this browser."
+    "message": "WebAuthn wordt niet ondersteund in deze browser."
   },
   "webAuthnSuccess": {
-    "message": "<strong>WebAuthn verified successfully!</strong><br>You may close this tab."
+    "message": "WebAuthn met succes geverifieerd! Je kunt dit tabblad sluiten."
   },
   "hintEqualsPassword": {
-    "message": "Your password hint cannot be the same as your password."
+    "message": "Je wachtwoordhint moet anders zijn dan je wachtwoord."
   },
   "enrollPasswordReset": {
-    "message": "Enroll in Password Reset"
+    "message": "Aanmelden voor wachtwoordherstel"
   },
   "enrolledPasswordReset": {
-    "message": "Enrolled in Password Reset"
+    "message": "Aangemeld voor wachtwoordherstel"
   },
   "withdrawPasswordReset": {
-    "message": "Withdraw from Password Reset"
+    "message": "Teruggetrokken van wachtwoordherstel"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "Succesvol aangemeld!"
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Withdrawal success!"
+    "message": "Succesvol ingetrokken!"
   },
   "eventEnrollPasswordReset": {
-    "message": "User $ID$ enrolled in password reset assistance.",
+    "message": "Gebruiker $ID$ heeft zich aangemeld voor assistentie bij wachtwoordherstel.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3868,7 +3893,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "User $ID$ withdrew from password reset assistance.",
+    "message": "Gebruiker $ID$ heeft zich teruggetrokken van assistentie bij wachtwoordherstel.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3876,19 +3901,121 @@
       }
     }
   },
+  "eventAdminPasswordReset": {
+    "message": "Hoofdwachtwoord opnieuw instellen voor gebruiker $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "resetPassword": {
+    "message": "Wachtwoord opnieuw instellen"
+  },
+  "resetPasswordLoggedOutWarning": {
+    "message": "Doorgaan logt de huidige sessie van $NAME$ uit, waarna deze opnieuw moet aanmelden. Actieve sessies op andere apparaten kunnen mogelijk nog één uur actief blijven.",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "thisUser": {
+    "message": "deze gebruiker"
+  },
+  "resetPasswordMasterPasswordPolicyInEffect": {
+    "message": "Een of meer organisatiebeleidseisen stelt de volgende eisen aan je hoofdwachtwoord:"
+  },
+  "resetPasswordSuccess": {
+    "message": "Wachtwoord opnieuw ingesteld!"
+  },
+  "resetPasswordEnrollmentWarning": {
+    "message": "Inschrijving stelt organisatiebeheerders in staat om je hoofdwachtwoord te wijzigen. Weet je zeker dat je wilt inschrijven?"
+  },
+  "resetPasswordPolicy": {
+    "message": "Hoofdwachtwoord opnieuw instellen"
+  },
+  "resetPasswordPolicyDescription": {
+    "message": "Beheerders in de organisatie toestaan het hoofdwachtwoord van gebruikers van de organisatie opnieuw in te stellen."
+  },
+  "resetPasswordPolicyWarning": {
+    "message": "Gebruikers in de organisatie moeten zichzelf inschrijven of automatisch worden ingeschreven voordat beheerders hun hoofdwachtwoord opnieuw kunnen instellen."
+  },
+  "resetPasswordPolicyAutoEnroll": {
+    "message": "Automatische inschrijving"
+  },
+  "resetPasswordPolicyAutoEnrollDescription": {
+    "message": "Alle gebruikers worden automatisch ingeschreven voor wachtwoordherstel zodra hun uitnodiging wordt geaccepteerd."
+  },
+  "resetPasswordPolicyAutoEnrollWarning": {
+    "message": "Gebruikers die al deel uitmaken van de organisatie worden niet met terugwerkende kracht aangemeld voor wachtwoordherstel. Zij zullen zichzelf moeten inschrijven voordat beheerders hun hoofdwachtwoord kunnen herstellen."
+  },
+  "resetPasswordPolicyAutoEnrollCheckbox": {
+    "message": "Automatisch nieuwe gebruikers inschrijven"
+  },
+  "resetPasswordAutoEnrollInviteWarning": {
+    "message": "Deze organisatie heeft een ondernemingsbeleid dat je automatisch inschrijft bij het resetten van je wachtwoord. Inschrijving stelt organisatiebeheerders in staat om je hoofdwachtwoord te wijzigen."
+  },
+  "resetPasswordOrgKeysError": {
+    "message": "Reactie organisatiesleutels is null"
+  },
+  "resetPasswordDetailsError": {
+    "message": "Reactie Wachtwoordhersteldetails is null"
+  },
   "trashCleanupWarning": {
-    "message": "Ciphers that have been in Trash more than 30 days will be automatically deleted."
+    "message": "Codes die meer dan 30 dagen in de prullenbak zitten worden automatisch verwijderd."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Ciphers that have been in Trash for a while will be automatically deleted."
+    "message": "Codes die een tijdje in de prullenbak zitten worden automatisch verwijderd."
   },
   "passwordPrompt": {
-    "message": "Master password re-prompt"
+    "message": "Hoofdwachtwoord opnieuw vragen"
   },
   "passwordConfirmation": {
-    "message": "Master password confirmation"
+    "message": "Hoofdwachtwoord bevestigen"
   },
   "passwordConfirmationDesc": {
-    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+    "message": "Deze actie is beveiligd. Voer je hoofdwachtwoord opnieuw in om je identiteit vast te stellen en door te gaan."
+  },
+  "reinviteSelected": {
+    "message": "Uitnodigingen opnieuw verzenden"
+  },
+  "noSelectedUsersApplicable": {
+    "message": "Deze actie is niet van toepassing op de geselecteerde gebruikers."
+  },
+  "removeUsersWarning": {
+    "message": "Weet je zeker dat je de volgende gebruikers wilt verwijderen? Dit proces duurt enkele seconden en kan niet worden onderbroken of geannuleerd."
+  },
+  "confirmSelected": {
+    "message": "Bevestig selectie"
+  },
+  "bulkConfirmStatus": {
+    "message": "Bulkactie status"
+  },
+  "bulkConfirmMessage": {
+    "message": "Succesvol bevestigd."
+  },
+  "bulkReinviteMessage": {
+    "message": "Succesvol opnieuw uitgenodigd."
+  },
+  "bulkRemovedMessage": {
+    "message": "Succesvol verwijderd"
+  },
+  "bulkFilteredMessage": {
+    "message": "Uitgezonderd, niet van toepassing voor deze actie."
+  },
+  "fingerprint": {
+    "message": "Vingerafdruk"
+  },
+  "removeUsers": {
+    "message": "Gebruikers verwijderen"
+  },
+  "error": {
+    "message": "Fout"
+  },
+  "resetPasswordManageUsers": {
+    "message": "Gebruikers beheren moet ingeschakeld zijn met de optie Wachtwoordherstel beheren"
   }
 }
