@@ -1,6 +1,5 @@
 import {
     Component,
-    ComponentFactoryResolver,
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
@@ -13,7 +12,7 @@ import {
     PasswordGeneratorComponent as BasePasswordGeneratorComponent,
 } from 'jslib-angular/components/password-generator.component';
 
-import { ModalComponent } from '../modal.component';
+import { ModalService } from 'jslib-angular/services/modal.service';
 import { PasswordGeneratorHistoryComponent } from './password-generator-history.component';
 
 @Component({
@@ -23,25 +22,13 @@ import { PasswordGeneratorHistoryComponent } from './password-generator-history.
 export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
     @ViewChild('historyTemplate', { read: ViewContainerRef, static: true }) historyModalRef: ViewContainerRef;
 
-    private modal: ModalComponent = null;
-
     constructor(passwordGenerationService: PasswordGenerationService, platformUtilsService: PlatformUtilsService,
-        i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver) {
+        i18nService: I18nService, private modalService: ModalService) {
         super(passwordGenerationService, platformUtilsService, i18nService, window);
     }
 
-    history() {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.historyModalRef.createComponent(factory).instance;
-        this.modal.show<PasswordGeneratorHistoryComponent>(PasswordGeneratorHistoryComponent, this.historyModalRef);
-
-        this.modal.onClosed.subscribe(async () => {
-            this.modal = null;
-        });
+    async history() {
+        await this.modalService.openViewRef(PasswordGeneratorHistoryComponent, this.historyModalRef);
     }
 
     lengthChanged() {

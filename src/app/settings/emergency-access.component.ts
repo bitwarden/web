@@ -1,4 +1,9 @@
-import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {
+    Component,
+    OnInit,
+    ViewChild,
+    ViewContainerRef
+} from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
@@ -18,10 +23,11 @@ import { ConstantsService } from 'jslib-common/services/constants.service';
 
 import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
 
-import { ModalComponent } from '../modal.component';
 import { EmergencyAccessAddEditComponent } from './emergency-access-add-edit.component';
 import { EmergencyAccessConfirmComponent } from './emergency-access-confirm.component';
 import { EmergencyAccessTakeoverComponent } from './emergency-access-takeover.component';
+
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 @Component({
     selector: 'emergency-access',
@@ -40,10 +46,8 @@ export class EmergencyAccessComponent implements OnInit {
     actionPromise: Promise<any>;
     isOrganizationOwner: boolean;
 
-    private modal: ModalComponent = null;
-
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private componentFactoryResolver: ComponentFactoryResolver,
+        private modalService: ModalService,
         private platformUtilsService: PlatformUtilsService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
         private storageService: StorageService, private userService: UserService,
@@ -68,30 +72,19 @@ export class EmergencyAccessComponent implements OnInit {
         }
     }
 
-    edit(details: EmergencyAccessGranteeDetailsResponse) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.addEditModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<EmergencyAccessAddEditComponent>(
-            EmergencyAccessAddEditComponent, this.addEditModalRef);
-
-        childComponent.name = this.userNamePipe.transform(details);
-        childComponent.emergencyAccessId = details?.id;
-        childComponent.readOnly = !this.canAccessPremium;
-        childComponent.onSaved.subscribe(() => {
-            this.modal.close();
-            this.load();
-        });
-        childComponent.onDeleted.subscribe(() => {
-            this.modal.close();
-            this.remove(details);
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+    async edit(details: EmergencyAccessGranteeDetailsResponse) {
+        const [modal] = await this.modalService.openViewRef(EmergencyAccessAddEditComponent, this.addEditModalRef, comp => {
+            comp.name = this.userNamePipe.transform(details);
+            comp.emergencyAccessId = details?.id;
+            comp.readOnly = !this.canAccessPremium;
+            comp.onSaved.subscribe(() => {
+                modal.close();
+                this.load();
+            });
+            comp.onDeleted.subscribe(() => {
+                modal.close();
+                this.remove(details);
+            });
         });
     }
 
@@ -120,30 +113,19 @@ export class EmergencyAccessComponent implements OnInit {
 
         const autoConfirm = await this.storageService.get<boolean>(ConstantsService.autoConfirmFingerprints);
         if (autoConfirm == null || !autoConfirm) {
-            if (this.modal != null) {
-                this.modal.close();
-            }
+            const [modal] = await this.modalService.openViewRef(EmergencyAccessConfirmComponent, this.confirmModalRef, comp => {
+                comp.name = this.userNamePipe.transform(contact);
+                comp.emergencyAccessId = contact.id;
+                comp.userId = contact?.granteeId;
+                comp.onConfirmed.subscribe(async () => {
+                    modal.close();
 
-            const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-            this.modal = this.confirmModalRef.createComponent(factory).instance;
-            const childComponent = this.modal.show<EmergencyAccessConfirmComponent>(
-                EmergencyAccessConfirmComponent, this.confirmModalRef);
+                    comp.formPromise = this.doConfirmation(contact);
+                    await comp.formPromise;
 
-            childComponent.name = this.userNamePipe.transform(contact);
-            childComponent.emergencyAccessId = contact.id;
-            childComponent.userId = contact?.granteeId;
-            childComponent.onConfirmed.subscribe(async () => {
-                this.modal.close();
-
-                childComponent.formPromise = this.doConfirmation(contact);
-                await childComponent.formPromise;
-
-                updateUser();
-                this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', this.userNamePipe.transform(contact)));
-            });
-
-            this.modal.onClosed.subscribe(() => {
-                this.modal = null;
+                    updateUser();
+                    this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', this.userNamePipe.transform(contact)));
+                });
             });
             return;
         }
@@ -224,26 +206,15 @@ export class EmergencyAccessComponent implements OnInit {
     }
 
     async takeover(details: EmergencyAccessGrantorDetailsResponse) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
+        const [modal] = await this.modalService.openViewRef(EmergencyAccessTakeoverComponent, this.takeoverModalRef, comp => {
+            comp.name = this.userNamePipe.transform(details);
+            comp.email = details.email;
+            comp.emergencyAccessId = details != null ? details.id : null;
 
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.addEditModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<EmergencyAccessTakeoverComponent>(
-            EmergencyAccessTakeoverComponent, this.takeoverModalRef);
-
-        childComponent.name = this.userNamePipe.transform(details);
-        childComponent.email = details.email;
-        childComponent.emergencyAccessId = details != null ? details.id : null;
-
-        childComponent.onDone.subscribe(() => {
-            this.modal.close();
-            this.toasterService.popAsync('success', null, this.i18nService.t('passwordResetFor', this.userNamePipe.transform(details)));
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+            comp.onDone.subscribe(() => {
+                modal.close();
+                this.toasterService.popAsync('success', null, this.i18nService.t('passwordResetFor', this.userNamePipe.transform(details)));
+            });
         });
     }
 

@@ -1,13 +1,12 @@
-import {
-    Component,
-    ComponentFactoryResolver,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { Cipher } from 'jslib-common/models/domain/cipher';
 
@@ -25,9 +24,9 @@ export class WeakPasswordsReportComponent extends BaseWeakPasswordsReportCompone
     manageableCiphers: Cipher[];
 
     constructor(cipherService: CipherService, passwordGenerationService: PasswordGenerationService,
-        componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
+        modalService: ModalService, messagingService: MessagingService,
         userService: UserService, private route: ActivatedRoute) {
-        super(cipherService, passwordGenerationService, componentFactoryResolver, messagingService, userService);
+        super(cipherService, passwordGenerationService, modalService, messagingService, userService);
     }
 
     async ngOnInit() {

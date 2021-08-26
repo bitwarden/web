@@ -18,11 +18,12 @@ import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.se
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
+import { ModalService } from 'jslib-angular/services/modal.service';
+
 import { GroupResponse } from 'jslib-common/models/response/groupResponse';
 
 import { Utils } from 'jslib-common/misc/utils';
 
-import { ModalComponent } from '../../modal.component';
 import { EntityUsersComponent } from './entity-users.component';
 import { GroupAddEditComponent } from './group-add-edit.component';
 
@@ -44,10 +45,9 @@ export class GroupsComponent implements OnInit {
     protected pageSize = 100;
 
     private pagedGroupsCount = 0;
-    private modal: ModalComponent = null;
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
+        private i18nService: I18nService, private modalService: ModalService,
         private toasterService: ToasterService, private platformUtilsService: PlatformUtilsService,
         private userService: UserService, private router: Router,
         private searchService: SearchService) { }
@@ -95,29 +95,18 @@ export class GroupsComponent implements OnInit {
         this.didScroll = this.pagedGroups.length > this.pageSize;
     }
 
-    edit(group: GroupResponse) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.addEditModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<GroupAddEditComponent>(
-            GroupAddEditComponent, this.addEditModalRef);
-
-        childComponent.organizationId = this.organizationId;
-        childComponent.groupId = group != null ? group.id : null;
-        childComponent.onSavedGroup.subscribe(() => {
-            this.modal.close();
-            this.load();
-        });
-        childComponent.onDeletedGroup.subscribe(() => {
-            this.modal.close();
-            this.removeGroup(group);
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+    async edit(group: GroupResponse) {
+        const [modal] = await this.modalService.openViewRef(GroupAddEditComponent, this.addEditModalRef, comp => {
+            comp.organizationId = this.organizationId;
+            comp.groupId = group != null ? group.id : null;
+            comp.onSavedGroup.subscribe(() => {
+                modal.close();
+                this.load();
+            });
+            comp.onDeletedGroup.subscribe(() => {
+                modal.close();
+                this.removeGroup(group);
+            });
         });
     }
 
@@ -140,26 +129,16 @@ export class GroupsComponent implements OnInit {
         } catch { }
     }
 
-    users(group: GroupResponse) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
+    async users(group: GroupResponse) {
+        const [modal] = await this.modalService.openViewRef(EntityUsersComponent, this.usersModalRef, comp => {
+            comp.organizationId = this.organizationId;
+            comp.entity = 'group';
+            comp.entityId = group.id;
+            comp.entityName = group.name;
 
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.usersModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<EntityUsersComponent>(
-            EntityUsersComponent, this.usersModalRef);
-
-        childComponent.organizationId = this.organizationId;
-        childComponent.entity = 'group';
-        childComponent.entityId = group.id;
-        childComponent.entityName = group.name;
-
-        childComponent.onEditedUsers.subscribe(() => {
-            this.modal.close();
-        });
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+            comp.onEditedUsers.subscribe(() => {
+                modal.close();
+            });
         });
     }
 

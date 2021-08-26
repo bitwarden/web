@@ -1,6 +1,5 @@
 import {
     Component,
-    ComponentFactoryResolver,
     Input,
     ViewChild,
     ViewContainerRef,
@@ -11,9 +10,9 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { CipherRepromptType } from 'jslib-common/enums/cipherRepromptType';
 
-import { Organization } from 'jslib-common/models/domain/organization';
+import { ModalService } from 'jslib-angular/services/modal.service';
 
-import { ModalComponent } from '../modal.component';
+import { Organization } from 'jslib-common/models/domain/organization';
 
 import { BulkDeleteComponent } from './bulk-delete.component';
 import { BulkMoveComponent } from './bulk-move.component';
@@ -27,7 +26,6 @@ import { CiphersComponent } from './ciphers.component';
 })
 export class BulkActionsComponent {
     @Input() ciphersComponent: CiphersComponent;
-    @Input() modal: ModalComponent;
     @Input() deleted: boolean;
     @Input() organization: Organization;
 
@@ -38,7 +36,7 @@ export class BulkActionsComponent {
 
     constructor(private toasterService: ToasterService,
         private i18nService: I18nService,
-        private componentFactoryResolver: ComponentFactoryResolver,
+        private modalService: ModalService,
         private passwordRepromptService: PasswordRepromptService) { }
 
     async bulkDelete() {
@@ -53,24 +51,14 @@ export class BulkActionsComponent {
             return;
         }
 
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkDeleteModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkDeleteComponent>(BulkDeleteComponent, this.bulkDeleteModalRef);
-
-        childComponent.permanent = this.deleted;
-        childComponent.cipherIds = selectedIds;
-        childComponent.organization = this.organization;
-        childComponent.onDeleted.subscribe(async () => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+        const [modal] = await this.modalService.openViewRef(BulkDeleteComponent, this.bulkDeleteModalRef, comp => {
+            comp.permanent = this.deleted;
+            comp.cipherIds = selectedIds;
+            comp.organization = this.organization;
+            comp.onDeleted.subscribe(async () => {
+                modal.close();
+                await this.ciphersComponent.refresh();
+            });
         });
     }
 
@@ -86,22 +74,12 @@ export class BulkActionsComponent {
             return;
         }
 
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkRestoreModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkRestoreComponent>(BulkRestoreComponent, this.bulkRestoreModalRef);
-
-        childComponent.cipherIds = selectedIds;
-        childComponent.onRestored.subscribe(async () => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+        const [modal] = await this.modalService.openViewRef(BulkRestoreComponent, this.bulkRestoreModalRef, comp => {
+            comp.cipherIds = selectedIds;
+            comp.onRestored.subscribe(async () => {
+                modal.close();
+                await this.ciphersComponent.refresh();
+            });
         });
     }
 
@@ -117,22 +95,12 @@ export class BulkActionsComponent {
             return;
         }
 
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkShareModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkShareComponent>(BulkShareComponent, this.bulkShareModalRef);
-
-        childComponent.ciphers = selectedCiphers;
-        childComponent.onShared.subscribe(async () => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-
-        this.modal.onClosed.subscribe(async () => {
-            this.modal = null;
+        const [modal] = await this.modalService.openViewRef(BulkShareComponent, this.bulkShareModalRef, comp => {
+            comp.ciphers = selectedCiphers;
+            comp.onShared.subscribe(async () => {
+                modal.close();
+                await this.ciphersComponent.refresh();
+            });
         });
     }
 
@@ -148,22 +116,12 @@ export class BulkActionsComponent {
             return;
         }
 
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkMoveModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkMoveComponent>(BulkMoveComponent, this.bulkMoveModalRef);
-
-        childComponent.cipherIds = selectedIds;
-        childComponent.onMoved.subscribe(async () => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+        const [modal] = await this.modalService.openViewRef(BulkMoveComponent, this.bulkMoveModalRef, comp => {
+            comp.cipherIds = selectedIds;
+            comp.onMoved.subscribe(async () => {
+                modal.close();
+                await this.ciphersComponent.refresh();
+            });
         });
     }
 

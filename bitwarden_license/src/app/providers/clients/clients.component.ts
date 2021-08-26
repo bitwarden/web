@@ -25,10 +25,9 @@ import {
     ProviderOrganizationOrganizationDetailsResponse
 } from 'jslib-common/models/response/provider/providerOrganizationResponse';
 
-import { ModalComponent } from 'src/app/modal.component';
-
 import { ProviderService } from '../services/provider.service';
 
+import { ModalService } from 'jslib-angular/services/modal.service';
 import { AddOrganizationComponent } from './add-organization.component';
 
 const DisallowedPlanTypes = [PlanType.Free, PlanType.FamiliesAnnually2019, PlanType.FamiliesAnnually];
@@ -49,7 +48,6 @@ export class ClientsComponent implements OnInit {
 
     clients: ProviderOrganizationOrganizationDetailsResponse[];
     pagedClients: ProviderOrganizationOrganizationDetailsResponse[];
-    modal: ModalComponent;
 
     protected didScroll = false;
     protected pageSize = 100;
@@ -60,8 +58,8 @@ export class ClientsComponent implements OnInit {
         private apiService: ApiService, private searchService: SearchService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
         private toasterService: ToasterService, private validationService: ValidationService,
-        private providerService: ProviderService, private componentFactoryResolver: ComponentFactoryResolver,
-        private logService: LogService) { }
+        private providerService: ProviderService, private logService: LogService,
+        private modalService: ModalService) { }
 
     async ngOnInit() {
         this.route.parent.params.subscribe(async params => {
@@ -126,24 +124,18 @@ export class ClientsComponent implements OnInit {
         this.didScroll = this.pagedClients.length > this.pageSize;
     }
 
-    addExistingOrganization() {
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.addModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<AddOrganizationComponent>(AddOrganizationComponent, this.addModalRef);
-
-        childComponent.providerId = this.providerId;
-        childComponent.organizations = this.addableOrganizations;
-        childComponent.onAddedOrganization.subscribe(async () => {
-            try {
-                await this.load();
-                this.modal.close();
-            } catch (e) {
-                this.logService.error(`Handled exception: ${e}`);
-            }
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+    async addExistingOrganization() {
+        const [modal, childComponent] = await this.modalService.openViewRef(AddOrganizationComponent, this.addModalRef, comp => {
+            comp.providerId = this.providerId;
+            comp.organizations = this.addableOrganizations;
+            comp.onAddedOrganization.subscribe(async () => {
+                try {
+                    await this.load();
+                    modal.close();
+                } catch (e) {
+                    this.logService.error(`Handled exception: ${e}`);
+                }
+            });
         });
     }
 

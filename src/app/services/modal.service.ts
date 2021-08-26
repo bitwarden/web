@@ -9,8 +9,8 @@ import { first } from 'rxjs/operators';
 
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 
-import { ModalService as BaseModalService } from 'jslib-angular/services/modal.service';
 import { ModalRef } from 'jslib-angular/components/modal/modal.ref';
+import { ModalService as BaseModalService } from 'jslib-angular/services/modal.service';
 
 import { Utils } from 'jslib-common/misc/utils';
 

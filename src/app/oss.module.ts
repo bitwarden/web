@@ -12,7 +12,6 @@ import { ToasterModule } from 'angular2-toaster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AppComponent } from './app.component';
-import { ModalComponent } from './modal.component';
 
 import { AvatarComponent } from './components/avatar.component';
 import { PasswordRepromptComponent } from './components/password-reprompt.component';
@@ -357,7 +356,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         LinkSsoComponent,
         LockComponent,
         LoginComponent,
-        ModalComponent,
         NavbarComponent,
         OptionsComponent,
         OrgAccountComponent,
@@ -470,7 +468,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         I18nPipe,
         SearchPipe,
         UserNamePipe,
-        ModalComponent,
         NavbarComponent,
         FooterComponent,
         OrganizationPlansComponent,
