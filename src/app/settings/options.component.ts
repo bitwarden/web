@@ -8,13 +8,16 @@ import { ToasterService } from 'angular2-toaster';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.service';
 
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
+import { PolicyType } from 'jslib-common/enums/policyType';
 import { Utils } from 'jslib-common/misc/utils';
+import { Policy } from 'jslib-common/models/domain/policy';
 
 @Component({
     selector: 'app-options',
@@ -29,13 +32,16 @@ export class OptionsComponent implements OnInit {
     locale: string;
     vaultTimeouts: any[];
     localeOptions: any[];
+    vaultTimeoutPolicy: Policy;
+    vaultTimeoutPolicyHours: number;
+    vaultTimeoutPolicyMinutes: number;
 
     private startingLocale: string;
 
     constructor(private storageService: StorageService, private stateService: StateService,
         private i18nService: I18nService, private toasterService: ToasterService,
         private vaultTimeoutService: VaultTimeoutService, private platformUtilsService: PlatformUtilsService,
-        private messagingService: MessagingService) {
+        private messagingService: MessagingService, private policyService: PolicyService) {
         this.vaultTimeouts = [
             { name: i18nService.t('oneMinute'), value: 1 },
             { name: i18nService.t('fiveMinutes'), value: 5 },
@@ -44,6 +50,7 @@ export class OptionsComponent implements OnInit {
             { name: i18nService.t('oneHour'), value: 60 },
             { name: i18nService.t('fourHours'), value: 240 },
             { name: i18nService.t('onRefresh'), value: -1 },
+            { name: i18nService.t('custom'), value: -2 },
         ];
         if (this.platformUtilsService.isDev()) {
             this.vaultTimeouts.push({ name: i18nService.t('never'), value: null });
@@ -69,6 +76,16 @@ export class OptionsComponent implements OnInit {
         this.enableGravatars = await this.storageService.get<boolean>('enableGravatars');
         this.enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
         this.locale = this.startingLocale = await this.storageService.get<string>(ConstantsService.localeKey);
+
+        const vaultTimeoutPolicy = await this.policyService.getAll(PolicyType.MaximumVaultTimeout);
+        if (vaultTimeoutPolicy.length > 0 && vaultTimeoutPolicy[0].enabled) { // TODO: Replace with policyService.policyAppliesToUser
+            this.vaultTimeoutPolicy = vaultTimeoutPolicy[0];
+            this.vaultTimeoutPolicyHours = Math.floor(this.vaultTimeoutPolicy.data.minutes / 60);
+            this.vaultTimeoutPolicyMinutes = this.vaultTimeoutPolicy.data.minutes % 60;
+
+            // TODO: Filter vaultTimeout options
+            this.vaultTimeouts = this.vaultTimeouts.filter(p => p.value <= this.vaultTimeoutPolicy.data.minutes && p.value != null && p.value != -1);
+        }
     }
 
     async submit() {

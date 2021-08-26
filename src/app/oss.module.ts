@@ -11,7 +11,6 @@ import { RouterModule } from '@angular/router';
 import { ToasterModule } from 'angular2-toaster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
-import { AppComponent } from './app.component';
 import { ModalComponent } from './modal.component';
 
 import { AvatarComponent } from './components/avatar.component';
@@ -307,7 +306,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         AdjustStorageComponent,
         ApiActionDirective,
         ApiKeyComponent,
-        AppComponent,
         AttachmentsComponent,
         AutofocusDirective,
         AvatarComponent,
