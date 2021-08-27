@@ -47,8 +47,7 @@ export class EmergencyAccessComponent implements OnInit {
     isOrganizationOwner: boolean;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private modalService: ModalService,
-        private platformUtilsService: PlatformUtilsService,
+        private modalService: ModalService, private platformUtilsService: PlatformUtilsService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
         private storageService: StorageService, private userService: UserService,
         private messagingService: MessagingService, private userNamePipe: UserNamePipe) { }

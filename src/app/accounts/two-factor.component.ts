@@ -9,10 +9,6 @@ import {
     Router,
 } from '@angular/router';
 
-import { TwoFactorOptionsComponent } from './two-factor-options.component';
-
-import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { AuthService } from 'jslib-common/abstractions/auth.service';
 import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
@@ -21,8 +17,13 @@ import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.se
 import { StateService } from 'jslib-common/abstractions/state.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 
-import { TwoFactorComponent as BaseTwoFactorComponent } from 'jslib-angular/components/two-factor.component';
 import { ModalService } from 'jslib-angular/services/modal.service';
+
+import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
+
+import { TwoFactorComponent as BaseTwoFactorComponent } from 'jslib-angular/components/two-factor.component';
+
+import { TwoFactorOptionsComponent } from './two-factor-options.component';
 
 @Component({
     selector: 'app-two-factor',

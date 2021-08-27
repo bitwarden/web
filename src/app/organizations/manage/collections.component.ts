@@ -5,9 +5,7 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { ToasterService } from 'angular2-toaster';
-import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
@@ -15,6 +13,8 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { CollectionData } from 'jslib-common/models/data/collectionData';
 import { Collection } from 'jslib-common/models/domain/collection';

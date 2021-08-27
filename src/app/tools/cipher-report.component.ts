@@ -11,9 +11,10 @@ import { Organization } from 'jslib-common/models/domain/organization';
 import { AddEditComponent as OrgAddEditComponent } from '../organizations/vault/add-edit.component';
 import { AddEditComponent } from '../vault/add-edit.component';
 
-import { ModalService } from 'jslib-angular/services/modal.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 @Directive()
 export class CipherReportComponent {

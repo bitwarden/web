@@ -1,6 +1,5 @@
 import {
     Component,
-    ComponentFactoryResolver,
     OnInit,
     ViewChild,
     ViewContainerRef
@@ -15,10 +14,11 @@ import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.se
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
+import { ModalService } from 'jslib-angular/services/modal.service';
+import { ValidationService } from 'jslib-angular/services/validation.service';
+
 import { PlanType } from 'jslib-common/enums/planType';
 import { ProviderUserType } from 'jslib-common/enums/providerUserType';
-
-import { ValidationService } from 'jslib-angular/services/validation.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 import {
@@ -27,7 +27,6 @@ import {
 
 import { ProviderService } from '../services/provider.service';
 
-import { ModalService } from 'jslib-angular/services/modal.service';
 import { AddOrganizationComponent } from './add-organization.component';
 
 const DisallowedPlanTypes = [PlanType.Free, PlanType.FamiliesAnnually2019, PlanType.FamiliesAnnually];

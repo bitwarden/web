@@ -34,10 +34,8 @@ export class BulkActionsComponent {
     @ViewChild('bulkMoveTemplate', { read: ViewContainerRef, static: true }) bulkMoveModalRef: ViewContainerRef;
     @ViewChild('bulkShareTemplate', { read: ViewContainerRef, static: true }) bulkShareModalRef: ViewContainerRef;
 
-    constructor(private toasterService: ToasterService,
-        private i18nService: I18nService,
-        private modalService: ModalService,
-        private passwordRepromptService: PasswordRepromptService) { }
+    constructor(private toasterService: ToasterService, private i18nService: I18nService,
+        private modalService: ModalService, private passwordRepromptService: PasswordRepromptService) { }
 
     async bulkDelete() {
         if (!await this.promptPassword()) {

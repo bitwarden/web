@@ -1,6 +1,5 @@
 import {
     Component,
-    ComponentFactoryResolver,
     OnInit,
     ViewChild,
     ViewContainerRef
@@ -17,6 +16,7 @@ import { SearchService } from 'jslib-common/abstractions/search.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
+import { ModalService } from 'jslib-angular/services/modal.service';
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
 import { ProviderUserStatusType } from 'jslib-common/enums/providerUserStatusType';
@@ -32,7 +32,6 @@ import { ProviderUserBulkRequest } from 'jslib-common/models/request/provider/pr
 import { ProviderUserConfirmRequest } from 'jslib-common/models/request/provider/providerUserConfirmRequest';
 import { ProviderUserBulkResponse } from 'jslib-common/models/response/provider/providerUserBulkResponse';
 
-import { ModalService } from 'jslib-angular/services/modal.service';
 import { BasePeopleComponent } from 'src/app/common/base.people.component';
 import { BulkStatusComponent } from 'src/app/organizations/manage/bulk/bulk-status.component';
 import { EntityEventsComponent } from 'src/app/organizations/manage/entity-events.component';

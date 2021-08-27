@@ -1,5 +1,4 @@
 import {
-    ComponentFactoryResolver,
     Directive,
     ViewChild,
     ViewContainerRef
@@ -17,6 +16,8 @@ import { StorageService } from 'jslib-common/abstractions/storage.service';
 
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
+import { ModalService } from 'jslib-angular/services/modal.service';
+
 import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
 import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
 
@@ -31,7 +32,6 @@ import { ProviderUserUserDetailsResponse } from 'jslib-common/models/response/pr
 
 import { Utils } from 'jslib-common/misc/utils';
 
-import { ModalService } from 'jslib-angular/services/modal.service';
 import { UserConfirmComponent } from '../organizations/manage/user-confirm.component';
 
 type StatusType = OrganizationUserStatusType | ProviderUserStatusType;

@@ -16,7 +16,6 @@ import { Utils } from 'jslib-common/misc/utils';
 
 @Injectable()
 export class ModalService extends BaseModalService {
-
     el: any = null;
     modalOpen: boolean = false;
 
