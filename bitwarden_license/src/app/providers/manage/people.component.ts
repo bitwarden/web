@@ -1,6 +1,5 @@
 import {
     Component,
-    ComponentFactoryResolver,
     OnInit,
     ViewChild,
     ViewContainerRef
@@ -17,6 +16,7 @@ import { SearchService } from 'jslib-common/abstractions/search.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
+import { ModalService } from 'jslib-angular/services/modal.service';
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
 import { ProviderUserStatusType } from 'jslib-common/enums/providerUserStatusType';
@@ -33,7 +33,6 @@ import { ProviderUserConfirmRequest } from 'jslib-common/models/request/provider
 import { ProviderUserBulkResponse } from 'jslib-common/models/response/provider/providerUserBulkResponse';
 
 import { BasePeopleComponent } from 'src/app/common/base.people.component';
-import { ModalComponent } from 'src/app/modal.component';
 import { BulkStatusComponent } from 'src/app/organizations/manage/bulk/bulk-status.component';
 import { EntityEventsComponent } from 'src/app/organizations/manage/entity-events.component';
 import { BulkConfirmComponent } from './bulk/bulk-confirm.component';
@@ -59,13 +58,13 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
     accessEvents = false;
 
     constructor(apiService: ApiService, private route: ActivatedRoute,
-        i18nService: I18nService, componentFactoryResolver: ComponentFactoryResolver,
+        i18nService: I18nService, modalService: ModalService,
         platformUtilsService: PlatformUtilsService, toasterService: ToasterService,
         cryptoService: CryptoService, private userService: UserService, private router: Router,
         storageService: StorageService, searchService: SearchService, validationService: ValidationService,
         logService: LogService, searchPipe: SearchPipe, userNamePipe: UserNamePipe) {
         super(apiService, searchService, i18nService, platformUtilsService, toasterService, cryptoService,
-            storageService, validationService, componentFactoryResolver, logService, searchPipe, userNamePipe);
+            storageService, validationService, modalService, logService, searchPipe, userNamePipe);
     }
 
     ngOnInit() {
@@ -117,51 +116,29 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
         await this.apiService.postProviderUserConfirm(this.providerId, user.id, request);
     }
 
-    edit(user: ProviderUserUserDetailsResponse) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.addEditModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<UserAddEditComponent>(
-            UserAddEditComponent, this.addEditModalRef);
-
-        childComponent.name = this.userNamePipe.transform(user);
-        childComponent.providerId = this.providerId;
-        childComponent.providerUserId = user != null ? user.id : null;
-        childComponent.onSavedUser.subscribe(() => {
-            this.modal.close();
-            this.load();
-        });
-        childComponent.onDeletedUser.subscribe(() => {
-            this.modal.close();
-            this.removeUser(user);
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+    async edit(user: ProviderUserUserDetailsResponse) {
+        const [modal] = await this.modalService.openViewRef(UserAddEditComponent, this.addEditModalRef, comp => {
+            comp.name = this.userNamePipe.transform(user);
+            comp.providerId = this.providerId;
+            comp.providerUserId = user != null ? user.id : null;
+            comp.onSavedUser.subscribe(() => {
+                modal.close();
+                this.load();
+            });
+            comp.onDeletedUser.subscribe(() => {
+                modal.close();
+                this.removeUser(user);
+            });
         });
     }
 
     async events(user: ProviderUserUserDetailsResponse) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.eventsModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<EntityEventsComponent>(
-            EntityEventsComponent, this.eventsModalRef);
-
-        childComponent.name = this.userNamePipe.transform(user);
-        childComponent.providerId = this.providerId;
-        childComponent.entityId = user.id;
-        childComponent.showUser = false;
-        childComponent.entity = 'user';
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+        const [modal] = await this.modalService.openViewRef(EntityEventsComponent, this.eventsModalRef, comp => {
+            comp.name = this.userNamePipe.transform(user);
+            comp.providerId = this.providerId;
+            comp.entityId = user.id;
+            comp.showUser = false;
+            comp.entity = 'user';
         });
     }
 
@@ -170,21 +147,13 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
             return;
         }
 
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkRemoveModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show(BulkRemoveComponent, this.bulkRemoveModalRef);
-
-        childComponent.providerId = this.providerId;
-        childComponent.users = this.getCheckedUsers();
-
-        this.modal.onClosed.subscribe(async () => {
-            await this.load();
-            this.modal = null;
+        const [modal] = await this.modalService.openViewRef(BulkRemoveComponent, this.bulkRemoveModalRef, comp => {
+            comp.providerId = this.providerId;
+            comp.users = this.getCheckedUsers();
         });
+
+        await modal.onClosedPromise();
+        await this.load();
     }
 
     async bulkReinvite() {
@@ -216,49 +185,34 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
             return;
         }
 
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkConfirmModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show(BulkConfirmComponent, this.bulkConfirmModalRef);
-
-        childComponent.providerId = this.providerId;
-        childComponent.users = this.getCheckedUsers();
-
-        this.modal.onClosed.subscribe(async () => {
-            await this.load();
-            this.modal = null;
+        const [modal] = await this.modalService.openViewRef(BulkConfirmComponent, this.bulkConfirmModalRef, comp => {
+            comp.providerId = this.providerId;
+            comp.users = this.getCheckedUsers();
         });
+
+        await modal.onClosedPromise();
+        await this.load();
     }
 
     private async showBulkStatus(users: ProviderUserUserDetailsResponse[], filteredUsers: ProviderUserUserDetailsResponse[],
         request: Promise<ListResponse<ProviderUserBulkResponse>>, successfullMessage: string) {
 
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkStatusModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkStatusComponent>(
-            BulkStatusComponent, this.bulkStatusModalRef);
-
-        childComponent.loading = true;
+        const [modal, childComponent] = await this.modalService.openViewRef(BulkStatusComponent, this.bulkStatusModalRef, comp => {
+            comp.loading = true;
+        });
 
         // Workaround to handle closing the modal shortly after it has been opened
         let close = false;
-        this.modal.onShown.subscribe(() => {
+        modal.onShown.subscribe(() => {
             if (close) {
-                this.modal.close();
+                modal.close();
             }
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
         });
 
         try {
             const response = await request;
 
-            if (this.modal) {
+            if (modal) {
                 const keyedErrors: any = response.data.filter(r => r.error !== '').reduce((a, x) => ({ ...a, [x.id]: x.error }), {});
                 const keyedFilteredUsers: any = filteredUsers.reduce((a, x) => ({ ...a, [x.id]: x }), {});
 
@@ -278,9 +232,7 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
             }
         } catch {
             close = true;
-            if (this.modal) {
-                this.modal.close();
-            }
+            modal.close();
         }
     }
 }

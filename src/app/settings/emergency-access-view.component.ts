@@ -1,6 +1,5 @@
 import {
     Component,
-    ComponentFactoryResolver,
     OnInit,
     ViewChild,
     ViewContainerRef,
@@ -11,12 +10,12 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 
+import { ModalService } from 'jslib-angular/services/modal.service';
+
 import { CipherData } from 'jslib-common/models/data';
 import { Cipher, SymmetricCryptoKey } from 'jslib-common/models/domain';
 import { EmergencyAccessViewResponse } from 'jslib-common/models/response/emergencyAccessResponse';
 import { CipherView } from 'jslib-common/models/view/cipherView';
-
-import { ModalComponent } from '../modal.component';
 
 import { EmergencyAccessAttachmentsComponent } from './emergency-access-attachments.component';
 import { EmergencyAddEditComponent } from './emergency-add-edit.component';
@@ -32,10 +31,8 @@ export class EmergencyAccessViewComponent implements OnInit {
     id: string;
     ciphers: CipherView[] = [];
 
-    private modal: ModalComponent = null;
-
     constructor(private cipherService: CipherService, private cryptoService: CryptoService,
-        private componentFactoryResolver: ComponentFactoryResolver, private router: Router,
+        private modalService: ModalService, private router: Router,
         private route: ActivatedRoute, private apiService: ApiService) { }
 
     ngOnInit() {
@@ -50,20 +47,10 @@ export class EmergencyAccessViewComponent implements OnInit {
         });
     }
 
-    selectCipher(cipher: CipherView) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.cipherAddEditModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<EmergencyAddEditComponent>(EmergencyAddEditComponent, this.cipherAddEditModalRef);
-
-        childComponent.cipherId = cipher == null ? null : cipher.id;
-        childComponent.cipher = cipher;
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+    async selectCipher(cipher: CipherView) {
+        const [_, childComponent] = await this.modalService.openViewRef(EmergencyAddEditComponent, this.cipherAddEditModalRef, comp => {
+            comp.cipherId = cipher == null ? null : cipher.id;
+            comp.cipher = cipher;
         });
 
         return childComponent;
@@ -75,19 +62,9 @@ export class EmergencyAccessViewComponent implements OnInit {
     }
 
     async viewAttachments(cipher: CipherView) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.attachmentsModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<EmergencyAccessAttachmentsComponent>(EmergencyAccessAttachmentsComponent, this.attachmentsModalRef);
-
-        childComponent.cipher = cipher;
-        childComponent.emergencyAccessId = this.id;
-
-        this.modal.onClosed.subscribe(async () => {
-            this.modal = null;
+        await this.modalService.openViewRef(EmergencyAccessAttachmentsComponent, this.attachmentsModalRef, comp => {
+            comp.cipher = cipher;
+            comp.emergencyAccessId = this.id;
         });
     }
 

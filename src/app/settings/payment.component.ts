@@ -67,7 +67,7 @@ export class PaymentComponent implements OnInit {
         this.stripeScript.src = 'https://js.stripe.com/v3/';
         this.stripeScript.async = true;
         this.stripeScript.onload = () => {
-            this.stripe = (window as any).Stripe(process.env.ENV === 'production' && !platformUtilsService.isDev()  ?
+            this.stripe = (window as any).Stripe(process.env.ENV === 'cloud' && !platformUtilsService.isDev() ?
                 WebConstants.stripeLiveKey : WebConstants.stripeTestKey);
             this.stripeElements = this.stripe.elements();
             this.setStripeElement();
@@ -126,7 +126,7 @@ export class PaymentComponent implements OnInit {
         if (this.method === PaymentMethodType.PayPal) {
             window.setTimeout(() => {
                 (window as any).braintree.dropin.create({
-                    authorization: process.env.ENV === 'production' ?
+                    authorization: process.env.ENV === 'cloud' ?
                         WebConstants.btProductionKey : WebConstants.btSandboxKey,
                     container: '#bt-dropin-container',
                     paymentOptionPriority: ['paypal'],

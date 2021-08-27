@@ -1,6 +1,5 @@
 import {
     Component,
-    ComponentFactoryResolver,
     OnInit,
     ViewChild,
     ViewContainerRef
@@ -15,17 +14,16 @@ import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.se
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
+import { ModalService } from 'jslib-angular/services/modal.service';
+import { ValidationService } from 'jslib-angular/services/validation.service';
+
 import { PlanType } from 'jslib-common/enums/planType';
 import { ProviderUserType } from 'jslib-common/enums/providerUserType';
 
-import { ValidationService } from 'jslib-angular/services/validation.service';
-
+import { Organization } from 'jslib-common/models/domain/organization';
 import {
     ProviderOrganizationOrganizationDetailsResponse
 } from 'jslib-common/models/response/provider/providerOrganizationResponse';
-import { Organization } from 'jslib-common/models/domain/organization';
-
-import { ModalComponent } from 'src/app/modal.component';
 
 import { ProviderService } from '../services/provider.service';
 
@@ -49,7 +47,6 @@ export class ClientsComponent implements OnInit {
 
     clients: ProviderOrganizationOrganizationDetailsResponse[];
     pagedClients: ProviderOrganizationOrganizationDetailsResponse[];
-    modal: ModalComponent;
 
     protected didScroll = false;
     protected pageSize = 100;
@@ -60,8 +57,8 @@ export class ClientsComponent implements OnInit {
         private apiService: ApiService, private searchService: SearchService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
         private toasterService: ToasterService, private validationService: ValidationService,
-        private providerService: ProviderService, private componentFactoryResolver: ComponentFactoryResolver,
-        private logService: LogService) { }
+        private providerService: ProviderService, private logService: LogService,
+        private modalService: ModalService) { }
 
     async ngOnInit() {
         this.route.parent.params.subscribe(async params => {
@@ -88,7 +85,7 @@ export class ClientsComponent implements OnInit {
                 .map(o => o.id));
         this.addableOrganizations = candidateOrgs.filter(o => allowedOrgsIds.includes(o.id));
 
-        this.showAddExisting = this.addableOrganizations.length != 0;
+        this.showAddExisting = this.addableOrganizations.length !== 0;
         this.loading = false;
     }
 
@@ -126,24 +123,18 @@ export class ClientsComponent implements OnInit {
         this.didScroll = this.pagedClients.length > this.pageSize;
     }
 
-    addExistingOrganization() {
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.addModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<AddOrganizationComponent>(AddOrganizationComponent, this.addModalRef);
-
-        childComponent.providerId = this.providerId;
-        childComponent.organizations = this.addableOrganizations;
-        childComponent.onAddedOrganization.subscribe(async () => {
-            try {
-                await this.load();
-                this.modal.close();
-            } catch (e) {
-                this.logService.error(`Handled exception: ${e}`);
-            }
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+    async addExistingOrganization() {
+        const [modal, childComponent] = await this.modalService.openViewRef(AddOrganizationComponent, this.addModalRef, comp => {
+            comp.providerId = this.providerId;
+            comp.organizations = this.addableOrganizations;
+            comp.onAddedOrganization.subscribe(async () => {
+                try {
+                    await this.load();
+                    modal.close();
+                } catch (e) {
+                    this.logService.error(`Handled exception: ${e}`);
+                }
+            });
         });
     }
 
