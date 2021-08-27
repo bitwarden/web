@@ -1,13 +1,12 @@
-import {
-    Component,
-    ComponentFactoryResolver,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { AuditService } from 'jslib-common/abstractions/audit.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 import {
     ExposedPasswordsReportComponent as BaseExposedPasswordsReportComponent,
@@ -24,9 +23,9 @@ export class ExposedPasswordsReportComponent extends BaseExposedPasswordsReportC
     manageableCiphers: Cipher[];
 
     constructor(cipherService: CipherService, auditService: AuditService,
-        componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
+        modalService: ModalService, messagingService: MessagingService,
         userService: UserService, private route: ActivatedRoute) {
-        super(cipherService, auditService, componentFactoryResolver, messagingService, userService);
+        super(cipherService, auditService, modalService, messagingService, userService);
     }
 
     ngOnInit() {
