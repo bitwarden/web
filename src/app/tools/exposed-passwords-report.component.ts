@@ -1,6 +1,5 @@
 import {
     Component,
-    ComponentFactoryResolver,
     OnInit,
 } from '@angular/core';
 
@@ -8,6 +7,8 @@ import { AuditService } from 'jslib-common/abstractions/audit.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { CipherView } from 'jslib-common/models/view/cipherView';
 
@@ -23,9 +24,9 @@ export class ExposedPasswordsReportComponent extends CipherReportComponent imple
     exposedPasswordMap = new Map<string, number>();
 
     constructor(protected cipherService: CipherService, protected auditService: AuditService,
-        componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
+        modalService: ModalService, messagingService: MessagingService,
         userService: UserService) {
-        super(componentFactoryResolver, userService, messagingService, true);
+        super(modalService, userService, messagingService, true);
     }
 
     ngOnInit() {

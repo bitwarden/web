@@ -1,5 +1,4 @@
 import {
-    ComponentFactoryResolver,
     Directive,
     ViewChild,
     ViewContainerRef
@@ -17,6 +16,8 @@ import { StorageService } from 'jslib-common/abstractions/storage.service';
 
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
+import { ModalService } from 'jslib-angular/services/modal.service';
+
 import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
 import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
 
@@ -31,7 +32,6 @@ import { ProviderUserUserDetailsResponse } from 'jslib-common/models/response/pr
 
 import { Utils } from 'jslib-common/misc/utils';
 
-import { ModalComponent } from '../modal.component';
 import { UserConfirmComponent } from '../organizations/manage/user-confirm.component';
 
 type StatusType = OrganizationUserStatusType | ProviderUserStatusType;
@@ -86,7 +86,6 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
 
     protected didScroll = false;
     protected pageSize = 100;
-    protected modal: ModalComponent = null;
 
     private pagedUsersCount = 0;
 
@@ -94,7 +93,7 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
         protected i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
         protected toasterService: ToasterService, protected cryptoService: CryptoService,
         private storageService: StorageService, protected validationService: ValidationService,
-        protected componentFactoryResolver: ComponentFactoryResolver, private logService: LogService,
+        protected modalService: ModalService, private logService: LogService,
         private searchPipe: SearchPipe, protected userNamePipe: UserNamePipe) { }
 
     abstract edit(user: UserType): void;
@@ -248,29 +247,18 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
 
             const autoConfirm = await this.storageService.get<boolean>(ConstantsService.autoConfirmFingerprints);
             if (autoConfirm == null || !autoConfirm) {
-                if (this.modal != null) {
-                    this.modal.close();
-                }
-
-                const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-                this.modal = this.confirmModalRef.createComponent(factory).instance;
-                const childComponent = this.modal.show<UserConfirmComponent>(
-                    UserConfirmComponent, this.confirmModalRef);
-
-                childComponent.name = this.userNamePipe.transform(user);
-                childComponent.userId = user != null ? user.userId : null;
-                childComponent.publicKey = publicKey;
-                childComponent.onConfirmedUser.subscribe(async () => {
-                    try {
-                        await confirmUser(publicKey);
-                        this.modal.close();
-                    } catch (e) {
-                        this.logService.error(`Handled exception: ${e}`);
-                    }
-                });
-
-                this.modal.onClosed.subscribe(() => {
-                    this.modal = null;
+                const [modal] = await this.modalService.openViewRef(UserConfirmComponent, this.confirmModalRef, comp => {
+                    comp.name = this.userNamePipe.transform(user);
+                    comp.userId = user != null ? user.userId : null;
+                    comp.publicKey = publicKey;
+                    comp.onConfirmedUser.subscribe(async () => {
+                        try {
+                            await confirmUser(publicKey);
+                            modal.close();
+                        } catch (e) {
+                            this.logService.error(`Handled exception: ${e}`);
+                        }
+                    });
                 });
                 return;
             }

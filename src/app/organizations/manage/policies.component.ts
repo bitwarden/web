@@ -1,6 +1,5 @@
 import {
     Component,
-    ComponentFactoryResolver,
     OnInit,
     ViewChild,
     ViewContainerRef,
@@ -18,9 +17,9 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { PolicyResponse } from 'jslib-common/models/response/policyResponse';
+import { ModalService } from 'jslib-angular/services/modal.service';
 
-import { ModalComponent } from '../../modal.component';
+import { PolicyResponse } from 'jslib-common/models/response/policyResponse';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 
@@ -46,12 +45,11 @@ export class PoliciesComponent implements OnInit {
 
     private enterpriseUrl: string;
 
-    private modal: ModalComponent = null;
     private orgPolicies: PolicyResponse[];
     private policiesEnabledMap: Map<PolicyType, boolean> = new Map<PolicyType, boolean>();
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
+        private i18nService: I18nService, private modalService: ModalService,
         private platformUtilsService: PlatformUtilsService, private userService: UserService,
         private policyListService: PolicyListService, private router: Router,
         private environmentService: EnvironmentService) { }
@@ -106,29 +104,17 @@ export class PoliciesComponent implements OnInit {
         this.loading = false;
     }
 
-    edit(policy: BasePolicy) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.editModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<PolicyEditComponent>(
-            PolicyEditComponent, this.editModalRef);
-
-        childComponent.policy = policy;
-        childComponent.organizationId = this.organizationId;
-        childComponent.policiesEnabledMap = this.policiesEnabledMap;
-        childComponent.onSavedPolicy.subscribe(() => {
-            this.modal.close();
-            this.load();
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+    async edit(policy: BasePolicy) {
+        const [modal] = await this.modalService.openViewRef(PolicyEditComponent, this.editModalRef, comp => {
+            comp.policy = policy;
+            comp.organizationId = this.organizationId;
+            comp.policiesEnabledMap = this.policiesEnabledMap;
+            comp.onSavedPolicy.subscribe(() => {
+                modal.close();
+                this.load();
+            });
         });
     }
-
 
     // Remove when removing deprecation warning
     async goToEnterprisePortal() {
