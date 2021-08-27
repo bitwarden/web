@@ -2,7 +2,7 @@
     <div class="card-body">
         <button type="button" class="close" appA11yTitle="{{'cancel' | i18n}}" (click)="cancel()"><span
                 aria-hidden="true">&times;</span></button>
-        <h2>{{'configureSeatAutoscaling' | i18n}}</h2>
+        <h2>{{'addSeatsOnInvitation' | i18n}}</h2>
         <small class="d-block text-muted mb-4">{{'autoscaleDesc' | i18n}}</small>
         <div class="row">
             <div class="form-group col-6">
@@ -10,13 +10,13 @@
                     <input id="enableSeatAutoscaling" class="form-check-input" type="checkbox"
                         name="EnableSeatAutoscaling" [(ngModel)]="enableSeatAutoscaling"
                         (change)="enableAutoscalingChanged()">
-                    <label for="enableSeatAutoscaling">{{'turnOn' | i18n}}</label>
+                    <label for="enableSeatAutoscaling">{{'enable' | i18n}}</label>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="form-group col-6">
-                <label for="maxAutoscaleSeats">{{'maxAutoscaleSeats' | i18n}}</label>
+                <label for="maxAutoscaleSeats">{{'maxSeatLimit' | i18n}}</label>
                 <input id="maxAutoscaleSeats" class="form-control" type="number" name="MaxAutoscaleSeats"
                     [disabled]="!enableSeatAutoscaling" [(ngModel)]="maxAutoscaleSeats"
                     [min]="maxAutoscaleSeats == null ? 1 : maxAutoscaleSeats" step="1">
