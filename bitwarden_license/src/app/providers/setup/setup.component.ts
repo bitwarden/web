@@ -63,7 +63,7 @@ export class SetupComponent implements OnInit {
 
             this.providerId = qParams.providerId;
             this.token = qParams.token;
-            
+
             // Check if provider exists, redirect if it does
             try {
                 const provider = await this.apiService.getProvider(this.providerId);

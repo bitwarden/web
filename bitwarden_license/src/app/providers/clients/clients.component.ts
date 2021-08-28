@@ -20,10 +20,10 @@ import { ProviderUserType } from 'jslib-common/enums/providerUserType';
 
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
+import { Organization } from 'jslib-common/models/domain/organization';
 import {
     ProviderOrganizationOrganizationDetailsResponse
 } from 'jslib-common/models/response/provider/providerOrganizationResponse';
-import { Organization } from 'jslib-common/models/domain/organization';
 
 import { ModalComponent } from 'src/app/modal.component';
 
@@ -88,7 +88,7 @@ export class ClientsComponent implements OnInit {
                 .map(o => o.id));
         this.addableOrganizations = candidateOrgs.filter(o => allowedOrgsIds.includes(o.id));
 
-        this.showAddExisting = this.addableOrganizations.length != 0;
+        this.showAddExisting = this.addableOrganizations.length !== 0;
         this.loading = false;
     }
 
