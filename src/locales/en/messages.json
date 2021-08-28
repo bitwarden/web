@@ -2875,17 +2875,15 @@
   "enterInstallationId": {
     "message": "Enter your installation id"
   },
-  "addSeatsOnInvitation": {
-    "message": "Add Seats on Invitation",
-    "description": "Seat = User Seat. Change the auto scaling behavior of the organization"
-  },
-  "autoscaleDesc": {
-    "message": "Automatically add seats to your subscription when inviting users. New seats will result in an immediate prorated charge.",
-    "description": "Seat = User Seat"
+  "limitSubscriptionDesc": {
+    "message": "Set a seat limit for your subscription. Once this limit is reached, you will not be able to invite new users."
   },
   "maxSeatLimit": {
     "message": "Maximum Seat Limit (optional)",
     "description": "Upper limit of seats to allow through autoscaling"
+  },
+  "maxBillYouWouldReceive": {
+    "message": "Max bill you would receive"
   },
   "enabledUnlimitedAutoscaling": {
     "message": "Enabled unlimited user seat autoscaling."
@@ -2910,6 +2908,9 @@
     "message": "Remove Seats",
     "description": "Seat = User Seat"
   },
+  "subscriptionDesc": {
+    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+  },
   "subscriptionUserSeats": {
     "message": "Your subscription allows for a total of $COUNT$ users.",
     "placeholders": {
@@ -2919,27 +2920,41 @@
       }
     }
   },
+  "limitSubscription": {
+    "message": "Limit Subscription (Optional)"
+  },
+  "subscriptionSeats": {
+    "message": "Subscription Seats"
+  },
+  "subscriptionUpdated": {
+    "message": "Subscription updated"
+  },
+  "additionalOptions": {
+    "message": "Additional Options"
+  },
+  "additionalOptionsDesc": {
+    "message": "For additional help in managing your subscription, please contact Customer Support."
+  },
   "subscriptionUserSeatsUnlimitedAutoscale": {
-    "message": "Your subscription allows for a total of $COUNT$ users. Your subscription will scale to allow any number of invited users.",
+    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+  },
+  "subscriptionUserSeatsLimitedAutoscale": {
+    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users until your $MAX$ seat limit is reached.",
     "placeholders": {
-      "count": {
+      "max": {
         "content": "$1",
         "example": "50"
       }
     }
   },
-  "subscriptionUserSeatsLimitedAutoscale": {
-    "message": "Your subscription allows for a total of $COUNT$ users. Your subscription will scale automatically to maximum of $MAX$ users.",
+  "subscriptionMaxReached": {
+    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. You cannot invite more than $COUNT$ users without increasing your subscription seats.",
     "placeholders": {
       "count": {
-        "content": "$1",
-        "example": "50"
-      },
-      "max": {
-        "content": "$2",
-        "example": "50"
-      }
-    }
+            "content": "$1",
+            "example": "50"
+          }
+        }
   },
   "seatsToAdd": {
     "message": "Seats To Add"
