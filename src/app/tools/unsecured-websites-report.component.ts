@@ -1,12 +1,13 @@
 import {
     Component,
-    ComponentFactoryResolver,
     OnInit,
 } from '@angular/core';
 
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { CipherType } from 'jslib-common/enums/cipherType';
 
@@ -19,9 +20,9 @@ import { CipherReportComponent } from './cipher-report.component';
     templateUrl: 'unsecured-websites-report.component.html',
 })
 export class UnsecuredWebsitesReportComponent extends CipherReportComponent implements OnInit {
-    constructor(protected cipherService: CipherService, componentFactoryResolver: ComponentFactoryResolver,
+    constructor(protected cipherService: CipherService, modalService: ModalService,
         messagingService: MessagingService, userService: UserService) {
-        super(componentFactoryResolver, userService, messagingService, true);
+        super(modalService, userService, messagingService, true);
     }
 
     async ngOnInit() {

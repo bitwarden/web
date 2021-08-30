@@ -34,6 +34,7 @@ import { ProductType } from 'jslib-common/enums/productType';
 import { OrganizationCreateRequest } from 'jslib-common/models/request/organizationCreateRequest';
 import { OrganizationKeysRequest } from 'jslib-common/models/request/organizationKeysRequest';
 import { OrganizationUpgradeRequest } from 'jslib-common/models/request/organizationUpgradeRequest';
+import { ProviderOrganizationCreateRequest } from 'jslib-common/models/request/provider/providerOrganizationCreateRequest';
 
 import { PlanResponse } from 'jslib-common/models/response/planResponse';
 
@@ -62,6 +63,7 @@ export class OrganizationPlansComponent implements OnInit {
     additionalSeats: number = 0;
     name: string;
     billingEmail: string;
+    clientOwnerEmail: string;
     businessName: string;
     productTypes = ProductType;
     formPromise: Promise<any>;
@@ -85,6 +87,12 @@ export class OrganizationPlansComponent implements OnInit {
                 this.ownedBusiness = true;
             }
         }
+
+        if (this.providerId) {
+            this.ownedBusiness = true;
+            this.changedOwnedBusiness();
+        }
+
         this.loading = false;
     }
 
@@ -331,9 +339,12 @@ export class OrganizationPlansComponent implements OnInit {
         }
 
         if (this.providerId) {
+            const providerRequest = new ProviderOrganizationCreateRequest(this.clientOwnerEmail, request);
             const providerKey = await this.cryptoService.getProviderKey(this.providerId);
-            request.key = (await this.cryptoService.encrypt(orgKey.key, providerKey)).encryptedString;
-            return (await this.apiService.postProviderCreateOrganization(this.providerId, request)).id;
+            providerRequest.organizationCreateRequest.key = (await this.cryptoService.encrypt(orgKey.key, providerKey)).encryptedString;
+            const orgId = (await this.apiService.postProviderCreateOrganization(this.providerId, providerRequest)).organizationId;
+
+            return orgId;
         } else {
             return (await this.apiService.postOrganization(request)).id;
         }

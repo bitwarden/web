@@ -1,7 +1,6 @@
 import {
     ChangeDetectorRef,
     Component,
-    ComponentFactoryResolver,
     NgZone,
     OnDestroy,
     OnInit,
@@ -16,8 +15,6 @@ import {
 import { CipherType } from 'jslib-common/enums/cipherType';
 
 import { CipherView } from 'jslib-common/models/view/cipherView';
-
-import { ModalComponent } from '../modal.component';
 
 import { OrganizationsComponent } from '../settings/organizations.component';
 import { UpdateKeyComponent } from '../settings/update-key.component';
@@ -38,6 +35,7 @@ import { TokenService } from 'jslib-common/abstractions/token.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 const BroadcasterSubscriptionId = 'VaultComponent';
 
@@ -68,11 +66,9 @@ export class VaultComponent implements OnInit, OnDestroy {
     deleted: boolean = false;
     trashCleanupWarning: string = null;
 
-    modal: ModalComponent = null;
-
     constructor(private syncService: SyncService, private route: ActivatedRoute,
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
-        private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
+        private i18nService: I18nService, private modalService: ModalService,
         private tokenService: TokenService, private cryptoService: CryptoService,
         private messagingService: MessagingService, private userService: UserService,
         private platformUtilsService: PlatformUtilsService, private broadcasterService: BroadcasterService,
@@ -87,6 +83,10 @@ export class VaultComponent implements OnInit, OnDestroy {
 
         const queryParamsSub = this.route.queryParams.subscribe(async params => {
             await this.syncService.fullSync(false);
+
+            if (await this.userService.getForcePasswordReset()) {
+                this.router.navigate(['update-temp-password']);
+            }
 
             this.showUpdateKey = !(await this.cryptoService.hasEncKey());
             const canAccessPremium = await this.userService.canAccessPremium();
@@ -228,22 +228,15 @@ export class VaultComponent implements OnInit, OnDestroy {
             }
         }
 
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.attachmentsModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<AttachmentsComponent>(AttachmentsComponent, this.attachmentsModalRef);
-
-        childComponent.cipherId = cipher.id;
         let madeAttachmentChanges = false;
-        childComponent.onUploadedAttachment.subscribe(() => madeAttachmentChanges = true);
-        childComponent.onDeletedAttachment.subscribe(() => madeAttachmentChanges = true);
-        childComponent.onReuploadedAttachment.subscribe(() => madeAttachmentChanges = true);
+        const [modal] = await this.modalService.openViewRef(AttachmentsComponent, this.attachmentsModalRef, comp => {
+            comp.cipherId = cipher.id;
+            comp.onUploadedAttachment.subscribe(() => madeAttachmentChanges = true);
+            comp.onDeletedAttachment.subscribe(() => madeAttachmentChanges = true);
+            comp.onReuploadedAttachment.subscribe(() => madeAttachmentChanges = true);
+        });
 
-        this.modal.onClosed.subscribe(async () => {
-            this.modal = null;
+        modal.onClosed.subscribe(async () => {
             if (madeAttachmentChanges) {
                 await this.ciphersComponent.refresh();
             }
@@ -251,96 +244,54 @@ export class VaultComponent implements OnInit, OnDestroy {
         });
     }
 
-    shareCipher(cipher: CipherView) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.shareModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<ShareComponent>(ShareComponent, this.shareModalRef);
-
-        childComponent.cipherId = cipher.id;
-        childComponent.onSharedCipher.subscribe(async () => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-
-        this.modal.onClosed.subscribe(async () => {
-            this.modal = null;
+    async shareCipher(cipher: CipherView) {
+        const [modal] = await this.modalService.openViewRef(ShareComponent, this.shareModalRef, comp => {
+            comp.cipherId = cipher.id;
+            comp.onSharedCipher.subscribe(async () => {
+                modal.close();
+                await this.ciphersComponent.refresh();
+            });
         });
     }
 
-    editCipherCollections(cipher: CipherView) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.collectionsModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<CollectionsComponent>(CollectionsComponent, this.collectionsModalRef);
-
-        childComponent.cipherId = cipher.id;
-        childComponent.onSavedCollections.subscribe(async () => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-
-        this.modal.onClosed.subscribe(async () => {
-            this.modal = null;
+    async editCipherCollections(cipher: CipherView) {
+        const [modal] = await this.modalService.openViewRef(CollectionsComponent, this.collectionsModalRef, comp => {
+            comp.cipherId = cipher.id;
+            comp.onSavedCollections.subscribe(async () => {
+                modal.close();
+                await this.ciphersComponent.refresh();
+            });
         });
     }
 
     async addFolder() {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.folderAddEditModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<FolderAddEditComponent>(
-            FolderAddEditComponent, this.folderAddEditModalRef);
-
-        childComponent.folderId = null;
-        childComponent.onSavedFolder.subscribe(async () => {
-            this.modal.close();
-            await this.groupingsComponent.loadFolders();
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+        const [modal] = await this.modalService.openViewRef(FolderAddEditComponent, this.folderAddEditModalRef, comp => {
+            comp.folderId = null;
+            comp.onSavedFolder.subscribe(async () => {
+                modal.close();
+                await this.groupingsComponent.loadFolders();
+            });
         });
     }
 
     async editFolder(folderId: string) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.folderAddEditModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<FolderAddEditComponent>(
-            FolderAddEditComponent, this.folderAddEditModalRef);
-
-        childComponent.folderId = folderId;
-        childComponent.onSavedFolder.subscribe(async () => {
-            this.modal.close();
-            await this.groupingsComponent.loadFolders();
-        });
-        childComponent.onDeletedFolder.subscribe(async () => {
-            this.modal.close();
-            await this.groupingsComponent.loadFolders();
-            await this.filterFolder('none');
-            this.groupingsComponent.selectedFolderId = null;
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+        const [modal] = await this.modalService.openViewRef(FolderAddEditComponent, this.folderAddEditModalRef, comp => {
+            comp.folderId = folderId;
+            comp.onSavedFolder.subscribe(async () => {
+                modal.close();
+                await this.groupingsComponent.loadFolders();
+            });
+            comp.onDeletedFolder.subscribe(async () => {
+                modal.close();
+                await this.groupingsComponent.loadFolders();
+                await this.filterFolder('none');
+                this.groupingsComponent.selectedFolderId = null;
+            });
         });
     }
 
-    addCipher() {
-        const component = this.editCipher(null);
+    async addCipher() {
+        const component = await this.editCipher(null);
         component.type = this.type;
         component.folderId = this.folderId === 'none' ? null : this.folderId;
         if (this.collectionId != null) {
@@ -352,54 +303,33 @@ export class VaultComponent implements OnInit, OnDestroy {
         }
     }
 
-    editCipher(cipher: CipherView) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.cipherAddEditModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<AddEditComponent>(
-            AddEditComponent, this.cipherAddEditModalRef);
-
-        childComponent.cipherId = cipher == null ? null : cipher.id;
-        childComponent.onSavedCipher.subscribe(async (c: CipherView) => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-        childComponent.onDeletedCipher.subscribe(async (c: CipherView) => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-        childComponent.onRestoredCipher.subscribe(async (c: CipherView) => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+    async editCipher(cipher: CipherView) {
+        const [modal, childComponent] = await this.modalService.openViewRef(AddEditComponent, this.cipherAddEditModalRef, comp => {
+            comp.cipherId = cipher == null ? null : cipher.id;
+            comp.onSavedCipher.subscribe(async (c: CipherView) => {
+                modal.close();
+                await this.ciphersComponent.refresh();
+            });
+            comp.onDeletedCipher.subscribe(async (c: CipherView) => {
+                modal.close();
+                await this.ciphersComponent.refresh();
+            });
+            comp.onRestoredCipher.subscribe(async (c: CipherView) => {
+                modal.close();
+                await this.ciphersComponent.refresh();
+            });
         });
 
         return childComponent;
     }
 
-    cloneCipher(cipher: CipherView) {
-        const component = this.editCipher(cipher);
+    async cloneCipher(cipher: CipherView) {
+        const component = await this.editCipher(cipher);
         component.cloneMode = true;
     }
 
-    updateKey() {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.updateKeyModalRef.createComponent(factory).instance;
-        this.modal.show<UpdateKeyComponent>(UpdateKeyComponent, this.updateKeyModalRef);
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
-        });
+    async updateKey() {
+        await this.modalService.openViewRef(UpdateKeyComponent, this.updateKeyModalRef);
     }
 
     private clearFilters() {

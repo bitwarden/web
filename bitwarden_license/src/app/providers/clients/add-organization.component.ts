@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 
+import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
@@ -18,6 +19,7 @@ import { ProviderService } from '../services/provider.service';
 import { Organization } from 'jslib-common/models/domain/organization';
 import { Provider } from 'jslib-common/models/domain/provider';
 
+import { PlanType } from 'jslib-common/enums/planType';
 
 @Component({
     selector: 'provider-add-organization',
@@ -26,16 +28,17 @@ import { Provider } from 'jslib-common/models/domain/provider';
 export class AddOrganizationComponent implements OnInit {
 
     @Input() providerId: string;
+    @Input() organizations: Organization[];
     @Output() onAddedOrganization = new EventEmitter();
 
     provider: Provider;
     formPromise: Promise<any>;
     loading = true;
-    organizations: Organization[];
 
     constructor(private userService: UserService, private providerService: ProviderService,
         private toasterService: ToasterService, private i18nService: I18nService,
-        private platformUtilsService: PlatformUtilsService, private validationService: ValidationService) { }
+        private platformUtilsService: PlatformUtilsService, private validationService: ValidationService,
+        private apiService: ApiService) { }
 
     async ngOnInit() {
         await this.load();
@@ -48,7 +51,6 @@ export class AddOrganizationComponent implements OnInit {
 
         this.provider = await this.userService.getProvider(this.providerId);
 
-        this.organizations = (await this.userService.getAllOrganizations()).filter(p => p.providerId == null);
         this.loading = false;
     }
 

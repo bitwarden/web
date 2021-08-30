@@ -1,7 +1,6 @@
 import {
     ChangeDetectorRef,
     Component,
-    ComponentFactoryResolver,
     NgZone,
     OnDestroy,
     OnInit,
@@ -20,13 +19,12 @@ import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 import { CipherView } from 'jslib-common/models/view/cipherView';
 
 import { CipherType } from 'jslib-common/enums/cipherType';
-
-import { ModalComponent } from '../../modal.component';
 
 import { EntityEventsComponent } from '../manage/entity-events.component';
 import { AddEditComponent } from './add-edit.component';
@@ -55,12 +53,10 @@ export class VaultComponent implements OnInit, OnDestroy {
     deleted: boolean = false;
     trashCleanupWarning: string = null;
 
-    modal: ModalComponent = null;
-
     constructor(private route: ActivatedRoute, private userService: UserService,
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
         private syncService: SyncService, private i18nService: I18nService,
-        private componentFactoryResolver: ComponentFactoryResolver, private messagingService: MessagingService,
+        private modalService: ModalService, private messagingService: MessagingService,
         private broadcasterService: BroadcasterService, private ngZone: NgZone,
         private platformUtilsService: PlatformUtilsService) { }
 
@@ -202,28 +198,22 @@ export class VaultComponent implements OnInit, OnDestroy {
         this.ciphersComponent.search(200);
     }
 
-    editCipherAttachments(cipher: CipherView) {
+    async editCipherAttachments(cipher: CipherView) {
         if (this.organization.maxStorageGb == null || this.organization.maxStorageGb === 0) {
             this.messagingService.send('upgradeOrganization', { organizationId: cipher.organizationId });
             return;
         }
 
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.attachmentsModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<AttachmentsComponent>(AttachmentsComponent, this.attachmentsModalRef);
-
-        childComponent.organization = this.organization;
-        childComponent.cipherId = cipher.id;
         let madeAttachmentChanges = false;
-        childComponent.onUploadedAttachment.subscribe(() => madeAttachmentChanges = true);
-        childComponent.onDeletedAttachment.subscribe(() => madeAttachmentChanges = true);
 
-        this.modal.onClosed.subscribe(async () => {
-            this.modal = null;
+        const [modal] = await this.modalService.openViewRef(AttachmentsComponent, this.attachmentsModalRef, comp => {
+            comp.organization = this.organization;
+            comp.cipherId = cipher.id;
+            comp.onUploadedAttachment.subscribe(() => madeAttachmentChanges = true);
+            comp.onDeletedAttachment.subscribe(() => madeAttachmentChanges = true);
+        });
+
+        modal.onClosed.subscribe(async () => {
             if (madeAttachmentChanges) {
                 await this.ciphersComponent.refresh();
             }
@@ -231,33 +221,23 @@ export class VaultComponent implements OnInit, OnDestroy {
         });
     }
 
-    editCipherCollections(cipher: CipherView) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.collectionsModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<CollectionsComponent>(CollectionsComponent, this.collectionsModalRef);
-
-        if (this.organization.canManageAllCollections) {
-            childComponent.collectionIds = cipher.collectionIds;
-            childComponent.collections = this.groupingsComponent.collections.filter(c => !c.readOnly);
-        }
-        childComponent.organization = this.organization;
-        childComponent.cipherId = cipher.id;
-        childComponent.onSavedCollections.subscribe(async () => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-
-        this.modal.onClosed.subscribe(async () => {
-            this.modal = null;
+    async editCipherCollections(cipher: CipherView) {
+        const [modal] = await this.modalService.openViewRef(CollectionsComponent, this.collectionsModalRef, comp => {
+            if (this.organization.canManageAllCollections) {
+                comp.collectionIds = cipher.collectionIds;
+                comp.collections = this.groupingsComponent.collections.filter(c => !c.readOnly);
+            }
+            comp.organization = this.organization;
+            comp.cipherId = cipher.id;
+            comp.onSavedCollections.subscribe(async () => {
+                modal.close();
+                await this.ciphersComponent.refresh();
+            });
         });
     }
 
-    addCipher() {
-        const component = this.editCipher(null);
+    async addCipher() {
+        const component = await this.editCipher(null);
         component.organizationId = this.organization.id;
         component.type = this.type;
         if (this.organization.canManageAllCollections) {
@@ -268,39 +248,29 @@ export class VaultComponent implements OnInit, OnDestroy {
         }
     }
 
-    editCipher(cipher: CipherView) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.cipherAddEditModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<AddEditComponent>(AddEditComponent, this.cipherAddEditModalRef);
-
-        childComponent.organization = this.organization;
-        childComponent.cipherId = cipher == null ? null : cipher.id;
-        childComponent.onSavedCipher.subscribe(async (c: CipherView) => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-        childComponent.onDeletedCipher.subscribe(async (c: CipherView) => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-        childComponent.onRestoredCipher.subscribe(async (c: CipherView) => {
-            this.modal.close();
-            await this.ciphersComponent.refresh();
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+    async editCipher(cipher: CipherView) {
+        const [modal, childComponent] = await this.modalService.openViewRef(AddEditComponent, this.cipherAddEditModalRef, comp => {
+            comp.organization = this.organization;
+            comp.cipherId = cipher == null ? null : cipher.id;
+            comp.onSavedCipher.subscribe(async (c: CipherView) => {
+                modal.close();
+                await this.ciphersComponent.refresh();
+            });
+            comp.onDeletedCipher.subscribe(async (c: CipherView) => {
+                modal.close();
+                await this.ciphersComponent.refresh();
+            });
+            comp.onRestoredCipher.subscribe(async (c: CipherView) => {
+                modal.close();
+                await this.ciphersComponent.refresh();
+            });
         });
 
         return childComponent;
     }
 
-    cloneCipher(cipher: CipherView) {
-        const component = this.editCipher(cipher);
+    async cloneCipher(cipher: CipherView) {
+        const component = await this.editCipher(cipher);
         component.cloneMode = true;
         component.organizationId = this.organization.id;
         if (this.organization.canManageAllCollections) {
@@ -312,23 +282,12 @@ export class VaultComponent implements OnInit, OnDestroy {
     }
 
     async viewEvents(cipher: CipherView) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.eventsModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<EntityEventsComponent>(
-            EntityEventsComponent, this.eventsModalRef);
-
-        childComponent.name = cipher.name;
-        childComponent.organizationId = this.organization.id;
-        childComponent.entityId = cipher.id;
-        childComponent.showUser = true;
-        childComponent.entity = 'cipher';
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+        await this.modalService.openViewRef(EntityEventsComponent, this.eventsModalRef, comp => {
+            comp.name = cipher.name;
+            comp.organizationId = this.organization.id;
+            comp.entityId = cipher.id;
+            comp.showUser = true;
+            comp.entity = 'cipher';
         });
     }
 

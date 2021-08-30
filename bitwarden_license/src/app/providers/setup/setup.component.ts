@@ -33,7 +33,6 @@ export class SetupComponent implements OnInit {
     token: string;
     name: string;
     billingEmail: string;
-    businessName: string;
 
     constructor(private router: Router, private toasterService: ToasterService,
         private i18nService: I18nService, private route: ActivatedRoute,
@@ -59,9 +58,21 @@ export class SetupComponent implements OnInit {
                 };
                 this.toasterService.popAsync(toast);
                 this.router.navigate(['/']);
-            } else {
-                this.providerId = qParams.providerId;
-                this.token = qParams.token;
+                return;
+            }
+
+            this.providerId = qParams.providerId;
+            this.token = qParams.token;
+
+            // Check if provider exists, redirect if it does
+            try {
+                const provider = await this.apiService.getProvider(this.providerId);
+                if (provider.name != null) {
+                    this.router.navigate(['/providers', provider.id], { replaceUrl: true });
+                }
+            } catch (e) {
+                this.validationService.showError(e);
+                this.router.navigate(['/']);
             }
         });
     }
@@ -80,12 +91,11 @@ export class SetupComponent implements OnInit {
             const request = new ProviderSetupRequest();
             request.name = this.name;
             request.billingEmail = this.billingEmail;
-            request.businessName = this.businessName;
             request.token = this.token;
             request.key = key;
 
             const provider = await this.apiService.postProviderSetup(this.providerId, request);
-            this.toasterService.popAsync('success', this.i18nService.t('providerSetup'));
+            this.toasterService.popAsync('success', null, this.i18nService.t('providerSetup'));
             await this.syncService.fullSync(true);
 
             this.router.navigate(['/providers', provider.id]);

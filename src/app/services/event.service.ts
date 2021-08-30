@@ -71,6 +71,9 @@ export class EventService {
             case EventType.User_ClientExportedVault:
                 msg = humanReadableMsg = this.i18nService.t('exportedVault');
                 break;
+            case EventType.User_UpdatedTempPassword:
+                msg = humanReadableMsg = this.i18nService.t('updatedMasterPassword');
+                break;
             // Cipher
             case EventType.Cipher_Created:
                 msg = this.i18nService.t('createdItemId', this.formatCipherId(ev, options));
@@ -215,6 +218,9 @@ export class EventService {
                 msg = this.i18nService.t('exportedOrganizationVault');
                 break;
             */
+            case EventType.Organization_VaultAccessed:
+                msg = humanReadableMsg = this.i18nService.t('vaultAccessedByProvider');
+                break;
             // Policies
             case EventType.Policy_Updated:
                 msg = this.i18nService.t('modifiedPolicyId', this.formatPolicyId(ev));
@@ -222,7 +228,7 @@ export class EventService {
                 const policies = await this.policyService.getAll();
                 const policy = policies.filter(p => p.id === ev.policyId)[0];
                 let p1 = this.getShortId(ev.policyId);
-                if (policy !== null) {
+                if (policy != null) {
                     p1 = PolicyType[policy.type];
                 }
 
@@ -256,6 +262,10 @@ export class EventService {
             case EventType.ProviderOrganization_Removed:
                 msg = this.i18nService.t('removedOrganizationId', this.formatProviderOrganizationId(ev));
                 humanReadableMsg = this.i18nService.t('removedOrganizationId', this.getShortId(ev.providerOrganizationId));
+                break;
+            case EventType.ProviderOrganization_VaultAccessed:
+                msg = this.i18nService.t('accessedClientVault', this.formatProviderOrganizationId(ev));
+                humanReadableMsg = this.i18nService.t('accessedClientVault', this.getShortId(ev.providerOrganizationId));
                 break;
             default:
                 break;

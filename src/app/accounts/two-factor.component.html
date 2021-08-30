@@ -35,7 +35,7 @@
                     </ng-container>
                     <ng-container *ngIf="selectedProviderType === providerType.WebAuthn">
                         <div id="web-authn-frame" class="mb-3">
-                            <iframe id="webauthn_iframe"></iframe>
+                            <iframe id="webauthn_iframe" [allow]="webAuthnAllow"></iframe>
                         </div>
                     </ng-container>
                     <ng-container *ngIf="selectedProviderType === providerType.Duo ||

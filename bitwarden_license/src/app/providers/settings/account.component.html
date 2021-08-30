@@ -18,11 +18,6 @@
                 <input id="billingEmail" class="form-control" type="text" name="BillingEmail"
                     [(ngModel)]="provider.billingEmail" [disabled]="selfHosted">
             </div>
-            <div class="form-group">
-                <label for="businessName">{{'businessName' | i18n}}</label>
-                <input id="businessName" class="form-control" type="text" name="BusinessName"
-                    [(ngModel)]="provider.businessName" [disabled]="selfHosted">
-            </div>
         </div>
         <div class="col-6">
             <app-avatar data="{{provider.name}}" dynamic="true" size="75" fontSize="35"></app-avatar>
