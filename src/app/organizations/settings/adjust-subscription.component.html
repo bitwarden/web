@@ -7,7 +7,7 @@
                     [(ngModel)]="newSeatCount" min="0" step="1" required>
                 <small class="d-block text-muted mb-4">
                     <strong>{{'total' | i18n}}:</strong> {{newSeatCount || 0}} &times; {{seatPrice | currency:'$'}} =
-                    {{adjustedSeatTotal | currency:'$'}} /{{interval | i18n}}
+                    {{adjustedSeatTotal | currency:'$'}} / {{interval | i18n}}
                 </small>
             </div>
         </div>
@@ -28,8 +28,8 @@
                     [(ngModel)]="newMaxSeats" [min]="newSeatCount == null ? 1 : newSeatCount" step="1"
                     [required]="limitSubscription">
                 <small class="d-block text-muted">
-                    <strong>{{'maxBillYouWouldReceive' | i18n}}:</strong> {{newMaxSeats || 0}} &times;
-                    {{seatPrice | currency:'$'}} = {{maxSeatTotal | currency:'$'}} /{{interval | i18n}}
+                    <strong>{{'maxSeatCost' | i18n}}:</strong> {{newMaxSeats || 0}} &times;
+                    {{seatPrice | currency:'$'}} = {{maxSeatTotal | currency:'$'}} / {{interval | i18n}}
                 </small>
             </div>
         </div>
