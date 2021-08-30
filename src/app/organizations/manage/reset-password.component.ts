@@ -1,5 +1,4 @@
 import {
-    AfterViewInit,
     Component,
     EventEmitter,
     Input,
@@ -17,6 +16,7 @@ import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { EncString } from 'jslib-common/models/domain/encString';
 import { MasterPasswordPolicyOptions } from 'jslib-common/models/domain/masterPasswordPolicyOptions';
 import { SymmetricCryptoKey } from 'jslib-common/models/domain/symmetricCryptoKey';
+
 import { OrganizationUserResetPasswordRequest } from 'jslib-common/models/request/organizationUserResetPasswordRequest';
 
 @Component({
@@ -48,26 +48,6 @@ export class ResetPasswordComponent implements OnInit {
 
     get loggedOutWarningName() {
         return this.name != null ? this.name : this.i18nService.t('thisUser');
-    }
-
-    getPasswordScoreAlertDisplay() {
-        if (this.enforcedPolicyOptions == null) {
-            return '';
-        }
-
-        let str: string;
-        switch (this.enforcedPolicyOptions.minComplexity) {
-            case 4:
-                str = this.i18nService.t('strong');
-                break;
-            case 3:
-                str = this.i18nService.t('good');
-                break;
-            default:
-                str = this.i18nService.t('weak');
-                break;
-        }
-        return str + ' (' + this.enforcedPolicyOptions.minComplexity + ')';
     }
 
     async generatePassword() {
