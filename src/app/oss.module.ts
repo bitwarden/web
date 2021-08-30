@@ -174,6 +174,7 @@ import { ProvidersComponent } from './providers/providers.component';
 
 import { CalloutComponent } from 'jslib-angular/components/callout.component';
 import { IconComponent } from 'jslib-angular/components/icon.component';
+import { VaultTimeoutInputComponent } from 'jslib-angular/components/settings/vault-timeout-input.component';
 
 import { A11yTitleDirective } from 'jslib-angular/directives/a11y-title.directive';
 import { ApiActionDirective } from 'jslib-angular/directives/api-action.directive';
@@ -454,6 +455,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         DisableSendPolicyComponent,
         SendOptionsPolicyComponent,
         ResetPasswordPolicyComponent,
+        VaultTimeoutInputComponent,
     ],
     exports: [
         A11yTitleDirective,

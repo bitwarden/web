@@ -5,16 +5,7 @@
 <form (ngSubmit)="submit()" ngNativeValidate>
     <div class="row">
         <div class="col-6">
-            <app-callout type="info" *ngIf="vaultTimeoutPolicy">
-                {{'vaultTimeoutPolicyInEffect' | i18n : vaultTimeoutPolicyHours : vaultTimeoutPolicyMinutes}}
-            </app-callout>
-            <div class="form-group">
-                <label for="vaultTimeout">{{'vaultTimeout' | i18n}}</label>
-                <select id="vaultTimeout" name="VaultTimeout" [(ngModel)]="vaultTimeout" class="form-control">
-                    <option *ngFor="let o of vaultTimeouts" [ngValue]="o.value">{{o.name}}</option>
-                </select>
-                <small class="form-text text-muted">{{'vaultTimeoutDesc' | i18n}}</small>
-            </div>
+            <app-vault-timeout-input [formControl]="vaultTimeout" ngDefaultControl></app-vault-timeout-input>
         </div>
     </div>
     <div class="form-group">
