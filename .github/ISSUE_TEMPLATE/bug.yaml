@@ -1,6 +1,5 @@
 name: Bug Report
 description: File a bug report
-title: "[Bug]: "
 labels: [bug]
 body:
   - type: markdown
@@ -47,12 +46,16 @@ body:
       multiple: true
       options:
         - Windows
-        - MacOS
+        - macOS
         - Linux
         - Android
         - iOS
     validations:
       required: true
+  - type: input
+    id: os-version
+    attributes:
+      label: What version of the operating system(s) are you seeing the problem on?
   - type: dropdown
     id: browsers
     attributes:
@@ -68,6 +71,10 @@ body:
         - Vivaldi
     validations:
       required: true
+  - type: input
+    id: browser-version
+    attributes:
+      label: What version of the browser(s) are you seeing the problem on?
   - type: input
     id: version
     attributes:
