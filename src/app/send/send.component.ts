@@ -1,6 +1,5 @@
 import {
     Component,
-    ComponentFactoryResolver,
     NgZone,
     ViewChild,
     ViewContainerRef,
@@ -12,8 +11,6 @@ import { SendComponent as BaseSendComponent } from 'jslib-angular/components/sen
 
 import { AddEditComponent } from './add-edit.component';
 
-import { ModalComponent } from '../modal.component';
-
 import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
@@ -23,6 +20,7 @@ import { SendService } from 'jslib-common/abstractions/send.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 const BroadcasterSubscriptionId = 'SendComponent';
 
@@ -33,12 +31,10 @@ const BroadcasterSubscriptionId = 'SendComponent';
 export class SendComponent extends BaseSendComponent {
     @ViewChild('sendAddEdit', { read: ViewContainerRef, static: true }) sendAddEditModalRef: ViewContainerRef;
 
-    modal: ModalComponent = null;
-
     constructor(sendService: SendService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, environmentService: EnvironmentService,
         ngZone: NgZone, searchService: SearchService, policyService: PolicyService, userService: UserService,
-        private componentFactoryResolver: ComponentFactoryResolver, private broadcasterService: BroadcasterService) {
+        private modalService: ModalService, private broadcasterService: BroadcasterService) {
         super(sendService, i18nService, platformUtilsService, environmentService, ngZone, searchService,
             policyService, userService);
     }
@@ -65,37 +61,26 @@ export class SendComponent extends BaseSendComponent {
         this.broadcasterService.unsubscribe(BroadcasterSubscriptionId);
     }
 
-    addSend() {
+    async addSend() {
         if (this.disableSend) {
             return;
         }
 
-        const component = this.editSend(null);
+        const component = await this.editSend(null);
         component.type = this.type;
     }
 
-    editSend(send: SendView) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.sendAddEditModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<AddEditComponent>(
-            AddEditComponent, this.sendAddEditModalRef);
-
-        childComponent.sendId = send == null ? null : send.id;
-        childComponent.onSavedSend.subscribe(async (s: SendView) => {
-            this.modal.close();
-            await this.load();
-        });
-        childComponent.onDeletedSend.subscribe(async (s: SendView) => {
-            this.modal.close();
-            await this.load();
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+    async editSend(send: SendView) {
+        const [modal, childComponent] = await this.modalService.openViewRef(AddEditComponent, this.sendAddEditModalRef, comp => {
+            childComponent.sendId = send == null ? null : send.id;
+            comp.onSavedSend.subscribe(async (s: SendView) => {
+                modal.close();
+                await this.load();
+            });
+            comp.onDeletedSend.subscribe(async (s: SendView) => {
+                modal.close();
+                await this.load();
+            });
         });
 
         return childComponent;

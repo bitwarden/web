@@ -1,6 +1,5 @@
 import {
     Component,
-    ComponentFactoryResolver,
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
@@ -10,12 +9,6 @@ import {
     Router,
 } from '@angular/router';
 
-import { TwoFactorOptionsComponent } from './two-factor-options.component';
-
-import { ModalComponent } from '../modal.component';
-
-import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { AuthService } from 'jslib-common/abstractions/auth.service';
 import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
@@ -24,7 +17,13 @@ import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.se
 import { StateService } from 'jslib-common/abstractions/state.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 
+import { ModalService } from 'jslib-angular/services/modal.service';
+
+import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
+
 import { TwoFactorComponent as BaseTwoFactorComponent } from 'jslib-angular/components/two-factor.component';
+
+import { TwoFactorOptionsComponent } from './two-factor-options.component';
 
 @Component({
     selector: 'app-two-factor',
@@ -36,26 +35,23 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
     constructor(authService: AuthService, router: Router,
         i18nService: I18nService, apiService: ApiService,
         platformUtilsService: PlatformUtilsService, stateService: StateService,
-        environmentService: EnvironmentService, private componentFactoryResolver: ComponentFactoryResolver,
+        environmentService: EnvironmentService, private modalService: ModalService,
         storageService: StorageService, route: ActivatedRoute) {
         super(authService, router, i18nService, apiService, platformUtilsService, window, environmentService,
             stateService, storageService, route);
         this.onSuccessfulLoginNavigate = this.goAfterLogIn;
     }
 
-    anotherMethod() {
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        const modal = this.twoFactorOptionsModal.createComponent(factory).instance;
-        const childComponent = modal.show<TwoFactorOptionsComponent>(TwoFactorOptionsComponent,
-            this.twoFactorOptionsModal);
-
-        childComponent.onProviderSelected.subscribe(async (provider: TwoFactorProviderType) => {
-            modal.close();
-            this.selectedProviderType = provider;
-            await this.init();
-        });
-        childComponent.onRecoverSelected.subscribe(() => {
-            modal.close();
+    async anotherMethod() {
+        const [modal] = await this.modalService.openViewRef(TwoFactorOptionsComponent, this.twoFactorOptionsModal, comp => {
+            comp.onProviderSelected.subscribe(async (provider: TwoFactorProviderType) => {
+                modal.close();
+                this.selectedProviderType = provider;
+                await this.init();
+            });
+            comp.onRecoverSelected.subscribe(() => {
+                modal.close();
+            });
         });
     }
 

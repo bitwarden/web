@@ -10,16 +10,19 @@ import { BroadcasterMessagingService } from '../../services/broadcasterMessaging
 import { HtmlStorageService } from '../../services/htmlStorage.service';
 import { I18nService } from '../../services/i18n.service';
 import { MemoryStorageService } from '../../services/memoryStorage.service';
+import { PasswordRepromptService } from '../../services/passwordReprompt.service';
 import { WebPlatformUtilsService } from '../../services/webPlatformUtils.service';
 
 import { EventService } from './event.service';
 import { OrganizationGuardService } from './organization-guard.service';
 import { OrganizationTypeGuardService } from './organization-type-guard.service';
+import { PolicyListService } from './policy-list.service';
 import { RouterService } from './router.service';
 
 import { AuthGuardService } from 'jslib-angular/services/auth-guard.service';
 import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 import { LockGuardService } from 'jslib-angular/services/lock-guard.service';
+import { ModalService as ModalServiceAbstraction } from 'jslib-angular/services/modal.service';
 import { UnauthGuardService } from 'jslib-angular/services/unauth-guard.service';
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
@@ -41,7 +44,6 @@ import { FolderService } from 'jslib-common/services/folder.service';
 import { ImportService } from 'jslib-common/services/import.service';
 import { NotificationsService } from 'jslib-common/services/notifications.service';
 import { PasswordGenerationService } from 'jslib-common/services/passwordGeneration.service';
-import { PasswordRepromptService } from 'jslib-common/services/passwordReprompt.service';
 import { PolicyService } from 'jslib-common/services/policy.service';
 import { SearchService } from 'jslib-common/services/search.service';
 import { SendService } from 'jslib-common/services/send.service';
@@ -61,7 +63,7 @@ import { CipherService as CipherServiceAbstraction } from 'jslib-common/abstract
 import { CollectionService as CollectionServiceAbstraction } from 'jslib-common/abstractions/collection.service';
 import { CryptoService as CryptoServiceAbstraction } from 'jslib-common/abstractions/crypto.service';
 import { CryptoFunctionService as CryptoFunctionServiceAbstraction } from 'jslib-common/abstractions/cryptoFunction.service';
-import { EnvironmentService as EnvironmentServiceAbstraction } from 'jslib-common/abstractions/environment.service';
+import { EnvironmentService as EnvironmentServiceAbstraction, Urls } from 'jslib-common/abstractions/environment.service';
 import { EventService as EventLoggingServiceAbstraction } from 'jslib-common/abstractions/event.service';
 import { ExportService as ExportServiceAbstraction } from 'jslib-common/abstractions/export.service';
 import { FileUploadService as FileUploadServiceAbstraction }  from 'jslib-common/abstractions/fileUpload.service';
@@ -87,6 +89,7 @@ import { TokenService as TokenServiceAbstraction } from 'jslib-common/abstractio
 import { TotpService as TotpServiceAbstraction } from 'jslib-common/abstractions/totp.service';
 import { UserService as UserServiceAbstraction } from 'jslib-common/abstractions/user.service';
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib-common/abstractions/vaultTimeout.service';
+import { ModalService } from './modal.service';
 
 const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
@@ -138,7 +141,6 @@ const notificationsService = new NotificationsService(userService, syncService, 
     environmentService, async () => messagingService.send('logout', { expired: true }), consoleLogService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService);
-const passwordRepromptService = new PasswordRepromptService(i18nService, cryptoService, platformUtilsService);
 
 containerService.attachToWindow(window);
 
@@ -146,16 +148,9 @@ export function initFactory(): Function {
     return async () => {
         await (storageService as HtmlStorageService).init();
 
-        if (process.env.ENV !== 'production' || platformUtilsService.isSelfHost()) {
-            environmentService.setUrls({ base: window.location.origin }, false);
-        } else {
-            environmentService.setUrls({
-                base: window.location.origin,
-                icons: 'https://icons.bitwarden.net',
-                notifications: 'https://notifications.bitwarden.com',
-                enterprise: 'https://portal.bitwarden.com',
-            }, false);
-        }
+        const urls = process.env.URLS as Urls;
+        urls.base ??= window.location.origin;
+        environmentService.setUrls(urls, false);
 
         setTimeout(() => notificationsService.init(), 3000);
 
@@ -191,6 +186,8 @@ export function initFactory(): Function {
         RouterService,
         EventService,
         LockGuardService,
+        PolicyListService,
+        { provide: ModalServiceAbstraction, useClass: ModalService },
         { provide: AuditServiceAbstraction, useValue: auditService },
         { provide: AuthServiceAbstraction, useValue: authService },
         { provide: CipherServiceAbstraction, useValue: cipherService },
@@ -222,7 +219,7 @@ export function initFactory(): Function {
         { provide: EventLoggingServiceAbstraction, useValue: eventLoggingService },
         { provide: PolicyServiceAbstraction, useValue: policyService },
         { provide: SendServiceAbstraction, useValue: sendService },
-        { provide: PasswordRepromptServiceAbstraction, useValue: passwordRepromptService },
+        { provide: PasswordRepromptServiceAbstraction, useClass: PasswordRepromptService },
         { provide: LogService, useValue: consoleLogService },
         {
             provide: APP_INITIALIZER,
