@@ -72,7 +72,7 @@ export class SendComponent extends BaseSendComponent {
 
     async editSend(send: SendView) {
         const [modal, childComponent] = await this.modalService.openViewRef(AddEditComponent, this.sendAddEditModalRef, comp => {
-            childComponent.sendId = send == null ? null : send.id;
+            comp.sendId = send == null ? null : send.id;
             comp.onSavedSend.subscribe(async (s: SendView) => {
                 modal.close();
                 await this.load();
