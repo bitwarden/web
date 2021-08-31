@@ -124,7 +124,7 @@ export class ClientsComponent implements OnInit {
     }
 
     async addExistingOrganization() {
-        const [modal, childComponent] = await this.modalService.openViewRef(AddOrganizationComponent, this.addModalRef, comp => {
+        const [modal] = await this.modalService.openViewRef(AddOrganizationComponent, this.addModalRef, comp => {
             comp.providerId = this.providerId;
             comp.organizations = this.addableOrganizations;
             comp.onAddedOrganization.subscribe(async () => {
