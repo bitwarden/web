@@ -110,15 +110,3 @@
         color: themed('tableColorHover');
     }
 }
-
-.list-group-item {
-    &:focus,
-    &.focus {
-        z-index: 100;
-    }
-    @include themify($themes) {
-        background-color: themed('foregroundColor');
-        color: themed('linkColor');
-        font-weight: themed('linkWeight');
-    }
-}

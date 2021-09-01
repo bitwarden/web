@@ -38,6 +38,80 @@ body {
     width: 980px;
 }
 
+.page-header, .secondary-header {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.6rem;
+    @include themify($themes) {
+        border-bottom: 1px solid themed('separator');
+    }
+
+    &:not(.text-danger) {
+        h1, h2, h3, h4 {
+            margin: 0;
+            @include themify($themes) {
+                color: themed('headingColor');
+            }
+        }
+    }
+}
+
+.secondary-header, .spaced-header {
+    margin-top: 4rem;
+}
+
+.org-nav {
+    height: 100px;
+    min-height: 100px;
+    @include themify($themes) {
+        background-color: themed('navOrgBackgroundColor');
+        border-bottom: 1px solid themed('borderColor');
+        color: themed('textColor');
+    }
+
+    .container {
+        height: 100%;
+    }
+
+    .nav-tabs {
+        border-bottom: none;
+
+        a {
+            &:not(.active) {
+                border-color: transparent;
+                @include themify($themes) {
+                    color: themed('headingColor');
+                }
+            }
+
+            &.active {
+                font-weight: bold;
+                padding-top: calc(#{$nav-link-padding-y} - 2px);
+                @include themify($themes) {
+                    border-top: 3px solid themed('primary');
+                    color: themed('textColor');
+                }
+            }
+
+            &.disabled {
+                @include themify($themes) {
+                    color: themed('inputDisabledColor');
+                }
+            }
+        }
+    }
+
+    .org-name {
+        line-height: 1;
+        span {
+            display: block;
+            font-size: $font-size-lg;
+            @include themify($themes) {
+                color: themed('headingColor');
+            }
+        }
+    }
+}
+
 .page-content {
     margin-top: 20px;
 }
@@ -101,5 +175,106 @@ hr {
 .border-info {
     @include themify($themes) {
         border-color: themed('info') !important;
+    }
+}
+
+h1, h2, h3, h4, h5 {
+    @include themify($themes) {
+        color: themed('headingColor');
+    }
+
+    small {
+        font-size: 80%;
+    }
+
+    &.spaced-header {
+        @include themify($themes) {
+            color: themed('headingColor');
+        }
+    }
+}
+
+a {
+    @include themify($themes) {
+        color: themed('linkColor');
+    }
+
+    &.text-body {
+        @include themify($themes) {
+            color: themed('headingColor') !important;
+            font-weight: themed('linkWeight');
+        }
+    }
+}
+
+a:hover {
+    @include themify($themes) {
+        color: themed('linkColorHover');
+    }
+}
+
+code {
+    @include themify($themes) {
+        color: themed('codeColor');
+    }
+}
+
+.text-danger {
+    &:not(.dropdown-item) {
+        @include themify($themes) {
+            color: themed('danger') !important;
+        }
+
+        & > h1,h2,h3,h4 {
+            @include themify($themes) {
+                color: themed('danger') !important;
+            }
+        }
+    }
+}
+
+.text-warning {
+    @include themify($themes) {
+        color: themed('warning') !important;
+    }
+
+    & > h1,h2,h3,h4 {
+        @include themify($themes) {
+            color: themed('warning') !important;
+        }
+    }
+}
+
+.text-success {
+    @include themify($themes) {
+        color: themed('success') !important;
+    }
+    
+    & > h1,h2,h3,h4 {
+        @include themify($themes) {
+            color: themed('success') !important;
+        }
+    }
+}
+
+.fa-icon-above-input {
+    height: 1.5em;
+}
+
+.text-lg {
+    font-size: $font-size-lg;
+}
+
+.text-strike {
+    text-decoration: line-through;
+}
+
+.font-weight-semibold {
+    font-weight: 600;
+}
+
+.text-muted {
+    @include themify($themes) {
+        color: themed('textMuted') !important;
     }
 }
