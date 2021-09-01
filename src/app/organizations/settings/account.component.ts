@@ -1,6 +1,5 @@
 import {
     Component,
-    ComponentFactoryResolver,
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
@@ -8,6 +7,7 @@ import {
 import { ActivatedRoute } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
@@ -19,8 +19,6 @@ import { OrganizationKeysRequest } from 'jslib-common/models/request/organizatio
 import { OrganizationUpdateRequest } from 'jslib-common/models/request/organizationUpdateRequest';
 
 import { OrganizationResponse } from 'jslib-common/models/response/organizationResponse';
-
-import { ModalComponent } from '../../modal.component';
 
 import { ApiKeyComponent } from '../../settings/api-key.component';
 import { PurgeVaultComponent } from '../../settings/purge-vault.component';
@@ -47,9 +45,8 @@ export class AccountComponent {
     taxFormPromise: Promise<any>;
 
     private organizationId: string;
-    private modal: ModalComponent = null;
 
-    constructor(private componentFactoryResolver: ComponentFactoryResolver,
+    constructor(private modalService: ModalService,
         private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private route: ActivatedRoute,
         private syncService: SyncService, private platformUtilsService: PlatformUtilsService,
@@ -96,79 +93,42 @@ export class AccountComponent {
         this.toasterService.popAsync('success', null, this.i18nService.t('taxInfoUpdated'));
     }
 
-    deleteOrganization() {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.deleteModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<DeleteOrganizationComponent>(
-            DeleteOrganizationComponent, this.deleteModalRef);
-        childComponent.organizationId = this.organizationId;
-
-        this.modal.onClosed.subscribe(async () => {
-            this.modal = null;
+    async deleteOrganization() {
+        await this.modalService.openViewRef(DeleteOrganizationComponent, this.deleteModalRef, comp => {
+            comp.organizationId = this.organizationId;
         });
     }
 
-    purgeVault() {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.purgeModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<PurgeVaultComponent>(PurgeVaultComponent, this.purgeModalRef);
-        childComponent.organizationId = this.organizationId;
-
-        this.modal.onClosed.subscribe(async () => {
-            this.modal = null;
+    async purgeVault() {
+        await this.modalService.openViewRef(PurgeVaultComponent, this.purgeModalRef, comp => {
+            comp.organizationId = this.organizationId;
         });
     }
 
-    viewApiKey() {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.apiKeyModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<ApiKeyComponent>(ApiKeyComponent, this.apiKeyModalRef);
-        childComponent.keyType = 'organization';
-        childComponent.entityId = this.organizationId;
-        childComponent.postKey = this.apiService.postOrganizationApiKey.bind(this.apiService);
-        childComponent.scope = 'api.organization';
-        childComponent.grantType = 'client_credentials';
-        childComponent.apiKeyTitle = 'apiKey';
-        childComponent.apiKeyWarning = 'apiKeyWarning';
-        childComponent.apiKeyDescription = 'apiKeyDesc';
-
-        this.modal.onClosed.subscribe(async () => {
-            this.modal = null;
+    async viewApiKey() {
+        await this.modalService.openViewRef(ApiKeyComponent, this.apiKeyModalRef, comp => {
+            comp.keyType = 'organization';
+            comp.entityId = this.organizationId;
+            comp.postKey = this.apiService.postOrganizationApiKey.bind(this.apiService);
+            comp.scope = 'api.organization';
+            comp.grantType = 'client_credentials';
+            comp.apiKeyTitle = 'apiKey';
+            comp.apiKeyWarning = 'apiKeyWarning';
+            comp.apiKeyDescription = 'apiKeyDesc';
         });
     }
 
-    rotateApiKey() {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.rotateApiKeyModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<ApiKeyComponent>(ApiKeyComponent, this.rotateApiKeyModalRef);
-        childComponent.keyType = 'organization';
-        childComponent.isRotation = true;
-        childComponent.entityId = this.organizationId;
-        childComponent.postKey = this.apiService.postOrganizationRotateApiKey.bind(this.apiService);
-        childComponent.scope = 'api.organization';
-        childComponent.grantType = 'client_credentials';
-        childComponent.apiKeyTitle = 'apiKey';
-        childComponent.apiKeyWarning = 'apiKeyWarning';
-        childComponent.apiKeyDescription = 'apiKeyRotateDesc';
-
-        this.modal.onClosed.subscribe(async () => {
-            this.modal = null;
+    async rotateApiKey() {
+        await this.modalService.openViewRef(ApiKeyComponent, this.rotateApiKeyModalRef, comp => {
+            comp.keyType = 'organization';
+            comp.isRotation = true;
+            comp.entityId = this.organizationId;
+            comp.postKey = this.apiService.postOrganizationRotateApiKey.bind(this.apiService);
+            comp.scope = 'api.organization';
+            comp.grantType = 'client_credentials';
+            comp.apiKeyTitle = 'apiKey';
+            comp.apiKeyWarning = 'apiKeyWarning';
+            comp.apiKeyDescription = 'apiKeyRotateDesc';
         });
     }
 }

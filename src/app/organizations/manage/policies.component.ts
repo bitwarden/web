@@ -1,6 +1,5 @@
 import {
     Component,
-    ComponentFactoryResolver,
     OnInit,
     ViewChild,
     ViewContainerRef,
@@ -12,17 +11,22 @@ import {
 
 import { PolicyType } from 'jslib-common/enums/policyType';
 
-import { EnvironmentService } from 'jslib-common/abstractions';
 import { ApiService } from 'jslib-common/abstractions/api.service';
+import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
+import { ModalService } from 'jslib-angular/services/modal.service';
+
 import { PolicyResponse } from 'jslib-common/models/response/policyResponse';
 
-import { ModalComponent } from '../../modal.component';
+import { Organization } from 'jslib-common/models/domain/organization';
 
 import { PolicyEditComponent } from './policy-edit.component';
+
+import { PolicyListService } from 'src/app/services/policy-list.service';
+import { BasePolicy } from '../policies/base-policy.component';
 
 @Component({
     selector: 'app-org-policies',
@@ -33,96 +37,34 @@ export class PoliciesComponent implements OnInit {
 
     loading = true;
     organizationId: string;
-    policies: any[];
+    policies: BasePolicy[];
+    organization: Organization;
 
     // Remove when removing deprecation warning
     enterpriseTokenPromise: Promise<any>;
-    userCanAccessBusinessPortal = false;
 
     private enterpriseUrl: string;
 
-    private modal: ModalComponent = null;
     private orgPolicies: PolicyResponse[];
     private policiesEnabledMap: Map<PolicyType, boolean> = new Map<PolicyType, boolean>();
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private i18nService: I18nService, private componentFactoryResolver: ComponentFactoryResolver,
+        private i18nService: I18nService, private modalService: ModalService,
         private platformUtilsService: PlatformUtilsService, private userService: UserService,
-        private router: Router, private environmentService: EnvironmentService) { }
+        private policyListService: PolicyListService, private router: Router,
+        private environmentService: EnvironmentService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
-            const organization = await this.userService.getOrganization(this.organizationId);
-            if (organization == null || !organization.usePolicies) {
+            this.organization = await this.userService.getOrganization(this.organizationId);
+            if (this.organization == null || !this.organization.usePolicies) {
                 this.router.navigate(['/organizations', this.organizationId]);
                 return;
             }
-            this.userCanAccessBusinessPortal = organization.canAccessBusinessPortal;
-            this.policies = [
-                {
-                    name: this.i18nService.t('twoStepLogin'),
-                    description: this.i18nService.t('twoStepLoginPolicyDesc'),
-                    type: PolicyType.TwoFactorAuthentication,
-                    enabled: false,
-                    display: true,
-                },
-                {
-                    name: this.i18nService.t('masterPass'),
-                    description: this.i18nService.t('masterPassPolicyDesc'),
-                    type: PolicyType.MasterPassword,
-                    enabled: false,
-                    display: true,
-                },
-                {
-                    name: this.i18nService.t('passwordGenerator'),
-                    description: this.i18nService.t('passwordGeneratorPolicyDesc'),
-                    type: PolicyType.PasswordGenerator,
-                    enabled: false,
-                    display: true,
-                },
-                {
-                    name: this.i18nService.t('singleOrg'),
-                    description: this.i18nService.t('singleOrgDesc'),
-                    type: PolicyType.SingleOrg,
-                    enabled: false,
-                    display: true,
-                },
-                {
-                    name: this.i18nService.t('requireSso'),
-                    description: this.i18nService.t('requireSsoPolicyDesc'),
-                    type: PolicyType.RequireSso,
-                    enabled: false,
-                    display: organization.useSso,
-                },
-                {
-                    name: this.i18nService.t('personalOwnership'),
-                    description: this.i18nService.t('personalOwnershipPolicyDesc'),
-                    type: PolicyType.PersonalOwnership,
-                    enabled: false,
-                    display: true,
-                },
-                {
-                    name: this.i18nService.t('disableSend'),
-                    description: this.i18nService.t('disableSendPolicyDesc'),
-                    type: PolicyType.DisableSend,
-                    enabled: false,
-                    display: true,
-                },
-                {
-                    name: this.i18nService.t('sendOptions'),
-                    description: this.i18nService.t('sendOptionsPolicyDesc'),
-                    type: PolicyType.SendOptions,
-                    enabled: false,
-                    display: true,
-                }, {
-                    name: this.i18nService.t('resetPasswordPolicy'),
-                    description: this.i18nService.t('resetPasswordPolicyDescription'),
-                    type: PolicyType.ResetPassword,
-                    enabled: false,
-                    display: organization.useResetPassword,
-                },
-            ];
+
+            this.policies = this.policyListService.getPolicies();
+
             await this.load();
 
             // Handle policies component launch from Event message
@@ -158,37 +100,21 @@ export class PoliciesComponent implements OnInit {
         this.orgPolicies.forEach(op => {
             this.policiesEnabledMap.set(op.type, op.enabled);
         });
-        this.policies.forEach(p => {
-            p.enabled = this.policiesEnabledMap.has(p.type) && this.policiesEnabledMap.get(p.type);
-        });
+
         this.loading = false;
     }
 
-    edit(p: any) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.editModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<PolicyEditComponent>(
-            PolicyEditComponent, this.editModalRef);
-
-        childComponent.name = p.name;
-        childComponent.description = p.description;
-        childComponent.type = p.type;
-        childComponent.organizationId = this.organizationId;
-        childComponent.policiesEnabledMap = this.policiesEnabledMap;
-        childComponent.onSavedPolicy.subscribe(() => {
-            this.modal.close();
-            this.load();
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+    async edit(policy: BasePolicy) {
+        const [modal] = await this.modalService.openViewRef(PolicyEditComponent, this.editModalRef, comp => {
+            comp.policy = policy;
+            comp.organizationId = this.organizationId;
+            comp.policiesEnabledMap = this.policiesEnabledMap;
+            comp.onSavedPolicy.subscribe(() => {
+                modal.close();
+                this.load();
+            });
         });
     }
-
 
     // Remove when removing deprecation warning
     async goToEnterprisePortal() {
