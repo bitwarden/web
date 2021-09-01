@@ -9,7 +9,6 @@ import { ToasterService } from 'angular2-toaster';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.service';
@@ -28,7 +27,7 @@ export class OptionsComponent implements OnInit {
     enableGravatars: boolean;
     enableFullWidth: boolean;
     locale: string;
-    vaultTimeouts: any[];
+    vaultTimeouts: { name: string; value: number; }[];
     localeOptions: any[];
 
     vaultTimeout: FormControl = new FormControl(null);
@@ -38,7 +37,19 @@ export class OptionsComponent implements OnInit {
     constructor(private storageService: StorageService, private stateService: StateService,
         private i18nService: I18nService, private toasterService: ToasterService,
         private vaultTimeoutService: VaultTimeoutService, private platformUtilsService: PlatformUtilsService,
-        private messagingService: MessagingService, private policyService: PolicyService) {
+        private messagingService: MessagingService) {
+        this.vaultTimeouts = [
+            { name: i18nService.t('oneMinute'), value: 1 },
+            { name: i18nService.t('fiveMinutes'), value: 5 },
+            { name: i18nService.t('fifteenMinutes'), value: 15 },
+            { name: i18nService.t('thirtyMinutes'), value: 30 },
+            { name: i18nService.t('oneHour'), value: 60 },
+            { name: i18nService.t('fourHours'), value: 240 },
+            { name: i18nService.t('onRefresh'), value: -1 },
+        ];
+        if (this.platformUtilsService.isDev()) {
+            this.vaultTimeouts.push({ name: i18nService.t('never'), value: null });
+        }
 
         const localeOptions: any[] = [];
         i18nService.supportedTranslationLocales.forEach(locale => {
@@ -54,7 +65,7 @@ export class OptionsComponent implements OnInit {
     }
 
     async ngOnInit() {
-        this.vaultTimeout.setValue(await this.storageService.get<number>(ConstantsService.vaultTimeoutKey));
+        this.vaultTimeout.setValue(await this.vaultTimeoutService.getVaultTimeout());
         this.vaultTimeoutAction = await this.storageService.get<string>(ConstantsService.vaultTimeoutActionKey);
         this.disableIcons = await this.storageService.get<boolean>(ConstantsService.disableFaviconKey);
         this.enableGravatars = await this.storageService.get<boolean>('enableGravatars');
