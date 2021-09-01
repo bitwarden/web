@@ -1059,7 +1059,7 @@
     "message": "Nekas netika ievietots."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Kļūda izdotās datnes atšifrēšanā. Izmantotā atslēga neatbilst tai, kas tika lietota datu izdošanā."
   },
   "selectFormat": {
     "message": "Atlasīt ievietošanas datnes veidolu"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "Vienums $ID$ tika pārvietots uz apvienību.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "Lietotāja $ID$ galvenā parole tika atiestatīta.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Atiestatīt paroli"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "Turpināšana izrakstīs $NAME$ no pašreizējās sesijas, un pēc tam būs nepieciešams pierakstīties. Citās ierīcēs darbojošās sesijas var būt spēkā līdz vienai stundai.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,46 +3923,46 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "šo lietotāju"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Vienā vai vairākos apvienības nosacījumos ir norādīts, ka galvenajai parolei ir jāatbilst šādām prasībām:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Peroles atiestatīšana bija veiksmīga"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "Ievietošana sarakstā ļaus apvienības pārvaldniekiem mainīt galveno paroli. Vai tiešām ievietot sarakstā?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Galvenās paroles atiestatīšana"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Ļaut apvienības pārvaldniekiem atiestatīt lietotāju galveno paroli."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Apvienības lietotājiem pašiem būs sevi jāievieto sarakstā vai viņiem jābūt automātiski ievietotiem sarakstā, pirms pārvaldnieki var atiestatīt galveno paroli."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Automātiska ievietošana sarakstā"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Visi lietotāji tiks automātiski ievietoti paroles atiestatīšanas sarakstā, tiklīdz viņi apstiprinās uzaicinājumu."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Apvienībā jau esošie lietotāji netiks ar atpakaļejošu spēku ievietoti paroles atiestatīšanas sarakstā. Viņiem būs tas jāizdara pašiem, pirms pārvaldnieki varēs atiestatīt viņu galveno paroli."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Automātiski ievietot sarakstā jaunos lietotājus"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Šajā apvienībā ir uzņēmuma nosacījums, kas automātiski ievieto lietotājus paroles atiestatīšanas sarakstā. Tas ļauj apvienības pārvaldniekiem mainīt lietotāju galveno paroli."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "Apvienības atslēgu atbilde ir `null`"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "Paroles atiestatīšanas informācijas atbilde ir `null`"
   },
   "trashCleanupWarning": {
     "message": "Šifri, kas atkritnē atrodas vairāk nekā 30 dienas, tiks izdzēsti."
@@ -3980,42 +3980,42 @@
     "message": "Šī darbība ir aizsargāta. Lai turpinātu, ir jāievada galvenā parole, lai apstiprinātu identitāti."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Atkārtoti nosūtīt uzaicinājumus"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Šī darbība nav attiecināma uz nevienu no atlasītajiem lietotājiem."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Vai tiešām noņemt šos lietotājus? Tas var aizņemt dažas sekundes un nevar tikt pārtraukts vai atcelts."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Apstiprināt atlasīto"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Apjoma darbību stāvoklis"
   },
   "bulkConfirmMessage": {
-    "message": "Confirmed successfully."
+    "message": "Veiksmīgi apstiprināts."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Uzaicinājums veiksmīgi nosūtīts atkārtoti."
   },
   "bulkRemovedMessage": {
-    "message": "Removed successfully"
+    "message": "Veiksmīgi noņemts"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "Nav iekļauts, tādēļ nav piemērojams šai darbībai."
   },
   "fingerprint": {
-    "message": "Fingerprint"
+    "message": "Pirkstu nospiedums"
   },
   "removeUsers": {
-    "message": "Remove Users"
+    "message": "Noņemt lietotājus"
   },
   "error": {
-    "message": "Error"
+    "message": "Kļūda"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "Lietotāju pārvaldīšanai ir jābūt iespējotai arī ar paroļu atiestatīšanas pārvaldīšanas atļauju"
   }
 }

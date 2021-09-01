@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "$COUNT$ nesneyi seçtiniz. $MOVEABLE_COUNT$ nesne bir kuruluşa taşınabilir, $NONMOVEABLE_COUNT$ taşınamaz.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1059,7 +1059,7 @@
     "message": "Hiçbir şey içe aktarılmadı."
   },
   "importEncKeyError": {
-    "message": "Error decrypting the exported file. Your encryption key does not match the encryption key used export the data."
+    "message": "Dışa aktarılmış dosyanın şifresi açılamadı. Şifreleme anahtarınız veriyi dışa aktarılırken kullanılanla uyuşmuyor."
   },
   "selectFormat": {
     "message": "İçe aktarma dosyasının biçimini seçin"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "$ID$ nesnesi bir kuruluşa taşındı.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "$ID$ kullanıcısı için ana parola sıfırlandı.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3914,7 +3914,7 @@
     "message": "Parolayı sıfırla"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "Devam ederseniz $NAME$ oturumu sonlanacak ve yeniden oturum açması gerekecek. Diğer cihazlardaki aktif oturumlar bir saate kadar aktif kalabilir.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,7 +3923,7 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "bu kullanıcı"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
     "message": "Bir veya daha fazla kuruluş ilkesi gereğince ana parola aşağıdaki gereksinimleri karşılamalıdır:"
@@ -3932,37 +3932,37 @@
     "message": "Parola başarıyla sıfırlandı."
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "Katılmak kuruluş yöneticilerinin ana parolanızı değiştirmesine izin verir. Katılmak istediğinize emin misiniz?"
   },
   "resetPasswordPolicy": {
     "message": "Ana parola sıfırlama"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Kuruluş yöneticilerinin kuruluş kullanıcılarının ana parolalarını sıfırlamasına izin ver."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Yöneticiler ana parolalarını sıfırlayabilmeden önce kuruluştaki kullanıcıların kendileri katılmaları veya otomatik eklenmeleri gerekir."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Otomatik Eklenme"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Davetiyeleri kabul edildiğinde tüm kullanıcılar otomatik olarak parola sıfırlamaya eklenecek."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Zaten kuruluşta olan kullanıcılar parola sıfırlamaya eklenmeyecekler. Yöneticiler tarafından parolalarının sıfırlanabilmesi için kendileri katılmaları gerekecek."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Yeni kullanıcıları otomatik ekle"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Bu kuruluşun sizi otomatik olarak parola sıfırlamaya ekleyen bir ilkesi bulunmakta. Eklenmek kuruluş yöneticilerinin ana parolanızı değiştirebilmesini sağlar."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "Kuruluş Anahtarları yanıtı boş"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "Parola Sıfırlama Detayları yanıtı boş"
   },
   "trashCleanupWarning": {
     "message": "30 günden uzun süre çöp kutusunda duran nesneler otomatik olarak silinecekler."
@@ -3983,28 +3983,28 @@
     "message": "Davetleri yeniden gönder"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Bu eylem seçilen kullanıcılardan hiçbirine uygulanabilir değil."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Aşağıdaki kullanıcıları kaldırmak istediğinize emin misiniz? İşlemin tamamlanması birkaç saniye sürer ve durdurulamaz veya iptal edilemez."
   },
   "confirmSelected": {
-    "message": "Confirm Selected"
+    "message": "Seçimi Onayla"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Toplu eylem durumu"
   },
   "bulkConfirmMessage": {
     "message": "Başarıyla onaylandı."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Yeniden davet etme başarılı."
   },
   "bulkRemovedMessage": {
     "message": "Başarıyla kaldırıldı"
   },
   "bulkFilteredMessage": {
-    "message": "Excluded, not applicable for this action."
+    "message": "İstisnai, bu eylem uygulanamaz."
   },
   "fingerprint": {
     "message": "Parmak izi"
@@ -4016,6 +4016,6 @@
     "message": "Hata"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "Parola Sıfırlamayı Yönet izniyle birlikte Kullanıcıları Yönet de açılmak zorundadır"
   }
 }

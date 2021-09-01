@@ -1,26 +1,29 @@
 function load(envName) {
-    const envOverrides = {
-        'production': () => require('./config/production.json'),
-        'qa': () => require('./config/qa.json'),
-        'development': () => require('./config/development.json'),
-    };
-
-    const baseConfig = require('./config/base.json');
-    const overrideConfig = envOverrides.hasOwnProperty(envName) ? envOverrides[envName]() : {};
-
     return {
-        ...baseConfig,
-        ...overrideConfig
+        ...require('./config/base.json'),
+        ...loadConfig(envName),
+        ...loadConfig('local'),
     };
 }
 
 function log(configObj) {
-    const repeatNum = 50
-    console.log(`${"=".repeat(repeatNum)}\nenvConfig`)
-    Object.entries(configObj).map(([key, value]) => {
-        console.log(`  ${key}: ${value}`)
-    })
-    console.log(`${"=".repeat(repeatNum)}`)
+    const repeatNum = 50;
+    console.log(`${"=".repeat(repeatNum)}\nenvConfig`);
+    console.log(JSON.stringify(configObj, null, 2));
+    console.log(`${"=".repeat(repeatNum)}`);
+}
+
+function loadConfig(configName) {
+    try {
+        return require(`./config/${configName}.json`);
+    } catch (e) {
+        if (e instanceof Error && e.code === "MODULE_NOT_FOUND") {
+            return {};
+        }
+        else {
+            throw e;
+        }
+    }
 }
 
 module.exports = {

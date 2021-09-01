@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
+import { ComponentFactoryResolver } from '@angular/core';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { ProviderGuardService } from './services/provider-guard.service';
 import { ProviderTypeGuardService } from './services/provider-type-guard.service';
@@ -59,4 +62,8 @@ import { OssModule } from 'src/app/oss.module';
         ProviderTypeGuardService,
     ],
 })
-export class ProvidersModule {}
+export class ProvidersModule {
+    constructor(modalService: ModalService, componentFactoryResolver: ComponentFactoryResolver) {
+        modalService.registerComponentFactoryResolver(AddOrganizationComponent, componentFactoryResolver);
+    }
+}
