@@ -27,20 +27,8 @@ export class MaximumVaultTimeoutPolicyComponent extends BasePolicyComponent {
         minutes: [null],
     });
 
-    vaultTimeouts: { name: string; value: number; }[];
-
     constructor(private fb: FormBuilder, private i18nService: I18nService) {
         super();
-
-        this.vaultTimeouts = [
-            { name: '-- ' + i18nService.t('select') + ' --', value: null },
-            { name: i18nService.t('oneMinute'), value: 1 },
-            { name: i18nService.t('fiveMinutes'), value: 5 },
-            { name: i18nService.t('fifteenMinutes'), value: 15 },
-            { name: i18nService.t('thirtyMinutes'), value: 30 },
-            { name: i18nService.t('oneHour'), value: 60 },
-            { name: i18nService.t('fourHours'), value: 240 },
-        ];
     }
 
     loadData() {
