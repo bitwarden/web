@@ -21,16 +21,16 @@
     *ngIf="!loading && !selfHosted && this.plans">
     <h2 class="mt-5">{{'generalInformation' | i18n}}</h2>
     <div class="row" *ngIf="createOrganization">
-        <div class="form-group col-6">
+        <div class="form-group col-12 col-md-6 mt-4 mt-md-0">
             <label for="name">{{'organizationName' | i18n}}</label>
             <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="name" required>
         </div>
-        <div class="form-group col-6">
+        <div class="form-group col-12 col-md-6 mt-4 mt-md-0">
             <label for="billingEmail">{{'billingEmail' | i18n}}</label>
             <input id="billingEmail" class="form-control" type="text" name="BillingEmail" [(ngModel)]="billingEmail"
                 required>
         </div>
-        <div class="form-group col-6" *ngIf="!!providerId">
+        <div class="form-group col-12 col-md-6 mt-4 mt-md-0" *ngIf="!!providerId">
             <label for="email">{{'clientOwnerEmail' | i18n}}</label>
             <input id="email" class="form-control" type="text" name="Email" [(ngModel)]="clientOwnerEmail" required>
             <small class="text-muted">{{'clientOwnerDesc' | i18n : '20'}}</small>
@@ -43,7 +43,7 @@
             <label for="ownedBusiness" class="form-check-label">{{'accountOwnedBusiness' | i18n}}</label>
         </div>
         <div class="row" *ngIf="ownedBusiness">
-            <div class="form-group col-6">
+            <div class="form-group col-12 col-md-6 mt-4 mt-md-0">
                 <label for="businessName">{{'businessName' | i18n}}</label>
                 <input id="businessName" class="form-control" type="text" name="BusinessName"
                     [(ngModel)]="businessName">
@@ -111,7 +111,7 @@
         <ng-container *ngIf="selectedPlan.hasAdditionalSeatsOption && !selectedPlan.baseSeats">
             <h2 class="mt-5">{{'users' | i18n}}</h2>
             <div class="row">
-                <div class="col-6">
+                <div class="col-12 col-md-6 mt-4 mt-md-0">
                     <label for="additionalSeats">{{'userSeats' | i18n}}</label>
                     <input id="additionalSeats" class="form-control" type="number" name="AdditionalSeats"
                         [(ngModel)]="additionalSeats" min="1" max="100000" placeholder="{{'userSeatsDesc' | i18n}}"
@@ -122,7 +122,7 @@
         </ng-container>
         <h2 class="mt-5">{{'addons' | i18n}}</h2>
         <div class="row" *ngIf="selectedPlan.hasAdditionalSeatsOption && selectedPlan.baseSeats">
-            <div class="form-group col-6">
+            <div class="form-group col-12 col-md-6 mt-4 mt-md-0">
                 <label for="additionalSeats">{{'additionalUserSeats' | i18n}}</label>
                 <input id="additionalSeats" class="form-control" type="number" name="AdditionalSeats"
                     [(ngModel)]="additionalSeats" min="0" max="100000" placeholder="{{'userSeatsDesc' | i18n}}">
@@ -131,7 +131,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-6">
+            <div class="form-group col-12 col-md-6 mt-4 mt-md-0">
                 <label for="additionalStorage">{{'additionalStorageGb' | i18n}}</label>
                 <input id="additionalStorage" class="form-control" type="number" name="AdditionalStorageGb"
                     [(ngModel)]="additionalStorage" min="0" max="99" step="1"
@@ -141,7 +141,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-6" *ngIf="selectedPlan.hasPremiumAccessOption">
+            <div class="form-group col-12 col-md-6 mt-4 mt-md-0" *ngIf="selectedPlan.hasPremiumAccessOption">
                 <div class="form-check">
                     <input id="premiumAccess" class="form-check-input" type="checkbox" name="PremiumAccessAddon"
                         [(ngModel)]="premiumAccessAddon">
@@ -229,7 +229,7 @@
                     {{ 'estimatedTax' | i18n }}: {{ taxCharges | currency: 'USD $' }}
                 </ng-container>
             </div>
-            <hr class="my-1 col-3 ml-0">
+            <hr class="my-1 col-6 col-md-3 ml-0">
             <p class="text-lg"><strong>{{'total' | i18n}}:</strong>
                 {{total | currency:'USD $'}}/{{selectedPlanInterval | i18n}}</p>
         </div>

@@ -4,7 +4,7 @@
 <p>{{'breachDesc' | i18n}}</p>
 <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
     <div class="row">
-        <div class="form-group col-6">
+        <div class="form-group col-12 col-md-6">
             <label for="username">{{'username' | i18n}}</label>
             <input id="username" type="text" name="Username" class="form-control" [(ngModel)]="username" required>
             <small class="form-text text-muted">{{'breachCheckUsernameEmail' | i18n}}</small>
@@ -27,10 +27,10 @@
         <ul class="list-group list-group-breach" *ngIf="breachedAccounts.length">
             <li *ngFor="let a of breachedAccounts" class="list-group-item min-height-fix">
                 <div class="row">
-                    <div class="col-2 text-center">
-                        <img [src]="a.logoPath" alt="" class="img-fluid">
+                    <div class="col-md-2 mt-2 mt-md-0 text-center">
+                        <img [src]="a.logoPath" alt="" class="img-fluid" style="max-width: 115px;">
                     </div>
-                    <div class="col-7">
+                    <div class="col-md-7 mt-2 mt-md-0">
                         <h3 class="text-lg">{{a.title}}</h3>
                         <p [innerHTML]="a.description"></p>
                         <p class="mb-1">{{'compromisedData' | i18n}}:</p>
@@ -38,7 +38,7 @@
                             <li *ngFor="let d of a.dataClasses">{{d}}</li>
                         </ul>
                     </div>
-                    <div class="col-3">
+                    <div class="col-md-3 mt-2 mt-md-0">
                         <dl>
                             <dt>{{'website' | i18n}}</dt>
                             <dd>{{a.domain}}</dd>

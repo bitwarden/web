@@ -8,11 +8,11 @@
     <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="loading">
         <h2 class="mt-5">{{'generalInformation' | i18n}}</h2>
         <div class="row">
-            <div class="form-group col-6">
+            <div class="form-group col-md-6 mt-4 mt-md-0">
                 <label for="name">{{'providerName' | i18n}}</label>
                 <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="name" required>
             </div>
-            <div class="form-group col-6">
+            <div class="form-group col-md-6 mt-4 mt-md-0">
                 <label for="billingEmail">{{'billingEmail' | i18n}}</label>
                 <input id="billingEmail" class="form-control" type="text" name="BillingEmail" [(ngModel)]="billingEmail" required>
             </div>

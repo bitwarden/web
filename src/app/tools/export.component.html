@@ -9,7 +9,7 @@
 
     <p>{{'exportMasterPassword' | i18n}}</p>
     <div class="row">
-        <div class="form-group col-6">
+        <div class="form-group col-12 col-md-6 mt-4 mt-md-0">
             <label for="format">{{'fileFormat' | i18n}}</label>
             <select class="form-control" id="format" name="Format" [(ngModel)]="format" [disabled]="disabledByPolicy">
                 <option value="json">.json</option>
@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="form-group col-6">
+        <div class="form-group col-12 col-md-6 mt-4 mt-md-0">
             <label for="masterPassword">{{'masterPass' | i18n}}</label>
             <input id="masterPassword" type="password" name="MasterPassword" class="form-control"
                 [(ngModel)]="masterPassword" required appInputVerbatim [disabled]="disabledByPolicy">

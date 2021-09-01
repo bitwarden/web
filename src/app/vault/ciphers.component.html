@@ -1,15 +1,16 @@
 <ng-container *ngIf="(isPaging() ? pagedCiphers : ciphers) as filteredCiphers">
-    <table class="table table-hover table-list table-ciphers" *ngIf="filteredCiphers.length" infiniteScroll
+    <div class="d-flex flex-row flex-wrap justify-content-between" *ngIf="filteredCiphers.length" infiniteScroll
         [infiniteScrollDistance]="1" [infiniteScrollDisabled]="!isPaging()" (scrolled)="loadMore()">
-        <tbody>
-            <tr *ngFor="let c of filteredCiphers">
-                <td (click)="checkCipher(c)" class="table-list-checkbox">
+
+        <div *ngFor="let c of filteredCiphers" class="col-lg-6">
+            <div class="vault-item">
+                <div (click)="checkCipher(c)" class="table-list-checkbox">
                     <input type="checkbox" [(ngModel)]="c.checked" appStopProp>
-                </td>
-                <td (click)="checkCipher(c)" class="table-list-icon">
+                </div>
+                <div (click)="checkCipher(c)" class="table-list-icon" style="width: 30px;">
                     <app-vault-icon [cipher]="c"></app-vault-icon>
-                </td>
-                <td (click)="checkCipher(c)" class="reduced-lh wrap">
+                </div>
+                <div (click)="checkCipher(c)" class="reduced-lh wrap">
                     <a href="#" appStopClick appStopProp (click)="selectCipher(c)"
                         title="{{'editItem' | i18n}}">{{c.name}}</a>
                     <ng-container *ngIf="!organization && c.organizationId">
@@ -27,8 +28,8 @@
                     </ng-container>
                     <br>
                     <small appStopProp>{{c.subTitle}}</small>
-                </td>
-                <td class="table-list-options">
+                </div>
+                <div class="table-list-options ml-auto">
                     <div class="dropdown" appListDropdown>
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -93,10 +94,10 @@
                             </a>
                         </div>
                     </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="no-items" *ngIf="!filteredCiphers.length">
         <ng-container *ngIf="!loaded">
             <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>

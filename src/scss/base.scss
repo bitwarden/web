@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    min-width: 1010px;
+    // min-width: 1010px;
 
     &.layout_frontend {
         @media (prefers-color-scheme: dark) {
@@ -33,9 +33,9 @@ body {
 
 .container {
     margin: 0 auto;
-    max-width: none !important;
-    padding: 0;
-    width: 980px;
+    max-width: 1200px !important;
+    padding: 0 15px;
+    width: 100%;
 }
 
 .page-header, .secondary-header {
@@ -267,5 +267,37 @@ code {
 .text-muted {
     @include themify($themes) {
         color: themed('textMuted') !important;
+    }
+}
+
+
+.vault-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    
+    @include themify($themes) {
+        background-color: themed('bgSwapColor');
+        &:hover {
+            background-color: rgba(32, 36, 45, 0.5);
+            border-color: rgba(255, 255, 255, 0.125)
+        }
+    }
+
+    &:hover {
+        background-color: rgba(32, 36, 45, 0.06);
+        border-color: rgba(32, 36, 45, 0.5);
+    }
+
+    .table-list-icon {
+        max-width: 30px;
+        width: 30px;
+        padding: 0 4px;
+        img {
+            max-width: 100%;
+        }
     }
 }

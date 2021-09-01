@@ -28,7 +28,7 @@
         <dd *ngIf="!sub.expiration">{{'neverExpires' | i18n}}</dd>
     </dl>
     <div class="row" *ngIf="!selfHosted">
-        <div class="col-4">
+        <div class="col-12 col-md-4 mt-4 mt-md-0">
             <dl>
                 <dt>{{'status' | i18n}}</dt>
                 <dd>
@@ -42,7 +42,7 @@
                 </dd>
             </dl>
         </div>
-        <div class="col-8" *ngIf="subscription">
+        <div class="col-12 col-md-8 mt-4 mt-md-0" *ngIf="subscription">
             <strong class="d-block mb-1">{{'details' | i18n}}</strong>
             <table class="table">
                 <tbody>

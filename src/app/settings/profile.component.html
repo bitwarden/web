@@ -4,7 +4,7 @@
 </div>
 <form *ngIf="profile && !loading" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
     <div class="row">
-        <div class="col-6">
+        <div class="col-md-6 mt-4 mt-md-0">
             <div class="form-group">
                 <label for="name">{{'name' | i18n}}</label>
                 <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="profile.name">
@@ -19,7 +19,7 @@
                     [(ngModel)]="profile.masterPasswordHint">
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-md-6 mt-4 mt-md-0">
             <div class="mb-3">
                 <app-avatar data="{{profile | userName}}" [email]="profile.email" dynamic="true" size="75"
                     fontSize="35"></app-avatar>

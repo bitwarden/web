@@ -7,7 +7,7 @@
 </div>
 <form *ngIf="org && !loading" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
     <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-md-6 mt-4 mt-md-0">
             <div class="form-group">
                 <label for="name">{{'organizationName' | i18n}}</label>
                 <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="org.name"
@@ -29,7 +29,7 @@
                     [(ngModel)]="org.identifier">
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-md-6 mt-4 mt-md-0">
             <app-avatar data="{{org.name}}" dynamic="true" size="75" fontSize="35"></app-avatar>
         </div>
     </div>

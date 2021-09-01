@@ -1,6 +1,6 @@
 <div class="container page-content">
     <div class="row">
-        <div class="col-3">
+        <div class="col-md-3">
             <div class="card" *ngIf="provider">
                 <div class="card-header">{{'manage' | i18n}}</div>
                 <div class="list-group list-group-flush">
@@ -15,7 +15,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-9">
+        <div class="col-md-9 mt-4 mt-md-0">
             <router-outlet></router-outlet>
         </div>
     </div>

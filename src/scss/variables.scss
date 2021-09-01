@@ -65,11 +65,11 @@ $btn-font-weight: 600;
 $lead-font-weight: normal;
 
 $grid-breakpoints: (
-  xs: 0,
-  sm: 1px,
-  md: 2px,
-  lg: 3px,
-  xl: 4px
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
 );
 
 $text-color: #333333;
@@ -250,6 +250,7 @@ $themes: (
         badgeSecondaryText: $white,
         bgPrimaryColor: $darkPrimary,
         bgLightColor: $darkDarkBlue2,
+        bgSwapColor: $darkDarkBlue2,
         borderColor: $darkBlue1,
         borderPrimaryColor: $darkPrimary,
         btnDanger: $darkDanger,

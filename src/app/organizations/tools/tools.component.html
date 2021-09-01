@@ -5,7 +5,7 @@
     </ng-container>
     <ng-container *ngIf="!loading">
         <div class="row">
-            <div class="col-3">
+            <div class="col-12 col-md-4 col-lg-3">
                 <div class="card mb-4" *ngIf="organization.canAccessImportExport">
                     <div class="card-header">{{'tools' | i18n}}</div>
                     <div class="list-group list-group-flush">
@@ -46,7 +46,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-9">
+            <div class="col-12 col-md-8 col-lg-9">
                 <router-outlet></router-outlet>
             </div>
         </div>

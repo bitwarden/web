@@ -3,6 +3,36 @@
         color: themed('textColor');
     }
 
+    &.table td, .table th {
+        &:not(tr:first-child td) {
+            @include themify($themes) {
+                border-top: 1px solid themed('separator');
+            }
+        }
+    }
+
+    thead th {
+        border-top: none;
+    }
+
+    tr:first-child {
+        td {
+            border: none;
+        }
+    }
+
+    tr.vault-item {
+        display: flex;
+        width: calc(50% - 10px);
+        align-items: center;
+        padding: 15px;
+        margin: 10px 0;
+        border-radius: 6px;
+        @include themify($themes) {
+            background-color: themed('bgSwapColor');
+        }
+    }
+
     td {
         vertical-align: middle;
         @include themify($themes) {
@@ -75,14 +105,15 @@
     }
 
     td.table-list-icon {
-        max-width: 45px;
+        max-width: 30px;
         text-align: center;
-        width: 45px;
+        width: 30px;
         
         img {
-            @extend .rounded;
-            @extend .img-fluid;
-            max-height: 24px;
+            // @extend .rounded;
+            // @extend .img-fluid;
+            // max-height: 24px;
+            max-width: 100%;
         }
     }
 

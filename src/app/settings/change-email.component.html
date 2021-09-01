@@ -3,7 +3,7 @@
         {{'changeEmailTwoFactorWarning' | i18n}}
     </app-callout>
     <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-md-6 mt-4 mt-md-0">
             <div class="form-group">
                 <label for="masterPassword">{{'masterPass' | i18n}}</label>
                 <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control"
@@ -21,7 +21,7 @@
         <p>{{'changeEmailDesc' | i18n : newEmail}}</p>
         <app-callout type="warning">{{'loggedOutWarning' | i18n}}</app-callout>
         <div class="row">
-            <div class="col-6">
+            <div class="col-12 col-md-6 mt-4 mt-md-0">
                 <div class="form-group">
                     <label for="token">{{'code' | i18n}}</label>
                     <input id="token" class="form-control" type="text" name="Token" [(ngModel)]="token" required

@@ -1,7 +1,6 @@
 .card {
     @include themify($themes) {
         background-color: themed('foregroundColor');
-        border-color: themed('borderColor');
         color: themed('textColor');
     }
     

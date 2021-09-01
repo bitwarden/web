@@ -6,7 +6,7 @@
 </app-callout>
 <form #form (ngSubmit)="submit()" ngNativeValidate>
     <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-md-6">
             <div class="form-group">
                 <label for="type">1. {{'selectFormat' | i18n}}</label>
                 <select id="type" name="Format" [(ngModel)]="format" class="form-control"
@@ -241,7 +241,7 @@
         </ng-container>
     </app-callout>
     <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-md-6">
             <div class="form-group">
                 <label for="file">2. {{'selectImportFile' | i18n}}</label>
                 <input type="file" id="file" class="form-control-file" name="file" [disabled]="importBlockedByPolicy">

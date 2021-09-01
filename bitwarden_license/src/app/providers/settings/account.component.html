@@ -7,7 +7,7 @@
 </div>
 <form *ngIf="provider && !loading" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
     <div class="row">
-        <div class="col-6">
+        <div class="col-md-6 mt-4 mt-md-0">
             <div class="form-group">
                 <label for="name">{{'providerName' | i18n}}</label>
                 <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="provider.name"
@@ -19,7 +19,7 @@
                     [(ngModel)]="provider.billingEmail" [disabled]="selfHosted">
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-md-6 mt-4 mt-md-0">
             <app-avatar data="{{provider.name}}" dynamic="true" size="75" fontSize="35"></app-avatar>
         </div>
     </div>

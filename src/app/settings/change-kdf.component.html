@@ -1,7 +1,7 @@
 <app-callout type="warning">{{'loggedOutWarning' | i18n}}</app-callout>
 <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate autocomplete="off">
     <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-md-6 mt-4 mt-md-0">
             <div class="form-group">
                 <label for="kdfMasterPassword">{{'masterPass' | i18n}}</label>
                 <input id="kdfMasterPassword" type="password" name="MasterPasswordHash" class="form-control"
@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-md-6 mt-4 mt-md-0">
             <div class="form-group mb-0">
                 <label for="kdf">{{'kdfAlgorithm' | i18n}}</label>
                 <a class="ml-auto" href="https://en.wikipedia.org/wiki/Key_derivation_function" target="_blank"
@@ -22,7 +22,7 @@
                 </select>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-12 col-md-6 mt-4 mt-md-0">
             <div class="form-group mb-0">
                 <label for="kdfIterations">{{'kdfIterations' | i18n}}</label>
                 <a class="ml-auto" href="https://bitwarden.com/help/article/what-encryption-is-used/#pbkdf2" target="_blank" rel="noopener"

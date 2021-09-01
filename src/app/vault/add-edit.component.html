@@ -13,7 +13,7 @@
                     {{'personalOwnershipPolicyInEffect' | i18n}}
                 </app-callout>
                 <div class="row" *ngIf="!editMode && !viewOnly">
-                    <div class="col-6 form-group">
+                    <div class="col-md-6 mt-4 mt-md-0 form-group">
                         <label for="type">{{'whatTypeOfItem' | i18n}}</label>
                         <select id="type" name="Type" [(ngModel)]="cipher.type" class="form-control"
                             [disabled]="cipher.isDeleted" appAutofocus>
@@ -22,12 +22,12 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-6 form-group">
+                    <div class="col-md-6 mt-4 mt-md-0 form-group">
                         <label for="name">{{'name' | i18n}}</label>
                         <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="cipher.name" required
                             [disabled]="cipher.isDeleted || viewOnly">
                     </div>
-                    <div class="col-6 form-group" *ngIf="!organization">
+                    <div class="col-md-6 mt-4 mt-md-0 form-group" *ngIf="!organization">
                         <label for="folder">{{'folder' | i18n}}</label>
                         <select id="folder" name="FolderId" [(ngModel)]="cipher.folderId" class="form-control"
                             [disabled]="cipher.isDeleted || viewOnly">
@@ -38,7 +38,7 @@
                 <!-- Login -->
                 <ng-container *ngIf="cipher.type === cipherType.Login">
                     <div class="row">
-                        <div class="col-6 form-group">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group">
                             <label for="loginUsername">{{'username' | i18n}}</label>
                             <div class="input-group">
                                 <input id="loginUsername" class="form-control" type="text" name="Login.Username"
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6 form-group">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group">
                             <div class="d-flex">
                                 <label for="loginPassword">{{'password' | i18n}}</label>
                                 <div class="ml-auto d-flex" *ngIf="!cipher.isDeleted && !viewOnly">
@@ -95,13 +95,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 form-group">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group">
                             <label for="loginTotp">{{'authenticatorKeyTotp' | i18n}}</label>
                             <input id="loginTotp" type="{{cipher.viewPassword ? 'text' : 'password'}}" name="Login.Totp"
                                 class="form-control text-monospace" [(ngModel)]="cipher.login.totp" appInputVerbatim
                                 [disabled]="cipher.isDeleted || !cipher.viewPassword || viewOnly">
                         </div>
-                        <div class="col-6 form-group totp d-flex align-items-end" [ngClass]="{'low': totpLow}">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group totp d-flex align-items-end" [ngClass]="{'low': totpLow}">
                             <div *ngIf="!cipher.login.totp || !totpCode">
                                 <img src="../../images/totp-countdown.png" id="totpImage" title="{{'verificationCodeTotp' | i18n}}"
                                     class="ml-2">
@@ -138,7 +138,7 @@
                     </div>
                     <ng-container *ngIf="cipher.login.hasUris">
                         <div class="row" *ngFor="let u of cipher.login.uris; let i = index; trackBy:trackByFunction">
-                            <div class="col-7 form-group">
+                            <div class="col-md-7 form-group">
                                 <label for="loginUri{{i}}">{{'uriPosition' | i18n : (i + 1)}}</label>
                                 <div class="input-group">
                                     <input class="form-control" id="loginUri{{i}}" type="text"
@@ -158,7 +158,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-5 form-group">
+                            <div class="col-md-5 form-group">
                                 <div class="d-flex">
                                     <label for="loginUriMatch{{i}}">
                                         {{'matchDetection' | i18n}}
@@ -191,13 +191,13 @@
                 <!-- Card -->
                 <ng-container *ngIf="cipher.type === cipherType.Card">
                     <div class="row">
-                        <div class="col-6 form-group">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group">
                             <label for="cardCardholderName">{{'cardholderName' | i18n}}</label>
                             <input id="cardCardholderName" class="form-control" type="text"
                                 name="Card.CardCardholderName" [(ngModel)]="cipher.card.cardholderName"
                                 [disabled]="cipher.isDeleted || viewOnly">
                         </div>
-                        <div class="col-6 form-group">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group">
                             <label for="cardBrand">{{'brand' | i18n}}</label>
                             <select id="cardBrand" class="form-control" name="Card.Brand"
                                 [(ngModel)]="cipher.card.brand" [disabled]="cipher.isDeleted || viewOnly">
@@ -206,7 +206,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 form-group">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group">
                             <label for="cardNumber">{{'number' | i18n}}</label>
                             <div class="input-group">
                                 <input id="cardNumber" class="form-control text-monospace"
@@ -227,14 +227,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col form-group">
+                        <div class="col-md-6 form-group">
                             <label for="cardExpMonth">{{'expirationMonth' | i18n}}</label>
                             <select id="cardExpMonth" class="form-control" name="Card.ExpMonth"
                                 [(ngModel)]="cipher.card.expMonth" [disabled]="cipher.isDeleted || viewOnly">
                                 <option *ngFor="let o of cardExpMonthOptions" [ngValue]="o.value">{{o.name}}</option>
                             </select>
                         </div>
-                        <div class="col form-group">
+                        <div class="col-md-6 form-group">
                             <label for="cardExpYear">{{'expirationYear' | i18n}}</label>
                             <input id="cardExpYear" class="form-control" type="text" name="Card.ExpYear"
                                 [(ngModel)]="cipher.card.expYear" placeholder="{{'ex' | i18n}} 2019"
@@ -242,7 +242,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 form-group">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group">
                             <label for="cardCode">{{'securityCode' | i18n}}</label>
                             <div class="input-group">
                                 <input id="cardCode" class="form-control text-monospace"
@@ -268,7 +268,7 @@
                 <!-- Identity -->
                 <ng-container *ngIf="cipher.type === cipherType.Identity">
                     <div class="row">
-                        <div class="col-4 form-group">
+                        <div class="col-md-4 mt-4 mt-md-0 form-group">
                             <label for="idTitle">{{'title' | i18n}}</label>
                             <select id="idTitle" class="form-control" name="Identity.Title"
                                 [(ngModel)]="cipher.identity.title" [disabled]="cipher.isDeleted || viewOnly">
@@ -277,49 +277,49 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4 form-group">
+                        <div class="col-md-4 mt-4 mt-md-0 form-group">
                             <label for="idFirstName">{{'firstName' | i18n}}</label>
                             <input id="idFirstName" class="form-control" type="text" name="Identity.FirstName"
                                 [(ngModel)]="cipher.identity.firstName" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
-                        <div class="col-4 form-group">
+                        <div class="col-md-4 mt-4 mt-md-0 form-group">
                             <label for="idMiddleName">{{'middleName' | i18n}}</label>
                             <input id="idMiddleName" class="form-control" type="text" name="Identity.MiddleName"
                                 [(ngModel)]="cipher.identity.middleName" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
-                        <div class="col-4 form-group">
+                        <div class="col-md-4 mt-4 mt-md-0 form-group">
                             <label for="idLastName">{{'lastName' | i18n}}</label>
                             <input id="idLastName" class="form-control" type="text" name="Identity.LastName"
                                 [(ngModel)]="cipher.identity.lastName" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4 form-group">
+                        <div class="col-md-4 mt-4 mt-md-0 form-group">
                             <label for="idUsername">{{'username' | i18n}}</label>
                             <input id="idUsername" class="form-control" type="text" name="Identity.Username"
                                 [(ngModel)]="cipher.identity.username" appInputVerbatim
                                 [disabled]="cipher.isDeleted || viewOnly">
                         </div>
-                        <div class="col-4 form-group">
+                        <div class="col-md-4 mt-4 mt-md-0 form-group">
                             <label for="idCompany">{{'company' | i18n}}</label>
                             <input id="idCompany" class="form-control" type="text" name="Identity.Company"
                                 [(ngModel)]="cipher.identity.company" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-4 form-group">
+                        <div class="col-md-4 mt-4 mt-md-0 form-group">
                             <label for="idSsn">{{'ssn' | i18n}}</label>
                             <input id="idSsn" class="form-control" type="text" name="Identity.SSN"
                                 [(ngModel)]="cipher.identity.ssn" appInputVerbatim
                                 [disabled]="cipher.isDeleted || viewOnly">
                         </div>
-                        <div class="col-4 form-group">
+                        <div class="col-md-4 mt-4 mt-md-0 form-group">
                             <label for="idPassportNumber">{{'passportNumber' | i18n}}</label>
                             <input id="idPassportNumber" class="form-control" type="text" name="Identity.PassportNumber"
                                 [(ngModel)]="cipher.identity.passportNumber" appInputVerbatim
                                 [disabled]="cipher.isDeleted || viewOnly">
                         </div>
-                        <div class="col-4 form-group">
+                        <div class="col-md-4 mt-4 mt-md-0 form-group">
                             <label for="idLicenseNumber">{{'licenseNumber' | i18n}}</label>
                             <input id="idLicenseNumber" class="form-control" type="text" name="Identity.LicenseNumber"
                                 [(ngModel)]="cipher.identity.licenseNumber" appInputVerbatim
@@ -327,56 +327,56 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 form-group">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group">
                             <label for="idEmail">{{'email' | i18n}}</label>
                             <input id="idEmail" class="form-control" type="text" name="Identity.Email"
                                 [(ngModel)]="cipher.identity.email" appInputVerbatim
                                 [disabled]="cipher.isDeleted || viewOnly">
                         </div>
-                        <div class="col-6 form-group">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group">
                             <label for="idPhone">{{'phone' | i18n}}</label>
                             <input id="idPhone" class="form-control" type="text" name="Identity.Phone"
                                 [(ngModel)]="cipher.identity.phone" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 form-group">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group">
                             <label for="idAddress1">{{'address1' | i18n}}</label>
                             <input id="idAddress1" class="form-control" type="text" name="Identity.Address1"
                                 [(ngModel)]="cipher.identity.address1" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
-                        <div class="col-6 form-group">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group">
                             <label for="idAddress2">{{'address2' | i18n}}</label>
                             <input id="idAddress2" class="form-control" type="text" name="Identity.Address2"
                                 [(ngModel)]="cipher.identity.address2" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 form-group">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group">
                             <label for="idAddress3">{{'address3' | i18n}}</label>
                             <input id="idAddress3" class="form-control" type="text" name="Identity.Address3"
                                 [(ngModel)]="cipher.identity.address3" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
-                        <div class="col-6 form-group">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group">
                             <label for="idCity">{{'cityTown' | i18n}}</label>
                             <input id="idCity" class="form-control" type="text" name="Identity.City"
                                 [(ngModel)]="cipher.identity.city" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 form-group">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group">
                             <label for="idState">{{'stateProvince' | i18n}}</label>
                             <input id="idState" class="form-control" type="text" name="Identity.State"
                                 [(ngModel)]="cipher.identity.state" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
-                        <div class="col-6 form-group">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group">
                             <label for="idPostalCode">{{'zipPostalCode' | i18n}}</label>
                             <input id="idPostalCode" class="form-control" type="text" name="Identity.PostalCode"
                                 [(ngModel)]="cipher.identity.postalCode" [disabled]="cipher.isDeleted || viewOnly">
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6 form-group">
+                        <div class="col-md-6 mt-4 mt-md-0 form-group">
                             <label for="idCountry">{{'country' | i18n}}</label>
                             <input id="idCountry" class="form-control" type="text" name="Identity.Country"
                                 [(ngModel)]="cipher.identity.country" [disabled]="cipher.isDeleted || viewOnly">
@@ -393,7 +393,7 @@
                 <ng-container *ngIf="allowOwnershipAssignment()">
                     <h3 class="mt-4">{{'ownership' | i18n}}</h3>
                     <div class="row">
-                        <div class="col-5">
+                        <div class="col-md-5">
                             <label for="organizationId">{{'whoOwnsThisItem' | i18n}}</label>
                             <select id="organizationId" class="form-control" name="OrganizationId"
                                 [(ngModel)]="cipher.organizationId" (change)="organizationChanged()"

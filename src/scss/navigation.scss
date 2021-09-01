@@ -26,6 +26,9 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
                 white-space: nowrap;
+                @include themify($themes) {
+                    color: themed('infoTextColor') !important;
+                }
                 &.text-muted {
                     @include themify($themes) {
                         color: themed('dropdownTextMuted') !important;
