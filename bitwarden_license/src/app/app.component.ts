@@ -5,7 +5,7 @@ import { MaximumVaultTimeoutPolicy } from './policies/maximum-vault-timeout.comp
 
 @Component({
     selector: 'app-root',
-    templateUrl: 'app.component.html',
+    templateUrl: '../../../src/app/app.component.html',
 })
 export class AppComponent extends BaseAppComponent {
 
