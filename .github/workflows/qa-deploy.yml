@@ -1,6 +1,7 @@
+---
 name: QA Deploy
 
-on: 
+on:
   workflow_dispatch:
     inputs:
       image_extension:
@@ -19,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f  # v2.3.4
 
       - name: Setup
         run:
@@ -59,7 +60,7 @@ jobs:
 
           if [[ $TAG_EXTENSION ]]; then
             IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
-          fi  
+          fi
           echo "::set-output name=value::$IMAGE_TAG"
 
       - name: Deploy Web image

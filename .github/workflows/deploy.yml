@@ -1,6 +1,7 @@
+---
 name: Deploy
 
-on: 
+on:
   workflow_dispatch:
     inputs:
       release_version:
@@ -40,7 +41,7 @@ jobs:
         with:
           ref: rc
 
-      - name: setup git config
+      - name: Setup git config
         run: |
           git config user.name = "GitHub Action Bot"
           git config user.email = "<>"
@@ -70,4 +71,3 @@ jobs:
           VERSION: ${{ steps.release-version.outputs.version }}
           PR_BRANCH: deploy-${{ steps.release-version.outputs.version }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
