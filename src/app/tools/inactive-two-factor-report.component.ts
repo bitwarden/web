@@ -61,7 +61,7 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
                             }
                             inactive2faCiphers.push(c);
                             break;
-                        } else if (domain != null && this.services.has(domain)){
+                        } else if (domain != null && this.services.has(domain)) {
                             if (this.services.get(domain) != null) {
                                 docs.set(c.id, this.services.get(domain));
                             }
