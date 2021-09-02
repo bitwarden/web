@@ -136,8 +136,9 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
     }
 
     async load() {
-        const policies = await this.policyService.getAll(PolicyType.ResetPassword);
-        this.orgResetPasswordPolicyEnabled = policies.some(p => p.organizationId === this.organizationId && p.enabled);
+        const resetPasswordPolicy = await this.policyService.getPolicyForOrganization(PolicyType.ResetPassword,
+            this.organizationId);
+        this.orgResetPasswordPolicyEnabled = resetPasswordPolicy?.enabled;
         super.load();
     }
 
