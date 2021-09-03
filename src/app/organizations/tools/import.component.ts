@@ -32,7 +32,7 @@ export class ImportComponent extends BaseImportComponent {
         this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             this.successNavigate = ['organizations', this.organizationId, 'vault'];
-            super.ngOnInit();
+            await super.ngOnInit();
             this.importBlockedByPolicy = false;
         });
         const organization = await this.userService.getOrganization(this.organizationId);
