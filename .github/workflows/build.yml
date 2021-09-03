@@ -198,6 +198,8 @@ jobs:
           echo "npm version $(npm --version)"
           npm run build:qa
 
+          echo "{\"commit_hash\": \"$GITHUB_SHA\", \"ref\": \"$GITHUB_REF\"}" | jq . > build/info.json
+
           echo -e "\nBuilding Docker image"
           docker --version
           docker build -t bitwardenqa.azurecr.io/web .
