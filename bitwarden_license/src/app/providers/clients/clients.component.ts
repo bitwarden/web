@@ -79,7 +79,7 @@ export class ClientsComponent implements OnInit {
         const response = await this.apiService.getProviderClients(this.providerId);
         this.clients = response.data != null && response.data.length > 0 ? response.data : [];
         this.manageOrganizations = (await this.userService.getProvider(this.providerId)).type === ProviderUserType.ProviderAdmin;
-        const candidateOrgs = (await this.userService.getAllOrganizations()).filter(o => o.providerId == null);
+        const candidateOrgs = (await this.userService.getAllOrganizations()).filter(o => o.isOwner && o.providerId == null);
         const allowedOrgsIds = await Promise.all(candidateOrgs.map(o => this.apiService.getOrganization(o.id))).then(orgs =>
             orgs.filter(o => !DisallowedPlanTypes.includes(o.planType))
                 .map(o => o.id));
