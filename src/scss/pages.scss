@@ -25,14 +25,14 @@ app-vault-groupings, app-org-vault-groupings, .groupings {
         #search {
             margin-bottom: 1rem;
             @include themify($themes) {
-                background-color: themed('inputSearchBackgroundColor');
-                border-color: themed('inputSearchBorderColor');
-                color: themed('inputSearchTextColor');
+                background-color: themed('inputBackgroundColor');
+                border-color: themed('inputBorderColor');
+                color: themed('inputTextColor');
             }
 
             &::placeholder {
                 @include themify($themes) {
-                    color: themed('inputSearchPlaceholderColor');
+                    color: themed('inputPlaceholderColor');
                 }
             }
         }
@@ -104,6 +104,9 @@ app-password-generator {
 
     .card-password {
         .card-body {
+            @include themify($themes) {
+                background: themed('foregroundColor');
+            }
             align-items: center;
             display: flex;
             flex-wrap: wrap;

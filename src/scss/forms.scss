@@ -65,9 +65,10 @@ label:not(.form-check-label):not(.btn), label.bold {
         color: themed('inputTextColor');
     }
 
-    &[readonly],:disabled {
+    &:disabled, &[readonly] {
         @include themify($themes) {
             background-color: themed('inputDisabledBackground');
+            opacity: 0.7;
         }
     }
 }
@@ -106,7 +107,7 @@ input[type="radio"], input[type="checkbox"] {
 .dropdown-menu, .dropdown-item  {
     @include themify($themes) {
         background-color: themed('dropdownBackground');
-        color: themed('darkTextColor');
+        color: themed('dropdownTextColor');
     }
 }
 
@@ -127,7 +128,7 @@ input[type="radio"], input[type="checkbox"] {
     &:hover:not(.text-danger) {
         @include themify($themes) {
             background-color: themed('dropdownHover');
-            color: themed('darkTextColor');
+            color: themed('dropdownTextColor');
         }
     }
     &:active{
@@ -159,6 +160,6 @@ input[type="radio"], input[type="checkbox"] {
     padding-left: calc(#{$list-group-item-padding-x} - 3px);
     @include themify($themes) {
         border-left: 3px solid themed('borderPrimaryColor');
-        color: themed('textColor');
+        color: themed('listItemActive');
     }
 }

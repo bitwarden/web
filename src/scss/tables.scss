@@ -27,6 +27,17 @@
             color: themed('textColor');
         }
 
+        & > a {
+            @include themify($themes) {
+                color: themed('tableLinkColor');
+            }
+            &:hover {
+                @include themify($themes) {
+                    color: themed('tableLinkColorHover');
+                }
+            }
+        }
+
         &.reduced-lh {
             line-height: 1;
             

@@ -22,7 +22,7 @@
 
 .modal-header {
     @include themify($themes) {
-        background-color: themed('backgroundColor');
+        background-color: themed('foregroundColor');
         border-bottom: 1px solid themed('separator');
         color: themed('textColor');
     }
@@ -30,7 +30,7 @@
 
 .modal-body {
     @include themify($themes) {
-        background-color: themed('backgroundColor');
+        background-color: themed('foregroundColor');
         color: themed('textColor');
     }
     h3, .section-header > * {
