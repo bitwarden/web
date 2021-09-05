@@ -68,7 +68,7 @@ label:not(.form-check-label):not(.btn), label.bold {
     &:disabled, &[readonly] {
         @include themify($themes) {
             background-color: themed('inputDisabledBackground');
-            opacity: 0.7;
+            color: themed('inputDisabledColor');
         }
     }
 }
@@ -149,7 +149,7 @@ input[type="radio"], input[type="checkbox"] {
     }
     @include themify($themes) {
         background-color: themed('foregroundColor');
-        color: themed('linkColor');
+        color: themed('listItemColor');
         font-weight: themed('linkWeight');
     }
 }

@@ -37,7 +37,7 @@
 .btn-secondary, .swal2-cancel {
     @include themify($themes) {
         background-color: themed('btnSecondary');
-        border-color: themed('btnSecondary');
+        border-color: themed('btnSecondaryBorder');
         color: themed('btnSecondaryText');
     }
 
@@ -182,7 +182,7 @@
 
     &:hover {
         @include themify($themes) {
-            background-color: themed('badgePrimaryBackground');
+            background-color: themed('badgePrimaryBackgroundHover');
             color: themed('badgePrimaryText') !important;
         }
     }
