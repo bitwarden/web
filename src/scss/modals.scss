@@ -40,6 +40,7 @@
             color: themed('textMuted');
         }
     }
+
 }
 .modal .list-group-flush {
     :first-child {
@@ -62,6 +63,12 @@
 .close {
     @include themify($themes) {
         color: themed('textColor');
+    }
+}
+
+.modal-backdrop.show {
+    @include themify($themes) {
+        opacity: themed('modalOpacity');
     }
 }
 
