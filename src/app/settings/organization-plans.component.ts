@@ -268,17 +268,7 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     private async userHasBlockingSingleOrgPolicy() {
-        const policies = await this.policyService.getAll(PolicyType.SingleOrg);
-        const orgs = await this.userService.getAllOrganizations();
-
-        const orgsWithSingleOrgPolicy = policies
-            .filter(p => p.enabled && p.type === PolicyType.SingleOrg)
-            .map(p => p.organizationId);
-
-        return orgs.some(org => org.type !== OrganizationUserType.Owner &&
-            org.type !== OrganizationUserType.Admin &&
-            org.status !== OrganizationUserStatusType.Invited &&
-            orgsWithSingleOrgPolicy.includes(org.id));
+        return this.policyService.policyAppliesToUser(PolicyType.SingleOrg);
     }
 
     private async updateOrganization(orgId: string) {
