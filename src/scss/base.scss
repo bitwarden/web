@@ -79,7 +79,7 @@ body {
             &:not(.active) {
                 border-color: transparent;
                 @include themify($themes) {
-                    color: themed('headingColor');
+                    color: themed('textColor');
                 }
             }
 
@@ -88,7 +88,7 @@ body {
                 padding-top: calc(#{$nav-link-padding-y} - 2px);
                 @include themify($themes) {
                     border-top: 3px solid themed('primary');
-                    color: themed('textColor');
+                    color: themed('linkColor');
                 }
             }
 

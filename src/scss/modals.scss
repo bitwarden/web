@@ -33,6 +33,7 @@
         background-color: themed('foregroundColor');
         color: themed('textColor');
     }
+
     h3, .section-header > * {
         font-weight: normal;
         text-transform: uppercase;
@@ -40,12 +41,12 @@
             color: themed('textMuted');
         }
     }
-
 }
 .modal .list-group-flush {
     :first-child {
         border-top: none;
     }
+    
     :last-child {
         border-bottom: none;
     }
