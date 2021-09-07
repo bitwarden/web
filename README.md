@@ -1,3 +1,7 @@
+## Fork of bitwarden/web
+This is a fork of the official [Bitwarden Web Vault](https://github.com/bitwarden/web). It is intended to provide a web vault client for use with Bitwarden compatible self hosted servers like [Vaultwarden](https://github.com/dani-garcia/vaultwarden).
+
+## Upstream README:
 <p align="center">
     <img src="https://raw.githubusercontent.com/bitwarden/brand/master/screenshots/web-vault-macbook.png" alt="" width="600" height="358" />
 </p>
