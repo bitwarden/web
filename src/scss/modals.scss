@@ -67,12 +67,6 @@
     }
 }
 
-.modal-backdrop.show {
-    @include themify($themes) {
-        opacity: themed('modalOpacity');
-    }
-}
-
 #totpImage {
     @include themify($themes) {
         filter: themed('imgFilter');

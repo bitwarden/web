@@ -8,6 +8,12 @@
     min-width: 0;
 }
 
+.password-letter {
+    @include themify($themes) {
+        color: themed('pwLetter');
+    }
+}
+
 .password-number {
     @include themify($themes) {
         color: themed('pwNumber');

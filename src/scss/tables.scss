@@ -6,7 +6,7 @@
     &.table td, .table th {
         &:not(tr:first-child td) {
             @include themify($themes) {
-                border-top: 1px solid themed('separator');
+                border-top: 1px solid themed('tableSeparator');
             }
         }
     }

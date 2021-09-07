@@ -26,6 +26,12 @@ label:not(.form-check-label):not(.btn), label.bold {
     }
 }
 
+label.form-check-label, .form-control-file {
+    @include themify($themes) {
+        color: themed('headingColor');
+    }
+}
+
 .form-check-block {
     .form-check-label {
         font-weight: 600;
@@ -140,6 +146,9 @@ input[type="radio"], input[type="checkbox"] {
     button {
         cursor: pointer;
     }
+    @include themify($themes) {
+        border: 1px solid themed('borderColor');
+    }
 }
 
 .list-group-item {
@@ -149,21 +158,22 @@ input[type="radio"], input[type="checkbox"] {
     }
     @include themify($themes) {
         background-color: themed('foregroundColor');
+        border: 1px solid themed('borderColor');
         color: themed('listItemColor');
         font-weight: themed('linkWeight');
     }
     &:hover {
         @include themify($themes) {
-            color: themed('listItemColor');
+            color: themed('listItemColorHover');
         }
     }
 }
 
 .list-group-item.active {
-    border-color: rgba(0,0,0,0.125);
     font-weight: bold !important;
     padding-left: calc(#{$list-group-item-padding-x} - 3px);
     @include themify($themes) {
+        border-color: themed('borderColor');
         border-left: 3px solid themed('borderPrimaryColor');
         color: themed('listItemActive');
     }

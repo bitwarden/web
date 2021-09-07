@@ -36,6 +36,12 @@
     }
 }
 
+.progress {
+    @include themify($themes) {
+        background-color: themed('pwStrengthBackground');
+    }
+}
+
 // Braintree
 
 #bt-dropin-container {

@@ -191,15 +191,17 @@ $themes: (
         linkWeight: 400,
         listItemActive: $text-color,
         listItemColor: $primary,
+        listItemColorHover: #104097,
         loginLogo: url("../images/logo-dark@2x.png"),
-        modalOpacity: 0.3,
         navActiveBackground: $white,
         navActiveWeight: 600,
         navBackground: $primary,
         navOrgBackgroundColor: #FBFBFB,
         navWeight: 600,
+        pwLetter: $text-color,
         pwNumber: #007FDE,
         pwSpecial: #c40800,
+        pwStrengthBackground: #E9ECEF,
         registerHeadingColor: $white,
         registerLogo: url("../images/register-layout/logo-horizontal-white.png"),
         separator: $secondary,
@@ -207,7 +209,8 @@ $themes: (
         tableColorHover: #333333,
         tableLinkColor: $primary,
         tableLinkColorHover: #104097,
-        tableRowHover: rgba(0,0,0,0.03)
+        tableRowHover: rgba(0,0,0,0.03),
+        tableSeparator: #DEE2E6
     ),
     dark: (
         primary: $darkPrimary,
@@ -300,15 +303,17 @@ $themes: (
         linkWeight: 600,
         listItemActive: $darkPrimary,
         listItemColor: $white,
+        listItemColorHover: $white,
         loginLogo: url("../images/logo-white@2x.png"),
-        modalOpacity: 0.25,
         navActiveBackground: $darkDarkBlue1,
         navActiveWeight: 600,
         navBackground: $darkDarkBlue1,
         navOrgBackgroundColor: $darkDarkBlue2,
         navWeight: 400,
+        pwLetter: $white,
         pwNumber: #52bdfb,
         pwSpecial: #FF7C70,
+        pwStrengthBackground: $darkBlue2,
         registerHeadingColor: $white,
         registerLogo: url("../images/register-layout/logo-horizontal-white.png"),
         separator: $darkBlue1,
@@ -316,7 +321,8 @@ $themes: (
         tableColorHover: $darkGrey1,
         tableLinkColor: $white,
         tableLinkColorHover: $white,
-        tableRowHover: rgba(0,0,0,0.03)
+        tableRowHover: rgba(0,0,0,0.03),
+        tableSeparator: $darkBlue1
     ),
 );
 
