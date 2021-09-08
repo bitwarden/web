@@ -60,7 +60,7 @@ You can also manually adjusting your API endpoint settings by adding `config/loc
 }
 ```
 
-Where the `urls` object is defined by the [Urls type in jslib](https://github.com/bitwarden/jslib/blob/master/common/src/abstractions/environment.service.ts). To pick up the overrides in the newly created `config/local.json` file.
+Where the `urls` object is defined by the [Urls type in jslib](https://github.com/bitwarden/jslib/blob/master/common/src/abstractions/environment.service.ts).
 
 ## Contribute
 
