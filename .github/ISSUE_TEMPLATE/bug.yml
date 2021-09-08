@@ -39,10 +39,16 @@ body:
     attributes:
       label: Screenshots or Videos
       description: If applicable, add screenshots and/or a short video to help explain your problem.
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here.
   - type: dropdown
     id: os
     attributes:
-      label: What operating system are you seeing the problem on?
+      label: Operating System
+      description: What operating system are you seeing the problem on?
       multiple: true
       options:
         - Windows
@@ -55,11 +61,13 @@ body:
   - type: input
     id: os-version
     attributes:
-      label: What version of the operating system(s) are you seeing the problem on?
+      label: Operating System Version
+      description: What version of the operating system(s) are you seeing the problem on?
   - type: dropdown
     id: browsers
     attributes:
-      label: What browsers are you seeing the problem on?
+      label: Web Browser
+      description: What browser(s) are you seeing the problem on?
       multiple: true
       options:
         - Chrome
@@ -74,7 +82,8 @@ body:
   - type: input
     id: browser-version
     attributes:
-      label: What version of the browser(s) are you seeing the problem on?
+      label: Browser Version
+      description: What version of the browser(s) are you seeing the problem on?
   - type: input
     id: version
     attributes:
