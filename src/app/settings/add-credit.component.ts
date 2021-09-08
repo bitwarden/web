@@ -16,8 +16,6 @@ import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
 
 import { BitPayInvoiceRequest } from 'jslib-common/models/request/bitPayInvoiceRequest';
 
-import { WebConstants } from '../../services/webConstants';
-
 @Component({
     selector: 'app-add-credit',
     templateUrl: 'add-credit.component.html',
@@ -33,8 +31,8 @@ export class AddCreditComponent implements OnInit {
     @ViewChild('ppButtonForm', { read: ElementRef, static: true }) ppButtonFormRef: ElementRef;
 
     paymentMethodType = PaymentMethodType;
-    ppButtonFormAction = WebConstants.paypal.buttonActionProduction;
-    ppButtonBusinessId = WebConstants.paypal.businessIdProduction;
+    ppButtonFormAction = process.env.PAYPAL_CONFIG['buttonAction']; 
+    ppButtonBusinessId = process.env.PAYPAL_CONFIG['businessId'];
     ppButtonCustomField: string;
     ppLoading = false;
     subject: string;
@@ -46,12 +44,7 @@ export class AddCreditComponent implements OnInit {
     private email: string;
 
     constructor(private userService: UserService, private apiService: ApiService,
-        private platformUtilsService: PlatformUtilsService) {
-        if (process.env.ENV !== 'cloud' || platformUtilsService.isDev()) {
-            this.ppButtonFormAction = WebConstants.paypal.buttonActionSandbox;
-            this.ppButtonBusinessId = WebConstants.paypal.businessIdSandbox;
-        }
-    }
+        private platformUtilsService: PlatformUtilsService) {}
 
     async ngOnInit() {
         if (this.organizationId != null) {
