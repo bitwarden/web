@@ -107,7 +107,7 @@ jobs:
           echo -e "# Building Web\n"
           echo "Building app"
           echo "npm version $(npm --version)"
-          npm run dist:selfhost
+          npm run dist:bit:selfhost
 
           echo -e "\nBuilding Docker image"
           docker --version
