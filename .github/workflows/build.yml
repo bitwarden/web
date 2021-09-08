@@ -196,7 +196,7 @@ jobs:
           echo -e "# Building Web\n"
           echo "Building app"
           echo "npm version $(npm --version)"
-          npm run build:qa
+          npm run build:bit:qa
 
           echo -e "\nBuilding Docker image"
           docker --version
@@ -279,4 +279,4 @@ jobs:
         run: npm install
 
       - name: NPM build
-        run: npm run build:cloud
+        run: npm run build:bit:cloud
