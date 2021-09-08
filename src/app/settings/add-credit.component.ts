@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
+import { PayPalConfig } from 'jslib-common/abstractions/environment.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
@@ -31,8 +32,8 @@ export class AddCreditComponent implements OnInit {
     @ViewChild('ppButtonForm', { read: ElementRef, static: true }) ppButtonFormRef: ElementRef;
 
     paymentMethodType = PaymentMethodType;
-    ppButtonFormAction = process.env.PAYPAL_CONFIG['buttonAction']; 
-    ppButtonBusinessId = process.env.PAYPAL_CONFIG['businessId'];
+    ppButtonFormAction: string;
+    ppButtonBusinessId: string;
     ppButtonCustomField: string;
     ppLoading = false;
     subject: string;
@@ -44,7 +45,11 @@ export class AddCreditComponent implements OnInit {
     private email: string;
 
     constructor(private userService: UserService, private apiService: ApiService,
-        private platformUtilsService: PlatformUtilsService) {}
+        private platformUtilsService: PlatformUtilsService) {
+        const payPalConfig = process.env.PAYPAL_CONFIG as PayPalConfig;
+        this.ppButtonFormAction = payPalConfig.buttonAction;
+        this.ppButtonBusinessId = payPalConfig.businessId;
+    }
 
     async ngOnInit() {
         if (this.organizationId != null) {
