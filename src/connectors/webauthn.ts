@@ -156,9 +156,8 @@ function success(assertedCredential: PublicKeyCredential) {
         document.location.replace(callbackUri + '?data=' + encodeURIComponent(dataString));
     } else {
         parent.postMessage('success|' + dataString, parentUrl);
+        sentSuccess = true;
     }
-
-    sentSuccess = true;
 }
 
 function info(message: string) {
