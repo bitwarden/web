@@ -119,7 +119,7 @@ function executeWebAuthn() {
 
     navigator.credentials.get({ publicKey: obj })
         .then(success)
-        .catch(err => error(err));
+        .catch(error);
 }
 
 function onMessage() {
