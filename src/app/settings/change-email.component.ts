@@ -35,12 +35,8 @@ export class ChangeEmailComponent implements OnInit {
 
     async ngOnInit() {
         const twoFactorProviders = await this.apiService.getTwoFactorProviders();
-        for (const p of twoFactorProviders.data) {
-            if (p.type === TwoFactorProviderType.Email) {
-                this.showTwoFactorEmailWarning = p.enabled;
-                break;
-            }
-        }
+        this.showTwoFactorEmailWarning = twoFactorProviders.data.some(p => p.type === TwoFactorProviderType.Email &&
+            p.enabled);
     }
 
     async submit() {
