@@ -123,7 +123,7 @@ export class PaymentComponent implements OnInit {
         if (this.method === PaymentMethodType.PayPal) {
             window.setTimeout(() => {
                 (window as any).braintree.dropin.create({
-                    authorization: process.env.BT_KEY,
+                    authorization: process.env.BRAINTREE_KEY,
                     container: '#bt-dropin-container',
                     paymentOptionPriority: ['paypal'],
                     paypal: {
