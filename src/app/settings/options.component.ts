@@ -2,6 +2,7 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 import { ToasterService } from 'angular2-toaster';
 
@@ -21,14 +22,15 @@ import { Utils } from 'jslib-common/misc/utils';
     templateUrl: 'options.component.html',
 })
 export class OptionsComponent implements OnInit {
-    vaultTimeout: number = null;
     vaultTimeoutAction: string = 'lock';
     disableIcons: boolean;
     enableGravatars: boolean;
     enableFullWidth: boolean;
     locale: string;
-    vaultTimeouts: any[];
+    vaultTimeouts: { name: string; value: number; }[];
     localeOptions: any[];
+
+    vaultTimeout: FormControl = new FormControl(null);
 
     private startingLocale: string;
 
@@ -63,7 +65,7 @@ export class OptionsComponent implements OnInit {
     }
 
     async ngOnInit() {
-        this.vaultTimeout = await this.storageService.get<number>(ConstantsService.vaultTimeoutKey);
+        this.vaultTimeout.setValue(await this.vaultTimeoutService.getVaultTimeout());
         this.vaultTimeoutAction = await this.storageService.get<string>(ConstantsService.vaultTimeoutActionKey);
         this.disableIcons = await this.storageService.get<boolean>(ConstantsService.disableFaviconKey);
         this.enableGravatars = await this.storageService.get<boolean>('enableGravatars');
@@ -72,8 +74,12 @@ export class OptionsComponent implements OnInit {
     }
 
     async submit() {
-        await this.vaultTimeoutService.setVaultTimeoutOptions(this.vaultTimeout != null ? this.vaultTimeout : null,
-            this.vaultTimeoutAction);
+        if (!this.vaultTimeout.valid) {
+            this.toasterService.popAsync('error', null, this.i18nService.t('vaultTimeoutToLarge'));
+            return;
+        }
+
+        await this.vaultTimeoutService.setVaultTimeoutOptions(this.vaultTimeout.value, this.vaultTimeoutAction);
         await this.storageService.save(ConstantsService.disableFaviconKey, this.disableIcons);
         await this.stateService.save(ConstantsService.disableFaviconKey, this.disableIcons);
         await this.storageService.save('enableGravatars', this.enableGravatars);

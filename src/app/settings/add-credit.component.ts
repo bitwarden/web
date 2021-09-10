@@ -9,14 +9,13 @@ import {
 } from '@angular/core';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
+import { PayPalConfig } from 'jslib-common/abstractions/environment.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
 
 import { BitPayInvoiceRequest } from 'jslib-common/models/request/bitPayInvoiceRequest';
-
-import { WebConstants } from '../../services/webConstants';
 
 @Component({
     selector: 'app-add-credit',
@@ -33,8 +32,8 @@ export class AddCreditComponent implements OnInit {
     @ViewChild('ppButtonForm', { read: ElementRef, static: true }) ppButtonFormRef: ElementRef;
 
     paymentMethodType = PaymentMethodType;
-    ppButtonFormAction = WebConstants.paypal.buttonActionProduction;
-    ppButtonBusinessId = WebConstants.paypal.businessIdProduction;
+    ppButtonFormAction: string;
+    ppButtonBusinessId: string;
     ppButtonCustomField: string;
     ppLoading = false;
     subject: string;
@@ -47,10 +46,9 @@ export class AddCreditComponent implements OnInit {
 
     constructor(private userService: UserService, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService) {
-        if (process.env.ENV !== 'cloud' || platformUtilsService.isDev()) {
-            this.ppButtonFormAction = WebConstants.paypal.buttonActionSandbox;
-            this.ppButtonBusinessId = WebConstants.paypal.businessIdSandbox;
-        }
+        const payPalConfig = process.env.PAYPAL_CONFIG as PayPalConfig;
+        this.ppButtonFormAction = payPalConfig.buttonAction;
+        this.ppButtonBusinessId = payPalConfig.businessId;
     }
 
     async ngOnInit() {

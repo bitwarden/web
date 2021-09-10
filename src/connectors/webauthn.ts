@@ -119,7 +119,7 @@ function executeWebAuthn() {
 
     navigator.credentials.get({ publicKey: obj })
         .then(success)
-        .catch(err => error('WebAuth Error: ' + err));
+        .catch(error);
 }
 
 function onMessage() {
@@ -156,9 +156,8 @@ function success(assertedCredential: PublicKeyCredential) {
         document.location.replace(callbackUri + '?data=' + encodeURIComponent(dataString));
     } else {
         parent.postMessage('success|' + dataString, parentUrl);
+        sentSuccess = true;
     }
-
-    sentSuccess = true;
 }
 
 function info(message: string) {
