@@ -98,6 +98,11 @@ const plugins = [
         chunks: ['connectors/webauthn'],
     }),
     new HtmlWebpackPlugin({
+        template: './src/connectors/webauthn-mobile.html',
+        filename: 'webauthn-mobile-connector.html',
+        chunks: ['connectors/webauthn'],
+    }),
+    new HtmlWebpackPlugin({
         template: './src/connectors/webauthn-fallback.html',
         filename: 'webauthn-fallback-connector.html',
         chunks: ['connectors/webauthn-fallback'],
@@ -124,7 +129,6 @@ const plugins = [
             { from: './src/favicon.ico' },
             { from: './src/browserconfig.xml' },
             { from: './src/app-id.json' },
-            { from: './src/assetlinks.json' },
             { from: './src/404.html' },
             { from: './src/404', to: '404' },
             { from: './src/images', to: 'images' },
@@ -144,6 +148,9 @@ const plugins = [
         'APPLICATION_VERSION': pjson.version,
         'CACHE_TAG': Math.random().toString(36).substring(7),
         'URLS': envConfig['urls'] ?? {},
+        'STRIPE_KEY': envConfig['stripeKey'] ?? '', 
+        'BRAINTREE_KEY': envConfig['braintreeKey'] ?? '',
+        'PAYPAL_CONFIG': envConfig['paypal'] ?? {},
     }),
     new AngularCompilerPlugin({
         tsConfigPath: 'tsconfig.json',

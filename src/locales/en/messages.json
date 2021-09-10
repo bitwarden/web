@@ -3796,6 +3796,9 @@
   "personalOwnershipPolicyInEffect": {
     "message": "An organization policy is affecting your ownership options."
   },
+  "personalOwnershipPolicyInEffectImports": {
+    "message": "An organization policy has disabled importing items into your personal vault."
+  },
   "personalOwnershipCheckboxDesc": {
     "message": "Disable personal ownership for organization users"
   },
@@ -3945,6 +3948,15 @@
   },
   "eventAdminPasswordReset": {
     "message": "Master password reset for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventResetSsoLink": {
+    "message": "Reset Sso link for user $ID$",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4186,5 +4198,39 @@
   },
   "updateMasterPasswordWarning": {
     "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+  },
+  "maximumVaultTimeout": {
+    "message": "Vault Timeout"  
+  },
+  "maximumVaultTimeoutDesc": {
+    "message": "Configure a maximum vault timeout for all users."  
+  },
+  "maximumVaultTimeoutLabel": {
+    "message": "Maximum Vault Timeout"
+  },
+  "hours": {
+    "message": "Hours"
+  },
+  "minutes": {
+    "message": "Minutes"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "customVaultTimeout": {
+    "message": "Custom Vault Timeout"
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Your vault timeout exceeds the restriction set by your organization."
   }
 }

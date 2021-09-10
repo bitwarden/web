@@ -1,6 +1,5 @@
 import {
     Component,
-    ComponentFactoryResolver,
     OnInit,
     Type,
     ViewChild,
@@ -14,10 +13,12 @@ import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { TwoFactorProviders } from 'jslib-common/services/auth.service';
 
+import { ModalService } from 'jslib-angular/services/modal.service';
+
+import { ModalRef } from 'jslib-angular/components/modal/modal.ref';
+
 import { PolicyType } from 'jslib-common/enums/policyType';
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
-
-import { ModalComponent } from '../modal.component';
 
 import { TwoFactorAuthenticatorComponent } from './two-factor-authenticator.component';
 import { TwoFactorDuoComponent } from './two-factor-duo.component';
@@ -43,11 +44,10 @@ export class TwoFactorSetupComponent implements OnInit {
     canAccessPremium: boolean;
     showPolicyWarning = false;
     loading = true;
-
-    private modal: ModalComponent = null;
+    modal: ModalRef;
 
     constructor(protected apiService: ApiService, protected userService: UserService,
-        protected componentFactoryResolver: ComponentFactoryResolver, protected messagingService: MessagingService,
+        protected modalService: ModalService, protected messagingService: MessagingService,
         protected policyService: PolicyService) { }
 
     async ngOnInit() {
@@ -91,34 +91,34 @@ export class TwoFactorSetupComponent implements OnInit {
         this.loading = false;
     }
 
-    manage(type: TwoFactorProviderType) {
+    async manage(type: TwoFactorProviderType) {
         switch (type) {
             case TwoFactorProviderType.Authenticator:
-                const authComp = this.openModal(this.authenticatorModalRef, TwoFactorAuthenticatorComponent);
+                const authComp = await this.openModal(this.authenticatorModalRef, TwoFactorAuthenticatorComponent);
                 authComp.onUpdated.subscribe((enabled: boolean) => {
                     this.updateStatus(enabled, TwoFactorProviderType.Authenticator);
                 });
                 break;
             case TwoFactorProviderType.Yubikey:
-                const yubiComp = this.openModal(this.yubikeyModalRef, TwoFactorYubiKeyComponent);
+                const yubiComp = await this.openModal(this.yubikeyModalRef, TwoFactorYubiKeyComponent);
                 yubiComp.onUpdated.subscribe((enabled: boolean) => {
                     this.updateStatus(enabled, TwoFactorProviderType.Yubikey);
                 });
                 break;
             case TwoFactorProviderType.Duo:
-                const duoComp = this.openModal(this.duoModalRef, TwoFactorDuoComponent);
+                const duoComp = await this.openModal(this.duoModalRef, TwoFactorDuoComponent);
                 duoComp.onUpdated.subscribe((enabled: boolean) => {
                     this.updateStatus(enabled, TwoFactorProviderType.Duo);
                 });
                 break;
             case TwoFactorProviderType.Email:
-                const emailComp = this.openModal(this.emailModalRef, TwoFactorEmailComponent);
+                const emailComp = await this.openModal(this.emailModalRef, TwoFactorEmailComponent);
                 emailComp.onUpdated.subscribe((enabled: boolean) => {
                     this.updateStatus(enabled, TwoFactorProviderType.Email);
                 });
                 break;
             case TwoFactorProviderType.WebAuthn:
-                const webAuthnComp = this.openModal(this.webAuthnModalRef, TwoFactorWebAuthnComponent);
+                const webAuthnComp = await this.openModal(this.webAuthnModalRef, TwoFactorWebAuthnComponent);
                 webAuthnComp.onUpdated.subscribe((enabled: boolean) => {
                     this.updateStatus(enabled, TwoFactorProviderType.WebAuthn);
                 });
@@ -147,18 +147,10 @@ export class TwoFactorSetupComponent implements OnInit {
         return type === TwoFactorProviderType.OrganizationDuo;
     }
 
-    protected openModal<T>(ref: ViewContainerRef, type: Type<T>): T {
-        if (this.modal != null) {
-            this.modal.close();
-        }
+    protected async openModal<T>(ref: ViewContainerRef, type: Type<T>): Promise<T> {
+        const [modal, childComponent] = await this.modalService.openViewRef(type, ref);
+        this.modal = modal;
 
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = ref.createComponent(factory).instance;
-        const childComponent = this.modal.show<T>(type, ref);
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
-        });
         return childComponent;
     }
 
@@ -176,8 +168,7 @@ export class TwoFactorSetupComponent implements OnInit {
 
     private async evaluatePolicies() {
         if (this.organizationId == null && this.providers.filter(p => p.enabled).length === 1) {
-            const policies = await this.policyService.getAll(PolicyType.TwoFactorAuthentication);
-            this.showPolicyWarning = policies != null && policies.some(p => p.enabled);
+            this.showPolicyWarning = await this.policyService.policyAppliesToUser(PolicyType.TwoFactorAuthentication);
         } else {
             this.showPolicyWarning = false;
         }

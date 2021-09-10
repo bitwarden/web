@@ -11,10 +11,8 @@ import { RouterModule } from '@angular/router';
 import { ToasterModule } from 'angular2-toaster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
-import { AppComponent } from './app.component';
-import { ModalComponent } from './modal.component';
-
 import { AvatarComponent } from './components/avatar.component';
+import { PasswordRepromptComponent } from './components/password-reprompt.component';
 import { PasswordStrengthComponent } from './components/password-strength.component';
 
 import { FooterComponent } from './layouts/footer.component';
@@ -144,6 +142,7 @@ import { UpdateKeyComponent } from './settings/update-key.component';
 import { UpdateLicenseComponent } from './settings/update-license.component';
 import { UserBillingComponent } from './settings/user-billing.component';
 import { UserSubscriptionComponent } from './settings/user-subscription.component';
+import { VaultTimeoutInputComponent } from './settings/vault-timeout-input.component';
 import { VerifyEmailComponent } from './settings/verify-email.component';
 
 import { BreachReportComponent } from './tools/breach-report.component';
@@ -307,7 +306,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         AdjustStorageComponent,
         ApiActionDirective,
         ApiKeyComponent,
-        AppComponent,
         AttachmentsComponent,
         AutofocusDirective,
         AvatarComponent,
@@ -356,7 +354,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         LinkSsoComponent,
         LockComponent,
         LoginComponent,
-        ModalComponent,
         NavbarComponent,
         OptionsComponent,
         OrgAccountComponent,
@@ -402,6 +399,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         PasswordGeneratorComponent,
         PasswordGeneratorHistoryComponent,
         PasswordStrengthComponent,
+        PasswordRepromptComponent,
         PaymentComponent,
         PremiumComponent,
         ProfileComponent,
@@ -457,6 +455,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         DisableSendPolicyComponent,
         SendOptionsPolicyComponent,
         ResetPasswordPolicyComponent,
+        VaultTimeoutInputComponent,
     ],
     exports: [
         A11yTitleDirective,
@@ -468,7 +467,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         I18nPipe,
         SearchPipe,
         UserNamePipe,
-        ModalComponent,
         NavbarComponent,
         FooterComponent,
         OrganizationPlansComponent,

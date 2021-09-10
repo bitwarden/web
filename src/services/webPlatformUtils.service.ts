@@ -82,10 +82,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return Promise.resolve(false);
     }
 
-    lockTimeout(): number {
-        return null;
-    }
-
     launchUri(uri: string, options?: any): void {
         const a = document.createElement('a');
         a.href = uri;
@@ -220,32 +216,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         }
 
         return confirmed.value;
-    }
-
-    async showPasswordDialog(title: string, body: string, passwordValidation: (value: string) => Promise<boolean>):
-        Promise<boolean> {
-        const result = await Swal.fire({
-            heightAuto: false,
-            titleText: title,
-            input: 'password',
-            text: body,
-            confirmButtonText: this.i18nService.t('ok'),
-            showCancelButton: true,
-            cancelButtonText: this.i18nService.t('cancel'),
-            inputAttributes: {
-                autocapitalize: 'off',
-                autocorrect: 'off',
-            },
-            inputValidator: async (value: string): Promise<any> => {
-                if (await passwordValidation(value)) {
-                    return false;
-                }
-
-                return this.i18nService.t('invalidMasterPassword');
-            },
-        });
-
-        return result.isConfirmed;
     }
 
     isDev(): boolean {

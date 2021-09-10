@@ -25,7 +25,7 @@ export class ResetPasswordPolicy extends BasePolicy {
 export class ResetPasswordPolicyComponent extends BasePolicyComponent {
 
     data = this.fb.group({
-        autoEnroll: false,
+        autoEnrollEnabled: false,
     });
 
     defaultTypes: { name: string; value: string; }[];

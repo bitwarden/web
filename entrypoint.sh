@@ -31,7 +31,6 @@ mkhomedir_helper $USERNAME
 
 chown -R $USERNAME:$GROUPNAME /etc/bitwarden
 cp /etc/bitwarden/web/app-id.json /app/app-id.json
-cp /etc/bitwarden/web/assetlinks.json /app/assetlinks.json
 chown -R $USERNAME:$GROUPNAME /app
 chown -R $USERNAME:$GROUPNAME /bitwarden_server
 

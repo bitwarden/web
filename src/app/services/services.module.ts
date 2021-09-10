@@ -10,6 +10,7 @@ import { BroadcasterMessagingService } from '../../services/broadcasterMessaging
 import { HtmlStorageService } from '../../services/htmlStorage.service';
 import { I18nService } from '../../services/i18n.service';
 import { MemoryStorageService } from '../../services/memoryStorage.service';
+import { PasswordRepromptService } from '../../services/passwordReprompt.service';
 import { WebPlatformUtilsService } from '../../services/webPlatformUtils.service';
 
 import { EventService } from './event.service';
@@ -21,6 +22,7 @@ import { RouterService } from './router.service';
 import { AuthGuardService } from 'jslib-angular/services/auth-guard.service';
 import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 import { LockGuardService } from 'jslib-angular/services/lock-guard.service';
+import { ModalService as ModalServiceAbstraction } from 'jslib-angular/services/modal.service';
 import { UnauthGuardService } from 'jslib-angular/services/unauth-guard.service';
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
@@ -42,7 +44,6 @@ import { FolderService } from 'jslib-common/services/folder.service';
 import { ImportService } from 'jslib-common/services/import.service';
 import { NotificationsService } from 'jslib-common/services/notifications.service';
 import { PasswordGenerationService } from 'jslib-common/services/passwordGeneration.service';
-import { PasswordRepromptService } from 'jslib-common/services/passwordReprompt.service';
 import { PolicyService } from 'jslib-common/services/policy.service';
 import { SearchService } from 'jslib-common/services/search.service';
 import { SendService } from 'jslib-common/services/send.service';
@@ -88,6 +89,7 @@ import { TokenService as TokenServiceAbstraction } from 'jslib-common/abstractio
 import { TotpService as TotpServiceAbstraction } from 'jslib-common/abstractions/totp.service';
 import { UserService as UserServiceAbstraction } from 'jslib-common/abstractions/user.service';
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib-common/abstractions/vaultTimeout.service';
+import { ModalService } from './modal.service';
 
 const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
@@ -122,7 +124,7 @@ const sendService = new SendService(cryptoService, userService, apiService, file
     i18nService, cryptoFunctionService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
     cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, tokenService,
-    null, async () => messagingService.send('logout', { expired: false }));
+    policyService, null, async () => messagingService.send('logout', { expired: false }));
 const syncService = new SyncService(userService, apiService, settingsService,
     folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
     sendService, async (expired: boolean) => messagingService.send('logout', { expired: expired }));
@@ -139,7 +141,6 @@ const notificationsService = new NotificationsService(userService, syncService, 
     environmentService, async () => messagingService.send('logout', { expired: true }), consoleLogService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService);
-const passwordRepromptService = new PasswordRepromptService(i18nService, cryptoService, platformUtilsService);
 
 containerService.attachToWindow(window);
 
@@ -186,6 +187,7 @@ export function initFactory(): Function {
         EventService,
         LockGuardService,
         PolicyListService,
+        { provide: ModalServiceAbstraction, useClass: ModalService },
         { provide: AuditServiceAbstraction, useValue: auditService },
         { provide: AuthServiceAbstraction, useValue: authService },
         { provide: CipherServiceAbstraction, useValue: cipherService },
@@ -217,7 +219,7 @@ export function initFactory(): Function {
         { provide: EventLoggingServiceAbstraction, useValue: eventLoggingService },
         { provide: PolicyServiceAbstraction, useValue: policyService },
         { provide: SendServiceAbstraction, useValue: sendService },
-        { provide: PasswordRepromptServiceAbstraction, useValue: passwordRepromptService },
+        { provide: PasswordRepromptServiceAbstraction, useClass: PasswordRepromptService },
         { provide: LogService, useValue: consoleLogService },
         {
             provide: APP_INITIALIZER,

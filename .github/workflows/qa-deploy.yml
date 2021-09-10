@@ -1,6 +1,7 @@
+---
 name: QA Deploy
 
-on: 
+on:
   workflow_dispatch:
     inputs:
       image_extension:
@@ -8,10 +9,10 @@ on:
         required: false
 
 env:
-  QA_CLUSTER_RESOURCE_GROUP: "bitwarden-devops"
-  QA_CLUSTER_NAME: "dev-aks"
-  QA_K8S_NAMESPACE: "bw-qa"
-  QA_K8S_APP_NAME: "bw-web"
+  _QA_CLUSTER_RESOURCE_GROUP: "bitwarden-devops"
+  _QA_CLUSTER_NAME: "dev-aks"
+  _QA_K8S_NAMESPACE: "bw-qa"
+  _QA_K8S_APP_NAME: "bw-web"
 
 jobs:
   deploy:
@@ -19,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f  # v2.3.4
 
       - name: Setup
         run:
@@ -49,7 +50,7 @@ jobs:
           echo "---az install---"
           az aks install-cli --install-location ./kubectl --kubelogin-install-location ./kubelogin
           echo "---az get-creds---"
-          az aks get-credentials -n $QA_CLUSTER_NAME -g $QA_CLUSTER_RESOURCE_GROUP
+          az aks get-credentials -n $_QA_CLUSTER_NAME -g $_QA_CLUSTER_RESOURCE_GROUP
 
       - name: Get image tag
         id: image_tag
@@ -59,12 +60,13 @@ jobs:
 
           if [[ $TAG_EXTENSION ]]; then
             IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
-          fi  
+          fi
           echo "::set-output name=value::$IMAGE_TAG"
 
       - name: Deploy Web image
         env:
           IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
         run: |
-          kubectl set image -n $QA_K8S_NAMESPACE deployment/web web=bitwardenqa.azurecr.io/web:$IMAGE_TAG --record
-          kubectl rollout status deployment/web -n $QA_K8S_NAMESPACE
+          kubectl set image -n $_QA_K8S_NAMESPACE deployment/web web=bitwardenqa.azurecr.io/web:$IMAGE_TAG --record
+          kubectl rollout restart -n $_QA_K8S_NAMESPACE deployment/web
+          kubectl rollout status deployment/web -n $_QA_K8S_NAMESPACE
