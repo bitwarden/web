@@ -35,19 +35,28 @@ export abstract class BasePolicyComponent implements OnInit {
     ngOnInit(): void {
         this.enabled.setValue(this.policyResponse.enabled);
 
-        if (this.data != null) {
-            this.data.patchValue(this.policyResponse.data ?? {});
+        if (this.policyResponse.data != null) {
+            this.loadData();
         }
+    }
+
+    loadData() {
+        this.data.patchValue(this.policyResponse.data ?? {});
+    }
+
+    buildRequestData() {
+        if (this.data != null) {
+            return this.data.value;
+        }
+
+        return null;
     }
 
     buildRequest(policiesEnabledMap: Map<PolicyType, boolean>) {
         const request = new PolicyRequest();
         request.enabled = this.enabled.value;
         request.type = this.policy.type;
-
-        if (this.data != null) {
-            request.data = this.data.value;
-        }
+        request.data = this.buildRequestData();
 
         return Promise.resolve(request);
     }
