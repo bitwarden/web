@@ -93,10 +93,10 @@ export class OptionsComponent implements OnInit {
             let effectiveTheme = this.currentTheme = this.theme;
             await this.storageService.save('theme', this.theme);
             const htmlEl = window.document.documentElement;
-            htmlEl.classList.remove('theme_dark', 'theme_light');
             if (this.theme == null) {
                 effectiveTheme = await this.platformUtilsService.getDefaultSystemTheme();
             }
+            htmlEl.classList.remove('theme_dark', 'theme_light');
             htmlEl.classList.add('theme_' + effectiveTheme);
         }
         await this.storageService.save(ConstantsService.localeKey, this.locale);
