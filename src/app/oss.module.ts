@@ -16,6 +16,7 @@ import { AppComponent } from './app.component';
 import { AvatarComponent } from './components/avatar.component';
 import { PasswordRepromptComponent } from './components/password-reprompt.component';
 import { PasswordStrengthComponent } from './components/password-strength.component';
+import { ThemedImageComponent } from './components/themed-image.component';
 
 import { FooterComponent } from './layouts/footer.component';
 import { FrontendLayoutComponent } from './layouts/frontend-layout.component';
@@ -422,6 +423,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         StopClickDirective,
         StopPropDirective,
         TaxInfoComponent,
+        ThemedImageComponent,
         ToolsComponent,
         TrueFalseValueDirective,
         TwoFactorAuthenticatorComponent,
@@ -471,6 +473,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         NavbarComponent,
         FooterComponent,
         OrganizationPlansComponent,
+        ThemedImageComponent,
     ],
     providers: [DatePipe, SearchPipe, UserNamePipe],
     bootstrap: [],

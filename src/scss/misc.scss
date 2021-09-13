@@ -54,21 +54,9 @@
     }
 }
 
-.logo#loginLogo {
+img.logo {
     display: block;
     height: 43px;
     margin: 0 auto;
     width: 284px;
-    @media (prefers-color-scheme: dark){
-        background: url("../images/logo-white@2x.png") no-repeat center center;
-        background-size: cover;
-    }
-    @media (prefers-color-scheme: light){
-        background: url("../images/logo-dark@2x.png") no-repeat center center;
-        background-size: cover;
-    }
-    @include themify($themes) {
-        background: themed('loginLogo') no-repeat center center;
-        background-size: cover;
-    }
 }

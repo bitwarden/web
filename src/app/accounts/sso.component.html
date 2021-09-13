@@ -1,7 +1,7 @@
 <form #form (ngSubmit)="submit()" class="container" [appApiAction]="initiateSsoFormPromise" ngNativeValidate>
     <div class="row justify-content-md-center mt-5">
         <div class="col-5">
-            <div id="loginLogo" class="logo mb-2" alt="Bitwarden"></div>
+            <app-themed-image image="logo" class="mb-2 logo" alt="Bitwarden"></app-themed-image>
             <div class="card d-block mt-4">
                 <div class="card-body" *ngIf="loggingIn">
                     <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>

@@ -182,11 +182,7 @@ app-user-billing {
                 width: 100%;
                 z-index: -1;
             }
-            .logo#registerLogo {
-                @include themify($themes) {
-                    background: themed('registerLogo') no-repeat center center;
-                    background-size: cover;
-                }
+            img.logo {
                 margin: 12px 0 0;
                 max-width: 284px;
                 height: 57px;
