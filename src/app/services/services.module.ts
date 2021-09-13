@@ -163,14 +163,14 @@ export function initFactory(): Function {
         htmlEl.classList.add('locale_' + i18nService.translationLocale);
         const theme = await storageService.get<string>(ConstantsService.themeKey);
         if (theme == null) {
-            const sysTheme = await platformUtilsService.getDefaultSystemTheme();
-            htmlEl.classList.add('theme_' + sysTheme);
+            const systemTheme = await platformUtilsService.getDefaultSystemTheme();
+            htmlEl.classList.add('theme_' + systemTheme);
         } else {
             htmlEl.classList.add('theme_' + theme);
         }
         platformUtilsService.onDefaultSystemThemeChange(async sysTheme => {
-            const theme = await storageService.get<string>(ConstantsService.themeKey);
-            if (theme == null) {
+            const bwTheme = await storageService.get<string>(ConstantsService.themeKey);
+            if (bwTheme == null) {
                 htmlEl.classList.remove('theme_light', 'theme_dark');
                 htmlEl.classList.add('theme_' + sysTheme);
             }
