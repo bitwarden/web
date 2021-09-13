@@ -161,15 +161,20 @@ export function initFactory(): Function {
         authService.init();
         const htmlEl = window.document.documentElement;
         htmlEl.classList.add('locale_' + i18nService.translationLocale);
-        let theme = await storageService.get<string>(ConstantsService.themeKey);
+        const theme = await storageService.get<string>(ConstantsService.themeKey);
         if (theme == null) {
-            theme = await platformUtilsService.getDefaultSystemTheme();
-            platformUtilsService.onDefaultSystemThemeChange(sysTheme => {
+            const sysTheme = await platformUtilsService.getDefaultSystemTheme();
+            htmlEl.classList.add('theme_' + sysTheme);
+        } else {
+            htmlEl.classList.add('theme_' + theme);
+        }
+        platformUtilsService.onDefaultSystemThemeChange(async sysTheme => {
+            const theme = await storageService.get<string>(ConstantsService.themeKey);
+            if (theme == null) {
                 htmlEl.classList.remove('theme_light', 'theme_dark');
                 htmlEl.classList.add('theme_' + sysTheme);
-            });
-        }
-        htmlEl.classList.add('theme_' + theme);
+            }
+        });
         stateService.save(ConstantsService.disableFaviconKey,
             await storageService.get<boolean>(ConstantsService.disableFaviconKey));
         stateService.save('enableGravatars', await storageService.get<boolean>('enableGravatars'));
