@@ -24,7 +24,6 @@ export class AdjustSubscription {
     @Input() seatPrice = 0;
     @Input() interval = 'year';
     @Output() onAdjusted = new EventEmitter();
-    @Output() onCanceled = new EventEmitter();
 
     formPromise: Promise<any>;
     limitSubscription: boolean;
@@ -69,10 +68,6 @@ export class AdjustSubscription {
             }
         } catch { }
         this.onAdjusted.emit();
-    }
-
-    cancel() {
-        this.onCanceled.emit();
     }
 
     limitSubscriptionChanged() {
