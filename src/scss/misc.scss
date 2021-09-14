@@ -54,9 +54,21 @@
     }
 }
 
-img.logo {
+img.logo, #iBWLogo {
     display: block;
     height: 43px;
     margin: 0 auto;
     width: 284px;
+}
+
+/* This is for the index.html page so we don't need to do inline styling or use javascript */
+#iBWLogo {
+    @media (prefers-color-scheme: dark) {
+        background: url("/src/images/logo-white@2x.png") no-repeat center center;
+        background-size: cover;
+    }
+    @media (prefers-color-scheme: light) {
+        background: url("/src/images/logo-dark@2x.png") no-repeat center center;
+        background-size: cover;
+    }
 }
