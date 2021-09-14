@@ -32,7 +32,7 @@ export class ThemedImageComponent implements OnInit {
             if (systemTheme === 'light') {
                 this.src = this.lightThemeImage;
             }
-            if (this.theme === 'dark') {
+            if (systemTheme === 'dark') {
                 this.src = this.darkThemeImage;
             }
         }
