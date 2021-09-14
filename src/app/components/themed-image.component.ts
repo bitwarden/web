@@ -1,26 +1,13 @@
 import {
     Component,
     Input,
-    OnChanges,
     OnInit,
 } from '@angular/core';
 
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 
-import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
-
-import { ConsoleLogService } from 'jslib-common/services/consoleLog.service';
 import { ConstantsService } from 'jslib-common/services/constants.service';
-
-import { BroadcasterMessagingService } from '../../services/broadcasterMessaging.service';
-import { I18nService } from '../../services/i18n.service';
-import { WebPlatformUtilsService } from '../../services/webPlatformUtils.service';
-
-const broadcasterService = new BroadcasterService();
-const consoleLogService = new ConsoleLogService(false);
-const i18nService = new I18nService(window.navigator.language, 'locales');
-const messagingService = new BroadcasterMessagingService(broadcasterService);
-const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService);
 
 @Component({
     selector: 'app-themed-image',
@@ -28,92 +15,43 @@ const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingS
 })
 
 export class ThemedImageComponent implements OnInit {
-    @Input() image: string;
     @Input() class: string;
     @Input() alt: string;
+    @Input() darkThemeImage: string;
+    @Input() lightThemeImage: string;
 
+    src: string;
     theme: string;
-    themedImage: string;
 
-    darkThemeLogo = '/src/images/logo-white@2x.png';
-    lightThemeLogo = '/src/images/logo-dark@2x.png';
-    darkThemeRegisterLogo = '/src/images/register-layout/logo-horizontal-white.png';
-    lightThemeRegisterLogo = '/src/images/register-layout/logo-horizontal-white.png';
-
-    constructor(private storageService: StorageService) { }
+    constructor(private storageService: StorageService, private platformUtilsService: PlatformUtilsService) { }
 
     async ngOnInit() {
         this.theme = await this.storageService.get<string>(ConstantsService.themeKey);
         if (this.theme == null) {
-            const systemTheme = await platformUtilsService.getDefaultSystemTheme();
+            const systemTheme = await this.platformUtilsService.getDefaultSystemTheme();
             if (systemTheme === 'light') {
-                if (this.image === 'logo') {
-                    this.themedImage = this.lightThemeLogo;
-                }
-                if (this.image === 'registerLogo') {
-                    this.themedImage = this.lightThemeRegisterLogo;
-                }
-            } else {
-                if (this.image === 'logo') {
-                    this.themedImage = this.darkThemeLogo;
-                }
-                if (this.image === 'registerLogo') {
-                    this.themedImage = this.darkThemeRegisterLogo;
-                }
+                this.src = this.lightThemeImage;
             }
-        } else if (this.theme === 'light') {
-            if (this.image === 'logo') {
-                this.themedImage = this.lightThemeLogo;
-            }
-            if (this.image === 'registerLogo') {
-                this.themedImage = this.lightThemeRegisterLogo;
-            }
-        } else {
-            if (this.image === 'logo') {
-                this.themedImage = this.darkThemeLogo;
-            }
-            if (this.image === 'registerLogo') {
-                this.themedImage = this.darkThemeRegisterLogo;
+            if (this.theme === 'dark') {
+                this.src = this.darkThemeImage;
             }
         }
-    }
-
-    async ngOnChanges() {
-        this.theme = await this.storageService.get<string>(ConstantsService.themeKey);
-        platformUtilsService.onDefaultSystemThemeChange(async sysTheme => {
+        this.platformUtilsService.onDefaultSystemThemeChange(async sysTheme => {
             const bwTheme = await this.storageService.get<string>(ConstantsService.themeKey);
             if (bwTheme == null) {
                 if (sysTheme === 'light') {
-                    if (this.image === 'logo') {
-                        this.themedImage = this.lightThemeLogo;
-                    }
-                    if (this.image === 'registerLogo') {
-                        this.themedImage = this.lightThemeRegisterLogo;
-                    }
-                } else {
-                    if (this.image === 'logo') {
-                        this.themedImage = this.darkThemeLogo;
-                    }
-                    if (this.image === 'registerLogo') {
-                        this.themedImage = this.darkThemeRegisterLogo;
-                    }
+                    this.src = this.lightThemeImage;
+                }
+                if (this.theme === 'dark') {
+                    this.src = this.darkThemeImage;
                 }
             }
         });
         if (this.theme === 'light') {
-            if (this.image === 'logo') {
-                this.themedImage = this.lightThemeLogo;
-            }
-            if (this.image === 'registerLogo') {
-                this.themedImage = this.lightThemeRegisterLogo;
-            }
-        } else {
-            if (this.image === 'logo') {
-                this.themedImage = this.darkThemeLogo;
-            }
-            if (this.image === 'registerLogo') {
-                this.themedImage = this.darkThemeRegisterLogo;
-            }
+            this.src = this.lightThemeImage;
+        }
+        if (this.theme === 'dark') {
+            this.src = this.darkThemeImage;
         }
     }
 }
