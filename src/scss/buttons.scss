@@ -183,7 +183,7 @@
     &:hover {
         @include themify($themes) {
             background-color: themed('badgePrimaryBackgroundHover');
-            color: themed('badgePrimaryText') !important;
+            color: themed('badgePrimaryText');
         }
     }
 }
@@ -204,8 +204,8 @@
 
 .badge-danger {
     @include themify($themes) {
-        background-color: themed('danger');
-        color: themed('dangerTextColor');
+        background-color: themed('badgeDangerBackground');
+        color: themed('badgeDangerText');
     }
 }
 

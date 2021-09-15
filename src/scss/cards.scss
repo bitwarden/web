@@ -32,8 +32,10 @@
     }
 
     a:hover {
-        @include themify($themes) {
-            color: themed('learnMoreHover');
+        &:not(.badge){
+            @include themify($themes) {
+                color: themed('learnMoreHover');
+            }
         }
     }
 }

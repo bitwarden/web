@@ -40,11 +40,11 @@ export class ThemedImageComponent implements OnInit, OnDestroy {
             if (bwTheme == null) {
                 this.imageUrl = prefersDarkQuery.matches ? this.darkThemeImage : this.lightThemeImage;
             }
-        }
+        };
         this.prefersColorSchemeDark.addEventListener('change', this.themeChangeCallback);
     }
 
     ngOnDestroy() {
         this.prefersColorSchemeDark.removeEventListener('change', this.themeChangeCallback);
-    }    
+    }
 }
