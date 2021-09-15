@@ -1,6 +1,7 @@
 import {
     Component,
     Input,
+    OnDestroy,
     OnInit,
 } from '@angular/core';
 
@@ -13,45 +14,37 @@ import { ConstantsService } from 'jslib-common/services/constants.service';
     selector: 'app-themed-image',
     templateUrl: 'themed-image.component.html',
 })
-
-export class ThemedImageComponent implements OnInit {
-    @Input() class: string;
-    @Input() alt: string;
+export class ThemedImageComponent implements OnInit, OnDestroy {
+    @Input() imageClass: string;
+    @Input() imageAlt: string;
     @Input() darkThemeImage: string;
     @Input() lightThemeImage: string;
 
-    src: string;
-    theme: string;
+    imageUrl: string;
+
+    private themeChangeCallback: any;
+    private prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
 
     constructor(private storageService: StorageService, private platformUtilsService: PlatformUtilsService) { }
 
     async ngOnInit() {
-        this.theme = await this.storageService.get<string>(ConstantsService.themeKey);
-        if (this.theme == null) {
-            const systemTheme = await this.platformUtilsService.getDefaultSystemTheme();
-            if (systemTheme === 'light') {
-                this.src = this.lightThemeImage;
-            }
-            if (systemTheme === 'dark') {
-                this.src = this.darkThemeImage;
-            }
+        let theme = await this.storageService.get<string>(ConstantsService.themeKey);
+        if (theme == null) {
+            theme = await this.platformUtilsService.getDefaultSystemTheme();
         }
-        this.platformUtilsService.onDefaultSystemThemeChange(async sysTheme => {
+
+        this.imageUrl = theme === 'dark' ? this.darkThemeImage : this.lightThemeImage;
+
+        this.themeChangeCallback = async (prefersDarkQuery: MediaQueryList) => {
             const bwTheme = await this.storageService.get<string>(ConstantsService.themeKey);
             if (bwTheme == null) {
-                if (sysTheme === 'light') {
-                    this.src = this.lightThemeImage;
-                }
-                if (this.theme === 'dark') {
-                    this.src = this.darkThemeImage;
-                }
+                this.imageUrl = prefersDarkQuery.matches ? this.darkThemeImage : this.lightThemeImage;
             }
-        });
-        if (this.theme === 'light') {
-            this.src = this.lightThemeImage;
         }
-        if (this.theme === 'dark') {
-            this.src = this.darkThemeImage;
-        }
+        this.prefersColorSchemeDark.addEventListener('change', this.themeChangeCallback);
     }
+
+    ngOnDestroy() {
+        this.prefersColorSchemeDark.removeEventListener('change', this.themeChangeCallback);
+    }    
 }
