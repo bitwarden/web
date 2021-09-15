@@ -91,7 +91,7 @@ export class OptionsComponent implements OnInit {
         this.messagingService.send('setFullWidth');
         if (this.theme !== this.currentTheme) {
             let effectiveTheme = this.currentTheme = this.theme;
-            await this.storageService.save('theme', this.theme);
+            await this.storageService.save(ConstantsService.themeKey, this.theme);
             const htmlEl = window.document.documentElement;
             if (this.theme == null) {
                 effectiveTheme = await this.platformUtilsService.getDefaultSystemTheme();
