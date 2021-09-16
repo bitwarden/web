@@ -29,9 +29,35 @@ jobs:
         run: cloc --include-lang TypeScript,JavaScript,HTML,Sass,CSS --vcs git
 
 
+  precache-ubuntu-npm:
+    name: Pre-cache npm dependencies
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Set up Node
+        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
+        with:
+          node-version: '14'
+
+      - name: Update NPM
+        run: |
+          npm install -g npm@7
+
+      - name: Cache npm
+        id: npm-cache
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
+        with:
+          path: '~/.npm'
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Install dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
+
   build-qa:
     name: Build Docker images for testing
     runs-on: ubuntu-20.04
+    needs: precache-ubuntu-npm
     steps:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
@@ -74,6 +100,7 @@ jobs:
         run: dotnet tool restore
 
       - name: Install dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Build
@@ -132,6 +159,7 @@ jobs:
   build-cloud:
     name: Build Cloud Zip
     runs-on: ubuntu-20.04
+    needs: precache-ubuntu-npm
     steps:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
@@ -161,9 +189,13 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
+      - name: Install dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm ci
+
       - name: Build Cloud
         run: |
-          npm run dist
+          npm run dist:bit:cloud
           zip -r prod-build-artifact.zip build
 
       - name: Upload build artifact
@@ -177,6 +209,7 @@ jobs:
   build-selfhost:
     name: Build SelfHost Docker image
     runs-on: ubuntu-20.04
+    needs: precache-ubuntu-npm
     steps:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
@@ -245,6 +278,7 @@ jobs:
         run: dotnet tool restore
 
       - name: Install dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Build
@@ -339,7 +373,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
-      - name: NPM install
+      - name: Install dependencies
+        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: NPM build
