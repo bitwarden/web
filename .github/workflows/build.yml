@@ -208,12 +208,17 @@ jobs:
           echo "GitHub event: $GITHUB_EVENT"
 
       - name: Setup DCT
-        #if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         id: setup-dct
         uses: bitwarden/gh-actions/setup-docker-trust@76a8a6ef0387414df087b8e72a6db44660d2d741
         with:
           azure-creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
           azure-keyvault-name: "bitwarden-prod-kv"
+
+      - name: Test secret redaction
+        env:
+          SECRET: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
+        run: echo "Test Secret: $SECRET"
 
       - name: Checkout repo
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
