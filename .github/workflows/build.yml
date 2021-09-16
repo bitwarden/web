@@ -208,7 +208,7 @@ jobs:
           echo "GitHub event: $GITHUB_EVENT"
 
       - name: Setup DCT
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
+        #if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         id: setup-dct
         uses: bitwarden/gh-actions/setup-docker-trust@76a8a6ef0387414df087b8e72a6db44660d2d741
         with:
