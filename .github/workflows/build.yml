@@ -218,7 +218,8 @@ jobs:
       - name: Test secret redaction
         env:
           SECRET: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
-        run: echo "Test Secret: $SECRET"
+        run: |
+          echo "Test Secret: $SECRET"
 
       - name: Checkout repo
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
