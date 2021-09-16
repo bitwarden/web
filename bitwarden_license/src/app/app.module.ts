@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { DisablePersonalVaultExportPolicyComponent } from './policies/disable-personal-vault-export.component';
 import { MaximumVaultTimeoutPolicyComponent } from './policies/maximum-vault-timeout.component';
 
 import { OssRoutingModule } from 'src/app/oss-routing.module';
@@ -33,6 +34,7 @@ import { ServicesModule } from 'src/app/services/services.module';
     declarations: [
         AppComponent,
         MaximumVaultTimeoutPolicyComponent,
+        DisablePersonalVaultExportPolicyComponent,
     ],
     bootstrap: [AppComponent],
 })
