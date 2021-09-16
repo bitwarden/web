@@ -53,6 +53,7 @@ jobs:
           draft: true
           prerelease: false
 
+
   self-host:
     name: Build self-host docker
     runs-on: ubuntu-20.04
@@ -60,15 +61,6 @@ jobs:
     env:
       _RELEASE_VERSION: ${{ needs.setup.outputs.release_version }}
     steps:
-      - name: Set up Node
-        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
-        with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
-
       - name: Print environment
         run: |
           whoami
