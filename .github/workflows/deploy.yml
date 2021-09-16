@@ -15,7 +15,7 @@ on:
 jobs:
   deploy:
     name: Deploy Web Vault
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout Repo
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f  # v2.3.4
@@ -31,15 +31,27 @@ jobs:
               echo "::set-output name=version::${{ github.event.inputs.release_version }}"
           fi
 
+      - name: Check Release Version
+        id: version
+        run: |
+          version=$( jq -r ".version" package.json)
+          latest_release_tag_version=$(
+            curl -sL https://api.github.com/repos/$GITHUB_REPOSITORY/releases/latest | jq -r ".tag_name"
+          )
+
+          if [ "v$version" != "$latest_release_tag_version" ]; then
+            echo "[!] v$version hasn't been released yet. Please release it before deploying"
+            exit 1
+          fi
+
+          echo "::set-output name=package::$version"
+          echo "::set-output name=tag::v$version"
+
       - name: Create deploy branch
         run: |
-          git switch -c deploy-${{ steps.release-version.outputs.version }}
-          git push -u origin deploy-${{ steps.release-version.outputs.version }}
-
-      - name: Checkout Repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f  # v2.3.4
-        with:
-          ref: rc
+          git switch -c deploy-${{ steps.version.outputs.tag }}
+          git push -u origin deploy-${{ steps.version.outputs.tag }}
+          git switch rc
 
       - name: Setup git config
         run: |
@@ -48,9 +60,8 @@ jobs:
           git config --global url."https://github.com/".insteadOf ssh://git@github.com/
           git config --global url."https://".insteadOf ssh://
 
-      - name: Install and Build
+      - name: Get prod build asset
         run: |
-          npm run sub:init
           npm ci
           npm run dist
 
