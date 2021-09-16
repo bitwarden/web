@@ -32,7 +32,7 @@ For local development, run the app with:
 
 ```
 npm install
-npm run build:watch
+npm run build:oss:watch
 ```
 
 You can now access the web vault in your browser at `https://localhost:8080`.
@@ -41,27 +41,26 @@ If you want to point the development web vault to the production APIs, you can r
 
 ```
 npm install
-ENV=production npm run build:watch
+ENV=production npm run build:oss:watch
 ```
 
-You can also manually adjusting your API endpoint settings by adding `config/development.json` overriding any of the values in `config/base.json`. For example:
+You can also manually adjusting your API endpoint settings by adding `config/local.json` overriding any of the following values:
 
-```typescript
+```json
 {
     "proxyApi": "http://your-api-url",
     "proxyIdentity": "http://your-identity-url",
     "proxyEvents": "http://your-events-url",
     "proxyNotifications": "http://your-notifications-url",
     "proxyPortal": "http://your-portal-url",
-    "allowedHosts": ["hostnames-to-allow-in-webpack"]
+    "allowedHosts": ["hostnames-to-allow-in-webpack"],
+    "urls": {
+      
+    }
 }
 ```
 
-To pick up the overrides in the newly created `config/development.json` file, run the app with:
-
-```
-npm run build:dev:watch
-```
+Where the `urls` object is defined by the [Urls type in jslib](https://github.com/bitwarden/jslib/blob/master/common/src/abstractions/environment.service.ts).
 
 ## Contribute
 

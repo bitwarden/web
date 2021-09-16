@@ -22,6 +22,9 @@ import { ServicesModule } from './services/services.module';
         DragDropModule,
         OssRoutingModule,
     ],
+    declarations: [
+        AppComponent,
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule { }

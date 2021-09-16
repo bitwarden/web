@@ -11,10 +11,8 @@ import { RouterModule } from '@angular/router';
 import { ToasterModule } from 'angular2-toaster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
-import { AppComponent } from './app.component';
-import { ModalComponent } from './modal.component';
-
 import { AvatarComponent } from './components/avatar.component';
+import { PasswordRepromptComponent } from './components/password-reprompt.component';
 import { PasswordStrengthComponent } from './components/password-strength.component';
 
 import { FooterComponent } from './layouts/footer.component';
@@ -144,6 +142,7 @@ import { UpdateKeyComponent } from './settings/update-key.component';
 import { UpdateLicenseComponent } from './settings/update-license.component';
 import { UserBillingComponent } from './settings/user-billing.component';
 import { UserSubscriptionComponent } from './settings/user-subscription.component';
+import { VaultTimeoutInputComponent } from './settings/vault-timeout-input.component';
 import { VerifyEmailComponent } from './settings/verify-email.component';
 
 import { BreachReportComponent } from './tools/breach-report.component';
@@ -234,6 +233,16 @@ import localeUk from '@angular/common/locales/uk';
 import localeZhCn from '@angular/common/locales/zh-Hans';
 import localeZhTw from '@angular/common/locales/zh-Hant';
 
+import { DisableSendPolicyComponent } from './organizations/policies/disable-send.component';
+import { MasterPasswordPolicyComponent } from './organizations/policies/master-password.component';
+import { PasswordGeneratorPolicyComponent } from './organizations/policies/password-generator.component';
+import { PersonalOwnershipPolicyComponent } from './organizations/policies/personal-ownership.component';
+import { RequireSsoPolicyComponent } from './organizations/policies/require-sso.component';
+import { ResetPasswordPolicyComponent } from './organizations/policies/reset-password.component';
+import { SendOptionsPolicyComponent } from './organizations/policies/send-options.component';
+import { SingleOrgPolicyComponent } from './organizations/policies/single-org.component';
+import { TwoFactorAuthenticationPolicyComponent } from './organizations/policies/two-factor-authentication.component';
+
 registerLocaleData(localeAz, 'az');
 registerLocaleData(localeBg, 'bg');
 registerLocaleData(localeCa, 'ca');
@@ -297,7 +306,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         AdjustStorageComponent,
         ApiActionDirective,
         ApiKeyComponent,
-        AppComponent,
         AttachmentsComponent,
         AutofocusDirective,
         AvatarComponent,
@@ -346,7 +354,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         LinkSsoComponent,
         LockComponent,
         LoginComponent,
-        ModalComponent,
         NavbarComponent,
         OptionsComponent,
         OrgAccountComponent,
@@ -392,6 +399,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         PasswordGeneratorComponent,
         PasswordGeneratorHistoryComponent,
         PasswordStrengthComponent,
+        PasswordRepromptComponent,
         PaymentComponent,
         PremiumComponent,
         ProfileComponent,
@@ -438,6 +446,16 @@ registerLocaleData(localeZhTw, 'zh-TW');
         VerifyRecoverDeleteComponent,
         WeakPasswordsReportComponent,
         ProvidersComponent,
+        TwoFactorAuthenticationPolicyComponent,
+        MasterPasswordPolicyComponent,
+        SingleOrgPolicyComponent,
+        PasswordGeneratorPolicyComponent,
+        RequireSsoPolicyComponent,
+        PersonalOwnershipPolicyComponent,
+        DisableSendPolicyComponent,
+        SendOptionsPolicyComponent,
+        ResetPasswordPolicyComponent,
+        VaultTimeoutInputComponent,
     ],
     exports: [
         A11yTitleDirective,
@@ -449,7 +467,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         I18nPipe,
         SearchPipe,
         UserNamePipe,
-        ModalComponent,
         NavbarComponent,
         FooterComponent,
         OrganizationPlansComponent,

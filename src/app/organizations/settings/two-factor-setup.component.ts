@@ -1,13 +1,12 @@
-import {
-    Component,
-    ComponentFactoryResolver,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 
@@ -20,9 +19,9 @@ import { TwoFactorSetupComponent as BaseTwoFactorSetupComponent } from '../../se
 })
 export class TwoFactorSetupComponent extends BaseTwoFactorSetupComponent {
     constructor(apiService: ApiService, userService: UserService,
-        componentFactoryResolver: ComponentFactoryResolver, messagingService: MessagingService,
+        modalService: ModalService, messagingService: MessagingService,
         policyService: PolicyService, private route: ActivatedRoute) {
-        super(apiService, userService, componentFactoryResolver, messagingService, policyService);
+        super(apiService, userService, modalService, messagingService, policyService);
     }
 
     async ngOnInit() {
@@ -32,10 +31,10 @@ export class TwoFactorSetupComponent extends BaseTwoFactorSetupComponent {
         });
     }
 
-    manage(type: TwoFactorProviderType) {
+    async manage(type: TwoFactorProviderType) {
         switch (type) {
             case TwoFactorProviderType.OrganizationDuo:
-                const duoComp = this.openModal(this.duoModalRef, TwoFactorDuoComponent);
+                const duoComp = await this.openModal(this.duoModalRef, TwoFactorDuoComponent);
                 duoComp.type = TwoFactorProviderType.OrganizationDuo;
                 duoComp.organizationId = this.organizationId;
                 duoComp.onUpdated.subscribe((enabled: boolean) => {

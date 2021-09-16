@@ -1,6 +1,7 @@
+---
 name: Deploy
 
-on: 
+on:
   workflow_dispatch:
     inputs:
       release_version:
@@ -40,7 +41,7 @@ jobs:
         with:
           ref: rc
 
-      - name: setup git config
+      - name: Setup git config
         run: |
           git config user.name = "GitHub Action Bot"
           git config user.email = "<>"
@@ -51,7 +52,7 @@ jobs:
         run: |
           npm run sub:init
           npm ci
-          npm run dist
+          npm run dist:bit:cloud
 
       - name: Deploy GitHub Pages
         uses: crazy-max/ghaction-github-pages@db4476a01402e1a7ce05f41832040eef16d14925  # v2.5.0
@@ -70,4 +71,3 @@ jobs:
           VERSION: ${{ steps.release-version.outputs.version }}
           PR_BRANCH: deploy-${{ steps.release-version.outputs.version }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-

@@ -1,6 +1,5 @@
 import {
     Component,
-    ComponentFactoryResolver,
     OnInit,
     ViewChild,
     ViewContainerRef,
@@ -26,6 +25,8 @@ import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
+import { ModalService } from 'jslib-angular/services/modal.service';
+
 import { OrganizationKeysRequest } from 'jslib-common/models/request/organizationKeysRequest';
 import { OrganizationUserBulkRequest } from 'jslib-common/models/request/organizationUserBulkRequest';
 import { OrganizationUserConfirmRequest } from 'jslib-common/models/request/organizationUserConfirmRequest';
@@ -37,13 +38,11 @@ import { OrganizationUserUserDetailsResponse } from 'jslib-common/models/respons
 import { OrganizationUserStatusType } from 'jslib-common/enums/organizationUserStatusType';
 import { OrganizationUserType } from 'jslib-common/enums/organizationUserType';
 import { PolicyType } from 'jslib-common/enums/policyType';
-import { ProviderUserType } from 'jslib-common/enums/providerUserType';
 
 import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
 import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
 
 import { BasePeopleComponent } from '../../common/base.people.component';
-import { ModalComponent } from '../../modal.component';
 import { BulkConfirmComponent } from './bulk/bulk-confirm.component';
 import { BulkRemoveComponent } from './bulk/bulk-remove.component';
 import { BulkStatusComponent } from './bulk/bulk-status.component';
@@ -80,14 +79,14 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
     callingUserType: OrganizationUserType = null;
 
     constructor(apiService: ApiService, private route: ActivatedRoute,
-        i18nService: I18nService, componentFactoryResolver: ComponentFactoryResolver,
+        i18nService: I18nService, modalService: ModalService,
         platformUtilsService: PlatformUtilsService, toasterService: ToasterService,
         cryptoService: CryptoService, private userService: UserService, private router: Router,
         storageService: StorageService, searchService: SearchService,
         validationService: ValidationService, private policyService: PolicyService,
         logService: LogService, searchPipe: SearchPipe, userNamePipe: UserNamePipe, private syncService: SyncService) {
             super(apiService, searchService, i18nService, platformUtilsService, toasterService, cryptoService,
-                storageService, validationService, componentFactoryResolver, logService, searchPipe, userNamePipe);
+                storageService, validationService, modalService, logService, searchPipe, userNamePipe);
         }
 
     async ngOnInit() {
@@ -137,8 +136,9 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
     }
 
     async load() {
-        const policies = await this.policyService.getAll(PolicyType.ResetPassword);
-        this.orgResetPasswordPolicyEnabled = policies.some(p => p.organizationId === this.organizationId && p.enabled);
+        const resetPasswordPolicy = await this.policyService.getPolicyForOrganization(PolicyType.ResetPassword,
+            this.organizationId);
+        this.orgResetPasswordPolicyEnabled = resetPasswordPolicy?.enabled;
         super.load();
     }
 
@@ -189,52 +189,30 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
         return this.orgUseResetPassword && orgUser.resetPasswordEnrolled && this.orgResetPasswordPolicyEnabled;
     }
 
-    edit(user: OrganizationUserUserDetailsResponse) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.addEditModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<UserAddEditComponent>(
-            UserAddEditComponent, this.addEditModalRef);
-
-        childComponent.name = this.userNamePipe.transform(user);
-        childComponent.organizationId = this.organizationId;
-        childComponent.organizationUserId = user != null ? user.id : null;
-        childComponent.onSavedUser.subscribe(() => {
-            this.modal.close();
-            this.load();
-        });
-        childComponent.onDeletedUser.subscribe(() => {
-            this.modal.close();
-            this.removeUser(user);
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+    async edit(user: OrganizationUserUserDetailsResponse) {
+        const [modal] = await this.modalService.openViewRef(UserAddEditComponent, this.addEditModalRef, comp => {
+            comp.name = this.userNamePipe.transform(user);
+            comp.organizationId = this.organizationId;
+            comp.organizationUserId = user != null ? user.id : null;
+            comp.onSavedUser.subscribe(() => {
+                modal.close();
+                this.load();
+            });
+            comp.onDeletedUser.subscribe(() => {
+                modal.close();
+                this.removeUser(user);
+            });
         });
     }
 
-    groups(user: OrganizationUserUserDetailsResponse) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.groupsModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<UserGroupsComponent>(
-            UserGroupsComponent, this.groupsModalRef);
-
-        childComponent.name = this.userNamePipe.transform(user);
-        childComponent.organizationId = this.organizationId;
-        childComponent.organizationUserId = user != null ? user.id : null;
-        childComponent.onSavedUser.subscribe(() => {
-            this.modal.close();
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+    async groups(user: OrganizationUserUserDetailsResponse) {
+        const [modal] = await this.modalService.openViewRef(UserGroupsComponent, this.groupsModalRef, comp => {
+            comp.name = this.userNamePipe.transform(user);
+            comp.organizationId = this.organizationId;
+            comp.organizationUserId = user != null ? user.id : null;
+            comp.onSavedUser.subscribe(() => {
+                modal.close();
+            });
         });
     }
 
@@ -243,21 +221,13 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
             return;
         }
 
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkRemoveModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show(BulkRemoveComponent, this.bulkRemoveModalRef);
-
-        childComponent.organizationId = this.organizationId;
-        childComponent.users = this.getCheckedUsers();
-
-        this.modal.onClosed.subscribe(async () => {
-            await this.load();
-            this.modal = null;
+        const [modal] = await this.modalService.openViewRef(BulkRemoveComponent, this.bulkRemoveModalRef, comp => {
+            comp.organizationId = this.organizationId;
+            comp.users = this.getCheckedUsers();
         });
+
+        await modal.onClosedPromise();
+        await this.load();
     }
 
     async bulkReinvite() {
@@ -274,7 +244,6 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
             return;
         }
 
-
         try {
             const request = new OrganizationUserBulkRequest(filteredUsers.map(user => user.id));
             const response = this.apiService.postManyOrganizationUserReinvite(this.organizationId, request);
@@ -290,95 +259,58 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
             return;
         }
 
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkConfirmModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show(BulkConfirmComponent, this.bulkConfirmModalRef);
-
-        childComponent.organizationId = this.organizationId;
-        childComponent.users = this.getCheckedUsers();
-
-        this.modal.onClosed.subscribe(async () => {
-            await this.load();
-            this.modal = null;
+        const [modal] = await this.modalService.openViewRef(BulkConfirmComponent, this.bulkConfirmModalRef, comp => {
+            comp.organizationId = this.organizationId;
+            comp.users = this.getCheckedUsers();
         });
+
+        await modal.onClosedPromise();
+        await this.load();
     }
 
     async events(user: OrganizationUserUserDetailsResponse) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.eventsModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<EntityEventsComponent>(
-            EntityEventsComponent, this.eventsModalRef);
-
-        childComponent.name = this.userNamePipe.transform(user);
-        childComponent.organizationId = this.organizationId;
-        childComponent.entityId = user.id;
-        childComponent.showUser = false;
-        childComponent.entity = 'user';
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+        const [modal] = await this.modalService.openViewRef(EntityEventsComponent, this.eventsModalRef, comp => {
+            comp.name = this.userNamePipe.transform(user);
+            comp.organizationId = this.organizationId;
+            comp.entityId = user.id;
+            comp.showUser = false;
+            comp.entity = 'user';
         });
     }
 
     async resetPassword(user: OrganizationUserUserDetailsResponse) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
+        const [modal] = await this.modalService.openViewRef(ResetPasswordComponent, this.resetPasswordModalRef, comp => {
+            comp.name = this.userNamePipe.transform(user);
+            comp.email = user != null ? user.email : null;
+            comp.organizationId = this.organizationId;
+            comp.id = user != null ? user.id : null;
 
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.resetPasswordModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<ResetPasswordComponent>(
-            ResetPasswordComponent, this.resetPasswordModalRef);
-
-        childComponent.name = this.userNamePipe.transform(user);
-        childComponent.email = user != null ? user.email : null;
-        childComponent.organizationId = this.organizationId;
-        childComponent.id = user != null ? user.id : null;
-
-        childComponent.onPasswordReset.subscribe(() => {
-            this.modal.close();
-            this.load();
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+            comp.onPasswordReset.subscribe(() => {
+                modal.close();
+                this.load();
+            });
         });
     }
 
     private async showBulkStatus(users: OrganizationUserUserDetailsResponse[], filteredUsers: OrganizationUserUserDetailsResponse[],
         request: Promise<ListResponse<OrganizationUserBulkResponse>>, successfullMessage: string) {
 
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.bulkStatusModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<BulkStatusComponent>(
-            BulkStatusComponent, this.bulkStatusModalRef);
-
-        childComponent.loading = true;
+        const [modal, childComponent] = await this.modalService.openViewRef(BulkStatusComponent, this.bulkStatusModalRef, comp => {
+            comp.loading = true;
+        });
 
         // Workaround to handle closing the modal shortly after it has been opened
         let close = false;
-        this.modal.onShown.subscribe(() => {
+        modal.onShown.subscribe(() => {
             if (close) {
-                this.modal.close();
+                modal.close();
             }
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
         });
 
         try {
             const response = await request;
 
-            if (this.modal) {
+            if (modal) {
                 const keyedErrors: any = response.data.filter(r => r.error !== '').reduce((a, x) => ({ ...a, [x.id]: x.error }), {});
                 const keyedFilteredUsers: any = filteredUsers.reduce((a, x) => ({ ...a, [x.id]: x }), {});
 
@@ -398,9 +330,7 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
             }
         } catch {
             close = true;
-            if (this.modal) {
-                this.modal.close();
-            }
+            modal.close();
         }
     }
 }

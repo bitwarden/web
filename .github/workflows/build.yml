@@ -1,3 +1,4 @@
+---
 name: Build
 
 on:
@@ -43,7 +44,7 @@ jobs:
 
       - name: Cache npm
         id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # v2.1.6
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
         with:
           path: '~/.npm'
           key: ${{ runner.os }}-${{ github.run_id }}-npm-${{ hashFiles('**/package-lock.json') }}
@@ -70,7 +71,7 @@ jobs:
         uses: Azure/get-keyvault-secrets@80ccd3fafe5662407cc2e55f202ee34bfff8c403
         with:
           keyvault: "bitwarden-prod-kv"
-          secrets: "docker-password, 
+          secrets: "docker-password,
                     docker-username,
                     dct-delegate-2-repo-passphrase,
                     dct-delegate-2-key"
@@ -106,7 +107,7 @@ jobs:
           echo -e "# Building Web\n"
           echo "Building app"
           echo "npm version $(npm --version)"
-          npm run dist:selfhost
+          npm run dist:bit:selfhost
 
           echo -e "\nBuilding Docker image"
           docker --version
@@ -127,14 +128,14 @@ jobs:
       - name: Push rc images
         if: github.ref == 'refs/heads/rc'
         run: docker push bitwarden/web:rc
-        env: 
+        env:
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
 
       - name: Push dev images
         if: github.ref == 'refs/heads/master'
         run: docker push bitwarden/web:dev
-        env: 
+        env:
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
 
@@ -158,7 +159,7 @@ jobs:
 
       - name: Cache npm
         id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # v2.1.6
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
         with:
           path: '~/.npm'
           key: ${{ runner.os }}-${{ github.run_id }}-npm-${{ hashFiles('**/package-lock.json') }}
@@ -195,7 +196,13 @@ jobs:
           echo -e "# Building Web\n"
           echo "Building app"
           echo "npm version $(npm --version)"
-          npm run build:qa
+          VERSION=$( jq -r ".version" package.json)
+          jq --arg version "$VERSION - ${GITHUB_SHA:0:7}" '.version = $version' package.json > package.json.tmp
+          mv package.json.tmp package.json
+
+          npm run build:bit:qa
+
+          echo "{\"commit_hash\": \"$GITHUB_SHA\", \"ref\": \"$GITHUB_REF\"}" | jq . > build/info.json
 
           echo -e "\nBuilding Docker image"
           docker --version
@@ -209,7 +216,7 @@ jobs:
 
           if [[ $TAG_EXTENSION ]]; then
             IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
-          fi  
+          fi
           echo "::set-output name=value::$IMAGE_TAG"
 
       - name: Tag image
@@ -274,9 +281,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
-      - name: npm install
+      - name: NPM install
         run: npm install
 
-      - name: npm build
-        run: npm run build:prod
-
+      - name: NPM build
+        run: npm run build:bit:cloud
