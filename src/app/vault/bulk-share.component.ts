@@ -13,7 +13,7 @@ import { CollectionService } from 'jslib-common/abstractions/collection.service'
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { CipherView } from 'jslib-common/models/view';
+import { CipherView } from 'jslib-common/models/view/cipherView';
 import { CollectionView } from 'jslib-common/models/view/collectionView';
 
 import { Organization } from 'jslib-common/models/domain/organization';

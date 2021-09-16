@@ -14,7 +14,7 @@ import { UserService } from 'jslib-common/abstractions/user.service';
 import { EmailRequest } from 'jslib-common/models/request/emailRequest';
 import { EmailTokenRequest } from 'jslib-common/models/request/emailTokenRequest';
 
-import { TwoFactorProviderType } from 'jslib-common/enums';
+import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 
 @Component({
     selector: 'app-change-email',
