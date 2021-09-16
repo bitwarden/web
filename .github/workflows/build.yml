@@ -47,10 +47,9 @@ jobs:
         uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
         with:
           path: '~/.npm'
-          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Install dependencies
-        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
 
 
@@ -73,7 +72,7 @@ jobs:
         uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
         with:
           path: '~/.npm'
-          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
         run: |
@@ -100,7 +99,6 @@ jobs:
         run: dotnet tool restore
 
       - name: Install dependencies
-        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Build
@@ -175,7 +173,7 @@ jobs:
         uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
         with:
           path: '~/.npm'
-          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
         run: |
@@ -190,7 +188,6 @@ jobs:
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
       - name: Install dependencies
-        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Build Cloud
@@ -225,7 +222,7 @@ jobs:
         uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
         with:
           path: '~/.npm'
-          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
         run: |
@@ -278,7 +275,6 @@ jobs:
         run: dotnet tool restore
 
       - name: Install dependencies
-        if: steps.npm-cache.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: Build
@@ -346,7 +342,7 @@ jobs:
         uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
         with:
           path: '~/.npm'
-          key: ${{ runner.os }}-npm-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
@@ -374,7 +370,8 @@ jobs:
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
       - name: Install dependencies
-        if: steps.npm-cache.outputs.cache-hit != 'true'
+        run: npm ci
+      - name: NPM install
         run: npm ci
 
       - name: NPM build
