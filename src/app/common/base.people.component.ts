@@ -253,11 +253,10 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
                     comp.publicKey = publicKey;
                     comp.onConfirmedUser.subscribe(async () => {
                         try {
-                            await confirmUser(publicKey);
+                            comp.formPromise = confirmUser(publicKey);
+                            await comp.formPromise;
                             modal.close();
-                        } catch (e) {
-                            this.logService.error(`Handled exception: ${e}`);
-                        }
+                        } catch { }
                     });
                 });
                 return;

@@ -7,6 +7,7 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { ExportComponent as BaseExportComponent } from 'jslib-angular/components/export.component';
+import { PolicyService } from 'jslib-common/abstractions/policy.service';
 
 @Component({
     selector: 'app-export',
@@ -17,8 +18,8 @@ export class ExportComponent extends BaseExportComponent {
 
     constructor(cryptoService: CryptoService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, exportService: ExportService,
-        eventService: EventService) {
-        super(cryptoService, i18nService, platformUtilsService, exportService, eventService, window);
+        eventService: EventService, policyService: PolicyService) {
+        super(cryptoService, i18nService, platformUtilsService, exportService, eventService, policyService, window);
     }
 
     protected saved() {

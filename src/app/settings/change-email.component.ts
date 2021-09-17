@@ -1,5 +1,6 @@
 import {
     Component,
+    OnInit,
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
@@ -13,21 +14,30 @@ import { UserService } from 'jslib-common/abstractions/user.service';
 import { EmailRequest } from 'jslib-common/models/request/emailRequest';
 import { EmailTokenRequest } from 'jslib-common/models/request/emailTokenRequest';
 
+import { TwoFactorProviderType } from 'jslib-common/enums';
+
 @Component({
     selector: 'app-change-email',
     templateUrl: 'change-email.component.html',
 })
-export class ChangeEmailComponent {
+export class ChangeEmailComponent implements OnInit {
     masterPassword: string;
     newEmail: string;
     token: string;
     tokenSent = false;
+    showTwoFactorEmailWarning = false;
 
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
         private messagingService: MessagingService, private userService: UserService) { }
+
+    async ngOnInit() {
+        const twoFactorProviders = await this.apiService.getTwoFactorProviders();
+        this.showTwoFactorEmailWarning = twoFactorProviders.data.some(p => p.type === TwoFactorProviderType.Email &&
+            p.enabled);
+    }
 
     async submit() {
         const hasEncKey = await this.cryptoService.hasEncKey();
