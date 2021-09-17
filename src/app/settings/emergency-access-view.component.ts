@@ -12,8 +12,9 @@ import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
-import { CipherData } from 'jslib-common/models/data';
-import { Cipher, SymmetricCryptoKey } from 'jslib-common/models/domain';
+import { CipherData } from 'jslib-common/models/data/cipherData';
+import { Cipher } from 'jslib-common/models/domain/cipher';
+import { SymmetricCryptoKey } from 'jslib-common/models/domain/symmetricCryptoKey';
 import { EmergencyAccessViewResponse } from 'jslib-common/models/response/emergencyAccessResponse';
 import { CipherView } from 'jslib-common/models/view/cipherView';
 
