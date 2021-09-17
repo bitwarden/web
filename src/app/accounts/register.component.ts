@@ -59,6 +59,7 @@ export class RegisterComponent extends BaseRegisterComponent {
             }
             if (qParams.layout != null) {
                 this.layout = this.referenceData.layout = qParams.layout;
+                document.body.classList.add('theme_light_force');
             }
             if (qParams.reference != null) {
                 this.referenceData.id = qParams.reference;
@@ -99,7 +100,7 @@ export class RegisterComponent extends BaseRegisterComponent {
                 this.i18nService.t('masterPasswordPolicyRequirementsNotMet'));
             return;
         }
-
+        document.body.classList.remove('theme_light_force');
         await super.submit();
     }
 }

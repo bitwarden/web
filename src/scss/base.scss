@@ -5,6 +5,15 @@ html {
 body {
     min-width: 1010px;
 
+    &.full-width:not(.layout_frontend) {
+        .container {
+            min-width: 980px;
+            width: 90%;
+        }
+    }
+}
+
+body:not(.theme_light_force) {
     &.layout_frontend {
         @media (prefers-color-scheme: dark) {
             background-color: #1F242E;
@@ -21,13 +30,6 @@ body {
     @include themify($themes) {
         background-color: themed('backgroundColor');
         color: themed('textColor');
-    }
-
-    &.full-width:not(.layout_frontend) {
-        .container {
-            min-width: 980px;
-            width: 90%;
-        }
     }
 }
 
@@ -142,7 +144,7 @@ hr, .dropdown-divider {
     cursor: move !important;
 }
 
-.bg-primary {
+.bg-primary:not(.theme_light_force .bg-primary) {
     @include themify($themes) {
         background-color: themed('bgPrimaryColor') !important;
     }

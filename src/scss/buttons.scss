@@ -1,4 +1,4 @@
-.btn-primary, .swal2-confirm {
+.btn-primary:not(.theme_light_force .btn-primary), .swal2-confirm {
     @include themify($themes) {
         background-color: themed('btnPrimary');
         border-color: themed('btnPrimary');
@@ -61,7 +61,7 @@
     }
 }
 
-.btn-outline-secondary {
+.btn-outline-secondary:not(.theme_light_force .btn-outline-secondary) {
     @include themify($themes) {
         background-color: themed('btnOutlineSecondaryBackground');
         border-color: themed('btnOutlineSecondaryBorder');
@@ -136,13 +136,13 @@
         outline-width: 1px;
     }
 
-    &:not(.text-danger):not(.cursor-move) {
+    &:not(.text-danger):not(.cursor-move):not(.theme_light_force .btn-link) {
         @include themify($themes) {
             color: themed('btnLinkText');
         }
     }
 
-    &:hover:not(.text-danger):not(.cursor-move) {
+    &:hover:not(.text-danger):not(.cursor-move):not(.theme_light_force .btn-link) {
         @include themify($themes) {
             color: themed('btnLinkTextHover');
         }
