@@ -144,7 +144,7 @@ hr, .dropdown-divider {
     cursor: move !important;
 }
 
-.bg-primary:not(.theme_light_force .bg-primary) {
+.bg-primary:not(.navbar):not(.theme_light_force .bg-primary) {
     @include themify($themes) {
         background-color: themed('bgPrimaryColor') !important;
     }
