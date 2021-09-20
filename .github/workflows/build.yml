@@ -210,7 +210,7 @@ jobs:
       - name: Setup DCT
         if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         id: setup-dct
-        uses: bitwarden/gh-actions/setup-docker-trust@76a8a6ef0387414df087b8e72a6db44660d2d741
+        uses: bitwarden/gh-actions/setup-docker-trust@a8c384a05a974c05c48374c818b004be221d43ff
         with:
           azure-creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
           azure-keyvault-name: "bitwarden-prod-kv"
