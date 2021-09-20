@@ -79,7 +79,7 @@
 }
 
 .card-body {
-    &:not(.bg-light > .card-body):not(.theme_light_force .card-body) {
+    &:not(.bg-light > .card-body) {
         @include themify($themes) {
             background-color: themed('foregroundColor');
             color: themed('textColor');

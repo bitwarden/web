@@ -81,21 +81,21 @@
     }
 }
 
-.toast-error, .toast-container .toast-error:before, .toast-danger, .toast-container .toast-danger:before, .bg-danger:not(.theme_light_force .bg-danger) {
+.toast-error, .toast-container .toast-error:before, .toast-danger, .toast-container .toast-danger:before, .bg-danger {
     @include themify($themes) {
         background-color: themed('danger') !important;
         color: themed('dangerTextColor') !important;
     }
 }
 
-.toast-warning, .toast-container .toast-warning:before, .bg-warning:not(.theme_light_force .bg-warning) {
+.toast-warning, .toast-container .toast-warning:before, .bg-warning {
     @include themify($themes) {
         background-color: themed('warning') !important;
         color: themed('warningTextColor') !important;
     }
 }
 
-.toast-success, .toast-container .toast-success:before, .bg-success:not(.theme_light_force .bg-success) {
+.toast-success, .toast-container .toast-success:before, .bg-success {
     @include themify($themes) {
         background-color: themed('success') !important;
         color: themed('successTextColor') !important;

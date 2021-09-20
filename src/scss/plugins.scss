@@ -36,7 +36,7 @@
     }
 }
 
-.progress:not(.theme_light_force .progress) {
+.progress {
     @include themify($themes) {
         background-color: themed('pwStrengthBackground');
     }
