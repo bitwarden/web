@@ -119,7 +119,7 @@ jobs:
           git config --global url."https://".insteadOf ssh://
 
       - name: Download latest RC Production build
-        uses: dawidd6/action-download-artifact@b9571484721e8187f1fd08147b497129f8972c74 # v2.14.0
+        uses: dawidd6/action-download-artifact@b9571484721e8187f1fd08147b497129f8972c74  # v2.14.0
         with:
           workflow: build.yml
           workflow_conclusion: success
@@ -128,7 +128,7 @@ jobs:
 
       # This should result in a build directory in the current working directory
       - name: Unzip build asset
-        run: unzip prod-build-artifact.zip 
+        run: unzip prod-build-artifact.zip
 
       - name: Deploy GitHub Pages
         uses: crazy-max/ghaction-github-pages@db4476a01402e1a7ce05f41832040eef16d14925  # v2.5.0
@@ -145,7 +145,10 @@ jobs:
           PR_BRANCH: deploy-${{ env._TAG_VERSION }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr create --title "Deploy $_RELEASE_VERSION" --body "Deploying $_RELEASE_VERSION" --base gh-pages --head "$PR_BRANCH"
+          gh pr create --title "Deploy $_RELEASE_VERSION" \
+            --body "Deploying $_RELEASE_VERSION" \
+            --base gh-pages \
+            --head "$PR_BRANCH"
 
 
   release:
@@ -157,7 +160,7 @@ jobs:
       - ghpages-deploy
     steps:
       - name: Download latest RC Production build
-        uses: dawidd6/action-download-artifact@b9571484721e8187f1fd08147b497129f8972c74 # v2.14.0
+        uses: dawidd6/action-download-artifact@b9571484721e8187f1fd08147b497129f8972c74  # v2.14.0
         with:
           workflow: build.yml
           workflow_conclusion: success
