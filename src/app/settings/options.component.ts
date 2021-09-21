@@ -64,9 +64,9 @@ export class OptionsComponent implements OnInit {
         localeOptions.splice(0, 0, { name: i18nService.t('default'), value: null });
         this.localeOptions = localeOptions;
         this.themeOptions = [
-            { name: i18nService.t('themeDefault'), value: null },
-            { name: i18nService.t('themeLight'), value: 'light' },
+            { name: i18nService.t('themeLight'), value: null },
             { name: i18nService.t('themeDark'), value: 'dark' },
+            { name: i18nService.t('themeSystem'), value: 'system' },
         ];
     }
 
@@ -94,6 +94,9 @@ export class OptionsComponent implements OnInit {
             await this.storageService.save(ConstantsService.themeKey, this.theme);
             const htmlEl = window.document.documentElement;
             if (this.theme == null) {
+                effectiveTheme = 'light';
+            }
+            if (this.theme === 'system') {
                 effectiveTheme = await this.platformUtilsService.getDefaultSystemTheme();
             }
             htmlEl.classList.remove('theme_dark', 'theme_light');

@@ -98,10 +98,10 @@ export class PaymentComponent implements OnInit {
             this.hideCredit = this.method !== PaymentMethodType.Credit;
         }
         this.theme = await this.storageService.get<string>(ConstantsService.themeKey);
-        if (this.theme == null) {
+        if (this.theme === 'system') {
             this.theme = await this.platformUtilsService.getDefaultSystemTheme();
         }
-        if (this.theme === 'light') {
+        if (this.theme == null) {
             this.StripeElementStyle.base.color = lightInputColor;
             this.StripeElementStyle.base['::placeholder'].color = lightInputPlaceholderColor;
             this.StripeElementStyle.invalid.color = lightInputColor;

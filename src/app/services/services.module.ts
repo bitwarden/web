@@ -161,8 +161,11 @@ export function initFactory(): Function {
         authService.init();
         const htmlEl = window.document.documentElement;
         htmlEl.classList.add('locale_' + i18nService.translationLocale);
-        const theme = await storageService.get<string>(ConstantsService.themeKey);
+        let theme = await storageService.get<string>(ConstantsService.themeKey);
         if (theme == null) {
+            theme = 'light';
+        }
+        if (theme === 'system') {
             const systemTheme = await platformUtilsService.getDefaultSystemTheme();
             htmlEl.classList.add('theme_' + systemTheme);
         } else {
@@ -170,7 +173,7 @@ export function initFactory(): Function {
         }
         platformUtilsService.onDefaultSystemThemeChange(async sysTheme => {
             const bwTheme = await storageService.get<string>(ConstantsService.themeKey);
-            if (bwTheme == null) {
+            if (bwTheme === 'system') {
                 htmlEl.classList.remove('theme_light', 'theme_dark');
                 htmlEl.classList.add('theme_' + sysTheme);
             }
