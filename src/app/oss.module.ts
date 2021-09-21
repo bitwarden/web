@@ -157,6 +157,7 @@ import { ToolsComponent } from './tools/tools.component';
 import { UnsecuredWebsitesReportComponent } from './tools/unsecured-websites-report.component';
 import { WeakPasswordsReportComponent } from './tools/weak-passwords-report.component';
 
+import { AddEditCustomFieldsComponent } from './vault/add-edit-custom-fields.component';
 import { AddEditComponent } from './vault/add-edit.component';
 import { AttachmentsComponent } from './vault/attachments.component';
 import { BulkActionsComponent } from './vault/bulk-actions.component';
@@ -456,6 +457,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SendOptionsPolicyComponent,
         ResetPasswordPolicyComponent,
         VaultTimeoutInputComponent,
+        AddEditCustomFieldsComponent,
     ],
     exports: [
         A11yTitleDirective,
