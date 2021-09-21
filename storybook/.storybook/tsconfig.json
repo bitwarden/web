@@ -1,6 +1,7 @@
 {
   "extends": "../tsconfig.app.json",
   "compilerOptions": {
+    "experimentalDecorators": true,
     "types": [
       "node"
     ]
@@ -8,11 +9,15 @@
   "exclude": [
     "../src/test.ts",
     "../src/**/*.spec.ts",
-    "../projects/**/*.spec.ts"
+    "../projects/**/*.spec.ts",
+    "../../jslib/**/*.spec.ts",
   ],
   "include": [
     "../src/**/*",
-    "../projects/**/*"
+    "../projects/**/*",
+    "../../src/**/*",
+    "../../jslib/common/src/**/*",
+    "../../jslib/angular/src/**/*"
   ],
   "files": [
     "./typings.d.ts"

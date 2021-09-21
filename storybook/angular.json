@@ -25,10 +25,15 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "../src/locales",
+                "output": "locales"
+              }
             ],
             "styles": [
-              "src/styles.scss"
+              "../src/scss/styles.scss"
             ],
             "scripts": []
           },
@@ -50,13 +55,13 @@
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
               ]
             }

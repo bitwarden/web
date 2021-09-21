@@ -15,9 +15,25 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "tldjs": [
+        "jslib/common/src/misc/tldjs.noop"
+      ],
+      "jslib-common/*": [
+        "../jslib/common/src/*"
+      ],
+      "jslib-angular/*": [
+        "../jslib/angular/src/*"
+      ],
+      "src/*": [
+        "../src/*"
+      ]
+    },
   },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false
-  }
+  "include": [
+    "../src/**/*",
+    "../jslib/angular/src/**/*",
+    "./"
+  ],
 }

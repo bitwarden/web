@@ -1,7 +1,10 @@
+import { Injectable } from '@angular/core';
+
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
+@Injectable()
 export class HtmlStorageService implements StorageService {
     private localStorageKeys = new Set(['appId', 'anonymousAppId', 'rememberedEmail', 'passwordGenerationOptions',
         ConstantsService.disableFaviconKey, 'rememberEmail', 'enableGravatars', 'enableFullWidth',

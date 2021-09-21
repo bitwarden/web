@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 import { DeviceType } from 'jslib-common/enums/deviceType';
@@ -7,6 +8,7 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
+@Injectable()
 export class WebPlatformUtilsService implements PlatformUtilsService {
     identityClientId: string = 'web';
 

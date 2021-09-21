@@ -9,7 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "docs:json": "compodoc -p ./tsconfig.json -e json -d .",
-    "storybook": "npm run docs:json && start-storybook -p 6006",
+    "storybook": "start-storybook -p 6006",
     "build-storybook": "npm run docs:json && build-storybook"
   },
   "private": true,
@@ -30,7 +30,7 @@
     "@angular-devkit/build-angular": "~0.1102.13",
     "@angular/cli": "~11.2.14",
     "@angular/compiler-cli": "~11.2.14",
-    "@angular/elements": "^12.2.6",
+    "@angular/elements": "^11.2.14",
     "@babel/core": "^7.15.5",
     "@compodoc/compodoc": "^1.1.15",
     "@storybook/addon-actions": "^6.3.8",
