@@ -17,7 +17,7 @@ import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 
 const cryptoFunctionFactory = () => {
     const i18nService = new I18nService(window.navigator.language, 'locales');
-    const messagingService = new BroadcasterMessagingService(new BroadcasterService());
+    const messagingService = new BroadcasterMessagingService(null); // TODO: Figure out why BroadcasterService causes ReferenceError
     const consoleLogService = new ConsoleLogService(false);
     const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService);
     return new WebCryptoFunctionService(window, platformUtilsService);
