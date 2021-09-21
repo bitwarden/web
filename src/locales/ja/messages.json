@@ -748,7 +748,7 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "アカウントにアクセスするには、WebAuthn 対応のセキュリティキーを使用してください。"
   },
   "webAuthnMigrated": {
     "message": "(Migrated from FIDO)"
@@ -1349,7 +1349,7 @@
     "message": "本当にこのセキュリティキーを削除しますか？"
   },
   "twoFactorWebAuthnAdd": {
-    "message": "Add a WebAuthn security key to your account"
+    "message": "WebAuthnセキュリティキーをアカウントに追加"
   },
   "readKey": {
     "message": "読み取りキー"
@@ -2662,10 +2662,10 @@
     "message": "メールアドレスを確認できませんでした。確認メールを再送信してください。"
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "メールアドレスの確認が必要です"
   },
   "emailVerificationRequiredDesc": {
-    "message": "You must verify your email to use this feature."
+    "message": "この機能を使用するにはメールアドレスを確認する必要があります。"
   },
   "updateBrowser": {
     "message": "ブラウザを更新"
@@ -3522,10 +3522,10 @@
     "message": "You have not been designated as an emergency contact for anyone yet."
   },
   "inviteEmergencyContact": {
-    "message": "Invite emergency contact"
+    "message": "緊急連絡先を招待"
   },
   "editEmergencyContact": {
-    "message": "Edit emergency contact"
+    "message": "緊急連絡先を編集"
   },
   "inviteEmergencyContactDesc": {
     "message": "Invite a new emergency contact by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
@@ -3537,16 +3537,16 @@
     "message": "Emergency Access Approved"
   },
   "viewDesc": {
-    "message": "Can view all items in your own vault."
+    "message": "自分の保管庫内のすべてのアイテムを表示できます。"
   },
   "takeover": {
-    "message": "Takeover"
+    "message": "引き継ぎ"
   },
   "takeoverDesc": {
-    "message": "Can reset your account with a new master password."
+    "message": "新しいマスターパスワードでアカウントをリセットできます。"
   },
   "waitTime": {
-    "message": "Wait Time"
+    "message": "待機時間"
   },
   "waitTimeDesc": {
     "message": "Time required before automatically granting access."
@@ -3564,10 +3564,10 @@
     }
   },
   "invitedUser": {
-    "message": "Invited user."
+    "message": "招待されたユーザー"
   },
   "acceptEmergencyAccess": {
-    "message": "You've been invited to become an emergency contact for the user listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "上記のユーザーの緊急連絡先になるよう招待されています。 招待を承認するには、ログインまたは新しいBitwardenアカウントを作成する必要があります。"
   },
   "emergencyInviteAcceptFailed": {
     "message": "Unable to accept invitation. Ask the user to send a new invitation."
@@ -3585,7 +3585,7 @@
     "message": "You can access the emergency options for this user after your identity has been confirmed. We'll send you an email when that happens."
   },
   "requestAccess": {
-    "message": "Request Access"
+    "message": "アクセス権の要求"
   },
   "requestAccessConfirmation": {
     "message": "Are you sure you want to request emergency access? You will be provided access after $WAITTIME$ day(s) or whenever the user manually approves the request.",
@@ -3606,10 +3606,10 @@
     }
   },
   "approve": {
-    "message": "Approve"
+    "message": "承認"
   },
   "reject": {
-    "message": "Reject"
+    "message": "拒否"
   },
   "approveAccessConfirmation": {
     "message": "Are you sure you want to approve emergency access? This will allow $USER$ to $ACTION$ your account.",
@@ -3625,13 +3625,13 @@
     }
   },
   "emergencyApproved": {
-    "message": "Emergency access approved."
+    "message": "緊急アクセスが承認されました。"
   },
   "emergencyRejected": {
-    "message": "Emergency access rejected"
+    "message": "緊急アクセスが拒否されました"
   },
   "passwordResetFor": {
-    "message": "Password reset for $USER$. You can now login using the new password.",
+    "message": "$USER$のパスワードをリセットしました。新しいパスワードでログインできます。",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3646,7 +3646,7 @@
     "message": "Require users to save vault items to an organization by removing the personal ownership option."
   },
   "personalOwnershipExemption": {
-    "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
+    "message": "組織の所有者および管理者は、このポリシーの執行から免除されます。"
   },
   "personalOwnershipSubmitError": {
     "message": "Due to an enterprise policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
@@ -3670,7 +3670,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
-    "message": "Send Options",
+    "message": "送信オプション",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
@@ -3678,21 +3678,21 @@
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "組織のポリシーを管理できる組織ユーザーは、このポリシーの適用から除外されます。"
   },
   "disableHideEmail": {
     "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
-    "message": "The following organization policies are currently in effect:"
+    "message": "現在、以下の組織ポリシーが適用されています。"
   },
   "sendDisableHideEmailInEffect": {
     "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
-    "message": "Modified policy $ID$.",
+    "message": "変更されたポリシー $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3701,13 +3701,13 @@
     }
   },
   "planPrice": {
-    "message": "Plan price"
+    "message": "プラン料金"
   },
   "estimatedTax": {
-    "message": "Estimated tax"
+    "message": "推定税額"
   },
   "custom": {
-    "message": "Custom"
+    "message": "カスタム"
   },
   "customDesc": {
     "message": "ユーザー権限をより詳細に制御できます。"
@@ -3746,7 +3746,7 @@
     "message": "ユーザーを管理"
   },
   "manageResetPassword": {
-    "message": "Manage Password Reset"
+    "message": "パスワードリセットの管理"
   },
   "disableRequireSsoError": {
     "message": "このポリシーを無効にするには、シングルサインオン認証ポリシーを手動で無効にする必要があります。"
@@ -3854,22 +3854,22 @@
     "message": "削除と有効期限の保存中にエラーが発生しました。"
   },
   "webAuthnFallbackMsg": {
-    "message": "To verify your 2FA please click the button below."
+    "message": "二段階認証を確認するには、下のボタンをクリックしてください。"
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAuthn"
+    "message": "WebAuthn の認証"
   },
   "webAuthnNotSupported": {
-    "message": "WebAuthn is not supported in this browser."
+    "message": "WebAuthn はこのブラウザではサポートされていません。"
   },
   "webAuthnSuccess": {
-    "message": "WebAuthn verified successfully! You may close this tab."
+    "message": "WebAuthn が正常に認証されました！このタブを閉じることができます。"
   },
   "hintEqualsPassword": {
-    "message": "Your password hint cannot be the same as your password."
+    "message": "パスワードのヒントをパスワードと同じにすることはできません。"
   },
   "enrollPasswordReset": {
-    "message": "Enroll in Password Reset"
+    "message": "パスワードリセット登録"
   },
   "enrolledPasswordReset": {
     "message": "Enrolled in Password Reset"
@@ -3878,7 +3878,7 @@
     "message": "Withdraw from Password Reset"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "登録に成功しました！"
   },
   "withdrawPasswordResetSuccess": {
     "message": "Withdrawal success!"
@@ -3965,19 +3965,19 @@
     "message": "パスワードリセットの詳細な応答が null です"
   },
   "trashCleanupWarning": {
-    "message": "Items that have been in Trash more than 30 days will be automatically deleted."
+    "message": "30日以上ゴミ箱にあったアイテムは自動的に削除されます。"
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Items that have been in Trash for a while will be automatically deleted."
+    "message": "一定期間ゴミ箱にあったアイテムは自動的に削除されます。"
   },
   "passwordPrompt": {
-    "message": "Master password re-prompt"
+    "message": "マスターパスワードの再要求"
   },
   "passwordConfirmation": {
-    "message": "Master password confirmation"
+    "message": "マスターパスワードの確認"
   },
   "passwordConfirmationDesc": {
-    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+    "message": "この操作は保護されています。続行するには、確認のためにマスターパスワードを再入力してください。"
   },
   "reinviteSelected": {
     "message": "招待を再送信"
