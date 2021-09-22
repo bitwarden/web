@@ -1,0 +1,18 @@
+---
+name: Deploy
+
+on:
+  workflow_dispatch:
+    inputs: {}
+
+jobs:
+  temp:
+    name: Temp Workflow
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f  # 2.3.4
+
+      - name: Temp workflow
+        run: |
+          echo "Temp Workflow to get the rc version back"
