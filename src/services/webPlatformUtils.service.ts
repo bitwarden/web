@@ -1,6 +1,7 @@
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 import { DeviceType } from 'jslib-common/enums/deviceType';
+import { ThemeType } from 'jslib-common/enums/themeType';
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
@@ -8,7 +9,6 @@ import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 
-import { ThemeType } from 'jslib-common/enums/themeType';
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
 export class WebPlatformUtilsService implements PlatformUtilsService {

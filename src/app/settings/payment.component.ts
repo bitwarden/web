@@ -131,6 +131,7 @@ export class PaymentComponent implements OnInit {
 
     changeMethod() {
         this.btInstance = null;
+
         if (this.method === PaymentMethodType.PayPal) {
             window.setTimeout(() => {
                 (window as any).braintree.dropin.create({

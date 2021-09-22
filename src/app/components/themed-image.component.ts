@@ -35,7 +35,7 @@ export class ThemedImageComponent implements OnInit, OnDestroy {
         this.setImageUrl(theme);
 
         this.themeChangeCallback = async (prefersDarkQuery: MediaQueryList) => {
-            const bwTheme = await this.storageService.get<string>(ConstantsService.themeKey);
+            const bwTheme = await this.storageService.get<ThemeType>(ConstantsService.themeKey);
             if (bwTheme === ThemeType.System) {
                 this.setImageUrl(prefersDarkQuery.matches ? ThemeType.Dark : ThemeType.Light);
             }

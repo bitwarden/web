@@ -80,7 +80,7 @@ export class OptionsComponent implements OnInit {
         this.enableGravatars = await this.storageService.get<boolean>('enableGravatars');
         this.enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
         this.locale = this.startingLocale = await this.storageService.get<string>(ConstantsService.localeKey);
-        this.theme = this.startingTheme = await this.storageService.get<string>(ConstantsService.themeKey);
+        this.theme = this.startingTheme = await this.storageService.get<ThemeType>(ConstantsService.themeKey);
     }
 
     async submit() {

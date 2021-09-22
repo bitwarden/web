@@ -474,7 +474,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         NavbarComponent,
         FooterComponent,
         OrganizationPlansComponent,
-        ThemedImageComponent,
     ],
     providers: [DatePipe, SearchPipe, UserNamePipe],
     bootstrap: [],
