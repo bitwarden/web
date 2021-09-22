@@ -3369,9 +3369,6 @@
   "linkSso": {
     "message": "Link SSO"
   },
-  "webPoliciesDeprecationWarning": {
-    "message": "Policy configuration has been moved, and this page will soon be deprecated. Please click below to use the Business Portal policies page instead."
-  },
   "singleOrg": {
     "message": "Single Organization"
   },
@@ -3799,6 +3796,9 @@
   "personalOwnershipPolicyInEffect": {
     "message": "An organization policy is affecting your ownership options."
   },
+  "personalOwnershipPolicyInEffectImports": {
+    "message": "An organization policy has disabled importing items into your personal vault."
+  },
   "personalOwnershipCheckboxDesc": {
     "message": "Disable personal ownership for organization users"
   },
@@ -3948,6 +3948,15 @@
   },
   "eventAdminPasswordReset": {
     "message": "Master password reset for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventResetSsoLink": {
+    "message": "Reset Sso link for user $ID$",
     "placeholders": {
       "id": {
         "content": "$1",
