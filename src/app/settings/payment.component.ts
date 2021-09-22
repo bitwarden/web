@@ -12,6 +12,7 @@ import { StorageService } from 'jslib-common/abstractions/storage.service';
 
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
+import { ThemeType } from 'jslib-common/enums/themeType';
 import { WebConstants } from '../../services/webConstants';
 
 const lightInputColor = '#465057';
@@ -260,7 +261,7 @@ export class PaymentComponent implements OnInit {
 
     private async setTheme() {
         const theme = await this.platformUtilsService.getEffectiveTheme();
-        if (theme === 'dark') {
+        if (theme === ThemeType.Dark) {
             this.StripeElementStyle.base.color = darkInputColor;
             this.StripeElementStyle.base['::placeholder'].color = darkInputPlaceholderColor;
             this.StripeElementStyle.invalid.color = darkInputColor;

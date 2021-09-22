@@ -8,6 +8,7 @@ import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 
+import { ThemeType } from 'jslib-common/enums/themeType';
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
 export class WebPlatformUtilsService implements PlatformUtilsService {
@@ -17,7 +18,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     private prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
 
     constructor(private i18nService: I18nService, private messagingService: MessagingService,
-        private logService: LogService, private storageService: StorageService) { }
+        private logService: LogService, private storageService: () => StorageService) { }
 
     getDevice(): DeviceType {
         if (this.browserCache != null) {
@@ -291,24 +292,24 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return false;
     }
 
-    getDefaultSystemTheme(): Promise<'light' | 'dark'> {
-        return Promise.resolve(this.prefersColorSchemeDark.matches ? 'dark' : 'light');
+    getDefaultSystemTheme(): Promise<ThemeType.Light | ThemeType.Dark> {
+        return Promise.resolve(this.prefersColorSchemeDark.matches ? ThemeType.Dark : ThemeType.Light);
     }
 
-    async getEffectiveTheme(): Promise<'light' | 'dark'> {
-        let theme = await this.storageService.get<string>(ConstantsService.themeKey);
-        if (theme === 'dark') {
-            return theme;
-        } else if (theme === 'system') {
+    async getEffectiveTheme(): Promise<ThemeType.Light | ThemeType.Dark> {
+        const theme = await this.storageService().get<ThemeType>(ConstantsService.themeKey);
+        if (theme === ThemeType.Dark) {
+            return ThemeType.Dark;
+        } else if (theme === ThemeType.System) {
             return this.getDefaultSystemTheme();
         } else {
-            return 'light';
+            return ThemeType.Light;
         }
     }
 
-    onDefaultSystemThemeChange(callback: ((theme: 'light' | 'dark') => unknown)) {
+    onDefaultSystemThemeChange(callback: ((theme: ThemeType.Light | ThemeType.Dark) => unknown)) {
         this.prefersColorSchemeDark.addEventListener('change', ({ matches }) => {
-            callback(matches ? 'dark' : 'light');
+            callback(matches ? ThemeType.Dark : ThemeType.Light);
         });
     }
 }

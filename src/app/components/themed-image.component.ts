@@ -10,6 +10,8 @@ import { StorageService } from 'jslib-common/abstractions/storage.service';
 
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
+import { ThemeType } from 'jslib-common/enums/themeType';
+
 @Component({
     selector: 'app-themed-image',
     templateUrl: 'themed-image.component.html',
@@ -34,18 +36,18 @@ export class ThemedImageComponent implements OnInit, OnDestroy {
 
         this.themeChangeCallback = async (prefersDarkQuery: MediaQueryList) => {
             const bwTheme = await this.storageService.get<string>(ConstantsService.themeKey);
-            if (bwTheme === 'system') {
-                this.setImageUrl(prefersDarkQuery.matches ? 'dark' : 'light');
+            if (bwTheme === ThemeType.System) {
+                this.setImageUrl(prefersDarkQuery.matches ? ThemeType.Dark : ThemeType.Light);
             }
         };
         this.prefersColorSchemeDark.addEventListener('change', this.themeChangeCallback);
     }
 
-    private setImageUrl(theme: string) {
-        this.imageUrl = theme === 'dark' ? this.darkThemeImage : this.lightThemeImage;
-    }
-
     ngOnDestroy() {
         this.prefersColorSchemeDark.removeEventListener('change', this.themeChangeCallback);
+    }
+
+    private setImageUrl(theme: string) {
+        this.imageUrl = theme === ThemeType.Dark ? this.darkThemeImage : this.lightThemeImage;
     }
 }

@@ -14,6 +14,7 @@ import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.serv
 
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
+import { ThemeType } from 'jslib-common/enums/themeType';
 import { Utils } from 'jslib-common/misc/utils';
 
 @Component({
@@ -65,8 +66,8 @@ export class OptionsComponent implements OnInit {
         this.localeOptions = localeOptions;
         this.themeOptions = [
             { name: i18nService.t('themeLight'), value: null },
-            { name: i18nService.t('themeDark'), value: 'dark' },
-            { name: i18nService.t('themeSystem'), value: 'system' },
+            { name: i18nService.t('themeDark'), value: ThemeType.Dark },
+            { name: i18nService.t('themeSystem'), value: ThemeType.System },
         ];
     }
 

@@ -91,12 +91,14 @@ import { UserService as UserServiceAbstraction } from 'jslib-common/abstractions
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib-common/abstractions/vaultTimeout.service';
 import { ModalService } from './modal.service';
 
+import { ThemeType } from 'jslib-common/enums/themeType';
+
 const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
 const broadcasterService = new BroadcasterService();
 const messagingService = new BroadcasterMessagingService(broadcasterService);
 const consoleLogService = new ConsoleLogService(false);
-const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService);
+const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService, () => storageService);
 const storageService: StorageServiceAbstraction = new HtmlStorageService(platformUtilsService);
 const secureStorageService: StorageServiceAbstraction = new MemoryStorageService();
 const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(window,
@@ -165,8 +167,8 @@ export function initFactory(): Function {
         const theme = await platformUtilsService.getEffectiveTheme();
         htmlEl.classList.add('theme_' + theme);
         platformUtilsService.onDefaultSystemThemeChange(async sysTheme => {
-            const bwTheme = await storageService.get<string>(ConstantsService.themeKey);
-            if (bwTheme === 'system') {
+            const bwTheme = await storageService.get<ThemeType>(ConstantsService.themeKey);
+            if (bwTheme === ThemeType.System) {
                 htmlEl.classList.remove('theme_light', 'theme_dark');
                 htmlEl.classList.add('theme_' + sysTheme);
             }
