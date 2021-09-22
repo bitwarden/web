@@ -30,6 +30,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { SetupProviderComponent } from './setup/setup-provider.component';
 import { SetupComponent } from './setup/setup.component';
 
+import { ModalComponentResolverService } from 'jslib-angular/services/modal-component-resolver.service';
 import { OssModule } from 'src/app/oss.module';
 
 @NgModule({
@@ -63,7 +64,7 @@ import { OssModule } from 'src/app/oss.module';
     ],
 })
 export class ProvidersModule {
-    constructor(modalService: ModalService, componentFactoryResolver: ComponentFactoryResolver) {
-        modalService.registerComponentFactoryResolver(AddOrganizationComponent, componentFactoryResolver);
+    constructor(modalComponentResolverService: ModalComponentResolverService, componentFactoryResolver: ComponentFactoryResolver) {
+        modalComponentResolverService.registerComponentFactoryResolver(AddOrganizationComponent, componentFactoryResolver);
     }
 }

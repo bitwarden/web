@@ -10,7 +10,7 @@ import { APP_INITIALIZER } from '@angular/core';
 import { ServicesModule } from 'src/app/services/services.module';
 
 export default {
-    title: 'Callout',
+    title: 'Jslib/Callout',
     component: CalloutComponent,
     decorators: [
         moduleMetadata({

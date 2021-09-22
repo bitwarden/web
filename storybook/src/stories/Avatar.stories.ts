@@ -24,7 +24,7 @@ const cryptoFunctionFactory = () => {
 }
 
 export default {
-    title: 'Avatar',
+    title: 'Web/Avatar',
     component: AvatarComponent,
     decorators: [
         moduleMetadata({

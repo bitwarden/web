@@ -74,7 +74,7 @@ import { FolderService as FolderServiceAbstraction } from 'jslib-common/abstract
 import { I18nService as I18nServiceAbstraction } from 'jslib-common/abstractions/i18n.service';
 import { ImportService as ImportServiceAbstraction } from 'jslib-common/abstractions/import.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
-import { MessagingService, MessagingService as MessagingServiceAbstraction } from 'jslib-common/abstractions/messaging.service';
+import { MessagingService as MessagingServiceAbstraction } from 'jslib-common/abstractions/messaging.service';
 import { NotificationsService as NotificationsServiceAbstraction } from 'jslib-common/abstractions/notifications.service';
 import {
     PasswordGenerationService as PasswordGenerationServiceAbstraction,
