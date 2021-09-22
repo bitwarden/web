@@ -54,15 +54,15 @@
     }
 }
 
-img.logo, #iBWLogo {
+img.logo, #logo-loading {
     display: block;
     height: 43px;
     margin: 0 auto;
     width: 284px;
 }
 
-/* This is for the index.html page so we don't need to do inline styling or use javascript */
-#iBWLogo {
+/* CSS hack used to load the correctly themed image in index.html before the app loads */
+#logo-loading {
     @media (prefers-color-scheme: dark) {
         background: url("/src/images/logo-white@2x.png") no-repeat center center;
         background-size: cover;

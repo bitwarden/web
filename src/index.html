@@ -8,6 +8,17 @@
 
     <title page-title>Bitwarden Web Vault</title>
 
+    <script>
+        // Set theme before app loads - prevents flash of white when using dark mode
+        let theme = window.localStorage.getItem('theme')?.replace(/"/g, '');
+        if (theme === 'system') {
+            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        } else if (theme !== 'dark') {
+            theme = 'light';
+        }
+        document.documentElement.classList.add('theme_' + theme);
+    </script>
+
     <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="images/icons/favicon-16x16.png">
@@ -19,7 +30,7 @@
     <app-root>
         <div class="mt-5 d-flex justify-content-center">
             <div>
-                <div id="iBWLogo" class="mb-2 logo"></div>
+                <div id="logo-loading" class="mb-2 logo"></div>
                 <p class="text-center">
                     <i class="fa fa-spinner fa-spin fa-2x text-muted" title="Loading" aria-hidden="true"></i>
                 </p>
