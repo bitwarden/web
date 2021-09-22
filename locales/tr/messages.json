@@ -1167,7 +1167,7 @@
     "message": "Kurum düzeyinde sağlayıcıları düzenleyerek kurumuzun kullanıcılarına iki aşamalı girişi zorunlu kılın."
   },
   "twoStepLoginRecoveryWarning": {
-    "message": "İki aşamalı girişi etkinleştirmek, Bitwarden hesabınızı kalıcı olarak kilitleyebilir. Kurtarma kodunuz, iki aşamalı giriş sağlayıcınızı kullanamamanız durumunda hesabınıza erişmenize olanak sağlar (ör. cihazınızı kaybedersiniz). Hesabınıza erişiminizi kaybederseniz Bitwarden desteği size yardımcı olamaz. Kurtarma kodunu yazmanızı veya yazdırmanızı ve güvenli bir yerde saklamanızı öneririz."
+    "message": "İki aşamalı girişi etkinleştirmek, Bitwarden hesabınızı kalıcı olarak kilitleyebilir. Kurtarma kodunuz, iki aşamalı giriş sağlayıcınızı kullanamamanız durumunda hesabınıza erişmenize olanak sağlar (ör. cihazınızı kaybedersiniz). Hesabınıza erişiminizi kaybederseniz Bitwarden destek ekibi size yardımcı olamaz. Kurtarma kodunu not almanızı veya yazdırmanızı ve güvenli bir yerde saklamanızı öneririz."
   },
   "viewRecoveryCode": {
     "message": "Kurtarma kodunu göster"
@@ -1244,7 +1244,7 @@
     "message": "Uygulamanın verdiği 6 basamaklı doğrulama kodunu girin"
   },
   "twoStepAuthenticatorReaddDesc": {
-    "message": "Başka bir cihaza eklemeniz gerekirse, aşağıda kimlik doğrulama uygulamanızın gerektirdiği QR kodu (veya anahtarı) verilmiştir."
+    "message": "Başka bir cihaza eklemeniz gerekirse kimlik doğrulama uygulamanıza aşağıdaki QR kodunu (veya anahtarı) verebilirsiniz."
   },
   "twoStepDisableDesc": {
     "message": "Bu iki aşamalı giriş sağlayıcısını devre dışı bırakmak istediğinize emin misiniz?"
@@ -1268,13 +1268,13 @@
     "message": "Formu kaydedin."
   },
   "twoFactorYubikeyWarning": {
-    "message": "Platform sınırlamaları nedeniyle, YubiKeyler tüm Bitwarden uygulamalarında kullanılamaz. Başka bir iki adımlı giriş sağlayıcısını etkinleştirmeniz gerekir, böylece YubiKeyler kullanılamadığında hesabınıza erişebilirsiniz. Desteklenen platformlar:"
+    "message": "Platform sınırlamaları nedeniyle YubiKey tüm Bitwarden uygulamalarında kullanılamaz. YubiKey kullanılamadığında hesabınıza erişebilmek için başka bir iki aşamalı doğrulama yöntemi ayarlamanız gerekir. Desteklenen platformlar:"
   },
   "twoFactorYubikeySupportUsb": {
     "message": "Web kasası, masaüstü uygulaması, CLI ve YubiKey'inizi kabul edebilecek bir USB bağlantı noktasına sahip bir cihazdaki tüm tarayıcı uzantıları."
   },
   "twoFactorYubikeySupportMobile": {
-    "message": "Mobile apps on a device with NFC capabilities or a USB port that can accept your YubiKey."
+    "message": "Mobile apps on a device with NFC capabilities or a data port that can accept your YubiKey."
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
@@ -1310,7 +1310,7 @@
     "message": "Anahtarlarımdan biri NFC destekliyor."
   },
   "twoFactorYubikeySupportsNfcDesc": {
-    "message": "YubiKey'lerinizden biri NFC'yi destekliyorsa (YubiKey NEO gibi), mobil cihazlarda NFC kullanılabilirliği tespit edildiğinde uyarılacaksınız."
+    "message": "YubiKey'lerinizden biri NFC'yi destekliyorsa (örn. YubiKey NEO) NFC kullanılabilirliği tespit edildiğinde mobil cihazınızdan sizi uyaracağız."
   },
   "yubikeysUpdated": {
     "message": "YubiKey'ler güncellendi"
@@ -1370,7 +1370,7 @@
     "message": "Formu kaydedin."
   },
   "twoFactorU2fWarning": {
-    "message": "Platform sınırlamaları nedeniyle, FIDO U2F tüm Bitwarden uygulamalarında kullanılamaz. Başka bir iki adımlı giriş sağlayıcısını etkinleştirmeniz gerekir, böylece FIDO U2F kullanılamadığında hesabınıza erişebilirsiniz. Desteklenen platformlar:"
+    "message": "Platform sınırlamaları nedeniyle FIDO U2F tüm Bitwarden uygulamalarında kullanılamaz. FIDO U2F kullanılamadığında hesabınıza erişebilmek için başka bir iki aşamalı doğrulama yöntemi ayarlamanız gerekir. Desteklenen platformlar:"
   },
   "twoFactorU2fSupportWeb": {
     "message": "Web kasası ve U2F uyumlu bir tarayıcıya (FIDO U2F uyumlu Chrome, Opera, Vivaldi veya Firefox) sahip bir bilgisayardaki tarayıcı uzantıları."
@@ -1385,16 +1385,16 @@
     "message": "Güvenlik anahtarını okurken bir sorun oluştu. Tekrar deneyin."
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Platform sınırlamaları nedeniyle, WebAuthn tüm Bitwarden uygulamalarında kullanılamaz. WebAuthn kullanılamadığında bile hesabınıza erişebilmek için başka bir iki aşamalı doğrulama yöntemi ayarlamanız gerekir. Desteklenen platformlar:"
+    "message": "Platform sınırlamaları nedeniyle WebAuthn tüm Bitwarden uygulamalarında kullanılamaz. WebAuthn kullanılamadığında hesabınıza erişebilmek için başka bir iki aşamalı doğrulama yöntemi ayarlamanız gerekir. Desteklenen platformlar:"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "WebAuthn etkinleştirilmiş bir tarayıcıya (Chrome, Opera, Vivaldi veya Firefox) sahip bir masaüstü/dizüstü bilgisayarda web kasası ve tarayıcı uzantıları."
+    "message": "WebAuthn uyumlu bir tarayıcıya (FIDO U2F uyumlu Chrome, Opera, Vivaldi veya Firefox) sahip bir bilgisayardaki tarayıcı uzantıları."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Bitwarden iki aşamalı giriş kurtarma kodunuz"
   },
   "twoFactorRecoveryNoCode": {
-    "message": "Henüz herhangi bir iki adımlı giriş sağlayıcısını etkinleştirmediniz. İki adımlı bir giriş sağlayıcısını etkinleştirdikten sonra, kurtarma kodunuz için burayı tekrar kontrol edebilirsiniz."
+    "message": "Henüz herhangi bir iki adımlı giriş sağlayıcısını etkinleştirmediniz. İki adımlı giriş sağlayıcısını etkinleştirdikten sonra kurtarma kodunuzu almak için burayı tekrar kontrol edebilirsiniz."
   },
   "printCode": {
     "message": "Kodu yazdır",
@@ -1422,7 +1422,7 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "Kasanızda güvenli olmayan URI'ye sahip öge yoktur."
+    "message": "Kasanızda güvenli olmayan URI'ye sahip hiç kayıt yok."
   },
   "inactive2faReport": {
     "message": "2FA raporu pasif"
@@ -1509,7 +1509,7 @@
     "message": "Kullandığınız bir servisin güvenliği ihlal edilirse, aynı parolayı başka bir yerde tekrar kullanmak bilgisayar korsanlarının çevrimiçi hesaplarınızın daha fazlasına kolayca erişmesine izin verebilir. Her hesap veya hizmet için benzersiz bir parola kullanmalısınız."
   },
   "reusedPasswordsFound": {
-    "message": "Yeniden Kullanılmış Parolalar Bulundu"
+    "message": "Yeniden kullanılmış parolalar bulundu"
   },
   "reusedPasswordsFoundDesc": {
     "message": "Kasanızda tekrar kullanılmakta olan $COUNT$ tane parola bulduk. Onları benzersiz bir değerle değiştirmelisiniz.",
@@ -1583,10 +1583,10 @@
     "message": "Etkilenen kullanıcılar"
   },
   "breachOccurred": {
-    "message": "İhlal Oluştu"
+    "message": "İhlal oluştu"
   },
   "breachReported": {
-    "message": "İhlal Bildirildi"
+    "message": "İhlal bildirildi"
   },
   "reportError": {
     "message": "Rapor yüklenmeye çalışılırken bir hata oluştu. Tekrar deneyin"
@@ -1874,10 +1874,10 @@
     }
   },
   "gbStorageAdd": {
-    "message": "Depolamaya GB Ekle"
+    "message": "Depolamaya eklenecek GB miktarı"
   },
   "gbStorageRemove": {
-    "message": "Depolamadan GB Çıkar"
+    "message": "Depolamadan çıkarılacak GB miktarı"
   },
   "storageAddNote": {
     "message": "Depolama alanı eklemek, fatura toplamınızda ayarlamalar yapmanıza ve ödeme yönteminizi derhal borçlandırmanıza neden olur. İlk masraf, mevcut faturalandırma döngüsünün kalanı için geçerli olacaktır."
@@ -1886,7 +1886,7 @@
     "message": "Depolamayı kaldırmak, bir sonraki fatura ücretinize kredi olarak kanıtlanacak olan fatura toplamlarınızda ayarlamalar yapmanıza neden olur."
   },
   "adjustedStorage": {
-    "message": "Düzeltilmiş $AMOUNT$ GB depolama alanı.",
+    "message": "$AMOUNT$ GB depolama alanı ayarlandı.",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -1895,7 +1895,7 @@
     }
   },
   "contactSupport": {
-    "message": "Müşteri Hizmetleriyle iletişime geçin"
+    "message": "Müşteri hizmetleriyle iletişime geçin"
   },
   "updatedPaymentMethod": {
     "message": "Ödeme yöntemi güncellendi."
@@ -1919,7 +1919,7 @@
     "message": "Hesabınızı premium üyeliğe yükseltmek için geçerli bir lisans dosyası yüklemelisiniz."
   },
   "uploadLicenseFileOrg": {
-    "message": "To create an on-premise hosted organization you need to upload a valid license file."
+    "message": "To create an on-premises hosted organization you need to upload a valid license file."
   },
   "accountEmailMustBeVerified": {
     "message": "Hesabınızın e-posta adresi doğrulanmalıdır."
