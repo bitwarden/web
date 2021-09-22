@@ -50,12 +50,10 @@ export class PaymentComponent implements OnInit {
     private stripeCardNumberElement: any = null;
     private stripeCardExpiryElement: any = null;
     private stripeCardCvcElement: any = null;
-    private theme: any = null;
     private StripeElementStyle: any;
     private StripeElementClasses: any;
 
-    constructor(private platformUtilsService: PlatformUtilsService, private apiService: ApiService,
-        private storageService: StorageService) {
+    constructor(private platformUtilsService: PlatformUtilsService, private apiService: ApiService) {
         this.stripeScript = window.document.createElement('script');
         this.stripeScript.src = 'https://js.stripe.com/v3/';
         this.stripeScript.async = true;
@@ -261,11 +259,8 @@ export class PaymentComponent implements OnInit {
     }
 
     private async setTheme() {
-        this.theme = await this.storageService.get<string>(ConstantsService.themeKey);
-        if (this.theme === 'system') {
-            this.theme = await this.platformUtilsService.getDefaultSystemTheme();
-        }
-        if (this.theme === 'dark') {
+        const theme = await this.platformUtilsService.getEffectiveTheme();
+        if (theme === 'dark') {
             this.StripeElementStyle.base.color = darkInputColor;
             this.StripeElementStyle.base['::placeholder'].color = darkInputPlaceholderColor;
             this.StripeElementStyle.invalid.color = darkInputColor;

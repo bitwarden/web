@@ -6,6 +6,9 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { StorageService } from 'jslib-common/abstractions/storage.service';
+
+import { ConstantsService } from 'jslib-common/services/constants.service';
 
 export class WebPlatformUtilsService implements PlatformUtilsService {
     identityClientId: string = 'web';
@@ -14,7 +17,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     private prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
 
     constructor(private i18nService: I18nService, private messagingService: MessagingService,
-        private logService: LogService) { }
+        private logService: LogService, private storageService: StorageService) { }
 
     getDevice(): DeviceType {
         if (this.browserCache != null) {
@@ -290,6 +293,17 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
 
     getDefaultSystemTheme(): Promise<'light' | 'dark'> {
         return Promise.resolve(this.prefersColorSchemeDark.matches ? 'dark' : 'light');
+    }
+
+    async getEffectiveTheme(): Promise<'light' | 'dark'> {
+        let theme = await this.storageService.get<string>(ConstantsService.themeKey);
+        if (theme === 'dark') {
+            return theme;
+        } else if (theme === 'system') {
+            return this.getDefaultSystemTheme();
+        } else {
+            return 'light';
+        }
     }
 
     onDefaultSystemThemeChange(callback: ((theme: 'light' | 'dark') => unknown)) {

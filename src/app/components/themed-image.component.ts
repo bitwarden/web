@@ -28,13 +28,7 @@ export class ThemedImageComponent implements OnInit, OnDestroy {
     constructor(private storageService: StorageService, private platformUtilsService: PlatformUtilsService) { }
 
     async ngOnInit() {
-        let theme = await this.storageService.get<string>(ConstantsService.themeKey);
-        if (theme == null) {
-            theme = 'light';
-        }
-        else if (theme === 'system') {
-            theme = await this.platformUtilsService.getDefaultSystemTheme();
-        }
+        const theme = await this.platformUtilsService.getEffectiveTheme();
 
         this.imageUrl = theme === 'dark' ? this.darkThemeImage : this.lightThemeImage;
 

@@ -33,7 +33,7 @@ export class OptionsComponent implements OnInit {
     themeOptions: any[];
 
     private startingLocale: string;
-    private currentTheme: string;
+    private startingTheme: string;
 
     constructor(private storageService: StorageService, private stateService: StateService,
         private i18nService: I18nService, private toasterService: ToasterService,
@@ -77,7 +77,7 @@ export class OptionsComponent implements OnInit {
         this.enableGravatars = await this.storageService.get<boolean>('enableGravatars');
         this.enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
         this.locale = this.startingLocale = await this.storageService.get<string>(ConstantsService.localeKey);
-        this.theme = this.currentTheme = await this.storageService.get<string>(ConstantsService.themeKey);
+        this.theme = this.startingTheme = await this.storageService.get<string>(ConstantsService.themeKey);
     }
 
     async submit() {
@@ -89,15 +89,11 @@ export class OptionsComponent implements OnInit {
         await this.stateService.save('enableGravatars', this.enableGravatars);
         await this.storageService.save('enableFullWidth', this.enableFullWidth);
         this.messagingService.send('setFullWidth');
-        if (this.theme !== this.currentTheme) {
-            let effectiveTheme = this.currentTheme = this.theme;
+        if (this.theme !== this.startingTheme) {
             await this.storageService.save(ConstantsService.themeKey, this.theme);
+            this.startingTheme = this.theme;
+            const effectiveTheme = await this.platformUtilsService.getEffectiveTheme();
             const htmlEl = window.document.documentElement;
-            if (this.theme == null) {
-                effectiveTheme = 'light';
-            } else if (this.theme === 'system') {
-                effectiveTheme = await this.platformUtilsService.getDefaultSystemTheme();
-            }
             htmlEl.classList.remove('theme_dark', 'theme_light');
             htmlEl.classList.add('theme_' + effectiveTheme);
         }

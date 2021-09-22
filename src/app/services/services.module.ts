@@ -162,13 +162,7 @@ export function initFactory(): Function {
         const htmlEl = window.document.documentElement;
         htmlEl.classList.add('locale_' + i18nService.translationLocale);
 
-        let theme = await storageService.get<string>(ConstantsService.themeKey);
-        if (theme == null) {
-            theme = 'light';
-        } else if (theme === 'system') {
-            theme = await platformUtilsService.getDefaultSystemTheme();
-        }
-
+        const theme = await platformUtilsService.getEffectiveTheme();
         htmlEl.classList.add('theme_' + theme);
         platformUtilsService.onDefaultSystemThemeChange(async sysTheme => {
             const bwTheme = await storageService.get<string>(ConstantsService.themeKey);
