@@ -161,16 +161,15 @@ export function initFactory(): Function {
         authService.init();
         const htmlEl = window.document.documentElement;
         htmlEl.classList.add('locale_' + i18nService.translationLocale);
+
         let theme = await storageService.get<string>(ConstantsService.themeKey);
         if (theme == null) {
             theme = 'light';
+        } else if (theme === 'system') {
+            theme = await platformUtilsService.getDefaultSystemTheme();
         }
-        if (theme === 'system') {
-            const systemTheme = await platformUtilsService.getDefaultSystemTheme();
-            htmlEl.classList.add('theme_' + systemTheme);
-        } else {
-            htmlEl.classList.add('theme_' + theme);
-        }
+
+        htmlEl.classList.add('theme_' + theme);
         platformUtilsService.onDefaultSystemThemeChange(async sysTheme => {
             const bwTheme = await storageService.get<string>(ConstantsService.themeKey);
             if (bwTheme === 'system') {
@@ -178,6 +177,7 @@ export function initFactory(): Function {
                 htmlEl.classList.add('theme_' + sysTheme);
             }
         });
+
         stateService.save(ConstantsService.disableFaviconKey,
             await storageService.get<boolean>(ConstantsService.disableFaviconKey));
         stateService.save('enableGravatars', await storageService.get<boolean>('enableGravatars'));

@@ -95,8 +95,7 @@ export class OptionsComponent implements OnInit {
             const htmlEl = window.document.documentElement;
             if (this.theme == null) {
                 effectiveTheme = 'light';
-            }
-            if (this.theme === 'system') {
+            } else if (this.theme === 'system') {
                 effectiveTheme = await this.platformUtilsService.getDefaultSystemTheme();
             }
             htmlEl.classList.remove('theme_dark', 'theme_light');

@@ -97,19 +97,7 @@ export class PaymentComponent implements OnInit {
             this.hideBank = this.method !== PaymentMethodType.BankAccount;
             this.hideCredit = this.method !== PaymentMethodType.Credit;
         }
-        this.theme = await this.storageService.get<string>(ConstantsService.themeKey);
-        if (this.theme === 'system') {
-            this.theme = await this.platformUtilsService.getDefaultSystemTheme();
-        }
-        if (this.theme == null) {
-            this.StripeElementStyle.base.color = lightInputColor;
-            this.StripeElementStyle.base['::placeholder'].color = lightInputPlaceholderColor;
-            this.StripeElementStyle.invalid.color = lightInputColor;
-        } else {
-            this.StripeElementStyle.base.color = darkInputColor;
-            this.StripeElementStyle.base['::placeholder'].color = darkInputPlaceholderColor;
-            this.StripeElementStyle.invalid.color = darkInputColor;
-        }
+        await this.setTheme();
         window.document.head.appendChild(this.stripeScript);
         if (!this.hidePaypal) {
             window.document.head.appendChild(this.btScript);
@@ -270,5 +258,21 @@ export class PaymentComponent implements OnInit {
                 this.stripeCardCvcElement.mount('#stripe-card-cvc-element');
             }
         }, 50);
+    }
+
+    private async setTheme() {
+        this.theme = await this.storageService.get<string>(ConstantsService.themeKey);
+        if (this.theme === 'system') {
+            this.theme = await this.platformUtilsService.getDefaultSystemTheme();
+        }
+        if (this.theme === 'dark') {
+            this.StripeElementStyle.base.color = darkInputColor;
+            this.StripeElementStyle.base['::placeholder'].color = darkInputPlaceholderColor;
+            this.StripeElementStyle.invalid.color = darkInputColor;
+        } else {
+            this.StripeElementStyle.base.color = lightInputColor;
+            this.StripeElementStyle.base['::placeholder'].color = lightInputPlaceholderColor;
+            this.StripeElementStyle.invalid.color = lightInputColor;
+        }
     }
 }

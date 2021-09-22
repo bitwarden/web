@@ -32,7 +32,7 @@ export class ThemedImageComponent implements OnInit, OnDestroy {
         if (theme == null) {
             theme = 'light';
         }
-        if (theme === 'system') {
+        else if (theme === 'system') {
             theme = await this.platformUtilsService.getDefaultSystemTheme();
         }
 
@@ -40,7 +40,7 @@ export class ThemedImageComponent implements OnInit, OnDestroy {
 
         this.themeChangeCallback = async (prefersDarkQuery: MediaQueryList) => {
             const bwTheme = await this.storageService.get<string>(ConstantsService.themeKey);
-            if (bwTheme == null) {
+            if (bwTheme == 'system') {
                 this.imageUrl = prefersDarkQuery.matches ? this.darkThemeImage : this.lightThemeImage;
             }
         };
