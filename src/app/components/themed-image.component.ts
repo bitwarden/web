@@ -22,23 +22,27 @@ export class ThemedImageComponent implements OnInit, OnDestroy {
 
     imageUrl: string;
 
-    private themeChangeCallback: any;
+    // Can't use platformUtilsService because we need the reference to this media query list
     private prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
+    private themeChangeCallback: any;
 
     constructor(private storageService: StorageService, private platformUtilsService: PlatformUtilsService) { }
 
     async ngOnInit() {
         const theme = await this.platformUtilsService.getEffectiveTheme();
-
-        this.imageUrl = theme === 'dark' ? this.darkThemeImage : this.lightThemeImage;
+        this.setImageUrl(theme);
 
         this.themeChangeCallback = async (prefersDarkQuery: MediaQueryList) => {
             const bwTheme = await this.storageService.get<string>(ConstantsService.themeKey);
-            if (bwTheme == 'system') {
-                this.imageUrl = prefersDarkQuery.matches ? this.darkThemeImage : this.lightThemeImage;
+            if (bwTheme === 'system') {
+                this.setImageUrl(prefersDarkQuery.matches ? 'dark' : 'light');
             }
         };
         this.prefersColorSchemeDark.addEventListener('change', this.themeChangeCallback);
+    }
+
+    private setImageUrl(theme: string) {
+        this.imageUrl = theme === 'dark' ? this.darkThemeImage : this.lightThemeImage;
     }
 
     ngOnDestroy() {
