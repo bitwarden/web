@@ -148,6 +148,9 @@ const plugins = [
         'APPLICATION_VERSION': pjson.version,
         'CACHE_TAG': Math.random().toString(36).substring(7),
         'URLS': envConfig['urls'] ?? {},
+        'STRIPE_KEY': envConfig['stripeKey'] ?? '', 
+        'BRAINTREE_KEY': envConfig['braintreeKey'] ?? '',
+        'PAYPAL_CONFIG': envConfig['paypal'] ?? {},
     }),
     new AngularCompilerPlugin({
         tsConfigPath: 'tsconfig.json',

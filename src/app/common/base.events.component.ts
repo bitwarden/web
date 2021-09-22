@@ -3,14 +3,14 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ExportService } from 'jslib-common/abstractions/export.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { EventView } from 'jslib-common/models/view/eventView';
 
-import { ListResponse } from 'jslib-common/models/response';
 import { EventResponse } from 'jslib-common/models/response/eventResponse';
+import { ListResponse } from 'jslib-common/models/response/listResponse';
 
-import { LogService } from 'jslib-common/abstractions';
 import { EventService } from 'src/app/services/event.service';
 
 @Directive()

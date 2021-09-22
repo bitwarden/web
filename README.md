@@ -32,7 +32,7 @@ For local development, run the app with:
 
 ```
 npm install
-npm run build:watch
+npm run build:oss:watch
 ```
 
 You can now access the web vault in your browser at `https://localhost:8080`.
@@ -41,7 +41,7 @@ If you want to point the development web vault to the production APIs, you can r
 
 ```
 npm install
-ENV=production npm run build:watch
+ENV=production npm run build:oss:watch
 ```
 
 You can also manually adjusting your API endpoint settings by adding `config/local.json` overriding any of the following values:
@@ -60,11 +60,7 @@ You can also manually adjusting your API endpoint settings by adding `config/loc
 }
 ```
 
-Where the `urls` object is defined by the [Urls type in jslib](https://github.com/bitwarden/jslib/blob/master/common/src/abstractions/environment.service.ts). To pick up the overrides in the newly created `config/local.json` file, run the app with:
-
-```
-npm run build:dev:watch
-```
+Where the `urls` object is defined by the [Urls type in jslib](https://github.com/bitwarden/jslib/blob/master/common/src/abstractions/environment.service.ts).
 
 ## Contribute
 

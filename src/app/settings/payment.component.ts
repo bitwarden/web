@@ -8,12 +8,8 @@ import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
-
-import { ConstantsService } from 'jslib-common/services/constants.service';
 
 import { ThemeType } from 'jslib-common/enums/themeType';
-import { WebConstants } from '../../services/webConstants';
 
 const lightInputColor = '#465057';
 const lightInputPlaceholderColor = '#B6B8B8';
@@ -59,8 +55,7 @@ export class PaymentComponent implements OnInit {
         this.stripeScript.src = 'https://js.stripe.com/v3/';
         this.stripeScript.async = true;
         this.stripeScript.onload = () => {
-            this.stripe = (window as any).Stripe(process.env.ENV === 'cloud' && !platformUtilsService.isDev() ?
-                WebConstants.stripeLiveKey : WebConstants.stripeTestKey);
+            this.stripe = (window as any).Stripe(process.env.STRIPE_KEY);
             this.stripeElements = this.stripe.elements();
             this.setStripeElement();
         };
@@ -139,8 +134,7 @@ export class PaymentComponent implements OnInit {
         if (this.method === PaymentMethodType.PayPal) {
             window.setTimeout(() => {
                 (window as any).braintree.dropin.create({
-                    authorization: process.env.ENV === 'cloud' ?
-                        WebConstants.btProductionKey : WebConstants.btSandboxKey,
+                    authorization: process.env.BRAINTREE_KEY,
                     container: '#bt-dropin-container',
                     paymentOptionPriority: ['paypal'],
                     paypal: {

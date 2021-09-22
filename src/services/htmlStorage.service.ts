@@ -1,6 +1,6 @@
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
-import { ConstantsService } from 'jslib-common/services';
+import { ConstantsService } from 'jslib-common/services/constants.service';
 
 export class HtmlStorageService implements StorageService {
     private localStorageKeys = new Set(['appId', 'anonymousAppId', 'rememberedEmail', 'passwordGenerationOptions',

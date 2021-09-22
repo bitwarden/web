@@ -1,4 +1,7 @@
 <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
+    <app-callout type="warning" *ngIf="showTwoFactorEmailWarning">
+        {{'changeEmailTwoFactorWarning' | i18n}}
+    </app-callout>
     <div class="row">
         <div class="col-6">
             <div class="form-group">

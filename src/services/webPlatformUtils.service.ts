@@ -87,10 +87,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return Promise.resolve(false);
     }
 
-    lockTimeout(): number {
-        return null;
-    }
-
     launchUri(uri: string, options?: any): void {
         const a = document.createElement('a');
         a.href = uri;

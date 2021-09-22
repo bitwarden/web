@@ -24,6 +24,7 @@ export class UserConfirmComponent implements OnInit {
     dontAskAgain = false;
     loading = true;
     fingerprint: string;
+    formPromise: Promise<any>;
 
     constructor(private cryptoService: CryptoService, private storageService: StorageService) { }
 

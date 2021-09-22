@@ -11,8 +11,6 @@ import { RouterModule } from '@angular/router';
 import { ToasterModule } from 'angular2-toaster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
-import { AppComponent } from './app.component';
-
 import { AvatarComponent } from './components/avatar.component';
 import { PasswordRepromptComponent } from './components/password-reprompt.component';
 import { PasswordStrengthComponent } from './components/password-strength.component';
@@ -145,6 +143,7 @@ import { UpdateKeyComponent } from './settings/update-key.component';
 import { UpdateLicenseComponent } from './settings/update-license.component';
 import { UserBillingComponent } from './settings/user-billing.component';
 import { UserSubscriptionComponent } from './settings/user-subscription.component';
+import { VaultTimeoutInputComponent } from './settings/vault-timeout-input.component';
 import { VerifyEmailComponent } from './settings/verify-email.component';
 
 import { BreachReportComponent } from './tools/breach-report.component';
@@ -159,6 +158,7 @@ import { ToolsComponent } from './tools/tools.component';
 import { UnsecuredWebsitesReportComponent } from './tools/unsecured-websites-report.component';
 import { WeakPasswordsReportComponent } from './tools/weak-passwords-report.component';
 
+import { AddEditCustomFieldsComponent } from './vault/add-edit-custom-fields.component';
 import { AddEditComponent } from './vault/add-edit.component';
 import { AttachmentsComponent } from './vault/attachments.component';
 import { BulkActionsComponent } from './vault/bulk-actions.component';
@@ -308,7 +308,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         AdjustStorageComponent,
         ApiActionDirective,
         ApiKeyComponent,
-        AppComponent,
         AttachmentsComponent,
         AutofocusDirective,
         AvatarComponent,
@@ -459,6 +458,8 @@ registerLocaleData(localeZhTw, 'zh-TW');
         DisableSendPolicyComponent,
         SendOptionsPolicyComponent,
         ResetPasswordPolicyComponent,
+        VaultTimeoutInputComponent,
+        AddEditCustomFieldsComponent,
     ],
     exports: [
         A11yTitleDirective,
