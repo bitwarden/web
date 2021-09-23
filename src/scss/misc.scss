@@ -61,14 +61,13 @@ img.logo, #logo-loading {
     width: 284px;
 }
 
-/* CSS hack used to load the correctly themed image in index.html before the app loads */
-#logo-loading {
-    @media (prefers-color-scheme: dark) {
-        background: url("/src/images/logo-white@2x.png") no-repeat center center;
-        background-size: cover;
-    }
-    @media (prefers-color-scheme: light) {
-        background: url("/src/images/logo-dark@2x.png") no-repeat center center;
-        background-size: cover;
-    }
+/* CSS trick used to load the correctly themed image in index.html before the app loads */
+html.theme_dark #logo-loading {
+    background: url("/src/images/logo-white@2x.png") no-repeat center center;
+    background-size: cover;
+}
+
+html.theme_light #logo-loading {
+    background: url("/src/images/logo-dark@2x.png") no-repeat center center;
+    background-size: cover;
 }
