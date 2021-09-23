@@ -748,10 +748,10 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "Use any WebAuthn enabled security key to access your account."
+    "message": "Gunakan kunci yang mendukung WebAUthn untuk mengakses akun anda."
   },
   "webAuthnMigrated": {
-    "message": "(Migrated from FIDO)"
+    "message": "(Dipindahkan dari FIDO)"
   },
   "emailTitle": {
     "message": "Surel"
@@ -769,10 +769,10 @@
     "message": "Organisasi"
   },
   "moveToOrgDesc": {
-    "message": "Choose an organization that you wish to move this item to. Moving to an organization transfers ownership of the item to that organization. You will no longer be the direct owner of this item once it has been moved."
+    "message": "Pilihlah sebuah organisasi yang Anda ingin memindahkan item ini. Memindahkan berarti memberikan kepemilikan kepada organisasi tersebut. Anda tidak akan lagi menjadi pemilik item ini."
   },
   "moveManyToOrgDesc": {
-    "message": "Choose an organization that you wish to move these items to. Moving to an organization transfers ownership of the items to that organization. You will no longer be the direct owner of these items once they have been moved."
+    "message": "Pilihlah sebuah organisasi yang Anda ingin memindahkan item ini. Memindahkan berarti memberikan kepemilikan kepada organisasi tersebut. Anda tidak akan lagi menjadi pemilik item ini."
   },
   "collectionsDesc": {
     "message": "Edit koleksi tempat item ini dibagikan. Hanya pengguna organisasi dengan akses ke koleksi ini yang dapat melihat item ini."
@@ -796,7 +796,7 @@
     }
   },
   "moveSelectedItemsCountDesc": {
-    "message": "You have selected $COUNT$ item(s). $MOVEABLE_COUNT$ item(s) can be moved to an organization, $NONMOVEABLE_COUNT$ cannot.",
+    "message": "Anda telah memilih $COUNT$ item. $MOVEABLE_COUNT$ item bisa dipindahkan ke sebuah organisasi, $NONMOVEABLE_COUNT$ tidak bisa.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1295,7 +1295,7 @@
     }
   },
   "webAuthnkeyX": {
-    "message": "WebAuthn Key $INDEX$",
+    "message": "Kunci WebAuthn $INDEX$",
     "placeholders": {
       "index": {
         "content": "$1",
@@ -1385,10 +1385,10 @@
     "message": "Ada masalah saat membaca kunci keamanan. Coba lagi."
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+    "message": "Karena keterbatasan platform, WebAuthn tidak dapat digunakan di semua aplikasi Bitwarden. Anda harus mengaktifkan penyedia proses masuk dua langkah lainnya sehingga Anda dapat mengakses akun Anda saat WebAUthn tidak dapat digunakan. Platform yang didukung:"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Brankas web dan ekstensi browser di desktop / laptop dengan browser yang mendukung WebAuthn (Chrome, Opera, Vivaldi, atau Firefox dengan FIDO U2F diaktifkan)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Kode pemulihan masuk dua langkah Bitwarden Anda"
@@ -2353,7 +2353,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "Memindahkan item $ID$ ke sebuah organisasi.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2662,10 +2662,10 @@
     "message": "Tidak dapat memverifikasi email Anda. Coba kirim email verifikasi baru."
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "Verifikasi Email Diperlukan"
   },
   "emailVerificationRequiredDesc": {
-    "message": "You must verify your email to use this feature."
+    "message": "Anda harus mengkonfirmasi email anda untuk menggunakan fitur ini."
   },
   "updateBrowser": {
     "message": "Perbarui Browser"
@@ -3448,7 +3448,7 @@
     "message": "Anda yakin ingin menghapus kata sandi?"
   },
   "hideEmail": {
-    "message": "Hide my email address from recipients."
+    "message": "Sembunyikan alamat email dari penerima."
   },
   "disableThisSend": {
     "message": "Nonaktifkan Pengiriman ini sehingga tidak ada yang dapat mengaksesnya.",
@@ -3674,21 +3674,21 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
-    "message": "Set options for creating and editing Sends.",
+    "message": "Atur konfigurasi untuk membuat dan mengubah Sends.",
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Ketentuan ini tidak diberlakukan untuk anggota organisasi yang bisa mengatur ketentuan organisasi."
   },
   "disableHideEmail": {
-    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "message": "Pengguna tidak boleh menyembunyikan alamat email dari penerima ketika membuat atau mengubah Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
-    "message": "The following organization policies are currently in effect:"
+    "message": "Ketentuan organization berikut ini sedang berlaku:"
   },
   "sendDisableHideEmailInEffect": {
-    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "message": "Pengguna tidak boleh menyembunyikan alamat email dari penerima ketika membuat atau mengubah Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3835,7 +3835,7 @@
     }
   },
   "viewSendHiddenEmailWarning": {
-    "message": "The Bitwarden user who created this Send has chosen to hide their email address. You should ensure you trust the source of this link before using or downloading its content.",
+    "message": "Pengguna Bitwarden yang membuat Send ini memilih untuk menyembunyikan alamat emailnya. Kamu harus yakin bahwa kamu mempercayai sumber dari link it sebelum mengunduh isinya.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
@@ -3854,37 +3854,37 @@
     "message": "Ada kesalahan menyimpan penghapusan dan tanggal kedaluwarsa Anda."
   },
   "webAuthnFallbackMsg": {
-    "message": "To verify your 2FA please click the button below."
+    "message": "Untuk mengverifikasi dua-langkat autentikasi anda, silahkan click tombol dibawah."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAuthn"
+    "message": "Autentikasi dengan WebAuthn"
   },
   "webAuthnNotSupported": {
-    "message": "WebAuthn is not supported in this browser."
+    "message": "WebAuthn tidak didukung oleh browser ini."
   },
   "webAuthnSuccess": {
-    "message": "WebAuthn verified successfully! You may close this tab."
+    "message": "WebAuthn sudah diverifikasi dengan sukses. Anda dapat menutup tab ini."
   },
   "hintEqualsPassword": {
-    "message": "Your password hint cannot be the same as your password."
+    "message": "Petunjuk kata sandi Anda tidak boleh sama dengan kata sandi Anda."
   },
   "enrollPasswordReset": {
-    "message": "Enroll in Password Reset"
+    "message": "Ikut dalam pengubahan kata sandi"
   },
   "enrolledPasswordReset": {
-    "message": "Enrolled in Password Reset"
+    "message": "Anda telah ikut dalam pengubahan kata sandi"
   },
   "withdrawPasswordReset": {
-    "message": "Withdraw from Password Reset"
+    "message": "Keluar dari pengubahan kata sandi"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "Sukses!"
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Withdrawal success!"
+    "message": "Penarikan sukses!"
   },
   "eventEnrollPasswordReset": {
-    "message": "User $ID$ enrolled in password reset assistance.",
+    "message": "User $ID$ sukses ikut dalam pengubahan kata sandi.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3893,7 +3893,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "User $ID$ withdrew from password reset assistance.",
+    "message": "User $ID$ keluar dalam pengubahan kata sandi.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3902,7 +3902,7 @@
     }
   },
   "eventAdminPasswordReset": {
-    "message": "Master password reset for user $ID$.",
+    "message": "Kata sandi utama sudah diubah untuk pengguna $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3911,10 +3911,10 @@
     }
   },
   "resetPassword": {
-    "message": "Reset Password"
+    "message": "Atur Ulang Kata Sandi"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "Proceeding will log $NAME$ out of their current session, requiring them to log back in. Active sessions on other devices may continue to remain active for up to one hour.",
+    "message": "Melanjutkan akan mengeluarkan Anda dari sesi saat ini, mengharuskan Anda untuk masuk kembali. Sesi aktif di perangkat lain dapat terus aktif hingga satu jam.",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -3923,37 +3923,37 @@
     }
   },
   "thisUser": {
-    "message": "this user"
+    "message": "pengguna ini"
   },
   "resetPasswordMasterPasswordPolicyInEffect": {
-    "message": "One or more organization policies require the master password to meet the following requirements:"
+    "message": "Satu atau lebih kebijakan organisasi memerlukan kata sandi utama Anda untuk memenuhi persyaratan berikut:"
   },
   "resetPasswordSuccess": {
-    "message": "Password reset success!"
+    "message": "Ubah kata kunci berhasil!"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
+    "message": "Dengan mengikuti fitur ini mengijinkan admin organisasi untuk merubah kata sandi utama anda. Anda yakin mau masuk fitur ini?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Pengubahan Kata Sandi Utama"
   },
   "resetPasswordPolicyDescription": {
-    "message": "Allow administrators in the organization to reset organization users' master password."
+    "message": "Mengijinkan admin dalam organisasi untuk mengubah kata sandi utama anda."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Pengguna dalam organisasi perlu untuk memilih untuk mengikuti atau diikutkan secara otomatis sebelum admin dapat merubah kata sandi utama."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Diikutkan secara otomatis"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted."
+    "message": "Semua pengguna akan diikutan dalam fitur ubah kata sandi setelah undangan mereka diterima."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Pengguna yang sudah berada di dalam organisasi tidak akan diikutkan secara otomatis ke dalam fitur ubah kata sandi ini. Mereka perlu untuk mengikuti secara manual sebelum admin dapat merubah kata sandi mereka."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatically enroll new users"
+    "message": "Ikutkan pengguna baru secara otomatis"
   },
   "resetPasswordAutoEnrollInviteWarning": {
     "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."

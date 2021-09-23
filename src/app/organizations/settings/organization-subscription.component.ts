@@ -12,8 +12,8 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { UserService } from 'jslib-common/abstractions';
 import { PlanType } from 'jslib-common/enums/planType';
 
 @Component({
