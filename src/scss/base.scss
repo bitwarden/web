@@ -142,41 +142,6 @@ hr, .dropdown-divider {
     cursor: move !important;
 }
 
-.bg-primary {
-    @include themify($themes) {
-        background-color: themed('bgPrimaryColor') !important;
-    }
-}
-
-.bg-light {
-    @include themify($themes) {
-        background-color: themed('bgLightColor') !important;
-    }
-}
-
-.border-primary {
-    @include themify($themes) {
-        border-color: themed('borderPrimaryColor') !important;
-    }
-}
-
-.border-warning {
-    @include themify($themes) {
-        border-color: themed('warning') !important;
-    }
-}
-
-.border-danger {
-    @include themify($themes) {
-        border-color: themed('danger') !important;
-    }
-}
-
-.border-info {
-    @include themify($themes) {
-        border-color: themed('info') !important;
-    }
-}
 
 h1, h2, h3, h4, h5 {
     @include themify($themes) {
@@ -219,44 +184,6 @@ code {
     }
 }
 
-.text-danger {
-    &:not(.dropdown-item) {
-        @include themify($themes) {
-            color: themed('danger') !important;
-        }
-
-        & > h1,h2,h3,h4 {
-            @include themify($themes) {
-                color: themed('danger') !important;
-            }
-        }
-    }
-}
-
-.text-warning {
-    @include themify($themes) {
-        color: themed('warning') !important;
-    }
-
-    & > h1,h2,h3,h4 {
-        @include themify($themes) {
-            color: themed('warning') !important;
-        }
-    }
-}
-
-.text-success {
-    @include themify($themes) {
-        color: themed('success') !important;
-    }
-    
-    & > h1,h2,h3,h4 {
-        @include themify($themes) {
-            color: themed('success') !important;
-        }
-    }
-}
-
 .fa-icon-above-input {
     height: 1.5em;
 }
@@ -273,14 +200,90 @@ code {
     font-weight: 600;
 }
 
-.text-muted {
-    @include themify($themes) {
-        color: themed('textMuted') !important;
-    }
-}
-
 .btn:focus, .swal2-popup .swal2-actions button:focus, .btn.focus, .swal2-popup .swal2-actions button.focus, .form-control:focus {
     @include themify($themes) {
         box-shadow: 0 0 0 0.2rem themed('focus');
+    }
+}
+
+/* Override Bootstrap theming */
+
+.bg-primary {
+    @include themify($themes) {
+        background-color: themed('bgPrimaryColor');
+    }
+}
+
+.bg-light {
+    @include themify($themes) {
+        background-color: themed('bgLightColor') !important;
+    }
+}
+
+.border-primary {
+    @include themify($themes) {
+        border-color: themed('borderPrimaryColor') !important;
+    }
+}
+
+.border-warning {
+    @include themify($themes) {
+        border-color: themed('warning') !important;
+    }
+}
+
+.border-danger {
+    @include themify($themes) {
+        border-color: themed('danger') !important;
+    }
+}
+
+.border-info {
+    @include themify($themes) {
+        border-color: themed('info') !important;
+    }
+}
+
+.text-success {
+    @include themify($themes) {
+        color: themed('success') !important;
+    }
+    
+    & > h1,h2,h3,h4 {
+        @include themify($themes) {
+            color: themed('success') !important;
+        }
+    }
+}
+
+.text-warning {
+    @include themify($themes) {
+        color: themed('warning') !important;
+    }
+
+    & > h1,h2,h3,h4 {
+        @include themify($themes) {
+            color: themed('warning') !important;
+        }
+    }
+}
+
+.text-danger {
+    &:not(.dropdown-item) {
+        @include themify($themes) {
+            color: themed('danger') !important;
+        }
+
+        & > h1,h2,h3,h4 {
+            @include themify($themes) {
+                color: themed('danger') !important;
+            }
+        }
+    }
+}
+
+.text-muted {
+    @include themify($themes) {
+        color: themed('textMuted') !important;
     }
 }
