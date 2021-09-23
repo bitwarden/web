@@ -12,7 +12,6 @@ import { AvatarComponent } from 'src/app/components/avatar.component';
 import { ConsoleLogService } from 'jslib-common/services/consoleLog.service';
 import { StateService } from 'jslib-common/services/state.service';
 import { StateService as StateServiceAbstraction } from 'jslib-common/abstractions/state.service';
-import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 
 
 const cryptoFunctionFactory = () => {
@@ -29,7 +28,7 @@ export default {
     decorators: [
         moduleMetadata({
             providers: [
-                { provide: CryptoFunctionServiceAbstraction, useFactory: cryptoFunctionFactory},
+                { provide: CryptoFunctionServiceAbstraction, useFactory: cryptoFunctionFactory },
                 { provide: StateServiceAbstraction, useClass: StateService },
             ],
             imports: [CommonModule],

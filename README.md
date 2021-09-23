@@ -62,6 +62,19 @@ You can also manually adjusting your API endpoint settings by adding `config/loc
 
 Where the `urls` object is defined by the [Urls type in jslib](https://github.com/bitwarden/jslib/blob/master/common/src/abstractions/environment.service.ts).
 
+### Storybook
+
+We use Storybook to quickly prototype new components, since the repository currently doesn't support the Angular CLI, we need to use a slighly workaround.
+
+```bash
+cd storybook
+npm install
+
+# These two commands needs to be run concurrently in different terminals for storybok to properly work
+npm start
+npm run storybook
+```
+
 ## Contribute
 
 Code contributions are welcome! Please commit any pull requests against the `master` branch. Learn more about how to contribute by reading the [`CONTRIBUTING.md`](CONTRIBUTING.md) file.

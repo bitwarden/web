@@ -6,7 +6,11 @@ config.log(envConfig);
 module.exports = {
   "stories": [
     "../src/**/*.stories.mdx",
-    "../src/**/*.stories.@(js|jsx|ts|tsx)"
+    "../src/**/*.stories.@(js|jsx|ts|tsx)",
+    "../../src/**/*.stories.mdx",
+    "../../src/**/*.stories.@(js|jsx|ts|tsx)",
+    "../../jslib/angular/src/**/*.stories.mdx",
+    "../../jslib/angular/src/**/*.stories.@(js|jsx|ts|tsx)",
   ],
   "addons": [
     "@storybook/addon-links",

@@ -307,11 +307,7 @@ export function initFactory(storageService: StorageServiceAbstraction, cryptoSer
             useClass: UserService,
             deps: [TokenServiceAbstraction, StorageServiceAbstraction],
         },
-        {
-            provide: MessagingServiceAbstraction,
-            useClass: BroadcasterMessagingService,
-            deps: [BroadcasterServiceAbstraction],
-        },
+        { provide: MessagingServiceAbstraction, useClass: BroadcasterMessagingService },
         { provide: BroadcasterServiceAbstraction, useClass: BroadcasterService },
         {
             provide: SettingsServiceAbstraction,

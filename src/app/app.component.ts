@@ -21,7 +21,7 @@ import {
     Router,
 } from '@angular/router';
 
-import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
+import { BroadcasterService } from 'jslib-common/abstractions/broadcaster.service';
 
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 

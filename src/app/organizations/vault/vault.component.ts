@@ -18,7 +18,7 @@ import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.se
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
+import { BroadcasterService } from 'jslib-common/abstractions/broadcaster.service';
 import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';

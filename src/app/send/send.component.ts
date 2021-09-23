@@ -19,7 +19,7 @@ import { SearchService } from 'jslib-common/abstractions/search.service';
 import { SendService } from 'jslib-common/abstractions/send.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
+import { BroadcasterService } from 'jslib-common/abstractions/broadcaster.service';
 import { ModalService } from 'jslib-angular/services/modal.service';
 
 const BroadcasterSubscriptionId = 'SendComponent';
