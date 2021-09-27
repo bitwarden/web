@@ -31,7 +31,7 @@ export class AdjustSubscription {
     newMaxSeats: number;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private router: Router) { }
+        private toasterService: ToasterService) { }
 
     ngOnInit() {
         this.limitSubscription = this.maxAutoscaleSeats != null;
@@ -47,25 +47,7 @@ export class AdjustSubscription {
 
             await this.formPromise;
 
-            const messages: string[] = [];
-
-            if (seatAdjustment != 0) {
-                messages.push(this.i18nService.t('adjustedSeats', seatAdjustment.toString()));
-            }
-
-            if (this.newMaxSeats != this.maxAutoscaleSeats) {
-                if (this.newMaxSeats == null) {
-                    messages.push(this.i18nService.t('enabledUnlimitedAutoscaling'));
-                } else {
-                    messages.push(this.i18nService.t('enabledLimitedAutoscaling', request.maxAutoscaleSeats.toString()));
-                }
-            }
-
-            if (messages.length != 0) {
-                this.toasterService.popAsync('success', null, messages.join(' '));
-            } else {
-                this.toasterService.popAsync('success', null, this.i18nService.t('subscriptionUpdated'));
-            }
+            this.toasterService.popAsync('success', null, this.successNotificationMessage);
         } catch { }
         this.onAdjusted.emit();
     }
@@ -82,5 +64,41 @@ export class AdjustSubscription {
 
     get maxSeatTotal(): number {
         return this.newMaxSeats * this.seatPrice;
+    }
+
+    private get seatAdjustment() {
+        return this.newSeatCount - this.currentSeatCount;
+    }
+    private get seatsChanged() {
+        return this.seatAdjustment != 0;
+    }
+
+    private get seatLimitChanged() {
+        return this.newMaxSeats != this.maxAutoscaleSeats;
+    }
+
+    private get seatsNotLimited() {
+        return this.newMaxSeats == null;
+    }
+
+    private get successNotificationMessage() {
+        let message = this.i18nService.t('subscriptionUpdated');
+
+        const seatAdjustmentString = (this.seatAdjustment > 0 ? '+' : '') + this.seatAdjustment.toString();
+
+        if (this.seatsChanged && !this.seatLimitChanged) {
+            message = this.i18nService.t('adjustedSeats', seatAdjustmentString);
+        } else if (this.seatsChanged && this.seatLimitChanged && this.seatsNotLimited) {
+            message = this.i18nService.t('adjustedSeatsAndUnlimitedAutoscaling', seatAdjustmentString);
+        } else if (this.seatsChanged && this.seatLimitChanged && !this.seatsNotLimited) {
+            message = this.i18nService.t('adjustedSeatsAndLimitedAutoscaling', seatAdjustmentString,
+                this.newMaxSeats.toString());
+        } else if (!this.seatsChanged && this.seatLimitChanged && this.seatsNotLimited) {
+            message = this.i18nService.t('enabledUnlimitedAutoscaling');
+        } else if (!this.seatsChanged && this.seatLimitChanged && !this.seatsNotLimited) {
+            message = this.i18nService.t('enabledLimitedAutoscaling', this.newMaxSeats.toString());
+        }
+
+        return message;
     }
 }

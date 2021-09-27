@@ -42,25 +42,25 @@
                             currency:'$'))
                             : '-'}}
                         </dd>
-                        </ng-container>
-                        </dl>
-                        </div>
-                        <div class="col-8" *ngIf="subscription">
-                            <strong class="d-block mb-1">{{'details' | i18n}}</strong>
-                            <table class="table">
-                                <tbody>
-                                    <tr *ngFor="let i of subscription.items">
-                                        <td>
+                    </ng-container>
+                    </dl>
+                    </div>
+            <div class="col-8">
+                <strong class="d-block mb-1">{{'details' | i18n}}</strong>
+                <table class="table">
+                    <tbody>
+                        <tr *ngFor="let i of subscription.items">
+                            <td>
                                 {{i.name}} {{i.quantity > 1 ? '&times;' + i.quantity : ''}} @ {{i.amount |
                                 currency:'$'}}
-                                </td>
-                                <td>
-                                    {{(i.quantity * i.amount) | currency:'$'}} /{{i.interval | i18n}}
-                                </td>
-                                </tr>
-                                </tbody>
-                                </table>
-                                </div>
+                            </td>
+                            <td>
+                                {{(i.quantity * i.amount) | currency:'$'}} /{{i.interval | i18n}}
+                            </td>
+                            </tr>
+                            </tbody>
+                            </table>
+                            </div>
             <ng-container *ngIf="userOrg?.providerId != null">
                 <div class="col-sm">
                     <dl>

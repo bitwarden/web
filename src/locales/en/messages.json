@@ -2888,11 +2888,33 @@
   "maxSeatCost": {
     "message": "Max potential seat cost"
   },
+  "adjustedSeatsAndLimitedAutoscaling": {
+    "message": "Adjusted $AMOUNT$ user seats and limited maximum possible seat count to $MAX$ seats.",
+    "placeholders": {
+      "amount": {
+        "content": "$1",
+        "example": "15"
+      },
+      "max": {
+        "content": "$2",
+        "example": "15"
+      }
+    }
+  },
+  "adjustedSeatsAndUnlimitedAutoscaling": {
+    "message": "Adjusted $AMOUNT$ user seats with unlimited maximum possible seats.",
+    "placeholders": {
+      "amount": {
+        "content": "$1",
+        "example": "15"
+      }
+    }
+  },
   "enabledUnlimitedAutoscaling": {
-    "message": "Enabled unlimited user seat autoscaling."
+    "message": "Enabled unlimited subscription user seat count."
   },
   "enabledLimitedAutoscaling": {
-    "message": "Enabled user seat autoscaling up to a maximum of $COUNT$ seats",
+    "message": "Limited subscription to a maximum of $COUNT$ seats",
     "placeholders": {
       "count": {
         "content": "$1",
