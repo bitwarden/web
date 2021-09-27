@@ -56,7 +56,7 @@ jobs:
         id: image_tag
         run: |
           IMAGE_TAG=$(echo "$GITHUB_REF" | awk '{split($0, a, "/"); print a[3];}')
-          TAG_EXTENSION=${{ github.events.inputs.image_extension }}
+          TAG_EXTENSION=${{ github.event.inputs.image_extension }}
 
           if [[ $TAG_EXTENSION ]]; then
             IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION

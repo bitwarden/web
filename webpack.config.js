@@ -136,6 +136,12 @@ const plugins = [
             { from: './src/scripts', to: 'scripts' },
             { from: './node_modules/qrious/dist/qrious.min.js', to: 'scripts' },
             { from: './node_modules/braintree-web-drop-in/dist/browser/dropin.js', to: 'scripts' },
+            {
+                from: './src/version.json',
+                transform (content, path) {
+                    return content.toString().replace('process.env.APPLICATION_VERSION', pjson.version);
+                },
+            }
         ],
     }),
     new MiniCssExtractPlugin({
