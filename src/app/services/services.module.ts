@@ -164,8 +164,7 @@ export function initFactory(): Function {
         const htmlEl = window.document.documentElement;
         htmlEl.classList.add('locale_' + i18nService.translationLocale);
 
-        const theme = await platformUtilsService.getEffectiveTheme();
-        htmlEl.classList.add('theme_' + theme);
+        // Initial theme is set in index.html which must be updated if there are any changes to theming logic
         platformUtilsService.onDefaultSystemThemeChange(async sysTheme => {
             const bwTheme = await storageService.get<ThemeType>(ConstantsService.themeKey);
             if (bwTheme === ThemeType.System) {
