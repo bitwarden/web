@@ -11,10 +11,12 @@ import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.se
 
 import { ThemeType } from 'jslib-common/enums/themeType';
 
-const lightInputColor = '#465057';
-const lightInputPlaceholderColor = '#B6B8B8';
-const darkInputColor = '#FFFFFF';
-const darkInputPlaceholderColor = '#BAC0CE';
+import ThemeVariables from 'src/scss/export.module.scss';
+
+const lightInputColor = ThemeVariables.lightInputColor;
+const lightInputPlaceholderColor = ThemeVariables.lightInputPlaceholderColor;
+const darkInputColor = ThemeVariables.darkInputColor;
+const darkInputPlaceholderColor = ThemeVariables.darkInputPlaceholderColor;
 
 @Component({
     selector: 'app-payment',

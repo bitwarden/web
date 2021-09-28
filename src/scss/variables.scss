@@ -96,6 +96,10 @@ $darkBlue2: #3C424E;
 $darkDarkBlue1: #2F343D;
 $darkDarkBlue2: #1F242E;
 
+$lightInputColor: #465057;
+$lightInputPlaceholderColor: #B6B8B8;
+$darkInputColor: $white;
+$darkInputPlaceholderColor: $darkGrey1;
 
 $themes: (
     light: (
@@ -181,8 +185,8 @@ $themes: (
         inputBorderColor: $border-color,
         inputDisabledBackground: #E0E0E0,
         inputDisabledColor: #6C757D,
-        inputPlaceholderColor: #B6B8B8,
-        inputTextColor: #465057,
+        inputPlaceholderColor: $lightInputPlaceholderColor,
+        inputTextColor: $lightInputColor,
         layoutFrontendColor: #ECF0F5,
         learnMoreHover: #104097,
         linkColor: $primary,
