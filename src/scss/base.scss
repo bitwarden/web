@@ -7,10 +7,10 @@ body {
 
     &.layout_frontend {
         @media (prefers-color-scheme: dark) {
-            background-color: #1F242E;
+            background-color: $darkDarkBlue2;
         }
         @media (prefers-color-scheme: light) {
-            background-color: #FFFFFF;
+            background-color: $white;
         }
         @include themify($themes) {
             background-color: themed('layoutFrontendColor');
