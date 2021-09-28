@@ -10,9 +10,8 @@ jobs:
     name: Setup
     runs-on: ubuntu-20.04
     outputs:
-      release_upload_url: ${{ steps.create_release.outputs.upload_url }}
-      release_version: ${{ steps.create_tags.outputs.package }}
-      tag_version: ${{ steps.create_tags.outputs.tag }}
+      release_version: ${{ steps.version.outputs.package }}
+      tag_version: ${{ steps.version.outputs.tag }}
     steps:
       - name: Branch check
         run: |
@@ -172,7 +171,7 @@ jobs:
         with:
           artifacts: prod-build-artifact.zip
           commit: ${{ github.sha }}
-          tag: "${{ needs.version.outputs.tag_version }}"
-          name: "Version ${{ needs.version.outputs.release_version }}"
+          tag: "${{ needs.setup.outputs.tag_version }}"
+          name: "Version ${{ needs.setup.outputs.release_version }}"
           body: "<insert release notes here>"
           token: ${{ secrets.GITHUB_TOKEN }}

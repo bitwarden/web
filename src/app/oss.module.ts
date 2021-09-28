@@ -60,7 +60,7 @@ import { UserConfirmComponent as OrgUserConfirmComponent } from './organizations
 import { UserGroupsComponent as OrgUserGroupsComponent } from './organizations/manage/user-groups.component';
 
 import { AccountComponent as OrgAccountComponent } from './organizations/settings/account.component';
-import { AdjustSeatsComponent } from './organizations/settings/adjust-seats.component';
+import { AdjustSubscription } from './organizations/settings/adjust-subscription.component';
 import { ChangePlanComponent } from './organizations/settings/change-plan.component';
 import { DeleteOrganizationComponent } from './organizations/settings/delete-organization.component';
 import { DownloadLicenseComponent } from './organizations/settings/download-license.component';
@@ -304,7 +304,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         AddCreditComponent,
         AddEditComponent,
         AdjustPaymentComponent,
-        AdjustSeatsComponent,
+        AdjustSubscription,
         AdjustStorageComponent,
         ApiActionDirective,
         ApiKeyComponent,
