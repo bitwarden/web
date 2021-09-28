@@ -1,9 +1,7 @@
 <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" class="container" ngNativeValidate>
     <div class="row justify-content-md-center mt-5">
         <div class="col-5">
-            <app-themed-image darkThemeImage="../../images/logo-white@2x.png"
-                lightThemeImage="../../images/logo-dark@2x.png" imageClass="mb-2 logo"
-                imageAlt="Bitwarden"></app-themed-image>
+            <img class="mb-2 logo" alt="Bitwarden">
             <p class="lead text-center mx-4 mb-4">{{'loginOrCreateNewAccount' | i18n}}</p>
             <div class="card d-block">
                 <div class="card-body">

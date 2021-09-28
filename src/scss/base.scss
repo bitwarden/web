@@ -59,12 +59,15 @@ body {
     margin-top: 4rem;
 }
 
-img.logo, #logo-loading {
+img.logo {
     display: block;
     height: 43px;
     margin: 0 auto;
     width: 284px;
-}
+    @include themify($themes) {
+        content: url('../images/logo-' + themed('logoSuffix') + '@2x.png');
+    }
+} 
 
 .page-content {
     margin-top: 20px;
