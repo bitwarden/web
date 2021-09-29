@@ -58,6 +58,12 @@ label.form-check-label, .form-control-file {
     }
 }
 
+.form-group {
+    .form-group-check {
+        @extend .ml-4
+    }
+}
+
 .form-inline {
     input[type='datetime-local'] {
         width: 200px;
