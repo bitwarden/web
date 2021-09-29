@@ -9,7 +9,7 @@
                         {{'people' | i18n}}
                     </a>
                     <a routerLink="collections" class="list-group-item" routerLinkActive="active"
-                        *ngIf="organization.canManageAssignedCollections || organization.canManageAllCollections">
+                        *ngIf="organization.canViewAssignedCollections || organization.canViewAllCollections">
                         {{'collections' | i18n}}
                     </a>
                     <a routerLink="groups" class="list-group-item" routerLinkActive="active"
