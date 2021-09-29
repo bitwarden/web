@@ -37,14 +37,28 @@ npm run build:oss:watch
 
 You can now access the web vault in your browser at `https://localhost:8080`.
 
-If you want to point the development web vault to the production APIs, you can run using:
+If you want to point the development web vault to the production APIs, first create a local configuration file at `./config/local.json` with the following contents:
+
+```json
+{
+    "proxyApi": "https://api.bitwarden.com",
+    "proxyIdentity": "https://identity.bitwarden.com",
+    "proxyEvents": "https://events.bitwarden.com",
+    "proxyNotifications": "https://notifications.bitwarden.com",
+    "proxyPortal": "https://portal.bitwarden.com"
+}
+```
+
+This will create the appropriate proxies from your local webpack server to the Bitwarden production APIs.
+
+you can then run using:
 
 ```
 npm install
-ENV=production npm run build:oss:watch
+npm run build:oss:watch
 ```
 
-You can also manually adjusting your API endpoint settings by adding `config/local.json` overriding any of the following values:
+You can also manually adjust your API endpoint settings by editing `config/local.json` and overriding any of the following values:
 
 ```json
 {
