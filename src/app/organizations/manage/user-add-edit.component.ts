@@ -48,6 +48,52 @@ export class UserAddEditComponent implements OnInit {
     deletePromise: Promise<any>;
     organizationUserType = OrganizationUserType;
 
+    manageAllCollectionsCheckboxes = [
+        {
+            id: 'createNewCollections',
+            get: () => this.permissions.createNewCollections,
+            set: (v: boolean) => this.permissions.createNewCollections = v,
+        },
+        {
+            id: 'editAnyCollection',
+            get: () => this.permissions.editAnyCollection,
+            set: (v: boolean) => this.permissions.editAnyCollection = v,
+        },
+        {
+            id: 'deleteAnyCollection',
+            get: () => this.permissions.deleteAnyCollection,
+            set: (v: boolean) => this.permissions.deleteAnyCollection = v,
+        },
+    ];
+
+    manageAssignedCollectionsCheckboxes = [
+        {
+            id: 'editAssignedCollections',
+            get: () => this.permissions.editAssignedCollections,
+            set: (v: boolean) => this.permissions.editAssignedCollections = v,
+        },
+        {
+            id: 'deleteAssignedCollections',
+            get: () => this.permissions.deleteAssignedCollections,
+            set: (v: boolean) => this.permissions.deleteAssignedCollections = v,
+        },
+    ];
+
+    get fallbackToManageAllCollections() {
+        return this.permissions.manageAllCollections != null || (
+            this.permissions.createNewCollections == null &&
+            this.permissions.editAnyCollection == null &&
+            this.permissions.deleteAnyCollection == null
+        );
+    }
+
+    get fallbackToManageAssignedCollections() {
+        return this.permissions.manageAssignedCollections != null || (
+            this.permissions.editAssignedCollections == null &&
+            this.permissions.deleteAssignedCollections == null
+        );
+    }
+
     get customUserTypeSelected(): boolean {
         return this.type === OrganizationUserType.Custom;
     }
@@ -107,39 +153,7 @@ export class UserAddEditComponent implements OnInit {
     }
 
     setRequestPermissions(p: PermissionsApi, clearPermissions: boolean) {
-        p.accessBusinessPortal = clearPermissions ?
-            false :
-            this.permissions.accessBusinessPortal;
-        p.accessEventLogs = this.permissions.accessEventLogs = clearPermissions ?
-            false :
-            this.permissions.accessEventLogs;
-        p.accessImportExport = clearPermissions ?
-            false :
-            this.permissions.accessImportExport;
-        p.accessReports = clearPermissions ?
-            false :
-            this.permissions.accessReports;
-        p.manageAllCollections = clearPermissions ?
-            false :
-            this.permissions.manageAllCollections;
-        p.manageAssignedCollections = clearPermissions ?
-            false :
-            this.permissions.manageAssignedCollections;
-        p.manageGroups = clearPermissions ?
-            false :
-            this.permissions.manageGroups;
-        p.manageSso = clearPermissions ?
-            false :
-            this.permissions.manageSso;
-        p.managePolicies = clearPermissions ?
-            false :
-            this.permissions.managePolicies;
-        p.manageUsers = clearPermissions ?
-            false :
-            this.permissions.manageUsers;
-        p.manageResetPassword = clearPermissions ?
-            false :
-            this.permissions.manageResetPassword;
+        Object.assign(p, clearPermissions ? new PermissionsApi() : this.permissions);
         return p;
     }
 
@@ -203,5 +217,4 @@ export class UserAddEditComponent implements OnInit {
             this.onDeletedUser.emit();
         } catch { }
     }
-
 }
