@@ -1,0 +1,109 @@
+.navbar {
+    padding-left: 0;
+    padding-right: 0;
+    @include themify($themes) {
+        background-color: themed('navBackground') !important;
+    }
+
+    .dropdown-menu {
+        max-width: 300px;
+        min-width: 200px;
+
+        .dropdown-item-text {
+            line-height: 1.3;
+            @include themify($themes) {
+                color: themed('dropdownTextColor');
+            }
+
+            span, small {
+                display: block;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                &.text-muted {
+                    @include themify($themes) {
+                        color: themed('dropdownTextMuted') !important;
+                    }
+                }
+            }
+        }
+    }
+    .nav-item {
+        > .nav-link {
+            @include themify($themes) {
+                font-weight: themed('navWeight');
+            }
+        }
+        &.active > .nav-link {
+            @include themify($themes) {
+                font-weight: themed('navActiveWeight');
+            }
+        }
+    }
+}
+
+.navbar-brand {
+    margin-bottom: -20px;
+    margin-top: -20px;
+}
+
+.nav-tabs .nav-link.active {
+    @include themify($themes) {
+        background: themed('navActiveBackground');
+        border-color: themed('borderColor');
+    }
+}
+
+.org-nav {
+    height: 100px;
+    min-height: 100px;
+    @include themify($themes) {
+        background-color: themed('navOrgBackgroundColor');
+        border-bottom: 1px solid themed('borderColor');
+        color: themed('textColor');
+    }
+
+    .container {
+        height: 100%;
+    }
+
+    .nav-tabs {
+        border-bottom: none;
+
+        a {
+            &:not(.active) {
+                border-color: transparent;
+                @include themify($themes) {
+                    color: themed('textColor');
+                }
+            }
+
+            &.active {
+                font-weight: bold;
+                padding-top: calc(#{$nav-link-padding-y} - 2px);
+                @include themify($themes) {
+                    border-top: 3px solid themed('primary');
+                    color: themed('linkColor');
+                }
+            }
+
+            &.disabled {
+                @include themify($themes) {
+                    color: themed('inputDisabledColor');
+                }
+            }
+        }
+    }
+
+    .org-name {
+        line-height: 1;
+        span {
+            display: block;
+            font-size: $font-size-lg;
+            @include themify($themes) {
+                color: themed('headingColor');
+            }
+        }
+    }
+}
+
