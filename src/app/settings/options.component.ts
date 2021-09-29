@@ -101,7 +101,7 @@ export class OptionsComponent implements OnInit {
             this.startingTheme = this.theme;
             const effectiveTheme = await this.platformUtilsService.getEffectiveTheme();
             const htmlEl = window.document.documentElement;
-            htmlEl.classList.remove('theme_dark', 'theme_light');
+            htmlEl.classList.remove('theme_' + ThemeType.Light, 'theme_' + ThemeType.Dark);
             htmlEl.classList.add('theme_' + effectiveTheme);
         }
         await this.storageService.save(ConstantsService.localeKey, this.locale);
