@@ -81,6 +81,10 @@
     }
 }
 
+.layout_frontend .toast-top-right {
+    top: 20px;
+}
+
 .toast-error, .toast-container .toast-error:before, .toast-danger, .toast-container .toast-danger:before, .bg-danger {
     @include themify($themes) {
         background-color: themed('danger') !important;
