@@ -93,9 +93,9 @@
                                     </div>
                                 </div>
                                 <!--  -->
-                                <app-dependent-checkbox *ngIf="!fallbackToManageAssignedCollections" parentId="manageAssignedCollections"
+                                <app-nested-checkbox *ngIf="!fallbackToManageAssignedCollections" parentId="manageAssignedCollections"
                                     [checkboxes]="manageAssignedCollectionsCheckboxes">
-                                </app-dependent-checkbox>
+                                </app-nested-checkbox>
                             </div>
                         </div>
                         <div class="col-6">
@@ -149,9 +149,9 @@
                                     </div>
                                 </div>
                                 <!--  -->
-                                <app-dependent-checkbox *ngIf="!fallbackToManageAllCollections" parentId="manageAllCollections"
+                                <app-nested-checkbox *ngIf="!fallbackToManageAllCollections" parentId="manageAllCollections"
                                     [checkboxes]="manageAllCollectionsCheckboxes">
-                                </app-dependent-checkbox>
+                                </app-nested-checkbox>
                                 <div class="form-group mb-0">
                                     <div class="form-check mt-1 form-check-block">
                                         <input class="form-check-input" type="checkbox" name="manageGroups"

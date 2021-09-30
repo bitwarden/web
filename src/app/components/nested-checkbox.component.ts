@@ -7,10 +7,10 @@ import {
 import { Utils } from 'jslib-common/misc/utils';
 
 @Component({
-    selector: 'app-dependent-checkbox',
-    templateUrl: 'dependent-checkbox.component.html',
+    selector: 'app-nested-checkbox',
+    templateUrl: 'nested-checkbox.component.html',
 })
-export class DependentCheckboxComponent {
+export class NestedCheckboxComponent {
     @Input() parentId: string;
     @Input() checkboxes: { id: string, get: () => boolean, set: (v: boolean) => void; }[];
     @Output() onSavedUser = new EventEmitter();

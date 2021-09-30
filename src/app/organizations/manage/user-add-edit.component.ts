@@ -80,18 +80,14 @@ export class UserAddEditComponent implements OnInit {
     ];
 
     get fallbackToManageAllCollections() {
-        return this.permissions.manageAllCollections != null || (
-            this.permissions.createNewCollections == null &&
+        return this.permissions.createNewCollections == null &&
             this.permissions.editAnyCollection == null &&
-            this.permissions.deleteAnyCollection == null
-        );
+            this.permissions.deleteAnyCollection == null;
     }
 
     get fallbackToManageAssignedCollections() {
-        return this.permissions.manageAssignedCollections != null || (
-            this.permissions.editAssignedCollections == null &&
-            this.permissions.deleteAssignedCollections == null
-        );
+        return this.permissions.editAssignedCollections == null &&
+            this.permissions.deleteAssignedCollections == null;
     }
 
     get customUserTypeSelected(): boolean {
