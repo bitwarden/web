@@ -8,22 +8,13 @@
 
     <title page-title>Bitwarden Web Vault</title>
 
-    <script>
-        (function () {
-            // Set theme on page load
-            // This is done outside the Angular app to avoid a flash of unthemed content before it loads
-            let theme = window.localStorage.getItem('theme');
-            if (theme?.indexOf('system') > -1) {
-                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-            } else if (theme?.indexOf('dark') > -1) {
-                theme = 'dark';
-            }
-            else {
-                theme = 'light';
-            }
-            document.documentElement.classList.add('theme_' + theme);
-        })();
-    </script>
+    <!--
+    Set theme on page load
+    This is done outside the Angular app to avoid a flash of unthemed content before it loads
+    -->
+    <script crossorigin="anonymous" async="async"
+    integrity="sha512-XQmwYpDGd6sW/kEkJiJVvz+CvQpPz9khSwJfhQ3m8TUy0cvVhBe8oRKECkOTrXtvL+qthQKAoKgMVV9rpx0scg=="
+    type="application/javascript" src="/src/scripts/theme.js"></script>
 
     <link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/icons/favicon-32x32.png">
