@@ -107,9 +107,6 @@ export class UserAddEditComponent implements OnInit {
     }
 
     setRequestPermissions(p: PermissionsApi, clearPermissions: boolean) {
-        p.accessBusinessPortal = clearPermissions ?
-            false :
-            this.permissions.accessBusinessPortal;
         p.accessEventLogs = this.permissions.accessEventLogs = clearPermissions ?
             false :
             this.permissions.accessEventLogs;

@@ -14,16 +14,18 @@ import { Organization } from 'jslib-common/models/domain/organization';
 })
 export class ManageComponent implements OnInit {
     organization: Organization;
-    accessPolicies = false;
-    accessGroups = false;
-    accessEvents = false;
+    accessPolicies: boolean = false;
+    accessGroups: boolean = false;
+    accessEvents: boolean = false;
+    accessSso: boolean = false;
 
-    constructor(private route: ActivatedRoute, private userService: UserService) { }
+    constructor(private route: ActivatedRoute, private userService: UserService) {}
 
     ngOnInit() {
         this.route.parent.params.subscribe(async params => {
             this.organization = await this.userService.getOrganization(params.organizationId);
             this.accessPolicies = this.organization.usePolicies;
+            this.accessSso = this.organization.useSso;
             this.accessEvents = this.organization.useEvents;
             this.accessGroups = this.organization.useGroups;
         });

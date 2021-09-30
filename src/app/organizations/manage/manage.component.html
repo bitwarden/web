@@ -20,6 +20,10 @@
                         *ngIf="organization.canManagePolicies && accessPolicies">
                         {{'policies' | i18n}}
                     </a>
+                    <a routerLink="sso" class="list-group-item" routerLinkActive="active"
+                        *ngIf="organization.canManageSso && accessSso">
+                        {{'singleSignOn' | i18n}}
+                    </a>
                     <a routerLink="events" class="list-group-item" routerLinkActive="active"
                         *ngIf="organization.canAccessEventLogs && accessEvents">
                         {{'eventLogs' | i18n}}

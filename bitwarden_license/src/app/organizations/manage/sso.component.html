@@ -1,0 +1,283 @@
+<div class="page-header d-flex">
+    <h1>{{'singleSignOn' | i18n}}</h1>
+</div>
+
+<ng-container *ngIf="loading">
+    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+    <span class="sr-only">{{'loading' | i18n}}</span>
+</ng-container>
+
+<form #form (ngSubmit)="submit()" [formGroup]="data" [appApiAction]="formPromise" *ngIf="!loading">
+    <div class="form-group">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="enabled" [formControl]="enabled" name="Enabled">
+            <label class="form-check-label" for="enabled">{{'enabled' | i18n}}</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="type">{{'type' | i18n}}</label>
+        <select class="form-control" id="type" formControlName="configType">
+            <option value="1">OpenID Connect</option>
+            <option value="2">SAML 2.0</option>
+        </select>
+    </div>
+
+    <!-- OIDC -->
+    <div *ngIf="data.value.configType == 1">
+        <div class="config-section">
+            <h2>{{'openIdConnectConfig' | i18n}}</h2>
+            <div class="form-group">
+                <label>{{'callbackPath' | i18n}}</label>
+                <div class="input-group">
+                    <input class="form-control" readonly [value]="callbackPath">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-secondary"
+                            appA11yTitle="{{'copyValue' | i18n}}"
+                            (click)="copy(data.value.callbackPath)">
+                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>{{'signedOutCallbackPath' | i18n}}</label>
+                <div class="input-group">
+                    <input class="form-control" readonly [value]="signedOutCallbackPath">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-secondary"
+                            appA11yTitle="{{'copyValue' | i18n}}"
+                            (click)="copy(data.value.signedOutCallbackPath)">
+                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>{{'authority' | i18n}}</label>
+                <input class="form-control" formControlName="authority">
+            </div>
+            <div class="form-group">
+                <label>{{'clientId' | i18n}}</label>
+                <input class="form-control" formControlName="clientId">
+            </div>
+            <div class="form-group">
+                <label>{{'clientSecret' | i18n}}</label>
+                <input class="form-control" formControlName="clientSecret">
+            </div>
+            <div class="form-group">
+                <label>{{'metadataAddress' | i18n}}</label>
+                <input class="form-control" formControlName="metadataAddress">
+            </div>
+            <div class="form-group">
+                <label>{{'oidcRedirectBehavior' | i18n}}</label>
+                <select class="form-control" formControlName="redirectBehavior">
+                    <option value="0">Redirect GET</option>
+                    <option value="1">Form POST</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="getClaimsFromUserInfoEndpoint"
+                        formControlName="getClaimsFromUserInfoEndpoint">
+                    <label class="form-check-label" for="getClaimsFromUserInfoEndpoint">
+                        {{'getClaimsFromUserInfoEndpoint' | i18n}}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>{{'additionalScopes' | i18n}}</label>
+                <input class="form-control" formControlName="additionalScopes">
+            </div>
+            <div class="form-group">
+                <label>{{'additionalUserIdClaimTypes' | i18n}}</label>
+                <input class="form-control" formControlName="additionalUserIdClaimTypes">
+            </div>
+            <div class="form-group">
+                <label>{{'additionalEmailClaimTypes' | i18n}}</label>
+                <input class="form-control" formControlName="additionalEmailClaimTypes">
+            </div>
+            <div class="form-group">
+                <label>{{'additionalNameClaimTypes' | i18n}}</label>
+                <input class="form-control" formControlName="additionalNameClaimTypes">
+            </div>
+            <div class="form-group">
+                <label>{{'acrValues' | i18n}}</label>
+                <input class="form-control" formControlName="acrValues">
+            </div>
+            <div class="form-group">
+                <label>{{'expectedReturnAcrValue' | i18n}}</label>
+                <input class="form-control" formControlName="expectedReturnAcrValue">
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="data.value.configType == 2">
+        <!-- SAML2 SP -->
+        <div class="config-section">
+            <h2>{{'samlSpConfig' | i18n}}</h2>
+            <div class="form-group">
+                <label>{{'spEntityId' | i18n}}</label>
+                <div class="input-group">
+                    <input class="form-control" readonly [value]="spEntityId" >
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-secondary"
+                            appA11yTitle="{{'copyValue' | i18n}}"
+                            (click)="copy(data.value.spEntityId)">
+                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>{{'spMetadataUrl' | i18n}}</label>
+                <div class="input-group">
+                    <input class="form-control" readonly [value]="spMetadataUrl">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-secondary"
+                            appA11yTitle="{{'copyValue' | i18n}}"
+                            (click)="launchUri(data.value.spMetadataUrl)">
+                            <i class="fa fa-lg fa-external-link" aria-hidden="true"></i>
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary"
+                            appA11yTitle="{{'copyValue' | i18n}}"
+                            (click)="copy(data.value.spMetadataUrl)">
+                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>{{'spAcsUrl' | i18n}}</label>
+                <div class="input-group">
+                    <input class="form-control" readonly [value]="spAcsUrl">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-secondary"
+                            appA11yTitle="{{'copyValue' | i18n}}"
+                            (click)="copy(data.value.spAcsUrl)">
+                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>{{'spNameIdFormat' | i18n}}</label>
+                <select class="form-control" formControlName="spNameIdFormat">
+                    <option value="0">Not Configured</option>
+                    <option value="1">Unspecified</option>
+                    <option value="2">Email Address</option>
+                    <option value="3">X.509 Subject Name</option>
+                    <option value="4">Windows Domain Qualified Name</option>
+                    <option value="5">Kerberos Principal Name</option>
+                    <option value="6">Entity Identifier</option>
+                    <option value="7">Persistent</option>
+                    <option value="8">Transient</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>{{'spOutboundSigningAlgorithm' | i18n}}</label>
+                <select class="form-control" formControlName="spOutboundSigningAlgorithm">
+                    <option *ngFor="let o of samlSigningAlgorithms" [ngValue]="o">{{o}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>{{'spSigningBehavior' | i18n}}</label>
+                <select class="form-control" formControlName="spSigningBehavior">
+                    <option value="IfIdpWantAuthnRequestsSigned">If IdP Wants Authn Requests Signed</option>
+                    <option value="Always">Always</option>
+                    <option value="Never">Never</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>{{'spMinIncomingSigningAlgorithm' | i18n}}</label>
+                <select class="form-control" formControlName="spMinIncomingSigningAlgorithm">
+                    <option *ngFor="let o of samlSigningAlgorithms" [ngValue]="o">{{o}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="spWantAssertionsSigned" formControlName="spWantAssertionsSigned">
+                    <label class="form-check-label" for="spWantAssertionsSigned">{{'spWantAssertionsSigned' | i18n}}</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="spValidateCertificates" formControlName="spValidateCertificates">
+                    <label class="form-check-label" for="spValidateCertificates">{{'spValidateCertificates' | i18n}}</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- SAML2 IDP -->
+        <div class="config-section">
+            <h2>{{'samlIdpConfig' | i18n}}</h2>
+
+            <div class="form-group">
+                <label>{{'idpEntityId' | i18n}}</label>
+                <input class="form-control" formControlName="idpEntityId">
+            </div>
+            <div class="form-group">
+                <label>{{'idpBindingType' | i18n}}</label>
+                <select class="form-control" formControlName="idpBindingType">
+                    <option value="HttpRedirect">Redirect</option>
+                    <option value="HttpPost">HTTP POST</option>
+                    <option value="Artifact">Artifact</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>{{'idpSingleSignOnServiceUrl' | i18n}}</label>
+                <input class="form-control" formControlName="idpSingleSignOnServiceUrl">
+            </div>
+            <div class="form-group">
+                <label>{{'idpSingleLogoutServiceUrl' | i18n}}</label>
+                <input class="form-control" formControlName="idpSingleLogoutServiceUrl">
+            </div>
+            <div class="form-group">
+                <label>{{'idpArtifactResolutionServiceUrl' | i18n}}</label>
+                <input class="form-control" formControlName="idpArtifactResolutionServiceUrl">
+            </div>
+            <div class="form-group">
+                <label>{{'idpX509PublicCert' | i18n}}</label>
+                <textarea formControlName="idpX509PublicCert" class="form-control form-control-sm text-monospace" rows="6"></textarea>
+            </div>
+            <div class="form-group">
+                <label>{{'idpOutboundSigningAlgorithm' | i18n}}</label>
+                <select class="form-control" formControlName="idpOutboundSigningAlgorithm">
+                    <option *ngFor="let o of samlSigningAlgorithms" [ngValue]="o">{{o}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="idpAllowUnsolicitedAuthnResponse"
+                        formControlName="idpAllowUnsolicitedAuthnResponse">
+                    <label class="form-check-label" for="idpAllowUnsolicitedAuthnResponse">
+                        {{'idpAllowUnsolicitedAuthnResponse' | i18n}}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="idpDisableOutboundLogoutRequests"
+                        formControlName="idpDisableOutboundLogoutRequests">
+                    <label class="form-check-label" for="idpDisableOutboundLogoutRequests">
+                        {{'idpDisableOutboundLogoutRequests' | i18n}}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="idpWantAuthnRequestsSigned"
+                        formControlName="idpWantAuthnRequestsSigned">
+                    <label class="form-check-label" for="idpWantAuthnRequestsSigned">
+                        {{'idpWantAuthnRequestsSigned' | i18n}}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+        <span>{{'save' | i18n}}</span>
+    </button>
+</form>

@@ -198,12 +198,6 @@ const devServer = ENV !== 'development' ? {} : {
             secure: false,
             changeOrigin: true
         },
-        '/portal': {
-            target: envConfig['proxyEnterprise'],
-            pathRewrite: {'^/portal' : ''},
-            secure: false,
-            changeOrigin: true
-        }
     },
     hot: false,
     allowedHosts: envConfig['allowedHosts']
