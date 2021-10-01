@@ -1,6 +1,7 @@
 (function () {
     // Set theme on page load
     // This is done outside the Angular app to avoid a flash of unthemed content before it loads
+    // The defaultTheme is also set in the html itself to make sure that some theming is always applied
     const defaultTheme = 'light'
     let theme = defaultTheme;
 
