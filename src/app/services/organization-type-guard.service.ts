@@ -27,7 +27,8 @@ export class OrganizationTypeGuardService implements CanActivate {
             (permissions.indexOf(Permissions.ManageOrganization) !== -1 && org.isOwner) ||
             (permissions.indexOf(Permissions.ManagePolicies) !== -1 && org.canManagePolicies) ||
             (permissions.indexOf(Permissions.ManageUsers) !== -1 && org.canManageUsers) ||
-            (permissions.indexOf(Permissions.ManageUsersPassword) !== -1 && org.canManageUsersPassword)
+            (permissions.indexOf(Permissions.ManageUsersPassword) !== -1 && org.canManageUsersPassword) ||
+            (permissions.indexOf(Permissions.ManageSso) !== -1 && org.canManageSso)
         ) {
             return true;
         }

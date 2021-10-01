@@ -30,6 +30,7 @@ const routes: Routes = [
                         Permissions.ManageGroups,
                         Permissions.ManageUsers,
                         Permissions.ManagePolicies,
+                        Permissions.ManageSso,
                     ],
                 },
                 children: [
