@@ -178,3 +178,9 @@ input[type="radio"], input[type="checkbox"] {
         color: themed('listItemActive');
     }
 }
+
+::-webkit-calendar-picker-indicator {
+    @include themify($themes) {
+        filter: themed('datePickerFilter');
+    }
+}
