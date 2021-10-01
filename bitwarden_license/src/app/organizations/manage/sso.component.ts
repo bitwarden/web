@@ -17,10 +17,6 @@ import { OrganizationSsoRequest } from 'jslib-common/models/request/organization
 })
 export class SsoComponent implements OnInit {
 
-    loading = true;
-    organizationId: string;
-    formPromise: Promise<any>;
-
     samlSigningAlgorithms = [
         'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
         'http://www.w3.org/2000/09/xmldsig#rsa-sha384',
@@ -28,7 +24,9 @@ export class SsoComponent implements OnInit {
         'http://www.w3.org/2000/09/xmldsig#rsa-sha1',
     ];
 
-    defaultSigningAlgorithm = this.samlSigningAlgorithms[0];
+    loading = true;
+    organizationId: string;
+    formPromise: Promise<any>;
 
     callbackPath: string;
     signedOutCallbackPath: string;
@@ -38,15 +36,15 @@ export class SsoComponent implements OnInit {
 
     enabled = this.fb.control(false);
     data = this.fb.group({
-        configType: [2],
+        configType: [],
 
         // OpenId
         authority: [],
         clientId: [],
         clientSecret: [],
         metadataAddress: [],
-        redirectBehavior: [0],
-        getClaimsFromUserInfoEndpoint: [false],
+        redirectBehavior: [],
+        getClaimsFromUserInfoEndpoint: [],
         additionalScopes: [],
         additionalUserIdClaimTypes: [],
         additionalEmailClaimTypes: [],
@@ -55,23 +53,23 @@ export class SsoComponent implements OnInit {
         expectedReturnAcrValue: [],
 
         // SAML
-        spNameIdFormat: [7], // Persistent
-        spOutboundSigningAlgorithm: [this.defaultSigningAlgorithm],
-        spSigningBehavior: ['IfIdpWantAuthnRequestsSigned'],
-        spMinIncomingSigningAlgorithm: [this.defaultSigningAlgorithm],
-        spWantAssertionsSigned: [false],
-        spValidateCertificates: [false],
+        spNameIdFormat: [],
+        spOutboundSigningAlgorithm: [],
+        spSigningBehavior: [],
+        spMinIncomingSigningAlgorithm: [],
+        spWantAssertionsSigned: [],
+        spValidateCertificates: [],
 
         idpEntityId: [],
-        idpBindingType: ['HttpRedirect'],
+        idpBindingType: [],
         idpSingleSignOnServiceUrl: [],
         idpSingleLogoutServiceUrl: [],
         idpArtifactResolutionServiceUrl: [],
         idpX509PublicCert: [],
-        idpOutboundSigningAlgorithm: [this.defaultSigningAlgorithm],
-        idpAllowUnsolicitedAuthnResponse: [false],
-        idpDisableOutboundLogoutRequests: [false],
-        idpWantAuthnRequestsSigned: [false],
+        idpOutboundSigningAlgorithm: [],
+        idpAllowUnsolicitedAuthnResponse: [],
+        idpDisableOutboundLogoutRequests: [],
+        idpWantAuthnRequestsSigned: [],
     });
 
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private apiService: ApiService,
