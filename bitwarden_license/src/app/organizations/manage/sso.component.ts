@@ -109,7 +109,7 @@ export class SsoComponent implements OnInit {
 
     async submit() {
         const request = new OrganizationSsoRequest();
-        request.enabled = this.data.value.enabled;
+        request.enabled = this.enabled.value;
         request.data = this.data.value;
 
         this.formPromise = this.apiService.postOrganizationSso(this.organizationId, request);
