@@ -177,6 +177,34 @@ code {
     }
 }
 
+.bg-success {
+    @include themify($themes) {
+        color: themed('successTextColor') !important;
+        background-color: themed('success') !important;
+    }
+}
+
+.bg-warning {
+    @include themify($themes) {
+        color: themed('warningTextColor') !important;
+        background-color: themed('warning') !important;
+    }
+}
+
+.bg-error, .bg-danger {
+    @include themify($themes) {
+        color: themed('dangerTextColor') !important;
+        background-color: themed('danger') !important;
+    }
+}
+
+.bg-info {
+    @include themify($themes) {
+        color: themed('infoTextColor') !important;
+        background-color: themed('info') !important;
+    }
+}
+
 .border-primary {
     @include themify($themes) {
         border-color: themed('borderPrimaryColor') !important;
