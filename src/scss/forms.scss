@@ -118,23 +118,18 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .dropdown-item {
-    &.text-danger {
-        color: #FFFFFF !important;
-        @include themify($themes) {
-            background-color: themed('danger');
-        }
+    @include themify($themes) {
+        color: themed('dropdownTextColor');
+    }
 
-        &:hover {
-            color: #FFFFFF !important;
-            @include themify($themes){
-                background-color: themed('dropdownDangerHover') !important;
-            }
+    &.text-danger {
+        @include themify($themes) {
+            color: themed('danger') !important;
         }
     }
-    &:hover:not(.text-danger) {
+    &:hover {
         @include themify($themes) {
             background-color: themed('dropdownHover');
-            color: themed('dropdownTextColor');
         }
     }
     &:active{
