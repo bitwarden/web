@@ -49,6 +49,16 @@ const moduleRules = [
         }],
     },
     {
+        test: /theme\.js$/i,
+        use: [{
+            loader: 'file-loader',
+            options: {
+                name: '[name].[ext]',
+                outputPath: 'scripts/',
+            },
+        }],
+    },
+    {
         test: /\.scss$/,
         use: [
             {
