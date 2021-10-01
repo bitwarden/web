@@ -1,24 +1,6 @@
-.table.table-list {
+.table {
     @include themify($themes) {
         color: themed('textColor');
-    }
-
-    &.table td, .table th {
-        &:not(tr:first-child td) {
-            @include themify($themes) {
-                border-top: 1px solid themed('tableSeparator');
-            }
-        }
-    }
-
-    thead th {
-        border-top: none;
-    }
-
-    tr:first-child {
-        td {
-            border: none;
-        }
     }
 
     td {
@@ -111,6 +93,26 @@
         text-decoration: line-through;
         @include themify($themes) {
             color: themed('textMuted');
+        }
+    }
+
+    &.table-list {
+        &.table td, .table th {
+            &:not(tr:first-child td) {
+                @include themify($themes) {
+                    border-top: 1px solid themed('tableSeparator');
+                }
+            }
+        }
+
+        thead th {
+            border-top: none;
+        }
+
+        tr:first-child {
+            td {
+                border: none;
+            }
         }
     }
 }
