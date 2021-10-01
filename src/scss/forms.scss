@@ -1,0 +1,180 @@
+::-ms-reveal {
+    display: none;
+}
+
+::placeholder {
+    @include themify($themes) {
+        color: themed('inputPlaceholderColor');
+    }
+}
+
+input, select, textarea {
+    &:required {
+        box-shadow: none;
+    }
+}
+
+input[type="search"]::-webkit-search-cancel-button {
+    -webkit-appearance: 
+    -cancel-button;
+}
+
+label:not(.form-check-label):not(.btn), label.bold {
+    font-weight: 600;
+    @include themify($themes) {
+        color: themed('headingColor');
+    }
+}
+
+label.form-check-label, .form-control-file {
+    @include themify($themes) {
+        color: themed('headingColor');
+    }
+}
+
+.form-check-block {
+    .form-check-label {
+        font-weight: 600;
+
+        > small {
+            display: block;
+            font-weight: normal;
+            @include themify($themes) {
+                color: themed('textMuted');
+            }
+        }
+
+        > span {
+            display: block;
+            font-weight: normal;
+            @extend .mt-2;
+        }
+    }
+}
+
+.form-check-block + .form-check-block {
+    &:not(.mt-2) {
+        @extend .mt-3;
+    }
+}
+
+.form-inline {
+    input[type='datetime-local'] {
+        width: 200px;
+    }
+}
+
+.form-control  {
+    @include themify($themes) {
+        background-color: themed('inputBackgroundColor');
+        border-color: themed('inputBorderColor');
+        color: themed('inputTextColor');
+    }
+
+    &:disabled, &[readonly] {
+        @include themify($themes) {
+            background-color: themed('inputDisabledBackground');
+            color: themed('inputDisabledColor');
+        }
+    }
+}
+
+input[type="radio"], input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.form-control.stripe-form-control {
+    padding-top: 0.55rem;
+
+    &.is-focused {
+        outline: 0;
+        @include themify($themes) {
+            background-color: themed('inputBackgroundColor');
+            border-color: themed('inputBorderColor');
+            box-shadow: 0 0 0 $input-focus-width rgba(mix(color-yiq(themed('primary')), themed('primary'), 15%), .5);
+            color: themed('inputTextColor');
+        }
+    
+        &.is-invalid {
+            opacity: 0.75;
+            @include themify($themes) {
+                box-shadow: 0 0 0 $input-focus-width themed('danger');
+            }
+        }
+    }
+    
+    &.is-invalid {
+        @include themify($themes) {
+            border-color: themed('danger');
+        }
+    }
+}
+
+.dropdown-menu, .dropdown-item  {
+    @include themify($themes) {
+        background-color: themed('dropdownBackground');
+        color: themed('dropdownTextColor');
+    }
+}
+
+.dropdown-item {
+    &.text-danger {
+        color: #FFFFFF !important;
+        @include themify($themes) {
+            background-color: themed('danger');
+        }
+
+        &:hover {
+            color: #FFFFFF !important;
+            @include themify($themes){
+                background-color: themed('dropdownDangerHover') !important;
+            }
+        }
+    }
+    &:hover:not(.text-danger) {
+        @include themify($themes) {
+            background-color: themed('dropdownHover');
+            color: themed('dropdownTextColor');
+        }
+    }
+    &:active{
+        background-color: rgba(0,0,0,0.1) !important;
+    }
+}
+
+.dropdown-menu {
+    button {
+        cursor: pointer;
+    }
+    @include themify($themes) {
+        border: 1px solid themed('listItemBorder');
+    }
+}
+
+.list-group-item {
+    &:focus,
+    &.focus {
+        z-index: 100;
+    }
+    @include themify($themes) {
+        background-color: themed('foregroundColor');
+        border-color: themed('listItemBorder');
+        color: themed('listItemColor');
+        font-weight: themed('linkWeight');
+    }
+    &:hover {
+        @include themify($themes) {
+            color: themed('listItemColorHover');
+        }
+    }
+}
+
+.list-group-item.active {
+    font-weight: bold !important;
+    padding-left: calc(#{$list-group-item-padding-x} - 3px);
+    @include themify($themes) {
+        border-color: themed('borderColor');
+        border-left: 3px solid themed('borderPrimaryColor');
+        color: themed('listItemActive');
+    }
+}
