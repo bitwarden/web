@@ -169,8 +169,9 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 
-::-webkit-calendar-picker-indicator {
+// Browser specific icons overlayed on input fields. e.g. caps lock indicator on password field
+::-webkit-calendar-picker-indicator, input::-webkit-caps-lock-indicator, input::-webkit-credentials-auto-fill-button {
     @include themify($themes) {
-        filter: themed('datePickerFilter');
+        filter: themed('browserInputIconsFilter');
     }
 }
