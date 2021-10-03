@@ -1,12 +1,7 @@
 <div class="container page-content">
-    <div class="row card border-warning mb-4" *ngIf="disableSend">
-        <div class="card-header bg-warning text-white">
-            <i class="fa fa-warning fa-fw" aria-hidden="true"></i> {{'sendDisabled' | i18n}}
-        </div>
-        <div class="card-body">
-            <span>{{'sendDisabledWarning' | i18n}}</span>
-        </div>
-    </div>
+    <app-callout type="warning" title="{{'sendDisabled' | i18n}}" *ngIf="disableSend">
+        <span>{{'sendDisabledWarning' | i18n}}</span>
+    </app-callout>
     <div class="row">
         <div class="col-3 groupings">
             <div class="card vault-filters">
