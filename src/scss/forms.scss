@@ -157,11 +157,6 @@ input[type="radio"], input[type="checkbox"] {
         color: themed('listItemColor');
         font-weight: themed('linkWeight');
     }
-    &:hover {
-        @include themify($themes) {
-            color: themed('listItemColorHover');
-        }
-    }
 }
 
 .list-group-item.active {

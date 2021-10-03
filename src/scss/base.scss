@@ -129,12 +129,6 @@ a {
     }
 }
 
-a:hover {
-    @include themify($themes) {
-        color: themed('linkColorHover');
-    }
-}
-
 code {
     @include themify($themes) {
         color: themed('codeColor');
