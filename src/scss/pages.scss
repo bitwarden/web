@@ -158,3 +158,126 @@ app-user-billing {
         }
     }
 }
+
+
+/* Register Layout Page - Exempt from themify */
+body.theme_light_force {
+    background-color: #ECF0F5;
+    a, .btn-link {
+        color: #175DDC;
+        &:hover {
+            color: #104097;
+        }
+    }
+
+    .btn-outline-secondary {
+        color: #6c757d;
+        &:hover {
+            color: #212529;
+        }
+    }
+
+    .text-muted {
+        color: #6C757D !important;
+    }
+
+    .card, .card-body {
+        background-color: #FFFFFF;
+        border-color: rgba(0,0,0,.125);
+    }
+
+    .form-control {
+        background-color: #FBFBFB;
+        border: 1px solid #CED4DA;
+        color: #495057;
+    }
+
+    label {
+        color: #333333;
+        font-weight: 600;
+        &.small {
+            font-weight: 400;
+        }
+    }
+
+    hr {
+        border-top: 1px solid rgba(0,0,0,.1)
+    }
+    .progress {
+        background-color: #E9ECEF;
+    }
+    .bg-primary {
+        background-color: #175DDC !important;
+    }
+    .bg-success {
+        background-color: #00A65A !important;
+    }
+    .bg-warning {
+        background-color: #BF7E16 !important;
+    }
+    .bg-danger {
+        background-color: #DD4B39 !important;
+    }
+
+    .layout {
+        &.enterprise2 {
+            header {
+                background: #175DDC;
+                color: #CED4DA;
+
+                &:before {
+                    background: #175DDC;
+                    content: "";
+                    height: 416px;
+                    left: 0;
+                    position: absolute;
+                    top: -76px;
+                    transform: skewY(-3deg);
+                    width: 100%;
+                    z-index: -1;
+                }
+                img.logo {
+                    margin: 12px 0 0;
+                    max-width: 284px;
+                    height: 57px;
+                    width: 284px;
+                }
+            }
+
+            h2 {
+                color: #FFFFFF;
+                font-size: 1.8rem;
+                margin: 100px 0 150px 0;
+            }
+
+            p {
+                font-size: 1.4rem;
+                margin: 20px 0 40px 0;
+
+                &:before {
+                    content: "/";
+                    padding-right: 12px;
+                }
+                &:not(.highlight) {
+                    &:before {
+                        color: #1252A3;
+                    }
+                }
+
+                b {
+                    &:after {
+                        content: "⟶";
+                        font-size: 2rem;
+                        padding-left: 6px;
+                    }
+                }
+            }
+
+            blockquote {
+                font-size: 1.4rem;
+                margin: 20px 0 0 0;
+                padding-right: 40px;
+            }
+        }
+    }
+}
