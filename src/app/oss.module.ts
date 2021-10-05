@@ -12,6 +12,7 @@ import { ToasterModule } from 'angular2-toaster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 import { AvatarComponent } from './components/avatar.component';
+import { NestedCheckboxComponent } from './components/nested-checkbox.component';
 import { PasswordRepromptComponent } from './components/password-reprompt.component';
 import { PasswordStrengthComponent } from './components/password-strength.component';
 
@@ -356,6 +357,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         LockComponent,
         LoginComponent,
         NavbarComponent,
+        NestedCheckboxComponent,
         OptionsComponent,
         OrgAccountComponent,
         OrgAddEditComponent,
