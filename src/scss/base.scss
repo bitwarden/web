@@ -176,29 +176,29 @@ code {
 
 .bg-success {
     @include themify($themes) {
-        color: themed('successTextColor') !important;
         background-color: themed('success') !important;
+        color: themed('successTextColor') !important;
     }
 }
 
 .bg-warning {
     @include themify($themes) {
-        color: themed('warningTextColor') !important;
         background-color: themed('warning') !important;
+        color: themed('warningTextColor') !important;
     }
 }
 
 .bg-error, .bg-danger {
     @include themify($themes) {
-        color: themed('dangerTextColor') !important;
         background-color: themed('danger') !important;
+        color: themed('dangerTextColor') !important;
     }
 }
 
 .bg-info {
     @include themify($themes) {
-        color: themed('infoTextColor') !important;
         background-color: themed('info') !important;
+        color: themed('infoTextColor') !important;
     }
 }
 
