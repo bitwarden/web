@@ -50,17 +50,6 @@ const moduleRules = [
         }],
     },
     {
-        test: /theme\.js$/i,
-        use: [{
-            loader: 'babel-loader',
-            options: {
-                presets: [
-                    ['@babel/preset-env', { targets: "defaults" }]
-                ]
-            },
-        }],
-    },
-    {
         test: /\.scss$/,
         use: [
             {
