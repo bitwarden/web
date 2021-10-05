@@ -2,7 +2,13 @@
     padding-left: 0;
     padding-right: 0;
     @include themify($themes) {
-        background-color: themed('navBackground') !important;
+        background-color: themed('navBackground');
+    }
+
+    &.nav-background-alt {
+        @include themify($themes) {
+            background-color: themed('navBackgroundAlt');
+        }
     }
 
     &.bg-secondary-alt {

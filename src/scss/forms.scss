@@ -58,6 +58,12 @@ label.form-check-label, .form-control-file {
     }
 }
 
+.form-group {
+    .form-group-child-check {
+        @extend .ml-4
+    }
+}
+
 .form-inline {
     input[type='datetime-local'] {
         width: 200px;
@@ -118,23 +124,18 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .dropdown-item {
-    &.text-danger {
-        color: #FFFFFF !important;
-        @include themify($themes) {
-            background-color: themed('danger');
-        }
+    @include themify($themes) {
+        color: themed('dropdownTextColor');
+    }
 
-        &:hover {
-            color: #FFFFFF !important;
-            @include themify($themes){
-                background-color: themed('dropdownDangerHover') !important;
-            }
+    &.text-danger {
+        @include themify($themes) {
+            color: themed('danger') !important;
         }
     }
-    &:hover:not(.text-danger) {
+    &:hover {
         @include themify($themes) {
             background-color: themed('dropdownHover');
-            color: themed('dropdownTextColor');
         }
     }
     &:active{
@@ -162,11 +163,6 @@ input[type="radio"], input[type="checkbox"] {
         color: themed('listItemColor');
         font-weight: themed('linkWeight');
     }
-    &:hover {
-        @include themify($themes) {
-            color: themed('listItemColorHover');
-        }
-    }
 }
 
 .list-group-item.active {
@@ -176,5 +172,12 @@ input[type="radio"], input[type="checkbox"] {
         border-color: themed('borderColor');
         border-left: 3px solid themed('borderPrimaryColor');
         color: themed('listItemActive');
+    }
+}
+
+// Browser specific icons overlayed on input fields. e.g. caps lock indicator on password field
+::-webkit-calendar-picker-indicator, input::-webkit-caps-lock-indicator, input::-webkit-credentials-auto-fill-button {
+    @include themify($themes) {
+        filter: themed('browserInputIconsFilter');
     }
 }
