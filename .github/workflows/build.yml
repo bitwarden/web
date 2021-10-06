@@ -221,6 +221,7 @@ jobs:
           if-no-files-found: error
 
       - name: Add info page
+        run: |
           echo "{\"commit_hash\": \"$GITHUB_SHA\", \"ref\": \"$GITHUB_REF\"}" | jq . > build/info.json
 
       - name: Build Docker image
