@@ -36,6 +36,20 @@
     }
 }
 
+@each $mfaType in $mfaTypes {
+    .mfaType#{$mfaType} {
+        content: url('../images/two-factor/' + $mfaType + '.png');
+        max-width: 100px;
+    }
+}
+
+.mfaType7 {
+    @include themify($themes) {
+        content: url('../images/two-factor/7' + themed('mfaLogoSuffix'));
+        max-width: 100px;
+    }
+}
+
 .progress {
     @include themify($themes) {
         background-color: themed('pwStrengthBackground');

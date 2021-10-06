@@ -20,7 +20,7 @@
                         <app-callout type="success" title="{{'enabled' | i18n}}" icon="fa-check-circle">
                             {{'twoStepLoginProviderEnabled' | i18n}}
                         </app-callout>
-                        <img src="../../images/two-factor/2.png" class="float-right ml-3" alt="">
+                        <img class="mfaType2" class="float-right ml-3" alt="">
                         <strong>{{'twoFactorDuoIntegrationKey' | i18n}}:</strong> {{ikey}}
                         <br>
                         <strong>{{'twoFactorDuoSecretKey' | i18n}}:</strong> {{skey}}
@@ -28,7 +28,7 @@
                         <strong>{{'twoFactorDuoApiHostname' | i18n}}:</strong> {{host}}
                     </ng-container>
                     <ng-container *ngIf="!enabled">
-                        <img src="../../images/two-factor/2.png" class="float-right ml-3" alt="">
+                        <img class="mfaType2" class="float-right ml-3" alt="">
                         <p>{{'twoFactorDuoDesc' | i18n}}</p>
                         <div class="form-group">
                             <label for="ikey">{{'twoFactorDuoIntegrationKey' | i18n}}</label>
