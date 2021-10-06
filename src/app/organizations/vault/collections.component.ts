@@ -28,7 +28,7 @@ export class CollectionsComponent extends BaseCollectionsComponent {
     }
 
     protected async loadCipher() {
-        if (!this.organization.canManageAllCollections) {
+        if (!this.organization.canViewAllCollections) {
             return await super.loadCipher();
         }
         const response = await this.apiService.getCipherAdmin(this.cipherId);
@@ -36,21 +36,21 @@ export class CollectionsComponent extends BaseCollectionsComponent {
     }
 
     protected loadCipherCollections() {
-        if (!this.organization.canManageAllCollections) {
+        if (!this.organization.canViewAllCollections) {
             return super.loadCipherCollections();
         }
         return this.collectionIds;
     }
 
     protected loadCollections() {
-        if (!this.organization.canManageAllCollections) {
+        if (!this.organization.canViewAllCollections) {
             return super.loadCollections();
         }
         return Promise.resolve(this.collections);
     }
 
     protected saveCollections() {
-        if (this.organization.canManageAllCollections) {
+        if (this.organization.canEditAnyCollection) {
             const request = new CipherCollectionsRequest(this.cipherDomain.collectionIds);
             return this.apiService.putCipherCollectionsAdmin(this.cipherId, request);
         } else {
