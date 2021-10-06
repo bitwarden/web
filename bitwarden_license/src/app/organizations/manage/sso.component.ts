@@ -8,7 +8,6 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 import { OrganizationSsoRequest } from 'jslib-common/models/request/organization/organizationSsoRequest';
 
 @Component({

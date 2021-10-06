@@ -18,6 +18,7 @@
     <div class="form-group">
         <label for="type">{{'type' | i18n}}</label>
         <select class="form-control" id="type" formControlName="configType">
+            <option value="0" disabled>{{'selectType' | i18n}}</option>
             <option value="1">OpenID Connect</option>
             <option value="2">SAML 2.0</option>
         </select>
@@ -183,9 +184,9 @@
             <div class="form-group">
                 <label>{{'spSigningBehavior' | i18n}}</label>
                 <select class="form-control" formControlName="spSigningBehavior">
-                    <option value="IfIdpWantAuthnRequestsSigned">If IdP Wants Authn Requests Signed</option>
-                    <option value="Always">Always</option>
-                    <option value="Never">Never</option>
+                    <option value="0">If IdP Wants Authn Requests Signed</option>
+                    <option value="1">Always</option>
+                    <option value="3">Never</option>
                 </select>
             </div>
             <div class="form-group">
@@ -219,9 +220,9 @@
             <div class="form-group">
                 <label>{{'idpBindingType' | i18n}}</label>
                 <select class="form-control" formControlName="idpBindingType">
-                    <option value="HttpRedirect">Redirect</option>
-                    <option value="HttpPost">HTTP POST</option>
-                    <option value="Artifact">Artifact</option>
+                    <option value="1">Redirect</option>
+                    <option value="2">HTTP POST</option>
+                    <option value="4">Artifact</option>
                 </select>
             </div>
             <div class="form-group">
