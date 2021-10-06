@@ -58,8 +58,8 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
 
     get showManageTab(): boolean {
         return this.organization.canManageUsers ||
-            this.organization.canManageAssignedCollections ||
-            this.organization.canManageAllCollections ||
+            this.organization.canViewAllCollections ||
+            this.organization.canViewAssignedCollections ||
             this.organization.canManageGroups ||
             this.organization.canManagePolicies ||
             this.organization.canAccessEventLogs;
@@ -81,7 +81,7 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
             case this.organization.canManageUsers:
                 route = 'manage/people';
                 break;
-            case this.organization.canManageAssignedCollections || this.organization.canManageAllCollections:
+            case this.organization.canViewAssignedCollections || this.organization.canViewAllCollections:
                 route = 'manage/collections';
                 break;
             case this.organization.canManageGroups:

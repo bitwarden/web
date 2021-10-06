@@ -129,15 +129,15 @@
     }
 
     .swal2-icon {
+        border: none;
+        height: auto;
         margin: 0 auto;
         width: auto;
-        height: auto;
-        border: none;
     }
 
     .swal2-content {
-        padding-bottom: 15px;
         font-size: $font-size-base;
+        padding-bottom: 15px;
         @include themify($themes) {
             border-bottom: $modal-footer-border-width solid themed('separator');
         }
@@ -145,8 +145,8 @@
 
     i.swal-custom-icon {
         display: block;
-        margin: 0 auto;
         font-size: 35px;
+        margin: 0 auto;
     }
 
     .swal2-title {

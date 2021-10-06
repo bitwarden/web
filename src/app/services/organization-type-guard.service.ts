@@ -21,8 +21,11 @@ export class OrganizationTypeGuardService implements CanActivate {
             (permissions.indexOf(Permissions.AccessEventLogs) !== -1 && org.canAccessEventLogs) ||
             (permissions.indexOf(Permissions.AccessImportExport) !== -1 && org.canAccessImportExport) ||
             (permissions.indexOf(Permissions.AccessReports) !== -1 && org.canAccessReports) ||
-            (permissions.indexOf(Permissions.ManageAllCollections) !== -1 && org.canManageAllCollections) ||
-            (permissions.indexOf(Permissions.ManageAssignedCollections) !== -1 && org.canManageAssignedCollections) ||
+            (permissions.indexOf(Permissions.CreateNewCollections) !== -1 && org.canCreateNewCollections) ||
+            (permissions.indexOf(Permissions.EditAnyCollection) !== -1 && org.canEditAnyCollection) ||
+            (permissions.indexOf(Permissions.DeleteAnyCollection) !== -1 && org.canDeleteAnyCollection) ||
+            (permissions.indexOf(Permissions.EditAssignedCollections) !== -1 && org.canEditAssignedCollections) ||
+            (permissions.indexOf(Permissions.DeleteAssignedCollections) !== -1 && org.canDeleteAssignedCollections) ||
             (permissions.indexOf(Permissions.ManageGroups) !== -1 && org.canManageGroups) ||
             (permissions.indexOf(Permissions.ManageOrganization) !== -1 && org.isOwner) ||
             (permissions.indexOf(Permissions.ManagePolicies) !== -1 && org.canManagePolicies) ||
