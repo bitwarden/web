@@ -12,9 +12,6 @@ import {
 import { PolicyType } from 'jslib-common/enums/policyType';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
-import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
@@ -25,7 +22,7 @@ import { Organization } from 'jslib-common/models/domain/organization';
 
 import { PolicyEditComponent } from './policy-edit.component';
 
-import { PolicyListService } from 'src/app/services/policy-list.service';
+import { PolicyListService } from '../../services/policy-list.service';
 import { BasePolicy } from '../policies/base-policy.component';
 
 @Component({
@@ -40,19 +37,12 @@ export class PoliciesComponent implements OnInit {
     policies: BasePolicy[];
     organization: Organization;
 
-    // Remove when removing deprecation warning
-    enterpriseTokenPromise: Promise<any>;
-
-    private enterpriseUrl: string;
-
     private orgPolicies: PolicyResponse[];
     private policiesEnabledMap: Map<PolicyType, boolean> = new Map<PolicyType, boolean>();
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private i18nService: I18nService, private modalService: ModalService,
-        private platformUtilsService: PlatformUtilsService, private userService: UserService,
-        private policyListService: PolicyListService, private router: Router,
-        private environmentService: EnvironmentService) { }
+        private modalService: ModalService, private userService: UserService,
+        private policyListService: PolicyListService, private router: Router) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -89,9 +79,6 @@ export class PoliciesComponent implements OnInit {
                 }
             });
         });
-
-        // Remove when removing deprecation warning
-        this.enterpriseUrl = this.environmentService.getEnterpriseUrl();
     }
 
     async load() {
@@ -114,22 +101,5 @@ export class PoliciesComponent implements OnInit {
                 this.load();
             });
         });
-    }
-
-    // Remove when removing deprecation warning
-    async goToEnterprisePortal() {
-        if (this.enterpriseTokenPromise != null) {
-            return;
-        }
-        try {
-            this.enterpriseTokenPromise = this.apiService.getEnterprisePortalSignInToken();
-            const token = await this.enterpriseTokenPromise;
-            if (token != null) {
-                const userId = await this.userService.getUserId();
-                this.platformUtilsService.launchUri(this.enterpriseUrl + '/login?userId=' + userId +
-                    '&token=' + (window as any).encodeURIComponent(token) + '&organizationId=' + this.organizationId);
-            }
-        } catch { }
-        this.enterpriseTokenPromise = null;
     }
 }

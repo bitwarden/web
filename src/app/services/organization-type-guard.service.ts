@@ -18,7 +18,6 @@ export class OrganizationTypeGuardService implements CanActivate {
         const permissions = route.data == null ? null : route.data.permissions as Permissions[];
 
         if (
-            (permissions.indexOf(Permissions.AccessBusinessPortal) !== -1 && org.canAccessBusinessPortal) ||
             (permissions.indexOf(Permissions.AccessEventLogs) !== -1 && org.canAccessEventLogs) ||
             (permissions.indexOf(Permissions.AccessImportExport) !== -1 && org.canAccessImportExport) ||
             (permissions.indexOf(Permissions.AccessReports) !== -1 && org.canAccessReports) ||
@@ -31,7 +30,8 @@ export class OrganizationTypeGuardService implements CanActivate {
             (permissions.indexOf(Permissions.ManageOrganization) !== -1 && org.isOwner) ||
             (permissions.indexOf(Permissions.ManagePolicies) !== -1 && org.canManagePolicies) ||
             (permissions.indexOf(Permissions.ManageUsers) !== -1 && org.canManageUsers) ||
-            (permissions.indexOf(Permissions.ManageUsersPassword) !== -1 && org.canManageUsersPassword)
+            (permissions.indexOf(Permissions.ManageUsersPassword) !== -1 && org.canManageUsersPassword) ||
+            (permissions.indexOf(Permissions.ManageSso) !== -1 && org.canManageSso)
         ) {
             return true;
         }

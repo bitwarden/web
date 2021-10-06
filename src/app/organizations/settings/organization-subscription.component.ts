@@ -216,7 +216,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     get subscriptionDesc() {
-        if (this.sub.maxAutoscaleSeats == this.sub.seats && this.sub.seats != null) {
+        if (this.sub.maxAutoscaleSeats === this.sub.seats && this.sub.seats != null) {
             return this.i18nService.t('subscriptionMaxReached', this.sub.seats.toString());
         } else if (this.sub.maxAutoscaleSeats == null) {
             return this.i18nService.t('subscriptionUserSeatsUnlimitedAutoscale');
