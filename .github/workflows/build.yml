@@ -44,7 +44,7 @@ jobs:
           echo "::set-output name=value::${GITHUB_SHA:0:7}"
 
 
-  build-oss:
+  build-oss-selfhost:
     name: Build OSS zip
     runs-on: ubuntu-20.04
     needs: setup
@@ -148,7 +148,7 @@ jobs:
           if-no-files-found: error
 
 
-  build-selfhost:
+  build-commercial-selfhost:
     name: Build SelfHost Docker image
     runs-on: ubuntu-20.04
     needs: setup
@@ -252,7 +252,7 @@ jobs:
 
 
   build-qa:
-    name: Build Docker images for testing
+    name: Build Docker images for QA environment
     runs-on: ubuntu-20.04
     steps:
       - name: Set up Node
@@ -397,6 +397,7 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
       - name: NPM install
         run: npm ci
 
