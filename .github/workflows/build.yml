@@ -100,6 +100,8 @@ jobs:
     name: Build Cloud zip
     runs-on: ubuntu-20.04
     needs: setup
+    env:
+      _VERSION: ${{ needs.setup.outputs.version }}
     steps:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
@@ -150,6 +152,8 @@ jobs:
     name: Build SelfHost Docker image
     runs-on: ubuntu-20.04
     needs: setup
+    env:
+      _VERSION: ${{ needs.setup.outputs.version }}
     steps:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
@@ -201,8 +205,6 @@ jobs:
           jq --arg version "$VERSION - ${GITHUB_SHA:0:7}" '.version = $version' package.json > package.json.tmp
           mv package.json.tmp package.json
 
-          echo "{\"commit_hash\": \"$GITHUB_SHA\", \"ref\": \"$GITHUB_REF\"}" | jq . > build/info.json
-
       - name: Build
         run: |
           echo -e "# Building Web\n"
@@ -217,6 +219,9 @@ jobs:
           name: web-${{ env._VERSION }}-selfhosted-COMMERCIAL.zip
           path: ./web-${{ env._VERSION }}-selfhosted-COMMERCIAL.zip
           if-no-files-found: error
+
+      - name: Add info page
+          echo "{\"commit_hash\": \"$GITHUB_SHA\", \"ref\": \"$GITHUB_REF\"}" | jq . > build/info.json
 
       - name: Build Docker image
         run: |
