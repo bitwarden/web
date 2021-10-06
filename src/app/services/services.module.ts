@@ -26,6 +26,8 @@ import { ModalService as ModalServiceAbstraction } from 'jslib-angular/services/
 import { UnauthGuardService } from 'jslib-angular/services/unauth-guard.service';
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
+import { AccountsManagementService } from 'jslib-common/services/accountsManagement.service';
+import { ActiveAccountService } from 'jslib-common/services/activeAccount.service';
 import { ApiService } from 'jslib-common/services/api.service';
 import { AppIdService } from 'jslib-common/services/appId.service';
 import { AuditService } from 'jslib-common/services/audit.service';
@@ -33,7 +35,6 @@ import { AuthService } from 'jslib-common/services/auth.service';
 import { CipherService } from 'jslib-common/services/cipher.service';
 import { CollectionService } from 'jslib-common/services/collection.service';
 import { ConsoleLogService } from 'jslib-common/services/consoleLog.service';
-import { ConstantsService } from 'jslib-common/services/constants.service';
 import { ContainerService } from 'jslib-common/services/container.service';
 import { CryptoService } from 'jslib-common/services/crypto.service';
 import { EnvironmentService } from 'jslib-common/services/environment.service';
@@ -43,19 +44,23 @@ import { FileUploadService } from 'jslib-common/services/fileUpload.service';
 import { FolderService } from 'jslib-common/services/folder.service';
 import { ImportService } from 'jslib-common/services/import.service';
 import { NotificationsService } from 'jslib-common/services/notifications.service';
+import { OrganizationService } from 'jslib-common/services/organization.service';
 import { PasswordGenerationService } from 'jslib-common/services/passwordGeneration.service';
 import { PolicyService } from 'jslib-common/services/policy.service';
+import { ProviderService } from 'jslib-common/services/provider.service';
 import { SearchService } from 'jslib-common/services/search.service';
 import { SendService } from 'jslib-common/services/send.service';
 import { SettingsService } from 'jslib-common/services/settings.service';
 import { StateService } from 'jslib-common/services/state.service';
+import { StoreService } from 'jslib-common/services/store.service';
 import { SyncService } from 'jslib-common/services/sync.service';
 import { TokenService } from 'jslib-common/services/token.service';
 import { TotpService } from 'jslib-common/services/totp.service';
-import { UserService } from 'jslib-common/services/user.service';
 import { VaultTimeoutService } from 'jslib-common/services/vaultTimeout.service';
 import { WebCryptoFunctionService } from 'jslib-common/services/webCryptoFunction.service';
 
+import { AccountsManagementService as AccountsManagementServiceAbstraction } from 'jslib-common/abstractions/accountsManagement.service';
+import { ActiveAccountService as ActiveAccountServiceAbstraction } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService as ApiServiceAbstraction } from 'jslib-common/abstractions/api.service';
 import { AuditService as AuditServiceAbstraction } from 'jslib-common/abstractions/audit.service';
 import { AuthService as AuthServiceAbstraction } from 'jslib-common/abstractions/auth.service';
@@ -73,12 +78,14 @@ import { ImportService as ImportServiceAbstraction } from 'jslib-common/abstract
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService as MessagingServiceAbstraction } from 'jslib-common/abstractions/messaging.service';
 import { NotificationsService as NotificationsServiceAbstraction } from 'jslib-common/abstractions/notifications.service';
+import { OrganizationService as OrganizationServiceAbstraction } from 'jslib-common/abstractions/organization.service';
 import {
     PasswordGenerationService as PasswordGenerationServiceAbstraction,
 } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PasswordRepromptService as PasswordRepromptServiceAbstraction } from 'jslib-common/abstractions/passwordReprompt.service';
 import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService as PolicyServiceAbstraction } from 'jslib-common/abstractions/policy.service';
+import { ProviderService as ProviderServiceAbstraction } from 'jslib-common/abstractions/provider.service';
 import { SearchService as SearchServiceAbstraction } from 'jslib-common/abstractions/search.service';
 import { SendService as SendServiceAbstraction } from 'jslib-common/abstractions/send.service';
 import { SettingsService as SettingsServiceAbstraction } from 'jslib-common/abstractions/settings.service';
@@ -87,10 +94,10 @@ import { StorageService as StorageServiceAbstraction } from 'jslib-common/abstra
 import { SyncService as SyncServiceAbstraction } from 'jslib-common/abstractions/sync.service';
 import { TokenService as TokenServiceAbstraction } from 'jslib-common/abstractions/token.service';
 import { TotpService as TotpServiceAbstraction } from 'jslib-common/abstractions/totp.service';
-import { UserService as UserServiceAbstraction } from 'jslib-common/abstractions/user.service';
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib-common/abstractions/vaultTimeout.service';
 import { ModalService } from './modal.service';
 
+import { StorageKey } from 'jslib-common/enums/storageKey';
 import { ThemeType } from 'jslib-common/enums/themeType';
 
 const i18nService = new I18nService(window.navigator.language, 'locales');
@@ -101,48 +108,54 @@ const consoleLogService = new ConsoleLogService(false);
 const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService, () => storageService);
 const storageService: StorageServiceAbstraction = new HtmlStorageService(platformUtilsService);
 const secureStorageService: StorageServiceAbstraction = new MemoryStorageService();
+const accountsManagementService: AccountsManagementServiceAbstraction = new AccountsManagementService(storageService, secureStorageService);
+const storeService = new StoreService(storageService, platformUtilsService.isDev() ? storageService : secureStorageService);
+const activeAccount: ActiveAccountServiceAbstraction = new ActiveAccountService(accountsManagementService, storeService);
+const organizationService: OrganizationServiceAbstraction = new OrganizationService(activeAccount);
+const providerService: ProviderServiceAbstraction = new ProviderService(activeAccount);
 const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(window,
     platformUtilsService);
-const cryptoService = new CryptoService(storageService,
-    platformUtilsService.isDev() ? storageService : secureStorageService, cryptoFunctionService, platformUtilsService,
-    consoleLogService);
-const tokenService = new TokenService(storageService);
+const cryptoService = new CryptoService(cryptoFunctionService, platformUtilsService,
+    consoleLogService, activeAccount);
+const tokenService = new TokenService(activeAccount);
 const appIdService = new AppIdService(storageService);
-const environmentService = new EnvironmentService(storageService);
+const environmentService = new EnvironmentService(activeAccount);
 const apiService = new ApiService(tokenService, platformUtilsService, environmentService,
     async (expired: boolean) => messagingService.send('logout', { expired: expired }));
-const userService = new UserService(tokenService, storageService);
-const settingsService = new SettingsService(userService, storageService);
+const settingsService = new SettingsService(activeAccount);
 export let searchService: SearchService = null;
 const fileUploadService = new FileUploadService(consoleLogService, apiService);
-const cipherService = new CipherService(cryptoService, userService, settingsService,
-    apiService, fileUploadService, storageService, i18nService, () => searchService);
-const folderService = new FolderService(cryptoService, userService, apiService, storageService,
-    i18nService, cipherService);
-const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
+const cipherService = new CipherService(cryptoService, settingsService,
+    apiService, fileUploadService, i18nService, () => searchService, activeAccount);
+const folderService = new FolderService(cryptoService, apiService,
+    i18nService, cipherService, activeAccount);
+const collectionService = new CollectionService(cryptoService, i18nService, activeAccount);
 searchService = new SearchService(cipherService, consoleLogService, i18nService);
-const policyService = new PolicyService(userService, storageService);
-const sendService = new SendService(cryptoService, userService, apiService, fileUploadService, storageService,
-    i18nService, cryptoFunctionService);
+const policyService = new PolicyService(activeAccount, organizationService);
+const sendService = new SendService(cryptoService, apiService, fileUploadService,
+    i18nService, cryptoFunctionService, activeAccount);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
-    cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, tokenService,
-    policyService, null, async () => messagingService.send('logout', { expired: false }));
-const syncService = new SyncService(userService, apiService, settingsService,
-    folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
-    sendService, async (expired: boolean) => messagingService.send('logout', { expired: expired }));
-const passwordGenerationService = new PasswordGenerationService(cryptoService, storageService, policyService);
-const totpService = new TotpService(storageService, cryptoFunctionService);
+    cryptoService, platformUtilsService, messagingService, searchService, tokenService,
+    policyService, activeAccount, async () => messagingService.send('logout', { expired: false }));
+const syncService = new SyncService(apiService, settingsService,
+    folderService, cipherService, cryptoService, collectionService, messagingService, policyService,
+    sendService, async (expired: boolean) => messagingService.send('logout', { expired: expired }),
+    activeAccount, organizationService, providerService);
+const passwordGenerationService = new PasswordGenerationService(cryptoService, policyService, activeAccount);
+const totpService = new TotpService(cryptoFunctionService, activeAccount);
 const containerService = new ContainerService(cryptoService);
 const authService = new AuthService(cryptoService, apiService,
-    userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService, vaultTimeoutService,
-    consoleLogService);
+    tokenService, appIdService, i18nService, platformUtilsService, messagingService, vaultTimeoutService,
+    consoleLogService, activeAccount, accountsManagementService);
 const exportService = new ExportService(folderService, cipherService, apiService, cryptoService);
 const importService = new ImportService(cipherService, folderService, apiService, i18nService, collectionService,
     platformUtilsService, cryptoService);
-const notificationsService = new NotificationsService(userService, syncService, appIdService, apiService, vaultTimeoutService,
-    environmentService, async () => messagingService.send('logout', { expired: true }), consoleLogService);
+const notificationsService = new NotificationsService(syncService, appIdService, apiService, vaultTimeoutService,
+    environmentService, async () => messagingService.send('logout', { expired: true }), consoleLogService,
+    activeAccount);
 const auditService = new AuditService(cryptoFunctionService, apiService);
-const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService);
+const eventLoggingService = new EventLoggingService(apiService, cipherService,
+    activeAccount, organizationService);
 
 containerService.attachToWindow(window);
 
@@ -157,7 +170,7 @@ export function initFactory(): Function {
         setTimeout(() => notificationsService.init(), 3000);
 
         vaultTimeoutService.init(true);
-        const locale = await storageService.get<string>(ConstantsService.localeKey);
+        const locale = await activeAccount.getInformation<string>(StorageKey.Locale);
         await i18nService.init(locale);
         eventLoggingService.init(true);
         authService.init();
@@ -166,15 +179,15 @@ export function initFactory(): Function {
 
         // Initial theme is set in index.html which must be updated if there are any changes to theming logic
         platformUtilsService.onDefaultSystemThemeChange(async sysTheme => {
-            const bwTheme = await storageService.get<ThemeType>(ConstantsService.themeKey);
+            const bwTheme = await activeAccount.getInformation<ThemeType>(StorageKey.Theme);
             if (bwTheme === ThemeType.System) {
                 htmlEl.classList.remove('theme_' + ThemeType.Light, 'theme_' + ThemeType.Dark);
                 htmlEl.classList.add('theme_' + sysTheme);
             }
         });
 
-        stateService.save(ConstantsService.disableFaviconKey,
-            await storageService.get<boolean>(ConstantsService.disableFaviconKey));
+        stateService.save(StorageKey.DisableFavicon,
+            await storageService.get<boolean>(StorageKey.DisableFavicon));
         stateService.save('enableGravatars', await storageService.get<boolean>('enableGravatars'));
     };
 }
@@ -211,7 +224,6 @@ export function initFactory(): Function {
         { provide: ApiServiceAbstraction, useValue: apiService },
         { provide: FileUploadServiceAbstraction, useValue: fileUploadService },
         { provide: SyncServiceAbstraction, useValue: syncService },
-        { provide: UserServiceAbstraction, useValue: userService },
         { provide: MessagingServiceAbstraction, useValue: messagingService },
         { provide: BroadcasterService, useValue: broadcasterService },
         { provide: SettingsServiceAbstraction, useValue: settingsService },
@@ -228,6 +240,10 @@ export function initFactory(): Function {
         { provide: SendServiceAbstraction, useValue: sendService },
         { provide: PasswordRepromptServiceAbstraction, useClass: PasswordRepromptService },
         { provide: LogService, useValue: consoleLogService },
+        { provide: AccountsManagementServiceAbstraction, useValue: accountsManagementService },
+        { provide: ActiveAccountServiceAbstraction, useValue: activeAccount },
+        { provide: OrganizationServiceAbstraction, useValue: organizationService },
+        { provide: ProviderServiceAbstraction, useValue: providerService },
         {
             provide: APP_INITIALIZER,
             useFactory: initFactory,
