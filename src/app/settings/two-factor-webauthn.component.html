@@ -24,7 +24,7 @@
                             <li>{{'twoFactorWebAuthnSupportWeb' | i18n}}</li>
                         </ul>
                     </app-callout>
-                    <img class="float-right ml-5 mfaType7" alt="">
+                    <img class="float-right ml-5 mfaType7" alt="p.name + ' logo'">
                     <ul class="fa-ul">
                         <li *ngFor="let k of keys; let i = index" #removeKeyBtn [appApiAction]="k.removePromise">
                             <i class="fa-li fa fa-key"></i>
