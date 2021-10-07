@@ -12,7 +12,7 @@ import {
 import { PolicyType } from 'jslib-common/enums/policyType';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -41,13 +41,13 @@ export class PoliciesComponent implements OnInit {
     private policiesEnabledMap: Map<PolicyType, boolean> = new Map<PolicyType, boolean>();
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private modalService: ModalService, private userService: UserService,
+        private modalService: ModalService, private organizationService: OrganizationService,
         private policyListService: PolicyListService, private router: Router) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
-            this.organization = await this.userService.getOrganization(this.organizationId);
+            this.organization = await this.organizationService.get(this.organizationId);
             if (this.organization == null || !this.organization.usePolicies) {
                 this.router.navigate(['/organizations', this.organizationId]);
                 return;

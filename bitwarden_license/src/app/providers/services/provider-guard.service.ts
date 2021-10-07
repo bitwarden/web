@@ -8,15 +8,15 @@ import {
 import { ToasterService } from 'angular2-toaster';
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { ProviderService } from 'jslib-common/abstractions/provider.service';
 
 @Injectable()
 export class ProviderGuardService implements CanActivate {
-    constructor(private userService: UserService, private router: Router,
+    constructor(private providerService: ProviderService, private router: Router,
         private toasterService: ToasterService, private i18nService: I18nService) { }
 
     async canActivate(route: ActivatedRouteSnapshot) {
-        const provider = await this.userService.getProvider(route.params.providerId);
+        const provider = await this.providerService.get(route.params.providerId);
         if (provider == null) {
             this.router.navigate(['/']);
             return false;

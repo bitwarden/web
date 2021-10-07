@@ -11,8 +11,8 @@ import { OrganizationSubscriptionResponse } from 'jslib-common/models/response/o
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { PlanType } from 'jslib-common/enums/planType';
 
@@ -43,7 +43,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     constructor(private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
         private i18nService: I18nService, private toasterService: ToasterService,
         private messagingService: MessagingService, private route: ActivatedRoute,
-        private userService: UserService) {
+        private organizationService: OrganizationService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -61,7 +61,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         }
 
         this.loading = true;
-        this.userOrg = await this.userService.getOrganization(this.organizationId);
+        this.userOrg = await this.organizationService.get(this.organizationId);
         this.sub = await this.apiService.getOrganizationSubscription(this.organizationId);
         this.loading = false;
     }

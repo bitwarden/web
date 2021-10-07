@@ -10,7 +10,7 @@ import { ExportService } from 'jslib-common/abstractions/export.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { ProviderService } from 'jslib-common/abstractions/provider.service';
 
 import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
 
@@ -32,7 +32,7 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
     private providerUsersIdMap = new Map<string, any>();
 
     constructor(private apiService: ApiService, private route: ActivatedRoute, eventService: EventService,
-        i18nService: I18nService, toasterService: ToasterService, private userService: UserService,
+        i18nService: I18nService, toasterService: ToasterService, private providerService: ProviderService,
         exportService: ExportService, platformUtilsService: PlatformUtilsService, private router: Router,
         logService: LogService, private userNamePipe: UserNamePipe) {
         super(eventService, i18nService, toasterService, exportService, platformUtilsService, logService);
@@ -41,7 +41,7 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
             this.providerId = params.providerId;
-            const provider = await this.userService.getProvider(this.providerId);
+            const provider = await this.providerService.get(this.providerId);
             if (provider == null || !provider.useEvents) {
                 this.router.navigate(['/providers', this.providerId]);
                 return;

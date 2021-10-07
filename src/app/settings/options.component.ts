@@ -13,8 +13,7 @@ import { StateService } from 'jslib-common/abstractions/state.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.service';
 
-import { ConstantsService } from 'jslib-common/services/constants.service';
-
+import { StorageKey } from 'jslib-common/enums/storageKey';
 import { ThemeType } from 'jslib-common/enums/themeType';
 import { Utils } from 'jslib-common/misc/utils';
 
@@ -75,12 +74,12 @@ export class OptionsComponent implements OnInit {
 
     async ngOnInit() {
         this.vaultTimeout.setValue(await this.vaultTimeoutService.getVaultTimeout());
-        this.vaultTimeoutAction = await this.storageService.get<string>(ConstantsService.vaultTimeoutActionKey);
-        this.disableIcons = await this.storageService.get<boolean>(ConstantsService.disableFaviconKey);
+        this.vaultTimeoutAction = await this.storageService.get<string>(StorageKey.VaultTimeoutAction);
+        this.disableIcons = await this.storageService.get<boolean>(StorageKey.DisableFavicon);
         this.enableGravatars = await this.storageService.get<boolean>('enableGravatars');
         this.enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
-        this.locale = this.startingLocale = await this.storageService.get<string>(ConstantsService.localeKey);
-        this.theme = this.startingTheme = await this.storageService.get<ThemeType>(ConstantsService.themeKey);
+        this.locale = this.startingLocale = await this.storageService.get<string>(StorageKey.Locale);
+        this.theme = this.startingTheme = await this.storageService.get<ThemeType>(StorageKey.Theme);
     }
 
     async submit() {
@@ -90,21 +89,21 @@ export class OptionsComponent implements OnInit {
         }
 
         await this.vaultTimeoutService.setVaultTimeoutOptions(this.vaultTimeout.value, this.vaultTimeoutAction);
-        await this.storageService.save(ConstantsService.disableFaviconKey, this.disableIcons);
-        await this.stateService.save(ConstantsService.disableFaviconKey, this.disableIcons);
+        await this.storageService.save(StorageKey.DisableFavicon, this.disableIcons);
+        await this.stateService.save(StorageKey.DisableFavicon, this.disableIcons);
         await this.storageService.save('enableGravatars', this.enableGravatars);
         await this.stateService.save('enableGravatars', this.enableGravatars);
         await this.storageService.save('enableFullWidth', this.enableFullWidth);
         this.messagingService.send('setFullWidth');
         if (this.theme !== this.startingTheme) {
-            await this.storageService.save(ConstantsService.themeKey, this.theme);
+            await this.storageService.save(StorageKey.Theme, this.theme);
             this.startingTheme = this.theme;
             const effectiveTheme = await this.platformUtilsService.getEffectiveTheme();
             const htmlEl = window.document.documentElement;
             htmlEl.classList.remove('theme_' + ThemeType.Light, 'theme_' + ThemeType.Dark);
             htmlEl.classList.add('theme_' + effectiveTheme);
         }
-        await this.storageService.save(ConstantsService.localeKey, this.locale);
+        await this.storageService.save(StorageKey.Locale, this.locale);
         if (this.locale !== this.startingLocale) {
             window.location.reload();
         } else {

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { CipherType } from 'jslib-common/enums/cipherType';
 import { EventType } from 'jslib-common/enums/eventType';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { AuditService } from 'jslib-common/abstractions/audit.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
@@ -10,12 +11,12 @@ import { EventService } from 'jslib-common/abstractions/event.service';
 import { FolderService } from 'jslib-common/abstractions/folder.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
 import { TotpService } from 'jslib-common/abstractions/totp.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { AddEditComponent as BaseAddEditComponent } from 'jslib-angular/components/add-edit.component';
 import { LoginUriView } from 'jslib-common/models/view/loginUriView';
@@ -41,12 +42,13 @@ export class AddEditComponent extends BaseAddEditComponent {
     constructor(cipherService: CipherService, folderService: FolderService,
         i18nService: I18nService, platformUtilsService: PlatformUtilsService,
         auditService: AuditService, stateService: StateService,
-        userService: UserService, collectionService: CollectionService,
-        protected totpService: TotpService, protected passwordGenerationService: PasswordGenerationService,
-        protected messagingService: MessagingService, eventService: EventService,
-        protected policyService: PolicyService) {
+        collectionService: CollectionService, protected totpService: TotpService,
+        protected passwordGenerationService: PasswordGenerationService, protected messagingService: MessagingService,
+        eventService: EventService, protected policyService: PolicyService,
+        activeAccount: ActiveAccountService, organizationService: OrganizationService) {
         super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
-            userService, collectionService, messagingService, eventService, policyService);
+            collectionService, messagingService, eventService, policyService,
+            activeAccount, organizationService);
     }
 
     async ngOnInit() {
@@ -56,7 +58,7 @@ export class AddEditComponent extends BaseAddEditComponent {
         this.hasPasswordHistory = this.cipher.hasPasswordHistory;
         this.cleanUp();
 
-        this.canAccessPremium = await this.userService.canAccessPremium();
+        this.canAccessPremium = this.activeAccount.canAccessPremium;
         if (this.cipher.type === CipherType.Login && this.cipher.login.totp &&
             (this.cipher.organizationUseTotp || this.canAccessPremium)) {
             await this.totpUpdateCode();

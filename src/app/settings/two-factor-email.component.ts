@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { TwoFactorEmailRequest } from 'jslib-common/models/request/twoFactorEmailRequest';
 
@@ -29,7 +29,7 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
 
     constructor(apiService: ApiService, i18nService: I18nService,
         toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
-        private userService: UserService) {
+        private activeAccount: ActiveAccountService) {
         super(apiService, i18nService, toasterService, platformUtilsService);
     }
 
@@ -73,7 +73,7 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
         this.email = response.email;
         this.enabled = response.enabled;
         if (!this.enabled && (this.email == null || this.email === '')) {
-            this.email = await this.userService.getEmail();
+            this.email = this.activeAccount.email;
         }
     }
 }

@@ -12,7 +12,7 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 import { Policy } from 'jslib-common/models/domain/policy';
@@ -35,7 +35,7 @@ export class OrganizationsComponent implements OnInit {
     loaded: boolean = false;
     actionPromise: Promise<any>;
 
-    constructor(private userService: UserService, private platformUtilsService: PlatformUtilsService,
+    constructor(private organizationService: OrganizationService, private platformUtilsService: PlatformUtilsService,
         private i18nService: I18nService, private apiService: ApiService,
         private toasterService: ToasterService, private syncService: SyncService,
         private cryptoService: CryptoService, private policyService: PolicyService) { }
@@ -48,7 +48,7 @@ export class OrganizationsComponent implements OnInit {
     }
 
     async load() {
-        const orgs = await this.userService.getAllOrganizations();
+        const orgs = await this.organizationService.getAll();
         orgs.sort(Utils.getSortFunction(this.i18nService, 'name'));
         this.organizations = orgs;
         this.policies = await this.policyService.getAll(PolicyType.ResetPassword);

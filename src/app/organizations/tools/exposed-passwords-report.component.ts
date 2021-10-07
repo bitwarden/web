@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { AuditService } from 'jslib-common/abstractions/audit.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -24,13 +25,14 @@ export class ExposedPasswordsReportComponent extends BaseExposedPasswordsReportC
 
     constructor(cipherService: CipherService, auditService: AuditService,
         modalService: ModalService, messagingService: MessagingService,
-        userService: UserService, private route: ActivatedRoute) {
-        super(cipherService, auditService, modalService, messagingService, userService);
+        private organizationService: OrganizationService, private route: ActivatedRoute,
+        activeAccount: ActiveAccountService) {
+        super(cipherService, auditService, modalService, messagingService, activeAccount);
     }
 
     ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
-            this.organization = await this.userService.getOrganization(params.organizationId);
+            this.organization = await this.organizationService.get(params.organizationId);
             this.manageableCiphers = await this.cipherService.getAll();
             super.ngOnInit();
         });

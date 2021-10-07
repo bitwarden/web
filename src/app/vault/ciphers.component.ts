@@ -8,6 +8,7 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { EventService } from 'jslib-common/abstractions/event.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -15,7 +16,6 @@ import { PasswordRepromptService } from 'jslib-common/abstractions/passwordRepro
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { TotpService } from 'jslib-common/abstractions/totp.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { CiphersComponent as BaseCiphersComponent } from 'jslib-angular/components/ciphers.component';
 
@@ -51,13 +51,13 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     constructor(searchService: SearchService, protected toasterService: ToasterService,
         protected i18nService: I18nService, protected platformUtilsService: PlatformUtilsService,
         protected cipherService: CipherService, protected eventService: EventService,
-        protected totpService: TotpService, protected userService: UserService,
+        protected totpService: TotpService, protected activeAccount: ActiveAccountService,
         protected passwordRepromptService: PasswordRepromptService) {
         super(searchService);
     }
 
     async ngOnInit() {
-        this.userHasPremiumAccess = await this.userService.canAccessPremium();
+        this.userHasPremiumAccess = this.activeAccount.canAccessPremium;
     }
 
     ngOnDestroy() {

@@ -5,15 +5,17 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { EmailRequest } from 'jslib-common/models/request/emailRequest';
 import { EmailTokenRequest } from 'jslib-common/models/request/emailTokenRequest';
 
+import { KdfType } from 'jslib-common/enums/kdfType';
+import { StorageKey } from 'jslib-common/enums/storageKey';
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 
 @Component({
@@ -31,7 +33,7 @@ export class ChangeEmailComponent implements OnInit {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
-        private messagingService: MessagingService, private userService: UserService) { }
+        private messagingService: MessagingService, private activeAccount: ActiveAccountService) { }
 
     async ngOnInit() {
         const twoFactorProviders = await this.apiService.getTwoFactorProviders();
@@ -61,8 +63,8 @@ export class ChangeEmailComponent implements OnInit {
             request.token = this.token;
             request.newEmail = this.newEmail;
             request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
-            const kdf = await this.userService.getKdf();
-            const kdfIterations = await this.userService.getKdfIterations();
+            const kdf = await this.activeAccount.getInformation<KdfType>(StorageKey.KdfType);
+            const kdfIterations = await this.activeAccount.getInformation<number>(StorageKey.KdfIterations);
             const newKey = await this.cryptoService.makeKey(this.masterPassword, this.newEmail, kdf, kdfIterations);
             request.newMasterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, newKey);
             const newEncKey = await this.cryptoService.remakeEncKey(newKey);

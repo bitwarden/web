@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 
@@ -24,7 +24,7 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
     businessTokenPromise: Promise<any>;
     private organizationId: string;
 
-    constructor(private route: ActivatedRoute, private userService: UserService,
+    constructor(private route: ActivatedRoute, private organizationService: OrganizationService,
         private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
 
     ngOnInit() {
@@ -49,7 +49,7 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
     }
 
     async load() {
-        this.organization = await this.userService.getOrganization(this.organizationId);
+        this.organization = await this.organizationService.get(this.organizationId);
     }
 
     get showMenuBar() {

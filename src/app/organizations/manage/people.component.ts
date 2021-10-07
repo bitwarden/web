@@ -23,7 +23,7 @@ import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -81,7 +81,7 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
     constructor(apiService: ApiService, private route: ActivatedRoute,
         i18nService: I18nService, modalService: ModalService,
         platformUtilsService: PlatformUtilsService, toasterService: ToasterService,
-        cryptoService: CryptoService, private userService: UserService, private router: Router,
+        cryptoService: CryptoService, private organizationService: OrganizationService, private router: Router,
         storageService: StorageService, searchService: SearchService,
         validationService: ValidationService, private policyService: PolicyService,
         logService: LogService, searchPipe: SearchPipe, userNamePipe: UserNamePipe, private syncService: SyncService) {
@@ -92,7 +92,7 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
-            const organization = await this.userService.getOrganization(this.organizationId);
+            const organization = await this.organizationService.get(this.organizationId);
             if (!organization.canManageUsers) {
                 this.router.navigate(['../collections'], { relativeTo: this.route });
                 return;

@@ -11,8 +11,9 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { ExportService } from 'jslib-common/abstractions/export.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { ProviderService } from 'jslib-common/abstractions/provider.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 import { EventResponse } from 'jslib-common/models/response/eventResponse';
@@ -32,17 +33,19 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
 
     private orgUsersUserIdMap = new Map<string, any>();
 
-    constructor(private apiService: ApiService, private route: ActivatedRoute, eventService: EventService,
-        i18nService: I18nService, toasterService: ToasterService, private userService: UserService,
-        exportService: ExportService, platformUtilsService: PlatformUtilsService, private router: Router,
-        logService: LogService, private userNamePipe: UserNamePipe) {
+    constructor(private apiService: ApiService, private route: ActivatedRoute,
+        eventService: EventService, i18nService: I18nService,
+        toasterService: ToasterService, exportService: ExportService,
+        platformUtilsService: PlatformUtilsService, private router: Router,
+        logService: LogService, private userNamePipe: UserNamePipe,
+        private organizationService: OrganizationService, private providerService: ProviderService) {
         super(eventService, i18nService, toasterService, exportService, platformUtilsService, logService);
     }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
-            this.organization = await this.userService.getOrganization(this.organizationId);
+            this.organization = await this.organizationService.get(this.organizationId);
             if (this.organization == null || !this.organization.useEvents) {
                 this.router.navigate(['/organizations', this.organizationId]);
                 return;
@@ -61,8 +64,8 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
 
         if (this.organization.providerId != null) {
             try {
-                const provider = await this.userService.getProvider(this.organization.providerId);
-                if (provider != null && (await this.userService.getProvider(this.organization.providerId)).canManageUsers) {
+                const provider = await this.providerService.get(this.organization.providerId);
+                if (provider != null && (await this.providerService.get(this.organization.providerId)).canManageUsers) {
                     const providerUsersResponse = await this.apiService.getProviderUsers(this.organization.providerId);
                     providerUsersResponse.data.forEach(u => {
                         const name = this.userNamePipe.transform(u);

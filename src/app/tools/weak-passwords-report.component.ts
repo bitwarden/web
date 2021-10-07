@@ -3,10 +3,10 @@ import {
     OnInit,
 } from '@angular/core';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -28,8 +28,8 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
 
     constructor(protected cipherService: CipherService, protected passwordGenerationService: PasswordGenerationService,
         modalService: ModalService, messagingService: MessagingService,
-        userService: UserService) {
-        super(modalService, userService, messagingService, true);
+        activeAccount: ActiveAccountService) {
+        super(modalService, messagingService, true, activeAccount);
     }
 
     async ngOnInit() {

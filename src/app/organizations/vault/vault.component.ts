@@ -14,9 +14,9 @@ import {
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 import { ModalService } from 'jslib-angular/services/modal.service';
@@ -53,7 +53,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     deleted: boolean = false;
     trashCleanupWarning: string = null;
 
-    constructor(private route: ActivatedRoute, private userService: UserService,
+    constructor(private route: ActivatedRoute, private organizationService: OrganizationService,
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
         private syncService: SyncService, private i18nService: I18nService,
         private modalService: ModalService, private messagingService: MessagingService,
@@ -66,7 +66,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         );
 
         const queryParams = this.route.parent.params.subscribe(async params => {
-            this.organization = await this.userService.getOrganization(params.organizationId);
+            this.organization = await this.organizationService.get(params.organizationId);
             this.groupingsComponent.organization = this.organization;
             this.ciphersComponent.organization = this.organization;
 

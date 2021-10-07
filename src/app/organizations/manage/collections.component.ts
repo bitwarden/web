@@ -10,9 +10,9 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -50,8 +50,8 @@ export class CollectionsComponent implements OnInit {
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private collectionService: CollectionService, private modalService: ModalService,
         private toasterService: ToasterService, private i18nService: I18nService,
-        private platformUtilsService: PlatformUtilsService, private userService: UserService,
-        private searchService: SearchService) { }
+        private platformUtilsService: PlatformUtilsService, private searchService: SearchService,
+        private organizationService: OrganizationService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -67,7 +67,7 @@ export class CollectionsComponent implements OnInit {
     }
 
     async load() {
-        const organization = await this.userService.getOrganization(this.organizationId);
+        const organization = await this.organizationService.get(this.organizationId);
         let response: ListResponse<CollectionResponse>;
         if (organization.canViewAllCollections) {
             response = await this.apiService.getCollections(this.organizationId);

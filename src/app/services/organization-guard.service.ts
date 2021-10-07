@@ -8,15 +8,15 @@ import {
 import { ToasterService } from 'angular2-toaster';
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 
 @Injectable()
 export class OrganizationGuardService implements CanActivate {
-    constructor(private userService: UserService, private router: Router,
+    constructor(private organizationService: OrganizationService, private router: Router,
         private toasterService: ToasterService, private i18nService: I18nService) { }
 
     async canActivate(route: ActivatedRouteSnapshot) {
-        const org = await this.userService.getOrganization(route.params.organizationId);
+        const org = await this.organizationService.get(route.params.organizationId);
         if (org == null) {
             this.router.navigate(['/']);
             return false;

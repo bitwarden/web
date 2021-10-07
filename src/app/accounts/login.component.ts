@@ -4,6 +4,7 @@ import {
     Router,
 } from '@angular/router';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { AuthService } from 'jslib-common/abstractions/auth.service';
 import { CryptoFunctionService } from 'jslib-common/abstractions/cryptoFunction.service';
@@ -32,12 +33,13 @@ export class LoginComponent extends BaseLoginComponent {
         storageService: StorageService, stateService: StateService,
         platformUtilsService: PlatformUtilsService, environmentService: EnvironmentService,
         passwordGenerationService: PasswordGenerationService, cryptoFunctionService: CryptoFunctionService,
-        private apiService: ApiService, private policyService: PolicyService) {
+        private apiService: ApiService, private policyService: PolicyService,
+        activeAccount: ActiveAccountService) {
         super(authService, router,
             platformUtilsService, i18nService,
             stateService, environmentService,
             passwordGenerationService, cryptoFunctionService,
-            storageService);
+            storageService, activeAccount);
         this.onSuccessfulLoginNavigate = this.goAfterLogIn;
     }
 

@@ -11,8 +11,8 @@ import { Organization } from 'jslib-common/models/domain/organization';
 import { AddEditComponent as OrgAddEditComponent } from '../organizations/vault/add-edit.component';
 import { AddEditComponent } from '../vault/add-edit.component';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -25,8 +25,8 @@ export class CipherReportComponent {
     ciphers: CipherView[] = [];
     organization: Organization;
 
-    constructor(private modalService: ModalService, protected userService: UserService,
-        protected messagingService: MessagingService, public requiresPaid: boolean) { }
+    constructor(private modalService: ModalService, protected messagingService: MessagingService,
+        public requiresPaid: boolean, private activeAccount: ActiveAccountService) { }
 
     async load() {
         this.loading = true;
@@ -72,7 +72,7 @@ export class CipherReportComponent {
                 return false;
             }
         } else {
-            const accessPremium = await this.userService.canAccessPremium();
+            const accessPremium = this.activeAccount.canAccessPremium;
             if (this.requiresPaid && !accessPremium) {
                 this.messagingService.send('premiumRequired');
                 this.loading = false;

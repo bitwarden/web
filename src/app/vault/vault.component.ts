@@ -26,13 +26,15 @@ import { FolderAddEditComponent } from './folder-add-edit.component';
 import { GroupingsComponent } from './groupings.component';
 import { ShareComponent } from './share.component';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { ProviderService } from 'jslib-common/abstractions/provider.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { TokenService } from 'jslib-common/abstractions/token.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 import { ModalService } from 'jslib-angular/services/modal.service';
@@ -70,9 +72,10 @@ export class VaultComponent implements OnInit, OnDestroy {
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
         private i18nService: I18nService, private modalService: ModalService,
         private tokenService: TokenService, private cryptoService: CryptoService,
-        private messagingService: MessagingService, private userService: UserService,
-        private platformUtilsService: PlatformUtilsService, private broadcasterService: BroadcasterService,
-        private ngZone: NgZone) { }
+        private messagingService: MessagingService, private platformUtilsService: PlatformUtilsService,
+        private broadcasterService: BroadcasterService, private ngZone: NgZone, 
+        private activeAccount: ActiveAccountService, private organizationService: OrganizationService,
+        private providerService: ProviderService) { }
 
     async ngOnInit() {
         this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
@@ -85,11 +88,11 @@ export class VaultComponent implements OnInit, OnDestroy {
             await this.syncService.fullSync(false);
 
             this.showUpdateKey = !(await this.cryptoService.hasEncKey());
-            const canAccessPremium = await this.userService.canAccessPremium();
+            const canAccessPremium = this.activeAccount.canAccessPremium;
             this.showPremiumCallout = !this.showVerifyEmail && !canAccessPremium &&
                 !this.platformUtilsService.isSelfHost();
 
-            this.showProviders = (await this.userService.getAllProviders()).length > 0;
+            this.showProviders = (await this.providerService.getAll()).length > 0;
 
             await Promise.all([
                 this.groupingsComponent.load(),
@@ -212,12 +215,12 @@ export class VaultComponent implements OnInit, OnDestroy {
     }
 
     async editCipherAttachments(cipher: CipherView) {
-        const canAccessPremium = await this.userService.canAccessPremium();
+        const canAccessPremium = this.activeAccount.canAccessPremium;
         if (cipher.organizationId == null && !canAccessPremium) {
             this.messagingService.send('premiumRequired');
             return;
         } else if (cipher.organizationId != null) {
-            const org = await this.userService.getOrganization(cipher.organizationId);
+            const org = await this.organizationService.get(cipher.organizationId);
             if (org != null && (org.maxStorageGb == null || org.maxStorageGb === 0)) {
                 this.messagingService.send('upgradeOrganization', { organizationId: cipher.organizationId });
                 return;

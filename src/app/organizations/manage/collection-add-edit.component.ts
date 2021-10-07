@@ -11,8 +11,8 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { EncString } from 'jslib-common/models/domain/encString';
 import { SymmetricCryptoKey } from 'jslib-common/models/domain/symmetricCryptoKey';
@@ -46,10 +46,10 @@ export class CollectionAddEditComponent implements OnInit {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private platformUtilsService: PlatformUtilsService,
-        private cryptoService: CryptoService, private userService: UserService) { }
+        private cryptoService: CryptoService, private organizationService: OrganizationService) { }
 
     async ngOnInit() {
-        const organization = await this.userService.getOrganization(this.organizationId);
+        const organization = await this.organizationService.get(this.organizationId);
         this.accessGroups = organization.useGroups;
         this.editMode = this.loading = this.collectionId != null;
         if (this.accessGroups) {

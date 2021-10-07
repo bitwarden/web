@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 
@@ -19,11 +19,11 @@ export class ManageComponent implements OnInit {
     accessEvents: boolean = false;
     accessSso: boolean = false;
 
-    constructor(private route: ActivatedRoute, private userService: UserService) {}
+    constructor(private route: ActivatedRoute, private organizationService: OrganizationService) {}
 
     ngOnInit() {
         this.route.parent.params.subscribe(async params => {
-            this.organization = await this.userService.getOrganization(params.organizationId);
+            this.organization = await this.organizationService.get(params.organizationId);
             this.accessPolicies = this.organization.usePolicies;
             this.accessSso = this.organization.useSso;
             this.accessEvents = this.organization.useEvents;

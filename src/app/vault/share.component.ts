@@ -3,11 +3,12 @@ import {
     OnDestroy,
 } from '@angular/core';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { CollectionView } from 'jslib-common/models/view/collectionView';
 
@@ -19,9 +20,10 @@ import { ShareComponent as BaseShareComponent } from 'jslib-angular/components/s
 })
 export class ShareComponent extends BaseShareComponent implements OnDestroy {
     constructor(collectionService: CollectionService, platformUtilsService: PlatformUtilsService,
-        i18nService: I18nService, userService: UserService,
-        cipherService: CipherService) {
-        super(collectionService, platformUtilsService, i18nService, userService, cipherService);
+        i18nService: I18nService, cipherService: CipherService,
+        activeAccount: ActiveAccountService, organizationService: OrganizationService) {
+        super(collectionService, platformUtilsService, i18nService, cipherService,
+            activeAccount, organizationService);
     }
 
     ngOnDestroy() {

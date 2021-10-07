@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { AuditService } from 'jslib-common/abstractions/audit.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
@@ -8,12 +9,12 @@ import { EventService } from 'jslib-common/abstractions/event.service';
 import { FolderService } from 'jslib-common/abstractions/folder.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
 import { TotpService } from 'jslib-common/abstractions/totp.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { CipherData } from 'jslib-common/models/data/cipherData';
 import { Cipher } from 'jslib-common/models/domain/cipher';
@@ -34,13 +35,14 @@ export class AddEditComponent extends BaseAddEditComponent {
     constructor(cipherService: CipherService, folderService: FolderService,
         i18nService: I18nService, platformUtilsService: PlatformUtilsService,
         auditService: AuditService, stateService: StateService,
-        userService: UserService, collectionService: CollectionService,
-        totpService: TotpService, passwordGenerationService: PasswordGenerationService,
-        private apiService: ApiService, messagingService: MessagingService,
-        eventService: EventService, policyService: PolicyService) {
+        collectionService: CollectionService, totpService: TotpService,
+        passwordGenerationService: PasswordGenerationService, private apiService: ApiService,
+        messagingService: MessagingService, eventService: EventService,
+        policyService: PolicyService, activeAccount: ActiveAccountService,
+        organizationService: OrganizationService) {
         super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
-            userService, collectionService, totpService, passwordGenerationService, messagingService,
-            eventService, policyService);
+            collectionService, totpService, passwordGenerationService, messagingService,
+            eventService, policyService, activeAccount, organizationService);
     }
 
     protected allowOwnershipAssignment() {

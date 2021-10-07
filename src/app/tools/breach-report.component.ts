@@ -4,7 +4,7 @@ import {
 } from '@angular/core';
 
 import { AuditService } from 'jslib-common/abstractions/audit.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { BreachAccountResponse } from 'jslib-common/models/response/breachAccountResponse';
 
 @Component({
@@ -18,10 +18,10 @@ export class BreachReportComponent implements OnInit {
     breachedAccounts: BreachAccountResponse[] = [];
     formPromise: Promise<BreachAccountResponse[]>;
 
-    constructor(private auditService: AuditService, private userService: UserService) { }
+    constructor(private auditService: AuditService, private activeAccount: ActiveAccountService) { }
 
     async ngOnInit() {
-        this.username = await this.userService.getEmail();
+        this.username = this.activeAccount.email;
     }
 
     async submit() {

@@ -9,12 +9,12 @@ import {
     ToasterService,
 } from 'angular2-toaster';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { OrganizationUserAcceptRequest } from 'jslib-common/models/request/organizationUserAcceptRequest';
 import { OrganizationUserResetPasswordEnrollmentRequest } from 'jslib-common/models/request/organizationUserResetPasswordEnrollmentRequest';
@@ -34,10 +34,10 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
 
     constructor(router: Router, toasterService: ToasterService,
         i18nService: I18nService, route: ActivatedRoute,
-        private apiService: ApiService, userService: UserService,
-        stateService: StateService, private cryptoService: CryptoService,
-        private policyService: PolicyService) {
-        super(router, toasterService, i18nService, route, userService, stateService);
+        private apiService: ApiService, stateService: StateService,
+        private cryptoService: CryptoService, private policyService: PolicyService,
+        activeAccount: ActiveAccountService) {
+        super(router, toasterService, i18nService, route, stateService, activeAccount);
     }
 
     async authedHandler(qParams: any): Promise<void> {
@@ -63,10 +63,7 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
                     const resetRequest = new OrganizationUserResetPasswordEnrollmentRequest();
                     resetRequest.resetPasswordKey = encryptedKey.encryptedString;
 
-                    // Get User Id
-                    const userId = await this.userService.getUserId();
-
-                    return this.apiService.putOrganizationUserResetPasswordEnrollment(qParams.organizationId, userId, resetRequest);
+                    return this.apiService.putOrganizationUserResetPasswordEnrollment(qParams.organizationId, this.activeAccount.userId, resetRequest);
                 });
         } else {
             this.actionPromise = this.apiService.postOrganizationUserAccept(qParams.organizationId,

@@ -12,9 +12,9 @@ import {
     ToasterService,
 } from 'angular2-toaster';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 @Directive()
 export abstract class BaseAcceptComponent implements OnInit {
@@ -29,7 +29,7 @@ export abstract class BaseAcceptComponent implements OnInit {
 
     constructor(protected router: Router, protected toasterService: ToasterService,
         protected i18nService: I18nService, protected route: ActivatedRoute,
-        protected userService: UserService, protected stateService: StateService) { }
+        protected stateService: StateService, protected activeAccount: ActiveAccountService) { }
 
     abstract authedHandler(qParams: any): Promise<void>;
     abstract unauthedHandler(qParams: any): Promise<void>;
@@ -46,7 +46,7 @@ export abstract class BaseAcceptComponent implements OnInit {
             let error = this.requiredParameters.some(e => qParams?.[e] == null || qParams[e] === '');
             let errorMessage: string = null;
             if (!error) {
-                this.authed = await this.userService.isAuthenticated();
+                this.authed = this.activeAccount.isAuthenticated;
 
                 if (this.authed) {
                     try {

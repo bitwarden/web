@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { CipherData } from 'jslib-common/models/data/cipherData';
 import { Cipher } from 'jslib-common/models/domain/cipher';
@@ -24,9 +24,9 @@ export class AttachmentsComponent extends BaseAttachmentsComponent {
     organization: Organization;
 
     constructor(cipherService: CipherService, i18nService: I18nService,
-        cryptoService: CryptoService, userService: UserService,
+        cryptoService: CryptoService, activeAccount: ActiveAccountService,
         platformUtilsService: PlatformUtilsService, apiService: ApiService) {
-        super(cipherService, i18nService, cryptoService, userService, platformUtilsService, apiService);
+        super(cipherService, i18nService, cryptoService, activeAccount, platformUtilsService, apiService);
     }
 
     protected async reupload(attachment: AttachmentView) {

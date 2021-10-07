@@ -1,14 +1,14 @@
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
-import { ConstantsService } from 'jslib-common/services/constants.service';
+import { StorageKey } from 'jslib-common/enums/storageKey';
 
 export class HtmlStorageService implements StorageService {
     private localStorageKeys = new Set(['appId', 'anonymousAppId', 'rememberedEmail', 'passwordGenerationOptions',
-        ConstantsService.disableFaviconKey, 'rememberEmail', 'enableGravatars', 'enableFullWidth',
-        ConstantsService.localeKey, ConstantsService.autoConfirmFingerprints,
-        ConstantsService.vaultTimeoutKey, ConstantsService.vaultTimeoutActionKey, ConstantsService.ssoCodeVerifierKey,
-        ConstantsService.ssoStateKey, 'ssoOrgIdentifier', ConstantsService.themeKey]);
-    private localStorageStartsWithKeys = ['twoFactorToken_', ConstantsService.collapsedGroupingsKey + '_'];
+        StorageKey.DisableFavicon, 'rememberEmail', 'enableGravatars', 'enableFullWidth',
+        StorageKey.Locale, StorageKey.AutoConfirmFingerprints,
+        StorageKey.VaultTimeout, StorageKey.VaultTimeoutAction, StorageKey.SsoCodeVerifier,
+        StorageKey.SsoState, 'ssoOrgIdentifier', StorageKey.Theme]);
+    private localStorageStartsWithKeys = ['twoFactorToken_', StorageKey.CollapsedGroupings + '_'];
     private memoryStorageStartsWithKeys = ['ciphers_', 'folders_', 'collections_', 'settings_', 'lastSync_'];
     private memoryStorage = new Map<string, string>();
 
@@ -16,15 +16,15 @@ export class HtmlStorageService implements StorageService {
 
     async init() {
         // LockOption -> VaultTimeout (uses the same legacy string value for backwards compat)
-        const vaultTimeout = await this.get<number>(ConstantsService.vaultTimeoutKey);
+        const vaultTimeout = await this.get<number>(StorageKey.VaultTimeout);
         if (vaultTimeout == null && !this.platformUtilsService.isDev()) {
-            await this.save(ConstantsService.vaultTimeoutKey, 15);
+            await this.save(StorageKey.VaultTimeout, 15);
         }
 
         // Default Action to lock
-        const vaultTimeoutAction = await this.get<string>(ConstantsService.vaultTimeoutActionKey);
+        const vaultTimeoutAction = await this.get<string>(StorageKey.VaultTimeoutAction);
         if (vaultTimeoutAction == null) {
-            await this.save(ConstantsService.vaultTimeoutActionKey, 'lock');
+            await this.save(StorageKey.VaultTimeoutAction, 'lock');
         }
     }
 

@@ -14,7 +14,7 @@ import { PasswordRepromptService } from 'jslib-common/abstractions/passwordRepro
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { TotpService } from 'jslib-common/abstractions/totp.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 import { CipherView } from 'jslib-common/models/view/cipherView';
@@ -36,9 +36,9 @@ export class CiphersComponent extends BaseCiphersComponent {
     constructor(searchService: SearchService, toasterService: ToasterService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, cipherService: CipherService,
         private apiService: ApiService, eventService: EventService, totpService: TotpService,
-        userService: UserService, passwordRepromptService: PasswordRepromptService) {
+        activeAccount: ActiveAccountService, passwordRepromptService: PasswordRepromptService) {
         super(searchService, toasterService, i18nService, platformUtilsService, cipherService,
-            eventService, totpService, userService, passwordRepromptService);
+            eventService, totpService, activeAccount, passwordRepromptService);
     }
 
     async load(filter: (cipher: CipherView) => boolean = null) {

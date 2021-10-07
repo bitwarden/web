@@ -13,9 +13,9 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -48,13 +48,13 @@ export class GroupsComponent implements OnInit {
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private i18nService: I18nService, private modalService: ModalService,
         private toasterService: ToasterService, private platformUtilsService: PlatformUtilsService,
-        private userService: UserService, private router: Router,
-        private searchService: SearchService) { }
+        private router: Router, private searchService: SearchService,
+        private organizationService: OrganizationService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
-            const organization = await this.userService.getOrganization(this.organizationId);
+            const organization = await this.organizationService.get(this.organizationId);
             if (organization == null || !organization.useGroups) {
                 this.router.navigate(['/organizations', this.organizationId]);
                 return;

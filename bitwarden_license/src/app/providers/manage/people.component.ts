@@ -12,9 +12,9 @@ import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { ProviderService } from 'jslib-common/abstractions/provider.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 import { ValidationService } from 'jslib-angular/services/validation.service';
@@ -60,9 +60,11 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
     constructor(apiService: ApiService, private route: ActivatedRoute,
         i18nService: I18nService, modalService: ModalService,
         platformUtilsService: PlatformUtilsService, toasterService: ToasterService,
-        cryptoService: CryptoService, private userService: UserService, private router: Router,
-        storageService: StorageService, searchService: SearchService, validationService: ValidationService,
-        logService: LogService, searchPipe: SearchPipe, userNamePipe: UserNamePipe) {
+        cryptoService: CryptoService, private router: Router,
+        storageService: StorageService, searchService: SearchService,
+        validationService: ValidationService, logService: LogService,
+        searchPipe: SearchPipe, userNamePipe: UserNamePipe,
+        private providerService: ProviderService) {
         super(apiService, searchService, i18nService, platformUtilsService, toasterService, cryptoService,
             storageService, validationService, modalService, logService, searchPipe, userNamePipe);
     }
@@ -70,7 +72,7 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
     ngOnInit() {
         this.route.parent.params.subscribe(async params => {
             this.providerId = params.providerId;
-            const provider = await this.userService.getProvider(this.providerId);
+            const provider = await this.providerService.get(this.providerId);
 
             if (!provider.canManageUsers) {
                 this.router.navigate(['../'], { relativeTo: this.route });

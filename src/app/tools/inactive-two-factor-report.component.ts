@@ -3,9 +3,9 @@ import {
     OnInit,
 } from '@angular/core';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -26,8 +26,8 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
     cipherDocs = new Map<string, string>();
 
     constructor(protected cipherService: CipherService, modalService: ModalService,
-        messagingService: MessagingService, userService: UserService) {
-        super(modalService, userService, messagingService, true);
+        messagingService: MessagingService, activeAccount: ActiveAccountService) {
+        super(modalService, messagingService, true, activeAccount);
     }
 
     async ngOnInit() {

@@ -6,7 +6,7 @@ import {
     Output,
 } from '@angular/core';
 
-import { ConstantsService } from 'jslib-common/services/constants.service';
+import { StorageKey } from 'jslib-common/enums/storageKey';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
@@ -52,7 +52,7 @@ export class EmergencyAccessConfirmComponent implements OnInit {
         }
 
         if (this.dontAskAgain) {
-            await this.storageService.save(ConstantsService.autoConfirmFingerprints, true);
+            await this.storageService.save(StorageKey.AutoConfirmFingerprints, true);
         }
 
         try {

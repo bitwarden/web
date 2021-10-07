@@ -10,7 +10,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { ProviderService as BaseProviderService } from 'jslib-common/abstractions/provider.service';
 
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
@@ -35,7 +35,7 @@ export class AddOrganizationComponent implements OnInit {
     formPromise: Promise<any>;
     loading = true;
 
-    constructor(private userService: UserService, private providerService: ProviderService,
+    constructor(private baseProviderService: BaseProviderService, private providerService: ProviderService,
         private toasterService: ToasterService, private i18nService: I18nService,
         private platformUtilsService: PlatformUtilsService, private validationService: ValidationService,
         private apiService: ApiService) { }
@@ -49,7 +49,7 @@ export class AddOrganizationComponent implements OnInit {
             return;
         }
 
-        this.provider = await this.userService.getProvider(this.providerId);
+        this.provider = await this.baseProviderService.get(this.providerId);
 
         this.loading = false;
     }
