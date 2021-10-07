@@ -7,6 +7,7 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -14,7 +15,6 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { ProviderService } from 'jslib-common/abstractions/provider.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 import { ValidationService } from 'jslib-angular/services/validation.service';
@@ -61,12 +61,12 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
         i18nService: I18nService, modalService: ModalService,
         platformUtilsService: PlatformUtilsService, toasterService: ToasterService,
         cryptoService: CryptoService, private router: Router,
-        storageService: StorageService, searchService: SearchService,
+        activeAccount: ActiveAccountService, searchService: SearchService,
         validationService: ValidationService, logService: LogService,
         searchPipe: SearchPipe, userNamePipe: UserNamePipe,
         private providerService: ProviderService) {
         super(apiService, searchService, i18nService, platformUtilsService, toasterService, cryptoService,
-            storageService, validationService, modalService, logService, searchPipe, userNamePipe);
+            activeAccount, validationService, modalService, logService, searchPipe, userNamePipe);
     }
 
     ngOnInit() {

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 

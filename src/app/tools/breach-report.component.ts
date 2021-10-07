@@ -3,8 +3,8 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { AuditService } from 'jslib-common/abstractions/audit.service';
 import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
+import { AuditService } from 'jslib-common/abstractions/audit.service';
 import { BreachAccountResponse } from 'jslib-common/models/response/breachAccountResponse';
 
 @Component({

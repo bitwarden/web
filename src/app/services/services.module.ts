@@ -105,7 +105,7 @@ const stateService = new StateService();
 const broadcasterService = new BroadcasterService();
 const messagingService = new BroadcasterMessagingService(broadcasterService);
 const consoleLogService = new ConsoleLogService(false);
-const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService, () => storageService);
+const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService, () => activeAccount);
 const storageService: StorageServiceAbstraction = new HtmlStorageService(platformUtilsService);
 const secureStorageService: StorageServiceAbstraction = new MemoryStorageService();
 const accountsManagementService: AccountsManagementServiceAbstraction = new AccountsManagementService(storageService, secureStorageService);

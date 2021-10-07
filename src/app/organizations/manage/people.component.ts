@@ -14,16 +14,16 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
-import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -82,11 +82,11 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
         i18nService: I18nService, modalService: ModalService,
         platformUtilsService: PlatformUtilsService, toasterService: ToasterService,
         cryptoService: CryptoService, private organizationService: OrganizationService, private router: Router,
-        storageService: StorageService, searchService: SearchService,
+        activeAccount: ActiveAccountService, searchService: SearchService,
         validationService: ValidationService, private policyService: PolicyService,
         logService: LogService, searchPipe: SearchPipe, userNamePipe: UserNamePipe, private syncService: SyncService) {
             super(apiService, searchService, i18nService, platformUtilsService, toasterService, cryptoService,
-                storageService, validationService, modalService, logService, searchPipe, userNamePipe);
+                activeAccount, validationService, modalService, logService, searchPipe, userNamePipe);
         }
 
     async ngOnInit() {

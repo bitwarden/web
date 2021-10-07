@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
 import { FolderService } from 'jslib-common/abstractions/folder.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 
 import { CollectionData } from 'jslib-common/models/data/collectionData';
 import { Collection } from 'jslib-common/models/domain/collection';

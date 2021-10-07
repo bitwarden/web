@@ -73,7 +73,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         private i18nService: I18nService, private modalService: ModalService,
         private tokenService: TokenService, private cryptoService: CryptoService,
         private messagingService: MessagingService, private platformUtilsService: PlatformUtilsService,
-        private broadcasterService: BroadcasterService, private ngZone: NgZone, 
+        private broadcasterService: BroadcasterService, private ngZone: NgZone,
         private activeAccount: ActiveAccountService, private organizationService: OrganizationService,
         private providerService: ProviderService) { }
 

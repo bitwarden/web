@@ -10,8 +10,8 @@ import {
 
 import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
-import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PayPalConfig } from 'jslib-common/abstractions/environment.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';

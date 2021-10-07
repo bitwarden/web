@@ -17,7 +17,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     private prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
 
     constructor(private i18nService: I18nService, private messagingService: MessagingService,
-        private logService: LogService, private activeAccount: ActiveAccountService) { }
+        private logService: LogService, private activeAccount: () => ActiveAccountService) { }
 
     getDevice(): DeviceType {
         if (this.browserCache != null) {
@@ -292,7 +292,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     async getEffectiveTheme(): Promise<ThemeType.Light | ThemeType.Dark> {
-        const theme = await this.activeAccount.getInformation<ThemeType>(StorageKey.Theme);
+        const theme = await this.activeAccount().getInformation<ThemeType>(StorageKey.Theme);
         if (theme === ThemeType.Dark) {
             return ThemeType.Dark;
         } else if (theme === ThemeType.System) {

@@ -8,9 +8,9 @@ import {
 
 import { StorageKey } from 'jslib-common/enums/storageKey';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 
 import { Utils } from 'jslib-common/misc/utils';
 

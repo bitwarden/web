@@ -6,8 +6,8 @@ import {
     Output,
 } from '@angular/core';
 
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 
 import { StorageKey } from 'jslib-common/enums/storageKey';
 

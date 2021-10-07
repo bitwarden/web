@@ -16,7 +16,9 @@ import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.se
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 
 import { EmergencyAccessConfirmRequest } from 'jslib-common/models/request/emergencyAccessConfirmRequest';
+
 import { EmergencyAccessGranteeDetailsResponse, EmergencyAccessGrantorDetailsResponse } from 'jslib-common/models/response/emergencyAccessResponse';
+
 import { EmergencyAccessStatusType } from 'jslib-common/enums/emergencyAccessStatusType';
 import { EmergencyAccessType } from 'jslib-common/enums/emergencyAccessType';
 import { StorageKey } from 'jslib-common/enums/storageKey';
