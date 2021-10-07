@@ -16,7 +16,7 @@ import { StorageService } from 'jslib-common/abstractions/storage.service';
 
 import { SsoComponent as BaseSsoComponent } from 'jslib-angular/components/sso.component';
 
-const IdentifierStorageKey = 'ssoOrgIdentifier';
+import { StorageKey } from 'jslib-common/enums/storageKey';
 
 @Component({
     selector: 'app-sso',
@@ -41,7 +41,7 @@ export class SsoComponent extends BaseSsoComponent {
             if (qParams.identifier != null) {
                 this.identifier = qParams.identifier;
             } else {
-                const storedIdentifier = await this.storageService.get<string>(IdentifierStorageKey);
+                const storedIdentifier = await this.storageService.get<string>(StorageKey.SsoOrgIdentifier);
                 if (storedIdentifier != null) {
                     this.identifier = storedIdentifier;
                 }
@@ -53,7 +53,7 @@ export class SsoComponent extends BaseSsoComponent {
     }
 
     async submit() {
-        await this.storageService.save(IdentifierStorageKey, this.identifier);
+        await this.storageService.save(StorageKey.SsoOrgIdentifier, this.identifier);
         if (this.clientId === 'browser') {
             document.cookie = `ssoHandOffMessage=${this.i18nService.t('ssoHandOff')};SameSite=strict`;
         }

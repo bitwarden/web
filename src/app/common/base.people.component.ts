@@ -5,14 +5,15 @@ import {
 } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 
-import { ValidationService } from 'jslib-angular/services/validation.service';
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
+
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
+import { ValidationService } from 'jslib-angular/services/validation.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -91,7 +92,7 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
     constructor(protected apiService: ApiService, private searchService: SearchService,
         protected i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
         protected toasterService: ToasterService, protected cryptoService: CryptoService,
-        private storageService: StorageService, protected validationService: ValidationService,
+        private activeAccount: ActiveAccountService, protected validationService: ValidationService,
         protected modalService: ModalService, private logService: LogService,
         private searchPipe: SearchPipe, protected userNamePipe: UserNamePipe) { }
 
@@ -244,7 +245,7 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
             const publicKeyResponse = await this.apiService.getUserPublicKey(user.userId);
             const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
 
-            const autoConfirm = await this.storageService.get<boolean>(StorageKey.AutoConfirmFingerprints);
+            const autoConfirm = await this.activeAccount.getInformation<boolean>(StorageKey.AutoConfirmFingerprints);
             if (autoConfirm == null || !autoConfirm) {
                 const [modal] = await this.modalService.openViewRef(UserConfirmComponent, this.confirmModalRef, comp => {
                     comp.name = this.userNamePipe.transform(user);

@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 
 import { ToasterService } from 'angular2-toaster';
 
+import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
@@ -40,7 +41,7 @@ export class OptionsComponent implements OnInit {
     constructor(private storageService: StorageService, private stateService: StateService,
         private i18nService: I18nService, private toasterService: ToasterService,
         private vaultTimeoutService: VaultTimeoutService, private platformUtilsService: PlatformUtilsService,
-        private messagingService: MessagingService) {
+        private messagingService: MessagingService, private activeAccount: ActiveAccountService) {
         this.vaultTimeouts = [
             { name: i18nService.t('oneMinute'), value: 1 },
             { name: i18nService.t('fiveMinutes'), value: 5 },
@@ -74,12 +75,12 @@ export class OptionsComponent implements OnInit {
 
     async ngOnInit() {
         this.vaultTimeout.setValue(await this.vaultTimeoutService.getVaultTimeout());
-        this.vaultTimeoutAction = await this.storageService.get<string>(StorageKey.VaultTimeoutAction);
+        this.vaultTimeoutAction = await this.activeAccount.getInformation<string>(StorageKey.VaultTimeoutAction);
         this.disableIcons = await this.storageService.get<boolean>(StorageKey.DisableFavicon);
-        this.enableGravatars = await this.storageService.get<boolean>('enableGravatars');
-        this.enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
-        this.locale = this.startingLocale = await this.storageService.get<string>(StorageKey.Locale);
-        this.theme = this.startingTheme = await this.storageService.get<ThemeType>(StorageKey.Theme);
+        this.enableGravatars = await this.activeAccount.getInformation<boolean>('enableGravatars');
+        this.enableFullWidth = await this.activeAccount.getInformation<boolean>('enableFullWidth');
+        this.locale = this.startingLocale = await this.activeAccount.getInformation<string>(StorageKey.Locale);
+        this.theme = this.startingTheme = await this.activeAccount.getInformation<ThemeType>(StorageKey.Theme);
     }
 
     async submit() {
@@ -96,14 +97,14 @@ export class OptionsComponent implements OnInit {
         await this.storageService.save('enableFullWidth', this.enableFullWidth);
         this.messagingService.send('setFullWidth');
         if (this.theme !== this.startingTheme) {
-            await this.storageService.save(StorageKey.Theme, this.theme);
+            await this.activeAccount.saveInformation(StorageKey.Theme, this.theme);
             this.startingTheme = this.theme;
             const effectiveTheme = await this.platformUtilsService.getEffectiveTheme();
             const htmlEl = window.document.documentElement;
             htmlEl.classList.remove('theme_' + ThemeType.Light, 'theme_' + ThemeType.Dark);
             htmlEl.classList.add('theme_' + effectiveTheme);
         }
-        await this.storageService.save(StorageKey.Locale, this.locale);
+        await this.activeAccount.saveInformation(StorageKey.Locale, this.locale);
         if (this.locale !== this.startingLocale) {
             window.location.reload();
         } else {
