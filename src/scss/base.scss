@@ -64,8 +64,11 @@ img.logo {
     height: 43px;
     margin: 0 auto;
     width: 284px;
-    @include themify($themes) {
-        content: url('../images/logo-' + themed('logoSuffix') + '@2x.png');
+
+    &.logo-themed {
+        @include themify($themes) {
+            content: url('../images/logo-' + themed('logoSuffix') + '@2x.png');
+        }
     }
 } 
 
@@ -129,12 +132,6 @@ a {
     }
 }
 
-a:hover {
-    @include themify($themes) {
-        color: themed('linkColorHover');
-    }
-}
-
 code {
     @include themify($themes) {
         color: themed('codeColor');
@@ -174,6 +171,34 @@ code {
 .bg-light {
     @include themify($themes) {
         background-color: themed('bgLightColor') !important;
+    }
+}
+
+.bg-success {
+    @include themify($themes) {
+        background-color: themed('success') !important;
+        color: themed('successTextColor') !important;
+    }
+}
+
+.bg-warning {
+    @include themify($themes) {
+        background-color: themed('warning') !important;
+        color: themed('warningTextColor') !important;
+    }
+}
+
+.bg-error, .bg-danger {
+    @include themify($themes) {
+        background-color: themed('danger') !important;
+        color: themed('dangerTextColor') !important;
+    }
+}
+
+.bg-info {
+    @include themify($themes) {
+        background-color: themed('info') !important;
+        color: themed('infoTextColor') !important;
     }
 }
 

@@ -69,7 +69,7 @@ export class CollectionsComponent implements OnInit {
     async load() {
         const organization = await this.userService.getOrganization(this.organizationId);
         let response: ListResponse<CollectionResponse>;
-        if (organization.canManageAllCollections) {
+        if (organization.canViewAllCollections) {
             response = await this.apiService.getCollections(this.organizationId);
         } else {
             response = await this.apiService.getUserCollections();

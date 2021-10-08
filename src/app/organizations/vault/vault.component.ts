@@ -72,7 +72,7 @@ export class VaultComponent implements OnInit, OnDestroy {
 
             const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
                 this.ciphersComponent.searchText = this.groupingsComponent.searchText = qParams.search;
-                if (!this.organization.canManageAllCollections) {
+                if (!this.organization.canViewAllCollections) {
                     await this.syncService.fullSync(false);
                     this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
                         this.ngZone.run(async () => {
@@ -223,7 +223,7 @@ export class VaultComponent implements OnInit, OnDestroy {
 
     async editCipherCollections(cipher: CipherView) {
         const [modal] = await this.modalService.openViewRef(CollectionsComponent, this.collectionsModalRef, comp => {
-            if (this.organization.canManageAllCollections) {
+            if (this.organization.canEditAnyCollection) {
                 comp.collectionIds = cipher.collectionIds;
                 comp.collections = this.groupingsComponent.collections.filter(c => !c.readOnly);
             }
@@ -240,7 +240,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         const component = await this.editCipher(null);
         component.organizationId = this.organization.id;
         component.type = this.type;
-        if (this.organization.canManageAllCollections) {
+        if (this.organization.canEditAnyCollection) {
             component.collections = this.groupingsComponent.collections.filter(c => !c.readOnly);
         }
         if (this.collectionId != null) {
@@ -273,7 +273,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         const component = await this.editCipher(cipher);
         component.cloneMode = true;
         component.organizationId = this.organization.id;
-        if (this.organization.canManageAllCollections) {
+        if (this.organization.canEditAnyCollection) {
             component.collections = this.groupingsComponent.collections.filter(c => !c.readOnly);
         }
         // Regardless of Admin state, the collection Ids need to passed manually as they are not assigned value

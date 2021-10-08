@@ -46,7 +46,7 @@ export class AddEditComponent extends BaseAddEditComponent {
     protected allowOwnershipAssignment() {
         if (this.ownershipOptions != null && (this.ownershipOptions.length > 1 || !this.allowPersonal)) {
             if (this.organization != null) {
-                return this.cloneMode && this.organization.canManageAllCollections;
+                return this.cloneMode && this.organization.canEditAnyCollection;
             } else {
                 return !this.editMode || this.cloneMode;
             }
@@ -55,14 +55,14 @@ export class AddEditComponent extends BaseAddEditComponent {
     }
 
     protected loadCollections() {
-        if (!this.organization.canManageAllCollections) {
+        if (!this.organization.canEditAnyCollection) {
             return super.loadCollections();
         }
         return Promise.resolve(this.collections);
     }
 
     protected async loadCipher() {
-        if (!this.organization.canManageAllCollections) {
+        if (!this.organization.canEditAnyCollection) {
             return await super.loadCipher();
         }
         const response = await this.apiService.getCipherAdmin(this.cipherId);
@@ -72,14 +72,14 @@ export class AddEditComponent extends BaseAddEditComponent {
     }
 
     protected encryptCipher() {
-        if (!this.organization.canManageAllCollections) {
+        if (!this.organization.canEditAnyCollection) {
             return super.encryptCipher();
         }
         return this.cipherService.encrypt(this.cipher, null, this.originalCipher);
     }
 
     protected async saveCipher(cipher: Cipher) {
-        if (!this.organization.canManageAllCollections || cipher.organizationId == null) {
+        if (!this.organization.canEditAnyCollection || cipher.organizationId == null) {
             return super.saveCipher(cipher);
         }
         if (this.editMode && !this.cloneMode) {
@@ -92,7 +92,7 @@ export class AddEditComponent extends BaseAddEditComponent {
     }
 
     protected async deleteCipher() {
-        if (!this.organization.canManageAllCollections) {
+        if (!this.organization.canEditAnyCollection) {
             return super.deleteCipher();
         }
         return this.cipher.isDeleted ? this.apiService.deleteCipherAdmin(this.cipherId)

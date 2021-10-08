@@ -60,6 +60,11 @@ export class MaximumVaultTimeoutPolicyComponent extends BasePolicyComponent {
             throw new Error(this.i18nService.t('requireSsoPolicyReqError'));
         }
 
+        const data = this.buildRequestData();
+        if (data?.minutes == null || data?.minutes <= 0) {
+            throw new Error(this.i18nService.t('invalidMaximumVaultTimeout'));
+        }
+
         return super.buildRequest(policiesEnabledMap);
     }
 }
