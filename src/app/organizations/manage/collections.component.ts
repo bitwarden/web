@@ -7,6 +7,8 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 
+import { first } from 'rxjs/operators';
+
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -57,11 +59,8 @@ export class CollectionsComponent implements OnInit {
         this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             await this.load();
-            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+            this.route.queryParams.pipe(first()).subscribe(async qParams => {
                 this.searchText = qParams.search;
-                if (queryParamsSub != null) {
-                    queryParamsSub.unsubscribe();
-                }
             });
         });
     }

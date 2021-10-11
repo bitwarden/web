@@ -9,6 +9,8 @@ import {
     Router,
 } from '@angular/router';
 
+import { first } from 'rxjs/operators';
+
 import { PolicyType } from 'jslib-common/enums/policyType';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
@@ -58,7 +60,7 @@ export class PoliciesComponent implements OnInit {
             await this.load();
 
             // Handle policies component launch from Event message
-            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+            this.route.queryParams.pipe(first()).subscribe(async qParams => {
                 if (qParams.policyId != null) {
                     const policyIdFromEvents: string = qParams.policyId;
                     for (const orgPolicy of this.orgPolicies) {
@@ -72,10 +74,6 @@ export class PoliciesComponent implements OnInit {
                             break;
                         }
                     }
-                }
-
-                if (queryParamsSub != null) {
-                    queryParamsSub.unsubscribe();
                 }
             });
         });
