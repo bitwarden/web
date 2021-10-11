@@ -6,6 +6,7 @@ import {
 import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -23,8 +24,9 @@ export class ReusedPasswordsReportComponent extends CipherReportComponent implem
     passwordUseMap: Map<string, number>;
 
     constructor(protected cipherService: CipherService, modalService: ModalService,
-        messagingService: MessagingService, activeAccount: ActiveAccountService) {
-        super(modalService, messagingService, true, activeAccount);
+        messagingService: MessagingService, activeAccount: ActiveAccountService,
+        passwordRepromptService: PasswordRepromptService) {
+        super(modalService, messagingService, true, activeAccount, passwordRepromptService);
     }
 
     async ngOnInit() {

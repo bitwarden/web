@@ -6,6 +6,7 @@ import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
+import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -27,8 +28,8 @@ export class WeakPasswordsReportComponent extends BaseWeakPasswordsReportCompone
     constructor(cipherService: CipherService, passwordGenerationService: PasswordGenerationService,
         modalService: ModalService, messagingService: MessagingService,
         activeAccount: ActiveAccountService, private route: ActivatedRoute,
-        private organizationService: OrganizationService) {
-        super(cipherService, passwordGenerationService, modalService, messagingService, activeAccount);
+        private organizationService: OrganizationService, passwordRepromptService: PasswordRepromptService) {
+        super(cipherService, passwordGenerationService, modalService, messagingService, activeAccount, passwordRepromptService);
     }
 
     async ngOnInit() {

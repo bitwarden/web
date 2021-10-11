@@ -13,6 +13,9 @@ import { AddEditComponent } from '../vault/add-edit.component';
 
 import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
+
+import { CipherRepromptType } from 'jslib-common/enums/cipherRepromptType';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -26,7 +29,8 @@ export class CipherReportComponent {
     organization: Organization;
 
     constructor(private modalService: ModalService, protected messagingService: MessagingService,
-        public requiresPaid: boolean, private activeAccount: ActiveAccountService) { }
+        public requiresPaid: boolean, private activeAccount: ActiveAccountService,
+        protected passwordRepromptService: PasswordRepromptService) { }
 
     async load() {
         this.loading = true;
@@ -36,6 +40,10 @@ export class CipherReportComponent {
     }
 
     async selectCipher(cipher: CipherView) {
+        if (!await this.repromptCipher(cipher)) {
+            return;
+        }
+
         const type = this.organization != null ? OrgAddEditComponent : AddEditComponent;
 
         const [modal, childComponent] = await this.modalService.openViewRef(type, this.cipherAddEditModalRef, (comp: OrgAddEditComponent | AddEditComponent) => {
@@ -84,5 +92,9 @@ export class CipherReportComponent {
 
     protected async setCiphers() {
         this.ciphers = [];
+    }
+
+    protected async repromptCipher(c: CipherView) {
+        return c.reprompt === CipherRepromptType.None || await this.passwordRepromptService.showPasswordPrompt();
     }
 }

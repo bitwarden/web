@@ -16,7 +16,7 @@
             <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="authed">
                 <div class="modal-body">
                     <ng-container *ngIf="!enabled">
-                        <img src="../../images/two-factor/0.png" class="float-right" alt="">
+                        <img class="float-right mfaType0" alt="Authenticator app logo">
                         <p>{{'twoStepAuthenticatorDesc' | i18n}}</p>
                         <p>
                             <strong>1. {{'twoStepAuthenticatorDownloadApp' | i18n}}</strong>
@@ -27,7 +27,7 @@
                             <p>{{'twoStepLoginProviderEnabled' | i18n}}</p>
                             {{'twoStepAuthenticatorReaddDesc' | i18n}}
                         </app-callout>
-                        <img src="../../images/two-factor/0.png" class="float-right" alt="">
+                        <img class="float-right mfaType0" alt="Authenticator app logo">
                         <p>{{'twoStepAuthenticatorNeedApp' | i18n}}</p>
                     </ng-container>
                     <ul class="fa-ul">

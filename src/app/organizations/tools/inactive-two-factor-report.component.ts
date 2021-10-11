@@ -5,6 +5,7 @@ import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.se
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
+import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -21,8 +22,9 @@ import { CipherView } from 'jslib-common/models/view/cipherView';
 export class InactiveTwoFactorReportComponent extends BaseInactiveTwoFactorReportComponent {
     constructor(cipherService: CipherService, modalService: ModalService,
         messagingService: MessagingService, activeAccount: ActiveAccountService,
-        private route: ActivatedRoute, private organizationService: OrganizationService) {
-        super(cipherService, modalService, messagingService, activeAccount);
+        private route: ActivatedRoute, private organizationService: OrganizationService,
+        passwordRepromptService: PasswordRepromptService) {
+        super(cipherService, modalService, messagingService, activeAccount, passwordRepromptService);
     }
 
     async ngOnInit() {

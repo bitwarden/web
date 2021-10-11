@@ -77,6 +77,10 @@ $border-color: $secondary;
 
 $fa-font-path: "~font-awesome/fonts";
 
+// MFA Types for logo styling with no dark theme alternative
+
+$mfaTypes: 0, 1, 2, 3, 4, 6;
+
 // Theme Variables
 
 $lightDangerHover: #C43421;
@@ -216,6 +220,7 @@ $themes: (
         tableRowHover: rgba(0,0,0,0.03),
         tableSeparator: #DEE2E6,
         browserInputIconsFilter: invert(0),
+        mfaLogoSuffix: '.png'
     ),
     dark: (
         logoSuffix: 'white',
@@ -331,6 +336,7 @@ $themes: (
         tableRowHover: rgba(255, 255, 255, 0.03),
         tableSeparator: $darkBlue1,
         browserInputIconsFilter: invert(1),
+        mfaLogoSuffix: '-w.png'
     ),
 );
 
