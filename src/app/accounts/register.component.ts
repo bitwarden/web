@@ -39,9 +39,9 @@ export class RegisterComponent extends BaseRegisterComponent {
         apiService: ApiService, private route: ActivatedRoute,
         stateService: StateService, platformUtilsService: PlatformUtilsService,
         passwordGenerationService: PasswordGenerationService, private policyService: PolicyService,
-        environmentService: EnvironmentService, private logService: LogService) {
+        environmentService: EnvironmentService, logService: LogService) {
         super(authService, router, i18nService, cryptoService, apiService, stateService, platformUtilsService,
-            passwordGenerationService, environmentService);
+            passwordGenerationService, environmentService, logService);
     }
 
     async ngOnInit() {

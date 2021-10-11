@@ -13,6 +13,7 @@ import { AddEditComponent } from './add-edit.component';
 
 import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
@@ -34,9 +35,10 @@ export class SendComponent extends BaseSendComponent {
     constructor(sendService: SendService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, environmentService: EnvironmentService,
         ngZone: NgZone, searchService: SearchService, policyService: PolicyService, userService: UserService,
-        private modalService: ModalService, private broadcasterService: BroadcasterService) {
+        private modalService: ModalService, private broadcasterService: BroadcasterService,
+        logService: LogService) {
         super(sendService, i18nService, platformUtilsService, environmentService, ngZone, searchService,
-            policyService, userService);
+            policyService, userService, logService);
     }
 
     async ngOnInit() {

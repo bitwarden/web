@@ -33,12 +33,12 @@ export class LoginComponent extends BaseLoginComponent {
         storageService: StorageService, stateService: StateService,
         platformUtilsService: PlatformUtilsService, environmentService: EnvironmentService,
         passwordGenerationService: PasswordGenerationService, cryptoFunctionService: CryptoFunctionService,
-        private apiService: ApiService, private policyService: PolicyService, private logService: LogService) {
+        private apiService: ApiService, private policyService: PolicyService, logService: LogService) {
         super(authService, router,
             platformUtilsService, i18nService,
             stateService, environmentService,
             passwordGenerationService, cryptoFunctionService,
-            storageService);
+            storageService, logService);
         this.onSuccessfulLoginNavigate = this.goAfterLogIn;
     }
 
