@@ -5,6 +5,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 import { DeleteRecoverRequest } from 'jslib-common/models/request/deleteRecoverRequest';
 
@@ -17,7 +18,8 @@ export class RecoverDeleteComponent {
     formPromise: Promise<any>;
 
     constructor(private router: Router, private apiService: ApiService,
-        private toasterService: ToasterService, private i18nService: I18nService) {
+        private toasterService: ToasterService, private i18nService: I18nService,
+        private logService: LogService) {
     }
 
     async submit() {
@@ -28,6 +30,8 @@ export class RecoverDeleteComponent {
             await this.formPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('deleteRecoverEmailSent'));
             this.router.navigate(['/']);
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }

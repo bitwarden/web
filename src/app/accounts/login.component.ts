@@ -9,6 +9,7 @@ import { AuthService } from 'jslib-common/abstractions/auth.service';
 import { CryptoFunctionService } from 'jslib-common/abstractions/cryptoFunction.service';
 import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
@@ -32,7 +33,7 @@ export class LoginComponent extends BaseLoginComponent {
         storageService: StorageService, stateService: StateService,
         platformUtilsService: PlatformUtilsService, environmentService: EnvironmentService,
         passwordGenerationService: PasswordGenerationService, cryptoFunctionService: CryptoFunctionService,
-        private apiService: ApiService, private policyService: PolicyService) {
+        private apiService: ApiService, private policyService: PolicyService, private logService: LogService) {
         super(authService, router,
             platformUtilsService, i18nService,
             stateService, environmentService,
@@ -65,7 +66,9 @@ export class LoginComponent extends BaseLoginComponent {
                 const policies = await this.apiService.getPoliciesByToken(invite.organizationId, invite.token,
                     invite.email, invite.organizationUserId);
                 policyList = this.policyService.mapPoliciesFromToken(policies);
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
 
             if (policyList != null) {
                 const result = this.policyService.getResetPasswordPolicyOptions(policyList, invite.organizationId);

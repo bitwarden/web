@@ -7,6 +7,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 import { UpdateDomainsRequest } from 'jslib-common/models/request/updateDomainsRequest';
 
@@ -21,7 +22,7 @@ export class DomainRulesComponent implements OnInit {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService) { }
+        private toasterService: ToasterService, private logService: LogService) { }
 
     async ngOnInit() {
         const response = await this.apiService.getSettingsDomains();
@@ -74,7 +75,9 @@ export class DomainRulesComponent implements OnInit {
             this.formPromise = this.apiService.putSettingsDomains(request);
             await this.formPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('domainsUpdated'));
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     indexTrackBy(index: number, obj: any): any {

@@ -8,6 +8,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
@@ -31,7 +32,8 @@ export class ChangeEmailComponent implements OnInit {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
-        private messagingService: MessagingService, private userService: UserService) { }
+        private messagingService: MessagingService, private userService: UserService,
+        private logService: LogService) { }
 
     async ngOnInit() {
         const twoFactorProviders = await this.apiService.getTwoFactorProviders();
@@ -55,7 +57,9 @@ export class ChangeEmailComponent implements OnInit {
                 this.formPromise = this.apiService.postEmailToken(request);
                 await this.formPromise;
                 this.tokenSent = true;
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
         } else {
             const request = new EmailRequest();
             request.token = this.token;
@@ -74,7 +78,9 @@ export class ChangeEmailComponent implements OnInit {
                 this.toasterService.popAsync('success', this.i18nService.t('emailChanged'),
                     this.i18nService.t('logBackIn'));
                 this.messagingService.send('logout');
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
         }
     }
 

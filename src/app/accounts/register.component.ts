@@ -9,6 +9,7 @@ import { AuthService } from 'jslib-common/abstractions/auth.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
@@ -38,7 +39,7 @@ export class RegisterComponent extends BaseRegisterComponent {
         apiService: ApiService, private route: ActivatedRoute,
         stateService: StateService, platformUtilsService: PlatformUtilsService,
         passwordGenerationService: PasswordGenerationService, private policyService: PolicyService,
-        environmentService: EnvironmentService) {
+        environmentService: EnvironmentService, private logService: LogService) {
         super(authService, router, i18nService, cryptoService, apiService, stateService, platformUtilsService,
             passwordGenerationService, environmentService);
     }
@@ -81,7 +82,9 @@ export class RegisterComponent extends BaseRegisterComponent {
                     const policiesData = policies.data.map(p => new PolicyData(p));
                     this.policies = policiesData.map(p => new Policy(p));
                 }
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
         }
 
         if (this.policies != null) {

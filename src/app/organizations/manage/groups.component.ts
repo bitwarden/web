@@ -13,6 +13,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
@@ -49,7 +50,7 @@ export class GroupsComponent implements OnInit {
         private i18nService: I18nService, private modalService: ModalService,
         private toasterService: ToasterService, private platformUtilsService: PlatformUtilsService,
         private userService: UserService, private router: Router,
-        private searchService: SearchService) { }
+        private searchService: SearchService, private logService: LogService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -125,7 +126,9 @@ export class GroupsComponent implements OnInit {
             await this.apiService.deleteGroup(this.organizationId, group.id);
             this.toasterService.popAsync('success', null, this.i18nService.t('deletedGroupId', group.name));
             this.removeGroup(group);
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     async users(group: GroupResponse) {

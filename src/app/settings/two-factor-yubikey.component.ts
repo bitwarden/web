@@ -4,6 +4,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { UpdateTwoFactorYubioOtpRequest } from 'jslib-common/models/request/updateTwoFactorYubioOtpRequest';
@@ -26,8 +27,9 @@ export class TwoFactorYubiKeyComponent extends TwoFactorBaseComponent {
     disablePromise: Promise<any>;
 
     constructor(apiService: ApiService, i18nService: I18nService,
-        toasterService: ToasterService, platformUtilsService: PlatformUtilsService) {
-        super(apiService, i18nService, toasterService, platformUtilsService);
+        toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
+        logService: LogService) {
+        super(apiService, i18nService, toasterService, platformUtilsService, logService);
     }
 
     auth(authResponse: any) {

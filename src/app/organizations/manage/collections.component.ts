@@ -10,6 +10,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
@@ -51,7 +52,7 @@ export class CollectionsComponent implements OnInit {
         private collectionService: CollectionService, private modalService: ModalService,
         private toasterService: ToasterService, private i18nService: I18nService,
         private platformUtilsService: PlatformUtilsService, private userService: UserService,
-        private searchService: SearchService) { }
+        private searchService: SearchService, private logService: LogService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -129,7 +130,9 @@ export class CollectionsComponent implements OnInit {
             await this.apiService.deleteCollection(this.organizationId, collection.id);
             this.toasterService.popAsync('success', null, this.i18nService.t('deletedCollectionId', collection.name));
             this.removeCollection(collection);
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     async users(collection: CollectionView) {
