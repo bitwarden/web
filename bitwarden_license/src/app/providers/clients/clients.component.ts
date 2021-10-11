@@ -7,6 +7,8 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 
+import { first } from 'rxjs/operators';
+
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
@@ -66,11 +68,8 @@ export class ClientsComponent implements OnInit {
 
             await this.load();
 
-            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+            this.route.queryParams.pipe(first()).subscribe(async qParams => {
                 this.searchText = qParams.search;
-                if (queryParamsSub != null) {
-                    queryParamsSub.unsubscribe();
-                }
             });
         });
     }
