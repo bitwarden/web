@@ -22,8 +22,8 @@ export class UpdateTempPasswordComponent extends BaseUpdateTempPasswordComponent
     constructor(i18nService: I18nService, platformUtilsService: PlatformUtilsService,
         passwordGenerationService: PasswordGenerationService, policyService: PolicyService,
         cryptoService: CryptoService, userService: UserService,
-        messagingService: MessagingService, apiService: ApiService, syncService: SyncService,
-        logService: LogService) {
+        messagingService: MessagingService, apiService: ApiService,
+        syncService: SyncService, logService: LogService) {
         super(i18nService, platformUtilsService, passwordGenerationService, policyService, cryptoService,
             userService, messagingService, apiService, syncService, logService);
     }
