@@ -26,9 +26,14 @@ export class SingleOrgPolicyComponent extends BasePolicyComponent {
     }
 
     buildRequest(policiesEnabledMap: Map<PolicyType, boolean>): Promise<PolicyRequest> {
-        const requireSsoEnabled = policiesEnabledMap.get(PolicyType.RequireSso) ?? false;
-        if (!this.enabled.value && requireSsoEnabled) {
-            throw new Error(this.i18nService.t('disableRequireSsoError'));
+        if (!this.enabled.value) {
+            if (policiesEnabledMap.get(PolicyType.RequireSso) ?? false) {
+                throw new Error(this.i18nService.t('disableRequireSsoError'));
+            }
+
+            if (policiesEnabledMap.get(PolicyType.MaximumVaultTimeout) ?? false) {
+                throw new Error(this.i18nService.t('disableMaximumVaultTimeoutError'));
+            }
         }
 
         return super.buildRequest(policiesEnabledMap);
