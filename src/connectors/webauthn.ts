@@ -7,6 +7,7 @@ require('./webauthn.scss');
 let parsed = false;
 let webauthnJson: any;
 let btnText: string = null;
+let btnReturnText: string = null;
 let parentUrl: string = null;
 let parentOrigin: string = null;
 let callbackUri: string = null;
@@ -64,10 +65,11 @@ function parseParametersV1() {
 
     webauthnJson = b64Decode(data);
     btnText = getQsParam('btnText');
+    btnReturnText = getQsParam('btnReturnText');
 }
 
 function parseParametersV2() {
-    let dataObj: { data: any, btnText: string; callbackUri?: string } = null;
+    let dataObj: { data: any, btnText: string; btnReturnText: string; callbackUri?: string } = null;
     try {
         dataObj = JSON.parse(b64Decode(getQsParam('data')));
     }
@@ -79,6 +81,7 @@ function parseParametersV2() {
     callbackUri = dataObj.callbackUri;
     webauthnJson = dataObj.data;
     btnText = dataObj.btnText;
+    btnReturnText = dataObj.btnReturnText;
 }
 
 function start() {
@@ -140,6 +143,7 @@ function onMessage() {
 function error(message: string) {
     if (callbackUri) {
         document.location.replace(callbackUri + '?error=' + encodeURIComponent(message));
+        returnButton(callbackUri + '?error=' + encodeURIComponent(message));
     } else {
         parent.postMessage('error|' + message, parentUrl);
     }
@@ -154,6 +158,7 @@ function success(assertedCredential: PublicKeyCredential) {
 
     if (callbackUri) {
         document.location.replace(callbackUri + '?data=' + encodeURIComponent(dataString));
+        returnButton(callbackUri + '?data=' + encodeURIComponent(dataString));
     } else {
         parent.postMessage('success|' + dataString, parentUrl);
         sentSuccess = true;
@@ -166,5 +171,18 @@ function info(message: string) {
     }
 
     parent.postMessage('info|' + message, parentUrl);
+}
+
+function returnButton(uri: string) {
+    // provides 'return' button in case scripted navigation is blocked
+    const button = document.getElementById('webauthn-button');
+    if (btnReturnText) {
+        button.innerText = decodeURI(btnReturnText);
+    } else {
+        button.innerText = decodeURI('Return to App');
+    }
+    button.onclick = function () {
+        document.location.replace(uri);
+    }
 }
 

@@ -6,13 +6,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="HandheldFriendly" content="true">
-    <title>Bitwarden Mobile WebAuthn Connector</title>
+    <title>Bitwarden WebAuthn Connector</title>
 </head>
 
 <body style="background: transparent;">
-    <img src="../images/u2fkey.jpg" class="rounded img-fluid mb-3">
-    <div class="text-center">
-        <button id="webauthn-button" class="btn btn-primary"></button>
+    <div class="row justify-content-md-center mt-5">
+        <div>
+            <img src="../images/logo-dark@2x.png" class="logo mb-2" alt="Bitwarden">
+            <p class="lead text-center mx-4 mb-4">FIDO2 WebAuthn</p>
+            <img src="../images/u2fkey-mobile.jpg" class="rounded img-fluid">
+            <div class="text-center mt-4">
+                <button id="webauthn-button" class="btn btn-primary btn-lg"></button>
+            </div>
+        </div>
     </div>
 </body>
 
