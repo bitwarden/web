@@ -11,7 +11,6 @@ import { RouterModule } from '@angular/router';
 import { ToasterModule } from 'angular2-toaster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
-import { AvatarComponent } from './components/avatar.component';
 import { NestedCheckboxComponent } from './components/nested-checkbox.component';
 import { PasswordRepromptComponent } from './components/password-reprompt.component';
 import { PasswordStrengthComponent } from './components/password-strength.component';
@@ -177,6 +176,7 @@ import { ProvidersComponent } from './providers/providers.component';
 
 import { CalloutComponent } from 'jslib-angular/components/callout.component';
 import { IconComponent } from 'jslib-angular/components/icon.component';
+import { AvatarComponent } from 'jslib-angular/components/avatar.component';
 
 import { A11yTitleDirective } from 'jslib-angular/directives/a11y-title.directive';
 import { ApiActionDirective } from 'jslib-angular/directives/api-action.directive';
