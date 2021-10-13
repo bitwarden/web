@@ -3853,11 +3853,14 @@
   "manageResetPassword": {
     "message": "Manage Password Reset"
   },
-  "disableRequireSsoError": {
-    "message": "You must manually disable the Single Sign-On Authentication policy before this policy can be disabled."
-  },
-  "disableMaximumVaultTimeoutError": {
-    "message": "You must manually disable the Maximum Vault Timeout policy before this policy can be disabled."
+  "disableRequiredError": {
+    "message": "You must manually disable the $POLICYNAME$ policy before this policy can be disabled.",
+    "placeholders": {
+      "policyName": {
+        "content": "$1",
+        "example": "Single Sign-On Authentication"
+      }
+    }
   },
   "personalOwnershipPolicyInEffect": {
     "message": "An organization policy is affecting your ownership options."
