@@ -6,6 +6,7 @@ require('./webauthn.scss');
 
 let parsed = false;
 let webauthnJson: any;
+let headerText: string = null;
 let btnText: string = null;
 let btnReturnText: string = null;
 let parentUrl: string = null;
@@ -19,6 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
     init();
 
     parseParameters();
+    if (headerText) {
+        const header = document.getElementById('webauthn-header');
+        header.innerText = decodeURI(headerText);
+    }
     if (btnText) {
         const button = document.getElementById('webauthn-button');
         button.innerText = decodeURI(btnText);
@@ -64,12 +69,13 @@ function parseParametersV1() {
     }
 
     webauthnJson = b64Decode(data);
+    headerText = getQsParam('headerText');
     btnText = getQsParam('btnText');
     btnReturnText = getQsParam('btnReturnText');
 }
 
 function parseParametersV2() {
-    let dataObj: { data: any, btnText: string; btnReturnText: string; callbackUri?: string } = null;
+    let dataObj: { data: any, headerText: string; btnText: string; btnReturnText: string; callbackUri?: string } = null;
     try {
         dataObj = JSON.parse(b64Decode(getQsParam('data')));
     }
@@ -80,6 +86,7 @@ function parseParametersV2() {
 
     callbackUri = dataObj.callbackUri;
     webauthnJson = dataObj.data;
+    headerText = dataObj.headerText;
     btnText = dataObj.btnText;
     btnReturnText = dataObj.btnReturnText;
 }
@@ -176,13 +183,7 @@ function info(message: string) {
 function returnButton(uri: string) {
     // provides 'return' button in case scripted navigation is blocked
     const button = document.getElementById('webauthn-button');
-    if (btnReturnText) {
-        button.innerText = decodeURI(btnReturnText);
-    } else {
-        button.innerText = decodeURI('Return to App');
-    }
-    button.onclick = function () {
-        document.location.replace(uri);
-    }
+    button.innerText = decodeURI(btnReturnText);
+    button.onclick = () => { document.location.replace(uri); };
 }
 
