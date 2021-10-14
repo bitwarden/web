@@ -35,7 +35,7 @@
                     <div class="input-group-append">
                         <button type="button" class="btn btn-outline-secondary"
                             appA11yTitle="{{'copyValue' | i18n}}"
-                            (click)="copy(data.value.callbackPath)">
+                            (click)="copy(callbackPath)">
                             <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -48,7 +48,7 @@
                     <div class="input-group-append">
                         <button type="button" class="btn btn-outline-secondary"
                             appA11yTitle="{{'copyValue' | i18n}}"
-                            (click)="copy(data.value.signedOutCallbackPath)">
+                            (click)="copy(signedOutCallbackPath)">
                             <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -124,7 +124,7 @@
                     <div class="input-group-append">
                         <button type="button" class="btn btn-outline-secondary"
                             appA11yTitle="{{'copyValue' | i18n}}"
-                            (click)="copy(data.value.spEntityId)">
+                            (click)="copy(spEntityId)">
                             <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -136,13 +136,13 @@
                     <input class="form-control" readonly [value]="spMetadataUrl">
                     <div class="input-group-append">
                         <button type="button" class="btn btn-outline-secondary"
-                            appA11yTitle="{{'copyValue' | i18n}}"
-                            (click)="launchUri(data.value.spMetadataUrl)">
+                            appA11yTitle="{{'launch' | i18n}}"
+                            (click)="launchUri(spMetadataUrl)">
                             <i class="fa fa-lg fa-external-link" aria-hidden="true"></i>
                         </button>
                         <button type="button" class="btn btn-outline-secondary"
                             appA11yTitle="{{'copyValue' | i18n}}"
-                            (click)="copy(data.value.spMetadataUrl)">
+                            (click)="copy(spMetadataUrl)">
                             <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
                         </button>
                     </div>
@@ -155,7 +155,7 @@
                     <div class="input-group-append">
                         <button type="button" class="btn btn-outline-secondary"
                             appA11yTitle="{{'copyValue' | i18n}}"
-                            (click)="copy(data.value.spAcsUrl)">
+                            (click)="copy(spAcsUrl)">
                             <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
                         </button>
                     </div>
