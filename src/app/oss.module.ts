@@ -174,9 +174,9 @@ import { VaultComponent } from './vault/vault.component';
 
 import { ProvidersComponent } from './providers/providers.component';
 
+import { AvatarComponent } from 'jslib-angular/components/avatar.component';
 import { CalloutComponent } from 'jslib-angular/components/callout.component';
 import { IconComponent } from 'jslib-angular/components/icon.component';
-import { AvatarComponent } from 'jslib-angular/components/avatar.component';
 
 import { A11yTitleDirective } from 'jslib-angular/directives/a11y-title.directive';
 import { ApiActionDirective } from 'jslib-angular/directives/api-action.directive';
