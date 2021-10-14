@@ -31,6 +31,7 @@ export class EmergencyAccessViewComponent implements OnInit {
 
     id: string;
     ciphers: CipherView[] = [];
+    loaded = false;
 
     constructor(private cipherService: CipherService, private cryptoService: CryptoService,
         private modalService: ModalService, private router: Router,
@@ -60,6 +61,7 @@ export class EmergencyAccessViewComponent implements OnInit {
     async load() {
         const response = await this.apiService.postEmergencyAccessView(this.id);
         this.ciphers = await this.getAllCiphers(response);
+        this.loaded = true;
     }
 
     async viewAttachments(cipher: CipherView) {
