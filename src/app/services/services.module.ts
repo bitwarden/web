@@ -131,7 +131,7 @@ const syncService = new SyncService(userService, apiService, settingsService,
     folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
     sendService, consoleLogService, async (expired: boolean) => messagingService.send('logout', { expired: expired }));
 const passwordGenerationService = new PasswordGenerationService(cryptoService, storageService, policyService);
-const totpService = new TotpService(storageService, cryptoFunctionService);
+const totpService = new TotpService(storageService, cryptoFunctionService, consoleLogService);
 const containerService = new ContainerService(cryptoService);
 const authService = new AuthService(cryptoService, apiService,
     userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService, vaultTimeoutService,
