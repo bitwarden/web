@@ -79,19 +79,6 @@ export class UserAddEditComponent implements OnInit {
         },
     ];
 
-    get fallbackToManageAllCollections() {
-        return this.editMode &&
-            this.permissions.createNewCollections == null &&
-            this.permissions.editAnyCollection == null &&
-            this.permissions.deleteAnyCollection == null;
-    }
-
-    get fallbackToManageAssignedCollections() {
-        return this.editMode &&
-            this.permissions.editAssignedCollections == null &&
-            this.permissions.deleteAssignedCollections == null;
-    }
-
     get customUserTypeSelected(): boolean {
         return this.type === OrganizationUserType.Custom;
     }
