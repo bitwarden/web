@@ -121,7 +121,7 @@ const folderService = new FolderService(cryptoService, userService, apiService, 
     i18nService, cipherService);
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
 searchService = new SearchService(cipherService, consoleLogService, i18nService);
-const policyService = new PolicyService(userService, storageService);
+const policyService = new PolicyService(userService, storageService, apiService);
 const sendService = new SendService(cryptoService, userService, apiService, fileUploadService, storageService,
     i18nService, cryptoFunctionService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,

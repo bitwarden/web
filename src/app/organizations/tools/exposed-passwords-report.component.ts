@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { AuditService } from 'jslib-common/abstractions/audit.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
@@ -24,8 +25,8 @@ export class ExposedPasswordsReportComponent extends BaseExposedPasswordsReportC
 
     constructor(cipherService: CipherService, auditService: AuditService,
         modalService: ModalService, messagingService: MessagingService,
-        userService: UserService, private route: ActivatedRoute) {
-        super(cipherService, auditService, modalService, messagingService, userService);
+        userService: UserService, passwordRepromptService: PasswordRepromptService, private route: ActivatedRoute) {
+        super(cipherService, auditService, modalService, messagingService, userService, passwordRepromptService);
     }
 
     ngOnInit() {

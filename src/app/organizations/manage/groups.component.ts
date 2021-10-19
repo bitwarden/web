@@ -9,6 +9,8 @@ import {
     Router,
 } from '@angular/router';
 
+import { first } from 'rxjs/operators';
+
 import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
@@ -61,11 +63,8 @@ export class GroupsComponent implements OnInit {
                 return;
             }
             await this.load();
-            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+            this.route.queryParams.pipe(first()).subscribe(async qParams => {
                 this.searchText = qParams.search;
-                if (queryParamsSub != null) {
-                    queryParamsSub.unsubscribe();
-                }
             });
         });
     }

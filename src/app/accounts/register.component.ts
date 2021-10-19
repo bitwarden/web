@@ -4,6 +4,8 @@ import {
     Router,
 } from '@angular/router';
 
+import { first } from 'rxjs/operators';
+
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { AuthService } from 'jslib-common/abstractions/auth.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
@@ -45,7 +47,7 @@ export class RegisterComponent extends BaseRegisterComponent {
     }
 
     async ngOnInit() {
-        const queryParamsSub = this.route.queryParams.subscribe(qParams => {
+        this.route.queryParams.pipe(first()).subscribe(qParams => {
             this.referenceData = new ReferenceEventRequest();
             if (qParams.email != null && qParams.email.indexOf('@') > -1) {
                 this.email = qParams.email;
@@ -68,9 +70,6 @@ export class RegisterComponent extends BaseRegisterComponent {
             }
             if (this.referenceData.id === '') {
                 this.referenceData.id = null;
-            }
-            if (queryParamsSub != null) {
-                queryParamsSub.unsubscribe();
             }
         });
         const invite = await this.stateService.get<any>('orgInvitation');

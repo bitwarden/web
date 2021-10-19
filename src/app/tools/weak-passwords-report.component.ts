@@ -6,6 +6,7 @@ import {
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
+import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
@@ -27,9 +28,9 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
     private passwordStrengthCache = new Map<string, number>();
 
     constructor(protected cipherService: CipherService, protected passwordGenerationService: PasswordGenerationService,
-        modalService: ModalService, messagingService: MessagingService,
-        userService: UserService) {
-        super(modalService, userService, messagingService, true);
+        modalService: ModalService, messagingService: MessagingService, userService: UserService,
+        passwordRepromptService: PasswordRepromptService) {
+        super(modalService, userService, messagingService, passwordRepromptService, true);
     }
 
     async ngOnInit() {

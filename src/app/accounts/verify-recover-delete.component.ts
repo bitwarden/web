@@ -7,6 +7,8 @@ import {
     Router,
 } from '@angular/router';
 
+import { first } from 'rxjs/operators';
+
 import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
@@ -32,12 +34,7 @@ export class VerifyRecoverDeleteComponent implements OnInit {
     }
 
     ngOnInit() {
-        let fired = false;
-        this.route.queryParams.subscribe(async qParams => {
-            if (fired) {
-                return;
-            }
-            fired = true;
+        this.route.queryParams.pipe(first()).subscribe(async qParams => {
             if (qParams.userId != null && qParams.token != null && qParams.email != null) {
                 this.userId = qParams.userId;
                 this.token = qParams.token;

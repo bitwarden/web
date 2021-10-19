@@ -81,13 +81,15 @@ export class UserAddEditComponent implements OnInit {
     ];
 
     get fallbackToManageAllCollections() {
-        return this.permissions.createNewCollections == null &&
+        return this.editMode &&
+            this.permissions.createNewCollections == null &&
             this.permissions.editAnyCollection == null &&
             this.permissions.deleteAnyCollection == null;
     }
 
     get fallbackToManageAssignedCollections() {
-        return this.permissions.editAssignedCollections == null &&
+        return this.editMode &&
+            this.permissions.editAssignedCollections == null &&
             this.permissions.deleteAssignedCollections == null;
     }
 

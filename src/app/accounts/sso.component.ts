@@ -4,6 +4,8 @@ import {
     Router,
 } from '@angular/router';
 
+import { first } from 'rxjs/operators';
+
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { AuthService } from 'jslib-common/abstractions/auth.service';
 import { CryptoFunctionService } from 'jslib-common/abstractions/cryptoFunction.service';
@@ -38,7 +40,7 @@ export class SsoComponent extends BaseSsoComponent {
 
     async ngOnInit() {
         super.ngOnInit();
-        const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+        this.route.queryParams.pipe(first()).subscribe(async qParams => {
             if (qParams.identifier != null) {
                 this.identifier = qParams.identifier;
             } else {
@@ -46,9 +48,6 @@ export class SsoComponent extends BaseSsoComponent {
                 if (storedIdentifier != null) {
                     this.identifier = storedIdentifier;
                 }
-            }
-            if (queryParamsSub != null) {
-                queryParamsSub.unsubscribe();
             }
         });
     }
