@@ -78,7 +78,6 @@ jobs:
 
       - name: Push images
         run: |
-          docker push bitwarden/web:latest
           docker push bitwarden/web:$_RELEASE_VERSION
         env:
           DOCKER_CONTENT_TRUST: 1
