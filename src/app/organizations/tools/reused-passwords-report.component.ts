@@ -1,12 +1,12 @@
-import {
-    Component,
-    ComponentFactoryResolver,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { Cipher } from 'jslib-common/models/domain/cipher';
 
@@ -23,10 +23,10 @@ import {
 export class ReusedPasswordsReportComponent extends BaseReusedPasswordsReportComponent {
     manageableCiphers: Cipher[];
 
-    constructor(cipherService: CipherService, componentFactoryResolver: ComponentFactoryResolver,
-        messagingService: MessagingService, userService: UserService,
+    constructor(cipherService: CipherService, modalService: ModalService,
+        messagingService: MessagingService, userService: UserService, passwordRepromptService: PasswordRepromptService,
         private route: ActivatedRoute) {
-        super(cipherService, componentFactoryResolver, messagingService, userService);
+        super(cipherService, modalService, messagingService, userService, passwordRepromptService);
     }
 
     async ngOnInit() {

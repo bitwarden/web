@@ -9,9 +9,6 @@ import { ActivatedRoute } from '@angular/router';
 
 import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
@@ -26,16 +23,11 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
     organization: Organization;
     businessTokenPromise: Promise<any>;
     private organizationId: string;
-    private businessUrl: string;
 
     constructor(private route: ActivatedRoute, private userService: UserService,
-        private broadcasterService: BroadcasterService, private ngZone: NgZone,
-        private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
-        private environmentService: EnvironmentService) { }
+        private broadcasterService: BroadcasterService, private ngZone: NgZone) { }
 
     ngOnInit() {
-        this.businessUrl = this.environmentService.getEnterpriseUrl();
-
         document.body.classList.remove('layout_frontend');
         this.route.params.subscribe(async params => {
             this.organizationId = params.organizationId;
@@ -60,30 +52,14 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
         this.organization = await this.userService.getOrganization(this.organizationId);
     }
 
-    async goToBusinessPortal() {
-        if (this.businessTokenPromise != null) {
-            return;
-        }
-        try {
-            this.businessTokenPromise = this.apiService.getEnterprisePortalSignInToken();
-            const token = await this.businessTokenPromise;
-            if (token != null) {
-                const userId = await this.userService.getUserId();
-                this.platformUtilsService.launchUri(this.businessUrl + '/login?userId=' + userId +
-                    '&token=' + (window as any).encodeURIComponent(token) + '&organizationId=' + this.organization.id);
-            }
-        } catch { }
-        this.businessTokenPromise = null;
-    }
-
     get showMenuBar() {
         return this.showManageTab || this.showToolsTab || this.organization.isOwner;
     }
 
     get showManageTab(): boolean {
         return this.organization.canManageUsers ||
-            this.organization.canManageAssignedCollections ||
-            this.organization.canManageAllCollections ||
+            this.organization.canViewAllCollections ||
+            this.organization.canViewAssignedCollections ||
             this.organization.canManageGroups ||
             this.organization.canManagePolicies ||
             this.organization.canAccessEventLogs;
@@ -91,10 +67,6 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
 
     get showToolsTab(): boolean {
         return this.organization.canAccessImportExport || this.organization.canAccessReports;
-    }
-
-    get showBusinessPortalButton(): boolean {
-        return this.organization.useBusinessPortal && this.organization.canAccessBusinessPortal;
     }
 
     get toolsRoute(): string {
@@ -109,7 +81,7 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
             case this.organization.canManageUsers:
                 route = 'manage/people';
                 break;
-            case this.organization.canManageAssignedCollections || this.organization.canManageAllCollections:
+            case this.organization.canViewAssignedCollections || this.organization.canViewAllCollections:
                 route = 'manage/collections';
                 break;
             case this.organization.canManageGroups:

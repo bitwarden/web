@@ -1,13 +1,13 @@
 import {
     Component,
-    ComponentFactoryResolver,
     OnInit,
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { ToasterService } from 'angular2-toaster';
+
+import { first } from 'rxjs/operators';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
@@ -15,6 +15,8 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { CollectionData } from 'jslib-common/models/data/collectionData';
 import { Collection } from 'jslib-common/models/domain/collection';
@@ -25,7 +27,6 @@ import {
 import { ListResponse } from 'jslib-common/models/response/listResponse';
 import { CollectionView } from 'jslib-common/models/view/collectionView';
 
-import { ModalComponent } from '../../modal.component';
 import { CollectionAddEditComponent } from './collection-add-edit.component';
 import { EntityUsersComponent } from './entity-users.component';
 
@@ -47,10 +48,9 @@ export class CollectionsComponent implements OnInit {
     protected pageSize = 100;
 
     private pagedCollectionsCount = 0;
-    private modal: ModalComponent = null;
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private collectionService: CollectionService, private componentFactoryResolver: ComponentFactoryResolver,
+        private collectionService: CollectionService, private modalService: ModalService,
         private toasterService: ToasterService, private i18nService: I18nService,
         private platformUtilsService: PlatformUtilsService, private userService: UserService,
         private searchService: SearchService) { }
@@ -59,11 +59,8 @@ export class CollectionsComponent implements OnInit {
         this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             await this.load();
-            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+            this.route.queryParams.pipe(first()).subscribe(async qParams => {
                 this.searchText = qParams.search;
-                if (queryParamsSub != null) {
-                    queryParamsSub.unsubscribe();
-                }
             });
         });
     }
@@ -71,7 +68,7 @@ export class CollectionsComponent implements OnInit {
     async load() {
         const organization = await this.userService.getOrganization(this.organizationId);
         let response: ListResponse<CollectionResponse>;
-        if (organization.canManageAllCollections) {
+        if (organization.canViewAllCollections) {
             response = await this.apiService.getCollections(this.organizationId);
         } else {
             response = await this.apiService.getUserCollections();
@@ -100,29 +97,18 @@ export class CollectionsComponent implements OnInit {
         this.didScroll = this.pagedCollections.length > this.pageSize;
     }
 
-    edit(collection: CollectionView) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
-
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.addEditModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<CollectionAddEditComponent>(
-            CollectionAddEditComponent, this.addEditModalRef);
-
-        childComponent.organizationId = this.organizationId;
-        childComponent.collectionId = collection != null ? collection.id : null;
-        childComponent.onSavedCollection.subscribe(() => {
-            this.modal.close();
-            this.load();
-        });
-        childComponent.onDeletedCollection.subscribe(() => {
-            this.modal.close();
-            this.removeCollection(collection);
-        });
-
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+    async edit(collection: CollectionView) {
+        const [modal] = await this.modalService.openViewRef(CollectionAddEditComponent, this.addEditModalRef, comp => {
+            comp.organizationId = this.organizationId;
+            comp.collectionId = collection != null ? collection.id : null;
+            comp.onSavedCollection.subscribe(() => {
+                modal.close();
+                this.load();
+            });
+            comp.onDeletedCollection.subscribe(() => {
+                modal.close();
+                this.removeCollection(collection);
+            });
         });
     }
 
@@ -145,27 +131,17 @@ export class CollectionsComponent implements OnInit {
         } catch { }
     }
 
-    users(collection: CollectionView) {
-        if (this.modal != null) {
-            this.modal.close();
-        }
+    async users(collection: CollectionView) {
+        const [modal] = await this.modalService.openViewRef(EntityUsersComponent, this.usersModalRef, comp => {
+            comp.organizationId = this.organizationId;
+            comp.entity = 'collection';
+            comp.entityId = collection.id;
+            comp.entityName = collection.name;
 
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.usersModalRef.createComponent(factory).instance;
-        const childComponent = this.modal.show<EntityUsersComponent>(
-            EntityUsersComponent, this.usersModalRef);
-
-        childComponent.organizationId = this.organizationId;
-        childComponent.entity = 'collection';
-        childComponent.entityId = collection.id;
-        childComponent.entityName = collection.name;
-
-        childComponent.onEditedUsers.subscribe(() => {
-            this.load();
-            this.modal.close();
-        });
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+            comp.onEditedUsers.subscribe(() => {
+                this.load();
+                modal.close();
+            });
         });
     }
 

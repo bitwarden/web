@@ -9,26 +9,14 @@ import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
-import { WebConstants } from '../../services/webConstants';
+import { ThemeType } from 'jslib-common/enums/themeType';
 
-const StripeElementStyle = {
-    base: {
-        color: '#333333',
-        fontFamily: '"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif, ' +
-            '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
-        fontSize: '14px',
-        fontSmoothing: 'antialiased',
-    },
-    invalid: {
-        color: '#333333',
-    },
-};
+import ThemeVariables from 'src/scss/export.module.scss';
 
-const StripeElementClasses = {
-    focus: 'is-focused',
-    empty: 'is-empty',
-    invalid: 'is-invalid',
-};
+const lightInputColor = ThemeVariables.lightInputColor;
+const lightInputPlaceholderColor = ThemeVariables.lightInputPlaceholderColor;
+const darkInputColor = ThemeVariables.darkInputColor;
+const darkInputPlaceholderColor = ThemeVariables.darkInputPlaceholderColor;
 
 @Component({
     selector: 'app-payment',
@@ -61,28 +49,51 @@ export class PaymentComponent implements OnInit {
     private stripeCardNumberElement: any = null;
     private stripeCardExpiryElement: any = null;
     private stripeCardCvcElement: any = null;
+    private StripeElementStyle: any;
+    private StripeElementClasses: any;
 
     constructor(private platformUtilsService: PlatformUtilsService, private apiService: ApiService) {
         this.stripeScript = window.document.createElement('script');
         this.stripeScript.src = 'https://js.stripe.com/v3/';
         this.stripeScript.async = true;
         this.stripeScript.onload = () => {
-            this.stripe = (window as any).Stripe(process.env.ENV === 'cloud' && !platformUtilsService.isDev() ?
-                WebConstants.stripeLiveKey : WebConstants.stripeTestKey);
+            this.stripe = (window as any).Stripe(process.env.STRIPE_KEY);
             this.stripeElements = this.stripe.elements();
             this.setStripeElement();
         };
         this.btScript = window.document.createElement('script');
         this.btScript.src = `scripts/dropin.js?cache=${process.env.CACHE_TAG}`;
         this.btScript.async = true;
+        this.StripeElementStyle = {
+            base: {
+                color: null,
+                fontFamily: '"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif, ' +
+                    '"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+                fontSize: '14px',
+                fontSmoothing: 'antialiased',
+                '::placeholder': {
+                    color: null,
+                },
+            },
+            invalid: {
+                color: null,
+
+            },
+        };
+        this.StripeElementClasses = {
+            focus: 'is-focused',
+            empty: 'is-empty',
+            invalid: 'is-invalid',
+        };
     }
 
-    ngOnInit() {
+    async ngOnInit() {
         if (!this.showOptions) {
             this.hidePaypal = this.method !== PaymentMethodType.PayPal;
             this.hideBank = this.method !== PaymentMethodType.BankAccount;
             this.hideCredit = this.method !== PaymentMethodType.Credit;
         }
+        await this.setTheme();
         window.document.head.appendChild(this.stripeScript);
         if (!this.hidePaypal) {
             window.document.head.appendChild(this.btScript);
@@ -126,8 +137,7 @@ export class PaymentComponent implements OnInit {
         if (this.method === PaymentMethodType.PayPal) {
             window.setTimeout(() => {
                 (window as any).braintree.dropin.create({
-                    authorization: process.env.ENV === 'cloud' ?
-                        WebConstants.btProductionKey : WebConstants.btSandboxKey,
+                    authorization: process.env.BRAINTREE_KEY,
                     container: '#bt-dropin-container',
                     paymentOptionPriority: ['paypal'],
                     paypal: {
@@ -137,6 +147,7 @@ export class PaymentComponent implements OnInit {
                             size: 'medium',
                             shape: 'pill',
                             color: 'blue',
+                            tagline: 'false',
                         },
                     },
                 }, (createErr: any, instance: any) => {
@@ -220,21 +231,21 @@ export class PaymentComponent implements OnInit {
             if (this.showMethods && this.method === PaymentMethodType.Card) {
                 if (this.stripeCardNumberElement == null) {
                     this.stripeCardNumberElement = this.stripeElements.create('cardNumber', {
-                        style: StripeElementStyle,
-                        classes: StripeElementClasses,
+                        style: this.StripeElementStyle,
+                        classes: this.StripeElementClasses,
                         placeholder: '',
                     });
                 }
                 if (this.stripeCardExpiryElement == null) {
                     this.stripeCardExpiryElement = this.stripeElements.create('cardExpiry', {
-                        style: StripeElementStyle,
-                        classes: StripeElementClasses,
+                        style: this.StripeElementStyle,
+                        classes: this.StripeElementClasses,
                     });
                 }
                 if (this.stripeCardCvcElement == null) {
                     this.stripeCardCvcElement = this.stripeElements.create('cardCvc', {
-                        style: StripeElementStyle,
-                        classes: StripeElementClasses,
+                        style: this.StripeElementStyle,
+                        classes: this.StripeElementClasses,
                         placeholder: '',
                     });
                 }
@@ -243,5 +254,18 @@ export class PaymentComponent implements OnInit {
                 this.stripeCardCvcElement.mount('#stripe-card-cvc-element');
             }
         }, 50);
+    }
+
+    private async setTheme() {
+        const theme = await this.platformUtilsService.getEffectiveTheme();
+        if (theme === ThemeType.Dark) {
+            this.StripeElementStyle.base.color = darkInputColor;
+            this.StripeElementStyle.base['::placeholder'].color = darkInputPlaceholderColor;
+            this.StripeElementStyle.invalid.color = darkInputColor;
+        } else {
+            this.StripeElementStyle.base.color = lightInputColor;
+            this.StripeElementStyle.base['::placeholder'].color = lightInputPlaceholderColor;
+            this.StripeElementStyle.invalid.color = lightInputColor;
+        }
     }
 }

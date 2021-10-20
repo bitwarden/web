@@ -12,8 +12,8 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { UserService } from 'jslib-common/abstractions';
 import { PlanType } from 'jslib-common/enums/planType';
 
 @Component({
@@ -26,6 +26,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     organizationId: string;
     adjustSeatsAdd = true;
     showAdjustSeats = false;
+    showAdjustSeatAutoscale = false;
     adjustStorageAdd = true;
     showAdjustStorage = false;
     showUpdateLicense = false;
@@ -142,16 +143,8 @@ export class OrganizationSubscriptionComponent implements OnInit {
         }
     }
 
-    adjustSeats(add: boolean) {
-        this.adjustSeatsAdd = add;
-        this.showAdjustSeats = true;
-    }
-
-    closeSeats(load: boolean) {
-        this.showAdjustSeats = false;
-        if (load) {
-            this.load();
-        }
+    subscriptionAdjusted() {
+        this.load();
     }
 
     adjustStorage(add: boolean) {
@@ -205,6 +198,14 @@ export class OrganizationSubscriptionComponent implements OnInit {
         return this.sub.plan.seatPrice;
     }
 
+    get seats() {
+        return this.sub.seats;
+    }
+
+    get maxAutoscaleSeats() {
+        return this.sub.maxAutoscaleSeats;
+    }
+
     get canAdjustSeats() {
         return this.sub.plan.hasAdditionalSeatsOption;
     }
@@ -212,5 +213,15 @@ export class OrganizationSubscriptionComponent implements OnInit {
     get canDownloadLicense() {
         return (this.sub.planType !== PlanType.Free && this.subscription == null) ||
             (this.subscription != null && !this.subscription.cancelled);
+    }
+
+    get subscriptionDesc() {
+        if (this.sub.maxAutoscaleSeats === this.sub.seats && this.sub.seats != null) {
+            return this.i18nService.t('subscriptionMaxReached', this.sub.seats.toString());
+        } else if (this.sub.maxAutoscaleSeats == null) {
+            return this.i18nService.t('subscriptionUserSeatsUnlimitedAutoscale');
+        } else {
+            return this.i18nService.t('subscriptionUserSeatsLimitedAutoscale', this.sub.maxAutoscaleSeats.toString());
+        }
     }
 }

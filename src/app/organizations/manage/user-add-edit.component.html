@@ -80,32 +80,15 @@
                             <div class="mb-3">
                                 <label class="font-weight-bold mb-0">Manager Permissions</label>
                                 <hr class="my-0 mr-2" />
-                                <div class="form-group mb-0">
-                                    <div class="form-check mt-1 form-check-block">
-                                        <input class="form-check-input" type="checkbox" name="manageAssignedCollections"
-                                            id="manageAssignedCollections"
-                                            [(ngModel)]="permissions.manageAssignedCollections">
-                                        <label class="form-check-label font-weight-normal"
-                                            for="manageAssignedCollections">
-                                            {{'manageAssignedCollections' | i18n}}
-                                        </label>
-                                    </div>
-                                </div>
+                                <app-nested-checkbox parentId="manageAssignedCollections"
+                                    [checkboxes]="manageAssignedCollectionsCheckboxes">
+                                </app-nested-checkbox>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="mb-3">
                                 <label class="font-weight-bold mb-0">Admin Permissions</label>
                                 <hr class="my-0 mr-2" />
-                                <div class="form-group mb-0">
-                                    <div class="form-check mt-1 form-check-block">
-                                        <input class="form-check-input" type="checkbox" name="accessBusinessPortal"
-                                            id="accessBusinessPortal" [(ngModel)]="permissions.accessBusinessPortal">
-                                        <label class="form-check-label font-weight-normal" for="accessBusinessPortal">
-                                            {{'accessBusinessPortal' | i18n}}
-                                        </label>
-                                    </div>
-                                </div>
                                 <div class="form-group mb-0">
                                     <div class="form-check mt-1 form-check-block">
                                         <input class="form-check-input" type="checkbox" name="accessEventLogs"
@@ -133,15 +116,9 @@
                                         </label>
                                     </div>
                                 </div>
-                                <div class="form-group mb-0">
-                                    <div class="form-check mt-1 form-check-block">
-                                        <input class="form-check-input" type="checkbox" name="manageAllCollections"
-                                            id="manageAllCollections" [(ngModel)]="permissions.manageAllCollections">
-                                        <label class="form-check-label font-weight-normal" for="manageAllCollections">
-                                            {{'manageAllCollections' | i18n}}
-                                        </label>
-                                    </div>
-                                </div>
+                                <app-nested-checkbox parentId="manageAllCollections"
+                                    [checkboxes]="manageAllCollectionsCheckboxes">
+                                </app-nested-checkbox>
                                 <div class="form-group mb-0">
                                     <div class="form-check mt-1 form-check-block">
                                         <input class="form-check-input" type="checkbox" name="manageGroups"

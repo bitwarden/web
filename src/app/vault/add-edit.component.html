@@ -103,7 +103,7 @@
                         </div>
                         <div class="col-6 form-group totp d-flex align-items-end" [ngClass]="{'low': totpLow}">
                             <div *ngIf="!cipher.login.totp || !totpCode">
-                                <img src="../../images/totp-countdown.png" title="{{'verificationCodeTotp' | i18n}}"
+                                <img src="../../images/totp-countdown.png" id="totpImage" title="{{'verificationCodeTotp' | i18n}}"
                                     class="ml-2">
                                 <a href="#" appStopClick class="badge badge-primary ml-3" (click)="premiumRequired()"
                                     *ngIf="!organization && !cipher.organizationId && !canAccessPremium">
@@ -388,85 +388,8 @@
                     <textarea id="notes" name="Notes" rows="6" [(ngModel)]="cipher.notes"
                         [disabled]="cipher.isDeleted || viewOnly" class="form-control"></textarea>
                 </div>
-                <h3 class="mt-4">{{'customFields' | i18n}}</h3>
-                <div cdkDropList (cdkDropListDropped)="drop($event)" *ngIf="cipher.hasFields">
-                    <div class="row" cdkDrag *ngFor="let f of cipher.fields; let i = index; trackBy:trackByFunction">
-                        <div class="col-5 form-group">
-                            <div class="d-flex">
-                                <label for="fieldName{{i}}">{{'name' | i18n}}</label>
-                                <a class="ml-auto" href="https://help.bitwarden.com/article/custom-fields/"
-                                    target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}">
-                                    <i class="fa fa-question-circle-o" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                            <input id="fieldName{{i}}" type="text" name="Field.Name{{i}}" [(ngModel)]="f.name"
-                                class="form-control" appInputVerbatim [disabled]="cipher.isDeleted || viewOnly">
-                        </div>
-                        <div class="col-7 form-group">
-                            <label for="fieldValue{{i}}">{{'value' | i18n}}</label>
-                            <div class="d-flex align-items-center">
-                                <div class="input-group" *ngIf="f.type === fieldType.Text">
-                                    <input id="fieldValue{{i}}" class="form-control" type="text" name="Field.Value{{i}}"
-                                        [(ngModel)]="f.value" appInputVerbatim
-                                        [disabled]="cipher.isDeleted || viewOnly">
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-secondary"
-                                            appA11yTitle="{{'copyValue' | i18n}}"
-                                            (click)="copy(f.value, 'value', 'Field')">
-                                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="input-group" *ngIf="f.type === fieldType.Hidden">
-                                    <input id="fieldValue{{i}}" type="{{f.showValue ? 'text' : 'password'}}"
-                                        name="Field.Value{{i}}" [(ngModel)]="f.value"
-                                        class="form-control text-monospace" appInputVerbatim autocomplete="new-password"
-                                        [disabled]="cipher.isDeleted || viewOnly || (!cipher.viewPassword && !f.newField)">
-                                    <div class="input-group-append">
-                                        <button type="button" class="btn btn-outline-secondary"
-                                            appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
-                                            [disabled]="!cipher.viewPassword && !f.newField">
-                                            <i class="fa fa-lg" aria-hidden="true"
-                                                [ngClass]="{'fa-eye': !f.showValue, 'fa-eye-slash': f.showValue}">
-                                            </i>
-                                        </button>
-                                        <button type="button" class="btn btn-outline-secondary"
-                                            appA11yTitle="{{'copyValue' | i18n}}"
-                                            (click)="copy(f.value, 'value', f.type === fieldType.Hidden ? 'H_Field' : 'Field')"
-                                            [disabled]="!cipher.viewPassword && !f.newField">
-                                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="flex-fill">
-                                    <input id="fieldValue{{i}}" name="Field.Value{{i}}" type="checkbox"
-                                        [(ngModel)]="f.value" *ngIf="f.type === fieldType.Boolean" appTrueFalseValue
-                                        trueValue="true" falseValue="false" [disabled]="cipher.isDeleted || viewOnly">
-                                </div>
-                                <button type="button" class="btn btn-link text-danger ml-2" (click)="removeField(f)"
-                                    appA11yTitle="{{'remove' | i18n}}" *ngIf="!cipher.isDeleted && !viewOnly">
-                                    <i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
-                                </button>
-                                <button type="button" class="btn btn-link text-muted cursor-move"
-                                    appA11yTitle="{{'dragToSort' | i18n}}" *ngIf="!cipher.isDeleted && !viewOnly">
-                                    <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#" appStopClick (click)="addField()" class="d-inline-block mb-2"
-                    *ngIf="!cipher.isDeleted && !viewOnly">
-                    <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i> {{'newCustomField' | i18n}}
-                </a>
-                <div class="row" *ngIf="!cipher.isDeleted && !viewOnly">
-                    <div class="col-5">
-                        <label for="addFieldType" class="sr-only">{{'type' | i18n}}</label>
-                        <select id="addFieldType" class="form-control" name="AddFieldType" [(ngModel)]="addFieldType">
-                            <option *ngFor="let o of addFieldTypeOptions" [ngValue]="o.value">{{o.name}}</option>
-                        </select>
-                    </div>
-                </div>
+                <app-vault-add-edit-custom-fields [cipher]="cipher" [viewOnly]="viewOnly" [copy]="copy.bind(this)">
+                </app-vault-add-edit-custom-fields>
                 <ng-container *ngIf="allowOwnershipAssignment()">
                     <h3 class="mt-4">{{'ownership' | i18n}}</h3>
                     <div class="row">

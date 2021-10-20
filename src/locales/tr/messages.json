@@ -899,6 +899,9 @@
   "changeEmail": {
     "message": "E-postayı değiştir"
   },
+  "changeEmailTwoFactorWarning": {
+    "message": "Proceeding will change your account email address. It will not change the email address used for two-factor authentication. You can change this email address in the Two-Step Login settings."
+  },
   "newEmail": {
     "message": "Yeni e-posta"
   },
@@ -997,6 +1000,9 @@
   },
   "purgedOrganizationVault": {
     "message": "Kuruluş kasası silindi."
+  },
+  "vaultAccessedByProvider": {
+    "message": "Vault accessed by provider."
   },
   "purgeVaultDesc": {
     "message": "Kasanızdaki tüm ögeleri ve klasörleri silmek için aşağıdan ilerleyin. Kuruluş ile paylaştığınız ögeler silinmez."
@@ -1167,7 +1173,7 @@
     "message": "Kurum düzeyinde sağlayıcıları düzenleyerek kurumuzun kullanıcılarına iki aşamalı girişi zorunlu kılın."
   },
   "twoStepLoginRecoveryWarning": {
-    "message": "İki aşamalı girişi etkinleştirmek, Bitwarden hesabınızı kalıcı olarak kilitleyebilir. Kurtarma kodunuz, iki aşamalı giriş sağlayıcınızı kullanamamanız durumunda hesabınıza erişmenize olanak sağlar (ör. cihazınızı kaybedersiniz). Hesabınıza erişiminizi kaybederseniz Bitwarden desteği size yardımcı olamaz. Kurtarma kodunu yazmanızı veya yazdırmanızı ve güvenli bir yerde saklamanızı öneririz."
+    "message": "İki aşamalı girişi etkinleştirmek, Bitwarden hesabınızı kalıcı olarak kilitleyebilir. Kurtarma kodunuz, iki aşamalı giriş sağlayıcınızı kullanamamanız durumunda hesabınıza erişmenize olanak sağlar (ör. cihazınızı kaybedersiniz). Hesabınıza erişiminizi kaybederseniz Bitwarden destek ekibi size yardımcı olamaz. Kurtarma kodunu not almanızı veya yazdırmanızı ve güvenli bir yerde saklamanızı öneririz."
   },
   "viewRecoveryCode": {
     "message": "Kurtarma kodunu göster"
@@ -1244,7 +1250,7 @@
     "message": "Uygulamanın verdiği 6 basamaklı doğrulama kodunu girin"
   },
   "twoStepAuthenticatorReaddDesc": {
-    "message": "Başka bir cihaza eklemeniz gerekirse, aşağıda kimlik doğrulama uygulamanızın gerektirdiği QR kodu (veya anahtarı) verilmiştir."
+    "message": "Başka bir cihaza eklemeniz gerekirse kimlik doğrulama uygulamanıza aşağıdaki QR kodunu (veya anahtarı) verebilirsiniz."
   },
   "twoStepDisableDesc": {
     "message": "Bu iki aşamalı giriş sağlayıcısını devre dışı bırakmak istediğinize emin misiniz?"
@@ -1268,13 +1274,13 @@
     "message": "Formu kaydedin."
   },
   "twoFactorYubikeyWarning": {
-    "message": "Platform sınırlamaları nedeniyle, YubiKeyler tüm Bitwarden uygulamalarında kullanılamaz. Başka bir iki adımlı giriş sağlayıcısını etkinleştirmeniz gerekir, böylece YubiKeyler kullanılamadığında hesabınıza erişebilirsiniz. Desteklenen platformlar:"
+    "message": "Platform sınırlamaları nedeniyle YubiKey tüm Bitwarden uygulamalarında kullanılamaz. YubiKey kullanılamadığında hesabınıza erişebilmek için başka bir iki aşamalı doğrulama yöntemi ayarlamanız gerekir. Desteklenen platformlar:"
   },
   "twoFactorYubikeySupportUsb": {
     "message": "Web kasası, masaüstü uygulaması, CLI ve YubiKey'inizi kabul edebilecek bir USB bağlantı noktasına sahip bir cihazdaki tüm tarayıcı uzantıları."
   },
   "twoFactorYubikeySupportMobile": {
-    "message": "Mobile apps on a device with NFC capabilities or a USB port that can accept your YubiKey."
+    "message": "Mobile apps on a device with NFC capabilities or a data port that can accept your YubiKey."
   },
   "yubikeyX": {
     "message": "YubiKey $INDEX$",
@@ -1310,7 +1316,7 @@
     "message": "Anahtarlarımdan biri NFC destekliyor."
   },
   "twoFactorYubikeySupportsNfcDesc": {
-    "message": "YubiKey'lerinizden biri NFC'yi destekliyorsa (YubiKey NEO gibi), mobil cihazlarda NFC kullanılabilirliği tespit edildiğinde uyarılacaksınız."
+    "message": "YubiKey'lerinizden biri NFC'yi destekliyorsa (örn. YubiKey NEO) NFC kullanılabilirliği tespit edildiğinde mobil cihazınızdan sizi uyaracağız."
   },
   "yubikeysUpdated": {
     "message": "YubiKey'ler güncellendi"
@@ -1370,7 +1376,7 @@
     "message": "Formu kaydedin."
   },
   "twoFactorU2fWarning": {
-    "message": "Platform sınırlamaları nedeniyle, FIDO U2F tüm Bitwarden uygulamalarında kullanılamaz. Başka bir iki adımlı giriş sağlayıcısını etkinleştirmeniz gerekir, böylece FIDO U2F kullanılamadığında hesabınıza erişebilirsiniz. Desteklenen platformlar:"
+    "message": "Platform sınırlamaları nedeniyle FIDO U2F tüm Bitwarden uygulamalarında kullanılamaz. FIDO U2F kullanılamadığında hesabınıza erişebilmek için başka bir iki aşamalı doğrulama yöntemi ayarlamanız gerekir. Desteklenen platformlar:"
   },
   "twoFactorU2fSupportWeb": {
     "message": "Web kasası ve U2F uyumlu bir tarayıcıya (FIDO U2F uyumlu Chrome, Opera, Vivaldi veya Firefox) sahip bir bilgisayardaki tarayıcı uzantıları."
@@ -1385,16 +1391,16 @@
     "message": "Güvenlik anahtarını okurken bir sorun oluştu. Tekrar deneyin."
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Platform sınırlamaları nedeniyle, WebAuthn tüm Bitwarden uygulamalarında kullanılamaz. WebAuthn kullanılamadığında bile hesabınıza erişebilmek için başka bir iki aşamalı doğrulama yöntemi ayarlamanız gerekir. Desteklenen platformlar:"
+    "message": "Platform sınırlamaları nedeniyle WebAuthn tüm Bitwarden uygulamalarında kullanılamaz. WebAuthn kullanılamadığında hesabınıza erişebilmek için başka bir iki aşamalı doğrulama yöntemi ayarlamanız gerekir. Desteklenen platformlar:"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "WebAuthn etkinleştirilmiş bir tarayıcıya (Chrome, Opera, Vivaldi veya Firefox) sahip bir masaüstü/dizüstü bilgisayarda web kasası ve tarayıcı uzantıları."
+    "message": "WebAuthn uyumlu bir tarayıcıya (FIDO U2F uyumlu Chrome, Opera, Vivaldi veya Firefox) sahip bir bilgisayardaki tarayıcı uzantıları."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Bitwarden iki aşamalı giriş kurtarma kodunuz"
   },
   "twoFactorRecoveryNoCode": {
-    "message": "Henüz herhangi bir iki adımlı giriş sağlayıcısını etkinleştirmediniz. İki adımlı bir giriş sağlayıcısını etkinleştirdikten sonra, kurtarma kodunuz için burayı tekrar kontrol edebilirsiniz."
+    "message": "Henüz herhangi bir iki adımlı giriş sağlayıcısını etkinleştirmediniz. İki adımlı giriş sağlayıcısını etkinleştirdikten sonra kurtarma kodunuzu almak için burayı tekrar kontrol edebilirsiniz."
   },
   "printCode": {
     "message": "Kodu yazdır",
@@ -1422,7 +1428,7 @@
     }
   },
   "noUnsecuredWebsites": {
-    "message": "Kasanızda güvenli olmayan URI'ye sahip öge yoktur."
+    "message": "Kasanızda güvenli olmayan URI'ye sahip hiç kayıt yok."
   },
   "inactive2faReport": {
     "message": "2FA raporu pasif"
@@ -1509,7 +1515,7 @@
     "message": "Kullandığınız bir servisin güvenliği ihlal edilirse, aynı parolayı başka bir yerde tekrar kullanmak bilgisayar korsanlarının çevrimiçi hesaplarınızın daha fazlasına kolayca erişmesine izin verebilir. Her hesap veya hizmet için benzersiz bir parola kullanmalısınız."
   },
   "reusedPasswordsFound": {
-    "message": "Yeniden Kullanılmış Parolalar Bulundu"
+    "message": "Yeniden kullanılmış parolalar bulundu"
   },
   "reusedPasswordsFoundDesc": {
     "message": "Kasanızda tekrar kullanılmakta olan $COUNT$ tane parola bulduk. Onları benzersiz bir değerle değiştirmelisiniz.",
@@ -1583,10 +1589,10 @@
     "message": "Etkilenen kullanıcılar"
   },
   "breachOccurred": {
-    "message": "İhlal Oluştu"
+    "message": "İhlal oluştu"
   },
   "breachReported": {
-    "message": "İhlal Bildirildi"
+    "message": "İhlal bildirildi"
   },
   "reportError": {
     "message": "Rapor yüklenmeye çalışılırken bir hata oluştu. Tekrar deneyin"
@@ -1874,10 +1880,10 @@
     }
   },
   "gbStorageAdd": {
-    "message": "Depolamaya GB Ekle"
+    "message": "Depolamaya eklenecek GB miktarı"
   },
   "gbStorageRemove": {
-    "message": "Depolamadan GB Çıkar"
+    "message": "Depolamadan çıkarılacak GB miktarı"
   },
   "storageAddNote": {
     "message": "Depolama alanı eklemek, fatura toplamınızda ayarlamalar yapmanıza ve ödeme yönteminizi derhal borçlandırmanıza neden olur. İlk masraf, mevcut faturalandırma döngüsünün kalanı için geçerli olacaktır."
@@ -1886,7 +1892,7 @@
     "message": "Depolamayı kaldırmak, bir sonraki fatura ücretinize kredi olarak kanıtlanacak olan fatura toplamlarınızda ayarlamalar yapmanıza neden olur."
   },
   "adjustedStorage": {
-    "message": "Düzeltilmiş $AMOUNT$ GB depolama alanı.",
+    "message": "$AMOUNT$ GB depolama alanı ayarlandı.",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -1895,7 +1901,7 @@
     }
   },
   "contactSupport": {
-    "message": "Müşteri Hizmetleriyle iletişime geçin"
+    "message": "Müşteri hizmetleriyle iletişime geçin"
   },
   "updatedPaymentMethod": {
     "message": "Ödeme yöntemi güncellendi."
@@ -1919,7 +1925,7 @@
     "message": "Hesabınızı premium üyeliğe yükseltmek için geçerli bir lisans dosyası yüklemelisiniz."
   },
   "uploadLicenseFileOrg": {
-    "message": "To create an on-premise hosted organization you need to upload a valid license file."
+    "message": "To create an on-premises hosted organization you need to upload a valid license file."
   },
   "accountEmailMustBeVerified": {
     "message": "Hesabınızın e-posta adresi doğrulanmalıdır."
@@ -2148,6 +2154,9 @@
   "policies": {
     "message": "İlkeler"
   },
+  "singleSignOn": {
+    "message": "Single Sign-On"
+  },
   "editPolicy": {
     "message": "İlkeyi düzenle"
   },
@@ -2238,11 +2247,17 @@
   "confirmed": {
     "message": "Onaylandı"
   },
+  "clientOwnerEmail": {
+    "message": "Client Owner Email"
+  },
   "owner": {
     "message": "Sahip"
   },
   "ownerDesc": {
     "message": "The highest access user that can manage all aspects of your organization."
+  },
+  "clientOwnerDesc": {
+    "message": "This user should be independent of the Provider. If the Provider is disassociated with the organization, this user will maintain ownership of the organization."
   },
   "admin": {
     "message": "Yönetici"
@@ -2577,6 +2592,42 @@
       }
     }
   },
+  "createdOrganizationId": {
+    "message": "Created organization $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "addedOrganizationId": {
+    "message": "Added organization $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "removedOrganizationId": {
+    "message": "Removed organization $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "accessedClientVault": {
+    "message": "Accessed $ID$ organization vault.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
   "device": {
     "message": "Cihaz"
   },
@@ -2830,6 +2881,16 @@
   "enterInstallationId": {
     "message": "Yükleme numarasını girin"
   },
+  "limitSubscriptionDesc": {
+    "message": "Set a seat limit for your subscription. Once this limit is reached, you will not be able to invite new users."
+  },
+  "maxSeatLimit": {
+    "message": "Maximum Seat Limit (optional)",
+    "description": "Upper limit of seats to allow through autoscaling"
+  },
+  "maxSeatCost": {
+    "message": "Max potential seat cost"
+  },
   "addSeats": {
     "message": "Yerler Ekle",
     "description": "Seat = User Seat"
@@ -2838,8 +2899,47 @@
     "message": "Yerleri Kaldır",
     "description": "Seat = User Seat"
   },
+  "subscriptionDesc": {
+    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+  },
   "subscriptionUserSeats": {
     "message": "Aboneliğiniz toplam $COUNT$ kullanıcıya izin veriyor.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "limitSubscription": {
+    "message": "Limit Subscription (Optional)"
+  },
+  "subscriptionSeats": {
+    "message": "Subscription Seats"
+  },
+  "subscriptionUpdated": {
+    "message": "Subscription updated"
+  },
+  "additionalOptions": {
+    "message": "Additional Options"
+  },
+  "additionalOptionsDesc": {
+    "message": "For additional help in managing your subscription, please contact Customer Support."
+  },
+  "subscriptionUserSeatsUnlimitedAutoscale": {
+    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+  },
+  "subscriptionUserSeatsLimitedAutoscale": {
+    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users until your $MAX$ seat limit is reached.",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "subscriptionMaxReached": {
+    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. You cannot invite more than $COUNT$ users without increasing your subscription seats.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3299,10 +3399,6 @@
   "ssoHandOff": {
     "message": "Şimdi bu sekmeyi kapatabilir ve uzantıya devam edebilirsiniz."
   },
-  "businessPortal": {
-    "message": "Şirket portalı",
-    "description": "The web portal used by business organizations for configuring certain features."
-  },
   "includeAllTeamsFeatures": {
     "message": "Tüm Takımlar özellikleri, artı:"
   },
@@ -3323,9 +3419,6 @@
   },
   "linkSso": {
     "message": "Tek Oturum Açma (SSO) Bağlantısı Oluştur"
-  },
-  "webPoliciesDeprecationWarning": {
-    "message": "Politika yapılandırması taşındı ve bu sayfa yakında kullanımdan kaldırılacak. Bunun yerine İş Portalı politikaları sayfasını kullanmak için lütfen aşağıyı tıklayın."
   },
   "singleOrg": {
     "message": "Tek Organizasyon"
@@ -3715,9 +3808,6 @@
   "permissions": {
     "message": "İzinler"
   },
-  "accessBusinessPortal": {
-    "message": "İşyeri Portalına Erişim"
-  },
   "accessEventLogs": {
     "message": "Olay Günlüklerine Erişim"
   },
@@ -3730,8 +3820,23 @@
   "manageAllCollections": {
     "message": "Tüm Koleksiyonları Yönetme"
   },
+  "createNewCollections": {
+    "message": "Create New Collections"
+  },
+  "editAnyCollection": {
+    "message": "Edit Any Collection"
+  },
+  "deleteAnyCollection": {
+    "message": "Delete Any Collection"
+  },
   "manageAssignedCollections": {
     "message": "Atanmış Koleksiyonları Yönetme"
+  },
+  "editAssignedCollections": {
+    "message": "Edit Assigned Collections"
+  },
+  "deleteAssignedCollections": {
+    "message": "Delete Assigned Collections"
   },
   "manageGroups": {
     "message": "Grupları Yönetme"
@@ -3748,11 +3853,20 @@
   "manageResetPassword": {
     "message": "Parola Sıfırlamayı Yönet"
   },
-  "disableRequireSsoError": {
-    "message": "Bu ilke devre dışı bırakılmadan önce Tek Giriş Kimlik Doğrulama ilkesini elle devre dışı bırakmanız gerekir."
+  "disableRequiredError": {
+    "message": "You must manually disable the $POLICYNAME$ policy before this policy can be disabled.",
+    "placeholders": {
+      "policyName": {
+        "content": "$1",
+        "example": "Single Sign-On Authentication"
+      }
+    }
   },
   "personalOwnershipPolicyInEffect": {
     "message": "Bir kuruluş ilkesi sahiplik seçeneklerinizi etkiliyor."
+  },
+  "personalOwnershipPolicyInEffectImports": {
+    "message": "An organization policy has disabled importing items into your personal vault."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Kurum kullanıcıları için kişisel sahipliği kapat"
@@ -3910,6 +4024,15 @@
       }
     }
   },
+  "eventResetSsoLink": {
+    "message": "Reset Sso link for user $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Parolayı sıfırla"
   },
@@ -3988,6 +4111,21 @@
   "removeUsersWarning": {
     "message": "Aşağıdaki kullanıcıları kaldırmak istediğinize emin misiniz? İşlemin tamamlanması birkaç saniye sürer ve durdurulamaz veya iptal edilemez."
   },
+  "theme": {
+    "message": "Theme"
+  },
+  "themeDesc": {
+    "message": "Choose a theme for your web vault."
+  },
+  "themeSystem": {
+    "message": "Use System Theme"
+  },
+  "themeDark": {
+    "message": "Dark"
+  },
+  "themeLight": {
+    "message": "Light"
+  },
   "confirmSelected": {
     "message": "Seçimi Onayla"
   },
@@ -4017,5 +4155,298 @@
   },
   "resetPasswordManageUsers": {
     "message": "Parola Sıfırlamayı Yönet izniyle birlikte Kullanıcıları Yönet de açılmak zorundadır"
+  },
+  "setupProvider": {
+    "message": "Provider Setup"
+  },
+  "setupProviderLoginDesc": {
+    "message": "You've been invited to setup a new provider. To continue, you need to log in or create a new Bitwarden account."
+  },
+  "setupProviderDesc": {
+    "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
+  },
+  "providerName": {
+    "message": "Provider Name"
+  },
+  "providerSetup": {
+    "message": "The provider has been set up."
+  },
+  "clients": {
+    "message": "Clients"
+  },
+  "providerAdmin": {
+    "message": "Provider Admin"
+  },
+  "providerAdminDesc": {
+    "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
+  },
+  "serviceUser": {
+    "message": "Service User"
+  },
+  "serviceUserDesc": {
+    "message": "Service users can access and manage all client organizations."
+  },
+  "providerInviteUserDesc": {
+    "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+  },
+  "joinProvider": {
+    "message": "Join Provider"
+  },
+  "joinProviderDesc": {
+    "message": "You've been invited to join the provider listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+  },
+  "providerInviteAcceptFailed": {
+    "message": "Unable to accept invitation. Ask a provider admin to send a new invitation."
+  },
+  "providerInviteAcceptedDesc": {
+    "message": "You can access this provider once an administrator confirms your membership. We'll send you an email when that happens."
+  },
+  "providerUsersNeedConfirmed": {
+    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the provider until they are confirmed."
+  },
+  "provider": {
+    "message": "Provider"
+  },
+  "newClientOrganization": {
+    "message": "New Client Organization"
+  },
+  "newClientOrganizationDesc": {
+    "message": "Create a new client organization that will be associated with you as the provider. You will be able to access and manage this organization."
+  },
+  "addExistingOrganization": {
+    "message": "Add Existing Organization"
+  },
+  "myProvider": {
+    "message": "My Provider"
+  },
+  "addOrganizationConfirmation": {
+    "message": "Are you sure you want to add $ORGANIZATION$ as a client to $PROVIDER$?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      },
+      "provider": {
+        "content": "$2",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "organizationJoinedProvider": {
+    "message": "Organization was successfully added to the provider"
+  },
+  "accessingUsingProvider": {
+    "message": "Accessing organization using provider $PROVIDER$",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "providerIsDisabled": {
+    "message": "Provider is disabled."
+  },
+  "providerUpdated": {
+    "message": "Provider updated"
+  },
+  "yourProviderIs": {
+    "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "detachedOrganization": {
+    "message": "The organization $ORGANIZATION$ has been detached from your provider.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "detachOrganizationConfirmation": {
+    "message": "Are you sure you want to detach this organization? The organization will continue to exist but will no longer be managed by the provider."
+  },
+  "add": {
+    "message": "Add"
+  },
+  "updatedMasterPassword": {
+    "message": "Updated Master Password"
+  },
+  "updateMasterPassword": {
+    "message": "Update Master Password"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+  },
+  "maximumVaultTimeout": {
+    "message": "Vault Timeout"
+  },
+  "maximumVaultTimeoutDesc": {
+    "message": "Configure a maximum vault timeout for all users."
+  },
+  "maximumVaultTimeoutLabel": {
+    "message": "Maximum Vault Timeout"
+  },
+  "invalidMaximumVaultTimeout": {
+    "message": "Invalid Maximum Vault Timeout."
+  },
+  "hours": {
+    "message": "Hours"
+  },
+  "minutes": {
+    "message": "Minutes"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "customVaultTimeout": {
+    "message": "Custom Vault Timeout"
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Your vault timeout exceeds the restriction set by your organization."
+  },
+  "disablePersonalVaultExport": {
+    "message": "Disable Personal Vault Export"
+  },
+  "disablePersonalVaultExportDesc": {
+    "message": "Prohibits users from exporting their private vault data."
+  },
+  "vaultExportDisabled": {
+    "message": "Vault Export Disabled"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "One or more organization policies prevents you from exporting your personal vault."
+  },
+  "selectType": {
+    "message": "Select SSO Type"
+  },
+  "type": {
+    "message": "Type"
+  },
+  "openIdConnectConfig": {
+    "message": "OpenID Connect Configuration"
+  },
+  "samlSpConfig": {
+    "message": "SAML Service Provider Configuration"
+  },
+  "samlIdpConfig": {
+    "message": "SAML Identity Provider Configuration"
+  },
+  "callbackPath": {
+    "message": "Callback Path"
+  },
+  "signedOutCallbackPath": {
+    "message": "Signed Out Callback Path"
+  },
+  "authority": {
+    "message": "Authority"
+  },
+  "clientId": {
+    "message": "Client ID"
+  },
+  "clientSecret": {
+    "message": "Client Secret"
+  },
+  "metadataAddress": {
+    "message": "Metadata Address"
+  },
+  "oidcRedirectBehavior": {
+    "message": "OIDC Redirect Behavior"
+  },
+  "getClaimsFromUserInfoEndpoint": {
+    "message": "Get Claims From User Info Endpoint"
+  },
+  "additionalScopes": {
+    "message": "Additional/Custom Scopes (comma delimited)"
+  },
+  "additionalUserIdClaimTypes": {
+    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+  },
+  "additionalEmailClaimTypes": {
+    "message": "Additional/Custom Email Claim Types (comma delimited)"
+  },
+  "additionalNameClaimTypes": {
+    "message": "Additional/Custom Name Claim Types (comma delimited)"
+  },
+  "acrValues": {
+    "message": "Requested Authentication Context Class Reference values (acr_values)"
+  },
+  "expectedReturnAcrValue": {
+    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+  },
+  "spEntityId": {
+    "message": "SP Entity ID"
+  },
+  "spMetadataUrl": {
+    "message": "SAML 2.0 Metadata URL"
+  },
+  "spAcsUrl": {
+    "message": "Assertion Consumer Service (ACS) URL"
+  },
+  "spNameIdFormat": {
+    "message": "Name ID Format"
+  },
+  "spOutboundSigningAlgorithm": {
+    "message": "Outbound Signing Algorithm"
+  },
+  "spSigningBehavior": {
+    "message": "Signing Behavior"
+  },
+  "spMinIncomingSigningAlgorithm": {
+    "message": "Minimum Incoming Signing Algorithm"
+  },
+  "spWantAssertionsSigned": {
+    "message": "Want Assertions Signed"
+  },
+  "spValidateCertificates": {
+    "message": "Validate Certificates"
+  },
+  "idpEntityId": {
+    "message": "Entity ID"
+  },
+  "idpBindingType": {
+    "message": "Binding Type"
+  },
+  "idpSingleSignOnServiceUrl": {
+    "message": "Single Sign On Service URL"
+  },
+  "idpSingleLogoutServiceUrl": {
+    "message": "Single Log Out Service URL"
+  },
+  "idpArtifactResolutionServiceUrl": {
+    "message": "Artifact Resolution Service URL"
+  },
+  "idpX509PublicCert": {
+    "message": "X509 Public Certificate"
+  },
+  "idpOutboundSigningAlgorithm": {
+    "message": "Outbound Signing Algorithm"
+  },
+  "idpAllowUnsolicitedAuthnResponse": {
+    "message": "Allow Unsolicited Authentication Response"
+  },
+  "idpDisableOutboundLogoutRequests": {
+    "message": "Disable Outbound Logout Requests"
+  },
+  "idpWantAuthnRequestsSigned": {
+    "message": "Want Authentication Requests Signed"
+  },
+  "ssoSettingsSaved": {
+    "message": "Single Sign-On configuration was saved."
   }
 }

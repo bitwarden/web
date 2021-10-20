@@ -1,12 +1,14 @@
 import {
     Component,
-    ComponentFactoryResolver,
     OnInit,
 } from '@angular/core';
 
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { CipherView } from 'jslib-common/models/view/cipherView';
 
@@ -24,9 +26,9 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
     services = new Map<string, string>();
     cipherDocs = new Map<string, string>();
 
-    constructor(protected cipherService: CipherService, componentFactoryResolver: ComponentFactoryResolver,
-        messagingService: MessagingService, userService: UserService) {
-        super(componentFactoryResolver, userService, messagingService, true);
+    constructor(protected cipherService: CipherService, modalService: ModalService,
+        messagingService: MessagingService, userService: UserService, passwordRepromptService: PasswordRepromptService) {
+        super(modalService, userService, messagingService, passwordRepromptService, true);
     }
 
     async ngOnInit() {

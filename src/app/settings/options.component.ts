@@ -2,6 +2,7 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
 import { ToasterService } from 'angular2-toaster';
 
@@ -14,6 +15,7 @@ import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.serv
 
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
+import { ThemeType } from 'jslib-common/enums/themeType';
 import { Utils } from 'jslib-common/misc/utils';
 
 @Component({
@@ -21,16 +23,20 @@ import { Utils } from 'jslib-common/misc/utils';
     templateUrl: 'options.component.html',
 })
 export class OptionsComponent implements OnInit {
-    vaultTimeout: number = null;
     vaultTimeoutAction: string = 'lock';
     disableIcons: boolean;
     enableGravatars: boolean;
     enableFullWidth: boolean;
+    theme: string = null;
     locale: string;
-    vaultTimeouts: any[];
+    vaultTimeouts: { name: string; value: number; }[];
     localeOptions: any[];
+    themeOptions: any[];
+
+    vaultTimeout: FormControl = new FormControl(null);
 
     private startingLocale: string;
+    private startingTheme: string;
 
     constructor(private storageService: StorageService, private stateService: StateService,
         private i18nService: I18nService, private toasterService: ToasterService,
@@ -60,26 +66,44 @@ export class OptionsComponent implements OnInit {
         localeOptions.sort(Utils.getSortFunction(i18nService, 'name'));
         localeOptions.splice(0, 0, { name: i18nService.t('default'), value: null });
         this.localeOptions = localeOptions;
+        this.themeOptions = [
+            { name: i18nService.t('themeLight'), value: null },
+            { name: i18nService.t('themeDark'), value: ThemeType.Dark },
+            { name: i18nService.t('themeSystem'), value: ThemeType.System },
+        ];
     }
 
     async ngOnInit() {
-        this.vaultTimeout = await this.storageService.get<number>(ConstantsService.vaultTimeoutKey);
+        this.vaultTimeout.setValue(await this.vaultTimeoutService.getVaultTimeout());
         this.vaultTimeoutAction = await this.storageService.get<string>(ConstantsService.vaultTimeoutActionKey);
         this.disableIcons = await this.storageService.get<boolean>(ConstantsService.disableFaviconKey);
         this.enableGravatars = await this.storageService.get<boolean>('enableGravatars');
         this.enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
         this.locale = this.startingLocale = await this.storageService.get<string>(ConstantsService.localeKey);
+        this.theme = this.startingTheme = await this.storageService.get<ThemeType>(ConstantsService.themeKey);
     }
 
     async submit() {
-        await this.vaultTimeoutService.setVaultTimeoutOptions(this.vaultTimeout != null ? this.vaultTimeout : null,
-            this.vaultTimeoutAction);
+        if (!this.vaultTimeout.valid) {
+            this.toasterService.popAsync('error', null, this.i18nService.t('vaultTimeoutToLarge'));
+            return;
+        }
+
+        await this.vaultTimeoutService.setVaultTimeoutOptions(this.vaultTimeout.value, this.vaultTimeoutAction);
         await this.storageService.save(ConstantsService.disableFaviconKey, this.disableIcons);
         await this.stateService.save(ConstantsService.disableFaviconKey, this.disableIcons);
         await this.storageService.save('enableGravatars', this.enableGravatars);
         await this.stateService.save('enableGravatars', this.enableGravatars);
         await this.storageService.save('enableFullWidth', this.enableFullWidth);
         this.messagingService.send('setFullWidth');
+        if (this.theme !== this.startingTheme) {
+            await this.storageService.save(ConstantsService.themeKey, this.theme);
+            this.startingTheme = this.theme;
+            const effectiveTheme = await this.platformUtilsService.getEffectiveTheme();
+            const htmlEl = window.document.documentElement;
+            htmlEl.classList.remove('theme_' + ThemeType.Light, 'theme_' + ThemeType.Dark);
+            htmlEl.classList.add('theme_' + effectiveTheme);
+        }
         await this.storageService.save(ConstantsService.localeKey, this.locale);
         if (this.locale !== this.startingLocale) {
             window.location.reload();

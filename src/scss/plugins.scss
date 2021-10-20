@@ -1,107 +1,141 @@
-$fa-font-path: "~font-awesome/fonts";
-@import "~font-awesome/scss/font-awesome.scss";
-@import "~angular2-toaster/toaster";
-@import "~sweetalert2/src/sweetalert2.scss";
-
-.toast-container {
-    &.toast-top-right {
-        top: 76px;
+#duo-frame {
+    height: 330px;
+    @include themify($themes) {
+        background: themed('imgLoading') 0 0 no-repeat;
     }
 
-    .toast-close-button {
-        margin-right: 4px;
-        font-size: 18px;
+    iframe {
+        border: none;
+        height: 100%;
+        width: 100%;
+    }
+}
+
+#web-authn-frame {
+    height: 290px;
+    @include themify($themes) {
+        background: themed('imgLoading') 0 0 no-repeat;
     }
 
-    .toast {
-        opacity: 1 !important;
-        background-image: none !important;
-        border-radius: $border-radius;
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
-        display: flex;
-        align-items: center;
+    iframe {
+        border: none;
+        height: 100%;
+        width: 100%;
+    }
+}
 
-        &:hover {
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
-        }
+#hcaptcha_iframe {
+    border: none;
+    transition: height 0.25s linear;
+    width: 100%;
+}
 
-        &:before {
-            font-family: FontAwesome;
-            font-size: 25px;
-            line-height: 20px;
-            float: left;
-            color: #ffffff;
-            margin: auto 0 auto 15px;
-        }
+.list-group-2fa {
+    .logo-2fa {
+        min-width: 100px;
+    }
+}
 
-        .toast-content {
-            padding: 15px;
-        }
+@each $mfaType in $mfaTypes {
+    .mfaType#{$mfaType} {
+        content: url('../images/two-factor/' + $mfaType + '.png');
+        max-width: 100px;
+    }
+}
 
-        .toaster-icon {
-            display: none;
-        }
+.mfaType7 {
+    @include themify($themes) {
+        content: url('../images/two-factor/7' + themed('mfaLogoSuffix'));
+        max-width: 100px;
+    }
+}
 
-        .toast-message {
-            p {
-                margin-bottom: 0.5rem;
+.progress {
+    @include themify($themes) {
+        background-color: themed('pwStrengthBackground');
+    }
+}
 
-                &:last-child {
-                    margin-bottom: 0;
-                }
-            }
-        }
+// Braintree
 
-        &.toast-danger, &.toast-error {
-            background-image: none !important;
-            background-color: $danger;
+#bt-dropin-container {
+    min-height: 50px;
+    @include themify($themes) {
+        background: themed("loadingSvg") center center no-repeat;
+    }
+}
 
-            &:before {
-                content: "\f0e7";
-            }
-        }
+.braintree-placeholder, .braintree-sheet__header {
+    display: none;
+}
 
-        &.toast-warning {
-            background-image: none !important;
-            background-color: $warning;
+.braintree-sheet__content--button {
+    min-height: 0;
+    padding: 0;
+    text-align: left;
+}
 
-            &:before {
-                content: "\f071";
-            }
-        }
+.braintree-sheet__container {
+    margin-bottom: 0;
+}
 
-        &.toast-info {
-            background-image: none !important;
-            background-color: $info;
+.braintree-sheet {
+    border: none;
+}
 
-            &:before {
-                content: "\f05a";
-            }
-        }
+[data-braintree-id="upper-container"]::before {
+    @include themify($themes) {
+        background-color: themed('backgroundColor');
+    }
+}
 
-        &.toast-success {
-            background-image: none !important;
-            background-color: $success;
+.card [data-braintree-id="upper-container"]::before {
+    @include themify($themes) {
+        background-color: themed('foregroundColor');
+    }
+}
 
-            &:before {
-                content: "\f00C";
-            }
-        }
+[data-braintree-id="paypal-button"] {
+    @include themify($themes) {
+        background-color: themed('backgroundColor');
+    }
+}
+
+.card [data-braintree-id="paypal-button"] {
+    @include themify($themes) {
+        background-color: themed('foregroundColor');
+    }
+}
+
+.paypal-button-text {
+    @include themify($themes) {
+        color: themed('textColor');
     }
 }
 
 // SweetAlert2
+
+[class*="swal2-"] {
+    &:not(.swal2-container, .swal2-confirm, .swal2-cancel, .swal2-deny) {
+        @include themify($themes) {
+            background-color: themed('backgroundColor');
+            color: themed('textColor');
+        }
+    }
+}
 
 .swal2-container {
     background-color: rgba(0,0,0,.3);
 }
 
 .swal2-popup {
-    padding: 15px 0 0;
-    background-color: $modal-content-bg;
-    color: $body-color;
+    @include themify($themes) {
+        background-color: themed('backgroundColor');
+        color: themed('textColor');
+    }
     border: $modal-content-border-width solid #9a9a9a;
     @include border-radius($modal-content-border-radius);
+    padding: 15px 0 0;
     width: 34em; // slightly bigger than the hardcoded 478px in v1.
 
     .swal2-header {
@@ -109,60 +143,58 @@ $fa-font-path: "~font-awesome/fonts";
     }
 
     .swal2-icon {
+        border: none;
+        height: auto;
         margin: 0 auto;
         width: auto;
-        height: auto;
-        border: none;
     }
 
     .swal2-content {
-        padding-bottom: 15px;
         font-size: $font-size-base;
-        border-bottom: $modal-footer-border-width solid $modal-footer-border-color;
+        padding-bottom: 15px;
+        @include themify($themes) {
+            border-bottom: $modal-footer-border-width solid themed('separator');
+        }
     }
 
     i.swal-custom-icon {
         display: block;
-        margin: 0 auto;
         font-size: 35px;
+        margin: 0 auto;
     }
 
     .swal2-title {
-        padding: 10px 0 15px;
-        margin: 0;
         font-size: $font-size-lg;
-        color: $body-color;
+        margin: 0;
+        padding: 10px 0 15px;
+        @include themify($themes) {
+            color: themed('headingColor');
+        }
     }
 
     .swal2-content {
         font-size: $font-size-base;
-        color: $body-color;
         padding: 0 15px 15px;
+        @include themify($themes) {
+            color: themed('textColor');
+        }
     }
 
     .swal2-actions {
-        padding: 15px;
-        margin: 0;
-        background-color: $input-bg;
         @include border-radius($modal-content-border-radius);
         display: flex; 
         flex-direction: row;
-        justify-content: flex-start;
         font-size: $font-size-base;
+        justify-content: flex-start;
+        margin: 0;
+        padding: 15px;
+        @include themify($themes) {
+            background-color: themed('backgroundColor');
+        }
 
         button {
             margin-right: 10px;
             @extend .btn;
-
-            &.swal2-confirm {
-                @extend .btn-primary;
-                font-weight: bold;
-            }
-
-            &.swal2-cancel {
-                @extend .btn-outline-secondary;
-                background-color: #ffffff;
-            }
         }
     }
 

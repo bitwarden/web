@@ -6,9 +6,12 @@ require('./webauthn.scss');
 
 let parsed = false;
 let webauthnJson: any;
+let headerText: string = null;
 let btnText: string = null;
+let btnReturnText: string = null;
 let parentUrl: string = null;
 let parentOrigin: string = null;
+let callbackUri: string = null;
 let stopWebAuthn = false;
 let sentSuccess = false;
 let obj: any = null;
@@ -17,6 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
     init();
 
     parseParameters();
+    if (headerText) {
+        const header = document.getElementById('webauthn-header');
+        header.innerText = decodeURI(headerText);
+    }
     if (btnText) {
         const button = document.getElementById('webauthn-button');
         button.innerText = decodeURI(btnText);
@@ -62,11 +69,13 @@ function parseParametersV1() {
     }
 
     webauthnJson = b64Decode(data);
+    headerText = getQsParam('headerText');
     btnText = getQsParam('btnText');
+    btnReturnText = getQsParam('btnReturnText');
 }
 
 function parseParametersV2() {
-    let dataObj: { data: any, btnText: string; } = null;
+    let dataObj: { data: any, headerText: string; btnText: string; btnReturnText: string; callbackUri?: string } = null;
     try {
         dataObj = JSON.parse(b64Decode(getQsParam('data')));
     }
@@ -75,8 +84,11 @@ function parseParametersV2() {
         return;
     }
 
+    callbackUri = dataObj.callbackUri;
     webauthnJson = dataObj.data;
+    headerText = dataObj.headerText;
     btnText = dataObj.btnText;
+    btnReturnText = dataObj.btnReturnText;
 }
 
 function start() {
@@ -103,8 +115,8 @@ function start() {
 
     stopWebAuthn = false;
 
-    if (navigator.userAgent.indexOf(' Safari/') !== -1 && navigator.userAgent.indexOf('Chrome') === -1) {
-        // TODO: Hide image, show button
+    if (callbackUri != null || (navigator.userAgent.indexOf(' Safari/') !== -1 && navigator.userAgent.indexOf('Chrome') === -1)) {
+        // Safari and mobile chrome blocks non-user initiated WebAuthn requests.
     } else {
         executeWebAuthn();
     }
@@ -117,7 +129,7 @@ function executeWebAuthn() {
 
     navigator.credentials.get({ publicKey: obj })
         .then(success)
-        .catch(err => error('WebAuth Error: ' + err));
+        .catch(error);
 }
 
 function onMessage() {
@@ -136,7 +148,12 @@ function onMessage() {
 }
 
 function error(message: string) {
-    parent.postMessage('error|' + message, parentUrl);
+    if (callbackUri) {
+        document.location.replace(callbackUri + '?error=' + encodeURIComponent(message));
+        returnButton(callbackUri + '?error=' + encodeURIComponent(message));
+    } else {
+        parent.postMessage('error|' + message, parentUrl);
+    }
 }
 
 function success(assertedCredential: PublicKeyCredential) {
@@ -145,11 +162,28 @@ function success(assertedCredential: PublicKeyCredential) {
     }
 
     const dataString = buildDataString(assertedCredential);
-    parent.postMessage('success|' + dataString, parentUrl);
-    sentSuccess = true;
+
+    if (callbackUri) {
+        document.location.replace(callbackUri + '?data=' + encodeURIComponent(dataString));
+        returnButton(callbackUri + '?data=' + encodeURIComponent(dataString));
+    } else {
+        parent.postMessage('success|' + dataString, parentUrl);
+        sentSuccess = true;
+    }
 }
 
 function info(message: string) {
+    if (callbackUri) {
+        return;
+    }
+
     parent.postMessage('info|' + message, parentUrl);
+}
+
+function returnButton(uri: string) {
+    // provides 'return' button in case scripted navigation is blocked
+    const button = document.getElementById('webauthn-button');
+    button.innerText = decodeURI(btnReturnText);
+    button.onclick = () => { document.location.replace(uri); };
 }
 

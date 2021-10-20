@@ -1,19 +1,24 @@
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 import { DeviceType } from 'jslib-common/enums/deviceType';
+import { ThemeType } from 'jslib-common/enums/themeType';
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { StorageService } from 'jslib-common/abstractions/storage.service';
+
+import { ConstantsService } from 'jslib-common/services/constants.service';
 
 export class WebPlatformUtilsService implements PlatformUtilsService {
     identityClientId: string = 'web';
 
     private browserCache: DeviceType = null;
+    private prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
 
     constructor(private i18nService: I18nService, private messagingService: MessagingService,
-        private logService: LogService) { }
+        private logService: LogService, private storageService: () => StorageService) { }
 
     getDevice(): DeviceType {
         if (this.browserCache != null) {
@@ -80,10 +85,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
 
     isViewOpen(): Promise<boolean> {
         return Promise.resolve(false);
-    }
-
-    lockTimeout(): number {
-        return null;
     }
 
     launchUri(uri: string, options?: any): void {
@@ -226,32 +227,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return confirmed.value;
     }
 
-    async showPasswordDialog(title: string, body: string, passwordValidation: (value: string) => Promise<boolean>):
-        Promise<boolean> {
-        const result = await Swal.fire({
-            heightAuto: false,
-            titleText: title,
-            input: 'password',
-            text: body,
-            confirmButtonText: this.i18nService.t('ok'),
-            showCancelButton: true,
-            cancelButtonText: this.i18nService.t('cancel'),
-            inputAttributes: {
-                autocapitalize: 'off',
-                autocorrect: 'off',
-            },
-            inputValidator: async (value: string): Promise<any> => {
-                if (await passwordValidation(value)) {
-                    return false;
-                }
-
-                return this.i18nService.t('invalidMasterPassword');
-            },
-        });
-
-        return result.isConfirmed;
-    }
-
     isDev(): boolean {
         return process.env.NODE_ENV === 'development';
     }
@@ -317,11 +292,24 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         return false;
     }
 
-    getDefaultSystemTheme() {
-        return Promise.resolve(null as 'light' | 'dark');
+    getDefaultSystemTheme(): Promise<ThemeType.Light | ThemeType.Dark> {
+        return Promise.resolve(this.prefersColorSchemeDark.matches ? ThemeType.Dark : ThemeType.Light);
     }
 
-    onDefaultSystemThemeChange() {
-        /* noop */
+    async getEffectiveTheme(): Promise<ThemeType.Light | ThemeType.Dark> {
+        const theme = await this.storageService().get<ThemeType>(ConstantsService.themeKey);
+        if (theme === ThemeType.Dark) {
+            return ThemeType.Dark;
+        } else if (theme === ThemeType.System) {
+            return this.getDefaultSystemTheme();
+        } else {
+            return ThemeType.Light;
+        }
+    }
+
+    onDefaultSystemThemeChange(callback: ((theme: ThemeType.Light | ThemeType.Dark) => unknown)) {
+        this.prefersColorSchemeDark.addEventListener('change', ({ matches }) => {
+            callback(matches ? ThemeType.Dark : ThemeType.Light);
+        });
     }
 }

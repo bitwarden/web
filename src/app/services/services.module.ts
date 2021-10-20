@@ -9,6 +9,7 @@ import { ToasterModule } from 'angular2-toaster';
 import { BroadcasterMessagingService } from '../../services/broadcasterMessaging.service';
 import { HtmlStorageService } from '../../services/htmlStorage.service';
 import { I18nService } from '../../services/i18n.service';
+import { PasswordRepromptService } from '../../services/passwordReprompt.service';
 import { WebPlatformUtilsService } from '../../services/webPlatformUtils.service';
 
 import { EventService } from './event.service';
@@ -20,6 +21,7 @@ import { RouterService } from './router.service';
 import { AuthGuardService } from 'jslib-angular/services/auth-guard.service';
 import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 import { LockGuardService } from 'jslib-angular/services/lock-guard.service';
+import { ModalService as ModalServiceAbstraction } from 'jslib-angular/services/modal.service';
 import { UnauthGuardService } from 'jslib-angular/services/unauth-guard.service';
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
@@ -42,7 +44,6 @@ import { ImportService } from 'jslib-common/services/import.service';
 import { MemoryStorageService } from 'jslib-common/services/memoryStorage.service';
 import { NotificationsService } from 'jslib-common/services/notifications.service';
 import { PasswordGenerationService } from 'jslib-common/services/passwordGeneration.service';
-import { PasswordRepromptService } from 'jslib-common/services/passwordReprompt.service';
 import { PolicyService } from 'jslib-common/services/policy.service';
 import { SearchService } from 'jslib-common/services/search.service';
 import { SendService } from 'jslib-common/services/send.service';
@@ -91,12 +92,16 @@ import { UserService as UserServiceAbstraction } from 'jslib-common/abstractions
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib-common/abstractions/vaultTimeout.service';
 import { WebWorkerService as WebWorkerServiceAbstraction } from 'jslib-common/abstractions/webWorker.service';
 
+import { ModalService } from './modal.service';
+
+import { ThemeType } from 'jslib-common/enums/themeType';
+
 const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
 const broadcasterService = new BroadcasterService();
 const messagingService = new BroadcasterMessagingService(broadcasterService);
 const consoleLogService = new ConsoleLogService(false);
-const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService);
+const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService, () => storageService);
 const storageService: StorageServiceAbstraction = new HtmlStorageService(platformUtilsService);
 const secureStorageService: StorageServiceAbstraction = new MemoryStorageService();
 const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(window,
@@ -126,7 +131,7 @@ const sendService = new SendService(cryptoService, userService, apiService, file
     i18nService, cryptoFunctionService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
     cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, tokenService,
-    null, async () => messagingService.send('logout', { expired: false }), webWorkerService);
+    policyService, null, async () => messagingService.send('logout', { expired: false }), webWorkerService);
 const syncService = new SyncService(userService, apiService, settingsService,
     folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
     sendService, async (expired: boolean) => messagingService.send('logout', { expired: expired }));
@@ -143,7 +148,6 @@ const notificationsService = new NotificationsService(userService, syncService, 
     environmentService, async () => messagingService.send('logout', { expired: true }), consoleLogService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService);
-const passwordRepromptService = new PasswordRepromptService(i18nService, cryptoService, platformUtilsService);
 
 containerService.attachToWindow(window);
 
@@ -164,11 +168,16 @@ export function initFactory(): Function {
         authService.init();
         const htmlEl = window.document.documentElement;
         htmlEl.classList.add('locale_' + i18nService.translationLocale);
-        let theme = await storageService.get<string>(ConstantsService.themeKey);
-        if (theme == null) {
-            theme = 'light';
-        }
-        htmlEl.classList.add('theme_' + theme);
+
+        // Initial theme is set in index.html which must be updated if there are any changes to theming logic
+        platformUtilsService.onDefaultSystemThemeChange(async sysTheme => {
+            const bwTheme = await storageService.get<ThemeType>(ConstantsService.themeKey);
+            if (bwTheme === ThemeType.System) {
+                htmlEl.classList.remove('theme_' + ThemeType.Light, 'theme_' + ThemeType.Dark);
+                htmlEl.classList.add('theme_' + sysTheme);
+            }
+        });
+
         stateService.save(ConstantsService.disableFaviconKey,
             await storageService.get<boolean>(ConstantsService.disableFaviconKey));
         stateService.save('enableGravatars', await storageService.get<boolean>('enableGravatars'));
@@ -190,6 +199,7 @@ export function initFactory(): Function {
         EventService,
         LockGuardService,
         PolicyListService,
+        { provide: ModalServiceAbstraction, useClass: ModalService },
         { provide: AuditServiceAbstraction, useValue: auditService },
         { provide: AuthServiceAbstraction, useValue: authService },
         { provide: CipherServiceAbstraction, useValue: cipherService },
@@ -222,7 +232,7 @@ export function initFactory(): Function {
         { provide: PolicyServiceAbstraction, useValue: policyService },
         { provide: SendServiceAbstraction, useValue: sendService },
         { provide: WebWorkerServiceAbstraction, useValue: webWorkerService },
-        { provide: PasswordRepromptServiceAbstraction, useValue: passwordRepromptService },
+        { provide: PasswordRepromptServiceAbstraction, useClass: PasswordRepromptService },
         { provide: LogService, useValue: consoleLogService },
         {
             provide: APP_INITIALIZER,

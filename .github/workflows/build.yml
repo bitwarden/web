@@ -1,3 +1,4 @@
+---
 name: Build
 
 on:
@@ -14,7 +15,7 @@ on:
 jobs:
   cloc:
     name: CLOC
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout repo
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
@@ -28,9 +29,27 @@ jobs:
         run: cloc --include-lang TypeScript,JavaScript,HTML,Sass,CSS --vcs git
 
 
-  build-selfhost:
-    name: Build SelfHost Docker image
-    runs-on: ubuntu-latest
+  setup:
+    name: Setup
+    runs-on: ubuntu-20.04
+    outputs:
+      version: ${{ steps.version.outputs.value }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+
+      - name: Get GitHub sha as version
+        id: version
+        run: |
+          echo "::set-output name=value::${GITHUB_SHA:0:7}"
+
+
+  build-oss-selfhost:
+    name: Build OSS zip
+    runs-on: ubuntu-20.04
+    needs: setup
+    env:
+      _VERSION: ${{ needs.setup.outputs.version }}
     steps:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
@@ -43,10 +62,10 @@ jobs:
 
       - name: Cache npm
         id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # v2.1.6
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
         with:
           path: '~/.npm'
-          key: ${{ runner.os }}-${{ github.run_id }}-npm-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
         run: |
@@ -58,39 +77,117 @@ jobs:
           echo "GitHub ref: $GITHUB_REF"
           echo "GitHub event: $GITHUB_EVENT"
 
-      - name: Login to Azure
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
-        uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
-        with:
-          creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
-      - name: Retrieve secrets
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
-        id: retrieve-secrets
-        uses: Azure/get-keyvault-secrets@80ccd3fafe5662407cc2e55f202ee34bfff8c403
-        with:
-          keyvault: "bitwarden-prod-kv"
-          secrets: "docker-password, 
-                    docker-username,
-                    dct-delegate-2-repo-passphrase,
-                    dct-delegate-2-key"
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Log into Docker
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
-        run: echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        env:
-          DOCKER_USERNAME: ${{ steps.retrieve-secrets.outputs.docker-username }}
-          DOCKER_PASSWORD: ${{ steps.retrieve-secrets.outputs.docker-password }}
-
-      - name: Setup Docker Trust
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
+      - name: Build OSS selfhost
         run: |
-          mkdir -p ~/.docker/trust/private
+          npm run dist:oss:selfhost
+          zip -r web-$_VERSION-selfhosted-open-source.zip build
 
-          echo "$DCT_DELEGATE_KEY" > ~/.docker/trust/private/$DCT_DELEGATION_KEY_ID.key
-        env:
-          DCT_DELEGATION_KEY_ID: "c9bde8ec820701516491e5e03d3a6354e7bd66d05fa3df2b0062f68b116dc59c"
-          DCT_DELEGATE_KEY: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-key }}
+      - name: Upload build artifact
+        uses: actions/upload-artifact@ee69f02b3dfdecd58bb31b4d133da38ba6fe3700  # v2.2.3
+        with:
+          name: web-${{ env._VERSION }}-selfhosted-open-source.zip
+          path: ./web-${{ env._VERSION }}-selfhosted-open-source.zip
+          if-no-files-found: error
+
+
+  build-cloud:
+    name: Build Cloud zip
+    runs-on: ubuntu-20.04
+    needs: setup
+    env:
+      _VERSION: ${{ needs.setup.outputs.version }}
+    steps:
+      - name: Set up Node
+        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
+        with:
+          node-version: '14'
+
+      - name: Update NPM
+        run: |
+          npm install -g npm@7
+
+      - name: Cache npm
+        id: npm-cache
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
+        with:
+          path: '~/.npm'
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Print environment
+        run: |
+          whoami
+          node --version
+          npm --version
+          gulp --version
+          docker --version
+          echo "GitHub ref: $GITHUB_REF"
+          echo "GitHub event: $GITHUB_EVENT"
+
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build Cloud
+        run: |
+          npm run dist:bit:cloud
+          zip -r web-$_VERSION-cloud-COMMERCIAL.zip build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@ee69f02b3dfdecd58bb31b4d133da38ba6fe3700  # v2.2.3
+        with:
+          name: web-${{ env._VERSION }}-cloud-COMMERCIAL.zip
+          path: ./web-${{ env._VERSION }}-cloud-COMMERCIAL.zip
+          if-no-files-found: error
+
+
+  build-commercial-selfhost:
+    name: Build SelfHost Docker image
+    runs-on: ubuntu-20.04
+    needs: setup
+    env:
+      _VERSION: ${{ needs.setup.outputs.version }}
+    steps:
+      - name: Set up Node
+        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
+        with:
+          node-version: '14'
+
+      - name: Update NPM
+        run: |
+          npm install -g npm@7
+
+      - name: Cache npm
+        id: npm-cache
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
+        with:
+          path: '~/.npm'
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Print environment
+        run: |
+          whoami
+          node --version
+          npm --version
+          gulp --version
+          docker --version
+          echo "GitHub ref: $GITHUB_REF"
+          echo "GitHub event: $GITHUB_EVENT"
+
+      - name: Setup DCT
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
+        id: setup-dct
+        uses: bitwarden/gh-actions/setup-docker-trust@a8c384a05a974c05c48374c818b004be221d43ff
+        with:
+          azure-creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
+          azure-keyvault-name: "bitwarden-prod-kv"
 
       - name: Checkout repo
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
@@ -99,15 +196,26 @@ jobs:
         run: dotnet tool restore
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build
         run: |
           echo -e "# Building Web\n"
           echo "Building app"
           echo "npm version $(npm --version)"
-          npm run dist:selfhost
 
+          npm run dist:bit:selfhost
+          zip -r web-$_VERSION-selfhosted-COMMERCIAL.zip build
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@ee69f02b3dfdecd58bb31b4d133da38ba6fe3700  # v2.2.3
+        with:
+          name: web-${{ env._VERSION }}-selfhosted-COMMERCIAL.zip
+          path: ./web-${{ env._VERSION }}-selfhosted-COMMERCIAL.zip
+          if-no-files-found: error
+
+      - name: Build Docker image
+        run: |
           echo -e "\nBuilding Docker image"
           docker --version
           docker build -t bitwarden/web .
@@ -127,16 +235,16 @@ jobs:
       - name: Push rc images
         if: github.ref == 'refs/heads/rc'
         run: docker push bitwarden/web:rc
-        env: 
+        env:
           DOCKER_CONTENT_TRUST: 1
-          DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
+          DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
 
       - name: Push dev images
         if: github.ref == 'refs/heads/master'
         run: docker push bitwarden/web:dev
-        env: 
+        env:
           DOCKER_CONTENT_TRUST: 1
-          DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.retrieve-secrets.outputs.dct-delegate-2-repo-passphrase }}
+          DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
 
       - name: Log out of Docker
         if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
@@ -144,8 +252,8 @@ jobs:
 
 
   build-qa:
-    name: Build QA Docker image
-    runs-on: ubuntu-latest
+    name: Build Docker images for QA environment
+    runs-on: ubuntu-20.04
     steps:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
@@ -158,10 +266,10 @@ jobs:
 
       - name: Cache npm
         id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # v2.1.6
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
         with:
           path: '~/.npm'
-          key: ${{ runner.os }}-${{ github.run_id }}-npm-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
         run: |
@@ -195,26 +303,32 @@ jobs:
           echo -e "# Building Web\n"
           echo "Building app"
           echo "npm version $(npm --version)"
-          npm run build:qa
+          VERSION=$( jq -r ".version" package.json)
+          jq --arg version "$VERSION - ${GITHUB_SHA:0:7}" '.version = $version' package.json > package.json.tmp
+          mv package.json.tmp package.json
+
+          npm run build:bit:qa
+
+          echo "{\"commit_hash\": \"$GITHUB_SHA\", \"ref\": \"$GITHUB_REF\"}" | jq . > build/info.json
 
           echo -e "\nBuilding Docker image"
           docker --version
           docker build -t bitwardenqa.azurecr.io/web .
 
       - name: Get image tag
-        id: image_tag
+        id: image-tag
         run: |
           IMAGE_TAG=$(echo "$GITHUB_REF" | awk '{split($0, a, "/"); print a[3];}')
-          TAG_EXTENSION=${{ github.events.inputs.custom_tag_extension }}
+          TAG_EXTENSION=${{ github.event.inputs.custom_tag_extension }}
 
           if [[ $TAG_EXTENSION ]]; then
             IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
-          fi  
+          fi
           echo "::set-output name=value::$IMAGE_TAG"
 
       - name: Tag image
         env:
-          IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
+          IMAGE_TAG: ${{ steps.image-tag.outputs.value }}
         run: docker tag bitwardenqa.azurecr.io/web "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
 
       - name: Tag dev
@@ -226,7 +340,7 @@ jobs:
 
       - name: Push image
         env:
-          IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
+          IMAGE_TAG: ${{ steps.image-tag.outputs.value }}
         run: docker push "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
 
       - name: Push dev images
@@ -239,7 +353,7 @@ jobs:
 
   windows:
     name: Test code on Windows
-    runs-on: windows-latest
+    runs-on: windows-2019
     steps:
       - name: Set up NuGet
         uses: nuget/setup-nuget@04b0c2b8d1b97922f67eca497d7cf0bf17b8ffe1
@@ -248,6 +362,13 @@ jobs:
 
       - name: Set up MSBuild
         uses: microsoft/setup-msbuild@c26a08ba26249b81327e26f6ef381897b6a8754d
+
+      - name: Cache npm
+        id: npm-cache
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
+        with:
+          path: '~/.npm'
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
@@ -274,9 +395,74 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
-      - name: npm install
-        run: npm install
+      - name: Install dependencies
+        run: npm ci
 
-      - name: npm build
-        run: npm run build:cloud
+      - name: NPM install
+        run: npm ci
 
+      - name: NPM build
+        run: npm run build:bit:cloud
+
+
+  check-failures:
+    name: Check for failures
+    if: always()
+    runs-on: ubuntu-20.04
+    needs:
+      - cloc
+      - setup
+      - build-oss-selfhost
+      - build-cloud
+      - build-commercial-selfhost
+      - build-qa
+      - windows
+    steps:
+      - name: Check if any job failed
+        if: ${{ (github.ref == 'refs/heads/master') || (github.ref == 'refs/heads/rc') }}
+        env:
+          CLOC_STATUS: ${{ needs.cloc.result }}
+          SETUP_STATUS: ${{ needs.setup.result }}
+          BUILD_OSS_SELFHOST_STATUS: ${{ needs.build-oss-selfhost.result }}
+          BUILD_CLOUD_STATUS: ${{ needs.build-cloud.result }}
+          BUILD_COMMERCIAL_SELFHOST_STATUS: ${{ needs.build-commercial-selfhost.result }}
+          BUILD_QA: ${{ needs.build-qa.result }}
+          WINDOWS: ${{ needs.windows.result }}
+        run: |
+          if [ "$CLOC_STATUS" = "failure" ]; then
+              exit 1
+          elif [ "$SETUP_STATUS" = "failure" ]; then
+              exit 1
+          elif [ "$BUILD_OSS_SELFHOST_STATUS" = "failure" ]; then
+              exit 1
+          elif [ "$BUILD_CLOUD_STATUS" = "failure" ]; then
+              exit 1
+          elif [ "$BUILD_COMMERCIAL_SELFHOST_STATUS" = "failure" ]; then
+              exit 1
+          elif [ "$BUILD_QA" = "failure" ]; then
+              exit 1
+          elif [ "$WINDOWS" = "failure" ]; then
+              exit 1
+          fi
+
+      - name: Login to Azure - Prod Subscription
+        uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
+        if: failure()
+        with:
+          creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
+
+      - name: Retrieve secrets
+        id: retrieve-secrets
+        uses: Azure/get-keyvault-secrets@80ccd3fafe5662407cc2e55f202ee34bfff8c403
+        if: failure()
+        with:
+          keyvault: "bitwarden-prod-kv"
+          secrets: "devops-alerts-slack-webhook-url"
+
+      - name: Notify Slack on failure
+        uses: act10ns/slack@e4e71685b9b239384b0f676a63c32367f59c2522  # v1.2.2
+        if: failure()
+        env:
+          SLACK_WEBHOOK_URL: ${{ steps.retrieve-secrets.outputs.devops-alerts-slack-webhook-url }}
+        with:
+          status: ${{ job.status }}

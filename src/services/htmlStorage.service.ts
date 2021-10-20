@@ -1,13 +1,13 @@
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
-import { ConstantsService } from 'jslib-common/services';
+import { ConstantsService } from 'jslib-common/services/constants.service';
 
 export class HtmlStorageService implements StorageService {
     private localStorageKeys = new Set(['appId', 'anonymousAppId', 'rememberedEmail', 'passwordGenerationOptions',
         ConstantsService.disableFaviconKey, 'rememberEmail', 'enableGravatars', 'enableFullWidth',
         ConstantsService.localeKey, ConstantsService.autoConfirmFingerprints,
         ConstantsService.vaultTimeoutKey, ConstantsService.vaultTimeoutActionKey, ConstantsService.ssoCodeVerifierKey,
-        ConstantsService.ssoStateKey, 'ssoOrgIdentifier']);
+        ConstantsService.ssoStateKey, 'ssoOrgIdentifier', ConstantsService.themeKey]);
     private localStorageStartsWithKeys = ['twoFactorToken_', ConstantsService.collapsedGroupingsKey + '_'];
     private memoryStorageStartsWithKeys = ['ciphers_', 'folders_', 'collections_', 'settings_', 'lastSync_'];
     private memoryStorage = new Map<string, string>();

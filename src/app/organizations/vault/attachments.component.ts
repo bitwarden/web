@@ -30,13 +30,13 @@ export class AttachmentsComponent extends BaseAttachmentsComponent {
     }
 
     protected async reupload(attachment: AttachmentView) {
-        if (this.organization.canManageAllCollections && this.showFixOldAttachments(attachment)) {
+        if (this.organization.canEditAnyCollection && this.showFixOldAttachments(attachment)) {
             await super.reuploadCipherAttachment(attachment, true);
         }
     }
 
     protected async loadCipher() {
-        if (!this.organization.canManageAllCollections) {
+        if (!this.organization.canEditAnyCollection) {
             return await super.loadCipher();
         }
         const response = await this.apiService.getCipherAdmin(this.cipherId);
@@ -44,17 +44,17 @@ export class AttachmentsComponent extends BaseAttachmentsComponent {
     }
 
     protected saveCipherAttachment(file: File) {
-        return this.cipherService.saveAttachmentWithServer(this.cipherDomain, file, this.organization.canManageAllCollections);
+        return this.cipherService.saveAttachmentWithServer(this.cipherDomain, file, this.organization.canEditAnyCollection);
     }
 
     protected deleteCipherAttachment(attachmentId: string) {
-        if (!this.organization.canManageAllCollections) {
+        if (!this.organization.canEditAnyCollection) {
             return super.deleteCipherAttachment(attachmentId);
         }
         return this.apiService.deleteCipherAttachmentAdmin(this.cipherId, attachmentId);
     }
 
     protected showFixOldAttachments(attachment: AttachmentView) {
-        return attachment.key == null && this.organization.canManageAllCollections;
+        return attachment.key == null && this.organization.canEditAnyCollection;
     }
 }

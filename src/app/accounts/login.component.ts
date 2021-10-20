@@ -4,6 +4,8 @@ import {
     Router,
 } from '@angular/router';
 
+import { first } from 'rxjs/operators';
+
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { AuthService } from 'jslib-common/abstractions/auth.service';
 import { CryptoFunctionService } from 'jslib-common/abstractions/cryptoFunction.service';
@@ -42,7 +44,7 @@ export class LoginComponent extends BaseLoginComponent {
     }
 
     async ngOnInit() {
-        const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+        this.route.queryParams.pipe(first()).subscribe(async qParams => {
             if (qParams.email != null && qParams.email.indexOf('@') > -1) {
                 this.email = qParams.email;
             }
@@ -53,9 +55,6 @@ export class LoginComponent extends BaseLoginComponent {
                     { route: '/settings/create-organization', qParams: { plan: qParams.org } });
             }
             await super.ngOnInit();
-            if (queryParamsSub != null) {
-                queryParamsSub.unsubscribe();
-            }
         });
 
         const invite = await this.stateService.get<any>('orgInvitation');

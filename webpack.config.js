@@ -3,6 +3,7 @@ const fs = require('fs');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackInjector = require('html-webpack-injector');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -29,7 +30,7 @@ const moduleRules = [
     },
     {
         test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        exclude: /loading.svg/,
+        exclude: /loading(|-white).svg/,
         use: [{
             loader: 'file-loader',
             options: {
@@ -81,8 +82,9 @@ const plugins = [
     new HtmlWebpackPlugin({
         template: './src/index.html',
         filename: 'index.html',
-        chunks: ['app/polyfills', 'app/vendor', 'app/main'],
+        chunks: ['theme_head', 'app/polyfills', 'app/vendor', 'app/main'],
     }),
+    new HtmlWebpackInjector(),
     new HtmlWebpackPlugin({
         template: './src/connectors/duo.html',
         filename: 'duo-connector.html',
@@ -96,6 +98,11 @@ const plugins = [
     new HtmlWebpackPlugin({
         template: './src/connectors/webauthn.html',
         filename: 'webauthn-connector.html',
+        chunks: ['connectors/webauthn'],
+    }),
+    new HtmlWebpackPlugin({
+        template: './src/connectors/webauthn-mobile.html',
+        filename: 'webauthn-mobile-connector.html',
         chunks: ['connectors/webauthn'],
     }),
     new HtmlWebpackPlugin({
@@ -125,7 +132,6 @@ const plugins = [
             { from: './src/favicon.ico' },
             { from: './src/browserconfig.xml' },
             { from: './src/app-id.json' },
-            { from: './src/assetlinks.json' },
             { from: './src/404.html' },
             { from: './src/404', to: '404' },
             { from: './src/images', to: 'images' },
@@ -133,6 +139,12 @@ const plugins = [
             { from: './src/scripts', to: 'scripts' },
             { from: './node_modules/qrious/dist/qrious.min.js', to: 'scripts' },
             { from: './node_modules/braintree-web-drop-in/dist/browser/dropin.js', to: 'scripts' },
+            {
+                from: './src/version.json',
+                transform (content, path) {
+                    return content.toString().replace('process.env.APPLICATION_VERSION', pjson.version);
+                },
+            }
         ],
     }),
     new MiniCssExtractPlugin({
@@ -145,6 +157,9 @@ const plugins = [
         'APPLICATION_VERSION': pjson.version,
         'CACHE_TAG': Math.random().toString(36).substring(7),
         'URLS': envConfig['urls'] ?? {},
+        'STRIPE_KEY': envConfig['stripeKey'] ?? '', 
+        'BRAINTREE_KEY': envConfig['braintreeKey'] ?? '',
+        'PAYPAL_CONFIG': envConfig['paypal'] ?? {},
     }),
     new WorkerPlugin({
         plugins: [
@@ -195,12 +210,6 @@ const devServer = ENV !== 'development' ? {} : {
             secure: false,
             changeOrigin: true
         },
-        '/portal': {
-            target: envConfig['proxyEnterprise'],
-            pathRewrite: {'^/portal' : ''},
-            secure: false,
-            changeOrigin: true
-        }
     },
     hot: false,
     allowedHosts: envConfig['allowedHosts']
@@ -219,6 +228,7 @@ const webpackConfig = {
         'connectors/duo': './src/connectors/duo.ts',
         'connectors/sso': './src/connectors/sso.ts',
         'connectors/captcha': './src/connectors/captcha.ts',
+        'theme_head': './src/theme.js',
     },
     externals: {
         'u2f': 'u2f',

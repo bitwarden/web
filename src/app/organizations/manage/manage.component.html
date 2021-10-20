@@ -9,7 +9,7 @@
                         {{'people' | i18n}}
                     </a>
                     <a routerLink="collections" class="list-group-item" routerLinkActive="active"
-                        *ngIf="organization.canManageAssignedCollections || organization.canManageAllCollections">
+                        *ngIf="organization.canViewAssignedCollections || organization.canViewAllCollections">
                         {{'collections' | i18n}}
                     </a>
                     <a routerLink="groups" class="list-group-item" routerLinkActive="active"
@@ -19,6 +19,10 @@
                     <a routerLink="policies" class="list-group-item" routerLinkActive="active"
                         *ngIf="organization.canManagePolicies && accessPolicies">
                         {{'policies' | i18n}}
+                    </a>
+                    <a routerLink="sso" class="list-group-item" routerLinkActive="active"
+                        *ngIf="organization.canManageSso && accessSso">
+                        {{'singleSignOn' | i18n}}
                     </a>
                     <a routerLink="events" class="list-group-item" routerLinkActive="active"
                         *ngIf="organization.canAccessEventLogs && accessEvents">

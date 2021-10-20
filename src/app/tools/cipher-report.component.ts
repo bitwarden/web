@@ -1,5 +1,4 @@
 import {
-    ComponentFactoryResolver,
     Directive,
     ViewChild,
     ViewContainerRef,
@@ -9,12 +8,16 @@ import { CipherView } from 'jslib-common/models/view/cipherView';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 
-import { ModalComponent } from '../modal.component';
 import { AddEditComponent as OrgAddEditComponent } from '../organizations/vault/add-edit.component';
 import { AddEditComponent } from '../vault/add-edit.component';
 
+import { CipherRepromptType } from 'jslib-common/enums/cipherRepromptType';
+
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { ModalService } from 'jslib-angular/services/modal.service';
 
 @Directive()
 export class CipherReportComponent {
@@ -25,10 +28,9 @@ export class CipherReportComponent {
     ciphers: CipherView[] = [];
     organization: Organization;
 
-    private modal: ModalComponent = null;
-
-    constructor(private componentFactoryResolver: ComponentFactoryResolver, protected userService: UserService,
-        protected messagingService: MessagingService, public requiresPaid: boolean) { }
+    constructor(private modalService: ModalService, protected userService: UserService,
+        protected messagingService: MessagingService, protected passwordRepromptService: PasswordRepromptService,
+        public requiresPaid: boolean) { }
 
     async load() {
         this.loading = true;
@@ -37,40 +39,33 @@ export class CipherReportComponent {
         this.hasLoaded = true;
     }
 
-    selectCipher(cipher: CipherView) {
-        if (this.modal != null) {
-            this.modal.close();
+    async selectCipher(cipher: CipherView) {
+        if (!await this.repromptCipher(cipher)) {
+            return;
         }
 
-        const factory = this.componentFactoryResolver.resolveComponentFactory(ModalComponent);
-        this.modal = this.cipherAddEditModalRef.createComponent(factory).instance;
-        let childComponent: OrgAddEditComponent | AddEditComponent;
-        if (this.organization != null) {
-            childComponent = this.modal.show<OrgAddEditComponent>(OrgAddEditComponent, this.cipherAddEditModalRef);
-            (childComponent as OrgAddEditComponent).organization = this.organization;
-        } else {
-            childComponent = this.modal.show<AddEditComponent>(AddEditComponent, this.cipherAddEditModalRef);
-        }
+        const type = this.organization != null ? OrgAddEditComponent : AddEditComponent;
 
-        childComponent.cipherId = cipher == null ? null : cipher.id;
-        if (this.organization != null) {
-            childComponent.organizationId = this.organization.id;
-        }
-        childComponent.onSavedCipher.subscribe(async (c: CipherView) => {
-            this.modal.close();
-            await this.load();
-        });
-        childComponent.onDeletedCipher.subscribe(async (c: CipherView) => {
-            this.modal.close();
-            await this.load();
-        });
-        childComponent.onRestoredCipher.subscribe(async (c: CipherView) => {
-            this.modal.close();
-            await this.load();
-        });
+        const [modal, childComponent] = await this.modalService.openViewRef(type, this.cipherAddEditModalRef, (comp: OrgAddEditComponent | AddEditComponent) => {
+            if (this.organization != null) {
+                (comp as OrgAddEditComponent).organization = this.organization;
+                comp.organizationId = this.organization.id;
+            }
 
-        this.modal.onClosed.subscribe(() => {
-            this.modal = null;
+            comp.cipherId = cipher == null ? null : cipher.id;
+            comp.onSavedCipher.subscribe(async (c: CipherView) => {
+                modal.close();
+                await this.load();
+            });
+            comp.onDeletedCipher.subscribe(async (c: CipherView) => {
+                modal.close();
+                await this.load();
+            });
+            comp.onRestoredCipher.subscribe(async (c: CipherView) => {
+                modal.close();
+                await this.load();
+            });
+
         });
 
         return childComponent;
@@ -97,5 +92,9 @@ export class CipherReportComponent {
 
     protected async setCiphers() {
         this.ciphers = [];
+    }
+
+    protected async repromptCipher(c: CipherView) {
+        return c.reprompt === CipherRepromptType.None || await this.passwordRepromptService.showPasswordPrompt();
     }
 }

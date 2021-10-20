@@ -7,6 +7,8 @@ import {
     Router,
 } from '@angular/router';
 
+import { first } from 'rxjs/operators';
+
 import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
@@ -25,12 +27,7 @@ export class VerifyEmailTokenComponent implements OnInit {
         private apiService: ApiService, private userService: UserService) { }
 
     ngOnInit() {
-        let fired = false;
-        this.route.queryParams.subscribe(async qParams => {
-            if (fired) {
-                return;
-            }
-            fired = true;
+        this.route.queryParams.pipe(first()).subscribe(async qParams => {
             if (qParams.userId != null && qParams.token != null) {
                 try {
                     await this.apiService.postAccountVerifyEmailToken(
