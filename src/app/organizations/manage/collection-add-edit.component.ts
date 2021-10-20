@@ -54,8 +54,8 @@ export class CollectionAddEditComponent implements OnInit {
 
     async ngOnInit() {
         const organization = await this.userService.getOrganization(this.organizationId);
-        this.editMode = this.loading = this.collectionId != null;
         this.accessGroups = organization.useGroups;
+        this.editMode = this.loading = this.collectionId != null;
         if (this.accessGroups) {
             const groupsResponse = await this.apiService.getGroups(this.organizationId);
             this.groups = groupsResponse.data.map(r => r).sort(Utils.getSortFunction(this.i18nService, 'name'));
