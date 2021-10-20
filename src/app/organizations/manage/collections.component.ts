@@ -73,14 +73,6 @@ export class CollectionsComponent implements OnInit {
     async load() {
         this.organization = await this.userService.getOrganization(this.organizationId);
         this.canCreate = this.organization.canCreateNewCollections;
-        let allCollectionsResponse: ListResponse<CollectionResponse>;
-        let assignedCollectionResponse: ListResponse<CollectionResponse>;
-        if (this.organization.canViewAllCollections) {
-            allCollectionsResponse = await this.apiService.getCollections(this.organizationId);
-        }
-        if (this.organization.canViewAssignedCollections) {
-            assignedCollectionResponse = await this.apiService.getUserCollections();
-        }
 
         const decryptCollections = async (r: ListResponse<CollectionResponse>) => {
             const collections = r.data.filter(c => c.organizationId === this.organizationId).map(d =>
@@ -88,11 +80,14 @@ export class CollectionsComponent implements OnInit {
             return await this.collectionService.decryptMany(collections);
         };
 
-        if (assignedCollectionResponse) {
-            this.assignedCollections = await decryptCollections(assignedCollectionResponse);
+        if (this.organization.canViewAssignedCollections) {
+            const response = await this.apiService.getUserCollections();
+            this.assignedCollections = await decryptCollections(response);
         }
-        if (allCollectionsResponse) {
-            this.collections = await decryptCollections(allCollectionsResponse);
+
+        if (this.organization.canViewAllCollections) {
+            const response = await this.apiService.getCollections(this.organizationId);
+            this.collections = await decryptCollections(response);
         } else {
             this.collections = this.assignedCollections;
         }
