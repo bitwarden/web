@@ -67,12 +67,11 @@ jobs:
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
       - name: Pull latest selfhost Release image
-        run: docker pull bitwarden/web:rc
+        run: docker pull bitwarden/web:latest
 
       - name: Tag version
         run: |
-          docker tag bitwarden/web:rc bitwarden/web:latest
-          docker tag bitwarden/web:rc bitwarden/web:$_RELEASE_VERSION
+          docker tag bitwarden/web:latest bitwarden/web:$_RELEASE_VERSION
 
       - name: List Docker images
         run: docker images

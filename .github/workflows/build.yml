@@ -228,20 +228,31 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: docker tag bitwarden/web bitwarden/web:dev
 
+      - name: Tag release branch
+        if: github.ref == 'refs/heads/release'
+        run: docker tag bitwarden/web bitwarden/web:latest
+
       - name: List Docker images
         if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
         run: docker images
 
-      - name: Push rc images
+      - name: Push rc image
         if: github.ref == 'refs/heads/rc'
         run: docker push bitwarden/web:rc
         env:
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
 
-      - name: Push dev images
+      - name: Push dev image
         if: github.ref == 'refs/heads/master'
         run: docker push bitwarden/web:dev
+        env:
+          DOCKER_CONTENT_TRUST: 1
+          DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
+
+      - name: Push latest image
+        if: github.ref == 'refs/heads/release'
+        run: docker push bitwarden/web:latest
         env:
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
