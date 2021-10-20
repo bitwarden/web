@@ -44,7 +44,7 @@ export class CiphersComponent extends BaseCiphersComponent {
     }
 
     async load(filter: (cipher: CipherView) => boolean = null) {
-        if (this.organization.canViewAllCollections) {
+        if (this.organization.canEditAnyCollection) {
             this.accessEvents = this.organization.useEvents;
             this.allCiphers = await this.cipherService.getAllFromApiForOrganization(this.organization.id);
         } else {
