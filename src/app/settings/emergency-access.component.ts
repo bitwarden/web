@@ -242,7 +242,6 @@ export class EmergencyAccessComponent implements OnInit {
         const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
 
         try {
-            // tslint:disable-next-line
             this.logService.debug('User\'s fingerprint: ' +
                 (await this.cryptoService.getFingerprint(details.granteeId, publicKey.buffer)).join('-'));
         } catch {
