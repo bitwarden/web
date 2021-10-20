@@ -21,6 +21,7 @@ import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { CollectionData } from 'jslib-common/models/data/collectionData';
 import { Collection } from 'jslib-common/models/domain/collection';
+import { Organization } from 'jslib-common/models/domain/organization';
 import {
     CollectionDetailsResponse,
     CollectionResponse,
@@ -40,8 +41,11 @@ export class CollectionsComponent implements OnInit {
     @ViewChild('usersTemplate', { read: ViewContainerRef, static: true }) usersModalRef: ViewContainerRef;
 
     loading = true;
+    organization: Organization;
+    canCreate: boolean = false;
     organizationId: string;
     collections: CollectionView[];
+    assignedCollections: CollectionView[];
     pagedCollections: CollectionView[];
     searchText: string;
 
@@ -67,16 +71,32 @@ export class CollectionsComponent implements OnInit {
     }
 
     async load() {
-        const organization = await this.userService.getOrganization(this.organizationId);
-        let response: ListResponse<CollectionResponse>;
-        if (organization.canViewAllCollections) {
-            response = await this.apiService.getCollections(this.organizationId);
-        } else {
-            response = await this.apiService.getUserCollections();
+        this.organization = await this.userService.getOrganization(this.organizationId);
+        this.canCreate = this.organization.canCreateNewCollections;
+        let allCollectionsResponse: ListResponse<CollectionResponse>;
+        let assignedCollectionResponse: ListResponse<CollectionResponse>;
+        if (this.organization.canViewAllCollections) {
+            allCollectionsResponse = await this.apiService.getCollections(this.organizationId);
         }
-        const collections = response.data.filter(c => c.organizationId === this.organizationId).map(r =>
-            new Collection(new CollectionData(r as CollectionDetailsResponse)));
-        this.collections = await this.collectionService.decryptMany(collections);
+        if (this.organization.canViewAssignedCollections) {
+            assignedCollectionResponse = await this.apiService.getUserCollections();
+        }
+
+        const decryptCollections = async (r: ListResponse<CollectionResponse>) => {
+            const collections = r.data.filter(c => c.organizationId === this.organizationId).map(d =>
+                new Collection(new CollectionData(d as CollectionDetailsResponse)));
+            return await this.collectionService.decryptMany(collections);
+        };
+
+        if (assignedCollectionResponse) {
+            this.assignedCollections = await decryptCollections(assignedCollectionResponse);
+        }
+        if (allCollectionsResponse) {
+            this.collections = await decryptCollections(allCollectionsResponse);
+        } else {
+            this.collections = this.assignedCollections;
+        }
+
         this.resetPaging();
         this.loading = false;
     }
@@ -99,9 +119,20 @@ export class CollectionsComponent implements OnInit {
     }
 
     async edit(collection: CollectionView) {
+        const canCreate = collection == null && this.canCreate;
+        const canEdit = collection != null && this.canEdit(collection);
+        const canDelete = collection != null && this.canDelete(collection);
+
+        if (!(canCreate || canEdit || canDelete)) {
+            this.toasterService.popAsync('error', null, this.i18nService.t('missingPermissions'));
+            return;
+        }
+
         const [modal] = await this.modalService.openViewRef(CollectionAddEditComponent, this.addEditModalRef, comp => {
             comp.organizationId = this.organizationId;
             comp.collectionId = collection != null ? collection.id : null;
+            comp.canSave = canCreate || canEdit;
+            comp.canDelete = canDelete;
             comp.onSavedCollection.subscribe(() => {
                 modal.close();
                 this.load();
@@ -131,6 +162,7 @@ export class CollectionsComponent implements OnInit {
             this.removeCollection(collection);
         } catch (e) {
             this.logService.error(e);
+            this.toasterService.popAsync('error', null, this.i18nService.t('missingPermissions'));
         }
     }
 
@@ -163,6 +195,28 @@ export class CollectionsComponent implements OnInit {
             this.resetPaging();
         }
         return !searching && this.collections && this.collections.length > this.pageSize;
+    }
+
+    canEdit(collection: CollectionView) {
+        if (this.organization.canEditAnyCollection) {
+            return true;
+        }
+
+        if (this.organization.canEditAssignedCollections && this.assignedCollections.some(c => c.id === collection.id)) {
+            return true;
+        }
+        return false;
+    }
+
+    canDelete(collection: CollectionView) {
+        if (this.organization.canDeleteAnyCollection) {
+            return true;
+        }
+
+        if (this.organization.canDeleteAssignedCollections && this.assignedCollections.some(c => c.id === collection.id)) {
+            return true;
+        }
+        return false;
     }
 
     private removeCollection(collection: CollectionView) {
