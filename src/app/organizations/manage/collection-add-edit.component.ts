@@ -29,6 +29,8 @@ import { Utils } from 'jslib-common/misc/utils';
 export class CollectionAddEditComponent implements OnInit {
     @Input() collectionId: string;
     @Input() organizationId: string;
+    @Input() canSave: boolean;
+    @Input() canDelete: boolean;
     @Output() onSavedCollection = new EventEmitter();
     @Output() onDeletedCollection = new EventEmitter();
 
