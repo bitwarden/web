@@ -11,6 +11,7 @@ import { SendService } from 'jslib-common/abstractions/send.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { AddEditComponent as BaseAddEditComponent } from 'jslib-angular/components/send/add-edit.component';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 @Component({
     selector: 'app-send-add-edit',
@@ -20,9 +21,10 @@ export class AddEditComponent extends BaseAddEditComponent {
     constructor(i18nService: I18nService, platformUtilsService: PlatformUtilsService,
         environmentService: EnvironmentService, datePipe: DatePipe,
         sendService: SendService, userService: UserService,
-        messagingService: MessagingService, policyService: PolicyService) {
+        messagingService: MessagingService, policyService: PolicyService,
+        logService: LogService) {
         super(i18nService, platformUtilsService, environmentService, datePipe, sendService, userService,
-            messagingService, policyService);
+            messagingService, policyService, logService);
     }
 
     async copyLinkToClipboard(link: string): Promise<void | boolean> {

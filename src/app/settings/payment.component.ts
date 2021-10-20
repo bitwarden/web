@@ -7,6 +7,7 @@ import {
 import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { ThemeType } from 'jslib-common/enums/themeType';
@@ -52,7 +53,8 @@ export class PaymentComponent implements OnInit {
     private StripeElementStyle: any;
     private StripeElementClasses: any;
 
-    constructor(private platformUtilsService: PlatformUtilsService, private apiService: ApiService) {
+    constructor(private platformUtilsService: PlatformUtilsService, private apiService: ApiService,
+        private logService: LogService) {
         this.stripeScript = window.document.createElement('script');
         this.stripeScript.src = 'https://js.stripe.com/v3/';
         this.stripeScript.async = true;
@@ -107,7 +109,9 @@ export class PaymentComponent implements OnInit {
                 if (el.src != null && el.src.indexOf('stripe') > -1) {
                     try {
                         window.document.body.removeChild(el);
-                    } catch { }
+                    } catch (e) {
+                        this.logService.error(e);
+                    }
                 }
             });
         }, 500);
@@ -118,14 +122,18 @@ export class PaymentComponent implements OnInit {
                     if (el.src != null && el.src.indexOf('paypal') > -1) {
                         try {
                             window.document.head.removeChild(el);
-                        } catch { }
+                        } catch (e) {
+                            this.logService.error(e);
+                        }
                     }
                 });
                 const btStylesheet = window.document.head.querySelector('#braintree-dropin-stylesheet');
                 if (btStylesheet != null) {
                     try {
                         window.document.head.removeChild(btStylesheet);
-                    } catch { }
+                    } catch (e) {
+                        this.logService.error(e);
+                    }
                 }
             }, 500);
         }

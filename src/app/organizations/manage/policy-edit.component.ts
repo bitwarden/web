@@ -13,6 +13,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 import { PolicyType } from 'jslib-common/enums/policyType';
 
@@ -45,7 +46,7 @@ export class PolicyEditComponent {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private componentFactoryResolver: ComponentFactoryResolver,
-        private cdr: ChangeDetectorRef) {
+        private cdr: ChangeDetectorRef, private logService: LogService) {
     }
 
     async ngAfterViewInit() {
@@ -86,6 +87,8 @@ export class PolicyEditComponent {
             await this.formPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('editedPolicyId', this.i18nService.t(this.policy.name)));
             this.onSavedPolicy.emit();
-        } catch {}
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }

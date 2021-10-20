@@ -15,6 +15,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 import { StorageRequest } from 'jslib-common/models/request/storageRequest';
 
@@ -41,7 +42,7 @@ export class AdjustStorageComponent {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private router: Router,
-        private activatedRoute: ActivatedRoute) { }
+        private activatedRoute: ActivatedRoute, private logService: LogService) { }
 
     async submit() {
         try {
@@ -82,7 +83,9 @@ export class AdjustStorageComponent {
                 this.toasterService.popAsync('success', null,
                     this.i18nService.t('adjustedStorage', request.storageGbAdjustment.toString()));
             }
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     cancel() {

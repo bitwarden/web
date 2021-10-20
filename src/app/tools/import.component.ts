@@ -8,6 +8,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { ImportOption, ImportService } from 'jslib-common/abstractions/import.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 
@@ -33,7 +34,8 @@ export class ImportComponent implements OnInit {
 
     constructor(protected i18nService: I18nService, protected toasterService: ToasterService,
         protected importService: ImportService, protected router: Router,
-        protected platformUtilsService: PlatformUtilsService, protected policyService: PolicyService) { }
+        protected platformUtilsService: PlatformUtilsService, protected policyService: PolicyService,
+        private logService: LogService) { }
 
     async ngOnInit() {
         this.setImportOptions();
@@ -88,7 +90,9 @@ export class ImportComponent implements OnInit {
                 if (content != null) {
                     fileContents = content;
                 }
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
         }
 
         if (fileContents == null || fileContents === '') {
@@ -108,7 +112,9 @@ export class ImportComponent implements OnInit {
             }
             this.toasterService.popAsync('success', null, this.i18nService.t('importSuccess'));
             this.router.navigate(this.successNavigate);
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
 
         this.loading = false;
     }

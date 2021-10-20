@@ -5,6 +5,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 
 import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
@@ -19,7 +20,7 @@ export class DeauthorizeSessionsComponent {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
-        private messagingService: MessagingService) { }
+        private messagingService: MessagingService, private logService: LogService) { }
 
     async submit() {
         if (this.masterPassword == null || this.masterPassword === '') {
@@ -36,6 +37,8 @@ export class DeauthorizeSessionsComponent {
             this.toasterService.popAsync('success', this.i18nService.t('sessionsDeauthorized'),
                 this.i18nService.t('logBackIn'));
             this.messagingService.send('logout');
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }

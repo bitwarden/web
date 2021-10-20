@@ -31,5 +31,8 @@ document.addEventListener('DOMContentLoaded', event => {
 function invokeCSCode(data: string) {
     try {
         (window as any).invokeCSharpAction(data);
-    } catch (err) { }
+    } catch (err) {
+        // tslint:disable-next-line
+        console.log(err);
+    }
 }

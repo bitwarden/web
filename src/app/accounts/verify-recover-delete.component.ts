@@ -13,6 +13,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 import { VerifyDeleteRecoverRequest } from 'jslib-common/models/request/verifyDeleteRecoverRequest';
 
@@ -29,7 +30,7 @@ export class VerifyRecoverDeleteComponent implements OnInit {
 
     constructor(private router: Router, private apiService: ApiService,
         private toasterService: ToasterService, private i18nService: I18nService,
-        private route: ActivatedRoute) {
+        private route: ActivatedRoute, private logService: LogService) {
     }
 
     ngOnInit() {
@@ -52,6 +53,8 @@ export class VerifyRecoverDeleteComponent implements OnInit {
             this.toasterService.popAsync('success', this.i18nService.t('accountDeleted'),
                 this.i18nService.t('accountDeletedDesc'));
             this.router.navigate(['/']);
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }
