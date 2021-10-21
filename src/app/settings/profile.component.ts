@@ -8,6 +8,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { UpdateProfileRequest } from 'jslib-common/models/request/updateProfileRequest';
@@ -27,7 +28,7 @@ export class ProfileComponent implements OnInit {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private userService: UserService,
-        private cryptoService: CryptoService) { }
+        private cryptoService: CryptoService, private logService: LogService) { }
 
     async ngOnInit() {
         this.profile = await this.apiService.getProfile();
@@ -44,6 +45,8 @@ export class ProfileComponent implements OnInit {
             this.formPromise = this.apiService.putProfile(request);
             await this.formPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('accountUpdated'));
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }

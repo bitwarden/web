@@ -11,6 +11,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { CollectionData } from 'jslib-common/models/data/collectionData';
@@ -42,7 +43,7 @@ export class GroupAddEditComponent implements OnInit {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private collectionService: CollectionService,
-        private platformUtilsService: PlatformUtilsService) { }
+        private platformUtilsService: PlatformUtilsService, private logService: LogService) { }
 
     async ngOnInit() {
         this.editMode = this.loading = this.groupId != null;
@@ -66,7 +67,9 @@ export class GroupAddEditComponent implements OnInit {
                         }
                     });
                 }
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
         } else {
             this.title = this.i18nService.t('addGroup');
         }
@@ -112,7 +115,9 @@ export class GroupAddEditComponent implements OnInit {
             this.toasterService.popAsync('success', null,
                 this.i18nService.t(this.editMode ? 'editedGroupId' : 'createdGroupId', this.name));
             this.onSavedGroup.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     async delete() {
@@ -132,6 +137,8 @@ export class GroupAddEditComponent implements OnInit {
             await this.deletePromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('deletedGroupId', this.name));
             this.onDeletedGroup.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }

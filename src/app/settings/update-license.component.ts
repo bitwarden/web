@@ -9,6 +9,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 @Component({
     selector: 'app-update-license',
@@ -22,7 +23,7 @@ export class UpdateLicenseComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService) { }
+        private toasterService: ToasterService, private logService: LogService) { }
 
     async submit() {
         const fileEl = document.getElementById('file') as HTMLInputElement;
@@ -51,7 +52,9 @@ export class UpdateLicenseComponent {
             await this.formPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('updatedLicense'));
             this.onUpdated.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     cancel() {

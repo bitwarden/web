@@ -12,6 +12,8 @@ import {
     Router,
 } from '@angular/router';
 
+import { first } from 'rxjs/operators';
+
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
@@ -65,14 +67,14 @@ export class VaultComponent implements OnInit, OnDestroy {
             this.platformUtilsService.isSelfHost() ? 'trashCleanupWarningSelfHosted' : 'trashCleanupWarning'
         );
 
-        const queryParams = this.route.parent.params.subscribe(async params => {
+        this.route.parent.params.pipe(first()).subscribe(async params => {
             this.organization = await this.userService.getOrganization(params.organizationId);
             this.groupingsComponent.organization = this.organization;
             this.ciphersComponent.organization = this.organization;
 
-            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+            this.route.queryParams.pipe(first()).subscribe(async qParams => {
                 this.ciphersComponent.searchText = this.groupingsComponent.searchText = qParams.search;
-                if (!this.organization.canManageAllCollections) {
+                if (!this.organization.canViewAllCollections) {
                     await this.syncService.fullSync(false);
                     this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
                         this.ngZone.run(async () => {
@@ -118,15 +120,7 @@ export class VaultComponent implements OnInit, OnDestroy {
                         this.viewEvents(cipher[0]);
                     }
                 }
-
-                if (queryParamsSub != null) {
-                    queryParamsSub.unsubscribe();
-                }
             });
-
-            if (queryParams != null) {
-                queryParams.unsubscribe();
-            }
         });
     }
 
@@ -223,7 +217,7 @@ export class VaultComponent implements OnInit, OnDestroy {
 
     async editCipherCollections(cipher: CipherView) {
         const [modal] = await this.modalService.openViewRef(CollectionsComponent, this.collectionsModalRef, comp => {
-            if (this.organization.canManageAllCollections) {
+            if (this.organization.canEditAnyCollection) {
                 comp.collectionIds = cipher.collectionIds;
                 comp.collections = this.groupingsComponent.collections.filter(c => !c.readOnly);
             }
@@ -240,7 +234,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         const component = await this.editCipher(null);
         component.organizationId = this.organization.id;
         component.type = this.type;
-        if (this.organization.canManageAllCollections) {
+        if (this.organization.canEditAnyCollection) {
             component.collections = this.groupingsComponent.collections.filter(c => !c.readOnly);
         }
         if (this.collectionId != null) {
@@ -273,7 +267,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         const component = await this.editCipher(cipher);
         component.cloneMode = true;
         component.organizationId = this.organization.id;
-        if (this.organization.canManageAllCollections) {
+        if (this.organization.canEditAnyCollection) {
             component.collections = this.groupingsComponent.collections.filter(c => !c.readOnly);
         }
         // Regardless of Admin state, the collection Ids need to passed manually as they are not assigned value

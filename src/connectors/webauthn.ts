@@ -6,7 +6,9 @@ require('./webauthn.scss');
 
 let parsed = false;
 let webauthnJson: any;
+let headerText: string = null;
 let btnText: string = null;
+let btnReturnText: string = null;
 let parentUrl: string = null;
 let parentOrigin: string = null;
 let callbackUri: string = null;
@@ -18,6 +20,10 @@ document.addEventListener('DOMContentLoaded', () => {
     init();
 
     parseParameters();
+    if (headerText) {
+        const header = document.getElementById('webauthn-header');
+        header.innerText = decodeURI(headerText);
+    }
     if (btnText) {
         const button = document.getElementById('webauthn-button');
         button.innerText = decodeURI(btnText);
@@ -63,11 +69,13 @@ function parseParametersV1() {
     }
 
     webauthnJson = b64Decode(data);
+    headerText = getQsParam('headerText');
     btnText = getQsParam('btnText');
+    btnReturnText = getQsParam('btnReturnText');
 }
 
 function parseParametersV2() {
-    let dataObj: { data: any, btnText: string; callbackUri?: string } = null;
+    let dataObj: { data: any, headerText: string; btnText: string; btnReturnText: string; callbackUri?: string } = null;
     try {
         dataObj = JSON.parse(b64Decode(getQsParam('data')));
     }
@@ -78,7 +86,9 @@ function parseParametersV2() {
 
     callbackUri = dataObj.callbackUri;
     webauthnJson = dataObj.data;
+    headerText = dataObj.headerText;
     btnText = dataObj.btnText;
+    btnReturnText = dataObj.btnReturnText;
 }
 
 function start() {
@@ -140,6 +150,7 @@ function onMessage() {
 function error(message: string) {
     if (callbackUri) {
         document.location.replace(callbackUri + '?error=' + encodeURIComponent(message));
+        returnButton(callbackUri + '?error=' + encodeURIComponent(message));
     } else {
         parent.postMessage('error|' + message, parentUrl);
     }
@@ -154,6 +165,7 @@ function success(assertedCredential: PublicKeyCredential) {
 
     if (callbackUri) {
         document.location.replace(callbackUri + '?data=' + encodeURIComponent(dataString));
+        returnButton(callbackUri + '?data=' + encodeURIComponent(dataString));
     } else {
         parent.postMessage('success|' + dataString, parentUrl);
         sentSuccess = true;
@@ -166,5 +178,12 @@ function info(message: string) {
     }
 
     parent.postMessage('info|' + message, parentUrl);
+}
+
+function returnButton(uri: string) {
+    // provides 'return' button in case scripted navigation is blocked
+    const button = document.getElementById('webauthn-button');
+    button.innerText = decodeURI(btnReturnText);
+    button.onclick = () => { document.location.replace(uri); };
 }
 

@@ -107,7 +107,7 @@
             {{'additionalOptionsDesc' | i18n }}
         </p>
         <div class="d-flex">
-            <button type="button" class="btn btn-outline-secondary ml-1" (click)="downloadLicense()" *ngIf="canDownloadLicense"
+            <button type="button" class="btn btn-outline-secondary" (click)="downloadLicense()" *ngIf="canDownloadLicense"
                 [disabled]="showDownloadLicense">
                 {{'downloadLicense' | i18n}}
             </button>

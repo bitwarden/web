@@ -91,12 +91,14 @@ import { UserService as UserServiceAbstraction } from 'jslib-common/abstractions
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib-common/abstractions/vaultTimeout.service';
 import { ModalService } from './modal.service';
 
+import { ThemeType } from 'jslib-common/enums/themeType';
+
 const i18nService = new I18nService(window.navigator.language, 'locales');
 const stateService = new StateService();
 const broadcasterService = new BroadcasterService();
 const messagingService = new BroadcasterMessagingService(broadcasterService);
 const consoleLogService = new ConsoleLogService(false);
-const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService);
+const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService, () => storageService);
 const storageService: StorageServiceAbstraction = new HtmlStorageService(platformUtilsService);
 const secureStorageService: StorageServiceAbstraction = new MemoryStorageService();
 const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(window,
@@ -114,12 +116,12 @@ const settingsService = new SettingsService(userService, storageService);
 export let searchService: SearchService = null;
 const fileUploadService = new FileUploadService(consoleLogService, apiService);
 const cipherService = new CipherService(cryptoService, userService, settingsService,
-    apiService, fileUploadService, storageService, i18nService, () => searchService);
+    apiService, fileUploadService, storageService, i18nService, () => searchService, consoleLogService);
 const folderService = new FolderService(cryptoService, userService, apiService, storageService,
     i18nService, cipherService);
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
 searchService = new SearchService(cipherService, consoleLogService, i18nService);
-const policyService = new PolicyService(userService, storageService);
+const policyService = new PolicyService(userService, storageService, apiService);
 const sendService = new SendService(cryptoService, userService, apiService, fileUploadService, storageService,
     i18nService, cryptoFunctionService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
@@ -127,9 +129,9 @@ const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService
     policyService, null, async () => messagingService.send('logout', { expired: false }));
 const syncService = new SyncService(userService, apiService, settingsService,
     folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
-    sendService, async (expired: boolean) => messagingService.send('logout', { expired: expired }));
+    sendService, consoleLogService, async (expired: boolean) => messagingService.send('logout', { expired: expired }));
 const passwordGenerationService = new PasswordGenerationService(cryptoService, storageService, policyService);
-const totpService = new TotpService(storageService, cryptoFunctionService);
+const totpService = new TotpService(storageService, cryptoFunctionService, consoleLogService);
 const containerService = new ContainerService(cryptoService);
 const authService = new AuthService(cryptoService, apiService,
     userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService, vaultTimeoutService,
@@ -140,7 +142,7 @@ const importService = new ImportService(cipherService, folderService, apiService
 const notificationsService = new NotificationsService(userService, syncService, appIdService, apiService, vaultTimeoutService,
     environmentService, async () => messagingService.send('logout', { expired: true }), consoleLogService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
-const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService);
+const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService, consoleLogService);
 
 containerService.attachToWindow(window);
 
@@ -161,11 +163,16 @@ export function initFactory(): Function {
         authService.init();
         const htmlEl = window.document.documentElement;
         htmlEl.classList.add('locale_' + i18nService.translationLocale);
-        let theme = await storageService.get<string>(ConstantsService.themeKey);
-        if (theme == null) {
-            theme = 'light';
-        }
-        htmlEl.classList.add('theme_' + theme);
+
+        // Initial theme is set in index.html which must be updated if there are any changes to theming logic
+        platformUtilsService.onDefaultSystemThemeChange(async sysTheme => {
+            const bwTheme = await storageService.get<ThemeType>(ConstantsService.themeKey);
+            if (bwTheme === ThemeType.System) {
+                htmlEl.classList.remove('theme_' + ThemeType.Light, 'theme_' + ThemeType.Dark);
+                htmlEl.classList.add('theme_' + sysTheme);
+            }
+        });
+
         stateService.save(ConstantsService.disableFaviconKey,
             await storageService.get<boolean>(ConstantsService.disableFaviconKey));
         stateService.save('enableGravatars', await storageService.get<boolean>('enableGravatars'));

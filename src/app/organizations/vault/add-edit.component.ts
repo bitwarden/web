@@ -7,6 +7,7 @@ import { CollectionService } from 'jslib-common/abstractions/collection.service'
 import { EventService } from 'jslib-common/abstractions/event.service';
 import { FolderService } from 'jslib-common/abstractions/folder.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
@@ -37,16 +38,16 @@ export class AddEditComponent extends BaseAddEditComponent {
         userService: UserService, collectionService: CollectionService,
         totpService: TotpService, passwordGenerationService: PasswordGenerationService,
         private apiService: ApiService, messagingService: MessagingService,
-        eventService: EventService, policyService: PolicyService) {
+        eventService: EventService, policyService: PolicyService, logService: LogService) {
         super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
             userService, collectionService, totpService, passwordGenerationService, messagingService,
-            eventService, policyService);
+            eventService, policyService, logService);
     }
 
     protected allowOwnershipAssignment() {
         if (this.ownershipOptions != null && (this.ownershipOptions.length > 1 || !this.allowPersonal)) {
             if (this.organization != null) {
-                return this.cloneMode && this.organization.canManageAllCollections;
+                return this.cloneMode && this.organization.canEditAnyCollection;
             } else {
                 return !this.editMode || this.cloneMode;
             }
@@ -55,14 +56,14 @@ export class AddEditComponent extends BaseAddEditComponent {
     }
 
     protected loadCollections() {
-        if (!this.organization.canManageAllCollections) {
+        if (!this.organization.canEditAnyCollection) {
             return super.loadCollections();
         }
         return Promise.resolve(this.collections);
     }
 
     protected async loadCipher() {
-        if (!this.organization.canManageAllCollections) {
+        if (!this.organization.canEditAnyCollection) {
             return await super.loadCipher();
         }
         const response = await this.apiService.getCipherAdmin(this.cipherId);
@@ -72,14 +73,14 @@ export class AddEditComponent extends BaseAddEditComponent {
     }
 
     protected encryptCipher() {
-        if (!this.organization.canManageAllCollections) {
+        if (!this.organization.canEditAnyCollection) {
             return super.encryptCipher();
         }
         return this.cipherService.encrypt(this.cipher, null, this.originalCipher);
     }
 
     protected async saveCipher(cipher: Cipher) {
-        if (!this.organization.canManageAllCollections || cipher.organizationId == null) {
+        if (!this.organization.canEditAnyCollection || cipher.organizationId == null) {
             return super.saveCipher(cipher);
         }
         if (this.editMode && !this.cloneMode) {
@@ -92,7 +93,7 @@ export class AddEditComponent extends BaseAddEditComponent {
     }
 
     protected async deleteCipher() {
-        if (!this.organization.canManageAllCollections) {
+        if (!this.organization.canEditAnyCollection) {
             return super.deleteCipher();
         }
         return this.cipher.isDeleted ? this.apiService.deleteCipherAdmin(this.cipherId)

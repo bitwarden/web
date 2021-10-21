@@ -12,6 +12,8 @@ import {
     ToasterService,
 } from 'angular2-toaster';
 
+import { first } from 'rxjs/operators';
+
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
@@ -35,12 +37,7 @@ export abstract class BaseAcceptComponent implements OnInit {
     abstract unauthedHandler(qParams: any): Promise<void>;
 
     ngOnInit() {
-        let fired = false;
-        this.route.queryParams.subscribe(async qParams => {
-            if (fired) {
-                return;
-            }
-            fired = true;
+        this.route.queryParams.pipe(first()).subscribe(async qParams => {
             await this.stateService.remove('loginRedirect');
 
             let error = this.requiredParameters.some(e => qParams?.[e] == null || qParams[e] === '');

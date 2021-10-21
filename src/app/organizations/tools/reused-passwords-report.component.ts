@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
@@ -23,9 +24,9 @@ export class ReusedPasswordsReportComponent extends BaseReusedPasswordsReportCom
     manageableCiphers: Cipher[];
 
     constructor(cipherService: CipherService, modalService: ModalService,
-        messagingService: MessagingService, userService: UserService,
+        messagingService: MessagingService, userService: UserService, passwordRepromptService: PasswordRepromptService,
         private route: ActivatedRoute) {
-        super(cipherService, modalService, messagingService, userService);
+        super(cipherService, modalService, messagingService, userService, passwordRepromptService);
     }
 
     async ngOnInit() {

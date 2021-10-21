@@ -3,6 +3,7 @@ const fs = require('fs');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackInjector = require('html-webpack-injector');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -28,7 +29,7 @@ const moduleRules = [
     },
     {
         test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
-        exclude: /loading.svg/,
+        exclude: /loading(|-white).svg/,
         use: [{
             loader: 'file-loader',
             options: {
@@ -80,8 +81,9 @@ const plugins = [
     new HtmlWebpackPlugin({
         template: './src/index.html',
         filename: 'index.html',
-        chunks: ['app/polyfills', 'app/vendor', 'app/main'],
+        chunks: ['theme_head', 'app/polyfills', 'app/vendor', 'app/main'],
     }),
+    new HtmlWebpackInjector(),
     new HtmlWebpackPlugin({
         template: './src/connectors/duo.html',
         filename: 'duo-connector.html',
@@ -198,12 +200,6 @@ const devServer = NODE_ENV !== 'development' ? {} : {
             secure: false,
             changeOrigin: true
         },
-        '/portal': {
-            target: envConfig.dev?.proxyEnterprise,
-            pathRewrite: {'^/portal' : ''},
-            secure: false,
-            changeOrigin: true
-        }
     },
     hot: false,
     allowedHosts: envConfig.dev?.allowedHosts,
@@ -222,6 +218,7 @@ const webpackConfig = {
         'connectors/duo': './src/connectors/duo.ts',
         'connectors/sso': './src/connectors/sso.ts',
         'connectors/captcha': './src/connectors/captcha.ts',
+        'theme_head': './src/theme.js',
     },
     externals: {
         'u2f': 'u2f',

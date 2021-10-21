@@ -9,6 +9,7 @@ import {
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
@@ -39,7 +40,7 @@ export class ResetPasswordComponent implements OnInit {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private platformUtilsService: PlatformUtilsService, private passwordGenerationService: PasswordGenerationService,
-        private policyService: PolicyService, private cryptoService: CryptoService) { }
+        private policyService: PolicyService, private cryptoService: CryptoService, private logService: LogService) { }
 
     async ngOnInit() {
         // Get Enforced Policy Options
@@ -143,7 +144,9 @@ export class ResetPasswordComponent implements OnInit {
             await this.formPromise;
             this.platformUtilsService.showToast('success', null, this.i18nService.t('resetPasswordSuccess'));
             this.onPasswordReset.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     updatePasswordStrength() {

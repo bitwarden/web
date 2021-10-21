@@ -10,6 +10,7 @@ import { OrganizationSubscriptionResponse } from 'jslib-common/models/response/o
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
@@ -43,7 +44,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     constructor(private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
         private i18nService: I18nService, private toasterService: ToasterService,
         private messagingService: MessagingService, private route: ActivatedRoute,
-        private userService: UserService) {
+        private userService: UserService, private logService: LogService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -82,7 +83,9 @@ export class OrganizationSubscriptionComponent implements OnInit {
             await this.reinstatePromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('reinstated'));
             this.load();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     async cancel() {
@@ -101,7 +104,9 @@ export class OrganizationSubscriptionComponent implements OnInit {
             await this.cancelPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('canceledSubscription'));
             this.load();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     async changePlan() {
@@ -216,7 +221,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     get subscriptionDesc() {
-        if (this.sub.maxAutoscaleSeats == this.sub.seats && this.sub.seats != null) {
+        if (this.sub.maxAutoscaleSeats === this.sub.seats && this.sub.seats != null) {
             return this.i18nService.t('subscriptionMaxReached', this.sub.seats.toString());
         } else if (this.sub.maxAutoscaleSeats == null) {
             return this.i18nService.t('subscriptionUserSeatsUnlimitedAutoscale');
