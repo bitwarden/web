@@ -899,6 +899,9 @@
   "changeEmail": {
     "message": "이메일 변경"
   },
+  "changeEmailTwoFactorWarning": {
+    "message": "Proceeding will change your account email address. It will not change the email address used for two-factor authentication. You can change this email address in the Two-Step Login settings."
+  },
   "newEmail": {
     "message": "새 이메일"
   },
@@ -997,6 +1000,9 @@
   },
   "purgedOrganizationVault": {
     "message": "삭제 된 조직 보관함"
+  },
+  "vaultAccessedByProvider": {
+    "message": "Vault accessed by provider."
   },
   "purgeVaultDesc": {
     "message": "보관함 내의 모든 항목과 폴더를 삭제하려면 다음 단계로 나아가십시오. 조직에 속한 공유 항목들은 삭제되지 않습니다."
@@ -2148,6 +2154,9 @@
   "policies": {
     "message": "정책"
   },
+  "singleSignOn": {
+    "message": "Single Sign-On"
+  },
   "editPolicy": {
     "message": "정책 수정"
   },
@@ -2238,11 +2247,17 @@
   "confirmed": {
     "message": "확인됨"
   },
+  "clientOwnerEmail": {
+    "message": "Client Owner Email"
+  },
   "owner": {
     "message": "소유자"
   },
   "ownerDesc": {
     "message": "조직의 모든 측면을 관리할 수있는 최고 액세스 사용자."
+  },
+  "clientOwnerDesc": {
+    "message": "This user should be independent of the Provider. If the Provider is disassociated with the organization, this user will maintain ownership of the organization."
   },
   "admin": {
     "message": "관리자"
@@ -2577,6 +2592,42 @@
       }
     }
   },
+  "createdOrganizationId": {
+    "message": "Created organization $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "addedOrganizationId": {
+    "message": "Added organization $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "removedOrganizationId": {
+    "message": "Removed organization $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "accessedClientVault": {
+    "message": "Accessed $ID$ organization vault.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
   "device": {
     "message": "기기"
   },
@@ -2830,6 +2881,16 @@
   "enterInstallationId": {
     "message": "설치 ID를 입력하십시오"
   },
+  "limitSubscriptionDesc": {
+    "message": "Set a seat limit for your subscription. Once this limit is reached, you will not be able to invite new users."
+  },
+  "maxSeatLimit": {
+    "message": "Maximum Seat Limit (optional)",
+    "description": "Upper limit of seats to allow through autoscaling"
+  },
+  "maxSeatCost": {
+    "message": "Max potential seat cost"
+  },
   "addSeats": {
     "message": "사용자 수 추가",
     "description": "Seat = User Seat"
@@ -2838,8 +2899,47 @@
     "message": "사용자 수 제거",
     "description": "Seat = User Seat"
   },
+  "subscriptionDesc": {
+    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+  },
   "subscriptionUserSeats": {
     "message": "귀하의 구독은 총 $COUNT$명의 사용자를 허용합니다.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "limitSubscription": {
+    "message": "Limit Subscription (Optional)"
+  },
+  "subscriptionSeats": {
+    "message": "Subscription Seats"
+  },
+  "subscriptionUpdated": {
+    "message": "Subscription updated"
+  },
+  "additionalOptions": {
+    "message": "Additional Options"
+  },
+  "additionalOptionsDesc": {
+    "message": "For additional help in managing your subscription, please contact Customer Support."
+  },
+  "subscriptionUserSeatsUnlimitedAutoscale": {
+    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+  },
+  "subscriptionUserSeatsLimitedAutoscale": {
+    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users until your $MAX$ seat limit is reached.",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "subscriptionMaxReached": {
+    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. You cannot invite more than $COUNT$ users without increasing your subscription seats.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3299,10 +3399,6 @@
   "ssoHandOff": {
     "message": "이제 이 탭을 닫고 확장 프로그램에서 계속 진행하셔도 됩니다."
   },
-  "businessPortal": {
-    "message": "비즈니스 포털",
-    "description": "The web portal used by business organizations for configuring certain features."
-  },
   "includeAllTeamsFeatures": {
     "message": "모든 팀 기능, 추가로:"
   },
@@ -3323,9 +3419,6 @@
   },
   "linkSso": {
     "message": "SSO 연결"
-  },
-  "webPoliciesDeprecationWarning": {
-    "message": "정책 설정이 이동되었으며 이 페이지는 곧 지원이 종료될 예정입니다. 아래를 클릭해서 비즈니스 포털 정책 페이지를 사용해주세요."
   },
   "singleOrg": {
     "message": "통합 조직"
@@ -3715,9 +3808,6 @@
   "permissions": {
     "message": "권한"
   },
-  "accessBusinessPortal": {
-    "message": "비즈니스 포털 접근"
-  },
   "accessEventLogs": {
     "message": "이벤트 로그 접근"
   },
@@ -3730,8 +3820,23 @@
   "manageAllCollections": {
     "message": "모든 컬렉션 관리"
   },
+  "createNewCollections": {
+    "message": "Create New Collections"
+  },
+  "editAnyCollection": {
+    "message": "Edit Any Collection"
+  },
+  "deleteAnyCollection": {
+    "message": "Delete Any Collection"
+  },
   "manageAssignedCollections": {
     "message": "할당된 컬렉션 관리"
+  },
+  "editAssignedCollections": {
+    "message": "Edit Assigned Collections"
+  },
+  "deleteAssignedCollections": {
+    "message": "Delete Assigned Collections"
   },
   "manageGroups": {
     "message": "그룹 관리"
@@ -3748,11 +3853,20 @@
   "manageResetPassword": {
     "message": "비밀번호 초기화 관리"
   },
-  "disableRequireSsoError": {
-    "message": "이 정책을 비활성화하려면 먼저 SSO 인증 정책을 수동으로 비활성화해야 합니다."
+  "disableRequiredError": {
+    "message": "You must manually disable the $POLICYNAME$ policy before this policy can be disabled.",
+    "placeholders": {
+      "policyName": {
+        "content": "$1",
+        "example": "Single Sign-On Authentication"
+      }
+    }
   },
   "personalOwnershipPolicyInEffect": {
     "message": "조직의 정책이 소유권 설정에 영향을 미치고 있습니다."
+  },
+  "personalOwnershipPolicyInEffectImports": {
+    "message": "An organization policy has disabled importing items into your personal vault."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "조직 사용자의 개인 소유권 비활성화"
@@ -3910,6 +4024,15 @@
       }
     }
   },
+  "eventResetSsoLink": {
+    "message": "Reset Sso link for user $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "비밀번호 재설정"
   },
@@ -3988,6 +4111,21 @@
   "removeUsersWarning": {
     "message": "정말로 다음 사용자를 삭제하시겠어요? 프로세스를 완료하는 데에는 몇 초 정도가 걸릴 수 있으며 도중에 중단하거나 취소할 수 없습니다."
   },
+  "theme": {
+    "message": "Theme"
+  },
+  "themeDesc": {
+    "message": "Choose a theme for your web vault."
+  },
+  "themeSystem": {
+    "message": "Use System Theme"
+  },
+  "themeDark": {
+    "message": "Dark"
+  },
+  "themeLight": {
+    "message": "Light"
+  },
   "confirmSelected": {
     "message": "선택 항목 확인"
   },
@@ -4017,5 +4155,298 @@
   },
   "resetPasswordManageUsers": {
     "message": "비밀번호 재설정 관리 권한으로 사용자 관리도 활성화해야 합니다"
+  },
+  "setupProvider": {
+    "message": "Provider Setup"
+  },
+  "setupProviderLoginDesc": {
+    "message": "You've been invited to setup a new provider. To continue, you need to log in or create a new Bitwarden account."
+  },
+  "setupProviderDesc": {
+    "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
+  },
+  "providerName": {
+    "message": "Provider Name"
+  },
+  "providerSetup": {
+    "message": "The provider has been set up."
+  },
+  "clients": {
+    "message": "Clients"
+  },
+  "providerAdmin": {
+    "message": "Provider Admin"
+  },
+  "providerAdminDesc": {
+    "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
+  },
+  "serviceUser": {
+    "message": "Service User"
+  },
+  "serviceUserDesc": {
+    "message": "Service users can access and manage all client organizations."
+  },
+  "providerInviteUserDesc": {
+    "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+  },
+  "joinProvider": {
+    "message": "Join Provider"
+  },
+  "joinProviderDesc": {
+    "message": "You've been invited to join the provider listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+  },
+  "providerInviteAcceptFailed": {
+    "message": "Unable to accept invitation. Ask a provider admin to send a new invitation."
+  },
+  "providerInviteAcceptedDesc": {
+    "message": "You can access this provider once an administrator confirms your membership. We'll send you an email when that happens."
+  },
+  "providerUsersNeedConfirmed": {
+    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the provider until they are confirmed."
+  },
+  "provider": {
+    "message": "Provider"
+  },
+  "newClientOrganization": {
+    "message": "New Client Organization"
+  },
+  "newClientOrganizationDesc": {
+    "message": "Create a new client organization that will be associated with you as the provider. You will be able to access and manage this organization."
+  },
+  "addExistingOrganization": {
+    "message": "Add Existing Organization"
+  },
+  "myProvider": {
+    "message": "My Provider"
+  },
+  "addOrganizationConfirmation": {
+    "message": "Are you sure you want to add $ORGANIZATION$ as a client to $PROVIDER$?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      },
+      "provider": {
+        "content": "$2",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "organizationJoinedProvider": {
+    "message": "Organization was successfully added to the provider"
+  },
+  "accessingUsingProvider": {
+    "message": "Accessing organization using provider $PROVIDER$",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "providerIsDisabled": {
+    "message": "Provider is disabled."
+  },
+  "providerUpdated": {
+    "message": "Provider updated"
+  },
+  "yourProviderIs": {
+    "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "detachedOrganization": {
+    "message": "The organization $ORGANIZATION$ has been detached from your provider.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "detachOrganizationConfirmation": {
+    "message": "Are you sure you want to detach this organization? The organization will continue to exist but will no longer be managed by the provider."
+  },
+  "add": {
+    "message": "Add"
+  },
+  "updatedMasterPassword": {
+    "message": "Updated Master Password"
+  },
+  "updateMasterPassword": {
+    "message": "Update Master Password"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+  },
+  "maximumVaultTimeout": {
+    "message": "Vault Timeout"
+  },
+  "maximumVaultTimeoutDesc": {
+    "message": "Configure a maximum vault timeout for all users."
+  },
+  "maximumVaultTimeoutLabel": {
+    "message": "Maximum Vault Timeout"
+  },
+  "invalidMaximumVaultTimeout": {
+    "message": "Invalid Maximum Vault Timeout."
+  },
+  "hours": {
+    "message": "Hours"
+  },
+  "minutes": {
+    "message": "Minutes"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "customVaultTimeout": {
+    "message": "Custom Vault Timeout"
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Your vault timeout exceeds the restriction set by your organization."
+  },
+  "disablePersonalVaultExport": {
+    "message": "Disable Personal Vault Export"
+  },
+  "disablePersonalVaultExportDesc": {
+    "message": "Prohibits users from exporting their private vault data."
+  },
+  "vaultExportDisabled": {
+    "message": "Vault Export Disabled"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "One or more organization policies prevents you from exporting your personal vault."
+  },
+  "selectType": {
+    "message": "Select SSO Type"
+  },
+  "type": {
+    "message": "Type"
+  },
+  "openIdConnectConfig": {
+    "message": "OpenID Connect Configuration"
+  },
+  "samlSpConfig": {
+    "message": "SAML Service Provider Configuration"
+  },
+  "samlIdpConfig": {
+    "message": "SAML Identity Provider Configuration"
+  },
+  "callbackPath": {
+    "message": "Callback Path"
+  },
+  "signedOutCallbackPath": {
+    "message": "Signed Out Callback Path"
+  },
+  "authority": {
+    "message": "Authority"
+  },
+  "clientId": {
+    "message": "Client ID"
+  },
+  "clientSecret": {
+    "message": "Client Secret"
+  },
+  "metadataAddress": {
+    "message": "Metadata Address"
+  },
+  "oidcRedirectBehavior": {
+    "message": "OIDC Redirect Behavior"
+  },
+  "getClaimsFromUserInfoEndpoint": {
+    "message": "Get Claims From User Info Endpoint"
+  },
+  "additionalScopes": {
+    "message": "Additional/Custom Scopes (comma delimited)"
+  },
+  "additionalUserIdClaimTypes": {
+    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+  },
+  "additionalEmailClaimTypes": {
+    "message": "Additional/Custom Email Claim Types (comma delimited)"
+  },
+  "additionalNameClaimTypes": {
+    "message": "Additional/Custom Name Claim Types (comma delimited)"
+  },
+  "acrValues": {
+    "message": "Requested Authentication Context Class Reference values (acr_values)"
+  },
+  "expectedReturnAcrValue": {
+    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+  },
+  "spEntityId": {
+    "message": "SP Entity ID"
+  },
+  "spMetadataUrl": {
+    "message": "SAML 2.0 Metadata URL"
+  },
+  "spAcsUrl": {
+    "message": "Assertion Consumer Service (ACS) URL"
+  },
+  "spNameIdFormat": {
+    "message": "Name ID Format"
+  },
+  "spOutboundSigningAlgorithm": {
+    "message": "Outbound Signing Algorithm"
+  },
+  "spSigningBehavior": {
+    "message": "Signing Behavior"
+  },
+  "spMinIncomingSigningAlgorithm": {
+    "message": "Minimum Incoming Signing Algorithm"
+  },
+  "spWantAssertionsSigned": {
+    "message": "Want Assertions Signed"
+  },
+  "spValidateCertificates": {
+    "message": "Validate Certificates"
+  },
+  "idpEntityId": {
+    "message": "Entity ID"
+  },
+  "idpBindingType": {
+    "message": "Binding Type"
+  },
+  "idpSingleSignOnServiceUrl": {
+    "message": "Single Sign On Service URL"
+  },
+  "idpSingleLogoutServiceUrl": {
+    "message": "Single Log Out Service URL"
+  },
+  "idpArtifactResolutionServiceUrl": {
+    "message": "Artifact Resolution Service URL"
+  },
+  "idpX509PublicCert": {
+    "message": "X509 Public Certificate"
+  },
+  "idpOutboundSigningAlgorithm": {
+    "message": "Outbound Signing Algorithm"
+  },
+  "idpAllowUnsolicitedAuthnResponse": {
+    "message": "Allow Unsolicited Authentication Response"
+  },
+  "idpDisableOutboundLogoutRequests": {
+    "message": "Disable Outbound Logout Requests"
+  },
+  "idpWantAuthnRequestsSigned": {
+    "message": "Want Authentication Requests Signed"
+  },
+  "ssoSettingsSaved": {
+    "message": "Single Sign-On configuration was saved."
   }
 }

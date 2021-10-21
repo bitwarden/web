@@ -10,6 +10,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 import { OrganizationUserStatusType } from 'jslib-common/enums/organizationUserStatusType';
 import { OrganizationUserType } from 'jslib-common/enums/organizationUserType';
@@ -41,7 +42,7 @@ export class EntityUsersComponent implements OnInit {
     private allUsers: OrganizationUserUserDetailsResponse[] = [];
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService) { }
+        private toasterService: ToasterService, private logService: LogService) { }
 
     async ngOnInit() {
         await this.loadUsers();
@@ -130,6 +131,8 @@ export class EntityUsersComponent implements OnInit {
             await this.formPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('updatedUsers'));
             this.onEditedUsers.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }

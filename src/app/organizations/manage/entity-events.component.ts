@@ -8,6 +8,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 import { EventService } from '../../services/event.service';
 
@@ -42,7 +43,7 @@ export class EntityEventsComponent implements OnInit {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private eventService: EventService, private toasterService: ToasterService,
-        private userNamePipe: UserNamePipe) { }
+        private userNamePipe: UserNamePipe, private logService: LogService) { }
 
     async ngOnInit() {
         const defaultDates = this.eventService.getDefaultDateFilters();
@@ -98,7 +99,9 @@ export class EntityEventsComponent implements OnInit {
                 this.morePromise = promise;
             }
             response = await promise;
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
 
         this.continuationToken = response.continuationToken;
         const events = await Promise.all(response.data.map(async r => {

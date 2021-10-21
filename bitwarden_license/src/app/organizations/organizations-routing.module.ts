@@ -24,8 +24,11 @@ const routes: Routes = [
                 canActivate: [OrganizationTypeGuardService],
                 data: {
                     permissions: [
-                        Permissions.ManageAssignedCollections,
-                        Permissions.ManageAllCollections,
+                        Permissions.CreateNewCollections,
+                        Permissions.EditAnyCollection,
+                        Permissions.DeleteAnyCollection,
+                        Permissions.EditAssignedCollections,
+                        Permissions.DeleteAssignedCollections,
                         Permissions.AccessEventLogs,
                         Permissions.ManageGroups,
                         Permissions.ManageUsers,

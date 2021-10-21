@@ -9,6 +9,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
@@ -50,7 +51,8 @@ export class EmergencyAccessComponent implements OnInit {
         private modalService: ModalService, private platformUtilsService: PlatformUtilsService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
         private storageService: StorageService, private userService: UserService,
-        private messagingService: MessagingService, private userNamePipe: UserNamePipe) { }
+        private messagingService: MessagingService, private userNamePipe: UserNamePipe,
+        private logService: LogService) { }
 
     async ngOnInit() {
         this.canAccessPremium = await this.userService.canAccessPremium();
@@ -154,7 +156,9 @@ export class EmergencyAccessComponent implements OnInit {
             } else {
                 this.removeGrantor(details);
             }
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     async requestAccess(details: EmergencyAccessGrantorDetailsResponse) {
@@ -238,10 +242,11 @@ export class EmergencyAccessComponent implements OnInit {
         const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
 
         try {
-            // tslint:disable-next-line
-            console.log('User\'s fingerprint: ' +
+            this.logService.debug('User\'s fingerprint: ' +
                 (await this.cryptoService.getFingerprint(details.granteeId, publicKey.buffer)).join('-'));
-        } catch { }
+        } catch {
+            // Ignore errors since it's just a debug message
+        }
 
         const encryptedKey = await this.cryptoService.rsaEncrypt(encKey.key, publicKey.buffer);
         const request = new EmergencyAccessConfirmRequest();

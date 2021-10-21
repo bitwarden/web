@@ -8,6 +8,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
@@ -32,8 +33,8 @@ export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent impl
 
     constructor(apiService: ApiService, i18nService: I18nService,
         toasterService: ToasterService, private userService: UserService,
-        platformUtilsService: PlatformUtilsService) {
-        super(apiService, i18nService, toasterService, platformUtilsService);
+        platformUtilsService: PlatformUtilsService, logService: LogService) {
+        super(apiService, i18nService, toasterService, platformUtilsService, logService);
         this.qrScript = window.document.createElement('script');
         this.qrScript.src = 'scripts/qrious.min.js';
         this.qrScript.async = true;
