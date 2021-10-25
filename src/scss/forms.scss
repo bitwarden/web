@@ -160,11 +160,7 @@ input[type="radio"], input[type="checkbox"] {
     @include themify($themes) {
         background-color: themed('foregroundColor');
         border-color: themed('listItemBorder');
-        color: themed('listItemColor');
-        font-weight: themed('linkWeight');
-    }
-    >.two-factor-image {
-        max-width: 100px;
+        color: themed('textColor');
     }
 }
 

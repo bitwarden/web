@@ -11,7 +11,7 @@
                 <div class="list-group list-group-flush">
                     <a href="#" appStopClick *ngFor="let p of providers" (click)="choose(p)"
                         class="list-group-item list-group-item-action">
-                        <img [src]="'images/two-factor/' + p.type + '.png'" alt="" class="two-factor-image pull-right">
+                        <img [class]="'pull-right mfaType' + p.type" [alt]="p.name + ' logo'">
                         <h3>{{p.name}}</h3>
                         {{p.description}}
                     </a>
