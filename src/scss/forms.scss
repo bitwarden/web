@@ -162,6 +162,23 @@ input[type="radio"], input[type="checkbox"] {
         border-color: themed('listItemBorder');
         color: themed('textColor');
     }
+    >.two-factor-content {
+        justify-content: center;
+        flex-direction: row;
+        display: flex;
+        >.text-col {
+            flex-direction: column;
+            flex: 1;
+        }
+        >.logo-col {
+            margin-left: .5em;
+            display: flex;
+            align-items: center;
+            img {
+                height: fit-content;
+            }
+        }
+    }      
 }
 
 .list-group-item.active {
