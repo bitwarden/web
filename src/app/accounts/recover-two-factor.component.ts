@@ -7,6 +7,7 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { AuthService } from 'jslib-common/abstractions/auth.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 import { TwoFactorRecoveryRequest } from 'jslib-common/models/request/twoFactorRecoveryRequest';
 
@@ -22,7 +23,8 @@ export class RecoverTwoFactorComponent {
 
     constructor(private router: Router, private apiService: ApiService,
         private toasterService: ToasterService, private i18nService: I18nService,
-        private cryptoService: CryptoService, private authService: AuthService) { }
+        private cryptoService: CryptoService, private authService: AuthService,
+        private logService: LogService) { }
 
     async submit() {
         try {
@@ -35,6 +37,8 @@ export class RecoverTwoFactorComponent {
             await this.formPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('twoStepRecoverDisabled'));
             this.router.navigate(['/']);
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }

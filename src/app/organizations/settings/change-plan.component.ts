@@ -5,8 +5,7 @@ import {
     Output,
 } from '@angular/core';
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 import { PlanType } from 'jslib-common/enums/planType';
 import { ProductType } from 'jslib-common/enums/productType';
@@ -24,12 +23,14 @@ export class ChangePlanComponent {
     defaultUpgradePlan: PlanType = PlanType.FamiliesAnnually;
     defaultUpgradeProduct: ProductType = ProductType.Families;
 
-    constructor(private apiService: ApiService, private platformUtilsService: PlatformUtilsService) { }
+    constructor(private logService: LogService) { }
 
     async submit() {
         try {
             this.onChanged.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     cancel() {

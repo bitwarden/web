@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'jslib-common/abstractions/api.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { OrganizationTaxInfoUpdateRequest } from 'jslib-common/models/request/organizationTaxInfoUpdateRequest';
 import { TaxInfoUpdateRequest } from 'jslib-common/models/request/taxInfoUpdateRequest';
 import { TaxRateResponse } from 'jslib-common/models/response/taxRateResponse';
@@ -42,7 +43,7 @@ export class TaxInfoComponent {
         includeTaxId: false,
     };
 
-    constructor(private apiService: ApiService, private route: ActivatedRoute) { }
+    constructor(private apiService: ApiService, private route: ActivatedRoute, private logService: LogService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -66,7 +67,9 @@ export class TaxInfoComponent {
                             || !!taxInfo.city
                             || !!taxInfo.state);
                     }
-                } catch { }
+                }  catch (e) {
+                    this.logService.error(e);
+                }
             } else {
                 const taxInfo = await this.apiService.getTaxInfo();
                 if (taxInfo) {

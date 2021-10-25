@@ -116,12 +116,12 @@ const settingsService = new SettingsService(userService, storageService);
 export let searchService: SearchService = null;
 const fileUploadService = new FileUploadService(consoleLogService, apiService);
 const cipherService = new CipherService(cryptoService, userService, settingsService,
-    apiService, fileUploadService, storageService, i18nService, () => searchService);
+    apiService, fileUploadService, storageService, i18nService, () => searchService, consoleLogService);
 const folderService = new FolderService(cryptoService, userService, apiService, storageService,
     i18nService, cipherService);
 const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
 searchService = new SearchService(cipherService, consoleLogService, i18nService);
-const policyService = new PolicyService(userService, storageService);
+const policyService = new PolicyService(userService, storageService, apiService);
 const sendService = new SendService(cryptoService, userService, apiService, fileUploadService, storageService,
     i18nService, cryptoFunctionService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
@@ -129,9 +129,9 @@ const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService
     policyService, null, async () => messagingService.send('logout', { expired: false }));
 const syncService = new SyncService(userService, apiService, settingsService,
     folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
-    sendService, async (expired: boolean) => messagingService.send('logout', { expired: expired }));
+    sendService, consoleLogService, async (expired: boolean) => messagingService.send('logout', { expired: expired }));
 const passwordGenerationService = new PasswordGenerationService(cryptoService, storageService, policyService);
-const totpService = new TotpService(storageService, cryptoFunctionService);
+const totpService = new TotpService(storageService, cryptoFunctionService, consoleLogService);
 const containerService = new ContainerService(cryptoService);
 const authService = new AuthService(cryptoService, apiService,
     userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService, vaultTimeoutService,
@@ -142,7 +142,7 @@ const importService = new ImportService(cipherService, folderService, apiService
 const notificationsService = new NotificationsService(userService, syncService, appIdService, apiService, vaultTimeoutService,
     environmentService, async () => messagingService.send('logout', { expired: true }), consoleLogService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
-const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService);
+const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService, consoleLogService);
 
 containerService.attachToWindow(window);
 

@@ -23,6 +23,7 @@ import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType'
 
 import { TwoFactorComponent as BaseTwoFactorComponent } from 'jslib-angular/components/two-factor.component';
 
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { TwoFactorOptionsComponent } from './two-factor-options.component';
 
 @Component({
@@ -36,9 +37,9 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
         i18nService: I18nService, apiService: ApiService,
         platformUtilsService: PlatformUtilsService, stateService: StateService,
         environmentService: EnvironmentService, private modalService: ModalService,
-        storageService: StorageService, route: ActivatedRoute) {
+        storageService: StorageService, route: ActivatedRoute, logService: LogService) {
         super(authService, router, i18nService, apiService, platformUtilsService, window, environmentService,
-            stateService, storageService, route);
+            stateService, storageService, route, logService);
         this.onSuccessfulLoginNavigate = this.goAfterLogIn;
     }
 

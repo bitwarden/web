@@ -4,6 +4,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
 
@@ -30,7 +31,7 @@ export class ApiKeyComponent {
     clientSecret: string;
 
     constructor(private i18nService: I18nService, private toasterService: ToasterService,
-        private cryptoService: CryptoService) { }
+        private cryptoService: CryptoService, private logService: LogService) { }
 
     async submit() {
         if (this.masterPassword == null || this.masterPassword === '') {
@@ -46,6 +47,8 @@ export class ApiKeyComponent {
             const response = await this.formPromise;
             this.clientSecret = response.apiKey;
             this.clientId = `${this.keyType}.${this.entityId}`;
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }

@@ -12,6 +12,7 @@ import { ModalService } from 'jslib-angular/services/modal.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 
@@ -50,7 +51,7 @@ export class AccountComponent {
         private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private route: ActivatedRoute,
         private syncService: SyncService, private platformUtilsService: PlatformUtilsService,
-        private cryptoService: CryptoService) { }
+        private cryptoService: CryptoService, private logService: LogService) { }
 
     async ngOnInit() {
         this.selfHosted = this.platformUtilsService.isSelfHost();
@@ -59,7 +60,9 @@ export class AccountComponent {
             try {
                 this.org = await this.apiService.getOrganization(this.organizationId);
                 this.canUseApi = this.org.useApi;
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
         });
         this.loading = false;
     }
@@ -84,7 +87,9 @@ export class AccountComponent {
             });
             await this.formPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('organizationUpdated'));
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     async submitTaxInfo() {

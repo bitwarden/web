@@ -12,6 +12,8 @@ import {
     Router,
 } from '@angular/router';
 
+import { first } from 'rxjs/operators';
+
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
@@ -65,12 +67,12 @@ export class VaultComponent implements OnInit, OnDestroy {
             this.platformUtilsService.isSelfHost() ? 'trashCleanupWarningSelfHosted' : 'trashCleanupWarning'
         );
 
-        const queryParams = this.route.parent.params.subscribe(async params => {
+        this.route.parent.params.pipe(first()).subscribe(async params => {
             this.organization = await this.userService.getOrganization(params.organizationId);
             this.groupingsComponent.organization = this.organization;
             this.ciphersComponent.organization = this.organization;
 
-            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+            this.route.queryParams.pipe(first()).subscribe(async qParams => {
                 this.ciphersComponent.searchText = this.groupingsComponent.searchText = qParams.search;
                 if (!this.organization.canViewAllCollections) {
                     await this.syncService.fullSync(false);
@@ -118,15 +120,7 @@ export class VaultComponent implements OnInit, OnDestroy {
                         this.viewEvents(cipher[0]);
                     }
                 }
-
-                if (queryParamsSub != null) {
-                    queryParamsSub.unsubscribe();
-                }
             });
-
-            if (queryParams != null) {
-                queryParams.unsubscribe();
-            }
         });
     }
 

@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
@@ -27,7 +28,8 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
     cipherDocs = new Map<string, string>();
 
     constructor(protected cipherService: CipherService, modalService: ModalService,
-        messagingService: MessagingService, userService: UserService, passwordRepromptService: PasswordRepromptService) {
+        messagingService: MessagingService, userService: UserService, private logService: LogService,
+        passwordRepromptService: PasswordRepromptService) {
         super(modalService, userService, messagingService, passwordRepromptService, true);
     }
 
@@ -40,7 +42,10 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
     async setCiphers() {
         try {
             await this.load2fa();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
+
         if (this.services.size > 0) {
             const allCiphers = await this.getAllCiphers();
             const inactive2faCiphers: CipherView[] = [];
