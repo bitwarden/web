@@ -212,13 +212,13 @@
 .badge-warning {
     @include themify($themes) {
         background-color: themed('warning');
-        color: themed('warningTextColor');
+        color: themed('textWarningColor');
     }
 }
 
 .badge-success {
     @include themify($themes) {
         background-color: themed('success');
-        color: themed('successTextColor');
+        color: themed('textSuccessColor');
     }
 }

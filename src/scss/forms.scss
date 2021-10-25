@@ -22,13 +22,13 @@ input[type="search"]::-webkit-search-cancel-button {
 label:not(.form-check-label):not(.btn), label.bold {
     font-weight: 600;
     @include themify($themes) {
-        color: themed('headingColor');
+        color: themed('textHeadingColor');
     }
 }
 
 label.form-check-label, .form-control-file {
     @include themify($themes) {
-        color: themed('headingColor');
+        color: themed('textHeadingColor');
     }
 }
 
