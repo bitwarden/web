@@ -8,7 +8,7 @@ $warning: #BF7E16;
 $danger: #DD4B39;
 $white: #FFFFFF;
 
-// Bootsrap Variables
+// Bootstrap Variable Overrides
 
 $theme-colors: (  
     "primary-accent": $primary-accent,
@@ -83,8 +83,13 @@ $fa-font-path: "~font-awesome/fonts";
 $mfaTypes: 0, 1, 2, 3, 4, 6;
 
 // Theme Variables
+// Light
 
 $lightDangerHover: #C43421;
+$lightInputColor: #465057;
+$lightInputPlaceholderColor: #B6B8B8;
+
+// Dark
 
 $darkPrimary: #6A99F0;
 $darkPrimary-alt: #B4CCF9;
@@ -100,9 +105,6 @@ $darkBlue1: #4C525F;
 $darkBlue2: #3C424E;
 $darkDarkBlue1: #2F343D;
 $darkDarkBlue2: #1F242E;
-
-$lightInputColor: #465057;
-$lightInputPlaceholderColor: #B6B8B8;
 $darkInputColor: $white;
 $darkInputPlaceholderColor: $darkGrey1;
 
