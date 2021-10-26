@@ -900,7 +900,7 @@
     "message": "Email cím módosítása"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Proceeding will change your account email address. It will not change the email address used for two-factor authentication. You can change this email address in the Two-Step Login settings."
+    "message": "A folytatás megváltoztatja fiók email címét. Nem változtatja meg a kétlépcsős hitelesítéshez használt email címet. Ez az email cím a kétlépcsős bejelentkezés beállításaiban módosítható."
   },
   "newEmail": {
     "message": "Új email cím"
@@ -1002,7 +1002,7 @@
     "message": "A szervezeti széf kitakarításra került."
   },
   "vaultAccessedByProvider": {
-    "message": "Vault accessed by provider."
+    "message": "A tárolóhoz a szolgáltató fér hozzá."
   },
   "purgeVaultDesc": {
     "message": "Az alábbiak szerint törölhetjük a széfben található összes elemet és mappát. Nem kerülnek törlésre azok az elemek,, amelyek egy megosztott szervezethez tartoznak."
@@ -2155,7 +2155,7 @@
     "message": "Szabályok"
   },
   "singleSignOn": {
-    "message": "Single Sign-On"
+    "message": "Egyszeri bejelentkezés"
   },
   "editPolicy": {
     "message": "Szabály szerkesztése"
@@ -2248,7 +2248,7 @@
     "message": "Megerősítve"
   },
   "clientOwnerEmail": {
-    "message": "Client Owner Email"
+    "message": "Ügyféltulajdonos e-mail cím"
   },
   "owner": {
     "message": "Tulajdonos"
@@ -2257,7 +2257,7 @@
     "message": "A legmagasabb hozzáféréssel rendelkező felhasználó kezelheti a szervezet összes lehetőségét."
   },
   "clientOwnerDesc": {
-    "message": "This user should be independent of the Provider. If the Provider is disassociated with the organization, this user will maintain ownership of the organization."
+    "message": "Ennek a felhasználónak függetlennek kell lennie a szolgáltatótól. Ha a Szolgáltató nincs kapcsolatban a szervezettel, akkor ez a felhasználó tartja fenn a szervezet tulajdonjogát."
   },
   "admin": {
     "message": "Adminisztrátor"
@@ -2593,7 +2593,7 @@
     }
   },
   "createdOrganizationId": {
-    "message": "Created organization $ID$.",
+    "message": "Létrehozott szervezet: $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2602,7 +2602,7 @@
     }
   },
   "addedOrganizationId": {
-    "message": "Added organization $ID$.",
+    "message": "Hozzáadott szervezet: $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2611,7 +2611,7 @@
     }
   },
   "removedOrganizationId": {
-    "message": "Removed organization $ID$.",
+    "message": "Eltávolított szervezet: $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2620,7 +2620,7 @@
     }
   },
   "accessedClientVault": {
-    "message": "Accessed $ID$ organization vault.",
+    "message": "Hozzáfért $ID$ szervezeti széf.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2882,14 +2882,14 @@
     "message": "Telepítési azonosító megadása"
   },
   "limitSubscriptionDesc": {
-    "message": "Set a seat limit for your subscription. Once this limit is reached, you will not be able to invite new users."
+    "message": "Állítsunk be helykorlátot az előfizetéshez. Ha elérjük ezt a korlátot, nem tudunk új felhasználókat meghívni."
   },
   "maxSeatLimit": {
-    "message": "Maximum Seat Limit (optional)",
+    "message": "Maximális helykorlát (opcionális)",
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
-    "message": "Max potential seat cost"
+    "message": "Maximális lehetséges helyköltség"
   },
   "addSeats": {
     "message": "Helyek hozzáadása",
@@ -2900,7 +2900,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionDesc": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "Az előfizetés módosítása a számlázási összegek arányos módosítását eredményezi. Ha az újonnan meghívott felhasználók túllépik az előfizetői helyeket, akkor haladéktalanul külön díjat kapunk a további felhasználókért."
   },
   "subscriptionUserSeats": {
     "message": "Az előfizetés összesen $COUNT$ felhasználót tesz lehetővé.",
@@ -2912,25 +2912,25 @@
     }
   },
   "limitSubscription": {
-    "message": "Limit Subscription (Optional)"
+    "message": "Előfizetés korlát (opcionális)"
   },
   "subscriptionSeats": {
-    "message": "Subscription Seats"
+    "message": "Előfizetői helyek"
   },
   "subscriptionUpdated": {
-    "message": "Subscription updated"
+    "message": "Az előfizetés frissítésre került."
   },
   "additionalOptions": {
-    "message": "Additional Options"
+    "message": "Kiegészítő opciók"
   },
   "additionalOptionsDesc": {
-    "message": "For additional help in managing your subscription, please contact Customer Support."
+    "message": "Az előfizetés kezelésével kapcsolatos további segítségért forduljunk az Ügyfélszolgálathoz."
   },
   "subscriptionUserSeatsUnlimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "Az előfizetés módosítása a számlázási összegek arányos módosítását eredményezi. Ha az újonnan meghívott felhasználók túllépik az előfizetői helyeket, akkor haladéktalanul külön díjat kapunk a további felhasználókért."
   },
   "subscriptionUserSeatsLimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users until your $MAX$ seat limit is reached.",
+    "message": "Az előfizetés módosítása a számlázási összegek arányos módosítását eredményezi. Ha az újonnan meghívott felhasználók túllépik az előfizetési helyeket, akkor haladéktalanul külön díjat kapunk a további felhasználókért, amíg el nem érjük a $MAX$ helykorlátot.",
     "placeholders": {
       "max": {
         "content": "$1",
@@ -2939,7 +2939,7 @@
     }
   },
   "subscriptionMaxReached": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. You cannot invite more than $COUNT$ users without increasing your subscription seats.",
+    "message": "Az előfizetés módosítása a számlázási összegek arányos módosítását eredményezi. Nem hívhatunk meg több, mint $COUNT$ felhasználót az előfizetői helyek növelése nélkül.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3821,22 +3821,22 @@
     "message": "Összes gyűjtemény kezelése"
   },
   "createNewCollections": {
-    "message": "Create New Collections"
+    "message": "Új gyűjtemények létrehozása"
   },
   "editAnyCollection": {
-    "message": "Edit Any Collection"
+    "message": "Bármely gyűjtemény szerkesztése"
   },
   "deleteAnyCollection": {
-    "message": "Delete Any Collection"
+    "message": "Bármely gyűjtemény törlése"
   },
   "manageAssignedCollections": {
     "message": "Hozzárendelt gyűjtemények kezelése"
   },
   "editAssignedCollections": {
-    "message": "Edit Assigned Collections"
+    "message": "Hozzárendelt gyűjtemények szerkesztése"
   },
   "deleteAssignedCollections": {
-    "message": "Delete Assigned Collections"
+    "message": "Hozzárendelt gyűjtemények törlése"
   },
   "manageGroups": {
     "message": "Csoportok kezelése"
@@ -3854,7 +3854,7 @@
     "message": "Jelszó alaphelyzet kezelés"
   },
   "disableRequiredError": {
-    "message": "You must manually disable the $POLICYNAME$ policy before this policy can be disabled.",
+    "message": "A szabály letiltása előtt manuálisan le kell tiltani $POLICYNAME$ házirendet.",
     "placeholders": {
       "policyName": {
         "content": "$1",
@@ -3866,7 +3866,7 @@
     "message": "A szervezeti házirend befolyásolja a tulajdonosi opciókat."
   },
   "personalOwnershipPolicyInEffectImports": {
-    "message": "An organization policy has disabled importing items into your personal vault."
+    "message": "Egy szervezeti házirend letiltotta az elemek személyes tárolóba történő importálását."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "A szervezeti felhasználók személyes tulajdon letiltása"
@@ -4025,7 +4025,7 @@
     }
   },
   "eventResetSsoLink": {
-    "message": "Reset Sso link for user $ID$",
+    "message": "Sso hivatkozás visszaállítása $ID$ felhasználónál",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4112,19 +4112,19 @@
     "message": "Biztosan eltávolításra kerüljenek a következő felhasználók? A folyamat néhány másodpercet vehet igénybe és nem szakítható meg vagy törölhető."
   },
   "theme": {
-    "message": "Theme"
+    "message": "Téma"
   },
   "themeDesc": {
-    "message": "Choose a theme for your web vault."
+    "message": "Válasszunk témát az internetes széfhez."
   },
   "themeSystem": {
-    "message": "Use System Theme"
+    "message": "Rendszertéma használata"
   },
   "themeDark": {
-    "message": "Dark"
+    "message": "Sötét"
   },
   "themeLight": {
-    "message": "Light"
+    "message": "Világos"
   },
   "confirmSelected": {
     "message": "Kiválasztás megerősítése"
@@ -4157,70 +4157,70 @@
     "message": "A felhasználók kezelését engedélyezni kell a Jelszó visszaállításának kezelése jogosultsággal is."
   },
   "setupProvider": {
-    "message": "Provider Setup"
+    "message": "Szolgáltató beállítása"
   },
   "setupProviderLoginDesc": {
-    "message": "You've been invited to setup a new provider. To continue, you need to log in or create a new Bitwarden account."
+    "message": "Meghívás érkezett egy új szolgáltató beállítására. A folytatáshoz be kell jelentkezni vagy létre kell hozni egy új Bitwarden fiókot."
   },
   "setupProviderDesc": {
-    "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
+    "message": "Adjuk meg az alábbi adatokat a szolgáltató beállításának befejezéséhez. Ha bármilyen kérdés van, forduljunk az Ügyfélszolgálathoz."
   },
   "providerName": {
-    "message": "Provider Name"
+    "message": "Szolgáltató neve"
   },
   "providerSetup": {
-    "message": "The provider has been set up."
+    "message": "A szolgáltató beüzemelésre került."
   },
   "clients": {
-    "message": "Clients"
+    "message": "Ügyfelek"
   },
   "providerAdmin": {
-    "message": "Provider Admin"
+    "message": "Szolgáltató adminisztrátor"
   },
   "providerAdminDesc": {
-    "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
+    "message": "Adjuk meg az alábbi adatokat a szolgáltató beállításának befejezéséhez. Ha bármilyen kérdés van, forduljunk az Ügyfélszolgálathoz."
   },
   "serviceUser": {
-    "message": "Service User"
+    "message": "Szolgáltatás felhasználó"
   },
   "serviceUserDesc": {
-    "message": "Service users can access and manage all client organizations."
+    "message": "A szolgáltatás felhasználói elérhetik és kezelhetik az összes ügyfélszervezetet."
   },
   "providerInviteUserDesc": {
-    "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Új felhasználó meghívása a szervezetéhez a Bitwarden fiók email címének megadásával. Ha még nem rendelkeznek Bitwarden fiókkal, felkérjük új fiók létrehozására."
   },
   "joinProvider": {
-    "message": "Join Provider"
+    "message": "Csatlakozás szolgáltatóhoz"
   },
   "joinProviderDesc": {
-    "message": "You've been invited to join the provider listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Meghívást érkezett a fenti szervezethez csatlakozáshoz.  A meghívás elfogadásához be kell jelentkezni vagy új Bitwarden fiókot kell létrehozni."
   },
   "providerInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask a provider admin to send a new invitation."
+    "message": "A meghívás nem fogadható el. Kérjük fel a szervezet adminisztrátorát új meghívó küldésére."
   },
   "providerInviteAcceptedDesc": {
-    "message": "You can access this provider once an administrator confirms your membership. We'll send you an email when that happens."
+    "message": "A szervezet elérhető, amikor az adminisztrátor jóváhagyja a tagságot. Amint ez megtörténik, értesítő email érkezik."
   },
   "providerUsersNeedConfirmed": {
-    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the provider until they are confirmed."
+    "message": "Vannak olyan felhasználók, akik elfogadták a meghívást, de ezt még meg kell erősíteni. A felhasználók csak a megerősítésük után férhetnek hozzá a szervezethez."
   },
   "provider": {
-    "message": "Provider"
+    "message": "Szolgáltató"
   },
   "newClientOrganization": {
-    "message": "New Client Organization"
+    "message": "Új ügyfél szervezet"
   },
   "newClientOrganizationDesc": {
-    "message": "Create a new client organization that will be associated with you as the provider. You will be able to access and manage this organization."
+    "message": "Egy új ügyfélszervezet létrehozása társított szolgáltatásként. Lehetőség lesz a szervezet elérésére és kezelésére."
   },
   "addExistingOrganization": {
-    "message": "Add Existing Organization"
+    "message": "Létező fordítások hozzáadása"
   },
   "myProvider": {
-    "message": "My Provider"
+    "message": "Saját szolgáltató"
   },
   "addOrganizationConfirmation": {
-    "message": "Are you sure you want to add $ORGANIZATION$ as a client to $PROVIDER$?",
+    "message": "Biztosan hozzá szeretnénk adni $ORGANIZATION$ szervezetet ügyfélként $PROVIDER$ szolgáltatáshoz?",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4233,10 +4233,10 @@
     }
   },
   "organizationJoinedProvider": {
-    "message": "Organization was successfully added to the provider"
+    "message": "A szervezet sikeresen hozzáadásra került a szolgáltatóhoz"
   },
   "accessingUsingProvider": {
-    "message": "Accessing organization using provider $PROVIDER$",
+    "message": "Hozzáférés a szervezethez $PROVIDER$ szolgáltató használatával",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4245,13 +4245,13 @@
     }
   },
   "providerIsDisabled": {
-    "message": "Provider is disabled."
+    "message": "A szolgáltató letiltásra került."
   },
   "providerUpdated": {
-    "message": "Provider updated"
+    "message": "A szolgáltató frissítésre került."
   },
   "yourProviderIs": {
-    "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
+    "message": "A szolgáltató $PROVIDER$. Rendszergazdai és számlázási jogosultságokkal rendelkeznek a szervezet számára.",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4260,7 +4260,7 @@
     }
   },
   "detachedOrganization": {
-    "message": "The organization $ORGANIZATION$ has been detached from your provider.",
+    "message": "$ORGANIZATION$ szervezet leválasztásra került a szolgáltatótól.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4269,40 +4269,40 @@
     }
   },
   "detachOrganizationConfirmation": {
-    "message": "Are you sure you want to detach this organization? The organization will continue to exist but will no longer be managed by the provider."
+    "message": "Biztosan leválasztjuk ezt a szervezetet? A szervezet továbbra is fennáll, de már nem a szolgáltató kezeli."
   },
   "add": {
-    "message": "Add"
+    "message": "Hozzáadás"
   },
   "updatedMasterPassword": {
-    "message": "Updated Master Password"
+    "message": "A mesterjelszó frissítésre került."
   },
   "updateMasterPassword": {
-    "message": "Update Master Password"
+    "message": "Mesterjelszó frissítése"
   },
   "updateMasterPasswordWarning": {
-    "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "A mesterjelszót nemrégiben megváltoztatta a szervezet rendszergazdája. A tároló eléréséhez most frissíteni kell a mesterjelszót. A folytatás kijelentkeztet az aktuális munkamenetből és újra be kell jelentkezni. A más eszközökön végzett aktív munkamenetek akár egy órán keresztül is aktívak maradhatnak."
   },
   "maximumVaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Széf időkifutás"
   },
   "maximumVaultTimeoutDesc": {
-    "message": "Configure a maximum vault timeout for all users."
+    "message": "Állítsunk be maximális széf időtúllépést minden felhasználó számára."
   },
   "maximumVaultTimeoutLabel": {
-    "message": "Maximum Vault Timeout"
+    "message": "Maximális széf időkifutás"
   },
   "invalidMaximumVaultTimeout": {
-    "message": "Invalid Maximum Vault Timeout."
+    "message": "A maximális széf időkifutás érvénytelen."
   },
   "hours": {
-    "message": "Hours"
+    "message": "Óra"
   },
   "minutes": {
-    "message": "Minutes"
+    "message": "Perc"
   },
   "vaultTimeoutPolicyInEffect": {
-    "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "message": "A szervezeti házirendek hatással vannak a széf időkorlátjára. A széf időkorlátja legfeljebb $HOURS$ óra és $MINUTES$ perc lehet.",
     "placeholders": {
       "hours": {
         "content": "$1",
@@ -4315,138 +4315,138 @@
     }
   },
   "customVaultTimeout": {
-    "message": "Custom Vault Timeout"
+    "message": "Egyedi széf időkifutás"
   },
   "vaultTimeoutToLarge": {
-    "message": "Your vault timeout exceeds the restriction set by your organization."
+    "message": "A széf időkorlátja túllépi a szervezet által beállított korlátozást."
   },
   "disablePersonalVaultExport": {
-    "message": "Disable Personal Vault Export"
+    "message": "A személyes széf exportálás nem engedélyezett."
   },
   "disablePersonalVaultExportDesc": {
-    "message": "Prohibits users from exporting their private vault data."
+    "message": "Biztosan leválasztjuk ezt a szervezetet? A szervezet továbbra is fennáll, de már nem a szolgáltató kezeli."
   },
   "vaultExportDisabled": {
-    "message": "Vault Export Disabled"
+    "message": "A széf exportálás nem engedélyezett."
   },
   "personalVaultExportPolicyInEffect": {
-    "message": "One or more organization policies prevents you from exporting your personal vault."
+    "message": "Egy vagy több szervezeti házirend tiltja a személyes széf exportálását."
   },
   "selectType": {
-    "message": "Select SSO Type"
+    "message": "SSO típus választás"
   },
   "type": {
-    "message": "Type"
+    "message": "Típus"
   },
   "openIdConnectConfig": {
-    "message": "OpenID Connect Configuration"
+    "message": "OpenID kapcsolat konfiguráció"
   },
   "samlSpConfig": {
-    "message": "SAML Service Provider Configuration"
+    "message": "SAML szolgáltató konfiguráció"
   },
   "samlIdpConfig": {
-    "message": "SAML Identity Provider Configuration"
+    "message": "SAML azonosítási szolgáltató konfiguráció"
   },
   "callbackPath": {
-    "message": "Callback Path"
+    "message": "Tartalék útvonal"
   },
   "signedOutCallbackPath": {
-    "message": "Signed Out Callback Path"
+    "message": "Kijelentkezett tartalék útvonal"
   },
   "authority": {
-    "message": "Authority"
+    "message": "Hitelesítés"
   },
   "clientId": {
-    "message": "Client ID"
+    "message": "Ügyfél AZ"
   },
   "clientSecret": {
-    "message": "Client Secret"
+    "message": "Titkos ügyfélkód"
   },
   "metadataAddress": {
-    "message": "Metadata Address"
+    "message": "Metaadat cím"
   },
   "oidcRedirectBehavior": {
-    "message": "OIDC Redirect Behavior"
+    "message": "OIDC átirányítási viselkedés"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "Követelések lekérése a felhasználói adatok végpontjáról"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "További/egyedi hatókörök (vesszővel elválasztva)"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "További/egyedi felhasználó AZ követelések (vesszővel elválasztva)"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "További/egyedi email követelés típusok (vesszővel elválasztva)"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "További/egyedi név követelés típusok (vesszővel elválasztva)"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "Kért hitelesítési kontextusosztály referenciaértékek (acr_values)"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "Elvárt „acr” követelésérték a válaszban (acr érvényesítés)"
   },
   "spEntityId": {
-    "message": "SP Entity ID"
+    "message": "SP Szervezet AZ"
   },
   "spMetadataUrl": {
-    "message": "SAML 2.0 Metadata URL"
+    "message": "SAML 2.0 metaadat webcím"
   },
   "spAcsUrl": {
-    "message": "Assertion Consumer Service (ACS) URL"
+    "message": "Az Assertion Consumer Service (ACS) webcíme"
   },
   "spNameIdFormat": {
-    "message": "Name ID Format"
+    "message": "Név AZ formátum"
   },
   "spOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "Kimenő aláírási algoritmus"
   },
   "spSigningBehavior": {
-    "message": "Signing Behavior"
+    "message": "Aláírási viselkedés"
   },
   "spMinIncomingSigningAlgorithm": {
-    "message": "Minimum Incoming Signing Algorithm"
+    "message": "Minimális bejövő aláírási algoritmus"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "Állításokat szeretnének aláírni"
   },
   "spValidateCertificates": {
-    "message": "Validate Certificates"
+    "message": "Tanúsítványok ellenőrzése"
   },
   "idpEntityId": {
-    "message": "Entity ID"
+    "message": "Szervezeti ID"
   },
   "idpBindingType": {
-    "message": "Binding Type"
+    "message": "Kötés típusa"
   },
   "idpSingleSignOnServiceUrl": {
-    "message": "Single Sign On Service URL"
+    "message": "Egyszeri bejelentkezési szolgáltatás webcíme"
   },
   "idpSingleLogoutServiceUrl": {
-    "message": "Single Log Out Service URL"
+    "message": "Egyszeri kijelentkezés szolgáltatás webcíme"
   },
   "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
+    "message": "Artifact feloldási szolgáltatás webcím"
   },
   "idpX509PublicCert": {
-    "message": "X509 Public Certificate"
+    "message": "X509 Nyilvános tanúsítvány"
   },
   "idpOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "Kimenő aláírási algoritmus"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "Kéretlen hitelesítési válasz engedélyezése"
   },
   "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+    "message": "Kimenő kijelentkezési kérések letiltása"
   },
   "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+    "message": "Szeretnénk aláírni a hitelesítési kérelmeket"
   },
   "ssoSettingsSaved": {
-    "message": "Single Sign-On configuration was saved."
+    "message": "Az egyszeri bejelentkezés konfigurációja mentésre került."
   }
 }
