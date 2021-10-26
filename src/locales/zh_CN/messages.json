@@ -900,7 +900,7 @@
     "message": "更改电子邮件"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Proceeding will change your account email address. It will not change the email address used for two-factor authentication. You can change this email address in the Two-Step Login settings."
+    "message": "继续操作将更改您的帐户电子邮件地址。这不会更改用于双重身份验证的电子邮件地址。 您可以在两步登录设置中更改它。"
   },
   "newEmail": {
     "message": "新电子邮件"
@@ -1002,7 +1002,7 @@
     "message": "组织密码库已清空。"
   },
   "vaultAccessedByProvider": {
-    "message": "Vault accessed by provider."
+    "message": "密码库被提供商访问。"
   },
   "purgeVaultDesc": {
     "message": "接下来的操作会删除密码库中的所有项目和文件夹。属于组织的共享项目将不会被删除。"
@@ -1440,7 +1440,7 @@
     "message": "发现未使用双重身份验证的登录"
   },
   "inactive2faFoundDesc": {
-    "message": "我们在您的密码库中发现 $COUNT$ 个网站可能没有配置双重验证（通过 twofactorauth.org）。为了进一步保护这些账户，您应该启用双重验证。",
+    "message": "我们在您的密码库中发现 $COUNT$ 个网站可能没有配置双重身份验证（通过 twofactorauth.org）。为了进一步保护这些账户，您应该启用双重身份验证。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2155,7 +2155,7 @@
     "message": "策略"
   },
   "singleSignOn": {
-    "message": "Single Sign-On"
+    "message": "单点登录（SSO）"
   },
   "editPolicy": {
     "message": "编辑策略"
@@ -2248,7 +2248,7 @@
     "message": "已确认"
   },
   "clientOwnerEmail": {
-    "message": "Client Owner Email"
+    "message": "客户所有者电子邮件"
   },
   "owner": {
     "message": "所有者"
@@ -2257,7 +2257,7 @@
     "message": "可以管理组织的所有方面的最高权限用户。"
   },
   "clientOwnerDesc": {
-    "message": "This user should be independent of the Provider. If the Provider is disassociated with the organization, this user will maintain ownership of the organization."
+    "message": "此用户应独立于提供商。如果提供商与组织断开关联，该用户将保留该组织的所有权。"
   },
   "admin": {
     "message": "管理员"
@@ -2593,7 +2593,7 @@
     }
   },
   "createdOrganizationId": {
-    "message": "Created organization $ID$.",
+    "message": "已创建组织 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2602,7 +2602,7 @@
     }
   },
   "addedOrganizationId": {
-    "message": "Added organization $ID$.",
+    "message": "已添加组织 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2611,7 +2611,7 @@
     }
   },
   "removedOrganizationId": {
-    "message": "Removed organization $ID$.",
+    "message": "已移除组织 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2620,7 +2620,7 @@
     }
   },
   "accessedClientVault": {
-    "message": "Accessed $ID$ organization vault.",
+    "message": "已访问 $ID$ 组织密码库。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2882,14 +2882,14 @@
     "message": "输入您的安装 ID"
   },
   "limitSubscriptionDesc": {
-    "message": "Set a seat limit for your subscription. Once this limit is reached, you will not be able to invite new users."
+    "message": "为您的订阅设置席位限制。达到此限制后，您将无法邀请新的用户。"
   },
   "maxSeatLimit": {
-    "message": "Maximum Seat Limit (optional)",
+    "message": "最大席位限制（可选）",
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
-    "message": "Max potential seat cost"
+    "message": "最大潜在席位成本"
   },
   "addSeats": {
     "message": "添加席位",
@@ -2900,7 +2900,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionDesc": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "调整订阅将导致按比例调整您的账单总额。如果新邀请的用户超过了您的订阅座位，您将立即收到按比例的额外用户费用。"
   },
   "subscriptionUserSeats": {
     "message": "您的订阅一共允许 $COUNT$ 位用户。",
@@ -2912,25 +2912,25 @@
     }
   },
   "limitSubscription": {
-    "message": "Limit Subscription (Optional)"
+    "message": "限制订阅（可选）"
   },
   "subscriptionSeats": {
-    "message": "Subscription Seats"
+    "message": "订阅席位"
   },
   "subscriptionUpdated": {
-    "message": "Subscription updated"
+    "message": "订阅已更新"
   },
   "additionalOptions": {
-    "message": "Additional Options"
+    "message": "附加选项"
   },
   "additionalOptionsDesc": {
-    "message": "For additional help in managing your subscription, please contact Customer Support."
+    "message": "如需更多订阅管理的帮助，请联系客服支持。"
   },
   "subscriptionUserSeatsUnlimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "调整订阅将导致按比例调整您的账单总额。如果新邀请的用户超过了您的订阅座位，您将立即收到按比例的额外用户费用。"
   },
   "subscriptionUserSeatsLimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users until your $MAX$ seat limit is reached.",
+    "message": "调整订阅将导致按比例调整您的账单总额。如果新邀请的用户超过了您的订阅席位，您将立即收到额外用户的按比例费用，直到您达到 $MAX$ 席位限制。",
     "placeholders": {
       "max": {
         "content": "$1",
@@ -2939,7 +2939,7 @@
     }
   },
   "subscriptionMaxReached": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. You cannot invite more than $COUNT$ users without increasing your subscription seats.",
+    "message": "调整订阅将导致按比例调整您的账单总额。如果不增加订阅席位，您将不能邀请超过 $COUNT$ 位用户。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3358,7 +3358,7 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "超时后注销将解除对密码库的所有访问权限，并需要进行在线验证。确定使用此设置吗？"
+    "message": "超时后注销将解除对密码库的所有访问权限，并需要进行在线身份验证。确定使用此设置吗？"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
     "message": "超时动作确认"
@@ -3433,7 +3433,7 @@
     "message": "不是所有者或管理员并且已是其他组织的成员的组织成员将从您的组织中移除。"
   },
   "requireSso": {
-    "message": "单点登录验证"
+    "message": "单点登录身份验证"
   },
   "requireSsoPolicyDesc": {
     "message": "要求用户使用企业单点登录（SSO）方式登录。"
@@ -3821,22 +3821,22 @@
     "message": "管理所有集合"
   },
   "createNewCollections": {
-    "message": "Create New Collections"
+    "message": "创建新的集合"
   },
   "editAnyCollection": {
-    "message": "Edit Any Collection"
+    "message": "编辑任何集合"
   },
   "deleteAnyCollection": {
-    "message": "Delete Any Collection"
+    "message": "删除任何集合"
   },
   "manageAssignedCollections": {
     "message": "管理已分配的集合"
   },
   "editAssignedCollections": {
-    "message": "Edit Assigned Collections"
+    "message": "编辑已分配的集合"
   },
   "deleteAssignedCollections": {
-    "message": "Delete Assigned Collections"
+    "message": "删除已分配的集合"
   },
   "manageGroups": {
     "message": "管理群组"
@@ -3854,7 +3854,7 @@
     "message": "管理密码重置"
   },
   "disableRequiredError": {
-    "message": "You must manually disable the $POLICYNAME$ policy before this policy can be disabled.",
+    "message": "您必须先手动禁用 $POLICYNAME$ 策略，然后才能禁用此策略。",
     "placeholders": {
       "policyName": {
         "content": "$1",
@@ -3866,7 +3866,7 @@
     "message": "组织策略正在影响您的所有权选项。"
   },
   "personalOwnershipPolicyInEffectImports": {
-    "message": "An organization policy has disabled importing items into your personal vault."
+    "message": "组织策略已禁用将项目导入您的个人密码库。"
   },
   "personalOwnershipCheckboxDesc": {
     "message": "为组织用户禁用个人所有权"
@@ -4025,7 +4025,7 @@
     }
   },
   "eventResetSsoLink": {
-    "message": "Reset Sso link for user $ID$",
+    "message": "重置用户 $ID$ 的 SSO 链接",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4070,13 +4070,13 @@
     "message": "自动注册"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "所有邀请被接受后的用户将会被自动注册密码重置。"
+    "message": "所有接受邀请的用戶，将会被自动注册密码重置，并且不允许撤销。"
   },
   "resetPasswordPolicyAutoEnrollWarning": {
     "message": "已经在组织中的用户将不会被注册密码重置。需要他们自行注册后，管理员才能重置他们的主密码。"
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "自动为新用户注册"
+    "message": "要求为新用户启用自动注册"
   },
   "resetPasswordAutoEnrollInviteWarning": {
     "message": "此组织有一个企业策略，将自动为你注册密码重置。注册后将允许组织管理员更改您的主密码。"
@@ -4112,19 +4112,19 @@
     "message": "您确定要移除以下用户吗？该过程可能需要几秒钟才能完成，并且不能中断或取消。"
   },
   "theme": {
-    "message": "Theme"
+    "message": "主题"
   },
   "themeDesc": {
-    "message": "Choose a theme for your web vault."
+    "message": "为您的网页密码库库选择一个主题。"
   },
   "themeSystem": {
-    "message": "Use System Theme"
+    "message": "使用系统主题"
   },
   "themeDark": {
-    "message": "Dark"
+    "message": "深色"
   },
   "themeLight": {
-    "message": "Light"
+    "message": "浅色"
   },
   "confirmSelected": {
     "message": "确认选择"
@@ -4157,70 +4157,70 @@
     "message": "必须启用管理密码重置权限后才能启用管理用户"
   },
   "setupProvider": {
-    "message": "Provider Setup"
+    "message": "提供商设置"
   },
   "setupProviderLoginDesc": {
-    "message": "You've been invited to setup a new provider. To continue, you need to log in or create a new Bitwarden account."
+    "message": "您已被邀请设置一个新的提供商。要继续，您需要登录或创建一个新的 Bitwarden 帐户。"
   },
   "setupProviderDesc": {
-    "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
+    "message": "请在下面输入详细信息以完成提供商设置。如果您有任何疑问，请联系客户支持。"
   },
   "providerName": {
-    "message": "Provider Name"
+    "message": "提供商名称"
   },
   "providerSetup": {
-    "message": "The provider has been set up."
+    "message": "已完成提供商设置。"
   },
   "clients": {
-    "message": "Clients"
+    "message": "客户"
   },
   "providerAdmin": {
-    "message": "Provider Admin"
+    "message": "提供商管理"
   },
   "providerAdminDesc": {
-    "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
+    "message": "能够管理您的提供商的所有方面的具有最高访问权限的用户也可以访问和管理客户组织。"
   },
   "serviceUser": {
-    "message": "Service User"
+    "message": "服务用户"
   },
   "serviceUserDesc": {
-    "message": "Service users can access and manage all client organizations."
+    "message": "服务用户可以访问和管理所有客户组织。"
   },
   "providerInviteUserDesc": {
-    "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "通过在下面输入他们的 Bitwarden 帐户电子邮件地址，邀请新用户加入您的提供商。如果他们还没有 Bitwarden 帐户，将被提示创建一个新的帐户。"
   },
   "joinProvider": {
-    "message": "Join Provider"
+    "message": "加入提供商"
   },
   "joinProviderDesc": {
-    "message": "You've been invited to join the provider listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "您已被邀请加入上面列出的提供商。要接受邀请，您需要登录或创建一个新的 Bitwarden 帐户。"
   },
   "providerInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask a provider admin to send a new invitation."
+    "message": "无法接受邀请。请联系提供商管理员发送新的邀请。"
   },
   "providerInviteAcceptedDesc": {
-    "message": "You can access this provider once an administrator confirms your membership. We'll send you an email when that happens."
+    "message": "管理员确认您的会员资格后，您就可以访问此提供商了。发生这种情况时，我们会向您发送一封电子邮件。"
   },
   "providerUsersNeedConfirmed": {
-    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the provider until they are confirmed."
+    "message": "您有用户接受了他们的邀请，但仍然需要确认。用户在确认之前将无法访问提供商。"
   },
   "provider": {
-    "message": "Provider"
+    "message": "提供商"
   },
   "newClientOrganization": {
-    "message": "New Client Organization"
+    "message": "新客户组织"
   },
   "newClientOrganizationDesc": {
-    "message": "Create a new client organization that will be associated with you as the provider. You will be able to access and manage this organization."
+    "message": "创建一个新的客户组织，该组织将作为提供商与你关联。您可以访问和管理这个组织。"
   },
   "addExistingOrganization": {
-    "message": "Add Existing Organization"
+    "message": "添加现有组织"
   },
   "myProvider": {
-    "message": "My Provider"
+    "message": "我的提供商"
   },
   "addOrganizationConfirmation": {
-    "message": "Are you sure you want to add $ORGANIZATION$ as a client to $PROVIDER$?",
+    "message": "您确定要将 $ORGANIZATION$ 添加为 $PROVIDER$ 的客户吗？",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4233,10 +4233,10 @@
     }
   },
   "organizationJoinedProvider": {
-    "message": "Organization was successfully added to the provider"
+    "message": "组织已成功添加到此提供商"
   },
   "accessingUsingProvider": {
-    "message": "Accessing organization using provider $PROVIDER$",
+    "message": "正在使用提供商 $PROVIDER$ 访问组织",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4245,13 +4245,13 @@
     }
   },
   "providerIsDisabled": {
-    "message": "Provider is disabled."
+    "message": "提供商已被禁用。"
   },
   "providerUpdated": {
-    "message": "Provider updated"
+    "message": "提供商已更新"
   },
   "yourProviderIs": {
-    "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
+    "message": "您的提供商是 $PROVIDER$。他们对您的组织拥有管理和计费权限。",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4260,7 +4260,7 @@
     }
   },
   "detachedOrganization": {
-    "message": "The organization $ORGANIZATION$ has been detached from your provider.",
+    "message": "组织 $ORGANIZATION$ 已从您的提供商分离。",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4269,40 +4269,40 @@
     }
   },
   "detachOrganizationConfirmation": {
-    "message": "Are you sure you want to detach this organization? The organization will continue to exist but will no longer be managed by the provider."
+    "message": "您确定要分离这个组织吗？该组织将继续存在，但不再由此提供商管理。"
   },
   "add": {
-    "message": "Add"
+    "message": "添加"
   },
   "updatedMasterPassword": {
-    "message": "Updated Master Password"
+    "message": "已更新主密码"
   },
   "updateMasterPassword": {
-    "message": "Update Master Password"
+    "message": "更新主密码"
   },
   "updateMasterPasswordWarning": {
-    "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "您的主密码最近被您组织的管理员更改过。要访问密码库，您必须立即更新主密码。继续操作将使您退出当前会话，要求您重新登录。其他设备上的活动会话可能会继续保持活动状态长达一小时。"
   },
   "maximumVaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "密码库超时"
   },
   "maximumVaultTimeoutDesc": {
-    "message": "Configure a maximum vault timeout for all users."
+    "message": "为所有用户配置最大密码库超时。"
   },
   "maximumVaultTimeoutLabel": {
-    "message": "Maximum Vault Timeout"
+    "message": "最大密码库超时"
   },
   "invalidMaximumVaultTimeout": {
-    "message": "Invalid Maximum Vault Timeout."
+    "message": "无效的最大密码库超时。"
   },
   "hours": {
-    "message": "Hours"
+    "message": "小时"
   },
   "minutes": {
-    "message": "Minutes"
+    "message": "分钟"
   },
   "vaultTimeoutPolicyInEffect": {
-    "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "message": "您的组织策略正在影响您的密码库超时。最大允许的密码库超时时间是 $HOURS$ 小时 $MINUTES$ 分钟。",
     "placeholders": {
       "hours": {
         "content": "$1",
@@ -4315,138 +4315,138 @@
     }
   },
   "customVaultTimeout": {
-    "message": "Custom Vault Timeout"
+    "message": "自定义密码库超时"
   },
   "vaultTimeoutToLarge": {
-    "message": "Your vault timeout exceeds the restriction set by your organization."
+    "message": "您的密码库超时超出了您的组织设置的限制。"
   },
   "disablePersonalVaultExport": {
-    "message": "Disable Personal Vault Export"
+    "message": "禁用个人密码库导出"
   },
   "disablePersonalVaultExportDesc": {
-    "message": "Prohibits users from exporting their private vault data."
+    "message": "禁止用户导出个人密码库数据。"
   },
   "vaultExportDisabled": {
-    "message": "Vault Export Disabled"
+    "message": "密码库导出已禁用"
   },
   "personalVaultExportPolicyInEffect": {
-    "message": "One or more organization policies prevents you from exporting your personal vault."
+    "message": "一个或多个组织策略阻止您导出个人密码库。"
   },
   "selectType": {
-    "message": "Select SSO Type"
+    "message": "选择 SSO 类型"
   },
   "type": {
-    "message": "Type"
+    "message": "类型"
   },
   "openIdConnectConfig": {
-    "message": "OpenID Connect Configuration"
+    "message": "OpenID 连接配置"
   },
   "samlSpConfig": {
-    "message": "SAML Service Provider Configuration"
+    "message": "SAML 服务提供商配置"
   },
   "samlIdpConfig": {
-    "message": "SAML Identity Provider Configuration"
+    "message": "SAML 身份提供商配置"
   },
   "callbackPath": {
-    "message": "Callback Path"
+    "message": "回调路径"
   },
   "signedOutCallbackPath": {
-    "message": "Signed Out Callback Path"
+    "message": "注销回调路径"
   },
   "authority": {
-    "message": "Authority"
+    "message": "权威"
   },
   "clientId": {
-    "message": "Client ID"
+    "message": "客户 ID"
   },
   "clientSecret": {
-    "message": "Client Secret"
+    "message": "客户密钥"
   },
   "metadataAddress": {
-    "message": "Metadata Address"
+    "message": "元数据地址"
   },
   "oidcRedirectBehavior": {
-    "message": "OIDC Redirect Behavior"
+    "message": "OIDC 重定向行为"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "从用户信息端点获取声明"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "额外/自定义范围（逗号分隔）"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "额外/自定义用户 ID 声明类型（逗号分隔）"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "额外/自定义电子邮件声明类型（逗号分隔）"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "额外/自定义名称声明类型 （逗号分隔）"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "请求的身份验证上下文类参考值（acr_value）"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "预期的 \"acr\" 声明值响应（acr 验证）"
   },
   "spEntityId": {
-    "message": "SP Entity ID"
+    "message": "SP 实体 ID"
   },
   "spMetadataUrl": {
-    "message": "SAML 2.0 Metadata URL"
+    "message": "SAML 2.0 元数据 URL"
   },
   "spAcsUrl": {
-    "message": "Assertion Consumer Service (ACS) URL"
+    "message": "断言消费者服务（ACS） URL"
   },
   "spNameIdFormat": {
-    "message": "Name ID Format"
+    "message": "名称 ID 格式"
   },
   "spOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "出站签名算法"
   },
   "spSigningBehavior": {
-    "message": "Signing Behavior"
+    "message": "签名行为"
   },
   "spMinIncomingSigningAlgorithm": {
-    "message": "Minimum Incoming Signing Algorithm"
+    "message": "最小入站签名算法"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "要求断言被签名"
   },
   "spValidateCertificates": {
-    "message": "Validate Certificates"
+    "message": "验证证书"
   },
   "idpEntityId": {
-    "message": "Entity ID"
+    "message": "实体 ID"
   },
   "idpBindingType": {
-    "message": "Binding Type"
+    "message": "绑定类型"
   },
   "idpSingleSignOnServiceUrl": {
-    "message": "Single Sign On Service URL"
+    "message": "单点登录服务 URL"
   },
   "idpSingleLogoutServiceUrl": {
-    "message": "Single Log Out Service URL"
+    "message": "单点登出服务 URL"
   },
   "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
+    "message": "工件解析服务 URL"
   },
   "idpX509PublicCert": {
-    "message": "X509 Public Certificate"
+    "message": "X509 公共证书"
   },
   "idpOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "出站签名算法"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "允许未经请求的身份验证响应"
   },
   "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+    "message": "禁用出站注销请求"
   },
   "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+    "message": "要求身份验证请求被签名"
   },
   "ssoSettingsSaved": {
-    "message": "Single Sign-On configuration was saved."
+    "message": "单点登录配置已保存。"
   }
 }
