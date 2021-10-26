@@ -2,10 +2,12 @@
     <h1>{{'myAccount' | i18n}}</h1>
 </div>
 <app-profile></app-profile>
-<div class="secondary-header">
-    <h1>{{'changeEmail' | i18n}}</h1>
-</div>
-<app-change-email></app-change-email>
+<ng-template *ngIf="showChangeEmail">
+    <div class="secondary-header">
+        <h1>{{'changeEmail' | i18n}}</h1>
+    </div>
+    <app-change-email></app-change-email>
+</ng-template>
 <ng-template *ngIf="showChangePassword">
     <div class="secondary-header">
         <h1>{{'changeMasterPassword' | i18n}}</h1>

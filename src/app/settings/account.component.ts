@@ -27,12 +27,14 @@ export class AccountComponent {
 
     showChangePassword = true;
     showChangeKdf = true;
+    showChangeEmail = true;
 
     constructor(private modalService: ModalService, private apiService: ApiService,
         private userService: UserService) { }
     
     async ngOnInit() {
-        this.showChangeKdf = this.showChangePassword = !await this.userService.getUsesCryptoAgent();
+        this.showChangeEmail = this.showChangeKdf = this.showChangePassword =
+            !await this.userService.getUsesCryptoAgent();
     }
 
     async deauthorizeSessions() {
