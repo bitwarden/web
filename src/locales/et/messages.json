@@ -900,7 +900,7 @@
     "message": "E-posti aadressi muutmine"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Proceeding will change your account email address. It will not change the email address used for two-factor authentication. You can change this email address in the Two-Step Login settings."
+    "message": "Jätkamisel muudetakse konto e-posti aadress. Pane tähele, et see ei muuda kaheastmeliseks kinnitamiseks kasutatavat e-posti aadressi. Selle e-posti aadressi muutmine on võimalik kaheastmelise kinnitamise seadetes."
   },
   "newEmail": {
     "message": "Uus e-posti aadress"
@@ -1002,7 +1002,7 @@
     "message": "Organisatsiooni hoidla on likvideeritud."
   },
   "vaultAccessedByProvider": {
-    "message": "Vault accessed by provider."
+    "message": "Teenuse osutaja vaatas hoidla sisu."
   },
   "purgeVaultDesc": {
     "message": "Jätkates kustutatakse kõik hoidlas olevad kirjed ja kaustad. Andmed, mis kuuluvad organisatsioonile, jäävad puutumata."
@@ -2248,7 +2248,7 @@
     "message": "Kinnitatud"
   },
   "clientOwnerEmail": {
-    "message": "Client Owner Email"
+    "message": "Kliendist omaniku e-post"
   },
   "owner": {
     "message": "Omanik"
@@ -2257,7 +2257,7 @@
     "message": "Kõige suurema ligipääsuga kasutaja, kes saab hallata kõike organisatsiooniga seonduvat."
   },
   "clientOwnerDesc": {
-    "message": "This user should be independent of the Provider. If the Provider is disassociated with the organization, this user will maintain ownership of the organization."
+    "message": "See kasutaja peaks olema teenuse osutajast erinev. Kui teenuse osutaja ei kuulu enam organisatsiooni, jääb see kasutaja organisatsiooni omanikuks."
   },
   "admin": {
     "message": "Administraator"
@@ -2593,7 +2593,7 @@
     }
   },
   "createdOrganizationId": {
-    "message": "Created organization $ID$.",
+    "message": "Lõi organisatsiooni $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2602,7 +2602,7 @@
     }
   },
   "addedOrganizationId": {
-    "message": "Added organization $ID$.",
+    "message": "Lisas organisatsiooni $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2611,7 +2611,7 @@
     }
   },
   "removedOrganizationId": {
-    "message": "Removed organization $ID$.",
+    "message": "Eemaldas organisatsiooni $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2620,7 +2620,7 @@
     }
   },
   "accessedClientVault": {
-    "message": "Accessed $ID$ organization vault.",
+    "message": "Vaatas organisatsiooni $ID$ hoidlat.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2882,10 +2882,10 @@
     "message": "Sisesta oma paigalduse id"
   },
   "limitSubscriptionDesc": {
-    "message": "Set a seat limit for your subscription. Once this limit is reached, you will not be able to invite new users."
+    "message": "Määra maksimaalne kasutajate limiit. Limiidi täitumisel ei saa enam uusi kasutajaid kutsuda."
   },
   "maxSeatLimit": {
-    "message": "Maximum Seat Limit (optional)",
+    "message": "Maksimaalne kasutajate limiit (valikuline)",
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
@@ -3821,22 +3821,22 @@
     "message": "Saab hallata kõiki kollektsioone"
   },
   "createNewCollections": {
-    "message": "Create New Collections"
+    "message": "Luua uusi kollektsioone"
   },
   "editAnyCollection": {
-    "message": "Edit Any Collection"
+    "message": "Muuta mistahes kollektsiooni"
   },
   "deleteAnyCollection": {
-    "message": "Delete Any Collection"
+    "message": "Kustutada mistahes kollektsiooni"
   },
   "manageAssignedCollections": {
     "message": "Saab hallata määratud kollektsioone"
   },
   "editAssignedCollections": {
-    "message": "Edit Assigned Collections"
+    "message": "Hallata määratud kollektsioone"
   },
   "deleteAssignedCollections": {
-    "message": "Delete Assigned Collections"
+    "message": "Kustutada määratud kollektsioone"
   },
   "manageGroups": {
     "message": "Gruppide haldamine"
@@ -4112,19 +4112,19 @@
     "message": "Oled kindel, et soovid järgnevaid kasutajaid eemaldada? See tegevus võib võtta paar sekundit ning seda ei saa katkestada."
   },
   "theme": {
-    "message": "Theme"
+    "message": "Teema"
   },
   "themeDesc": {
-    "message": "Choose a theme for your web vault."
+    "message": "Vali oma veebihoidlale teema."
   },
   "themeSystem": {
-    "message": "Use System Theme"
+    "message": "Kasuta süsteemi teemat"
   },
   "themeDark": {
-    "message": "Dark"
+    "message": "Tume"
   },
   "themeLight": {
-    "message": "Light"
+    "message": "Hele"
   },
   "confirmSelected": {
     "message": "Kinnita valitud"
@@ -4296,10 +4296,10 @@
     "message": "Invalid Maximum Vault Timeout."
   },
   "hours": {
-    "message": "Hours"
+    "message": "Tundi"
   },
   "minutes": {
-    "message": "Minutes"
+    "message": "Minutit"
   },
   "vaultTimeoutPolicyInEffect": {
     "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
