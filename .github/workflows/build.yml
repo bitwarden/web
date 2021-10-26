@@ -182,7 +182,7 @@ jobs:
           echo "GitHub event: $GITHUB_EVENT"
 
       - name: Setup DCT
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/release'
         id: setup-dct
         uses: bitwarden/gh-actions/setup-docker-trust@a8c384a05a974c05c48374c818b004be221d43ff
         with:
@@ -233,7 +233,7 @@ jobs:
         run: docker tag bitwarden/web bitwarden/web:latest
 
       - name: List Docker images
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/release'
         run: docker images
 
       - name: Push rc image
@@ -258,7 +258,7 @@ jobs:
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
 
       - name: Log out of Docker
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/release'
         run: docker logout
 
 
