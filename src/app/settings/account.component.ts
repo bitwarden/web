@@ -25,8 +25,15 @@ export class AccountComponent {
     @ViewChild('viewUserApiKeyTemplate', { read: ViewContainerRef, static: true }) viewUserApiKeyModalRef: ViewContainerRef;
     @ViewChild('rotateUserApiKeyTemplate', { read: ViewContainerRef, static: true }) rotateUserApiKeyModalRef: ViewContainerRef;
 
+    showChangePassword = true;
+    showChangeKdf = true;
+
     constructor(private modalService: ModalService, private apiService: ApiService,
         private userService: UserService) { }
+    
+    async ngOnInit() {
+        this.showChangeKdf = this.showChangePassword = !await this.userService.getUsesCryptoAgent();
+    }
 
     async deauthorizeSessions() {
         await this.modalService.openViewRef(DeauthorizeSessionsComponent, this.deauthModalRef);

@@ -23,6 +23,7 @@ export class ProfileComponent implements OnInit {
     loading = true;
     profile: ProfileResponse;
     fingerprint: string;
+    hidePasswordHint = false;
 
     formPromise: Promise<any>;
 
@@ -37,6 +38,7 @@ export class ProfileComponent implements OnInit {
         if (fingerprint != null) {
             this.fingerprint = fingerprint.join('-');
         }
+        this.hidePasswordHint = await this.userService.getUsesCryptoAgent();
     }
 
     async submit() {

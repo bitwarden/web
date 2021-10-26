@@ -10,6 +10,8 @@ import { PasswordVerificationRequest } from 'jslib-common/models/request/passwor
 
 import { ApiKeyResponse } from 'jslib-common/models/response/apiKeyResponse';
 
+import { Verification } from 'jslib-angular/components/verify-master-password.component';
+
 @Component({
     selector: 'app-api-key',
     templateUrl: 'api-key.component.html',
@@ -25,7 +27,7 @@ export class ApiKeyComponent {
     apiKeyWarning: string;
     apiKeyDescription: string;
 
-    masterPassword: string;
+    masterPassword: Verification;
     formPromise: Promise<ApiKeyResponse>;
     clientId: string;
     clientSecret: string;
@@ -34,14 +36,19 @@ export class ApiKeyComponent {
         private cryptoService: CryptoService, private logService: LogService) { }
 
     async submit() {
-        if (this.masterPassword == null || this.masterPassword === '') {
+        if (this.masterPassword?.secret == null || this.masterPassword.secret === '') {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('masterPassRequired'));
             return;
         }
 
         const request = new PasswordVerificationRequest();
-        request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
+        if (this.masterPassword.type == 'MasterPassword') {
+            request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword.secret, null);
+        } else {
+            request.otp = this.masterPassword.secret;
+        }
+
         try {
             this.formPromise = this.postKey(this.entityId, request);
             const response = await this.formPromise;
