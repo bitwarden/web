@@ -21,7 +21,7 @@
 
 
 
-## Notes for QA
+## Testing requirements
 <!--What functionality requires testing by QA? This includes testing new behavior and regression testing-->
 
 
