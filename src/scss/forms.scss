@@ -171,12 +171,20 @@ input[type="radio"], input[type="checkbox"] {
             flex: 1;
         }
         >.logo-col {
-            margin-left: .5em;
+            min-width: 100px; 
+            margin-right: 10px;
             display: flex;
             align-items: center;
+            justify-content: center;
             img {
                 height: fit-content;
             }
+        }
+        >.btn-col {
+            width: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     }      
 }
