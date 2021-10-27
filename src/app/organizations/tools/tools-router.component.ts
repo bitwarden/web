@@ -16,7 +16,6 @@ export class ToolsRouterComponent implements OnInit {
 
     ngOnInit() {
         this.route.params.subscribe(async params => {
-            console.log('Routing...');
             const org = await this.userService.getOrganization(params.organizationId);
             this.routeTo(org.canAccessImportExport ? 'import' : 'exposed-passwords-report');
         });

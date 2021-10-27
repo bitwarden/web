@@ -24,13 +24,13 @@ import { VerifyEmailTokenComponent } from './accounts/verify-email-token.compone
 import { VerifyRecoverDeleteComponent } from './accounts/verify-recover-delete.component';
 
 import { CollectionsComponent as OrgManageCollectionsComponent } from './organizations/manage/collections.component';
-import { ManageRouterComponent } from './organizations/manage/manage-router.component';
-import { ToolsRouterComponent } from './organizations/tools/tools-router.component';
 import { EventsComponent as OrgEventsComponent } from './organizations/manage/events.component';
 import { GroupsComponent as OrgGroupsComponent } from './organizations/manage/groups.component';
+import { ManageRouterComponent } from './organizations/manage/manage-router.component';
 import { ManageComponent as OrgManageComponent } from './organizations/manage/manage.component';
 import { PeopleComponent as OrgPeopleComponent } from './organizations/manage/people.component';
 import { PoliciesComponent as OrgPoliciesComponent } from './organizations/manage/policies.component';
+import { ToolsRouterComponent } from './organizations/tools/tools-router.component';
 
 import { AccountComponent as OrgAccountComponent } from './organizations/settings/account.component';
 import { OrganizationBillingComponent } from './organizations/settings/organization-billing.component';

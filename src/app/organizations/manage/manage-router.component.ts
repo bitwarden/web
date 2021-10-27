@@ -12,12 +12,11 @@ import { UserService } from 'jslib-common/abstractions/user.service';
 })
 export class ManageRouterComponent implements OnInit {
 
-    constructor(private route: ActivatedRoute, private router: Router, 
+    constructor(private route: ActivatedRoute, private router: Router,
         private userService: UserService) {}
 
     ngOnInit() {
         this.route.params.subscribe(async params => {
-            console.log('Routing...');
             const org = await this.userService.getOrganization(params.organizationId);
             switch (true) {
                 case org.canManageUsers:
