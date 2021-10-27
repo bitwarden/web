@@ -899,6 +899,9 @@
   "changeEmail": {
     "message": "Changer l'e-mail"
   },
+  "changeEmailTwoFactorWarning": {
+    "message": "Continuer changera l'adresse courriel de votre compte.  Votre adresse courriel utilisée pour l'authentification à 2 facteurs ne sera pas changée.  Vous pouvez changer cette adresse courriel dans les réglages Identification en deux étapes."
+  },
   "newEmail": {
     "message": "Nouvel e-mail"
   },
@@ -997,6 +1000,9 @@
   },
   "purgedOrganizationVault": {
     "message": "Le coffre de l'organisation a été effacé."
+  },
+  "vaultAccessedByProvider": {
+    "message": "Coffre-fort accédé par le fournisseur."
   },
   "purgeVaultDesc": {
     "message": "Poursuivez ci-dessous pour supprimer tous les éléments et dossiers de votre coffre. Les éléments qui appartiennent à une organisation dont vous êtes membre ne seront pas supprimés."
@@ -2148,6 +2154,9 @@
   "policies": {
     "message": "Politiques"
   },
+  "singleSignOn": {
+    "message": "Authentification unique"
+  },
   "editPolicy": {
     "message": "Modifier la politique"
   },
@@ -2238,11 +2247,17 @@
   "confirmed": {
     "message": "Confirmé"
   },
+  "clientOwnerEmail": {
+    "message": "Courriel du Propriétaire du Client"
+  },
   "owner": {
     "message": "Propriétaire"
   },
   "ownerDesc": {
     "message": "L’utilisateur avec l’accès le plus élevé qui peut gérer tous les aspects de votre organisation."
+  },
+  "clientOwnerDesc": {
+    "message": "Cet utilisateur doit être indépendant du fournisseur. Si le fournisseur est dissocié de l'organisation, cet utilisateur maintiendra la propriété de l'organisation."
   },
   "admin": {
     "message": "Administrateur"
@@ -2577,6 +2592,42 @@
       }
     }
   },
+  "createdOrganizationId": {
+    "message": "Organisation $ID$ créée.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "addedOrganizationId": {
+    "message": "Organisation $ID$ ajoutée.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "removedOrganizationId": {
+    "message": "Organisation $ID$ supprimée.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "accessedClientVault": {
+    "message": "Coffre-fort de l'organisation $ID$ accédé.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
   "device": {
     "message": "Appareil"
   },
@@ -2830,6 +2881,16 @@
   "enterInstallationId": {
     "message": "Saisissez l'identifiant de votre installation"
   },
+  "limitSubscriptionDesc": {
+    "message": "Définissez une limite de places pour votre abonnement. Une fois cette limite atteinte, vous ne pourrez plus inviter de nouveaux utilisateurs."
+  },
+  "maxSeatLimit": {
+    "message": "Limite de places maximale (optionnel)",
+    "description": "Upper limit of seats to allow through autoscaling"
+  },
+  "maxSeatCost": {
+    "message": "Coût potentiel maximal des places"
+  },
   "addSeats": {
     "message": "Ajouter des licences",
     "description": "Seat = User Seat"
@@ -2838,8 +2899,47 @@
     "message": "Retirer des licences",
     "description": "Seat = User Seat"
   },
+  "subscriptionDesc": {
+    "message": "Les ajustements apportés à votre abonnement entraîneront des modifications au prorata de vos totaux de facturation. Si les utilisateurs nouvellement invités dépassent vos places d'abonnement, vous recevrez immédiatement des frais au prorata pour les utilisateurs supplémentaires."
+  },
   "subscriptionUserSeats": {
     "message": "Votre abonnement permet un total de $COUNT$ utilisateurs.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "limitSubscription": {
+    "message": "Limite d'abonnement (facultatif)"
+  },
+  "subscriptionSeats": {
+    "message": "Places d'Abonnement"
+  },
+  "subscriptionUpdated": {
+    "message": "Abonnement mis à jour"
+  },
+  "additionalOptions": {
+    "message": "Options additionnelles"
+  },
+  "additionalOptionsDesc": {
+    "message": "Pour obtenir de l'aide supplémentaire pour la gestion de votre abonnement, veuillez contacter le Service à la Clientèle."
+  },
+  "subscriptionUserSeatsUnlimitedAutoscale": {
+    "message": "Les ajustements apportés à votre abonnement entraîneront des modifications au prorata de vos totaux de facturation. Si les utilisateurs nouvellement invités dépassent vos places d'abonnement, vous recevrez immédiatement des frais au prorata pour les utilisateurs supplémentaires."
+  },
+  "subscriptionUserSeatsLimitedAutoscale": {
+    "message": "Les ajustements apportés à votre abonnement entraîneront des modifications au prorata de vos totaux de facturation. Si les utilisateurs nouvellement invités dépassent vos sièges d'abonnement, vous recevrez immédiatement des frais calculés au prorata pour les utilisateurs supplémentaires jusqu'à ce que votre limite de places de $MAX$ soit atteinte.",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "subscriptionMaxReached": {
+    "message": "Les ajustements à votre abonnement entraîneront des modifications au prorata de vos totaux de facturation. Vous ne pouvez pas inviter plus de $COUNT$ utilisateurs sans augmenter vos places d'abonnement.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3299,10 +3399,6 @@
   "ssoHandOff": {
     "message": "Vous pouvez maintenant fermer cet onglet et continuer dans l'extension."
   },
-  "businessPortal": {
-    "message": "Portail d'entreprise",
-    "description": "The web portal used by business organizations for configuring certain features."
-  },
   "includeAllTeamsFeatures": {
     "message": "Toutes les fonctionnalités pour les équipes, plus :"
   },
@@ -3323,9 +3419,6 @@
   },
   "linkSso": {
     "message": "Lier SSO"
-  },
-  "webPoliciesDeprecationWarning": {
-    "message": "La configuration des politiques a été déplacée et cette page sera bientôt obsolète. Veuillez cliquer ci-dessous pour utiliser la page des politiques du portail d'entreprise à la place."
   },
   "singleOrg": {
     "message": "Organisation Unique"
@@ -3715,9 +3808,6 @@
   "permissions": {
     "message": "Permissions"
   },
-  "accessBusinessPortal": {
-    "message": "Accéder au portail d'entreprise"
-  },
   "accessEventLogs": {
     "message": "Accéder aux journaux d'événements"
   },
@@ -3730,8 +3820,23 @@
   "manageAllCollections": {
     "message": "Gérer toutes les collections"
   },
+  "createNewCollections": {
+    "message": "Créer de Nouvelles Collections"
+  },
+  "editAnyCollection": {
+    "message": "Modifier Une Collection"
+  },
+  "deleteAnyCollection": {
+    "message": "Supprimer Une Collection"
+  },
   "manageAssignedCollections": {
     "message": "Gérer les collections assignées"
+  },
+  "editAssignedCollections": {
+    "message": "Modifier Les Collection Assignées"
+  },
+  "deleteAssignedCollections": {
+    "message": "Supprimer Les Collections Assignées"
   },
   "manageGroups": {
     "message": "Gérer les groupes"
@@ -3748,11 +3853,20 @@
   "manageResetPassword": {
     "message": "Gérer la réinitialisation du mot de passe"
   },
-  "disableRequireSsoError": {
-    "message": "Vous devez désactiver manuellement la politique d'authentification unique (SSO) avant que cette politique ne puisse être désactivée."
+  "disableRequiredError": {
+    "message": "Vous devez désactiver manuellement $POLICYNAME$ avant que cette politique ne puisse être désactivée.",
+    "placeholders": {
+      "policyName": {
+        "content": "$1",
+        "example": "Single Sign-On Authentication"
+      }
+    }
   },
   "personalOwnershipPolicyInEffect": {
     "message": "Une politique d'organisation affecte vos options de propriété."
+  },
+  "personalOwnershipPolicyInEffectImports": {
+    "message": "Une politique d'organisation a désactivé l'importation d'éléments dans votre coffre-fort personnel."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Désactiver la propriété individuelle des utilisateurs de l'organisation"
@@ -3910,6 +4024,15 @@
       }
     }
   },
+  "eventResetSsoLink": {
+    "message": "Réinitialiser le lien Sso pour l'utilisateur $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Réinitialiser le mot de passe"
   },
@@ -3988,6 +4111,21 @@
   "removeUsersWarning": {
     "message": "Êtes-vous sûr de vouloir supprimer les utilisateurs suivants ? Le processus peut prendre quelques secondes et ne peut être interrompu ou annulé."
   },
+  "theme": {
+    "message": "Thème"
+  },
+  "themeDesc": {
+    "message": "Choisissez un thème pour votre coffre-fort web."
+  },
+  "themeSystem": {
+    "message": "Utiliser le Thème Système"
+  },
+  "themeDark": {
+    "message": "Sombre"
+  },
+  "themeLight": {
+    "message": "Clair"
+  },
   "confirmSelected": {
     "message": "Confirmer la sélection"
   },
@@ -4017,5 +4155,298 @@
   },
   "resetPasswordManageUsers": {
     "message": "La Gestion des Utilisateurs doit également être activée avec Gérer la Permission de Réinitialisation du Mot de Passe"
+  },
+  "setupProvider": {
+    "message": "Configuration du Fournisseur"
+  },
+  "setupProviderLoginDesc": {
+    "message": "Vous avez été invité à configurer un nouveau fournisseur. Pour continuer, vous devez vous connecter ou créer un nouveau compte Bitwarden."
+  },
+  "setupProviderDesc": {
+    "message": "Veuillez entrer les détails ci-dessous pour finaliser la configuration du fournisseur. Contactez le Service à la Clientèle si vous avez des questions."
+  },
+  "providerName": {
+    "message": "Nom du Fournisseur"
+  },
+  "providerSetup": {
+    "message": "Le fournisseur a été configuré."
+  },
+  "clients": {
+    "message": "Clients"
+  },
+  "providerAdmin": {
+    "message": "Administrateur du Fournisseur"
+  },
+  "providerAdminDesc": {
+    "message": "L'utilisateur à l'accès le plus élevé pouvant gérer tous les aspects de votre fournisseur ainsi que l'accès et la gestion des organisations du client."
+  },
+  "serviceUser": {
+    "message": "Utilisateur du Service"
+  },
+  "serviceUserDesc": {
+    "message": "Les utilisateurs du service peuvent accéder et gérer toutes les organisations clientes."
+  },
+  "providerInviteUserDesc": {
+    "message": "Invitez un nouvel utilisateur à votre fournisseur en entrant l'adresse courriel de son compte Bitwarden ci-dessous. S'ils n'ont pas déjà de compte Bitwarden, ils seront invités à créer un nouveau compte."
+  },
+  "joinProvider": {
+    "message": "Rejoindre le Fournisseur"
+  },
+  "joinProviderDesc": {
+    "message": "Vous avez été invité à rejoindre le fournisseur ci-dessus. Pour accepter l'invitation, vous devez vous connecter ou créer un nouveau compte Bitwarden."
+  },
+  "providerInviteAcceptFailed": {
+    "message": "Impossible d'accepter l'invitation. Demandez à un administrateur du fournisseur d'envoyer une nouvelle invitation."
+  },
+  "providerInviteAcceptedDesc": {
+    "message": "Vous pouvez accéder ce fournisseur une fois qu'un administrateur aura confirmé votre abonnement. Nous vous enverrons un courriel lorsque cela se produira."
+  },
+  "providerUsersNeedConfirmed": {
+    "message": "Vous avez des utilisateurs qui ont accepté leur invitation, mais qui doivent quand même être confirmés. Les utilisateurs n'auront pas accès au fournisseur tant qu'ils ne seront pas confirmés."
+  },
+  "provider": {
+    "message": "Fournisseur"
+  },
+  "newClientOrganization": {
+    "message": "Nouvelle Organisation Cliente"
+  },
+  "newClientOrganizationDesc": {
+    "message": "Créez une nouvelle organisation cliente qui sera associée avec vous en tant que fournisseur. Vous pourrez accéder à cette organisation et la gérer."
+  },
+  "addExistingOrganization": {
+    "message": "Ajouter une Organisation Existante"
+  },
+  "myProvider": {
+    "message": "Mon Fournisseur"
+  },
+  "addOrganizationConfirmation": {
+    "message": "Êtes-vous sûr de vouloir ajouter $ORGANIZATION$ comme cliente de $PROVIDER$?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      },
+      "provider": {
+        "content": "$2",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "organizationJoinedProvider": {
+    "message": "L'organisation a bien été ajoutée au fournisseur"
+  },
+  "accessingUsingProvider": {
+    "message": "Accès à l'organisation en utilisant le fournisseur $PROVIDER$",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "providerIsDisabled": {
+    "message": "Le fournisseur est désactivé."
+  },
+  "providerUpdated": {
+    "message": "Fournisseur mis à jour"
+  },
+  "yourProviderIs": {
+    "message": "Votre fournisseur est $PROVIDER$. Ils ont des privilèges d'administration et de facturation pour votre organisation.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "detachedOrganization": {
+    "message": "L'organisation $ORGANIZATION$ a été détachée de votre fournisseur.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "detachOrganizationConfirmation": {
+    "message": "Êtes-vous sûr de vouloir détacher cette organisation ? L'organisation continuera d'exister mais ne sera plus gérée par le fournisseur."
+  },
+  "add": {
+    "message": "Ajouter"
+  },
+  "updatedMasterPassword": {
+    "message": "Mot de Passe Maître mis à jour"
+  },
+  "updateMasterPassword": {
+    "message": "Mettre à jour le Mot de Passe Maître"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Votre Mot de Passe Maître a récemment été modifié par un administrateur de votre organisation. Pour accéder au coffre-fort, vous devez mettre à jour votre Mot de Passe Maître maintenant. Continuer vous déconnectera de votre session actuelle, vous obligeant à vous reconnecter. Les sessions actives sur d'autres appareils peuvent rester actives jusqu'à une heure."
+  },
+  "maximumVaultTimeout": {
+    "message": "Délai D'Expiration du Coffre-fort"
+  },
+  "maximumVaultTimeoutDesc": {
+    "message": "Configurer un délai maximum d'expiration du coffre-fort pour tous les utilisateurs."
+  },
+  "maximumVaultTimeoutLabel": {
+    "message": "Délai Maximum D'Expiration du Coffre-fort"
+  },
+  "invalidMaximumVaultTimeout": {
+    "message": "Délai Maximum D'Expiration du Coffre-fort Invalide."
+  },
+  "hours": {
+    "message": "Heures"
+  },
+  "minutes": {
+    "message": "Minutes"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Les politiques de votre organisation affectent le délai d'expiration de votre coffre-fort. Le délai d'expiration maximal autorisé est de $HOURS$ heure(s) et $MINUTES$ minute(s)",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "customVaultTimeout": {
+    "message": "Délai D'Expiration du Coffre-fort Personnalisé"
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Le délai d'expiration de votre coffre-fort dépasse la restriction définie par votre organisation."
+  },
+  "disablePersonalVaultExport": {
+    "message": "Désactiver l'Exportation du Coffre-fort Personnel"
+  },
+  "disablePersonalVaultExportDesc": {
+    "message": "Empêche les utilisateurs d'exporter les données de leur coffre-fort privé."
+  },
+  "vaultExportDisabled": {
+    "message": "Exportation du Coffre -fort Désactivée"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Une ou plusieurs politiques d'organisation vous empêchent d'exporter votre coffre-fort personnel."
+  },
+  "selectType": {
+    "message": "Sélectionnez le type de SSO"
+  },
+  "type": {
+    "message": "Type"
+  },
+  "openIdConnectConfig": {
+    "message": "Configuration de Connexion OpenID"
+  },
+  "samlSpConfig": {
+    "message": "Configuration du Fournisseur de Services SAML"
+  },
+  "samlIdpConfig": {
+    "message": "Configuration du Fournisseur d'Identités SAML"
+  },
+  "callbackPath": {
+    "message": "Chemin de Rappel"
+  },
+  "signedOutCallbackPath": {
+    "message": "Chemin de Rappel Déconnecté"
+  },
+  "authority": {
+    "message": "Autorité"
+  },
+  "clientId": {
+    "message": "ID du Client"
+  },
+  "clientSecret": {
+    "message": "Secret du Client"
+  },
+  "metadataAddress": {
+    "message": "Adresse des Métadonnées"
+  },
+  "oidcRedirectBehavior": {
+    "message": "Comportement de la Redirection OIDC"
+  },
+  "getClaimsFromUserInfoEndpoint": {
+    "message": "Obtenir Les Demandes d'Infomation De l'Utilisateurs Du Terminal"
+  },
+  "additionalScopes": {
+    "message": "Portées Aditionnelles/Personnalisées (séparées par des virgules)"
+  },
+  "additionalUserIdClaimTypes": {
+    "message": "Types De Demandes d'ID De l'Utilisateur Aditionnelles/Personnalisées (séparées par des virgules)"
+  },
+  "additionalEmailClaimTypes": {
+    "message": "Types De Demandes De Courriel De l'Utilisateur Aditionnelles/Personnalisées (séparées par des virgules)"
+  },
+  "additionalNameClaimTypes": {
+    "message": "Types De Demandes Du Nom De l'Utilisateur Aditionnelles/Personnalisées (séparées par des virgules)"
+  },
+  "acrValues": {
+    "message": "Valeurs De Référence Du Contexte De Classe d'Authentification Demandées (acr_values)"
+  },
+  "expectedReturnAcrValue": {
+    "message": "Demande De Valeur \"acr\" Attendue Dans La Réponse (validation acr)"
+  },
+  "spEntityId": {
+    "message": "ID de l'Entité SP"
+  },
+  "spMetadataUrl": {
+    "message": "URL Des Métadonnées SAML 2.0"
+  },
+  "spAcsUrl": {
+    "message": "URL d'Assertion Du Service À La Clientèle (ACS)"
+  },
+  "spNameIdFormat": {
+    "message": "Format Du Nom ID"
+  },
+  "spOutboundSigningAlgorithm": {
+    "message": "Algorithme De Signature Sortant"
+  },
+  "spSigningBehavior": {
+    "message": "Comportement De La Signature"
+  },
+  "spMinIncomingSigningAlgorithm": {
+    "message": "Algorithme De Signature Minimal"
+  },
+  "spWantAssertionsSigned": {
+    "message": "Voulez-vous Des Assertions Signées"
+  },
+  "spValidateCertificates": {
+    "message": "Valider Les Certificats"
+  },
+  "idpEntityId": {
+    "message": "ID de l'Entité"
+  },
+  "idpBindingType": {
+    "message": "Type De Liaison"
+  },
+  "idpSingleSignOnServiceUrl": {
+    "message": "URL du Service d'Authentification Unique"
+  },
+  "idpSingleLogoutServiceUrl": {
+    "message": "URL du Service De Déconnection Unique"
+  },
+  "idpArtifactResolutionServiceUrl": {
+    "message": "URL du Service De Résolution d'Artefact"
+  },
+  "idpX509PublicCert": {
+    "message": "Certificat Public X509"
+  },
+  "idpOutboundSigningAlgorithm": {
+    "message": "Algorithme De Signature Sortant"
+  },
+  "idpAllowUnsolicitedAuthnResponse": {
+    "message": "Autoriser la Réponse d'Authentification Non-Sollicitée"
+  },
+  "idpDisableOutboundLogoutRequests": {
+    "message": "Désactiver les Demandes De Déconnexion Sortantes"
+  },
+  "idpWantAuthnRequestsSigned": {
+    "message": "Voulez -vous des Demandes d'Authentification Signées"
+  },
+  "ssoSettingsSaved": {
+    "message": "La configuration de l'Authentification Unique a été enregistrée."
   }
 }

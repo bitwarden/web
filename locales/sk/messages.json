@@ -899,6 +899,9 @@
   "changeEmail": {
     "message": "Zmeniť email"
   },
+  "changeEmailTwoFactorWarning": {
+    "message": "Pokračovaním sa zmení e-mailová adresa vášho účtu. Nezmení sa e-mailová adresa používaná na dvojstupňové overovanie. Túto e-mailovú adresu môžete zmeniť v nastaveniach dvojfázového prihlásenia."
+  },
   "newEmail": {
     "message": "Nový e-mail"
   },
@@ -997,6 +1000,9 @@
   },
   "purgedOrganizationVault": {
     "message": "Trezor organizácie bol vyprázdnený."
+  },
+  "vaultAccessedByProvider": {
+    "message": "Trezor sprístupnený poskytovateľom."
   },
   "purgeVaultDesc": {
     "message": "Pokračujte ďalej ak chcete odstrániť všetky položky a priečinky vo vašom trezore. Položky, ktoré ste zdieľali a patria k organizácii sa neodstránia."
@@ -2148,6 +2154,9 @@
   "policies": {
     "message": "Pravidlá"
   },
+  "singleSignOn": {
+    "message": "Prihlásenie cez prihlasovací formulár"
+  },
   "editPolicy": {
     "message": "Upraviť pravidlá"
   },
@@ -2238,11 +2247,17 @@
   "confirmed": {
     "message": "Potvrdený"
   },
+  "clientOwnerEmail": {
+    "message": "E-mail klienta"
+  },
   "owner": {
     "message": "Vlastník"
   },
   "ownerDesc": {
     "message": "Používateľ s najvyššími oprávneniami, môže spravovať všetky aspekty organizácie."
+  },
+  "clientOwnerDesc": {
+    "message": "Tento používateľ by mal byť nezávislý od poskytovateľa. Ak sa poskytovateľ odpojí od organizácie, tento používateľ si zachová vlastníctvo organizácie."
   },
   "admin": {
     "message": "Administrátor"
@@ -2577,6 +2592,42 @@
       }
     }
   },
+  "createdOrganizationId": {
+    "message": "Vytvorená organizácia $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "addedOrganizationId": {
+    "message": "Pridaná organizácia $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "removedOrganizationId": {
+    "message": "Odstránená organizácia $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "accessedClientVault": {
+    "message": "Prístup k trezoru organizácie $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
   "device": {
     "message": "Zariadenie"
   },
@@ -2830,6 +2881,16 @@
   "enterInstallationId": {
     "message": "Zadajte ID vašej inštalácie"
   },
+  "limitSubscriptionDesc": {
+    "message": "Nastavte limit počtu používateľov predplatného. Po jeho dosiahnutí nebudete môcť pozvať nových používateľov."
+  },
+  "maxSeatLimit": {
+    "message": "Maximálny počet miest (voliteľné)",
+    "description": "Upper limit of seats to allow through autoscaling"
+  },
+  "maxSeatCost": {
+    "message": "Maximálne náklady na miesto"
+  },
   "addSeats": {
     "message": "Pridať licencie",
     "description": "Seat = User Seat"
@@ -2838,8 +2899,47 @@
     "message": "Odobrať licencie",
     "description": "Seat = User Seat"
   },
+  "subscriptionDesc": {
+    "message": "Úprava predplatného bude mať za následok proporcionálnu zmenu celkového účtu. Ak počet nových odporúčaných používateľov presiahne počet miest vo vašom predplatnom, okamžite dostanete primeraný poplatok za ďalších používateľov."
+  },
   "subscriptionUserSeats": {
     "message": "Vaše predplatné zahŕňa $COUNT$ používateľov.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "limitSubscription": {
+    "message": "Obmedziť predplatné (voliteľné)"
+  },
+  "subscriptionSeats": {
+    "message": "Predplatené miesta"
+  },
+  "subscriptionUpdated": {
+    "message": "Predplatené bolo aktualizované"
+  },
+  "additionalOptions": {
+    "message": "Ďalšie možnosti"
+  },
+  "additionalOptionsDesc": {
+    "message": "Ak chcete získať ďalšiu pomoc pri správe svojho predplatného, obráťte sa na zákaznícku podporu."
+  },
+  "subscriptionUserSeatsUnlimitedAutoscale": {
+    "message": "Úprava predplatného bude mať za následok proporcionálnu zmenu celkového účtu. Ak počet nových odporúčaných používateľov presiahne počet miest vo vašom predplatnom, okamžite dostanete primeraný poplatok za ďalších používateľov."
+  },
+  "subscriptionUserSeatsLimitedAutoscale": {
+    "message": "Úprava predplatného bude mať za následok proporcionálnu zmenu celkového účtu. Ak počet nových odporúčaných používateľov presiahne počet miest vo vašom predplatnom, okamžite dostanete primeraný poplatok za ďalších používateľov, kým sa naplní obmedzenie $MAX$ miest.",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "subscriptionMaxReached": {
+    "message": "Úprava predplatného bude mať za následok proporcionálnu zmenu celkového účtu. Bez zvýšenia počtu miest na predplatné nemôžete pozvať viac ako $COUNT$ používateľov.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3299,10 +3399,6 @@
   "ssoHandOff": {
     "message": "Teraz môžete zavrieť túto kartu a pokračovať v rozšírení."
   },
-  "businessPortal": {
-    "message": "Portál spoločnosti",
-    "description": "The web portal used by business organizations for configuring certain features."
-  },
   "includeAllTeamsFeatures": {
     "message": "Všetky funkcie verzie pre Tímy, plus:"
   },
@@ -3323,9 +3419,6 @@
   },
   "linkSso": {
     "message": "Prepojiť SSO"
-  },
-  "webPoliciesDeprecationWarning": {
-    "message": "Konfigurácia pravidiel bola presunutá a táto stránka bude čoskoro zrušená. Ak chcete radšej konfigurovať pravidlá v Portáli spoločnosti, kliknite, prosím, na tlačidlo nižšie."
   },
   "singleOrg": {
     "message": "Jedna organizácia"
@@ -3715,9 +3808,6 @@
   "permissions": {
     "message": "Povolenia"
   },
-  "accessBusinessPortal": {
-    "message": "Prístup k podnikovému portálu"
-  },
   "accessEventLogs": {
     "message": "Prístup k protokolom udalostí"
   },
@@ -3730,8 +3820,23 @@
   "manageAllCollections": {
     "message": "Spravovať všetky zbierky"
   },
+  "createNewCollections": {
+    "message": "Vytvoriť novú zbierku"
+  },
+  "editAnyCollection": {
+    "message": "Upraviť ľubovoľnú zbierku"
+  },
+  "deleteAnyCollection": {
+    "message": "Odstrániť ľubovoľnú zbierku"
+  },
   "manageAssignedCollections": {
     "message": "Spravovať priradené zbierky"
+  },
+  "editAssignedCollections": {
+    "message": "Upraviť priradené zbierky"
+  },
+  "deleteAssignedCollections": {
+    "message": "Odstrániť priradené zbierky"
   },
   "manageGroups": {
     "message": "Spravovať skupiny"
@@ -3748,11 +3853,20 @@
   "manageResetPassword": {
     "message": "Správa resetovania hesla"
   },
-  "disableRequireSsoError": {
-    "message": "Predtým, ako bude možné túto politiku deaktivovať, musíte manuálne vypnúť politiku overovania jediným prihlásením."
+  "disableRequiredError": {
+    "message": "Pred zakázaním tejto zásady musíte ručne vypnúť zásadu $POLICYNAME$.",
+    "placeholders": {
+      "policyName": {
+        "content": "$1",
+        "example": "Single Sign-On Authentication"
+      }
+    }
   },
   "personalOwnershipPolicyInEffect": {
     "message": "Politika organizácie ovplyvňuje vaše možnosti vlastníctva."
+  },
+  "personalOwnershipPolicyInEffectImports": {
+    "message": "Zásady organizácie zakázali importovanie položiek do vášho osobného trezoru."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Zakázať osobné vlastníctvo pre používateľov organizácie"
@@ -3910,6 +4024,15 @@
       }
     }
   },
+  "eventResetSsoLink": {
+    "message": "Resetovať odkaz SSO pre používateľa $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Obnoviť heslo"
   },
@@ -3956,7 +4079,7 @@
     "message": "Automaticky zaregistrovať nových používateľov"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "Táto organizácia má podnikovú politiku, ktorá vás automaticky zaregistruje na obnovenia hesla. Registrácia umožní správcom organizácie zmeniť vaše hlavné heslo."
+    "message": "Táto organizácia má podnikovú politiku, ktorá vás automaticky zaregistruje na obnovenie hesla. Registrácia umožní správcom organizácie zmeniť vaše hlavné heslo."
   },
   "resetPasswordOrgKeysError": {
     "message": "Prázdná odpoveď Organization Keys"
@@ -3988,6 +4111,21 @@
   "removeUsersWarning": {
     "message": "Naozaj chcete odstrániť týchto používateľov? Dokončenie procesu môže trvať niekoľko sekúnd a nie je možné ho prerušiť ani zrušiť."
   },
+  "theme": {
+    "message": "Motív"
+  },
+  "themeDesc": {
+    "message": "Zvoľte motív pre webový trezor."
+  },
+  "themeSystem": {
+    "message": "Použiť systémový motív"
+  },
+  "themeDark": {
+    "message": "Tmavý"
+  },
+  "themeLight": {
+    "message": "Svetlý"
+  },
   "confirmSelected": {
     "message": "Potvrdiť vybrané"
   },
@@ -4017,5 +4155,298 @@
   },
   "resetPasswordManageUsers": {
     "message": "Správa používateľov musí byť povolená aj s oprávnením spravovať obnovenie hesla"
+  },
+  "setupProvider": {
+    "message": "Nastavenie poskytovateľa"
+  },
+  "setupProviderLoginDesc": {
+    "message": "Boli ste pozvaný, aby ste nastavili nového poskytovateľa. Ak chcete pokračovať, musíte sa prihlásiť alebo si vytvoriť nový Bitwarden účet."
+  },
+  "setupProviderDesc": {
+    "message": "Na dokončenie nastavenia poskytovateľa zadajte nižšie uvedené údaje. V prípade akýchkoľvek otázok kontaktujte zákaznícku podporu."
+  },
+  "providerName": {
+    "message": "Názov poskytovateľa"
+  },
+  "providerSetup": {
+    "message": "Poskytovateľ bol nastavený."
+  },
+  "clients": {
+    "message": "Klienti"
+  },
+  "providerAdmin": {
+    "message": "Správca poskytovateľa"
+  },
+  "providerAdminDesc": {
+    "message": "Používateľ s najvyšším prístupom, ktorý môže spravovať všetky aspekty vášho poskytovateľa, ako aj prístup a správu klientskych organizácií."
+  },
+  "serviceUser": {
+    "message": "Používateľ služby"
+  },
+  "serviceUserDesc": {
+    "message": "Používatelia služby môžu pristupovať a spravovať všetky klientske organizácie."
+  },
+  "providerInviteUserDesc": {
+    "message": "Pozvite používateľov k vášmu poskytovateľovi zadaním emailovej adresy ich Bitwarden účtu nižšie. Ak ešte nemajú Bitwarden účet, budú vyzvaní na jeho vytvorenie."
+  },
+  "joinProvider": {
+    "message": "Pripojte sa k poskytovateľovi"
+  },
+  "joinProviderDesc": {
+    "message": "Boli ste pozvaný, aby ste sa pridali k poskytovateľovi uvedenému vyššie. Ak chcete pozvánku prijať, musíte sa prihlásiť alebo si vytvoriť nový Bitwarden účet."
+  },
+  "providerInviteAcceptFailed": {
+    "message": "Nie je možné prijať pozvanie. Požiadajte správcu poskytovateľa o zaslanie novej pozvánky."
+  },
+  "providerInviteAcceptedDesc": {
+    "message": "Prístup k poskytovateľovi získate, keď administrátor potvrdí vaše členstvo. Keď sa tak stane, pošleme vám e-mail."
+  },
+  "providerUsersNeedConfirmed": {
+    "message": "Máte používateľov, ktorí prijali pozvanie, ale ešte ich musíte potvrdiť. Používatelia nebudú mať prístup k poskytovateľovi, kým nebudú potvrdení."
+  },
+  "provider": {
+    "message": "Poskytovateľ"
+  },
+  "newClientOrganization": {
+    "message": "Nová klientská organizácia"
+  },
+  "newClientOrganizationDesc": {
+    "message": "Vytvorí novú klientsku organizáciu, ktorá bude s vami spojená ako poskytovateľ. K tejto organizácii budete mať prístup a budete ju môcť spravovať."
+  },
+  "addExistingOrganization": {
+    "message": "Pridať existujúcu organizáciu"
+  },
+  "myProvider": {
+    "message": "Môj poskytovateľ"
+  },
+  "addOrganizationConfirmation": {
+    "message": "Naozaj chcete pridať $ORGANIZATION$ ako klienta $PROVIDER$?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      },
+      "provider": {
+        "content": "$2",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "organizationJoinedProvider": {
+    "message": "Organizácia bola úspešne pridaná k poskytovateľovi"
+  },
+  "accessingUsingProvider": {
+    "message": "Prístup k organizácii pomocou poskytovateľa $PROVIDER$",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "providerIsDisabled": {
+    "message": "Poskytovateľ je zakázaný."
+  },
+  "providerUpdated": {
+    "message": "Poskytovateľ aktualizovaný"
+  },
+  "yourProviderIs": {
+    "message": "Váš poskytovateľ je $PROVIDER$. Má administratívne a fakturačné práva pre vašu organizáciu.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "detachedOrganization": {
+    "message": "Organizácia $ORGANIZATION$ bola odpojená od vášho poskytovateľa.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "detachOrganizationConfirmation": {
+    "message": "Naozaj chcete túto organizáciu odpojiť? Organizácia bude naďalej existovať, ale už nebude spravovaná poskytovateľom."
+  },
+  "add": {
+    "message": "Pridať"
+  },
+  "updatedMasterPassword": {
+    "message": "Hlavné heslo aktualizované"
+  },
+  "updateMasterPassword": {
+    "message": "Aktualizovať hlavné heslo"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Vaše hlavné heslo nedávno zmenil správca vo vašej organizácii. Ak chcete získať prístup k trezoru, musíte aktualizovať vaše hlavné heslo teraz. Pokračovaním sa odhlásite z aktuálnej relácie a budete sa musieť znova prihlásiť. Aktívne relácie na iných zariadeniach môžu zostať aktívne až jednu hodinu."
+  },
+  "maximumVaultTimeout": {
+    "message": "Časový limit pre trezor"
+  },
+  "maximumVaultTimeoutDesc": {
+    "message": "Nastaviť maximálny časový limit trezora pre všetkých používateľov."
+  },
+  "maximumVaultTimeoutLabel": {
+    "message": "Maximálny časový limit pre trezor"
+  },
+  "invalidMaximumVaultTimeout": {
+    "message": "Neplatný maximálny časový limit pre trezor."
+  },
+  "hours": {
+    "message": "Hodiny"
+  },
+  "minutes": {
+    "message": "Minúty"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Zásady vašej organizácie ovplyvňujú časový limit trezoru. Maximálny povolený časový limit trezoru je $HOURS$ h a $MINUTES$ m",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "customVaultTimeout": {
+    "message": "Vlastný časový limit pre trezor"
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Časový limit vášho trezora prekračuje obmedzenia nastavené vašou organizáciou."
+  },
+  "disablePersonalVaultExport": {
+    "message": "Zakázať export osobného trezora"
+  },
+  "disablePersonalVaultExportDesc": {
+    "message": "Zakazuje používateľom exportovať údaje zo súkromného trezora."
+  },
+  "vaultExportDisabled": {
+    "message": "Export trezoru je zakázaný"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Jedna alebo viacero zásad organizácie vám bráni exportovať váš osobný trezor."
+  },
+  "selectType": {
+    "message": "Vyberte typ SSO"
+  },
+  "type": {
+    "message": "Typ"
+  },
+  "openIdConnectConfig": {
+    "message": "Konfigurácia OpenID Connect"
+  },
+  "samlSpConfig": {
+    "message": "Konfigurácia poskytovateľa služieb SAML"
+  },
+  "samlIdpConfig": {
+    "message": "Konfigurácia poskytovateľa identít SAML"
+  },
+  "callbackPath": {
+    "message": "Cesta spätného volania"
+  },
+  "signedOutCallbackPath": {
+    "message": "Cesta spätného volania na odhlásenie"
+  },
+  "authority": {
+    "message": "Autorita"
+  },
+  "clientId": {
+    "message": "ID klienta"
+  },
+  "clientSecret": {
+    "message": "Tajný kľúč klienta"
+  },
+  "metadataAddress": {
+    "message": "Adresa metadát"
+  },
+  "oidcRedirectBehavior": {
+    "message": "Správanie pri presmerovaní OIDC"
+  },
+  "getClaimsFromUserInfoEndpoint": {
+    "message": "Získanie žiadostí z koncového bodu informácií o používateľovi"
+  },
+  "additionalScopes": {
+    "message": "Ďalšie/vlastné rozsahy (oddelené čiarkou)"
+  },
+  "additionalUserIdClaimTypes": {
+    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+  },
+  "additionalEmailClaimTypes": {
+    "message": "Additional/Custom Email Claim Types (comma delimited)"
+  },
+  "additionalNameClaimTypes": {
+    "message": "Additional/Custom Name Claim Types (comma delimited)"
+  },
+  "acrValues": {
+    "message": "Requested Authentication Context Class Reference values (acr_values)"
+  },
+  "expectedReturnAcrValue": {
+    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+  },
+  "spEntityId": {
+    "message": "ID subjektu SP"
+  },
+  "spMetadataUrl": {
+    "message": "URL metadát SAML 2.0"
+  },
+  "spAcsUrl": {
+    "message": "Assertion Consumer Service (ACS) URL"
+  },
+  "spNameIdFormat": {
+    "message": "Formát názvu ID"
+  },
+  "spOutboundSigningAlgorithm": {
+    "message": "Outbound Signing Algorithm"
+  },
+  "spSigningBehavior": {
+    "message": "Signing Behavior"
+  },
+  "spMinIncomingSigningAlgorithm": {
+    "message": "Minimum Incoming Signing Algorithm"
+  },
+  "spWantAssertionsSigned": {
+    "message": "Want Assertions Signed"
+  },
+  "spValidateCertificates": {
+    "message": "Overiť certifikáty"
+  },
+  "idpEntityId": {
+    "message": "ID subjektu"
+  },
+  "idpBindingType": {
+    "message": "Binding Type"
+  },
+  "idpSingleSignOnServiceUrl": {
+    "message": "Single Sign On Service URL"
+  },
+  "idpSingleLogoutServiceUrl": {
+    "message": "Single Log Out Service URL"
+  },
+  "idpArtifactResolutionServiceUrl": {
+    "message": "Artifact Resolution Service URL"
+  },
+  "idpX509PublicCert": {
+    "message": "Verejný certifikát X509"
+  },
+  "idpOutboundSigningAlgorithm": {
+    "message": "Outbound Signing Algorithm"
+  },
+  "idpAllowUnsolicitedAuthnResponse": {
+    "message": "Allow Unsolicited Authentication Response"
+  },
+  "idpDisableOutboundLogoutRequests": {
+    "message": "Disable Outbound Logout Requests"
+  },
+  "idpWantAuthnRequestsSigned": {
+    "message": "Want Authentication Requests Signed"
+  },
+  "ssoSettingsSaved": {
+    "message": "Single Sign-On configuration was saved."
   }
 }

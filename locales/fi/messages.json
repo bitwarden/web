@@ -899,6 +899,9 @@
   "changeEmail": {
     "message": "Vaihda sähköpostiosoite"
   },
+  "changeEmailTwoFactorWarning": {
+    "message": "Jatko vaihtaa tilisi sähköpostiosoitteen. Se ei muuta kaksivaiheiseen tunnistamiseen käytettävää sähköpostiosoitetta. Voit muuttaa sähköpostiosoitteen kaksivaiheisen tunnistautumisen asetuksista."
+  },
   "newEmail": {
     "message": "Uusi sähköposti"
   },
@@ -997,6 +1000,9 @@
   },
   "purgedOrganizationVault": {
     "message": "Organisaation holvi tyhjennettiin."
+  },
+  "vaultAccessedByProvider": {
+    "message": "Toimittaja on käyttänyt holvia."
   },
   "purgeVaultDesc": {
     "message": "Jatka alla poistaaksesi kaikki holvisi kohteet ja kansiot. Kohteita, jotka on jaettu ja kuuluvat organisaatiolle, ei poisteta."
@@ -2148,6 +2154,9 @@
   "policies": {
     "message": "Käytännöt"
   },
+  "singleSignOn": {
+    "message": "Kertakirjautuminen"
+  },
   "editPolicy": {
     "message": "Muokkaa käytäntöä"
   },
@@ -2238,17 +2247,23 @@
   "confirmed": {
     "message": "Vahvistettu"
   },
+  "clientOwnerEmail": {
+    "message": "Asiakkaan omistajan sähköposti"
+  },
   "owner": {
     "message": "Omistaja"
   },
   "ownerDesc": {
     "message": "Korkeimman käyttöoikeustason käyttäjä, jolla on käyttö- ja hallintaoikeus koko organisaatioosi."
   },
+  "clientOwnerDesc": {
+    "message": "Käyttäjän on oltava riippumaton toimittajasta. Jos toimittaja ei ole yhteydessä organisaatioon, käyttäjä säilyttää organisaation omistuksen."
+  },
   "admin": {
-    "message": "Järjestelmänvalvoja"
+    "message": "Ylläpitäjä"
   },
   "adminDesc": {
-    "message": "Järjestelmänvalvojilla on käyttö- ja hallintaoikeus kaikkiin organisaatiosi kohteisiin, kokoelmiin ja käyttäjiin."
+    "message": "Ylläpitäjillä on käyttö- ja hallintaoikeus kaikkiin organisaatiosi kohteisiin, kokoelmiin ja käyttäjiin."
   },
   "user": {
     "message": "Käyttäjä"
@@ -2577,6 +2592,42 @@
       }
     }
   },
+  "createdOrganizationId": {
+    "message": "Luotiin organisaatio $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "addedOrganizationId": {
+    "message": "Lisättiin organisaatio $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "removedOrganizationId": {
+    "message": "Poistettiin organisaatio $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "accessedClientVault": {
+    "message": "Käytettiin organisaation $ID$ holvia.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
   "device": {
     "message": "Laite"
   },
@@ -2677,16 +2728,16 @@
     "message": "Liity organisaatioon"
   },
   "joinOrganizationDesc": {
-    "message": "Sinut on kutsuttu liittymään yllä mainittuun organisaatioon. Hyväksyäksesi kutsun, sinun tulee kirjautua tilillesi tai luoda uusi Bitwarden tili."
+    "message": "Sinut on kutsuttu liittymään yllä mainittuun organisaatioon. Hyväksyäksesi kutsun, sinun tulee kirjautua tilillesi tai luoda uusi Bitwarden-tili."
   },
   "inviteAccepted": {
     "message": "Kutsu hyväksyttiin"
   },
   "inviteAcceptedDesc": {
-    "message": "Saat käyttöoikeuden organisaation järjestelmänvalvojan vahvistettua jäsentyytesi. Saat vahvistuksesta ilmoituksen sähköpostitse."
+    "message": "Saat organisaation käyttöoikeuden ylläpitäjän vahvistettua jäsentyytesi. Saat vahvistuksesta ilmoituksen sähköpostitse."
   },
   "inviteAcceptFailed": {
-    "message": "Kutsun hyväksyntä ei onnistu. Pyydä organisaation järjestelmänvalvojaa lähettämään uusi kutsu."
+    "message": "Kutsun hyväksyntä ei onnistu. Pyydä organisaation ylläpitäjää lähettämään uusi kutsu."
   },
   "inviteAcceptFailedShort": {
     "message": "Kutsun hyväksyntä ei onnistunut. $DESCRIPTION$",
@@ -2830,6 +2881,16 @@
   "enterInstallationId": {
     "message": "Syötä asennuksesi ID-tunnus"
   },
+  "limitSubscriptionDesc": {
+    "message": "Rajoita tilkauksesi käyttäjäpaikkojen määrää. Kun määrä täyttyy, et voi kutsua uusia käyttäjiä."
+  },
+  "maxSeatLimit": {
+    "message": "Käyttäjäpaikkojen enimmäismäärä (valinnainen)",
+    "description": "Upper limit of seats to allow through autoscaling"
+  },
+  "maxSeatCost": {
+    "message": "Käyttäjäpaikan suurin mahdollinen hinta"
+  },
   "addSeats": {
     "message": "Lisää käyttäjäpaikkoja",
     "description": "Seat = User Seat"
@@ -2838,8 +2899,47 @@
     "message": "Poista käyttäjäpaikkoja",
     "description": "Seat = User Seat"
   },
+  "subscriptionDesc": {
+    "message": "Tilausmuutokset johtavat suhteutettuihin muutoksiin laskutuksessasi. Jos hiljattain lisätyt käyttäjät ylittävät tilauksesi käyttäjäpaikkojen enimmäismäärän, veloitetaan suhteutettu hinta lisätyistä käyttäjistä välittömästi."
+  },
   "subscriptionUserSeats": {
     "message": "Tilauksesi sallii yhteensä $COUNT$ käyttäjää.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "limitSubscription": {
+    "message": "Rajoita tilausta (valinnainen)"
+  },
+  "subscriptionSeats": {
+    "message": "Tilauksen käyttäjäpaikat"
+  },
+  "subscriptionUpdated": {
+    "message": "Tilaus päivitetty"
+  },
+  "additionalOptions": {
+    "message": "Muut vaihtoehdot"
+  },
+  "additionalOptionsDesc": {
+    "message": "Jos tarvitset apua tilauksesi hallinnassa, ota yhteyttä asiakaspalveluun."
+  },
+  "subscriptionUserSeatsUnlimitedAutoscale": {
+    "message": "Tilausmuutokset johtavat suhteutettuihin muutoksiin laskutuksessasi. Jos hiljattain lisätyt käyttäjät ylittävät tilauksesi käyttäjäpaikkojen enimmäismäärän, veloitetaan suhteutettu hinta lisätyistä käyttäjistä välittömästi."
+  },
+  "subscriptionUserSeatsLimitedAutoscale": {
+    "message": "Tilausmuutokset johtavat suhteutettuihin muutoksiin laskutuksessasi. Jos hiljattain lisätyt käyttäjät ylittävät tilauksesi käyttäjäpaikkojen enimmäismäärän, veloitetaan suhteutettu hinta lisätyistä käyttäjistä välittömästi kunnes $MAX$ paikan rajoitus saavutetaan.",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "subscriptionMaxReached": {
+    "message": "Tilausmuutokset johtavat suhteutettuihin muutoksiin laskutuksessasi. Voit kutsua enintään $COUNT$ käyttäjää kasvattamasta tilauksesi käyttäjäpaikkoja.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3100,7 +3200,7 @@
     "message": "Vaadi käyttäjiä ottamaan kaksivaiheinen kirjautuminen käyttöön henkilökohtaisilla tileillään."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Organisaation jäsenet, jotka eivät ole sen omistajia tai järjestelmänvalvojia, eivätkä ole ottaneet kaksivaiheista kirjautumista käyttöön henkilökohtaisilla tileillään, poistetaan organisaatiosta ja heille ilmoitetaan muutoksesta sähköpostitse."
+    "message": "Organisaation jäsenet, jotka eivät ole sen omistajia tai ylläpitäjiä, eivätkä ole ottaneet kaksivaiheista kirjautumista käyttöön henkilökohtaisilla tileillään, poistetaan organisaatiosta ja heille ilmoitetaan muutoksesta sähköpostitse."
   },
   "twoStepLoginPolicyUserWarning": {
     "message": "Olet jäsenenä organisaatiossa, joka vaatii kaksivaiheisen kirjautumisen käyttöönoton käyttäjätililläsi. Jos poistat kaikki kaksivaiheisen kirjautumisen todennusmenetelmät käytöstä, sinut poistetaan automaattisesti näistä organisaatioista."
@@ -3299,10 +3399,6 @@
   "ssoHandOff": {
     "message": "Voit nyt sulkea tämän välilehden ja jatkaa laajennuksessa."
   },
-  "businessPortal": {
-    "message": "Yritysportaali",
-    "description": "The web portal used by business organizations for configuring certain features."
-  },
   "includeAllTeamsFeatures": {
     "message": "Kaikki Tiimit-tilauksen ominaisuudet, sekä:"
   },
@@ -3324,9 +3420,6 @@
   "linkSso": {
     "message": "Liitä kertakirjautumiseen (SSO)"
   },
-  "webPoliciesDeprecationWarning": {
-    "message": "Käytäntöasetukset ovat siirtyneet ja tämä sivu poistuu pian käytöstä. Klikkaa alta siirtyäksesi yritysportaalin käytäntösivua."
-  },
   "singleOrg": {
     "message": "Yksittäinen organisaatio"
   },
@@ -3334,10 +3427,10 @@
     "message": "Estä käyttäjiä liittymästä muihin organisaatioihin."
   },
   "singleOrgBlockCreateMessage": {
-    "message": "Nykyisen organisaatiosi käytäntö ei salli liittymistä useampaan kuin yhteen organisaatioon. Ota yhteyttä organisaatiosi järjestelmänvalvojiin tai liity eri Bitwarden-tilin kautta."
+    "message": "Nykyisen organisaatiosi käytäntö ei salli liittymistä useampaan kuin yhteen organisaatioon. Ota yhteyttä organisaatiosi ylläpitäjiin tai liity eri Bitwarden-tilin kautta."
   },
   "singleOrgPolicyWarning": {
-    "message": "Organisaation jäsenet, jotka eivät ole omistajia tai järjestelmänvalvojia ja jotka ovat jo toisen organisaation jäseniä, poistetaan organisaatiostasi."
+    "message": "Organisaation jäsenet, jotka eivät ole omistajia tai ylläpitäjiä ja jotka ovat jo toisen organisaation jäseniä, poistetaan organisaatiostasi."
   },
   "requireSso": {
     "message": "Kertakirjautumisen (SSO) todennus"
@@ -3355,7 +3448,7 @@
     "message": "\"Yksittäinen organisaatio\" -käytäntö ei ole käytössä."
   },
   "requireSsoExemption": {
-    "message": "Organisaation omistajat ja järjestelmänvalvojat on vapautettu tämän käytännön piiristä."
+    "message": "Organisaation omistajat ja ylläpitäjät on vapautettu tämän käytännön piiristä."
   },
   "sendTypeFile": {
     "message": "Tiedosto"
@@ -3646,7 +3739,7 @@
     "message": "Vaadi käyttäjiä tallentamaan holvin kohteet organisaatiolle poistamalla henkilökohtaisen omistuksen valinta."
   },
   "personalOwnershipExemption": {
-    "message": "Organisaation omistajat ja järjestelmänvalvojat on vapautettu tämän käytännön piiristä."
+    "message": "Organisaation omistajat ja ylläpitäjät on vapautettu tämän käytännön piiristä."
   },
   "personalOwnershipSubmitError": {
     "message": "Yrityksen asettaman käytännön johdosta kohteiden tallennus omaan holviisi ei ole mahdollista. Muuta omistusasetus organisaatiolle ja valitse käytettävissä olevista kokoelmista."
@@ -3715,9 +3808,6 @@
   "permissions": {
     "message": "Käyttöoikeudet"
   },
-  "accessBusinessPortal": {
-    "message": "Yritysportaalin käyttö"
-  },
   "accessEventLogs": {
     "message": "Tapahtumalokien käyttö"
   },
@@ -3730,8 +3820,23 @@
   "manageAllCollections": {
     "message": "Kaikkien kokoelmien hallinta"
   },
+  "createNewCollections": {
+    "message": "Luo uusia kokoelmia"
+  },
+  "editAnyCollection": {
+    "message": "Muokkaa mitä tahansa kokoelmaa"
+  },
+  "deleteAnyCollection": {
+    "message": "Poista mikä tahansa kokoelma"
+  },
   "manageAssignedCollections": {
     "message": "Määritettyjen kokoelmien hallinta"
+  },
+  "editAssignedCollections": {
+    "message": "Muokkaa määritettyjä kokoelmia"
+  },
+  "deleteAssignedCollections": {
+    "message": "Poista määritettyjä kokoelmia"
   },
   "manageGroups": {
     "message": "Ryhmien hallinta"
@@ -3748,11 +3853,20 @@
   "manageResetPassword": {
     "message": "Salasanan palautusavun hallinta"
   },
-  "disableRequireSsoError": {
-    "message": "Yrityksen kertakirjautuminen (SSO) on poistettava käytöstä manuaalisesti ennen kuin tämän käytännön voi poistaa käytöstä."
+  "disableRequiredError": {
+    "message": "Käytäntö $POLICYNAME$ on poistettava käytöstä manuaalisesti ennen kuin tämän käytännön voi poistaa käytöstä.",
+    "placeholders": {
+      "policyName": {
+        "content": "$1",
+        "example": "Single Sign-On Authentication"
+      }
+    }
   },
   "personalOwnershipPolicyInEffect": {
     "message": "Organisaatiokäytäntö vaikuttaa omistajuusvalintoihisi."
+  },
+  "personalOwnershipPolicyInEffectImports": {
+    "message": "Organisaation käytäntö estää kohteiden tuonnin henkilökohtaiseen holviisi."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Poista henkilökohtaisen omistajuuden valinta käytöstä organisaation käyttäjiltä"
@@ -3875,13 +3989,13 @@
     "message": "Liitetty salasanan palautusapuun"
   },
   "withdrawPasswordReset": {
-    "message": "Poistu salasanan palautusavusta"
+    "message": "Eroa salasanan palautusavusta"
   },
   "enrollPasswordResetSuccess": {
     "message": "Liitos onnistui!"
   },
   "withdrawPasswordResetSuccess": {
-    "message": "Poistuminen onnistui!"
+    "message": "Eroaminen onnistui!"
   },
   "eventEnrollPasswordReset": {
     "message": "Käyttäjä $ID$ liittyi salasanan palautusapuun.",
@@ -3893,7 +4007,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "Käyttäjä $ID$ poistui salasanan palautusavusta.",
+    "message": "Käyttäjä $ID$ erosi salasanan palautusavusta.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3903,6 +4017,15 @@
   },
   "eventAdminPasswordReset": {
     "message": "Käyttäjän $ID$ pääsalasanan palautus.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "eventResetSsoLink": {
+    "message": "Nollaa käyttäjän $ID$ SSO-linkki",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3947,13 +4070,13 @@
     "message": "Automaattinen liitos"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "Kaikki käyttäjät liitetään salasanan palautusapuun automaattisesti kun heidän kutsunsa on hyväksytty."
+    "message": "Kaikki käyttäjät liitetään salasanan palautusapuun automaattisesti, kun heidän kutsunsa on hyväksytty, jonka jälkeen he eivät voi erota siitä."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Vanhoja organisaation käyttäjiä ei liitetä salasanan palautusapuun takautuvasti, vaan heidän on itse liityttävä siihen ennen kuin järjestelmänvalvojat voivat palauttaa heidän pääsalasanojaan."
+    "message": "Vanhoja organisaation käyttäjiä ei liitetä salasanan palautusapuun takautuvasti, vaan heidän on itse liityttävä siihen ennen kuin ylläpitäjät voivat palauttaa heidän pääsalasanojaan."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Liitä uudet käyttäjät automaattisesti"
+    "message": "Vaadi uusien käyttäjien automaattinen liitos"
   },
   "resetPasswordAutoEnrollInviteWarning": {
     "message": "Organisaatiolla on käytäntö, joka liittää tilisi automaattisesti salasanan palautusapuun. Liitos sallii organisaation ylläpitäjien vaihtaa pääsalasanasi."
@@ -3988,6 +4111,21 @@
   "removeUsersWarning": {
     "message": "Haluatko varmasti poistaa poistaa seuraavat käyttäjät? Toiminto saattaa kestää muutamia sekunteja, eikä sen keskeytys tai peruminen ole mahdollista."
   },
+  "theme": {
+    "message": "Teema"
+  },
+  "themeDesc": {
+    "message": "Valitse verkkoholvillesi teema."
+  },
+  "themeSystem": {
+    "message": "Käytä järjestelmän teemaa"
+  },
+  "themeDark": {
+    "message": "Tumma"
+  },
+  "themeLight": {
+    "message": "Vaalea"
+  },
   "confirmSelected": {
     "message": "Vahvista valitut"
   },
@@ -4017,5 +4155,298 @@
   },
   "resetPasswordManageUsers": {
     "message": "Myös \"Käyttäjien hallinta\" -oikeuden on oltava käytössä \"Salasanan palautusavun hallinta\" -oikeuden kanssa"
+  },
+  "setupProvider": {
+    "message": "Toimittajan määritys"
+  },
+  "setupProviderLoginDesc": {
+    "message": "Sinut on kutsuttu määrittämään uusi toimittaja. Jatkaaksesi, sinun on kirjauduttava Bitwarden-tilillesi tai luotava uusi tili."
+  },
+  "setupProviderDesc": {
+    "message": "Syötä alla pyydetyt tiedot viimeistelläksesi toimittajan määrityksen. Jos sinulla on kysyttävää, ota yhteyttä asiakaspalveluun."
+  },
+  "providerName": {
+    "message": "Toimittajan nimi"
+  },
+  "providerSetup": {
+    "message": "Toimittaja on määritetty."
+  },
+  "clients": {
+    "message": "Asiakkaat"
+  },
+  "providerAdmin": {
+    "message": "Toimittajan ylläpitäjä"
+  },
+  "providerAdminDesc": {
+    "message": "Korkein käyttöoikeus, joka voi hallinnoida toimittajaasi kokonaisvaltaisesti sekä käyttää ja hallita asiakasorganisaatioita."
+  },
+  "serviceUser": {
+    "message": "Palvelun käyttäjä"
+  },
+  "serviceUserDesc": {
+    "message": "Palvelun käyttäjät voivat käyttää ja hallita kaikkia asiakasorganisaatioita."
+  },
+  "providerInviteUserDesc": {
+    "message": "Kutsu toimittajaasi uusi käyttäjä syöttämällä alle heidän Bitwarden-tilinsä sähköpostiosoite. Jos heillä ei vielä ole Bitwarden-tiliä, heitä pyydetään luomaan uusi tili."
+  },
+  "joinProvider": {
+    "message": "Liity toimittajaan"
+  },
+  "joinProviderDesc": {
+    "message": "Sinut on kutsuttu liittymään yllä mainittuun toimittajaan. Hyväksyäksesi kutsun, sinun tulee kirjautua tilillesi tai luoda uusi Bitwarden-tili."
+  },
+  "providerInviteAcceptFailed": {
+    "message": "Kutsun hyväksyntä ei onnistu. Pyydä toimittajan ylläpitäjää lähettämään uusi kutsu."
+  },
+  "providerInviteAcceptedDesc": {
+    "message": "Saat toimittajan käyttöoikeuden ylläpitäjän vahvistettua jäsentyytesi. Saat vahvistuksesta ilmoituksen sähköpostitse."
+  },
+  "providerUsersNeedConfirmed": {
+    "message": "Sinulla on käyttäjiä, jotka ovat hyväksyneet kutsunsa, mutta heidän liittymisensä tulee vielä vahvistaa. Käyttäjillä ei ole toimittajan käyttöoikeutta ennen vahvistusta."
+  },
+  "provider": {
+    "message": "Toimittaja"
+  },
+  "newClientOrganization": {
+    "message": "Uusi asiakasorganisaatio"
+  },
+  "newClientOrganizationDesc": {
+    "message": "Luo uusi asiakasorganisaatio, jonka toimittajaksi sinut liitetään. Voit käyttää ja hallita tätä organisaatiota."
+  },
+  "addExistingOrganization": {
+    "message": "Lisää olemassa oleva organisaatio"
+  },
+  "myProvider": {
+    "message": "Toimittajani"
+  },
+  "addOrganizationConfirmation": {
+    "message": "Haluatko varmasti lisätä organisaation $ORGANIZATION$ toimittajan $PROVIDER$ asiakkaaksi?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      },
+      "provider": {
+        "content": "$2",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "organizationJoinedProvider": {
+    "message": "Organisaatio lisättiin toimittajaan"
+  },
+  "accessingUsingProvider": {
+    "message": "Käytetään organisaatiota toimittajalla $PROVIDER$",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "providerIsDisabled": {
+    "message": "Toimittaja on poistettu käytöstä."
+  },
+  "providerUpdated": {
+    "message": "Toimittaja päivitettiin"
+  },
+  "yourProviderIs": {
+    "message": "Toimittajasi on $PROVIDER$. Heillä on hallinnolliset- ja laskutusoikeudet organisaatioosi.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "detachedOrganization": {
+    "message": "Organisaatio $ORGANIZATION$ on irrotettu toimittajastasi.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "detachOrganizationConfirmation": {
+    "message": "Haluatko varmasti irrottaa organisaation? Organisaatio on edelleen olemassa, mutta toimittaja ei enää hallinnoi sitä."
+  },
+  "add": {
+    "message": "Lisää"
+  },
+  "updatedMasterPassword": {
+    "message": "Pääsalasana on päivitetty"
+  },
+  "updateMasterPassword": {
+    "message": "Päivitä pääsalasana"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Organisaatiosi ylläpito on hiljattain vaihtanut pääsalasanasi. Käyttääksesi holvia, on sinun päivitettävä se nyt. Tämä uloskirjaa kaikki nykyiset istunnot pakottaen uudelleenkirjautumisen. Muiden laitteiden aktiiviset istunnot saattavat toimia vielä tunnin ajan."
+  },
+  "maximumVaultTimeout": {
+    "message": "Holvin aikakatkaisu"
+  },
+  "maximumVaultTimeoutDesc": {
+    "message": "Määritä holvin aikakatkaisun enimmäisviive kaikille käyttäjille."
+  },
+  "maximumVaultTimeoutLabel": {
+    "message": "Holvin aikakatkaisun enimmäisviive"
+  },
+  "invalidMaximumVaultTimeout": {
+    "message": "Virheellinen holvin aikakatkaisun enimmäisviive."
+  },
+  "hours": {
+    "message": "Tuntia"
+  },
+  "minutes": {
+    "message": "Minuuttia"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Organisaatiosi käytännöt vaikuttavat holvisi aikakatkaisuun. Suurin sallittu viive on $HOURS$ tunti(a) ja $MINUTES$ minuutti(a)",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "customVaultTimeout": {
+    "message": "Oma holvin aikakatkaisuviive"
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Holvisi aikakatkaisuviive ylittää organisaatiosi asettamat rajoitukset."
+  },
+  "disablePersonalVaultExport": {
+    "message": "Poista henkilökohtaisen holvin vienti käytöstä"
+  },
+  "disablePersonalVaultExportDesc": {
+    "message": "Estää käyttäjiä viemästä yksityisen holvinsa tietoja."
+  },
+  "vaultExportDisabled": {
+    "message": "Holvin vienti on poistettu käytöstä"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Yksi tai useampi organisaation käytäntö estää henkilökohtaisen holvisi viennin."
+  },
+  "selectType": {
+    "message": "Valitse SSO-tyyppi"
+  },
+  "type": {
+    "message": "Tyyppi"
+  },
+  "openIdConnectConfig": {
+    "message": "OpenID Connect -määritykset"
+  },
+  "samlSpConfig": {
+    "message": "SAML-palveluntarjoajan määritykset"
+  },
+  "samlIdpConfig": {
+    "message": "SAML-identiteettitoimittajan määritykset"
+  },
+  "callbackPath": {
+    "message": "Takaisinsoittopolku"
+  },
+  "signedOutCallbackPath": {
+    "message": "Uloskirjautumisen takaisinsoittopolku"
+  },
+  "authority": {
+    "message": "Hallitsija"
+  },
+  "clientId": {
+    "message": "Asiakkaan ID"
+  },
+  "clientSecret": {
+    "message": "Asiakkaan salaisuus"
+  },
+  "metadataAddress": {
+    "message": "Metatieto-osoite"
+  },
+  "oidcRedirectBehavior": {
+    "message": "OIDC-uudelleenohjauskäyttäytyminen"
+  },
+  "getClaimsFromUserInfoEndpoint": {
+    "message": "Get Claims From User Info Endpoint"
+  },
+  "additionalScopes": {
+    "message": "Muut/mukautetut alueet (pilkulla eroteltuna)"
+  },
+  "additionalUserIdClaimTypes": {
+    "message": "Muut/mukautetut käyttäjä ID -lunastustyypit (pilkulla eroteltuna)"
+  },
+  "additionalEmailClaimTypes": {
+    "message": "Muut/mukautetut sähköpostien lunastustyypit (pilkulla eroteltuna)"
+  },
+  "additionalNameClaimTypes": {
+    "message": "Muut/mukautetut nimien lunastustyypit (pilkulla eroteltuna)"
+  },
+  "acrValues": {
+    "message": "Pyydetyt todennuksen kontekstiluokan viitearvot (acr_values)"
+  },
+  "expectedReturnAcrValue": {
+    "message": "Odotettu \"acr\" -lunastusarvo vastauksessa (acr-vahvistus)"
+  },
+  "spEntityId": {
+    "message": "SP-entiteetin ID"
+  },
+  "spMetadataUrl": {
+    "message": "SAML 2.0 -metatietojen URL"
+  },
+  "spAcsUrl": {
+    "message": "Assertion Consumer Service (ACS) URL"
+  },
+  "spNameIdFormat": {
+    "message": "Nimen ID:n muoto"
+  },
+  "spOutboundSigningAlgorithm": {
+    "message": "Lähtevä allekirjoitusalgoritmi"
+  },
+  "spSigningBehavior": {
+    "message": "Allekirjoituskäyttätyminen"
+  },
+  "spMinIncomingSigningAlgorithm": {
+    "message": "Pienin saapuva allekirjoitusalgoritmi"
+  },
+  "spWantAssertionsSigned": {
+    "message": "Haluan allekirjoittaa väitteet"
+  },
+  "spValidateCertificates": {
+    "message": "Vahvista varmenteet"
+  },
+  "idpEntityId": {
+    "message": "Entiteetin ID"
+  },
+  "idpBindingType": {
+    "message": "Sidontatyyppi"
+  },
+  "idpSingleSignOnServiceUrl": {
+    "message": "Kertakirjautumispalvelun URL"
+  },
+  "idpSingleLogoutServiceUrl": {
+    "message": "Kertauloskirjautumispalvelun URL"
+  },
+  "idpArtifactResolutionServiceUrl": {
+    "message": "Artefaktien selvityspalvelun URL"
+  },
+  "idpX509PublicCert": {
+    "message": "Julkinen X509 \n-varmenne"
+  },
+  "idpOutboundSigningAlgorithm": {
+    "message": "Lähtevä allekirjoitusalgoritmi"
+  },
+  "idpAllowUnsolicitedAuthnResponse": {
+    "message": "Salli ei-toivottu todennusvastaus"
+  },
+  "idpDisableOutboundLogoutRequests": {
+    "message": "Poista lähtevät uloskirjautumispyynnöt käytöstä"
+  },
+  "idpWantAuthnRequestsSigned": {
+    "message": "Haluatko allekirjoitetut todennuspyynnöt"
+  },
+  "ssoSettingsSaved": {
+    "message": "Kertakirjautumisen määritykset tallennettiin."
   }
 }
