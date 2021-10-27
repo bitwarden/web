@@ -20,9 +20,8 @@
     </div>
     <div class="row">
         <div class="form-group col-6">
-            <label for="masterPassword">{{'masterPass' | i18n}}</label>
-            <input id="masterPassword" type="password" name="MasterPassword" class="form-control"
-                [(ngModel)]="masterPassword" required appInputVerbatim [disabled]="disabledByPolicy">
+            <app-verify-master-password #verifyMasterPassword ngDefaultControl [disableForm]="disabledByPolicy">
+            </app-verify-master-password>
         </div>
     </div>
     <button type="submit" class="btn btn-primary" [disabled]="form.loading || disabledByPolicy">

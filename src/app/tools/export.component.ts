@@ -26,7 +26,7 @@ export class ExportComponent extends BaseExportComponent {
 
     protected saved() {
         super.saved();
-        this.masterPassword = null;
+        this.verifyMasterPassword.clearSecret();
         this.platformUtilsService.showToast('success', null, this.i18nService.t('exportSuccess'));
     }
 }
