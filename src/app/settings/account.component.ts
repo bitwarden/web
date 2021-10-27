@@ -31,7 +31,7 @@ export class AccountComponent {
 
     constructor(private modalService: ModalService, private apiService: ApiService,
         private userService: UserService) { }
-    
+
     async ngOnInit() {
         this.showChangeEmail = this.showChangeKdf = this.showChangePassword =
             !await this.userService.getUsesCryptoAgent();
