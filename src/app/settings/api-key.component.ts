@@ -12,6 +12,8 @@ import { ApiKeyResponse } from 'jslib-common/models/response/apiKeyResponse';
 
 import { Verification } from 'jslib-angular/components/verify-master-password.component';
 
+import { VerificationType } from 'jslib-common/enums/verificationType';
+
 @Component({
     selector: 'app-api-key',
     templateUrl: 'api-key.component.html',
@@ -43,7 +45,7 @@ export class ApiKeyComponent {
         }
 
         const request = new PasswordVerificationRequest();
-        if (this.masterPassword.type === 'MasterPassword') {
+        if (this.masterPassword.type === VerificationType.MasterPassword) {
             request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword.secret, null);
         } else {
             request.otp = this.masterPassword.secret;
