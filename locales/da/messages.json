@@ -899,6 +899,9 @@
   "changeEmail": {
     "message": "Skift e-mail"
   },
+  "changeEmailTwoFactorWarning": {
+    "message": "Fortsættes, ændres e-mailadressen for din konto, men ikke for tofaktorgodkendelsen. Denne kan ændres i indstillingerne for totrins-login."
+  },
   "newEmail": {
     "message": "Ny e-mail"
   },
@@ -997,6 +1000,9 @@
   },
   "purgedOrganizationVault": {
     "message": "Organisationsboks tømt."
+  },
+  "vaultAccessedByProvider": {
+    "message": "Boks tilgået af udbyder."
   },
   "purgeVaultDesc": {
     "message": "Fortsæt nedenfor for at slette alle elementer og mapper i din boks. Elementer, der tilhører en organisation du deler med, slettes ikke."
@@ -2148,6 +2154,9 @@
   "policies": {
     "message": "Politikker"
   },
+  "singleSignOn": {
+    "message": "Single Sign On"
+  },
   "editPolicy": {
     "message": "Redigér politik"
   },
@@ -2238,11 +2247,17 @@
   "confirmed": {
     "message": "Bekræftet"
   },
+  "clientOwnerEmail": {
+    "message": "Klientejer e-mail"
+  },
   "owner": {
     "message": "Ejer"
   },
   "ownerDesc": {
     "message": "Den bruger med højeste rettigheder, som kan håndtere alle aspekter af din organisation."
+  },
+  "clientOwnerDesc": {
+    "message": "Denne bruger bør være uafhængig af Udbyder. Er Udbyder adskilt fra organisationen, bibeholder denne bruger organisationsejerskabet."
   },
   "admin": {
     "message": "Administrator"
@@ -2577,6 +2592,42 @@
       }
     }
   },
+  "createdOrganizationId": {
+    "message": "Oprettet organisation $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "addedOrganizationId": {
+    "message": "Tilføjet organisation $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "removedOrganizationId": {
+    "message": "Fjernet organisation $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "accessedClientVault": {
+    "message": "Tilgået $ID$ organisationsboks.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
   "device": {
     "message": "Enhed"
   },
@@ -2830,6 +2881,16 @@
   "enterInstallationId": {
     "message": "Indtast dit installations-id"
   },
+  "limitSubscriptionDesc": {
+    "message": "Opsæt en pladsgrænse for dit abonnement. Når grænsen nås, vil du ikke kunne invitere nye brugere."
+  },
+  "maxSeatLimit": {
+    "message": "Maks. Pladsgrænse (valgfrit)",
+    "description": "Upper limit of seats to allow through autoscaling"
+  },
+  "maxSeatCost": {
+    "message": "Maks. potentiel pladsudgift"
+  },
   "addSeats": {
     "message": "Tilføj pladser",
     "description": "Seat = User Seat"
@@ -2838,8 +2899,47 @@
     "message": "Fjern pladser",
     "description": "Seat = User Seat"
   },
+  "subscriptionDesc": {
+    "message": "Abonnementsjusteringer resulterer i forholdsmæssige ændringer af de samlede faktureringsbeløb. Overskrider nyinviterede brugere abonnementspladsgrænsen, modtages straks en forholdsmæssig opkrævning for de ekstra brugere."
+  },
   "subscriptionUserSeats": {
     "message": "Dit abonnement tillader i alt $COUNT$ brugere.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "limitSubscription": {
+    "message": "Begræns abonnement (valgfrit)"
+  },
+  "subscriptionSeats": {
+    "message": "Abonnementspladser"
+  },
+  "subscriptionUpdated": {
+    "message": "Abonnement opdateret"
+  },
+  "additionalOptions": {
+    "message": "Yderligere indstillinger"
+  },
+  "additionalOptionsDesc": {
+    "message": "For yderligere hjælp til abonnementshåndtering, kontakt Kundesupport."
+  },
+  "subscriptionUserSeatsUnlimitedAutoscale": {
+    "message": "Abonnementsjusteringer resulterer i forholdsmæssige ændringer af de samlede faktureringsbeløb. Overskrider nyinviterede brugere abonnementspladsgrænsen, modtages straks en forholdsmæssig opkrævning for de ekstra brugere."
+  },
+  "subscriptionUserSeatsLimitedAutoscale": {
+    "message": "Abonnementsjusteringer resulterer i forholdsmæssige ændringer af de samlede faktureringsbeløb. Overskrider nyinviterede brugere abonnementspladsgrænsen, modtages straks en forholdsmæssig opkrævning for de ekstra brugere, indtil pladsgrænsen på $MAX$ er nået.",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "subscriptionMaxReached": {
+    "message": "Abonnementsjusteringer resulterer i forholdsmæssige ændringer af de samlede faktureringsbeløb. Der kan ikke inviteres flere end $COUNT$ brugere uden at forøge abonnementspladserne.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3299,10 +3399,6 @@
   "ssoHandOff": {
     "message": "Du kan nu lukke denne fane og fortsætte i udvidelsen."
   },
-  "businessPortal": {
-    "message": "Virksomhedssportal",
-    "description": "The web portal used by business organizations for configuring certain features."
-  },
   "includeAllTeamsFeatures": {
     "message": "Alle teamfunktioner, plus:"
   },
@@ -3323,9 +3419,6 @@
   },
   "linkSso": {
     "message": "Tilknyt SSO"
-  },
-  "webPoliciesDeprecationWarning": {
-    "message": "Politikkonfiguration er flyttet, og denne side vil snart blive udfaset. Klik nedenfor for at bruge siden Politikker i forretningsportalen i stedet."
   },
   "singleOrg": {
     "message": "Enkel organisation"
@@ -3715,9 +3808,6 @@
   "permissions": {
     "message": "Tilladelser"
   },
-  "accessBusinessPortal": {
-    "message": "Tilgå Forretningsportal"
-  },
   "accessEventLogs": {
     "message": "Tilgå begivenhedslogger"
   },
@@ -3730,8 +3820,23 @@
   "manageAllCollections": {
     "message": "Håndtér alle samlinger"
   },
+  "createNewCollections": {
+    "message": "Opret nye samlinger"
+  },
+  "editAnyCollection": {
+    "message": "Redigér en samling"
+  },
+  "deleteAnyCollection": {
+    "message": "Slet en samling"
+  },
   "manageAssignedCollections": {
     "message": "Håndtér tildelte samlinger"
+  },
+  "editAssignedCollections": {
+    "message": "Redigér tildelte samlinger"
+  },
+  "deleteAssignedCollections": {
+    "message": "Slet tildelte samlinger"
   },
   "manageGroups": {
     "message": "Håndtér grupper"
@@ -3748,11 +3853,20 @@
   "manageResetPassword": {
     "message": "Håndtér nulstilling af adgangskode"
   },
-  "disableRequireSsoError": {
-    "message": "Single Sign-On godkendelsespolitikken skal manuelt deaktiveres, før denne politik kan deaktiveres."
+  "disableRequiredError": {
+    "message": "For at deaktivere denne politik skal $POLICYNAME$-politikken først deaktiveres manuelt.",
+    "placeholders": {
+      "policyName": {
+        "content": "$1",
+        "example": "Single Sign-On Authentication"
+      }
+    }
   },
   "personalOwnershipPolicyInEffect": {
     "message": "En organisationspolitik påvirker dine ejerskabsmuligheder."
+  },
+  "personalOwnershipPolicyInEffectImports": {
+    "message": "En organisationspolitik har deaktiveret import af emner til din personlige boks."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Deaktivér personligt ejerskab for organisationsbrugere"
@@ -3910,6 +4024,15 @@
       }
     }
   },
+  "eventResetSsoLink": {
+    "message": "Nulstil SSO-link for bruger $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Nulstil adgangskode"
   },
@@ -3988,6 +4111,21 @@
   "removeUsersWarning": {
     "message": "Er du sikker på, at du vil fjerne følgende brugere? Processen kan tage et par sekunder at fuldføre og kan ikke afbrydes eller annulleres."
   },
+  "theme": {
+    "message": "Tema"
+  },
+  "themeDesc": {
+    "message": "Vælg et tema til din webboks."
+  },
+  "themeSystem": {
+    "message": "Benyt systemtema"
+  },
+  "themeDark": {
+    "message": "Mørkt"
+  },
+  "themeLight": {
+    "message": "Lyst"
+  },
   "confirmSelected": {
     "message": "Bekræft valgte"
   },
@@ -4017,5 +4155,298 @@
   },
   "resetPasswordManageUsers": {
     "message": "Administrér brugere skal også være aktiveret med tilladelsen Håndtér adgangskodenulstilling"
+  },
+  "setupProvider": {
+    "message": "Udbyderopsætning"
+  },
+  "setupProviderLoginDesc": {
+    "message": "Du er inviteret til at opsætte en ny udbyder. Log ind/opret en ny Bitwarden-konto for at fortsætte."
+  },
+  "setupProviderDesc": {
+    "message": "Angiv nedenstående oplysninger for at fuldføre udbyderopsætningen. Kontakt kundesupporten ved evt. spørgsmål."
+  },
+  "providerName": {
+    "message": "Udbydernavn"
+  },
+  "providerSetup": {
+    "message": "Udbyderen er nu opsat."
+  },
+  "clients": {
+    "message": "Klienter"
+  },
+  "providerAdmin": {
+    "message": "Udbyder Admin"
+  },
+  "providerAdminDesc": {
+    "message": "Brugeren med den højeste adgang, der kan håndtere alle aspekter af din udbyder samt tilgå og håndtere klientorganisationer."
+  },
+  "serviceUser": {
+    "message": "Servicebruger"
+  },
+  "serviceUserDesc": {
+    "message": "Servicebrugere kan få adgang til og administrere alle klientorganisationer."
+  },
+  "providerInviteUserDesc": {
+    "message": "Invitér en ny bruger til din organisation ved at angive deres Bitwarden-konto e-mailadresse nedenfor. Har de ikke allerede har en Bitwarden-konto, anmodes de om at oprette én."
+  },
+  "joinProvider": {
+    "message": "Bliv medlem hos Udbyder"
+  },
+  "joinProviderDesc": {
+    "message": "Du er inviteret til at blive medlem af organisationen anført ovenfor. For at acceptere invitationen, så log ind eller opret en Bitwarden-konto."
+  },
+  "providerInviteAcceptFailed": {
+    "message": "Kan ikke acceptere invitationen. Bed en udbyder-admin sende en ny invitation."
+  },
+  "providerInviteAcceptedDesc": {
+    "message": "Du kan tilgå denne udbyder, når en administrator bekræfter dit medlemskab. Du tilsendes en e-mail, når dette sker."
+  },
+  "providerUsersNeedConfirmed": {
+    "message": "Du har brugere, som har accepteret deres invitation, men som stadig mangler at blive bekræftet. Brugere kan ikke tilgå udbyderen, før de er bekræftet."
+  },
+  "provider": {
+    "message": "Udbyder"
+  },
+  "newClientOrganization": {
+    "message": "Ny Klientorganisation"
+  },
+  "newClientOrganizationDesc": {
+    "message": "Opret en ny klientorganisation, der vil være tilknyttet dig som udbyderen. Du vil kunne tilgå og håndtere denne organisation."
+  },
+  "addExistingOrganization": {
+    "message": "Tilføj eksisterende organisation"
+  },
+  "myProvider": {
+    "message": "Min udbyder"
+  },
+  "addOrganizationConfirmation": {
+    "message": "Sikker på, at du vil tilføje $ORGANIZATION$ til $PROVIDER$ som en klient?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      },
+      "provider": {
+        "content": "$2",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "organizationJoinedProvider": {
+    "message": "Organisation er tilføjet udbyderen"
+  },
+  "accessingUsingProvider": {
+    "message": "Tilgår organisation vha. udbyderen $PROVIDER$",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "providerIsDisabled": {
+    "message": "Udbyder er deaktiveret."
+  },
+  "providerUpdated": {
+    "message": "Udbyder opdateret"
+  },
+  "yourProviderIs": {
+    "message": "Din udbyder er $PROVIDER$. De har administrations- og faktureringsrettigheder for din organisation.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "detachedOrganization": {
+    "message": "Organisationen $ORGANIZATION$ er blevet frigjort fra din udbyder.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "detachOrganizationConfirmation": {
+    "message": "Sikker på, at du vil frigøre denne organisation? Organisationen vil fortsat eksistere, men håndteres ikke længere af udbyderen."
+  },
+  "add": {
+    "message": "Tilføj"
+  },
+  "updatedMasterPassword": {
+    "message": "Hovedadgangskode opdateret"
+  },
+  "updateMasterPassword": {
+    "message": "Opdatér hovedadgangskode"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Din Hovedadgangskode blev for nylig ændret af en administrator i din organisation. For at tilgå Boksen, så opdatér din Hovedadgangskode nu. Fortsættes, logges du ud af den nuværende session, så du vil skulle logge ind igen. Aktive sessioner på andre enheder kan fortsat være aktive i op til én time."
+  },
+  "maximumVaultTimeout": {
+    "message": "Boks-timeout"
+  },
+  "maximumVaultTimeoutDesc": {
+    "message": "Opsæt en maks. boks-timeout for alle brugere."
+  },
+  "maximumVaultTimeoutLabel": {
+    "message": "Maks. Boks-timeout"
+  },
+  "invalidMaximumVaultTimeout": {
+    "message": "Ugyldig Maks. Boks-timeout."
+  },
+  "hours": {
+    "message": "Timer"
+  },
+  "minutes": {
+    "message": "Minutter"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Dine organisationspolitikker påvirker din Boks-timeout. Maks. tilladte Boks-timeout er $HOURS$ tim(er) og $MINUTES$ minut(ter)",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "customVaultTimeout": {
+    "message": "Tilpasset Boks-timeout"
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Din Boks-timeout overskrider den af din organisation fastsatte begrænsning."
+  },
+  "disablePersonalVaultExport": {
+    "message": "Deaktivér Personlig Bokseksport"
+  },
+  "disablePersonalVaultExportDesc": {
+    "message": "Forbyder brugeres eksport af deres private Boksdata."
+  },
+  "vaultExportDisabled": {
+    "message": "Bokseksport deaktiveret"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "En eller flere organisationspolitikker forhindrer eksport af din personlige Boks."
+  },
+  "selectType": {
+    "message": "Vælg SSO-type"
+  },
+  "type": {
+    "message": "Type"
+  },
+  "openIdConnectConfig": {
+    "message": "OpenID-forbindelsesopsætning"
+  },
+  "samlSpConfig": {
+    "message": "SAML-tjenesteudbyderopsætning"
+  },
+  "samlIdpConfig": {
+    "message": "SAML-identitetsudbyderopsætning"
+  },
+  "callbackPath": {
+    "message": "Callback-sti"
+  },
+  "signedOutCallbackPath": {
+    "message": "Udlogget Callback-sti"
+  },
+  "authority": {
+    "message": "Myndighed"
+  },
+  "clientId": {
+    "message": "Klient-ID"
+  },
+  "clientSecret": {
+    "message": "Klienthemmelighed"
+  },
+  "metadataAddress": {
+    "message": "Metadataadresse"
+  },
+  "oidcRedirectBehavior": {
+    "message": "OIDC-omdirigeringsadfærd"
+  },
+  "getClaimsFromUserInfoEndpoint": {
+    "message": "Get Claims From User Info Endpoint"
+  },
+  "additionalScopes": {
+    "message": "Additional/Custom Scopes (comma delimited)"
+  },
+  "additionalUserIdClaimTypes": {
+    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+  },
+  "additionalEmailClaimTypes": {
+    "message": "Additional/Custom Email Claim Types (comma delimited)"
+  },
+  "additionalNameClaimTypes": {
+    "message": "Additional/Custom Name Claim Types (comma delimited)"
+  },
+  "acrValues": {
+    "message": "Requested Authentication Context Class Reference values (acr_values)"
+  },
+  "expectedReturnAcrValue": {
+    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+  },
+  "spEntityId": {
+    "message": "SP Enheds-ID"
+  },
+  "spMetadataUrl": {
+    "message": "SAML 2.0 Metadata-URL"
+  },
+  "spAcsUrl": {
+    "message": "Assertion Consumer Service (ACS) URL"
+  },
+  "spNameIdFormat": {
+    "message": "Navne-ID format"
+  },
+  "spOutboundSigningAlgorithm": {
+    "message": "Udgående Signeringsalgoritme"
+  },
+  "spSigningBehavior": {
+    "message": "Signeringsadfærd"
+  },
+  "spMinIncomingSigningAlgorithm": {
+    "message": "Min. Indgående Logningsalgoritme"
+  },
+  "spWantAssertionsSigned": {
+    "message": "Want Assertions Signed"
+  },
+  "spValidateCertificates": {
+    "message": "Validér certifikater"
+  },
+  "idpEntityId": {
+    "message": "Enheds-ID"
+  },
+  "idpBindingType": {
+    "message": "Bindingstype"
+  },
+  "idpSingleSignOnServiceUrl": {
+    "message": "SSO-URL"
+  },
+  "idpSingleLogoutServiceUrl": {
+    "message": "Single Logout-tjeneste URL"
+  },
+  "idpArtifactResolutionServiceUrl": {
+    "message": "Artifact Resolution Service URL"
+  },
+  "idpX509PublicCert": {
+    "message": "X509 Offentligt Certifikat"
+  },
+  "idpOutboundSigningAlgorithm": {
+    "message": "Udgående Signeringsalgoritme"
+  },
+  "idpAllowUnsolicitedAuthnResponse": {
+    "message": "Tillad Uopfordret godkendelsessvar"
+  },
+  "idpDisableOutboundLogoutRequests": {
+    "message": "Deaktivér Udgående udlogningsanmodninger"
+  },
+  "idpWantAuthnRequestsSigned": {
+    "message": "Ønsker Godkendelsesanmodninger signeret"
+  },
+  "ssoSettingsSaved": {
+    "message": "Single Sign-On opsætning er gemt."
   }
 }
