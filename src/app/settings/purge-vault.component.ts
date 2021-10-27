@@ -13,6 +13,10 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 
 import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
 
+import { Verification } from 'jslib-angular/components/verify-master-password.component';
+
+import { VerificationType } from 'jslib-common/enums/verificationType';
+
 @Component({
     selector: 'app-purge-vault',
     templateUrl: 'purge-vault.component.html',
@@ -20,7 +24,7 @@ import { PasswordVerificationRequest } from 'jslib-common/models/request/passwor
 export class PurgeVaultComponent {
     @Input() organizationId?: string = null;
 
-    masterPassword: string;
+    masterPassword: Verification;
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
@@ -28,14 +32,19 @@ export class PurgeVaultComponent {
         private router: Router, private logService: LogService) { }
 
     async submit() {
-        if (this.masterPassword == null || this.masterPassword === '') {
+        if (this.masterPassword?.secret == null || this.masterPassword.secret === '') {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('masterPassRequired'));
             return;
         }
 
         const request = new PasswordVerificationRequest();
-        request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
+        if (this.masterPassword.type === VerificationType.MasterPassword) {
+            request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword.secret, null);
+        } else {
+            request.otp = this.masterPassword.secret;
+        }
+
         try {
             this.formPromise = this.apiService.postPurgeCiphers(request, this.organizationId);
             await this.formPromise;
