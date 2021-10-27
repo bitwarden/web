@@ -20,7 +20,7 @@
     </div>
     <div class="row">
         <div class="form-group col-6">
-            <app-verify-master-password #verifyMasterPassword ngDefaultControl [disableForm]="disabledByPolicy">
+            <app-verify-master-password #verifyMasterPassword ngDefaultControl [formControl]="secret">
             </app-verify-master-password>
         </div>
     </div>

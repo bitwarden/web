@@ -43,7 +43,7 @@ export class ApiKeyComponent {
         }
 
         const request = new PasswordVerificationRequest();
-        if (this.masterPassword.type == 'MasterPassword') {
+        if (this.masterPassword.type === 'MasterPassword') {
             request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword.secret, null);
         } else {
             request.otp = this.masterPassword.secret;

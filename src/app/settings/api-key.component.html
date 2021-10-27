@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <p>{{apiKeyDescription | i18n}}</p>
-                <app-verify-master-password [(ngModel)]="masterPassword" ngDefaultControl name="lawl" *ngIf="!clientSecret">
+                <app-verify-master-password [(ngModel)]="masterPassword" ngDefaultControl name="secret" *ngIf="!clientSecret">
                 </app-verify-master-password>
 
                 <app-callout type="warning" *ngIf="clientSecret">{{apiKeyWarning | i18n}}</app-callout>
