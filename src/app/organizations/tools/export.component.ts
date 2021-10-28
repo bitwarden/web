@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { EventService } from 'jslib-common/abstractions/event.service';
 import { ExportService } from 'jslib-common/abstractions/export.service';
@@ -19,9 +20,9 @@ export class ExportComponent extends BaseExportComponent {
     constructor(cryptoService: CryptoService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, exportService: ExportService,
         eventService: EventService, private route: ActivatedRoute, policyService: PolicyService,
-        logService: LogService) {
+        logService: LogService, apiService: ApiService) {
         super(cryptoService, i18nService, platformUtilsService, exportService, eventService, policyService,
-            logService);
+            logService, apiService);
     }
 
     async ngOnInit() {
