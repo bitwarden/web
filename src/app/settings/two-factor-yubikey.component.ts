@@ -38,8 +38,7 @@ export class TwoFactorYubiKeyComponent extends TwoFactorBaseComponent {
     }
 
     submit() {
-        const request = new UpdateTwoFactorYubioOtpRequest();
-        request.masterPasswordHash = this.masterPasswordHash;
+        const request = this.buildRequestModel(UpdateTwoFactorYubioOtpRequest);
         request.key1 = this.keys != null && this.keys.length > 0 ? this.keys[0].key : null;
         request.key2 = this.keys != null && this.keys.length > 1 ? this.keys[1].key : null;
         request.key3 = this.keys != null && this.keys.length > 2 ? this.keys[2].key : null;

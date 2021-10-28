@@ -1,9 +1,8 @@
 <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
     <div class="modal-body">
         <p>{{'twoStepLoginAuthDesc' | i18n}}</p>
-        <label for="masterPassword">{{'masterPass' | i18n}}</label>
-        <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control"
-            [(ngModel)]="masterPassword" required appAutoFocus appInputVerbatim>
+        <app-verify-master-password [(ngModel)]="masterPassword" ngDefaultControl name="secret">
+        </app-verify-master-password>
     </div>
     <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">

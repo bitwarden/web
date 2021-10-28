@@ -62,8 +62,7 @@ export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent impl
     }
 
     protected enable() {
-        const request = new UpdateTwoFactorAuthenticatorRequest();
-        request.masterPasswordHash = this.masterPasswordHash;
+        const request = this.buildRequestModel(UpdateTwoFactorAuthenticatorRequest);
         request.token = this.token;
         request.key = this.key;
 

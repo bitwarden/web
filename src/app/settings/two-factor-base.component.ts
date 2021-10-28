@@ -12,6 +12,9 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
+import { VerificationType } from 'jslib-common/enums/verificationType';
+
+import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
 import { TwoFactorProviderRequest } from 'jslib-common/models/request/twoFactorProviderRequest';
 
 @Directive()
@@ -24,14 +27,16 @@ export abstract class TwoFactorBaseComponent {
     enabled = false;
     authed = false;
 
-    protected masterPasswordHash: string;
+    protected secret: string;
+    protected verificationType: VerificationType;
 
     constructor(protected apiService: ApiService, protected i18nService: I18nService,
         protected toasterService: ToasterService, protected platformUtilsService: PlatformUtilsService,
         protected logService: LogService) { }
 
     protected auth(authResponse: any) {
-        this.masterPasswordHash = authResponse.masterPasswordHash;
+        this.secret = authResponse.secret;
+        this.verificationType = authResponse.verificationType;
         this.authed = true;
     }
 
@@ -52,8 +57,7 @@ export abstract class TwoFactorBaseComponent {
         }
 
         try {
-            const request = new TwoFactorProviderRequest();
-            request.masterPasswordHash = this.masterPasswordHash;
+            const request = this.buildRequestModel(TwoFactorProviderRequest);
             request.type = this.type;
             if (this.organizationId != null) {
                 promise = this.apiService.putTwoFactorOrganizationDisable(this.organizationId, request);
@@ -67,5 +71,15 @@ export abstract class TwoFactorBaseComponent {
         }  catch (e) {
             this.logService.error(e);
         }
+    }
+
+    protected buildRequestModel<T extends PasswordVerificationRequest>(requestClass: new() => T)  {
+        const request = new requestClass();
+        if (this.verificationType === VerificationType.MasterPassword) {
+            request.masterPasswordHash = this.secret;
+        } else {
+            request.otp = this.secret;
+        }
+        return request;
     }
 }

@@ -49,7 +49,8 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
 
     async sendEmail() {
         try {
-            const request = new TwoFactorEmailRequest(this.email, this.masterPasswordHash);
+            const request = this.buildRequestModel(TwoFactorEmailRequest);
+            request.email = this.email;
             this.emailPromise = this.apiService.postTwoFactorEmailSetup(request);
             await this.emailPromise;
             this.sentEmail = this.email;
@@ -59,8 +60,7 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
     }
 
     protected enable() {
-        const request = new UpdateTwoFactorEmailRequest();
-        request.masterPasswordHash = this.masterPasswordHash;
+        const request = this.buildRequestModel(UpdateTwoFactorEmailRequest);
         request.email = this.email;
         request.token = this.token;
 
