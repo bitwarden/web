@@ -8,14 +8,18 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 
+import { VerificationType } from 'jslib-common/enums/verificationType';
+
 import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
+
+import { Verification } from 'jslib-angular/components/verify-master-password.component';
 
 @Component({
     selector: 'app-delete-account',
     templateUrl: 'delete-account.component.html',
 })
 export class DeleteAccountComponent {
-    masterPassword: string;
+    masterPassword: Verification;
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
@@ -23,14 +27,19 @@ export class DeleteAccountComponent {
         private messagingService: MessagingService, private logService: LogService) { }
 
     async submit() {
-        if (this.masterPassword == null || this.masterPassword === '') {
+        if (this.masterPassword?.secret == null || this.masterPassword.secret === '') {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('masterPassRequired'));
             return;
         }
 
         const request = new PasswordVerificationRequest();
-        request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
+        if (this.masterPassword.type === VerificationType.MasterPassword) {
+            request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword.secret, null);
+        } else {
+            request.otp = this.masterPassword.secret;
+        }
+
         try {
             this.formPromise = this.apiService.deleteAccount(request);
             await this.formPromise;
