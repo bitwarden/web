@@ -10,12 +10,16 @@ import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 
 import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
 
+import { Verification } from 'jslib-angular/components/verify-master-password.component';
+
+import { VerificationType } from 'jslib-common/enums/verificationType';
+
 @Component({
     selector: 'app-deauthorize-sessions',
     templateUrl: 'deauthorize-sessions.component.html',
 })
 export class DeauthorizeSessionsComponent {
-    masterPassword: string;
+    masterPassword: Verification;
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
@@ -23,14 +27,19 @@ export class DeauthorizeSessionsComponent {
         private messagingService: MessagingService, private logService: LogService) { }
 
     async submit() {
-        if (this.masterPassword == null || this.masterPassword === '') {
+        if (this.masterPassword?.secret == null || this.masterPassword.secret === '') {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('masterPassRequired'));
             return;
         }
 
         const request = new PasswordVerificationRequest();
-        request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
+        if (this.masterPassword.type === VerificationType.MasterPassword) {
+            request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword.secret, null);
+        } else {
+            request.otp = this.masterPassword.secret;
+        }
+
         try {
             this.formPromise = this.apiService.postSecurityStamp(request);
             await this.formPromise;
