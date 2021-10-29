@@ -14,7 +14,7 @@ import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.se
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 import { VerificationType } from 'jslib-common/enums/verificationType';
 
-import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
+import { PasswordVerificationRequest, Verification } from 'jslib-common/models/request/passwordVerificationRequest';
 import { TwoFactorProviderRequest } from 'jslib-common/models/request/twoFactorProviderRequest';
 
 @Directive()
@@ -24,19 +24,16 @@ export abstract class TwoFactorBaseComponent {
     type: TwoFactorProviderType;
     organizationId: string;
     twoFactorProviderType = TwoFactorProviderType;
+    verification: Verification;
     enabled = false;
     authed = false;
-
-    protected secret: string;
-    protected verificationType: VerificationType;
 
     constructor(protected apiService: ApiService, protected i18nService: I18nService,
         protected toasterService: ToasterService, protected platformUtilsService: PlatformUtilsService,
         protected logService: LogService) { }
 
     protected auth(authResponse: any) {
-        this.secret = authResponse.secret;
-        this.verificationType = authResponse.verificationType;
+        this.verification = authResponse.verification;
         this.authed = true;
     }
 
@@ -57,7 +54,7 @@ export abstract class TwoFactorBaseComponent {
         }
 
         try {
-            const request = this.buildRequestModel(TwoFactorProviderRequest);
+            const request = new TwoFactorProviderRequest(this.verification);
             request.type = this.type;
             if (this.organizationId != null) {
                 promise = this.apiService.putTwoFactorOrganizationDisable(this.organizationId, request);
@@ -71,15 +68,5 @@ export abstract class TwoFactorBaseComponent {
         }  catch (e) {
             this.logService.error(e);
         }
-    }
-
-    protected buildRequestModel<T extends PasswordVerificationRequest>(requestClass: new() => T)  {
-        const request = new requestClass();
-        if (this.verificationType === VerificationType.MasterPassword) {
-            request.masterPasswordHash = this.secret;
-        } else {
-            request.otp = this.secret;
-        }
-        return request;
     }
 }

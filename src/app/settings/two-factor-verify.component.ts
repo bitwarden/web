@@ -11,7 +11,6 @@ import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType'
 import { VerificationType } from 'jslib-common/enums/verificationType';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 
@@ -32,8 +31,7 @@ export class TwoFactorVerifyComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private cryptoService: CryptoService,
-        private logService: LogService) { }
+        private toasterService: ToasterService, private logService: LogService) { }
 
     async submit() {
         if (this.masterPassword?.secret == null || this.masterPassword.secret === '') {
@@ -42,12 +40,7 @@ export class TwoFactorVerifyComponent {
             return;
         }
 
-        const request = new PasswordVerificationRequest();
-        if (this.masterPassword.type === VerificationType.MasterPassword) {
-            request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword.secret, null);
-        } else {
-            request.otp = this.masterPassword.secret;
-        }
+        const request = new PasswordVerificationRequest(this.masterPassword);
 
         try {
             switch (this.type) {
@@ -79,10 +72,7 @@ export class TwoFactorVerifyComponent {
             const response = await this.formPromise;
             this.onAuthed.emit({
                 response: response,
-                secret: this.masterPassword.type === VerificationType.MasterPassword
-                    ? request.masterPasswordHash
-                    : request.otp,
-                verificationType: this.masterPassword.type,
+                verification: this.masterPassword,
             });
         } catch (e) {
             this.logService.error(e);

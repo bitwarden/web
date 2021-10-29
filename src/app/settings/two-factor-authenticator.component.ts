@@ -62,7 +62,7 @@ export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent impl
     }
 
     protected enable() {
-        const request = this.buildRequestModel(UpdateTwoFactorAuthenticatorRequest);
+        const request = new UpdateTwoFactorAuthenticatorRequest(this.verification);
         request.token = this.token;
         request.key = this.key;
 

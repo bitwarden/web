@@ -44,7 +44,7 @@ export class TwoFactorDuoComponent extends TwoFactorBaseComponent {
     }
 
     protected enable() {
-        const request = this.buildRequestModel(UpdateTwoFactorDuoRequest);
+        const request = new UpdateTwoFactorDuoRequest(this.verification);
         request.integrationKey = this.ikey;
         request.secretKey = this.skey;
         request.host = this.host;

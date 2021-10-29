@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 
@@ -11,8 +10,6 @@ import { PasswordVerificationRequest } from 'jslib-common/models/request/passwor
 import { ApiKeyResponse } from 'jslib-common/models/response/apiKeyResponse';
 
 import { Verification } from 'jslib-angular/components/verify-master-password.component';
-
-import { VerificationType } from 'jslib-common/enums/verificationType';
 
 @Component({
     selector: 'app-api-key',
@@ -29,27 +26,23 @@ export class ApiKeyComponent {
     apiKeyWarning: string;
     apiKeyDescription: string;
 
-    masterPassword: Verification;
+    masterPassword: Promise<Verification>;
     formPromise: Promise<ApiKeyResponse>;
     clientId: string;
     clientSecret: string;
 
     constructor(private i18nService: I18nService, private toasterService: ToasterService,
-        private cryptoService: CryptoService, private logService: LogService) { }
+        private logService: LogService) { }
 
     async submit() {
-        if (this.masterPassword?.secret == null || this.masterPassword.secret === '') {
+        const verification = await this.masterPassword;
+        if (verification?.secret == null || verification.secret === '') {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('masterPassRequired'));
             return;
         }
 
-        const request = new PasswordVerificationRequest();
-        if (this.masterPassword.type === VerificationType.MasterPassword) {
-            request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword.secret, null);
-        } else {
-            request.otp = this.masterPassword.secret;
-        }
+        const request = new PasswordVerificationRequest(verification);
 
         try {
             this.formPromise = this.postKey(this.entityId, request);

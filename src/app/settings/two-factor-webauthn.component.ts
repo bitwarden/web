@@ -54,7 +54,7 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
             // Should never happen.
             return Promise.reject();
         }
-        const request = this.buildRequestModel(UpdateTwoFactorWebAuthnRequest);
+        const request = new UpdateTwoFactorWebAuthnRequest(this.verification);
         request.deviceResponse = this.webAuthnResponse;
         request.id = this.keyIdAvailable;
         request.name = this.name;
@@ -81,7 +81,7 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
         if (!confirmed) {
             return;
         }
-        const request = this.buildRequestModel(UpdateTwoFactorWebAuthnDeleteRequest);
+        const request = new UpdateTwoFactorWebAuthnDeleteRequest(this.verification);
         request.id = key.id;
         try {
             key.removePromise = this.apiService.deleteTwoFactorWebAuthn(request);
@@ -97,7 +97,7 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
         if (this.keyIdAvailable == null) {
             return;
         }
-        const request = this.buildRequestModel(PasswordVerificationRequest);
+        const request = new PasswordVerificationRequest(this.verification);
         try {
             this.challengePromise = this.apiService.getTwoFactorWebAuthnChallenge(request);
             const challenge = await this.challengePromise;

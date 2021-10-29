@@ -6,11 +6,8 @@ import { ToasterService } from 'angular2-toaster';
 import { Verification } from 'jslib-angular/components/verify-master-password.component';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
-
-import { VerificationType } from 'jslib-common/enums/verificationType';
 
 import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
 
@@ -25,8 +22,7 @@ export class DeleteOrganizationComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private cryptoService: CryptoService,
-        private router: Router, private logService: LogService) { }
+        private toasterService: ToasterService, private router: Router, private logService: LogService) { }
 
     async submit() {
         if (this.masterPassword?.secret == null || this.masterPassword.secret === '') {
@@ -35,12 +31,7 @@ export class DeleteOrganizationComponent {
             return;
         }
 
-        const request = new PasswordVerificationRequest();
-        if (this.masterPassword.type === VerificationType.MasterPassword) {
-            request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword.secret, null);
-        } else {
-            request.otp = this.masterPassword.secret;
-        }
+        const request = new PasswordVerificationRequest(this.masterPassword);
 
         try {
             this.formPromise = this.apiService.deleteOrganization(this.organizationId, request);

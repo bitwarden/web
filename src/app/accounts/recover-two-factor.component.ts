@@ -8,6 +8,7 @@ import { AuthService } from 'jslib-common/abstractions/auth.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { VerificationType } from 'jslib-common/enums/verificationType';
 
 import { TwoFactorRecoveryRequest } from 'jslib-common/models/request/twoFactorRecoveryRequest';
 
@@ -28,11 +29,16 @@ export class RecoverTwoFactorComponent {
 
     async submit() {
         try {
-            const request = new TwoFactorRecoveryRequest();
+            const email = this.email.trim().toLowerCase();
+            const key = await this.authService.makePreloginKey(this.masterPassword, email);
+            const masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, key);
+
+            const request = new TwoFactorRecoveryRequest({
+                secret: masterPasswordHash,
+                type: VerificationType.MasterPassword,
+            });
+            request.email = email;
             request.recoveryCode = this.recoveryCode.replace(/\s/g, '').toLowerCase();
-            request.email = this.email.trim().toLowerCase();
-            const key = await this.authService.makePreloginKey(this.masterPassword, request.email);
-            request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, key);
             this.formPromise = this.apiService.postTwoFactorRecover(request);
             await this.formPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('twoStepRecoverDisabled'));

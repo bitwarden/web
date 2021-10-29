@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
@@ -11,8 +10,6 @@ import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
 
 import { Verification } from 'jslib-angular/components/verify-master-password.component';
-
-import { VerificationType } from 'jslib-common/enums/verificationType';
 
 @Component({
     selector: 'app-deauthorize-sessions',
@@ -23,8 +20,8 @@ export class DeauthorizeSessionsComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private cryptoService: CryptoService,
-        private messagingService: MessagingService, private logService: LogService) { }
+        private toasterService: ToasterService, private messagingService: MessagingService,
+        private logService: LogService) { }
 
     async submit() {
         if (this.masterPassword?.secret == null || this.masterPassword.secret === '') {
@@ -33,12 +30,7 @@ export class DeauthorizeSessionsComponent {
             return;
         }
 
-        const request = new PasswordVerificationRequest();
-        if (this.masterPassword.type === VerificationType.MasterPassword) {
-            request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword.secret, null);
-        } else {
-            request.otp = this.masterPassword.secret;
-        }
+        const request = new PasswordVerificationRequest(this.masterPassword);
 
         try {
             this.formPromise = this.apiService.postSecurityStamp(request);
