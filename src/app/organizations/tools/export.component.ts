@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
@@ -20,9 +21,9 @@ export class ExportComponent extends BaseExportComponent {
     constructor(cryptoService: CryptoService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, exportService: ExportService,
         eventService: EventService, private route: ActivatedRoute, policyService: PolicyService,
-        logService: LogService, apiService: ApiService) {
+        logService: LogService, apiService: ApiService, fb: FormBuilder) {
         super(cryptoService, i18nService, platformUtilsService, exportService, eventService, policyService,
-            logService, apiService);
+            logService, apiService, fb);
     }
 
     async ngOnInit() {

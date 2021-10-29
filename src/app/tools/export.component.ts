@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
@@ -21,14 +22,13 @@ export class ExportComponent extends BaseExportComponent {
     constructor(cryptoService: CryptoService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, exportService: ExportService,
         eventService: EventService, policyService: PolicyService, logService: LogService,
-        apiService: ApiService) {
+        apiService: ApiService, fb: FormBuilder) {
         super(cryptoService, i18nService, platformUtilsService, exportService, eventService,
-            policyService, window, logService, apiService);
+            policyService, window, logService, apiService, fb);
     }
 
     protected saved() {
         super.saved();
-        this.verificationForm.setValue('');
         this.platformUtilsService.showToast('success', null, this.i18nService.t('exportSuccess'));
     }
 }
