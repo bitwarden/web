@@ -32,9 +32,9 @@ export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent impl
     private qrScript: HTMLScriptElement;
 
     constructor(apiService: ApiService, i18nService: I18nService,
-        toasterService: ToasterService, private userService: UserService,
+        toasterService: ToasterService, userService: UserService,
         platformUtilsService: PlatformUtilsService, logService: LogService) {
-        super(apiService, i18nService, toasterService, platformUtilsService, logService);
+        super(apiService, i18nService, toasterService, platformUtilsService, logService, userService);
         this.qrScript = window.document.createElement('script');
         this.qrScript.src = 'scripts/qrious.min.js';
         this.qrScript.async = true;
@@ -61,8 +61,8 @@ export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent impl
         }
     }
 
-    protected enable() {
-        const request = this.buildRequestModel(UpdateTwoFactorAuthenticatorRequest);
+    protected async enable() {
+        const request = await this.buildRequestModel(UpdateTwoFactorAuthenticatorRequest);
         request.token = this.token;
         request.key = this.key;
 

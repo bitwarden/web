@@ -9,6 +9,7 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 
@@ -40,8 +41,8 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
 
     constructor(apiService: ApiService, i18nService: I18nService,
         toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
-        private ngZone: NgZone, logService: LogService) {
-        super(apiService, i18nService, toasterService, platformUtilsService, logService);
+        private ngZone: NgZone, logService: LogService, userService: UserService) {
+        super(apiService, i18nService, toasterService, platformUtilsService, logService, userService);
     }
 
     auth(authResponse: any) {
@@ -49,12 +50,12 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
         this.processResponse(authResponse.response);
     }
 
-    submit() {
+    async submit() {
         if (this.webAuthnResponse == null || this.keyIdAvailable == null) {
             // Should never happen.
             return Promise.reject();
         }
-        const request = this.buildRequestModel(UpdateTwoFactorWebAuthnRequest);
+        const request = await this.buildRequestModel(UpdateTwoFactorWebAuthnRequest);
         request.deviceResponse = this.webAuthnResponse;
         request.id = this.keyIdAvailable;
         request.name = this.name;
@@ -81,7 +82,7 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
         if (!confirmed) {
             return;
         }
-        const request = this.buildRequestModel(UpdateTwoFactorWebAuthnDeleteRequest);
+        const request = await this.buildRequestModel(UpdateTwoFactorWebAuthnDeleteRequest);
         request.id = key.id;
         try {
             key.removePromise = this.apiService.deleteTwoFactorWebAuthn(request);
@@ -97,7 +98,7 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
         if (this.keyIdAvailable == null) {
             return;
         }
-        const request = this.buildRequestModel(PasswordVerificationRequest);
+        const request = await this.buildRequestModel(PasswordVerificationRequest);
         try {
             this.challengePromise = this.apiService.getTwoFactorWebAuthnChallenge(request);
             const challenge = await this.challengePromise;

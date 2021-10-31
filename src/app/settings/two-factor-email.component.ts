@@ -30,8 +30,8 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
 
     constructor(apiService: ApiService, i18nService: I18nService,
         toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
-        private userService: UserService, logService: LogService) {
-        super(apiService, i18nService, toasterService, platformUtilsService, logService);
+        userService: UserService, logService: LogService) {
+        super(apiService, i18nService, toasterService, platformUtilsService, logService, userService);
     }
 
     auth(authResponse: any) {
@@ -49,7 +49,7 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
 
     async sendEmail() {
         try {
-            const request = this.buildRequestModel(TwoFactorEmailRequest);
+            const request = await this.buildRequestModel(TwoFactorEmailRequest);
             request.email = this.email;
             this.emailPromise = this.apiService.postTwoFactorEmailSetup(request);
             await this.emailPromise;
@@ -59,8 +59,8 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
         }
     }
 
-    protected enable() {
-        const request = this.buildRequestModel(UpdateTwoFactorEmailRequest);
+    protected async enable() {
+        const request = await this.buildRequestModel(UpdateTwoFactorEmailRequest);
         request.email = this.email;
         request.token = this.token;
 

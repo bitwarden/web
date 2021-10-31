@@ -3,16 +3,12 @@ import { Component } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-
-import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { Verification } from 'jslib-common/types/verification';
-
-import { VerificationType } from 'jslib-common/enums/verificationType';
 
 @Component({
     selector: 'app-deauthorize-sessions',
@@ -23,21 +19,15 @@ export class DeauthorizeSessionsComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private cryptoService: CryptoService,
+        private toasterService: ToasterService, private userService: UserService,
         private messagingService: MessagingService, private logService: LogService) { }
 
     async submit() {
-        if (this.masterPassword?.secret == null || this.masterPassword.secret === '') {
+        const request = await this.userService.buildVerificationRequest(this.masterPassword);
+        if (request == null) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('masterPassRequired'));
             return;
-        }
-
-        const request = new PasswordVerificationRequest();
-        if (this.masterPassword.type === VerificationType.MasterPassword) {
-            request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword.secret, null);
-        } else {
-            request.otp = this.masterPassword.secret;
         }
 
         try {

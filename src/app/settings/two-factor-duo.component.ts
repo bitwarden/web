@@ -6,6 +6,7 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 import { UpdateTwoFactorDuoRequest } from 'jslib-common/models/request/updateTwoFactorDuoRequest';
@@ -26,8 +27,8 @@ export class TwoFactorDuoComponent extends TwoFactorBaseComponent {
 
     constructor(apiService: ApiService, i18nService: I18nService,
         toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
-        logService: LogService) {
-        super(apiService, i18nService, toasterService, platformUtilsService, logService);
+        logService: LogService, userService: UserService) {
+        super(apiService, i18nService, toasterService, platformUtilsService, logService, userService);
     }
 
     auth(authResponse: any) {
@@ -43,8 +44,8 @@ export class TwoFactorDuoComponent extends TwoFactorBaseComponent {
         }
     }
 
-    protected enable() {
-        const request = this.buildRequestModel(UpdateTwoFactorDuoRequest);
+    protected async enable() {
+        const request = await this.buildRequestModel(UpdateTwoFactorDuoRequest);
         request.integrationKey = this.ikey;
         request.secretKey = this.skey;
         request.host = this.host;

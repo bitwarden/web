@@ -2,17 +2,15 @@ import { Component } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
 
 import { ApiKeyResponse } from 'jslib-common/models/response/apiKeyResponse';
 
 import { Verification } from 'jslib-common/types/verification';
-
-import { VerificationType } from 'jslib-common/enums/verificationType';
 
 @Component({
     selector: 'app-api-key',
@@ -35,20 +33,14 @@ export class ApiKeyComponent {
     clientSecret: string;
 
     constructor(private i18nService: I18nService, private toasterService: ToasterService,
-        private cryptoService: CryptoService, private logService: LogService) { }
+        private userService: UserService, private logService: LogService) { }
 
     async submit() {
-        if (this.masterPassword?.secret == null || this.masterPassword.secret === '') {
+        const request = await this.userService.buildVerificationRequest(this.masterPassword);
+        if (request == null) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('masterPassRequired'));
             return;
-        }
-
-        const request = new PasswordVerificationRequest();
-        if (this.masterPassword.type === VerificationType.MasterPassword) {
-            request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword.secret, null);
-        } else {
-            request.otp = this.masterPassword.secret;
         }
 
         try {

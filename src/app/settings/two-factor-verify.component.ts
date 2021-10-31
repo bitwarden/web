@@ -18,6 +18,7 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
 
 import { Verification } from 'jslib-common/types/verification';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
 @Component({
     selector: 'app-two-factor-verify',
@@ -33,7 +34,7 @@ export class TwoFactorVerifyComponent {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
-        private logService: LogService) { }
+        private logService: LogService, private userService: UserService) { }
 
     async submit() {
         if (this.masterPassword?.secret == null || this.masterPassword.secret === '') {
@@ -42,12 +43,7 @@ export class TwoFactorVerifyComponent {
             return;
         }
 
-        const request = new PasswordVerificationRequest();
-        if (this.masterPassword.type === VerificationType.MasterPassword) {
-            request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword.secret, null);
-        } else {
-            request.otp = this.masterPassword.secret;
-        }
+        const request = await this.userService.buildVerificationRequest(this.masterPassword);
 
         try {
             switch (this.type) {
