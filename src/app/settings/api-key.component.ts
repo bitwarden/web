@@ -10,7 +10,7 @@ import { PasswordVerificationRequest } from 'jslib-common/models/request/passwor
 
 import { ApiKeyResponse } from 'jslib-common/models/response/apiKeyResponse';
 
-import { Verification } from 'jslib-angular/components/verify-master-password.component';
+import { Verification } from 'jslib-common/types/verification';
 
 import { VerificationType } from 'jslib-common/enums/verificationType';
 

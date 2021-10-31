@@ -12,7 +12,7 @@ import { VerificationType } from 'jslib-common/enums/verificationType';
 
 import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
 
-import { Verification } from 'jslib-angular/components/verify-master-password.component';
+import { Verification } from 'jslib-common/types/verification';
 
 @Component({
     selector: 'app-delete-account',

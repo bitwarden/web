@@ -13,7 +13,7 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 
 import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
 
-import { Verification } from 'jslib-angular/components/verify-master-password.component';
+import { Verification } from 'jslib-common/types/verification';
 
 import { VerificationType } from 'jslib-common/enums/verificationType';
 

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
-import { Verification } from 'jslib-angular/components/verify-master-password.component';
+import { Verification } from 'jslib-common/types/verification';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
