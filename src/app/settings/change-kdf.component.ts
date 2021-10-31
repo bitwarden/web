@@ -15,7 +15,6 @@ import { UserService } from 'jslib-common/abstractions/user.service';
 import { KdfRequest } from 'jslib-common/models/request/kdfRequest';
 
 import { KdfType } from 'jslib-common/enums/kdfType';
-import { VerificationType } from 'jslib-common/enums/verificationType';
 
 @Component({
     selector: 'app-change-kdf',
@@ -49,13 +48,10 @@ export class ChangeKdfComponent implements OnInit {
             return;
         }
 
-        const masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
-        const request = new KdfRequest({
-            secret: masterPasswordHash,
-            type: VerificationType.MasterPassword,
-        });
+        const request = new KdfRequest();
         request.kdf = this.kdf;
         request.kdfIterations = this.kdfIterations;
+        request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
         const email = await this.userService.getEmail();
         const newKey = await this.cryptoService.makeKey(this.masterPassword, email, this.kdf, this.kdfIterations);
         request.newMasterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, newKey);

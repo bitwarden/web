@@ -7,12 +7,15 @@ import { Router } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
+import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 
 import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
 
 import { Verification } from 'jslib-angular/components/verify-master-password.component';
+
+import { VerificationType } from 'jslib-common/enums/verificationType';
 
 @Component({
     selector: 'app-purge-vault',
@@ -25,8 +28,8 @@ export class PurgeVaultComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private router: Router,
-        private logService: LogService) { }
+        private toasterService: ToasterService, private cryptoService: CryptoService,
+        private router: Router, private logService: LogService) { }
 
     async submit() {
         if (this.masterPassword?.secret == null || this.masterPassword.secret === '') {
@@ -35,7 +38,12 @@ export class PurgeVaultComponent {
             return;
         }
 
-        const request = new PasswordVerificationRequest(this.masterPassword);
+        const request = new PasswordVerificationRequest();
+        if (this.masterPassword.type === VerificationType.MasterPassword) {
+            request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword.secret, null);
+        } else {
+            request.otp = this.masterPassword.secret;
+        }
 
         try {
             this.formPromise = this.apiService.postPurgeCiphers(request, this.organizationId);

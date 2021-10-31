@@ -30,7 +30,6 @@ import { OrganizationUserResetPasswordEnrollmentRequest } from 'jslib-common/mod
 import { PasswordRequest } from 'jslib-common/models/request/passwordRequest';
 import { SendWithIdRequest } from 'jslib-common/models/request/sendWithIdRequest';
 import { UpdateKeyRequest } from 'jslib-common/models/request/updateKeyRequest';
-import { VerificationType } from 'jslib-common/enums/verificationType';
 
 @Component({
     selector: 'app-change-password',
@@ -112,11 +111,8 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
 
     async performSubmitActions(newMasterPasswordHash: string, newKey: SymmetricCryptoKey,
         newEncKey: [SymmetricCryptoKey, EncString]) {
-        const masterPasswordHash = await this.cryptoService.hashPassword(this.currentMasterPassword, null);
-        const request = new PasswordRequest({
-            secret: masterPasswordHash,
-            type: VerificationType.MasterPassword,
-        });
+        const request = new PasswordRequest();
+        request.masterPasswordHash = await this.cryptoService.hashPassword(this.currentMasterPassword, null);
         request.newMasterPasswordHash = newMasterPasswordHash;
         request.key = newEncKey[1].encryptedString;
 

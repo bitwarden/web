@@ -16,7 +16,6 @@ import { EmailRequest } from 'jslib-common/models/request/emailRequest';
 import { EmailTokenRequest } from 'jslib-common/models/request/emailTokenRequest';
 
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
-import { VerificationType } from 'jslib-common/enums/verificationType';
 
 @Component({
     selector: 'app-change-email',
@@ -51,12 +50,9 @@ export class ChangeEmailComponent implements OnInit {
 
         this.newEmail = this.newEmail.trim().toLowerCase();
         if (!this.tokenSent) {
-            const masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
-            const request = new EmailTokenRequest({
-                secret: masterPasswordHash,
-                type: VerificationType.MasterPassword,
-            });
+            const request = new EmailTokenRequest();
             request.newEmail = this.newEmail;
+            request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
             try {
                 this.formPromise = this.apiService.postEmailToken(request);
                 await this.formPromise;
@@ -65,13 +61,10 @@ export class ChangeEmailComponent implements OnInit {
                 this.logService.error(e);
             }
         } else {
-            const masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
-            const request = new EmailRequest({
-                secret: masterPasswordHash,
-                type: VerificationType.MasterPassword,
-            });
+            const request = new EmailRequest();
             request.token = this.token;
             request.newEmail = this.newEmail;
+            request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
             const kdf = await this.userService.getKdf();
             const kdfIterations = await this.userService.getKdfIterations();
             const newKey = await this.cryptoService.makeKey(this.masterPassword, this.newEmail, kdf, kdfIterations);
