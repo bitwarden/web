@@ -71,11 +71,9 @@
             </ng-container>
         </div>
         <ng-container>
-            <div class="d-flex">
-                <button type="button" class="btn btn-outline-secondary" (click)="changePlan()" *ngIf="showChangePlanButton">
-                    {{'changeBillingPlan' | i18n}}
-                </button>
-            </div>
+            <button type="button" class="btn btn-outline-secondary" (click)="changePlan()" *ngIf="showChangePlanButton">
+                {{'changeBillingPlan' | i18n}}
+            </button>
             <app-change-plan [organizationId]="organizationId" (onChanged)="closeChangePlan(true)"
                 (onCanceled)="closeChangePlan(false)" *ngIf="showChangePlan"></app-change-plan>
         </ng-container>
