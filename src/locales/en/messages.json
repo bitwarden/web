@@ -2934,15 +2934,24 @@
       }
     }
   },
-    "subscriptionFreePlan": {
-      "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
-      "placeholders": {
-        "count": {
-          "content": "$1",
-          "example": "2"
-        }
+  "subscriptionFreePlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
       }
-    },
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
   "subscriptionMaxReached": {
     "message": "Adjustments to your subscription will result in prorated changes to your billing totals. You cannot invite more than $COUNT$ users without increasing your subscription seats.",
     "placeholders": {

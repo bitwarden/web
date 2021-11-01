@@ -215,6 +215,8 @@ export class OrganizationSubscriptionComponent implements OnInit {
     get subscriptionDesc() {
         if (this.sub.planType === PlanType.Free) {
             return this.i18nService.t('subscriptionFreePlan', this.sub.seats.toString());
+        } else if (this.sub.planType === PlanType.FamiliesAnnually || this.sub.planType === PlanType.FamiliesAnnually2019) {
+            return this.i18nService.t('subscriptionFamiliesPlan', this.sub.seats.toString());
         } else if (this.sub.maxAutoscaleSeats === this.sub.seats && this.sub.seats != null) {
             return this.i18nService.t('subscriptionMaxReached', this.sub.seats.toString());
         } else if (this.sub.maxAutoscaleSeats == null) {
