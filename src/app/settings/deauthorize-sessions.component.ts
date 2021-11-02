@@ -8,8 +8,6 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
-import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
-
 import { Verification } from 'jslib-common/types/verification';
 
 @Component({
@@ -25,13 +23,7 @@ export class DeauthorizeSessionsComponent {
         private messagingService: MessagingService, private logService: LogService) { }
 
     async submit() {
-        let request: PasswordVerificationRequest;
-        try {
-            request = await this.userVerificationService.buildRequest(this.masterPassword);
-        } catch (e) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'), e.message);
-            return;
-        }
+        const request = await this.userVerificationService.buildRequest(this.masterPassword);
 
         try {
             this.formPromise = this.apiService.postSecurityStamp(request);

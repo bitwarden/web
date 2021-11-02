@@ -5,18 +5,12 @@ import {
     Output,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 import { VerificationType } from 'jslib-common/enums/verificationType';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
-import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service'
-;
-import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
+import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { Verification } from 'jslib-common/types/verification';
 
@@ -32,18 +26,11 @@ export class TwoFactorVerifyComponent {
     masterPassword: Verification;
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private logService: LogService,
+    constructor(private apiService: ApiService, private logService: LogService,
         private userVerificationService: UserVerificationService) { }
 
     async submit() {
-        let request: PasswordVerificationRequest;
-        try {
-            request = await this.userVerificationService.buildRequest(this.masterPassword);
-        } catch (e) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'), e.message);
-            return;
-        }
+        const request = await this.userVerificationService.buildRequest(this.masterPassword);
 
         try {
             switch (this.type) {

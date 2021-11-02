@@ -11,8 +11,6 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
-import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
-
 import { Verification } from 'jslib-common/types/verification';
 
 @Component({
@@ -30,13 +28,7 @@ export class PurgeVaultComponent {
         private router: Router, private logService: LogService) { }
 
     async submit() {
-        let request: PasswordVerificationRequest;
-        try {
-            request = await this.userVerificationService.buildRequest(this.masterPassword);
-        } catch (e) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'), e.message);
-            return;
-        }
+        const request = await this.userVerificationService.buildRequest(this.masterPassword);
 
         try {
             this.formPromise = this.apiService.postPurgeCiphers(request, this.organizationId);

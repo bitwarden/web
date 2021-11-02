@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
@@ -32,17 +29,10 @@ export class ApiKeyComponent {
     clientId: string;
     clientSecret: string;
 
-    constructor(private i18nService: I18nService, private toasterService: ToasterService,
-        private userVerificationService: UserVerificationService, private logService: LogService) { }
+    constructor(private userVerificationService: UserVerificationService, private logService: LogService) { }
 
     async submit() {
-        let request: PasswordVerificationRequest;
-        try {
-            request = await this.userVerificationService.buildRequest(this.masterPassword);
-        } catch (e) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'), e.message);
-            return;
-        }
+        const request = await this.userVerificationService.buildRequest(this.masterPassword);
 
         try {
             this.formPromise = this.postKey(this.entityId, request);

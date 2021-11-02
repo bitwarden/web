@@ -10,8 +10,6 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
-import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
-
 @Component({
     selector: 'app-delete-organization',
     templateUrl: 'delete-organization.component.html',
@@ -27,13 +25,7 @@ export class DeleteOrganizationComponent {
         private router: Router, private logService: LogService) { }
 
     async submit() {
-        let request: PasswordVerificationRequest;
-        try {
-            request = await this.userVerificationService.buildRequest(this.masterPassword);
-        } catch (e) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'), e.message);
-            return;
-        }
+        const request = await this.userVerificationService.buildRequest(this.masterPassword);
 
         try {
             this.formPromise = this.apiService.deleteOrganization(this.organizationId, request);
