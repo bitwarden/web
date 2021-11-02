@@ -445,7 +445,8 @@
                     <h3 class="mt-4">{{'options' | i18n}}</h3>
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" [ngModel]="reprompt" (change)="repromptChanged()"
-                                id="passwordPrompt" name="passwordPrompt" [disabled]="cipher.isDeleted || viewOnly">
+                                id="passwordPrompt" name="passwordPrompt"
+                                [disabled]="cipher.isDeleted || viewOnly || !canUseReprompt">
                         <label class="form-check-label" for="passwordPrompt">{{'passwordPrompt' | i18n}}</label>
                         <a target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}"
                             href="https://bitwarden.com/help/article/managing-items/#protect-individual-items">
