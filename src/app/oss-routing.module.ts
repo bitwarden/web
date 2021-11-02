@@ -13,6 +13,7 @@ import { AcceptOrganizationComponent } from './accounts/accept-organization.comp
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
 import { LoginComponent } from './accounts/login.component';
+import { OrganizationEncryptionComponent } from './accounts/organization-encryption.component';
 import { RecoverDeleteComponent } from './accounts/recover-delete.component';
 import { RecoverTwoFactorComponent } from './accounts/recover-two-factor.component';
 import { RegisterComponent } from './accounts/register.component';
@@ -97,7 +98,6 @@ import { Permissions } from 'jslib-common/enums/permissions';
 
 import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
 import { EmergencyAccessComponent } from './settings/emergency-access.component';
-import { OrganizationEncryptionComponent } from './settings/organization-encryption.component';
 
 const routes: Routes = [
     {
