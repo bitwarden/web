@@ -1,0 +1,24 @@
+<div class="container" *ngIf="!loading">
+    <div class="row justify-content-md-center mt-5">
+        <div class="col-5">
+            <p class="lead text-center mb-4">{{'convertOrganizationEncryption' | i18n}}</p>
+            <div class="card d-block">
+                <div class="card-body">
+                    <p>{{'convertOrganizationEncryptionDesc' | i18n : organization.name}}</p>
+                    <p>{{'convertOrganizationEncryptionLeave' | i18n}}</p>
+                    <hr>
+                    <div class="d-flex">
+                        <button type="button" class="btn btn-primary btn-block" (click)="convert()" [disabled]="actionPromise">
+                            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true" *ngIf="continuing"></i>
+                            {{'convertMasterPassword' | i18n}}
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary btn-block ml-2 mt-0" (click)="leave()" [disabled]="actionPromise">
+                            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true" *ngIf="leaving"></i>
+                            {{'leaveOrganization' | i18n}}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

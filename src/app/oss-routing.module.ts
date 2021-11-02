@@ -97,6 +97,7 @@ import { Permissions } from 'jslib-common/enums/permissions';
 
 import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
 import { EmergencyAccessComponent } from './settings/emergency-access.component';
+import { OrganizationEncryptionComponent } from './settings/organization-encryption.component';
 
 const routes: Routes = [
     {
@@ -169,6 +170,12 @@ const routes: Routes = [
                 component: UpdateTempPasswordComponent,
                 canActivate: [AuthGuardService],
                 data: { titleId: 'updateTempPassword' },
+            },
+            {
+                path: 'convert-organization-encryption',
+                component: OrganizationEncryptionComponent,
+                canActivate: [AuthGuardService],
+                data: { titleId: 'convertOrganizationEncryption' },
             },
         ],
     },
@@ -449,7 +456,7 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes, {
         useHash: true,
         paramsInheritanceStrategy: 'always',
-        /*enableTracing: true,*/
+        enableTracing: true,
     })],
     exports: [RouterModule],
 })
