@@ -53,6 +53,7 @@ import { SyncService } from 'jslib-common/services/sync.service';
 import { TokenService } from 'jslib-common/services/token.service';
 import { TotpService } from 'jslib-common/services/totp.service';
 import { UserService } from 'jslib-common/services/user.service';
+import { UserVerificationService } from 'jslib-common/services/userVerification.service';
 import { VaultTimeoutService } from 'jslib-common/services/vaultTimeout.service';
 import { WebCryptoFunctionService } from 'jslib-common/services/webCryptoFunction.service';
 
@@ -88,6 +89,7 @@ import { SyncService as SyncServiceAbstraction } from 'jslib-common/abstractions
 import { TokenService as TokenServiceAbstraction } from 'jslib-common/abstractions/token.service';
 import { TotpService as TotpServiceAbstraction } from 'jslib-common/abstractions/totp.service';
 import { UserService as UserServiceAbstraction } from 'jslib-common/abstractions/user.service';
+import { UserVerificationService as UserVerificationServiceAbstraction } from 'jslib-common/abstractions/userVerification.service';
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib-common/abstractions/vaultTimeout.service';
 import { ModalService } from './modal.service';
 
@@ -111,7 +113,7 @@ const appIdService = new AppIdService(storageService);
 const environmentService = new EnvironmentService(storageService);
 const apiService = new ApiService(tokenService, platformUtilsService, environmentService,
     async (expired: boolean) => messagingService.send('logout', { expired: expired }));
-const userService = new UserService(tokenService, storageService, cryptoService, i18nService);
+const userService = new UserService(tokenService, storageService);
 const settingsService = new SettingsService(userService, storageService);
 export let searchService: SearchService = null;
 const fileUploadService = new FileUploadService(consoleLogService, apiService);
@@ -143,6 +145,7 @@ const notificationsService = new NotificationsService(userService, syncService, 
     environmentService, async () => messagingService.send('logout', { expired: true }), consoleLogService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService, consoleLogService);
+const userVerificationService = new UserVerificationService(cryptoService, i18nService, platformUtilsService, apiService);
 
 containerService.attachToWindow(window);
 
@@ -227,6 +230,7 @@ export function initFactory(): Function {
         { provide: PolicyServiceAbstraction, useValue: policyService },
         { provide: SendServiceAbstraction, useValue: sendService },
         { provide: PasswordRepromptServiceAbstraction, useClass: PasswordRepromptService },
+        { provide: UserVerificationServiceAbstraction, useValue: userVerificationService },
         { provide: LogService, useValue: consoleLogService },
         {
             provide: APP_INITIALIZER,
