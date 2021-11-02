@@ -10,7 +10,7 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 import { VerificationType } from 'jslib-common/enums/verificationType';
@@ -33,7 +33,7 @@ export abstract class TwoFactorBaseComponent {
 
     constructor(protected apiService: ApiService, protected i18nService: I18nService,
         protected toasterService: ToasterService, protected platformUtilsService: PlatformUtilsService,
-        protected logService: LogService, protected userService: UserService) { }
+        protected logService: LogService, protected userVerificationService: UserVerificationService) { }
 
     protected auth(authResponse: any) {
         this.hashedSecret = authResponse.secret;
@@ -75,7 +75,7 @@ export abstract class TwoFactorBaseComponent {
     }
 
     protected async buildRequestModel<T extends PasswordVerificationRequest>(requestClass: new() => T)  {
-        return this.userService.buildVerificationRequest({
+        return this.userVerificationService.buildRequest({
             secret: this.hashedSecret,
             type: this.verificationType,
         }, requestClass, true);

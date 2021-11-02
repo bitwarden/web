@@ -7,6 +7,7 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { TwoFactorEmailRequest } from 'jslib-common/models/request/twoFactorEmailRequest';
 
@@ -30,8 +31,9 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
 
     constructor(apiService: ApiService, i18nService: I18nService,
         toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
-        userService: UserService, logService: LogService) {
-        super(apiService, i18nService, toasterService, platformUtilsService, logService, userService);
+        logService: LogService, userVerificationService: UserVerificationService,
+        private userService: UserService) {
+        super(apiService, i18nService, toasterService, platformUtilsService, logService, userVerificationService);
     }
 
     auth(authResponse: any) {

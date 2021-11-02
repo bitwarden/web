@@ -4,7 +4,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
 
@@ -33,12 +33,12 @@ export class ApiKeyComponent {
     clientSecret: string;
 
     constructor(private i18nService: I18nService, private toasterService: ToasterService,
-        private userService: UserService, private logService: LogService) { }
+        private userVerificationService: UserVerificationService, private logService: LogService) { }
 
     async submit() {
         let request: PasswordVerificationRequest;
         try {
-            request = await this.userService.buildVerificationRequest(this.masterPassword);
+            request = await this.userVerificationService.buildRequest(this.masterPassword);
         } catch (e) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'), e.message);
             return;

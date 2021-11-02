@@ -14,10 +14,10 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
-
+import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service'
+;
 import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
 
-import { UserService } from 'jslib-common/abstractions/user.service';
 import { Verification } from 'jslib-common/types/verification';
 
 @Component({
@@ -33,13 +33,13 @@ export class TwoFactorVerifyComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private cryptoService: CryptoService,
-        private logService: LogService, private userService: UserService) { }
+        private toasterService: ToasterService, private logService: LogService,
+        private userVerificationService: UserVerificationService) { }
 
     async submit() {
         let request: PasswordVerificationRequest;
         try {
-            request = await this.userService.buildVerificationRequest(this.masterPassword);
+            request = await this.userVerificationService.buildRequest(this.masterPassword);
         } catch (e) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'), e.message);
             return;

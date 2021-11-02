@@ -9,7 +9,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
 
@@ -26,13 +26,13 @@ export class PurgeVaultComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private userService: UserService,
+        private toasterService: ToasterService, private userVerificationService: UserVerificationService,
         private router: Router, private logService: LogService) { }
 
     async submit() {
         let request: PasswordVerificationRequest;
         try {
-            request = await this.userService.buildVerificationRequest(this.masterPassword);
+            request = await this.userVerificationService.buildRequest(this.masterPassword);
         } catch (e) {
             this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'), e.message);
             return;

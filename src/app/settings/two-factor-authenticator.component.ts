@@ -11,6 +11,7 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { UpdateTwoFactorAuthenticatorRequest } from 'jslib-common/models/request/updateTwoFactorAuthenticatorRequest';
 import { TwoFactorAuthenticatorResponse } from 'jslib-common/models/response/twoFactorAuthenticatorResponse';
@@ -32,9 +33,10 @@ export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent impl
     private qrScript: HTMLScriptElement;
 
     constructor(apiService: ApiService, i18nService: I18nService,
-        toasterService: ToasterService, userService: UserService,
-        platformUtilsService: PlatformUtilsService, logService: LogService) {
-        super(apiService, i18nService, toasterService, platformUtilsService, logService, userService);
+        toasterService: ToasterService, userVerificationService: UserVerificationService,
+        platformUtilsService: PlatformUtilsService, logService: LogService,
+        private userService: UserService) {
+        super(apiService, i18nService, toasterService, platformUtilsService, logService, userVerificationService);
         this.qrScript = window.document.createElement('script');
         this.qrScript.src = 'scripts/qrious.min.js';
         this.qrScript.async = true;
