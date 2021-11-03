@@ -8,7 +8,11 @@
 </ng-container>
 
 <form #form (ngSubmit)="submit()" [formGroup]="data" [appApiAction]="formPromise" *ngIf="!loading">
-    <p><a routerLink="../policies">{{'ssoPolicyHelp' | i18n}}</a></p>
+    <p>
+        {{'ssoPolicyHelpStart' | i18n}}
+        <a routerLink="../policies">{{'ssoPolicyHelpLink' | i18n}}</a>
+        {{'ssoPolicyHelpEnd' | i18n}}
+    </p>
     
     <div class="form-group">
         <div class="form-check">

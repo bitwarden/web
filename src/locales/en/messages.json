@@ -4491,8 +4491,17 @@
   "allowSsoDesc": {
     "message": "Once set up, your configuration will be saved and members will be able to authenticate using their Identity Provider credentials."
   },
-  "ssoPolicyHelp": {
-    "message": "Enable the SSO Policy to require all members to log in with SSO."
+  "ssoPolicyHelpStart": {
+    "message": "Enable the",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO Policy",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "to require all members to log in with SSO.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
   },
   "memberDecryptionOption": {
     "message": "Member Decryption Options"
@@ -4505,5 +4514,8 @@
   },
   "memberDecryptionKeyConnectorDesc": {
     "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt vault data."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
   }
 }
