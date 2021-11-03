@@ -10,6 +10,7 @@ import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { FolderService } from 'jslib-common/abstractions/folder.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 
@@ -30,7 +31,8 @@ export class UpdateKeyComponent {
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
         private messagingService: MessagingService, private syncService: SyncService,
-        private folderService: FolderService, private cipherService: CipherService) { }
+        private folderService: FolderService, private cipherService: CipherService,
+        private logService: LogService) { }
 
     async submit() {
         const hasEncKey = await this.cryptoService.hasEncKey();
@@ -57,7 +59,9 @@ export class UpdateKeyComponent {
             };
             this.toasterService.popAsync(toast);
             this.messagingService.send('logout');
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     private async makeRequest(): Promise<UpdateKeyRequest> {

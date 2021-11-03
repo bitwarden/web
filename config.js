@@ -3,6 +3,11 @@ function load(envName) {
         ...require('./config/base.json'),
         ...loadConfig(envName),
         ...loadConfig('local'),
+        dev: {
+            ...require('./config/base.json').dev,
+            ...loadConfig(envName).dev,
+            ...loadConfig('local').dev,
+        },
     };
 }
 

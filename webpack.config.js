@@ -169,7 +169,7 @@ const plugins = [
 
 // ref: https://webpack.js.org/configuration/dev-server/#devserver
 let certSuffix = fs.existsSync('dev-server.local.pem') ? '.local' : '.shared';
-const devServer = ENV !== 'development' ? {} : {
+const devServer = NODE_ENV !== 'development' ? {} : {
     https: {
         key: fs.readFileSync('dev-server' + certSuffix + '.pem'),
         cert: fs.readFileSync('dev-server' + certSuffix + '.pem'),
@@ -177,38 +177,32 @@ const devServer = ENV !== 'development' ? {} : {
     // host: '192.168.1.9',
     proxy: {
         '/api': {
-            target: envConfig['proxyApi'],
+            target: envConfig.dev?.proxyApi,
             pathRewrite: {'^/api' : ''},
             secure: false,
             changeOrigin: true
         },
         '/identity': {
-            target: envConfig['proxyIdentity'],
+            target: envConfig.dev?.proxyIdentity,
             pathRewrite: {'^/identity' : ''},
             secure: false,
             changeOrigin: true
         },
         '/events': {
-            target: envConfig['proxyEvents'],
+            target: envConfig.dev?.proxyEvents,
             pathRewrite: {'^/events' : ''},
             secure: false,
             changeOrigin: true
         },
         '/notifications': {
-            target: envConfig['proxyNotifications'],
+            target: envConfig.dev?.proxyNotifications,
             pathRewrite: {'^/notifications' : ''},
             secure: false,
             changeOrigin: true
         },
-        '/portal': {
-            target: envConfig['proxyEnterprise'],
-            pathRewrite: {'^/portal' : ''},
-            secure: false,
-            changeOrigin: true
-        }
     },
     hot: false,
-    allowedHosts: envConfig['allowedHosts']
+    allowedHosts: envConfig.dev?.allowedHosts,
 };
 
 const webpackConfig = {

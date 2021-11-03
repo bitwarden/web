@@ -6,6 +6,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
 
@@ -21,7 +22,7 @@ export class DeleteOrganizationComponent {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
-        private router: Router) { }
+        private router: Router, private logService: LogService) { }
 
     async submit() {
         if (this.masterPassword == null || this.masterPassword === '') {
@@ -38,6 +39,8 @@ export class DeleteOrganizationComponent {
             this.toasterService.popAsync('success', this.i18nService.t('organizationDeleted'),
                 this.i18nService.t('organizationDeletedDesc'));
             this.router.navigate(['/']);
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }

@@ -11,6 +11,7 @@ import { ToasterService } from 'angular2-toaster';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { EventService } from 'jslib-common/abstractions/event.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
@@ -52,7 +53,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         protected i18nService: I18nService, protected platformUtilsService: PlatformUtilsService,
         protected cipherService: CipherService, protected eventService: EventService,
         protected totpService: TotpService, protected userService: UserService,
-        protected passwordRepromptService: PasswordRepromptService) {
+        protected passwordRepromptService: PasswordRepromptService, private logService: LogService) {
         super(searchService);
     }
 
@@ -158,7 +159,9 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
             this.toasterService.popAsync('success', null, this.i18nService.t(permanent ? 'permanentlyDeletedItem'
                 : 'deletedItem'));
             this.refresh();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
         this.actionPromise = null;
     }
 
@@ -179,7 +182,9 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
             await this.actionPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('restoredItem'));
             this.refresh();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
         this.actionPromise = null;
     }
 

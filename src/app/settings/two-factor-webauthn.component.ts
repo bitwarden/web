@@ -7,6 +7,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
@@ -39,8 +40,8 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
 
     constructor(apiService: ApiService, i18nService: I18nService,
         toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
-        private ngZone: NgZone) {
-        super(apiService, i18nService, toasterService, platformUtilsService);
+        private ngZone: NgZone, logService: LogService) {
+        super(apiService, i18nService, toasterService, platformUtilsService, logService);
     }
 
     auth(authResponse: any) {
@@ -89,7 +90,9 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
             const response = await key.removePromise;
             key.removePromise = null;
             await this.processResponse(response);
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     async readKey() {
@@ -102,7 +105,9 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
             this.challengePromise = this.apiService.getTwoFactorWebAuthnChallenge(request);
             const challenge = await this.challengePromise;
             this.readDevice(challenge);
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     private readDevice(webAuthnChallenge: ChallengeResponse) {

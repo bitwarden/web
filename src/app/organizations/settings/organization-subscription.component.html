@@ -45,7 +45,7 @@
                     </ng-container>
                     </dl>
                     </div>
-            <div class="col-8">
+            <div class="col-8" *ngIf="subscription">
                 <strong class="d-block mb-1">{{'details' | i18n}}</strong>
                 <table class="table">
                     <tbody>
@@ -70,6 +70,13 @@
                 </div>
             </ng-container>
         </div>
+        <ng-container>
+            <button type="button" class="btn btn-outline-secondary" (click)="changePlan()" *ngIf="showChangePlanButton">
+                {{'changeBillingPlan' | i18n}}
+            </button>
+            <app-change-plan [organizationId]="organizationId" (onChanged)="closeChangePlan(true)"
+                (onCanceled)="closeChangePlan(false)" *ngIf="showChangePlan"></app-change-plan>
+        </ng-container>
         <h2 class="spaced-header">{{'manageSubscription' | i18n}}</h2>
         <p class="mb-4">{{subscriptionDesc}}</p>
         <ng-container *ngIf="subscription && canAdjustSeats && !subscription.cancelled && !subscriptionMarkedForCancel">
@@ -107,7 +114,7 @@
             {{'additionalOptionsDesc' | i18n }}
         </p>
         <div class="d-flex">
-            <button type="button" class="btn btn-outline-secondary ml-1" (click)="downloadLicense()" *ngIf="canDownloadLicense"
+            <button type="button" class="btn btn-outline-secondary" (click)="downloadLicense()" *ngIf="canDownloadLicense"
                 [disabled]="showDownloadLicense">
                 {{'downloadLicense' | i18n}}
             </button>
@@ -118,8 +125,6 @@
                 <span>{{'cancelSubscription' | i18n}}</span>
             </button>
         </div>
-        <app-change-plan [organizationId]="organizationId" (onChanged)="closeChangePlan(true)"
-            (onCanceled)="closeChangePlan(false)" *ngIf="showChangePlan"></app-change-plan>
         <div class="mt-3" *ngIf="showDownloadLicense">
             <app-download-license [organizationId]="organizationId" (onDownloaded)="closeDownloadLicense()"
                 (onCanceled)="closeDownloadLicense()"></app-download-license>

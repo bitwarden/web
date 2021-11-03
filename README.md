@@ -41,19 +41,20 @@ If you want to point the development web vault to the production APIs, you can r
 
 ```
 npm install
-ENV=production npm run build:oss:watch
+ENV=cloud npm run build:oss:watch
 ```
 
 You can also manually adjusting your API endpoint settings by adding `config/local.json` overriding any of the following values:
 
 ```json
 {
-    "proxyApi": "http://your-api-url",
-    "proxyIdentity": "http://your-identity-url",
-    "proxyEvents": "http://your-events-url",
-    "proxyNotifications": "http://your-notifications-url",
-    "proxyPortal": "http://your-portal-url",
-    "allowedHosts": ["hostnames-to-allow-in-webpack"],
+    "dev": {
+        "proxyApi": "http://your-api-url",
+        "proxyIdentity": "http://your-identity-url",
+        "proxyEvents": "http://your-events-url",
+        "proxyNotifications": "http://your-notifications-url",
+        "allowedHosts": ["hostnames-to-allow-in-webpack"],
+    },
     "urls": {
       
     }

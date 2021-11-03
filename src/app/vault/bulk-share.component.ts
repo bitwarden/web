@@ -11,6 +11,7 @@ import { ToasterService } from 'angular2-toaster';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { CipherView } from 'jslib-common/models/view/cipherView';
@@ -37,7 +38,7 @@ export class BulkShareComponent implements OnInit {
 
     constructor(private cipherService: CipherService, private toasterService: ToasterService,
         private i18nService: I18nService, private collectionService: CollectionService,
-        private userService: UserService) { }
+        private userService: UserService, private logService: LogService) { }
 
     async ngOnInit() {
         this.shareableCiphers = this.ciphers.filter(c => !c.hasOldAttachments && c.organizationId == null);
@@ -73,7 +74,9 @@ export class BulkShareComponent implements OnInit {
             this.onShared.emit();
             const orgName = this.organizations.find(o => o.id === this.organizationId)?.name ?? this.i18nService.t('organization');
             this.toasterService.popAsync('success', null, this.i18nService.t('movedItemsToOrg', orgName));
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     check(c: CollectionView, select?: boolean) {

@@ -899,6 +899,9 @@
   "changeEmail": {
     "message": "Email cím módosítása"
   },
+  "changeEmailTwoFactorWarning": {
+    "message": "A folytatás megváltoztatja fiók email címét. Nem változtatja meg a kétlépcsős hitelesítéshez használt email címet. Ez az email cím a kétlépcsős bejelentkezés beállításaiban módosítható."
+  },
   "newEmail": {
     "message": "Új email cím"
   },
@@ -997,6 +1000,9 @@
   },
   "purgedOrganizationVault": {
     "message": "A szervezeti széf kitakarításra került."
+  },
+  "vaultAccessedByProvider": {
+    "message": "A tárolóhoz a szolgáltató fér hozzá."
   },
   "purgeVaultDesc": {
     "message": "Az alábbiak szerint törölhetjük a széfben található összes elemet és mappát. Nem kerülnek törlésre azok az elemek,, amelyek egy megosztott szervezethez tartoznak."
@@ -2148,6 +2154,9 @@
   "policies": {
     "message": "Szabályok"
   },
+  "singleSignOn": {
+    "message": "Egyszeri bejelentkezés"
+  },
   "editPolicy": {
     "message": "Szabály szerkesztése"
   },
@@ -2238,11 +2247,17 @@
   "confirmed": {
     "message": "Megerősítve"
   },
+  "clientOwnerEmail": {
+    "message": "Ügyféltulajdonos e-mail cím"
+  },
   "owner": {
     "message": "Tulajdonos"
   },
   "ownerDesc": {
     "message": "A legmagasabb hozzáféréssel rendelkező felhasználó kezelheti a szervezet összes lehetőségét."
+  },
+  "clientOwnerDesc": {
+    "message": "Ennek a felhasználónak függetlennek kell lennie a szolgáltatótól. Ha a Szolgáltató nincs kapcsolatban a szervezettel, akkor ez a felhasználó tartja fenn a szervezet tulajdonjogát."
   },
   "admin": {
     "message": "Adminisztrátor"
@@ -2577,6 +2592,42 @@
       }
     }
   },
+  "createdOrganizationId": {
+    "message": "Létrehozott szervezet: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "addedOrganizationId": {
+    "message": "Hozzáadott szervezet: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "removedOrganizationId": {
+    "message": "Eltávolított szervezet: $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "accessedClientVault": {
+    "message": "Hozzáfért $ID$ szervezeti széf.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
   "device": {
     "message": "Eszköz"
   },
@@ -2830,6 +2881,16 @@
   "enterInstallationId": {
     "message": "Telepítési azonosító megadása"
   },
+  "limitSubscriptionDesc": {
+    "message": "Állítsunk be helykorlátot az előfizetéshez. Ha elérjük ezt a korlátot, nem tudunk új felhasználókat meghívni."
+  },
+  "maxSeatLimit": {
+    "message": "Maximális helykorlát (opcionális)",
+    "description": "Upper limit of seats to allow through autoscaling"
+  },
+  "maxSeatCost": {
+    "message": "Maximális lehetséges helyköltség"
+  },
   "addSeats": {
     "message": "Helyek hozzáadása",
     "description": "Seat = User Seat"
@@ -2838,8 +2899,47 @@
     "message": "Helyek eltávolítása",
     "description": "Seat = User Seat"
   },
+  "subscriptionDesc": {
+    "message": "Az előfizetés módosítása a számlázási összegek arányos módosítását eredményezi. Ha az újonnan meghívott felhasználók túllépik az előfizetői helyeket, akkor haladéktalanul külön díjat kapunk a további felhasználókért."
+  },
   "subscriptionUserSeats": {
     "message": "Az előfizetés összesen $COUNT$ felhasználót tesz lehetővé.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "limitSubscription": {
+    "message": "Előfizetés korlát (opcionális)"
+  },
+  "subscriptionSeats": {
+    "message": "Előfizetői helyek"
+  },
+  "subscriptionUpdated": {
+    "message": "Az előfizetés frissítésre került."
+  },
+  "additionalOptions": {
+    "message": "Kiegészítő opciók"
+  },
+  "additionalOptionsDesc": {
+    "message": "Az előfizetés kezelésével kapcsolatos további segítségért forduljunk az Ügyfélszolgálathoz."
+  },
+  "subscriptionUserSeatsUnlimitedAutoscale": {
+    "message": "Az előfizetés módosítása a számlázási összegek arányos módosítását eredményezi. Ha az újonnan meghívott felhasználók túllépik az előfizetői helyeket, akkor haladéktalanul külön díjat kapunk a további felhasználókért."
+  },
+  "subscriptionUserSeatsLimitedAutoscale": {
+    "message": "Az előfizetés módosítása a számlázási összegek arányos módosítását eredményezi. Ha az újonnan meghívott felhasználók túllépik az előfizetési helyeket, akkor haladéktalanul külön díjat kapunk a további felhasználókért, amíg el nem érjük a $MAX$ helykorlátot.",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "subscriptionMaxReached": {
+    "message": "Az előfizetés módosítása a számlázási összegek arányos módosítását eredményezi. Nem hívhatunk meg több, mint $COUNT$ felhasználót az előfizetői helyek növelése nélkül.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3299,10 +3399,6 @@
   "ssoHandOff": {
     "message": "Bezárható ez a fül és folytatás a bővítményben."
   },
-  "businessPortal": {
-    "message": "Üzleti portál",
-    "description": "The web portal used by business organizations for configuring certain features."
-  },
   "includeAllTeamsFeatures": {
     "message": "Összes Csapat funkció, továbbá:"
   },
@@ -3323,9 +3419,6 @@
   },
   "linkSso": {
     "message": "SSO csatolása"
-  },
-  "webPoliciesDeprecationWarning": {
-    "message": "Az irányelv konfiguráció áthelyezésre került és ez az oldal hamarosan megszűnik. Kattintsunk az alábbi hivatkozásra, ha inkább az Üzleti portál irányelv oldalát szeretnénk használni."
   },
   "singleOrg": {
     "message": "Önálló szervezet"
@@ -3715,9 +3808,6 @@
   "permissions": {
     "message": "Jogosultságok"
   },
-  "accessBusinessPortal": {
-    "message": "Üzleti portál elérése"
-  },
   "accessEventLogs": {
     "message": "Eseménynapló elérése"
   },
@@ -3730,8 +3820,23 @@
   "manageAllCollections": {
     "message": "Összes gyűjtemény kezelése"
   },
+  "createNewCollections": {
+    "message": "Új gyűjtemények létrehozása"
+  },
+  "editAnyCollection": {
+    "message": "Bármely gyűjtemény szerkesztése"
+  },
+  "deleteAnyCollection": {
+    "message": "Bármely gyűjtemény törlése"
+  },
   "manageAssignedCollections": {
     "message": "Hozzárendelt gyűjtemények kezelése"
+  },
+  "editAssignedCollections": {
+    "message": "Hozzárendelt gyűjtemények szerkesztése"
+  },
+  "deleteAssignedCollections": {
+    "message": "Hozzárendelt gyűjtemények törlése"
   },
   "manageGroups": {
     "message": "Csoportok kezelése"
@@ -3748,11 +3853,20 @@
   "manageResetPassword": {
     "message": "Jelszó alaphelyzet kezelés"
   },
-  "disableRequireSsoError": {
-    "message": "Manuálisan le kell tiltani az egyszeri bejelentkezés hitelesítési házirendjét mielőtt ez a házirend letiltásra kerülhet."
+  "disableRequiredError": {
+    "message": "A szabály letiltása előtt manuálisan le kell tiltani $POLICYNAME$ házirendet.",
+    "placeholders": {
+      "policyName": {
+        "content": "$1",
+        "example": "Single Sign-On Authentication"
+      }
+    }
   },
   "personalOwnershipPolicyInEffect": {
     "message": "A szervezeti házirend befolyásolja a tulajdonosi opciókat."
+  },
+  "personalOwnershipPolicyInEffectImports": {
+    "message": "Egy szervezeti házirend letiltotta az elemek személyes tárolóba történő importálását."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "A szervezeti felhasználók személyes tulajdon letiltása"
@@ -3910,6 +4024,15 @@
       }
     }
   },
+  "eventResetSsoLink": {
+    "message": "Sso hivatkozás visszaállítása $ID$ felhasználónál",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Jelszó visszaállítása"
   },
@@ -3988,6 +4111,21 @@
   "removeUsersWarning": {
     "message": "Biztosan eltávolításra kerüljenek a következő felhasználók? A folyamat néhány másodpercet vehet igénybe és nem szakítható meg vagy törölhető."
   },
+  "theme": {
+    "message": "Téma"
+  },
+  "themeDesc": {
+    "message": "Válasszunk témát az internetes széfhez."
+  },
+  "themeSystem": {
+    "message": "Rendszertéma használata"
+  },
+  "themeDark": {
+    "message": "Sötét"
+  },
+  "themeLight": {
+    "message": "Világos"
+  },
   "confirmSelected": {
     "message": "Kiválasztás megerősítése"
   },
@@ -4017,5 +4155,298 @@
   },
   "resetPasswordManageUsers": {
     "message": "A felhasználók kezelését engedélyezni kell a Jelszó visszaállításának kezelése jogosultsággal is."
+  },
+  "setupProvider": {
+    "message": "Szolgáltató beállítása"
+  },
+  "setupProviderLoginDesc": {
+    "message": "Meghívás érkezett egy új szolgáltató beállítására. A folytatáshoz be kell jelentkezni vagy létre kell hozni egy új Bitwarden fiókot."
+  },
+  "setupProviderDesc": {
+    "message": "Adjuk meg az alábbi adatokat a szolgáltató beállításának befejezéséhez. Ha bármilyen kérdés van, forduljunk az Ügyfélszolgálathoz."
+  },
+  "providerName": {
+    "message": "Szolgáltató neve"
+  },
+  "providerSetup": {
+    "message": "A szolgáltató beüzemelésre került."
+  },
+  "clients": {
+    "message": "Ügyfelek"
+  },
+  "providerAdmin": {
+    "message": "Szolgáltató adminisztrátor"
+  },
+  "providerAdminDesc": {
+    "message": "Adjuk meg az alábbi adatokat a szolgáltató beállításának befejezéséhez. Ha bármilyen kérdés van, forduljunk az Ügyfélszolgálathoz."
+  },
+  "serviceUser": {
+    "message": "Szolgáltatás felhasználó"
+  },
+  "serviceUserDesc": {
+    "message": "A szolgáltatás felhasználói elérhetik és kezelhetik az összes ügyfélszervezetet."
+  },
+  "providerInviteUserDesc": {
+    "message": "Új felhasználó meghívása a szervezetéhez a Bitwarden fiók email címének megadásával. Ha még nem rendelkeznek Bitwarden fiókkal, felkérjük új fiók létrehozására."
+  },
+  "joinProvider": {
+    "message": "Csatlakozás szolgáltatóhoz"
+  },
+  "joinProviderDesc": {
+    "message": "Meghívást érkezett a fenti szervezethez csatlakozáshoz.  A meghívás elfogadásához be kell jelentkezni vagy új Bitwarden fiókot kell létrehozni."
+  },
+  "providerInviteAcceptFailed": {
+    "message": "A meghívás nem fogadható el. Kérjük fel a szervezet adminisztrátorát új meghívó küldésére."
+  },
+  "providerInviteAcceptedDesc": {
+    "message": "A szervezet elérhető, amikor az adminisztrátor jóváhagyja a tagságot. Amint ez megtörténik, értesítő email érkezik."
+  },
+  "providerUsersNeedConfirmed": {
+    "message": "Vannak olyan felhasználók, akik elfogadták a meghívást, de ezt még meg kell erősíteni. A felhasználók csak a megerősítésük után férhetnek hozzá a szervezethez."
+  },
+  "provider": {
+    "message": "Szolgáltató"
+  },
+  "newClientOrganization": {
+    "message": "Új ügyfél szervezet"
+  },
+  "newClientOrganizationDesc": {
+    "message": "Egy új ügyfélszervezet létrehozása társított szolgáltatásként. Lehetőség lesz a szervezet elérésére és kezelésére."
+  },
+  "addExistingOrganization": {
+    "message": "Létező fordítások hozzáadása"
+  },
+  "myProvider": {
+    "message": "Saját szolgáltató"
+  },
+  "addOrganizationConfirmation": {
+    "message": "Biztosan hozzá szeretnénk adni $ORGANIZATION$ szervezetet ügyfélként $PROVIDER$ szolgáltatáshoz?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      },
+      "provider": {
+        "content": "$2",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "organizationJoinedProvider": {
+    "message": "A szervezet sikeresen hozzáadásra került a szolgáltatóhoz"
+  },
+  "accessingUsingProvider": {
+    "message": "Hozzáférés a szervezethez $PROVIDER$ szolgáltató használatával",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "providerIsDisabled": {
+    "message": "A szolgáltató letiltásra került."
+  },
+  "providerUpdated": {
+    "message": "A szolgáltató frissítésre került."
+  },
+  "yourProviderIs": {
+    "message": "A szolgáltató $PROVIDER$. Rendszergazdai és számlázási jogosultságokkal rendelkeznek a szervezet számára.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "detachedOrganization": {
+    "message": "$ORGANIZATION$ szervezet leválasztásra került a szolgáltatótól.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "detachOrganizationConfirmation": {
+    "message": "Biztosan leválasztjuk ezt a szervezetet? A szervezet továbbra is fennáll, de már nem a szolgáltató kezeli."
+  },
+  "add": {
+    "message": "Hozzáadás"
+  },
+  "updatedMasterPassword": {
+    "message": "A mesterjelszó frissítésre került."
+  },
+  "updateMasterPassword": {
+    "message": "Mesterjelszó frissítése"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "A mesterjelszót nemrégiben megváltoztatta a szervezet rendszergazdája. A tároló eléréséhez most frissíteni kell a mesterjelszót. A folytatás kijelentkeztet az aktuális munkamenetből és újra be kell jelentkezni. A más eszközökön végzett aktív munkamenetek akár egy órán keresztül is aktívak maradhatnak."
+  },
+  "maximumVaultTimeout": {
+    "message": "Széf időkifutás"
+  },
+  "maximumVaultTimeoutDesc": {
+    "message": "Állítsunk be maximális széf időtúllépést minden felhasználó számára."
+  },
+  "maximumVaultTimeoutLabel": {
+    "message": "Maximális széf időkifutás"
+  },
+  "invalidMaximumVaultTimeout": {
+    "message": "A maximális széf időkifutás érvénytelen."
+  },
+  "hours": {
+    "message": "Óra"
+  },
+  "minutes": {
+    "message": "Perc"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "A szervezeti házirendek hatással vannak a széf időkorlátjára. A széf időkorlátja legfeljebb $HOURS$ óra és $MINUTES$ perc lehet.",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "customVaultTimeout": {
+    "message": "Egyedi széf időkifutás"
+  },
+  "vaultTimeoutToLarge": {
+    "message": "A széf időkorlátja túllépi a szervezet által beállított korlátozást."
+  },
+  "disablePersonalVaultExport": {
+    "message": "A személyes széf exportálás nem engedélyezett."
+  },
+  "disablePersonalVaultExportDesc": {
+    "message": "Biztosan leválasztjuk ezt a szervezetet? A szervezet továbbra is fennáll, de már nem a szolgáltató kezeli."
+  },
+  "vaultExportDisabled": {
+    "message": "A széf exportálás nem engedélyezett."
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Egy vagy több szervezeti házirend tiltja a személyes széf exportálását."
+  },
+  "selectType": {
+    "message": "SSO típus választás"
+  },
+  "type": {
+    "message": "Típus"
+  },
+  "openIdConnectConfig": {
+    "message": "OpenID kapcsolat konfiguráció"
+  },
+  "samlSpConfig": {
+    "message": "SAML szolgáltató konfiguráció"
+  },
+  "samlIdpConfig": {
+    "message": "SAML azonosítási szolgáltató konfiguráció"
+  },
+  "callbackPath": {
+    "message": "Tartalék útvonal"
+  },
+  "signedOutCallbackPath": {
+    "message": "Kijelentkezett tartalék útvonal"
+  },
+  "authority": {
+    "message": "Hitelesítés"
+  },
+  "clientId": {
+    "message": "Ügyfél AZ"
+  },
+  "clientSecret": {
+    "message": "Titkos ügyfélkód"
+  },
+  "metadataAddress": {
+    "message": "Metaadat cím"
+  },
+  "oidcRedirectBehavior": {
+    "message": "OIDC átirányítási viselkedés"
+  },
+  "getClaimsFromUserInfoEndpoint": {
+    "message": "Követelések lekérése a felhasználói adatok végpontjáról"
+  },
+  "additionalScopes": {
+    "message": "További/egyedi hatókörök (vesszővel elválasztva)"
+  },
+  "additionalUserIdClaimTypes": {
+    "message": "További/egyedi felhasználó AZ követelések (vesszővel elválasztva)"
+  },
+  "additionalEmailClaimTypes": {
+    "message": "További/egyedi email követelés típusok (vesszővel elválasztva)"
+  },
+  "additionalNameClaimTypes": {
+    "message": "További/egyedi név követelés típusok (vesszővel elválasztva)"
+  },
+  "acrValues": {
+    "message": "Kért hitelesítési kontextusosztály referenciaértékek (acr_values)"
+  },
+  "expectedReturnAcrValue": {
+    "message": "Elvárt „acr” követelésérték a válaszban (acr érvényesítés)"
+  },
+  "spEntityId": {
+    "message": "SP Szervezet AZ"
+  },
+  "spMetadataUrl": {
+    "message": "SAML 2.0 metaadat webcím"
+  },
+  "spAcsUrl": {
+    "message": "Az Assertion Consumer Service (ACS) webcíme"
+  },
+  "spNameIdFormat": {
+    "message": "Név AZ formátum"
+  },
+  "spOutboundSigningAlgorithm": {
+    "message": "Kimenő aláírási algoritmus"
+  },
+  "spSigningBehavior": {
+    "message": "Aláírási viselkedés"
+  },
+  "spMinIncomingSigningAlgorithm": {
+    "message": "Minimális bejövő aláírási algoritmus"
+  },
+  "spWantAssertionsSigned": {
+    "message": "Állításokat szeretnének aláírni"
+  },
+  "spValidateCertificates": {
+    "message": "Tanúsítványok ellenőrzése"
+  },
+  "idpEntityId": {
+    "message": "Szervezeti ID"
+  },
+  "idpBindingType": {
+    "message": "Kötés típusa"
+  },
+  "idpSingleSignOnServiceUrl": {
+    "message": "Egyszeri bejelentkezési szolgáltatás webcíme"
+  },
+  "idpSingleLogoutServiceUrl": {
+    "message": "Egyszeri kijelentkezés szolgáltatás webcíme"
+  },
+  "idpArtifactResolutionServiceUrl": {
+    "message": "Artifact feloldási szolgáltatás webcím"
+  },
+  "idpX509PublicCert": {
+    "message": "X509 Nyilvános tanúsítvány"
+  },
+  "idpOutboundSigningAlgorithm": {
+    "message": "Kimenő aláírási algoritmus"
+  },
+  "idpAllowUnsolicitedAuthnResponse": {
+    "message": "Kéretlen hitelesítési válasz engedélyezése"
+  },
+  "idpDisableOutboundLogoutRequests": {
+    "message": "Kimenő kijelentkezési kérések letiltása"
+  },
+  "idpWantAuthnRequestsSigned": {
+    "message": "Szeretnénk aláírni a hitelesítési kérelmeket"
+  },
+  "ssoSettingsSaved": {
+    "message": "Az egyszeri bejelentkezés konfigurációja mentésre került."
   }
 }

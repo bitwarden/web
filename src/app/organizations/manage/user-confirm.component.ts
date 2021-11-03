@@ -9,6 +9,7 @@ import {
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 
 @Component({
@@ -26,7 +27,8 @@ export class UserConfirmComponent implements OnInit {
     fingerprint: string;
     formPromise: Promise<any>;
 
-    constructor(private cryptoService: CryptoService, private storageService: StorageService) { }
+    constructor(private cryptoService: CryptoService, private storageService: StorageService,
+        private logService: LogService) { }
 
     async ngOnInit() {
         try {
@@ -36,7 +38,9 @@ export class UserConfirmComponent implements OnInit {
                     this.fingerprint = fingerprint.join('-');
                 }
             }
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
         this.loading = false;
     }
 

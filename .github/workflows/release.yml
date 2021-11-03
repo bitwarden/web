@@ -15,9 +15,9 @@ jobs:
     steps:
       - name: Branch check
         run: |
-          if [[ "$GITHUB_REF" != "refs/heads/rc" ]]; then
+          if [[ "$GITHUB_REF" != "refs/heads/release" ]]; then
             echo "==================================="
-            echo "[!] Can only release from rc branch"
+            echo "[!] Can only release from the 'release' branch"
             echo "==================================="
             exit 1
           fi
@@ -43,7 +43,7 @@ jobs:
 
 
   self-host:
-    name: Build self-host docker
+    name: Release self-host docker
     runs-on: ubuntu-20.04
     needs: setup
     env:
@@ -66,20 +66,18 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
-      - name: Pull latest selfhost rc image
-        run: docker pull bitwarden/web:rc
+      - name: Pull latest selfhost Release image
+        run: docker pull bitwarden/web:latest
 
       - name: Tag version
         run: |
-          docker tag bitwarden/web:rc bitwarden/web:latest
-          docker tag bitwarden/web:rc bitwarden/web:$_RELEASE_VERSION
+          docker tag bitwarden/web:latest bitwarden/web:$_RELEASE_VERSION
 
       - name: List Docker images
         run: docker images
 
       - name: Push images
         run: |
-          docker push bitwarden/web:latest
           docker push bitwarden/web:$_RELEASE_VERSION
         env:
           DOCKER_CONTENT_TRUST: 1
@@ -108,7 +106,11 @@ jobs:
         run: |
           git switch -c deploy-$_TAG_VERSION
           git push -u origin deploy-$_TAG_VERSION
-          git switch rc
+
+      - name: Checkout Repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f  # v2.3.4
+        with:
+          ref: release
 
       - name: Setup git config
         run: |
@@ -117,17 +119,17 @@ jobs:
           git config --global url."https://github.com/".insteadOf ssh://git@github.com/
           git config --global url."https://".insteadOf ssh://
 
-      - name: Download latest RC Production build
-        uses: dawidd6/action-download-artifact@b9571484721e8187f1fd08147b497129f8972c74  # v2.14.0
+      - name: Download latest cloud asset
+        uses: bitwarden/gh-actions/download-artifacts@23433be15ed6fd046ce12b6889c5184a8d9c8783
         with:
           workflow: build.yml
           workflow_conclusion: success
-          branch: rc
-          name: prod-build-artifact.zip
+          branch: release
+          artifacts: web-*-cloud-COMMERCIAL.zip
 
       # This should result in a build directory in the current working directory
       - name: Unzip build asset
-        run: unzip prod-build-artifact.zip
+        run: unzip web-*-cloud-COMMERCIAL.zip
 
       - name: Deploy GitHub Pages
         uses: crazy-max/ghaction-github-pages@db4476a01402e1a7ce05f41832040eef16d14925  # v2.5.0
@@ -158,20 +160,28 @@ jobs:
       - self-host
       - ghpages-deploy
     steps:
-      - name: Download latest RC Production build
-        uses: dawidd6/action-download-artifact@b9571484721e8187f1fd08147b497129f8972c74  # v2.14.0
+      - name: Download latest build artifacts
+        uses: bitwarden/gh-actions/download-artifacts@23433be15ed6fd046ce12b6889c5184a8d9c8783
         with:
           workflow: build.yml
           workflow_conclusion: success
-          branch: rc
-          name: prod-build-artifact.zip
+          branch: release
+          artifacts: "web-*-selfhosted-COMMERCIAL.zip,
+                      web-*-selfhosted-open-source.zip"
+
+      - name: Rename assets
+        run: |
+          mv web-*-selfhosted-COMMERCIAL.zip web-${{ needs.setup.outputs.release_version }}-selfhosted-COMMERCIAL.zip
+          mv web-*-selfhosted-open-source.zip web-${{ needs.setup.outputs.release_version }}-selfhosted-open-source.zip
 
       - name: Create release
         uses: ncipollo/release-action@95215a3cb6e6a1908b3c44e00b4fdb15548b1e09
         with:
-          artifacts: prod-build-artifact.zip
+          name: "Version ${{ needs.setup.outputs.release_version }}"
           commit: ${{ github.sha }}
           tag: "${{ needs.setup.outputs.tag_version }}"
-          name: "Version ${{ needs.setup.outputs.release_version }}"
           body: "<insert release notes here>"
+          artifacts: "web-${{ needs.setup.outputs.release_version }}-selfhosted-COMMERCIAL.zip,
+                      web-${{ needs.setup.outputs.release_version }}-selfhosted-open-source.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true

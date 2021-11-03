@@ -12,6 +12,7 @@ import {
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
@@ -36,7 +37,7 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
         i18nService: I18nService, route: ActivatedRoute,
         private apiService: ApiService, userService: UserService,
         stateService: StateService, private cryptoService: CryptoService,
-        private policyService: PolicyService) {
+        private policyService: PolicyService, private logService: LogService) {
         super(router, toasterService, i18nService, route, userService, stateService);
     }
 
@@ -101,7 +102,9 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
             const policies = await this.apiService.getPoliciesByToken(qParams.organizationId, qParams.token,
                 qParams.email, qParams.organizationUserId);
             policyList = this.policyService.mapPoliciesFromToken(policies);
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
 
         if (policyList != null) {
             const result = this.policyService.getResetPasswordPolicyOptions(policyList, qParams.organizationId);

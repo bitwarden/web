@@ -10,12 +10,14 @@
         }
 
         & > a {
-            @include themify($themes) {
-                color: themed('tableLinkColor');
-            }
-            &:hover {
+            &:not(.badge) {
                 @include themify($themes) {
-                    color: themed('tableLinkColorHover');
+                    color: themed('tableLinkColor');
+                }
+                &:hover {
+                    @include themify($themes) {
+                        color: themed('tableLinkColorHover');
+                    }
                 }
             }
         }
