@@ -388,8 +388,8 @@
                     <textarea id="notes" name="Notes" rows="6" [(ngModel)]="cipher.notes"
                         [disabled]="cipher.isDeleted || viewOnly" class="form-control"></textarea>
                 </div>
-                <app-vault-add-edit-custom-fields [cipher]="cipher" [viewOnly]="viewOnly" [copy]="copy.bind(this)">
-                </app-vault-add-edit-custom-fields>
+                <app-vault-add-edit-custom-fields [cipher]="cipher" [thisCipherType]="cipher.type" [viewOnly]="viewOnly"
+                    [copy]="copy.bind(this)"></app-vault-add-edit-custom-fields>
                 <ng-container *ngIf="allowOwnershipAssignment()">
                     <h3 class="mt-4">{{'ownership' | i18n}}</h3>
                     <div class="row">
