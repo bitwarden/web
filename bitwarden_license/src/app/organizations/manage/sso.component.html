@@ -8,11 +8,37 @@
 </ng-container>
 
 <form #form (ngSubmit)="submit()" [formGroup]="data" [appApiAction]="formPromise" *ngIf="!loading">
+    <p><a routerLink="../policies">{{'ssoPolicyHelp' | i18n}}</a></p>
+    
     <div class="form-group">
         <div class="form-check">
             <input class="form-check-input" type="checkbox" id="enabled" [formControl]="enabled" name="Enabled">
-            <label class="form-check-label" for="enabled">{{'enabled' | i18n}}</label>
+            <label class="form-check-label" for="enabled">{{'allowSso' | i18n}}</label>
         </div>
+        <small class="form-text text-muted">{{'allowSsoDesc' | i18n}}</small>
+    </div>
+
+    <div class="form-group">
+        <label>{{'memberDecryptionOption' | i18n}}</label>
+        <div class="form-check form-check-block">
+            <input class="form-check-input" type="radio" id="vaultTimeoutActionLock" [value]="false" formControlName="useCryptoAgent">
+            <label class="form-check-label" for="vaultTimeoutActionLock">
+                {{'masterPass' | i18n}}
+                <small>{{'memberDecryptionPassDesc' | i18n}}</small>
+            </label>
+        </div>
+        <div class="form-check mt-2 form-check-block">
+            <input class="form-check-input" type="radio" id="vaultTimeoutActionLogOut" [value]="true" formControlName="useCryptoAgent">
+            <label class="form-check-label" for="vaultTimeoutActionLogOut">
+                {{'keyConnector' | i18n}}
+                <small>{{'memberDecryptionKeyConnectorDesc' | i18n}}</small>
+            </label>
+        </div>
+    </div>
+
+    <div class="form-group" *ngIf="data.value.useCryptoAgent">
+        <label>{{'keyConnectorUrl' | i18n}}</label>
+        <input class="form-control" formControlName="cryptoAgentUrl">
     </div>
 
     <div class="form-group">
@@ -22,19 +48,6 @@
             <option value="1">OpenID Connect</option>
             <option value="2">SAML 2.0</option>
         </select>
-    </div>
-
-    <div class="form-group">
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="useCryptoAgent" formControlName="useCryptoAgent">
-            <label class="form-check-label" for="useCryptoAgent">{{'enableCryptoAgent' | i18n}}</label>
-        </div>
-        <small class="form-text text-muted">{{'enableCryptoAgentDesc' | i18n}}</small>
-    </div>
-
-    <div class="form-group">
-        <label>{{'cryptoAgentUrl' | i18n}}</label>
-        <input class="form-control" formControlName="cryptoAgentUrl">
     </div>
 
     <!-- OIDC -->

@@ -4455,14 +4455,8 @@
   "ssoCryptoAgentUnavailable": {
     "message": "Unable to reach the crypto agent, try again later."
   },
-  "enableCryptoAgent": {
-    "message": "Use organization-managed encryption"
-  },
-  "enableCryptoAgentDesc": {
-    "message": "Members will log in using their identity provider credentials with no Master Password prompt. Only use this setting if your organization approves managing decryption keys in an on-premise crypto agent."
-  },
-  "cryptoAgentUrl": {
-    "message": "Crypto Agent Url"
+  "keyConnectorUrl": {
+    "message": "Key Connector URL"
   },
   "verificationCode": {
     "message": "Verification Code"
@@ -4490,5 +4484,26 @@
   },
   "removedMasterPassword": {
     "message": "Master password removed."
+  },
+  "allowSso": {
+    "message": "Allow SSO authentication"
+  },
+  "allowSsoDesc": {
+    "message": "Once set up, your configuration will be saved and members will be able to authenticate using their Identity Provider credentials."
+  },
+  "ssoPolicyHelp": {
+    "message": "Enable the SSO Policy to require all members to log in with SSO."
+  },
+  "memberDecryptionOption": {
+    "message": "Member Decryption Options"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Once authenticated, members will decrypt vault data using their Master Passwords."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt vault data."
   }
 }
