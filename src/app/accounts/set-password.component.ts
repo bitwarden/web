@@ -4,7 +4,6 @@ import {
     Router,
 } from '@angular/router';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -17,6 +16,7 @@ import { SyncService } from 'jslib-common/abstractions/sync.service';
 import {
     SetPasswordComponent as BaseSetPasswordComponent,
 } from 'jslib-angular/components/set-password.component';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 @Component({
     selector: 'app-set-password',
@@ -27,9 +27,8 @@ export class SetPasswordComponent extends BaseSetPasswordComponent {
         cryptoService: CryptoService, messagingService: MessagingService,
         passwordGenerationService: PasswordGenerationService, platformUtilsService: PlatformUtilsService,
         policyService: PolicyService, router: Router,
-        syncService: SyncService, route: ActivatedRoute,
-        activeAccount: ActiveAccountService) {
+        syncService: SyncService, route: ActivatedRoute, stateService: StateService) {
         super(i18nService, cryptoService, messagingService, passwordGenerationService,
-            platformUtilsService, policyService, router, apiService, syncService, route, activeAccount);
+            platformUtilsService, policyService, router, apiService, syncService, route, stateService);
     }
 }

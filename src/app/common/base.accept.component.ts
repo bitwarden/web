@@ -12,7 +12,6 @@ import {
     ToasterService,
 } from 'angular2-toaster';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
 
@@ -29,7 +28,7 @@ export abstract class BaseAcceptComponent implements OnInit {
 
     constructor(protected router: Router, protected toasterService: ToasterService,
         protected i18nService: I18nService, protected route: ActivatedRoute,
-        protected stateService: StateService, protected activeAccount: ActiveAccountService) { }
+        protected stateService: StateService) { }
 
     abstract authedHandler(qParams: any): Promise<void>;
     abstract unauthedHandler(qParams: any): Promise<void>;
@@ -41,12 +40,12 @@ export abstract class BaseAcceptComponent implements OnInit {
                 return;
             }
             fired = true;
-            await this.stateService.remove('loginRedirect');
+            await this.stateService.setLoginRedirect(null);
 
             let error = this.requiredParameters.some(e => qParams?.[e] == null || qParams[e] === '');
             let errorMessage: string = null;
             if (!error) {
-                this.authed = this.activeAccount.isAuthenticated;
+                this.authed = await this.stateService.getIsAuthenticated();
 
                 if (this.authed) {
                     try {
@@ -56,7 +55,7 @@ export abstract class BaseAcceptComponent implements OnInit {
                         errorMessage = e.message;
                     }
                 } else {
-                    await this.stateService.save('loginRedirect', {
+                    await this.stateService.setLoginRedirect({
                         route: this.getRedirectRoute(),
                         qParams: qParams,
                     });

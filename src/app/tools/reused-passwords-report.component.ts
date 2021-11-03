@@ -3,7 +3,6 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
@@ -14,6 +13,7 @@ import { CipherView } from 'jslib-common/models/view/cipherView';
 
 import { CipherType } from 'jslib-common/enums/cipherType';
 
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { CipherReportComponent } from './cipher-report.component';
 
 @Component({
@@ -24,9 +24,9 @@ export class ReusedPasswordsReportComponent extends CipherReportComponent implem
     passwordUseMap: Map<string, number>;
 
     constructor(protected cipherService: CipherService, modalService: ModalService,
-        messagingService: MessagingService, activeAccount: ActiveAccountService,
+        messagingService: MessagingService, stateService: StateService,
         passwordRepromptService: PasswordRepromptService) {
-        super(modalService, messagingService, true, activeAccount, passwordRepromptService);
+        super(modalService, messagingService, true, stateService, passwordRepromptService);
     }
 
     async ngOnInit() {

@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { CipherType } from 'jslib-common/enums/cipherType';
 import { EventType } from 'jslib-common/enums/eventType';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { AuditService } from 'jslib-common/abstractions/audit.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
@@ -19,6 +18,7 @@ import { StateService } from 'jslib-common/abstractions/state.service';
 import { TotpService } from 'jslib-common/abstractions/totp.service';
 
 import { AddEditComponent as BaseAddEditComponent } from 'jslib-angular/components/add-edit.component';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { LoginUriView } from 'jslib-common/models/view/loginUriView';
 
 @Component({
@@ -44,11 +44,9 @@ export class AddEditComponent extends BaseAddEditComponent {
         auditService: AuditService, stateService: StateService,
         collectionService: CollectionService, protected totpService: TotpService,
         protected passwordGenerationService: PasswordGenerationService, protected messagingService: MessagingService,
-        eventService: EventService, protected policyService: PolicyService,
-        activeAccount: ActiveAccountService, organizationService: OrganizationService) {
+        eventService: EventService, protected policyService: PolicyService, organizationService: OrganizationService, logService: LogService) {
         super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
-            collectionService, messagingService, eventService, policyService,
-            activeAccount, organizationService);
+            collectionService, messagingService, eventService, policyService, logService, organizationService);
     }
 
     async ngOnInit() {
@@ -58,7 +56,7 @@ export class AddEditComponent extends BaseAddEditComponent {
         this.hasPasswordHistory = this.cipher.hasPasswordHistory;
         this.cleanUp();
 
-        this.canAccessPremium = this.activeAccount.canAccessPremium;
+        this.canAccessPremium = await this.stateService.getCanAccessPremium();
         if (this.cipher.type === CipherType.Login && this.cipher.login.totp &&
             (this.cipher.organizationUseTotp || this.canAccessPremium)) {
             await this.totpUpdateCode();

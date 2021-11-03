@@ -6,7 +6,6 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
@@ -20,6 +19,7 @@ import { ModalRef } from 'jslib-angular/components/modal/modal.ref';
 import { PolicyType } from 'jslib-common/enums/policyType';
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { TwoFactorAuthenticatorComponent } from './two-factor-authenticator.component';
 import { TwoFactorDuoComponent } from './two-factor-duo.component';
 import { TwoFactorEmailComponent } from './two-factor-email.component';
@@ -48,10 +48,10 @@ export class TwoFactorSetupComponent implements OnInit {
 
     constructor(protected apiService: ApiService, protected modalService: ModalService,
         protected messagingService: MessagingService, protected policyService: PolicyService,
-        private activeAccount: ActiveAccountService) { }
+        private stateService: StateService) { }
 
     async ngOnInit() {
-        this.canAccessPremium = this.activeAccount.canAccessPremium;
+        this.canAccessPremium = await this.stateService.getCanAccessPremium();
 
         for (const key in TwoFactorProviders) {
             if (!TwoFactorProviders.hasOwnProperty(key)) {

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -11,6 +10,8 @@ import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 
 import { UpdateTempPasswordComponent as BaseUpdateTempPasswordComponent } from 'jslib-angular/components/update-temp-password.component';
+import { LogService } from 'jslib-common/abstractions/log.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 @Component({
     selector: 'app-update-temp-password',
@@ -21,8 +22,8 @@ export class UpdateTempPasswordComponent extends BaseUpdateTempPasswordComponent
     constructor(i18nService: I18nService, platformUtilsService: PlatformUtilsService,
         passwordGenerationService: PasswordGenerationService, policyService: PolicyService,
         cryptoService: CryptoService, messagingService: MessagingService,
-        apiService: ApiService, activeAccount: ActiveAccountService) {
+        apiService: ApiService, logService: LogService, stateService: StateService, syncService: SyncService) {
         super(i18nService, platformUtilsService, passwordGenerationService, policyService, cryptoService,
-            messagingService, apiService, activeAccount, syncService);
+            messagingService, apiService, stateService, syncService, logService);
     }
 }

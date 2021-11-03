@@ -26,8 +26,6 @@ import { ModalService as ModalServiceAbstraction } from 'jslib-angular/services/
 import { UnauthGuardService } from 'jslib-angular/services/unauth-guard.service';
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
-import { AccountsManagementService } from 'jslib-common/services/accountsManagement.service';
-import { ActiveAccountService } from 'jslib-common/services/activeAccount.service';
 import { ApiService } from 'jslib-common/services/api.service';
 import { AppIdService } from 'jslib-common/services/appId.service';
 import { AuditService } from 'jslib-common/services/audit.service';
@@ -52,15 +50,12 @@ import { SearchService } from 'jslib-common/services/search.service';
 import { SendService } from 'jslib-common/services/send.service';
 import { SettingsService } from 'jslib-common/services/settings.service';
 import { StateService } from 'jslib-common/services/state.service';
-import { StoreService } from 'jslib-common/services/store.service';
 import { SyncService } from 'jslib-common/services/sync.service';
 import { TokenService } from 'jslib-common/services/token.service';
 import { TotpService } from 'jslib-common/services/totp.service';
 import { VaultTimeoutService } from 'jslib-common/services/vaultTimeout.service';
 import { WebCryptoFunctionService } from 'jslib-common/services/webCryptoFunction.service';
 
-import { AccountsManagementService as AccountsManagementServiceAbstraction } from 'jslib-common/abstractions/accountsManagement.service';
-import { ActiveAccountService as ActiveAccountServiceAbstraction } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService as ApiServiceAbstraction } from 'jslib-common/abstractions/api.service';
 import { AuditService as AuditServiceAbstraction } from 'jslib-common/abstractions/audit.service';
 import { AuthService as AuthServiceAbstraction } from 'jslib-common/abstractions/auth.service';
@@ -71,7 +66,7 @@ import { CryptoFunctionService as CryptoFunctionServiceAbstraction } from 'jslib
 import { EnvironmentService as EnvironmentServiceAbstraction, Urls } from 'jslib-common/abstractions/environment.service';
 import { EventService as EventLoggingServiceAbstraction } from 'jslib-common/abstractions/event.service';
 import { ExportService as ExportServiceAbstraction } from 'jslib-common/abstractions/export.service';
-import { FileUploadService as FileUploadServiceAbstraction }  from 'jslib-common/abstractions/fileUpload.service';
+import { FileUploadService as FileUploadServiceAbstraction } from 'jslib-common/abstractions/fileUpload.service';
 import { FolderService as FolderServiceAbstraction } from 'jslib-common/abstractions/folder.service';
 import { I18nService as I18nServiceAbstraction } from 'jslib-common/abstractions/i18n.service';
 import { ImportService as ImportServiceAbstraction } from 'jslib-common/abstractions/import.service';
@@ -97,65 +92,61 @@ import { TotpService as TotpServiceAbstraction } from 'jslib-common/abstractions
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib-common/abstractions/vaultTimeout.service';
 import { ModalService } from './modal.service';
 
-import { StorageKey } from 'jslib-common/enums/storageKey';
 import { ThemeType } from 'jslib-common/enums/themeType';
 
 const i18nService = new I18nService(window.navigator.language, 'locales');
-const stateService = new StateService();
 const broadcasterService = new BroadcasterService();
 const messagingService = new BroadcasterMessagingService(broadcasterService);
 const consoleLogService = new ConsoleLogService(false);
-const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService, () => activeAccount);
+const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService, () => stateService);
 const storageService: StorageServiceAbstraction = new HtmlStorageService(platformUtilsService);
 const secureStorageService: StorageServiceAbstraction = new MemoryStorageService();
-const accountsManagementService: AccountsManagementServiceAbstraction = new AccountsManagementService(storageService, secureStorageService);
-const storeService = new StoreService(storageService, platformUtilsService.isDev() ? storageService : secureStorageService);
-const activeAccount: ActiveAccountServiceAbstraction = new ActiveAccountService(accountsManagementService, storeService);
-const organizationService: OrganizationServiceAbstraction = new OrganizationService(activeAccount);
-const providerService: ProviderServiceAbstraction = new ProviderService(activeAccount);
+const stateService: StateServiceAbstraction = new StateService(storageService, secureStorageService, consoleLogService);
+const organizationService: OrganizationServiceAbstraction = new OrganizationService(stateService);
+const providerService: ProviderServiceAbstraction = new ProviderService(stateService);
 const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(window,
     platformUtilsService);
 const cryptoService = new CryptoService(cryptoFunctionService, platformUtilsService,
-    consoleLogService, activeAccount);
-const tokenService = new TokenService(activeAccount);
+    consoleLogService, stateService);
+const tokenService = new TokenService(stateService);
 const appIdService = new AppIdService(storageService);
-const environmentService = new EnvironmentService(activeAccount);
+const environmentService = new EnvironmentService(stateService);
 const apiService = new ApiService(tokenService, platformUtilsService, environmentService,
     async (expired: boolean) => messagingService.send('logout', { expired: expired }));
-const settingsService = new SettingsService(activeAccount);
+const settingsService = new SettingsService(stateService);
 export let searchService: SearchService = null;
 const fileUploadService = new FileUploadService(consoleLogService, apiService);
 const cipherService = new CipherService(cryptoService, settingsService,
-    apiService, fileUploadService, i18nService, () => searchService, activeAccount);
+    apiService, fileUploadService, i18nService, () => searchService, consoleLogService, stateService);
 const folderService = new FolderService(cryptoService, apiService,
-    i18nService, cipherService, activeAccount);
-const collectionService = new CollectionService(cryptoService, i18nService, activeAccount);
+    i18nService, cipherService, stateService);
+const collectionService = new CollectionService(cryptoService, i18nService, stateService);
 searchService = new SearchService(cipherService, consoleLogService, i18nService);
-const policyService = new PolicyService(activeAccount, organizationService);
+const policyService = new PolicyService(stateService, organizationService, apiService);
 const sendService = new SendService(cryptoService, apiService, fileUploadService,
-    i18nService, cryptoFunctionService, activeAccount);
+    i18nService, cryptoFunctionService, stateService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
     cryptoService, platformUtilsService, messagingService, searchService, tokenService,
-    policyService, activeAccount, async () => messagingService.send('logout', { expired: false }));
+    policyService, stateService, async () => messagingService.send('logout', { expired: false }));
 const syncService = new SyncService(apiService, settingsService,
     folderService, cipherService, cryptoService, collectionService, messagingService, policyService,
-    sendService, async (expired: boolean) => messagingService.send('logout', { expired: expired }),
-    activeAccount, organizationService, providerService);
-const passwordGenerationService = new PasswordGenerationService(cryptoService, policyService, activeAccount);
-const totpService = new TotpService(cryptoFunctionService, activeAccount);
+    sendService, consoleLogService, async (expired: boolean) => messagingService.send('logout', { expired: expired }),
+    stateService, organizationService, providerService);
+const passwordGenerationService = new PasswordGenerationService(cryptoService, policyService, stateService);
+const totpService = new TotpService(cryptoFunctionService, consoleLogService, stateService);
 const containerService = new ContainerService(cryptoService);
 const authService = new AuthService(cryptoService, apiService,
     tokenService, appIdService, i18nService, platformUtilsService, messagingService, vaultTimeoutService,
-    consoleLogService, activeAccount, accountsManagementService);
+    consoleLogService, cryptoFunctionService, stateService);
 const exportService = new ExportService(folderService, cipherService, apiService, cryptoService);
 const importService = new ImportService(cipherService, folderService, apiService, i18nService, collectionService,
     platformUtilsService, cryptoService);
 const notificationsService = new NotificationsService(syncService, appIdService, apiService, vaultTimeoutService,
     environmentService, async () => messagingService.send('logout', { expired: true }), consoleLogService,
-    activeAccount);
+    stateService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(apiService, cipherService,
-    activeAccount, organizationService);
+    stateService, consoleLogService, organizationService);
 
 containerService.attachToWindow(window);
 
@@ -170,25 +161,24 @@ export function initFactory(): Function {
         setTimeout(() => notificationsService.init(), 3000);
 
         vaultTimeoutService.init(true);
-        const locale = await activeAccount.getInformation<string>(StorageKey.Locale);
+        const locale = await stateService.getLocale();
         await i18nService.init(locale);
         eventLoggingService.init(true);
         authService.init();
         const htmlEl = window.document.documentElement;
         htmlEl.classList.add('locale_' + i18nService.translationLocale);
-
         // Initial theme is set in index.html which must be updated if there are any changes to theming logic
         platformUtilsService.onDefaultSystemThemeChange(async sysTheme => {
-            const bwTheme = await activeAccount.getInformation<ThemeType>(StorageKey.Theme);
+            const bwTheme = await stateService.getTheme();
+            console.log(bwTheme);
             if (bwTheme === ThemeType.System) {
                 htmlEl.classList.remove('theme_' + ThemeType.Light, 'theme_' + ThemeType.Dark);
                 htmlEl.classList.add('theme_' + sysTheme);
             }
         });
-
-        stateService.save(StorageKey.DisableFavicon,
-            await storageService.get<boolean>(StorageKey.DisableFavicon));
-        stateService.save('enableGravatars', await storageService.get<boolean>('enableGravatars'));
+        // TODO: stateService refactor: Either make these global instead of account level, or move elsewhere.
+        // await stateService.setDisableFavicon(await storageService.get<boolean>(StorageKey.DisableFavicon));
+        // await stateService.setEnableGravitars(await storageService.get<boolean>('enableGravatars'));
     };
 }
 
@@ -207,8 +197,6 @@ export function initFactory(): Function {
         RouterService,
         UnauthGuardService,
         ValidationService,
-        { provide: AccountsManagementServiceAbstraction, useValue: accountsManagementService },
-        { provide: ActiveAccountServiceAbstraction, useValue: activeAccount },
         { provide: ApiServiceAbstraction, useValue: apiService },
         {
             provide: APP_INITIALIZER,

@@ -20,6 +20,7 @@ import { SendService } from 'jslib-common/abstractions/send.service';
 
 import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 import { ModalService } from 'jslib-angular/services/modal.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 const BroadcasterSubscriptionId = 'SendComponent';
 
@@ -34,9 +35,9 @@ export class SendComponent extends BaseSendComponent {
         platformUtilsService: PlatformUtilsService, environmentService: EnvironmentService,
         ngZone: NgZone, searchService: SearchService,
         policyService: PolicyService, private modalService: ModalService,
-        private broadcasterService: BroadcasterService) {
+        private broadcasterService: BroadcasterService, logService: LogService) {
         super(sendService, i18nService, platformUtilsService, environmentService, ngZone, searchService,
-            policyService);
+            policyService, logService);
     }
 
     async ngOnInit() {

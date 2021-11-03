@@ -6,7 +6,6 @@ import {
 } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -21,7 +20,6 @@ import { EmergencyAccessGranteeDetailsResponse, EmergencyAccessGrantorDetailsRes
 
 import { EmergencyAccessStatusType } from 'jslib-common/enums/emergencyAccessStatusType';
 import { EmergencyAccessType } from 'jslib-common/enums/emergencyAccessType';
-import { StorageKey } from 'jslib-common/enums/storageKey';
 import { Utils } from 'jslib-common/misc/utils';
 
 import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
@@ -31,6 +29,7 @@ import { EmergencyAccessConfirmComponent } from './emergency-access-confirm.comp
 import { EmergencyAccessTakeoverComponent } from './emergency-access-takeover.component';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 @Component({
     selector: 'emergency-access',
@@ -38,7 +37,7 @@ import { ModalService } from 'jslib-angular/services/modal.service';
 })
 export class EmergencyAccessComponent implements OnInit {
     @ViewChild('addEdit', { read: ViewContainerRef, static: true }) addEditModalRef: ViewContainerRef;
-    @ViewChild('takeoverTemplate', { read: ViewContainerRef, static: true}) takeoverModalRef: ViewContainerRef;
+    @ViewChild('takeoverTemplate', { read: ViewContainerRef, static: true }) takeoverModalRef: ViewContainerRef;
     @ViewChild('confirmTemplate', { read: ViewContainerRef, static: true }) confirmModalRef: ViewContainerRef;
 
     canAccessPremium: boolean;
@@ -52,12 +51,12 @@ export class EmergencyAccessComponent implements OnInit {
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private modalService: ModalService, private platformUtilsService: PlatformUtilsService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
-        private storageService: StorageService, private activeAccount: ActiveAccountService,
+        private storageService: StorageService, private stateService: StateService,
         private messagingService: MessagingService, private userNamePipe: UserNamePipe,
         private organizationService: OrganizationService) { }
 
     async ngOnInit() {
-        this.canAccessPremium = this.activeAccount.canAccessPremium;
+        this.canAccessPremium = await this.stateService.getCanAccessPremium();
         const orgs = await this.organizationService.getAll();
         this.isOrganizationOwner = orgs.some(o => o.isOwner);
         this.load();
@@ -114,7 +113,7 @@ export class EmergencyAccessComponent implements OnInit {
             return;
         }
 
-        const autoConfirm = await this.storageService.get<boolean>(StorageKey.AutoConfirmFingerprints);
+        const autoConfirm = await this.stateService.getAutoConfirmFingerPrints();
         if (autoConfirm == null || !autoConfirm) {
             const [modal] = await this.modalService.openViewRef(EmergencyAccessConfirmComponent, this.confirmModalRef, comp => {
                 comp.name = this.userNamePipe.transform(contact);

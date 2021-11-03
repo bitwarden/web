@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { AuditService } from 'jslib-common/abstractions/audit.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
@@ -8,6 +7,7 @@ import { CollectionService } from 'jslib-common/abstractions/collection.service'
 import { EventService } from 'jslib-common/abstractions/event.service';
 import { FolderService } from 'jslib-common/abstractions/folder.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
@@ -38,11 +38,11 @@ export class AddEditComponent extends BaseAddEditComponent {
         collectionService: CollectionService, totpService: TotpService,
         passwordGenerationService: PasswordGenerationService, private apiService: ApiService,
         messagingService: MessagingService, eventService: EventService,
-        policyService: PolicyService, activeAccount: ActiveAccountService,
-        organizationService: OrganizationService) {
+        policyService: PolicyService,
+        organizationService: OrganizationService, logService: LogService) {
         super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
             collectionService, totpService, passwordGenerationService, messagingService,
-            eventService, policyService, activeAccount, organizationService);
+            eventService, policyService, organizationService, logService);
     }
 
     protected allowOwnershipAssignment() {

@@ -8,7 +8,6 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -16,6 +15,7 @@ import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { KdfType } from 'jslib-common/enums/kdfType';
 import { PolicyData } from 'jslib-common/models/data/policyData';
@@ -41,12 +41,12 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
     formPromise: Promise<any>;
 
     constructor(i18nService: I18nService, cryptoService: CryptoService,
-        messagingService: MessagingService, activeAccount: ActiveAccountService,
+        messagingService: MessagingService, stateService: StateService,
         passwordGenerationService: PasswordGenerationService,
         platformUtilsService: PlatformUtilsService, policyService: PolicyService,
         private apiService: ApiService, private toasterService: ToasterService) {
         super(i18nService, cryptoService, messagingService, passwordGenerationService,
-            platformUtilsService, policyService, activeAccount);
+            platformUtilsService, policyService, stateService);
     }
 
     async ngOnInit() {
@@ -55,7 +55,7 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
             const policies = response.data.map((policyResponse: PolicyResponse) => new Policy(new PolicyData(policyResponse)));
             this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(policies);
         }
-     }
+    }
 
     async submit() {
         if (!await this.strongPassword()) {

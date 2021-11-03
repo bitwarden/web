@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { AuditService } from 'jslib-common/abstractions/audit.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
@@ -14,8 +13,10 @@ import {
     ExposedPasswordsReportComponent as BaseExposedPasswordsReportComponent,
 } from '../../tools/exposed-passwords-report.component';
 
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { Cipher } from 'jslib-common/models/domain/cipher';
 import { CipherView } from 'jslib-common/models/view/cipherView';
+
 
 @Component({
     selector: 'app-exposed-passwords-report',
@@ -25,10 +26,10 @@ export class ExposedPasswordsReportComponent extends BaseExposedPasswordsReportC
     manageableCiphers: Cipher[];
 
     constructor(cipherService: CipherService, auditService: AuditService,
-        modalService: ModalService, messagingService: MessagingService,
+        modalService: ModalService, messagingService: MessagingService, stateService: StateService,
         private organizationService: OrganizationService, private route: ActivatedRoute,
-        activeAccount: ActiveAccountService, passwordRepromptService: PasswordRepromptService) {
-        super(cipherService, auditService, modalService, messagingService, activeAccount, passwordRepromptService);
+        passwordRepromptService: PasswordRepromptService) {
+        super(cipherService, auditService, modalService, messagingService, stateService, passwordRepromptService);
     }
 
     ngOnInit() {

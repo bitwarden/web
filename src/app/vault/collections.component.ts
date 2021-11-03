@@ -11,6 +11,7 @@ import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.se
 import { CollectionView } from 'jslib-common/models/view/collectionView';
 
 import { CollectionsComponent as BaseCollectionsComponent } from 'jslib-angular/components/collections.component';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 @Component({
     selector: 'app-vault-collections',
@@ -18,8 +19,8 @@ import { CollectionsComponent as BaseCollectionsComponent } from 'jslib-angular/
 })
 export class CollectionsComponent extends BaseCollectionsComponent implements OnDestroy {
     constructor(collectionService: CollectionService, platformUtilsService: PlatformUtilsService,
-        i18nService: I18nService, cipherService: CipherService) {
-        super(collectionService, platformUtilsService, i18nService, cipherService);
+        i18nService: I18nService, cipherService: CipherService, logService: LogService) {
+        super(collectionService, platformUtilsService, i18nService, cipherService, logService);
     }
 
     ngOnDestroy() {

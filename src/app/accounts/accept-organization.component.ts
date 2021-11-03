@@ -9,7 +9,6 @@ import {
     ToasterService,
 } from 'angular2-toaster';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -35,9 +34,8 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
     constructor(router: Router, toasterService: ToasterService,
         i18nService: I18nService, route: ActivatedRoute,
         private apiService: ApiService, stateService: StateService,
-        private cryptoService: CryptoService, private policyService: PolicyService,
-        activeAccount: ActiveAccountService) {
-        super(router, toasterService, i18nService, route, stateService, activeAccount);
+        private cryptoService: CryptoService, private policyService: PolicyService) {
+        super(router, toasterService, i18nService, route, stateService);
     }
 
     async authedHandler(qParams: any): Promise<void> {
@@ -63,7 +61,7 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
                     const resetRequest = new OrganizationUserResetPasswordEnrollmentRequest();
                     resetRequest.resetPasswordKey = encryptedKey.encryptedString;
 
-                    return this.apiService.putOrganizationUserResetPasswordEnrollment(qParams.organizationId, this.activeAccount.userId, resetRequest);
+                    return this.apiService.putOrganizationUserResetPasswordEnrollment(qParams.organizationId, await this.stateService.getUserId(), resetRequest);
                 });
         } else {
             this.actionPromise = this.apiService.postOrganizationUserAccept(qParams.organizationId,
@@ -79,7 +77,7 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
         };
         this.toasterService.popAsync(toast);
 
-        await this.stateService.remove('orgInvitation');
+        await this.stateService.setOrganizationInvitation(null);
         this.router.navigate(['/vault']);
     }
 
@@ -89,7 +87,7 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
             // Fix URL encoding of space issue with Angular
             this.orgName = this.orgName.replace(/\+/g, ' ');
         }
-        await this.stateService.save('orgInvitation', qParams);
+        await this.stateService.setOrganizationInvitation(qParams);
     }
 
     private async performResetPasswordAutoEnroll(qParams: any): Promise<boolean> {

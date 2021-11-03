@@ -6,7 +6,6 @@ import { BaseAcceptComponent } from 'src/app/common/base.accept.component';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
 import { ProviderUserAcceptRequest } from 'jslib-common/models/request/provider/providerUserAcceptRequest';
@@ -23,8 +22,8 @@ export class AcceptProviderComponent extends BaseAcceptComponent {
     requiredParameters = ['providerId', 'providerUserId', 'token'];
 
     constructor(router: Router, toasterService: ToasterService, i18nService: I18nService, route: ActivatedRoute,
-        activeAccount: ActiveAccountService, stateService: StateService, private apiService: ApiService) {
-        super(router, toasterService, i18nService, route, stateService, activeAccount);
+        stateService: StateService, private apiService: ApiService) {
+        super(router, toasterService, i18nService, route, stateService);
     }
 
     async authedHandler(qParams: any) {

@@ -6,10 +6,8 @@ import {
     Output,
 } from '@angular/core';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-
-import { StorageKey } from 'jslib-common/enums/storageKey';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 @Component({
     selector: 'app-user-confirm',
@@ -26,7 +24,7 @@ export class UserConfirmComponent implements OnInit {
     fingerprint: string;
     formPromise: Promise<any>;
 
-    constructor(private cryptoService: CryptoService, private activeAccount: ActiveAccountService) { }
+    constructor(private cryptoService: CryptoService, private stateService: StateService) { }
 
     async ngOnInit() {
         try {
@@ -46,7 +44,7 @@ export class UserConfirmComponent implements OnInit {
         }
 
         if (this.dontAskAgain) {
-            await this.activeAccount.saveInformation(StorageKey.AutoConfirmFingerprints, true);
+            await this.stateService.setAutoConfirmFingerprints(true);
         }
 
         this.onConfirmedUser.emit();

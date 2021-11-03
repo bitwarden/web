@@ -45,7 +45,7 @@ export class AvatarComponent implements OnChanges, OnInit {
     }
 
     private async generate() {
-        const enableGravatars = await this.stateService.get<boolean>('enableGravatars');
+        const enableGravatars = await this.stateService.getEnableGravitars();
         if (enableGravatars && this.email != null) {
             const hashBytes = await this.cryptoFunctionService.hash(this.email.toLowerCase().trim(), 'md5');
             const hash = Utils.fromBufferToHex(hashBytes).toLowerCase();

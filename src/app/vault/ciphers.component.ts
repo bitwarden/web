@@ -8,10 +8,10 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { EventService } from 'jslib-common/abstractions/event.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
@@ -23,6 +23,7 @@ import { CipherRepromptType } from 'jslib-common/enums/cipherRepromptType';
 import { CipherType } from 'jslib-common/enums/cipherType';
 import { EventType } from 'jslib-common/enums/eventType';
 
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { CipherView } from 'jslib-common/models/view/cipherView';
 
 const MaxCheckedCount = 500;
@@ -51,13 +52,13 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     constructor(searchService: SearchService, protected toasterService: ToasterService,
         protected i18nService: I18nService, protected platformUtilsService: PlatformUtilsService,
         protected cipherService: CipherService, protected eventService: EventService,
-        protected totpService: TotpService, protected activeAccount: ActiveAccountService,
-        protected passwordRepromptService: PasswordRepromptService) {
+        protected totpService: TotpService, protected stateService: StateService,
+        protected passwordRepromptService: PasswordRepromptService, private logService: LogService) {
         super(searchService);
     }
 
     async ngOnInit() {
-        this.userHasPremiumAccess = this.activeAccount.canAccessPremium;
+        this.userHasPremiumAccess = await this.stateService.getCanAccessPremium();
     }
 
     ngOnDestroy() {
@@ -158,7 +159,9 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
             this.toasterService.popAsync('success', null, this.i18nService.t(permanent ? 'permanentlyDeletedItem'
                 : 'deletedItem'));
             this.refresh();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
         this.actionPromise = null;
     }
 
@@ -179,7 +182,9 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
             await this.actionPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('restoredItem'));
             this.refresh();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
         this.actionPromise = null;
     }
 

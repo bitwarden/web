@@ -6,11 +6,9 @@ import {
     Output,
 } from '@angular/core';
 
-import { StorageKey } from 'jslib-common/enums/storageKey';
-
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { Utils } from 'jslib-common/misc/utils';
 
@@ -30,7 +28,7 @@ export class EmergencyAccessConfirmComponent implements OnInit {
     fingerprint: string;
 
     constructor(private apiService: ApiService, private cryptoService: CryptoService,
-        private activeAccount: ActiveAccountService) { }
+        private stateService: StateService) { }
 
     async ngOnInit() {
         try {
@@ -52,7 +50,7 @@ export class EmergencyAccessConfirmComponent implements OnInit {
         }
 
         if (this.dontAskAgain) {
-            await this.activeAccount.saveInformation(StorageKey.AutoConfirmFingerprints, true);
+            await this.stateService.setAutoConfirmFingerprints(true);
         }
 
         try {

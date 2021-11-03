@@ -1,14 +1,13 @@
 import Swal, { SweetAlertIcon } from 'sweetalert2';
 
 import { DeviceType } from 'jslib-common/enums/deviceType';
-import { StorageKey } from 'jslib-common/enums/storageKey';
 import { ThemeType } from 'jslib-common/enums/themeType';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 export class WebPlatformUtilsService implements PlatformUtilsService {
     identityClientId: string = 'web';
@@ -17,7 +16,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     private prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
 
     constructor(private i18nService: I18nService, private messagingService: MessagingService,
-        private logService: LogService, private activeAccount: () => ActiveAccountService) { }
+        private logService: LogService, private stateService: () => StateService) { }
 
     getDevice(): DeviceType {
         if (this.browserCache != null) {
@@ -155,7 +154,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     supportsWebAuthn(win: Window): boolean {
-        return (typeof(PublicKeyCredential) !== 'undefined');
+        return (typeof (PublicKeyCredential) !== 'undefined');
     }
 
     supportsDuo(): boolean {
@@ -292,14 +291,16 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     async getEffectiveTheme(): Promise<ThemeType.Light | ThemeType.Dark> {
-        const theme = await this.activeAccount().getInformation<ThemeType>(StorageKey.Theme);
-        if (theme === ThemeType.Dark) {
-            return ThemeType.Dark;
-        } else if (theme === ThemeType.System) {
-            return this.getDefaultSystemTheme();
-        } else {
-            return ThemeType.Light;
-        }
+        // TODO: stateService refactor: Fix circular dependencies here not allowing the import of stateService properly
+        return ThemeType.Light;
+        // const theme = await this.stateService.getTheme();
+        // if (theme === ThemeType.Dark) {
+        //     return ThemeType.Dark;
+        // } else if (theme === ThemeType.System) {
+        //     return this.getDefaultSystemTheme();
+        // } else {
+        //     return ThemeType.Light;
+        // }
     }
 
     onDefaultSystemThemeChange(callback: ((theme: ThemeType.Light | ThemeType.Dark) => unknown)) {

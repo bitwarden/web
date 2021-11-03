@@ -9,9 +9,9 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { VerifyEmailRequest } from 'jslib-common/models/request/verifyEmailRequest';
 
@@ -22,7 +22,7 @@ import { VerifyEmailRequest } from 'jslib-common/models/request/verifyEmailReque
 export class VerifyEmailTokenComponent implements OnInit {
     constructor(private router: Router, private toasterService: ToasterService,
         private i18nService: I18nService, private route: ActivatedRoute,
-        private apiService: ApiService, private activeAccount: ActiveAccountService) { }
+        private apiService: ApiService, private stateService: StateService) { }
 
     ngOnInit() {
         let fired = false;
@@ -35,7 +35,7 @@ export class VerifyEmailTokenComponent implements OnInit {
                 try {
                     await this.apiService.postAccountVerifyEmailToken(
                         new VerifyEmailRequest(qParams.userId, qParams.token));
-                    if (this.activeAccount.isAuthenticated) {
+                    if (await this.stateService.getIsAuthenticated()) {
                         await this.apiService.refreshIdentityToken();
                     }
                     this.toasterService.popAsync('success', null, this.i18nService.t('emailVerified'));

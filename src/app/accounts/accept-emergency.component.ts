@@ -9,7 +9,6 @@ import {
     ToasterService,
 } from 'angular2-toaster';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
@@ -30,9 +29,8 @@ export class AcceptEmergencyComponent extends BaseAcceptComponent {
 
     constructor(router: Router, toasterService: ToasterService,
         i18nService: I18nService, route: ActivatedRoute,
-        private apiService: ApiService, stateService: StateService,
-        activeAccount: ActiveAccountService) {
-        super(router, toasterService, i18nService, route, stateService, activeAccount);
+        private apiService: ApiService, stateService: StateService ) {
+        super(router, toasterService, i18nService, route, stateService);
     }
 
     async authedHandler(qParams: any): Promise<void> {

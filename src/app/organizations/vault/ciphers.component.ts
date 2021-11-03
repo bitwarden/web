@@ -5,15 +5,17 @@ import {
 } from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
+import { stat } from 'fs';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { EventService } from 'jslib-common/abstractions/event.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { TotpService } from 'jslib-common/abstractions/totp.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
@@ -37,9 +39,9 @@ export class CiphersComponent extends BaseCiphersComponent {
     constructor(searchService: SearchService, toasterService: ToasterService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, cipherService: CipherService,
         private apiService: ApiService, eventService: EventService, totpService: TotpService,
-        activeAccount: ActiveAccountService, passwordRepromptService: PasswordRepromptService) {
+        stateService: StateService, passwordRepromptService: PasswordRepromptService, logService: LogService) {
         super(searchService, toasterService, i18nService, platformUtilsService, cipherService,
-            eventService, totpService, activeAccount, passwordRepromptService);
+            eventService, totpService, stateService, passwordRepromptService, logService);
     }
 
     async load(filter: (cipher: CipherView) => boolean = null) {

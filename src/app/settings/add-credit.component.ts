@@ -8,11 +8,11 @@ import {
     ViewChild,
 } from '@angular/core';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { PayPalConfig } from 'jslib-common/abstractions/environment.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
 
@@ -45,7 +45,7 @@ export class AddCreditComponent implements OnInit {
     private name: string;
     private email: string;
 
-    constructor(private activeAccount: ActiveAccountService, private apiService: ApiService,
+    constructor(private stateService: StateService, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService, private organizationService: OrganizationService) {
         const payPalConfig = process.env.PAYPAL_CONFIG as PayPalConfig;
         this.ppButtonFormAction = payPalConfig.buttonAction;
@@ -67,8 +67,8 @@ export class AddCreditComponent implements OnInit {
             if (this.creditAmount == null) {
                 this.creditAmount = '10.00';
             }
-            this.userId = this.activeAccount.userId;
-            this.subject = this.activeAccount.email;
+            this.userId = await this.stateService.getUserId();
+            this.subject = await this.stateService.getEmail();
             this.email = this.subject;
             this.ppButtonCustomField = 'user_id:' + this.userId;
         }

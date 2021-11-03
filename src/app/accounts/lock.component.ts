@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
@@ -15,6 +14,7 @@ import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.serv
 import { RouterService } from '../services/router.service';
 
 import { LockComponent as BaseLockComponent } from 'jslib-angular/components/lock.component';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 @Component({
     selector: 'app-lock',
@@ -25,10 +25,9 @@ export class LockComponent extends BaseLockComponent {
         platformUtilsService: PlatformUtilsService, messagingService: MessagingService,
         cryptoService: CryptoService, vaultTimeoutService: VaultTimeoutService,
         environmentService: EnvironmentService, private routerService: RouterService,
-        stateService: StateService, apiService: ApiService,
-        activeAccount: ActiveAccountService) {
+        stateService: StateService, apiService: ApiService, logService: LogService) {
         super(router, i18nService, platformUtilsService, messagingService, cryptoService,
-            vaultTimeoutService, environmentService, stateService, apiService, activeAccount);
+            vaultTimeoutService, environmentService, stateService, apiService, logService);
     }
 
     async ngOnInit() {

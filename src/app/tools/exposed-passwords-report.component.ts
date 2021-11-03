@@ -3,7 +3,6 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { AuditService } from 'jslib-common/abstractions/audit.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
@@ -15,6 +14,7 @@ import { CipherView } from 'jslib-common/models/view/cipherView';
 
 import { CipherType } from 'jslib-common/enums/cipherType';
 
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { CipherReportComponent } from './cipher-report.component';
 
 @Component({
@@ -26,8 +26,8 @@ export class ExposedPasswordsReportComponent extends CipherReportComponent imple
 
     constructor(protected cipherService: CipherService, protected auditService: AuditService,
         modalService: ModalService, messagingService: MessagingService,
-        activeAccount: ActiveAccountService, passwordRepromptService: PasswordRepromptService) {
-        super(modalService, messagingService, true, activeAccount, passwordRepromptService);
+        stateService: StateService, passwordRepromptService: PasswordRepromptService) {
+        super(modalService, messagingService, true, stateService, passwordRepromptService);
     }
 
     ngOnInit() {

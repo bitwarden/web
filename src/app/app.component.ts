@@ -25,8 +25,6 @@ import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 
-import { AccountsManagementService } from 'jslib-common/abstractions/accountsManagement.service';
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { AuthService } from 'jslib-common/abstractions/auth.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
@@ -44,8 +42,6 @@ import { StateService } from 'jslib-common/abstractions/state.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { TokenService } from 'jslib-common/abstractions/token.service';
 import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.service';
-
-import { StorageKey } from 'jslib-common/enums/storageKey';
 
 import { PolicyListService } from './services/policy-list.service';
 import { RouterService } from './services/router.service';
@@ -92,8 +88,7 @@ export class AppComponent implements OnDestroy, OnInit {
         private searchService: SearchService, private notificationsService: NotificationsService,
         private routerService: RouterService, private stateService: StateService,
         private eventService: EventService, private policyService: PolicyService,
-        protected policyListService: PolicyListService, private activeAccount: ActiveAccountService,
-        private accountsManagementService: AccountsManagementService) { }
+        protected policyListService: PolicyListService) { }
 
     ngOnInit() {
         this.ngZone.runOutsideAngular(() => {
@@ -204,8 +199,7 @@ export class AppComponent implements OnDestroy, OnInit {
 
     private async logOut(expired: boolean) {
         await this.eventService.uploadEvents();
-        const userId = this.activeAccount.userId;
-
+        const userId = await this.stateService.getUserId();
         await Promise.all([
             this.eventService.clearEvents(),
             this.syncService.setLastSync(new Date(0)),
@@ -218,7 +212,7 @@ export class AppComponent implements OnDestroy, OnInit {
             this.policyService.clear(userId),
             this.passwordGenerationService.clear(),
             this.stateService.purge(),
-            this.accountsManagementService.remove(userId),
+            this.stateService.setActiveUser(null),
         ]);
 
         this.searchService.clearIndex();
@@ -240,8 +234,7 @@ export class AppComponent implements OnDestroy, OnInit {
         }
 
         this.lastActivity = now;
-        this.storageService.save(StorageKey.LastActive, now);
-
+        this.stateService.setLastActive(now);
         // Idle states
         if (this.isIdle) {
             this.isIdle = false;

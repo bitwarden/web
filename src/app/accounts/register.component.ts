@@ -19,6 +19,7 @@ import { RegisterComponent as BaseRegisterComponent } from 'jslib-angular/compon
 import { MasterPasswordPolicyOptions } from 'jslib-common/models/domain/masterPasswordPolicyOptions';
 import { Policy } from 'jslib-common/models/domain/policy';
 
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PolicyData } from 'jslib-common/models/data/policyData';
 import { ReferenceEventRequest } from 'jslib-common/models/request/referenceEventRequest';
 
@@ -38,9 +39,9 @@ export class RegisterComponent extends BaseRegisterComponent {
         apiService: ApiService, private route: ActivatedRoute,
         stateService: StateService, platformUtilsService: PlatformUtilsService,
         passwordGenerationService: PasswordGenerationService, private policyService: PolicyService,
-        environmentService: EnvironmentService) {
+        environmentService: EnvironmentService, logService: LogService) {
         super(authService, router, i18nService, cryptoService, apiService, stateService, platformUtilsService,
-            passwordGenerationService, environmentService);
+            passwordGenerationService, environmentService, logService);
     }
 
     async ngOnInit() {
@@ -50,11 +51,11 @@ export class RegisterComponent extends BaseRegisterComponent {
                 this.email = qParams.email;
             }
             if (qParams.premium != null) {
-                this.stateService.save('loginRedirect', { route: '/settings/premium' });
+                this.stateService.setLoginRedirect({ route: '/settings/premium' });
             } else if (qParams.org != null) {
                 this.showCreateOrgMessage = true;
                 this.referenceData.flow = qParams.org;
-                this.stateService.save('loginRedirect',
+                this.stateService.setLoginRedirect(
                     { route: '/settings/create-organization', qParams: { plan: qParams.org } });
             }
             if (qParams.layout != null) {
@@ -72,7 +73,7 @@ export class RegisterComponent extends BaseRegisterComponent {
                 queryParamsSub.unsubscribe();
             }
         });
-        const invite = await this.stateService.get<any>('orgInvitation');
+        const invite = await this.stateService.getOrganizationInvitation();
         if (invite != null) {
             try {
                 const policies = await this.apiService.getPoliciesByToken(invite.organizationId, invite.token,

@@ -3,8 +3,8 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 @Component({
     selector: 'app-tools',
@@ -13,10 +13,10 @@ import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 export class ToolsComponent implements OnInit {
     canAccessPremium = false;
 
-    constructor(private activeAccount: ActiveAccountService, private messagingService: MessagingService) { }
+    constructor(private stateService: StateService, private messagingService: MessagingService) { }
 
     async ngOnInit() {
-        this.canAccessPremium = this.activeAccount.canAccessPremium;
+        this.canAccessPremium = await this.stateService.getCanAccessPremium();
     }
 
     premiumRequired() {

@@ -9,10 +9,10 @@ import { DeauthorizeSessionsComponent } from './deauthorize-sessions.component';
 import { DeleteAccountComponent } from './delete-account.component';
 import { PurgeVaultComponent } from './purge-vault.component';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 @Component({
     selector: 'app-account',
@@ -26,7 +26,7 @@ export class AccountComponent {
     @ViewChild('rotateUserApiKeyTemplate', { read: ViewContainerRef, static: true }) rotateUserApiKeyModalRef: ViewContainerRef;
 
     constructor(private modalService: ModalService, private apiService: ApiService,
-        private activeAccount: ActiveAccountService) { }
+        private stateService: StateService) { }
 
     async deauthorizeSessions() {
         await this.modalService.openViewRef(DeauthorizeSessionsComponent, this.deauthModalRef);
@@ -41,7 +41,7 @@ export class AccountComponent {
     }
 
     async viewUserApiKey() {
-        const entityId = this.activeAccount.userId;
+        const entityId = await this.stateService.getUserId();
         await this.modalService.openViewRef(ApiKeyComponent, this.viewUserApiKeyModalRef, comp => {
             comp.keyType = 'user';
             comp.entityId = entityId;
@@ -55,7 +55,7 @@ export class AccountComponent {
     }
 
     async rotateUserApiKey() {
-        const entityId = this.activeAccount.userId;
+        const entityId = await this.stateService.getUserId();
         await this.modalService.openViewRef(ApiKeyComponent, this.rotateUserApiKeyModalRef, comp => {
             comp.keyType = 'user';
             comp.isRotation = true;

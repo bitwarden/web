@@ -6,7 +6,6 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
@@ -16,6 +15,7 @@ import { TwoFactorAuthenticatorResponse } from 'jslib-common/models/response/two
 
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { TwoFactorBaseComponent } from './two-factor-base.component';
 
 @Component({
@@ -31,7 +31,7 @@ export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent impl
     private qrScript: HTMLScriptElement;
 
     constructor(apiService: ApiService, i18nService: I18nService,
-        toasterService: ToasterService, private activeAccount: ActiveAccountService,
+        toasterService: ToasterService, private stateService: StateService,
         platformUtilsService: PlatformUtilsService) {
         super(apiService, i18nService, toasterService, platformUtilsService);
         this.qrScript = window.document.createElement('script');
@@ -77,7 +77,8 @@ export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent impl
         this.token = null;
         this.enabled = response.enabled;
         this.key = response.key;
-        const email = this.activeAccount.email;
+        const email = await this.stateService.getEmail();
+        console.log('email', email);
         window.setTimeout(() => {
             const qr = new (window as any).QRious({
                 element: document.getElementById('qr'),

@@ -11,13 +11,13 @@ import { Organization } from 'jslib-common/models/domain/organization';
 import { AddEditComponent as OrgAddEditComponent } from '../organizations/vault/add-edit.component';
 import { AddEditComponent } from '../vault/add-edit.component';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 
 import { CipherRepromptType } from 'jslib-common/enums/cipherRepromptType';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 @Directive()
 export class CipherReportComponent {
@@ -29,7 +29,7 @@ export class CipherReportComponent {
     organization: Organization;
 
     constructor(private modalService: ModalService, protected messagingService: MessagingService,
-        public requiresPaid: boolean, private activeAccount: ActiveAccountService,
+        public requiresPaid: boolean, private stateService: StateService,
         protected passwordRepromptService: PasswordRepromptService) { }
 
     async load() {
@@ -80,7 +80,7 @@ export class CipherReportComponent {
                 return false;
             }
         } else {
-            const accessPremium = this.activeAccount.canAccessPremium;
+            const accessPremium = await this.stateService.getCanAccessPremium();
             if (this.requiresPaid && !accessPremium) {
                 this.messagingService.send('premiumRequired');
                 this.loading = false;

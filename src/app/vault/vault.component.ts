@@ -26,7 +26,6 @@ import { FolderAddEditComponent } from './folder-add-edit.component';
 import { GroupingsComponent } from './groupings.component';
 import { ShareComponent } from './share.component';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
@@ -38,6 +37,7 @@ import { TokenService } from 'jslib-common/abstractions/token.service';
 
 import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 import { ModalService } from 'jslib-angular/services/modal.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 const BroadcasterSubscriptionId = 'VaultComponent';
 
@@ -74,7 +74,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         private tokenService: TokenService, private cryptoService: CryptoService,
         private messagingService: MessagingService, private platformUtilsService: PlatformUtilsService,
         private broadcasterService: BroadcasterService, private ngZone: NgZone,
-        private activeAccount: ActiveAccountService, private organizationService: OrganizationService,
+        private stateService: StateService, private organizationService: OrganizationService,
         private providerService: ProviderService) { }
 
     async ngOnInit() {
@@ -88,7 +88,7 @@ export class VaultComponent implements OnInit, OnDestroy {
             await this.syncService.fullSync(false);
 
             this.showUpdateKey = !(await this.cryptoService.hasEncKey());
-            const canAccessPremium = this.activeAccount.canAccessPremium;
+            const canAccessPremium = await this.stateService.getCanAccessPremium();
             this.showPremiumCallout = !this.showVerifyEmail && !canAccessPremium &&
                 !this.platformUtilsService.isSelfHost();
 
@@ -215,7 +215,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     }
 
     async editCipherAttachments(cipher: CipherView) {
-        const canAccessPremium = this.activeAccount.canAccessPremium;
+        const canAccessPremium = await this.stateService.getCanAccessPremium();
         if (cipher.organizationId == null && !canAccessPremium) {
             this.messagingService.send('premiumRequired');
             return;

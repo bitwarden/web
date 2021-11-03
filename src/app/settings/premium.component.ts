@@ -7,11 +7,11 @@ import { Router } from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { TokenService } from 'jslib-common/abstractions/token.service';
 
@@ -38,12 +38,12 @@ export class PremiumComponent implements OnInit {
         private toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
         private tokenService: TokenService, private router: Router,
         private messagingService: MessagingService, private syncService: SyncService,
-        private activeAccount: ActiveAccountService) {
+        private stateService: StateService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
     async ngOnInit() {
-        this.canAccessPremium = this.activeAccount.canAccessPremium;
+        this.canAccessPremium = await this.stateService.getCanAccessPremium();
         const premium = await this.tokenService.getPremium();
         if (premium) {
             this.router.navigate(['/settings/subscription']);

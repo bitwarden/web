@@ -5,7 +5,6 @@ import {
 } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -23,7 +22,6 @@ import { OrganizationUserStatusType } from 'jslib-common/enums/organizationUserS
 import { OrganizationUserType } from 'jslib-common/enums/organizationUserType';
 import { ProviderUserStatusType } from 'jslib-common/enums/providerUserStatusType';
 import { ProviderUserType } from 'jslib-common/enums/providerUserType';
-import { StorageKey } from 'jslib-common/enums/storageKey';
 
 import { ListResponse } from 'jslib-common/models/response/listResponse';
 import { OrganizationUserUserDetailsResponse } from 'jslib-common/models/response/organizationUserResponse';
@@ -31,6 +29,7 @@ import { ProviderUserUserDetailsResponse } from 'jslib-common/models/response/pr
 
 import { Utils } from 'jslib-common/misc/utils';
 
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { UserConfirmComponent } from '../organizations/manage/user-confirm.component';
 
 type StatusType = OrganizationUserStatusType | ProviderUserStatusType;
@@ -91,7 +90,7 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
     constructor(protected apiService: ApiService, private searchService: SearchService,
         protected i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
         protected toasterService: ToasterService, protected cryptoService: CryptoService,
-        private activeAccount: ActiveAccountService, protected validationService: ValidationService,
+        private stateService: StateService, protected validationService: ValidationService,
         protected modalService: ModalService, private logService: LogService,
         private searchPipe: SearchPipe, protected userNamePipe: UserNamePipe) { }
 
@@ -244,7 +243,7 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
             const publicKeyResponse = await this.apiService.getUserPublicKey(user.userId);
             const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
 
-            const autoConfirm = await this.activeAccount.getInformation<boolean>(StorageKey.AutoConfirmFingerprints);
+            const autoConfirm = await this.stateService.getAutoConfirmFingerPrints();
             if (autoConfirm == null || !autoConfirm) {
                 const [modal] = await this.modalService.openViewRef(UserConfirmComponent, this.confirmModalRef, comp => {
                     comp.name = this.userNamePipe.transform(user);

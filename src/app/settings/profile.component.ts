@@ -5,10 +5,10 @@ import {
 
 import { ToasterService } from 'angular2-toaster';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { UpdateProfileRequest } from 'jslib-common/models/request/updateProfileRequest';
 
@@ -26,13 +26,13 @@ export class ProfileComponent implements OnInit {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private activeAccount: ActiveAccountService,
+        private toasterService: ToasterService, private stateService: StateService,
         private cryptoService: CryptoService) { }
 
     async ngOnInit() {
         this.profile = await this.apiService.getProfile();
         this.loading = false;
-        const fingerprint = await this.cryptoService.getFingerprint(this.activeAccount.userId);
+        const fingerprint = await this.cryptoService.getFingerprint(await this.stateService.getUserId());
         if (fingerprint != null) {
             this.fingerprint = fingerprint.join('-');
         }

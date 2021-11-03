@@ -5,6 +5,7 @@ import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { EventService } from 'jslib-common/abstractions/event.service';
 import { ExportService } from 'jslib-common/abstractions/export.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 
@@ -17,8 +18,8 @@ import { ExportComponent as BaseExportComponent } from '../../tools/export.compo
 export class ExportComponent extends BaseExportComponent {
     constructor(cryptoService: CryptoService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, exportService: ExportService,
-        eventService: EventService, private route: ActivatedRoute, policyService: PolicyService) {
-        super(cryptoService, i18nService, platformUtilsService, exportService, eventService, policyService);
+        eventService: EventService, private route: ActivatedRoute, policyService: PolicyService, logService: LogService) {
+        super(cryptoService, i18nService, platformUtilsService, exportService, eventService, policyService, logService);
     }
 
     async ngOnInit() {

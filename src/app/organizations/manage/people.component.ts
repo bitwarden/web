@@ -14,7 +14,6 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -42,6 +41,7 @@ import { PolicyType } from 'jslib-common/enums/policyType';
 import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
 import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
 
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { BasePeopleComponent } from '../../common/base.people.component';
 import { BulkConfirmComponent } from './bulk/bulk-confirm.component';
 import { BulkRemoveComponent } from './bulk/bulk-remove.component';
@@ -82,12 +82,12 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
         i18nService: I18nService, modalService: ModalService,
         platformUtilsService: PlatformUtilsService, toasterService: ToasterService,
         cryptoService: CryptoService, private organizationService: OrganizationService, private router: Router,
-        activeAccount: ActiveAccountService, searchService: SearchService,
+        stateService: StateService, searchService: SearchService,
         validationService: ValidationService, private policyService: PolicyService,
         logService: LogService, searchPipe: SearchPipe, userNamePipe: UserNamePipe, private syncService: SyncService) {
-            super(apiService, searchService, i18nService, platformUtilsService, toasterService, cryptoService,
-                activeAccount, validationService, modalService, logService, searchPipe, userNamePipe);
-        }
+        super(apiService, searchService, i18nService, platformUtilsService, toasterService, cryptoService,
+            stateService, validationService, modalService, logService, searchPipe, userNamePipe);
+    }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {

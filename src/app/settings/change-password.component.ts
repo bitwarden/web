@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 
-import { ActiveAccountService } from 'jslib-common/abstractions/activeAccount.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
@@ -12,6 +11,7 @@ import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGen
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SendService } from 'jslib-common/abstractions/send.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 
 import {
@@ -42,13 +42,13 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
 
     constructor(i18nService: I18nService,
         cryptoService: CryptoService, messagingService: MessagingService,
-        activeAccount: ActiveAccountService, passwordGenerationService: PasswordGenerationService,
+        stateService: StateService, passwordGenerationService: PasswordGenerationService,
         platformUtilsService: PlatformUtilsService, policyService: PolicyService,
         private folderService: FolderService, private cipherService: CipherService,
         private syncService: SyncService, private apiService: ApiService,
         private sendService: SendService, private organizationService: OrganizationService) {
         super(i18nService, cryptoService, messagingService, passwordGenerationService,
-            platformUtilsService, policyService, activeAccount);
+            platformUtilsService, policyService, stateService);
     }
 
     async rotateEncKeyClicked() {
