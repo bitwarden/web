@@ -4473,11 +4473,8 @@
   "invalidVerificationCode": {
     "message": "Invalid verification code"
   },
-  "convertOrganizationEncryption": {
-    "message": "Convert Master Password"
-  },
   "convertOrganizationEncryptionDesc": {
-    "message": "$ORGANIZATION$ is using SSO with customer-managed encryption. Continuing will remove your Master Password from your account and require SSO to login.",
+    "message": "$ORGANIZATION$ is using SSO with a self-hosted key server. A master password is no longer required to log in for members of this organization.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4485,13 +4482,13 @@
       }
     }
   },
-  "convertOrganizationEncryptionLeave": {
-    "message": "If you do not want to remove your Master Password, you may leave this organization."
-  },
-  "convertMasterPassword": {
-    "message": "Continue"
-  },
   "leaveOrganization": {
     "message": "Leave Organization"
+  },
+  "removeMasterPassword": {
+    "message": "Remove Master Password"
+  },
+  "removedMasterPassword": {
+    "message": "Master password removed."
   }
 }

@@ -14,6 +14,7 @@ import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
+
 import { CryptoAgentUserKeyRequest } from 'jslib-common/models/request/cryptoAgentUserKeyRequest';
 
 @Component({
@@ -30,31 +31,41 @@ export class OrganizationEncryptionComponent implements OnInit {
     organization: Organization;
     email: string;
 
-    constructor(private router: Router, private logService: LogService,
-        private userService: UserService, private apiService: ApiService,
-        private cryptoService: CryptoService,
+    constructor(private router: Router, private userService: UserService,
+        private apiService: ApiService, private cryptoService: CryptoService,
         private syncService: SyncService, private platformUtilsService: PlatformUtilsService,
-        private toasterService: ToasterService, private i18nService: I18nService) { }
+        private i18nService: I18nService) { }
 
     async ngOnInit() {
         this.organization = (await this.userService.getAllOrganizations())[0];
         this.email = await this.userService.getEmail();
+        await this.syncService.fullSync(false);
         this.loading = false;
     }
 
     async convert() {
         this.continuing = true;
-
-        const key = await this.cryptoService.getKey();
-        const cryptoAgentRequest = new CryptoAgentUserKeyRequest(key.encKeyB64);
+        this.actionPromise = this.convertAccount();
 
         try {
+            await this.actionPromise;
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('removedMasterPassword'));
+            this.router.navigate(['']);
+        } catch (e) {
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e);
+        }
+    }
+
+    private async convertAccount() {
+        const key = await this.cryptoService.getKey();
+        try {
+            const cryptoAgentRequest = new CryptoAgentUserKeyRequest(key.encKeyB64);
             await this.apiService.postUserKeyToCryptoAgent(this.organization.cryptoAgentUrl, cryptoAgentRequest);
         } catch (e) {
             throw new Error('Unable to reach crypto agent');
         }
 
-        // TODO: Figure out how to do the crypto stuff
+        await this.apiService.postConvertToCryptoAgent();
     }
 
     async leave() {
@@ -71,10 +82,10 @@ export class OrganizationEncryptionComponent implements OnInit {
                 return this.syncService.fullSync(true);
             });
             await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('leftOrganization'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('leftOrganization'));
             this.router.navigate(['']);
         } catch (e) {
-            this.logService.error(e);
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e);
         }
     }
 }
