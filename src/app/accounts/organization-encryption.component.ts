@@ -56,18 +56,6 @@ export class OrganizationEncryptionComponent implements OnInit {
         }
     }
 
-    private async convertAccount() {
-        const key = await this.cryptoService.getKey();
-        try {
-            const cryptoAgentRequest = new CryptoAgentUserKeyRequest(key.encKeyB64);
-            await this.apiService.postUserKeyToCryptoAgent(this.organization.cryptoAgentUrl, cryptoAgentRequest);
-        } catch (e) {
-            throw new Error('Unable to reach crypto agent');
-        }
-
-        await this.apiService.postConvertToCryptoAgent();
-    }
-
     async leave() {
         const confirmed = await this.platformUtilsService.showDialog(
             this.i18nService.t('leaveOrganizationConfirmation'), this.organization.name,
@@ -87,5 +75,17 @@ export class OrganizationEncryptionComponent implements OnInit {
         } catch (e) {
             this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e);
         }
+    }
+
+    private async convertAccount() {
+        const key = await this.cryptoService.getKey();
+        try {
+            const cryptoAgentRequest = new CryptoAgentUserKeyRequest(key.encKeyB64);
+            await this.apiService.postUserKeyToCryptoAgent(this.organization.cryptoAgentUrl, cryptoAgentRequest);
+        } catch (e) {
+            throw new Error('Unable to reach crypto agent');
+        }
+
+        await this.apiService.postConvertToCryptoAgent();
     }
 }
