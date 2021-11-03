@@ -54,7 +54,7 @@
                     <!-- Linked -->
                     <div class="input-group" *ngIf="f.type === fieldType.Linked">
                         <select id="fieldValue{{i}}" name="Field.Value{{i}}" class="form-control" [(ngModel)]="f.linkedId"
-                            *ngIf="f.type === fieldType.Linked && cipher.type !== cipherType.SecureNote"
+                            *ngIf="f.type === fieldType.Linked && cipher.linkedFieldOptions != null"
                             [disabled]="cipher.isDeleted || viewOnly">
                             <option *ngFor="let o of linkedFieldOptions" [ngValue]="o.value">{{o.name}}</option>
                         </select>
@@ -87,7 +87,7 @@
             <label for="addFieldType" class="sr-only">{{'type' | i18n}}</label>
             <select id="addFieldType" class="form-control" name="AddFieldType" [(ngModel)]="addFieldType">
                 <option *ngFor="let o of addFieldTypeOptions" [ngValue]="o.value">{{o.name}}</option>
-                <option *ngIf="cipher.type !== cipherType.SecureNote" [ngValue]="addFieldLinkedTypeOption.value">
+                <option *ngIf="cipher.linkedFieldOptions != null" [ngValue]="addFieldLinkedTypeOption.value">
                     {{addFieldLinkedTypeOption.name}}
                 </option>
             </select>
