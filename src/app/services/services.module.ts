@@ -145,7 +145,6 @@ const notificationsService = new NotificationsService(userService, syncService, 
     environmentService, async () => messagingService.send('logout', { expired: true }), consoleLogService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService, consoleLogService);
-const userVerificationService = new UserVerificationService(cryptoService, i18nService, platformUtilsService, apiService);
 
 containerService.attachToWindow(window);
 
@@ -230,7 +229,7 @@ export function initFactory(): Function {
         { provide: PolicyServiceAbstraction, useValue: policyService },
         { provide: SendServiceAbstraction, useValue: sendService },
         { provide: PasswordRepromptServiceAbstraction, useClass: PasswordRepromptService },
-        { provide: UserVerificationServiceAbstraction, useValue: userVerificationService },
+        { provide: UserVerificationServiceAbstraction, useClass: UserVerificationService },
         { provide: LogService, useValue: consoleLogService },
         {
             provide: APP_INITIALIZER,
