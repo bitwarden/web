@@ -3,19 +3,17 @@ import {
     OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 
-import { CryptoAgentUserKeyRequest } from 'jslib-common/models/request/cryptoAgentUserKeyRequest';
+import { KeyConnectorUserKeyRequest } from 'jslib-common/models/request/keyConnectorUserKeyRequest';
 
 @Component({
     selector: 'app-organization-encryption',
@@ -80,12 +78,12 @@ export class OrganizationEncryptionComponent implements OnInit {
     private async convertAccount() {
         const key = await this.cryptoService.getKey();
         try {
-            const cryptoAgentRequest = new CryptoAgentUserKeyRequest(key.encKeyB64);
-            await this.apiService.postUserKeyToCryptoAgent(this.organization.cryptoAgentUrl, cryptoAgentRequest);
+            const keyConnectorRequest = new KeyConnectorUserKeyRequest(key.encKeyB64);
+            await this.apiService.postUserKeyToKeyConnector(this.organization.keyConnectorUrl, keyConnectorRequest);
         } catch (e) {
-            throw new Error('Unable to reach crypto agent');
+            throw new Error('Unable to reach key connector');
         }
 
-        await this.apiService.postConvertToCryptoAgent();
+        await this.apiService.postConvertToKeyConnector();
     }
 }

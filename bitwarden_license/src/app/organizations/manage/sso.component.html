@@ -25,14 +25,14 @@
     <div class="form-group">
         <label>{{'memberDecryptionOption' | i18n}}</label>
         <div class="form-check form-check-block">
-            <input class="form-check-input" type="radio" id="vaultTimeoutActionLock" [value]="false" formControlName="useCryptoAgent">
+            <input class="form-check-input" type="radio" id="vaultTimeoutActionLock" [value]="false" formControlName="useKeyConnector">
             <label class="form-check-label" for="vaultTimeoutActionLock">
                 {{'masterPass' | i18n}}
                 <small>{{'memberDecryptionPassDesc' | i18n}}</small>
             </label>
         </div>
         <div class="form-check mt-2 form-check-block">
-            <input class="form-check-input" type="radio" id="vaultTimeoutActionLogOut" [value]="true" formControlName="useCryptoAgent">
+            <input class="form-check-input" type="radio" id="vaultTimeoutActionLogOut" [value]="true" formControlName="useKeyConnector">
             <label class="form-check-label" for="vaultTimeoutActionLogOut">
                 {{'keyConnector' | i18n}}
                 <small>{{'memberDecryptionKeyConnectorDesc' | i18n}}</small>
@@ -40,9 +40,9 @@
         </div>
     </div>
 
-    <div class="form-group" *ngIf="data.value.useCryptoAgent">
+    <div class="form-group" *ngIf="data.value.useKeyConnector">
         <label>{{'keyConnectorUrl' | i18n}}</label>
-        <input class="form-control" formControlName="cryptoAgentUrl">
+        <input class="form-control" formControlName="keyConnectorUrl">
     </div>
 
     <div class="form-group">

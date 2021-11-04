@@ -163,7 +163,7 @@ export class AppComponent implements OnDestroy, OnInit {
                     case 'setFullWidth':
                         this.setFullWidth();
                         break;
-                    case 'convertAccountToCryptoAgent':
+                    case 'convertAccountToKeyConnector':
                         this.router.navigate(['/convert-organization-encryption']);
                         break;
                     default:

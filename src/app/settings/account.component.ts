@@ -34,7 +34,7 @@ export class AccountComponent {
 
     async ngOnInit() {
         this.showChangeEmail = this.showChangeKdf = this.showChangePassword =
-            !await this.userService.getUsesCryptoAgent();
+            !await this.userService.getUsesKeyConnector();
     }
 
     async deauthorizeSessions() {
