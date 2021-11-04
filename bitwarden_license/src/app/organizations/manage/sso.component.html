@@ -40,6 +40,10 @@
         </div>
     </div>
 
+    <app-callout type="warning" *ngIf="data.value.useKeyConnector">
+        {{'keyConnectorWarning' | i18n}}
+    </app-callout>
+
     <div class="form-group" *ngIf="data.value.useKeyConnector">
         <label>{{'keyConnectorUrl' | i18n}}</label>
         <input class="form-control" formControlName="keyConnectorUrl">
