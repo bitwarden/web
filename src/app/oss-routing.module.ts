@@ -99,6 +99,7 @@ import { Permissions } from 'jslib-common/enums/permissions';
 
 import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
 import { EmergencyAccessComponent } from './settings/emergency-access.component';
+import { SponsoredFamiliesComponent } from './settings/sponsored-families.component';
 
 const routes: Routes = [
     {
@@ -218,6 +219,11 @@ const routes: Routes = [
                             },
                         ],
                     },
+                    {
+                        path: 'sponsored-families',
+                        component: SponsoredFamiliesComponent,
+                        data: { titleId: 'sponsoredFamilies' },
+                    }
                 ],
             },
             {

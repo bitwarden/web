@@ -244,6 +244,7 @@ import { ResetPasswordPolicyComponent } from './organizations/policies/reset-pas
 import { SendOptionsPolicyComponent } from './organizations/policies/send-options.component';
 import { SingleOrgPolicyComponent } from './organizations/policies/single-org.component';
 import { TwoFactorAuthenticationPolicyComponent } from './organizations/policies/two-factor-authentication.component';
+import { SponsoredFamiliesComponent } from './settings/sponsored-families.component';
 
 registerLocaleData(localeAz, 'az');
 registerLocaleData(localeBg, 'bg');
@@ -460,6 +461,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ResetPasswordPolicyComponent,
         VaultTimeoutInputComponent,
         AddEditCustomFieldsComponent,
+        SponsoredFamiliesComponent,
     ],
     exports: [
         A11yTitleDirective,

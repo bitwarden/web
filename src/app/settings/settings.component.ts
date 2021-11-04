@@ -19,6 +19,7 @@ const BroadcasterSubscriptionId = 'SettingsComponent';
 export class SettingsComponent implements OnInit, OnDestroy {
     premium: boolean;
     selfHosted: boolean;
+    isInEnterprise: boolean;
 
     constructor(private tokenService: TokenService, private broadcasterService: BroadcasterService,
         private ngZone: NgZone, private platformUtilsService: PlatformUtilsService) { }
@@ -44,6 +45,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
 
     async load() {
+        // TODO: Actually figure this out
+        this.isInEnterprise = true;
         this.premium = await this.tokenService.getPremium();
     }
 }
