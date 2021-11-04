@@ -68,4 +68,32 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
     get showToolsTab(): boolean {
         return this.organization.canAccessImportExport || this.organization.canAccessReports;
     }
+
+    get toolsRoute(): string {
+        return this.organization.canAccessImportExport ?
+            'tools/import' :
+            'tools/exposed-passwords-report';
+    }
+
+    get manageRoute(): string {
+        let route: string;
+        switch (true) {
+            case this.organization.canManageUsers:
+                route = 'manage/people';
+                break;
+            case this.organization.canViewAssignedCollections || this.organization.canViewAllCollections:
+                route = 'manage/collections';
+                break;
+            case this.organization.canManageGroups:
+                route = 'manage/groups';
+                break;
+            case this.organization.canManagePolicies:
+                route = 'manage/policies';
+                break;
+            case this.organization.canAccessEventLogs:
+                route = 'manage/events';
+                break;
+        }
+        return route;
+    }
 }
