@@ -44,10 +44,10 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     actionPromise: Promise<any>;
     userHasPremiumAccess = false;
 
-    organizationNames = new Map();
+    organizationNames = new Map<string, string>();
     sortedDescending = true;
-    sortBy = '';
-    sortByOptions = ['name', 'owner', 'dateCreated', 'lastEdited']
+    sortBy = '' as string;
+    sortByOptions = ['name', 'owner', 'dateCreated', 'lastEdited'] as (string)[];
 
     private didScroll = false;
     private pagedCiphersCount = 0;
@@ -88,7 +88,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
     async loadOranizations(): Promise<Map<string, string>> {
         const organizations = await this.userService.getAllOrganizations();
-        let organizationNames = new Map<string, string>();
+        const organizationNames = new Map<string, string>();
 
         if (organizations.length > 0) {
             organizations.forEach(organization => {
@@ -101,14 +101,14 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
     getOrganizationById(c: CipherView): string {
         if (c.organizationId != null) {
-            return this.organizationNames.get(c.organizationId)
+            return this.organizationNames.get(c.organizationId);
         }
-        return 'Personal'
+        return 'Personal';
     }
 
-    sortCiphers(sortBy: string) {
+    sortCiphers(sortBy: string): void {
         if (this.sortByOptions.includes(sortBy)) {
-            if (sortBy == this.sortBy) {
+            if (sortBy === this.sortBy) {
                 this.sortedDescending = !this.sortedDescending;
             } else {
                 this.sortBy = sortBy;
@@ -117,53 +117,57 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
             const self = this;
 
-            if (sortBy == 'lastEdited') {
-                this.ciphers.sort(function(a: any, b: any) {
+            if (sortBy === 'lastEdited') {
+                this.ciphers.sort((a: CipherView, b: CipherView) => {
                     if (self.sortedDescending) return new Date(b.revisionDate).valueOf() - new Date(a.revisionDate).valueOf(); // weird typescript thing: https://stackoverflow.com/a/60688789/7672369
                     else return new Date(a.revisionDate).valueOf() - new Date(b.revisionDate).valueOf();
                 });
-            } else if (sortBy == 'dateCreated') {
+            } else if (sortBy === 'dateCreated') {
                 // TO-DO
-            } else if (sortBy == 'owner') {
+            } else if (sortBy === 'owner') {
                 const sortingArray = this.organizationNames;
-                
-                this.ciphers.sort(function(a: any, b: any){  
-                    let sortingValue1, sortingValue2;
-    
+
+                this.ciphers.sort((a: CipherView, b: CipherView) => {
+                    let sortingValue1;
+                    let sortingValue2;
+
                     if (a.organizationId == null) {
                         sortingValue1 = 'Personal';
                     } else {
-                        sortingValue1 = sortingArray.get(a.organizationId)
+                        sortingValue1 = sortingArray.get(a.organizationId);
                     }
-    
+
                     if (b.organizationId == null) {
                         sortingValue2 = 'Personal';
                     } else {
-                        sortingValue2 = sortingArray.get(b.organizationId)
+                        sortingValue2 = sortingArray.get(b.organizationId);
                     }
 
                     if (self.sortedDescending) {
-                        return sortingValue1.localeCompare(sortingValue2)
+                        return sortingValue1.localeCompare(sortingValue2);
                     } else {
-                        return sortingValue2.localeCompare(sortingValue1)
+                        return sortingValue2.localeCompare(sortingValue1);
                     }
                 });
-            } else if (sortBy == 'name') {
+            } else if (sortBy === 'name') {
                 if (this.sortedDescending) this.ciphers.sort((a, b) => a.name.localeCompare(b.name));
                 else this.ciphers.sort((a, b) => b.name.localeCompare(a.name));
             }
         } else {
-            this.sortBy = ''
+            this.sortBy = '';
         }
     }
 
-    reverseSort() {
+    reverseSort(): void {
         this.sortCiphers(this.sortBy);
     }
 
     revisionDate(c: CipherView): string {
         const revisionDate = c.revisionDate;
-        return `${revisionDate.getFullYear()}-${revisionDate.getMonth()}-${revisionDate.getDate()}`
+
+        if (revisionDate) {
+            return revisionDate.toLocaleDateString('en-US');
+        }
     }
 
     async refresh() {
