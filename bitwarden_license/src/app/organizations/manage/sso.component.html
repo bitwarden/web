@@ -40,7 +40,7 @@
         </div>
     </div>
 
-    <app-callout type="warning" *ngIf="data.value.useKeyConnector">
+    <app-callout type="warning" *ngIf="data.value.useKeyConnector" [useAlertRole]="true">
         {{'keyConnectorWarning' | i18n}}
     </app-callout>
 
