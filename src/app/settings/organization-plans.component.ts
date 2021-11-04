@@ -74,7 +74,7 @@ export class OrganizationPlansComponent implements OnInit {
         private toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
         private cryptoService: CryptoService, private router: Router, private syncService: SyncService,
         private policyService: PolicyService, private userService: UserService, private logService: LogService) {
-            this.selfHosted = platformUtilsService.isSelfHost();
+        this.selfHosted = platformUtilsService.isSelfHost();
     }
 
     async ngOnInit() {
