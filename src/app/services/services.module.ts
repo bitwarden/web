@@ -127,7 +127,7 @@ const sendService = new SendService(cryptoService, apiService, fileUploadService
     i18nService, cryptoFunctionService, stateService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
     cryptoService, platformUtilsService, messagingService, searchService, tokenService,
-    policyService, stateService, async () => messagingService.send('logout', { expired: false }));
+    policyService, stateService, null, async () => messagingService.send('logout', { expired: false }));
 const syncService = new SyncService(apiService, settingsService,
     folderService, cipherService, cryptoService, collectionService, messagingService, policyService,
     sendService, consoleLogService, async (expired: boolean) => messagingService.send('logout', { expired: expired }),
