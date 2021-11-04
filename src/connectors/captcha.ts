@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let parentUrl: string = null;
 let parentOrigin: string = null;
-let callbackUri: string = null;
+let mobileResponse: boolean = null;
 let sentSuccess = false;
 
 async function init() {
@@ -53,13 +53,13 @@ async function start() {
         error('Cannot parse data.');
         return;
     }
-    callbackUri = decodedData.callbackUri;
+    mobileResponse = decodedData.callbackUri != null || decodedData.mobile === true;
 
     let src = 'https://hcaptcha.com/1/api.js?render=explicit';
 
     // Set language code
     if (decodedData.locale) {
-        src += `&hl=${decodedData.locale ?? 'en'}`;
+        src += `&hl=${encodeURIComponent(decodedData.locale) ?? 'en'}`;
     }
 
     // Set captchaRequired subtitle for mobile
@@ -74,7 +74,7 @@ async function start() {
     script.defer = true;
     script.addEventListener('load', e => {
         hcaptcha.render('captcha', {
-            sitekey: decodedData.siteKey,
+            sitekey: encodeURIComponent(decodedData.siteKey),
             callback: 'captchaSuccess',
             'error-callback': 'captchaError',
         });
@@ -84,8 +84,8 @@ async function start() {
 }
 
 function captchaSuccess(response: string) {
-    if (callbackUri) {
-        document.location.replace(callbackUri + '?token=' + encodeURIComponent(response));
+    if (mobileResponse) {
+        document.location.replace('bitwarden://captcha-callback?token=' + encodeURIComponent(response));
     } else {
         success(response);
     }
