@@ -221,7 +221,7 @@ const routes: Routes = [
                         path: 'sponsored-families',
                         component: SponsoredFamiliesComponent,
                         data: { titleId: 'sponsoredFamilies' },
-                    }
+                    },
                 ],
             },
             {
