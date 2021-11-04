@@ -1,5 +1,5 @@
 ---
-name: Crowdin Sync
+name: Crowdin Pull
 
 on:
   workflow_dispatch:
@@ -8,8 +8,8 @@ on:
 #   - cron: '0 0 * * *'
 
 jobs:
-  crowdin-sync:
-    name: Autosync
+  crowdin-pull:
+    name: Pull
     runs-on: ubuntu-20.04
     env:
       _CROWDIN_PROJECT_ID: "308189"
@@ -30,7 +30,7 @@ jobs:
           secrets: "crowdin-api-token"
 
       - name: Download translations
-        uses: crowdin/github-action@e39093fd75daae7859c68eded4b43d42ec78d8ea
+        uses: crowdin/github-action@e39093fd75daae7859c68eded4b43d42ec78d8ea  # v1.3.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CROWDIN_API_TOKEN: ${{ steps.retrieve-secrets.outputs.crowdin-api-token }}
