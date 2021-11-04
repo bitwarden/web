@@ -24,8 +24,6 @@ import { VerifyEmailTokenComponent } from './accounts/verify-email-token.compone
 import { VerifyRecoverDeleteComponent } from './accounts/verify-recover-delete.component';
 
 import { CollectionsComponent as OrgManageCollectionsComponent } from './organizations/manage/collections.component';
-import { ManageRouterComponent } from './organizations/manage/manage-router.component';
-import { ToolsRouterComponent } from './organizations/tools/tools-router.component';
 import { EventsComponent as OrgEventsComponent } from './organizations/manage/events.component';
 import { GroupsComponent as OrgGroupsComponent } from './organizations/manage/groups.component';
 import { ManageComponent as OrgManageComponent } from './organizations/manage/manage.component';
@@ -279,7 +277,7 @@ const routes: Routes = [
                     {
                         path: '',
                         pathMatch: 'full',
-                        component: ToolsRouterComponent,
+                        redirectTo: 'import',
                     },
                     {
                         path: 'import',
@@ -367,7 +365,7 @@ const routes: Routes = [
                     {
                         path: '',
                         pathMatch: 'full',
-                        component: ManageRouterComponent,
+                        redirectTo: 'people',
                     },
                     {
                         path: 'collections',
