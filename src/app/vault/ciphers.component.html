@@ -1,6 +1,35 @@
 <ng-container *ngIf="(isPaging() ? pagedCiphers : ciphers) as filteredCiphers">
     <table class="table table-hover table-list table-ciphers" *ngIf="filteredCiphers.length" infiniteScroll
         [infiniteScrollDistance]="1" [infiniteScrollDisabled]="!isPaging()" (scrolled)="loadMore()">
+        <thead>
+            <tr>
+            <th scope="col">
+                <input (click)="selectAll()" type="checkbox">
+            </th>
+            <th scope="col"></th>
+            <th scope="col" class="user-select-none" (click)="sortCiphers('name')">Name</th>
+            <th scope="col" class="table-col-sort cipher-sort-table-header">
+                <div class="input-group m-0 font-weight-bold">
+                    <div (click)="reverseSort()" *ngIf="sortedDescending; else elseBlock" class="input-group-prepend no-bg">
+                        <label  class="input-group-text bg-transparent border-0" for="inputGroupSelect01">↓</label>
+                    </div>
+                    <ng-template #elseBlock>
+                        <div (click)="reverseSort()" class="input-group-prepend">
+                            <label  class="input-group-text bg-transparent border-0" for="inputGroupSelect01">↑</label>
+                        </div>
+                    </ng-template>
+                    <select #option (change)="sortCiphers(option.value)" class="border-0 custom-select bg-transparent font-weight-bold" id="inputGroupSelect01">
+                        <option value="" selected="selected">Sort By</option>
+                        <option value="name">{{'name' | i18n}}</option>
+                        <option value="owner">{{'owner' | i18n}}</option>
+                        <option value="dateCreated">{{'dateCreated' | i18n}}</option>
+                        <option value="lastEdited">{{'lastEdited' | i18n}}</option>
+                    </select>
+                </div>
+            </th>
+            <th scope="col"></th>
+            </tr>
+        </thead>
         <tbody>
             <tr *ngFor="let c of filteredCiphers">
                 <td (click)="checkCipher(c)" class="table-list-checkbox">
@@ -27,6 +56,21 @@
                     </ng-container>
                     <br>
                     <small appStopProp>{{c.subTitle}}</small>
+                </td>
+                <td *ngIf="sortBy == 'name'">
+                    <small appStopProp></small>
+                </td>
+                <td *ngIf="sortBy == 'owner'">
+                    <small appStopProp>{{ getOrganizationById(c.organizationId) }}</small>
+                </td>
+                <td *ngIf="sortBy == 'dateCreated'">
+                    <small appStopProp></small>
+                </td>
+                <td *ngIf="sortBy == 'lastEdited'">
+                    <small appStopProp>{{ revisionDate(c) }}</small>
+                </td>
+                <td *ngIf="sortBy == ''">
+                    <small appStopProp></small>
                 </td>
                 <td class="table-list-options">
                     <div class="dropdown" appListDropdown>
