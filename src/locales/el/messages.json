@@ -900,7 +900,7 @@
     "message": "Αλλαγή Email"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Proceeding will change your account email address. It will not change the email address used for two-factor authentication. You can change this email address in the Two-Step Login settings."
+    "message": "Η διαδικασία θα αλλάξει τη διεύθυνση email του λογαριασμού σας. Δεν θα αλλάξει το email που χρησιμοποιείται για έλεγχο ταυτότητας δύο παραγόντων. Μπορείτε να αλλάξετε αυτό το email στις ρυθμίσεις σύνδεσης δύο βημάτων."
   },
   "newEmail": {
     "message": "Νέο Email"
@@ -1002,7 +1002,7 @@
     "message": "Εκκαθάριση vault οργανισμού."
   },
   "vaultAccessedByProvider": {
-    "message": "Vault accessed by provider."
+    "message": "Vault με πρόσβαση από τον πάροχο."
   },
   "purgeVaultDesc": {
     "message": "Προχωρήστε παρακάτω για να διαγράψετε όλα τα στοιχεία και τους φακέλους στo vault σας. Τα στοιχεία που ανήκουν σε έναν οργανισμό των οποίων τα στοιχεία κοινοποιείτε, δεν θα διαγραφούν."
@@ -2155,7 +2155,7 @@
     "message": "Πολιτικές"
   },
   "singleSignOn": {
-    "message": "Single Sign-On"
+    "message": "Απλή Σύνδεση"
   },
   "editPolicy": {
     "message": "Επεξεργασία Πολιτικής"
@@ -2248,7 +2248,7 @@
     "message": "Επιβεβαιωμένο"
   },
   "clientOwnerEmail": {
-    "message": "Client Owner Email"
+    "message": "Email Ιδιοκτήτη Πελάτη"
   },
   "owner": {
     "message": "Ιδιοκτήτης"
@@ -2257,7 +2257,7 @@
     "message": "Χρήστης με υψηλό βαθμό πρόσβασης που μπορεί να διαχειριστεί όλες τις πτυχές του οργανισμού σας."
   },
   "clientOwnerDesc": {
-    "message": "This user should be independent of the Provider. If the Provider is disassociated with the organization, this user will maintain ownership of the organization."
+    "message": "Αυτός ο χρήστης πρέπει να είναι ανεξάρτητος από τον Πάροχο. Εάν ο Πάροχος δεν συνδέεται με τον οργανισμό, αυτός ο χρήστης θα διατηρήσει την ιδιοκτησία του οργανισμού."
   },
   "admin": {
     "message": "Διαχειριστής"
@@ -2593,7 +2593,7 @@
     }
   },
   "createdOrganizationId": {
-    "message": "Created organization $ID$.",
+    "message": "Δημιουργήθηκε οργανισμός $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2602,7 +2602,7 @@
     }
   },
   "addedOrganizationId": {
-    "message": "Added organization $ID$.",
+    "message": "Προστέθηκε οργανισμός $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2611,7 +2611,7 @@
     }
   },
   "removedOrganizationId": {
-    "message": "Removed organization $ID$.",
+    "message": "Ο οργανισμός $ID$ αφαιρέθηκε.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2620,7 +2620,7 @@
     }
   },
   "accessedClientVault": {
-    "message": "Accessed $ID$ organization vault.",
+    "message": "Πρόσβαση στο $ID$ vault οργανισμού.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2882,14 +2882,14 @@
     "message": "Εισάγετε το αναγνωριστικό εγκατάστασης"
   },
   "limitSubscriptionDesc": {
-    "message": "Set a seat limit for your subscription. Once this limit is reached, you will not be able to invite new users."
+    "message": "Ορίστε ένα όριο θέσης για τη συνδρομή σας. Μόλις συμπληρωθεί αυτό το όριο, δεν θα μπορείτε να προσκαλέσετε νέους χρήστες."
   },
   "maxSeatLimit": {
-    "message": "Maximum Seat Limit (optional)",
+    "message": "Μέγιστο Όριο Θέσης (Προαιρετικό)",
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
-    "message": "Max potential seat cost"
+    "message": "Μέγιστο δυνητικό κόστος θέσης"
   },
   "addSeats": {
     "message": "Προσθήκη Θέσεων",
@@ -2900,7 +2900,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionDesc": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "Οι προσαρμογές της συνδρομής σας θα έχουν ως αποτέλεσμα αλλαγές στα σύνολα τιμολόγησης. Εάν οι νεοπροσκεκλημένοι χρήστες υπερβούν τις συνδρομητικές σας θέσεις, θα λάβετε αμέσως μια αναθεωρημένη χρέωση για τους πρόσθετους χρήστες."
   },
   "subscriptionUserSeats": {
     "message": "Η συνδρομή σας, επιτρέπει συνολικά $COUNT$ χρήστες.",
@@ -2912,25 +2912,25 @@
     }
   },
   "limitSubscription": {
-    "message": "Limit Subscription (Optional)"
+    "message": "Όριο Συνδρομής (Προαιρετικό)"
   },
   "subscriptionSeats": {
-    "message": "Subscription Seats"
+    "message": "Θέσεις Συνδρομής"
   },
   "subscriptionUpdated": {
-    "message": "Subscription updated"
+    "message": "Η συνδρομή ενημερώθηκε"
   },
   "additionalOptions": {
-    "message": "Additional Options"
+    "message": "Πρόσθετες Επιλογές"
   },
   "additionalOptionsDesc": {
-    "message": "For additional help in managing your subscription, please contact Customer Support."
+    "message": "Για πρόσθετη βοήθεια στη διαχείριση της συνδρομής σας, επικοινωνήστε με την Υποστήριξη πελατών."
   },
   "subscriptionUserSeatsUnlimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "Οι προσαρμογές της συνδρομής σας θα έχουν ως αποτέλεσμα αλλαγές στα σύνολα τιμολόγησης. Εάν οι νεοπροσκεκλημένοι χρήστες υπερβούν τις συνδρομητικές σας θέσεις, θα λάβετε αμέσως μια αναθεωρημένη χρέωση για τους πρόσθετους χρήστες."
   },
   "subscriptionUserSeatsLimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users until your $MAX$ seat limit is reached.",
+    "message": "Οι προσαρμογές της συνδρομής σας θα έχουν ως αποτέλεσμα αλλαγές στα σύνολα τιμολόγησης. Εάν οι νεοπροσκεκλημένοι χρήστες υπερβούν τις θέσεις συνδρομής, θα λάβετε αμέσως μια τροποποιημένη χρέωση για τους επιπλέον χρήστες μέχρι να συμπληρωθεί το όριο θέσης $MAX$ σας.",
     "placeholders": {
       "max": {
         "content": "$1",
@@ -2939,7 +2939,7 @@
     }
   },
   "subscriptionMaxReached": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. You cannot invite more than $COUNT$ users without increasing your subscription seats.",
+    "message": "Οι προσαρμογές της συνδρομής σας θα οδηγήσουν σε αναλογικές αλλαγές στα συνολικά τιμολόγιά σας. Δεν μπορείτε να προσκαλέσετε περισσότερους από $COUNT$ χρήστες χωρίς να αυξήσετε τις συνδρομητικές σας θέσεις.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3821,22 +3821,22 @@
     "message": "Διαχείριση Όλων Των Συλλογών"
   },
   "createNewCollections": {
-    "message": "Create New Collections"
+    "message": "Δημιουργία Νέων Συλλογών"
   },
   "editAnyCollection": {
-    "message": "Edit Any Collection"
+    "message": "Επεξεργασία Οποιασδήποτε Συλλογής"
   },
   "deleteAnyCollection": {
-    "message": "Delete Any Collection"
+    "message": "Διαγραφή Οποιασδήποτε Συλλογής"
   },
   "manageAssignedCollections": {
     "message": "Διαχείριση Αντιστοιχισμένων Συλλογών"
   },
   "editAssignedCollections": {
-    "message": "Edit Assigned Collections"
+    "message": "Επεξεργασία Αντιστοιχισμένων Συλλογών"
   },
   "deleteAssignedCollections": {
-    "message": "Delete Assigned Collections"
+    "message": "Διαγραφή Ανατεθειμένων Συλλογών"
   },
   "manageGroups": {
     "message": "Διαχείριση Ομάδων"
@@ -3854,7 +3854,7 @@
     "message": "Διαχείριση Επαναφοράς Κωδικού Πρόσβασης"
   },
   "disableRequiredError": {
-    "message": "You must manually disable the $POLICYNAME$ policy before this policy can be disabled.",
+    "message": "Πρέπει να απενεργοποιήσετε χειροκίνητα την πολιτική $POLICYNAME$ πριν απενεργοποιηθεί αυτή η πολιτική.",
     "placeholders": {
       "policyName": {
         "content": "$1",
@@ -3866,7 +3866,7 @@
     "message": "Μια πολιτική οργάνωσης επηρεάζει τις επιλογές ιδιοκτησίας σας."
   },
   "personalOwnershipPolicyInEffectImports": {
-    "message": "An organization policy has disabled importing items into your personal vault."
+    "message": "Μια οργανωτική πολιτική έχει απενεργοποιήσει την εισαγωγή στοιχείων στο προσωπικό θησαυ/κιο σας."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Απενεργοποίηση προσωπικής ιδιοκτησίας για χρήστες οργανισμού"
@@ -4025,7 +4025,7 @@
     }
   },
   "eventResetSsoLink": {
-    "message": "Reset Sso link for user $ID$",
+    "message": "Επαναφορά συνδέσμου Sso για το χρήστη $ID$",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4112,19 +4112,19 @@
     "message": "Είστε βέβαιοι ότι θέλετε να καταργήσετε τους ακόλουθους χρήστες? Η διαδικασία μπορεί να διαρκέσει μερικά δευτερόλεπτα για να ολοκληρωθεί και δεν μπορεί να διακοπεί ή να ακυρωθεί."
   },
   "theme": {
-    "message": "Theme"
+    "message": "Θέμα"
   },
   "themeDesc": {
-    "message": "Choose a theme for your web vault."
+    "message": "Επιλέξτε ένα θέμα για το web vault."
   },
   "themeSystem": {
-    "message": "Use System Theme"
+    "message": "Χρήση Θέματος Συστήματος"
   },
   "themeDark": {
-    "message": "Dark"
+    "message": "Σκοτεινό"
   },
   "themeLight": {
-    "message": "Light"
+    "message": "Φωτεινό"
   },
   "confirmSelected": {
     "message": "Επιβεβαίωση Επιλεγμένων"
@@ -4157,70 +4157,70 @@
     "message": "Οι Διαχειριστές Χρηστών πρέπει επίσης να είναι ενεργοποιημένοι με την άδεια Διαχείρισης Κωδικού Επαναφοράς"
   },
   "setupProvider": {
-    "message": "Provider Setup"
+    "message": "Ρύθμιση Παρόχου"
   },
   "setupProviderLoginDesc": {
-    "message": "You've been invited to setup a new provider. To continue, you need to log in or create a new Bitwarden account."
+    "message": "Έχετε προσκληθεί να ρυθμίσετε έναν νέο πάροχο. Για να συνεχίσετε, πρέπει να συνδεθείτε ή να δημιουργήσετε ένα νέο λογαριασμό Bitwarden."
   },
   "setupProviderDesc": {
-    "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
+    "message": "Παρακαλούμε εισάγετε τα παρακάτω στοιχεία για να ολοκληρώσετε την εγκατάσταση του παρόχου. Επικοινωνήστε με την Υποστήριξη πελατών αν έχετε οποιεσδήποτε απορίες."
   },
   "providerName": {
-    "message": "Provider Name"
+    "message": "Όνομα παρόχου"
   },
   "providerSetup": {
-    "message": "The provider has been set up."
+    "message": "Ο πάροχος έχει ρυθμιστεί."
   },
   "clients": {
-    "message": "Clients"
+    "message": "Πελάτες"
   },
   "providerAdmin": {
-    "message": "Provider Admin"
+    "message": "Διαχειριστής Παρόχου"
   },
   "providerAdminDesc": {
-    "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
+    "message": "Ο χρήστης με την υψηλότερη πρόσβαση που μπορεί να διαχειριστεί όλες τις πτυχές του παρόχου σας, καθώς και την πρόσβαση και τη διαχείριση των οργανισμών-πελατών."
   },
   "serviceUser": {
-    "message": "Service User"
+    "message": "Υπηρεσία Χρήστη"
   },
   "serviceUserDesc": {
-    "message": "Service users can access and manage all client organizations."
+    "message": "Οι χρήστες υπηρεσιών μπορούν να έχουν πρόσβαση και να διαχειρίζονται όλους τους οργανισμούς πελατών."
   },
   "providerInviteUserDesc": {
-    "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Προσκαλέστε έναν νέο χρήστη στον πάροχο σας εισάγοντας το email λογαριασμού Bitwarden παρακάτω. Εάν δεν έχουν ήδη λογαριασμό Bitwarden, θα τους ζητηθεί να δημιουργήσουν ένα νέο λογαριασμό."
   },
   "joinProvider": {
-    "message": "Join Provider"
+    "message": "Συμμετοχή Στον Πάροχο"
   },
   "joinProviderDesc": {
-    "message": "You've been invited to join the provider listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Έχετε προσκληθεί να συμμετάσχετε στον παραπάνω πάροχο. Για να αποδεχτείτε την πρόσκληση, πρέπει να συνδεθείτε ή να δημιουργήσετε ένα νέο λογαριασμό Bitwarden."
   },
   "providerInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask a provider admin to send a new invitation."
+    "message": "Αδυναμία αποδοχής πρόσκλησης. Ζητήστε από τον διαχειριστή του παρόχου να στείλει μια νέα πρόσκληση."
   },
   "providerInviteAcceptedDesc": {
-    "message": "You can access this provider once an administrator confirms your membership. We'll send you an email when that happens."
+    "message": "Μπορείτε να αποκτήσετε πρόσβαση σε αυτόν τον πάροχο μόλις ένας διαχειριστής επιβεβαιώσει τη συμμετοχή σας. Θα σας στείλουμε ένα email όταν συμβεί αυτό."
   },
   "providerUsersNeedConfirmed": {
-    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the provider until they are confirmed."
+    "message": "Έχετε χρήστες που έχουν αποδεχθεί την πρόσκληση τους, αλλά πρέπει ακόμα να επιβεβαιωθούν. Οι χρήστες δεν θα έχουν πρόσβαση στον πάροχο μέχρι να επιβεβαιωθούν."
   },
   "provider": {
-    "message": "Provider"
+    "message": "Πάροχος"
   },
   "newClientOrganization": {
-    "message": "New Client Organization"
+    "message": "Νέος Οργανισμός Πελάτη"
   },
   "newClientOrganizationDesc": {
-    "message": "Create a new client organization that will be associated with you as the provider. You will be able to access and manage this organization."
+    "message": "Δημιουργήστε ένα νέο οργανισμό πελάτη που θα συσχετιστεί με εσάς ως πάροχο. Θα είστε σε θέση να έχετε πρόσβαση και να διαχειριστείτε αυτόν τον οργανισμό."
   },
   "addExistingOrganization": {
-    "message": "Add Existing Organization"
+    "message": "Προσθήκη Υπάρχοντος Οργανισμού"
   },
   "myProvider": {
-    "message": "My Provider"
+    "message": "Ο Πάροχος Μου"
   },
   "addOrganizationConfirmation": {
-    "message": "Are you sure you want to add $ORGANIZATION$ as a client to $PROVIDER$?",
+    "message": "Είστε βέβαιοι ότι θέλετε να προσθέσετε $ORGANIZATION$ ως πελάτης στο $PROVIDER$;",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4233,10 +4233,10 @@
     }
   },
   "organizationJoinedProvider": {
-    "message": "Organization was successfully added to the provider"
+    "message": "Ο οργανισμός προστέθηκε με επιτυχία στον πάροχο"
   },
   "accessingUsingProvider": {
-    "message": "Accessing organization using provider $PROVIDER$",
+    "message": "Πρόσβαση στον οργανισμό χρησιμοποιώντας τον πάροχο $PROVIDER$",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4245,13 +4245,13 @@
     }
   },
   "providerIsDisabled": {
-    "message": "Provider is disabled."
+    "message": "Ο πάροχος είναι απενεργοποιημένος."
   },
   "providerUpdated": {
-    "message": "Provider updated"
+    "message": "Ο πάροχος ενημερώθηκε"
   },
   "yourProviderIs": {
-    "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
+    "message": "Ο πάροχος σας είναι $PROVIDER$. Έχουν δικαιώματα διαχείρισης και χρέωσης για τον οργανισμό σας.",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4260,7 +4260,7 @@
     }
   },
   "detachedOrganization": {
-    "message": "The organization $ORGANIZATION$ has been detached from your provider.",
+    "message": "Ο οργανισμός $ORGANIZATION$ έχει αποσπαστεί από τον πάροχο σας.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4269,40 +4269,40 @@
     }
   },
   "detachOrganizationConfirmation": {
-    "message": "Are you sure you want to detach this organization? The organization will continue to exist but will no longer be managed by the provider."
+    "message": "Είστε βέβαιοι ότι θέλετε να αποσυνδέσετε αυτόν τον οργανισμό? Ο οργανισμός θα συνεχίσει να υπάρχει, αλλά δεν θα διαχειρίζεται πλέον από τον πάροχο."
   },
   "add": {
-    "message": "Add"
+    "message": "Προσθήκη"
   },
   "updatedMasterPassword": {
-    "message": "Updated Master Password"
+    "message": "Ενημερώθηκε ο κύριος κωδικός πρόσβασης"
   },
   "updateMasterPassword": {
-    "message": "Update Master Password"
+    "message": "Ενημερώστε τον κύριο κωδικό πρόσβασης"
   },
   "updateMasterPasswordWarning": {
-    "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Ο Κύριος Κωδικός Πρόσβασης σας άλλαξε πρόσφατα από διαχειριστή στον οργανισμό σας. Για να αποκτήσετε πρόσβαση στο vault, πρέπει να ενημερώσετε το κύριο κωδικό τώρα. Η διαδικασία θα σας αποσυνδέσει από την τρέχουσα συνεδρία σας, απαιτώντας από εσάς να συνδεθείτε ξανά. Οι ενεργές συνεδρίες σε άλλες συσκευές ενδέχεται να συνεχίσουν να είναι ενεργές για μία ώρα."
   },
   "maximumVaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Χρόνος Λήξης Vault"
   },
   "maximumVaultTimeoutDesc": {
-    "message": "Configure a maximum vault timeout for all users."
+    "message": "Ρύθμιση μέγιστου χρονικού ορίου vault για όλους τους χρήστες."
   },
   "maximumVaultTimeoutLabel": {
-    "message": "Maximum Vault Timeout"
+    "message": "Μέγιστο Χρονικό Όριο Vault"
   },
   "invalidMaximumVaultTimeout": {
-    "message": "Invalid Maximum Vault Timeout."
+    "message": "Μη Έγκυρο Μέγιστο Χρονικό Όριο Vault."
   },
   "hours": {
-    "message": "Hours"
+    "message": "Ώρες"
   },
   "minutes": {
-    "message": "Minutes"
+    "message": "Λεπτά"
   },
   "vaultTimeoutPolicyInEffect": {
-    "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "message": "Οι πολιτικές του οργανισμού σας επηρεάζουν το χρονικό όριο vault σας. Το μέγιστο επιτρεπόμενο Χρονικό όριο Vault είναι $HOURS$ ώρα(ες) και $MINUTES$ λεπτό(ά)",
     "placeholders": {
       "hours": {
         "content": "$1",
@@ -4315,138 +4315,138 @@
     }
   },
   "customVaultTimeout": {
-    "message": "Custom Vault Timeout"
+    "message": "Προσαρμοσμένο Χρονικό Όριο Vault"
   },
   "vaultTimeoutToLarge": {
-    "message": "Your vault timeout exceeds the restriction set by your organization."
+    "message": "Το χρονικό όριο του vault υπερβαίνει τον περιορισμό που ορίστηκε από τον οργανισμό σας."
   },
   "disablePersonalVaultExport": {
-    "message": "Disable Personal Vault Export"
+    "message": "Απενεργοποίηση Εξαγωγής Προσωπικών Vault"
   },
   "disablePersonalVaultExportDesc": {
-    "message": "Prohibits users from exporting their private vault data."
+    "message": "Προσελκύει τους χρήστες να εξάγουν τα προσωπικά τους δεδομένα από το vault."
   },
   "vaultExportDisabled": {
-    "message": "Vault Export Disabled"
+    "message": "Εξαγωγή vault Απενεργοποιημένη"
   },
   "personalVaultExportPolicyInEffect": {
-    "message": "One or more organization policies prevents you from exporting your personal vault."
+    "message": "Μία ή περισσότερες οργανωτικές πολιτικές σας αποτρέπει από την εξαγωγή του προσωπικού vault."
   },
   "selectType": {
-    "message": "Select SSO Type"
+    "message": "Επιλογή Τύπου SSO"
   },
   "type": {
-    "message": "Type"
+    "message": "Τύπος"
   },
   "openIdConnectConfig": {
-    "message": "OpenID Connect Configuration"
+    "message": "Ρύθμιση Σύνδεσης OpenID"
   },
   "samlSpConfig": {
-    "message": "SAML Service Provider Configuration"
+    "message": "Ρύθμιση Παροχής Υπηρεσιών SAML"
   },
   "samlIdpConfig": {
-    "message": "SAML Identity Provider Configuration"
+    "message": "Ρύθμιση Παρόχου Ταυτότητας SAML"
   },
   "callbackPath": {
-    "message": "Callback Path"
+    "message": "Διαδρομή Κλήσης"
   },
   "signedOutCallbackPath": {
-    "message": "Signed Out Callback Path"
+    "message": "Διαδρομή Κλήσης Αποσύνδεσης"
   },
   "authority": {
-    "message": "Authority"
+    "message": "Αρχή"
   },
   "clientId": {
-    "message": "Client ID"
+    "message": "Ταυτότητα Πελάτη"
   },
   "clientSecret": {
-    "message": "Client Secret"
+    "message": "Μυστικό Πελάτη"
   },
   "metadataAddress": {
-    "message": "Metadata Address"
+    "message": "Διεύθυνση Μεταδεδομένων"
   },
   "oidcRedirectBehavior": {
-    "message": "OIDC Redirect Behavior"
+    "message": "Συμπεριφορά Ανακατεύθυνσης OIDC"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "Λήψη Αιτημάτων Από Το Τελικό Σημείο Πληροφοριών Χρήστη"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "Πρόσθετα/Προσαρμοσμένα Πεδία (οριοθετημένα με κόμμα)"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "Πρόσθετα/Προσαρμοσμένοι Τύποι Ιδιότητας Χρήστη (οριοθετημένοι με κόμμα)"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "Πρόσθετα/Προσαρμοσμένοι Τύποι Διεκδίκησης Email (οριοθετημένοι με κόμμα)"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "Πρόσθετο/Προσαρμοσμένος Τύπος Διεκδίκησης Ονόματος (οριοθετημένος με κόμμα)"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "Ζητούμενες τιμές αναφοράς κατηγορίας πλαισίου ελέγχου ταυτότητας (acr_values)"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "Αναμενόμενη τιμή διεκδίκησης \"acr\" στην απάντηση (επικύρωση acr)"
   },
   "spEntityId": {
-    "message": "SP Entity ID"
+    "message": "SP ID Οντότητας"
   },
   "spMetadataUrl": {
     "message": "SAML 2.0 Metadata URL"
   },
   "spAcsUrl": {
-    "message": "Assertion Consumer Service (ACS) URL"
+    "message": "Διεύθυνση Url Υπηρεσίας Καταναλωτών (ACS)"
   },
   "spNameIdFormat": {
-    "message": "Name ID Format"
+    "message": "Μορφή ID Ονόματος"
   },
   "spOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "Αλγόριθμος Εξερχόμενης Υπογραφής"
   },
   "spSigningBehavior": {
-    "message": "Signing Behavior"
+    "message": "Συμπεριφορά Υπογραφής"
   },
   "spMinIncomingSigningAlgorithm": {
-    "message": "Minimum Incoming Signing Algorithm"
+    "message": "Ελάχιστος Εισερχόμενος Αλγόριθμος Υπογραφής"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "Υπεγράφη Επιβεβαιώσεις"
   },
   "spValidateCertificates": {
-    "message": "Validate Certificates"
+    "message": "Επικύρωση Πιστοποιητικών"
   },
   "idpEntityId": {
     "message": "Entity ID"
   },
   "idpBindingType": {
-    "message": "Binding Type"
+    "message": "Τύπος Σύνδεσης"
   },
   "idpSingleSignOnServiceUrl": {
-    "message": "Single Sign On Service URL"
+    "message": "Διεύθυνση Url Υπηρεσίας Ενιαίας Εγγραφής"
   },
   "idpSingleLogoutServiceUrl": {
-    "message": "Single Log Out Service URL"
+    "message": "Διεύθυνση Url Υπηρεσίας Ενιαίας Αποσύνδεσης"
   },
   "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
+    "message": "URL Υπηρεσίας Ανάλυσης Καλλιτεχνικού Γεγονότος"
   },
   "idpX509PublicCert": {
-    "message": "X509 Public Certificate"
+    "message": "X509 Δημόσιο Πιστοποιητικό"
   },
   "idpOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "Αλγόριθμος Εξερχόμενης Υπογραφής"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "Να Επιτρέπεται Μη Αιτούμενη Απόκριση Ταυτοποίησης"
   },
   "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+    "message": "Απενεργοποίηση Αιτημάτων Εξερχόμενης Αποσύνδεσης"
   },
   "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+    "message": "Υπογράφηκαν Τα Αιτήματα Ελέγχου Ταυτότητας"
   },
   "ssoSettingsSaved": {
-    "message": "Single Sign-On configuration was saved."
+    "message": "Οι ρυθμίσεις για απλή σύνδεση αποθηκεύτηκαν."
   }
 }

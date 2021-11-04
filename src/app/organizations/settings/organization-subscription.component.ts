@@ -110,15 +110,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     async changePlan() {
-        if (this.subscription == null && this.sub.planType === PlanType.Free) {
-            this.showChangePlan = !this.showChangePlan;
-            return;
-        }
-        const contactSupport = await this.platformUtilsService.showDialog(this.i18nService.t('changeBillingPlanDesc'),
-            this.i18nService.t('changeBillingPlan'), this.i18nService.t('contactSupport'), this.i18nService.t('close'));
-        if (contactSupport) {
-            this.platformUtilsService.launchUri('https://bitwarden.com/contact');
-        }
+        this.showChangePlan = !this.showChangePlan;
     }
 
     closeChangePlan(changed: boolean) {
@@ -221,12 +213,20 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     get subscriptionDesc() {
-        if (this.sub.maxAutoscaleSeats === this.sub.seats && this.sub.seats != null) {
+        if (this.sub.planType === PlanType.Free) {
+            return this.i18nService.t('subscriptionFreePlan', this.sub.seats.toString());
+        } else if (this.sub.planType === PlanType.FamiliesAnnually || this.sub.planType === PlanType.FamiliesAnnually2019) {
+            return this.i18nService.t('subscriptionFamiliesPlan', this.sub.seats.toString());
+        } else if (this.sub.maxAutoscaleSeats === this.sub.seats && this.sub.seats != null) {
             return this.i18nService.t('subscriptionMaxReached', this.sub.seats.toString());
         } else if (this.sub.maxAutoscaleSeats == null) {
             return this.i18nService.t('subscriptionUserSeatsUnlimitedAutoscale');
         } else {
             return this.i18nService.t('subscriptionUserSeatsLimitedAutoscale', this.sub.maxAutoscaleSeats.toString());
         }
+    }
+
+    get showChangePlanButton() {
+        return this.subscription == null && this.sub.planType === PlanType.Free && !this.showChangePlan;
     }
 }
