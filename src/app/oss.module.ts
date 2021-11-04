@@ -26,10 +26,10 @@ import { AcceptOrganizationComponent } from './accounts/accept-organization.comp
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
 import { LoginComponent } from './accounts/login.component';
-import { OrganizationEncryptionComponent } from './accounts/organization-encryption.component';
 import { RecoverDeleteComponent } from './accounts/recover-delete.component';
 import { RecoverTwoFactorComponent } from './accounts/recover-two-factor.component';
 import { RegisterComponent } from './accounts/register.component';
+import { RemovePasswordComponent } from './accounts/remove-password.component';
 import { SetPasswordComponent } from './accounts/set-password.component';
 import { SsoComponent } from './accounts/sso.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
@@ -463,7 +463,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         VaultTimeoutInputComponent,
         AddEditCustomFieldsComponent,
         VerifyMasterPasswordComponent,
-        OrganizationEncryptionComponent,
+        RemovePasswordComponent,
     ],
     exports: [
         A11yTitleDirective,

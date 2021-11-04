@@ -13,7 +13,6 @@ import { AcceptOrganizationComponent } from './accounts/accept-organization.comp
 import { HintComponent } from './accounts/hint.component';
 import { LockComponent } from './accounts/lock.component';
 import { LoginComponent } from './accounts/login.component';
-import { OrganizationEncryptionComponent } from './accounts/organization-encryption.component';
 import { RecoverDeleteComponent } from './accounts/recover-delete.component';
 import { RecoverTwoFactorComponent } from './accounts/recover-two-factor.component';
 import { RegisterComponent } from './accounts/register.component';
@@ -96,6 +95,7 @@ import { UnauthGuardService } from 'jslib-angular/services/unauth-guard.service'
 
 import { Permissions } from 'jslib-common/enums/permissions';
 
+import { RemovePasswordComponent } from './accounts/remove-password.component';
 import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
 import { EmergencyAccessComponent } from './settings/emergency-access.component';
 
@@ -172,10 +172,10 @@ const routes: Routes = [
                 data: { titleId: 'updateTempPassword' },
             },
             {
-                path: 'convert-organization-encryption',
-                component: OrganizationEncryptionComponent,
+                path: 'remove-password',
+                component: RemovePasswordComponent,
                 canActivate: [AuthGuardService],
-                data: { titleId: 'convertOrganizationEncryption' },
+                data: { titleId: 'removeMasterPassword' },
             },
         ],
     },

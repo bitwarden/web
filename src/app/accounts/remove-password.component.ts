@@ -16,10 +16,10 @@ import { Organization } from 'jslib-common/models/domain/organization';
 import { KeyConnectorUserKeyRequest } from 'jslib-common/models/request/keyConnectorUserKeyRequest';
 
 @Component({
-    selector: 'app-organization-encryption',
-    templateUrl: 'organization-encryption.component.html',
+    selector: 'app-remove-password',
+    templateUrl: 'remove-password.component.html',
 })
-export class OrganizationEncryptionComponent implements OnInit {
+export class RemovePasswordComponent implements OnInit {
 
     actionPromise: Promise<any>;
     continuing: boolean = false;
@@ -50,7 +50,7 @@ export class OrganizationEncryptionComponent implements OnInit {
             this.platformUtilsService.showToast('success', null, this.i18nService.t('removedMasterPassword'));
             this.router.navigate(['']);
         } catch (e) {
-            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e);
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e.message);
         }
     }
 
