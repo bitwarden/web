@@ -87,7 +87,6 @@ export class VaultComponent implements OnInit, OnDestroy {
         const queryParamsSub = this.route.queryParams.subscribe(async params => {
             await this.syncService.fullSync(false);
 
-            this.showUpdateKey = !(await this.cryptoService.hasEncKey());
             const canAccessPremium = await this.stateService.getCanAccessPremium();
             this.showPremiumCallout = !this.showVerifyEmail && !canAccessPremium &&
                 !this.platformUtilsService.isSelfHost();
@@ -98,6 +97,7 @@ export class VaultComponent implements OnInit, OnDestroy {
                 this.groupingsComponent.load(),
                 this.organizationsComponent.load(),
             ]);
+            this.showUpdateKey = !(await this.cryptoService.hasEncKey());
 
             if (params == null) {
                 this.groupingsComponent.selectedAll = true;
