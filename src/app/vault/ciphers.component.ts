@@ -44,6 +44,11 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     actionPromise: Promise<any>;
     userHasPremiumAccess = false;
 
+    organizationNames = new Map();
+    sortedDescending = true;
+    sortBy = '';
+    sortByOptions = ['name', 'owner', 'dateCreated', 'lastEdited']
+
     private didScroll = false;
     private pagedCiphersCount = 0;
     private refreshing = false;
@@ -58,6 +63,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
     async ngOnInit() {
         this.userHasPremiumAccess = await this.userService.canAccessPremium();
+        this.organizationNames = await this.loadOranizations();
     }
 
     ngOnDestroy() {
@@ -78,6 +84,86 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         }
         this.pagedCiphersCount = this.pagedCiphers.length;
         this.didScroll = this.pagedCiphers.length > this.pageSize;
+    }
+
+    async loadOranizations(): Promise<Map<string, string>> {
+        const organizations = await this.userService.getAllOrganizations();
+        let organizationNames = new Map<string, string>();
+
+        if (organizations.length > 0) {
+            organizations.forEach(organization => {
+                organizationNames.set(organization.id, organization.name);
+            });
+        }
+
+        return organizationNames;
+    }
+
+    getOrganizationById(c: CipherView): string {
+        if (c.organizationId != null) {
+            return this.organizationNames.get(c.organizationId)
+        }
+        return 'Personal'
+    }
+
+    sortCiphers(sortBy: string) {
+        if (this.sortByOptions.includes(sortBy)) {
+            if (sortBy == this.sortBy) {
+                this.sortedDescending = !this.sortedDescending;
+            } else {
+                this.sortBy = sortBy;
+                this.sortedDescending = true;
+            }
+
+            const self = this;
+
+            if (sortBy == 'lastEdited') {
+                this.ciphers.sort(function(a: any, b: any) {
+                    if (self.sortedDescending) return new Date(b.revisionDate).valueOf() - new Date(a.revisionDate).valueOf(); // weird typescript thing: https://stackoverflow.com/a/60688789/7672369
+                    else return new Date(a.revisionDate).valueOf() - new Date(b.revisionDate).valueOf();
+                });
+            } else if (sortBy == 'dateCreated') {
+                // TO-DO
+            } else if (sortBy == 'owner') {
+                const sortingArray = this.organizationNames;
+                
+                this.ciphers.sort(function(a: any, b: any){  
+                    let sortingValue1, sortingValue2;
+    
+                    if (a.organizationId == null) {
+                        sortingValue1 = 'Personal';
+                    } else {
+                        sortingValue1 = sortingArray.get(a.organizationId)
+                    }
+    
+                    if (b.organizationId == null) {
+                        sortingValue2 = 'Personal';
+                    } else {
+                        sortingValue2 = sortingArray.get(b.organizationId)
+                    }
+
+                    if (self.sortedDescending) {
+                        return sortingValue1.localeCompare(sortingValue2)
+                    } else {
+                        return sortingValue2.localeCompare(sortingValue1)
+                    }
+                });
+            } else if (sortBy == 'name') {
+                if (this.sortedDescending) this.ciphers.sort((a, b) => a.name.localeCompare(b.name));
+                else this.ciphers.sort((a, b) => b.name.localeCompare(a.name));
+            }
+        } else {
+            this.sortBy = ''
+        }
+    }
+
+    reverseSort() {
+        this.sortCiphers(this.sortBy);
+    }
+
+    revisionDate(c: CipherView): string {
+        const revisionDate = c.revisionDate;
+        return `${revisionDate.getFullYear()}-${revisionDate.getMonth()}-${revisionDate.getDate()}`
     }
 
     async refresh() {
