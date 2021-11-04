@@ -4,8 +4,8 @@ name: Crowdin Pull
 on:
   workflow_dispatch:
     inputs: {}
- schedule:
-   - cron: '0 0 * * 5'
+  schedule:
+    - cron: '0 0 * * 5'
 
 jobs:
   crowdin-pull:
