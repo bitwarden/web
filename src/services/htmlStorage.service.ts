@@ -1,41 +1,46 @@
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
+import { HtmlStorageLocation } from 'jslib-common/enums/htmlStorageLocation';
+
+import { Globals } from 'jslib-common/models/domain/globals';
+import { StorageOptions } from 'jslib-common/models/domain/storageOptions';
 
 export class HtmlStorageService implements StorageService {
-    private localStorageKeys = new Set(['appId', 'anonymousAppId', 'rememberedEmail', 'passwordGenerationOptions',
-        'rememberEmail', 'enableGravatars', 'enableFullWidth',
-        'ssoOrgIdentifier']);
-    private localStorageStartsWithKeys = ['twoFactorToken_'];
-    private memoryStorageStartsWithKeys = ['ciphers_', 'folders_', 'collections_', 'settings_', 'lastSync_'];
     private memoryStorage = new Map<string, string>();
+
+    get defaultOptions(): StorageOptions {
+        return { htmlStorageLocation: HtmlStorageLocation.Session };
+    }
 
     constructor(private platformUtilsService: PlatformUtilsService) { }
 
     async init() {
-        // TODO: stateService refactor: Do we want state service for these storage keys? 
-
-        // LockOption -> VaultTimeout (uses the same legacy string value for backwards compat)
-        // const vaultTimeout = await this.get<number>(StorageKey.VaultTimeout);
-        // if (vaultTimeout == null && !this.platformUtilsService.isDev()) {
-        //      await this.save(StorageKey.VaultTimeout, 15);
-        // }
-
-        // // Default Action to lock
-        // const vaultTimeoutAction = await this.get<string>(StorageKey.VaultTimeoutAction);
-        // if (vaultTimeoutAction == null) {
-        //     await this.save(StorageKey.VaultTimeoutAction, 'lock');
-        // }
+        let globals = await this.get<Globals>('globals', { htmlStorageLocation: HtmlStorageLocation.Local });
+        if (globals == null) {
+            globals = new Globals();
+            globals.vaultTimeoutAction = 'lock';
+            if (!this.platformUtilsService.isDev()) {
+                globals.vaultTimeout = 15;
+            }
+        }
+        await this.save('globals', globals, { htmlStorageLocation: HtmlStorageLocation.Local });
     }
 
-    get<T>(key: string): Promise<T> {
+    get<T>(key: string, options: StorageOptions = this.defaultOptions): Promise<T> {
         let json: string = null;
-        if (this.isLocalStorage(key)) {
-            json = window.localStorage.getItem(key);
-        } else if (this.isMemoryStorage(key)) {
-            json = this.memoryStorage.get(key);
-        } else {
-            json = window.sessionStorage.getItem(key);
+        switch (options.htmlStorageLocation) {
+            case HtmlStorageLocation.Local:
+                json = window.localStorage.getItem(key);
+                break;
+            case HtmlStorageLocation.Memory:
+                json = this.memoryStorage.get(key);
+                break;
+            case HtmlStorageLocation.Session:
+                 default:
+                json = window.sessionStorage.getItem(key);
+                break;
         }
+
         if (json != null) {
             const obj = JSON.parse(json);
             return Promise.resolve(obj as T);
@@ -43,13 +48,13 @@ export class HtmlStorageService implements StorageService {
         return Promise.resolve(null);
     }
 
-    async has(key: string): Promise<boolean> {
-        return await this.get(key) != null;
+    async has(key: string, options: StorageOptions = this.defaultOptions): Promise<boolean> {
+        return await this.get(key, options) != null;
     }
 
-    save(key: string, obj: any): Promise<any> {
+    save(key: string, obj: any, options: StorageOptions = this.defaultOptions): Promise<any> {
         if (obj == null) {
-            return this.remove(key);
+            return this.remove(key, options);
         }
 
         if (obj instanceof Set) {
@@ -57,45 +62,34 @@ export class HtmlStorageService implements StorageService {
         }
 
         const json = JSON.stringify(obj);
-        if (this.isLocalStorage(key)) {
-            window.localStorage.setItem(key, json);
-        } else if (this.isMemoryStorage(key)) {
-            this.memoryStorage.set(key, json);
-        } else {
-            window.sessionStorage.setItem(key, json);
+        switch (options.htmlStorageLocation) {
+            case HtmlStorageLocation.Local:
+                window.localStorage.setItem(key, json);
+                break;
+            case HtmlStorageLocation.Memory:
+                this.memoryStorage.set(key, json);
+                break;
+            case HtmlStorageLocation.Session:
+                 default:
+                window.sessionStorage.setItem(key, json);
+                break;
         }
         return Promise.resolve();
     }
 
-    remove(key: string): Promise<any> {
-        if (this.isLocalStorage(key)) {
-            window.localStorage.removeItem(key);
-        } else if (this.isMemoryStorage(key)) {
-            this.memoryStorage.delete(key);
-        } else {
-            window.sessionStorage.removeItem(key);
+    remove(key: string, options: StorageOptions = this.defaultOptions): Promise<any> {
+        switch (options.htmlStorageLocation) {
+            case HtmlStorageLocation.Local:
+                window.localStorage.removeItem(key);
+                break;
+            case HtmlStorageLocation.Memory:
+                this.memoryStorage.delete(key);
+                break;
+            case HtmlStorageLocation.Session:
+                 default:
+                window.sessionStorage.removeItem(key);
+                break;
         }
         return Promise.resolve();
-    }
-
-    private isLocalStorage(key: string): boolean {
-        if (this.localStorageKeys.has(key)) {
-            return true;
-        }
-        for (const swKey of this.localStorageStartsWithKeys) {
-            if (key.startsWith(swKey)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private isMemoryStorage(key: string): boolean {
-        for (const swKey of this.memoryStorageStartsWithKeys) {
-            if (key.startsWith(swKey)) {
-                return true;
-            }
-        }
-        return false;
     }
 }
