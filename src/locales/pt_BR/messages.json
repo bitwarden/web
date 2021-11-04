@@ -900,7 +900,7 @@
     "message": "Alterar e-mail"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Proceeding will change your account email address. It will not change the email address used for two-factor authentication. You can change this email address in the Two-Step Login settings."
+    "message": "Prosseguir irá alterar o endereço de e-mail da sua conta. Isso não mudará o endereço de e-mail usado para autenticação de dois fatores. Você pode alterar esse endereço de e-mail nas configurações de Login em Duas Etapas."
   },
   "newEmail": {
     "message": "Novo e-mail"
@@ -1002,7 +1002,7 @@
     "message": "Cofre da organização limpado."
   },
   "vaultAccessedByProvider": {
-    "message": "Vault accessed by provider."
+    "message": "Cofre acessado pelo provedor."
   },
   "purgeVaultDesc": {
     "message": "Continue abaixo para excluir todos os itens e pastas do seu cofre. Itens que pertencem a uma organização com a qual você compartilha não serão excluídos."
@@ -2155,7 +2155,7 @@
     "message": "Políticas"
   },
   "singleSignOn": {
-    "message": "Single Sign-On"
+    "message": "Logon Único"
   },
   "editPolicy": {
     "message": "Editar Política"
@@ -2248,7 +2248,7 @@
     "message": "Confirmado"
   },
   "clientOwnerEmail": {
-    "message": "Client Owner Email"
+    "message": "Email do Proprietário do Cliente"
   },
   "owner": {
     "message": "Proprietário"
@@ -2257,7 +2257,7 @@
     "message": "O maior usuário de acesso que pode gerenciar todos os aspectos da sua organização."
   },
   "clientOwnerDesc": {
-    "message": "This user should be independent of the Provider. If the Provider is disassociated with the organization, this user will maintain ownership of the organization."
+    "message": "Este usuário deve ser independente do Provedor. Se o Provedor estiver desassociado da organização, este usuário manterá a propriedade da organização."
   },
   "admin": {
     "message": "Administrador"
@@ -2593,7 +2593,7 @@
     }
   },
   "createdOrganizationId": {
-    "message": "Created organization $ID$.",
+    "message": "A organização $ID$ foi criada.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2602,7 +2602,7 @@
     }
   },
   "addedOrganizationId": {
-    "message": "Added organization $ID$.",
+    "message": "A organização $ID$ foi adicionada.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2611,7 +2611,7 @@
     }
   },
   "removedOrganizationId": {
-    "message": "Removed organization $ID$.",
+    "message": "Organização $ID$ removida.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2620,7 +2620,7 @@
     }
   },
   "accessedClientVault": {
-    "message": "Accessed $ID$ organization vault.",
+    "message": "Cofre da organização $ID$ acessado.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2882,14 +2882,14 @@
     "message": "Insira o seu ID de instalação"
   },
   "limitSubscriptionDesc": {
-    "message": "Set a seat limit for your subscription. Once this limit is reached, you will not be able to invite new users."
+    "message": "Defina um limite de vagas para sua assinatura. Quando esse limite for atingido, você não poderá convidar novos usuários."
   },
   "maxSeatLimit": {
-    "message": "Maximum Seat Limit (optional)",
+    "message": "Limite Máximo de Vaga (opcional)",
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
-    "message": "Max potential seat cost"
+    "message": "Custo de vaga máximo potencial"
   },
   "addSeats": {
     "message": "Adicionar Assentos",
@@ -2900,7 +2900,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionDesc": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "Ajustes em sua assinatura resultarão em alterações rateadas em seus totais de cobrança. Se os usuários recém-convidados excederem o número de vagas de sua assinatura, você receberá imediatamente uma cobrança proporcional pelos usuários adicionais."
   },
   "subscriptionUserSeats": {
     "message": "Sua assinatura permite um total de $COUNT$ usuários.",
@@ -2912,25 +2912,25 @@
     }
   },
   "limitSubscription": {
-    "message": "Limit Subscription (Optional)"
+    "message": "Assinatura Limite (Opcional)"
   },
   "subscriptionSeats": {
-    "message": "Subscription Seats"
+    "message": "Vagas de Assinatura"
   },
   "subscriptionUpdated": {
-    "message": "Subscription updated"
+    "message": "Assinatura atualizada"
   },
   "additionalOptions": {
-    "message": "Additional Options"
+    "message": "Opções Adicionais"
   },
   "additionalOptionsDesc": {
-    "message": "For additional help in managing your subscription, please contact Customer Support."
+    "message": "Para ajuda adicional no gerenciamento de sua assinatura, entre em contato com o suporte ao cliente."
   },
   "subscriptionUserSeatsUnlimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "Ajustes em sua assinatura resultarão em alterações rateadas em seus totais de cobrança. Se os usuários recém-convidados excederem o número de vagas de sua assinatura, você receberá imediatamente uma cobrança proporcional pelos usuários adicionais."
   },
   "subscriptionUserSeatsLimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users until your $MAX$ seat limit is reached.",
+    "message": "Ajustes em sua assinatura resultarão em alterações rateadas em seus totais de cobrança. Se os usuários recém-convidados excederem o número de vagas de sua assinatura, você receberá imediatamente uma cobrança proporcional para os usuários adicionais até que seu limite de $MAX$ de vaga seja atingido.",
     "placeholders": {
       "max": {
         "content": "$1",
@@ -2939,7 +2939,7 @@
     }
   },
   "subscriptionMaxReached": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. You cannot invite more than $COUNT$ users without increasing your subscription seats.",
+    "message": "Ajustes em sua assinatura resultarão em alterações rateadas em seus totais de cobrança. Você não pode convidar mais de $COUNT$ usuários sem aumentar suas vagas de assinatura.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3821,22 +3821,22 @@
     "message": "Gerenciar Todas as Coleções"
   },
   "createNewCollections": {
-    "message": "Create New Collections"
+    "message": "Criar Novas Coleções"
   },
   "editAnyCollection": {
-    "message": "Edit Any Collection"
+    "message": "Editar Qualquer Coleção"
   },
   "deleteAnyCollection": {
-    "message": "Delete Any Collection"
+    "message": "Excluir Qualquer Coleção"
   },
   "manageAssignedCollections": {
     "message": "Gerenciar Coleções Atribuídas"
   },
   "editAssignedCollections": {
-    "message": "Edit Assigned Collections"
+    "message": "Editar Coleções Atribuídas"
   },
   "deleteAssignedCollections": {
-    "message": "Delete Assigned Collections"
+    "message": "Excluir Coleções Atribuídas"
   },
   "manageGroups": {
     "message": "Gerenciar Grupos"
@@ -3854,7 +3854,7 @@
     "message": "Gerenciar Redefinição de Senha"
   },
   "disableRequiredError": {
-    "message": "You must manually disable the $POLICYNAME$ policy before this policy can be disabled.",
+    "message": "Você deve desativar manualmente a política $POLICYNAME$ antes que esta política possa ser desativada.",
     "placeholders": {
       "policyName": {
         "content": "$1",
@@ -3866,7 +3866,7 @@
     "message": "Uma política de organização está afetando suas opções de propriedade."
   },
   "personalOwnershipPolicyInEffectImports": {
-    "message": "An organization policy has disabled importing items into your personal vault."
+    "message": "Uma política da organização desativou a importação de itens para o seu cofre pessoal."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Desativar propriedade pessoal para usuários da organização"
@@ -4025,7 +4025,7 @@
     }
   },
   "eventResetSsoLink": {
-    "message": "Reset Sso link for user $ID$",
+    "message": "Redefinir link Sso para o usuário $ID$",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4112,19 +4112,19 @@
     "message": "Tem certeza de que deseja remover os seguintes usuários? O processo pode levar alguns segundos para ser concluído e não pode ser interrompido ou cancelado."
   },
   "theme": {
-    "message": "Theme"
+    "message": "Tema"
   },
   "themeDesc": {
-    "message": "Choose a theme for your web vault."
+    "message": "Escolha um tema para o seu cofre web."
   },
   "themeSystem": {
-    "message": "Use System Theme"
+    "message": "Usar Tema do Sistema"
   },
   "themeDark": {
-    "message": "Dark"
+    "message": "Escuro"
   },
   "themeLight": {
-    "message": "Light"
+    "message": "Claro"
   },
   "confirmSelected": {
     "message": "Confirmar Selecionado(s)"
@@ -4157,70 +4157,70 @@
     "message": "Gerenciar Usuários também deve ser habilitado com a permissão para Gerenciar a Redefinição de Senha"
   },
   "setupProvider": {
-    "message": "Provider Setup"
+    "message": "Configuração do Provedor"
   },
   "setupProviderLoginDesc": {
-    "message": "You've been invited to setup a new provider. To continue, you need to log in or create a new Bitwarden account."
+    "message": "Você foi convidado para configurar um novo provedor. Para continuar, você precisa iniciar sessão ou criar uma nova conta no Bitwarden."
   },
   "setupProviderDesc": {
-    "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
+    "message": "Por favor, insira os detalhes abaixo para completar a configuração do provedor. Entre em Contato com o Suporte ao Cliente se tiver alguma dúvida."
   },
   "providerName": {
-    "message": "Provider Name"
+    "message": "Nome do Provedor"
   },
   "providerSetup": {
-    "message": "The provider has been set up."
+    "message": "O provedor foi configurado."
   },
   "clients": {
-    "message": "Clients"
+    "message": "Clientes"
   },
   "providerAdmin": {
-    "message": "Provider Admin"
+    "message": "Administrador do Provedor"
   },
   "providerAdminDesc": {
-    "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
+    "message": "O usuário de maior acesso que pode gerenciar todos os aspectos do seu provedor, bem como acessar e gerenciar organizações de clientes."
   },
   "serviceUser": {
-    "message": "Service User"
+    "message": "Usuário de Serviço"
   },
   "serviceUserDesc": {
-    "message": "Service users can access and manage all client organizations."
+    "message": "Os usuários do serviço podem acessar e gerenciar todas as organizações de clientes."
   },
   "providerInviteUserDesc": {
-    "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Convide um novo usuário para seu provedor digitando o endereço de e-mail da conta Bitwarden dele abaixo. Se ele não tiver uma conta no Bitwarden, ele será solicitado a criar uma nova conta."
   },
   "joinProvider": {
-    "message": "Join Provider"
+    "message": "Participar do Provedor"
   },
   "joinProviderDesc": {
-    "message": "You've been invited to join the provider listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Você foi convidado para participar do provedor listado acima. Para aceitar o convite, você precisa iniciar sessão ou criar uma nova conta no Bitwarden."
   },
   "providerInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask a provider admin to send a new invitation."
+    "message": "Não foi possível aceitar o convite. Peça ao administrador do provedor para enviar um novo convite."
   },
   "providerInviteAcceptedDesc": {
-    "message": "You can access this provider once an administrator confirms your membership. We'll send you an email when that happens."
+    "message": "Você pode acessar este provedor quando um administrador confirmar sua associação. Enviaremos um e-mail quando isso acontecer."
   },
   "providerUsersNeedConfirmed": {
-    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the provider until they are confirmed."
+    "message": "Você tem usuários que aceitaram o convite, mas ainda precisam ser confirmados. Os usuários não terão acesso ao provedor até que sejam confirmados."
   },
   "provider": {
-    "message": "Provider"
+    "message": "Provedor"
   },
   "newClientOrganization": {
-    "message": "New Client Organization"
+    "message": "Nova Organização de Cliente"
   },
   "newClientOrganizationDesc": {
-    "message": "Create a new client organization that will be associated with you as the provider. You will be able to access and manage this organization."
+    "message": "Crie uma nova organização de cliente que será associada a você como o provedor. Você poderá acessar e gerenciar esta organização."
   },
   "addExistingOrganization": {
-    "message": "Add Existing Organization"
+    "message": "Adicionar Organização Existente"
   },
   "myProvider": {
-    "message": "My Provider"
+    "message": "Meu Provedor"
   },
   "addOrganizationConfirmation": {
-    "message": "Are you sure you want to add $ORGANIZATION$ as a client to $PROVIDER$?",
+    "message": "Tem certeza de que deseja adicionar $ORGANIZATION$ como um cliente a $PROVIDER$?",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4233,10 +4233,10 @@
     }
   },
   "organizationJoinedProvider": {
-    "message": "Organization was successfully added to the provider"
+    "message": "Organização foi adicionada com sucesso ao provedor"
   },
   "accessingUsingProvider": {
-    "message": "Accessing organization using provider $PROVIDER$",
+    "message": "Acessando a organização usando o provedor $PROVIDER$",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4245,13 +4245,13 @@
     }
   },
   "providerIsDisabled": {
-    "message": "Provider is disabled."
+    "message": "O provedor está desativado."
   },
   "providerUpdated": {
-    "message": "Provider updated"
+    "message": "Provedor atualizado"
   },
   "yourProviderIs": {
-    "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
+    "message": "Seu provedor é $PROVIDER$. Eles têm privilégios administrativos e de cobrança para sua organização.",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4260,7 +4260,7 @@
     }
   },
   "detachedOrganization": {
-    "message": "The organization $ORGANIZATION$ has been detached from your provider.",
+    "message": "A organização $ORGANIZATION$ foi desanexada do seu provedor.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4269,40 +4269,40 @@
     }
   },
   "detachOrganizationConfirmation": {
-    "message": "Are you sure you want to detach this organization? The organization will continue to exist but will no longer be managed by the provider."
+    "message": "Tem certeza de que deseja desanexar esta organização? A organização continuará existindo, mas não será mais gerenciada pelo provedor."
   },
   "add": {
-    "message": "Add"
+    "message": "Adicionar"
   },
   "updatedMasterPassword": {
-    "message": "Updated Master Password"
+    "message": "Senha Mestra Atualizada"
   },
   "updateMasterPassword": {
-    "message": "Update Master Password"
+    "message": "Atualizar Senha Mestra"
   },
   "updateMasterPasswordWarning": {
-    "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Sua Senha Mestra foi alterada recentemente por um administrador em sua organização. Para acessar o cofre, você deve atualizar sua Senha Mestra agora. Prosseguir irá desconectá-lo da sessão atual, exigindo que você faça login novamente. As sessões ativas em outros dispositivos podem continuar ativas por até uma hora."
   },
   "maximumVaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Tempo Limite do Cofre"
   },
   "maximumVaultTimeoutDesc": {
-    "message": "Configure a maximum vault timeout for all users."
+    "message": "Configure o tempo máximo para o cofre para todos os usuários."
   },
   "maximumVaultTimeoutLabel": {
-    "message": "Maximum Vault Timeout"
+    "message": "Tempo Limite Máximo do Cofre"
   },
   "invalidMaximumVaultTimeout": {
-    "message": "Invalid Maximum Vault Timeout."
+    "message": "Tempo Máximo de Cofre Inválido."
   },
   "hours": {
-    "message": "Hours"
+    "message": "Horas"
   },
   "minutes": {
-    "message": "Minutes"
+    "message": "Minutos"
   },
   "vaultTimeoutPolicyInEffect": {
-    "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "message": "As políticas da sua organização estão afetando o tempo limite do seu cofre. O Tempo Limite Máximo permitido do Cofre é $HOURS$ hora(s) e $MINUTES$ minuto(s)",
     "placeholders": {
       "hours": {
         "content": "$1",
@@ -4315,138 +4315,138 @@
     }
   },
   "customVaultTimeout": {
-    "message": "Custom Vault Timeout"
+    "message": "Tempo Limite do Cofre Personalizado"
   },
   "vaultTimeoutToLarge": {
-    "message": "Your vault timeout exceeds the restriction set by your organization."
+    "message": "O tempo limite do seu cofre excede a restrição definida por sua organização."
   },
   "disablePersonalVaultExport": {
-    "message": "Disable Personal Vault Export"
+    "message": "Desabilitar Exportação de Cofre Pessoal"
   },
   "disablePersonalVaultExportDesc": {
-    "message": "Prohibits users from exporting their private vault data."
+    "message": "Proíbe os usuários de exportar seus dados de cofre privados."
   },
   "vaultExportDisabled": {
-    "message": "Vault Export Disabled"
+    "message": "Exportação de Cofre Desabilitada"
   },
   "personalVaultExportPolicyInEffect": {
-    "message": "One or more organization policies prevents you from exporting your personal vault."
+    "message": "Uma ou mais políticas da organização impdem que você exporte seu cofre pessoal."
   },
   "selectType": {
-    "message": "Select SSO Type"
+    "message": "Selecionar Tipo de SSO"
   },
   "type": {
-    "message": "Type"
+    "message": "Tipo"
   },
   "openIdConnectConfig": {
-    "message": "OpenID Connect Configuration"
+    "message": "Configuração OpenID Connect"
   },
   "samlSpConfig": {
-    "message": "SAML Service Provider Configuration"
+    "message": "Configuração do Provedor de Serviço SAML"
   },
   "samlIdpConfig": {
-    "message": "SAML Identity Provider Configuration"
+    "message": "Configuração do Provedor de Identidade SAML"
   },
   "callbackPath": {
-    "message": "Callback Path"
+    "message": "Caminho de Retorno"
   },
   "signedOutCallbackPath": {
-    "message": "Signed Out Callback Path"
+    "message": "Caminho de Retorno de Chamada Desconectado"
   },
   "authority": {
-    "message": "Authority"
+    "message": "Autoridade"
   },
   "clientId": {
-    "message": "Client ID"
+    "message": "ID do Cliente"
   },
   "clientSecret": {
-    "message": "Client Secret"
+    "message": "Segredo do Cliente"
   },
   "metadataAddress": {
-    "message": "Metadata Address"
+    "message": "Endereço dos Metadados"
   },
   "oidcRedirectBehavior": {
-    "message": "OIDC Redirect Behavior"
+    "message": "Comportamento de Redirecionamento OIDC"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "Obter Reivindicações do Terminal de Informações do Usuário"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "Escopos Adicionais/Personalizados (delimitado por vírgulas)"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "Tipos de Reivindicação de ID de Usuário Adicionais/Personalizados (delimitado por vírgulas)"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "Tipos de Reivindicação de E-mail Adicionais/Personalizados (delimitado por vírgulas)"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "Tipos de Reivindicação de Nome Adicionais/Personalizados (delimitado por vírgulas)"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "Valores de Referência de Classe de Contexto de Autenticação Solicitada (acr_values)"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "Esperado Valor de Reivindicação \"acr\" Na Resposta (validação acr)"
   },
   "spEntityId": {
-    "message": "SP Entity ID"
+    "message": "ID da Entidade SP"
   },
   "spMetadataUrl": {
-    "message": "SAML 2.0 Metadata URL"
+    "message": "URL de Metadados SAML 2.0"
   },
   "spAcsUrl": {
-    "message": "Assertion Consumer Service (ACS) URL"
+    "message": "URL do Serviço de Declaração de Consumidor (ACS)"
   },
   "spNameIdFormat": {
-    "message": "Name ID Format"
+    "message": "Formato ID do Nome"
   },
   "spOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "Algoritmo de Assinatura de Saída"
   },
   "spSigningBehavior": {
-    "message": "Signing Behavior"
+    "message": "Comportamento de Assinatura"
   },
   "spMinIncomingSigningAlgorithm": {
-    "message": "Minimum Incoming Signing Algorithm"
+    "message": "Algoritmo de Assinatura de Entrada Mínima"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "Precisa de Declarações Assinadas"
   },
   "spValidateCertificates": {
-    "message": "Validate Certificates"
+    "message": "Validar Certificados"
   },
   "idpEntityId": {
-    "message": "Entity ID"
+    "message": "ID da Entidade"
   },
   "idpBindingType": {
-    "message": "Binding Type"
+    "message": "Tipo de Ligação"
   },
   "idpSingleSignOnServiceUrl": {
-    "message": "Single Sign On Service URL"
+    "message": "URL de Serviço de Logon Único"
   },
   "idpSingleLogoutServiceUrl": {
-    "message": "Single Log Out Service URL"
+    "message": "URL de Serviço de Desconexão Único"
   },
   "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
+    "message": "URL de Serviço de Resolução de Artefato"
   },
   "idpX509PublicCert": {
-    "message": "X509 Public Certificate"
+    "message": "Certificado Público X509"
   },
   "idpOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "Algoritmo de Assinatura de Saída"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "Permitir Retorno de Autenticação Não Solicitada"
   },
   "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+    "message": "Desativar Solicitações de Desconexão de Saída"
   },
   "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+    "message": "Precisa de Pedidos de Autenticação Assinados"
   },
   "ssoSettingsSaved": {
-    "message": "Single Sign-On configuration was saved."
+    "message": "Configuração de logon único foi salva."
   }
 }

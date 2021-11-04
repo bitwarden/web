@@ -900,7 +900,7 @@
     "message": "Змінити адресу е-пошти"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Proceeding will change your account email address. It will not change the email address used for two-factor authentication. You can change this email address in the Two-Step Login settings."
+    "message": "Продовжуючи, ви зміните адресу електронної пошти вашого облікового запису. Ця дія не змінить адресу електронної пошти, що використовується для двоетапної перевірки. Ви можете змінити цю електронну адресу в налаштуваннях двоетапної перевірки."
   },
   "newEmail": {
     "message": "Нова адреса е-пошти"
@@ -1002,7 +1002,7 @@
     "message": "Сховище організації очищено."
   },
   "vaultAccessedByProvider": {
-    "message": "Vault accessed by provider."
+    "message": "Постачальник має доступ до сховища."
   },
   "purgeVaultDesc": {
     "message": "Продовжуйте внизу для видалення всіх записів і тек у вашому сховищі. Записи, що належать до спільної організації не будуть видалені."
@@ -2155,7 +2155,7 @@
     "message": "Політики"
   },
   "singleSignOn": {
-    "message": "Single Sign-On"
+    "message": "Єдиний вхід"
   },
   "editPolicy": {
     "message": "Змінити політику"
@@ -2248,7 +2248,7 @@
     "message": "Підтверджено"
   },
   "clientOwnerEmail": {
-    "message": "Client Owner Email"
+    "message": "Е-пошта власника клієнта"
   },
   "owner": {
     "message": "Власник"
@@ -2257,7 +2257,7 @@
     "message": "Користувач з найвищими привілеями, який може керувати всіма налаштуваннями організації."
   },
   "clientOwnerDesc": {
-    "message": "This user should be independent of the Provider. If the Provider is disassociated with the organization, this user will maintain ownership of the organization."
+    "message": "Цей користувач повинен бути незалежним від постачальника. Якщо постачальник не пов'язаний з організацією, цей користувач підтримуватиме право власності організації."
   },
   "admin": {
     "message": "Адміністратор"
@@ -2593,7 +2593,7 @@
     }
   },
   "createdOrganizationId": {
-    "message": "Created organization $ID$.",
+    "message": "Створено організацію $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2602,7 +2602,7 @@
     }
   },
   "addedOrganizationId": {
-    "message": "Added organization $ID$.",
+    "message": "Додано організацію $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2611,7 +2611,7 @@
     }
   },
   "removedOrganizationId": {
-    "message": "Removed organization $ID$.",
+    "message": "Вилучено організацію $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2620,7 +2620,7 @@
     }
   },
   "accessedClientVault": {
-    "message": "Accessed $ID$ organization vault.",
+    "message": "Отримано доступ до сховища організації $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2882,14 +2882,14 @@
     "message": "Введіть ID вашої інсталяції"
   },
   "limitSubscriptionDesc": {
-    "message": "Set a seat limit for your subscription. Once this limit is reached, you will not be able to invite new users."
+    "message": "Встановіть ліміт місць для вашої передплати. Після досягнення цього ліміту ви не зможете запрошувати нових користувачів."
   },
   "maxSeatLimit": {
-    "message": "Maximum Seat Limit (optional)",
+    "message": "Максимальний ліміт місць (необов'язково)",
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
-    "message": "Max potential seat cost"
+    "message": "Максимальна потенційна вартість місця"
   },
   "addSeats": {
     "message": "Додати місця",
@@ -2900,7 +2900,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionDesc": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "Коригування вашої передплати призведе до відповідних змін у ваших рахунках. Якщо нові запрошені користувачі перевищать обмеження ваших місць, ви відразу отримаєте пропорційний рахунок для оплати за додаткових користувачів."
   },
   "subscriptionUserSeats": {
     "message": "Ваша передплата дозволяє всього $COUNT$ користувачів.",
@@ -2912,25 +2912,25 @@
     }
   },
   "limitSubscription": {
-    "message": "Limit Subscription (Optional)"
+    "message": "Обмеження передплати (Необов'язково)"
   },
   "subscriptionSeats": {
-    "message": "Subscription Seats"
+    "message": "Передплачені місця"
   },
   "subscriptionUpdated": {
-    "message": "Subscription updated"
+    "message": "Передплату оновлено"
   },
   "additionalOptions": {
-    "message": "Additional Options"
+    "message": "Додаткові налаштування"
   },
   "additionalOptionsDesc": {
-    "message": "For additional help in managing your subscription, please contact Customer Support."
+    "message": "Для отримання додаткової допомоги в керуванні вашою передплатою, будь ласка, зверніться до служби підтримки."
   },
   "subscriptionUserSeatsUnlimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "Коригування вашої передплати призведе до відповідних змін у ваших рахунках. Якщо нові запрошені користувачі перевищать обмеження ваших місць, ви відразу отримаєте пропорційний рахунок для оплати за додаткових користувачів."
   },
   "subscriptionUserSeatsLimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users until your $MAX$ seat limit is reached.",
+    "message": "Коригування вашої передплати призведе до відповідних змін у ваших рахунках. Якщо нові запрошені користувачі перевищать обмеження ваших місць, ви відразу отримаєте пропорційний рахунок для оплати за додаткових користувачів, доки не досягнуто вашого обмеження $MAX$ місць.",
     "placeholders": {
       "max": {
         "content": "$1",
@@ -2939,7 +2939,7 @@
     }
   },
   "subscriptionMaxReached": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. You cannot invite more than $COUNT$ users without increasing your subscription seats.",
+    "message": "Коригування вашої передплати призведе до відповідних змін у ваших рахунках. Ви не можете запросити понад $COUNT$ користувачів без збільшення передплачених місць.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3821,22 +3821,22 @@
     "message": "Керування всіма збірками"
   },
   "createNewCollections": {
-    "message": "Create New Collections"
+    "message": "Створювати нові збірки"
   },
   "editAnyCollection": {
-    "message": "Edit Any Collection"
+    "message": "Редагувати будь-яку збірку"
   },
   "deleteAnyCollection": {
-    "message": "Delete Any Collection"
+    "message": "Видаляти будь-яку збірку"
   },
   "manageAssignedCollections": {
     "message": "Керування призначеними збірками"
   },
   "editAssignedCollections": {
-    "message": "Edit Assigned Collections"
+    "message": "Редагувати призначені колекції"
   },
   "deleteAssignedCollections": {
-    "message": "Delete Assigned Collections"
+    "message": "Видаляти призначені колекції"
   },
   "manageGroups": {
     "message": "Керування групами"
@@ -3854,7 +3854,7 @@
     "message": "Керувати скиданням пароля"
   },
   "disableRequiredError": {
-    "message": "You must manually disable the $POLICYNAME$ policy before this policy can be disabled.",
+    "message": "Перш ніж вимкнути цю політику, ви повинні вручну вимкнути політику $POLICYNAME$.",
     "placeholders": {
       "policyName": {
         "content": "$1",
@@ -3866,7 +3866,7 @@
     "message": "Політика організації впливає на ваші параметри власності."
   },
   "personalOwnershipPolicyInEffectImports": {
-    "message": "An organization policy has disabled importing items into your personal vault."
+    "message": "Політика організації вимкнула імпортування елементів до вашого особистого сховища."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Вимкнути особисту власність для користувачів організації"
@@ -4025,7 +4025,7 @@
     }
   },
   "eventResetSsoLink": {
-    "message": "Reset Sso link for user $ID$",
+    "message": "Скинути SSO-посилання для користувача $ID$",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4070,13 +4070,13 @@
     "message": "Автоматичне розгортання"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "Усі користувачі отримають автоматичне розгортання на скидання пароля одразу після схвалення запрошення."
+    "message": "Усі користувачі отримають автоматичне розгортання на скидання пароля одразу після схвалення запрошення та не зможуть його відкликати."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
     "message": "Вже наявні користувачі організації не отримають активного розгортання на скидання пароля. Їм необхідно буде виконати самостійне розгортання, перш ніж адміністратори зможуть скинути їхній пароль."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Автоматично розгортати нових користувачів"
+    "message": "Вимагати автоматичне розгортання нових користувачів"
   },
   "resetPasswordAutoEnrollInviteWarning": {
     "message": "Ця організація має корпоративну політику, яка автоматично розгортає вас на скидання пароля. Розгортання дозволятиме адміністраторам організації змінювати ваш головний пароль."
@@ -4112,19 +4112,19 @@
     "message": "Ви дійсно хочете вилучити зазначених користувачів? Цей процес може тривати кілька секунд і його неможливо перервати чи скасувати."
   },
   "theme": {
-    "message": "Theme"
+    "message": "Тема"
   },
   "themeDesc": {
-    "message": "Choose a theme for your web vault."
+    "message": "Оберіть тему для вашого вебсховища."
   },
   "themeSystem": {
-    "message": "Use System Theme"
+    "message": "Використовувати системну тему"
   },
   "themeDark": {
-    "message": "Dark"
+    "message": "Темна"
   },
   "themeLight": {
-    "message": "Light"
+    "message": "Світла"
   },
   "confirmSelected": {
     "message": "Підтвердити вибір"
@@ -4157,70 +4157,70 @@
     "message": "Керування користувачами повинно також бути увімкнено з дозволом Керувати скиданням пароля"
   },
   "setupProvider": {
-    "message": "Provider Setup"
+    "message": "Налаштування постачальника"
   },
   "setupProviderLoginDesc": {
-    "message": "You've been invited to setup a new provider. To continue, you need to log in or create a new Bitwarden account."
+    "message": "Вас запрошено налаштувати нового постачальника. Для продовження вам необхідно увійти чи створити новий обліковий запис Bitwarden."
   },
   "setupProviderDesc": {
-    "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
+    "message": "Будь ласка, введіть наведені нижче подробиці, щоб завершити налаштування постачальника. Зверніться до служби підтримки, якщо у вас виникли будь-які запитання."
   },
   "providerName": {
-    "message": "Provider Name"
+    "message": "Назва постачальника"
   },
   "providerSetup": {
-    "message": "The provider has been set up."
+    "message": "Постачальника було налаштовано."
   },
   "clients": {
-    "message": "Clients"
+    "message": "Клієнти"
   },
   "providerAdmin": {
-    "message": "Provider Admin"
+    "message": "Адміністратор постачальника"
   },
   "providerAdminDesc": {
-    "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
+    "message": "Користувач з найвищими привілеями, який може керувати усіма аспектами вашого постачальника, а також отримувати доступ до керування організаціями клієнтів."
   },
   "serviceUser": {
-    "message": "Service User"
+    "message": "Сервісний користувач"
   },
   "serviceUserDesc": {
-    "message": "Service users can access and manage all client organizations."
+    "message": "Сервісні користувачі можуть отримувати доступ та керувати всіма організаціями клієнтів."
   },
   "providerInviteUserDesc": {
-    "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Запросіть нового користувача до вашого постачальника, ввівши адресу е-пошти його облікового запису Bitwarden. Якщо він ще не має облікового запису, він отримає запит на його створення."
   },
   "joinProvider": {
-    "message": "Join Provider"
+    "message": "Приєднатися до постачальника"
   },
   "joinProviderDesc": {
-    "message": "You've been invited to join the provider listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Вас було запрошено приєднатися до зазначеного вгорі постачальника. Щоб підтвердити запрошення, вам необхідно увійти в обліковий запис Bitwarden, або створити його."
   },
   "providerInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask a provider admin to send a new invitation."
+    "message": "Не вдалося прийняти запрошення. Попросіть адміністратора постачальника надіслати вам нове."
   },
   "providerInviteAcceptedDesc": {
-    "message": "You can access this provider once an administrator confirms your membership. We'll send you an email when that happens."
+    "message": "Ви можете отримати доступ до цього постачальника одразу після підтвердження адміністратором. Ми надішлемо вам електронне повідомлення, коли це станеться."
   },
   "providerUsersNeedConfirmed": {
-    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the provider until they are confirmed."
+    "message": "У вас є користувачі, які підтвердили ваше запрошення, але все ще мають бути схвалені. Користувачі не матимуть доступу до постачальника доки ви їх не затвердите."
   },
   "provider": {
-    "message": "Provider"
+    "message": "Постачальник"
   },
   "newClientOrganization": {
-    "message": "New Client Organization"
+    "message": "Нова організація клієнта"
   },
   "newClientOrganizationDesc": {
-    "message": "Create a new client organization that will be associated with you as the provider. You will be able to access and manage this organization."
+    "message": "Створіть нову організацію клієнта, яка буде пов'язана з вами, як постачальником. Ви зможете отримати доступ та керувати цією організацією."
   },
   "addExistingOrganization": {
-    "message": "Add Existing Organization"
+    "message": "Додати наявну організацію"
   },
   "myProvider": {
-    "message": "My Provider"
+    "message": "Мій постачальник"
   },
   "addOrganizationConfirmation": {
-    "message": "Are you sure you want to add $ORGANIZATION$ as a client to $PROVIDER$?",
+    "message": "Ви дійсно хочете додати $ORGANIZATION$ як клієнт для $PROVIDER$?",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4233,10 +4233,10 @@
     }
   },
   "organizationJoinedProvider": {
-    "message": "Organization was successfully added to the provider"
+    "message": "Організацію було успішно додано до постачальника"
   },
   "accessingUsingProvider": {
-    "message": "Accessing organization using provider $PROVIDER$",
+    "message": "Доступ до організації з використанням постачальника $PROVIDER$",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4245,13 +4245,13 @@
     }
   },
   "providerIsDisabled": {
-    "message": "Provider is disabled."
+    "message": "Постачальника вимкнено."
   },
   "providerUpdated": {
-    "message": "Provider updated"
+    "message": "Постачальника оновлено"
   },
   "yourProviderIs": {
-    "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
+    "message": "Ваш постачальник $PROVIDER$. Він має адміністраторські та платіжні повноваження для вашої організації.",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4260,7 +4260,7 @@
     }
   },
   "detachedOrganization": {
-    "message": "The organization $ORGANIZATION$ has been detached from your provider.",
+    "message": "Організацію $ORGANIZATION$ було від'єднано від вашого постачальника.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4269,40 +4269,40 @@
     }
   },
   "detachOrganizationConfirmation": {
-    "message": "Are you sure you want to detach this organization? The organization will continue to exist but will no longer be managed by the provider."
+    "message": "Ви дійсно хочете від'єднати цю організацію? Організація продовжить існувати, але більше не керуватиметься провайдером."
   },
   "add": {
-    "message": "Add"
+    "message": "Додати"
   },
   "updatedMasterPassword": {
-    "message": "Updated Master Password"
+    "message": "Головний пароль оновлено"
   },
   "updateMasterPassword": {
-    "message": "Update Master Password"
+    "message": "Оновити головний пароль"
   },
   "updateMasterPasswordWarning": {
-    "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Ваш головний пароль нещодавно був змінений адміністратором організації. Щоб отримати доступ до сховища, ви повинні оновити свій головний пароль зараз. Продовживши, ви вийдете з поточного сеансу, після чого необхідно буде повторно виконати вхід. Сеанси на інших пристроях можуть залишатися активними протягом однієї години."
   },
   "maximumVaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Час очікування сховища"
   },
   "maximumVaultTimeoutDesc": {
-    "message": "Configure a maximum vault timeout for all users."
+    "message": "Налаштувати максимальний час очікування сховища для всіх користувачів."
   },
   "maximumVaultTimeoutLabel": {
-    "message": "Maximum Vault Timeout"
+    "message": "Максимальний час очікування сховища"
   },
   "invalidMaximumVaultTimeout": {
-    "message": "Invalid Maximum Vault Timeout."
+    "message": "Недійсний максимальний час очікування сховища."
   },
   "hours": {
-    "message": "Hours"
+    "message": "Годин"
   },
   "minutes": {
-    "message": "Minutes"
+    "message": "Хвилин"
   },
   "vaultTimeoutPolicyInEffect": {
-    "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "message": "Політики вашої організації впливають на час очікування сховища. Максимальний дозволений час очікування сховища $HOURS$ годин, $MINUTES$ хвилин",
     "placeholders": {
       "hours": {
         "content": "$1",
@@ -4315,138 +4315,138 @@
     }
   },
   "customVaultTimeout": {
-    "message": "Custom Vault Timeout"
+    "message": "Власний час очікування сховища"
   },
   "vaultTimeoutToLarge": {
-    "message": "Your vault timeout exceeds the restriction set by your organization."
+    "message": "Час очікування сховища перевищує обмеження, встановлене вашою організацією."
   },
   "disablePersonalVaultExport": {
-    "message": "Disable Personal Vault Export"
+    "message": "Вимкнути експорт особистого сховища"
   },
   "disablePersonalVaultExportDesc": {
-    "message": "Prohibits users from exporting their private vault data."
+    "message": "Забороняє користувачам експортувати їхні особисті дані сховища."
   },
   "vaultExportDisabled": {
-    "message": "Vault Export Disabled"
+    "message": "Експорт сховища вимкнено"
   },
   "personalVaultExportPolicyInEffect": {
-    "message": "One or more organization policies prevents you from exporting your personal vault."
+    "message": "Одна чи декілька організаційних політик не дозволяють вам експортувати особисте сховище."
   },
   "selectType": {
-    "message": "Select SSO Type"
+    "message": "Виберіть тип SSO"
   },
   "type": {
-    "message": "Type"
+    "message": "Тип"
   },
   "openIdConnectConfig": {
-    "message": "OpenID Connect Configuration"
+    "message": "Конфігурація з'єднання OpenID"
   },
   "samlSpConfig": {
-    "message": "SAML Service Provider Configuration"
+    "message": "Конфігурація постачальника послуг SAML"
   },
   "samlIdpConfig": {
-    "message": "SAML Identity Provider Configuration"
+    "message": "Конфігурація ідентифікації постачальника SAML"
   },
   "callbackPath": {
-    "message": "Callback Path"
+    "message": "Шлях до зворотного виклику"
   },
   "signedOutCallbackPath": {
-    "message": "Signed Out Callback Path"
+    "message": "Вихід зі шляху зворотного виклику"
   },
   "authority": {
-    "message": "Authority"
+    "message": "Установа"
   },
   "clientId": {
-    "message": "Client ID"
+    "message": "ID клієнта"
   },
   "clientSecret": {
-    "message": "Client Secret"
+    "message": "Секретний ключ клієнта"
   },
   "metadataAddress": {
-    "message": "Metadata Address"
+    "message": "Адреса метаданих"
   },
   "oidcRedirectBehavior": {
-    "message": "OIDC Redirect Behavior"
+    "message": "Поведінка переспрямування OIDC"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "Отримувати запити від інформації користувача кінцевої точки"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "Додаткові/Власні межі (розділені комами)"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "Додаткові/Власні типи запитів ID користувача (розділені комами)"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "Додаткові/Власні типи запитів е-пошти (розділені комами)"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "Додаткові/Власні типи запитів імені (розділені комами)"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "Запитані значення посилання класу контексту автентифікації (acr_values)"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "Очікувалось значення запиту \"acr\" у відповіді (засвідчення acr)"
   },
   "spEntityId": {
-    "message": "SP Entity ID"
+    "message": "ID об'єкта SP"
   },
   "spMetadataUrl": {
-    "message": "SAML 2.0 Metadata URL"
+    "message": "URL метаданих SAML 2.0"
   },
   "spAcsUrl": {
-    "message": "Assertion Consumer Service (ACS) URL"
+    "message": "URL-адреса служби підтвердження клієнтів (ACS)"
   },
   "spNameIdFormat": {
-    "message": "Name ID Format"
+    "message": "Формат ID назви"
   },
   "spOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "Алгоритм вихідного підпису"
   },
   "spSigningBehavior": {
-    "message": "Signing Behavior"
+    "message": "Поведінка при підписанні"
   },
   "spMinIncomingSigningAlgorithm": {
-    "message": "Minimum Incoming Signing Algorithm"
+    "message": "Мінімальний алгоритм вхідного підписання"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "Вимагається підпис підтвердження"
   },
   "spValidateCertificates": {
-    "message": "Validate Certificates"
+    "message": "Перевірка сертифікатів"
   },
   "idpEntityId": {
-    "message": "Entity ID"
+    "message": "ID об'єкта"
   },
   "idpBindingType": {
-    "message": "Binding Type"
+    "message": "Тип пов'язування"
   },
   "idpSingleSignOnServiceUrl": {
-    "message": "Single Sign On Service URL"
+    "message": "URL служби єдиного входу"
   },
   "idpSingleLogoutServiceUrl": {
-    "message": "Single Log Out Service URL"
+    "message": "URL служби єдиного виходу"
   },
   "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
+    "message": "URL служби розв'язання артефактів"
   },
   "idpX509PublicCert": {
-    "message": "X509 Public Certificate"
+    "message": "Публічний сертифікат X509"
   },
   "idpOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "Алгоритм вихідного підпису"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "Дозволити небажану відповідь авторизації"
   },
   "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+    "message": "Вимкнути вихідні запити виходу"
   },
   "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+    "message": "Вимагається підписання запитів на підтвердження"
   },
   "ssoSettingsSaved": {
-    "message": "Single Sign-On configuration was saved."
+    "message": "Конфігурацію єдиного входу збережено."
   }
 }
