@@ -2592,6 +2592,15 @@
       }
     }
   },
+  "linkedSsoUser": {
+    "message": "Linked SSO for user $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "createdOrganizationId": {
     "message": "Created organization $ID$.",
     "placeholders": {
@@ -4517,5 +4526,17 @@
   },
   "keyConnectorPolicyRestriction": {
     "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
+  },
+  "enabledSso": {
+    "message": "Enabled SSO"
+  },
+  "disabledSso": {
+    "message": "Disabled SSO"
+  },
+  "enabledKeyConnector": {
+    "message": "Enabled Key Connector"
+  },
+  "disabledKeyConnector": {
+    "message": "Disabled Key Connector"
   }
 }
