@@ -477,8 +477,9 @@ jobs:
           BUILD_OSS_SELFHOST_STATUS: ${{ needs.build-oss-selfhost.result }}
           BUILD_CLOUD_STATUS: ${{ needs.build-cloud.result }}
           BUILD_COMMERCIAL_SELFHOST_STATUS: ${{ needs.build-commercial-selfhost.result }}
-          BUILD_QA: ${{ needs.build-qa.result }}
-          WINDOWS: ${{ needs.windows.result }}
+          BUILD_QA_STATUS: ${{ needs.build-qa.result }}
+          CROWDIN_PUSH_STATUS: ${{ needs.crowdin-push.result }}
+          WINDOWS_STATUS: ${{ needs.windows.result }}
         run: |
           if [ "$CLOC_STATUS" = "failure" ]; then
               exit 1
@@ -490,15 +491,13 @@ jobs:
               exit 1
           elif [ "$BUILD_COMMERCIAL_SELFHOST_STATUS" = "failure" ]; then
               exit 1
-          elif [ "$BUILD_QA" = "failure" ]; then
+          elif [ "$BUILD_QA_STATUS" = "failure" ]; then
               exit 1
-          elif [ "$WINDOWS" = "failure" ]; then
+          elif [ "$CROWDIN_PUSH_STATUS" = "failure" ]; then
+              exit 1
+          elif [ "$WINDOWS_STATUS" = "failure" ]; then
               exit 1
           fi
-
-      - name: Test Crowdin Job result when not running
-        run: |
-          echo "Crowdin result: ${{ needs.crowdin-push.result }}"
 
       - name: Login to Azure - Prod Subscription
         uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
