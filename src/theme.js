@@ -6,11 +6,13 @@
     const htmlEl = document.documentElement;
     let theme = defaultTheme;
 
-    const savedTheme = window.localStorage.getItem('theme');
-    if (savedTheme != null) {
-        if (savedTheme.indexOf('system') > -1) {
+    const globalsJson = window.localStorage.getItem('globals');
+    const globals = JSON.parse(globalsJson);
+    console.debug(globals);
+    if (globals.theme != null) {
+        if (globals.theme.indexOf('system') > -1) {
             theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        } else if (savedTheme.indexOf('dark') > -1) {
+        } else if (globals.theme.indexOf('dark') > -1) {
             theme = 'dark';
         }
     }

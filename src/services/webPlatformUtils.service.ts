@@ -291,16 +291,14 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     async getEffectiveTheme(): Promise<ThemeType.Light | ThemeType.Dark> {
-        // TODO: stateService refactor: Fix circular dependencies here not allowing the import of stateService properly
-        return ThemeType.Light;
-        // const theme = await this.stateService.getTheme();
-        // if (theme === ThemeType.Dark) {
-        //     return ThemeType.Dark;
-        // } else if (theme === ThemeType.System) {
-        //     return this.getDefaultSystemTheme();
-        // } else {
-        //     return ThemeType.Light;
-        // }
+        const theme = await this.stateService().getTheme();
+        if (theme === ThemeType.Dark) {
+            return ThemeType.Dark;
+        } else if (theme === ThemeType.System) {
+            return this.getDefaultSystemTheme();
+        } else {
+            return ThemeType.Light;
+        }
     }
 
     onDefaultSystemThemeChange(callback: ((theme: ThemeType.Light | ThemeType.Dark) => unknown)) {

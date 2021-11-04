@@ -170,7 +170,6 @@ export function initFactory(): Function {
         // Initial theme is set in index.html which must be updated if there are any changes to theming logic
         platformUtilsService.onDefaultSystemThemeChange(async sysTheme => {
             const bwTheme = await stateService.getTheme();
-            console.log(bwTheme);
             if (bwTheme === ThemeType.System) {
                 htmlEl.classList.remove('theme_' + ThemeType.Light, 'theme_' + ThemeType.Dark);
                 htmlEl.classList.add('theme_' + sysTheme);

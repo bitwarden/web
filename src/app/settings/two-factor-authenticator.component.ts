@@ -78,7 +78,6 @@ export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent impl
         this.enabled = response.enabled;
         this.key = response.key;
         const email = await this.stateService.getEmail();
-        console.log('email', email);
         window.setTimeout(() => {
             const qr = new (window as any).QRious({
                 element: document.getElementById('qr'),
