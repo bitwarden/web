@@ -416,6 +416,45 @@ jobs:
         run: npm run build:bit:cloud
 
 
+  crowdin-push:
+    name: Crowdin Push
+    if: github.ref == 'refs/heads/master'
+    needs:
+      - build-oss-selfhost
+      - build-cloud
+      - build-commercial-selfhost
+      - build-qa
+    runs-on: ubuntu-20.04
+    env:
+      _CROWDIN_PROJECT_ID: "308189"
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f  # v2.3.4
+
+      - name: Login to Azure
+        uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
+        with:
+          creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
+
+      - name: Retrieve secrets
+        id: retrieve-secrets
+        uses: Azure/get-keyvault-secrets@80ccd3fafe5662407cc2e55f202ee34bfff8c403
+        with:
+          keyvault: "bitwarden-prod-kv"
+          secrets: "crowdin-api-token"
+
+      - name: Upload Sources
+        uses: crowdin/github-action@e39093fd75daae7859c68eded4b43d42ec78d8ea  # v1.3.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CROWDIN_API_TOKEN: ${{ steps.retrieve-secrets.outputs.crowdin-api-token }}
+        with:
+          config: crowdin.yml
+          crowdin_branch_name: master
+          upload_sources: true
+          upload_translations: false
+
+
   check-failures:
     name: Check for failures
     if: always()
@@ -427,6 +466,7 @@ jobs:
       - build-cloud
       - build-commercial-selfhost
       - build-qa
+      - crowdin-push
       - windows
     steps:
       - name: Check if any job failed
@@ -437,8 +477,9 @@ jobs:
           BUILD_OSS_SELFHOST_STATUS: ${{ needs.build-oss-selfhost.result }}
           BUILD_CLOUD_STATUS: ${{ needs.build-cloud.result }}
           BUILD_COMMERCIAL_SELFHOST_STATUS: ${{ needs.build-commercial-selfhost.result }}
-          BUILD_QA: ${{ needs.build-qa.result }}
-          WINDOWS: ${{ needs.windows.result }}
+          BUILD_QA_STATUS: ${{ needs.build-qa.result }}
+          CROWDIN_PUSH_STATUS: ${{ needs.crowdin-push.result }}
+          WINDOWS_STATUS: ${{ needs.windows.result }}
         run: |
           if [ "$CLOC_STATUS" = "failure" ]; then
               exit 1
@@ -450,9 +491,11 @@ jobs:
               exit 1
           elif [ "$BUILD_COMMERCIAL_SELFHOST_STATUS" = "failure" ]; then
               exit 1
-          elif [ "$BUILD_QA" = "failure" ]; then
+          elif [ "$BUILD_QA_STATUS" = "failure" ]; then
               exit 1
-          elif [ "$WINDOWS" = "failure" ]; then
+          elif [ "$CROWDIN_PUSH_STATUS" = "failure" ]; then
+              exit 1
+          elif [ "$WINDOWS_STATUS" = "failure" ]; then
               exit 1
           fi
 
