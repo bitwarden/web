@@ -418,7 +418,7 @@ jobs:
 
   crowdin-push:
     name: Crowdin Push
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/hotfix/crowdin-push'
     needs:
       - build-oss-selfhost
       - build-cloud
