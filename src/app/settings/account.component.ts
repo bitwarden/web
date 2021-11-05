@@ -10,6 +10,7 @@ import { DeleteAccountComponent } from './delete-account.component';
 import { PurgeVaultComponent } from './purge-vault.component';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
+import { KeyConnectorService } from 'jslib-common/abstractions/keyConnector.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
@@ -30,11 +31,11 @@ export class AccountComponent {
     showChangeEmail = true;
 
     constructor(private modalService: ModalService, private apiService: ApiService,
-        private userService: UserService) { }
+        private userService: UserService, private keyConnectorService: KeyConnectorService) { }
 
     async ngOnInit() {
         this.showChangeEmail = this.showChangeKdf = this.showChangePassword =
-            !await this.userService.getUsesKeyConnector();
+            !await this.keyConnectorService.getUsesKeyConnector();
     }
 
     async deauthorizeSessions() {

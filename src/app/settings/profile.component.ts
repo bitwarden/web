@@ -8,6 +8,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { KeyConnectorService } from 'jslib-common/abstractions/keyConnector.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
@@ -29,7 +30,8 @@ export class ProfileComponent implements OnInit {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private userService: UserService,
-        private cryptoService: CryptoService, private logService: LogService) { }
+        private cryptoService: CryptoService, private logService: LogService,
+        private keyConnectorService: KeyConnectorService) { }
 
     async ngOnInit() {
         this.profile = await this.apiService.getProfile();
@@ -38,7 +40,7 @@ export class ProfileComponent implements OnInit {
         if (fingerprint != null) {
             this.fingerprint = fingerprint.join('-');
         }
-        this.hidePasswordHint = await this.userService.getUsesKeyConnector();
+        this.hidePasswordHint = await this.keyConnectorService.getUsesKeyConnector();
     }
 
     async submit() {
