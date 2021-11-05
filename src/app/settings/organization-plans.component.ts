@@ -68,7 +68,6 @@ export class OrganizationPlansComponent implements OnInit {
     productTypes = ProductType;
     formPromise: Promise<any>;
     singleOrgPolicyBlock: boolean = false;
-    freeTrial: boolean = false;
 
     plans: PlanResponse[];
 
@@ -177,6 +176,10 @@ export class OrganizationPlansComponent implements OnInit {
         return subTotal;
     }
 
+    get freeTrial() {
+        return this.selectedPlan.trialPeriodDays != null;
+    }
+
     get taxCharges() {
         return this.taxComponent != null && this.taxComponent.taxRate != null ?
             (this.taxComponent.taxRate / 100) * this.subtotal :
@@ -201,7 +204,6 @@ export class OrganizationPlansComponent implements OnInit {
             this.selectedPlan.hasAdditionalSeatsOption) {
             this.additionalSeats = 1;
         }
-        this.freeTrial = this.selectedPlan.trialPeriodDays != null;
     }
 
     changedOwnedBusiness() {
