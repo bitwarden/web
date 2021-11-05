@@ -6,8 +6,32 @@
 </p>
 <div>
     {{'sponsoredFamiliesInclude' | i18n}}:
-    <ul>
+    <ul class="inset-list">
         <li>{{'sponsoredFamiliesPremiumAccess' | i18n}}</li>
         <li>{{'sponsoredFamiliesSharedCollections' | i18n}}</li>
     </ul>
 </div>
+<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="anyOrgsAvailable">
+    <div *ngIf="moreThanOneAvailableOrg" class="form-group col-6">
+        <label for="availableSponsorshipOrg">{{ 'sponsoredFamiliesSelectOffer' | i18n}}</label>
+        <select id="availableSponsorshipOrg" name="Available Sponsorship Organization"
+            [(ngModel)]="selectedSponsorshipOrgId" class="form-control" required>
+            <option value="">-- {{'select' | i18n}} --</option>
+            <option *ngFor="let o of availableOrgs" [ngValue]="o.id">{{o.name}}</option>
+        </select>
+        <small>{{'sponsoredFamiliesLeaveCopy' | i18n}}</small>
+    </div>
+    <div class="form-group col-6">
+        <label for="accountEmail">{{'sponsoredFamiliesEmail' | i18n}}:</label>
+        <input id="accountEmail" class="form-control"  inputmode="email" [(ngModel)]="sponsorshipEmail" name="sponsorshipEmail">
+        <button class="btn btn-primary mt-2" type="submit">{{'redeem' | i18n}}</button>
+    </div>
+</form>
+<table class="table table-hover table-list">
+    <tbody>
+        <tr>
+
+        </tr>
+    </tbody>
+
+</table>
