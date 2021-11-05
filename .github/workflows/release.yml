@@ -12,12 +12,13 @@ jobs:
     outputs:
       release_version: ${{ steps.version.outputs.package }}
       tag_version: ${{ steps.version.outputs.tag }}
+      branch-name: ${{ steps.branch.outputs.branch-name }}
     steps:
       - name: Branch check
         run: |
-          if [[ "$GITHUB_REF" != "refs/heads/rc" ]]; then
+          if [[ "$GITHUB_REF" != "refs/heads/rc" ]] && [[ "$GITHUB_REF" != "refs/heads/hotfix" ]]; then
             echo "==================================="
-            echo "[!] Can only release from rc branch"
+            echo "[!] Can only release from the 'rc' or 'hotfix' branches"
             echo "==================================="
             exit 1
           fi
@@ -40,6 +41,12 @@ jobs:
 
           echo "::set-output name=package::$version"
           echo "::set-output name=tag::v$version"
+
+      - name: Get branch name
+        id: branch
+        run: |
+          BRANCH_NAME=$(basename ${{ github.ref }})
+          echo "::set-output name=branch-name::$BRANCH_NAME"
 
 
   self-host:
@@ -122,7 +129,7 @@ jobs:
         with:
           workflow: build.yml
           workflow_conclusion: success
-          branch: rc
+          branch: ${{ needs.setup.outputs.branch-name }}
           artifacts: web-*-cloud-COMMERCIAL.zip
 
       # This should result in a build directory in the current working directory
@@ -163,7 +170,7 @@ jobs:
         with:
           workflow: build.yml
           workflow_conclusion: success
-          branch: rc
+          branch: ${{ needs.setup.outputs.branch-name }}
           artifacts: "web-*-selfhosted-COMMERCIAL.zip,
                       web-*-selfhosted-open-source.zip"
 
