@@ -456,7 +456,7 @@ const routes: Routes = [
     imports: [RouterModule.forRoot(routes, {
         useHash: true,
         paramsInheritanceStrategy: 'always',
-        enableTracing: true,
+        /*enableTracing: true,*/
     })],
     exports: [RouterModule],
 })
