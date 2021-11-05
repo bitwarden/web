@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Bulea"
   },
+  "cfTypeLinked": {
+    "message": "Linked",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Forigi"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Lasta nomo"
+  },
+  "fullName": {
+    "message": "Full Name"
   },
   "address1": {
     "message": "Adreso 1"
@@ -2811,10 +2818,6 @@
     "message": "Ĝisdatigu vian konton al alia plano donante la informojn sube. Bonvolu certigi, ke vi havas aktivan pagmanieron aldonitan al la konto.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Kontaktu klientan subtenon se vi ŝatus ŝanĝi vian planon. Bonvolu certigi, ke vi havas aktivan pagmanieron aldonitan al la konto.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Fakturo # $NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2935,6 +2938,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,6 +3838,9 @@
   "accessReports": {
     "message": "Aliraj Raportoj"
   },
+  "missingPermissions": {
+    "message": "You lack the necessary permissions to perform this action."
+  },
   "manageAllCollections": {
     "message": "Administri ĉiujn kolektojn"
   },
@@ -4448,5 +4472,8 @@
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Unable to reach the crypto agent, try again later."
   }
 }

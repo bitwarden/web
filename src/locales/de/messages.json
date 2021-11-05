@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Boolescher Wert"
   },
+  "cfTypeLinked": {
+    "message": "Verwandt",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Entfernen"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Nachname"
+  },
+  "fullName": {
+    "message": "Vollständiger Name"
   },
   "address1": {
     "message": "Adresse 1"
@@ -2811,10 +2818,6 @@
     "message": "Ändern sie ihr Konto zu einem anderen Tarif, indem Sie folgende Informationen bereitstellen. Bitte stellen Sie sicher, dass Sie eine aktive Zahlungsmethode zu ihren Konto hinzugefügt haben.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Kontaktieren Sie den Kundensupport, um Ihr Abo zu ändern. Bitte stellen Sie sicher, dass Sie eine aktive Zahlungsmethode zu Ihrem Konto hinzugefügt haben.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Rechnung #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2935,6 +2938,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "Du kannst nicht mehr als $COUNT$ Benutzer einladen ohne dein Abo hochzustufen.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "Du kannst nicht mehr als $COUNT$ Benutzer einladen ohne dein Abo hochzustufen. Bitte kontaktiere dafür den Kundenservice.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,6 +3838,9 @@
   "accessReports": {
     "message": "Zugriff auf Berichte"
   },
+  "missingPermissions": {
+    "message": "Dir fehlt die erforderliche Berechtigung, um diese Aktion auszuführen."
+  },
   "manageAllCollections": {
     "message": "Alle Sammlungen verwalten"
   },
@@ -4448,5 +4472,8 @@
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On Konfiguration wurde gespeichert."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Der Krypto-Agent konnte nicht erreicht werden. Versuche es später erneut."
   }
 }
