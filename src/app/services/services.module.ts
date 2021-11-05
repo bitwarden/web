@@ -137,7 +137,7 @@ const totpService = new TotpService(storageService, cryptoFunctionService, conso
 const containerService = new ContainerService(cryptoService);
 const authService = new AuthService(cryptoService, apiService,
     userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService, vaultTimeoutService,
-    consoleLogService, cryptoFunctionService);
+    consoleLogService, cryptoFunctionService, environmentService);
 const exportService = new ExportService(folderService, cipherService, apiService, cryptoService);
 const importService = new ImportService(cipherService, folderService, apiService, i18nService, collectionService,
     platformUtilsService, cryptoService);
