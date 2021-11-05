@@ -900,7 +900,7 @@
     "message": "Cambiar correo electrónico"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Proceeding will change your account email address. It will not change the email address used for two-factor authentication. You can change this email address in the Two-Step Login settings."
+    "message": "Proceder cambiará la dirección de correo electrónico de su cuenta. No cambiará la dirección de correo electrónico utilizada para la autenticación de dos factores. Puede cambiar esta dirección de correo electrónico en la configuración de inicio de sesión en dos pasos."
   },
   "newEmail": {
     "message": "Nuevo correo electrónico"
@@ -1002,7 +1002,7 @@
     "message": "Caja fuerte de organización purgada."
   },
   "vaultAccessedByProvider": {
-    "message": "Vault accessed by provider."
+    "message": "Caja fuerte a la que accede el proveedor."
   },
   "purgeVaultDesc": {
     "message": "Proceder eliminará todos los elementos y carpetas de tu caja fuerte. Los elementos que pertenezcan a una organización con la que compartes contenido, no serán eliminados."
@@ -2155,7 +2155,7 @@
     "message": "Políticas"
   },
   "singleSignOn": {
-    "message": "Single Sign-On"
+    "message": "Inicio de sesión único"
   },
   "editPolicy": {
     "message": "Editar política"
@@ -2248,7 +2248,7 @@
     "message": "Confirmado"
   },
   "clientOwnerEmail": {
-    "message": "Client Owner Email"
+    "message": "Correo electrónico del propietario del cliente"
   },
   "owner": {
     "message": "Propietario"
@@ -2257,7 +2257,7 @@
     "message": "El usuario de acceso más alto que puede administrar todos los aspectos de su organización."
   },
   "clientOwnerDesc": {
-    "message": "This user should be independent of the Provider. If the Provider is disassociated with the organization, this user will maintain ownership of the organization."
+    "message": "Este usuario debe ser independiente del Proveedor. Si el Proveedor está desasociado con la organización, este usuario mantendrá la propiedad de la organización."
   },
   "admin": {
     "message": "Administrador"
@@ -2593,7 +2593,7 @@
     }
   },
   "createdOrganizationId": {
-    "message": "Created organization $ID$.",
+    "message": "Organización $ID$ creada.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2602,7 +2602,7 @@
     }
   },
   "addedOrganizationId": {
-    "message": "Added organization $ID$.",
+    "message": "Organización $ID$ añadida.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2611,7 +2611,7 @@
     }
   },
   "removedOrganizationId": {
-    "message": "Removed organization $ID$.",
+    "message": "Organización $ID$ eliminada.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2620,7 +2620,7 @@
     }
   },
   "accessedClientVault": {
-    "message": "Accessed $ID$ organization vault.",
+    "message": "Se ha accedido a la caja fuerte de la organización $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2882,10 +2882,10 @@
     "message": "Introduce tu ID de instalación"
   },
   "limitSubscriptionDesc": {
-    "message": "Set a seat limit for your subscription. Once this limit is reached, you will not be able to invite new users."
+    "message": "Establezca un límite de asientos para su suscripción. Una vez alcanzado este límite, no podrá invitar a nuevos usuarios."
   },
   "maxSeatLimit": {
-    "message": "Maximum Seat Limit (optional)",
+    "message": "Límite máximo de asientos (opcional)",
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
@@ -2900,7 +2900,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionDesc": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "Los ajustes a su suscripción provocarán cambios prorrateados en su facturación total. Si los usuarios recién invitados exceden sus asientos de suscripción, recibirá inmediatamente un cargo prorrateado para los usuarios adicionales."
   },
   "subscriptionUserSeats": {
     "message": "Tu suscripción permite un total de $COUNT$ usuarios.",
@@ -2912,25 +2912,25 @@
     }
   },
   "limitSubscription": {
-    "message": "Limit Subscription (Optional)"
+    "message": "Limitar suscripción (opcional)"
   },
   "subscriptionSeats": {
-    "message": "Subscription Seats"
+    "message": "Asientos de suscripción"
   },
   "subscriptionUpdated": {
-    "message": "Subscription updated"
+    "message": "Suscripción actualizada"
   },
   "additionalOptions": {
-    "message": "Additional Options"
+    "message": "Opciones adicionales"
   },
   "additionalOptionsDesc": {
-    "message": "For additional help in managing your subscription, please contact Customer Support."
+    "message": "Para ayuda adicional en la gestión de tu suscripción, por favor contacta con Atención al Cliente."
   },
   "subscriptionUserSeatsUnlimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "Los ajustes a su suscripción provocarán cambios prorrateados en su facturación total. Si los usuarios recién invitados exceden sus asientos de suscripción, recibirá inmediatamente un cargo prorrateado para los usuarios adicionales."
   },
   "subscriptionUserSeatsLimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users until your $MAX$ seat limit is reached.",
+    "message": "Los ajustes a su suscripción provocarán cambios prorrateados en su facturación total. Si los usuarios recién invitados exceden sus asientos de suscripción, recibirás inmediatamente un cargo prorrateado para los usuarios adicionales hasta que alcances tu límite de $MAX$ asientos.",
     "placeholders": {
       "max": {
         "content": "$1",
@@ -2939,7 +2939,7 @@
     }
   },
   "subscriptionMaxReached": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. You cannot invite more than $COUNT$ users without increasing your subscription seats.",
+    "message": "Los ajustes de tu suscripción darán como resultado cambios prorrateados en tus facturación total. No puedes invitar a más de $COUNT$ usuarios sin aumentar tus asientos de suscripción.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3821,22 +3821,22 @@
     "message": "Administrar todas las colecciones"
   },
   "createNewCollections": {
-    "message": "Create New Collections"
+    "message": "Crear nuevas colecciones"
   },
   "editAnyCollection": {
-    "message": "Edit Any Collection"
+    "message": "Editar cualquier colección"
   },
   "deleteAnyCollection": {
-    "message": "Delete Any Collection"
+    "message": "Eliminar cualquier colección"
   },
   "manageAssignedCollections": {
     "message": "Administrar colecciones asignadas"
   },
   "editAssignedCollections": {
-    "message": "Edit Assigned Collections"
+    "message": "Editar colecciones asignadas"
   },
   "deleteAssignedCollections": {
-    "message": "Delete Assigned Collections"
+    "message": "Eliminar colecciones asignadas"
   },
   "manageGroups": {
     "message": "Administrar grupos"
@@ -3854,7 +3854,7 @@
     "message": "Gestionar restablecimiento de contraseña"
   },
   "disableRequiredError": {
-    "message": "You must manually disable the $POLICYNAME$ policy before this policy can be disabled.",
+    "message": "Debe deshabilitar manualmente la política $POLICYNAME$ antes de que esta política pueda ser deshabilitada.",
     "placeholders": {
       "policyName": {
         "content": "$1",
@@ -3866,7 +3866,7 @@
     "message": "Una política de organización está afectando sus opciones de propiedad."
   },
   "personalOwnershipPolicyInEffectImports": {
-    "message": "An organization policy has disabled importing items into your personal vault."
+    "message": "Una política de organización ha desactivado la importación de elementos en su caja fuerte personal."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Desactivar la propiedad personal para los usuarios de la organización"
@@ -4025,7 +4025,7 @@
     }
   },
   "eventResetSsoLink": {
-    "message": "Reset Sso link for user $ID$",
+    "message": "Restablecer enlace de Inicio de Sesión Único para el usuario $ID$",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4112,19 +4112,19 @@
     "message": "¿Está seguro que desea eliminar los siguientes usuarios? El proceso puede tardar unos segundos en completarse y no puede interrumpirse o cancelarse."
   },
   "theme": {
-    "message": "Theme"
+    "message": "Tema"
   },
   "themeDesc": {
-    "message": "Choose a theme for your web vault."
+    "message": "Elige un tema para tu caja fuerte web."
   },
   "themeSystem": {
-    "message": "Use System Theme"
+    "message": "Usar tema del sistema"
   },
   "themeDark": {
-    "message": "Dark"
+    "message": "Oscuro"
   },
   "themeLight": {
-    "message": "Light"
+    "message": "Claro"
   },
   "confirmSelected": {
     "message": "Confirmar Seleccionado"
@@ -4166,13 +4166,13 @@
     "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
   },
   "providerName": {
-    "message": "Provider Name"
+    "message": "Nombre del proveedor"
   },
   "providerSetup": {
     "message": "The provider has been set up."
   },
   "clients": {
-    "message": "Clients"
+    "message": "Clientes"
   },
   "providerAdmin": {
     "message": "Provider Admin"
@@ -4217,7 +4217,7 @@
     "message": "Add Existing Organization"
   },
   "myProvider": {
-    "message": "My Provider"
+    "message": "Mi proveedor"
   },
   "addOrganizationConfirmation": {
     "message": "Are you sure you want to add $ORGANIZATION$ as a client to $PROVIDER$?",

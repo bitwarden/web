@@ -6,6 +6,7 @@ import {
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { CollectionView } from 'jslib-common/models/view/collectionView';
@@ -18,8 +19,8 @@ import { CollectionsComponent as BaseCollectionsComponent } from 'jslib-angular/
 })
 export class CollectionsComponent extends BaseCollectionsComponent implements OnDestroy {
     constructor(collectionService: CollectionService, platformUtilsService: PlatformUtilsService,
-        i18nService: I18nService, cipherService: CipherService) {
-        super(collectionService, platformUtilsService, i18nService, cipherService);
+        i18nService: I18nService, cipherService: CipherService, logService: LogService) {
+        super(collectionService, platformUtilsService, i18nService, cipherService, logService);
     }
 
     ngOnDestroy() {

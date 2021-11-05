@@ -8,6 +8,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { UserBillingComponent } from '../../settings/user-billing.component';
@@ -18,8 +19,9 @@ import { UserBillingComponent } from '../../settings/user-billing.component';
 })
 export class OrganizationBillingComponent extends UserBillingComponent implements OnInit {
     constructor(apiService: ApiService, i18nService: I18nService, toasterService: ToasterService,
-        private route: ActivatedRoute, platformUtilsService: PlatformUtilsService) {
-        super(apiService, i18nService, toasterService, platformUtilsService);
+        private route: ActivatedRoute, platformUtilsService: PlatformUtilsService,
+        logService: LogService) {
+        super(apiService, i18nService, toasterService, platformUtilsService, logService);
     }
 
     async ngOnInit() {

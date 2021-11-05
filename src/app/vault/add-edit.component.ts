@@ -9,6 +9,7 @@ import { CollectionService } from 'jslib-common/abstractions/collection.service'
 import { EventService } from 'jslib-common/abstractions/event.service';
 import { FolderService } from 'jslib-common/abstractions/folder.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
@@ -44,9 +45,9 @@ export class AddEditComponent extends BaseAddEditComponent {
         userService: UserService, collectionService: CollectionService,
         protected totpService: TotpService, protected passwordGenerationService: PasswordGenerationService,
         protected messagingService: MessagingService, eventService: EventService,
-        protected policyService: PolicyService) {
+        protected policyService: PolicyService, logService: LogService) {
         super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
-            userService, collectionService, messagingService, eventService, policyService);
+            userService, collectionService, messagingService, eventService, policyService, logService);
     }
 
     async ngOnInit() {

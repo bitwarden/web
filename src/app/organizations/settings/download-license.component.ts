@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 @Component({
@@ -20,7 +21,8 @@ export class DownloadLicenseComponent {
     installationId: string;
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private platformUtilsService: PlatformUtilsService) { }
+    constructor(private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
+        private logService: LogService) { }
 
     async submit() {
         if (this.installationId == null || this.installationId === '') {
@@ -33,7 +35,9 @@ export class DownloadLicenseComponent {
             const licenseString = JSON.stringify(license, null, 2);
             this.platformUtilsService.saveFile(window, licenseString, null, 'bitwarden_organization_license.json');
             this.onDownloaded.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     cancel() {

@@ -2155,7 +2155,7 @@
     "message": "原則"
   },
   "singleSignOn": {
-    "message": "Single Sign-On"
+    "message": "單一登入（SSO）"
   },
   "editPolicy": {
     "message": "編輯原則"
@@ -2248,7 +2248,7 @@
     "message": "已確認"
   },
   "clientOwnerEmail": {
-    "message": "Client Owner Email"
+    "message": "客戶所有者電子郵件"
   },
   "owner": {
     "message": "擁有者"
@@ -2593,7 +2593,7 @@
     }
   },
   "createdOrganizationId": {
-    "message": "Created organization $ID$.",
+    "message": "已創建組織 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2602,7 +2602,7 @@
     }
   },
   "addedOrganizationId": {
-    "message": "Added organization $ID$.",
+    "message": "已添加組織 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2611,7 +2611,7 @@
     }
   },
   "removedOrganizationId": {
-    "message": "Removed organization $ID$.",
+    "message": "已移除組 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2882,10 +2882,10 @@
     "message": "輸入您的安裝 ID"
   },
   "limitSubscriptionDesc": {
-    "message": "Set a seat limit for your subscription. Once this limit is reached, you will not be able to invite new users."
+    "message": "爲您的訂閲設定一個席位限制。達到此限制后，您將無法邀請新的使用者。"
   },
   "maxSeatLimit": {
-    "message": "Maximum Seat Limit (optional)",
+    "message": "最大席位限制（選用）",
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
@@ -2900,7 +2900,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionDesc": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "對您的訂閱進行調整將導致按比例更改您的帳單總額。如果新邀請的使用者超過您的訂閱席位，您將立即收到按比例收取的額外使用者費用。"
   },
   "subscriptionUserSeats": {
     "message": "您的訂閱當中包含 $COUNT$ 位使用者的授權。",
@@ -2912,25 +2912,25 @@
     }
   },
   "limitSubscription": {
-    "message": "Limit Subscription (Optional)"
+    "message": "限制訂閲（選用）"
   },
   "subscriptionSeats": {
-    "message": "Subscription Seats"
+    "message": "訂閲席位"
   },
   "subscriptionUpdated": {
-    "message": "Subscription updated"
+    "message": "訂閲已更新"
   },
   "additionalOptions": {
-    "message": "Additional Options"
+    "message": "進階選項"
   },
   "additionalOptionsDesc": {
-    "message": "For additional help in managing your subscription, please contact Customer Support."
+    "message": "有關管理您的訂閲的更多幫助，請聯係客戶支援。"
   },
   "subscriptionUserSeatsUnlimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "對您的訂閱進行調整將導致按比例更改您的帳單總額。如果新邀請的使用者超過您的訂閱席位，您將立即收到按比例收取的額外使用者費用。"
   },
   "subscriptionUserSeatsLimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users until your $MAX$ seat limit is reached.",
+    "message": "對您的訂閱進行調整將導致按比例更改您的帳單總額。如果新邀請的使用者超過您的訂閱席位，您將立即收到按比例收取的額外使用者費用，直到達到 $MAX$ 席位限制。",
     "placeholders": {
       "max": {
         "content": "$1",
@@ -2939,7 +2939,7 @@
     }
   },
   "subscriptionMaxReached": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. You cannot invite more than $COUNT$ users without increasing your subscription seats.",
+    "message": "對您的訂閱進行調整將導致按比例更改您的帳單總額。在不增加訂閱席位的情況下，您不能邀請超過 $COUNT$ 個使用者。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3821,7 +3821,7 @@
     "message": "管理所有集合。"
   },
   "createNewCollections": {
-    "message": "Create New Collections"
+    "message": "創建新的集合"
   },
   "editAnyCollection": {
     "message": "Edit Any Collection"
@@ -3833,10 +3833,10 @@
     "message": "管理已分配的集合。"
   },
   "editAssignedCollections": {
-    "message": "Edit Assigned Collections"
+    "message": "編輯已分配的集合"
   },
   "deleteAssignedCollections": {
-    "message": "Delete Assigned Collections"
+    "message": "刪除已關聯的集合"
   },
   "manageGroups": {
     "message": "管理群組"
@@ -3854,7 +3854,7 @@
     "message": "管理密碼重設"
   },
   "disableRequiredError": {
-    "message": "You must manually disable the $POLICYNAME$ policy before this policy can be disabled.",
+    "message": "您必須先手動停用 $POLICYNAME$ 策略，然後才能停用此策略。",
     "placeholders": {
       "policyName": {
         "content": "$1",
@@ -3866,7 +3866,7 @@
     "message": "一個組織原則正在影響您的擁有權選項。"
   },
   "personalOwnershipPolicyInEffectImports": {
-    "message": "An organization policy has disabled importing items into your personal vault."
+    "message": "某個組織虐策略已停用將項目匯入到您的個人密碼庫。"
   },
   "personalOwnershipCheckboxDesc": {
     "message": "為組織使用者禁用個人擁有權。"
@@ -4025,7 +4025,7 @@
     }
   },
   "eventResetSsoLink": {
-    "message": "Reset Sso link for user $ID$",
+    "message": "為使用者 $ID$ 重置 SSO 鏈接",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4070,13 +4070,13 @@
     "message": "自動註冊"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "所有邀請被接受后的使用者將會被自動註冊密碼重設。"
+    "message": "所有接受邀請的使用者，將會被自動註冊密碼重設，並且不允許撤銷。"
   },
   "resetPasswordPolicyAutoEnrollWarning": {
     "message": "已經在組織中的使用者將不會被註冊密碼重設。他們需要先自行註冊後管理者才能重設他們的主密碼。"
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "自動註冊新使用者"
+    "message": "要求自動註冊新使用者"
   },
   "resetPasswordAutoEnrollInviteWarning": {
     "message": "此組織設定了讓您可自動重設密碼的企業政策。設定政策後，將允許組織管理員更改您的主控密碼。"
@@ -4112,19 +4112,19 @@
     "message": "您確定要移除以下使用者嗎？處理程序需要幾秒鐘去完成而且無法被中斷或取消。"
   },
   "theme": {
-    "message": "Theme"
+    "message": "主題"
   },
   "themeDesc": {
-    "message": "Choose a theme for your web vault."
+    "message": "爲您的網頁密碼庫選擇一個主題。"
   },
   "themeSystem": {
-    "message": "Use System Theme"
+    "message": "使用系統主題"
   },
   "themeDark": {
-    "message": "Dark"
+    "message": "深色"
   },
   "themeLight": {
-    "message": "Light"
+    "message": "淺色"
   },
   "confirmSelected": {
     "message": "確認所選"
@@ -4157,31 +4157,31 @@
     "message": "必須開啟管理密碼重設權限後，才能開啟管理使用者權限"
   },
   "setupProvider": {
-    "message": "Provider Setup"
+    "message": "提供商設定"
   },
   "setupProviderLoginDesc": {
-    "message": "You've been invited to setup a new provider. To continue, you need to log in or create a new Bitwarden account."
+    "message": "您被邀請設定一個新的供應商。要繼續，您需要登入或創建一個新的 Bitwarden 賬戶。"
   },
   "setupProviderDesc": {
     "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
   },
   "providerName": {
-    "message": "Provider Name"
+    "message": "提供商名稱"
   },
   "providerSetup": {
-    "message": "The provider has been set up."
+    "message": "提供商已被設定。"
   },
   "clients": {
-    "message": "Clients"
+    "message": "客户"
   },
   "providerAdmin": {
-    "message": "Provider Admin"
+    "message": "提供商管理"
   },
   "providerAdminDesc": {
     "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
   },
   "serviceUser": {
-    "message": "Service User"
+    "message": "服務使用者"
   },
   "serviceUserDesc": {
     "message": "Service users can access and manage all client organizations."
@@ -4190,7 +4190,7 @@
     "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
   },
   "joinProvider": {
-    "message": "Join Provider"
+    "message": "加入提供商"
   },
   "joinProviderDesc": {
     "message": "You've been invited to join the provider listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
@@ -4205,22 +4205,22 @@
     "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the provider until they are confirmed."
   },
   "provider": {
-    "message": "Provider"
+    "message": "提供商"
   },
   "newClientOrganization": {
-    "message": "New Client Organization"
+    "message": "新的客戶組織"
   },
   "newClientOrganizationDesc": {
     "message": "Create a new client organization that will be associated with you as the provider. You will be able to access and manage this organization."
   },
   "addExistingOrganization": {
-    "message": "Add Existing Organization"
+    "message": "添加現有的組織"
   },
   "myProvider": {
-    "message": "My Provider"
+    "message": "我的提供商"
   },
   "addOrganizationConfirmation": {
-    "message": "Are you sure you want to add $ORGANIZATION$ as a client to $PROVIDER$?",
+    "message": "你確定要將 $ORGANIZATION$ 添加爲 $PROVIDER$ 的客戶嗎？",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4233,10 +4233,10 @@
     }
   },
   "organizationJoinedProvider": {
-    "message": "Organization was successfully added to the provider"
+    "message": "已成功將組織添加到提供商"
   },
   "accessingUsingProvider": {
-    "message": "Accessing organization using provider $PROVIDER$",
+    "message": "正使用提供商 $PROVIDER$ 訪問組織",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4245,13 +4245,13 @@
     }
   },
   "providerIsDisabled": {
-    "message": "Provider is disabled."
+    "message": "提供商已被停用。"
   },
   "providerUpdated": {
-    "message": "Provider updated"
+    "message": "提供商已更新"
   },
   "yourProviderIs": {
-    "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
+    "message": "你的提供商是 $PROVIDER$。他們對您的組織具有管理和計費權限。",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4269,37 +4269,37 @@
     }
   },
   "detachOrganizationConfirmation": {
-    "message": "Are you sure you want to detach this organization? The organization will continue to exist but will no longer be managed by the provider."
+    "message": "您確定要分離此組織嗎？該組織將繼續存在，但不再由此提供商管理。"
   },
   "add": {
-    "message": "Add"
+    "message": "新增"
   },
   "updatedMasterPassword": {
-    "message": "Updated Master Password"
+    "message": "已更新主密碼"
   },
   "updateMasterPassword": {
-    "message": "Update Master Password"
+    "message": "更新主密碼"
   },
   "updateMasterPasswordWarning": {
-    "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "您的主密碼最近被您的組織管理者更改過。要存取密碼庫，您必須現在更新主密碼。繼續操作會登出目前的登入階段，要求您重新登入。其他裝置上使用中的登入階段可能持續最長一個小時。"
   },
   "maximumVaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "密碼庫逾時"
   },
   "maximumVaultTimeoutDesc": {
-    "message": "Configure a maximum vault timeout for all users."
+    "message": "為所有使用者配置一個最大密碼庫逾時時長。"
   },
   "maximumVaultTimeoutLabel": {
-    "message": "Maximum Vault Timeout"
+    "message": "最大密碼庫逾時時長"
   },
   "invalidMaximumVaultTimeout": {
-    "message": "Invalid Maximum Vault Timeout."
+    "message": "無效的最大密碼庫逾時時長。"
   },
   "hours": {
-    "message": "Hours"
+    "message": "小時"
   },
   "minutes": {
-    "message": "Minutes"
+    "message": "分鐘"
   },
   "vaultTimeoutPolicyInEffect": {
     "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
@@ -4315,31 +4315,31 @@
     }
   },
   "customVaultTimeout": {
-    "message": "Custom Vault Timeout"
+    "message": "自定義密碼庫逾時時長"
   },
   "vaultTimeoutToLarge": {
     "message": "Your vault timeout exceeds the restriction set by your organization."
   },
   "disablePersonalVaultExport": {
-    "message": "Disable Personal Vault Export"
+    "message": "停用個人密碼庫匯出"
   },
   "disablePersonalVaultExportDesc": {
     "message": "Prohibits users from exporting their private vault data."
   },
   "vaultExportDisabled": {
-    "message": "Vault Export Disabled"
+    "message": "密碼庫匯出已停用"
   },
   "personalVaultExportPolicyInEffect": {
     "message": "One or more organization policies prevents you from exporting your personal vault."
   },
   "selectType": {
-    "message": "Select SSO Type"
+    "message": "選擇 SSO 類型"
   },
   "type": {
-    "message": "Type"
+    "message": "類型"
   },
   "openIdConnectConfig": {
-    "message": "OpenID Connect Configuration"
+    "message": "OpenID 連接配置"
   },
   "samlSpConfig": {
     "message": "SAML Service Provider Configuration"
@@ -4357,10 +4357,10 @@
     "message": "Authority"
   },
   "clientId": {
-    "message": "Client ID"
+    "message": "客戶 ID"
   },
   "clientSecret": {
-    "message": "Client Secret"
+    "message": "客戶金鑰"
   },
   "metadataAddress": {
     "message": "Metadata Address"
@@ -4390,7 +4390,7 @@
     "message": "Expected \"acr\" Claim Value In Response (acr validation)"
   },
   "spEntityId": {
-    "message": "SP Entity ID"
+    "message": "SP 實體 ID"
   },
   "spMetadataUrl": {
     "message": "SAML 2.0 Metadata URL"
@@ -4399,7 +4399,7 @@
     "message": "Assertion Consumer Service (ACS) URL"
   },
   "spNameIdFormat": {
-    "message": "Name ID Format"
+    "message": "名稱 ID 格式"
   },
   "spOutboundSigningAlgorithm": {
     "message": "Outbound Signing Algorithm"
@@ -4414,10 +4414,10 @@
     "message": "Want Assertions Signed"
   },
   "spValidateCertificates": {
-    "message": "Validate Certificates"
+    "message": "驗證證書"
   },
   "idpEntityId": {
-    "message": "Entity ID"
+    "message": "實體 ID"
   },
   "idpBindingType": {
     "message": "Binding Type"
@@ -4432,7 +4432,7 @@
     "message": "Artifact Resolution Service URL"
   },
   "idpX509PublicCert": {
-    "message": "X509 Public Certificate"
+    "message": "X509 公共證書"
   },
   "idpOutboundSigningAlgorithm": {
     "message": "Outbound Signing Algorithm"

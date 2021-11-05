@@ -6,6 +6,7 @@ import { CollectionService } from 'jslib-common/abstractions/collection.service'
 import { EventService } from 'jslib-common/abstractions/event.service';
 import { FolderService } from 'jslib-common/abstractions/folder.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
@@ -31,10 +32,11 @@ export class EmergencyAddEditComponent extends BaseAddEditComponent {
         auditService: AuditService, stateService: StateService,
         userService: UserService, collectionService: CollectionService,
         totpService: TotpService, passwordGenerationService: PasswordGenerationService,
-        messagingService: MessagingService, eventService: EventService, policyService: PolicyService) {
+        messagingService: MessagingService, eventService: EventService, policyService: PolicyService,
+        logService: LogService) {
         super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
             userService, collectionService, totpService, passwordGenerationService, messagingService,
-            eventService, policyService);
+            eventService, policyService, logService);
     }
 
     async load() {

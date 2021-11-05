@@ -12,6 +12,7 @@ import { UserService } from 'jslib-common/abstractions/user.service';
 import { CollectionView } from 'jslib-common/models/view/collectionView';
 
 import { ShareComponent as BaseShareComponent } from 'jslib-angular/components/share.component';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 @Component({
     selector: 'app-vault-share',
@@ -20,8 +21,9 @@ import { ShareComponent as BaseShareComponent } from 'jslib-angular/components/s
 export class ShareComponent extends BaseShareComponent implements OnDestroy {
     constructor(collectionService: CollectionService, platformUtilsService: PlatformUtilsService,
         i18nService: I18nService, userService: UserService,
-        cipherService: CipherService) {
-        super(collectionService, platformUtilsService, i18nService, userService, cipherService);
+        cipherService: CipherService, logService: LogService) {
+        super(collectionService, platformUtilsService, i18nService, userService, cipherService,
+            logService);
     }
 
     ngOnDestroy() {

@@ -11,6 +11,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
@@ -29,6 +30,8 @@ import { Utils } from 'jslib-common/misc/utils';
 export class CollectionAddEditComponent implements OnInit {
     @Input() collectionId: string;
     @Input() organizationId: string;
+    @Input() canSave: boolean;
+    @Input() canDelete: boolean;
     @Output() onSavedCollection = new EventEmitter();
     @Output() onDeletedCollection = new EventEmitter();
 
@@ -46,7 +49,8 @@ export class CollectionAddEditComponent implements OnInit {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private platformUtilsService: PlatformUtilsService,
-        private cryptoService: CryptoService, private userService: UserService) { }
+        private cryptoService: CryptoService, private userService: UserService,
+        private logService: LogService) { }
 
     async ngOnInit() {
         const organization = await this.userService.getOrganization(this.organizationId);
@@ -75,7 +79,9 @@ export class CollectionAddEditComponent implements OnInit {
                         }
                     });
                 }
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
         } else {
             this.title = this.i18nService.t('addCollection');
         }
@@ -125,7 +131,9 @@ export class CollectionAddEditComponent implements OnInit {
             this.toasterService.popAsync('success', null,
                 this.i18nService.t(this.editMode ? 'editedCollectionId' : 'createdCollectionId', this.name));
             this.onSavedCollection.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     async delete() {
@@ -145,6 +153,8 @@ export class CollectionAddEditComponent implements OnInit {
             await this.deletePromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('deletedCollectionId', this.name));
             this.onDeletedCollection.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }
