@@ -12,12 +12,12 @@
     </ul>
 </div>
 <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="anyOrgsAvailable">
-    <div *ngIf="moreThanOneAvailableOrg" class="form-group col-6">
+    <div *ngIf="moreThanOneOrgAvailable" class="form-group col-6">
         <label for="availableSponsorshipOrg">{{ 'sponsoredFamiliesSelectOffer' | i18n}}</label>
         <select id="availableSponsorshipOrg" name="Available Sponsorship Organization"
             [(ngModel)]="selectedSponsorshipOrgId" class="form-control" required>
             <option value="">-- {{'select' | i18n}} --</option>
-            <option *ngFor="let o of availableOrgs" [ngValue]="o.id">{{o.name}}</option>
+            <option *ngFor="let o of availableSponsorshipOrgs" [ngValue]="o.id">{{o.name}}</option>
         </select>
         <small>{{'sponsoredFamiliesLeaveCopy' | i18n}}</small>
     </div>
@@ -27,11 +27,27 @@
         <button class="btn btn-primary mt-2" type="submit">{{'redeem' | i18n}}</button>
     </div>
 </form>
-<table class="table table-hover table-list">
-    <tbody>
-        <tr>
-
-        </tr>
-    </tbody>
-
-</table>
+<div *ngIf="anyActiveSponsorships">
+    <table class="table table-hover table-list">
+        <thead>
+            <tr>
+                <th>{{'redeemedAccount' | i18n}}</th>
+                <th>{{'organization' | i18n}}</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let o of activeSponsorshipOrgs">
+                <td class="reduced-lh wrap">
+                    <span>jbaur@bitwarden.com</span>
+                    <br/>
+                    <small>{{'redeemed' | i18n}}, 12/07/21</small>
+                </td>
+                <td>{{o.name}}</td>
+                <td class="table-action-right">
+                    <button class="btn btn-outline-danger" (click)="removeSponsorship(o)">Remove</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
