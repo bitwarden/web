@@ -219,7 +219,7 @@
         <hr class="my-3">
         <h2 class="spaced-header mb-4">{{ (createOrganization ? 'paymentInformation' : 'billingInformation') | i18n}}
         </h2>
-        <small class="text-muted font-italic mb-3 d-block" *ngIf="!freeTrial && createOrganization; else paymentChargedImmediately">
+        <small class="text-muted font-italic mb-3 d-block" *ngIf="freeTrial && createOrganization; else paymentChargedImmediately">
             {{'paymentChargedWithTrial' | i18n}}
         </small>
         <ng-template #paymentChargedImmediately>
