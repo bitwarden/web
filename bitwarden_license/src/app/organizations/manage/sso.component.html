@@ -7,7 +7,7 @@
     <span class="sr-only">{{'loading' | i18n}}</span>
 </ng-container>
 
-<form #form (ngSubmit)="submit()" [formGroup]="data" [appApiAction]="formPromise" *ngIf="!loading">
+<form #form (ngSubmit)="submit()" [formGroup]="data" [appApiAction]="formPromise" *ngIf="!loading" ngNativeValidate>
     <p>
         {{'ssoPolicyHelpStart' | i18n}}
         <a routerLink="../policies">{{'ssoPolicyHelpLink' | i18n}}</a>
@@ -47,7 +47,7 @@
     
         <div class="form-group">
             <label for="keyConnectorUrl">{{'keyConnectorUrl' | i18n}}</label>
-            <input class="form-control" formControlName="keyConnectorUrl" id="keyConnectorUrl">
+            <input class="form-control" formControlName="keyConnectorUrl" id="keyConnectorUrl" required>
         </div>
     </ng-container>
 
