@@ -132,7 +132,7 @@ const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService
     cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, tokenService,
     policyService, null, async () => messagingService.send('logout', { expired: false }));
 const keyConnectorService = new KeyConnectorService(storageService, userService, cryptoService, apiService,
-    environmentService, consoleLogService);
+    environmentService, tokenService, consoleLogService);
 const syncService = new SyncService(userService, apiService, settingsService,
     folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
     sendService, consoleLogService, tokenService, keyConnectorService,

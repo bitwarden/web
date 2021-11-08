@@ -25,29 +25,31 @@
     <div class="form-group">
         <label>{{'memberDecryptionOption' | i18n}}</label>
         <div class="form-check form-check-block">
-            <input class="form-check-input" type="radio" id="vaultTimeoutActionLock" [value]="false" formControlName="useKeyConnector">
-            <label class="form-check-label" for="vaultTimeoutActionLock">
+            <input class="form-check-input" type="radio" id="memberDecryptionPass" [value]="false" formControlName="useKeyConnector">
+            <label class="form-check-label" for="memberDecryptionPass">
                 {{'masterPass' | i18n}}
                 <small>{{'memberDecryptionPassDesc' | i18n}}</small>
             </label>
         </div>
         <div class="form-check mt-2 form-check-block">
-            <input class="form-check-input" type="radio" id="vaultTimeoutActionLogOut" [value]="true" formControlName="useKeyConnector">
-            <label class="form-check-label" for="vaultTimeoutActionLogOut">
+            <input class="form-check-input" type="radio" id="memberDecryptionKey" [value]="true" formControlName="useKeyConnector">
+            <label class="form-check-label" for="memberDecryptionKey">
                 {{'keyConnector' | i18n}}
                 <small>{{'memberDecryptionKeyConnectorDesc' | i18n}}</small>
             </label>
         </div>
     </div>
 
-    <app-callout type="warning" *ngIf="data.value.useKeyConnector" [useAlertRole]="true">
-        {{'keyConnectorWarning' | i18n}}
-    </app-callout>
-
-    <div class="form-group" *ngIf="data.value.useKeyConnector">
-        <label>{{'keyConnectorUrl' | i18n}}</label>
-        <input class="form-control" formControlName="keyConnectorUrl">
-    </div>
+    <ng-container *ngIf="data.value.useKeyConnector">
+        <app-callout type="warning" [useAlertRole]="true">
+            {{'keyConnectorWarning' | i18n}}
+        </app-callout>
+    
+        <div class="form-group">
+            <label for="keyConnectorUrl">{{'keyConnectorUrl' | i18n}}</label>
+            <input class="form-control" formControlName="keyConnectorUrl" id="keyConnectorUrl">
+        </div>
+    </ng-container>
 
     <div class="form-group">
         <label for="type">{{'type' | i18n}}</label>
@@ -89,24 +91,24 @@
                 </div>
             </div>
             <div class="form-group">
-                <label>{{'authority' | i18n}}</label>
-                <input class="form-control" formControlName="authority">
+                <label for="authority">{{'authority' | i18n}}</label>
+                <input class="form-control" formControlName="authority" id="authority">
             </div>
             <div class="form-group">
-                <label>{{'clientId' | i18n}}</label>
-                <input class="form-control" formControlName="clientId">
+                <label for="clientId">{{'clientId' | i18n}}</label>
+                <input class="form-control" formControlName="clientId" id="clientId">
             </div>
             <div class="form-group">
-                <label>{{'clientSecret' | i18n}}</label>
-                <input class="form-control" formControlName="clientSecret">
+                <label for="clientSecret">{{'clientSecret' | i18n}}</label>
+                <input class="form-control" formControlName="clientSecret" id="clientSecret">
             </div>
             <div class="form-group">
-                <label>{{'metadataAddress' | i18n}}</label>
-                <input class="form-control" formControlName="metadataAddress">
+                <label for="metadataAddress">{{'metadataAddress' | i18n}}</label>
+                <input class="form-control" formControlName="metadataAddress" id="metadataAddress">
             </div>
             <div class="form-group">
-                <label>{{'oidcRedirectBehavior' | i18n}}</label>
-                <select class="form-control" formControlName="redirectBehavior">
+                <label for="redirectBehavior">{{'oidcRedirectBehavior' | i18n}}</label>
+                <select class="form-control" formControlName="redirectBehavior" id="redirectBehavior">
                     <option value="0">Redirect GET</option>
                     <option value="1">Form POST</option>
                 </select>
@@ -121,28 +123,31 @@
                 </div>
             </div>
             <div class="form-group">
-                <label>{{'additionalScopes' | i18n}}</label>
-                <input class="form-control" formControlName="additionalScopes">
+                <label for="additionalScopes">{{'additionalScopes' | i18n}}</label>
+                <input class="form-control" formControlName="additionalScopes" id="additionalScopes">
             </div>
             <div class="form-group">
-                <label>{{'additionalUserIdClaimTypes' | i18n}}</label>
-                <input class="form-control" formControlName="additionalUserIdClaimTypes">
+                <label for="additionalUserIdClaimTypes">{{'additionalUserIdClaimTypes' | i18n}}</label>
+                <input class="form-control" formControlName="additionalUserIdClaimTypes"
+                    id="additionalUserIdClaimTypes">
             </div>
             <div class="form-group">
-                <label>{{'additionalEmailClaimTypes' | i18n}}</label>
-                <input class="form-control" formControlName="additionalEmailClaimTypes">
+                <label for="additionalEmailClaimTypes">{{'additionalEmailClaimTypes' | i18n}}</label>
+                <input class="form-control" formControlName="additionalEmailClaimTypes"
+                    id="additionalEmailClaimTypes">
             </div>
             <div class="form-group">
-                <label>{{'additionalNameClaimTypes' | i18n}}</label>
-                <input class="form-control" formControlName="additionalNameClaimTypes">
+                <label for="additionalNameClaimTypes">{{'additionalNameClaimTypes' | i18n}}</label>
+                <input class="form-control" formControlName="additionalNameClaimTypes"
+                    id="additionalNameClaimTypes">
             </div>
             <div class="form-group">
-                <label>{{'acrValues' | i18n}}</label>
-                <input class="form-control" formControlName="acrValues">
+                <label for="acrValues">{{'acrValues' | i18n}}</label>
+                <input class="form-control" formControlName="acrValues" id="acrValues">
             </div>
             <div class="form-group">
-                <label>{{'expectedReturnAcrValue' | i18n}}</label>
-                <input class="form-control" formControlName="expectedReturnAcrValue">
+                <label for="expectedReturnAcrValue">{{'expectedReturnAcrValue' | i18n}}</label>
+                <input class="form-control" formControlName="expectedReturnAcrValue" id="expectedReturnAcrValue">
             </div>
         </div>
     </div>
@@ -196,8 +201,8 @@
                 </div>
             </div>
             <div class="form-group">
-                <label>{{'spNameIdFormat' | i18n}}</label>
-                <select class="form-control" formControlName="spNameIdFormat">
+                <label for="spNameIdFormat">{{'spNameIdFormat' | i18n}}</label>
+                <select class="form-control" formControlName="spNameIdFormat" id="spNameIdFormat">
                     <option value="0">Not Configured</option>
                     <option value="1">Unspecified</option>
                     <option value="2">Email Address</option>
@@ -210,35 +215,43 @@
                 </select>
             </div>
             <div class="form-group">
-                <label>{{'spOutboundSigningAlgorithm' | i18n}}</label>
-                <select class="form-control" formControlName="spOutboundSigningAlgorithm">
+                <label for="spOutboundSigningAlgorithm">{{'spOutboundSigningAlgorithm' | i18n}}</label>
+                <select class="form-control" formControlName="spOutboundSigningAlgorithm"
+                    id="spOutboundSigningAlgorithm">
                     <option *ngFor="let o of samlSigningAlgorithms" [ngValue]="o">{{o}}</option>
                 </select>
             </div>
             <div class="form-group">
-                <label>{{'spSigningBehavior' | i18n}}</label>
-                <select class="form-control" formControlName="spSigningBehavior">
+                <label for="spSigningBehavior">{{'spSigningBehavior' | i18n}}</label>
+                <select class="form-control" formControlName="spSigningBehavior" id="spSigningBehavior">
                     <option value="0">If IdP Wants Authn Requests Signed</option>
                     <option value="1">Always</option>
                     <option value="3">Never</option>
                 </select>
             </div>
             <div class="form-group">
-                <label>{{'spMinIncomingSigningAlgorithm' | i18n}}</label>
-                <select class="form-control" formControlName="spMinIncomingSigningAlgorithm">
+                <label for="spMinIncomingSigningAlgorithm">{{'spMinIncomingSigningAlgorithm' | i18n}}</label>
+                <select class="form-control" formControlName="spMinIncomingSigningAlgorithm"
+                    id="spMinIncomingSigningAlgorithm">
                     <option *ngFor="let o of samlSigningAlgorithms" [ngValue]="o">{{o}}</option>
                 </select>
             </div>
             <div class="form-group">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="spWantAssertionsSigned" formControlName="spWantAssertionsSigned">
-                    <label class="form-check-label" for="spWantAssertionsSigned">{{'spWantAssertionsSigned' | i18n}}</label>
+                    <input class="form-check-input" type="checkbox" id="spWantAssertionsSigned"
+                        formControlName="spWantAssertionsSigned">
+                    <label class="form-check-label" for="spWantAssertionsSigned">
+                        {{'spWantAssertionsSigned' | i18n}}
+                    </label>
                 </div>
             </div>
             <div class="form-group">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="spValidateCertificates" formControlName="spValidateCertificates">
-                    <label class="form-check-label" for="spValidateCertificates">{{'spValidateCertificates' | i18n}}</label>
+                    <input class="form-check-input" type="checkbox" id="spValidateCertificates"
+                        formControlName="spValidateCertificates">
+                    <label class="form-check-label" for="spValidateCertificates">
+                        {{'spValidateCertificates' | i18n}}
+                    </label>
                 </div>
             </div>
         </div>
@@ -248,36 +261,39 @@
             <h2>{{'samlIdpConfig' | i18n}}</h2>
 
             <div class="form-group">
-                <label>{{'idpEntityId' | i18n}}</label>
-                <input class="form-control" formControlName="idpEntityId">
+                <label for="idpEntityId">{{'idpEntityId' | i18n}}</label>
+                <input class="form-control" formControlName="idpEntityId" id="idpEntityId">
             </div>
             <div class="form-group">
-                <label>{{'idpBindingType' | i18n}}</label>
-                <select class="form-control" formControlName="idpBindingType">
+                <label for="idpBindingType">{{'idpBindingType' | i18n}}</label>
+                <select class="form-control" formControlName="idpBindingType" id="idpBindingType">
                     <option value="1">Redirect</option>
                     <option value="2">HTTP POST</option>
                     <option value="4">Artifact</option>
                 </select>
             </div>
             <div class="form-group">
-                <label>{{'idpSingleSignOnServiceUrl' | i18n}}</label>
-                <input class="form-control" formControlName="idpSingleSignOnServiceUrl">
+                <label for="idpSingleSignOnServiceUrl">{{'idpSingleSignOnServiceUrl' | i18n}}</label>
+                <input class="form-control" formControlName="idpSingleSignOnServiceUrl" id="idpSingleSignOnServiceUrl">
             </div>
             <div class="form-group">
-                <label>{{'idpSingleLogoutServiceUrl' | i18n}}</label>
-                <input class="form-control" formControlName="idpSingleLogoutServiceUrl">
+                <label for="idpSingleLogoutServiceUrl">{{'idpSingleLogoutServiceUrl' | i18n}}</label>
+                <input class="form-control" formControlName="idpSingleLogoutServiceUrl" id="idpSingleLogoutServiceUrl">
             </div>
             <div class="form-group">
-                <label>{{'idpArtifactResolutionServiceUrl' | i18n}}</label>
-                <input class="form-control" formControlName="idpArtifactResolutionServiceUrl">
+                <label for="idpArtifactResolutionServiceUrl">{{'idpArtifactResolutionServiceUrl' | i18n}}</label>
+                <input class="form-control" formControlName="idpArtifactResolutionServiceUrl"
+                    id="idpArtifactResolutionServiceUrl">
             </div>
             <div class="form-group">
-                <label>{{'idpX509PublicCert' | i18n}}</label>
-                <textarea formControlName="idpX509PublicCert" class="form-control form-control-sm text-monospace" rows="6"></textarea>
+                <label for="idpX509PublicCert">{{'idpX509PublicCert' | i18n}}</label>
+                <textarea formControlName="idpX509PublicCert" class="form-control form-control-sm text-monospace"
+                    rows="6" id="idpX509PublicCert"></textarea>
             </div>
             <div class="form-group">
-                <label>{{'idpOutboundSigningAlgorithm' | i18n}}</label>
-                <select class="form-control" formControlName="idpOutboundSigningAlgorithm">
+                <label for="idpOutboundSigningAlgorithm">{{'idpOutboundSigningAlgorithm' | i18n}}</label>
+                <select class="form-control" formControlName="idpOutboundSigningAlgorithm"
+                    id="idpOutboundSigningAlgorithm">
                     <option *ngFor="let o of samlSigningAlgorithms" [ngValue]="o">{{o}}</option>
                 </select>
             </div>
