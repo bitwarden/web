@@ -37,29 +37,6 @@ export class SponsoredFamiliesComponent implements OnInit {
         await this.load();
     }
 
-    private async load() {
-        const allOrgs = await this.userService.getAllOrganizations();
-
-        // TODO: Filter out organizations that can't do sponsorships
-        this.availableSponsorshipOrgs = allOrgs.filter(org => true);
-
-        // TODO: I don't think this will be a filter but its own call
-        this.activeSponsorshipOrgs = allOrgs.filter(org => true);
-
-        if (this.availableSponsorshipOrgs.length > 0) {
-            this.anyOrgsAvailable = true;
-            this.moreThanOneOrgAvailable = this.availableSponsorshipOrgs.length > 1;
-
-            if (this.availableSponsorshipOrgs.length === 1) {
-                this.selectedSponsorshipOrgId = this.availableSponsorshipOrgs[0].id;
-            }
-        }
-
-        if (this.activeSponsorshipOrgs.length > 0) {
-            this.anyActiveSponsorships = true;
-        }
-    }
-
     async removeSponsorship(org: Organization) {
         const isConfirmed = await this.platformUtilsService.showDialog(
             'Are you sure you want to remove this sponsorship?', 'test@email.com',
@@ -85,5 +62,28 @@ export class SponsoredFamiliesComponent implements OnInit {
             planSponsorshipType: PlanSponsorshipType.FamiliesForEnterprise,
             organizationUserId: await this.userService.getUserId(),
         });
+    }
+
+    private async load() {
+        const allOrgs = await this.userService.getAllOrganizations();
+
+        // TODO: Filter out organizations that can't do sponsorships
+        this.availableSponsorshipOrgs = allOrgs.filter(org => true);
+
+        // TODO: I don't think this will be a filter but its own call
+        this.activeSponsorshipOrgs = allOrgs.filter(org => true);
+
+        if (this.availableSponsorshipOrgs.length > 0) {
+            this.anyOrgsAvailable = true;
+            this.moreThanOneOrgAvailable = this.availableSponsorshipOrgs.length > 1;
+
+            if (this.availableSponsorshipOrgs.length === 1) {
+                this.selectedSponsorshipOrgId = this.availableSponsorshipOrgs[0].id;
+            }
+        }
+
+        if (this.activeSponsorshipOrgs.length > 0) {
+            this.anyActiveSponsorships = true;
+        }
     }
 }
