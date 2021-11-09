@@ -31,7 +31,7 @@
                     <a routerLink="emergency-access" class="list-group-item" routerLinkActive="active">
                         {{'emergencyAccess' | i18n}}
                     </a>
-                    <a routerLink="sponsored-families" class="list-group-item" routerLinkActive="active" *ngIf="isInEnterprise">
+                    <a routerLink="sponsored-families" class="list-group-item" routerLinkActive="active" *ngIf="hasFamilySponsorshipAvailable">
                         {{'sponsoredFamilies' | i18n}}
                     </a>
                 </div>

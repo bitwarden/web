@@ -38,16 +38,14 @@
         </thead>
         <tbody>
             <tr *ngFor="let o of activeSponsorshipOrgs">
-                <td class="reduced-lh wrap">
-                    <span>test@email.com</span>
-                    <br/>
-                    <small>{{'redeemed' | i18n}}, 12/07/21</small>
+                <td>
+                    {{o.familySponsorshipFriendlyName}}
                 </td>
                 <td>{{o.name}}</td>
                 <td class="table-action-right">
                     <button class="btn btn-outline-danger" 
                         (click)="removeSponsorship(o)" 
-                        [attr.aria-label]="'removeAccount' | i18n : 'test@email.com'">Remove</button>
+                        [attr.aria-label]="'removeAccount' | i18n : o.familySponsorshipFriendlyName">Remove</button>
                 </td>
             </tr>
         </tbody>

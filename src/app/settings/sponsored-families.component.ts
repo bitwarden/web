@@ -66,12 +66,9 @@ export class SponsoredFamiliesComponent implements OnInit {
 
     private async load() {
         const allOrgs = await this.userService.getAllOrganizations();
+        this.availableSponsorshipOrgs = allOrgs.filter(org => org.familySponsorshipAvailable);
 
-        // TODO: Filter out organizations that can't do sponsorships
-        this.availableSponsorshipOrgs = allOrgs.filter(org => true);
-
-        // TODO: I don't think this will be a filter but its own call
-        this.activeSponsorshipOrgs = allOrgs.filter(org => true);
+        this.activeSponsorshipOrgs = allOrgs.filter(org => org.familySponsorshipFriendlyName !== null);
 
         if (this.availableSponsorshipOrgs.length > 0) {
             this.anyOrgsAvailable = true;
