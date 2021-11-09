@@ -1,7 +1,7 @@
 <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
     <div class="modal-body">
         <p>{{'twoStepLoginAuthDesc' | i18n}}</p>
-        <app-verify-master-password [(ngModel)]="masterPassword" ngDefaultControl name="secret">
+        <app-verify-master-password [(ngModel)]="secret" ngDefaultControl name="secret">
         </app-verify-master-password>
     </div>
     <div class="modal-footer">

@@ -23,14 +23,14 @@ export class TwoFactorVerifyComponent {
     @Input() organizationId: string;
     @Output() onAuthed = new EventEmitter<any>();
 
-    masterPassword: Verification;
+    secret: Verification;
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private logService: LogService,
         private userVerificationService: UserVerificationService) { }
 
     async submit() {
-        const request = await this.userVerificationService.buildRequest(this.masterPassword);
+        const request = await this.userVerificationService.buildRequest(this.secret);
 
         try {
             switch (this.type) {
@@ -62,10 +62,10 @@ export class TwoFactorVerifyComponent {
             const response = await this.formPromise;
             this.onAuthed.emit({
                 response: response,
-                secret: this.masterPassword.type === VerificationType.MasterPassword
+                secret: this.secret.type === VerificationType.MasterPassword
                     ? request.masterPasswordHash
                     : request.otp,
-                verificationType: this.masterPassword.type,
+                verificationType: this.secret.type,
             });
         } catch (e) {
             this.logService.error(e);
