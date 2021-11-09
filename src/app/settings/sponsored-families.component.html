@@ -43,6 +43,9 @@
                 </td>
                 <td>{{o.name}}</td>
                 <td class="table-action-right">
+                    <button class="btn btn-outline-primary"
+                        (click)="resendEmail(o)"
+                        [attr.aria-label]="">Resend Email</button>
                     <button class="btn btn-outline-danger" 
                         (click)="removeSponsorship(o)" 
                         [attr.aria-label]="'removeAccount' | i18n : o.familySponsorshipFriendlyName">Remove</button>

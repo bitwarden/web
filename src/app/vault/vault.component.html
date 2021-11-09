@@ -50,18 +50,6 @@
                 </div>
             </div>
             <app-verify-email *ngIf="showVerifyEmail" class="d-block mb-4"></app-verify-email>
-            <!--TODO: Add *ngIf for whether or not to show this card-->
-            <div class="card border-success mb-4">
-                <div class="card-header bg-success text-white">
-                    <i class="fa fa-users" aria-hidden="true"></i> {{'freeBitwardenPremium' | i18n}}
-                </div>
-                <div class="card-body">
-                    <p>{{'sponsoredFamiliesEligible' | i18n}}</p>
-                    <a class="btn btn-block btn-outline-secondary" routerLink="/settings/sponsored-families">
-                        {{'redeemNow' | i18n}}
-                    </a>
-                </div>
-            </div>
             <div class="card border-warning mb-4" *ngIf="showBrowserOutdated">
                 <div class="card-header bg-warning text-white">
                     <i class="fa fa-warning fa-fw" aria-hidden="true"></i> {{'updateBrowser' | i18n}}
@@ -85,7 +73,7 @@
                     </a>
                 </div>
             </div>
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-header d-flex">
                     {{'organizations' | i18n}}
                     <a class="ml-auto" href="https://help.bitwarden.com/article/what-is-an-organization/"
@@ -95,6 +83,18 @@
                 </div>
                 <div class="card-body">
                     <app-organizations [vault]="true"></app-organizations>
+                </div>
+            </div>
+            <!--TODO: Add *ngIf for whether or not to show this card-->
+            <div class="card border-success mb-4">
+                <div class="card-header bg-success text-white">
+                    {{'freeFamiliesPlan' | i18n}}
+                </div>
+                <div class="card-body">
+                    <p>{{'sponsoredFamiliesEligible' | i18n}}</p>
+                    <a class="btn btn-block btn-outline-secondary" routerLink="/settings/sponsored-families">
+                        {{'redeemNow' | i18n}}
+                    </a>
                 </div>
             </div>
             <div class="card mt-4" *ngIf="showProviders">

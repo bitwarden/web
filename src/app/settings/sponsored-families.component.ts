@@ -39,7 +39,7 @@ export class SponsoredFamiliesComponent implements OnInit {
 
     async removeSponsorship(org: Organization) {
         const isConfirmed = await this.platformUtilsService.showDialog(
-            'Are you sure you want to remove this sponsorship?', 'test@email.com',
+            'Are you sure you want to remove this sponsorship?', org.familySponsorshipFriendlyName,
             this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
         if (!isConfirmed) {
             return;
@@ -57,15 +57,18 @@ export class SponsoredFamiliesComponent implements OnInit {
     }
 
     async submit() {
-        await this.apiService.postCreateSponsorship(this.selectedSponsorshipOrgId, {
+        this.formPromise = this.apiService.postCreateSponsorship(this.selectedSponsorshipOrgId, {
             sponsoredEmail: this.sponsorshipEmail,
             planSponsorshipType: PlanSponsorshipType.FamiliesForEnterprise,
-            organizationUserId: await this.userService.getUserId(),
         });
+
+        await this.formPromise;
+        this.formPromise = null;
+        
     }
 
-    private async load() {
-        const allOrgs = await this.userService.getAllOrganizations();
+    private async load(forceReload: boolean = false) {
+        const allOrgs = forceReload ? [] : await this.userService.getAllOrganizations();
         this.availableSponsorshipOrgs = allOrgs.filter(org => org.familySponsorshipAvailable);
 
         this.activeSponsorshipOrgs = allOrgs.filter(org => org.familySponsorshipFriendlyName !== null);
