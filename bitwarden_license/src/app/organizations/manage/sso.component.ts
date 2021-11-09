@@ -37,8 +37,8 @@ export class SsoComponent implements OnInit {
     data = this.fb.group({
         configType: [],
 
-        useCryptoAgent: [],
-        cryptoAgentUrl: [],
+        useKeyConnector: [],
+        keyConnectorUrl: [],
 
         // OpenId
         authority: [],

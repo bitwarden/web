@@ -29,6 +29,7 @@ import { LoginComponent } from './accounts/login.component';
 import { RecoverDeleteComponent } from './accounts/recover-delete.component';
 import { RecoverTwoFactorComponent } from './accounts/recover-two-factor.component';
 import { RegisterComponent } from './accounts/register.component';
+import { RemovePasswordComponent } from './accounts/remove-password.component';
 import { SetPasswordComponent } from './accounts/set-password.component';
 import { SsoComponent } from './accounts/sso.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
@@ -177,6 +178,7 @@ import { ProvidersComponent } from './providers/providers.component';
 import { AvatarComponent } from 'jslib-angular/components/avatar.component';
 import { CalloutComponent } from 'jslib-angular/components/callout.component';
 import { IconComponent } from 'jslib-angular/components/icon.component';
+import { VerifyMasterPasswordComponent } from 'jslib-angular/components/verify-master-password.component';
 
 import { A11yTitleDirective } from 'jslib-angular/directives/a11y-title.directive';
 import { ApiActionDirective } from 'jslib-angular/directives/api-action.directive';
@@ -460,6 +462,8 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ResetPasswordPolicyComponent,
         VaultTimeoutInputComponent,
         AddEditCustomFieldsComponent,
+        VerifyMasterPasswordComponent,
+        RemovePasswordComponent,
     ],
     exports: [
         A11yTitleDirective,

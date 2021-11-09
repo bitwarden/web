@@ -10,8 +10,12 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
+import { VerificationType } from 'jslib-common/enums/verificationType';
+
+import { SecretVerificationRequest } from 'jslib-common/models/request/secretVerificationRequest';
 import { TwoFactorProviderRequest } from 'jslib-common/models/request/twoFactorProviderRequest';
 
 @Directive()
@@ -24,14 +28,16 @@ export abstract class TwoFactorBaseComponent {
     enabled = false;
     authed = false;
 
-    protected masterPasswordHash: string;
+    protected hashedSecret: string;
+    protected verificationType: VerificationType;
 
     constructor(protected apiService: ApiService, protected i18nService: I18nService,
         protected toasterService: ToasterService, protected platformUtilsService: PlatformUtilsService,
-        protected logService: LogService) { }
+        protected logService: LogService, protected userVerificationService: UserVerificationService) { }
 
     protected auth(authResponse: any) {
-        this.masterPasswordHash = authResponse.masterPasswordHash;
+        this.hashedSecret = authResponse.secret;
+        this.verificationType = authResponse.verificationType;
         this.authed = true;
     }
 
@@ -52,8 +58,7 @@ export abstract class TwoFactorBaseComponent {
         }
 
         try {
-            const request = new TwoFactorProviderRequest();
-            request.masterPasswordHash = this.masterPasswordHash;
+            const request = await this.buildRequestModel(TwoFactorProviderRequest);
             request.type = this.type;
             if (this.organizationId != null) {
                 promise = this.apiService.putTwoFactorOrganizationDisable(this.organizationId, request);
@@ -67,5 +72,12 @@ export abstract class TwoFactorBaseComponent {
         }  catch (e) {
             this.logService.error(e);
         }
+    }
+
+    protected async buildRequestModel<T extends SecretVerificationRequest>(requestClass: new() => T)  {
+        return this.userVerificationService.buildRequest({
+            secret: this.hashedSecret,
+            type: this.verificationType,
+        }, requestClass, true);
     }
 }
