@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Wartość logiczna"
   },
+  "cfTypeLinked": {
+    "message": "Linked",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Usuń"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Nazwisko"
+  },
+  "fullName": {
+    "message": "Full Name"
   },
   "address1": {
     "message": "Adres 1"
@@ -2811,10 +2818,6 @@
     "message": "Zaktualizuj swoje konto do innego planu, podając poniższe informacje. Upewnij się, że do konta została dodana aktywna metoda płatności.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Jeśli chcesz zmienić swój plan, skontaktuj się z działem obsługi klienta. Upewnij się, że dodałeś do swojego konta aktywną formę płatności.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Faktura nr $NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2935,6 +2938,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3800,7 +3821,7 @@
     "message": "Podatek"
   },
   "custom": {
-    "message": "Niestandardowa"
+    "message": "Niestandardowe"
   },
   "customDesc": {
     "message": "Umożliwia zaawansowaną kontrolę uprawnień użytkownika."
@@ -3816,6 +3837,9 @@
   },
   "accessReports": {
     "message": "Dostęp do raportów"
+  },
+  "missingPermissions": {
+    "message": "You lack the necessary permissions to perform this action."
   },
   "manageAllCollections": {
     "message": "Zarządzaj wszystkimi kolekcjami"
@@ -4094,7 +4118,7 @@
     "message": "Elementy znajdujące się w koszu od dłuższego czasu zostaną automatycznie usunięte."
   },
   "passwordPrompt": {
-    "message": "Powtórz hasło główne"
+    "message": "Potwierdź hasłem głównym"
   },
   "passwordConfirmation": {
     "message": "Potwierdź hasło główne"
@@ -4448,5 +4472,8 @@
   },
   "ssoSettingsSaved": {
     "message": "Konfiguracja logowania jednokrotnego została zapisana."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Unable to reach the crypto agent, try again later."
   }
 }

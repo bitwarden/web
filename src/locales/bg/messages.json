@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Булево"
   },
+  "cfTypeLinked": {
+    "message": "Linked",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Премахване"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Фамилно име"
+  },
+  "fullName": {
+    "message": "Full Name"
   },
   "address1": {
     "message": "Адрес 1"
@@ -2811,10 +2818,6 @@
     "message": "Може да обновите плана си, като въведете изисканата информация по-долу. Уверете се, че имате действащ платежен метод към абонамента си.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Свържете се с поддръжката, за да смените плана си. Уверете се, че имате действащ платежен метод към абонамента си.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Фактура № $NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2935,6 +2938,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,6 +3838,9 @@
   "accessReports": {
     "message": "Достъп до отчетите"
   },
+  "missingPermissions": {
+    "message": "You lack the necessary permissions to perform this action."
+  },
   "manageAllCollections": {
     "message": "Управление на всички колекции"
   },
@@ -4448,5 +4472,8 @@
   },
   "ssoSettingsSaved": {
     "message": "Настройката на еднократната идентификация е запазена."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Unable to reach the crypto agent, try again later."
   }
 }

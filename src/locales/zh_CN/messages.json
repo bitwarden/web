@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "布尔"
   },
+  "cfTypeLinked": {
+    "message": "Linked",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "移除"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "姓"
+  },
+  "fullName": {
+    "message": "Full Name"
   },
   "address1": {
     "message": "地址 1"
@@ -900,7 +907,7 @@
     "message": "更改电子邮件"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "继续操作将更改您的帐户电子邮件地址。这不会更改用于双重身份验证的电子邮件地址。 您可以在两步登录设置中更改它。"
+    "message": "继续操作将更改您的帐户电子邮件地址。这不会更改用于双重身份验证的电子邮件地址。您可以在两步登录设置中更改它。"
   },
   "newEmail": {
     "message": "新电子邮件"
@@ -2155,7 +2162,7 @@
     "message": "策略"
   },
   "singleSignOn": {
-    "message": "单点登录（SSO）"
+    "message": "单点登录"
   },
   "editPolicy": {
     "message": "编辑策略"
@@ -2811,10 +2818,6 @@
     "message": "为了将您的帐户升级到另一个计划，请提供以下信息。同时请确保您账户已添加有一个有效的支付方式。",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "如果您想更改计划，请联系客户支持。同时请确保您账户已添加有一个有效的支付方式。。",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "账单 #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2938,6 +2941,24 @@
       }
     }
   },
+  "subscriptionFreePlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
   "subscriptionMaxReached": {
     "message": "调整订阅将导致按比例调整您的账单总额。如果不增加订阅席位，您将不能邀请超过 $COUNT$ 位用户。",
     "placeholders": {
@@ -3032,7 +3053,7 @@
     "message": "筛选器"
   },
   "vaultTimeout": {
-    "message": "密码库超时"
+    "message": "密码库超时时间"
   },
   "vaultTimeoutDesc": {
     "message": "选择您的密码库何时超时并执行所选的动作。"
@@ -3269,7 +3290,7 @@
     "message": "已锁定的密码库需要重新输入主密码才能再次访问。"
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "已注销的密码库需要重新认证才能再次访问。"
+    "message": "已注销的密码库需要重新验证才能再次访问。"
   },
   "lock": {
     "message": "锁定",
@@ -3391,13 +3412,13 @@
     "message": "组织标识符"
   },
   "ssoLogInWithOrgIdentifier": {
-    "message": "要使用您组织的单点登录（SSO）门户登录。请首先输入您组织的标识符。"
+    "message": "要使用您组织的单点登录门户登录。请首先输入您组织的标识符。"
   },
   "enterpriseSingleSignOn": {
-    "message": "企业单点登录（SSO）"
+    "message": "企业单点登录"
   },
   "ssoHandOff": {
-    "message": "您现在可以在扩展中关闭此标签并继续。"
+    "message": "您现在可以在扩展中关闭此标签页并继续。"
   },
   "includeAllTeamsFeatures": {
     "message": "包含所有团队版功能"
@@ -3427,7 +3448,7 @@
     "message": "限制用户加入任何其他组织。"
   },
   "singleOrgBlockCreateMessage": {
-    "message": "您当前的组织策略禁止您加入多个组织。 请联系您的组织管理员，或从其他 Bitwarden 帐户注册。"
+    "message": "您当前的组织策略禁止您加入多个组织。请联系您的组织管理员，或从其他 Bitwarden 帐户注册。"
   },
   "singleOrgPolicyWarning": {
     "message": "不是所有者或管理员并且已是其他组织的成员的组织成员将从您的组织中移除。"
@@ -3436,7 +3457,7 @@
     "message": "单点登录身份验证"
   },
   "requireSsoPolicyDesc": {
-    "message": "要求用户使用企业单点登录（SSO）方式登录。"
+    "message": "要求用户使用企业单点登录方式登录。"
   },
   "prerequisite": {
     "message": "先决条件"
@@ -3816,6 +3837,9 @@
   },
   "accessReports": {
     "message": "访问报告"
+  },
+  "missingPermissions": {
+    "message": "You lack the necessary permissions to perform this action."
   },
   "manageAllCollections": {
     "message": "管理所有集合"
@@ -4284,16 +4308,16 @@
     "message": "您的主密码最近被您组织的管理员更改过。要访问密码库，您必须立即更新主密码。继续操作将使您退出当前会话，要求您重新登录。其他设备上的活动会话可能会继续保持活动状态长达一小时。"
   },
   "maximumVaultTimeout": {
-    "message": "密码库超时"
+    "message": "密码库超时时间"
   },
   "maximumVaultTimeoutDesc": {
-    "message": "为所有用户配置最大密码库超时。"
+    "message": "为所有用户配置最大密码库超时时间。"
   },
   "maximumVaultTimeoutLabel": {
-    "message": "最大密码库超时"
+    "message": "最大密码库超时时间"
   },
   "invalidMaximumVaultTimeout": {
-    "message": "无效的最大密码库超时。"
+    "message": "无效的最大密码库超时时间。"
   },
   "hours": {
     "message": "小时"
@@ -4302,7 +4326,7 @@
     "message": "分钟"
   },
   "vaultTimeoutPolicyInEffect": {
-    "message": "您的组织策略正在影响您的密码库超时。最大允许的密码库超时时间是 $HOURS$ 小时 $MINUTES$ 分钟。",
+    "message": "您的组织策略正在影响您的密码库超时时间。最大允许的密码库超时时间是 $HOURS$ 小时 $MINUTES$ 分钟。",
     "placeholders": {
       "hours": {
         "content": "$1",
@@ -4315,10 +4339,10 @@
     }
   },
   "customVaultTimeout": {
-    "message": "自定义密码库超时"
+    "message": "自定义密码库超时时间"
   },
   "vaultTimeoutToLarge": {
-    "message": "您的密码库超时超出了您的组织设置的限制。"
+    "message": "您的密码库超时时间超出了您的组织设置的限制。"
   },
   "disablePersonalVaultExport": {
     "message": "禁用个人密码库导出"
@@ -4342,10 +4366,10 @@
     "message": "OpenID 连接配置"
   },
   "samlSpConfig": {
-    "message": "SAML 服务提供商配置"
+    "message": "SAML 服务提供程序配置"
   },
   "samlIdpConfig": {
-    "message": "SAML 身份提供商配置"
+    "message": "SAML 身份提供程序配置"
   },
   "callbackPath": {
     "message": "回调路径"
@@ -4448,5 +4472,8 @@
   },
   "ssoSettingsSaved": {
     "message": "单点登录配置已保存。"
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Unable to reach the crypto agent, try again later."
   }
 }

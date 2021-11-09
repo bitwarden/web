@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Booleano"
   },
+  "cfTypeLinked": {
+    "message": "Collegato",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Rimuovi"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Cognome"
+  },
+  "fullName": {
+    "message": "Nome completo"
   },
   "address1": {
     "message": "Indirizzo 1"
@@ -769,10 +776,10 @@
     "message": "Organizzazioni"
   },
   "moveToOrgDesc": {
-    "message": "Scegli un'organizzazione in cui desideri spostare questo elemento. Spostare in un'organizzazione trasferisce la proprietà dell'elemento all'organizzazione. Non sarai più il proprietario diretto di questo elemento una volta spostato."
+    "message": "Scegli un'organizzazione in cui desideri spostare questo elemento. Lo spostamento in un'organizzazione trasferisce la proprietà dell'elemento all'organizzazione. Non sarai più il proprietario diretto di questo elemento una volta spostato."
   },
   "moveManyToOrgDesc": {
-    "message": "Scegli un'organizzazione in cui desideri spostare questo elemento. Spostare in un'organizzazione trasferisce la proprietà dell'elemento all'organizzazione. Non sarai più il proprietario diretto di questo elemento una volta spostato."
+    "message": "Scegli un'organizzazione in cui desideri spostare questo elemento. Lo spostamento in un'organizzazione trasferisce la proprietà dell'elemento all'organizzazione. Non sarai più il proprietario diretto di questo elemento una volta spostato."
   },
   "collectionsDesc": {
     "message": "Modifica le raccolte con le quali questo elemento viene condiviso. Solo gli utenti di organizzazioni che hanno accesso a queste raccolte saranno in grado di visualizzare questo elemento."
@@ -1044,7 +1051,7 @@
     "message": "Errore di importazione"
   },
   "importErrorDesc": {
-    "message": "Si è verificato un problema con i dati che hai provato ad importare. Risolvi gli errori elencati di seguito nel file importato e riprova."
+    "message": "Si è verificato un problema con i dati che hai provato a importare. Risolvi gli errori elencati di seguito nel file importato e riprova."
   },
   "importSuccess": {
     "message": "I dati sono stati importati correttamente nella tua cassaforte."
@@ -1394,7 +1401,7 @@
     "message": "A causa di limitazioni della piattaforma, WebAuthn non può essere utilizzato su tutte le applicazioni Bitwarden. Dovresti abilitare un altro metodo di verifica in due passaggi in modo da poter accedere al tuo account anche dove WebAuthn non può essere usato. Piattaforme supportate:"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "Cassaforte Web ed estensione per il browser desktop/laptop con un browser abilitato per WebAuthn (Chrome, Opera, Vivaldi o Firefox con FIDO U2F abilitato)."
+    "message": "Cassaforte Web ed estensione per il browser desktop/portatile con un browser abilitato per WebAuthn (Chrome, Opera, Vivaldi o Firefox con FIDO U2F abilitato)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Il tuo codice di recupero Bitwarden per la verifica in due passaggi"
@@ -2811,10 +2818,6 @@
     "message": "Aggiorna il tuo account ad un altro piano fornendo le informazioni qui sotto. Assicurati di avere un metodo di pagamento attivo aggiunto all'account.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Contatta il servizio clienti se desideri modificare il tuo piano tariffario. Assicurati di avere un metodo di pagamento attivo.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Fattura #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2938,6 +2941,24 @@
       }
     }
   },
+  "subscriptionFreePlan": {
+    "message": "Non puoi invitare piu di $COUNT$ utenti senza aggiornare il tuo piano.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "Non puoi invitare più di $COUNT$ utenti senza aggiornare il tuo piano. Per favore, contatta il supporto clienti per aggiornare.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
   "subscriptionMaxReached": {
     "message": "Le modifiche apportate al tuo abbonamento comporteranno corrispondenti cambi al totale in fattura. Non è possibile invitare più di $COUNT$ utenti senza aumentare gli slot dell'abbonamento.",
     "placeholders": {
@@ -3056,7 +3077,7 @@
     "message": "4 ore"
   },
   "onRefresh": {
-    "message": "Al riavvio del browser"
+    "message": "All'aggiornamento del browser"
   },
   "dateUpdated": {
     "message": "Aggiornato",
@@ -3817,6 +3838,9 @@
   "accessReports": {
     "message": "Accedi ai resoconti"
   },
+  "missingPermissions": {
+    "message": "Non hai i permessi necessari per eseguire questa azione."
+  },
   "manageAllCollections": {
     "message": "Gestisci tutte le raccolte"
   },
@@ -4448,5 +4472,8 @@
   },
   "ssoSettingsSaved": {
     "message": "La configurazione del Single Sign-On è stata salvata."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Impossibile raggiungere l'agente crypto, riprova più tardi."
   }
 }

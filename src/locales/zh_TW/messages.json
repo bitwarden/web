@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "布林值"
   },
+  "cfTypeLinked": {
+    "message": "已連結",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "移除"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "姓"
+  },
+  "fullName": {
+    "message": "全名"
   },
   "address1": {
     "message": "地址 1"
@@ -900,7 +907,7 @@
     "message": "變更電子郵件"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Proceeding will change your account email address. It will not change the email address used for two-factor authentication. You can change this email address in the Two-Step Login settings."
+    "message": "继续操作将更改您的賬戶電子郵件位址。這不會更改用於雙重認證的電子郵件位址。您可以在兩步驟登入設定中更改它。"
   },
   "newEmail": {
     "message": "新的電子郵件"
@@ -2155,7 +2162,7 @@
     "message": "原則"
   },
   "singleSignOn": {
-    "message": "單一登入（SSO）"
+    "message": "單一登入"
   },
   "editPolicy": {
     "message": "編輯原則"
@@ -2620,7 +2627,7 @@
     }
   },
   "accessedClientVault": {
-    "message": "Accessed $ID$ organization vault.",
+    "message": "已存取 $ID$ 組織的密碼庫。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2811,10 +2818,6 @@
     "message": "爲了將您的帳戶升級到另一個方案，請提供以下資訊。同時請確保您的帳戶已經有一個有效的付款方式。",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "如果您想更改方案，請聯絡客戶支援。並請確保您的帳戶中添加了有效的付款方式。",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "帳單 #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2938,6 +2941,24 @@
       }
     }
   },
+  "subscriptionFreePlan": {
+    "message": "除非升級方案，否則您最多只能邀請 $COUNT$ 位使用者。",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "除非升級方案，否則您最多只能邀請 $COUNT$ 位使用者。升級事宜請聯絡客服。",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
   "subscriptionMaxReached": {
     "message": "對您的訂閱進行調整將導致按比例更改您的帳單總額。在不增加訂閱席位的情況下，您不能邀請超過 $COUNT$ 個使用者。",
     "placeholders": {
@@ -3032,7 +3053,7 @@
     "message": "篩選器"
   },
   "vaultTimeout": {
-    "message": "密碼庫逾時"
+    "message": "密碼庫逾時時長"
   },
   "vaultTimeoutDesc": {
     "message": "選擇密碼庫多久之後逾時並執行選取的動作。"
@@ -3394,7 +3415,7 @@
     "message": "要使用組織的單一登入入口登入。請輸入您組織的識別符以開始。"
   },
   "enterpriseSingleSignOn": {
-    "message": "企業單一登入（SSO）"
+    "message": "企業單一登入"
   },
   "ssoHandOff": {
     "message": "您現在可以關閉此分頁，並且回到擴充套件繼續。"
@@ -3817,6 +3838,9 @@
   "accessReports": {
     "message": "存取報告"
   },
+  "missingPermissions": {
+    "message": "您欠缺執行本動作必要的權限。"
+  },
   "manageAllCollections": {
     "message": "管理所有集合。"
   },
@@ -3824,10 +3848,10 @@
     "message": "創建新的集合"
   },
   "editAnyCollection": {
-    "message": "Edit Any Collection"
+    "message": "編輯任何收藏"
   },
   "deleteAnyCollection": {
-    "message": "Delete Any Collection"
+    "message": "刪除任何收藏"
   },
   "manageAssignedCollections": {
     "message": "管理已分配的集合。"
@@ -3854,7 +3878,7 @@
     "message": "管理密碼重設"
   },
   "disableRequiredError": {
-    "message": "您必須先手動停用 $POLICYNAME$ 策略，然後才能停用此策略。",
+    "message": "您必須先手動停用 $POLICYNAME$ 原則，然後才能停用此原則。",
     "placeholders": {
       "policyName": {
         "content": "$1",
@@ -3866,7 +3890,7 @@
     "message": "一個組織原則正在影響您的擁有權選項。"
   },
   "personalOwnershipPolicyInEffectImports": {
-    "message": "某個組織虐策略已停用將項目匯入到您的個人密碼庫。"
+    "message": "某個組織原則已停用將項目匯入到您的個人密碼庫。"
   },
   "personalOwnershipCheckboxDesc": {
     "message": "為組織使用者禁用個人擁有權。"
@@ -4079,7 +4103,7 @@
     "message": "要求自動註冊新使用者"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "此組織設定了讓您可自動重設密碼的企業政策。設定政策後，將允許組織管理員更改您的主控密碼。"
+    "message": "此組織設定了讓您可自動重設密碼的企業原則。設定此原則後，將允許組織管理員更改您的主控密碼。"
   },
   "resetPasswordOrgKeysError": {
     "message": "組織金鑰回覆為空"
@@ -4160,10 +4184,10 @@
     "message": "提供商設定"
   },
   "setupProviderLoginDesc": {
-    "message": "您被邀請設定一個新的供應商。要繼續，您需要登入或創建一個新的 Bitwarden 賬戶。"
+    "message": "您被邀請設定一個新的供應商。要繼續，您需要登入或創建一個新的 Bitwarden 帳戶。"
   },
   "setupProviderDesc": {
-    "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
+    "message": "請在下面輸入詳細資訊以完成提供商設定。如果您有任何問題，請聯係客戶支援。"
   },
   "providerName": {
     "message": "提供商名稱"
@@ -4178,31 +4202,31 @@
     "message": "提供商管理"
   },
   "providerAdminDesc": {
-    "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
+    "message": "可以管理提供商的所有方面的具有最高存取權限的使用者，也可以存取和管理客戶組織。"
   },
   "serviceUser": {
     "message": "服務使用者"
   },
   "serviceUserDesc": {
-    "message": "Service users can access and manage all client organizations."
+    "message": "服務使用者可以存取和管理所有客戶組織。"
   },
   "providerInviteUserDesc": {
-    "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "通過在下面輸入他們的 Bitwarden 帳戶電子郵件位址，來邀請新的使用者加入您的提供商。如果他們還沒有 Bitwarden 帳戶，將提示他們創建新帳戶。"
   },
   "joinProvider": {
     "message": "加入提供商"
   },
   "joinProviderDesc": {
-    "message": "You've been invited to join the provider listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "您已被邀請加入上面列出的提供商。要接受邀請，您需要登入或創建新的 Bitwarden 帳戶。"
   },
   "providerInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask a provider admin to send a new invitation."
+    "message": "無法接受邀請。請要求提供商管理員發送一個新的邀請。"
   },
   "providerInviteAcceptedDesc": {
-    "message": "You can access this provider once an administrator confirms your membership. We'll send you an email when that happens."
+    "message": "管理員確認您的成員資格後，您就可以存取此提供商。發生這種情況時，我們會給你發送電子郵件。"
   },
   "providerUsersNeedConfirmed": {
-    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the provider until they are confirmed."
+    "message": "有使用者已接受邀請，但仍需要確認。在確認之前，使用者將無法存取提供商。"
   },
   "provider": {
     "message": "提供商"
@@ -4284,7 +4308,7 @@
     "message": "您的主密碼最近被您的組織管理者更改過。要存取密碼庫，您必須現在更新主密碼。繼續操作會登出目前的登入階段，要求您重新登入。其他裝置上使用中的登入階段可能持續最長一個小時。"
   },
   "maximumVaultTimeout": {
-    "message": "密碼庫逾時"
+    "message": "密碼庫逾時時長"
   },
   "maximumVaultTimeoutDesc": {
     "message": "為所有使用者配置一個最大密碼庫逾時時長。"
@@ -4302,7 +4326,7 @@
     "message": "分鐘"
   },
   "vaultTimeoutPolicyInEffect": {
-    "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "message": "您的組織策略正在影響您的密碼庫逾時時長。密碼庫逾時時長最多可以設定到 {0} 小時 {1} 分鐘。",
     "placeholders": {
       "hours": {
         "content": "$1",
@@ -4318,19 +4342,19 @@
     "message": "自定義密碼庫逾時時長"
   },
   "vaultTimeoutToLarge": {
-    "message": "Your vault timeout exceeds the restriction set by your organization."
+    "message": "您的密碼庫逾時時長超過組織限制。"
   },
   "disablePersonalVaultExport": {
     "message": "停用個人密碼庫匯出"
   },
   "disablePersonalVaultExportDesc": {
-    "message": "Prohibits users from exporting their private vault data."
+    "message": "禁止使用者匯出私人密碼庫資料。"
   },
   "vaultExportDisabled": {
     "message": "密碼庫匯出已停用"
   },
   "personalVaultExportPolicyInEffect": {
-    "message": "One or more organization policies prevents you from exporting your personal vault."
+    "message": "一或多個組織策略不允許您輸出個人密碼庫。"
   },
   "selectType": {
     "message": "選擇 SSO 類型"
@@ -4342,19 +4366,19 @@
     "message": "OpenID 連接配置"
   },
   "samlSpConfig": {
-    "message": "SAML Service Provider Configuration"
+    "message": "SAML 服務提供程式配置"
   },
   "samlIdpConfig": {
-    "message": "SAML Identity Provider Configuration"
+    "message": "SAML 身份提供程式配置"
   },
   "callbackPath": {
-    "message": "Callback Path"
+    "message": "回呼路徑"
   },
   "signedOutCallbackPath": {
-    "message": "Signed Out Callback Path"
+    "message": "已經登出回呼路徑"
   },
   "authority": {
-    "message": "Authority"
+    "message": "授權單位"
   },
   "clientId": {
     "message": "客戶 ID"
@@ -4363,10 +4387,10 @@
     "message": "客戶金鑰"
   },
   "metadataAddress": {
-    "message": "Metadata Address"
+    "message": "中介資料位址"
   },
   "oidcRedirectBehavior": {
-    "message": "OIDC Redirect Behavior"
+    "message": "OIDC 重新導向行為"
   },
   "getClaimsFromUserInfoEndpoint": {
     "message": "Get Claims From User Info Endpoint"
@@ -4393,22 +4417,22 @@
     "message": "SP 實體 ID"
   },
   "spMetadataUrl": {
-    "message": "SAML 2.0 Metadata URL"
+    "message": "SAML 2.0 中介資料 URL"
   },
   "spAcsUrl": {
-    "message": "Assertion Consumer Service (ACS) URL"
+    "message": "判斷提示取用者服務 (ACS) URL"
   },
   "spNameIdFormat": {
     "message": "名稱 ID 格式"
   },
   "spOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "傳出的簽名演算法"
   },
   "spSigningBehavior": {
-    "message": "Signing Behavior"
+    "message": "簽名行為"
   },
   "spMinIncomingSigningAlgorithm": {
-    "message": "Minimum Incoming Signing Algorithm"
+    "message": "傳入簽名演算法的門檻"
   },
   "spWantAssertionsSigned": {
     "message": "Want Assertions Signed"
@@ -4423,10 +4447,10 @@
     "message": "Binding Type"
   },
   "idpSingleSignOnServiceUrl": {
-    "message": "Single Sign On Service URL"
+    "message": "單一登入服務 URL"
   },
   "idpSingleLogoutServiceUrl": {
-    "message": "Single Log Out Service URL"
+    "message": "單一登出服務 URL"
   },
   "idpArtifactResolutionServiceUrl": {
     "message": "Artifact Resolution Service URL"
@@ -4435,18 +4459,21 @@
     "message": "X509 公共證書"
   },
   "idpOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "傳出的簽名演算法"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "允許不請自來的認證回應"
   },
   "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+    "message": "停用傳出的登出請求"
   },
   "idpWantAuthnRequestsSigned": {
     "message": "Want Authentication Requests Signed"
   },
   "ssoSettingsSaved": {
-    "message": "Single Sign-On configuration was saved."
+    "message": "單一登入配置已儲存。"
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "無法與加密代理程式通訊。請稍後再試。"
   }
 }
