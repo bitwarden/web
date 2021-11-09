@@ -32,6 +32,7 @@ import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { EventService } from 'jslib-common/abstractions/event.service';
 import { FolderService } from 'jslib-common/abstractions/folder.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { KeyConnectorService } from 'jslib-common/abstractions/keyConnector.service';
 import { NotificationsService } from 'jslib-common/abstractions/notifications.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
@@ -43,7 +44,6 @@ import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { TokenService } from 'jslib-common/abstractions/token.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.service';
-import { KeyConnectorService } from 'jslib-common/abstractions/keyConnector.service';
 
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
