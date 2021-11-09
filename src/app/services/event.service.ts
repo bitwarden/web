@@ -74,6 +74,9 @@ export class EventService {
             case EventType.User_UpdatedTempPassword:
                 msg = humanReadableMsg = this.i18nService.t('updatedMasterPassword');
                 break;
+            case EventType.User_MigratedKeyToKeyConnector:
+                msg = humanReadableMsg = this.i18nService.t('migratedKeyConnector');
+                break;
             // Cipher
             case EventType.Cipher_Created:
                 msg = this.i18nService.t('createdItemId', this.formatCipherId(ev, options));
