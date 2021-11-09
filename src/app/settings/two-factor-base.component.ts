@@ -15,7 +15,7 @@ import { UserVerificationService } from 'jslib-common/abstractions/userVerificat
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 import { VerificationType } from 'jslib-common/enums/verificationType';
 
-import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
+import { SecretVerificationRequest } from 'jslib-common/models/request/secretVerificationRequest';
 import { TwoFactorProviderRequest } from 'jslib-common/models/request/twoFactorProviderRequest';
 
 @Directive()
@@ -74,7 +74,7 @@ export abstract class TwoFactorBaseComponent {
         }
     }
 
-    protected async buildRequestModel<T extends PasswordVerificationRequest>(requestClass: new() => T)  {
+    protected async buildRequestModel<T extends SecretVerificationRequest>(requestClass: new() => T)  {
         return this.userVerificationService.buildRequest({
             secret: this.hashedSecret,
             type: this.verificationType,

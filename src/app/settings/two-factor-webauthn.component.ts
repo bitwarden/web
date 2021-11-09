@@ -13,7 +13,7 @@ import { UserVerificationService } from 'jslib-common/abstractions/userVerificat
 
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 
-import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
+import { SecretVerificationRequest } from 'jslib-common/models/request/secretVerificationRequest';
 import { UpdateTwoFactorWebAuthnDeleteRequest } from 'jslib-common/models/request/updateTwoFactorWebAuthnDeleteRequest';
 import { UpdateTwoFactorWebAuthnRequest } from 'jslib-common/models/request/updateTwoFactorWebAuthnRequest';
 import {
@@ -98,7 +98,7 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
         if (this.keyIdAvailable == null) {
             return;
         }
-        const request = await this.buildRequestModel(PasswordVerificationRequest);
+        const request = await this.buildRequestModel(SecretVerificationRequest);
         try {
             this.challengePromise = this.apiService.getTwoFactorWebAuthnChallenge(request);
             const challenge = await this.challengePromise;
