@@ -43,6 +43,7 @@ import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { TokenService } from 'jslib-common/abstractions/token.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.service';
+import { KeyConnectorService } from 'jslib-common/abstractions/keyConnector.service';
 
 import { ConstantsService } from 'jslib-common/services/constants.service';
 
@@ -92,7 +93,8 @@ export class AppComponent implements OnDestroy, OnInit {
         private sanitizer: DomSanitizer, private searchService: SearchService,
         private notificationsService: NotificationsService, private routerService: RouterService,
         private stateService: StateService, private eventService: EventService,
-        private policyService: PolicyService, protected policyListService: PolicyListService) { }
+        private policyService: PolicyService, protected policyListService: PolicyListService,
+        private keyConnectorService: KeyConnectorService) { }
 
     ngOnInit() {
         this.ngZone.runOutsideAngular(() => {
@@ -164,6 +166,7 @@ export class AppComponent implements OnDestroy, OnInit {
                         this.setFullWidth();
                         break;
                     case 'convertAccountToKeyConnector':
+                        this.keyConnectorService.setConvertAccountRequired(true);
                         this.router.navigate(['/remove-password']);
                         break;
                     default:
@@ -221,6 +224,7 @@ export class AppComponent implements OnDestroy, OnInit {
             this.policyService.clear(userId),
             this.passwordGenerationService.clear(),
             this.stateService.purge(),
+            this.keyConnectorService.clear(),
         ]);
 
         this.searchService.clearIndex();
