@@ -13,6 +13,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
@@ -24,8 +25,6 @@ import { TaxInfoComponent } from './tax-info.component';
 import { EncString } from 'jslib-common/models/domain/encString';
 import { SymmetricCryptoKey } from 'jslib-common/models/domain/symmetricCryptoKey';
 
-import { OrganizationUserStatusType } from 'jslib-common/enums/organizationUserStatusType';
-import { OrganizationUserType } from 'jslib-common/enums/organizationUserType';
 import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
 import { PlanType } from 'jslib-common/enums/planType';
 import { PolicyType } from 'jslib-common/enums/policyType';
@@ -68,14 +67,13 @@ export class OrganizationPlansComponent implements OnInit {
     productTypes = ProductType;
     formPromise: Promise<any>;
     singleOrgPolicyBlock: boolean = false;
-    freeTrial: boolean = false;
 
     plans: PlanResponse[];
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
         private cryptoService: CryptoService, private router: Router, private syncService: SyncService,
-        private policyService: PolicyService, private organizationService: OrganizationService) {
+        private policyService: PolicyService, private organizationService: OrganizationService, private logService: LogService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -177,6 +175,10 @@ export class OrganizationPlansComponent implements OnInit {
         return subTotal;
     }
 
+    get freeTrial() {
+        return this.selectedPlan.trialPeriodDays != null;
+    }
+
     get taxCharges() {
         return this.taxComponent != null && this.taxComponent.taxRate != null ?
             (this.taxComponent.taxRate / 100) * this.subtotal :
@@ -201,7 +203,6 @@ export class OrganizationPlansComponent implements OnInit {
             this.selectedPlan.hasAdditionalSeatsOption) {
             this.additionalSeats = 1;
         }
-        this.freeTrial = this.selectedPlan.trialPeriodDays != null;
     }
 
     changedOwnedBusiness() {
@@ -264,7 +265,9 @@ export class OrganizationPlansComponent implements OnInit {
             this.formPromise = doSubmit();
             await this.formPromise;
             this.onSuccess.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     private async userHasBlockingSingleOrgPolicy() {

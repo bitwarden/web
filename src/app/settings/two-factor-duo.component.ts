@@ -4,7 +4,9 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 import { UpdateTwoFactorDuoRequest } from 'jslib-common/models/request/updateTwoFactorDuoRequest';
@@ -24,8 +26,9 @@ export class TwoFactorDuoComponent extends TwoFactorBaseComponent {
     formPromise: Promise<any>;
 
     constructor(apiService: ApiService, i18nService: I18nService,
-        toasterService: ToasterService, platformUtilsService: PlatformUtilsService) {
-        super(apiService, i18nService, toasterService, platformUtilsService);
+        toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
+        logService: LogService, userVerificationService: UserVerificationService) {
+        super(apiService, i18nService, toasterService, platformUtilsService, logService, userVerificationService);
     }
 
     auth(authResponse: any) {
@@ -41,9 +44,8 @@ export class TwoFactorDuoComponent extends TwoFactorBaseComponent {
         }
     }
 
-    protected enable() {
-        const request = new UpdateTwoFactorDuoRequest();
-        request.masterPasswordHash = this.masterPasswordHash;
+    protected async enable() {
+        const request = await this.buildRequestModel(UpdateTwoFactorDuoRequest);
         request.integrationKey = this.ikey;
         request.secretKey = this.skey;
         request.host = this.host;

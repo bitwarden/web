@@ -8,6 +8,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { ImportService } from 'jslib-common/abstractions/import.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
@@ -24,8 +25,8 @@ export class ImportComponent extends BaseImportComponent {
     constructor(i18nService: I18nService, toasterService: ToasterService,
         importService: ImportService, router: Router, private route: ActivatedRoute,
         platformUtilsService: PlatformUtilsService, policyService: PolicyService,
-        private organizationService: OrganizationService) {
-        super(i18nService, toasterService, importService, router, platformUtilsService, policyService);
+        private organizationService: OrganizationService, logService: LogService) {
+        super(i18nService, toasterService, importService, router, platformUtilsService, policyService, logService);
     }
 
     async ngOnInit() {

@@ -92,7 +92,7 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
         protected toasterService: ToasterService, protected cryptoService: CryptoService,
         private stateService: StateService, protected validationService: ValidationService,
         protected modalService: ModalService, private logService: LogService,
-        private searchPipe: SearchPipe, protected userNamePipe: UserNamePipe) { }
+        private searchPipe: SearchPipe, protected userNamePipe: UserNamePipe ) { }
 
     abstract edit(user: UserType): void;
     abstract getUsers(): Promise<ListResponse<UserType>>;
@@ -254,7 +254,9 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
                             comp.formPromise = confirmUser(publicKey);
                             await comp.formPromise;
                             modal.close();
-                        } catch { }
+                        } catch (e) {
+                            this.logService.error(e);
+                        }
                     });
                 });
                 return;
@@ -263,7 +265,9 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
             try {
                 const fingerprint = await this.cryptoService.getFingerprint(user.userId, publicKey.buffer);
                 this.logService.info(`User's fingerprint: ${fingerprint.join('-')}`);
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
             await confirmUser(publicKey);
         } catch (e) {
             this.logService.error(`Handled exception: ${e}`);

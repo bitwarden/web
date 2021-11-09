@@ -4,20 +4,21 @@ import {
     Router,
 } from '@angular/router';
 
+import { first } from 'rxjs/operators';
+
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { AuthService } from 'jslib-common/abstractions/auth.service';
 import { CryptoFunctionService } from 'jslib-common/abstractions/cryptoFunction.service';
 import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
 
 import { LoginComponent as BaseLoginComponent } from 'jslib-angular/components/login.component';
 
-import { LogService } from 'jslib-common/abstractions/log.service';
 import { Policy } from 'jslib-common/models/domain/policy';
 
 @Component({
@@ -42,7 +43,7 @@ export class LoginComponent extends BaseLoginComponent {
     }
 
     async ngOnInit() {
-        const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+        this.route.queryParams.pipe(first()).subscribe(async qParams => {
             if (qParams.email != null && qParams.email.indexOf('@') > -1) {
                 this.email = qParams.email;
             }
@@ -53,9 +54,6 @@ export class LoginComponent extends BaseLoginComponent {
                     { route: '/settings/create-organization', qParams: { plan: qParams.org } });
             }
             await super.ngOnInit();
-            if (queryParamsSub != null) {
-                queryParamsSub.unsubscribe();
-            }
         });
 
         const invite = await this.stateService.getOrganizationInvitation();
@@ -65,7 +63,9 @@ export class LoginComponent extends BaseLoginComponent {
                 const policies = await this.apiService.getPoliciesByToken(invite.organizationId, invite.token,
                     invite.email, invite.organizationUserId);
                 policyList = this.policyService.mapPoliciesFromToken(policies);
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
 
             if (policyList != null) {
                 const result = this.policyService.getResetPasswordPolicyOptions(policyList, invite.organizationId);

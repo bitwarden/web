@@ -21,7 +21,8 @@ export class AddEditComponent extends BaseAddEditComponent {
     constructor(i18nService: I18nService, platformUtilsService: PlatformUtilsService,
         environmentService: EnvironmentService, datePipe: DatePipe,
         sendService: SendService, stateService: StateService,
-        messagingService: MessagingService, policyService: PolicyService, logService: LogService) {
+        messagingService: MessagingService, policyService: PolicyService,
+        logService: LogService) {
         super(i18nService, platformUtilsService, environmentService, datePipe, sendService,
             messagingService, policyService, logService, stateService);
     }

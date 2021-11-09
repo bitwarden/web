@@ -10,6 +10,7 @@ import {
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { PayPalConfig } from 'jslib-common/abstractions/environment.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
@@ -46,7 +47,8 @@ export class AddCreditComponent implements OnInit {
     private email: string;
 
     constructor(private stateService: StateService, private apiService: ApiService,
-        private platformUtilsService: PlatformUtilsService, private organizationService: OrganizationService) {
+        private platformUtilsService: PlatformUtilsService, private organizationService: OrganizationService,
+        private logService: LogService) {
         const payPalConfig = process.env.PAYPAL_CONFIG as PayPalConfig;
         this.ppButtonFormAction = payPalConfig.buttonAction;
         this.ppButtonBusinessId = payPalConfig.businessId;
@@ -99,12 +101,16 @@ export class AddCreditComponent implements OnInit {
                 this.formPromise = this.apiService.postBitPayInvoice(req);
                 const bitPayUrl: string = await this.formPromise;
                 this.platformUtilsService.launchUri(bitPayUrl);
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
             return;
         }
         try {
             this.onAdded.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     cancel() {
@@ -121,7 +127,9 @@ export class AddCreditComponent implements OnInit {
                     return;
                 }
             }
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
         this.creditAmount = '';
     }
 
@@ -129,7 +137,9 @@ export class AddCreditComponent implements OnInit {
         if (this.creditAmount != null && this.creditAmount !== '') {
             try {
                 return parseFloat(this.creditAmount);
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
         }
         return null;
     }

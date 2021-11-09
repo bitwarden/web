@@ -12,12 +12,13 @@ jobs:
     outputs:
       release_version: ${{ steps.version.outputs.package }}
       tag_version: ${{ steps.version.outputs.tag }}
+      branch-name: ${{ steps.branch.outputs.branch-name }}
     steps:
       - name: Branch check
         run: |
-          if [[ "$GITHUB_REF" != "refs/heads/rc" ]]; then
+          if [[ "$GITHUB_REF" != "refs/heads/rc" ]] && [[ "$GITHUB_REF" != "refs/heads/hotfix" ]]; then
             echo "==================================="
-            echo "[!] Can only release from rc branch"
+            echo "[!] Can only release from the 'rc' or 'hotfix' branches"
             echo "==================================="
             exit 1
           fi
@@ -41,9 +42,15 @@ jobs:
           echo "::set-output name=package::$version"
           echo "::set-output name=tag::v$version"
 
+      - name: Get branch name
+        id: branch
+        run: |
+          BRANCH_NAME=$(basename ${{ github.ref }})
+          echo "::set-output name=branch-name::$BRANCH_NAME"
+
 
   self-host:
-    name: Build self-host docker
+    name: Release self-host docker
     runs-on: ubuntu-20.04
     needs: setup
     env:
@@ -66,20 +73,18 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
-      - name: Pull latest selfhost rc image
-        run: docker pull bitwarden/web:rc
+      - name: Pull latest selfhost Release image
+        run: docker pull bitwarden/web:latest
 
       - name: Tag version
         run: |
-          docker tag bitwarden/web:rc bitwarden/web:latest
-          docker tag bitwarden/web:rc bitwarden/web:$_RELEASE_VERSION
+          docker tag bitwarden/web:latest bitwarden/web:$_RELEASE_VERSION
 
       - name: List Docker images
         run: docker images
 
       - name: Push images
         run: |
-          docker push bitwarden/web:latest
           docker push bitwarden/web:$_RELEASE_VERSION
         env:
           DOCKER_CONTENT_TRUST: 1
@@ -108,7 +113,11 @@ jobs:
         run: |
           git switch -c deploy-$_TAG_VERSION
           git push -u origin deploy-$_TAG_VERSION
-          git switch rc
+
+      - name: Checkout Repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f  # v2.3.4
+        with:
+          ref: release
 
       - name: Setup git config
         run: |
@@ -122,7 +131,7 @@ jobs:
         with:
           workflow: build.yml
           workflow_conclusion: success
-          branch: rc
+          branch: ${{ needs.setup.outputs.branch-name }}
           artifacts: web-*-cloud-COMMERCIAL.zip
 
       # This should result in a build directory in the current working directory
@@ -163,7 +172,7 @@ jobs:
         with:
           workflow: build.yml
           workflow_conclusion: success
-          branch: rc
+          branch: ${{ needs.setup.outputs.branch-name }}
           artifacts: "web-*-selfhosted-COMMERCIAL.zip,
                       web-*-selfhosted-open-source.zip"
 
@@ -182,3 +191,4 @@ jobs:
           artifacts: "web-${{ needs.setup.outputs.release_version }}-selfhosted-COMMERCIAL.zip,
                       web-${{ needs.setup.outputs.release_version }}-selfhosted-open-source.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true

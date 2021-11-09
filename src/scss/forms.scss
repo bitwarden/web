@@ -160,9 +160,33 @@ input[type="radio"], input[type="checkbox"] {
     @include themify($themes) {
         background-color: themed('foregroundColor');
         border-color: themed('listItemBorder');
-        color: themed('listItemColor');
-        font-weight: themed('linkWeight');
+        color: themed('textColor');
     }
+    >.two-factor-content {
+        justify-content: center;
+        flex-direction: row;
+        display: flex;
+        >.text-col {
+            flex-direction: column;
+            flex: 1;
+        }
+        >.logo-col {
+            min-width: 100px; 
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            img {
+                height: fit-content;
+            }
+        }
+        >.btn-col {
+            width: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    }      
 }
 
 .list-group-item.active {

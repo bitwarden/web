@@ -11,6 +11,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
@@ -44,7 +45,7 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
         messagingService: MessagingService, stateService: StateService,
         passwordGenerationService: PasswordGenerationService,
         platformUtilsService: PlatformUtilsService, policyService: PolicyService,
-        private apiService: ApiService, private toasterService: ToasterService) {
+        private apiService: ApiService, private toasterService: ToasterService, private logService: LogService) {
         super(i18nService, cryptoService, messagingService, passwordGenerationService,
             platformUtilsService, policyService, stateService);
     }
@@ -85,6 +86,8 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
 
         try {
             this.onDone.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }

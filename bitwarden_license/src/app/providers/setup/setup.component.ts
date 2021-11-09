@@ -11,6 +11,8 @@ import {
     ToasterService,
 } from 'angular2-toaster';
 
+import { first } from 'rxjs/operators';
+
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 
@@ -41,12 +43,7 @@ export class SetupComponent implements OnInit {
 
     ngOnInit() {
         document.body.classList.remove('layout_frontend');
-        let fired = false;
-        this.route.queryParams.subscribe(async qParams => {
-            if (fired) {
-                return;
-            }
-            fired = true;
+        this.route.queryParams.pipe(first()).subscribe(async qParams => {
             const error = qParams.providerId == null || qParams.email == null || qParams.token == null;
 
             if (error) {

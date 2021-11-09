@@ -4,11 +4,14 @@ import {
     Router,
 } from '@angular/router';
 
+import { first } from 'rxjs/operators';
+
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { AuthService } from 'jslib-common/abstractions/auth.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
@@ -19,7 +22,6 @@ import { RegisterComponent as BaseRegisterComponent } from 'jslib-angular/compon
 import { MasterPasswordPolicyOptions } from 'jslib-common/models/domain/masterPasswordPolicyOptions';
 import { Policy } from 'jslib-common/models/domain/policy';
 
-import { LogService } from 'jslib-common/abstractions/log.service';
 import { PolicyData } from 'jslib-common/models/data/policyData';
 import { ReferenceEventRequest } from 'jslib-common/models/request/referenceEventRequest';
 
@@ -45,7 +47,7 @@ export class RegisterComponent extends BaseRegisterComponent {
     }
 
     async ngOnInit() {
-        const queryParamsSub = this.route.queryParams.subscribe(qParams => {
+        this.route.queryParams.pipe(first()).subscribe(qParams => {
             this.referenceData = new ReferenceEventRequest();
             if (qParams.email != null && qParams.email.indexOf('@') > -1) {
                 this.email = qParams.email;
@@ -69,9 +71,6 @@ export class RegisterComponent extends BaseRegisterComponent {
             if (this.referenceData.id === '') {
                 this.referenceData.id = null;
             }
-            if (queryParamsSub != null) {
-                queryParamsSub.unsubscribe();
-            }
         });
         const invite = await this.stateService.getOrganizationInvitation();
         if (invite != null) {
@@ -82,7 +81,9 @@ export class RegisterComponent extends BaseRegisterComponent {
                     const policiesData = policies.data.map(p => new PolicyData(p));
                     this.policies = policiesData.map(p => new Policy(p));
                 }
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
         }
 
         if (this.policies != null) {

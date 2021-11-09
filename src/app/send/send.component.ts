@@ -13,6 +13,7 @@ import { AddEditComponent } from './add-edit.component';
 
 import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
@@ -20,7 +21,6 @@ import { SendService } from 'jslib-common/abstractions/send.service';
 
 import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 import { ModalService } from 'jslib-angular/services/modal.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
 
 const BroadcasterSubscriptionId = 'SendComponent';
 

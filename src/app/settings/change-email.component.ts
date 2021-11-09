@@ -8,13 +8,13 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { EmailRequest } from 'jslib-common/models/request/emailRequest';
 import { EmailTokenRequest } from 'jslib-common/models/request/emailTokenRequest';
 
-import { KdfType } from 'jslib-common/enums/kdfType';
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 
 @Component({
@@ -32,7 +32,8 @@ export class ChangeEmailComponent implements OnInit {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
-        private messagingService: MessagingService, private stateService: StateService) { }
+        private messagingService: MessagingService, private stateService: StateService,
+        private logService: LogService) { }
 
     async ngOnInit() {
         const twoFactorProviders = await this.apiService.getTwoFactorProviders();
@@ -56,7 +57,9 @@ export class ChangeEmailComponent implements OnInit {
                 this.formPromise = this.apiService.postEmailToken(request);
                 await this.formPromise;
                 this.tokenSent = true;
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
         } else {
             const request = new EmailRequest();
             request.token = this.token;
@@ -75,7 +78,9 @@ export class ChangeEmailComponent implements OnInit {
                 this.toasterService.popAsync('success', this.i18nService.t('emailChanged'),
                     this.i18nService.t('logBackIn'));
                 this.messagingService.send('logout');
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
         }
     }
 

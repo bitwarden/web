@@ -5,6 +5,8 @@ import {
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
+import { first } from 'rxjs/operators';
+
 import { PlanType } from 'jslib-common/enums/planType';
 import { ProductType } from 'jslib-common/enums/productType';
 
@@ -20,7 +22,7 @@ export class CreateOrganizationComponent implements OnInit {
     constructor(private route: ActivatedRoute) { }
 
     ngOnInit() {
-        const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+        this.route.queryParams.pipe(first()).subscribe(async qParams => {
             if (qParams.plan === 'families') {
                 this.orgPlansComponent.plan = PlanType.FamiliesAnnually;
                 this.orgPlansComponent.product = ProductType.Families;
@@ -30,9 +32,6 @@ export class CreateOrganizationComponent implements OnInit {
             } else if (qParams.plan === 'enterprise') {
                 this.orgPlansComponent.plan = PlanType.EnterpriseAnnually;
                 this.orgPlansComponent.product = ProductType.Enterprise;
-            }
-            if (queryParamsSub != null) {
-                queryParamsSub.unsubscribe();
             }
         });
     }

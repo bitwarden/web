@@ -3,10 +3,10 @@ import { Router } from '@angular/router';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { HintComponent as BaseHintComponent } from 'jslib-angular/components/hint.component';
-import { LogService } from 'jslib-common/abstractions/log.service';
 
 @Component({
     selector: 'app-hint',
@@ -14,7 +14,8 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 })
 export class HintComponent extends BaseHintComponent {
     constructor(router: Router, i18nService: I18nService,
-        apiService: ApiService, platformUtilsService: PlatformUtilsService, logService: LogService) {
+        apiService: ApiService, platformUtilsService: PlatformUtilsService,
+        logService: LogService) {
         super(router, i18nService, apiService, platformUtilsService, logService);
     }
 }

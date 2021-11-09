@@ -11,6 +11,7 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
+import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
@@ -38,11 +39,11 @@ export class AddEditComponent extends BaseAddEditComponent {
         collectionService: CollectionService, totpService: TotpService,
         passwordGenerationService: PasswordGenerationService, private apiService: ApiService,
         messagingService: MessagingService, eventService: EventService,
-        policyService: PolicyService,
-        organizationService: OrganizationService, logService: LogService) {
+        policyService: PolicyService, logService: LogService,
+        passwordRepromptService: PasswordRepromptService, organizationService: OrganizationService) {
         super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
             collectionService, totpService, passwordGenerationService, messagingService,
-            eventService, policyService, organizationService, logService);
+            eventService, policyService, organizationService, logService, passwordRepromptService);
     }
 
     protected allowOwnershipAssignment() {

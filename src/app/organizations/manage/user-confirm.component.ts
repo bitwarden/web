@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
 
 @Component({
@@ -24,7 +25,8 @@ export class UserConfirmComponent implements OnInit {
     fingerprint: string;
     formPromise: Promise<any>;
 
-    constructor(private cryptoService: CryptoService, private stateService: StateService) { }
+    constructor(private cryptoService: CryptoService, private logService: LogService,
+        private stateService: StateService) { }
 
     async ngOnInit() {
         try {
@@ -34,7 +36,9 @@ export class UserConfirmComponent implements OnInit {
                     this.fingerprint = fingerprint.join('-');
                 }
             }
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
         this.loading = false;
     }
 

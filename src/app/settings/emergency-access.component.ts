@@ -9,10 +9,10 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
 
 import { EmergencyAccessConfirmRequest } from 'jslib-common/models/request/emergencyAccessConfirmRequest';
 
@@ -51,8 +51,8 @@ export class EmergencyAccessComponent implements OnInit {
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private modalService: ModalService, private platformUtilsService: PlatformUtilsService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
-        private storageService: StorageService, private stateService: StateService,
-        private messagingService: MessagingService, private userNamePipe: UserNamePipe,
+        private stateService: StateService, private messagingService: MessagingService,
+        private userNamePipe: UserNamePipe, private logService: LogService,
         private organizationService: OrganizationService) { }
 
     async ngOnInit() {
@@ -157,7 +157,9 @@ export class EmergencyAccessComponent implements OnInit {
             } else {
                 this.removeGrantor(details);
             }
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     async requestAccess(details: EmergencyAccessGrantorDetailsResponse) {
@@ -241,10 +243,11 @@ export class EmergencyAccessComponent implements OnInit {
         const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
 
         try {
-            // tslint:disable-next-line
-            console.log('User\'s fingerprint: ' +
+            this.logService.debug('User\'s fingerprint: ' +
                 (await this.cryptoService.getFingerprint(details.granteeId, publicKey.buffer)).join('-'));
-        } catch { }
+        } catch {
+            // Ignore errors since it's just a debug message
+        }
 
         const encryptedKey = await this.cryptoService.rsaEncrypt(encKey.key, publicKey.buffer);
         const request = new EmergencyAccessConfirmRequest();

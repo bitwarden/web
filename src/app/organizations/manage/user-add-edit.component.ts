@@ -11,6 +11,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { CollectionData } from 'jslib-common/models/data/collectionData';
@@ -79,24 +80,13 @@ export class UserAddEditComponent implements OnInit {
         },
     ];
 
-    get fallbackToManageAllCollections() {
-        return this.permissions.createNewCollections == null &&
-            this.permissions.editAnyCollection == null &&
-            this.permissions.deleteAnyCollection == null;
-    }
-
-    get fallbackToManageAssignedCollections() {
-        return this.permissions.editAssignedCollections == null &&
-            this.permissions.deleteAssignedCollections == null;
-    }
-
     get customUserTypeSelected(): boolean {
         return this.type === OrganizationUserType.Custom;
     }
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private collectionService: CollectionService,
-        private platformUtilsService: PlatformUtilsService) { }
+        private platformUtilsService: PlatformUtilsService, private logService: LogService) { }
 
     async ngOnInit() {
         this.editMode = this.loading = this.organizationUserId != null;
@@ -122,7 +112,9 @@ export class UserAddEditComponent implements OnInit {
                         }
                     });
                 }
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
         } else {
             this.title = this.i18nService.t('inviteUser');
         }
@@ -191,7 +183,9 @@ export class UserAddEditComponent implements OnInit {
             this.toasterService.popAsync('success', null,
                 this.i18nService.t(this.editMode ? 'editedUserId' : 'invitedUsers', this.name));
             this.onSavedUser.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     async delete() {
@@ -211,6 +205,8 @@ export class UserAddEditComponent implements OnInit {
             await this.deletePromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', this.name));
             this.onDeletedUser.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }

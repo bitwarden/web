@@ -9,6 +9,7 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
@@ -38,7 +39,7 @@ export class PremiumComponent implements OnInit {
         private toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
         private tokenService: TokenService, private router: Router,
         private messagingService: MessagingService, private syncService: SyncService,
-        private stateService: StateService) {
+        private logService: LogService, private stateService: StateService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -97,7 +98,9 @@ export class PremiumComponent implements OnInit {
                 });
             }
             await this.formPromise;
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     async finalizePremium() {

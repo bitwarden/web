@@ -6,7 +6,7 @@
             <input type="search" class="form-control form-control-sm" id="search" placeholder="{{'search' | i18n}}"
                 [(ngModel)]="searchText">
         </div>
-        <button type="button" class="btn btn-sm btn-outline-primary ml-3" (click)="add()">
+        <button type="button" *ngIf="this.canCreate" class="btn btn-sm btn-outline-primary ml-3" (click)="add()">
             <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
             {{'newCollection' | i18n}}
         </button>
@@ -27,17 +27,17 @@
                     <a href="#" appStopClick (click)="edit(c)">{{c.name}}</a>
                 </td>
                 <td class="table-list-options">
-                    <div class="dropdown" appListDropdown>
+                    <div class="dropdown" appListDropdown *ngIf="this.canEdit(c) || this.canDelete(c)">
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false" appA11yTitle="{{'options' | i18n}}">
                             <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <a class="dropdown-item" href="#" appStopClick (click)="users(c)">
+                            <a class="dropdown-item" href="#" appStopClick *ngIf="this.canEdit(c)" (click)="users(c)">
                                 <i class="fa fa-fw fa-users" aria-hidden="true"></i>
                                 {{'users' | i18n}}
                             </a>
-                            <a class="dropdown-item text-danger" href="#" appStopClick (click)="delete(c)">
+                            <a class="dropdown-item text-danger" href="#" appStopClick *ngIf="this.canDelete(c)" (click)="delete(c)">
                                 <i class="fa fa-fw fa-trash-o" aria-hidden="true"></i>
                                 {{'delete' | i18n}}
                             </a>

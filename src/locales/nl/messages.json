@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Boolean"
   },
+  "cfTypeLinked": {
+    "message": "Gekoppeld",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Verwijderen"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Achternaam"
+  },
+  "fullName": {
+    "message": "Volledige naam"
   },
   "address1": {
     "message": "Adres 1"
@@ -899,6 +906,9 @@
   "changeEmail": {
     "message": "E-mailadres wijzigen"
   },
+  "changeEmailTwoFactorWarning": {
+    "message": "Doorgaan zal het e-mailadres van je account wijzigen. Het verander het e-mailadres dat wordt gebruikt voor tweestapsaanmelding niet. Je kunt dit e-mailadres wijzigen in de tweestapsaanmeldingsinstellingen."
+  },
   "newEmail": {
     "message": "Nieuw e-mailadres"
   },
@@ -997,6 +1007,9 @@
   },
   "purgedOrganizationVault": {
     "message": "Organisatiekluis verwijderd."
+  },
+  "vaultAccessedByProvider": {
+    "message": "Kluis benaderd door provider."
   },
   "purgeVaultDesc": {
     "message": "Ga hieronder verder om alle items en mappen in je kluis te verwijderen. Items die behoren tot een organisatie waarmee je deelt, worden niet verwijderd."
@@ -2148,6 +2161,9 @@
   "policies": {
     "message": "Beleidseisen"
   },
+  "singleSignOn": {
+    "message": "Single sign-on"
+  },
   "editPolicy": {
     "message": "Beleid bewerken"
   },
@@ -2238,11 +2254,17 @@
   "confirmed": {
     "message": "Bevestigd"
   },
+  "clientOwnerEmail": {
+    "message": "E-mailadres apparaateigenaar"
+  },
   "owner": {
     "message": "Eigenaar"
   },
   "ownerDesc": {
     "message": "De gebruiker met de hoogste toegangsrechten. Deze gebruiker kan alle aspecten van je organisatie beheren."
+  },
+  "clientOwnerDesc": {
+    "message": "Deze gebruiker moet onafhankelijk zijn van de provider. Als de provider is losgekoppeld van de organisatie, blijft deze gebruiker eigenaar van de organisatie."
   },
   "admin": {
     "message": "Beheerder"
@@ -2577,6 +2599,42 @@
       }
     }
   },
+  "createdOrganizationId": {
+    "message": "Organisatie $ID$ aangemaakt.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "addedOrganizationId": {
+    "message": "Organisatie $ID$ toegevoegd.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "removedOrganizationId": {
+    "message": "Organisatie $ID$ verwijderd.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "accessedClientVault": {
+    "message": "$ID$ organisatiekluis geopend.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
   "device": {
     "message": "Apparaat"
   },
@@ -2760,10 +2818,6 @@
     "message": "Upgrade je account naar een ander abonnement door onderstaande informatie door te geven. Verzeker jezelf ervan dat er een actieve betaalmethode aan het account is gekoppeld.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Neem contact op met de klantondersteuning als je je abonnement wilt aanpassen. Zorg ervoor dat je een actieve betaalmethode aan het account hebt toegevoegd.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Factuur #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2830,6 +2884,16 @@
   "enterInstallationId": {
     "message": "Installatie-id invoeren"
   },
+  "limitSubscriptionDesc": {
+    "message": "Stel een limiet voor gebruikersplaatsen in voor je abonnement. Zodra deze limiet is bereikt, kun je geen nieuwe gebruikers uitnodigen."
+  },
+  "maxSeatLimit": {
+    "message": "Maximale gebruikersplaatsen (optioneel)",
+    "description": "Upper limit of seats to allow through autoscaling"
+  },
+  "maxSeatCost": {
+    "message": "Max. potentiële kosten gebruikersplaatsen"
+  },
   "addSeats": {
     "message": "Plaatsen toevoegen",
     "description": "Seat = User Seat"
@@ -2838,8 +2902,65 @@
     "message": "Plaatsen verwijderen",
     "description": "Seat = User Seat"
   },
+  "subscriptionDesc": {
+    "message": "Aanpassingen aan je abonnement leiden tot evenredige wijzigingen in je factuurtotaal. Als nieuwe gebruikers je gebruikersplaatsen overschrijden, ontvang je onmiddellijk een afschrijving voor de extra gebruikers."
+  },
   "subscriptionUserSeats": {
     "message": "Je abonnement omvat $COUNT$ gebruikers.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "limitSubscription": {
+    "message": "Limiteer abonnement (optioneel)"
+  },
+  "subscriptionSeats": {
+    "message": "Gebruikersplaatsen abonnement"
+  },
+  "subscriptionUpdated": {
+    "message": "Abonnement bijgewerkt"
+  },
+  "additionalOptions": {
+    "message": "Extra opties"
+  },
+  "additionalOptionsDesc": {
+    "message": "Neem contact op met de klantenservice voor extra hulp bij het beheren van je abonnement."
+  },
+  "subscriptionUserSeatsUnlimitedAutoscale": {
+    "message": "Aanpassingen aan je abonnement leiden tot evenredige wijzigingen in je factuurtotaal. Als nieuwe gebruikers je gebruikersplaatsen overschrijden, ontvang je onmiddellijk een afschrijving voor de extra gebruikers."
+  },
+  "subscriptionUserSeatsLimitedAutoscale": {
+    "message": "Aanpassingen aan je abonnement leiden tot evenredige wijzigingen in je factuurtotaal. Als nieuwe gebruikers je gebruikersplaatsen overschrijden, ontvang je onmiddellijk een afschrijving voor de extra gebruikers tot het aantal van $MAX$ gebruikersplaatsen is bereikt.",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "Je kunt niet meer dan $COUNT$ gebruikers uitnodigen zonder je abonnement te upgraden.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "Je kunt niet meer dan $COUNT$ gebruikers uitnodigen zonder je abonnement te upgraden. Neem contact op met Customer Support om te upgraden.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionMaxReached": {
+    "message": "Aanpassingen aan je abonnement leiden tot evenredige wijzigingen in uw factuurtotaal. Je kunt niet meer dan $COUNT$ gebruikers uitnodigen zonder je abonnementsplaatsen te verhogen.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3299,10 +3420,6 @@
   "ssoHandOff": {
     "message": "Je kunt dit tabblad nu sluiten en doorgaan in de extensie."
   },
-  "businessPortal": {
-    "message": "Zakelijk portaal",
-    "description": "The web portal used by business organizations for configuring certain features."
-  },
   "includeAllTeamsFeatures": {
     "message": "Alle functionaliteit van Teams plus:"
   },
@@ -3323,9 +3440,6 @@
   },
   "linkSso": {
     "message": "SSO koppelen"
-  },
-  "webPoliciesDeprecationWarning": {
-    "message": "Beleidsconfiguratie is verplaatst en deze pagina wordt binnenkort niet meer ondersteund. Klik hieronder om het bedrijfsbeleidsportaal te gebruiken."
   },
   "singleOrg": {
     "message": "Enkele organisatie"
@@ -3715,9 +3829,6 @@
   "permissions": {
     "message": "Rechten"
   },
-  "accessBusinessPortal": {
-    "message": "Business Portaal"
-  },
   "accessEventLogs": {
     "message": "Eventlogs"
   },
@@ -3727,11 +3838,29 @@
   "accessReports": {
     "message": "Rapporten"
   },
+  "missingPermissions": {
+    "message": "Je hebt geen rechten om deze actie uit te voeren."
+  },
   "manageAllCollections": {
     "message": "Alle verbindingen beheren"
   },
+  "createNewCollections": {
+    "message": "Nieuwe verzamelingen aanmaken"
+  },
+  "editAnyCollection": {
+    "message": "Iedere verzameling bewerken"
+  },
+  "deleteAnyCollection": {
+    "message": "Iedere verzameling verwijderen"
+  },
   "manageAssignedCollections": {
     "message": "Toegewezen collecties beheren"
+  },
+  "editAssignedCollections": {
+    "message": "Toegewezen verzamelingen bewerken"
+  },
+  "deleteAssignedCollections": {
+    "message": "Toegewezen verzamelingen verwijderen"
   },
   "manageGroups": {
     "message": "Groepen beheren"
@@ -3748,11 +3877,20 @@
   "manageResetPassword": {
     "message": "Wachtwoordherstel beheren"
   },
-  "disableRequireSsoError": {
-    "message": "Je moet handmatig het Single Sign-On-verificatiebeleid uitschakelen voordat je dit beleid kunt uitgeschakeld."
+  "disableRequiredError": {
+    "message": "Je moet handmatig het $POLICYNAME$-beleid uitschakelen voordat je dit beleid kunt uitschakelen.",
+    "placeholders": {
+      "policyName": {
+        "content": "$1",
+        "example": "Single Sign-On Authentication"
+      }
+    }
   },
   "personalOwnershipPolicyInEffect": {
     "message": "Een organisatiebeleid heeft invloed op je eigendomsopties."
+  },
+  "personalOwnershipPolicyInEffectImports": {
+    "message": "Een organisatiebeleid heeft het importeren van items in je persoonlijke kluis uitgeschakeld."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Schakel persoonlijke eigendom uit voor organisatiegebruikers"
@@ -3910,6 +4048,15 @@
       }
     }
   },
+  "eventResetSsoLink": {
+    "message": "Sso-link voor gebruiker $ID$ opnieuw instellen",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Wachtwoord opnieuw instellen"
   },
@@ -3988,6 +4135,21 @@
   "removeUsersWarning": {
     "message": "Weet je zeker dat je de volgende gebruikers wilt verwijderen? Dit proces duurt enkele seconden en kan niet worden onderbroken of geannuleerd."
   },
+  "theme": {
+    "message": "Thema"
+  },
+  "themeDesc": {
+    "message": "Kies een thema voor je webkluis."
+  },
+  "themeSystem": {
+    "message": "Systeemthema"
+  },
+  "themeDark": {
+    "message": "Donker"
+  },
+  "themeLight": {
+    "message": "Licht"
+  },
   "confirmSelected": {
     "message": "Bevestig selectie"
   },
@@ -4017,5 +4179,301 @@
   },
   "resetPasswordManageUsers": {
     "message": "Gebruikers beheren moet ingeschakeld zijn met de optie Wachtwoordherstel beheren"
+  },
+  "setupProvider": {
+    "message": "Providerinstellingen"
+  },
+  "setupProviderLoginDesc": {
+    "message": "Je bent uitgenodigd om een nieuwe provider in te stellen. Om door te gaan, moet je inloggen of een nieuw Bitwarden-account aanmaken."
+  },
+  "setupProviderDesc": {
+    "message": "Vul de gegevens hieronder in om de configuratie van de provider te voltooien. Neem contact op met de klantenservice als je vragen hebt."
+  },
+  "providerName": {
+    "message": "Providernaam"
+  },
+  "providerSetup": {
+    "message": "De provider is ingesteld."
+  },
+  "clients": {
+    "message": "Apparaten"
+  },
+  "providerAdmin": {
+    "message": "Providerbeheerder"
+  },
+  "providerAdminDesc": {
+    "message": "De gebruiker met de hoogste toegang, die alle aspecten van je provider kan beheren alsmede toegang en klantorganisaties kan beheren."
+  },
+  "serviceUser": {
+    "message": "Servicegebruiker"
+  },
+  "serviceUserDesc": {
+    "message": "Servicegebruikers hebben toegang tot alle clientorganisaties en kunnen deze beheren."
+  },
+  "providerInviteUserDesc": {
+    "message": "Nodig een nieuw gebruikers uit voor je provider door hun Bitwarden-account e-mailadres hieronder in te vullen. Wanneer ze nog geen Bitwarden-account hebben worden ze gevraagd om een nieuw account aan te maken."
+  },
+  "joinProvider": {
+    "message": "Aansluiten bij provider"
+  },
+  "joinProviderDesc": {
+    "message": "Je bent uitgenodigd om je aan te sluiten bij de bovenstaande provider. Om de uitnodiging te accepteren, moet je inloggen of een nieuw Bitwarden-account aanmaken."
+  },
+  "providerInviteAcceptFailed": {
+    "message": "Kan de uitnodiging niet accepteren. Vraag een providerbeheerder om een nieuwe uitnodiging te versturen."
+  },
+  "providerInviteAcceptedDesc": {
+    "message": "Je krijgt toegang tot deze provider zodra een beheerder je lidmaatschap bevestigt. We sturen je een e-mail wanneer dat gebeurt."
+  },
+  "providerUsersNeedConfirmed": {
+    "message": "Je hebt gebruikers die hun uitnodiging hebben geaccepteerd, maar die nog moeten worden bevestigd. Gebruikers hebben geen toegang tot de provider totdat ze zijn bevestigd."
+  },
+  "provider": {
+    "message": "Provider"
+  },
+  "newClientOrganization": {
+    "message": "Nieuwe klant-organisatie"
+  },
+  "newClientOrganizationDesc": {
+    "message": "Maak een nieuwe klantorganisatie aan die aan jou als provider zal worden gekoppeld. Je kunt toegang krijgen tot en deze organisatie beheren."
+  },
+  "addExistingOrganization": {
+    "message": "Bestaande organisatie toevoegen"
+  },
+  "myProvider": {
+    "message": "Mijn provider"
+  },
+  "addOrganizationConfirmation": {
+    "message": "Weet je zeker dat je $ORGANIZATION$ als client wilt toevoegen aan $PROVIDER$?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      },
+      "provider": {
+        "content": "$2",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "organizationJoinedProvider": {
+    "message": "Organisatie succesvol toegevoegd aan de provider"
+  },
+  "accessingUsingProvider": {
+    "message": "Organisatie benaderen via provider $PROVIDER$",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "providerIsDisabled": {
+    "message": "Provider is uitgeschakeld."
+  },
+  "providerUpdated": {
+    "message": "Provider bijgewerkt"
+  },
+  "yourProviderIs": {
+    "message": "Je provider is $PROVIDER$. Ze hebben administratieve- en factuurrechten voor jouw organisatie.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "detachedOrganization": {
+    "message": "De organisatie $ORGANIZATION$ is losgekoppeld van jouw provider.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "detachOrganizationConfirmation": {
+    "message": "Weet je zeker dat je deze organisatie wilt loskoppelen? De organisatie zal blijven bestaan maar zal niet langer worden beheerd door de provider."
+  },
+  "add": {
+    "message": "Toevoegen"
+  },
+  "updatedMasterPassword": {
+    "message": "Hoofdwachtwoord bijgewerkt"
+  },
+  "updateMasterPassword": {
+    "message": "Hoofdwachtwoord bijwerken"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Je hoofdwachtwoord is onlangs veranderd door een beheerder in jouw organisatie. Om toegang te krijgen tot de kluis, moet je deze nu bijwerken. Doorgaan zal je huidige sessie uitloggen, waarna je opnieuw moet inloggen. Actieve sessies op andere apparaten blijven mogelijk nog een uur actief."
+  },
+  "maximumVaultTimeout": {
+    "message": "Time-out van de kluis"
+  },
+  "maximumVaultTimeoutDesc": {
+    "message": "Stel een maximale time-out van de kluis in voor alle gebruikers."
+  },
+  "maximumVaultTimeoutLabel": {
+    "message": "Maximale time-out van de kluis"
+  },
+  "invalidMaximumVaultTimeout": {
+    "message": "Ongeldige maximale time-out van de kluis."
+  },
+  "hours": {
+    "message": "Uren"
+  },
+  "minutes": {
+    "message": "Minuten"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Het beleid van je organisatie heeft invloed op de time-out van je kluis. De maximaal toegestane time-out voor je kluis is $HOURS$ uur en $MINUTES$ minuten",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "customVaultTimeout": {
+    "message": "Aangepaste time-out van de kluis"
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Je kluis time-out is hoger dan het maximum van jouw organisatie."
+  },
+  "disablePersonalVaultExport": {
+    "message": "Persoonlijke kluis exporteren uitschakelen"
+  },
+  "disablePersonalVaultExportDesc": {
+    "message": "Verbiedt gebruikers om hun privékluisgegevens te exporteren."
+  },
+  "vaultExportDisabled": {
+    "message": "Kluis exporteren uitgeschakeld"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Organisatiebeleid voorkomt dat je je persoonlijke kluis exporteert."
+  },
+  "selectType": {
+    "message": "Selecteer Type"
+  },
+  "type": {
+    "message": "Type"
+  },
+  "openIdConnectConfig": {
+    "message": "OpenID Connect Configuration"
+  },
+  "samlSpConfig": {
+    "message": "SAML Service Provider Configuration"
+  },
+  "samlIdpConfig": {
+    "message": "SAML Identity Provider Configuration"
+  },
+  "callbackPath": {
+    "message": "Callback Path"
+  },
+  "signedOutCallbackPath": {
+    "message": "Signed Out Callback Path"
+  },
+  "authority": {
+    "message": "Authority"
+  },
+  "clientId": {
+    "message": "Client ID"
+  },
+  "clientSecret": {
+    "message": "Client Secret"
+  },
+  "metadataAddress": {
+    "message": "Metadata Address"
+  },
+  "oidcRedirectBehavior": {
+    "message": "OIDC Redirect Behavior"
+  },
+  "getClaimsFromUserInfoEndpoint": {
+    "message": "Get Claims From User Info Endpoint"
+  },
+  "additionalScopes": {
+    "message": "Additional/Custom Scopes (comma delimited)"
+  },
+  "additionalUserIdClaimTypes": {
+    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+  },
+  "additionalEmailClaimTypes": {
+    "message": "Additional/Custom Email Claim Types (comma delimited)"
+  },
+  "additionalNameClaimTypes": {
+    "message": "Additional/Custom Name Claim Types (comma delimited)"
+  },
+  "acrValues": {
+    "message": "Requested Authentication Context Class Reference values (acr_values)"
+  },
+  "expectedReturnAcrValue": {
+    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+  },
+  "spEntityId": {
+    "message": "SP Entity ID"
+  },
+  "spMetadataUrl": {
+    "message": "SAML 2.0 Metadata URL"
+  },
+  "spAcsUrl": {
+    "message": "Assertion Consumer Service (ACS) URL"
+  },
+  "spNameIdFormat": {
+    "message": "Name ID Format"
+  },
+  "spOutboundSigningAlgorithm": {
+    "message": "Outbound Signing Algorithm"
+  },
+  "spSigningBehavior": {
+    "message": "Signing Behavior"
+  },
+  "spMinIncomingSigningAlgorithm": {
+    "message": "Minimum Incoming Signing Algorithm"
+  },
+  "spWantAssertionsSigned": {
+    "message": "Want Assertions Signed"
+  },
+  "spValidateCertificates": {
+    "message": "Validate Certificates"
+  },
+  "idpEntityId": {
+    "message": "Entity ID"
+  },
+  "idpBindingType": {
+    "message": "Binding Type"
+  },
+  "idpSingleSignOnServiceUrl": {
+    "message": "Single Sign On Service URL"
+  },
+  "idpSingleLogoutServiceUrl": {
+    "message": "Single Log Out Service URL"
+  },
+  "idpArtifactResolutionServiceUrl": {
+    "message": "Artifact Resolution Service URL"
+  },
+  "idpX509PublicCert": {
+    "message": "X509 Public Certificate"
+  },
+  "idpOutboundSigningAlgorithm": {
+    "message": "Outbound Signing Algorithm"
+  },
+  "idpAllowUnsolicitedAuthnResponse": {
+    "message": "Unsolicited Authentication Response toestaan"
+  },
+  "idpDisableOutboundLogoutRequests": {
+    "message": "Outbound Logout Requests uitschakelen"
+  },
+  "idpWantAuthnRequestsSigned": {
+    "message": "Want Authentication Requests Signed"
+  },
+  "ssoSettingsSaved": {
+    "message": "Single Sign-On configuratie is opgeslagen."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Kan de crypto-agent niet bereiken, probeer het later opnieuw."
   }
 }

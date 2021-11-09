@@ -79,7 +79,7 @@ $fa-font-path: "~font-awesome/fonts";
 
 // MFA Types for logo styling with no dark theme alternative
 
-$mfaTypes: 0, 1, 2, 3, 4, 6;
+$mfaTypes: 0, 2, 3, 4, 6;
 
 // Theme Variables
 
@@ -246,8 +246,8 @@ $themes: (
         badgePrimaryBackground: $darkLinks,
         badgePrimaryBackgroundHover: $darkPrimary-alt,
         badgePrimaryText: $darkDarkBlue2,
-        badgeSecondaryBackground: $darkDarkBlue2,
-        badgeSecondaryText: $white,
+        badgeSecondaryBackground: $darkGrey2,
+        badgeSecondaryText: $darkDarkBlue2,
         bgPrimaryColor: $darkPrimary,
         bgLightColor: $darkDarkBlue2,
         borderColor: $darkBlue1,
@@ -255,8 +255,8 @@ $themes: (
         btnDanger: $darkDanger,
         btnDangerHover: $darkDangerHover,
         btnDangerText: $darkDarkBlue2,
-        btnLinkText: $darkGrey1,
-        btnLinkTextHover: $white,
+        btnLinkText: $white,
+        btnLinkTextHover: $darkGrey1,
         btnOutlineDangerBackground: $darkDanger,
         btnOutlineDangerBackgroundHover: $darkDangerHover,
         btnOutlineDangerBorder: $darkDanger,
@@ -301,7 +301,7 @@ $themes: (
         iconColor: #777777,
         iconHover: $darkGrey2,
         imgFilter: invert(1) grayscale(1),
-        inputBackgroundColor: $darkDarkBlue1,
+        inputBackgroundColor: transparent,
         inputBorderColor: $darkGrey1,
         inputDisabledBackground: $darkBlue2,
         inputDisabledColor: $darkGrey1,
@@ -317,7 +317,7 @@ $themes: (
         listItemColor: $white,
         listItemColorHover: $white,
         loadingSvg: url('../images/loading-white.svg'),
-        navActiveBackground: $darkDarkBlue1,
+        navActiveBackground: $darkDarkBlue2,
         navActiveWeight: 600,
         navBackground: $darkDarkBlue1,
         navBackgroundAlt: $darkDarkBlue1,

@@ -7,6 +7,8 @@ import {
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 
+import { first } from 'rxjs/operators';
+
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -81,16 +83,13 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
 
             await this.load();
 
-            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+            this.route.queryParams.pipe(first()).subscribe(async qParams => {
                 this.searchText = qParams.search;
                 if (qParams.viewEvents != null) {
                     const user = this.users.filter(u => u.id === qParams.viewEvents);
                     if (user.length > 0 && user[0].status === ProviderUserStatusType.Confirmed) {
                         this.events(user[0]);
                     }
-                }
-                if (queryParamsSub != null) {
-                    queryParamsSub.unsubscribe();
                 }
             });
         });

@@ -1,4 +1,4 @@
-<div class="modal fade" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="apiKeyTitle">
+<div class="modal fade" role="dialog" aria-modal="true" aria-labelledby="apiKeyTitle">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
             <div class="modal-header">
@@ -9,11 +9,9 @@
             </div>
             <div class="modal-body">
                 <p>{{apiKeyDescription | i18n}}</p>
-                <ng-container *ngIf="!clientSecret">
-                    <label for="masterPassword">{{'masterPass' | i18n}}</label>
-                    <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control"
-                        [(ngModel)]="masterPassword" required appAutofocus appInputVerbatim>
-                </ng-container>
+                <app-verify-master-password [(ngModel)]="masterPassword" ngDefaultControl name="secret" *ngIf="!clientSecret">
+                </app-verify-master-password>
+
                 <app-callout type="warning" *ngIf="clientSecret">{{apiKeyWarning | i18n}}</app-callout>
                 <app-callout type="info" title="{{'oauth2ClientCredentials' | i18n}}" icon="fa-key"
                     *ngIf="clientSecret">

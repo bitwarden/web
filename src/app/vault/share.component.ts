@@ -8,7 +8,6 @@ import { CollectionService } from 'jslib-common/abstractions/collection.service'
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { CollectionView } from 'jslib-common/models/view/collectionView';
 
@@ -22,7 +21,7 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 export class ShareComponent extends BaseShareComponent implements OnDestroy {
     constructor(collectionService: CollectionService, platformUtilsService: PlatformUtilsService,
         i18nService: I18nService, cipherService: CipherService,
-        stateService: StateService, organizationService: OrganizationService, logService: LogService) {
+        organizationService: OrganizationService, logService: LogService) {
         super(collectionService, platformUtilsService, i18nService, cipherService,
             logService, organizationService);
     }

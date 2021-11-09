@@ -28,7 +28,7 @@ export class GroupingsComponent extends BaseGroupingsComponent {
     }
 
     async loadCollections() {
-        if (!this.organization.canViewAllCollections) {
+        if (!this.organization.canEditAnyCollection) {
             await super.loadCollections(this.organization.id);
             return;
         }

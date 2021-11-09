@@ -4,8 +4,10 @@ import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
+import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { TwoFactorEmailRequest } from 'jslib-common/models/request/twoFactorEmailRequest';
 
@@ -29,8 +31,9 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
 
     constructor(apiService: ApiService, i18nService: I18nService,
         toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
+        logService: LogService, userVerificationService: UserVerificationService,
         private stateService: StateService) {
-        super(apiService, i18nService, toasterService, platformUtilsService);
+        super(apiService, i18nService, toasterService, platformUtilsService, logService, userVerificationService);
     }
 
     auth(authResponse: any) {
@@ -48,16 +51,18 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
 
     async sendEmail() {
         try {
-            const request = new TwoFactorEmailRequest(this.email, this.masterPasswordHash);
+            const request = await this.buildRequestModel(TwoFactorEmailRequest);
+            request.email = this.email;
             this.emailPromise = this.apiService.postTwoFactorEmailSetup(request);
             await this.emailPromise;
             this.sentEmail = this.email;
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
-    protected enable() {
-        const request = new UpdateTwoFactorEmailRequest();
-        request.masterPasswordHash = this.masterPasswordHash;
+    protected async enable() {
+        const request = await this.buildRequestModel(UpdateTwoFactorEmailRequest);
         request.email = this.email;
         request.token = this.token;
 

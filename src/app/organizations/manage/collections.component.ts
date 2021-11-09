@@ -7,9 +7,12 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { ToasterService } from 'angular2-toaster';
 
+import { first } from 'rxjs/operators';
+
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
@@ -18,6 +21,7 @@ import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { CollectionData } from 'jslib-common/models/data/collectionData';
 import { Collection } from 'jslib-common/models/domain/collection';
+import { Organization } from 'jslib-common/models/domain/organization';
 import {
     CollectionDetailsResponse,
     CollectionResponse,
@@ -37,8 +41,11 @@ export class CollectionsComponent implements OnInit {
     @ViewChild('usersTemplate', { read: ViewContainerRef, static: true }) usersModalRef: ViewContainerRef;
 
     loading = true;
+    organization: Organization;
+    canCreate: boolean = false;
     organizationId: string;
     collections: CollectionView[];
+    assignedCollections: CollectionView[];
     pagedCollections: CollectionView[];
     searchText: string;
 
@@ -51,32 +58,40 @@ export class CollectionsComponent implements OnInit {
         private collectionService: CollectionService, private modalService: ModalService,
         private toasterService: ToasterService, private i18nService: I18nService,
         private platformUtilsService: PlatformUtilsService, private searchService: SearchService,
-        private organizationService: OrganizationService) { }
+        private logService: LogService, private organizationService: OrganizationService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             await this.load();
-            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+            this.route.queryParams.pipe(first()).subscribe(async qParams => {
                 this.searchText = qParams.search;
-                if (queryParamsSub != null) {
-                    queryParamsSub.unsubscribe();
-                }
             });
         });
     }
 
     async load() {
-        const organization = await this.organizationService.get(this.organizationId);
-        let response: ListResponse<CollectionResponse>;
-        if (organization.canViewAllCollections) {
-            response = await this.apiService.getCollections(this.organizationId);
-        } else {
-            response = await this.apiService.getUserCollections();
+        this.organization = await this.organizationService.get(this.organizationId);
+        this.canCreate = this.organization.canCreateNewCollections;
+
+        const decryptCollections = async (r: ListResponse<CollectionResponse>) => {
+            const collections = r.data.filter(c => c.organizationId === this.organizationId).map(d =>
+                new Collection(new CollectionData(d as CollectionDetailsResponse)));
+            return await this.collectionService.decryptMany(collections);
+        };
+
+        if (this.organization.canViewAssignedCollections) {
+            const response = await this.apiService.getUserCollections();
+            this.assignedCollections = await decryptCollections(response);
         }
-        const collections = response.data.filter(c => c.organizationId === this.organizationId).map(r =>
-            new Collection(new CollectionData(r as CollectionDetailsResponse)));
-        this.collections = await this.collectionService.decryptMany(collections);
+
+        if (this.organization.canViewAllCollections) {
+            const response = await this.apiService.getCollections(this.organizationId);
+            this.collections = await decryptCollections(response);
+        } else {
+            this.collections = this.assignedCollections;
+        }
+
         this.resetPaging();
         this.loading = false;
     }
@@ -99,9 +114,20 @@ export class CollectionsComponent implements OnInit {
     }
 
     async edit(collection: CollectionView) {
+        const canCreate = collection == null && this.canCreate;
+        const canEdit = collection != null && this.canEdit(collection);
+        const canDelete = collection != null && this.canDelete(collection);
+
+        if (!(canCreate || canEdit || canDelete)) {
+            this.toasterService.popAsync('error', null, this.i18nService.t('missingPermissions'));
+            return;
+        }
+
         const [modal] = await this.modalService.openViewRef(CollectionAddEditComponent, this.addEditModalRef, comp => {
             comp.organizationId = this.organizationId;
             comp.collectionId = collection != null ? collection.id : null;
+            comp.canSave = canCreate || canEdit;
+            comp.canDelete = canDelete;
             comp.onSavedCollection.subscribe(() => {
                 modal.close();
                 this.load();
@@ -129,7 +155,10 @@ export class CollectionsComponent implements OnInit {
             await this.apiService.deleteCollection(this.organizationId, collection.id);
             this.toasterService.popAsync('success', null, this.i18nService.t('deletedCollectionId', collection.name));
             this.removeCollection(collection);
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+            this.toasterService.popAsync('error', null, this.i18nService.t('missingPermissions'));
+        }
     }
 
     async users(collection: CollectionView) {
@@ -161,6 +190,28 @@ export class CollectionsComponent implements OnInit {
             this.resetPaging();
         }
         return !searching && this.collections && this.collections.length > this.pageSize;
+    }
+
+    canEdit(collection: CollectionView) {
+        if (this.organization.canEditAnyCollection) {
+            return true;
+        }
+
+        if (this.organization.canEditAssignedCollections && this.assignedCollections.some(c => c.id === collection.id)) {
+            return true;
+        }
+        return false;
+    }
+
+    canDelete(collection: CollectionView) {
+        if (this.organization.canDeleteAnyCollection) {
+            return true;
+        }
+
+        if (this.organization.canDeleteAssignedCollections && this.assignedCollections.some(c => c.id === collection.id)) {
+            return true;
+        }
+        return false;
     }
 
     private removeCollection(collection: CollectionView) {

@@ -5,15 +5,14 @@ import {
     Output,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
+import { VerificationType } from 'jslib-common/enums/verificationType';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
+import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
-import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
+import { Verification } from 'jslib-common/types/verification';
 
 @Component({
     selector: 'app-two-factor-verify',
@@ -24,24 +23,14 @@ export class TwoFactorVerifyComponent {
     @Input() organizationId: string;
     @Output() onAuthed = new EventEmitter<any>();
 
-    masterPassword: string;
+    secret: Verification;
     formPromise: Promise<any>;
 
-    private masterPasswordHash: string;
-
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private cryptoService: CryptoService) { }
+    constructor(private apiService: ApiService, private logService: LogService,
+        private userVerificationService: UserVerificationService) { }
 
     async submit() {
-        if (this.masterPassword == null || this.masterPassword === '') {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('masterPassRequired'));
-            return;
-        }
-
-        const request = new PasswordVerificationRequest();
-        request.masterPasswordHash = this.masterPasswordHash =
-            await this.cryptoService.hashPassword(this.masterPassword, null);
+        const request = await this.userVerificationService.buildRequest(this.secret);
 
         try {
             switch (this.type) {
@@ -73,8 +62,13 @@ export class TwoFactorVerifyComponent {
             const response = await this.formPromise;
             this.onAuthed.emit({
                 response: response,
-                masterPasswordHash: this.masterPasswordHash,
+                secret: this.secret.type === VerificationType.MasterPassword
+                    ? request.masterPasswordHash
+                    : request.otp,
+                verificationType: this.secret.type,
             });
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }

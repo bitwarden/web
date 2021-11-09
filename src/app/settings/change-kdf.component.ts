@@ -8,6 +8,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 
 import { KdfRequest } from 'jslib-common/models/request/kdfRequest';
@@ -28,7 +29,8 @@ export class ChangeKdfComponent implements OnInit {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private cryptoService: CryptoService,
-        private messagingService: MessagingService, private stateService: StateService) {
+        private messagingService: MessagingService, private stateService: StateService,
+        private logService: LogService) {
         this.kdfOptions = [
             { name: 'PBKDF2 SHA-256', value: KdfType.PBKDF2_SHA256 },
         ];
@@ -61,6 +63,8 @@ export class ChangeKdfComponent implements OnInit {
             this.toasterService.popAsync('success', this.i18nService.t('encKeySettingsChanged'),
                 this.i18nService.t('logBackIn'));
             this.messagingService.send('logout');
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }

@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Булево"
   },
+  "cfTypeLinked": {
+    "message": "Linked",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Премахване"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Фамилно име"
+  },
+  "fullName": {
+    "message": "Full Name"
   },
   "address1": {
     "message": "Адрес 1"
@@ -899,6 +906,9 @@
   "changeEmail": {
     "message": "Промяна на адреса за е-поща"
   },
+  "changeEmailTwoFactorWarning": {
+    "message": "Действието ще промени електронната поща свързана с регистрацията Ви. Електронната поща, която ползвате за двустепенно удостоверяване няма да бъде променена. Можете да я промените в настройките на двустепенното удостоверяване."
+  },
   "newEmail": {
     "message": "Нов адрес за електронна поща"
   },
@@ -997,6 +1007,9 @@
   },
   "purgedOrganizationVault": {
     "message": "Трезорът на организацията е напълно изчистен."
+  },
+  "vaultAccessedByProvider": {
+    "message": "Vault accessed by provider."
   },
   "purgeVaultDesc": {
     "message": "Ако продължите, ще изтриете всички папки и записи в трезора ви. Елементите, които са споделени и принадлежат на организации, няма да бъдат изтрити."
@@ -2148,6 +2161,9 @@
   "policies": {
     "message": "Политики"
   },
+  "singleSignOn": {
+    "message": "Еднократна идентификация"
+  },
   "editPolicy": {
     "message": "Редактиране на политика"
   },
@@ -2238,11 +2254,17 @@
   "confirmed": {
     "message": "Потвърдил"
   },
+  "clientOwnerEmail": {
+    "message": "Client Owner Email"
+  },
   "owner": {
     "message": "Собственик"
   },
   "ownerDesc": {
     "message": "Потребителят с най-големи права, който може да управлява всички настройки на организацията ви."
+  },
+  "clientOwnerDesc": {
+    "message": "Този потребител трябва да бъде независим от доставчика. Ако организацията прекъсне връзката си с доставчика, този потребител ще продължи да има права върху организацията."
   },
   "admin": {
     "message": "Администратор"
@@ -2577,6 +2599,42 @@
       }
     }
   },
+  "createdOrganizationId": {
+    "message": "Организация № $ID$ е създадена.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "addedOrganizationId": {
+    "message": "Организация № $ID$ е добавена.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "removedOrganizationId": {
+    "message": "Организация № $ID$ е премахната.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "accessedClientVault": {
+    "message": "Accessed $ID$ organization vault.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
   "device": {
     "message": "Устройство"
   },
@@ -2760,10 +2818,6 @@
     "message": "Може да обновите плана си, като въведете изисканата информация по-долу. Уверете се, че имате действащ платежен метод към абонамента си.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Свържете се с поддръжката, за да смените плана си. Уверете се, че имате действащ платежен метод към абонамента си.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Фактура № $NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2830,6 +2884,16 @@
   "enterInstallationId": {
     "message": "Въведете идентификатора на инсталацията"
   },
+  "limitSubscriptionDesc": {
+    "message": "Задайте ограничение на броя потребители за абонамента си. Когато то бъде достигнато, няма да можете да каните нови потребители."
+  },
+  "maxSeatLimit": {
+    "message": "Максимален брой потребители (по избор)",
+    "description": "Upper limit of seats to allow through autoscaling"
+  },
+  "maxSeatCost": {
+    "message": "Максимална потенциална цена за потребител"
+  },
   "addSeats": {
     "message": "Добавяне на потребители",
     "description": "Seat = User Seat"
@@ -2838,8 +2902,65 @@
     "message": "Намаляване на потребители",
     "description": "Seat = User Seat"
   },
+  "subscriptionDesc": {
+    "message": "Промените в абонамента Ви ще предизвикат пропорционални промени в сумата, която плащате. Ако новопоканените потребители превишат ограничението на абонамента Ви, незабавно ще получите съответстващо пропорционално задължение за допълнителните потребители."
+  },
   "subscriptionUserSeats": {
     "message": "Абонаментът ви позволява $COUNT$ на брой потребители.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "limitSubscription": {
+    "message": "Ограничаване на абонамента (по избор)"
+  },
+  "subscriptionSeats": {
+    "message": "Потребители в абонамента"
+  },
+  "subscriptionUpdated": {
+    "message": "Абонаментът е обновен"
+  },
+  "additionalOptions": {
+    "message": "Допълнителни настройки"
+  },
+  "additionalOptionsDesc": {
+    "message": "Ако имате нужда от допълнителна помощ с управлението на абонамента си, свържете се с поддръжката."
+  },
+  "subscriptionUserSeatsUnlimitedAutoscale": {
+    "message": "Промените в абонамента Ви ще предизвикат пропорционални промени в сумата, която плащате. Ако новопоканените потребители превишат ограничението на абонамента Ви, незабавно ще получите съответстващо пропорционално задължение за допълнителните потребители."
+  },
+  "subscriptionUserSeatsLimitedAutoscale": {
+    "message": "Промените в абонамента Ви ще предизвикат пропорционални промени в сумата, която плащате. Ако новопоканените потребители превишат ограничението на абонамента Ви, незабавно ще получите съответстващо пропорционално задължение за допълнителните потребители, докато не бъде достигнато ограничението от $MAX$ потребители.",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionMaxReached": {
+    "message": "Промените в абонамента Ви ще предизвикат пропорционални промени в сумата, която плащате. Не можете да поканите повече от $COUNT$ потребители, без да увеличите ограничението в абонамента си.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3299,10 +3420,6 @@
   "ssoHandOff": {
     "message": "Вече може да затворите подпрозореца и да продължите в разширението."
   },
-  "businessPortal": {
-    "message": "Бизнес портал",
-    "description": "The web portal used by business organizations for configuring certain features."
-  },
   "includeAllTeamsFeatures": {
     "message": "Всички възможности в екип плюс:"
   },
@@ -3323,9 +3440,6 @@
   },
   "linkSso": {
     "message": "Свързване на еднократна идентификация"
-  },
-  "webPoliciesDeprecationWarning": {
-    "message": "Настройките на политиките са преместени и скоро тази страница ще бъдат махната. Натиснете по-долу, за да преминете към страницата за политиките в бизнес портала."
   },
   "singleOrg": {
     "message": "Една организация"
@@ -3715,9 +3829,6 @@
   "permissions": {
     "message": "Права"
   },
-  "accessBusinessPortal": {
-    "message": "Достъп до бизнес портала"
-  },
   "accessEventLogs": {
     "message": "Достъп до журналите"
   },
@@ -3727,11 +3838,29 @@
   "accessReports": {
     "message": "Достъп до отчетите"
   },
+  "missingPermissions": {
+    "message": "You lack the necessary permissions to perform this action."
+  },
   "manageAllCollections": {
     "message": "Управление на всички колекции"
   },
+  "createNewCollections": {
+    "message": "Създаване на нови колекции"
+  },
+  "editAnyCollection": {
+    "message": "Edit Any Collection"
+  },
+  "deleteAnyCollection": {
+    "message": "Delete Any Collection"
+  },
   "manageAssignedCollections": {
     "message": "Управление на възложените колекции"
+  },
+  "editAssignedCollections": {
+    "message": "Редактиране на възложените колекции"
+  },
+  "deleteAssignedCollections": {
+    "message": "Изтриване на възложените колекции"
   },
   "manageGroups": {
     "message": "Управление на групи"
@@ -3748,11 +3877,20 @@
   "manageResetPassword": {
     "message": "Управление на помощта при смяната на паролата"
   },
-  "disableRequireSsoError": {
-    "message": "За да изключите тази политика, първо трябва ръчно да изключите политиката за еднократна идентификация."
+  "disableRequiredError": {
+    "message": "За да изключите тази политика, първо трябва ръчно да изключите $POLICYNAME$.",
+    "placeholders": {
+      "policyName": {
+        "content": "$1",
+        "example": "Single Sign-On Authentication"
+      }
+    }
   },
   "personalOwnershipPolicyInEffect": {
     "message": "Политика от някоя организация влияе на вариантите за собственост."
+  },
+  "personalOwnershipPolicyInEffectImports": {
+    "message": "Политика на организацията забранява да внасяте елементи в личния си трезор."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Изключване на индивидуалното притежание за потребителите в организацията"
@@ -3910,6 +4048,15 @@
       }
     }
   },
+  "eventResetSsoLink": {
+    "message": "Подновяване на връзката за еднократна идентификация за потребител $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Смяна на паролата"
   },
@@ -3988,6 +4135,21 @@
   "removeUsersWarning": {
     "message": "Наистина ли искате да премахнете следните потребители? Процесът може да отнеме няколко секунди и не може да бъде прекъснат или отменен."
   },
+  "theme": {
+    "message": "Облик"
+  },
+  "themeDesc": {
+    "message": "Изберете облика на трезора по уеб."
+  },
+  "themeSystem": {
+    "message": "От системата"
+  },
+  "themeDark": {
+    "message": "Тъмен"
+  },
+  "themeLight": {
+    "message": "Светъл"
+  },
   "confirmSelected": {
     "message": "Потвърждаване на избраните"
   },
@@ -4017,5 +4179,301 @@
   },
   "resetPasswordManageUsers": {
     "message": "Управлението на потребителите трябва също да бъде включено с разрешението за „Управление на помощта при смяната на паролата“"
+  },
+  "setupProvider": {
+    "message": "Настройка на доставчика"
+  },
+  "setupProviderLoginDesc": {
+    "message": "Получихте покана да настроите нов доставчик. За да продължите, трябва да се впишете или да си направите нова регистрация в Битуорден."
+  },
+  "setupProviderDesc": {
+    "message": "Попълнете информацията по-долу, за да завършите настройката на доставчика. Ако имате въпроси, свържете се с поддръжката."
+  },
+  "providerName": {
+    "message": "Име на доставчика"
+  },
+  "providerSetup": {
+    "message": "Доставчикът е настроен."
+  },
+  "clients": {
+    "message": "Клиенти"
+  },
+  "providerAdmin": {
+    "message": "Администратор на доставчика"
+  },
+  "providerAdminDesc": {
+    "message": "Потребителят с най-големи права на достъп, който може да управлява всички настройки на доставчика, както и да има достъп до и да управлява клиентските организации."
+  },
+  "serviceUser": {
+    "message": "Service User"
+  },
+  "serviceUserDesc": {
+    "message": "Service users can access and manage all client organizations."
+  },
+  "providerInviteUserDesc": {
+    "message": "Може да поканите потребител към доставчика си, като попълните адреса му за електронна поща, с който е регистриран в Битуорден, по-долу. В случай, че потребителят не е регистриран, той автоматично ще получи покана и да се регистрира."
+  },
+  "joinProvider": {
+    "message": "Присъединяване към доставчика"
+  },
+  "joinProviderDesc": {
+    "message": "Получихте покана да се присъедините към посочения по-горе доставчик. За да приемете, ще трябва да се впишете в абонамента си към Битуорден. Ако нямате такъв, ще трябва да създадете безплатен абонамент и след това да се впишете в него."
+  },
+  "providerInviteAcceptFailed": {
+    "message": "Поканата не може да бъде приета. Помолете администратора на доставчика да ви прати нова."
+  },
+  "providerInviteAcceptedDesc": {
+    "message": "Ще имате достъп до доставчика, след като администраторът му потвърди членството ви. Ще ви изпратим електронно писмо, когато това се случи."
+  },
+  "providerUsersNeedConfirmed": {
+    "message": "Има потребители, които са приели поканата си, но все още трябва да бъдат потвърдени. Потвърждаването е необходимо, за да получат достъп до доставчика."
+  },
+  "provider": {
+    "message": "Доставчик"
+  },
+  "newClientOrganization": {
+    "message": "Нова клиентска организация"
+  },
+  "newClientOrganizationDesc": {
+    "message": "Създаване на нова клиентска организация, за която ще играете ролята на доставчик. Вие ще имате достъп до тази организация и ще можете да я управлявате."
+  },
+  "addExistingOrganization": {
+    "message": "Добавяне на съществуваща организация"
+  },
+  "myProvider": {
+    "message": "Моят доставчик"
+  },
+  "addOrganizationConfirmation": {
+    "message": "Наистина ли искате да добавите $ORGANIZATION$ като клиент на $PROVIDER$?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      },
+      "provider": {
+        "content": "$2",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "organizationJoinedProvider": {
+    "message": "Организацията беше успешно добавена към доставчика"
+  },
+  "accessingUsingProvider": {
+    "message": "Accessing organization using provider $PROVIDER$",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "providerIsDisabled": {
+    "message": "Доставчикът е изключен."
+  },
+  "providerUpdated": {
+    "message": "Доставчикът е обновен"
+  },
+  "yourProviderIs": {
+    "message": "Вашият доставчик е $PROVIDER$. Той има административни и платежни права върху организацията Ви.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "detachedOrganization": {
+    "message": "Организацията $ORGANIZATION$ беше отделена от доставчика Ви.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "detachOrganizationConfirmation": {
+    "message": "Наистина ли искате да отделите тази организация? Тя ще продължи да съществува, но вече няма да се управлява от доставчика."
+  },
+  "add": {
+    "message": "Добавяне"
+  },
+  "updatedMasterPassword": {
+    "message": "Главната парола е променена"
+  },
+  "updateMasterPassword": {
+    "message": "Промяна на главната парола"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Вашата главна парола наскоро е била сменена от администратор в организацията Ви. За да получите достъп до трезора, трябва да промените главната си парола сега. Това означава, че ще бъдете отписан(а) от текущата си сесия и ще трябва да се впишете отново. Активните сесии на други устройства може да продължат да бъдат активни още един час."
+  },
+  "maximumVaultTimeout": {
+    "message": "Време за достъп"
+  },
+  "maximumVaultTimeoutDesc": {
+    "message": "Настройте максимално време за достъп до трезора, което ще важи за всички потребители."
+  },
+  "maximumVaultTimeoutLabel": {
+    "message": "Максимално време за достъп до трезора"
+  },
+  "invalidMaximumVaultTimeout": {
+    "message": "Неправилно максимално време за достъп."
+  },
+  "hours": {
+    "message": "Hours"
+  },
+  "minutes": {
+    "message": "Minutes"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Настройките на организацията Ви влияят върху времето за достъп до трезора Ви. Максималното разрешено време за достъп е $HOURS$ час(а) и $MINUTES$ минути",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "customVaultTimeout": {
+    "message": "Персонализирано време за достъп до трезора"
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Времето за достъп до трезора Ви превишава ограничението, определено от организацията Ви."
+  },
+  "disablePersonalVaultExport": {
+    "message": "Забраняване на изнасянето на личния трезор"
+  },
+  "disablePersonalVaultExportDesc": {
+    "message": "Забранява на потребителите да изнасят данните от своя личен трезор."
+  },
+  "vaultExportDisabled": {
+    "message": "Изнасянето на трезора е изключено"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Една или повече от настройките на организацията Ви не позволяват да изнасяте личния си трезор."
+  },
+  "selectType": {
+    "message": "Изберете вид еднократна идентификация"
+  },
+  "type": {
+    "message": "Вид"
+  },
+  "openIdConnectConfig": {
+    "message": "Настройка на OpenID Connect"
+  },
+  "samlSpConfig": {
+    "message": "SAML Service Provider Configuration"
+  },
+  "samlIdpConfig": {
+    "message": "SAML Identity Provider Configuration"
+  },
+  "callbackPath": {
+    "message": "Callback Path"
+  },
+  "signedOutCallbackPath": {
+    "message": "Signed Out Callback Path"
+  },
+  "authority": {
+    "message": "Authority"
+  },
+  "clientId": {
+    "message": "Client ID"
+  },
+  "clientSecret": {
+    "message": "Client Secret"
+  },
+  "metadataAddress": {
+    "message": "Адрес за метаданни"
+  },
+  "oidcRedirectBehavior": {
+    "message": "OIDC Redirect Behavior"
+  },
+  "getClaimsFromUserInfoEndpoint": {
+    "message": "Get Claims From User Info Endpoint"
+  },
+  "additionalScopes": {
+    "message": "Additional/Custom Scopes (comma delimited)"
+  },
+  "additionalUserIdClaimTypes": {
+    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+  },
+  "additionalEmailClaimTypes": {
+    "message": "Additional/Custom Email Claim Types (comma delimited)"
+  },
+  "additionalNameClaimTypes": {
+    "message": "Additional/Custom Name Claim Types (comma delimited)"
+  },
+  "acrValues": {
+    "message": "Requested Authentication Context Class Reference values (acr_values)"
+  },
+  "expectedReturnAcrValue": {
+    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+  },
+  "spEntityId": {
+    "message": "SP Entity ID"
+  },
+  "spMetadataUrl": {
+    "message": "Адрес за метаданни на SAML 2.0"
+  },
+  "spAcsUrl": {
+    "message": "Assertion Consumer Service (ACS) URL"
+  },
+  "spNameIdFormat": {
+    "message": "Name ID Format"
+  },
+  "spOutboundSigningAlgorithm": {
+    "message": "Outbound Signing Algorithm"
+  },
+  "spSigningBehavior": {
+    "message": "Signing Behavior"
+  },
+  "spMinIncomingSigningAlgorithm": {
+    "message": "Minimum Incoming Signing Algorithm"
+  },
+  "spWantAssertionsSigned": {
+    "message": "Want Assertions Signed"
+  },
+  "spValidateCertificates": {
+    "message": "Проверка на сертификатите"
+  },
+  "idpEntityId": {
+    "message": "Entity ID"
+  },
+  "idpBindingType": {
+    "message": "Binding Type"
+  },
+  "idpSingleSignOnServiceUrl": {
+    "message": "Адрес на услугата за еднократна идентификация"
+  },
+  "idpSingleLogoutServiceUrl": {
+    "message": "Адрес на услугата за еднократно отписване"
+  },
+  "idpArtifactResolutionServiceUrl": {
+    "message": "Artifact Resolution Service URL"
+  },
+  "idpX509PublicCert": {
+    "message": "X509 Public Certificate"
+  },
+  "idpOutboundSigningAlgorithm": {
+    "message": "Outbound Signing Algorithm"
+  },
+  "idpAllowUnsolicitedAuthnResponse": {
+    "message": "Allow Unsolicited Authentication Response"
+  },
+  "idpDisableOutboundLogoutRequests": {
+    "message": "Disable Outbound Logout Requests"
+  },
+  "idpWantAuthnRequestsSigned": {
+    "message": "Want Authentication Requests Signed"
+  },
+  "ssoSettingsSaved": {
+    "message": "Настройката на еднократната идентификация е запазена."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Unable to reach the crypto agent, try again later."
   }
 }
