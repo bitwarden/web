@@ -24,8 +24,6 @@ import { VerifyEmailTokenComponent } from './accounts/verify-email-token.compone
 import { VerifyRecoverDeleteComponent } from './accounts/verify-recover-delete.component';
 
 import { CollectionsComponent as OrgManageCollectionsComponent } from './organizations/manage/collections.component';
-import { ManageRouterComponent } from './organizations/manage/manage-router.component';
-import { ToolsRouterComponent } from './organizations/tools/tools-router.component';
 import { EventsComponent as OrgEventsComponent } from './organizations/manage/events.component';
 import { GroupsComponent as OrgGroupsComponent } from './organizations/manage/groups.component';
 import { ManageComponent as OrgManageComponent } from './organizations/manage/manage.component';
@@ -44,6 +42,7 @@ import { ExportComponent as OrgExportComponent } from './organizations/tools/exp
 import {
     ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent,
 } from './organizations/tools/exposed-passwords-report.component';
+import { FamiliesForEnterpriseSetupComponent } from './organizations/sponsorships/families-for-enterprise-setup.component';
 import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
 import {
     InactiveTwoFactorReportComponent as OrgInactiveTwoFactorReportComponent,
@@ -99,6 +98,8 @@ import { Permissions } from 'jslib-common/enums/permissions';
 
 import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
 import { EmergencyAccessComponent } from './settings/emergency-access.component';
+import { SponsoredFamiliesComponent } from './settings/sponsored-families.component';
+import { FamiliesForEnterpriseSetupLoginComponent } from './organizations/sponsorships/families-for-enterprise-setup-login.component';
 
 const routes: Routes = [
     {
@@ -172,6 +173,11 @@ const routes: Routes = [
                 canActivate: [AuthGuardService],
                 data: { titleId: 'updateTempPassword' },
             },
+            {
+                path: 'sponsored/families-for-enterprise',
+                component: FamiliesForEnterpriseSetupLoginComponent,
+                data: { titleId: 'setupFamiliesForEnterprise' },
+            },
         ],
     },
     {
@@ -218,6 +224,11 @@ const routes: Routes = [
                             },
                         ],
                     },
+                    {
+                        path: 'sponsored-families',
+                        component: SponsoredFamiliesComponent,
+                        data: { titleId: 'sponsoredFamilies' },
+                    },
                 ],
             },
             {
@@ -261,6 +272,7 @@ const routes: Routes = [
                     },
                 ],
             },
+            { path: 'setup/families-for-enterprise', component: FamiliesForEnterpriseSetupComponent }
         ],
     },
     {
@@ -279,7 +291,7 @@ const routes: Routes = [
                     {
                         path: '',
                         pathMatch: 'full',
-                        component: ToolsRouterComponent,
+                        redirectTo: 'import',
                     },
                     {
                         path: 'import',
@@ -367,7 +379,7 @@ const routes: Routes = [
                     {
                         path: '',
                         pathMatch: 'full',
-                        component: ManageRouterComponent,
+                        redirectTo: 'people',
                     },
                     {
                         path: 'collections',

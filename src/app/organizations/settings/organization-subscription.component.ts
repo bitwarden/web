@@ -156,6 +156,10 @@ export class OrganizationSubscriptionComponent implements OnInit {
         }
     }
 
+    async removeSponsorship() {
+        await this.apiService.deleteRemoveSponsorship(this.organizationId);
+    }
+
     get isExpired() {
         return this.sub != null && this.sub.expiration != null &&
             new Date(this.sub.expiration) < new Date();
@@ -207,6 +211,10 @@ export class OrganizationSubscriptionComponent implements OnInit {
         return this.sub.plan.hasAdditionalSeatsOption;
     }
 
+    get isSponsoredSubscription(): boolean {
+        return true;
+    }
+
     get canDownloadLicense() {
         return (this.sub.planType !== PlanType.Free && this.subscription == null) ||
             (this.subscription != null && !this.subscription.cancelled);
@@ -216,7 +224,13 @@ export class OrganizationSubscriptionComponent implements OnInit {
         if (this.sub.planType === PlanType.Free) {
             return this.i18nService.t('subscriptionFreePlan', this.sub.seats.toString());
         } else if (this.sub.planType === PlanType.FamiliesAnnually || this.sub.planType === PlanType.FamiliesAnnually2019) {
-            return this.i18nService.t('subscriptionFamiliesPlan', this.sub.seats.toString());
+            // If it's a family plan, it could is sponsored
+            // TODO: Use real check
+            if (true) {
+                return this.i18nService.t('subscriptionSponsoredFamiliesPlan', this.sub.seats.toString());
+            } else {
+                return this.i18nService.t('subscriptionFamiliesPlan', this.sub.seats.toString());
+            }
         } else if (this.sub.maxAutoscaleSeats === this.sub.seats && this.sub.seats != null) {
             return this.i18nService.t('subscriptionMaxReached', this.sub.seats.toString());
         } else if (this.sub.maxAutoscaleSeats == null) {

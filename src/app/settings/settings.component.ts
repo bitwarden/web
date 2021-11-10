@@ -9,6 +9,7 @@ import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.se
 import { TokenService } from 'jslib-common/abstractions/token.service';
 
 import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
 const BroadcasterSubscriptionId = 'SettingsComponent';
 
@@ -19,9 +20,12 @@ const BroadcasterSubscriptionId = 'SettingsComponent';
 export class SettingsComponent implements OnInit, OnDestroy {
     premium: boolean;
     selfHosted: boolean;
+    isInEnterprise: boolean;
+    hasFamilySponsorshipAvailable: boolean;
 
     constructor(private tokenService: TokenService, private broadcasterService: BroadcasterService,
-        private ngZone: NgZone, private platformUtilsService: PlatformUtilsService) { }
+        private ngZone: NgZone, private platformUtilsService: PlatformUtilsService,
+        private userService: UserService) { }
 
     async ngOnInit() {
         this.broadcasterService.subscribe(BroadcasterSubscriptionId, async (message: any) => {
@@ -44,6 +48,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
 
     async load() {
+        this.isInEnterprise = true;
         this.premium = await this.tokenService.getPremium();
+        this.hasFamilySponsorshipAvailable = (await this.userService.getAllOrganizations())
+            .some(o => o.familySponsorshipAvailable || o.familySponsorshipFriendlyName !== null);
+        this.hasFamilySponsorshipAvailable = true;
     }
 }

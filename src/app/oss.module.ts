@@ -94,6 +94,8 @@ import { AttachmentsComponent as OrgAttachmentsComponent } from './organizations
 import { CiphersComponent as OrgCiphersComponent } from './organizations/vault/ciphers.component';
 import { CollectionsComponent as OrgCollectionsComponent } from './organizations/vault/collections.component';
 import { GroupingsComponent as OrgGroupingsComponent } from './organizations/vault/groupings.component';
+import { FamiliesForEnterpriseSetupComponent } from './organizations/sponsorships/families-for-enterprise-setup.component';
+import { FamiliesForEnterpriseSetupLoginComponent } from './organizations/sponsorships/families-for-enterprise-setup-login.component';
 import { VaultComponent as OrgVaultComponent } from './organizations/vault/vault.component';
 
 import { AccessComponent } from './send/access.component';
@@ -140,6 +142,7 @@ import { TwoFactorWebAuthnComponent } from './settings/two-factor-webauthn.compo
 import { TwoFactorYubiKeyComponent } from './settings/two-factor-yubikey.component';
 import { UpdateKeyComponent } from './settings/update-key.component';
 import { UpdateLicenseComponent } from './settings/update-license.component';
+import { SponsoredFamiliesComponent } from './settings/sponsored-families.component';
 import { UserBillingComponent } from './settings/user-billing.component';
 import { UserSubscriptionComponent } from './settings/user-subscription.component';
 import { VaultTimeoutInputComponent } from './settings/vault-timeout-input.component';
@@ -303,6 +306,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SetPasswordComponent,
         AddCreditComponent,
         AddEditComponent,
+        AddEditCustomFieldsComponent,
         AdjustPaymentComponent,
         AdjustSubscription,
         AdjustStorageComponent,
@@ -343,6 +347,8 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ExportComponent,
         ExposedPasswordsReportComponent,
         FallbackSrcDirective,
+        FamiliesForEnterpriseSetupComponent,
+        FamiliesForEnterpriseSetupLoginComponent,
         FolderAddEditComponent,
         FooterComponent,
         FrontendLayoutComponent,
@@ -419,6 +425,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SendComponent,
         SettingsComponent,
         ShareComponent,
+        SponsoredFamiliesComponent,
         SsoComponent,
         StopClickDirective,
         StopPropDirective,
@@ -459,7 +466,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SendOptionsPolicyComponent,
         ResetPasswordPolicyComponent,
         VaultTimeoutInputComponent,
-        AddEditCustomFieldsComponent,
     ],
     exports: [
         A11yTitleDirective,

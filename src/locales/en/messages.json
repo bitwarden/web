@@ -2959,6 +2959,15 @@
       }
     }
   },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Your subscription allows for a total of $COUNT$ users. Your plan is sponsored and billed to an external organization.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
   "subscriptionMaxReached": {
     "message": "Adjustments to your subscription will result in prorated changes to your billing totals. You cannot invite more than $COUNT$ users without increasing your subscription seats.",
     "placeholders": {
@@ -4475,5 +4484,80 @@
   },
   "ssoCryptoAgentUnavailable": {
     "message": "Unable to reach the crypto agent, try again later."
+  },
+  "sponsoredFamilies": {
+    "message": "Free Bitwarden Families"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "You and your family are eligible for Free Bitwarden Premium. Redeem with your personal email to keep your data secure even when you are not at work."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "The Bitwarden for Families plan include"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Premium access for up to 6 users"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Shared collections for Family secrets"
+  },
+  "redeem": {
+    "message": "Redeem"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Select the organization you would like sponsored"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Enter your personal email to redeem Bitwarden Families"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "If you leave or are removed from this organization, your Families plan will expire at the end of the billing period."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "You've been offered a free Bitwarden Families Plan Organization. To continue, you need to log in to the account that received the offer."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Unable to accept offer. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Redeem Free Bitwarden Families Organization Offer"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Free Bitwarden Families offer successfully redeemed"
+  },
+  "redeemed": {
+    "message": "Redeemed"
+  },
+  "redeemedAccount": {
+    "message": "Redeemed Account"
+  },
+  "removeAccount": {
+    "message": "Remove account $EMAIL$",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "test@email.com"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Free Families Plan"
+  },
+  "redeemNow": {
+    "message": "Redeem Now"
+  },
+  "friendlyName": {
+    "message": "Friendly Name"
+  },
+  "removeSponsorship": {
+    "message": "Remove Sponsorship"
   }
 }

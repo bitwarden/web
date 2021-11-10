@@ -86,6 +86,7 @@
                 </app-adjust-subscription>
             </div>
         </ng-container>
+        <button *ngIf="isSponsoredSubscription" class="btn btn-outline-danger" (click)="removeSponsorship()">{{'removeSponsorship' | i18n}}</button>
         <h2 class="spaced-header">{{'storage' | i18n}}</h2>
         <p>{{'subscriptionStorage' | i18n : sub.maxStorageGb || 0 : sub.storageName || '0 MB'}}</p>
         <div class="progress">
