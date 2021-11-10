@@ -108,6 +108,17 @@ export class SsoComponent implements OnInit {
     }
 
     async submit() {
+        if (this.data.get('useKeyConnector').value) {
+            const keyConnectorUrl = this.data.get('keyConnectorUrl').value;
+            try {
+                await this.apiService.getKeyConnectorAlive(keyConnectorUrl);
+            } catch {
+                this.platformUtilsService.showToast('error', null,
+                    'Unable to reach Key Connector. Check the URL and try again.');
+                return;
+            }
+        }
+
         const request = new OrganizationSsoRequest();
         request.enabled = this.enabled.value;
         request.data = this.data.value;
