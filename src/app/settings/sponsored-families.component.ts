@@ -46,7 +46,6 @@ export class SponsoredFamiliesComponent implements OnInit {
         try {
             this.revokePromise = this.doRemoveSponsorship(org);
             await this.revokePromise;
-            await this.load();
         } catch (e) {
             this.logService.error(e);
         }
@@ -62,6 +61,7 @@ export class SponsoredFamiliesComponent implements OnInit {
         }
 
         await this.apiService.deleteRevokeSponsorship(org.id);
+        await this.load(true);
         this.toasterService.popAsync('success', null, this.i18nService.t('reclaimedFreePlan'));
     }
 

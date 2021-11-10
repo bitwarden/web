@@ -23,7 +23,10 @@
             <small>{{'sponsoredFamiliesLeaveCopy' | i18n}}</small>
         </div>
         <div class="form-group col-6">
-            <button class="btn btn-primary mt-2 btn-submit" type="submit">{{'redeem' | i18n}}</button>
+            <button class="btn btn-primary mt-2 btn-submit" [disabled]="form.loading" type="submit">
+                <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                <span>{{'redeem' | i18n}}</span>
+            </button>
         </div>
     </form>
 </div>
