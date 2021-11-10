@@ -7,6 +7,7 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 import { PlanSponsorshipType } from 'jslib-common/enums/planSponsorshipType';
 import { Organization } from 'jslib-common/models/domain/organization';
@@ -21,20 +22,26 @@ export class SponsoredFamiliesComponent implements OnInit {
     activeSponsorshipOrgs: Organization[];
     selectedSponsorshipOrgId: string = '';
     sponsorshipEmail: string  = '';
+    friendlyName: string = '';
 
     // Conditional display properties
-    anyActiveSponsorships: boolean;
-    moreThanOneOrgAvailable: boolean;
-    anyOrgsAvailable: boolean;
+    anyActiveSponsorships: boolean = false;
+    moreThanOneOrgAvailable: boolean = false;
+    anyOrgsAvailable: boolean = false;
 
     formPromise: Promise<any>;
 
     constructor(private userService: UserService, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
-        private toasterService: ToasterService, private logService: LogService) { }
+        private toasterService: ToasterService, private logService: LogService,
+        private syncService: SyncService) { }
 
     async ngOnInit() {
         await this.load();
+    }
+
+    async resendEmail(org: Organization) {
+        this.toasterService.popAsync('success', null, '[WIP] Should send email');
     }
 
     async removeSponsorship(org: Organization) {
@@ -47,8 +54,7 @@ export class SponsoredFamiliesComponent implements OnInit {
 
         try {
             // TODO: Remove sponsorship
-
-            this.toasterService.popAsync('success', null, 'Sponsorship Removed');
+            this.toasterService.popAsync('success', null, '[WIP] Nothing happened');
             this.load();
         } catch (e) {
             this.logService.error(e);
@@ -60,15 +66,20 @@ export class SponsoredFamiliesComponent implements OnInit {
         this.formPromise = this.apiService.postCreateSponsorship(this.selectedSponsorshipOrgId, {
             sponsoredEmail: this.sponsorshipEmail,
             planSponsorshipType: PlanSponsorshipType.FamiliesForEnterprise,
+            friendlyName: this.friendlyName,
         });
 
         await this.formPromise;
         this.formPromise = null;
-        
+        this.load(true);
     }
 
     private async load(forceReload: boolean = false) {
-        const allOrgs = forceReload ? [] : await this.userService.getAllOrganizations();
+        if (forceReload) {
+            this.syncService.fullSync(true);
+        }
+
+        const allOrgs = await this.userService.getAllOrganizations();
         this.availableSponsorshipOrgs = allOrgs.filter(org => org.familySponsorshipAvailable);
 
         this.activeSponsorshipOrgs = allOrgs.filter(org => org.familySponsorshipFriendlyName !== null);
