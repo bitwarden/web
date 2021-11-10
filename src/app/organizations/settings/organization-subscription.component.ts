@@ -212,7 +212,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     get isSponsoredSubscription(): boolean {
-        return true;
+        return this.sub.subscription.items.some(i => i.sponsoredSubscriptionItem);
     }
 
     get canDownloadLicense() {
