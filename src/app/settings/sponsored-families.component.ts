@@ -21,7 +21,7 @@ export class SponsoredFamiliesComponent implements OnInit {
     // TODO: I think this will be a different model
     activeSponsorshipOrgs: Organization[];
     selectedSponsorshipOrgId: string = '';
-    sponsorshipEmail: string  = '';
+    sponsorshipEmail: string = '';
     friendlyName: string = '';
 
     // Conditional display properties

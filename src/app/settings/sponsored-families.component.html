@@ -23,12 +23,13 @@
     </div>
     <div class="form-group col-6">
         <label for="accountEmail">{{'sponsoredFamiliesEmail' | i18n}}:</label>
-        <input id="accountEmail" class="form-control"  inputmode="email" [(ngModel)]="sponsorshipEmail" name="sponsorshipEmail" required>
+        <input id="accountEmail" class="form-control" inputmode="email" [(ngModel)]="sponsorshipEmail"
+            name="sponsorshipEmail" required>
     </div>
     <div class="form-group col-6">
         <label for="friendlyName">{{'friendlyName' | i18n}}:</label>
-        <input id="friendlyName" class="form-control"  [(ngModel)]="friendlyName" name="friendlyName" required>
-        <button class="btn btn-primary mt-2" type="submit">{{'redeem' | i18n}}</button>
+        <input id="friendlyName" class="form-control" [(ngModel)]="friendlyName" name="friendlyName" required>
+        <button class="btn btn-primary btn-submit mt-2" type="submit">{{'redeem' | i18n}}</button>
     </div>
 </form>
 <div *ngIf="anyActiveSponsorships">
@@ -47,11 +48,9 @@
                 </td>
                 <td>{{o.name}}</td>
                 <td class="table-action-right">
-                    <button class="btn btn-outline-primary"
-                        (click)="resendEmail(o)"
-                        [attr.aria-label]="">Resend Email</button>
-                    <button class="btn btn-outline-danger" 
-                        (click)="removeSponsorship(o)" 
+                    <button class="btn btn-outline-primary" (click)="resendEmail(o)" [attr.aria-label]="">Resend
+                        Email</button>
+                    <button class="btn btn-outline-danger" (click)="removeSponsorship(o)"
                         [attr.aria-label]="'removeAccount' | i18n : o.familySponsorshipFriendlyName">Remove</button>
                 </td>
             </tr>

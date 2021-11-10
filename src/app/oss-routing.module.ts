@@ -42,6 +42,7 @@ import { ExportComponent as OrgExportComponent } from './organizations/tools/exp
 import {
     ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent,
 } from './organizations/tools/exposed-passwords-report.component';
+import { FamiliesForEnterpriseSetupComponent } from './organizations/sponsorships/families-for-enterprise-setup.component';
 import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
 import {
     InactiveTwoFactorReportComponent as OrgInactiveTwoFactorReportComponent,
@@ -98,6 +99,7 @@ import { Permissions } from 'jslib-common/enums/permissions';
 import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
 import { EmergencyAccessComponent } from './settings/emergency-access.component';
 import { SponsoredFamiliesComponent } from './settings/sponsored-families.component';
+import { FamiliesForEnterpriseSetupLoginComponent } from './organizations/sponsorships/families-for-enterprise-setup-login.component';
 
 const routes: Routes = [
     {
@@ -170,6 +172,11 @@ const routes: Routes = [
                 component: UpdateTempPasswordComponent,
                 canActivate: [AuthGuardService],
                 data: { titleId: 'updateTempPassword' },
+            },
+            {
+                path: 'sponsored/families-for-enterprise',
+                component: FamiliesForEnterpriseSetupLoginComponent,
+                data: { titleId: 'setupFamiliesForEnterprise' },
             },
         ],
     },
@@ -265,6 +272,7 @@ const routes: Routes = [
                     },
                 ],
             },
+            { path: 'setup/families-for-enterprise', component: FamiliesForEnterpriseSetupComponent }
         ],
     },
     {
