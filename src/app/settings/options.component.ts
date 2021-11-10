@@ -63,7 +63,7 @@ export class OptionsComponent implements OnInit {
         localeOptions.splice(0, 0, { name: i18nService.t('default'), value: null });
         this.localeOptions = localeOptions;
         this.themeOptions = [
-            { name: i18nService.t('themeLight'), value: null },
+            { name: i18nService.t('themeLight'), value: ThemeType.Light },
             { name: i18nService.t('themeDark'), value: ThemeType.Dark },
             { name: i18nService.t('themeSystem'), value: ThemeType.System },
         ];
