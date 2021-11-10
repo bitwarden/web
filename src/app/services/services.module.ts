@@ -102,10 +102,10 @@ const i18nService = new I18nService(window.navigator.language, 'locales');
 const broadcasterService = new BroadcasterService();
 const messagingService = new BroadcasterMessagingService(broadcasterService);
 const consoleLogService = new ConsoleLogService(false);
-const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService, () => stateService);
-const storageService: StorageServiceAbstraction = new HtmlStorageService(platformUtilsService);
+const storageService: StorageServiceAbstraction = new HtmlStorageService();
 const secureStorageService: StorageServiceAbstraction = new MemoryStorageService();
 const stateService: StateServiceAbstraction = new StateService(storageService, secureStorageService, consoleLogService);
+const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService, stateService);
 const organizationService: OrganizationServiceAbstraction = new OrganizationService(stateService);
 const providerService: ProviderServiceAbstraction = new ProviderService(stateService);
 const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(window,

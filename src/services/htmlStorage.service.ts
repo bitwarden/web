@@ -1,4 +1,3 @@
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { HtmlStorageLocation } from 'jslib-common/enums/htmlStorageLocation';
 
@@ -12,17 +11,12 @@ export class HtmlStorageService implements StorageService {
         return { htmlStorageLocation: HtmlStorageLocation.Session };
     }
 
-    constructor(private platformUtilsService: PlatformUtilsService) { }
+    constructor() { }
 
     async init() {
-        let globals = await this.get<Globals>('globals', { htmlStorageLocation: HtmlStorageLocation.Local });
-        if (globals == null) {
-            globals = new Globals();
-            globals.vaultTimeoutAction = 'lock';
-            if (!this.platformUtilsService.isDev()) {
-                globals.vaultTimeout = 15;
-            }
-        }
+        let globals = await this.get<Globals>('globals', { htmlStorageLocation: HtmlStorageLocation.Local }) ?? new Globals();
+        globals.vaultTimeout = globals.vaultTimeout ?? 15;
+        globals.vaultTimeoutAction = globals.vaultTimeoutAction ?? 'lock';
         await this.save('globals', globals, { htmlStorageLocation: HtmlStorageLocation.Local });
     }
 

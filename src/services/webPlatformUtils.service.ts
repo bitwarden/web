@@ -16,7 +16,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     private prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
 
     constructor(private i18nService: I18nService, private messagingService: MessagingService,
-        private logService: LogService, private stateService: () => StateService) { }
+        private logService: LogService, private stateService: StateService) { }
 
     getDevice(): DeviceType {
         if (this.browserCache != null) {
@@ -291,7 +291,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     async getEffectiveTheme(): Promise<ThemeType.Light | ThemeType.Dark> {
-        const theme = await this.stateService().getTheme();
+        const theme = await this.stateService.getTheme();
         if (theme === ThemeType.Dark) {
             return ThemeType.Dark;
         } else if (theme === ThemeType.System) {
