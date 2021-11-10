@@ -29,31 +29,41 @@
     <div class="form-group col-6">
         <label for="friendlyName">{{'friendlyName' | i18n}}:</label>
         <input id="friendlyName" class="form-control" [(ngModel)]="friendlyName" name="friendlyName" required>
-        <button class="btn btn-primary btn-submit mt-2" type="submit">{{'redeem' | i18n}}</button>
+        <button class="btn btn-primary btn-submit mt-2" type="submit" [disabled]="form.loading">{{'redeem' |
+            i18n}}</button>
     </div>
 </form>
-<div *ngIf="anyActiveSponsorships">
-    <table class="table table-hover table-list">
-        <thead>
-            <tr>
-                <th>{{'redeemedAccount' | i18n}}</th>
-                <th>{{'organization' | i18n}}</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let o of activeSponsorshipOrgs">
-                <td>
-                    {{o.familySponsorshipFriendlyName}}
-                </td>
-                <td>{{o.name}}</td>
-                <td class="table-action-right">
-                    <button class="btn btn-outline-primary" (click)="resendEmail(o)" [attr.aria-label]="">Resend
-                        Email</button>
-                    <button class="btn btn-outline-danger" (click)="removeSponsorship(o)"
-                        [attr.aria-label]="'removeAccount' | i18n : o.familySponsorshipFriendlyName">Remove</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<form #revokeForm [appApiAction]="revokePromise">
+    <div *ngIf="anyActiveSponsorships">
+        <table class="table table-hover table-list">
+            <thead>
+                <tr>
+                    <th>{{'redeemedAccount' | i18n}}</th>
+                    <th>{{'organization' | i18n}}</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let o of activeSponsorshipOrgs">
+                    <td>
+                        {{o.familySponsorshipFriendlyName}}
+                    </td>
+                    <td>{{o.name}}</td>
+                    <td class="table-action-right">
+                        <button class="btn btn-outline-primary btn-submit" [disabled]="revokeForm.loading"
+                            (click)="resendEmail(o)" [attr.aria-label]="">
+                            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                            <span>{{'resendEmail' | i18n }}</span>
+                        </button>
+                        <button class="btn btn-outline-danger btn-submit" [disabled]="revokeForm.loading"
+                            (click)="removeSponsorship(o)"
+                            [attr.aria-label]="'removeAccount' | i18n : o.familySponsorshipFriendlyName">
+                            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                            <span>{{'remove' |i18n }}</span>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</form>

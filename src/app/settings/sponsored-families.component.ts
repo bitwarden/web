@@ -25,11 +25,9 @@ export class SponsoredFamiliesComponent implements OnInit {
     friendlyName: string = '';
 
     // Conditional display properties
-    anyActiveSponsorships: boolean = false;
-    moreThanOneOrgAvailable: boolean = false;
-    anyOrgsAvailable: boolean = false;
 
     formPromise: Promise<any>;
+    revokePromise: Promise<any>;
 
     constructor(private userService: UserService, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
@@ -45,21 +43,26 @@ export class SponsoredFamiliesComponent implements OnInit {
     }
 
     async removeSponsorship(org: Organization) {
+        try {
+            this.revokePromise = this.doRemoveSponsorship(org);
+            await this.revokePromise;
+            await this.load();
+        } catch (e) {
+            this.logService.error(e);
+        }
+    }
+
+    async doRemoveSponsorship(org: Organization) {
         const isConfirmed = await this.platformUtilsService.showDialog(
             'Are you sure you want to remove this sponsorship?', org.familySponsorshipFriendlyName,
             this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+
         if (!isConfirmed) {
             return;
         }
 
-        try {
-            // TODO: Remove sponsorship
-            this.toasterService.popAsync('success', null, '[WIP] Nothing happened');
-            this.load();
-        } catch (e) {
-            this.logService.error(e);
-        }
-
+        await this.apiService.deleteRevokeSponsorship(org.id);
+        this.toasterService.popAsync('success', null, this.i18nService.t('reclaimedFreePlan'));
     }
 
     async submit() {
@@ -70,8 +73,7 @@ export class SponsoredFamiliesComponent implements OnInit {
         });
 
         await this.formPromise;
-        this.formPromise = null;
-        this.load(true);
+        await this.load(true);
     }
 
     private async load(forceReload: boolean = false) {
@@ -84,17 +86,20 @@ export class SponsoredFamiliesComponent implements OnInit {
 
         this.activeSponsorshipOrgs = allOrgs.filter(org => org.familySponsorshipFriendlyName !== null);
 
-        if (this.availableSponsorshipOrgs.length > 0) {
-            this.anyOrgsAvailable = true;
-            this.moreThanOneOrgAvailable = this.availableSponsorshipOrgs.length > 1;
-
-            if (this.availableSponsorshipOrgs.length === 1) {
-                this.selectedSponsorshipOrgId = this.availableSponsorshipOrgs[0].id;
-            }
+        if (this.availableSponsorshipOrgs.length === 1) {
+            this.selectedSponsorshipOrgId = this.availableSponsorshipOrgs[0].id;
         }
+    }
 
-        if (this.activeSponsorshipOrgs.length > 0) {
-            this.anyActiveSponsorships = true;
-        }
+    get anyActiveSponsorships(): boolean {
+        return this.activeSponsorshipOrgs.length > 0;
+    }
+
+    get anyOrgsAvailable(): boolean {
+        return this.availableSponsorshipOrgs.length > 0;
+    }
+
+    get moreThanOneOrgAvailable(): boolean {
+        return this.availableSponsorshipOrgs.length > 1;
     }
 }
