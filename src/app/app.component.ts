@@ -292,7 +292,7 @@ export class AppComponent implements OnDestroy, OnInit {
     }
 
     private async setFullWidth() {
-        const enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
+        const enableFullWidth = await this.stateService.getEnableFullWidth();
         if (enableFullWidth) {
             document.body.classList.add('full-width');
         } else {

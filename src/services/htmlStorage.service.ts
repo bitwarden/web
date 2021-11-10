@@ -5,6 +5,8 @@ import { Globals } from 'jslib-common/models/domain/globals';
 import { StorageOptions } from 'jslib-common/models/domain/storageOptions';
 
 export class HtmlStorageService implements StorageService {
+    // TODO: I don't think anything is saved here anymore. The secureStorage instance in web is a memory store.
+    // Regardless, this needs to be revisted so we can not have special conditions in individual storage service types.
     private memoryStorage = new Map<string, string>();
 
     get defaultOptions(): StorageOptions {
@@ -14,7 +16,7 @@ export class HtmlStorageService implements StorageService {
     constructor() { }
 
     async init() {
-        let globals = await this.get<Globals>('globals', { htmlStorageLocation: HtmlStorageLocation.Local }) ?? new Globals();
+        const globals = await this.get<Globals>('globals', { htmlStorageLocation: HtmlStorageLocation.Local }) ?? new Globals();
         globals.vaultTimeout = globals.vaultTimeout ?? 15;
         globals.vaultTimeoutAction = globals.vaultTimeoutAction ?? 'lock';
         await this.save('globals', globals, { htmlStorageLocation: HtmlStorageLocation.Local });

@@ -10,7 +10,6 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.service';
 
 import { ThemeType } from 'jslib-common/enums/themeType';
@@ -36,10 +35,9 @@ export class OptionsComponent implements OnInit {
     private startingLocale: string;
     private startingTheme: string;
 
-    constructor(private storageService: StorageService, private stateService: StateService,
-        private i18nService: I18nService, private toasterService: ToasterService,
-        private vaultTimeoutService: VaultTimeoutService, private platformUtilsService: PlatformUtilsService,
-        private messagingService: MessagingService) {
+    constructor(private stateService: StateService, private i18nService: I18nService,
+        private toasterService: ToasterService, private vaultTimeoutService: VaultTimeoutService,
+        private platformUtilsService: PlatformUtilsService, private messagingService: MessagingService) {
         this.vaultTimeouts = [
             { name: i18nService.t('oneMinute'), value: 1 },
             { name: i18nService.t('fiveMinutes'), value: 5 },
@@ -72,13 +70,13 @@ export class OptionsComponent implements OnInit {
     }
 
     async ngOnInit() {
-        this.vaultTimeout.setValue(await this.vaultTimeoutService.getVaultTimeout());
-        this.vaultTimeoutAction = await this.stateService.getVaultTimeoutAction();
-        this.disableIcons = await this.stateService.getDisableFavicon();
-        this.enableGravatars = await this.stateService.getEnableGravitars();
-        this.enableFullWidth = true; // await this.stateService.getEnableFullWidth();
-        this.locale = this.startingLocale = await this.stateService.getLocale();
-        this.theme = this.startingTheme = await this.stateService.getTheme();
+        this.vaultTimeout.setValue(await this.vaultTimeoutService.getVaultTimeout() ?? 15);
+        this.vaultTimeoutAction = await this.stateService.getVaultTimeoutAction() ?? 'lock';
+        this.disableIcons = await this.stateService.getDisableFavicon() ?? false;
+        this.enableGravatars = await this.stateService.getEnableGravitars() ?? true;
+        this.enableFullWidth = await this.stateService.getEnableFullWidth() ?? false;
+        this.locale = this.startingLocale = await this.stateService.getLocale() ?? 'en';
+        this.theme = await this.stateService.getTheme() ?? this.startingTheme;
     }
 
     async submit() {
@@ -89,9 +87,8 @@ export class OptionsComponent implements OnInit {
 
         await this.vaultTimeoutService.setVaultTimeoutOptions(this.vaultTimeout.value, this.vaultTimeoutAction);
         await this.stateService.setDisableFavicon(this.disableIcons);
-        await this.storageService.save('enableGravatars', this.enableGravatars);
         await this.stateService.setEnableGravitars(this.enableGravatars);
-        await this.storageService.save('enableFullWidth', this.enableFullWidth);
+        await this.stateService.setEnableFullWidth(this.enableFullWidth);
         this.messagingService.send('setFullWidth');
         if (this.theme !== this.startingTheme) {
             await this.stateService.setTheme(this.theme);

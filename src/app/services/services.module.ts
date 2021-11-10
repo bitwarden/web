@@ -181,9 +181,6 @@ export function initFactory(): Function {
                 htmlEl.classList.add('theme_' + sysTheme);
             }
         });
-        // TODO: stateService refactor: Either make these global instead of account level, or move elsewhere.
-        // await stateService.setDisableFavicon(await storageService.get<boolean>(StorageKey.DisableFavicon));
-        // await stateService.setEnableGravitars(await storageService.get<boolean>('enableGravatars'));
     };
 }
 
