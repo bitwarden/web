@@ -158,6 +158,7 @@ containerService.attachToWindow(window);
 
 export function initFactory(): Function {
     return async () => {
+        await stateService.init();
         await (storageService as HtmlStorageService).init();
 
         const urls = process.env.URLS as Urls;

@@ -1,12 +1,13 @@
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { HtmlStorageLocation } from 'jslib-common/enums/htmlStorageLocation';
 
-import { Globals } from 'jslib-common/models/domain/globals';
+import { GlobalState } from 'jslib-common/models/domain/globalState';
+import { State } from 'jslib-common/models/domain/state';
 import { StorageOptions } from 'jslib-common/models/domain/storageOptions';
 
 export class HtmlStorageService implements StorageService {
     // TODO: I don't think anything is saved here anymore. The secureStorage instance in web is a memory store.
-    // Regardless, this needs to be revisted so we can not have special conditions in individual storage service types.
+    // Regardless, this service needs to be revisted so we can not have special conditions in individual storage service types.
     private memoryStorage = new Map<string, string>();
 
     get defaultOptions(): StorageOptions {
@@ -16,10 +17,11 @@ export class HtmlStorageService implements StorageService {
     constructor() { }
 
     async init() {
-        const globals = await this.get<Globals>('globals', { htmlStorageLocation: HtmlStorageLocation.Local }) ?? new Globals();
-        globals.vaultTimeout = globals.vaultTimeout ?? 15;
-        globals.vaultTimeoutAction = globals.vaultTimeoutAction ?? 'lock';
-        await this.save('globals', globals, { htmlStorageLocation: HtmlStorageLocation.Local });
+        const state = await this.get<State>('state', { htmlStorageLocation: HtmlStorageLocation.Local }) ?? new State();
+        state.globals = state.globals ?? new GlobalState();
+        state.globals.vaultTimeout = state.globals.vaultTimeout ?? 15;
+        state.globals.vaultTimeoutAction = state.globals.vaultTimeoutAction ?? 'lock';
+        await this.save('state', state, { htmlStorageLocation: HtmlStorageLocation.Local });
     }
 
     get<T>(key: string, options: StorageOptions = this.defaultOptions): Promise<T> {

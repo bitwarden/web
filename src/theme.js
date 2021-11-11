@@ -6,9 +6,8 @@
     const htmlEl = document.documentElement;
     let theme = defaultTheme;
 
-    const globalsJson = window.localStorage.getItem('globals');
-    const globals = JSON.parse(globalsJson);
-    console.debug(globals);
+    const stateJson = window.localStorage.getItem('state');
+    const globals = JSON.parse(stateJson).globals;
     if (globals.theme != null) {
         if (globals.theme.indexOf('system') > -1) {
             theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
