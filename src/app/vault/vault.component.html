@@ -85,8 +85,7 @@
                     <app-organizations [vault]="true"></app-organizations>
                 </div>
             </div>
-            <!--TODO: Add *ngIf for whether or not to show this card-->
-            <div class="card border-success mb-4">
+            <div class="card border-success mb-4" *ngIf="showRedeemSponsorship">
                 <div class="card-header bg-success text-white">
                     {{'freeFamiliesPlan' | i18n}}
                 </div>
