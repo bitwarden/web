@@ -25,9 +25,9 @@ function initiateBrowserSso(code: string, state: string) {
     window.postMessage({ command: 'authResult', code: code, state: state }, '*');
     const handOffMessage = ('; ' + document.cookie).split('; ssoHandOffMessage=').pop().split(';').shift();
     document.cookie = 'ssoHandOffMessage=;SameSite=strict;max-age=0';
-    let content = document.getElementById('content');
+    const content = document.getElementById('content');
     content.innerHTML = '';
-    let p = document.createElement('p');
+    const p = document.createElement('p');
     p.innerText = handOffMessage;
     content.appendChild(p);
 }
