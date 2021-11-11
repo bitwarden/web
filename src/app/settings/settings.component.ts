@@ -50,7 +50,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
     async load() {
         this.isInEnterprise = true;
         this.premium = await this.tokenService.getPremium();
-        this.hasFamilySponsorshipAvailable = (await this.userService.getAllOrganizations())
-            .some(o => o.familySponsorshipAvailable || o.familySponsorshipFriendlyName !== null);
+        this.hasFamilySponsorshipAvailable = await this.userService.canManageSponsorships();
     }
 }
