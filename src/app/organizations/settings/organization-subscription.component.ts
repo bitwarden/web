@@ -158,7 +158,15 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     async removeSponsorship() {
-
+        const isConfirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('removeSponsorshipConfirmation'), 
+            this.i18nService.t('removeSponsorship'),
+            this.i18nService.t('remove'), this.i18nService.t('cancel'), 'warning');
+        
+        if (!isConfirmed) {
+            return;
+        }
+        
         this.removeSponsorshipPromise = this.apiService.deleteRemoveSponsorship(this.organizationId);
         await this.removeSponsorshipPromise;
         this.toasterService.popAsync('success', null, 'Sponsorship Removed');
@@ -217,7 +225,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     get isSponsoredSubscription(): boolean {
-        return this.sub.subscription.items.some(i => i.sponsoredSubscriptionItem);
+        return this.sub.subscription?.items.some(i => i.sponsoredSubscriptionItem);
     }
 
     get canDownloadLicense() {
@@ -231,7 +239,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         } else if (this.sub.planType === PlanType.FamiliesAnnually || this.sub.planType === PlanType.FamiliesAnnually2019) {
             // If it's a family plan, it could is sponsored
             // TODO: Use real check
-            if (true) {
+            if (this.isSponsoredSubscription) {
                 return this.i18nService.t('subscriptionSponsoredFamiliesPlan', this.sub.seats.toString());
             } else {
                 return this.i18nService.t('subscriptionFamiliesPlan', this.sub.seats.toString());

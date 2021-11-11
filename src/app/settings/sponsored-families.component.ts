@@ -17,15 +17,15 @@ import { Organization } from 'jslib-common/models/domain/organization';
     templateUrl: 'sponsored-families.component.html',
 })
 export class SponsoredFamiliesComponent implements OnInit {
-    availableSponsorshipOrgs: Organization[];
-    // TODO: I think this will be a different model
-    activeSponsorshipOrgs: Organization[];
+    loading = false;
+
+    availableSponsorshipOrgs: Organization[] = [];
+    activeSponsorshipOrgs: Organization[] = [];
     selectedSponsorshipOrgId: string = '';
     sponsorshipEmail: string = '';
     friendlyName: string = '';
 
     // Conditional display properties
-
     formPromise: Promise<any>;
     revokePromise: Promise<any>;
 
@@ -73,12 +73,25 @@ export class SponsoredFamiliesComponent implements OnInit {
         });
 
         await this.formPromise;
+        this.toasterService.popAsync('success', null, this.i18nService.t('sponsorshipCreated'));
+        this.resetForm();
         await this.load(true);
     }
 
+    private async resetForm() {
+        this.sponsorshipEmail = '';
+        this.friendlyName = '';
+        this.selectedSponsorshipOrgId = '';
+    }
+
     private async load(forceReload: boolean = false) {
+        if (this.loading) {
+            return;
+        }
+
+        this.loading = true;
         if (forceReload) {
-            this.syncService.fullSync(true);
+            await this.syncService.fullSync(true);
         }
 
         const allOrgs = await this.userService.getAllOrganizations();
@@ -89,6 +102,7 @@ export class SponsoredFamiliesComponent implements OnInit {
         if (this.availableSponsorshipOrgs.length === 1) {
             this.selectedSponsorshipOrgId = this.availableSponsorshipOrgs[0].id;
         }
+        this.loading = false;
     }
 
     get anyActiveSponsorships(): boolean {

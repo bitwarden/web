@@ -52,6 +52,5 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.premium = await this.tokenService.getPremium();
         this.hasFamilySponsorshipAvailable = (await this.userService.getAllOrganizations())
             .some(o => o.familySponsorshipAvailable || o.familySponsorshipFriendlyName !== null);
-        this.hasFamilySponsorshipAvailable = true;
     }
 }
