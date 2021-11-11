@@ -29,7 +29,7 @@ import { ProductType } from 'jslib-common/enums/productType';
     templateUrl: 'families-for-enterprise-setup.component.html',
 })
 export class FamiliesForEnterpriseSetupComponent implements OnInit {
-    loadingPromise: Promise<any>;
+    loading = true;
     formPromise: Promise<any>;
 
     token: string;
@@ -61,11 +61,11 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
 
             this.token = qParams.token;
 
-            this.loadingPromise = this.syncService.fullSync(true);
-            await this.loadingPromise;
+            await this.syncService.fullSync(true);
+            this.loading = false;
 
             this.existingFamilyOrganizations = (await this.userService.getAllOrganizations())
-                .filter(o => o.planProductType == ProductType.Families);
+                .filter(o => o.planProductType === ProductType.Families);
         });
     }
 
