@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', event => {
     const hostParam = getQsParam('host');
     const requestParam = getQsParam('request');
 
-    var hostUrl = new URL('https://' + hostParam);
+    const hostUrl = new URL('https://' + hostParam);
     if (!hostUrl.hostname.endsWith('.duosecurity.com') && !hostUrl.hostname.endsWith('.duofederal.com')) {
         return;
     }
