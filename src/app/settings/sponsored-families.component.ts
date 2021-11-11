@@ -27,43 +27,42 @@ export class SponsoredFamiliesComponent implements OnInit {
 
     // Conditional display properties
     formPromise: Promise<any>;
-    revokePromise: Promise<any>;
 
     constructor(private userService: UserService, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
-        private toasterService: ToasterService, private logService: LogService,
-        private syncService: SyncService) { }
+        private toasterService: ToasterService, private syncService: SyncService) { }
 
     async ngOnInit() {
         await this.load();
     }
 
     async resendEmail(org: Organization) {
+        
         this.toasterService.popAsync('success', null, '[WIP] Should send email');
     }
 
-    async removeSponsorship(org: Organization) {
-        try {
-            this.revokePromise = this.doRemoveSponsorship(org);
-            await this.revokePromise;
-        } catch (e) {
-            this.logService.error(e);
-        }
-    }
+    // async removeSponsorship(org: Organization) {
+    //     try {
+    //         this.revokePromise = this.doRemoveSponsorship(org);
+    //         await this.revokePromise;
+    //     } catch (e) {
+    //         this.logService.error(e);
+    //     }
+    // }
 
-    async doRemoveSponsorship(org: Organization) {
-        const isConfirmed = await this.platformUtilsService.showDialog(
-            'Are you sure you want to remove this sponsorship?', org.familySponsorshipFriendlyName,
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+    // async doRemoveSponsorship(org: Organization) {
+    //     const isConfirmed = await this.platformUtilsService.showDialog(
+    //         'Are you sure you want to remove this sponsorship?', org.familySponsorshipFriendlyName,
+    //         this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
 
-        if (!isConfirmed) {
-            return;
-        }
+    //     if (!isConfirmed) {
+    //         return;
+    //     }
 
-        await this.apiService.deleteRevokeSponsorship(org.id);
-        await this.load(true);
-        this.toasterService.popAsync('success', null, this.i18nService.t('reclaimedFreePlan'));
-    }
+    //     await this.apiService.deleteRevokeSponsorship(org.id);
+    //     await this.load(true);
+    //     this.toasterService.popAsync('success', null, this.i18nService.t('reclaimedFreePlan'));
+    // }
 
     async submit() {
         this.formPromise = this.apiService.postCreateSponsorship(this.selectedSponsorshipOrgId, {
@@ -78,13 +77,8 @@ export class SponsoredFamiliesComponent implements OnInit {
         await this.load(true);
     }
 
-    private async resetForm() {
-        this.sponsorshipEmail = '';
-        this.friendlyName = '';
-        this.selectedSponsorshipOrgId = '';
-    }
 
-    private async load(forceReload: boolean = false) {
+    async load(forceReload: boolean = false) {
         if (this.loading) {
             return;
         }
@@ -103,6 +97,13 @@ export class SponsoredFamiliesComponent implements OnInit {
             this.selectedSponsorshipOrgId = this.availableSponsorshipOrgs[0].id;
         }
         this.loading = false;
+    }
+
+
+    private async resetForm() {
+        this.sponsorshipEmail = '';
+        this.friendlyName = '';
+        this.selectedSponsorshipOrgId = '';
     }
 
     get anyActiveSponsorships(): boolean {
