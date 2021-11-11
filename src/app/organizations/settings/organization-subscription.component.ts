@@ -166,7 +166,6 @@ export class OrganizationSubscriptionComponent implements OnInit {
         if (!isConfirmed) {
             return;
         }
-        
         this.removeSponsorshipPromise = this.apiService.deleteRemoveSponsorship(this.organizationId);
         await this.removeSponsorshipPromise;
         this.toasterService.popAsync('success', null, 'Sponsorship Removed');
