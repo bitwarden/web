@@ -128,11 +128,11 @@ searchService = new SearchService(cipherService, consoleLogService, i18nService)
 const policyService = new PolicyService(userService, storageService, apiService);
 const sendService = new SendService(cryptoService, userService, apiService, fileUploadService, storageService,
     i18nService, cryptoFunctionService);
-const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
-    cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, tokenService,
-    policyService, null, async () => messagingService.send('logout', { expired: false }));
 const keyConnectorService = new KeyConnectorService(storageService, userService, cryptoService, apiService,
     environmentService, tokenService, consoleLogService);
+const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
+    cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, tokenService,
+    policyService, keyConnectorService, null, async () => messagingService.send('logout', { expired: false }));
 const syncService = new SyncService(userService, apiService, settingsService,
     folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
     sendService, consoleLogService, tokenService, keyConnectorService,
