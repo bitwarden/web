@@ -143,6 +143,7 @@ import { TwoFactorYubiKeyComponent } from './settings/two-factor-yubikey.compone
 import { UpdateKeyComponent } from './settings/update-key.component';
 import { UpdateLicenseComponent } from './settings/update-license.component';
 import { SponsoredFamiliesComponent } from './settings/sponsored-families.component';
+import { SponsoringOrgRowComponent } from './settings/sponsoring-org-row.component';
 import { UserBillingComponent } from './settings/user-billing.component';
 import { UserSubscriptionComponent } from './settings/user-subscription.component';
 import { VaultTimeoutInputComponent } from './settings/vault-timeout-input.component';
@@ -426,6 +427,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SettingsComponent,
         ShareComponent,
         SponsoredFamiliesComponent,
+        SponsoringOrgRowComponent,
         SsoComponent,
         StopClickDirective,
         StopPropDirective,
