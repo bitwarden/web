@@ -38,6 +38,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
 
     userOrg: Organization;
 
+    removeSponsorshipPromise: Promise<any>;
     cancelPromise: Promise<any>;
     reinstatePromise: Promise<any>;
 
@@ -157,7 +158,11 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     async removeSponsorship() {
-        await this.apiService.deleteRemoveSponsorship(this.organizationId);
+
+        this.removeSponsorshipPromise = this.apiService.deleteRemoveSponsorship(this.organizationId);
+        await this.removeSponsorshipPromise;
+        this.toasterService.popAsync('success', null, 'Sponsorship Removed');
+        await this.load();
     }
 
     get isExpired() {
