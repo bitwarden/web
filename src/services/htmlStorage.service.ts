@@ -14,8 +14,6 @@ export class HtmlStorageService implements StorageService {
         return { htmlStorageLocation: HtmlStorageLocation.Session };
     }
 
-    constructor() { }
-
     async init() {
         const state = await this.get<State>('state', { htmlStorageLocation: HtmlStorageLocation.Local }) ?? new State();
         state.globals = state.globals ?? new GlobalState();
