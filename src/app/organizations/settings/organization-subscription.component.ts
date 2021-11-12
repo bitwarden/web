@@ -168,7 +168,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         }
         this.removeSponsorshipPromise = this.apiService.deleteRemoveSponsorship(this.organizationId);
         await this.removeSponsorshipPromise;
-        this.toasterService.popAsync('success', null, 'Sponsorship Removed');
+        this.toasterService.popAsync('success', null, this.i18nService.t('removedSponsorshipSuccess'));
         await this.load();
     }
 
@@ -236,8 +236,6 @@ export class OrganizationSubscriptionComponent implements OnInit {
         if (this.sub.planType === PlanType.Free) {
             return this.i18nService.t('subscriptionFreePlan', this.sub.seats.toString());
         } else if (this.sub.planType === PlanType.FamiliesAnnually || this.sub.planType === PlanType.FamiliesAnnually2019) {
-            // If it's a family plan, it could is sponsored
-            // TODO: Use real check
             if (this.isSponsoredSubscription) {
                 return this.i18nService.t('subscriptionSponsoredFamiliesPlan', this.sub.seats.toString());
             } else {

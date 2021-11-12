@@ -5,7 +5,6 @@ import {
 import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
@@ -36,34 +35,6 @@ export class SponsoredFamiliesComponent implements OnInit {
         await this.load();
     }
 
-    async resendEmail(org: Organization) {
-        
-        this.toasterService.popAsync('success', null, '[WIP] Should send email');
-    }
-
-    // async removeSponsorship(org: Organization) {
-    //     try {
-    //         this.revokePromise = this.doRemoveSponsorship(org);
-    //         await this.revokePromise;
-    //     } catch (e) {
-    //         this.logService.error(e);
-    //     }
-    // }
-
-    // async doRemoveSponsorship(org: Organization) {
-    //     const isConfirmed = await this.platformUtilsService.showDialog(
-    //         'Are you sure you want to remove this sponsorship?', org.familySponsorshipFriendlyName,
-    //         this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
-
-    //     if (!isConfirmed) {
-    //         return;
-    //     }
-
-    //     await this.apiService.deleteRevokeSponsorship(org.id);
-    //     await this.load(true);
-    //     this.toasterService.popAsync('success', null, this.i18nService.t('reclaimedFreePlan'));
-    // }
-
     async submit() {
         this.formPromise = this.apiService.postCreateSponsorship(this.selectedSponsorshipOrgId, {
             sponsoredEmail: this.sponsorshipEmail,
@@ -73,10 +44,10 @@ export class SponsoredFamiliesComponent implements OnInit {
 
         await this.formPromise;
         this.toasterService.popAsync('success', null, this.i18nService.t('sponsorshipCreated'));
+        this.formPromise = null;
         this.resetForm();
         await this.load(true);
     }
-
 
     async load(forceReload: boolean = false) {
         if (this.loading) {
