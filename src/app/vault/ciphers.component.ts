@@ -46,7 +46,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
     organizationNames = new Map<string, string>();
     sortedDescending = true;
-    sortBy = '' as string;
+    sortBy: string = '';
     sortByOptions = ['name', 'owner', 'dateCreated', 'lastEdited'] as (string)[];
 
     private didScroll = false;
