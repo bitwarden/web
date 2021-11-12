@@ -3,7 +3,6 @@ import {
     Input,
     Output,
     EventEmitter,
-    OnInit,
 } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
@@ -59,7 +58,7 @@ export class SponsoringOrgRowComponent {
 
     private async doRevokeSponsorship() {
         const isConfirmed = await this.platformUtilsService.showDialog(
-            'You sure?', this.sponsoringOrg.familySponsorshipFriendlyName,
+            this.i18nService.t('revokeSponsorshipConfirmation'), this.sponsoringOrg.familySponsorshipFriendlyName,
             this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
 
         if (!isConfirmed) {
