@@ -63,7 +63,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
     async ngOnInit() {
         this.userHasPremiumAccess = await this.userService.canAccessPremium();
-        this.organizationNames = await this.loadOranizations();
+        this.organizationNames = await this.loadOrganizationNames();
     }
 
     ngOnDestroy() {
@@ -86,7 +86,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         this.didScroll = this.pagedCiphers.length > this.pageSize;
     }
 
-    async loadOranizations(): Promise<Map<string, string>> {
+    async loadOrganizationNames(): Promise<Map<string, string>> {
         const organizations = await this.userService.getAllOrganizations();
         const organizationNames = new Map<string, string>();
 
