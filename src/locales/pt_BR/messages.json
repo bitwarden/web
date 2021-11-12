@@ -167,7 +167,7 @@
     "message": "Booleano"
   },
   "cfTypeLinked": {
-    "message": "Linked",
+    "message": "Vinculado",
     "description": "This describes a field that is 'linked' (related) to another field."
   },
   "remove": {
@@ -316,7 +316,7 @@
     "message": "Sobrenome"
   },
   "fullName": {
-    "message": "Full Name"
+    "message": "Nome Completo"
   },
   "address1": {
     "message": "Endereço 1"
@@ -1743,13 +1743,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Seu plano vem com um teste gratuito de 7 dias. Seu cartão não será cobrado até que o período de teste termine e de forma recorrente a cada $INTERVAL$. Você pode cancelar a qualquer momento.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Seu plano vem com um teste gratuito de 7 dias. Seu cartão não será cobrado até que o período de teste termine e de forma recorrente a cada $INTERVAL$. Você pode cancelar a qualquer momento."
   },
   "paymentInformation": {
     "message": "Informação de Pagamento"
@@ -2942,7 +2936,7 @@
     }
   },
   "subscriptionFreePlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "message": "Você não pode convidar mais do que $COUNT$ usuários sem atualizar seu plano.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2951,7 +2945,7 @@
     }
   },
   "subscriptionFamiliesPlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "message": "Você não pode convidar mais de $COUNT$ usuários sem atualizar seu plano. Entre em contato com o Suporte ao Cliente para atualizar.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3839,7 +3833,7 @@
     "message": "Acessar Relatórios"
   },
   "missingPermissions": {
-    "message": "You lack the necessary permissions to perform this action."
+    "message": "Você não tem a permissão necessária para executar esta ação."
   },
   "manageAllCollections": {
     "message": "Gerenciar Todas as Coleções"
@@ -4473,7 +4467,91 @@
   "ssoSettingsSaved": {
     "message": "Configuração de logon único foi salva."
   },
-  "ssoCryptoAgentUnavailable": {
-    "message": "Unable to reach the crypto agent, try again later."
+  "ssoKeyConnectorUnavailable": {
+    "message": "Não foi possível acessar o Conector de Chave, tente novamente mais tarde."
+  },
+  "keyConnectorUrl": {
+    "message": "URL de Conector de Chave"
+  },
+  "requestVerificationCode": {
+    "message": "Solicitar senha de uso único"
+  },
+  "verificationCode": {
+    "message": "Código de Verificação"
+  },
+  "verificationCodeRequired": {
+    "message": "O código de verificação é necessário."
+  },
+  "invalidVerificationCode": {
+    "message": "Código de verificação inválido"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ está usando SSO com um servidor de chaves auto-hospedado. Não é mais necessária uma senha mestra para os membros desta organização entrarem.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Sair da Organização"
+  },
+  "removeMasterPassword": {
+    "message": "Remover Senha Mestra"
+  },
+  "removedMasterPassword": {
+    "message": "Senha mestra removida."
+  },
+  "allowSso": {
+    "message": "Permitir autenticação por SSO"
+  },
+  "allowSsoDesc": {
+    "message": "Uma vez definida, sua configuração será salva e os membros poderão se autenticar usando suas credenciais de Provedor de Identidade."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Ativar o",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "Política de SSO",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "para exigir que todos os membros entrem com o SSO.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "memberDecryptionOption": {
+    "message": "Opções de Descriptografia de Membro"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Uma vez autenticados, os membros irão descriptografar os dados do cofre usando suas Senhas Mestras."
+  },
+  "keyConnector": {
+    "message": "Conector de Chave"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Conecte o Login com o SSO ao seu servidor de chave de descriptografia auto-hospedado. Usando esta opção, os membros não precisarão usar suas senhas mestras para descriptografar os dados do cofre."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Entrar com o SSO e Descriptografia de Conector de Chave\" está habilitado. Esta política se aplica apenas a Proprietários e Administradores."
+  },
+  "enabledSso": {
+    "message": "Ativado o SSO"
+  },
+  "disabledSso": {
+    "message": "Desativado o SSO"
+  },
+  "enabledKeyConnector": {
+    "message": "Ativado o Conector de Chave"
+  },
+  "disabledKeyConnector": {
+    "message": "Desativado o Conector de Chave"
+  },
+  "keyConnectorWarning": {
+    "message": "Depois que o Conector de Chave é configurado, as Opções de Descriptografia de Membro não podem ser alteradas."
+  },
+  "migratedKeyConnector": {
+    "message": "Migrado para o Conector de Chave"
   }
 }

@@ -167,7 +167,7 @@
     "message": "Булево"
   },
   "cfTypeLinked": {
-    "message": "Linked",
+    "message": "Свързано",
     "description": "This describes a field that is 'linked' (related) to another field."
   },
   "remove": {
@@ -316,7 +316,7 @@
     "message": "Фамилно име"
   },
   "fullName": {
-    "message": "Full Name"
+    "message": "Пълно име"
   },
   "address1": {
     "message": "Адрес 1"
@@ -1743,13 +1743,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Планът ви идва с пробен период от 7 дена. Плащането няма се изиска преди това, след което ще се повтаря всеки $INTERVAL$. Може да се откажете по всяко време.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Планът ви идва с пробен период от 7 дена. Плащането няма се изиска преди това, след което ще се повтаря всеки $INTERVAL$. Може да се откажете по всяко време."
   },
   "paymentInformation": {
     "message": "Информация за плащането"
@@ -2942,7 +2936,7 @@
     }
   },
   "subscriptionFreePlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "message": "Не можете да поканите повече от $COUNT$ потребители без да надградите плана си.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2951,7 +2945,7 @@
     }
   },
   "subscriptionFamiliesPlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "message": "Не можете да поканите повече от $COUNT$ потребители без да надградите плана си. Свържете се с поддръжката за надграждане.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3839,7 +3833,7 @@
     "message": "Достъп до отчетите"
   },
   "missingPermissions": {
-    "message": "You lack the necessary permissions to perform this action."
+    "message": "Нямате нужните правомощия да извършите това действие."
   },
   "manageAllCollections": {
     "message": "Управление на всички колекции"
@@ -4456,24 +4450,108 @@
     "message": "Artifact Resolution Service URL"
   },
   "idpX509PublicCert": {
-    "message": "X509 Public Certificate"
+    "message": "Публичен сертификат X509"
   },
   "idpOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "Изходящ подписващ алгоритъм"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "Разрешаване на непоискан отговор при удостоверяване"
   },
   "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+    "message": "Забраняване на изходящи заявки за отписване"
   },
   "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+    "message": "Искане на подписани заявки за удостоверяване"
   },
   "ssoSettingsSaved": {
     "message": "Настройката на еднократната идентификация е запазена."
   },
-  "ssoCryptoAgentUnavailable": {
-    "message": "Unable to reach the crypto agent, try again later."
+  "ssoKeyConnectorUnavailable": {
+    "message": "Конекторът за ключове е недостъпен. Опитайте отново по-късно."
+  },
+  "keyConnectorUrl": {
+    "message": "Адрес на конектора за ключове"
+  },
+  "requestVerificationCode": {
+    "message": "Заявка за еднократна парола"
+  },
+  "verificationCode": {
+    "message": "Код за потвърждаване"
+  },
+  "verificationCodeRequired": {
+    "message": "Кодът за потвърждение е задължителен."
+  },
+  "invalidVerificationCode": {
+    "message": "Грешен код за потвърждаване"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ използва еднократно удостоверяване със собствен сървър за ключове. Членовете на тази организация вече нямат нужда от главна парола за вписване.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Напускане на организацията"
+  },
+  "removeMasterPassword": {
+    "message": "Премахване на главната парола"
+  },
+  "removedMasterPassword": {
+    "message": "Главната парола е премахната."
+  },
+  "allowSso": {
+    "message": "Разрешаване на еднократното удостоверяване"
+  },
+  "allowSsoDesc": {
+    "message": "Once set up, your configuration will be saved and members will be able to authenticate using their Identity Provider credentials."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Включете",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "еднократното удостоверяване",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "за да задължите всички членове да се вписват чрез еднократно удостоверяване.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "memberDecryptionOption": {
+    "message": "Member Decryption Options"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "След вписване, членовете ще дешифрират данните от трезорите си чрез главната си парола."
+  },
+  "keyConnector": {
+    "message": "Конектор за ключове"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Свържете вписването чрез еднократно удостоверяване със своя собствен сървър за ключове за дешифриране. Така няма да има нужда членовете да използват главната си парола, за да дешифрират данните от трезора си."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
+  },
+  "enabledSso": {
+    "message": "Еднократното удостоверяване е включено"
+  },
+  "disabledSso": {
+    "message": "Еднократното удостоверяване е изключено"
+  },
+  "enabledKeyConnector": {
+    "message": "Конекторът за ключове е включен"
+  },
+  "disabledKeyConnector": {
+    "message": "Конекторът за ключове е изключен"
+  },
+  "keyConnectorWarning": {
+    "message": "След като конекторът за ключове е бъде настроен, настройките на членовете за дешифриране няма да могат да бъда променени."
+  },
+  "migratedKeyConnector": {
+    "message": "Migrated to Key Connector"
   }
 }
