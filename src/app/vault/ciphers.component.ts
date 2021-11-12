@@ -103,7 +103,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         if (c.organizationId != null) {
             return this.organizationNames.get(c.organizationId);
         }
-        return 'Personal';
+        return this.i18nService.t('myVault');
     }
 
     sortCiphers(sortBy: string): void {
