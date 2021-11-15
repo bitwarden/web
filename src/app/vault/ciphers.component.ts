@@ -153,8 +153,11 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
                     }
                 });
             } else if (sortBy === 'name') {
-                if (this.sortedDescending) this.ciphers.sort((a, b) => a.name.localeCompare(b.name));
-                else this.ciphers.sort((a, b) => b.name.localeCompare(a.name));
+                if (this.sortedDescending) {
+                    this.ciphers.sort((a, b) => a.name.localeCompare(b.name));
+                } else {
+                    this.ciphers.sort((a, b) => b.name.localeCompare(a.name));
+                }
             }
         } else {
             this.sortBy = '';
