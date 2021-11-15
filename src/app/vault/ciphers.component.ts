@@ -119,8 +119,11 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
             if (sortBy === 'lastEdited') {
                 this.ciphers.sort((a: CipherView, b: CipherView) => {
-                    if (self.sortedDescending) return new Date(b.revisionDate).valueOf() - new Date(a.revisionDate).valueOf(); // weird typescript thing: https://stackoverflow.com/a/60688789/7672369
-                    else return new Date(a.revisionDate).valueOf() - new Date(b.revisionDate).valueOf();
+                    if (self.sortedDescending) {
+                       return new Date(b.revisionDate).valueOf() - new Date(a.revisionDate).valueOf();
+                    } else {
+                        return new Date(a.revisionDate).valueOf() - new Date(b.revisionDate).valueOf();
+                    }
                 });
             } else if (sortBy === 'dateCreated') {
                 // TO-DO
