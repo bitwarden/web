@@ -167,7 +167,7 @@
     "message": "Wartość logiczna"
   },
   "cfTypeLinked": {
-    "message": "Linked",
+    "message": "Powiązane pole",
     "description": "This describes a field that is 'linked' (related) to another field."
   },
   "remove": {
@@ -316,7 +316,7 @@
     "message": "Nazwisko"
   },
   "fullName": {
-    "message": "Full Name"
+    "message": "Imię i nazwisko"
   },
   "address1": {
     "message": "Adres 1"
@@ -1743,13 +1743,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Twój plan zawiera 7-dniowy okres próbny. W tym czasie nie poniesiesz żadnych kosztów. Płatność będzie realizowana co $INTERVAL$. Możesz zrezygnować z niego w każdej chwili.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Twój plan zawiera 7-dniowy okres próbny. W tym czasie nie poniesiesz żadnych kosztów. Możesz zrezygnować z niego w każdej chwili."
   },
   "paymentInformation": {
     "message": "Informacje o płatności"
@@ -2811,7 +2805,7 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Zmień plan",
+    "message": "Ulepsz plan",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
@@ -2942,7 +2936,7 @@
     }
   },
   "subscriptionFreePlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "message": "W obecnym planie nie możesz zaprosić więcej niż $COUNT$ użytkowników.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2951,7 +2945,7 @@
     }
   },
   "subscriptionFamiliesPlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "message": "W obecnym planie nie możesz zaprosić więcej niż $COUNT$ użytkowników. Aby ulepszyć plan, skontaktuj się z działem obsługi klienta.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3839,7 +3833,7 @@
     "message": "Dostęp do raportów"
   },
   "missingPermissions": {
-    "message": "You lack the necessary permissions to perform this action."
+    "message": "Nie posiadasz uprawnień do wykonania tej akcji."
   },
   "manageAllCollections": {
     "message": "Zarządzaj wszystkimi kolekcjami"
@@ -4473,7 +4467,91 @@
   "ssoSettingsSaved": {
     "message": "Konfiguracja logowania jednokrotnego została zapisana."
   },
-  "ssoCryptoAgentUnavailable": {
-    "message": "Unable to reach the crypto agent, try again later."
+  "ssoKeyConnectorUnavailable": {
+    "message": "Nie można nawiązać połączenia z serwerem Key Connector. Spróbuj ponownie później."
+  },
+  "keyConnectorUrl": {
+    "message": "Adres URL serwera Key Connector"
+  },
+  "requestVerificationCode": {
+    "message": "Poproś o jednorazowe hasło"
+  },
+  "verificationCode": {
+    "message": "Kod weryfikacyjny"
+  },
+  "verificationCodeRequired": {
+    "message": "Kod weryfikacyjny jest wymagany."
+  },
+  "invalidVerificationCode": {
+    "message": "Kod weryfikacyjny jest nieprawidłowy"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "Organizacja $ORGANIZATION$ używa jednokrotnego logowania SSO z własnym serwerem kluczy. Użytkownicy nie muszą logować się za pomocą hasła głównego.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Opuść organizację"
+  },
+  "removeMasterPassword": {
+    "message": "Usuń hasło główne"
+  },
+  "removedMasterPassword": {
+    "message": "Hasło główne zostało usunięte."
+  },
+  "allowSso": {
+    "message": "Zezwalaj na uwierzytelnianie logowaniem jednokrotnym SSO"
+  },
+  "allowSsoDesc": {
+    "message": "Użytkownicy będą mogli uwierzytelnić się za pomocą danych logowania dostawcy tożsamości."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Włącz",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "zasadę logowania jednokrotnego SSO",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": ", aby wymagać od wszystkich użytkowników logowania jednokrotnego SSO.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "memberDecryptionOption": {
+    "message": "Opcje odszyfrowania użytkownika"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Po uwierzytelnieniu użytkownicy odszyfrują dane sejfu za pomocą hasła głównego."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Połącz logowanie jednokrotne SSO z odszyfrowaniem za pomocą własnego serwera kluczy. Użytkownicy nie będą musieli używać hasła głównego do odszyfrowania sejfu."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "Logowanie jednokrotne SSO z odszyfrowaniem za pomocą serwera Key Connector jest włączone. Ta zasada dotyczy tylko właścicieli i administratorów."
+  },
+  "enabledSso": {
+    "message": "Włącz logowanie jednokrotne SSO"
+  },
+  "disabledSso": {
+    "message": "Wyłącz logowanie jednokrotne SSO"
+  },
+  "enabledKeyConnector": {
+    "message": "Serwer Key Connector został włączony"
+  },
+  "disabledKeyConnector": {
+    "message": "Serwer Key Connector został wyłączony"
+  },
+  "keyConnectorWarning": {
+    "message": "Po włączeniu serwera Key Connector, opcje odszyfrowania użytkownika nie mogą zostać zmienione."
+  },
+  "migratedKeyConnector": {
+    "message": "Przeniesiony do serwera Key Connector"
   }
 }

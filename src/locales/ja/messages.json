@@ -1743,13 +1743,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "ご利用のプランでは、7日間の無料トライアルが可能です。トライアル期間が終わるまでは課金されません。トライアル終了後、$INTERVAL$毎に請求されます。いつでもキャンセルできます。",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "ご利用のプランでは、7日間の無料トライアルが可能です。トライアル期間が終わるまでは課金されません。トライアル終了後、$INTERVAL$毎に請求されます。いつでもキャンセルできます。"
   },
   "paymentInformation": {
     "message": "お支払い情報"
@@ -4473,7 +4467,91 @@
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
   },
-  "ssoCryptoAgentUnavailable": {
-    "message": "Unable to reach the crypto agent, try again later."
+  "ssoKeyConnectorUnavailable": {
+    "message": "キーコネクターに到達できません。後でもう一度お試しください。"
+  },
+  "keyConnectorUrl": {
+    "message": "キーコネクター URL"
+  },
+  "requestVerificationCode": {
+    "message": "ワンタイムパスワードを要求する"
+  },
+  "verificationCode": {
+    "message": "認証コード"
+  },
+  "verificationCodeRequired": {
+    "message": "認証コードが必要です。"
+  },
+  "invalidVerificationCode": {
+    "message": "認証コードが間違っています"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ は自己ホストの鍵サーバで SSO を使用しています。この組織のメンバーのログインにマスターパスワードは必要ありません。",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "組織から脱退する"
+  },
+  "removeMasterPassword": {
+    "message": "マスターパスワードを削除する"
+  },
+  "removedMasterPassword": {
+    "message": "マスターパスワードを削除しました。"
+  },
+  "allowSso": {
+    "message": "SSO 認証を許可する"
+  },
+  "allowSsoDesc": {
+    "message": "セットアップが完了すると設定が保存され、メンバーは ID プロバイダーの資格情報を使用して認証することができます。"
+  },
+  "ssoPolicyHelpStart": {
+    "message": "すべてのメンバーが SSO でログインするには",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO ポリシー",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "を有効にしてください。",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "memberDecryptionOption": {
+    "message": "メンバー復号オプション"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "認証が完了すると、メンバーはマスターパスワードを使用して保管庫データを復号します。"
+  },
+  "keyConnector": {
+    "message": "キーコネクター"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "SSO でログインして自己ホスト型の復号キーサーバーに接続します。このオプションを使用すると、メンバーは保管庫のデータを復号するためにマスターパスワードを使用する必要はありません。"
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "「SSO とキーコネクター複合でのログイン」が有効になっています。このポリシーは、オーナーと管理者にのみ適用されます。"
+  },
+  "enabledSso": {
+    "message": "SSO を有効にしました"
+  },
+  "disabledSso": {
+    "message": "SSOを無効にしました"
+  },
+  "enabledKeyConnector": {
+    "message": "キーコネクターを有効にしました"
+  },
+  "disabledKeyConnector": {
+    "message": "キーコネクターを無効にしました"
+  },
+  "keyConnectorWarning": {
+    "message": "キーコネクターがセットアップされると、メンバー復号オプションは変更できません。"
+  },
+  "migratedKeyConnector": {
+    "message": "キーコネクターに移行しました"
   }
 }

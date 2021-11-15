@@ -167,7 +167,7 @@
     "message": "Boolean"
   },
   "cfTypeLinked": {
-    "message": "Linked",
+    "message": "Əlaqə yaradıldı",
     "description": "This describes a field that is 'linked' (related) to another field."
   },
   "remove": {
@@ -316,7 +316,7 @@
     "message": "Soyad"
   },
   "fullName": {
-    "message": "Full Name"
+    "message": "Tam ad"
   },
   "address1": {
     "message": "Ünvan 1"
@@ -1743,13 +1743,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Planınızda 7 günlük ödənişsiz sınaq var. Sınaq müddəti bitənə qədər ödəniş metodundan pul çıxılmayacaq. Faktura, hər $INTERVAL$ bir müntəzəm olaraq icra ediləcək. İstənilən vaxt imtina edə bilərsiniz.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Planınızda 7 günlük ödənişsiz sınaq var. Sınaq müddəti bitənə qədər ödəniş metodundan pul çıxılmayacaq. Faktura, hər $INTERVAL$ bir müntəzəm olaraq icra ediləcək. İstənilən vaxt imtina edə bilərsiniz."
   },
   "paymentInformation": {
     "message": "Ödəniş məlumatı"
@@ -2942,7 +2936,7 @@
     }
   },
   "subscriptionFreePlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "message": "Planınızı yüksəltmədən $COUNT$ istifadəçidən çoxunu dəvət edə bilməzsiniz.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2951,7 +2945,7 @@
     }
   },
   "subscriptionFamiliesPlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "message": "Planınızı yüksəltmədən $COUNT$ istifadəçidən çoxunu dəvət edə bilməzsiniz. Zəhmət olmasa yüksəltmək üçün Müştəri Dəstəyi ilə əlaqə saxlayın.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3839,7 +3833,7 @@
     "message": "Hesabatlara müraciət"
   },
   "missingPermissions": {
-    "message": "You lack the necessary permissions to perform this action."
+    "message": "Bu əməliyyatı icra etmək üçün lazımi icazələri əldə etməmisiniz."
   },
   "manageAllCollections": {
     "message": "Bütün kolleksiyaları idarə et"
@@ -4393,7 +4387,7 @@
     "message": "OIDC yönləndirmə davranışı"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "İstifadəçi məlumatı uc nöqtəsindən iddia edin"
   },
   "additionalScopes": {
     "message": "Additional/Custom Scopes (comma delimited)"
@@ -4473,7 +4467,91 @@
   "ssoSettingsSaved": {
     "message": "Tək daxil olma konfiqurasiyası saxlanıldı."
   },
-  "ssoCryptoAgentUnavailable": {
-    "message": "Unable to reach the crypto agent, try again later."
+  "ssoKeyConnectorUnavailable": {
+    "message": "Unable to reach the Key Connector, try again later."
+  },
+  "keyConnectorUrl": {
+    "message": "Key Connector URL"
+  },
+  "requestVerificationCode": {
+    "message": "Tək istifadəlik parol tələb et"
+  },
+  "verificationCode": {
+    "message": "Təsdiqləmə kodu"
+  },
+  "verificationCodeRequired": {
+    "message": "Təsdiq kodu lazımdır."
+  },
+  "invalidVerificationCode": {
+    "message": "Etibarsız təsdiqləmə kodu"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$, öz-özünə sahiblik edən açar serveri ilə SSO istifadə edir. Bu təşkilatın üzvlərinin giriş etməsi üçün artıq ana parol tələb edilməyəcək.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Təşkilatı tərk et"
+  },
+  "removeMasterPassword": {
+    "message": "Ana parolu sil"
+  },
+  "removedMasterPassword": {
+    "message": "Ana parol silindi."
+  },
+  "allowSso": {
+    "message": "SSO kimlik təsdiqləməsinə icazə ver"
+  },
+  "allowSsoDesc": {
+    "message": "Qurulduqdan sonra, konfiqurasiyanız saxlanılacaq və üzvləriniz, Kimlik Təchizatçısı üçün kimlik məlumatlarını istifadə edərək kimliklərini təsdiqləyə biləcək."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Bütün üzvlərin SSO ilə",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "giriş etməsini məcburi etmək üçün",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "SSO Siyasətini fəallaşdırın.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "memberDecryptionOption": {
+    "message": "Üzv şifrə açma seçimləri"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Kimlik təsdiqləndikdən sonra üzvlər, Ana Parollarını istifadə edərək anbar verilənlərinin şifrələrini aça biləcək."
+  },
+  "keyConnector": {
+    "message": "Açar Bağlayıcı"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt vault data."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
+  },
+  "enabledSso": {
+    "message": "SSO fəaldır"
+  },
+  "disabledSso": {
+    "message": "SSO sıradan çıxarılıb"
+  },
+  "enabledKeyConnector": {
+    "message": "Açar Bağlayıcı fəaldır"
+  },
+  "disabledKeyConnector": {
+    "message": "Açar Bağlayıcı sıradan çıxarılıb"
+  },
+  "keyConnectorWarning": {
+    "message": "Açar Bağlayıcı qurulduqdan sonra, Üzv şifrə açma seçimləri dəyişdirilə bilməz."
+  },
+  "migratedKeyConnector": {
+    "message": "Açar Bağlayıcıya daşındı"
   }
 }
