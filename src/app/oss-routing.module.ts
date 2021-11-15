@@ -39,11 +39,11 @@ import {
     TwoFactorSetupComponent as OrgTwoFactorSetupComponent,
 } from './organizations/settings/two-factor-setup.component';
 
+import { FamiliesForEnterpriseSetupComponent } from './organizations/sponsorships/families-for-enterprise-setup.component';
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
 import {
     ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent,
 } from './organizations/tools/exposed-passwords-report.component';
-import { FamiliesForEnterpriseSetupComponent } from './organizations/sponsorships/families-for-enterprise-setup.component';
 import { ImportComponent as OrgImportComponent } from './organizations/tools/import.component';
 import {
     InactiveTwoFactorReportComponent as OrgInactiveTwoFactorReportComponent,
@@ -97,10 +97,10 @@ import { UnauthGuardService } from 'jslib-angular/services/unauth-guard.service'
 
 import { Permissions } from 'jslib-common/enums/permissions';
 
+import { FamiliesForEnterpriseSetupLoginComponent } from './organizations/sponsorships/families-for-enterprise-setup-login.component';
 import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
 import { EmergencyAccessComponent } from './settings/emergency-access.component';
 import { SponsoredFamiliesComponent } from './settings/sponsored-families.component';
-import { FamiliesForEnterpriseSetupLoginComponent } from './organizations/sponsorships/families-for-enterprise-setup-login.component';
 
 const routes: Routes = [
     {
@@ -279,7 +279,7 @@ const routes: Routes = [
                     },
                 ],
             },
-            { path: 'setup/families-for-enterprise', component: FamiliesForEnterpriseSetupComponent }
+            { path: 'setup/families-for-enterprise', component: FamiliesForEnterpriseSetupComponent },
         ],
     },
     {

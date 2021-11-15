@@ -1,8 +1,8 @@
 import {
     Component,
+    EventEmitter,
     Input,
     Output,
-    EventEmitter,
 } from '@angular/core';
 import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';

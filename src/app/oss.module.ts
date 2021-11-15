@@ -90,13 +90,13 @@ import {
     WeakPasswordsReportComponent as OrgWeakPasswordsReportComponent,
 } from './organizations/tools/weak-passwords-report.component';
 
+import { FamiliesForEnterpriseSetupLoginComponent } from './organizations/sponsorships/families-for-enterprise-setup-login.component';
+import { FamiliesForEnterpriseSetupComponent } from './organizations/sponsorships/families-for-enterprise-setup.component';
 import { AddEditComponent as OrgAddEditComponent } from './organizations/vault/add-edit.component';
 import { AttachmentsComponent as OrgAttachmentsComponent } from './organizations/vault/attachments.component';
 import { CiphersComponent as OrgCiphersComponent } from './organizations/vault/ciphers.component';
 import { CollectionsComponent as OrgCollectionsComponent } from './organizations/vault/collections.component';
 import { GroupingsComponent as OrgGroupingsComponent } from './organizations/vault/groupings.component';
-import { FamiliesForEnterpriseSetupComponent } from './organizations/sponsorships/families-for-enterprise-setup.component';
-import { FamiliesForEnterpriseSetupLoginComponent } from './organizations/sponsorships/families-for-enterprise-setup-login.component';
 import { VaultComponent as OrgVaultComponent } from './organizations/vault/vault.component';
 
 import { AccessComponent } from './send/access.component';
@@ -132,6 +132,8 @@ import { PremiumComponent } from './settings/premium.component';
 import { ProfileComponent } from './settings/profile.component';
 import { PurgeVaultComponent } from './settings/purge-vault.component';
 import { SettingsComponent } from './settings/settings.component';
+import { SponsoredFamiliesComponent } from './settings/sponsored-families.component';
+import { SponsoringOrgRowComponent } from './settings/sponsoring-org-row.component';
 import { TaxInfoComponent } from './settings/tax-info.component';
 import { TwoFactorAuthenticatorComponent } from './settings/two-factor-authenticator.component';
 import { TwoFactorDuoComponent } from './settings/two-factor-duo.component';
@@ -143,8 +145,6 @@ import { TwoFactorWebAuthnComponent } from './settings/two-factor-webauthn.compo
 import { TwoFactorYubiKeyComponent } from './settings/two-factor-yubikey.component';
 import { UpdateKeyComponent } from './settings/update-key.component';
 import { UpdateLicenseComponent } from './settings/update-license.component';
-import { SponsoredFamiliesComponent } from './settings/sponsored-families.component';
-import { SponsoringOrgRowComponent } from './settings/sponsoring-org-row.component';
 import { UserBillingComponent } from './settings/user-billing.component';
 import { UserSubscriptionComponent } from './settings/user-subscription.component';
 import { VaultTimeoutInputComponent } from './settings/vault-timeout-input.component';

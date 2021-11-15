@@ -159,10 +159,10 @@ export class OrganizationSubscriptionComponent implements OnInit {
 
     async removeSponsorship() {
         const isConfirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('removeSponsorshipConfirmation'), 
+            this.i18nService.t('removeSponsorshipConfirmation'),
             this.i18nService.t('removeSponsorship'),
             this.i18nService.t('remove'), this.i18nService.t('cancel'), 'warning');
-        
+
         if (!isConfirmed) {
             return;
         }

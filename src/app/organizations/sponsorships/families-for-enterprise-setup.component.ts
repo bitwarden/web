@@ -19,10 +19,10 @@ import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ValidationService } from 'jslib-angular/services/validation.service';
-import { OrganizationSponsorshipRedeemRequest } from 'jslib-common/models/request/organization/organizationSponsorshipRedeemRequest';
 import { PlanSponsorshipType } from 'jslib-common/enums/planSponsorshipType';
-import { Organization } from 'jslib-common/models/domain/organization';
 import { ProductType } from 'jslib-common/enums/productType';
+import { Organization } from 'jslib-common/models/domain/organization';
+import { OrganizationSponsorshipRedeemRequest } from 'jslib-common/models/request/organization/organizationSponsorshipRedeemRequest';
 
 @Component({
     selector: 'families-for-enterprise-setup',
