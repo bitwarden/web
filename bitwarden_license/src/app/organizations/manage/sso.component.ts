@@ -8,6 +8,10 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { Organization } from 'jslib-common/models/domain/organization';
+
 import { OrganizationSsoRequest } from 'jslib-common/models/request/organization/organizationSsoRequest';
 
 @Component({
@@ -25,6 +29,7 @@ export class SsoComponent implements OnInit {
 
     loading = true;
     organizationId: string;
+    organization: Organization;
     formPromise: Promise<any>;
 
     callbackPath: string;
@@ -75,7 +80,8 @@ export class SsoComponent implements OnInit {
     });
 
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private apiService: ApiService,
-        private platformUtilsService: PlatformUtilsService, private i18nService: I18nService) { }
+        private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
+        private userService: UserService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -85,6 +91,7 @@ export class SsoComponent implements OnInit {
     }
 
     async load() {
+        this.organization = await this.userService.getOrganization(this.organizationId);
         const ssoSettings = await this.apiService.getOrganizationSso(this.organizationId);
 
         this.data.patchValue(ssoSettings.data);

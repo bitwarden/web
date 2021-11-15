@@ -32,9 +32,13 @@
             </label>
         </div>
         <div class="form-check mt-2 form-check-block">
-            <input class="form-check-input" type="radio" id="memberDecryptionKey" [value]="true" formControlName="useKeyConnector">
+            <input class="form-check-input" type="radio" id="memberDecryptionKey" [value]="true" formControlName="useKeyConnector" disabled>
             <label class="form-check-label" for="memberDecryptionKey">
                 {{'keyConnector' | i18n}}
+                <a target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}"
+                    href="https://bitwarden.com/help/article/about-key-connector/">
+                    <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                </a>
                 <small>{{'memberDecryptionKeyConnectorDesc' | i18n}}</small>
             </label>
         </div>
