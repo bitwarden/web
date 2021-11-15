@@ -53,15 +53,9 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
                 for (let i = 0; i < c.login.uris.length; i++) {
                     const u = c.login.uris[i];
                     if (u.uri != null && u.uri !== '') {
-                        const hostname = Utils.getHostname(u.uri);
-                        const domain = Utils.getDomain(u.uri);
-                        if (hostname != null && this.services.has(hostname)) {
-                            if (this.services.get(hostname) != null) {
-                                docs.set(c.id, this.services.get(hostname));
-                            }
-                            inactive2faCiphers.push(c);
-                            break;
-                        } else if (domain != null && this.services.has(domain)) {
+                        const uri = u.uri.replace("www", "");
+                        const domain = Utils.getDomain(uri);
+                        if (domain != null && this.services.has(domain)) {
                             if (this.services.get(domain) != null) {
                                 docs.set(c.id, this.services.get(domain));
                             }
@@ -91,16 +85,14 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
         const responseJson = await response.json();
         for (const service of responseJson) {
             const serviceData = service[1];
-            if (serviceData.domain != null) {
-                if (serviceData.documentation != null) {
-                    if (serviceData['additional-domains'] != null) {
-                        for (const additionalDomain of serviceData['additional-domains']) {
-                            this.services.set(Utils.getHostname(additionalDomain), serviceData.documentation);
-                        }
-                    }
-                    this.services.set(Utils.getHostname(serviceData.domain), serviceData.documentation);
+            if (serviceData.domain == null) continue;
+            if (serviceData.documentation == null) continue;
+            if (serviceData['additional-domains'] != null) {
+                for (const additionalDomain of serviceData['additional-domains']) {
+                    this.services.set(additionalDomain, serviceData.documentation);
                 }
             }
+            this.services.set(serviceData.domain, serviceData.documentation);
         }
     }
 }
