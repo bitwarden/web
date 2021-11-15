@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Booléen"
   },
+  "cfTypeLinked": {
+    "message": "Linked",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Retirer"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Nom de famille"
+  },
+  "fullName": {
+    "message": "Full Name"
   },
   "address1": {
     "message": "Adresse 1"
@@ -900,7 +907,7 @@
     "message": "Changer l'e-mail"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Continuer changera l'adresse courriel de votre compte.  Votre adresse courriel utilisée pour l'authentification à 2 facteurs ne sera pas changée.  Vous pouvez changer cette adresse courriel dans les réglages Identification en deux étapes."
+    "message": "En continuant, vous changerez l'adresse e-mail de votre compte. Cela ne changera pas l'adresse e-mail utilisée pour l'authentification à deux facteurs. Vous pouvez modifier cette adresse e-mail dans les paramètres d'identification en deux étapes."
   },
   "newEmail": {
     "message": "Nouvel e-mail"
@@ -1002,7 +1009,7 @@
     "message": "Le coffre de l'organisation a été effacé."
   },
   "vaultAccessedByProvider": {
-    "message": "Coffre-fort accédé par le fournisseur."
+    "message": "Coffre-fort consulté par le fournisseur."
   },
   "purgeVaultDesc": {
     "message": "Poursuivez ci-dessous pour supprimer tous les éléments et dossiers de votre coffre. Les éléments qui appartiennent à une organisation dont vous êtes membre ne seront pas supprimés."
@@ -2248,7 +2255,7 @@
     "message": "Confirmé"
   },
   "clientOwnerEmail": {
-    "message": "Courriel du Propriétaire du Client"
+    "message": "Adresse e-mail du propriétaire du client"
   },
   "owner": {
     "message": "Propriétaire"
@@ -2257,7 +2264,7 @@
     "message": "L’utilisateur avec l’accès le plus élevé qui peut gérer tous les aspects de votre organisation."
   },
   "clientOwnerDesc": {
-    "message": "Cet utilisateur doit être indépendant du fournisseur. Si le fournisseur est dissocié de l'organisation, cet utilisateur maintiendra la propriété de l'organisation."
+    "message": "Cet utilisateur doit être indépendant du fournisseur. Si le fournisseur est dissocié de l'organisation, cet utilisateur conservera la propriété de l'organisation."
   },
   "admin": {
     "message": "Administrateur"
@@ -2620,7 +2627,7 @@
     }
   },
   "accessedClientVault": {
-    "message": "Coffre-fort de l'organisation $ID$ accédé.",
+    "message": "Coffre-fort de l'organisation $ID$ consulté.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2811,10 +2818,6 @@
     "message": "Mettez à niveau votre compte vers un autre plan en fournissant les informations ci-dessous. Assurez-vous qu'un mode de paiement actif a été ajouté au compte.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Contactez le support client si vous souhaitez changer d'offre. Veuillez vous assurer que vous disposez d’un moyen de paiement actif sur votre compte.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Facture n°$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2882,14 +2885,14 @@
     "message": "Saisissez l'identifiant de votre installation"
   },
   "limitSubscriptionDesc": {
-    "message": "Définissez une limite de places pour votre abonnement. Une fois cette limite atteinte, vous ne pourrez plus inviter de nouveaux utilisateurs."
+    "message": "Définissez un nombre de licences limite pour votre abonnement. Une fois cette limite atteinte, vous ne pourrez plus inviter de nouveaux utilisateurs."
   },
   "maxSeatLimit": {
-    "message": "Limite de places maximale (optionnel)",
+    "message": "Nombre de licences maximum (optionnel)",
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
-    "message": "Coût potentiel maximal des places"
+    "message": "Coût potentiel maximal des licences"
   },
   "addSeats": {
     "message": "Ajouter des licences",
@@ -2900,7 +2903,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionDesc": {
-    "message": "Les ajustements apportés à votre abonnement entraîneront des modifications au prorata de vos totaux de facturation. Si les utilisateurs nouvellement invités dépassent vos places d'abonnement, vous recevrez immédiatement des frais au prorata pour les utilisateurs supplémentaires."
+    "message": "Les ajustements apportés à votre abonnement entraîneront des modifications au prorata de vos totaux de facturation. Si les utilisateurs nouvellement invités dépassent votre nombre de licences, vous recevrez immédiatement des frais au prorata pour les utilisateurs supplémentaires."
   },
   "subscriptionUserSeats": {
     "message": "Votre abonnement permet un total de $COUNT$ utilisateurs.",
@@ -2915,22 +2918,22 @@
     "message": "Limite d'abonnement (facultatif)"
   },
   "subscriptionSeats": {
-    "message": "Places d'Abonnement"
+    "message": "Licences"
   },
   "subscriptionUpdated": {
     "message": "Abonnement mis à jour"
   },
   "additionalOptions": {
-    "message": "Options additionnelles"
+    "message": "Options supplémentaires"
   },
   "additionalOptionsDesc": {
-    "message": "Pour obtenir de l'aide supplémentaire pour la gestion de votre abonnement, veuillez contacter le Service à la Clientèle."
+    "message": "Pour obtenir de l'aide supplémentaire dans la gestion de votre abonnement, veuillez contacter le service client."
   },
   "subscriptionUserSeatsUnlimitedAutoscale": {
-    "message": "Les ajustements apportés à votre abonnement entraîneront des modifications au prorata de vos totaux de facturation. Si les utilisateurs nouvellement invités dépassent vos places d'abonnement, vous recevrez immédiatement des frais au prorata pour les utilisateurs supplémentaires."
+    "message": "Les ajustements apportés à votre abonnement entraîneront des modifications au prorata de vos totaux de facturation. Si les utilisateurs nouvellement invités dépassent votre nombre de licences, vous recevrez immédiatement des frais au prorata pour les utilisateurs supplémentaires."
   },
   "subscriptionUserSeatsLimitedAutoscale": {
-    "message": "Les ajustements apportés à votre abonnement entraîneront des modifications au prorata de vos totaux de facturation. Si les utilisateurs nouvellement invités dépassent vos sièges d'abonnement, vous recevrez immédiatement des frais calculés au prorata pour les utilisateurs supplémentaires jusqu'à ce que votre limite de places de $MAX$ soit atteinte.",
+    "message": "Les ajustements apportés à votre abonnement entraîneront des modifications au prorata de vos totaux de facturation. Si les utilisateurs nouvellement invités dépassent votre nombre de licences, vous recevrez immédiatement des frais au prorata pour les utilisateurs supplémentaires jusqu'à ce que votre limite de $MAX$ licences soit atteinte.",
     "placeholders": {
       "max": {
         "content": "$1",
@@ -2938,8 +2941,26 @@
       }
     }
   },
+  "subscriptionFreePlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
   "subscriptionMaxReached": {
-    "message": "Les ajustements à votre abonnement entraîneront des modifications au prorata de vos totaux de facturation. Vous ne pouvez pas inviter plus de $COUNT$ utilisateurs sans augmenter vos places d'abonnement.",
+    "message": "Les ajustements apportés à votre abonnement entraîneront des modifications au prorata de vos totaux de facturation. Vous ne pouvez pas inviter plus de $COUNT$ utilisateurs sans augmenter votre nombre de licences.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3817,26 +3838,29 @@
   "accessReports": {
     "message": "Accéder aux rapports"
   },
+  "missingPermissions": {
+    "message": "You lack the necessary permissions to perform this action."
+  },
   "manageAllCollections": {
     "message": "Gérer toutes les collections"
   },
   "createNewCollections": {
-    "message": "Créer de Nouvelles Collections"
+    "message": "Créer de nouvelles collections"
   },
   "editAnyCollection": {
-    "message": "Modifier Une Collection"
+    "message": "Modifier n'importe quelle collection"
   },
   "deleteAnyCollection": {
-    "message": "Supprimer Une Collection"
+    "message": "Supprimer n'importe quelle collection"
   },
   "manageAssignedCollections": {
     "message": "Gérer les collections assignées"
   },
   "editAssignedCollections": {
-    "message": "Modifier Les Collection Assignées"
+    "message": "Modifier les collection assignées"
   },
   "deleteAssignedCollections": {
-    "message": "Supprimer Les Collections Assignées"
+    "message": "Supprimer les collections assignées"
   },
   "manageGroups": {
     "message": "Gérer les groupes"
@@ -3854,7 +3878,7 @@
     "message": "Gérer la réinitialisation du mot de passe"
   },
   "disableRequiredError": {
-    "message": "Vous devez désactiver manuellement $POLICYNAME$ avant que cette politique ne puisse être désactivée.",
+    "message": "Afin de désactiver cette politique, vous devez préalablement manuellement désactiver la politique \"$POLICYNAME$\".",
     "placeholders": {
       "policyName": {
         "content": "$1",
@@ -3866,7 +3890,7 @@
     "message": "Une politique d'organisation affecte vos options de propriété."
   },
   "personalOwnershipPolicyInEffectImports": {
-    "message": "Une politique d'organisation a désactivé l'importation d'éléments dans votre coffre-fort personnel."
+    "message": "Une politique d'organisation a désactivé l'import d'éléments dans votre coffre personnel."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Désactiver la propriété individuelle des utilisateurs de l'organisation"
@@ -4025,7 +4049,7 @@
     }
   },
   "eventResetSsoLink": {
-    "message": "Réinitialiser le lien Sso pour l'utilisateur $ID$",
+    "message": "Réinitialiser le lien SSO pour l'utilisateur $ID$",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4448,5 +4472,8 @@
   },
   "ssoSettingsSaved": {
     "message": "La configuration de l'Authentification Unique a été enregistrée."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Unable to reach the crypto agent, try again later."
   }
 }

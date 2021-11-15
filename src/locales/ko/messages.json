@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "참 / 거짓"
   },
+  "cfTypeLinked": {
+    "message": "Linked",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "제거"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "성"
+  },
+  "fullName": {
+    "message": "Full Name"
   },
   "address1": {
     "message": "주소 1"
@@ -2811,10 +2818,6 @@
     "message": "아래 정보를 제공하여 계정을 다른 플랜으로 업그레이드하십시오. 계정에 활성화된 결제 방식이 추가되어 있는지 확인하십시오.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "플랜을 변경하려면 고객 지원팀에 문의하십시오. 계정에 활성화된 결제 방식이 추가되어 있는지 확인하십시오.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "청구서 #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2935,6 +2938,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,6 +3838,9 @@
   "accessReports": {
     "message": "보고서 접근"
   },
+  "missingPermissions": {
+    "message": "You lack the necessary permissions to perform this action."
+  },
   "manageAllCollections": {
     "message": "모든 컬렉션 관리"
   },
@@ -4448,5 +4472,8 @@
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Unable to reach the crypto agent, try again later."
   }
 }

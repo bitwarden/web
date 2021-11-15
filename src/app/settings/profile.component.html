@@ -13,7 +13,7 @@
                 <label for="email">{{'email' | i18n}}</label>
                 <input id="email" class="form-control" type="text" name="Email" [(ngModel)]="profile.email" readonly>
             </div>
-            <div class="form-group">
+            <div class="form-group" *ngIf="!hidePasswordHint">
                 <label for="masterPasswordHint">{{'masterPassHintLabel' | i18n}}</label>
                 <input id="masterPasswordHint" class="form-control" type="text" name="MasterPasswordHint"
                     [(ngModel)]="profile.masterPasswordHint">

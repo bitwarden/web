@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Логическое"
   },
+  "cfTypeLinked": {
+    "message": "Связано",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Удалить"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Фамилия"
+  },
+  "fullName": {
+    "message": "Полное имя"
   },
   "address1": {
     "message": "Строка адреса 1"
@@ -2811,10 +2818,6 @@
     "message": "Обновите свой аккаунт до другого плана, предоставив информацию ниже. Пожалуйста, убедитесь, что в вашем аккаунте есть активный способ оплаты.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Если вы хотите изменить свой план, обратитесь в службу поддержки. Убедитесь, что у вас есть активный способ оплаты, добавленный в аккаунт.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Счет #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2935,6 +2938,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "Вы не можете пригласить более $COUNT$ пользователей без обновления вашего тарифа.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "Вы не можете пригласить более $COUNT$ пользователей без обновления вашего тарифа. Для обновления обратитесь в службу поддержки клиентов.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,6 +3838,9 @@
   "accessReports": {
     "message": "Доступ к отчетам"
   },
+  "missingPermissions": {
+    "message": "У вас нет необходимых разрешений для выполнения этого действия."
+  },
   "manageAllCollections": {
     "message": "Управлять всеми коллекциями"
   },
@@ -4348,10 +4372,10 @@
     "message": "Конфигурация поставщика удостоверений SAML"
   },
   "callbackPath": {
-    "message": "Callback Path"
+    "message": "Резервный маршрут"
   },
   "signedOutCallbackPath": {
-    "message": "Signed Out Callback Path"
+    "message": "Выход с резервного маршрута"
   },
   "authority": {
     "message": "Учреждение"
@@ -4448,5 +4472,8 @@
   },
   "ssoSettingsSaved": {
     "message": "Конфигурация единого входа сохранена."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Невозможно связаться с криптоагентом, повторите попытку позже."
   }
 }

@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "ബൂളിയൻ"
   },
+  "cfTypeLinked": {
+    "message": "Linked",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "നീക്കംചെയ്യുക"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "പേരിന്റെ അവസാന ഭാഗം"
+  },
+  "fullName": {
+    "message": "Full Name"
   },
   "address1": {
     "message": "മേൽവിലാസം 1"
@@ -2811,10 +2818,6 @@
     "message": "ചുവടെയുള്ള വിവരങ്ങൾ നൽകി നിങ്ങളുടെ പ്ലാൻ മറ്റൊരു പ്ലാനിലേക്ക് അപ്‌ഗ്രേഡുചെയ്യുക. നിങ്ങൾക്ക് അക്കൗണ്ടിലേക്ക് ഒരു സജീവ പേയ്‌മെന്റ് രീതി ചേർത്തിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "നിങ്ങളുടെ പ്ലാൻ‌ മാറ്റാൻ‌ താൽ‌പ്പര്യപ്പെടുന്നെങ്കിൽ‌ ഉപഭോക്തൃ പിന്തുണയുമായി ബന്ധപ്പെടുക. നിങ്ങൾക്ക് അക്കൗണ്ടിലേക്ക് ഒരു സജീവ പേയ്‌മെന്റ് രീതി ചേർത്തിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "ഇൻവോയ്സ് #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2935,6 +2938,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,6 +3838,9 @@
   "accessReports": {
     "message": "റിപ്പോർട്ടുകൾ അക്സസ്സ് ചെയ്യുക"
   },
+  "missingPermissions": {
+    "message": "You lack the necessary permissions to perform this action."
+  },
   "manageAllCollections": {
     "message": "എല്ലാ കളക്ഷനുകളും നിയത്രിക്കുക"
   },
@@ -4448,5 +4472,8 @@
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Unable to reach the crypto agent, try again later."
   }
 }

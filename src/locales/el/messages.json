@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Δυαδικό"
   },
+  "cfTypeLinked": {
+    "message": "Linked",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Αφαίρεση"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Επώνυμο"
+  },
+  "fullName": {
+    "message": "Full Name"
   },
   "address1": {
     "message": "Διεύθυνση 1"
@@ -2811,10 +2818,6 @@
     "message": "Αναβαθμίστε το λογαριασμό σας σε κάποιο άλλο πακέτο παρέχοντας τις παρακάτω πληροφορίες. Βεβαιωθείτε ότι έχετε προσθέσει έναν ενεργό τρόπο πληρωμής στο λογαριασμό.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Επικοινωνήστε με την υποστήριξη πελατών αν θέλετε να αλλάξετε το πακέτο σας. Βεβαιωθείτε ότι έχετε προσθέσει έναν ενεργό τρόπο πληρωμής στο λογαριασμό.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Παραστατικό #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2935,6 +2938,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,6 +3838,9 @@
   "accessReports": {
     "message": "Αναφορές Πρόσβασης"
   },
+  "missingPermissions": {
+    "message": "You lack the necessary permissions to perform this action."
+  },
   "manageAllCollections": {
     "message": "Διαχείριση Όλων Των Συλλογών"
   },
@@ -4448,5 +4472,8 @@
   },
   "ssoSettingsSaved": {
     "message": "Οι ρυθμίσεις για απλή σύνδεση αποθηκεύτηκαν."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Unable to reach the crypto agent, try again later."
   }
 }

@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Booleskt värde"
   },
+  "cfTypeLinked": {
+    "message": "Linked",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Ta bort"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Efternamn"
+  },
+  "fullName": {
+    "message": "Full Name"
   },
   "address1": {
     "message": "Adress 1"
@@ -1757,7 +1764,7 @@
     "message": "Klicka på PayPal-knappen för att logga in på ditt PayPal-konto, tryck sedan på \"Skicka\"-knappen nedan för att fortsätta."
   },
   "cancelSubscription": {
-    "message": "Avsluta abonnemang"
+    "message": "Avbryt prenumeration"
   },
   "subscriptionCanceled": {
     "message": "Abonnemanget har avslutats."
@@ -1904,7 +1911,7 @@
     "message": "Kontakta kundservice"
   },
   "updatedPaymentMethod": {
-    "message": "Uppdaterade betalningsmetod."
+    "message": "Betalningsmetod uppdaterades."
   },
   "purchasePremium": {
     "message": "Köp premium"
@@ -2808,11 +2815,7 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
-    "message": "Uppgradera ditt konto till ett annat abonnemang genom att ange informationen nedan. Se till att du har en aktiv betalningsmetod tillagd på kontot.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
-  "changeBillingPlanDesc": {
-    "message": "Kontakta kundservice om du vill byta abonnemang. Vänligen säkerhetsställ att du har en aktiv betalningsmetod tillagd på kontot.",
+    "message": "Uppgradera ditt konto till en annan plan genom att ange informationen nedan. Se till att du har en aktiv betalningsmetod på kontot.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
@@ -2935,6 +2938,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3481,7 +3502,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSendConfirmation": {
-    "message": "Är du säker på att du vill radera denna försändelse?",
+    "message": "Är du säker på att du vill radera denna Send?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "whatTypeOfSend": {
@@ -3816,6 +3837,9 @@
   },
   "accessReports": {
     "message": "Åtkomst till rapporter"
+  },
+  "missingPermissions": {
+    "message": "You lack the necessary permissions to perform this action."
   },
   "manageAllCollections": {
     "message": "Hantera alla samlingar"
@@ -4448,5 +4472,8 @@
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Unable to reach the crypto agent, try again later."
   }
 }

@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Логічне значення"
   },
+  "cfTypeLinked": {
+    "message": "Пов'язано",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Вилучити"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Прізвище"
+  },
+  "fullName": {
+    "message": "Повне ім'я"
   },
   "address1": {
     "message": "Адреса 1"
@@ -2804,15 +2811,11 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Змінити тарифний план",
+    "message": "Оновити тарифний план",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "Перейдіть на передплату вищого рівня, вказавши інформацію внизу. Переконайтеся, що ваш обліковий запис має актуальні дані про спосіб оплати.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
-  "changeBillingPlanDesc": {
-    "message": "Зв'яжіться зі службою підтримки клієнтів, якщо ви бажаєте змінити свій тарифний план. Будь ласка, переконайтеся, що у вас є активний спосіб оплати доданий до облікового запису.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
@@ -2935,6 +2938,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "Ви не можете запросити більше $COUNT$ користувачів без переходу на вищий тарифний план.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "Ви не можете запросити більше $COUNT$ користувачів без оновлення вашого тарифного плану. Будь ласка, зв'яжіться зі службою підтримки для оновлення.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,6 +3838,9 @@
   "accessReports": {
     "message": "Доступ до звітів"
   },
+  "missingPermissions": {
+    "message": "У вас недостатньо повноважень для виконання цієї дії."
+  },
   "manageAllCollections": {
     "message": "Керування всіма збірками"
   },
@@ -4448,5 +4472,8 @@
   },
   "ssoSettingsSaved": {
     "message": "Конфігурацію єдиного входу збережено."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Не вдалося під'єднатися до крипто-агента. Спробуйте знову пізніше."
   }
 }

@@ -16,6 +16,7 @@ import { LoginComponent } from './accounts/login.component';
 import { RecoverDeleteComponent } from './accounts/recover-delete.component';
 import { RecoverTwoFactorComponent } from './accounts/recover-two-factor.component';
 import { RegisterComponent } from './accounts/register.component';
+import { RemovePasswordComponent } from './accounts/remove-password.component';
 import { SetPasswordComponent } from './accounts/set-password.component';
 import { SsoComponent } from './accounts/sso.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
@@ -177,6 +178,12 @@ const routes: Routes = [
                 path: 'sponsored/families-for-enterprise',
                 component: FamiliesForEnterpriseSetupLoginComponent,
                 data: { titleId: 'setupFamiliesForEnterprise' },
+            },
+            {
+                path: 'remove-password',
+                component: RemovePasswordComponent,
+                canActivate: [AuthGuardService],
+                data: { titleId: 'removeMasterPassword' },
             },
         ],
     },

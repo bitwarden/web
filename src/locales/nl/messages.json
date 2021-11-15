@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Boolean"
   },
+  "cfTypeLinked": {
+    "message": "Gekoppeld",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Verwijderen"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Achternaam"
+  },
+  "fullName": {
+    "message": "Volledige naam"
   },
   "address1": {
     "message": "Adres 1"
@@ -2811,10 +2818,6 @@
     "message": "Upgrade je account naar een ander abonnement door onderstaande informatie door te geven. Verzeker jezelf ervan dat er een actieve betaalmethode aan het account is gekoppeld.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Neem contact op met de klantondersteuning als je je abonnement wilt aanpassen. Zorg ervoor dat je een actieve betaalmethode aan het account hebt toegevoegd.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Factuur #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2935,6 +2938,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "Je kunt niet meer dan $COUNT$ gebruikers uitnodigen zonder je abonnement te upgraden.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "Je kunt niet meer dan $COUNT$ gebruikers uitnodigen zonder je abonnement te upgraden. Neem contact op met Customer Support om te upgraden.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,6 +3838,9 @@
   "accessReports": {
     "message": "Rapporten"
   },
+  "missingPermissions": {
+    "message": "Je hebt geen rechten om deze actie uit te voeren."
+  },
   "manageAllCollections": {
     "message": "Alle verbindingen beheren"
   },
@@ -4448,5 +4472,8 @@
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuratie is opgeslagen."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Kan de crypto-agent niet bereiken, probeer het later opnieuw."
   }
 }

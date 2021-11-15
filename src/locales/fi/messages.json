@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Totuusarvo"
   },
+  "cfTypeLinked": {
+    "message": "Liitetty",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Poista"
   },
@@ -311,6 +315,9 @@
   "lastName": {
     "message": "Sukunimi"
   },
+  "fullName": {
+    "message": "Koko nimi"
+  },
   "address1": {
     "message": "Osoite 1"
   },
@@ -364,7 +371,7 @@
     "message": "Siirrä organisaatiolle"
   },
   "valueCopied": {
-    "message": "$VALUE$ kopioitiin",
+    "message": "$VALUE$ kopioitu",
     "description": "Value has been copied to the clipboard.",
     "placeholders": {
       "value": {
@@ -425,13 +432,13 @@
     "message": "Lisää uusi tiedostoliite"
   },
   "deletedAttachment": {
-    "message": "Poistettiin tiedostoliite"
+    "message": "Tiedostoliite poistettu"
   },
   "deleteAttachmentConfirmation": {
     "message": "Haluatko varmasti poistaa liitteen?"
   },
   "attachmentSaved": {
-    "message": "Tiedostoliite tallennettiin."
+    "message": "Tiedostoliite tallennettu."
   },
   "file": {
     "message": "Tiedosto"
@@ -446,13 +453,13 @@
     "message": "Et voi käyttää tätä toimintoa ennen kuin päivität salausavaimesi."
   },
   "addedItem": {
-    "message": "Lisättiin kohde"
+    "message": "Kohde lisätty"
   },
   "editedItem": {
-    "message": "Muokattiin kohdetta"
+    "message": "Kohdetta muokattu"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ siirrettiin organisaatioon $ORGNAME$",
+    "message": "$ITEMNAME$ siirrettiin organisaatiolle $ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -465,7 +472,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Valitut kohteet siirrettiin organisaatioon $ORGNAME$",
+    "message": "Valitut kohteet siirrettiin organisaatiolle $ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -492,25 +499,25 @@
     "message": "Kohteet siirrettiin roskakoriin"
   },
   "movedItems": {
-    "message": "Siirrettiin kohteet"
+    "message": "Kohteet siirretty"
   },
   "overwritePasswordConfirmation": {
     "message": "Haluatko varmasti korvata nykyisen salasanan?"
   },
   "editedFolder": {
-    "message": "Muokattiin kansiota"
+    "message": "Kansiota muokattu"
   },
   "addedFolder": {
-    "message": "Lisättiin kansio"
+    "message": "Kansio lisätty"
   },
   "deleteFolderConfirmation": {
     "message": "Haluatko varmasti poistaa kansion?"
   },
   "deletedFolder": {
-    "message": "Poistettiin kansio"
+    "message": "Kansio poistettu"
   },
   "loggedOut": {
-    "message": "Kirjauduttiin ulos"
+    "message": "Kirjauduttu ulos"
   },
   "loginExpired": {
     "message": "Kirjautumisistuntosi on erääntynyt."
@@ -846,7 +853,7 @@
     "message": "Tiedostomuoto"
   },
   "exportSuccess": {
-    "message": "Holvisi tiedot vietiin."
+    "message": "Holvisi tiedot on viety."
   },
   "passwordGenerator": {
     "message": "Salasanageneraattori"
@@ -894,13 +901,13 @@
     "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
-    "message": "Tili päivitettiin"
+    "message": "Tili päivitetty"
   },
   "changeEmail": {
     "message": "Vaihda sähköpostiosoite"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Jatko vaihtaa tilisi sähköpostiosoitteen. Se ei muuta kaksivaiheiseen tunnistamiseen käytettävää sähköpostiosoitetta. Voit muuttaa sähköpostiosoitteen kaksivaiheisen tunnistautumisen asetuksista."
+    "message": "Jatko vaihtaa tilisi sähköpostiosoitteen, muttei kaksivaiheiseen tunnistamiseen käytettävää osoitetta. Tämän osoitteen voit vaihtaa kaksivaiheisen tunnistautumisen asetuksista."
   },
   "newEmail": {
     "message": "Uusi sähköposti"
@@ -921,7 +928,7 @@
     "message": "Jatkamalla kirjaudut ulos nykyisestä istunnostasi ja joudut kirjautumaan uudelleen. Aktiiviset istunnot toisilla laitteilla saattavat pysyä aktiivisina vielä tunnin ajan."
   },
   "emailChanged": {
-    "message": "Sähköpostiosoite vaihdettiin"
+    "message": "Sähköpostiosoite vaihdettu"
   },
   "logBackIn": {
     "message": "Kirjaudu sisään uudelleen."
@@ -933,7 +940,7 @@
     "message": "Vaihda pääsalasana"
   },
   "masterPasswordChanged": {
-    "message": "Pääsalasana vaihdettiin"
+    "message": "Pääsalasana vaihdettu"
   },
   "currentMasterPass": {
     "message": "Nykyinen pääsalasana"
@@ -975,7 +982,7 @@
     "message": "Vaihda KDF-asetuksia"
   },
   "encKeySettingsChanged": {
-    "message": "Salausavaimen asetuksia muutettiin"
+    "message": "Salausavaimen asetukset muutettu"
   },
   "dangerZone": {
     "message": "Vaaravyöhyke"
@@ -993,13 +1000,13 @@
     "message": "Jatkamalla kirjaudut ulos nykyisestä istunnostasi ja joudut kirjautumaan uudelleen. Myös kaksivaiheinen kirjautuminen on tehtävä uudelleen. Aktiiviset istunnot toisilla laitteilla saattavat pysyä aktiivisina vielä tunnin ajan."
   },
   "sessionsDeauthorized": {
-    "message": "Kaikki istunnot mitätöitiin"
+    "message": "Kaikki istunnot mitätöity"
   },
   "purgeVault": {
     "message": "Tyhjennä holvi"
   },
   "purgedOrganizationVault": {
-    "message": "Organisaation holvi tyhjennettiin."
+    "message": "Organisaation holvi tyhjennetty."
   },
   "vaultAccessedByProvider": {
     "message": "Toimittaja on käyttänyt holvia."
@@ -1026,7 +1033,7 @@
     "message": "Tilin poisto on pysyvä toimenpide, eikä sen peruminen ole mahdollista."
   },
   "accountDeleted": {
-    "message": "Tili poistettiin"
+    "message": "Tili poistettu"
   },
   "accountDeletedDesc": {
     "message": "Tilisi on suljettu ja kaikki siihen liittyvät tiedot on poistettu."
@@ -1093,7 +1100,7 @@
     "message": "Muokkaa verkkoholvisi käyttökokemusta."
   },
   "optionsUpdated": {
-    "message": "Asetukset päivitettiin"
+    "message": "Asetukset päivitetty"
   },
   "language": {
     "message": "Kieli"
@@ -1161,7 +1168,7 @@
     }
   },
   "domainsUpdated": {
-    "message": "Verkkotunnukset päivitettiin"
+    "message": "Verkkotunnukset päivitetty"
   },
   "twoStepLogin": {
     "message": "Kaksivaiheinen kirjautuminen"
@@ -1319,7 +1326,7 @@
     "message": "Jos jokin YubiKey-todennuslaitteesi tukee NFC-tekniikkaa (kuten YubiKey NEO), näytetään mobiililaitteissa kehote NFC:n ollessa käytettävissä."
   },
   "yubikeysUpdated": {
-    "message": "YubiKey-todennuslaitteet päivitettiin"
+    "message": "YubiKey-todennuslaitteet päivitetty"
   },
   "disableAllKeys": {
     "message": "Poista kaikki todennuslaitteet käytöstä"
@@ -1416,7 +1423,7 @@
     "message": "Sivustojen käyttö suojaamattoman \"http://\" -protokollan välityksellä voi olla vaarallista. Jos sivusto sitä tukee, tulisi sitä aina käyttää \"https://\" -protokollan välityksellä, jolloin yhteytesi on salattu."
   },
   "unsecuredWebsitesFound": {
-    "message": "Löydettiin suojaamattomia verkkosivustoja"
+    "message": "Suojaamattomia verkkosivustoja löytyi"
   },
   "unsecuredWebsitesFoundDesc": {
     "message": "Löysimme holvistasi $COUNT$ kohdetta suojaamattomilla URI-osoitteilla. Sinun tulisi muuttaa niiden URI suojattuun \"https://\" -muotoon, jos sivusto tukee sitä.",
@@ -1437,7 +1444,7 @@
     "message": "Kaksivaiheinen kirjautuminen (2FA) on tärkeä suojausasetus, joka auttaa käyttäjätiliesi suojauksessa. Jos sivusto tarjoaa mahdollisuuden kaksivaiheisen kirjautmisen käyttöön, sinun tulisi aina ottaa se käyttöön."
   },
   "inactive2faFound": {
-    "message": "Löydettiin tunnuksia ilman kaksivaiheista kirjautumista"
+    "message": "Tunnuksia ilman kaksivaiheista kirjautumista löytyi"
   },
   "inactive2faFoundDesc": {
     "message": "Löysimme holvistasi $COUNT$ sivustoa, joita ei ehkä ole määritetty käyttämään kaksivaiheista kirjautumista (2fa.directory -sivuston mukaan). Suojataksesi nämä tilit paremmin, sinun tulisi ottaa kaksivaiheinen kirjautuminen käyttöön.",
@@ -1458,10 +1465,10 @@
     "message": "Paljastuneet salasanat"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Paljastuneet salasanat ovat salasanoja, jotka on paljastettu julkaistujen tietovuotojen yhteydessä tai joita hakkerit ovat myyneet pimeässä verkossa (dark web)."
+    "message": "Paljastuneet salasanat ovat salasanoja, jotka on paljastettu julkaistujen tietovuotojen yhteydessä tai joita murtautujat ovat myyneet pimeässä verkossa (dark web)."
   },
   "exposedPasswordsFound": {
-    "message": "Löydettiin paljastuneita salasanoja"
+    "message": "Paljastuneita salasanoja löytyi"
   },
   "exposedPasswordsFoundDesc": {
     "message": "Löysimme holvistasi $COUNT$ kohdetta, jotka sisältävät tunnetuissa tietovuodoissa paljastuneita salasanoja. Näiden palveluiden salasanat tulisi vaihtaa.",
@@ -1491,10 +1498,10 @@
     "message": "Heikot salasanat"
   },
   "weakPasswordsReportDesc": {
-    "message": "Heikot salasanat ovat hakkereiden ja automaattisten salasanojen murtotyökalujen helposti arvattavissa. Bitwardenin salasanageneraattori auttaa sinua luomaan vahvoja salasanoja."
+    "message": "Heikot salasanat ovat murtautujien ja automaattisten salasanojen murtotyökalujen helposti arvattavissa. Bitwardenin salasanageneraattori auttaa sinua luomaan vahvoja salasanoja."
   },
   "weakPasswordsFound": {
-    "message": "Löydettiin heikkoja salasanoja"
+    "message": "Heikkoja salasanoja löytyi"
   },
   "weakPasswordsFoundDesc": {
     "message": "Löysimme holvistasi $COUNT$ kohdetta, joiden salasanat eivät ole vahvoja. Nämä tulisi korvata vahvemmilla salasanoilla.",
@@ -1512,10 +1519,10 @@
     "message": "Toistuvat salasanat"
   },
   "reusedPasswordsReportDesc": {
-    "message": "Jos käyttämäsi palvelu on vaarantunut, saman salasanan toistuva käyttö muualla voi mahdollistaa hakkereiden pääsyn myös muille käyttäjätileillesi. Jokaiselle tilille ja palvelulle tulisi käyttää yksilöllisiä salasanoja."
+    "message": "Jos käyttämäsi palvelu on vaarantunut, saman salasanan toistuva käyttö muualla voi mahdollistaa murtautujien pääsyn myös muille käyttäjätileillesi. Jokaiselle tilille ja palvelulle tulisi käyttää yksilöllisiä salasanoja."
   },
   "reusedPasswordsFound": {
-    "message": "Löydettiin toistuvia salasanoja"
+    "message": "Toistuvia salasanoja löytyi"
   },
   "reusedPasswordsFoundDesc": {
     "message": "Löysimme holvistasi $COUNT$ toistuvasti käytettyä salasanaa. Ne tulisi vaihtaa yksilöllisiksi.",
@@ -1542,7 +1549,7 @@
     "message": "Tietovuodot"
   },
   "breachDesc": {
-    "message": "\"Tietovuoto\" tai \"tietomurto\" on tilanne, jossa hakkerit ovat laittomasti päässeet käsiksi sivuston suojattuihin tietoihin ja julkaisseet ne tämän jälkeen julkisesti. Tarkista vaarantuneet tiedot (sähköpostiosoitteet, salasanat, maksukortit jne.) ja tee asianmukaiset toimet, kuten salasanan vaihdokset."
+    "message": "\"Tietovuoto\" tai \"tietomurto\" on tilanne, jossa murtautujat (hakkerit) ovat laittomasti päässeet käsiksi sivuston suojattuihin tietoihin ja julkaisseet ne tämän jälkeen julkisesti. Tarkista vaarantuneet tiedot (sähköpostiosoitteet, salasanat, maksukortit jne.) ja tee asianmukaiset toimet, kuten salasanan vaihdot."
   },
   "breachCheckUsernameEmail": {
     "message": "Tarkista kaikki käyttämäsi käyttäjätunnukset tai sähköpostiosoitteet."
@@ -1577,7 +1584,7 @@
     }
   },
   "breachFound": {
-    "message": "Löydettiin vuotaneita kirjautumistietoja"
+    "message": "Vuotaneita kirjautumistietoja löytyi"
   },
   "compromisedData": {
     "message": "Vaarantuneet tiedot"
@@ -1802,7 +1809,7 @@
     "message": "Päivitä lisenssi"
   },
   "updatedLicense": {
-    "message": "Lisenssi päivitettiin"
+    "message": "Lisenssi päivitetty"
   },
   "manageSubscription": {
     "message": "Hallitse tilausta"
@@ -1904,7 +1911,7 @@
     "message": "Ota yhteyttä asiakaspalveluun"
   },
   "updatedPaymentMethod": {
-    "message": "Maksutapa päivitettiin."
+    "message": "Maksutapa päivitetty."
   },
   "purchasePremium": {
     "message": "Osta Premium"
@@ -2080,7 +2087,7 @@
     "message": "Suoritus omassa palvelinympäristössä (valinnainen)"
   },
   "usersGetPremium": {
-    "message": "Käyttäjät saavat käyttöoikeuden Premium-ominaisuuksiin"
+    "message": "Käyttäjät saavat Premium-ominaisuuksien käyttöoikeuden"
   },
   "controlAccessWithGroups": {
     "message": "Hallitse käyttäjien oikeuksia ryhmillä"
@@ -2110,19 +2117,19 @@
     "message": "Kuukausittainen"
   },
   "annually": {
-    "message": "Vuosittainen"
+    "message": "Vuotuinen"
   },
   "basePrice": {
     "message": "Lähtöhinta"
   },
   "organizationCreated": {
-    "message": "Organisaatio luotiin"
+    "message": "Organisaatio luotu"
   },
   "organizationReadyToGo": {
     "message": "Uusi organisaatiosi on valmis käyttöön!"
   },
   "organizationUpgraded": {
-    "message": "Organisaatiosi päivitettiin."
+    "message": "Organisaatiosi tilausta on päivitetty."
   },
   "leave": {
     "message": "Poistu"
@@ -2257,7 +2264,7 @@
     "message": "Korkeimman käyttöoikeustason käyttäjä, jolla on käyttö- ja hallintaoikeus koko organisaatioosi."
   },
   "clientOwnerDesc": {
-    "message": "Käyttäjän on oltava riippumaton toimittajasta. Jos toimittaja ei ole yhteydessä organisaatioon, käyttäjä säilyttää organisaation omistuksen."
+    "message": "Tämän käyttäjän on oltava riippumaton toimittajasta. Jos toimittajan yhteys organisaatioon katkaistaan, pysyy tämä käyttäjä organisaation omistajana."
   },
   "admin": {
     "message": "Ylläpitäjä"
@@ -2314,16 +2321,16 @@
     "message": "Kirjauduttu sisään."
   },
   "changedPassword": {
-    "message": "Tilin salasana vaihdettiin."
+    "message": "Tilin salasana vaihdettu."
   },
   "enabledUpdated2fa": {
-    "message": "Kaksivaiheinen kirjautuminen otettiin käyttöön/päivitettiin."
+    "message": "Kaksivaiheinen kirjautuminen otettu käyttöön/päivitetty."
   },
   "disabled2fa": {
-    "message": "Kaksivaiheinen kirjautuminen poistettiin käytöstä."
+    "message": "Kaksivaiheinen kirjautuminen poistettu käytöstä."
   },
   "recovered2fa": {
-    "message": "Tili vapautettiin kaksivaiheisesta kirjautumisesta."
+    "message": "Tili vapautettu kaksivaiheisesta kirjautumisesta."
   },
   "failedLogin": {
     "message": "Sisäänkirjautumisyritys epäonnistui väärän salasanan vuoksi."
@@ -2332,16 +2339,16 @@
     "message": "Kirjautuminen epäonnistui virheellisen kaksivaiheisen kirjautumisen todennuksen vuoksi."
   },
   "exportedVault": {
-    "message": "Holvi vietiin."
+    "message": "Holvi viety."
   },
   "exportedOrganizationVault": {
-    "message": "Organisaation holvi vietiin."
+    "message": "Organisaation holvi viety."
   },
   "editedOrgSettings": {
-    "message": "Muokattiin organisaation asetuksia."
+    "message": "Organisaation asetuksia muokattu."
   },
   "createdItemId": {
-    "message": "Luotiin kohde $ID$.",
+    "message": "Kohde $ID$ luotu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2350,7 +2357,7 @@
     }
   },
   "editedItemId": {
-    "message": "Muokattiin kohdetta $ID$.",
+    "message": "Kohdetta $ID$ muokattu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2377,7 +2384,7 @@
     }
   },
   "viewedItemId": {
-    "message": "Tarkasteltiin kohdetta $ID$.",
+    "message": "Kohdetta $ID$ tarkasteltu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2431,7 +2438,7 @@
     }
   },
   "copiedSecurityCodeItemId": {
-    "message": "Kopioitiin kohteen $ID$ turvakoodi.",
+    "message": "Kohteen $ID$ turvakoodi kopioitu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2440,7 +2447,7 @@
     }
   },
   "autofilledItemId": {
-    "message": "Täytettiin kohde $ID$ automaattisesti.",
+    "message": "Kohde $ID$ täytetty automaattisesti.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2449,7 +2456,7 @@
     }
   },
   "createdCollectionId": {
-    "message": "Luotiin kokoelma $ID$.",
+    "message": "Kokoelma $ID$ luotu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2458,7 +2465,7 @@
     }
   },
   "editedCollectionId": {
-    "message": "Muokattiin kokoelmaa $ID$.",
+    "message": "Kokoelmaa $ID$ muokattu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2467,7 +2474,7 @@
     }
   },
   "deletedCollectionId": {
-    "message": "Poistettiin kokoelma $ID$.",
+    "message": "Kokoelma $ID$ poistettu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2476,7 +2483,7 @@
     }
   },
   "editedPolicyId": {
-    "message": "Muokattiin käytäntöä $ID$.",
+    "message": "Käytäntöä $ID$ muokattu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2485,7 +2492,7 @@
     }
   },
   "createdGroupId": {
-    "message": "Luotiin ryhmä $ID$.",
+    "message": "Ryhmä $ID$ luotu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2494,7 +2501,7 @@
     }
   },
   "editedGroupId": {
-    "message": "Muokattiin ryhmää $ID$.",
+    "message": "Ryhmää $ID$ muokattu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2503,7 +2510,7 @@
     }
   },
   "deletedGroupId": {
-    "message": "Poistettiin ryhmä $ID$.",
+    "message": "Ryhmä $ID$ poistettu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2512,7 +2519,7 @@
     }
   },
   "removedUserId": {
-    "message": "Poistettiin käyttäjä $ID$.",
+    "message": "Käyttäjä $ID$ poistettu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2521,7 +2528,7 @@
     }
   },
   "createdAttachmentForItem": {
-    "message": "Luotiin tiedostoliite kohteelle $ID$.",
+    "message": "Tiedostoliite luotu kohteelle $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2530,7 +2537,7 @@
     }
   },
   "deletedAttachmentForItem": {
-    "message": "Poistettiin kohteen $ID$ tiedostoliite.",
+    "message": "Kohteen $ID$ tiedostoliite poistettu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2539,7 +2546,7 @@
     }
   },
   "editedCollectionsForItem": {
-    "message": "Muokattiin kohteen $ID$ kokoelmia.",
+    "message": "Kohteen $ID$ kokoelmia muokattu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2548,7 +2555,7 @@
     }
   },
   "invitedUserId": {
-    "message": "Kutsuttiin käyttäjä $ID$.",
+    "message": "Käyttäjä $ID$ kutsuttu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2557,7 +2564,7 @@
     }
   },
   "confirmedUserId": {
-    "message": "Vahvistettiin käyttäjä $ID$.",
+    "message": "Käyttäjä $ID$ vahvistettu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2566,7 +2573,7 @@
     }
   },
   "editedUserId": {
-    "message": "Muokattiin käyttäjää $ID$.",
+    "message": "Käyttäjää $ID$ muokattu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2575,7 +2582,7 @@
     }
   },
   "editedGroupsForUser": {
-    "message": "Muokattiin käyttäjän $ID$ ryhmiä.",
+    "message": "Käyttäjän $ID$ ryhmiä muokattu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2584,7 +2591,7 @@
     }
   },
   "unlinkedSsoUser": {
-    "message": "Poistettiin yrityksen kertakirjautuminen (SSO) käyttäjältä $ID$.",
+    "message": "Yrityksen kertakirjautuminen (SSO) poistettu käyttäjältä $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2593,7 +2600,7 @@
     }
   },
   "createdOrganizationId": {
-    "message": "Luotiin organisaatio $ID$.",
+    "message": "Organisaatio $ID$ luotu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2602,7 +2609,7 @@
     }
   },
   "addedOrganizationId": {
-    "message": "Lisättiin organisaatio $ID$.",
+    "message": "Organisaatio $ID$ luotu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2611,7 +2618,7 @@
     }
   },
   "removedOrganizationId": {
-    "message": "Poistettiin organisaatio $ID$.",
+    "message": "Organisaatio $ID$ poistettu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2620,7 +2627,7 @@
     }
   },
   "accessedClientVault": {
-    "message": "Käytettiin organisaation $ID$ holvia.",
+    "message": "Organisaation $ID$ holvia käytetty.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2731,7 +2738,7 @@
     "message": "Sinut on kutsuttu liittymään yllä mainittuun organisaatioon. Hyväksyäksesi kutsun, sinun tulee kirjautua tilillesi tai luoda uusi Bitwarden-tili."
   },
   "inviteAccepted": {
-    "message": "Kutsu hyväksyttiin"
+    "message": "Kutsu hyväksytty"
   },
   "inviteAcceptedDesc": {
     "message": "Saat organisaation käyttöoikeuden ylläpitäjän vahvistettua jäsentyytesi. Saat vahvistuksesta ilmoituksen sähköpostitse."
@@ -2785,13 +2792,13 @@
     "message": "Organisaation poisto on pysyvä toimenpide, eikä sen peruminen ole mahdollista."
   },
   "organizationDeleted": {
-    "message": "Organisaatio poistettiin"
+    "message": "Organisaatio poistettu"
   },
   "organizationDeletedDesc": {
     "message": "Organisaatio ja kaikki siihen liittyvät tiedot on poistettu."
   },
   "organizationUpdated": {
-    "message": "Organisaatio päivitettiin"
+    "message": "Organisaatio päivitetty"
   },
   "taxInformation": {
     "message": "Verotiedot"
@@ -2809,10 +2816,6 @@
   },
   "changeBillingPlanUpgrade": {
     "message": "Päivitä tilisi toiseen tilaustyyppiin toimittamalla alla olevat tiedot. Varmistathan, että tilillesi on lisätty toimiva maksutapa.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
-  "changeBillingPlanDesc": {
-    "message": "Ota yhteyttä asiakastukeen, jos haluat muuttaa tilaustyyppiäsi. Varmistathan, että tilillesi on lisätty toimiva maksutapa.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
@@ -2882,14 +2885,14 @@
     "message": "Syötä asennuksesi ID-tunnus"
   },
   "limitSubscriptionDesc": {
-    "message": "Rajoita tilkauksesi käyttäjäpaikkojen määrää. Kun määrä täyttyy, et voi kutsua uusia käyttäjiä."
+    "message": "Rajoita tilauksesi käyttäjäpaikkojen määrää. Kun määrä täyttyy, et voi kutsua uusia käyttäjiä."
   },
   "maxSeatLimit": {
     "message": "Käyttäjäpaikkojen enimmäismäärä (valinnainen)",
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
-    "message": "Käyttäjäpaikan suurin mahdollinen hinta"
+    "message": "Käyttäjäpaikkojen hintaennuste"
   },
   "addSeats": {
     "message": "Lisää käyttäjäpaikkoja",
@@ -2900,7 +2903,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionDesc": {
-    "message": "Tilausmuutokset johtavat suhteutettuihin muutoksiin laskutuksessasi. Jos hiljattain lisätyt käyttäjät ylittävät tilauksesi käyttäjäpaikkojen enimmäismäärän, veloitetaan suhteutettu hinta lisätyistä käyttäjistä välittömästi."
+    "message": "Tilausmuutokset aiheuttavat muutoksia laskutukseesi. Jos hiljattain kutsuttujen käyttäjien määrä ylittää tilauksesi käyttäjäpaikkojen enimmäismäärän, veloitetaan suhteutettu hinta uusista käyttäjistä välittömästi."
   },
   "subscriptionUserSeats": {
     "message": "Tilauksesi sallii yhteensä $COUNT$ käyttäjää.",
@@ -2921,16 +2924,16 @@
     "message": "Tilaus päivitetty"
   },
   "additionalOptions": {
-    "message": "Muut vaihtoehdot"
+    "message": "Lisävalinnat"
   },
   "additionalOptionsDesc": {
     "message": "Jos tarvitset apua tilauksesi hallinnassa, ota yhteyttä asiakaspalveluun."
   },
   "subscriptionUserSeatsUnlimitedAutoscale": {
-    "message": "Tilausmuutokset johtavat suhteutettuihin muutoksiin laskutuksessasi. Jos hiljattain lisätyt käyttäjät ylittävät tilauksesi käyttäjäpaikkojen enimmäismäärän, veloitetaan suhteutettu hinta lisätyistä käyttäjistä välittömästi."
+    "message": "Tilausmuutokset aiheuttavat muutoksia laskutukseesi. Jos hiljattain lisättyjen käyttäjien määrä ylittää tilauksesi käyttäjäpaikkojen enimmäismäärän, veloitetaan suhteutettu hinta uusista käyttäjistä välittömästi."
   },
   "subscriptionUserSeatsLimitedAutoscale": {
-    "message": "Tilausmuutokset johtavat suhteutettuihin muutoksiin laskutuksessasi. Jos hiljattain lisätyt käyttäjät ylittävät tilauksesi käyttäjäpaikkojen enimmäismäärän, veloitetaan suhteutettu hinta lisätyistä käyttäjistä välittömästi kunnes $MAX$ paikan rajoitus saavutetaan.",
+    "message": "Tilausmuutokset johtavat suhteutettuihin muutoksiin laskutuksessasi. Jos hiljattain lisättyjen käyttäjien määrä ylittää tilauksesi käyttäjäpaikkojen enimmäismäärän, veloitetaan suhteutettu hinta uusista käyttäjistä välittömästi, kunnes $MAX$ paikan enimmäismäärä saavutetaan.",
     "placeholders": {
       "max": {
         "content": "$1",
@@ -2938,8 +2941,26 @@
       }
     }
   },
+  "subscriptionFreePlan": {
+    "message": "Voit kutsua enintään $COUNT$ käyttäjää päivittämättä tilaustasi.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "Voit kutsua enintään $COUNT$ käyttäjää päivittämättä tilaustasi. Ota yhteyttä tukeen päivittääksesi.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
   "subscriptionMaxReached": {
-    "message": "Tilausmuutokset johtavat suhteutettuihin muutoksiin laskutuksessasi. Voit kutsua enintään $COUNT$ käyttäjää kasvattamasta tilauksesi käyttäjäpaikkoja.",
+    "message": "Tilausmuutokset johtavat suhteutettuihin muutoksiin laskutuksessasi. Voit kutsua enintään $COUNT$ käyttäjää kasvattamatta tilauksesi käyttäjäpaikkojen määrää.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2960,7 +2981,7 @@
     "message": "Käyttäjäpaikkojen vähennys muuttaa kokonaislaskutustasi ja tämä huomioidaan seuraavan veloituksen yhteydessä."
   },
   "adjustedSeats": {
-    "message": "Muutettiin $AMOUNT$ käyttäjäpaikkaa.",
+    "message": "Muutettu $AMOUNT$ käyttäjäpaikkaa.",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -2969,7 +2990,7 @@
     }
   },
   "keyUpdated": {
-    "message": "Avain päivitettiin"
+    "message": "Avain päivitetty"
   },
   "updateKeyTitle": {
     "message": "Päivitä avain"
@@ -3063,7 +3084,7 @@
     "description": "ex. Date this item was updated"
   },
   "datePasswordUpdated": {
-    "message": "Salasana päivitettiin",
+    "message": "Salasana päivitetty",
     "description": "ex. Date this password was updated"
   },
   "organizationIsDisabled": {
@@ -3295,10 +3316,10 @@
     "message": "Haluatko varmasti poistaa kohteen pysyvästi?"
   },
   "permanentlyDeletedItem": {
-    "message": "Poistettiin kohde pysyvästi"
+    "message": "Kohde poistettu pysyvästi"
   },
   "permanentlyDeletedItems": {
-    "message": "Poistettiin kohteet pysyvästi"
+    "message": "Kohteet poistettu pysyvästi"
   },
   "permanentlyDeleteSelectedItemsDesc": {
     "message": "Olet valinnut $COUNT$ kohdetta pysyvästi poistettavaksi. Haluatko varmasti poistaa ne kaikki pysyvästi?",
@@ -3310,7 +3331,7 @@
     }
   },
   "permanentlyDeletedItemId": {
-    "message": "Poistettiin kohde $ID$ pysyvästi.",
+    "message": "Kohde $ID$ poistettu pysyvästi.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3328,10 +3349,10 @@
     "message": "Palauta kohde"
   },
   "restoredItem": {
-    "message": "Palautettiin kohde"
+    "message": "Kohde palautettu"
   },
   "restoredItems": {
-    "message": "Palautettiin kohteet"
+    "message": "Kohteet palautettu"
   },
   "restoreItemConfirmation": {
     "message": "Haluatko varmasti palauttaa kohteen?"
@@ -3349,7 +3370,7 @@
     }
   },
   "restoredItemId": {
-    "message": "Palautettiin kohde $ID$.",
+    "message": "Kohde $ID$ palautettu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3376,7 +3397,7 @@
     "message": "ALV/GST-verotustunniste"
   },
   "taxInfoUpdated": {
-    "message": "Verotiedot päivitettiin."
+    "message": "Verotiedot päivitetty."
   },
   "setMasterPassword": {
     "message": "Aseta pääsalasana"
@@ -3465,15 +3486,15 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "createdSend": {
-    "message": "Luotiin Send",
+    "message": "Send luotu",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editedSend": {
-    "message": "Muokattiin Sendiä",
+    "message": "Sendiä muokattu",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deletedSend": {
-    "message": "Poistettiin Send",
+    "message": "Send poistettu",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSend": {
@@ -3535,7 +3556,7 @@
     "message": "Poista salasana"
   },
   "removedPassword": {
-    "message": "Poistettiin salasana"
+    "message": "Salasana poistettu"
   },
   "removePasswordConfirmation": {
     "message": "Haluatko varmasti poistaa salasanan?"
@@ -3785,7 +3806,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
-    "message": "Muokattiin käytäntöä $ID$.",
+    "message": "Käytäntöä $ID$ muokattu.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -3817,6 +3838,9 @@
   "accessReports": {
     "message": "Raporttien käyttö"
   },
+  "missingPermissions": {
+    "message": "Sinulla ei ole tarvittavia oikeuksia toiminnon suorittamiseen."
+  },
   "manageAllCollections": {
     "message": "Kaikkien kokoelmien hallinta"
   },
@@ -3824,10 +3848,10 @@
     "message": "Luo uusia kokoelmia"
   },
   "editAnyCollection": {
-    "message": "Muokkaa mitä tahansa kokoelmaa"
+    "message": "Muokkaa kokoelmia"
   },
   "deleteAnyCollection": {
-    "message": "Poista mikä tahansa kokoelma"
+    "message": "Poista kokoelmia"
   },
   "manageAssignedCollections": {
     "message": "Määritettyjen kokoelmien hallinta"
@@ -3836,7 +3860,7 @@
     "message": "Muokkaa määritettyjä kokoelmia"
   },
   "deleteAssignedCollections": {
-    "message": "Poista määritettyjä kokoelmia"
+    "message": "Poista määritetyt kokoelmat"
   },
   "manageGroups": {
     "message": "Ryhmien hallinta"
@@ -3854,7 +3878,7 @@
     "message": "Salasanan palautusavun hallinta"
   },
   "disableRequiredError": {
-    "message": "Käytäntö $POLICYNAME$ on poistettava käytöstä manuaalisesti ennen kuin tämän käytännön voi poistaa käytöstä.",
+    "message": "Käytäntö $POLICYNAME$ on poistettava käytöstä manuaalisesti ennen tämän käytännön käytöstä poistoa.",
     "placeholders": {
       "policyName": {
         "content": "$1",
@@ -4115,7 +4139,7 @@
     "message": "Teema"
   },
   "themeDesc": {
-    "message": "Valitse verkkoholvillesi teema."
+    "message": "Valitse verkkoholvin teema."
   },
   "themeSystem": {
     "message": "Käytä järjestelmän teemaa"
@@ -4178,7 +4202,7 @@
     "message": "Toimittajan ylläpitäjä"
   },
   "providerAdminDesc": {
-    "message": "Korkein käyttöoikeus, joka voi hallinnoida toimittajaasi kokonaisvaltaisesti sekä käyttää ja hallita asiakasorganisaatioita."
+    "message": "Korkeimman käyttöoikeuden käyttäjä, joka voi hallinnoida toimittajaasi kokonaisvaltaisesti sekä käyttää ja hallita asiakasorganisaatioita."
   },
   "serviceUser": {
     "message": "Palvelun käyttäjä"
@@ -4187,7 +4211,7 @@
     "message": "Palvelun käyttäjät voivat käyttää ja hallita kaikkia asiakasorganisaatioita."
   },
   "providerInviteUserDesc": {
-    "message": "Kutsu toimittajaasi uusi käyttäjä syöttämällä alle heidän Bitwarden-tilinsä sähköpostiosoite. Jos heillä ei vielä ole Bitwarden-tiliä, heitä pyydetään luomaan uusi tili."
+    "message": "Kutsu toimittajaasi uusi käyttäjä syöttämällä alle heidän Bitwarden-tilinsä sähköpostiosoite. Jos heillä ei vielä ole Bitwarden-tiliä, pyydetään heitä luomaan uusi tili."
   },
   "joinProvider": {
     "message": "Liity toimittajaan"
@@ -4202,7 +4226,7 @@
     "message": "Saat toimittajan käyttöoikeuden ylläpitäjän vahvistettua jäsentyytesi. Saat vahvistuksesta ilmoituksen sähköpostitse."
   },
   "providerUsersNeedConfirmed": {
-    "message": "Sinulla on käyttäjiä, jotka ovat hyväksyneet kutsunsa, mutta heidän liittymisensä tulee vielä vahvistaa. Käyttäjillä ei ole toimittajan käyttöoikeutta ennen vahvistusta."
+    "message": "Sinulla on käyttäjiä, jotka ovat hyväksyneet kutsunsa, mutta heidän liittymisensä on vielä vahvistettava. Käyttäjillä ei ole toimittajan käyttöoikeutta ennen vahvistusta."
   },
   "provider": {
     "message": "Toimittaja"
@@ -4245,10 +4269,10 @@
     }
   },
   "providerIsDisabled": {
-    "message": "Toimittaja on poistettu käytöstä."
+    "message": "Toimittaja ei ole käytössä."
   },
   "providerUpdated": {
-    "message": "Toimittaja päivitettiin"
+    "message": "Toimittaja päivitetty"
   },
   "yourProviderIs": {
     "message": "Toimittajasi on $PROVIDER$. Heillä on hallinnolliset- ja laskutusoikeudet organisaatioosi.",
@@ -4315,7 +4339,7 @@
     }
   },
   "customVaultTimeout": {
-    "message": "Oma holvin aikakatkaisuviive"
+    "message": "Mukautettu holvin aikakatkaisuviive"
   },
   "vaultTimeoutToLarge": {
     "message": "Holvisi aikakatkaisuviive ylittää organisaatiosi asettamat rajoitukset."
@@ -4354,7 +4378,7 @@
     "message": "Uloskirjautumisen takaisinsoittopolku"
   },
   "authority": {
-    "message": "Hallitsija"
+    "message": "Haltija"
   },
   "clientId": {
     "message": "Asiakkaan ID"
@@ -4363,7 +4387,7 @@
     "message": "Asiakkaan salaisuus"
   },
   "metadataAddress": {
-    "message": "Metatieto-osoite"
+    "message": "Metatietojen osoite"
   },
   "oidcRedirectBehavior": {
     "message": "OIDC-uudelleenohjauskäyttäytyminen"
@@ -4429,7 +4453,7 @@
     "message": "Kertauloskirjautumispalvelun URL"
   },
   "idpArtifactResolutionServiceUrl": {
-    "message": "Artefaktien selvityspalvelun URL"
+    "message": "Artifact Resolution Service URL"
   },
   "idpX509PublicCert": {
     "message": "Julkinen X509 \n-varmenne"
@@ -4447,6 +4471,9 @@
     "message": "Haluatko allekirjoitetut todennuspyynnöt"
   },
   "ssoSettingsSaved": {
-    "message": "Kertakirjautumisen määritykset tallennettiin."
+    "message": "Kertakirjautumisen määritykset tallennettu."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Unable to reach the crypto agent, try again later."
   }
 }

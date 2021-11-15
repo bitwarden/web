@@ -74,6 +74,9 @@ export class EventService {
             case EventType.User_UpdatedTempPassword:
                 msg = humanReadableMsg = this.i18nService.t('updatedMasterPassword');
                 break;
+            case EventType.User_MigratedKeyToKeyConnector:
+                msg = humanReadableMsg = this.i18nService.t('migratedKeyConnector');
+                break;
             // Cipher
             case EventType.Cipher_Created:
                 msg = this.i18nService.t('createdItemId', this.formatCipherId(ev, options));
@@ -224,6 +227,18 @@ export class EventService {
             */
             case EventType.Organization_VaultAccessed:
                 msg = humanReadableMsg = this.i18nService.t('vaultAccessedByProvider');
+                break;
+            case EventType.Organization_EnabledSso:
+                msg = humanReadableMsg = this.i18nService.t('enabledSso');
+                break;
+            case EventType.Organization_DisabledSso:
+                msg = humanReadableMsg = this.i18nService.t('disabledSso');
+                break;
+            case EventType.Organization_EnabledKeyConnector:
+                msg = humanReadableMsg = this.i18nService.t('enabledKeyConnector');
+                break;
+            case EventType.Organization_DisabledKeyConnector:
+                msg = humanReadableMsg = this.i18nService.t('disabledKeyConnector');
                 break;
             // Policies
             case EventType.Policy_Updated:

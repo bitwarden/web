@@ -6,6 +6,7 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { UpdateTwoFactorYubioOtpRequest } from 'jslib-common/models/request/updateTwoFactorYubioOtpRequest';
 import { TwoFactorYubiKeyResponse } from 'jslib-common/models/response/twoFactorYubiKeyResponse';
@@ -28,8 +29,8 @@ export class TwoFactorYubiKeyComponent extends TwoFactorBaseComponent {
 
     constructor(apiService: ApiService, i18nService: I18nService,
         toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
-        logService: LogService) {
-        super(apiService, i18nService, toasterService, platformUtilsService, logService);
+        logService: LogService, userVerificationService: UserVerificationService) {
+        super(apiService, i18nService, toasterService, platformUtilsService, logService, userVerificationService);
     }
 
     auth(authResponse: any) {
@@ -37,9 +38,8 @@ export class TwoFactorYubiKeyComponent extends TwoFactorBaseComponent {
         this.processResponse(authResponse.response);
     }
 
-    submit() {
-        const request = new UpdateTwoFactorYubioOtpRequest();
-        request.masterPasswordHash = this.masterPasswordHash;
+    async submit() {
+        const request = await this.buildRequestModel(UpdateTwoFactorYubioOtpRequest);
         request.key1 = this.keys != null && this.keys.length > 0 ? this.keys[0].key : null;
         request.key2 = this.keys != null && this.keys.length > 1 ? this.keys[1].key : null;
         request.key3 = this.keys != null && this.keys.length > 2 ? this.keys[2].key : null;

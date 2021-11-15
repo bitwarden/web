@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Boolean"
   },
+  "cfTypeLinked": {
+    "message": "Linked",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Çıxart"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Soyad"
+  },
+  "fullName": {
+    "message": "Full Name"
   },
   "address1": {
     "message": "Ünvan 1"
@@ -2811,10 +2818,6 @@
     "message": "Aşağıdakı məlumatları qeyd edərək hesabınızı başqa bir plana yüksəldin. Zəhmət olmasa hesaba aktiv bir ödəniş metodu əlavə etdiyinizə əmin olun.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Planınızı dəyişdirmək istəsəniz, müştəri dəstəyi ilə əlaqə saxlayın. Zəhmət olmasa hesaba aktiv bir ödəniş metodu əlavə etdiyinizə əmin olun.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Faktura nömrəsi: $NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2935,6 +2938,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,6 +3838,9 @@
   "accessReports": {
     "message": "Hesabatlara müraciət"
   },
+  "missingPermissions": {
+    "message": "You lack the necessary permissions to perform this action."
+  },
   "manageAllCollections": {
     "message": "Bütün kolleksiyaları idarə et"
   },
@@ -4448,5 +4472,8 @@
   },
   "ssoSettingsSaved": {
     "message": "Tək daxil olma konfiqurasiyası saxlanıldı."
+  },
+  "ssoCryptoAgentUnavailable": {
+    "message": "Unable to reach the crypto agent, try again later."
   }
 }
