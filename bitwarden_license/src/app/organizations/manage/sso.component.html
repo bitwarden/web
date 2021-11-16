@@ -35,7 +35,7 @@
         </div>
         <div class="form-check mt-2 form-check-block">
             <input class="form-check-input" type="radio" id="memberDecryptionKey" [value]="true" formControlName="useKeyConnector"
-                [attr.disabled]="organization.useKeyConnector || null">
+                [attr.disabled]="!organization.useKeyConnector || null">
             <label class="form-check-label" for="memberDecryptionKey">
                 {{'keyConnector' | i18n}}
                 <a target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}"
