@@ -53,7 +53,7 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
                 for (let i = 0; i < c.login.uris.length; i++) {
                     const u = c.login.uris[i];
                     if (u.uri != null && u.uri !== '') {
-                        const uri = u.uri.replace("www", "");
+                        const uri = u.uri.replace('www', '');
                         const domain = Utils.getDomain(uri);
                         if (domain != null && this.services.has(domain)) {
                             if (this.services.get(domain) != null) {
@@ -85,8 +85,8 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
         const responseJson = await response.json();
         for (const service of responseJson) {
             const serviceData = service[1];
-            if (serviceData.domain == null) continue;
-            if (serviceData.documentation == null) continue;
+            if (serviceData.domain == null) { continue }
+            if (serviceData.documentation == null) { continue }
             if (serviceData['additional-domains'] != null) {
                 for (const additionalDomain of serviceData['additional-domains']) {
                     this.services.set(additionalDomain, serviceData.documentation);
