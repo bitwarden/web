@@ -42,7 +42,7 @@ export class SsoComponent implements OnInit {
     data = this.fb.group({
         configType: [],
 
-        useKeyConnector: [],
+        keyConnectorEnabled: [],
         keyConnectorUrl: [],
 
         // OpenId
