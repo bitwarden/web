@@ -153,6 +153,7 @@ const notificationsService = new NotificationsService(syncService, appIdService,
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(apiService, cipherService,
     stateService, consoleLogService, organizationService);
+const userVerificationService = new UserVerificationService(cryptoService, i18nService, apiService);
 
 containerService.attachToWindow(window);
 
@@ -246,7 +247,7 @@ export function initFactory(): Function {
         { provide: SyncServiceAbstraction, useValue: syncService },
         { provide: TokenServiceAbstraction, useValue: tokenService },
         { provide: TotpServiceAbstraction, useValue: totpService },
-        { provide: UserVerificationServiceAbstraction, useClass: UserVerificationService },
+        { provide: UserVerificationServiceAbstraction, useValue: userVerificationService },
         { provide: VaultTimeoutServiceAbstraction, useValue: vaultTimeoutService },
     ],
 })
