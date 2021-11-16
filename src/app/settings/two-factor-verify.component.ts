@@ -65,24 +65,24 @@ export class TwoFactorVerifyComponent {
     }
 
     private apiCall(request: SecretVerificationRequest): Promise<TwoFactorResponse> {
-            switch (this.type) {
-                case -1:
-                    return this.apiService.getTwoFactorRecover(request);
-                case TwoFactorProviderType.Duo:
-                case TwoFactorProviderType.OrganizationDuo:
-                    if (this.organizationId != null) {
-                        return this.apiService.getTwoFactorOrganizationDuo(this.organizationId, request);
-                    } else {
-                        return this.apiService.getTwoFactorDuo(request);
-                    }
-                case TwoFactorProviderType.Email:
-                    return this.apiService.getTwoFactorEmail(request);
-                case TwoFactorProviderType.WebAuthn:
-                    return this.apiService.getTwoFactorWebAuthn(request);
-                case TwoFactorProviderType.Authenticator:
-                    return this.apiService.getTwoFactorAuthenticator(request);
-                case TwoFactorProviderType.Yubikey:
-                    return this.apiService.getTwoFactorYubiKey(request);
-            }
+        switch (this.type) {
+            case -1:
+                return this.apiService.getTwoFactorRecover(request);
+            case TwoFactorProviderType.Duo:
+            case TwoFactorProviderType.OrganizationDuo:
+                if (this.organizationId != null) {
+                    return this.apiService.getTwoFactorOrganizationDuo(this.organizationId, request);
+                } else {
+                    return this.apiService.getTwoFactorDuo(request);
+                }
+            case TwoFactorProviderType.Email:
+                return this.apiService.getTwoFactorEmail(request);
+            case TwoFactorProviderType.WebAuthn:
+                return this.apiService.getTwoFactorWebAuthn(request);
+            case TwoFactorProviderType.Authenticator:
+                return this.apiService.getTwoFactorAuthenticator(request);
+            case TwoFactorProviderType.Yubikey:
+                return this.apiService.getTwoFactorYubiKey(request);
+        }
     }
 }
