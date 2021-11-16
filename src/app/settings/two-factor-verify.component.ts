@@ -9,7 +9,9 @@ import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType'
 import { VerificationType } from 'jslib-common/enums/verificationType';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { Verification } from 'jslib-common/types/verification';
@@ -27,12 +29,13 @@ export class TwoFactorVerifyComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private logService: LogService,
-        private userVerificationService: UserVerificationService) { }
+        private userVerificationService: UserVerificationService, private platformUtilsService: PlatformUtilsService,
+        private i18nService: I18nService) { }
 
     async submit() {
-        const request = await this.userVerificationService.buildRequest(this.secret);
-
         try {
+            const request = await this.userVerificationService.buildRequest(this.secret);
+
             switch (this.type) {
                 case -1:
                     this.formPromise = this.apiService.getTwoFactorRecover(request);
@@ -68,6 +71,7 @@ export class TwoFactorVerifyComponent {
                 verificationType: this.secret.type,
             });
         } catch (e) {
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e.message);
             this.logService.error(e);
         }
     }

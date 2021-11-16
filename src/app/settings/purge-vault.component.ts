@@ -9,6 +9,7 @@ import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { Verification } from 'jslib-common/types/verification';
@@ -25,12 +26,11 @@ export class PurgeVaultComponent {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private userVerificationService: UserVerificationService,
-        private router: Router, private logService: LogService) { }
+        private router: Router, private logService: LogService, private platformUtilsService: PlatformUtilsService) { }
 
     async submit() {
-        const request = await this.userVerificationService.buildRequest(this.masterPassword);
-
         try {
+            const request = await this.userVerificationService.buildRequest(this.masterPassword);
             this.formPromise = this.apiService.postPurgeCiphers(request, this.organizationId);
             await this.formPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('vaultPurged'));
@@ -40,6 +40,7 @@ export class PurgeVaultComponent {
                 this.router.navigate(['vault']);
             }
         } catch (e) {
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e.message);
             this.logService.error(e);
         }
     }

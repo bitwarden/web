@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { SecretVerificationRequest } from 'jslib-common/models/request/secretVerificationRequest';
@@ -29,17 +31,18 @@ export class ApiKeyComponent {
     clientId: string;
     clientSecret: string;
 
-    constructor(private userVerificationService: UserVerificationService, private logService: LogService) { }
+    constructor(private userVerificationService: UserVerificationService, private logService: LogService,
+        private platformUtilsService: PlatformUtilsService, private i18nService: I18nService) { }
 
     async submit() {
-        const request = await this.userVerificationService.buildRequest(this.masterPassword);
-
         try {
+            const request = await this.userVerificationService.buildRequest(this.masterPassword);
             this.formPromise = this.postKey(this.entityId, request);
             const response = await this.formPromise;
             this.clientSecret = response.apiKey;
             this.clientId = `${this.keyType}.${this.entityId}`;
         } catch (e) {
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e.message);
             this.logService.error(e);
         }
     }
