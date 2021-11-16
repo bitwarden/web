@@ -6,10 +6,7 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
-
-import { SecretVerificationRequest } from 'jslib-common/models/request/secretVerificationRequest';
 
 import { Verification } from 'jslib-common/types/verification';
 
@@ -23,20 +20,12 @@ export class DeauthorizeSessionsComponent {
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private userVerificationService: UserVerificationService,
-        private messagingService: MessagingService, private logService: LogService,
-        private platformUtilsService: PlatformUtilsService) { }
+        private messagingService: MessagingService, private logService: LogService) { }
 
     async submit() {
-        let request: SecretVerificationRequest;
         try {
-            request = await this.userVerificationService.buildRequest(this.masterPassword);
-        } catch (e) {
-            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e.message);
-            return;
-        }
-
-        try {
-            this.formPromise = this.apiService.postSecurityStamp(request);
+            this.formPromise = this.userVerificationService.buildRequest(this.masterPassword).then(request => 
+                this.apiService.postSecurityStamp(request));
             await this.formPromise;
             this.toasterService.popAsync('success', this.i18nService.t('sessionsDeauthorized'),
                 this.i18nService.t('logBackIn'));
