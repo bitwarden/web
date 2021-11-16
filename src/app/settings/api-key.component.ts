@@ -35,14 +35,20 @@ export class ApiKeyComponent {
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService) { }
 
     async submit() {
+        let request: SecretVerificationRequest;
         try {
-            const request = await this.userVerificationService.buildRequest(this.masterPassword);
+            request = await this.userVerificationService.buildRequest(this.masterPassword);
+        } catch (e) {
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e.message);
+            return;
+        }
+
+        try {
             this.formPromise = this.postKey(this.entityId, request);
             const response = await this.formPromise;
             this.clientSecret = response.apiKey;
             this.clientId = `${this.keyType}.${this.entityId}`;
         } catch (e) {
-            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e.message);
             this.logService.error(e);
         }
     }

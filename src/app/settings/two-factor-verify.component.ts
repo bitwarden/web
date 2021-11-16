@@ -16,6 +16,8 @@ import { UserVerificationService } from 'jslib-common/abstractions/userVerificat
 
 import { Verification } from 'jslib-common/types/verification';
 
+import { SecretVerificationRequest } from 'jslib-common/models/request/secretVerificationRequest';
+
 @Component({
     selector: 'app-two-factor-verify',
     templateUrl: 'two-factor-verify.component.html',
@@ -33,9 +35,15 @@ export class TwoFactorVerifyComponent {
         private i18nService: I18nService) { }
 
     async submit() {
+        let request: SecretVerificationRequest;
         try {
-            const request = await this.userVerificationService.buildRequest(this.secret);
+            request = await this.userVerificationService.buildRequest(this.secret);
+        } catch (e) {
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e.message);
+            return;
+        }
 
+        try {
             switch (this.type) {
                 case -1:
                     this.formPromise = this.apiService.getTwoFactorRecover(request);
@@ -71,7 +79,6 @@ export class TwoFactorVerifyComponent {
                 verificationType: this.secret.type,
             });
         } catch (e) {
-            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e.message);
             this.logService.error(e);
         }
     }

@@ -9,6 +9,8 @@ import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
+import { SecretVerificationRequest } from 'jslib-common/models/request/secretVerificationRequest';
+
 import { Verification } from 'jslib-common/types/verification';
 
 @Component({
@@ -25,15 +27,21 @@ export class DeleteAccountComponent {
         private platformUtilsService: PlatformUtilsService) { }
 
     async submit() {
+        let request: SecretVerificationRequest;
         try {
-            const request = await this.userVerificationService.buildRequest(this.masterPassword);
+            request = await this.userVerificationService.buildRequest(this.masterPassword);
+        } catch (e) {
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e.message);
+            return;
+        }
+
+        try {
             this.formPromise = this.apiService.deleteAccount(request);
             await this.formPromise;
             this.toasterService.popAsync('success', this.i18nService.t('accountDeleted'),
                 this.i18nService.t('accountDeletedDesc'));
             this.messagingService.send('logout');
         } catch (e) {
-            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e.message);
             this.logService.error(e);
         }
     }

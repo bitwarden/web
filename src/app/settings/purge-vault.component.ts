@@ -11,6 +11,7 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
+import { SecretVerificationRequest } from 'jslib-common/models/request/secretVerificationRequest';
 
 import { Verification } from 'jslib-common/types/verification';
 
@@ -29,8 +30,15 @@ export class PurgeVaultComponent {
         private router: Router, private logService: LogService, private platformUtilsService: PlatformUtilsService) { }
 
     async submit() {
+        let request: SecretVerificationRequest;
         try {
-            const request = await this.userVerificationService.buildRequest(this.masterPassword);
+            request = await this.userVerificationService.buildRequest(this.masterPassword);
+        } catch (e) {
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e.message);
+            return;
+        }
+
+        try {
             this.formPromise = this.apiService.postPurgeCiphers(request, this.organizationId);
             await this.formPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('vaultPurged'));
@@ -40,7 +48,6 @@ export class PurgeVaultComponent {
                 this.router.navigate(['vault']);
             }
         } catch (e) {
-            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), e.message);
             this.logService.error(e);
         }
     }
