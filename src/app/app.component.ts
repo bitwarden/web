@@ -226,6 +226,7 @@ export class AppComponent implements OnDestroy, OnInit {
                     this.i18nService.t('loginExpired'));
             }
 
+            await this.stateService.clean({ userId: userId });
             Swal.close();
             this.router.navigate(['/']);
         });
