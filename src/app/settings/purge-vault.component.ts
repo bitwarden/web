@@ -11,6 +11,7 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
+
 import { SecretVerificationRequest } from 'jslib-common/models/request/secretVerificationRequest';
 
 import { Verification } from 'jslib-common/types/verification';
