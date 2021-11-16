@@ -782,7 +782,7 @@
     "message": "Bu kayıtları taşımak istediğiniz kuruluşu seçin. Taşıdığınız kayıtların sahipliği seçtiğiniz kuruluşa aktarılacak. Artık bu kayıtların doğrudan sahibi olmayacaksınız."
   },
   "collectionsDesc": {
-    "message": "Bu nesnenin şu anda paylaşıldığı koleksiyonları düzenler. Kurumdaki kullanıcılardan yalnızca bu koleksiyonlara erişimi olanlar bu nesneyi görebilirler."
+    "message": "Bu kaydın şu anda paylaşıldığı koleksiyonları düzenler. Kuruluştaki kullanıcılardan yalnızca bu koleksiyonlara erişimi olanlar bu kaydı görebilir."
   },
   "deleteSelectedItemsDesc": {
     "message": "Silinmek üzere $COUNT$ kayıt seçtiniz. Bu kayıtların hepsini silmek istediğinizden emin misiniz?",
@@ -1640,7 +1640,7 @@
     "message": "Premium'a yükselttiniz."
   },
   "premiumUpgradeUnlockFeatures": {
-    "message": "Hesabınızı premium üyeliğe yükseltin ve bazı harika ek özelliklerin kilidini açın."
+    "message": "Hesabınızı premium üyeliğe yükselterek harika ek özelliklere sahip olabilirsiniz."
   },
   "premiumSignUpStorage": {
     "message": "Dosya ekleri için 1 GB şifrelenmiş depolama."
@@ -1743,13 +1743,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Planınız 7 günlük ücretsiz deneme ile birlikte gelmektedir. Deneme sona erene kadar ödeme yönteminiz ücretlendirilmeyecektir. Faturalandırma, her $INTERVAL$ bir düzenli olarak gerçekleştirilecektir. İstediğiniz zaman iptal edebilirsiniz.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Planınız 7 günlük ücretsiz deneme ile birlikte gelmektedir. Deneme sona erene kadar ödeme yönteminiz ücretlendirilmeyecektir. Faturalandırma, her $INTERVAL$ bir düzenli olarak gerçekleştirilecektir. İstediğiniz zaman iptal edebilirsiniz."
   },
   "paymentInformation": {
     "message": "Ödeme Bilgileri"
@@ -2735,7 +2729,7 @@
     "message": "Kuruluşa katıl"
   },
   "joinOrganizationDesc": {
-    "message": "Yukarıda listelenen organizasyona katılman için davet edildin. Daveti kabul etmek için, giriş yapmanız ya da yeni bir Bitwarden hesabı oluşturmalısınız."
+    "message": "You've been invited to join the organization listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
   },
   "inviteAccepted": {
     "message": "Davet kabul edildi"
@@ -2762,7 +2756,7 @@
     "message": "Eğer hesabınıza iki aşamalı doğrulama ile erişimde bir sorun yaşıyorsanız, kurtarma kodunuz ile iki aşamalı doğrulama özelliğini kapatabilirsiniz."
   },
   "recoverAccountTwoStep": {
-    "message": "İki Aşamalı Giriş İle Hesabı Kurtarın"
+    "message": "Recover Account Two-Step Login"
   },
   "twoStepRecoverDisabled": {
     "message": "İki aşamalı doğrulama hesabınızda devre dışı bırakıldı."
@@ -2771,13 +2765,13 @@
     "message": "Daha fazla bilgi al"
   },
   "deleteRecoverDesc": {
-    "message": "Hesabınızı kurtarmak ve silmek için e-posta hesabınızı girin."
+    "message": "Hesabınızı kurtarmak ve silmek için e-posta adresinizi yazın."
   },
   "deleteRecoverEmailSent": {
-    "message": "Bir hesabınız var ise daha fazla talimat içeren bir e-posta göndereceğiz."
+    "message": "If your account exists, we've sent you an email with further instructions."
   },
   "deleteRecoverConfirmDesc": {
-    "message": "Bitwarden hesabınızı silmek istiyorsunuz. Onaylamak için aşağıdaki butona basın."
+    "message": "Bitwarden hesabınızı silme talebinde bulundunuz. Onaylamak için aşağıdaki düğmeye tıklayın."
   },
   "myOrganization": {
     "message": "Kuruluşum"
@@ -2811,11 +2805,11 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Planı değiştir",
+    "message": "Planı yükselt",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
-    "message": "Upgrade your account to another plan be providing the information below. Please ensure that you have an active payment method added to the account.",
+    "message": "Upgrade your account to another plan by providing the information below. Please ensure that you have an active payment method added to the account.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
@@ -3008,7 +3002,7 @@
     "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
   },
   "updateEncryptionKeyExportWarning": {
-    "message": "Kasanızın dışa aktarılmış şifreli kopyaları da geçersiz olacaktır."
+    "message": "Şifrelenmiş dışa aktarmalarınız da geçersiz olacaktır."
   },
   "subscription": {
     "message": "Abonelik"
@@ -3026,10 +3020,10 @@
     "message": "Bu özellik ücretsiz organizasyonlar için mevcut değil. Daha fazla özellik için ücretli plana geçin."
   },
   "createOrganizationStep1": {
-    "message": "Organizasyon Oluştur: Aşama 1"
+    "message": "Kuruluş oluşturma: 1. adım"
   },
   "createOrganizationCreatePersonalAccount": {
-    "message": "Organizasyon oluşturmadan önce ücretsiz bir kişisel hesap açmalısınız."
+    "message": "Kuruluş oluşturmak için önce ücretsiz bir kişisel hesap açmalısınız."
   },
   "refunded": {
     "message": "İade edildi"
@@ -3137,7 +3131,7 @@
     "message": "Hesabınızın şifreleme anahtarını döndürmek istediğinizden emin misiniz?"
   },
   "attachmentsNeedFix": {
-    "message": "Bu ögede düzeltilmesi gereken eski dosya ekleri bulunmaktadır."
+    "message": "Bu kayıtta düzeltilmesi gereken eski dosya ekleri bulunuyor."
   },
   "attachmentFixDesc": {
     "message": "Bu düzeltilmesi gereken eski bir dosya eki. Daha fazla bilgi edinmek için tıklayın."
@@ -3158,7 +3152,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Parmak hesabı şifresini tekrar doğrulamak için sorma",
+    "message": "Don't ask to verify fingerprint phrase again",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -3169,7 +3163,7 @@
     "message": "API anahtarı"
   },
   "apiKeyDesc": {
-    "message": "API anahtarınız Bitwarden genel API'i doğrulamak için kullanılabilir."
+    "message": "Your API key can be used to authenticate to the Bitwarden public API."
   },
   "apiKeyRotateDesc": {
     "message": "API anahtarını döndürmek önceki anahtarı geçersiz kılacaktır. Geçerli anahtarın artık güvenli olmadığına inanıyorsanız API anahtarınızı döndürebilirsiniz."
@@ -3191,31 +3185,31 @@
     "message": "API anahtarını görüntüle"
   },
   "rotateApiKey": {
-    "message": "API Anahtarını döndür"
+    "message": "API anahtarını yenile"
   },
   "selectOneCollection": {
     "message": "En az bir koleksiyon seçmelisiniz."
   },
   "couldNotChargeCardPayInvoice": {
-    "message": "Kartınızı ücretlendiremedik. Lütfen aşağıda listelenen ödenmemiş faturayı görüntüleyin ve ödeyin."
+    "message": "We were not able to charge your card. Please view and pay the unpaid invoice listed below."
   },
   "inAppPurchase": {
     "message": "Uygulama içi satın alma"
   },
   "cannotPerformInAppPurchase": {
-    "message": "Bir uygulama içi satın alma ödeme yöntemi kullanırken bu işlemi gerçekleştiremezsiniz."
+    "message": "Uygulama içi satın alma ödeme yöntemi kullanırken bu işlemi gerçekleştiremezsiniz."
   },
   "manageSubscriptionFromStore": {
     "message": "Aboneliğinizi uygulama içi satın alımınızın yapıldığı mağazadan yönetmelisiniz."
   },
   "minLength": {
-    "message": "Minimum Uzunluk"
+    "message": "Minimum uzunluk"
   },
   "clone": {
     "message": "Klonla"
   },
   "masterPassPolicyDesc": {
-    "message": "Ana şifre gücü için minimum gereksinimleri ayarlayın."
+    "message": "Ana parola gücü için minimum gereksinimleri ayarlayın."
   },
   "twoStepLoginPolicyDesc": {
     "message": "Kullanıcılardan hesaplarında iki adımlı oturum açma özelliğini kullanmalarını isteyin."
@@ -3227,16 +3221,16 @@
     "message": "İki adımlı oturum açmanın etkinleştirilmesi gereken bir kuruluşun üyesisiniz. İki adımlı oturum açma sağlayıcılarının tümünü devre dışı bırakırsanız, bu kuruluşlardan otomatik olarak kaldırılırsınız."
   },
   "passwordGeneratorPolicyDesc": {
-    "message": "Şifre üreticisi ayarları için minimum gereksinimleri ayarlayın."
+    "message": "Parola üreticisi ayarları için minimum gereksinimleri ayarlayın."
   },
   "passwordGeneratorPolicyInEffect": {
-    "message": "Bir ya da daha fazla organizasyon ilkesi oluşturucu ayarlarınızı etkiliyor."
+    "message": "Bir ya da daha fazla kuruluş ilkesi, oluşturucu ayarlarınızı etkiliyor."
   },
   "masterPasswordPolicyInEffect": {
-    "message": "Bir ya da daha fazla organizasyon ilkesi için ana şifrenizin aşağıdaki gereksinimleri karşılaması gerekir:"
+    "message": "Bir veya daha fazla kuruluş ilkesi gereğince ana parolanız aşağıdaki gereksinimleri karşılamalıdır:"
   },
   "policyInEffectMinComplexity": {
-    "message": "Minimum karmaşa puanı $SCORE$",
+    "message": "Minimum karmaşıklık puanı: $SCORE$",
     "placeholders": {
       "score": {
         "content": "$1",
@@ -3287,7 +3281,7 @@
     "message": "Kasa zaman aşımı eylemi"
   },
   "vaultTimeoutActionLockDesc": {
-    "message": "Kilitli bir kasaya tekrar erişebilmeniz için ana parolanızı tekrar girmeniz gerekir."
+    "message": "Kilitli bir kasaya tekrar erişebilmek için ana parolanızı tekrar girmeniz gerekir."
   },
   "vaultTimeoutActionLogOutDesc": {
     "message": "Çıkış yapılmış bir kasaya tekrardan erişmek için yeniden kimlik doğrulaması gerekir."
@@ -3331,7 +3325,7 @@
     }
   },
   "permanentlyDeletedItemId": {
-    "message": "Kalıcı Olarak Silinmiş Öge: $ID$.",
+    "message": "Permanently Deleted item $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4190,10 +4184,10 @@
     "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
   },
   "providerName": {
-    "message": "Provider Name"
+    "message": "Sağlayıcı adı"
   },
   "providerSetup": {
-    "message": "The provider has been set up."
+    "message": "Sağlayıcı kuruldu."
   },
   "clients": {
     "message": "Clients"
@@ -4241,7 +4235,7 @@
     "message": "Mevcut kuruluşu ekle"
   },
   "myProvider": {
-    "message": "My Provider"
+    "message": "Sağlayıcım"
   },
   "addOrganizationConfirmation": {
     "message": "Are you sure you want to add $ORGANIZATION$ as a client to $PROVIDER$?",
@@ -4473,7 +4467,91 @@
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
   },
-  "ssoCryptoAgentUnavailable": {
-    "message": "Unable to reach the crypto agent, try again later."
+  "ssoKeyConnectorUnavailable": {
+    "message": "Unable to reach the Key Connector, try again later."
+  },
+  "keyConnectorUrl": {
+    "message": "Key Connector URL"
+  },
+  "requestVerificationCode": {
+    "message": "Tek kullanımlık parola iste"
+  },
+  "verificationCode": {
+    "message": "Doğrulama kodu"
+  },
+  "verificationCodeRequired": {
+    "message": "Doğrulama kodu gereklidir."
+  },
+  "invalidVerificationCode": {
+    "message": "Geçersiz doğrulama kodu"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ kendi barındırdığı bir anahtar sunucusuyla SSO kullanıyor. Bu kuruluşun üyelerinin artık ana parola kullanması gerekmiyor.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Kuruluştan ayrıl"
+  },
+  "removeMasterPassword": {
+    "message": "Ana parolayı kaldır"
+  },
+  "removedMasterPassword": {
+    "message": "Ana parola kaldırıldı."
+  },
+  "allowSso": {
+    "message": "Allow SSO authentication"
+  },
+  "allowSsoDesc": {
+    "message": "Once set up, your configuration will be saved and members will be able to authenticate using their Identity Provider credentials."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Enable the",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO Policy",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "to require all members to log in with SSO.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "memberDecryptionOption": {
+    "message": "Member Decryption Options"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Once authenticated, members will decrypt vault data using their Master Passwords."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt vault data."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
+  },
+  "enabledSso": {
+    "message": "Enabled SSO"
+  },
+  "disabledSso": {
+    "message": "Disabled SSO"
+  },
+  "enabledKeyConnector": {
+    "message": "Enabled Key Connector"
+  },
+  "disabledKeyConnector": {
+    "message": "Disabled Key Connector"
+  },
+  "keyConnectorWarning": {
+    "message": "Once Key Connector is set up, Member Decryption Options cannot be changed."
+  },
+  "migratedKeyConnector": {
+    "message": "Migrated to Key Connector"
   }
 }

@@ -1743,13 +1743,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Ваш тарифний план має 7 днів безплатного пробного періоду. З вас не буде стягнуто плату до завершення цього періоду. Оплата стягуватиметься автоматично кожен $INTERVAL$. Ви можете скасувати це в будь-який час.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Ваш тарифний план має 7 днів безплатного пробного періоду. З вас не буде стягнуто плату до завершення цього періоду. Ви можете скасувати це в будь-який час."
   },
   "paymentInformation": {
     "message": "Інформація про оплату"
@@ -4473,7 +4467,91 @@
   "ssoSettingsSaved": {
     "message": "Конфігурацію єдиного входу збережено."
   },
-  "ssoCryptoAgentUnavailable": {
-    "message": "Не вдалося під'єднатися до крипто-агента. Спробуйте знову пізніше."
+  "ssoKeyConnectorUnavailable": {
+    "message": "Не вдається отримати доступ до Key Connector. Спробуйте знову пізніше."
+  },
+  "keyConnectorUrl": {
+    "message": "URL-адреса Key Connector"
+  },
+  "requestVerificationCode": {
+    "message": "Запитувати одноразовий пароль"
+  },
+  "verificationCode": {
+    "message": "Код підтвердження"
+  },
+  "verificationCodeRequired": {
+    "message": "Потрібний код підтвердження."
+  },
+  "invalidVerificationCode": {
+    "message": "Недійсний код підтвердження"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ використовує SSO з власним сервером ключів. Головний пароль для учасників цієї організації більше не вимагається.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Покинути організацію"
+  },
+  "removeMasterPassword": {
+    "message": "Вилучити головний пароль"
+  },
+  "removedMasterPassword": {
+    "message": "Головний пароль вилучено."
+  },
+  "allowSso": {
+    "message": "Дозволити авторизацію SSO"
+  },
+  "allowSsoDesc": {
+    "message": "Після налаштування вашу конфігурацію буде збережено та учасники зможуть авторизуватися з використанням облікових даних їхнього постачальника."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Увімкнути",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "політику SSO,",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "щоб вимагати в усіх учасників виконувати вхід з SSO.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "memberDecryptionOption": {
+    "message": "Налаштування розшифрування учасників"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Після авторизації учасники розшифровуватимуть дані сховища з використанням їх головного пароля."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Під'єднайте вхід з SSO до свого власного сервера ключів розшифрування. Скориставшись цією можливістю, учасникам не потрібен буде головний пароль для розшифрування даних сховища."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Вхід з SSO та розшифрування Key Connector\" увімкнено. Ця політика застосовується лише для власників та адміністраторів."
+  },
+  "enabledSso": {
+    "message": "SSO увімкнено"
+  },
+  "disabledSso": {
+    "message": "SSO вимкнено"
+  },
+  "enabledKeyConnector": {
+    "message": "Key Connector увімкнено"
+  },
+  "disabledKeyConnector": {
+    "message": "Key Connector вимкнено"
+  },
+  "keyConnectorWarning": {
+    "message": "Після налаштування Key Connector налаштування розшифрування учасників не можна змінити."
+  },
+  "migratedKeyConnector": {
+    "message": "Виконано перехід на Key Connector"
   }
 }

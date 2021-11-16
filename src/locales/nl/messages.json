@@ -1743,13 +1743,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Je lidmaatschap omvat een gratis proefperiode van 7 dagen. Kosten worden pas in rekening gebracht als de proefperiode voorbij is. De betaling vindt ieder(e) $INTERVAL$ op terugkerende basis plaats. Je kunt op ieder moment opzeggen.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Je lidmaatschap omvat een gratis proefperiode van 7 dagen. Kosten worden pas in rekening gebracht als de proefperiode voorbij is. De betaling vindt ieder(e) $INTERVAL$ op terugkerende basis plaats. Je kunt op ieder moment opzeggen."
   },
   "paymentInformation": {
     "message": "Betaalgegevens"
@@ -4473,7 +4467,91 @@
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuratie is opgeslagen."
   },
-  "ssoCryptoAgentUnavailable": {
-    "message": "Kan de crypto-agent niet bereiken, probeer het later opnieuw."
+  "ssoKeyConnectorUnavailable": {
+    "message": "Kan de sleutelconnector niet bereiken, probeer het later opnieuw."
+  },
+  "keyConnectorUrl": {
+    "message": "Key Connector URL"
+  },
+  "requestVerificationCode": {
+    "message": "Eenmalig wachtwoord aanvragen"
+  },
+  "verificationCode": {
+    "message": "Verificatiecode"
+  },
+  "verificationCodeRequired": {
+    "message": "Verificatiecode vereist."
+  },
+  "invalidVerificationCode": {
+    "message": "Ongeldige verificatiecode"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ gebruikt SSO met een zelf gehoste sleutelserver. Leden van deze organisatie kunnen inloggen zonder hoofdwachtwoord.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Organisatie verlaten"
+  },
+  "removeMasterPassword": {
+    "message": "Hoofdwachtwoord verwijderen"
+  },
+  "removedMasterPassword": {
+    "message": "Hoofdwachtwoord verwijderd."
+  },
+  "allowSso": {
+    "message": "SSO-authenticatie toestaan"
+  },
+  "allowSsoDesc": {
+    "message": "Na het instellen zal uw configuratie worden opgeslagen en kunnen leden zich authenticeren met behulp van hun Identity Provider inloggegevens."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Inschakelen",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO-beleid",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "om alle leden inloggen met SSO te verplichten.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "memberDecryptionOption": {
+    "message": "Member Decryption Options"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Eenmaal ingelogd, ontsleutelen leden kluisgegevens met hun hoofdwachtwoorden."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Verbind Login met SSO met je zelf gehoste decoderingssleutelserver. Met deze optie kunnen leden kluisgegevens ontsleutelen zonder hoofdwachtwoord."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Login met SSO en Key Connector Decryption\" is ingeschakeld. Dit beleid is alleen van toepassing op de eigenaren en beheerders."
+  },
+  "enabledSso": {
+    "message": "SSO ingeschakeld"
+  },
+  "disabledSso": {
+    "message": "SSO uitgeschakeld"
+  },
+  "enabledKeyConnector": {
+    "message": "Key Connector ingeschakeld"
+  },
+  "disabledKeyConnector": {
+    "message": "Key Connector uigeschakeld"
+  },
+  "keyConnectorWarning": {
+    "message": "Zodra Key Connector is ingesteld, kunnen Member Decryption Options niet worden gewijzigd."
+  },
+  "migratedKeyConnector": {
+    "message": "Gemigreerd naar Key Connector"
   }
 }

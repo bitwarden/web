@@ -130,7 +130,7 @@ const policyService = new PolicyService(stateService, organizationService, apiSe
 const sendService = new SendService(cryptoService, apiService, fileUploadService,
     i18nService, cryptoFunctionService, stateService);
 const keyConnectorService = new KeyConnectorService(stateService, cryptoService, apiService,
-    environmentService, tokenService, consoleLogService, organizationService);
+    tokenService, consoleLogService, organizationService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
     cryptoService, platformUtilsService, messagingService, searchService, tokenService,
     policyService, keyConnectorService, stateService, null, async () => messagingService.send('logout', { expired: false }));

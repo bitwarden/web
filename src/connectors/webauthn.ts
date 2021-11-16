@@ -4,6 +4,8 @@ import { buildDataString, parseWebauthnJson } from './common-webauthn';
 // tslint:disable-next-line
 require('./webauthn.scss');
 
+const mobileCallbackUri = 'bitwarden://webauthn-callback';
+
 let parsed = false;
 let webauthnJson: any;
 let headerText: string = null;
@@ -12,7 +14,6 @@ let btnReturnText: string = null;
 let parentUrl: string = null;
 let parentOrigin: string = null;
 let mobileResponse = false;
-const mobileCallbackUri = 'bitwarden://webauthn-callback';
 let stopWebAuthn = false;
 let sentSuccess = false;
 let obj: any = null;
