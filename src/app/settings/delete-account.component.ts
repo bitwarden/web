@@ -24,8 +24,8 @@ export class DeleteAccountComponent {
 
     async submit() {
         try {
-            this.formPromise = this.userVerificationService.buildRequest(this.masterPassword).then(request => 
-                this.apiService.deleteAccount(request));
+            this.formPromise = this.userVerificationService.buildRequest(this.masterPassword)
+                .then(request => this.apiService.deleteAccount(request));
             await this.formPromise;
             this.toasterService.popAsync('success', this.i18nService.t('accountDeleted'),
                 this.i18nService.t('accountDeletedDesc'));
