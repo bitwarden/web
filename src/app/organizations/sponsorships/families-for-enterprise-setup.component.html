@@ -8,27 +8,32 @@
                 <i class="fa fa-spinner fa-spin fa-2x text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                 <span class="sr-only">{{'loading' | i18n}}</span>
     </div>
-<form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="!loading">
-    <p>
-        <span>{{'sponsoringANewFamiliesOrganization' | i18n}}</span>
-        <a target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}"
-            href="https://bitwarden.com/help/article/about-organizations/#create-an-organization">
-            https://bitwarden.com/help/article/about-organizations/#create-an-organization
-        </a>
-    </p>
-        <div *ngIf="anyOrgsAvailable" class="form-group col-6">
+    <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="!loading">
+        <p>
+            <span>{{'sponsoringANewFamiliesOrganization' | i18n}}</span>
+            <a target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}"
+                href="https://bitwarden.com/help/article/about-organizations/#create-an-organization">
+                https://bitwarden.com/help/article/about-organizations/#create-an-organization
+            </a>
+        </p>
+        <div class="form-group col-6">
             <label for="availableSponsorshipOrg">{{ 'sponsoredFamiliesSelectOffer' | i18n}}</label>
             <select id="availableSponsorshipOrg" name="Available Sponsorship Organization"
                 [(ngModel)]="selectedFamilyOrganizationId" class="form-control" required>
-                <option value="">-- {{'select' | i18n}} --</option>
+                <option value="" disabled>-- {{'select' | i18n}} --</option>
+                <option value="createNew">{{'newFamiliesOrganization' | i18n}}</option>
                 <option *ngFor="let o of existingFamilyOrganizations" [ngValue]="o.id">{{o.name}}</option>
             </select>
         </div>
-        <div class="form-group col-6" *ngIf="anyOrgsAvailable">
+        <div *ngIf="showNewOrganization" class="col-12">
+            <app-organization-plans></app-organization-plans>
+        </div>
+        <div class="form-group col-6" *ngIf="!showNewOrganization">
             <button class="btn btn-primary mt-2 btn-submit" [disabled]="form.loading" type="submit">
                 <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
-                <span>{{'redeem' | i18n}}</span>
+                <span>{{'acceptOffer' | i18n}}</span>
             </button>
         </div>
     </form>
 </div>
+<ng-template #deleteOrganizationTemplate></ng-template>

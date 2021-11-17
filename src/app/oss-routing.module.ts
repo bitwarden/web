@@ -97,7 +97,6 @@ import { UnauthGuardService } from 'jslib-angular/services/unauth-guard.service'
 
 import { Permissions } from 'jslib-common/enums/permissions';
 
-import { FamiliesForEnterpriseSetupLoginComponent } from './organizations/sponsorships/families-for-enterprise-setup-login.component';
 import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
 import { EmergencyAccessComponent } from './settings/emergency-access.component';
 import { SponsoredFamiliesComponent } from './settings/sponsored-families.component';
@@ -173,11 +172,6 @@ const routes: Routes = [
                 component: UpdateTempPasswordComponent,
                 canActivate: [AuthGuardService],
                 data: { titleId: 'updateTempPassword' },
-            },
-            {
-                path: 'sponsored/families-for-enterprise',
-                component: FamiliesForEnterpriseSetupLoginComponent,
-                data: { titleId: 'setupFamiliesForEnterprise' },
             },
             {
                 path: 'remove-password',

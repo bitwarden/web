@@ -28,8 +28,8 @@ export class SponsoredFamiliesComponent implements OnInit {
     formPromise: Promise<any>;
 
     constructor(private userService: UserService, private apiService: ApiService,
-        private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
-        private toasterService: ToasterService, private syncService: SyncService) { }
+        private i18nService: I18nService, private toasterService: ToasterService,
+        private syncService: SyncService) { }
 
     async ngOnInit() {
         await this.load();

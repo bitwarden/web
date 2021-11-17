@@ -48,6 +48,7 @@ export class OrganizationPlansComponent implements OnInit {
     @Input() organizationId: string;
     @Input() showFree = true;
     @Input() showCancel = false;
+    @Input() acceptingSponsorship = false;
     @Input() product: ProductType = ProductType.Free;
     @Input() plan: PlanType = PlanType.Free;
     @Input() providerId: string;
@@ -117,6 +118,10 @@ export class OrganizationPlansComponent implements OnInit {
 
         if (!this.showFree) {
             validPlans = validPlans.filter(plan => plan.product !== ProductType.Free);
+        }
+
+        if (this.acceptingSponsorship) {
+            validPlans = validPlans.filter(plan => plan.product === ProductType.Families);
         }
 
         validPlans = validPlans
@@ -189,6 +194,16 @@ export class OrganizationPlansComponent implements OnInit {
         return (this.subtotal + this.taxCharges) || 0;
     }
 
+    get paymentDesc() {
+        if (this.acceptingSponsorship) {
+            return this.i18nService.t('paymentSponsored');
+        } else if (this.freeTrial && this.createOrganization) {
+            return this.i18nService.t('paymentChargedWithTrial');
+        } else {
+            return this.i18nService.t('paymentCharged', this.i18nService.t(this.selectedPlanInterval));
+        }
+    }
+
     changedProduct() {
         this.plan = this.selectablePlans[0].type;
         if (!this.selectedPlan.hasPremiumAccessOption) {
@@ -235,7 +250,7 @@ export class OrganizationPlansComponent implements OnInit {
         }
 
         try {
-            const doSubmit = async () => {
+            const doSubmit = async (): Promise<string> => {
                 let orgId: string = null;
                 if (this.createOrganization) {
                     const shareKey = await this.cryptoService.makeShareKey();
@@ -259,12 +274,16 @@ export class OrganizationPlansComponent implements OnInit {
 
                 await this.apiService.refreshIdentityToken();
                 await this.syncService.fullSync(true);
-                this.router.navigate(['/organizations/' + orgId]);
+                if (!this.acceptingSponsorship) {
+                    this.router.navigate(['/organizations/' + orgId]);
+                }
+
+                return orgId;
             };
 
             this.formPromise = doSubmit();
-            await this.formPromise;
-            this.onSuccess.emit();
+            const orgId = await this.formPromise;
+            this.onSuccess.emit({ organizationId: orgId });
         } catch (e) {
             this.logService.error(e);
         }

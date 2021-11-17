@@ -58,8 +58,9 @@ export class SponsoringOrgRowComponent {
 
     private async doRevokeSponsorship() {
         const isConfirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('revokeSponsorshipConfirmation'), this.sponsoringOrg.familySponsorshipFriendlyName,
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t('revokeSponsorshipConfirmation'), 
+            `${this.i18nService.t('remove')} ${this.sponsoringOrg.familySponsorshipFriendlyName}?`,
+            this.i18nService.t('remove'), this.i18nService.t('cancel'), 'warning');
 
         if (!isConfirmed) {
             return;

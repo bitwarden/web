@@ -34,7 +34,7 @@
         <div class="form-group col-6">
             <label for="friendlyName">{{'friendlyName' | i18n}}:</label>
             <input id="friendlyName" class="form-control" [(ngModel)]="friendlyName" name="friendlyName" required>
-            <button class="btn btn-primary btn-submit mt-2" type="submit" [disabled]="form.loading">
+            <button class="btn btn-primary btn-submit mt-4" type="submit" [disabled]="form.loading">
                 <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                 <span>{{'redeem' | i18n}}</span>
             </button>
@@ -44,8 +44,8 @@
         <table class="table table-hover table-list">
             <thead>
                 <tr>
-                    <th>{{'redeemedAccount' | i18n}}</th>
-                    <th>{{'organization' | i18n}}</th>
+                    <th>{{'friendlyName' | i18n}}</th>
+                    <th>{{'sponsoringOrg' | i18n}}</th>
                     <th></th>
                 </tr>
             </thead>

@@ -90,7 +90,6 @@ import {
     WeakPasswordsReportComponent as OrgWeakPasswordsReportComponent,
 } from './organizations/tools/weak-passwords-report.component';
 
-import { FamiliesForEnterpriseSetupLoginComponent } from './organizations/sponsorships/families-for-enterprise-setup-login.component';
 import { FamiliesForEnterpriseSetupComponent } from './organizations/sponsorships/families-for-enterprise-setup.component';
 import { AddEditComponent as OrgAddEditComponent } from './organizations/vault/add-edit.component';
 import { AttachmentsComponent as OrgAttachmentsComponent } from './organizations/vault/attachments.component';
@@ -351,7 +350,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ExposedPasswordsReportComponent,
         FallbackSrcDirective,
         FamiliesForEnterpriseSetupComponent,
-        FamiliesForEnterpriseSetupLoginComponent,
         FolderAddEditComponent,
         FooterComponent,
         FrontendLayoutComponent,
