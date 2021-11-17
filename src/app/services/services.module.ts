@@ -237,7 +237,6 @@ export function initFactory(): Function {
         { provide: KeyConnectorServiceAbstraction, useValue: keyConnectorService },
         { provide: UserVerificationServiceAbstraction, useValue: userVerificationService },
         { provide: PasswordRepromptServiceAbstraction, useClass: PasswordRepromptService },
-        { provide: UserVerificationServiceAbstraction, useValue: userVerificationService },
         { provide: LogService, useValue: consoleLogService },
         {
             provide: APP_INITIALIZER,
