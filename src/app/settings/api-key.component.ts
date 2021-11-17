@@ -32,10 +32,9 @@ export class ApiKeyComponent {
     constructor(private userVerificationService: UserVerificationService, private logService: LogService) { }
 
     async submit() {
-        const request = await this.userVerificationService.buildRequest(this.masterPassword);
-
         try {
-            this.formPromise = this.postKey(this.entityId, request);
+            this.formPromise = this.userVerificationService.buildRequest(this.masterPassword)
+                .then(request => this.postKey(this.entityId, request));
             const response = await this.formPromise;
             this.clientSecret = response.apiKey;
             this.clientId = `${this.keyType}.${this.entityId}`;

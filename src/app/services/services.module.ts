@@ -235,6 +235,7 @@ export function initFactory(): Function {
         { provide: PolicyServiceAbstraction, useValue: policyService },
         { provide: SendServiceAbstraction, useValue: sendService },
         { provide: KeyConnectorServiceAbstraction, useValue: keyConnectorService },
+        { provide: UserVerificationServiceAbstraction, useValue: userVerificationService },
         { provide: PasswordRepromptServiceAbstraction, useClass: PasswordRepromptService },
         { provide: UserVerificationServiceAbstraction, useValue: userVerificationService },
         { provide: LogService, useValue: consoleLogService },

@@ -23,10 +23,9 @@ export class DeauthorizeSessionsComponent {
         private messagingService: MessagingService, private logService: LogService) { }
 
     async submit() {
-        const request = await this.userVerificationService.buildRequest(this.masterPassword);
-
         try {
-            this.formPromise = this.apiService.postSecurityStamp(request);
+            this.formPromise = this.userVerificationService.buildRequest(this.masterPassword)
+                .then(request => this.apiService.postSecurityStamp(request));
             await this.formPromise;
             this.toasterService.popAsync('success', this.i18nService.t('sessionsDeauthorized'),
                 this.i18nService.t('logBackIn'));

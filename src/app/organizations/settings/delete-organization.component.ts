@@ -25,10 +25,9 @@ export class DeleteOrganizationComponent {
         private router: Router, private logService: LogService) { }
 
     async submit() {
-        const request = await this.userVerificationService.buildRequest(this.masterPassword);
-
         try {
-            this.formPromise = this.apiService.deleteOrganization(this.organizationId, request);
+            this.formPromise = this.userVerificationService.buildRequest(this.masterPassword)
+                .then(request => this.apiService.deleteOrganization(this.organizationId, request));
             await this.formPromise;
             this.toasterService.popAsync('success', this.i18nService.t('organizationDeleted'),
                 this.i18nService.t('organizationDeletedDesc'));

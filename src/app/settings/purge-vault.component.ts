@@ -28,10 +28,9 @@ export class PurgeVaultComponent {
         private router: Router, private logService: LogService) { }
 
     async submit() {
-        const request = await this.userVerificationService.buildRequest(this.masterPassword);
-
         try {
-            this.formPromise = this.apiService.postPurgeCiphers(request, this.organizationId);
+            this.formPromise = this.userVerificationService.buildRequest(this.masterPassword)
+                .then(request => this.apiService.postPurgeCiphers(request, this.organizationId));
             await this.formPromise;
             this.toasterService.popAsync('success', null, this.i18nService.t('vaultPurged'));
             if (this.organizationId != null) {
