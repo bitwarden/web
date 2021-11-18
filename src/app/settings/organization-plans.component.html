@@ -36,7 +36,7 @@
             <small class="text-muted">{{'clientOwnerDesc' | i18n : '20'}}</small>
         </div>
     </div>
-    <div *ngIf="!providerId">
+    <div *ngIf="!providerId && !acceptingSponsorship">
         <div class="form-group form-check">
             <input id="ownedBusiness" class="form-check-input" type="checkbox" name="OwnedBusiness"
                 [(ngModel)]="ownedBusiness" (change)="changedOwnedBusiness()">
