@@ -115,16 +115,7 @@ export class SsoComponent implements OnInit {
     }
 
     async submit() {
-        if (this.data.get('useKeyConnector').value) {
-            const keyConnectorUrl = this.data.get('keyConnectorUrl').value;
-            try {
-                await this.apiService.getKeyConnectorAlive(keyConnectorUrl);
-            } catch {
-                this.platformUtilsService.showToast('error', null,
-                    'Unable to reach Key Connector. Check the URL and try again.');
-                return;
-            }
-        }
+        await this.pingKeyConnector();
 
         const request = new OrganizationSsoRequest();
         request.enabled = this.enabled.value;
@@ -138,5 +129,17 @@ export class SsoComponent implements OnInit {
 
         this.formPromise = null;
         this.platformUtilsService.showToast('success', null, this.i18nService.t('ssoSettingsSaved'));
+    }
+
+    private async pingKeyConnector() {
+        if (this.data.get('useKeyConnector').value) {
+            const keyConnectorUrl = this.data.get('keyConnectorUrl').value;
+            try {
+                await this.apiService.getKeyConnectorAlive(keyConnectorUrl);
+            } catch {
+                this.platformUtilsService.showToast('error', null, this.i18nService.t('cannotReachKeyConnector'));
+                return;
+            }
+        }
     }
 }
