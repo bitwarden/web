@@ -1743,13 +1743,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Dit abonnement kommer med en gratis 7-dages prøveperiode. Din valgte betalingsmetode vil ikke blive opkrævet, før prøveperioden er afsluttet. Fakturering finder sted hver(t) $INTERVAL$. Du kan til enhver tid opsige.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Dit abonnement indeholder en gratis 7-dages prøveperiode. Din betalingsmetode vil ikke blive debiteret, før prøveperioden er slut. Du kan til enhver tid annullere."
   },
   "paymentInformation": {
     "message": "Betalingsoplysninger"
@@ -2811,7 +2805,7 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Skift abonnement",
+    "message": "Upgradér abonnement",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
@@ -2942,7 +2936,7 @@
     }
   },
   "subscriptionFreePlan": {
-    "message": "Uden en abonnementsopgradering kan du invitere maks. $COUNT$ brugere.",
+    "message": "Du kan ikke invitere mere end $COUNT$ brugere uden at opgradere dit abonnement.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2951,7 +2945,7 @@
     }
   },
   "subscriptionFamiliesPlan": {
-    "message": "Uden en abonnementsopgradering kan maks. $COUNT$ brugere inviteres. Kontakt Kundesupport for at opgradere.",
+    "message": "Du kan ikke invitere mere end $COUNT$ brugere uden at opgradere dit abonnement. Kontakt venligst kundesupport for at opgradere.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3839,7 +3833,7 @@
     "message": "Tilgå rapporter"
   },
   "missingPermissions": {
-    "message": "Utilstrækkelige tilladelser til at udføre denne handling."
+    "message": "Du mangler de nødvendige tilladelser til at udføre denne handling."
   },
   "manageAllCollections": {
     "message": "Håndtér alle samlinger"
@@ -4473,7 +4467,91 @@
   "ssoSettingsSaved": {
     "message": "Single Sign-On opsætning blev gemt."
   },
-  "ssoCryptoAgentUnavailable": {
-    "message": "Kan ikke kontakte crypto agent, forsøg igen senere."
+  "ssoKeyConnectorUnavailable": {
+    "message": "Kan ikke kontakte Key Connector, forsøg igen senere."
+  },
+  "keyConnectorUrl": {
+    "message": "Key Connector-URL"
+  },
+  "requestVerificationCode": {
+    "message": "Anmod om engangsadgangskode"
+  },
+  "verificationCode": {
+    "message": "Bekræftelseskode"
+  },
+  "verificationCodeRequired": {
+    "message": "Bekræftelseskode kræves."
+  },
+  "invalidVerificationCode": {
+    "message": "Ugyldig bekræftelseskode"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ bruger SSO med en selv-hostet nøgleserver. Indlogning for organisationsmedlemmer kræver ikke længere en hovedadgangskode.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Forlad organisation"
+  },
+  "removeMasterPassword": {
+    "message": "Fjern Hovedadgangskode"
+  },
+  "removedMasterPassword": {
+    "message": "Hovedadgangskode fjernet."
+  },
+  "allowSso": {
+    "message": "Tillad SSO-godkendelse"
+  },
+  "allowSsoDesc": {
+    "message": "Når indstillet, vil opsætningen blive gemt og medlemmer vil kunne godkendes vha. deres Identitetsudbyder-akkreditiver."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Aktivér",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO-politikken",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "for at kræve medlemsindlogning vha. SSO.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "memberDecryptionOption": {
+    "message": "Medlemsdekrypteringsindstillinger"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Når godkendt, dekrypterer medlemmer Boks-data vha. deres Hovedadgangskode."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Forbind Login med SSO til din selv-hostet dekrypteringsnøgleserver. Muligheden overflødiggør medlemmers brug af Hovedadgangskode ifm. Boks-datadekryptering."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Login med SSO og Key Connector-dekryptering\" er aktiveret. Denne politik omfatter kun ejere og Admins."
+  },
+  "enabledSso": {
+    "message": "SSO aktiveret"
+  },
+  "disabledSso": {
+    "message": "SSO deaktiveret"
+  },
+  "enabledKeyConnector": {
+    "message": "Key Connector aktiveret"
+  },
+  "disabledKeyConnector": {
+    "message": "Key Connector deaktiveret"
+  },
+  "keyConnectorWarning": {
+    "message": "Er Key Connector opsat, kan Medlemsdekrypteringsindstillinger ikke ændres."
+  },
+  "migratedKeyConnector": {
+    "message": "Migreret til Key Connector"
   }
 }

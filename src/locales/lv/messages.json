@@ -167,7 +167,7 @@
     "message": "Patiesuma vērtība"
   },
   "cfTypeLinked": {
-    "message": "Linked",
+    "message": "Saistīts",
     "description": "This describes a field that is 'linked' (related) to another field."
   },
   "remove": {
@@ -316,7 +316,7 @@
     "message": "Uzvārds"
   },
   "fullName": {
-    "message": "Full Name"
+    "message": "Pilnais vārds"
   },
   "address1": {
     "message": "Adrese 1"
@@ -1743,13 +1743,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Pašreizējā plānā ir iekļauts bezmaksas 7 dienu izmēģinājuma laiks. Izvēlētais apmaksas veids netiks izmantots līdz izmēģinājuma beigā. Norēķini notiks katru $INTERVAL$. To var atcelt jebkurā brīdī.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Pašreizējā plānā ir iekļauts bezmaksas 7 dienu izmēģinājuma laiks. Izvēlētais apmaksas veids netiks izmantots līdz izmēģinājuma beigā. Norēķini notiks katru $INTERVAL$. To var atcelt jebkurā brīdī."
   },
   "paymentInformation": {
     "message": "Maksājuma informācija"
@@ -2942,7 +2936,7 @@
     }
   },
   "subscriptionFreePlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "message": "Nevar uzaicināt vairāk kā $COUNT$ lietotāju(s) bez plāna paaugstināšanas.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2951,7 +2945,7 @@
     }
   },
   "subscriptionFamiliesPlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "message": "Nevar uzaicināt vairāk kā $COUNT$ lietotāju(s) bez plāna paaugstināšanas. Lūgums sazināties ar klientu atbalstu, lai to izdarītu.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3839,7 +3833,7 @@
     "message": "Piekļūt atskaitēm"
   },
   "missingPermissions": {
-    "message": "You lack the necessary permissions to perform this action."
+    "message": "Trūkst nepieciešamo atļauju, lai veiktu šo darbību."
   },
   "manageAllCollections": {
     "message": "Pārvaldīt visus krājumus"
@@ -4473,7 +4467,91 @@
   "ssoSettingsSaved": {
     "message": "Vienotās pieteikšanās uzstādījumi tika saglabāti."
   },
-  "ssoCryptoAgentUnavailable": {
-    "message": "Unable to reach the crypto agent, try again later."
+  "ssoKeyConnectorUnavailable": {
+    "message": "Nav iespējams sasniegt Key Connector, tāpēc vēlāk jāmēģina atkal."
+  },
+  "keyConnectorUrl": {
+    "message": "Key Connector URL"
+  },
+  "requestVerificationCode": {
+    "message": "Pieprasīt vienreiz izmantojamo paroli"
+  },
+  "verificationCode": {
+    "message": "Apstiprinājuma kods"
+  },
+  "verificationCodeRequired": {
+    "message": "Ir nepieciešams apstiprinājuma kods."
+  },
+  "invalidVerificationCode": {
+    "message": "Nederīgs apstiprinājuma kods"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ izmanto vienoto pieteikšanos ar pašizvietotu atslēgu serveri. Tās dalībniekiem vairs nav nepieciešama galvenā parole, lai pieslēgtos.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Pamest apvienību"
+  },
+  "removeMasterPassword": {
+    "message": "Noņemt galveno paroli"
+  },
+  "removedMasterPassword": {
+    "message": "Galvenā parole tika noņemta."
+  },
+  "allowSso": {
+    "message": "Atļauto vienoto pieteikšanos"
+  },
+  "allowSsoDesc": {
+    "message": "Pēc pabeigšanas uzstādījumi tiks saglabāti un dalībnieki varēs pieslēgties izmantojot savus identitātes nodrošinātāja akreditācijas datus."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Iespējot",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "Vienotās pieteikšanās nosacījumi",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": ", lai pieprasītu dalībniekiem pierakstīties ar vienoto pieteikšanos.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "memberDecryptionOption": {
+    "message": "Dalībnieka atšifrēšanas iespējas"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Pēc pieteikšanās dalībnieki atšifrēs glabātavas saturu ar galveno paroli."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Savienot pierakstīšanos ar vienoto pieteikšanos pašizvietotā atšifrēšanas atslēgu serverī. Šī iespēja nodrošina, ka dalībniekiem nebūs nepieciešama galvenā parole, lai atšifrētu glabātavas saturu."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Pierakstīšanas ar vienoto pieteikšanos un Key Connectory atšifrēšana\" ir iespējots. Šis nosacījums attieksies tikai uz īpašniekiem un pārvaldniekiem."
+  },
+  "enabledSso": {
+    "message": "Iespējota vienotā pieteikšanās"
+  },
+  "disabledSso": {
+    "message": "Atspējota vienotā pieteikšanās"
+  },
+  "enabledKeyConnector": {
+    "message": "Iespējots Key Connector"
+  },
+  "disabledKeyConnector": {
+    "message": "Atspējots Key Connector"
+  },
+  "keyConnectorWarning": {
+    "message": "Tiklīdz Key Connector ir uzstādīts, dalībnieku atšifrēšanas iespējas nevar mainīt."
+  },
+  "migratedKeyConnector": {
+    "message": "Pāriets uz Key Connector"
   }
 }

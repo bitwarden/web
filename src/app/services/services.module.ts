@@ -128,11 +128,11 @@ searchService = new SearchService(cipherService, consoleLogService, i18nService)
 const policyService = new PolicyService(userService, storageService, apiService);
 const sendService = new SendService(cryptoService, userService, apiService, fileUploadService, storageService,
     i18nService, cryptoFunctionService);
+const keyConnectorService = new KeyConnectorService(storageService, userService, cryptoService, apiService,
+    tokenService, consoleLogService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
     cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, tokenService,
-    policyService, null, async () => messagingService.send('logout', { expired: false }));
-const keyConnectorService = new KeyConnectorService(storageService, userService, cryptoService, apiService,
-    environmentService, tokenService, consoleLogService);
+    policyService, keyConnectorService, null, async () => messagingService.send('logout', { expired: false }));
 const syncService = new SyncService(userService, apiService, settingsService,
     folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
     sendService, consoleLogService, tokenService, keyConnectorService,
@@ -150,6 +150,7 @@ const notificationsService = new NotificationsService(userService, syncService, 
     environmentService, async () => messagingService.send('logout', { expired: true }), consoleLogService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService, consoleLogService);
+const userVerificationService = new UserVerificationService(cryptoService, i18nService, apiService);
 
 containerService.attachToWindow(window);
 
@@ -234,8 +235,8 @@ export function initFactory(): Function {
         { provide: PolicyServiceAbstraction, useValue: policyService },
         { provide: SendServiceAbstraction, useValue: sendService },
         { provide: KeyConnectorServiceAbstraction, useValue: keyConnectorService },
+        { provide: UserVerificationServiceAbstraction, useValue: userVerificationService },
         { provide: PasswordRepromptServiceAbstraction, useClass: PasswordRepromptService },
-        { provide: UserVerificationServiceAbstraction, useClass: UserVerificationService },
         { provide: LogService, useValue: consoleLogService },
         {
             provide: APP_INITIALIZER,

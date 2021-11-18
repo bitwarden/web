@@ -167,7 +167,7 @@
     "message": "布尔"
   },
   "cfTypeLinked": {
-    "message": "Linked",
+    "message": "已链接",
     "description": "This describes a field that is 'linked' (related) to another field."
   },
   "remove": {
@@ -316,7 +316,7 @@
     "message": "姓"
   },
   "fullName": {
-    "message": "Full Name"
+    "message": "全名"
   },
   "address1": {
     "message": "地址 1"
@@ -1135,7 +1135,7 @@
     "message": "域名规则"
   },
   "domainRulesDesc": {
-    "message": "如果您在多个不同网站之间使用同一个登陆信息，您可以把这些网站标记为 “通用”。Bitwarden 会为您设置 “全局” 域名。"
+    "message": "如果您在多个不同网站之间使用同一个登陆信息，您可以把这些网站标记为「通用」。Bitwarden 会为您设置「全局」域名。"
   },
   "globalEqDomains": {
     "message": "全局通用域名"
@@ -1156,7 +1156,7 @@
     "message": "添加自定义域名"
   },
   "newCustomDomainDesc": {
-    "message": "输入用逗号分隔的域名列表。只能使用主域名，不需要输入子域名。例如，输入 \"google.com\" 而不是 \"www.google.com\"。您也可以输入 \"androidapp://package.name\" 以将 android 应用程序与其他网站域名关联。"
+    "message": "输入用逗号分隔的域名列表。只能输入「基础」域名，不要输入子域名。例如，输入「google.com」而不是「www.google.com」。您也可以输入「androidapp://package.name」以将 Android 应用程序与其他网站域名关联。"
   },
   "customDomainX": {
     "message": "自定义域名 $INDEX$",
@@ -1374,7 +1374,7 @@
     "message": "给安全钥匙一个友好的名称来标识它。"
   },
   "twoFactorU2fPlugInReadKey": {
-    "message": "将安全钥匙插入计算机的 USB 端口，然后单击“读取钥匙”按钮。"
+    "message": "将安全钥匙插入计算机的 USB 端口，然后单击「读取钥匙」按钮。"
   },
   "twoFactorU2fTouchButton": {
     "message": "如果安全钥匙有按钮，请按下它。"
@@ -1392,7 +1392,7 @@
     "message": "等待您按下安全钥匙上的按钮"
   },
   "twoFactorU2fClickSave": {
-    "message": "单击下面的 \"保存\" 按钮，以启用此安全钥匙进行两步登录。"
+    "message": "单击下面的「保存」按钮，以启用此安全钥匙进行两步登录。"
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "读取安全钥匙时出现问题，请再试一次。"
@@ -1743,13 +1743,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "您的计划包含了 7 天的免费试用期。在试用期结束前，不会从您的支付方式中扣款。随后将会每 $INTERVAL$ 定期扣款。您可以随时取消。",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "您的计划包含了 7 天的免费试用期。在试用期结束前，不会从您的支付方式中扣款。您可以随时取消。"
   },
   "paymentInformation": {
     "message": "支付信息"
@@ -2711,7 +2705,7 @@
     "message": "首先必须验证您帐户的电子邮件地址。"
   },
   "checkInboxForVerification": {
-    "message": "检查您的电子邮箱以获取验证链接。"
+    "message": "检查您的电子邮件收件箱以获取验证链接。"
   },
   "emailVerified": {
     "message": "您的电子邮件已验证。"
@@ -2811,7 +2805,7 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "更改计划",
+    "message": "升级计划",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
@@ -2892,7 +2886,7 @@
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
-    "message": "最大潜在席位成本"
+    "message": "最大潜在席位费用"
   },
   "addSeats": {
     "message": "添加席位",
@@ -2942,7 +2936,7 @@
     }
   },
   "subscriptionFreePlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "message": "如果不升级你的计划，你不能邀请超过 $COUNT$ 位用户。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2951,7 +2945,7 @@
     }
   },
   "subscriptionFamiliesPlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "message": "如果不升级你的计划，你不能邀请超过 $COUNT$ 位用户。请联系客户支持进行升级。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3839,7 +3833,7 @@
     "message": "访问报告"
   },
   "missingPermissions": {
-    "message": "You lack the necessary permissions to perform this action."
+    "message": "您缺乏执行此操作所需的权限。"
   },
   "manageAllCollections": {
     "message": "管理所有集合"
@@ -4378,7 +4372,7 @@
     "message": "注销回调路径"
   },
   "authority": {
-    "message": "权威"
+    "message": "权威机构"
   },
   "clientId": {
     "message": "客户 ID"
@@ -4411,7 +4405,7 @@
     "message": "请求的身份验证上下文类参考值（acr_value）"
   },
   "expectedReturnAcrValue": {
-    "message": "预期的 \"acr\" 声明值响应（acr 验证）"
+    "message": "响应中预期的 \"acr\" 声明值（acr 验证）"
   },
   "spEntityId": {
     "message": "SP 实体 ID"
@@ -4435,7 +4429,7 @@
     "message": "最小入站签名算法"
   },
   "spWantAssertionsSigned": {
-    "message": "要求断言被签名"
+    "message": "希望断言被签名"
   },
   "spValidateCertificates": {
     "message": "验证证书"
@@ -4468,12 +4462,96 @@
     "message": "禁用出站注销请求"
   },
   "idpWantAuthnRequestsSigned": {
-    "message": "要求身份验证请求被签名"
+    "message": "希望验证请求被签名"
   },
   "ssoSettingsSaved": {
     "message": "单点登录配置已保存。"
   },
-  "ssoCryptoAgentUnavailable": {
-    "message": "Unable to reach the crypto agent, try again later."
+  "ssoKeyConnectorUnavailable": {
+    "message": "无法连接到密钥连接器，请稍后再试。"
+  },
+  "keyConnectorUrl": {
+    "message": "密钥连接器 URL"
+  },
+  "requestVerificationCode": {
+    "message": "要求一次性密码"
+  },
+  "verificationCode": {
+    "message": "验证码"
+  },
+  "verificationCodeRequired": {
+    "message": "必须填写验证码。"
+  },
+  "invalidVerificationCode": {
+    "message": "无效的验证码"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ 使用自托管密钥服务器 SSO。这个组织的成员登录时将不再需要主密码。",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "离开组织"
+  },
+  "removeMasterPassword": {
+    "message": "移除主密码"
+  },
+  "removedMasterPassword": {
+    "message": "主密码已移除。"
+  },
+  "allowSso": {
+    "message": "允许 SSO 身份验证"
+  },
+  "allowSsoDesc": {
+    "message": "设置后，您的配置将被保存，成员将能够使用他们的身份提供程序凭据进行身份验证。"
+  },
+  "ssoPolicyHelpStart": {
+    "message": "启用",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO 策略",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "要求所有会员使用 SSO 登录。",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "memberDecryptionOption": {
+    "message": "成员解密选项"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "验证后，成员将使用他们的主密码来解密密码库数据。"
+  },
+  "keyConnector": {
+    "message": "密钥连接器"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "连接 SSO 登录到您的自托管解密密钥服务器。使用此选项，成员将不再需要使用他们的主密码来解密密码库数据。"
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "“SSO 登录和密钥连接器解密”已启用。此策略仅适用于所有者和管理员。"
+  },
+  "enabledSso": {
+    "message": "已启用 SSO"
+  },
+  "disabledSso": {
+    "message": "已禁用 SSO"
+  },
+  "enabledKeyConnector": {
+    "message": "已启用密钥连接器"
+  },
+  "disabledKeyConnector": {
+    "message": "已禁用密钥连接器"
+  },
+  "keyConnectorWarning": {
+    "message": "设置密钥连接器后，将无法更改成员解密选项。"
+  },
+  "migratedKeyConnector": {
+    "message": "已迁移到密钥连接器"
   }
 }
