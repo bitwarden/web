@@ -213,6 +213,10 @@ export class EventService {
                 msg = this.i18nService.t('eventResetSsoLink', this.formatOrgUserId(ev));
                 humanReadableMsg = this.i18nService.t('eventResetSsoLink', this.getShortId(ev.organizationUserId));
                 break;
+            case EventType.OrganizationUser_FirstSsoLogin:
+                msg = this.i18nService.t('firstSsoLogin', this.formatOrgUserId(ev));
+                humanReadableMsg = this.i18nService.t('firstSsoLogin', this.getShortId(ev.organizationUserId));
+                break;
             // Org
             case EventType.Organization_Updated:
                 msg = humanReadableMsg = this.i18nService.t('editedOrgSettings');
