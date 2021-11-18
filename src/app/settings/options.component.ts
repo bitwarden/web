@@ -73,7 +73,7 @@ export class OptionsComponent implements OnInit {
         this.vaultTimeout.setValue(await this.vaultTimeoutService.getVaultTimeout() ?? 15);
         this.vaultTimeoutAction = await this.stateService.getVaultTimeoutAction() ?? 'lock';
         this.disableIcons = await this.stateService.getDisableFavicon() ?? false;
-        this.enableGravatars = await this.stateService.getEnableGravitars() ?? true;
+        this.enableGravatars = await this.stateService.getEnableGravitars() ?? false;
         this.enableFullWidth = await this.stateService.getEnableFullWidth() ?? false;
         this.locale = this.startingLocale = await this.stateService.getLocale() ?? 'en';
         this.theme = await this.stateService.getTheme() ?? this.startingTheme;
