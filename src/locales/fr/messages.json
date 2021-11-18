@@ -167,7 +167,7 @@
     "message": "Booléen"
   },
   "cfTypeLinked": {
-    "message": "Linked",
+    "message": "Lié",
     "description": "This describes a field that is 'linked' (related) to another field."
   },
   "remove": {
@@ -316,7 +316,7 @@
     "message": "Nom de famille"
   },
   "fullName": {
-    "message": "Full Name"
+    "message": "Nom et prénom"
   },
   "address1": {
     "message": "Adresse 1"
@@ -1743,13 +1743,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Votre offre comprend un essai gratuit de 7 jours. Votre mode de paiement ne sera pas facturé avant la fin de la période d'essai. La facturation se fera sur une base récurrente chaque $INTERVAL$. Vous pouvez annuler à tout moment.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Votre offre comprend un essai gratuit de 7 jours. Votre mode de paiement ne sera pas facturé avant la fin de la période d'essai. La facturation se fera sur une base récurrente chaque $INTERVAL$. Vous pouvez annuler à tout moment."
   },
   "paymentInformation": {
     "message": "Informations de paiement"
@@ -2942,7 +2936,7 @@
     }
   },
   "subscriptionFreePlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "message": "Vous ne pouvez pas inviter plus de $COUNT$ utilisateurs sans mettre votre plan à niveau.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2951,7 +2945,7 @@
     }
   },
   "subscriptionFamiliesPlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "message": "Vous ne pouvez pas inviter plus de $COUNT$ utilisateurs sans mettre votre plan à niveau. Veuillez contacter l'assistance clientèle pour mettre à niveau.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3839,7 +3833,7 @@
     "message": "Accéder aux rapports"
   },
   "missingPermissions": {
-    "message": "You lack the necessary permissions to perform this action."
+    "message": "Vous n’avez pas les autorisations pour accomplir cette action."
   },
   "manageAllCollections": {
     "message": "Gérer toutes les collections"
@@ -4473,7 +4467,91 @@
   "ssoSettingsSaved": {
     "message": "La configuration de l'Authentification Unique a été enregistrée."
   },
-  "ssoCryptoAgentUnavailable": {
-    "message": "Unable to reach the crypto agent, try again later."
+  "ssoKeyConnectorUnavailable": {
+    "message": "Impossible de contacter Key Connector, réessayez plus tard."
+  },
+  "keyConnectorUrl": {
+    "message": "URL de Key Connector"
+  },
+  "requestVerificationCode": {
+    "message": "Demander un mot de passe à usage unique"
+  },
+  "verificationCode": {
+    "message": "Code de Vérification"
+  },
+  "verificationCodeRequired": {
+    "message": "Le code de vérification est requis."
+  },
+  "invalidVerificationCode": {
+    "message": "Code de vérification invalide"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ utilise SSO avec un serveur de clés auto-hébergé. Un mot de passe maître n'est plus nécessaire aux membres de cette organisation pour se connecter.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Quitter l’Organisation"
+  },
+  "removeMasterPassword": {
+    "message": "Supprimer le Mot de Passe Maître"
+  },
+  "removedMasterPassword": {
+    "message": "Mot de passe maître supprimé."
+  },
+  "allowSso": {
+    "message": "Autoriser l'authentification SSO"
+  },
+  "allowSsoDesc": {
+    "message": "Une fois configuré, votre configuration sera enregistrée et les membres seront en mesure de s'authentifier en utilisant leurs identifiants du Fournisseur d'Identité."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Activer la",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "Politique SSO",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "pour obliger tous les membres à se connecter avec SSO.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+  },
+  "memberDecryptionOption": {
+    "message": "Options de Déchiffrement des Membres"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Une fois authentifié, les membres déchiffreront les données du coffre en utilisant leurs Mots de Passe Maîtres."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Connecte l'Authentification SSO à votre serveur de clés de décryptage auto-hébergé. En utilisant cette option, les membres n'auront pas besoin d'utiliser leurs Mots de Passe Maîtres pour déchiffrer les données du coffre."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Connexion avec SSO et Décryptage de Key Connector\" est activé. Cette politique ne s'appliquera qu'aux Propriétaires et aux Administrateurs."
+  },
+  "enabledSso": {
+    "message": "SSO actif"
+  },
+  "disabledSso": {
+    "message": "SSO inactif"
+  },
+  "enabledKeyConnector": {
+    "message": "Key Connector actif"
+  },
+  "disabledKeyConnector": {
+    "message": "Key Connector inactif"
+  },
+  "keyConnectorWarning": {
+    "message": "Une fois que Key Connector est configuré, les Options de Déchiffrement des Membres ne peuvent pas être modifiées."
+  },
+  "migratedKeyConnector": {
+    "message": "Migration vers Key Connector"
   }
 }
