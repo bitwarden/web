@@ -5,7 +5,6 @@ import {
 import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 import { PlanSponsorshipType } from 'jslib-common/enums/planSponsorshipType';

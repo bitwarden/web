@@ -136,7 +136,7 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
                     });
                 });
             }
-            this.validationService.showError(e);
+            this.validationService.showError(this.i18nService.t('sponsorshipTokenHasExpired'));
         }
     }
 
