@@ -38,6 +38,8 @@ export class SsoComponent implements OnInit {
     spMetadataUrl: string;
     spAcsUrl: string;
 
+    keyConnectorIsValid: boolean;
+
     enabled = this.fb.control(false);
     data = this.fb.group({
         configType: [],
@@ -115,6 +117,15 @@ export class SsoComponent implements OnInit {
     }
 
     async submit() {
+        if (!this.keyConnectorIsValid || this.keyConnectorUrl.dirty)
+        {
+            await this.testKeyConnector();
+            if (!this.keyConnectorIsValid) {
+                this.platformUtilsService.showToast('error', null, this.i18nService.t('keyConnectorTestFail'));
+                return;
+            }
+        }
+
         const request = new OrganizationSsoRequest();
         request.enabled = this.enabled.value;
         request.data = this.data.value;
@@ -127,5 +138,31 @@ export class SsoComponent implements OnInit {
 
         this.formPromise = null;
         this.platformUtilsService.showToast('success', null, this.i18nService.t('ssoSettingsSaved'));
+    }
+
+    async testKeyConnector() {
+        if (this.keyConnectorIsValid && this.keyConnectorUrl.pristine) {
+            return;
+        }
+
+        this.keyConnectorUrl.markAsPristine();
+        try {
+            await this.apiService.getKeyConnectorAlive(this.keyConnectorUrl.value);
+        } catch {
+            this.keyConnectorIsValid = false;
+            return;
+        }
+
+        this.keyConnectorIsValid = true;
+    }
+
+    get enableTestKeyConnector() {
+        return this.data.get('keyConnectorEnabled').value &&
+            this.keyConnectorUrl != null &&
+            this.keyConnectorUrl.value !== '';
+    }
+
+    get keyConnectorUrl() {
+        return this.data.get('keyConnectorUrl');
     }
 }
