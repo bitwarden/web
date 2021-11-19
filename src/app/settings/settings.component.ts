@@ -20,7 +20,6 @@ const BroadcasterSubscriptionId = 'SettingsComponent';
 export class SettingsComponent implements OnInit, OnDestroy {
     premium: boolean;
     selfHosted: boolean;
-    isInEnterprise: boolean;
     hasFamilySponsorshipAvailable: boolean;
 
     constructor(private tokenService: TokenService, private broadcasterService: BroadcasterService,
@@ -48,7 +47,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
     }
 
     async load() {
-        this.isInEnterprise = true;
         this.premium = await this.tokenService.getPremium();
         this.hasFamilySponsorshipAvailable = await this.userService.canManageSponsorships();
     }
