@@ -168,7 +168,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         }
         this.removeSponsorshipPromise = this.apiService.deleteRemoveSponsorship(this.organizationId);
         await this.removeSponsorshipPromise;
-        this.toasterService.popAsync('success', null, this.i18nService.t('removedSponsorshipSuccess'));
+        this.toasterService.popAsync('success', null, this.i18nService.t('removeSponsorshipSuccess'));
         await this.load();
     }
 
