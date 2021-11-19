@@ -95,7 +95,6 @@ export class VaultComponent implements OnInit, OnDestroy {
 
             this.showProviders = (await this.userService.getAllProviders()).length > 0;
 
-            // They have an available sponsorship and they have not redeemed it yet
             const allOrgs = await this.userService.getAllOrganizations();
             this.showRedeemSponsorship = allOrgs.some(o => o.familySponsorshipAvailable) && !allOrgs.some(o => o.familySponsorshipFriendlyName != null);
 
