@@ -153,7 +153,7 @@ export class SsoComponent implements OnInit, OnDestroy {
 
     async testKeyConnector() {
         if (this.keyConnectorIsValid) {
-            return true;
+            return;
         }
 
         try {
