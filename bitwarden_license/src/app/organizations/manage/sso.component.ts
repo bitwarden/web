@@ -118,6 +118,15 @@ export class SsoComponent implements OnInit {
     }
 
     async submit() {
+        if (this.keyConnectorUrl.errors?.testFail !== false)
+        {
+            await this.testKeyConnector();
+            if (this.keyConnectorUrl.errors?.testFail !== false) {
+                this.platformUtilsService.showToast('error', null, 'error occurred');
+                return;
+            }
+        }
+
         this.platformUtilsService.showToast('success', null, 'form saved');
         return;
 
