@@ -37,7 +37,6 @@ export class DeleteOrganizationComponent {
             this.toasterService.popAsync('success', this.i18nService.t('organizationDeleted'),
                 this.i18nService.t('organizationDeletedDesc'));
             this.onSuccess.emit();
-            //this.router.navigate(['/']);
         } catch (e) {
             this.logService.error(e);
         }
