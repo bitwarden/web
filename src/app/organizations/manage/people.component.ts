@@ -291,6 +291,14 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
         });
     }
 
+    protected deleteWarningMessage(user: OrganizationUserUserDetailsResponse): string {
+        if (user.usesKeyConnector) {
+            return this.i18nService.t('removeUserConfirmationKeyConnector');
+        }
+
+        return super.deleteWarningMessage(user);
+    }
+
     private async showBulkStatus(users: OrganizationUserUserDetailsResponse[], filteredUsers: OrganizationUserUserDetailsResponse[],
         request: Promise<ListResponse<OrganizationUserBulkResponse>>, successfullMessage: string) {
 

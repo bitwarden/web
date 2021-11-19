@@ -180,7 +180,7 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
 
     async remove(user: UserType) {
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('removeUserConfirmation'), this.userNamePipe.transform(user),
+            this.deleteWarningMessage(user), this.userNamePipe.transform(user),
             this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
 
         if (!confirmed) {
@@ -286,6 +286,10 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
             this.resetPaging();
         }
         return !searching && this.users && this.users.length > this.pageSize;
+    }
+
+    protected deleteWarningMessage(user: UserType): string {
+        return this.i18nService.t('removeUserConfirmation');
     }
 
     protected getCheckedUsers() {
