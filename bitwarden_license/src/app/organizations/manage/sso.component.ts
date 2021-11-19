@@ -103,6 +103,9 @@ export class SsoComponent implements OnInit {
         this.spMetadataUrl = ssoSettings.urls.spMetadataUrl;
         this.spAcsUrl = ssoSettings.urls.spAcsUrl;
 
+        // TESTING ONLY
+        this.organization.useKeyConnector = true;
+
         this.loading = false;
     }
 
@@ -115,7 +118,8 @@ export class SsoComponent implements OnInit {
     }
 
     async submit() {
-        await this.pingKeyConnector();
+        this.platformUtilsService.showToast('success', null, 'form saved');
+        return;
 
         const request = new OrganizationSsoRequest();
         request.enabled = this.enabled.value;
@@ -131,15 +135,28 @@ export class SsoComponent implements OnInit {
         this.platformUtilsService.showToast('success', null, this.i18nService.t('ssoSettingsSaved'));
     }
 
-    private async pingKeyConnector() {
-        if (this.data.get('useKeyConnector').value) {
-            const keyConnectorUrl = this.data.get('keyConnectorUrl').value;
-            try {
-                await this.apiService.getKeyConnectorAlive(keyConnectorUrl);
-            } catch {
-                this.platformUtilsService.showToast('error', null, this.i18nService.t('cannotReachKeyConnector'));
-                return;
-            }
+    async testKeyConnector() {
+        try {
+            await this.apiService.getKeyConnectorAlive(this.keyConnectorUrl.value);
+        } catch {
+            this.keyConnectorUrl.setErrors({
+                testFail: true,
+            });
+            return;
         }
+
+        this.keyConnectorUrl.setErrors({
+            testFail: false,
+        });
+    }
+
+    get enableTestKeyConnector() {
+        return this.data.get('keyConnectorEnabled').value &&
+            this.keyConnectorUrl != null &&
+            this.keyConnectorUrl.value !== '';
+    }
+
+    get keyConnectorUrl() {
+        return this.data.get('keyConnectorUrl');
     }
 }

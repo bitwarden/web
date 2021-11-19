@@ -56,6 +56,17 @@
             <label for="keyConnectorUrl">{{'keyConnectorUrl' | i18n}}</label>
             <input class="form-control" formControlName="keyConnectorUrl" id="keyConnectorUrl" required>
         </div>
+        <div *ngIf="keyConnectorUrl.errors?.testFail === true">
+            {{'keyConnectorTestFail' | i18n}}
+        </div>
+        <div *ngIf="keyConnectorUrl.errors?.testFail === false">
+            {{'keyConnectorTestSuccess' | i18n}}
+        </div>
+
+        <button type="button" class="btn btn-outline-secondary" (click)="testKeyConnector()"
+            [disabled]="!enableTestKeyConnector">
+            {{'keyConnectorTest' | i18n}}
+        </button>
     </ng-container>
 
     <div class="form-group">
