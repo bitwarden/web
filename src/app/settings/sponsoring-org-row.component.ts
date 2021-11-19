@@ -42,8 +42,8 @@ export class SponsoringOrgRowComponent {
         try {
             this.revokeSponsorshipPromise = this.doRevokeSponsorship();
             await this.revokeSponsorshipPromise;
-            this.sponsorshipRemoved.emit();
             this.toasterService.popAsync('success', null, this.i18nService.t('reclaimedFreePlan'));
+            this.sponsorshipRemoved.emit();
         } catch (e) {
             this.logService.error(e);
         }
