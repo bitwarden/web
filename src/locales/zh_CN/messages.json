@@ -755,7 +755,7 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "使用任何 WebAuthn 安全密钥访问您的帐户。"
+    "message": "使用任何启用了 WebAuthn 的安全钥匙访问您的帐户。"
   },
   "webAuthnMigrated": {
     "message": "（迁移自 FIDO）"
@@ -839,9 +839,6 @@
   },
   "encExportAccountWarningDesc": {
     "message": "账户加密密钥对每个 Bitwarden 用户账户都是唯一的，所以您不能将加密的导出导入到另一个账户。"
-  },
-  "exportMasterPassword": {
-    "message": "输入主密码来导出你的密码库数据。"
   },
   "export": {
     "message": "导出"
@@ -970,7 +967,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "如果将 KDF 迭代设置得太高，可能会在 CPU 速度较慢的设备上登录（以及解锁）Bitwarden 时性能变差。建议您以 $INCREMENT$ 的增量值递增，然后在所有设备上行进测试。",
+    "message": "如果将 KDF 迭代设置得太高，可能会在 CPU 速度较慢的设备上登录（以及解锁）Bitwarden 时性能变差。建议您以 $INCREMENT$ 的增量值递增，然后在所有设备上进行测试。",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -1097,7 +1094,7 @@
     "message": "选项"
   },
   "optionsDesc": {
-    "message": "个性化你的网页版密码库体验。"
+    "message": "自定义您的网页版密码库体验。"
   },
   "optionsUpdated": {
     "message": "选项已更新"
@@ -1266,7 +1263,7 @@
     "message": "此两步登录提供程序已禁用。"
   },
   "twoFactorYubikeyAdd": {
-    "message": "向您的帐户添加新 YubiKey"
+    "message": "将一个新的 YubiKey 设备添加到您的帐户"
   },
   "twoFactorYubikeyPlugIn": {
     "message": "将 YubiKey 插入您电脑的 USB 端口。"
@@ -1278,7 +1275,7 @@
     "message": "按下 YubiKey 的按钮。"
   },
   "twoFactorYubikeySaveForm": {
-    "message": "保存表单"
+    "message": "保存表单。"
   },
   "twoFactorYubikeyWarning": {
     "message": "由于平台的限制，YubiKey 不能在所有 Bitwarden 应用程序上使用。您应该启用另一个两步登录提供程序，以便在无法使用 YubiKey 时可以访问您的帐户。支持的平台："
@@ -3172,7 +3169,7 @@
     "message": "您的 API 密钥拥有组织的全部访问权限。请将其存放在安全的地方。"
   },
   "userApiKeyDesc": {
-    "message": "您的 API 密钥可用于在 Bitwarden CLI 中进行身份认证。"
+    "message": "您的 API 密钥可用于在 Bitwarden CLI 中进行身份验证。"
   },
   "userApiKeyWarning": {
     "message": "您的 API 密钥是另一套等效的身份验证机制。请严格保密。"
@@ -3397,7 +3394,7 @@
     "message": "设置主密码"
   },
   "ssoCompleteRegistration": {
-    "message": "为使用单点登录（SSO）功能，请设置一个主密码以访问和保护您的密码库。"
+    "message": "要使用单点登录（SSO）功能，请设置一个主密码以访问和保护您的密码库。"
   },
   "identifier": {
     "message": "标识符"
@@ -3751,7 +3748,7 @@
     "message": "个人所有权"
   },
   "personalOwnershipPolicyDesc": {
-    "message": "要求用户通过移除个人所有权选项将密码库项目保存到组织。"
+    "message": "通过移除个人所有权选项，要求用户将密码库项目保存到组织。"
   },
   "personalOwnershipExemption": {
     "message": "组织的所有者和管理员豁免此策略。"
@@ -3763,7 +3760,7 @@
     "message": "禁用 Send"
   },
   "disableSendPolicyDesc": {
-    "message": "不允许用户创建和编辑 Bitwarden Send。仍允许删除现有的 Send。",
+    "message": "不允许用户创建和编辑 Bitwarden Send。但允许删除现有的 Send。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
@@ -4051,6 +4048,15 @@
       }
     }
   },
+  "firstSsoLogin": {
+    "message": "$ID$ logged in using Sso for the first time",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "重置密码"
   },
@@ -4133,7 +4139,7 @@
     "message": "主题"
   },
   "themeDesc": {
-    "message": "为您的网页密码库库选择一个主题。"
+    "message": "为您的网页密码库选择一个主题。"
   },
   "themeSystem": {
     "message": "使用系统主题"
@@ -4405,7 +4411,7 @@
     "message": "请求的身份验证上下文类参考值（acr_value）"
   },
   "expectedReturnAcrValue": {
-    "message": "响应中预期的 \"acr\" 声明值（acr 验证）"
+    "message": "响应中预期的「acr」声明值（acr 认证）"
   },
   "spEntityId": {
     "message": "SP 实体 ID"
@@ -4473,11 +4479,20 @@
   "keyConnectorUrl": {
     "message": "密钥连接器 URL"
   },
-  "requestVerificationCode": {
-    "message": "要求一次性密码"
+  "sendVerificationCode": {
+    "message": "Send a verification code to your email"
+  },
+  "sendCode": {
+    "message": "Send Code"
+  },
+  "codeSent": {
+    "message": "Code Sent"
   },
   "verificationCode": {
     "message": "验证码"
+  },
+  "confirmIdentity": {
+    "message": "Confirm your identity to continue."
   },
   "verificationCodeRequired": {
     "message": "必须填写验证码。"
@@ -4511,15 +4526,18 @@
   },
   "ssoPolicyHelpStart": {
     "message": "启用",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
-    "message": "SSO 策略",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "message": "SSO 身份验证策略",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
     "message": "要求所有会员使用 SSO 登录。",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "需要先设置密钥连接器解密，然后才能启用 SSO 身份验证和单一组织策略。"
   },
   "memberDecryptionOption": {
     "message": "成员解密选项"
@@ -4531,7 +4549,7 @@
     "message": "密钥连接器"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "连接 SSO 登录到您的自托管解密密钥服务器。使用此选项，成员将不再需要使用他们的主密码来解密密码库数据。"
+    "message": "连接 SSO 登录到您的自托管解密密钥服务器。使用此选项，成员将不再需要使用他们的主密码来解密密码库数据。联系 Bitwarden 支持以获取设置指导。"
   },
   "keyConnectorPolicyRestriction": {
     "message": "“SSO 登录和密钥连接器解密”已启用。此策略仅适用于所有者和管理员。"
@@ -4549,7 +4567,7 @@
     "message": "已禁用密钥连接器"
   },
   "keyConnectorWarning": {
-    "message": "设置密钥连接器后，将无法更改成员解密选项。"
+    "message": "一旦成员开始使用 密钥连接器，您的组织就无法恢复到主密码解密。 仅当您对部署和管理密钥服务器感到满意时才继续。"
   },
   "migratedKeyConnector": {
     "message": "已迁移到密钥连接器"

@@ -840,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "Ключи шифрования уникальны для каждой учетной записи Bitwarden, поэтому нельзя импортировать зашифрованное хранилище в другой аккаунт."
   },
-  "exportMasterPassword": {
-    "message": "Введите мастер-пароль для экспорта данных из хранилища."
-  },
   "export": {
     "message": "Экспорт"
   },
@@ -4051,6 +4048,15 @@
       }
     }
   },
+  "firstSsoLogin": {
+    "message": "$ID$ впервые выполнил вход используя SSO",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Сбросить пароль"
   },
@@ -4473,11 +4479,20 @@
   "keyConnectorUrl": {
     "message": "URL соединителя ключей"
   },
-  "requestVerificationCode": {
-    "message": "Запросить одноразовый пароль"
+  "sendVerificationCode": {
+    "message": "Отправить код подтверждения на ваш email"
+  },
+  "sendCode": {
+    "message": "Отправить код"
+  },
+  "codeSent": {
+    "message": "Код отправлен"
   },
   "verificationCode": {
     "message": "Код подтверждения"
+  },
+  "confirmIdentity": {
+    "message": "Подтвердите вашу личность, чтобы продолжить."
   },
   "verificationCodeRequired": {
     "message": "Необходимо ввести код подтверждения."
@@ -4511,15 +4526,18 @@
   },
   "ssoPolicyHelpStart": {
     "message": "Активировать",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
     "message": "политику SSO",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
     "message": "для обеспечения авторизации всех членов при помощи единого входа.",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "Для настройки расшифровки соединителя ключей требуются политики проверки подлинности SSO и единой организации."
   },
   "memberDecryptionOption": {
     "message": "Параметры расшифровки членов"

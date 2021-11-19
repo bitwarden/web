@@ -840,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "Cheile de criptare a contului sunt unice fiecărui cont de utilizator Bitwarden, astfel încât nu puteți importa un export criptat într-un cont diferit."
   },
-  "exportMasterPassword": {
-    "message": "Introducere parolă principală pentru exportarea datelor seifului."
-  },
   "export": {
     "message": "Exportați"
   },
@@ -3436,7 +3433,7 @@
     "message": "Conectare SSO"
   },
   "singleOrg": {
-    "message": "Organizație Single"
+    "message": "Organizație Unică"
   },
   "singleOrgDesc": {
     "message": "Restricționează utilizatorii să se alăture oricărei alte organizații."
@@ -3460,7 +3457,7 @@
     "message": "Înainte de activarea acestei politici, trebuie activată metoda de conectare \"Single sign-on\" pentru organizație (SSO)."
   },
   "requireSsoPolicyReqError": {
-    "message": "Politica Organizație Single nu este activată."
+    "message": "Politica Organizație Unică nu este activată."
   },
   "requireSsoExemption": {
     "message": "Proprietarii și administratorii organizației sunt exceptați de la aplicarea acestei politici."
@@ -4051,6 +4048,15 @@
       }
     }
   },
+  "firstSsoLogin": {
+    "message": "$ID$ logged in using Sso for the first time",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Resetați parola"
   },
@@ -4473,11 +4479,20 @@
   "keyConnectorUrl": {
     "message": "Conectorul de chei URL"
   },
-  "requestVerificationCode": {
-    "message": "Solicitare de parolă unică"
+  "sendVerificationCode": {
+    "message": "Send a verification code to your email"
+  },
+  "sendCode": {
+    "message": "Send Code"
+  },
+  "codeSent": {
+    "message": "Code Sent"
   },
   "verificationCode": {
     "message": "Cod de verificare"
+  },
+  "confirmIdentity": {
+    "message": "Confirm your identity to continue."
   },
   "verificationCodeRequired": {
     "message": "Este necesar codul de verificare."
@@ -4511,15 +4526,18 @@
   },
   "ssoPolicyHelpStart": {
     "message": "Activează",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
-    "message": "Politica SSO",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "message": "Politica de autentificare SSO",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
     "message": "pentru a solicita tuturor membrilor să se conecteze cu SSO.",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "Autentificarea SSO și politicile Organizației Unice sunt necesare pentru a configura decriptarea cu conectorul de chei."
   },
   "memberDecryptionOption": {
     "message": "Opțiuni de decriptare ale membrilor"
@@ -4531,7 +4549,7 @@
     "message": "Conector de chei"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "Conectează Autentificarea cu SSO la serverul dvs. de chei de decriptare auto-găzduit. Folosind această opțiune, membrii nu vor trebui să folosească parolele lor principale pentru a decripta datele seifului."
+    "message": "Conectează Autentificarea cu SSO la serverul dvs. de chei de decriptare auto-găzduit. Folosind această opțiune, membrii nu vor trebui să folosească parolele lor principale pentru a decripta datele seifului. Contactați asistența Bitwarden pentru ajutor la configurare."
   },
   "keyConnectorPolicyRestriction": {
     "message": "„Autentificarea cu SSO și Decriptarea conectorului cheii” este activată. Această politică se va aplica numai proprietarilor și administratorilor."
@@ -4549,7 +4567,7 @@
     "message": "Conector de chei dezactivat"
   },
   "keyConnectorWarning": {
-    "message": "Odată ce conectorul de chei a fost configurat, opțiunile de decriptare ale membrilor nu pot fi schimbate."
+    "message": "Odată ce conectorul de chei a fost configurat, organizația dvs. nu mai poate reveni la decriptarea cu parola principală. Continuați numai dacă vă simțiți confortabil să implementați și să gestionați un server de chei."
   },
   "migratedKeyConnector": {
     "message": "Migrat la conectorul de chei"

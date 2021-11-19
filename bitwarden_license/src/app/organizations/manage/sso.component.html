@@ -54,7 +54,23 @@
     
         <div class="form-group">
             <label for="keyConnectorUrl">{{'keyConnectorUrl' | i18n}}</label>
-            <input class="form-control" formControlName="keyConnectorUrl" id="keyConnectorUrl" required>
+            <div class="input-group">
+                <input class="form-control" formControlName="keyConnectorUrl" id="keyConnectorUrl" required>
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-secondary" (click)="testKeyConnector()"
+                        [disabled]="!enableTestKeyConnector">
+                        {{'keyConnectorTest' | i18n}}
+                    </button>
+                </div>
+            </div>
+            <div class="text-danger" *ngIf="keyConnectorIsValid === false && keyConnectorUrl.pristine" role="alert">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                {{'keyConnectorTestFail' | i18n}}
+            </div>
+            <div class="text-success" *ngIf="keyConnectorIsValid && keyConnectorUrl.pristine" role="alert">
+                <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                {{'keyConnectorTestSuccess' | i18n}}
+            </div>
         </div>
     </ng-container>
 
