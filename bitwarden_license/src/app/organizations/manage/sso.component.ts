@@ -1,12 +1,9 @@
 import {
     Component,
-    OnDestroy,
     OnInit,
 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-
-import { Subscription } from 'rxjs';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -21,7 +18,7 @@ import { OrganizationSsoRequest } from 'jslib-common/models/request/organization
     selector: 'app-org-manage-sso',
     templateUrl: 'sso.component.html',
 })
-export class SsoComponent implements OnInit, OnDestroy {
+export class SsoComponent implements OnInit {
 
     samlSigningAlgorithms = [
         'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
@@ -42,7 +39,6 @@ export class SsoComponent implements OnInit, OnDestroy {
     spAcsUrl: string;
 
     keyConnectorIsValid: boolean;
-    keyConnectorSub: Subscription;
 
     enabled = this.fb.control(false);
     data = this.fb.group({
@@ -109,14 +105,7 @@ export class SsoComponent implements OnInit, OnDestroy {
         this.spMetadataUrl = ssoSettings.urls.spMetadataUrl;
         this.spAcsUrl = ssoSettings.urls.spAcsUrl;
 
-        this.keyConnectorSub = this.keyConnectorUrl.valueChanges.subscribe(
-            () => this.keyConnectorIsValid = null);
-
         this.loading = false;
-    }
-
-    async ngOnDestroy() {
-        this.keyConnectorSub.unsubscribe();
     }
 
     copy(value: string) {
@@ -128,7 +117,7 @@ export class SsoComponent implements OnInit, OnDestroy {
     }
 
     async submit() {
-        if (!this.keyConnectorIsValid)
+        if (!this.keyConnectorIsValid || this.keyConnectorUrl.dirty)
         {
             await this.testKeyConnector();
             if (!this.keyConnectorIsValid) {
@@ -152,10 +141,11 @@ export class SsoComponent implements OnInit, OnDestroy {
     }
 
     async testKeyConnector() {
-        if (this.keyConnectorIsValid) {
+        if (this.keyConnectorIsValid && this.keyConnectorUrl.pristine) {
             return;
         }
 
+        this.keyConnectorUrl.markAsPristine();
         try {
             await this.apiService.getKeyConnectorAlive(this.keyConnectorUrl.value);
         } catch {
