@@ -15,20 +15,25 @@ import {
 
 import { first } from 'rxjs/operators';
 
+import { ModalService } from 'jslib-angular/services/modal.service';
+import { ValidationService } from 'jslib-angular/services/validation.service';
+
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { ValidationService } from 'jslib-angular/services/validation.service';
 import { PlanSponsorshipType } from 'jslib-common/enums/planSponsorshipType';
-import { ProductType } from 'jslib-common/enums/productType';
-import { Organization } from 'jslib-common/models/domain/organization';
-import { OrganizationSponsorshipRedeemRequest } from 'jslib-common/models/request/organization/organizationSponsorshipRedeemRequest';
-import { OrganizationPlansComponent } from 'src/app/settings/organization-plans.component';
 import { PlanType } from 'jslib-common/enums/planType';
-import { ModalService } from 'jslib-angular/services/modal.service';
-import { DeleteOrganizationComponent } from '../settings/delete-organization.component';
+import { ProductType } from 'jslib-common/enums/productType';
+
+import { Organization } from 'jslib-common/models/domain/organization';
+
+import { OrganizationSponsorshipRedeemRequest } from 'jslib-common/models/request/organization/organizationSponsorshipRedeemRequest';
+
+import { DeleteOrganizationComponent } from 'src/app/organizations/settings/delete-organization.component';
+
+import { OrganizationPlansComponent } from 'src/app/settings/organization-plans.component';
 
 @Component({
     selector: 'families-for-enterprise-setup',
