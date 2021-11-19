@@ -840,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "每個 Bitwarden 使用者帳戶的帳戶加密金鑰都不同，因此無法將加密過的匯出檔案匯入到不同帳戶中。"
   },
-  "exportMasterPassword": {
-    "message": "輸入您的主密碼以匯出密碼庫資料。"
-  },
   "export": {
     "message": "匯出"
   },
@@ -4051,6 +4048,15 @@
       }
     }
   },
+  "firstSsoLogin": {
+    "message": "$ID$ 第一次使用 SSO 登入",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "重設密碼"
   },
@@ -4473,11 +4479,20 @@
   "keyConnectorUrl": {
     "message": "Key Connector URL"
   },
-  "requestVerificationCode": {
-    "message": "請求一次性密碼"
+  "sendVerificationCode": {
+    "message": "傳送驗證碼到您的信箱"
+  },
+  "sendCode": {
+    "message": "傳送驗證碼"
+  },
+  "codeSent": {
+    "message": "已送出驗證碼"
   },
   "verificationCode": {
     "message": "驗證碼"
+  },
+  "confirmIdentity": {
+    "message": "請先確認身分後再繼續。"
   },
   "verificationCodeRequired": {
     "message": "必須填寫驗證碼。"
@@ -4511,15 +4526,18 @@
   },
   "ssoPolicyHelpStart": {
     "message": "啟用",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
-    "message": "SSO 原則",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "message": "SSO 認證原則",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
     "message": "要求所有成員皆使用 SSO 登入。",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "SSO 認證及單一組織原則需要先設定 Key Connector 解密方式後才能使用。"
   },
   "memberDecryptionOption": {
     "message": "成員解密選項"
@@ -4531,7 +4549,7 @@
     "message": "Key Connector"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "鏈接 SSO 登入到您的自我托管解密金輪伺服器。使用此選項後，成員無需使用它們的主密碼解密密碼庫資料。"
+    "message": "鏈接 SSO 登入到您的自我托管解密金輪伺服器。使用此選項後，成員無需使用它們的主密碼解密密碼庫資料。聯絡 Bitwarden 支援以獲取設定協助。"
   },
   "keyConnectorPolicyRestriction": {
     "message": "「SSO 登入和 Key Connector 解密」已啓用。此原則僅適用於所有者和管理員。"
@@ -4549,7 +4567,7 @@
     "message": "已停用 Key Connector"
   },
   "keyConnectorWarning": {
-    "message": "Key Connector 設定後，「成員解密選項」即無法變更。"
+    "message": "一旦成員開始使用 Key Connector，您的組織將無法復原為主密碼解謎。僅當您願意部署和託管金輪伺服器時再繼續。"
   },
   "migratedKeyConnector": {
     "message": "已移轉到 Key Connector"

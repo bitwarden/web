@@ -840,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "Klucze szyfrowania konta są unikalne dla każdego użytkownika Bitwarden, więc nie możesz zaimportować zaszyfrowanego pliku eksportu na inne konto."
   },
-  "exportMasterPassword": {
-    "message": "Wpisz hasło główne, aby wyeksportować dane z sejfu."
-  },
   "export": {
     "message": "Eksportuj"
   },
@@ -2132,7 +2129,7 @@
     "message": "Czy na pewno chcesz opuścić tę organizację?"
   },
   "leftOrganization": {
-    "message": "Opuściłeś organizację."
+    "message": "Nie należysz już do tej organizacji."
   },
   "defaultCollection": {
     "message": "Domyślna kolekcja"
@@ -4051,6 +4048,15 @@
       }
     }
   },
+  "firstSsoLogin": {
+    "message": "$ID$ logged in using Sso for the first time",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Zresetuj hasło"
   },
@@ -4473,11 +4479,20 @@
   "keyConnectorUrl": {
     "message": "Adres URL serwera Key Connector"
   },
-  "requestVerificationCode": {
-    "message": "Poproś o jednorazowe hasło"
+  "sendVerificationCode": {
+    "message": "Wyślij kod weryfikacyjny na mój adres e-mail"
+  },
+  "sendCode": {
+    "message": "Wyślij kod"
+  },
+  "codeSent": {
+    "message": "Kod został wysłany"
   },
   "verificationCode": {
     "message": "Kod weryfikacyjny"
+  },
+  "confirmIdentity": {
+    "message": "Potwierdź swoją tożsamość, aby kontynuować."
   },
   "verificationCodeRequired": {
     "message": "Kod weryfikacyjny jest wymagany."
@@ -4504,22 +4519,25 @@
     "message": "Hasło główne zostało usunięte."
   },
   "allowSso": {
-    "message": "Zezwalaj na uwierzytelnianie logowaniem jednokrotnym SSO"
+    "message": "Zezwalaj na logowanie jednokrotne SSO"
   },
   "allowSsoDesc": {
     "message": "Użytkownicy będą mogli uwierzytelnić się za pomocą danych logowania dostawcy tożsamości."
   },
   "ssoPolicyHelpStart": {
     "message": "Włącz",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
     "message": "zasadę logowania jednokrotnego SSO",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
     "message": ", aby wymagać od wszystkich użytkowników logowania jednokrotnego SSO.",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
   },
   "memberDecryptionOption": {
     "message": "Opcje odszyfrowania użytkownika"
@@ -4537,10 +4555,10 @@
     "message": "Logowanie jednokrotne SSO z odszyfrowaniem za pomocą serwera Key Connector jest włączone. Ta zasada dotyczy tylko właścicieli i administratorów."
   },
   "enabledSso": {
-    "message": "Włącz logowanie jednokrotne SSO"
+    "message": "Logowanie jednokrotne SSO zostało włączone"
   },
   "disabledSso": {
-    "message": "Wyłącz logowanie jednokrotne SSO"
+    "message": "Logowanie jednokrotne SSO zostało wyłączone"
   },
   "enabledKeyConnector": {
     "message": "Serwer Key Connector został włączony"
