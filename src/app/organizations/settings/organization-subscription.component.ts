@@ -166,10 +166,15 @@ export class OrganizationSubscriptionComponent implements OnInit {
         if (!isConfirmed) {
             return;
         }
-        this.removeSponsorshipPromise = this.apiService.deleteRemoveSponsorship(this.organizationId);
-        await this.removeSponsorshipPromise;
-        this.toasterService.popAsync('success', null, this.i18nService.t('removeSponsorshipSuccess'));
-        await this.load();
+
+        try {
+            this.removeSponsorshipPromise = this.apiService.deleteRemoveSponsorship(this.organizationId);
+            await this.removeSponsorshipPromise;
+            this.toasterService.popAsync('success', null, this.i18nService.t('removeSponsorshipSuccess'));
+            await this.load();
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     get isExpired() {
