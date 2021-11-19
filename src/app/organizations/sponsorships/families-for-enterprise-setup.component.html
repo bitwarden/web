@@ -8,11 +8,7 @@
     </div>
     <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="!loading">
         <p>
-            <span>{{'sponsoringANewFamiliesOrganization' | i18n}}</span>
-            <a target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}"
-                href="https://bitwarden.com/help/article/about-organizations/#create-an-organization">
-                https://bitwarden.com/help/article/about-organizations/#create-an-organization
-            </a>
+            <span>{{'acceptBitwardenFamiliesHelp' | i18n}}</span>
         </p>
         <div class="form-group col-6">
             <label for="availableSponsorshipOrg">{{ 'sponsoredFamiliesSelectOffer' | i18n}}</label>
