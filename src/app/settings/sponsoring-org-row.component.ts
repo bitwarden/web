@@ -71,4 +71,3 @@ export class SponsoringOrgRowComponent {
         await this.apiService.deleteRevokeSponsorship(this.sponsoringOrg.id);
     }
 }
-

@@ -4540,11 +4540,20 @@
     "message": "Redeemed Account"
   },
   "revokeAccount": {
-    "message": "Revoke account $EMAIL$",
+    "message": "Revoke account $NAME$",
     "placeholders": {
-      "email": {
+      "name": {
         "content": "$1",
-        "example": "test@email.com"
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
       }
     }
   },
