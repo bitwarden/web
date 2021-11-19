@@ -1,9 +1,12 @@
 import {
     Component,
+    OnDestroy,
     OnInit,
 } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+
+import { Subscription } from 'rxjs';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -18,7 +21,7 @@ import { OrganizationSsoRequest } from 'jslib-common/models/request/organization
     selector: 'app-org-manage-sso',
     templateUrl: 'sso.component.html',
 })
-export class SsoComponent implements OnInit {
+export class SsoComponent implements OnInit, OnDestroy {
 
     samlSigningAlgorithms = [
         'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
@@ -37,6 +40,9 @@ export class SsoComponent implements OnInit {
     spEntityId: string;
     spMetadataUrl: string;
     spAcsUrl: string;
+
+    keyConnectorIsValid: boolean;
+    keyConnectorSub: Subscription;
 
     enabled = this.fb.control(false);
     data = this.fb.group({
@@ -103,10 +109,14 @@ export class SsoComponent implements OnInit {
         this.spMetadataUrl = ssoSettings.urls.spMetadataUrl;
         this.spAcsUrl = ssoSettings.urls.spAcsUrl;
 
-        // TESTING ONLY
-        this.organization.useKeyConnector = true;
+        this.keyConnectorSub = this.keyConnectorUrl.valueChanges.subscribe(
+            () => this.keyConnectorIsValid = null);
 
         this.loading = false;
+    }
+
+    async ngOnDestroy() {
+        this.keyConnectorSub.unsubscribe();
     }
 
     copy(value: string) {
@@ -118,17 +128,14 @@ export class SsoComponent implements OnInit {
     }
 
     async submit() {
-        if (this.keyConnectorUrl.errors?.testFail !== false)
+        if (!this.keyConnectorIsValid)
         {
             await this.testKeyConnector();
-            if (this.keyConnectorUrl.errors?.testFail !== false) {
-                this.platformUtilsService.showToast('error', null, 'error occurred');
+            if (!this.keyConnectorIsValid) {
+                this.platformUtilsService.showToast('error', null, this.i18nService.t('keyConnectorTestFail'));
                 return;
             }
         }
-
-        this.platformUtilsService.showToast('success', null, 'form saved');
-        return;
 
         const request = new OrganizationSsoRequest();
         request.enabled = this.enabled.value;
@@ -145,18 +152,18 @@ export class SsoComponent implements OnInit {
     }
 
     async testKeyConnector() {
+        if (this.keyConnectorIsValid) {
+            return true;
+        }
+
         try {
             await this.apiService.getKeyConnectorAlive(this.keyConnectorUrl.value);
         } catch {
-            this.keyConnectorUrl.setErrors({
-                testFail: true,
-            });
+            this.keyConnectorIsValid = false;
             return;
         }
 
-        this.keyConnectorUrl.setErrors({
-            testFail: false,
-        });
+        this.keyConnectorIsValid = true;
     }
 
     get enableTestKeyConnector() {

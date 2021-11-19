@@ -56,10 +56,10 @@
             <label for="keyConnectorUrl">{{'keyConnectorUrl' | i18n}}</label>
             <input class="form-control" formControlName="keyConnectorUrl" id="keyConnectorUrl" required>
         </div>
-        <div *ngIf="keyConnectorUrl.errors?.testFail === true">
+        <div *ngIf="keyConnectorIsValid === false">
             {{'keyConnectorTestFail' | i18n}}
         </div>
-        <div *ngIf="keyConnectorUrl.errors?.testFail === false">
+        <div *ngIf="keyConnectorIsValid">
             {{'keyConnectorTestSuccess' | i18n}}
         </div>
 
