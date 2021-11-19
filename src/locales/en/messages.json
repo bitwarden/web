@@ -840,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "Account encryption keys are unique to each Bitwarden user account, so you can't import an encrypted export into a different account."
   },
-  "exportMasterPassword": {
-    "message": "Enter your master password to export your vault data."
-  },
   "export": {
     "message": "Export"
   },
@@ -4051,6 +4048,15 @@
       }
     }
   },
+  "firstSsoLogin": {
+    "message": "$ID$ logged in using Sso for the first time",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Reset Password"
   },
@@ -4473,11 +4479,20 @@
   "keyConnectorUrl": {
     "message": "Key Connector URL"
   },
-  "requestVerificationCode": {
-    "message": "Request one-time password"
+  "sendVerificationCode": {
+    "message": "Send a verification code to your email"
+  },
+  "sendCode": {
+    "message": "Send Code"
+  },
+  "codeSent": {
+    "message": "Code Sent"
   },
   "verificationCode": {
     "message": "Verification Code"
+  },
+  "confirmIdentity": {
+    "message": "Confirm your identity to continue."
   },
   "verificationCodeRequired": {
     "message": "Verification code is required."
