@@ -117,9 +117,11 @@ export class SsoComponent implements OnInit {
     }
 
     async submit() {
-        if (!this.keyConnectorIsValid || this.keyConnectorUrl.dirty)
-        {
-            await this.testKeyConnector();
+        if (this.data.get('keyConnectorEnabled').value) {
+            if (this.keyConnectorUrl.dirty || this.keyConnectorIsValid == null) {
+                await this.testKeyConnector();
+            }
+
             if (!this.keyConnectorIsValid) {
                 this.platformUtilsService.showToast('error', null, this.i18nService.t('keyConnectorTestFail'));
                 return;
