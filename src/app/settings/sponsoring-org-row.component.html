@@ -1,22 +1,18 @@
-<ng-container *ngIf="loading">
-    Loading
-</ng-container>
-<ng-container *ngIf="!loading">
-    <td>
-        {{sponsoringOrg.familySponsorshipFriendlyName}}
-    </td>
-    <td>{{sponsoringOrg.name}}</td>
-    <td class="table-action-right">
-        <button #resendEmailBtn [appApiAction]="resendEmailPromise" class="btn btn-outline-primary btn-submit" [disabled]="resendEmailBtn.loading"
-            (click)="resendEmail()" [attr.aria-label]="'resendEmailLabel' | i18n : sponsoringOrg.familySponsorshipFriendlyName">
-            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
-            <span>{{'resendEmail' | i18n }}</span>
-        </button>
-        <button #revokeSponsorshipBtn [appApiAction]="revokeSponsorshipPromise" class="btn btn-outline-danger btn-submit" [disabled]="revokeSponsorshipBtn.loading"
-            (click)="revokeSponsorship()"
-            [attr.aria-label]="'revokeAccount' | i18n : sponsoringOrg.familySponsorshipFriendlyName">
-            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
-            <span>{{'remove' | i18n}}</span>
-        </button>
-    </td>
-</ng-container>
+<td>
+    {{sponsoringOrg.familySponsorshipFriendlyName}}
+</td>
+<td>{{sponsoringOrg.name}}</td>
+<td class="table-action-right">
+    <button #resendEmailBtn [appApiAction]="resendEmailPromise" class="btn btn-outline-primary btn-submit"
+        [disabled]="resendEmailBtn.loading" (click)="resendEmail()"
+        [attr.aria-label]="'resendEmailLabel' | i18n : sponsoringOrg.familySponsorshipFriendlyName">
+        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+        <span>{{'resendEmail' | i18n }}</span>
+    </button>
+    <button #revokeSponsorshipBtn [appApiAction]="revokeSponsorshipPromise" class="btn btn-outline-danger btn-submit"
+        [disabled]="revokeSponsorshipBtn.loading" (click)="revokeSponsorship()"
+        [attr.aria-label]="'revokeAccount' | i18n : sponsoringOrg.familySponsorshipFriendlyName">
+        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+        <span>{{'remove' | i18n}}</span>
+    </button>
+</td>

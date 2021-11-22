@@ -21,22 +21,12 @@ export class SponsoringOrgRowComponent {
 
     @Output() sponsorshipRemoved = new EventEmitter();
 
-    loading = true;
-
     revokeSponsorshipPromise: Promise<any>;
     resendEmailPromise: Promise<any>;
 
     constructor(private toasterService: ToasterService, private apiService: ApiService,
         private i18nService: I18nService, private logService: LogService,
         private platformUtilsService: PlatformUtilsService) { }
-
-    ngOnInit() {
-        if (this.sponsoringOrg === null) {
-            return;
-        }
-
-        this.loading = false;
-    }
 
     async revokeSponsorship() {
         try {
