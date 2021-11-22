@@ -55,6 +55,15 @@ export class LoginComponent extends BaseLoginComponent {
                 this.stateService.save('loginRedirect',
                     { route: '/settings/create-organization', qParams: { plan: qParams.org } });
             }
+
+            // Are they coming from an email for sponsoring a families organization
+            if (qParams.sponsorshipToken != null) {
+                // After logging in redirect them to setup the families sponsorship
+                this.stateService.save('loginRedirect', {
+                    route: '/setup/families-for-enterprise',
+                    qParams: { token: qParams.sponsorshipToken },
+                });
+            }
             await super.ngOnInit();
         });
 

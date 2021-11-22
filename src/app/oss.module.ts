@@ -90,6 +90,7 @@ import {
     WeakPasswordsReportComponent as OrgWeakPasswordsReportComponent,
 } from './organizations/tools/weak-passwords-report.component';
 
+import { FamiliesForEnterpriseSetupComponent } from './organizations/sponsorships/families-for-enterprise-setup.component';
 import { AddEditComponent as OrgAddEditComponent } from './organizations/vault/add-edit.component';
 import { AttachmentsComponent as OrgAttachmentsComponent } from './organizations/vault/attachments.component';
 import { CiphersComponent as OrgCiphersComponent } from './organizations/vault/ciphers.component';
@@ -130,6 +131,8 @@ import { PremiumComponent } from './settings/premium.component';
 import { ProfileComponent } from './settings/profile.component';
 import { PurgeVaultComponent } from './settings/purge-vault.component';
 import { SettingsComponent } from './settings/settings.component';
+import { SponsoredFamiliesComponent } from './settings/sponsored-families.component';
+import { SponsoringOrgRowComponent } from './settings/sponsoring-org-row.component';
 import { TaxInfoComponent } from './settings/tax-info.component';
 import { TwoFactorAuthenticatorComponent } from './settings/two-factor-authenticator.component';
 import { TwoFactorDuoComponent } from './settings/two-factor-duo.component';
@@ -305,6 +308,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SetPasswordComponent,
         AddCreditComponent,
         AddEditComponent,
+        AddEditCustomFieldsComponent,
         AdjustPaymentComponent,
         AdjustSubscription,
         AdjustStorageComponent,
@@ -345,6 +349,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ExportComponent,
         ExposedPasswordsReportComponent,
         FallbackSrcDirective,
+        FamiliesForEnterpriseSetupComponent,
         FolderAddEditComponent,
         FooterComponent,
         FrontendLayoutComponent,
@@ -421,6 +426,8 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SendComponent,
         SettingsComponent,
         ShareComponent,
+        SponsoredFamiliesComponent,
+        SponsoringOrgRowComponent,
         SsoComponent,
         StopClickDirective,
         StopPropDirective,

@@ -4,7 +4,10 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { 
+    ActivatedRoute,
+    Router
+} from '@angular/router';
 
 import { ToasterService } from 'angular2-toaster';
 import { ModalService } from 'jslib-angular/services/modal.service';
@@ -51,7 +54,8 @@ export class AccountComponent {
         private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private route: ActivatedRoute,
         private syncService: SyncService, private platformUtilsService: PlatformUtilsService,
-        private cryptoService: CryptoService, private logService: LogService) { }
+        private cryptoService: CryptoService, private logService: LogService,
+        private router: Router) { }
 
     async ngOnInit() {
         this.selfHosted = this.platformUtilsService.isSelfHost();
@@ -101,6 +105,9 @@ export class AccountComponent {
     async deleteOrganization() {
         await this.modalService.openViewRef(DeleteOrganizationComponent, this.deleteModalRef, comp => {
             comp.organizationId = this.organizationId;
+            comp.onSuccess.subscribe(() => {
+                this.router.navigate(['/']);
+            });
         });
     }
 

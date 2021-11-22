@@ -64,9 +64,11 @@ export class VaultComponent implements OnInit, OnDestroy {
     showBrowserOutdated = false;
     showUpdateKey = false;
     showPremiumCallout = false;
+    showRedeemSponsorship = false;
     showProviders = false;
     deleted: boolean = false;
     trashCleanupWarning: string = null;
+
 
     constructor(private syncService: SyncService, private route: ActivatedRoute,
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
@@ -92,6 +94,9 @@ export class VaultComponent implements OnInit, OnDestroy {
                 !this.platformUtilsService.isSelfHost();
 
             this.showProviders = (await this.userService.getAllProviders()).length > 0;
+
+            const allOrgs = await this.userService.getAllOrganizations();
+            this.showRedeemSponsorship = allOrgs.some(o => o.familySponsorshipAvailable) && !allOrgs.some(o => o.familySponsorshipFriendlyName != null);
 
             await Promise.all([
                 this.groupingsComponent.load(),

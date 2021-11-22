@@ -36,7 +36,7 @@
             <small class="text-muted">{{'clientOwnerDesc' | i18n : '20'}}</small>
         </div>
     </div>
-    <div *ngIf="!providerId">
+    <div *ngIf="!providerId && !acceptingSponsorship">
         <div class="form-group form-check">
             <input id="ownedBusiness" class="form-check-input" type="checkbox" name="OwnedBusiness"
                 [(ngModel)]="ownedBusiness" (change)="changedOwnedBusiness()">
@@ -219,14 +219,9 @@
         <hr class="my-3">
         <h2 class="spaced-header mb-4">{{ (createOrganization ? 'paymentInformation' : 'billingInformation') | i18n}}
         </h2>
-        <small class="text-muted font-italic mb-3 d-block" *ngIf="freeTrial && createOrganization; else paymentChargedImmediately">
-            {{'paymentChargedWithTrial' | i18n}}
+        <small class="text-muted font-italic mb-3 d-block">
+            {{paymentDesc}}
         </small>
-        <ng-template #paymentChargedImmediately>
-            <small class="text-muted font-italic mb-3 d-block">
-                {{'paymentCharged' | i18n : (selectedPlanInterval | i18n) }}
-            </small>
-        </ng-template>
         <app-payment *ngIf="createOrganization" [hideCredit]="true"></app-payment>
         <app-tax-info (onCountryChanged)="changedCountry()"></app-tax-info>
         <div id="price" class="my-4">

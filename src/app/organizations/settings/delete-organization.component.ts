@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { 
+    Component,
+    EventEmitter,
+    Output,
+} from '@angular/core';
 
 import { ToasterService } from 'angular2-toaster';
 
@@ -16,13 +19,15 @@ import { UserVerificationService } from 'jslib-common/abstractions/userVerificat
 })
 export class DeleteOrganizationComponent {
     organizationId: string;
+    descriptionKey = 'deleteOrganizationDesc';
+    @Output() onSuccess: EventEmitter<any> = new EventEmitter();
 
     masterPassword: Verification;
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private toasterService: ToasterService, private userVerificationService: UserVerificationService,
-        private router: Router, private logService: LogService) { }
+        private logService: LogService) { }
 
     async submit() {
         try {
@@ -31,7 +36,7 @@ export class DeleteOrganizationComponent {
             await this.formPromise;
             this.toasterService.popAsync('success', this.i18nService.t('organizationDeleted'),
                 this.i18nService.t('organizationDeletedDesc'));
-            this.router.navigate(['/']);
+            this.onSuccess.emit();
         } catch (e) {
             this.logService.error(e);
         }

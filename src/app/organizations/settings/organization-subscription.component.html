@@ -86,6 +86,12 @@
                 </app-adjust-subscription>
             </div>
         </ng-container>
+        <button #removeSponsorshipBtn type="button" class="btn btn-outline-danger btn-submit" (click)="removeSponsorship()"
+            [appApiAction]="removeSponsorshipPromise" [disabled]="removeSponsorshipBtn.loading"
+            *ngIf="isSponsoredSubscription">
+            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+            <span>{{'removeSponsorship' | i18n}}</span>
+        </button>
         <h2 class="spaced-header">{{'storage' | i18n}}</h2>
         <p>{{'subscriptionStorage' | i18n : sub.maxStorageGb || 0 : sub.storageName || '0 MB'}}</p>
         <div class="progress">

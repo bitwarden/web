@@ -73,7 +73,7 @@
                     </a>
                 </div>
             </div>
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-header d-flex">
                     {{'organizations' | i18n}}
                     <a class="ml-auto" href="https://help.bitwarden.com/article/what-is-an-organization/"
@@ -83,6 +83,17 @@
                 </div>
                 <div class="card-body">
                     <app-organizations [vault]="true"></app-organizations>
+                </div>
+            </div>
+            <div class="card border-success mb-4" *ngIf="showRedeemSponsorship">
+                <div class="card-header bg-success text-white">
+                    {{'freeFamiliesPlan' | i18n}}
+                </div>
+                <div class="card-body">
+                    <p>{{'sponsoredFamiliesEligible' | i18n}}</p>
+                    <a class="btn btn-block btn-outline-secondary" routerLink="/settings/sponsored-families">
+                        {{'redeemNow' | i18n}}
+                    </a>
                 </div>
             </div>
             <div class="card mt-4" *ngIf="showProviders">
