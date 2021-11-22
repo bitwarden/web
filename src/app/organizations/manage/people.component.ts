@@ -193,6 +193,7 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
             comp.name = this.userNamePipe.transform(user);
             comp.organizationId = this.organizationId;
             comp.organizationUserId = user != null ? user.id : null;
+            comp.usesKeyConnector = user?.usesKeyConnector;
             comp.onSavedUser.subscribe(() => {
                 modal.close();
                 this.load();
