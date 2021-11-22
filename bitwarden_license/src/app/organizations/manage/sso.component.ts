@@ -147,15 +147,16 @@ export class SsoComponent implements OnInit {
             return;
         }
 
-        this.keyConnectorUrl.markAsPristine();
         try {
             await this.apiService.getKeyConnectorAlive(this.keyConnectorUrl.value);
         } catch {
             this.keyConnectorIsValid = false;
+            this.keyConnectorUrl.markAsPristine();
             return;
         }
 
         this.keyConnectorIsValid = true;
+        this.keyConnectorUrl.markAsPristine();
     }
 
     get enableTestKeyConnector() {
