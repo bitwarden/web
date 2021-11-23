@@ -126,7 +126,7 @@ export class SsoComponent implements OnInit {
             this.enabled.setValue(response.enabled);
 
             this.platformUtilsService.showToast('success', null, this.i18nService.t('ssoSettingsSaved'));
-        } catch (e) {
+        } catch {
             // Logged by appApiAction, do nothing
         }
 
