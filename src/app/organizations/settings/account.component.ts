@@ -4,7 +4,7 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 
-import { 
+import {
     ActivatedRoute,
     Router
 } from '@angular/router';

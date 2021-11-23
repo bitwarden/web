@@ -124,7 +124,7 @@ export class OrganizationPlansComponent implements OnInit {
         .filter(plan => !plan.legacyYear
             && !plan.disabled
             && (plan.isAnnual || plan.product === this.productTypes.Free));
-            
+
         if (this.acceptingSponsorship) {
             const familyPlan = this.plans.find(plan => plan.type === PlanType.FamiliesAnnually);
             familyPlan.basePrice = 0;
