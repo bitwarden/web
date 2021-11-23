@@ -120,14 +120,18 @@ export class OrganizationPlansComponent implements OnInit {
             validPlans = validPlans.filter(plan => plan.product !== ProductType.Free);
         }
 
-        if (this.acceptingSponsorship) {
-            validPlans = validPlans.filter(plan => plan.product === ProductType.Families);
-        }
-
         validPlans = validPlans
-            .filter(plan => !plan.legacyYear
-                && !plan.disabled
-                && (plan.isAnnual || plan.product === this.productTypes.Free));
+        .filter(plan => !plan.legacyYear
+            && !plan.disabled
+            && (plan.isAnnual || plan.product === this.productTypes.Free));
+            
+        if (this.acceptingSponsorship) {
+            const familyPlan = this.plans.find(plan => plan.type === PlanType.FamiliesAnnually);
+            familyPlan.basePrice = 0;
+            validPlans = [
+                familyPlan,
+            ];
+        }
 
         return validPlans;
     }
