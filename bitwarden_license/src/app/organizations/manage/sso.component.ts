@@ -124,7 +124,7 @@ export class SsoComponent implements OnInit {
         try {
             response = await this.formPromise;
         } catch (e) {
-            // Logged by apiService, do nothing
+            // Logged by appApiAction, do nothing
             return;
         }
 
