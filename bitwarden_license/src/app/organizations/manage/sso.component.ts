@@ -38,8 +38,6 @@ export class SsoComponent implements OnInit {
     spMetadataUrl: string;
     spAcsUrl: string;
 
-    keyConnectorIsValid: boolean;
-
     enabled = this.fb.control(false);
     data = this.fb.group({
         configType: [],
@@ -105,6 +103,8 @@ export class SsoComponent implements OnInit {
         this.spMetadataUrl = ssoSettings.urls.spMetadataUrl;
         this.spAcsUrl = ssoSettings.urls.spAcsUrl;
 
+        this.keyConnectorUrl.markAsDirty();
+
         this.loading = false;
     }
 
@@ -117,12 +117,28 @@ export class SsoComponent implements OnInit {
     }
 
     async submit() {
-        if (!this.keyConnectorIsValid || this.keyConnectorUrl.dirty)
-        {
-            await this.testKeyConnector();
-            if (!this.keyConnectorIsValid) {
-                this.platformUtilsService.showToast('error', null, this.i18nService.t('keyConnectorTestFail'));
-                return;
+        this.formPromise = this.postData();
+
+        try {
+            const response = await this.formPromise;
+
+            this.data.patchValue(response.data);
+            this.enabled.setValue(response.enabled);
+
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('ssoSettingsSaved'));
+        } catch {
+            // Logged by appApiAction, do nothing
+        }
+
+        this.formPromise = null;
+    }
+
+    async postData() {
+        if (this.data.get('keyConnectorEnabled').value) {
+            await this.validateKeyConnectorUrl();
+
+            if (this.keyConnectorUrl.hasError('invalidUrl')) {
+                throw new Error(this.i18nService.t('keyConnectorTestFail'));
             }
         }
 
@@ -130,30 +146,26 @@ export class SsoComponent implements OnInit {
         request.enabled = this.enabled.value;
         request.data = this.data.value;
 
-        this.formPromise = this.apiService.postOrganizationSso(this.organizationId, request);
-
-        const response = await this.formPromise;
-        this.data.patchValue(response.data);
-        this.enabled.setValue(response.enabled);
-
-        this.formPromise = null;
-        this.platformUtilsService.showToast('success', null, this.i18nService.t('ssoSettingsSaved'));
+        return this.apiService.postOrganizationSso(this.organizationId, request);
     }
 
-    async testKeyConnector() {
-        if (this.keyConnectorIsValid && this.keyConnectorUrl.pristine) {
+    async validateKeyConnectorUrl() {
+        if (this.keyConnectorUrl.pristine) {
             return;
+        }
+
+        this.keyConnectorUrl.markAsPending();
+
+        try {
+            await this.apiService.getKeyConnectorAlive(this.keyConnectorUrl.value);
+            this.keyConnectorUrl.updateValueAndValidity();
+        } catch {
+            this.keyConnectorUrl.setErrors({
+                invalidUrl: true,
+            });
         }
 
         this.keyConnectorUrl.markAsPristine();
-        try {
-            await this.apiService.getKeyConnectorAlive(this.keyConnectorUrl.value);
-        } catch {
-            this.keyConnectorIsValid = false;
-            return;
-        }
-
-        this.keyConnectorIsValid = true;
     }
 
     get enableTestKeyConnector() {

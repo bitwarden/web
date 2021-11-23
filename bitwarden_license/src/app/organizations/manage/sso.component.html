@@ -57,20 +57,26 @@
             <div class="input-group">
                 <input class="form-control" formControlName="keyConnectorUrl" id="keyConnectorUrl" required>
                 <div class="input-group-append">
-                    <button type="button" class="btn btn-outline-secondary" (click)="testKeyConnector()"
+                    <button type="button" class="btn btn-outline-secondary" (click)="validateKeyConnectorUrl()"
                         [disabled]="!enableTestKeyConnector">
-                        {{'keyConnectorTest' | i18n}}
+                        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"
+                            *ngIf="keyConnectorUrl.pending"></i>
+                        <span *ngIf="!keyConnectorUrl.pending">
+                            {{'keyConnectorTest' | i18n}}
+                        </span>
                     </button>
                 </div>
             </div>
-            <div class="text-danger" *ngIf="keyConnectorIsValid === false && keyConnectorUrl.pristine" role="alert">
-                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                {{'keyConnectorTestFail' | i18n}}
-            </div>
-            <div class="text-success" *ngIf="keyConnectorIsValid && keyConnectorUrl.pristine" role="alert">
-                <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-                {{'keyConnectorTestSuccess' | i18n}}
-            </div>
+            <ng-container *ngIf="keyConnectorUrl.pristine && !keyConnectorUrl.pending">
+                <div class="text-danger" *ngIf="keyConnectorUrl.hasError('invalidUrl')" role="alert">
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                    {{'keyConnectorTestFail' | i18n}}
+                </div>
+                <div class="text-success" *ngIf="!keyConnectorUrl.hasError('invalidUrl')" role="alert">
+                    <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                    {{'keyConnectorTestSuccess' | i18n}}
+                </div>
+            </ng-container>
         </div>
     </ng-container>
 
