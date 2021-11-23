@@ -13,7 +13,6 @@ import { UserService } from 'jslib-common/abstractions/user.service';
 import { Organization } from 'jslib-common/models/domain/organization';
 
 import { OrganizationSsoRequest } from 'jslib-common/models/request/organization/organizationSsoRequest';
-import { OrganizationSsoResponse } from 'jslib-common/models/response/organization/organizationSsoResponse';
 
 @Component({
     selector: 'app-org-manage-sso',
@@ -120,20 +119,18 @@ export class SsoComponent implements OnInit {
     async submit() {
         this.formPromise = this.postData();
 
-        let response: OrganizationSsoResponse;
         try {
-            response = await this.formPromise;
+            const response = await this.formPromise;
+
+            this.data.patchValue(response.data);
+            this.enabled.setValue(response.enabled);
+
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('ssoSettingsSaved'));
         } catch (e) {
             // Logged by appApiAction, do nothing
-            return;
-        } finally {
-            this.formPromise = null;
         }
 
-        this.data.patchValue(response.data);
-        this.enabled.setValue(response.enabled);
-
-        this.platformUtilsService.showToast('success', null, this.i18nService.t('ssoSettingsSaved'));
+        this.formPromise = null;
     }
 
     async postData() {
