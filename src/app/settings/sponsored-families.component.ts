@@ -21,7 +21,6 @@ export class SponsoredFamiliesComponent implements OnInit {
     activeSponsorshipOrgs: Organization[] = [];
     selectedSponsorshipOrgId: string = '';
     sponsorshipEmail: string = '';
-    friendlyName: string = '';
 
     // Conditional display properties
     formPromise: Promise<any>;
@@ -38,7 +37,7 @@ export class SponsoredFamiliesComponent implements OnInit {
         this.formPromise = this.apiService.postCreateSponsorship(this.selectedSponsorshipOrgId, {
             sponsoredEmail: this.sponsorshipEmail,
             planSponsorshipType: PlanSponsorshipType.FamiliesForEnterprise,
-            friendlyName: this.friendlyName,
+            friendlyName: this.sponsorshipEmail,
         });
 
         await this.formPromise;
@@ -72,7 +71,6 @@ export class SponsoredFamiliesComponent implements OnInit {
 
     private async resetForm() {
         this.sponsorshipEmail = '';
-        this.friendlyName = '';
         this.selectedSponsorshipOrgId = '';
     }
 
