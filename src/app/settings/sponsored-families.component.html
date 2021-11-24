@@ -17,8 +17,8 @@
         </ul>
     </div>
     <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="anyOrgsAvailable">
-        <div *ngIf="moreThanOneOrgAvailable" class="form-group col-6">
-            <label for="availableSponsorshipOrg">{{ 'sponsoredFamiliesSelectOffer' | i18n}}</label>
+        <div *ngIf="moreThanOneOrgAvailable" class="form-group col-7">
+            <label for="availableSponsorshipOrg">{{ 'familiesSponsoringOrgSelect' | i18n}}</label>
             <select id="availableSponsorshipOrg" name="Available Sponsorship Organization"
                 [(ngModel)]="selectedSponsorshipOrgId" class="form-control" required>
                 <option value="">-- {{'select' | i18n}} --</option>
@@ -26,7 +26,7 @@
             </select>
             <small>{{'sponsoredFamiliesLeaveCopy' | i18n}}</small>
         </div>
-        <div class="form-group col-6">
+        <div class="form-group col-7">
             <label for="accountEmail">{{'sponsoredFamiliesEmail' | i18n}}:</label>
             <input id="accountEmail" class="form-control" inputmode="email" [(ngModel)]="sponsorshipEmail"
                 name="sponsorshipEmail" required>
