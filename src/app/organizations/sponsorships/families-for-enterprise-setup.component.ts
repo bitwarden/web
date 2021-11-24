@@ -55,6 +55,7 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
     @ViewChild('deleteOrganizationTemplate', { read: ViewContainerRef, static: true }) deleteModalRef: ViewContainerRef;
 
     loading = true;
+    badToken = false;
     formPromise: Promise<any>;
 
     token: string;
@@ -89,6 +90,7 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
             this.token = qParams.token;
 
             await this.syncService.fullSync(true);
+            this.badToken = !await this.apiService.postPreValidateSponsorshipToken(this.token);
             this.loading = false;
 
             this.existingFamilyOrganizations = (await this.userService.getAllOrganizations())

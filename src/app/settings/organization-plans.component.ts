@@ -282,8 +282,8 @@ export class OrganizationPlansComponent implements OnInit {
             };
 
             this.formPromise = doSubmit();
-            const orgId = await this.formPromise;
-            this.onSuccess.emit({ organizationId: orgId });
+            const organizationId = await this.formPromise;
+            this.onSuccess.emit({ organizationId: organizationId });
         } catch (e) {
             this.logService.error(e);
         }
