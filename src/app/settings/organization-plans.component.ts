@@ -68,6 +68,7 @@ export class OrganizationPlansComponent implements OnInit {
     productTypes = ProductType;
     formPromise: Promise<any>;
     singleOrgPolicyBlock: boolean = false;
+    discount = 0;
 
     plans: PlanResponse[];
 
@@ -127,7 +128,7 @@ export class OrganizationPlansComponent implements OnInit {
 
         if (this.acceptingSponsorship) {
             const familyPlan = this.plans.find(plan => plan.type === PlanType.FamiliesAnnually);
-            familyPlan.basePrice = 0;
+            this.discount = familyPlan.basePrice;
             validPlans = [
                 familyPlan,
             ];
@@ -181,7 +182,7 @@ export class OrganizationPlansComponent implements OnInit {
         if (this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon) {
             subTotal += this.selectedPlan.premiumAccessOptionPrice;
         }
-        return subTotal;
+        return subTotal - this.discount;
     }
 
     get freeTrial() {
