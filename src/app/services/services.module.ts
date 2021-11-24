@@ -1,5 +1,6 @@
 import {
     APP_INITIALIZER,
+    Injector,
     LOCALE_ID,
     NgModule,
 } from '@angular/core';
@@ -59,8 +60,10 @@ import { VaultTimeoutService } from 'jslib-common/services/vaultTimeout.service'
 import { WebCryptoFunctionService } from 'jslib-common/services/webCryptoFunction.service';
 
 import { ApiService as ApiServiceAbstraction } from 'jslib-common/abstractions/api.service';
+import { AppIdService as AppIdServiceAbstraction } from 'jslib-common/abstractions/appId.service';
 import { AuditService as AuditServiceAbstraction } from 'jslib-common/abstractions/audit.service';
 import { AuthService as AuthServiceAbstraction } from 'jslib-common/abstractions/auth.service';
+import { BroadcasterService as BroadcasterServiceAbstraction } from 'jslib-common/abstractions/broadcaster.service';
 import { CipherService as CipherServiceAbstraction } from 'jslib-common/abstractions/cipher.service';
 import { CollectionService as CollectionServiceAbstraction } from 'jslib-common/abstractions/collection.service';
 import { CryptoService as CryptoServiceAbstraction } from 'jslib-common/abstractions/crypto.service';
@@ -93,68 +96,16 @@ import { TotpService as TotpServiceAbstraction } from 'jslib-common/abstractions
 import { UserService as UserServiceAbstraction } from 'jslib-common/abstractions/user.service';
 import { UserVerificationService as UserVerificationServiceAbstraction } from 'jslib-common/abstractions/userVerification.service';
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib-common/abstractions/vaultTimeout.service';
+
 import { ModalService } from './modal.service';
 
 import { ThemeType } from 'jslib-common/enums/themeType';
 
-const i18nService = new I18nService(window.navigator.language, 'locales');
-const stateService = new StateService();
-const broadcasterService = new BroadcasterService();
-const messagingService = new BroadcasterMessagingService(broadcasterService);
-const consoleLogService = new ConsoleLogService(false);
-const platformUtilsService = new WebPlatformUtilsService(i18nService, messagingService, consoleLogService, () => storageService);
-const storageService: StorageServiceAbstraction = new HtmlStorageService(platformUtilsService);
-const secureStorageService: StorageServiceAbstraction = new MemoryStorageService();
-const cryptoFunctionService: CryptoFunctionServiceAbstraction = new WebCryptoFunctionService(window,
-    platformUtilsService);
-const cryptoService = new CryptoService(storageService,
-    platformUtilsService.isDev() ? storageService : secureStorageService, cryptoFunctionService, platformUtilsService,
-    consoleLogService);
-const tokenService = new TokenService(storageService);
-const appIdService = new AppIdService(storageService);
-const environmentService = new EnvironmentService(storageService);
-const apiService = new ApiService(tokenService, platformUtilsService, environmentService,
-    async (expired: boolean) => messagingService.send('logout', { expired: expired }));
-const userService = new UserService(tokenService, storageService);
-const settingsService = new SettingsService(userService, storageService);
-export let searchService: SearchService = null;
-const fileUploadService = new FileUploadService(consoleLogService, apiService);
-const cipherService = new CipherService(cryptoService, userService, settingsService,
-    apiService, fileUploadService, storageService, i18nService, () => searchService, consoleLogService);
-const folderService = new FolderService(cryptoService, userService, apiService, storageService,
-    i18nService, cipherService);
-const collectionService = new CollectionService(cryptoService, userService, storageService, i18nService);
-searchService = new SearchService(cipherService, consoleLogService, i18nService);
-const policyService = new PolicyService(userService, storageService, apiService);
-const sendService = new SendService(cryptoService, userService, apiService, fileUploadService, storageService,
-    i18nService, cryptoFunctionService);
-const keyConnectorService = new KeyConnectorService(storageService, userService, cryptoService, apiService,
-    tokenService, consoleLogService);
-const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
-    cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, tokenService,
-    policyService, keyConnectorService, null, async () => messagingService.send('logout', { expired: false }));
-const syncService = new SyncService(userService, apiService, settingsService,
-    folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
-    sendService, consoleLogService, tokenService, keyConnectorService,
-    async (expired: boolean) => messagingService.send('logout', { expired: expired }));
-const passwordGenerationService = new PasswordGenerationService(cryptoService, storageService, policyService);
-const totpService = new TotpService(storageService, cryptoFunctionService, consoleLogService);
-const containerService = new ContainerService(cryptoService);
-const authService = new AuthService(cryptoService, apiService,
-    userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService, vaultTimeoutService,
-    consoleLogService, cryptoFunctionService, environmentService, keyConnectorService);
-const exportService = new ExportService(folderService, cipherService, apiService, cryptoService);
-const importService = new ImportService(cipherService, folderService, apiService, i18nService, collectionService,
-    platformUtilsService, cryptoService);
-const notificationsService = new NotificationsService(userService, syncService, appIdService, apiService, vaultTimeoutService,
-    environmentService, async () => messagingService.send('logout', { expired: true }), consoleLogService);
-const auditService = new AuditService(cryptoFunctionService, apiService);
-const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService, consoleLogService);
-const userVerificationService = new UserVerificationService(cryptoService, i18nService, apiService);
-
-containerService.attachToWindow(window);
-
-export function initFactory(): Function {
+export function initFactory(storageService: StorageServiceAbstraction,
+    environmentService: EnvironmentServiceAbstraction, notificationsService: NotificationsServiceAbstraction,
+    vaultTimeoutService: VaultTimeoutService, i18nService: I18nService, eventLoggingService: EventLoggingService,
+    authService: AuthService, stateService: StateServiceAbstraction,
+    platformUtilsService: PlatformUtilsServiceAbstraction, cryptoService: CryptoServiceAbstraction): Function {
     return async () => {
         await (storageService as HtmlStorageService).init();
 
@@ -184,6 +135,9 @@ export function initFactory(): Function {
         stateService.save(ConstantsService.disableFaviconKey,
             await storageService.get<boolean>(ConstantsService.disableFaviconKey));
         stateService.save('enableGravatars', await storageService.get<boolean>('enableGravatars'));
+
+        const containerService = new ContainerService(cryptoService);
+        containerService.attachToWindow(window);
     };
 }
 
@@ -202,52 +156,360 @@ export function initFactory(): Function {
         EventService,
         LockGuardService,
         PolicyListService,
+        { provide: 'WINDOW', useValue: window },
+        {
+            provide: AppIdServiceAbstraction,
+            useClass: AppIdService,
+            deps: [StorageServiceAbstraction],
+        },
         { provide: ModalServiceAbstraction, useClass: ModalService },
-        { provide: AuditServiceAbstraction, useValue: auditService },
-        { provide: AuthServiceAbstraction, useValue: authService },
-        { provide: CipherServiceAbstraction, useValue: cipherService },
-        { provide: FolderServiceAbstraction, useValue: folderService },
-        { provide: LogService, useValue: consoleLogService },
-        { provide: CollectionServiceAbstraction, useValue: collectionService },
-        { provide: EnvironmentServiceAbstraction, useValue: environmentService },
-        { provide: TotpServiceAbstraction, useValue: totpService },
-        { provide: TokenServiceAbstraction, useValue: tokenService },
-        { provide: I18nServiceAbstraction, useValue: i18nService },
-        { provide: CryptoServiceAbstraction, useValue: cryptoService },
-        { provide: PlatformUtilsServiceAbstraction, useValue: platformUtilsService },
-        { provide: PasswordGenerationServiceAbstraction, useValue: passwordGenerationService },
-        { provide: ApiServiceAbstraction, useValue: apiService },
-        { provide: FileUploadServiceAbstraction, useValue: fileUploadService },
-        { provide: SyncServiceAbstraction, useValue: syncService },
-        { provide: UserServiceAbstraction, useValue: userService },
-        { provide: MessagingServiceAbstraction, useValue: messagingService },
-        { provide: BroadcasterService, useValue: broadcasterService },
-        { provide: SettingsServiceAbstraction, useValue: settingsService },
-        { provide: VaultTimeoutServiceAbstraction, useValue: vaultTimeoutService },
-        { provide: StorageServiceAbstraction, useValue: storageService },
-        { provide: StateServiceAbstraction, useValue: stateService },
-        { provide: ExportServiceAbstraction, useValue: exportService },
-        { provide: SearchServiceAbstraction, useValue: searchService },
-        { provide: ImportServiceAbstraction, useValue: importService },
-        { provide: NotificationsServiceAbstraction, useValue: notificationsService },
-        { provide: CryptoFunctionServiceAbstraction, useValue: cryptoFunctionService },
-        { provide: EventLoggingServiceAbstraction, useValue: eventLoggingService },
-        { provide: PolicyServiceAbstraction, useValue: policyService },
-        { provide: SendServiceAbstraction, useValue: sendService },
-        { provide: KeyConnectorServiceAbstraction, useValue: keyConnectorService },
-        { provide: UserVerificationServiceAbstraction, useValue: userVerificationService },
+        {
+            provide: AuditServiceAbstraction,
+            useClass: AuditService,
+            deps: [CryptoFunctionServiceAbstraction, ApiServiceAbstraction],
+        },
+        {
+            provide: AuthServiceAbstraction,
+            useClass: AuthService,
+            deps: [
+                CryptoServiceAbstraction,
+                ApiServiceAbstraction,
+                UserServiceAbstraction,
+                TokenServiceAbstraction,
+                AppIdServiceAbstraction,
+                I18nServiceAbstraction,
+                PlatformUtilsServiceAbstraction,
+                MessagingServiceAbstraction,
+                VaultTimeoutServiceAbstraction,
+                LogService,
+                CryptoFunctionServiceAbstraction,
+                EnvironmentServiceAbstraction,
+                KeyConnectorServiceAbstraction,
+            ],
+        },
+        {
+            provide: CipherServiceAbstraction,
+            useFactory: (cryptoService: CryptoServiceAbstraction, userService: UserServiceAbstraction,
+                settingsService: SettingsServiceAbstraction, apiService: ApiServiceAbstraction,
+                fileUploadService: FileUploadServiceAbstraction, storageService: StorageServiceAbstraction,
+                i18nService: I18nServiceAbstraction, injector: Injector, logService: LogService) =>
+                new CipherService(cryptoService, userService, settingsService, apiService, fileUploadService,
+                    storageService, i18nService, () => injector.get(SearchServiceAbstraction), logService),
+            deps: [
+                CryptoServiceAbstraction,
+                UserServiceAbstraction,
+                SettingsServiceAbstraction,
+                ApiServiceAbstraction,
+                FileUploadServiceAbstraction,
+                StorageServiceAbstraction,
+                I18nServiceAbstraction,
+                Injector, // TODO: Get rid of this circular dependency!
+                LogService,
+            ],
+        },
+        {
+            provide: FolderServiceAbstraction,
+            useClass: FolderService,
+            deps: [
+                CryptoServiceAbstraction,
+                UserServiceAbstraction,
+                ApiServiceAbstraction,
+                StorageServiceAbstraction,
+                I18nServiceAbstraction,
+                CipherServiceAbstraction,
+            ],
+        },
+        { provide: LogService, useFactory: () => new ConsoleLogService(false) },
+        {
+            provide: CollectionServiceAbstraction,
+            useClass: CollectionService,
+            deps: [
+                CryptoServiceAbstraction,
+                UserServiceAbstraction,
+                StorageServiceAbstraction,
+                I18nServiceAbstraction,
+            ],
+        },
+        {
+            provide: EnvironmentServiceAbstraction,
+            useClass: EnvironmentService,
+            deps: [StorageServiceAbstraction],
+        },
+        {
+            provide: TotpServiceAbstraction,
+            useClass: TotpService,
+            deps: [
+                StorageServiceAbstraction,
+                CryptoFunctionServiceAbstraction,
+                LogService,
+            ],
+        },
+        { provide: TokenServiceAbstraction, useClass: TokenService, deps: [StorageServiceAbstraction] },
+        {
+            provide: I18nServiceAbstraction,
+            useFactory: () => new I18nService(window.navigator.language, 'locales'),
+        },
+        {
+            provide: CryptoServiceAbstraction,
+            useFactory: (storageService: StorageServiceAbstraction, secureStorageService: StorageServiceAbstraction,
+                cryptoFunctionService: CryptoFunctionServiceAbstraction,
+                platformUtilsService: PlatformUtilsServiceAbstraction, logService: LogService) => {
+                const storageImplementation = platformUtilsService.isDev() ? storageService : secureStorageService;
+                return new CryptoService(storageService, storageImplementation, cryptoFunctionService,
+                    platformUtilsService, logService);
+            },
+            deps: [
+                StorageServiceAbstraction,
+                'SECURE_STORAGE',
+                CryptoFunctionServiceAbstraction,
+                PlatformUtilsServiceAbstraction,
+                LogService,
+            ],
+        },
+        {
+            provide: PlatformUtilsServiceAbstraction,
+            useFactory: (i18nService: I18nServiceAbstraction, messagingService: MessagingServiceAbstraction,
+                logService: LogService, injector: Injector) => new WebPlatformUtilsService(i18nService,
+                    messagingService, logService, () => injector.get(StorageServiceAbstraction)),
+            deps: [
+                I18nServiceAbstraction,
+                MessagingServiceAbstraction,
+                LogService,
+                Injector, // TODO: Get rid of circular dependency!
+            ],
+        },
+        {
+            provide: PasswordGenerationServiceAbstraction,
+            useClass: PasswordGenerationService,
+            deps: [
+                CryptoServiceAbstraction,
+                StorageServiceAbstraction,
+                PolicyServiceAbstraction,
+            ],
+        },
+        {
+            provide: ApiServiceAbstraction,
+            useFactory: (tokenService: TokenServiceAbstraction, platformUtilsService: PlatformUtilsServiceAbstraction,
+                environmentService: EnvironmentServiceAbstraction, messagingService: MessagingServiceAbstraction) =>
+                new ApiService(tokenService, platformUtilsService, environmentService,
+                    async (expired: boolean) => messagingService.send('logout', { expired: expired })),
+            deps: [
+                TokenServiceAbstraction,
+                PlatformUtilsServiceAbstraction,
+                EnvironmentServiceAbstraction,
+                MessagingServiceAbstraction,
+            ],
+        },
+        {
+            provide: FileUploadServiceAbstraction,
+            useClass: FileUploadService,
+            deps: [
+                LogService,
+                ApiServiceAbstraction,
+            ],
+        },
+        {
+            provide: SyncServiceAbstraction,
+            useFactory: (userService: UserServiceAbstraction, apiService: ApiServiceAbstraction,
+                settingsService: SettingsServiceAbstraction, folderService: FolderServiceAbstraction,
+                cipherService: CipherServiceAbstraction, cryptoService: CryptoServiceAbstraction,
+                collectionService: CollectionServiceAbstraction, storageService: StorageServiceAbstraction,
+                messagingService: MessagingServiceAbstraction, policyService: PolicyServiceAbstraction,
+                sendService: SendServiceAbstraction, logService: LogService, tokenService: TokenService,
+                keyConnectorService: KeyConnectorServiceAbstraction) => new SyncService(userService, apiService,
+                    settingsService, folderService, cipherService, cryptoService, collectionService, storageService,
+                    messagingService, policyService, sendService, logService, tokenService, keyConnectorService,
+                    async (expired: boolean) => messagingService.send('logout', { expired: expired })),
+            deps: [
+                UserServiceAbstraction,
+                ApiServiceAbstraction,
+                SettingsServiceAbstraction,
+                FolderServiceAbstraction,
+                CipherServiceAbstraction,
+                CryptoServiceAbstraction,
+                CollectionServiceAbstraction,
+                StorageServiceAbstraction,
+                MessagingServiceAbstraction,
+                PolicyServiceAbstraction,
+                SendServiceAbstraction,
+                LogService,
+                TokenServiceAbstraction,
+                KeyConnectorServiceAbstraction,
+            ],
+        },
+        {
+            provide: UserServiceAbstraction,
+            useClass: UserService,
+            deps: [TokenServiceAbstraction, StorageServiceAbstraction],
+        },
+        { provide: MessagingServiceAbstraction, useClass: BroadcasterMessagingService },
+        { provide: BroadcasterServiceAbstraction, useClass: BroadcasterService },
+        {
+            provide: SettingsServiceAbstraction,
+            useClass: SettingsService,
+            deps: [UserServiceAbstraction, StorageServiceAbstraction],
+        },
+        {
+            provide: VaultTimeoutServiceAbstraction,
+            useFactory: (cipherService: CipherServiceAbstraction, folderService: FolderServiceAbstraction,
+                collectionService: CollectionServiceAbstraction, cryptoService: CryptoServiceAbstraction,
+                platformUtilsService: PlatformUtilsServiceAbstraction, storageService: StorageServiceAbstraction,
+                messagingService: MessagingServiceAbstraction, searchService: SearchServiceAbstraction,
+                userService: UserServiceAbstraction, tokenService: TokenServiceAbstraction,
+                policyService: PolicyServiceAbstraction, keyConnectorService: KeyConnectorServiceAbstraction) =>
+                new VaultTimeoutService(cipherService, folderService, collectionService, cryptoService,
+                    platformUtilsService, storageService, messagingService, searchService, userService, tokenService,
+                    policyService, keyConnectorService, null,
+                    async () => messagingService.send('logout', { expired: false })),
+            deps: [
+                CipherServiceAbstraction,
+                FolderServiceAbstraction,
+                CollectionServiceAbstraction,
+                CryptoServiceAbstraction,
+                PlatformUtilsServiceAbstraction,
+                StorageServiceAbstraction,
+                MessagingServiceAbstraction,
+                SearchServiceAbstraction,
+                UserServiceAbstraction,
+                TokenServiceAbstraction,
+                PolicyServiceAbstraction,
+            ],
+        },
+        { provide: StorageServiceAbstraction, useClass: HtmlStorageService },
+        { provide: 'SECURE_STORAGE', useClass: MemoryStorageService },
+        { provide: StateServiceAbstraction, useClass: StateService },
+        {
+            provide: ExportServiceAbstraction,
+            useClass: ExportService,
+            deps: [
+                FolderServiceAbstraction,
+                CipherServiceAbstraction,
+                ApiServiceAbstraction,
+                CryptoServiceAbstraction,
+            ],
+        },
+        {
+            provide: SearchServiceAbstraction,
+            useClass: SearchService,
+            deps: [
+                CipherServiceAbstraction,
+                LogService,
+                I18nServiceAbstraction,
+            ],
+        },
+        {
+            provide: ImportServiceAbstraction,
+            useClass: ImportService,
+            deps: [
+                CipherServiceAbstraction,
+                FolderServiceAbstraction,
+                ApiServiceAbstraction,
+                I18nServiceAbstraction,
+                CollectionServiceAbstraction,
+                PlatformUtilsServiceAbstraction,
+                CryptoServiceAbstraction,
+            ],
+        },
+        {
+            provide: NotificationsServiceAbstraction,
+            useFactory: (userService: UserServiceAbstraction, syncService: SyncServiceAbstraction,
+                appIdService: AppIdServiceAbstraction, apiService: ApiServiceAbstraction,
+                vaultTimeoutService: VaultTimeoutServiceAbstraction, environmentService: EnvironmentServiceAbstraction,
+                messagingService: MessagingServiceAbstraction, logService: LogService) =>
+                new NotificationsService(userService, syncService, appIdService, apiService, vaultTimeoutService,
+                environmentService, async () => messagingService.send('logout', { expired: true }), logService),
+            deps: [
+                UserServiceAbstraction,
+                SyncServiceAbstraction,
+                AppIdServiceAbstraction,
+                ApiServiceAbstraction,
+                VaultTimeoutServiceAbstraction,
+                EnvironmentServiceAbstraction,
+                MessagingServiceAbstraction,
+                LogService,
+            ],
+        },
+        {
+            provide: CryptoFunctionServiceAbstraction,
+            useClass: WebCryptoFunctionService,
+            deps: ['WINDOW', PlatformUtilsServiceAbstraction],
+        },
+        {
+            provide: EventLoggingServiceAbstraction,
+            useClass: EventLoggingService,
+            deps: [
+                StorageServiceAbstraction,
+                ApiServiceAbstraction,
+                UserServiceAbstraction,
+                CipherServiceAbstraction,
+                LogService,
+            ],
+        },
+        {
+            provide: PolicyServiceAbstraction,
+            useClass: PolicyService,
+            deps: [
+                UserServiceAbstraction,
+                StorageServiceAbstraction,
+                ApiServiceAbstraction,
+            ],
+        },
+        {
+            provide: SendServiceAbstraction,
+            useClass: SendService,
+            deps: [
+                CryptoServiceAbstraction,
+                UserServiceAbstraction,
+                ApiServiceAbstraction,
+                FileUploadServiceAbstraction,
+                StorageServiceAbstraction,
+                I18nServiceAbstraction,
+                CryptoFunctionServiceAbstraction,
+            ],
+        },
+        {
+            provide: KeyConnectorServiceAbstraction,
+            useClass: KeyConnectorService,
+            deps: [
+                StorageServiceAbstraction,
+                UserServiceAbstraction,
+                CryptoServiceAbstraction,
+                ApiServiceAbstraction,
+                TokenServiceAbstraction,
+                LogService,
+            ],
+        },
+        {
+            provide: UserVerificationServiceAbstraction,
+            useClass: UserVerificationService,
+            deps: [
+                CryptoServiceAbstraction,
+                I18nServiceAbstraction,
+                ApiServiceAbstraction,
+            ],
+        },
         { provide: PasswordRepromptServiceAbstraction, useClass: PasswordRepromptService },
-        { provide: LogService, useValue: consoleLogService },
         {
             provide: APP_INITIALIZER,
             useFactory: initFactory,
-            deps: [],
+            deps: [
+                StorageServiceAbstraction,
+                EnvironmentServiceAbstraction,
+                NotificationsServiceAbstraction,
+                VaultTimeoutServiceAbstraction,
+                I18nServiceAbstraction,
+                EventLoggingServiceAbstraction,
+                AuthServiceAbstraction,
+                StateServiceAbstraction,
+                PlatformUtilsServiceAbstraction,
+                CryptoServiceAbstraction,
+            ],
             multi: true,
         },
         {
             provide: LOCALE_ID,
-            useFactory: () => i18nService.translationLocale,
-            deps: [],
+            useFactory: (i18nService: I18nServiceAbstraction) => i18nService.translationLocale,
+            deps: [I18nServiceAbstraction],
         },
     ],
 })
