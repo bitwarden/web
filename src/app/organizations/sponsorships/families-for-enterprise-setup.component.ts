@@ -40,7 +40,7 @@ import { OrganizationPlansComponent } from 'src/app/settings/organization-plans.
     templateUrl: 'families-for-enterprise-setup.component.html',
 })
 export class FamiliesForEnterpriseSetupComponent implements OnInit {
-    @ViewChild(OrganizationPlansComponent, { static: false }) 
+    @ViewChild(OrganizationPlansComponent, { static: false })
     set organizationPlansComponent(value: OrganizationPlansComponent) {
         if (!value) {
             return;
@@ -109,7 +109,7 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
     get selectedFamilyOrganizationId() {
         return this._selectedFamilyOrganizationId;
     }
-    
+
     set selectedFamilyOrganizationId(value: string) {
         this._selectedFamilyOrganizationId = value;
         this.showNewOrganization = value === 'createNew';
