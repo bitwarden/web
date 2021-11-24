@@ -32,7 +32,7 @@
                     <ng-container *ngIf="subscription">
                         <dt>{{'status' | i18n}}</dt>
                         <dd>
-                            <span class="text-capitalize">{{subscription.status || '-'}}</span>
+                            <span class="text-capitalize">{{isSponsoredSubscription ? 'sponsored' : subscription.status || '-'}}</span>
                             <span class="badge badge-warning"
                                 *ngIf="subscriptionMarkedForCancel">{{'pendingCancellation' |
                                 i18n}}</span>
