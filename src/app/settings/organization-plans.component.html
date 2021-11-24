@@ -92,7 +92,7 @@
                 </small>
             </ng-template>
             <span *ngIf="selectableProduct.product != productTypes.Free">
-                <ng-container *ngIf="selectableProduct.basePrice">
+                <ng-container *ngIf="selectableProduct.basePrice && !acceptingSponsorship">
                     {{selectableProduct.basePrice / 12 | currency:'$'}} /{{'month' | i18n}},
                     {{'includesXUsers' | i18n : selectableProduct.baseSeats}}
                     <ng-container *ngIf="selectableProduct.hasAdditionalSeatsOption">
@@ -162,8 +162,14 @@
                         {{'basePrice' | i18n}}: {{ selectablePlan.basePrice / 12 | currency:'$'}} &times; 12
                         {{'monthAbbr' | i18n}}
                         =
-                        {{selectablePlan.basePrice | currency:'$'}}
-                        /{{'year' | i18n}}
+                        <ng-container *ngIf="acceptingSponsorship; else notAcceptingSponsorship">
+                            <span style="text-decoration: line-through;">{{selectablePlan.basePrice | currency:'$'}}</span>
+                            {{'freeWithSponsorship' | i18n}}
+                        </ng-container>
+                        <ng-template #notAcceptingSponsorship>
+                            {{selectablePlan.basePrice | currency:'$'}}
+                            /{{'year' | i18n}}
+                        </ng-template>
                     </small>
                     <small *ngIf="selectablePlan.hasAdditionalSeatsOption">
                         <span *ngIf="selectablePlan.baseSeats">{{'additionalUsers' | i18n}}:</span>
