@@ -101,7 +101,7 @@ import { ModalService } from './modal.service';
 
 import { ThemeType } from 'jslib-common/enums/themeType';
 
-export function initFactory(storageService: StorageServiceAbstraction,
+export function initFactory(window: Window, storageService: StorageServiceAbstraction,
     environmentService: EnvironmentServiceAbstraction, notificationsService: NotificationsServiceAbstraction,
     vaultTimeoutService: VaultTimeoutService, i18nService: I18nService, eventLoggingService: EventLoggingService,
     authService: AuthService, stateService: StateServiceAbstraction,
@@ -247,7 +247,8 @@ export function initFactory(storageService: StorageServiceAbstraction,
         { provide: TokenServiceAbstraction, useClass: TokenService, deps: [StorageServiceAbstraction] },
         {
             provide: I18nServiceAbstraction,
-            useFactory: () => new I18nService(window.navigator.language, 'locales'),
+            useFactory: (window: Window) => new I18nService(window.navigator.language, 'locales'),
+            deps: [ 'WINDOW' ],
         },
         {
             provide: CryptoServiceAbstraction,
@@ -493,6 +494,7 @@ export function initFactory(storageService: StorageServiceAbstraction,
             provide: APP_INITIALIZER,
             useFactory: initFactory,
             deps: [
+                'WINDOW',
                 StorageServiceAbstraction,
                 EnvironmentServiceAbstraction,
                 NotificationsServiceAbstraction,
