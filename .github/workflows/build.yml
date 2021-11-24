@@ -412,6 +412,9 @@ jobs:
       - name: NPM install
         run: npm ci
 
+      - name: Run linter
+        run: npm run lint
+
       - name: NPM build
         run: npm run build:bit:cloud
 
