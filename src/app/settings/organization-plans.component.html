@@ -158,7 +158,7 @@
             <label class="form-check-label" for="interval{{selectablePlan.type}}">
                 <ng-container *ngIf="selectablePlan.isAnnual">
                     {{'annually' | i18n}}
-                    <small *ngIf="selectablePlan.basePrice && !acceptingSponsorship">
+                    <small *ngIf="selectablePlan.basePrice">
                         {{'basePrice' | i18n}}: {{ selectablePlan.basePrice / 12 | currency:'$'}} &times; 12
                         {{'monthAbbr' | i18n}}
                         =
