@@ -68,6 +68,7 @@ export class OrganizationPlansComponent implements OnInit {
     productTypes = ProductType;
     formPromise: Promise<any>;
     singleOrgPolicyBlock: boolean = false;
+    discount = 0;
 
     plans: PlanResponse[];
 
@@ -120,14 +121,18 @@ export class OrganizationPlansComponent implements OnInit {
             validPlans = validPlans.filter(plan => plan.product !== ProductType.Free);
         }
 
-        if (this.acceptingSponsorship) {
-            validPlans = validPlans.filter(plan => plan.product === ProductType.Families);
-        }
-
         validPlans = validPlans
-            .filter(plan => !plan.legacyYear
-                && !plan.disabled
-                && (plan.isAnnual || plan.product === this.productTypes.Free));
+        .filter(plan => !plan.legacyYear
+            && !plan.disabled
+            && (plan.isAnnual || plan.product === this.productTypes.Free));
+
+        if (this.acceptingSponsorship) {
+            const familyPlan = this.plans.find(plan => plan.type === PlanType.FamiliesAnnually);
+            this.discount = familyPlan.basePrice;
+            validPlans = [
+                familyPlan,
+            ];
+        }
 
         return validPlans;
     }
@@ -177,7 +182,7 @@ export class OrganizationPlansComponent implements OnInit {
         if (this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon) {
             subTotal += this.selectedPlan.premiumAccessOptionPrice;
         }
-        return subTotal;
+        return subTotal - this.discount;
     }
 
     get freeTrial() {
@@ -282,8 +287,8 @@ export class OrganizationPlansComponent implements OnInit {
             };
 
             this.formPromise = doSubmit();
-            const orgId = await this.formPromise;
-            this.onSuccess.emit({ organizationId: orgId });
+            const organizationId = await this.formPromise;
+            this.onSuccess.emit({ organizationId: organizationId });
         } catch (e) {
             this.logService.error(e);
         }

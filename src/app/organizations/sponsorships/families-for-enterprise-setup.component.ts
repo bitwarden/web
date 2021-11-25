@@ -40,7 +40,7 @@ import { OrganizationPlansComponent } from 'src/app/settings/organization-plans.
     templateUrl: 'families-for-enterprise-setup.component.html',
 })
 export class FamiliesForEnterpriseSetupComponent implements OnInit {
-    @ViewChild(OrganizationPlansComponent, { static: false }) 
+    @ViewChild(OrganizationPlansComponent, { static: false })
     set organizationPlansComponent(value: OrganizationPlansComponent) {
         if (!value) {
             return;
@@ -55,6 +55,7 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
     @ViewChild('deleteOrganizationTemplate', { read: ViewContainerRef, static: true }) deleteModalRef: ViewContainerRef;
 
     loading = true;
+    badToken = false;
     formPromise: Promise<any>;
 
     token: string;
@@ -89,6 +90,7 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
             this.token = qParams.token;
 
             await this.syncService.fullSync(true);
+            this.badToken = !await this.apiService.postPreValidateSponsorshipToken(this.token);
             this.loading = false;
 
             this.existingFamilyOrganizations = (await this.userService.getAllOrganizations())
@@ -109,7 +111,7 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
     get selectedFamilyOrganizationId() {
         return this._selectedFamilyOrganizationId;
     }
-    
+
     set selectedFamilyOrganizationId(value: string) {
         this._selectedFamilyOrganizationId = value;
         this.showNewOrganization = value === 'createNew';

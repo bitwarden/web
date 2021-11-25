@@ -17,8 +17,8 @@
         </ul>
     </div>
     <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate *ngIf="anyOrgsAvailable">
-        <div *ngIf="moreThanOneOrgAvailable" class="form-group col-6">
-            <label for="availableSponsorshipOrg">{{ 'sponsoredFamiliesSelectOffer' | i18n}}</label>
+        <div *ngIf="moreThanOneOrgAvailable" class="form-group col-7">
+            <label for="availableSponsorshipOrg">{{ 'familiesSponsoringOrgSelect' | i18n}}</label>
             <select id="availableSponsorshipOrg" name="Available Sponsorship Organization"
                 [(ngModel)]="selectedSponsorshipOrgId" class="form-control" required>
                 <option value="">-- {{'select' | i18n}} --</option>
@@ -26,14 +26,10 @@
             </select>
             <small>{{'sponsoredFamiliesLeaveCopy' | i18n}}</small>
         </div>
-        <div class="form-group col-6">
+        <div class="form-group col-7">
             <label for="accountEmail">{{'sponsoredFamiliesEmail' | i18n}}:</label>
             <input id="accountEmail" class="form-control" inputmode="email" [(ngModel)]="sponsorshipEmail"
                 name="sponsorshipEmail" required>
-        </div>
-        <div class="form-group col-6">
-            <label for="friendlyName">{{'friendlyName' | i18n}}:</label>
-            <input id="friendlyName" class="form-control" [(ngModel)]="friendlyName" name="friendlyName" required>
             <button class="btn btn-primary btn-submit mt-4" type="submit" [disabled]="form.loading">
                 <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                 <span>{{'redeem' | i18n}}</span>
@@ -44,7 +40,7 @@
         <table class="table table-hover table-list">
             <thead>
                 <tr>
-                    <th>{{'friendlyName' | i18n}}</th>
+                    <th>{{'recipient' | i18n}}</th>
                     <th>{{'sponsoringOrg' | i18n}}</th>
                     <th></th>
                 </tr>
