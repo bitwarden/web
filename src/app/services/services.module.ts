@@ -24,6 +24,7 @@ import { ModalService as ModalServiceAbstraction } from 'jslib-angular/services/
 import { AuthService } from 'jslib-common/services/auth.service';
 import { ConstantsService } from 'jslib-common/services/constants.service';
 import { ContainerService } from 'jslib-common/services/container.service';
+import { CryptoService } from 'jslib-common/services/crypto.service';
 import { EventService as EventLoggingService } from 'jslib-common/services/event.service';
 import { ImportService } from 'jslib-common/services/import.service';
 import { VaultTimeoutService } from 'jslib-common/services/vaultTimeout.service';
@@ -33,6 +34,7 @@ import { AuthService as AuthServiceAbstraction } from 'jslib-common/abstractions
 import { CipherService as CipherServiceAbstraction } from 'jslib-common/abstractions/cipher.service';
 import { CollectionService as CollectionServiceAbstraction } from 'jslib-common/abstractions/collection.service';
 import { CryptoService as CryptoServiceAbstraction } from 'jslib-common/abstractions/crypto.service';
+import { CryptoFunctionService as CryptoFunctionServiceAbstraction } from 'jslib-common/abstractions/cryptoFunction.service';
 import { EnvironmentService as EnvironmentServiceAbstraction, Urls } from 'jslib-common/abstractions/environment.service';
 import { EventService as EventLoggingServiceAbstraction } from 'jslib-common/abstractions/event.service';
 import { FolderService as FolderServiceAbstraction } from 'jslib-common/abstractions/folder.service';
@@ -150,6 +152,23 @@ export function initFactory(window: Window, storageService: StorageServiceAbstra
                 CollectionServiceAbstraction,
                 PlatformUtilsServiceAbstraction,
                 CryptoServiceAbstraction,
+            ],
+        },
+        {
+            provide: CryptoServiceAbstraction,
+            useFactory: (storageService: StorageServiceAbstraction, secureStorageService: StorageServiceAbstraction,
+                cryptoFunctionService: CryptoFunctionServiceAbstraction,
+                platformUtilsService: PlatformUtilsServiceAbstraction, logService: LogService) => {
+                const storageImplementation = platformUtilsService.isDev() ? storageService : secureStorageService;
+                return new CryptoService(storageService, storageImplementation, cryptoFunctionService,
+                    platformUtilsService, logService);
+            },
+            deps: [
+                StorageServiceAbstraction,
+                'SECURE_STORAGE',
+                CryptoFunctionServiceAbstraction,
+                PlatformUtilsServiceAbstraction,
+                LogService,
             ],
         },
     ],
