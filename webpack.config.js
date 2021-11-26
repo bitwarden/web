@@ -124,6 +124,11 @@ const plugins = [
         filename: 'captcha-mobile-connector.html',
         chunks: ['connectors/captcha'],
     }),
+    new HtmlWebpackPlugin({
+        template: './src/connectors/cme.html',
+        filename: 'cme-connector.html',
+        chunks: ['connectors/cme'],
+    }),
     new CopyWebpackPlugin({
         patterns:[
             { from: './src/.nojekyll' },
@@ -218,6 +223,7 @@ const webpackConfig = {
         'connectors/duo': './src/connectors/duo.ts',
         'connectors/sso': './src/connectors/sso.ts',
         'connectors/captcha': './src/connectors/captcha.ts',
+        'connectors/cme': './src/connectors/cme.ts',
         'theme_head': './src/theme.js',
     },
     externals: {
