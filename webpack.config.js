@@ -7,7 +7,7 @@ const HtmlWebpackInjector = require('html-webpack-injector');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
+const AngularWebpackPlugin = require('@ngtools/webpack').AngularWebpackPlugin;
 const pjson = require('./package.json');
 const config = require('./config.js');
 
@@ -54,18 +54,10 @@ const moduleRules = [
         use: [
             {
                 loader: MiniCssExtractPlugin.loader,
-                options: {
-                    publicPath: '../',
-                },
             },
             'css-loader',
             'sass-loader',
         ],
-    },
-    // Hide System.import warnings. ref: https://github.com/angular/angular/issues/21560
-    {
-        test: /[\/\\]@angular[\/\\].+\.js$/,
-        parser: { system: true },
     },
     {
         test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
@@ -160,7 +152,10 @@ const plugins = [
         'BRAINTREE_KEY': envConfig['braintreeKey'] ?? '',
         'PAYPAL_CONFIG': envConfig['paypal'] ?? {},
     }),
-    new AngularCompilerPlugin({
+    new webpack.ProvidePlugin({
+        process: 'process/browser',
+      }),
+    new AngularWebpackPlugin({
         tsConfigPath: 'tsconfig.json',
         entryModule: 'src/app/app.module#AppModule',
         sourceMap: true,
@@ -202,7 +197,7 @@ const devServer = NODE_ENV !== 'development' ? {} : {
         },
     },
     hot: false,
-    allowedHosts: envConfig.dev?.allowedHosts,
+    //allowedHosts: envConfig.dev?.allowedHosts,
 };
 
 const webpackConfig = {
@@ -248,6 +243,11 @@ const webpackConfig = {
         extensions: ['.ts', '.js'],
         symlinks: false,
         modules: [path.resolve('node_modules')],
+        fallback: {
+            "buffer": false,
+            "util": require.resolve("util/"),
+            "assert": false,
+        },
     },
     output: {
         filename: '[name].[hash].js',
