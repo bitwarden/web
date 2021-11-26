@@ -25,13 +25,19 @@ import { AuthService } from 'jslib-common/services/auth.service';
 import { ConstantsService } from 'jslib-common/services/constants.service';
 import { ContainerService } from 'jslib-common/services/container.service';
 import { EventService as EventLoggingService } from 'jslib-common/services/event.service';
+import { ImportService } from 'jslib-common/services/import.service';
 import { VaultTimeoutService } from 'jslib-common/services/vaultTimeout.service';
 
+import { ApiService as ApiServiceAbstraction } from 'jslib-common/abstractions/api.service';
 import { AuthService as AuthServiceAbstraction } from 'jslib-common/abstractions/auth.service';
+import { CipherService as CipherServiceAbstraction } from 'jslib-common/abstractions/cipher.service';
+import { CollectionService as CollectionServiceAbstraction } from 'jslib-common/abstractions/collection.service';
 import { CryptoService as CryptoServiceAbstraction } from 'jslib-common/abstractions/crypto.service';
 import { EnvironmentService as EnvironmentServiceAbstraction, Urls } from 'jslib-common/abstractions/environment.service';
 import { EventService as EventLoggingServiceAbstraction } from 'jslib-common/abstractions/event.service';
+import { FolderService as FolderServiceAbstraction } from 'jslib-common/abstractions/folder.service';
 import { I18nService as I18nServiceAbstraction } from 'jslib-common/abstractions/i18n.service';
+import { ImportService as ImportServiceAbstraction } from 'jslib-common/abstractions/import.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService as MessagingServiceAbstraction } from 'jslib-common/abstractions/messaging.service';
 import { NotificationsService as NotificationsServiceAbstraction } from 'jslib-common/abstractions/notifications.service';
@@ -89,6 +95,24 @@ export function initFactory(window: Window, storageService: StorageServiceAbstra
     ],
     declarations: [],
     providers: [
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initFactory,
+            deps: [
+                'WINDOW',
+                StorageServiceAbstraction,
+                EnvironmentServiceAbstraction,
+                NotificationsServiceAbstraction,
+                VaultTimeoutServiceAbstraction,
+                I18nServiceAbstraction,
+                EventLoggingServiceAbstraction,
+                AuthServiceAbstraction,
+                StateServiceAbstraction,
+                PlatformUtilsServiceAbstraction,
+                CryptoServiceAbstraction,
+            ],
+            multi: true,
+        },
         OrganizationGuardService,
         OrganizationTypeGuardService,
         RouterService,
@@ -116,22 +140,17 @@ export function initFactory(window: Window, storageService: StorageServiceAbstra
         { provide: MessagingServiceAbstraction, useClass: BroadcasterMessagingService },
         { provide: ModalServiceAbstraction, useClass: ModalService },
         {
-            provide: APP_INITIALIZER,
-            useFactory: initFactory,
+            provide: ImportServiceAbstraction,
+            useClass: ImportService,
             deps: [
-                'WINDOW',
-                StorageServiceAbstraction,
-                EnvironmentServiceAbstraction,
-                NotificationsServiceAbstraction,
-                VaultTimeoutServiceAbstraction,
+                CipherServiceAbstraction,
+                FolderServiceAbstraction,
+                ApiServiceAbstraction,
                 I18nServiceAbstraction,
-                EventLoggingServiceAbstraction,
-                AuthServiceAbstraction,
-                StateServiceAbstraction,
+                CollectionServiceAbstraction,
                 PlatformUtilsServiceAbstraction,
                 CryptoServiceAbstraction,
             ],
-            multi: true,
         },
     ],
 })
