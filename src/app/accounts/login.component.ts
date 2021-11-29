@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+    Component,
+    NgZone,
+} from '@angular/core';
 import {
     ActivatedRoute,
     Router,
@@ -35,12 +38,13 @@ export class LoginComponent extends BaseLoginComponent {
         storageService: StorageService, stateService: StateService,
         platformUtilsService: PlatformUtilsService, environmentService: EnvironmentService,
         passwordGenerationService: PasswordGenerationService, cryptoFunctionService: CryptoFunctionService,
-        private apiService: ApiService, private policyService: PolicyService, logService: LogService) {
+        private apiService: ApiService, private policyService: PolicyService, logService: LogService,
+        ngZone: NgZone) {
         super(authService, router,
             platformUtilsService, i18nService,
             stateService, environmentService,
             passwordGenerationService, cryptoFunctionService,
-            storageService, logService);
+            storageService, logService, ngZone);
         this.onSuccessfulLoginNavigate = this.goAfterLogIn;
     }
 
