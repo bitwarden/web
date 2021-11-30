@@ -2,7 +2,10 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import {
+    FormBuilder,
+    Validators
+} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
@@ -45,11 +48,11 @@ export class SsoComponent implements OnInit {
     enabled = this.fb.control(false);
 
     openIdData = this.fb.group({
-        authority: [],
-        clientId: [],
-        clientSecret: [],
+        authority: ['', Validators.required],
+        clientId: ['', Validators.required],
+        clientSecret: ['', Validators.required],
         metadataAddress: [],
-        redirectBehavior: [],
+        redirectBehavior: ['', Validators.required],
         getClaimsFromUserInfoEndpoint: [],
         additionalScopes: [],
         additionalUserIdClaimTypes: [],
@@ -67,7 +70,7 @@ export class SsoComponent implements OnInit {
         spWantAssertionsSigned: [],
         spValidateCertificates: [],
 
-        idpEntityId: [],
+        idpEntityId: ['', Validators.required],
         idpBindingType: [],
         idpSingleSignOnServiceUrl: [],
         idpSingleLogoutServiceUrl: [],
@@ -86,7 +89,7 @@ export class SsoComponent implements OnInit {
         keyConnectorUrl: [],
     });
 
-    form = this.fb.group({
+    ssoConfigForm = this.fb.group({
         openId: this.openIdData,
         saml: this.samlData,
         common: this.commonData,
@@ -141,6 +144,10 @@ export class SsoComponent implements OnInit {
     }
 
     async submit() {
+        if (this.ssoConfigForm.invalid) {
+            return;
+        }
+
         this.formPromise = this.postData();
 
         try {
@@ -210,5 +217,4 @@ export class SsoComponent implements OnInit {
         const api = new SsoConfigApi();
         return Object.assign(api, this.commonData.value, this.samlData.value, this.openIdData.value);
     }
-
 }

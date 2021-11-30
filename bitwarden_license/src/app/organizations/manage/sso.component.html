@@ -7,7 +7,7 @@
     <span class="sr-only">{{'loading' | i18n}}</span>
 </ng-container>
 
-<form #form (ngSubmit)="submit()" [formGroup]="form" [appApiAction]="formPromise" *ngIf="!loading" ngNativeValidate>
+<form #form (ngSubmit)="submit()" [formGroup]="ssoConfigForm" [appApiAction]="formPromise" *ngIf="!loading" ngNativeValidate>
     <p>
         {{'ssoPolicyHelpStart' | i18n}}
         <a routerLink="../policies">{{'ssoPolicyHelpLink' | i18n}}</a>
@@ -366,4 +366,8 @@
         <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
         <span>{{'save' | i18n}}</span>
     </button>
+    <div class="text-danger" *ngIf="ssoConfigForm.invalid" role="alert">
+        <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        {{'formErrorSummary' | i18n }}
+    </div>
 </form>
