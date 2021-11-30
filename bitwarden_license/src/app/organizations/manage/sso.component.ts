@@ -16,6 +16,8 @@ import { Organization } from 'jslib-common/models/domain/organization';
 import { OrganizationSsoRequest } from 'jslib-common/models/request/organization/organizationSsoRequest';
 import { OrganizationSsoResponse } from 'jslib-common/models/response/organization/organizationSsoResponse';
 
+import { SsoType } from 'jslib-common/enums/ssoEnums';
+
 @Component({
     selector: 'app-org-manage-sso',
     templateUrl: 'sso.component.html',
@@ -84,7 +86,7 @@ export class SsoComponent implements OnInit {
         keyConnectorUrl: [],
     });
 
-    data = this.fb.group({
+    form = this.fb.group({
         openId: this.openIdData,
         saml: this.samlData,
         common: this.commonData,
@@ -95,6 +97,19 @@ export class SsoComponent implements OnInit {
         private userService: UserService) { }
 
     async ngOnInit() {
+        this.commonData.get('configType').valueChanges.subscribe((newType: SsoType) => {
+            if (newType === SsoType.OpenIdConnect) {
+                this.openIdData.enable();
+                this.samlData.disable();
+            } else if (newType === SsoType.Saml2) {
+                this.openIdData.disable();
+                this.samlData.enable();
+            } else {
+                this.openIdData.disable();
+                this.samlData.disable();
+            }
+        })
+
         this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
             await this.load();
@@ -115,18 +130,6 @@ export class SsoComponent implements OnInit {
         this.keyConnectorUrl.markAsDirty();
 
         this.loading = false;
-    }
-
-    private apiToForm(ssoSettings: OrganizationSsoResponse) {
-        this.commonData.patchValue(ssoSettings.data);
-        this.samlData.patchValue(ssoSettings.data);
-        this.openIdData.patchValue(ssoSettings.data);
-        this.enabled.setValue(ssoSettings.enabled);
-    }
-
-    private formToApi() {
-        const api = new SsoConfigApi();
-        return Object.assign(api, this.commonData.value, this.samlData.value, this.openIdData.value);
     }
 
     copy(value: string) {
@@ -195,4 +198,17 @@ export class SsoComponent implements OnInit {
     get keyConnectorUrl() {
         return this.commonData.get('keyConnectorUrl');
     }
+
+    private apiToForm(ssoSettings: OrganizationSsoResponse) {
+        this.commonData.patchValue(ssoSettings.data);
+        this.samlData.patchValue(ssoSettings.data);
+        this.openIdData.patchValue(ssoSettings.data);
+        this.enabled.setValue(ssoSettings.enabled);
+    }
+
+    private formToApi() {
+        const api = new SsoConfigApi();
+        return Object.assign(api, this.commonData.value, this.samlData.value, this.openIdData.value);
+    }
+
 }

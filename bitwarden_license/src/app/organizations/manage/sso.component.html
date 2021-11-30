@@ -7,7 +7,7 @@
     <span class="sr-only">{{'loading' | i18n}}</span>
 </ng-container>
 
-<form #form (ngSubmit)="submit()" [formGroup]="data" [appApiAction]="formPromise" *ngIf="!loading" ngNativeValidate>
+<form #form (ngSubmit)="submit()" [formGroup]="form" [appApiAction]="formPromise" *ngIf="!loading" ngNativeValidate>
     <p>
         {{'ssoPolicyHelpStart' | i18n}}
         <a routerLink="../policies">{{'ssoPolicyHelpLink' | i18n}}</a>
