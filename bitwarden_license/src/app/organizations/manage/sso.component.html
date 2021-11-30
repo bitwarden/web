@@ -85,9 +85,9 @@
         <div class="form-group">
             <label for="type">{{'type' | i18n}}</label>
             <select class="form-control" id="type" formControlName="configType">
-                <option value="0" disabled>{{'selectType' | i18n}}</option>
-                <option value="1">OpenID Connect</option>
-                <option value="2">SAML 2.0</option>
+                <option [ngValue]="0" disabled>{{'selectType' | i18n}}</option>
+                <option [ngValue]="ssoType.OpenIdConnect">OpenID Connect</option>
+                <option [ngValue]="ssoType.Saml2">SAML 2.0</option>
             </select>
         </div>
     </ng-container>
@@ -143,8 +143,8 @@
                 <div class="form-group">
                     <label for="redirectBehavior">{{'oidcRedirectBehavior' | i18n}}</label>
                     <select class="form-control" formControlName="redirectBehavior" id="redirectBehavior">
-                        <option value="0">Redirect GET</option>
-                        <option value="1">Form POST</option>
+                        <option [ngValue]="0">Redirect GET</option>
+                        <option [ngValue]="1">Form POST</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -238,15 +238,15 @@
             <div class="form-group">
                 <label for="spNameIdFormat">{{'spNameIdFormat' | i18n}}</label>
                 <select class="form-control" formControlName="spNameIdFormat" id="spNameIdFormat">
-                    <option value="0">Not Configured</option>
-                    <option value="1">Unspecified</option>
-                    <option value="2">Email Address</option>
-                    <option value="3">X.509 Subject Name</option>
-                    <option value="4">Windows Domain Qualified Name</option>
-                    <option value="5">Kerberos Principal Name</option>
-                    <option value="6">Entity Identifier</option>
-                    <option value="7">Persistent</option>
-                    <option value="8">Transient</option>
+                    <option [ngValue]="0">Not Configured</option>
+                    <option [ngValue]="1">Unspecified</option>
+                    <option [ngValue]="2">Email Address</option>
+                    <option [ngValue]="3">X.509 Subject Name</option>
+                    <option [ngValue]="4">Windows Domain Qualified Name</option>
+                    <option [ngValue]="5">Kerberos Principal Name</option>
+                    <option [ngValue]="6">Entity Identifier</option>
+                    <option [ngValue]="7">Persistent</option>
+                    <option [ngValue]="8">Transient</option>
                 </select>
             </div>
             <div class="form-group">
@@ -259,9 +259,9 @@
             <div class="form-group">
                 <label for="spSigningBehavior">{{'spSigningBehavior' | i18n}}</label>
                 <select class="form-control" formControlName="spSigningBehavior" id="spSigningBehavior">
-                    <option value="0">If IdP Wants Authn Requests Signed</option>
-                    <option value="1">Always</option>
-                    <option value="3">Never</option>
+                    <option [ngValue]="0">If IdP Wants Authn Requests Signed</option>
+                    <option [ngValue]="1">Always</option>
+                    <option [ngValue]="3">Never</option>
                 </select>
             </div>
             <div class="form-group">
@@ -302,9 +302,9 @@
             <div class="form-group">
                 <label for="idpBindingType">{{'idpBindingType' | i18n}}</label>
                 <select class="form-control" formControlName="idpBindingType" id="idpBindingType">
-                    <option value="1">Redirect</option>
-                    <option value="2">HTTP POST</option>
-                    <option value="4">Artifact</option>
+                    <option [ngValue]="1">Redirect</option>
+                    <option [ngValue]="2">HTTP POST</option>
+                    <option [ngValue]="4">Artifact</option>
                 </select>
             </div>
             <div class="form-group">
