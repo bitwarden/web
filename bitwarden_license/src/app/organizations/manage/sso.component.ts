@@ -19,7 +19,12 @@ import { Organization } from 'jslib-common/models/domain/organization';
 import { OrganizationSsoRequest } from 'jslib-common/models/request/organization/organizationSsoRequest';
 import { OrganizationSsoResponse } from 'jslib-common/models/response/organization/organizationSsoResponse';
 
-import { SsoType } from 'jslib-common/enums/ssoEnums';
+import {
+    Saml2BindingType,
+    SsoType
+} from 'jslib-common/enums/ssoEnums';
+
+import { requiredIf } from '../../../../../src/app/validators/requiredIf.validator';
 
 @Component({
     selector: 'app-org-manage-sso',
@@ -33,6 +38,8 @@ export class SsoComponent implements OnInit {
         'http://www.w3.org/2000/09/xmldsig#rsa-sha512',
         'http://www.w3.org/2000/09/xmldsig#rsa-sha1',
     ];
+
+    readonly ssoType = SsoType;
 
     loading = true;
     organizationId: string;
@@ -62,7 +69,7 @@ export class SsoComponent implements OnInit {
         expectedReturnAcrValue: [],
     });
 
-    samlData = this.fb.group({
+    samlData: any = this.fb.group({
         spNameIdFormat: [],
         spOutboundSigningAlgorithm: [],
         spSigningBehavior: [],
@@ -74,7 +81,8 @@ export class SsoComponent implements OnInit {
         idpBindingType: [],
         idpSingleSignOnServiceUrl: [],
         idpSingleLogoutServiceUrl: [],
-        idpArtifactResolutionServiceUrl: [],
+        idpArtifactResolutionServiceUrl: ['',
+            requiredIf('idpBindingType', bindingType => bindingType.value === Saml2BindingType.Artifact)],
         idpX509PublicCert: [],
         idpOutboundSigningAlgorithm: [],
         idpAllowUnsolicitedAuthnResponse: [],
@@ -83,7 +91,9 @@ export class SsoComponent implements OnInit {
     });
 
     commonData = this.fb.group({
-        configType: [],
+        configType: [0, {
+            updateOn: 'change'
+        }],
 
         keyConnectorEnabled: [],
         keyConnectorUrl: [],
@@ -93,6 +103,8 @@ export class SsoComponent implements OnInit {
         openId: this.openIdData,
         saml: this.samlData,
         common: this.commonData,
+    }, {
+        updateOn: 'blur'
     });
 
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private apiService: ApiService,
