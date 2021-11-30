@@ -7,7 +7,7 @@
     <span class="sr-only">{{'loading' | i18n}}</span>
 </ng-container>
 
-<form #form (ngSubmit)="submit()" [formGroup]="ssoConfigForm" [appApiAction]="formPromise" *ngIf="!loading" ngNativeValidate>
+<form #form (ngSubmit)="submit()" [formGroup]="ssoConfigForm" [appApiAction]="formPromise" *ngIf="!loading">
     <p>
         {{'ssoPolicyHelpStart' | i18n}}
         <a routerLink="../policies">{{'ssoPolicyHelpLink' | i18n}}</a>
@@ -86,108 +86,104 @@
             <label for="type">{{'type' | i18n}}</label>
             <select class="form-control" id="type" formControlName="configType">
                 <option [ngValue]="0" disabled>{{'selectType' | i18n}}</option>
-                <option [ngValue]="ssoType.OpenIdConnect">OpenID Connect</option>
-                <option [ngValue]="ssoType.Saml2">SAML 2.0</option>
+                <option *ngFor="let o of ssoTypeOptions" [ngValue]="o.value">{{o.name}}</option>
             </select>
         </div>
     </ng-container>
 
 
     <!-- OIDC -->
-    <ng-container formGroupName="openId">
-        <div *ngIf="commonData.value.configType == 1">
-            <div class="config-section">
-                <h2>{{'openIdConnectConfig' | i18n}}</h2>
-                <div class="form-group">
-                    <label>{{'callbackPath' | i18n}}</label>
-                    <div class="input-group">
-                        <input class="form-control" readonly [value]="callbackPath">
-                        <div class="input-group-append">
-                            <button type="button" class="btn btn-outline-secondary"
-                                appA11yTitle="{{'copyValue' | i18n}}"
-                                (click)="copy(callbackPath)">
-                                <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
-                            </button>
-                        </div>
+    <div *ngIf="commonData.value.configType === ssoType.OpenIdConnect" formGroupName="openId">
+        <div class="config-section">
+            <h2>{{'openIdConnectConfig' | i18n}}</h2>
+            <div class="form-group">
+                <label>{{'callbackPath' | i18n}}</label>
+                <div class="input-group">
+                    <input class="form-control" readonly [value]="callbackPath">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-secondary"
+                            appA11yTitle="{{'copyValue' | i18n}}"
+                            (click)="copy(callbackPath)">
+                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                        </button>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label>{{'signedOutCallbackPath' | i18n}}</label>
-                    <div class="input-group">
-                        <input class="form-control" readonly [value]="signedOutCallbackPath">
-                        <div class="input-group-append">
-                            <button type="button" class="btn btn-outline-secondary"
-                                appA11yTitle="{{'copyValue' | i18n}}"
-                                (click)="copy(signedOutCallbackPath)">
-                                <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="authority">{{'authority' | i18n}}</label>
-                    <input class="form-control" formControlName="authority" id="authority">
-                </div>
-                <div class="form-group">
-                    <label for="clientId">{{'clientId' | i18n}}</label>
-                    <input class="form-control" formControlName="clientId" id="clientId">
-                </div>
-                <div class="form-group">
-                    <label for="clientSecret">{{'clientSecret' | i18n}}</label>
-                    <input class="form-control" formControlName="clientSecret" id="clientSecret">
-                </div>
-                <div class="form-group">
-                    <label for="metadataAddress">{{'metadataAddress' | i18n}}</label>
-                    <input class="form-control" formControlName="metadataAddress" id="metadataAddress">
-                </div>
-                <div class="form-group">
-                    <label for="redirectBehavior">{{'oidcRedirectBehavior' | i18n}}</label>
-                    <select class="form-control" formControlName="redirectBehavior" id="redirectBehavior">
-                        <option [ngValue]="0">Redirect GET</option>
-                        <option [ngValue]="1">Form POST</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="getClaimsFromUserInfoEndpoint"
-                            formControlName="getClaimsFromUserInfoEndpoint">
-                        <label class="form-check-label" for="getClaimsFromUserInfoEndpoint">
-                            {{'getClaimsFromUserInfoEndpoint' | i18n}}
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="additionalScopes">{{'additionalScopes' | i18n}}</label>
-                    <input class="form-control" formControlName="additionalScopes" id="additionalScopes">
-                </div>
-                <div class="form-group">
-                    <label for="additionalUserIdClaimTypes">{{'additionalUserIdClaimTypes' | i18n}}</label>
-                    <input class="form-control" formControlName="additionalUserIdClaimTypes"
-                        id="additionalUserIdClaimTypes">
-                </div>
-                <div class="form-group">
-                    <label for="additionalEmailClaimTypes">{{'additionalEmailClaimTypes' | i18n}}</label>
-                    <input class="form-control" formControlName="additionalEmailClaimTypes"
-                        id="additionalEmailClaimTypes">
-                </div>
-                <div class="form-group">
-                    <label for="additionalNameClaimTypes">{{'additionalNameClaimTypes' | i18n}}</label>
-                    <input class="form-control" formControlName="additionalNameClaimTypes"
-                        id="additionalNameClaimTypes">
-                </div>
-                <div class="form-group">
-                    <label for="acrValues">{{'acrValues' | i18n}}</label>
-                    <input class="form-control" formControlName="acrValues" id="acrValues">
-                </div>
-                <div class="form-group">
-                    <label for="expectedReturnAcrValue">{{'expectedReturnAcrValue' | i18n}}</label>
-                    <input class="form-control" formControlName="expectedReturnAcrValue" id="expectedReturnAcrValue">
                 </div>
             </div>
+            <div class="form-group">
+                <label>{{'signedOutCallbackPath' | i18n}}</label>
+                <div class="input-group">
+                    <input class="form-control" readonly [value]="signedOutCallbackPath">
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-outline-secondary"
+                            appA11yTitle="{{'copyValue' | i18n}}"
+                            (click)="copy(signedOutCallbackPath)">
+                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="authority">{{'authority' | i18n}}</label>
+                <input class="form-control" formControlName="authority" id="authority">
+            </div>
+            <div class="form-group">
+                <label for="clientId">{{'clientId' | i18n}}</label>
+                <input class="form-control" formControlName="clientId" id="clientId">
+            </div>
+            <div class="form-group">
+                <label for="clientSecret">{{'clientSecret' | i18n}}</label>
+                <input class="form-control" formControlName="clientSecret" id="clientSecret">
+            </div>
+            <div class="form-group">
+                <label for="metadataAddress">{{'metadataAddress' | i18n}}</label>
+                <input class="form-control" formControlName="metadataAddress" id="metadataAddress">
+            </div>
+            <div class="form-group">
+                <label for="redirectBehavior">{{'oidcRedirectBehavior' | i18n}}</label>
+                <select class="form-control" formControlName="redirectBehavior" id="redirectBehavior">
+                    <option *ngFor="let o of openIdConnectRedirectOptions" [ngValue]="o.value">{{o.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="getClaimsFromUserInfoEndpoint"
+                        formControlName="getClaimsFromUserInfoEndpoint">
+                    <label class="form-check-label" for="getClaimsFromUserInfoEndpoint">
+                        {{'getClaimsFromUserInfoEndpoint' | i18n}}
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="additionalScopes">{{'additionalScopes' | i18n}}</label>
+                <input class="form-control" formControlName="additionalScopes" id="additionalScopes">
+            </div>
+            <div class="form-group">
+                <label for="additionalUserIdClaimTypes">{{'additionalUserIdClaimTypes' | i18n}}</label>
+                <input class="form-control" formControlName="additionalUserIdClaimTypes"
+                    id="additionalUserIdClaimTypes">
+            </div>
+            <div class="form-group">
+                <label for="additionalEmailClaimTypes">{{'additionalEmailClaimTypes' | i18n}}</label>
+                <input class="form-control" formControlName="additionalEmailClaimTypes"
+                    id="additionalEmailClaimTypes">
+            </div>
+            <div class="form-group">
+                <label for="additionalNameClaimTypes">{{'additionalNameClaimTypes' | i18n}}</label>
+                <input class="form-control" formControlName="additionalNameClaimTypes"
+                    id="additionalNameClaimTypes">
+            </div>
+            <div class="form-group">
+                <label for="acrValues">{{'acrValues' | i18n}}</label>
+                <input class="form-control" formControlName="acrValues" id="acrValues">
+            </div>
+            <div class="form-group">
+                <label for="expectedReturnAcrValue">{{'expectedReturnAcrValue' | i18n}}</label>
+                <input class="form-control" formControlName="expectedReturnAcrValue" id="expectedReturnAcrValue">
+            </div>
         </div>
-    </ng-container>
+    </div>
 
-    <div *ngIf="commonData.value.configType == 2" formGroupName="saml">
+    <div *ngIf="commonData.value.configType === ssoType.Saml2" formGroupName="saml">
         <!-- SAML2 SP -->
         <div class="config-section">
             <h2>{{'samlSpConfig' | i18n}}</h2>
@@ -238,15 +234,7 @@
             <div class="form-group">
                 <label for="spNameIdFormat">{{'spNameIdFormat' | i18n}}</label>
                 <select class="form-control" formControlName="spNameIdFormat" id="spNameIdFormat">
-                    <option [ngValue]="0">Not Configured</option>
-                    <option [ngValue]="1">Unspecified</option>
-                    <option [ngValue]="2">Email Address</option>
-                    <option [ngValue]="3">X.509 Subject Name</option>
-                    <option [ngValue]="4">Windows Domain Qualified Name</option>
-                    <option [ngValue]="5">Kerberos Principal Name</option>
-                    <option [ngValue]="6">Entity Identifier</option>
-                    <option [ngValue]="7">Persistent</option>
-                    <option [ngValue]="8">Transient</option>
+                    <option *ngFor="let o of saml2NameIdFormatOptions" [ngValue]="o.value">{{o.name}}</option>
                 </select>
             </div>
             <div class="form-group">
@@ -259,9 +247,7 @@
             <div class="form-group">
                 <label for="spSigningBehavior">{{'spSigningBehavior' | i18n}}</label>
                 <select class="form-control" formControlName="spSigningBehavior" id="spSigningBehavior">
-                    <option [ngValue]="0">If IdP Wants Authn Requests Signed</option>
-                    <option [ngValue]="1">Always</option>
-                    <option [ngValue]="3">Never</option>
+                    <option *ngFor="let o of saml2SigningBehaviourOptions" [ngValue]="o.value">{{o.name}}</option>
                 </select>
             </div>
             <div class="form-group">
@@ -302,9 +288,7 @@
             <div class="form-group">
                 <label for="idpBindingType">{{'idpBindingType' | i18n}}</label>
                 <select class="form-control" formControlName="idpBindingType" id="idpBindingType">
-                    <option [ngValue]="1">Redirect</option>
-                    <option [ngValue]="2">HTTP POST</option>
-                    <option [ngValue]="4">Artifact</option>
+                    <option *ngFor="let o of saml2BindingTypeOptions" [ngValue]="o.value">{{o.name}}</option>
                 </select>
             </div>
             <div class="form-group">
