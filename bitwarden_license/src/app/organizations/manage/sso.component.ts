@@ -9,10 +9,12 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+import { SsoConfigApi } from 'jslib-common/models/api/ssoConfigApi';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 
 import { OrganizationSsoRequest } from 'jslib-common/models/request/organization/organizationSsoRequest';
+import { OrganizationSsoResponse } from 'jslib-common/models/response/organization/organizationSsoResponse';
 
 @Component({
     selector: 'app-org-manage-sso',
@@ -39,13 +41,8 @@ export class SsoComponent implements OnInit {
     spAcsUrl: string;
 
     enabled = this.fb.control(false);
-    data = this.fb.group({
-        configType: [],
 
-        keyConnectorEnabled: [],
-        keyConnectorUrl: [],
-
-        // OpenId
+    openIdData = this.fb.group({
         authority: [],
         clientId: [],
         clientSecret: [],
@@ -58,8 +55,9 @@ export class SsoComponent implements OnInit {
         additionalNameClaimTypes: [],
         acrValues: [],
         expectedReturnAcrValue: [],
+    });
 
-        // SAML
+    samlData = this.fb.group({
         spNameIdFormat: [],
         spOutboundSigningAlgorithm: [],
         spSigningBehavior: [],
@@ -79,6 +77,19 @@ export class SsoComponent implements OnInit {
         idpWantAuthnRequestsSigned: [],
     });
 
+    commonData = this.fb.group({
+        configType: [],
+
+        keyConnectorEnabled: [],
+        keyConnectorUrl: [],
+    });
+
+    data = this.fb.group({
+        openId: this.openIdData,
+        saml: this.samlData,
+        common: this.commonData,
+    });
+
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
         private userService: UserService) { }
@@ -93,9 +104,7 @@ export class SsoComponent implements OnInit {
     async load() {
         this.organization = await this.userService.getOrganization(this.organizationId);
         const ssoSettings = await this.apiService.getOrganizationSso(this.organizationId);
-
-        this.data.patchValue(ssoSettings.data);
-        this.enabled.setValue(ssoSettings.enabled);
+        this.apiToForm(ssoSettings);
 
         this.callbackPath = ssoSettings.urls.callbackPath;
         this.signedOutCallbackPath = ssoSettings.urls.signedOutCallbackPath;
@@ -106,6 +115,18 @@ export class SsoComponent implements OnInit {
         this.keyConnectorUrl.markAsDirty();
 
         this.loading = false;
+    }
+
+    private apiToForm(ssoSettings: OrganizationSsoResponse) {
+        this.commonData.patchValue(ssoSettings.data);
+        this.samlData.patchValue(ssoSettings.data);
+        this.openIdData.patchValue(ssoSettings.data);
+        this.enabled.setValue(ssoSettings.enabled);
+    }
+
+    private formToApi() {
+        const api = new SsoConfigApi();
+        return Object.assign(api, this.commonData.value, this.samlData.value, this.openIdData.value);
     }
 
     copy(value: string) {
@@ -121,10 +142,7 @@ export class SsoComponent implements OnInit {
 
         try {
             const response = await this.formPromise;
-
-            this.data.patchValue(response.data);
-            this.enabled.setValue(response.enabled);
-
+            this.apiToForm(response);
             this.platformUtilsService.showToast('success', null, this.i18nService.t('ssoSettingsSaved'));
         } catch {
             // Logged by appApiAction, do nothing
@@ -134,7 +152,7 @@ export class SsoComponent implements OnInit {
     }
 
     async postData() {
-        if (this.data.get('keyConnectorEnabled').value) {
+        if (this.commonData.get('keyConnectorEnabled').value) {
             await this.validateKeyConnectorUrl();
 
             if (this.keyConnectorUrl.hasError('invalidUrl')) {
@@ -144,7 +162,7 @@ export class SsoComponent implements OnInit {
 
         const request = new OrganizationSsoRequest();
         request.enabled = this.enabled.value;
-        request.data = this.data.value;
+        request.data = this.formToApi();
 
         return this.apiService.postOrganizationSso(this.organizationId, request);
     }
@@ -169,12 +187,12 @@ export class SsoComponent implements OnInit {
     }
 
     get enableTestKeyConnector() {
-        return this.data.get('keyConnectorEnabled').value &&
+        return this.commonData.get('keyConnectorEnabled').value &&
             this.keyConnectorUrl != null &&
             this.keyConnectorUrl.value !== '';
     }
 
     get keyConnectorUrl() {
-        return this.data.get('keyConnectorUrl');
+        return this.commonData.get('keyConnectorUrl');
     }
 }
