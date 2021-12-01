@@ -4734,7 +4734,31 @@
   "freeWithSponsorship": {
     "message": "FREE with sponsorship"
   },
-  "formErrorSummary": {
-    "message": "Errors above need your attention."
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ errors above need your attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 error above needs your attention."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ is required.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "ssoConfigIdpArtifactResolutionRequired": {
+    "message": "Artifact Resolution URL is required if the Binding Type is \"Artifact\"."
+  },
+  "ssoConfigIdpX509PublicCertRequired": {
+    "message": "X509 Public Certificate is required unless the Signing Behaviour is \"Never\"."
   }
 }
