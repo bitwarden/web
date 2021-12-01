@@ -37,6 +37,16 @@ import { requiredIf } from '../../../../../src/app/validators/requiredIf.validat
 })
 export class SsoComponent implements OnInit {
 
+    get enableTestKeyConnector() {
+        return this.commonData.get('keyConnectorEnabled').value &&
+            this.keyConnectorUrl != null &&
+            this.keyConnectorUrl.value !== '';
+    }
+
+    get keyConnectorUrl() {
+        return this.commonData.get('keyConnectorUrl');
+    }
+
     readonly samlSigningAlgorithms = [
         'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
         'http://www.w3.org/2000/09/xmldsig#rsa-sha384',
@@ -47,21 +57,21 @@ export class SsoComponent implements OnInit {
     readonly ssoTypeOptions = [
         { name: 'OpenID Connect', value: SsoType.OpenIdConnect },
         { name: 'SAML 2.0', value: SsoType.Saml2 },
-    ]
+    ];
     readonly openIdConnectRedirectOptions = [
         { name: 'Redirect GET', value: OpenIdConnectRedirectBehavior.RedirectGet },
         { name: 'Form POST', value: OpenIdConnectRedirectBehavior.FormPost },
-    ]
+    ];
     readonly saml2SigningBehaviourOptions = [
         { name: 'If IdP Wants Authn Requests Signed', value: Saml2SigningBehavior.IfIdpWantAuthnRequestsSigned },
         { name: 'Always', value: Saml2SigningBehavior.Always },
         { name: 'Never', value: Saml2SigningBehavior.Never},
-    ]
+    ];
     readonly saml2BindingTypeOptions = [
         {name: 'Redirect', value: Saml2BindingType.HttpRedirect },
         {name: 'HTTP POST', value: Saml2BindingType.HttpPost },
         {name: 'Artifact', value: Saml2BindingType.Artifact },
-    ]
+    ];
     readonly saml2NameIdFormatOptions = [
         { name: 'Not Configured', value: Saml2NameIdFormat.NotConfigured },
         { name: 'Unspecified', value: Saml2NameIdFormat.Unspecified },
@@ -72,7 +82,7 @@ export class SsoComponent implements OnInit {
         { name: 'Entity Identifier', value: Saml2NameIdFormat.EntityIdentifier },
         { name: 'Persistent', value: Saml2NameIdFormat.Persistent },
         { name: 'Transient', value: Saml2NameIdFormat.Transient },
-    ]
+    ];
 
     readonly ssoType = SsoType;
 
@@ -128,7 +138,7 @@ export class SsoComponent implements OnInit {
 
     commonData = this.fb.group({
         configType: [0, {
-            updateOn: 'change'
+            updateOn: 'change',
         }],
 
         keyConnectorEnabled: [],
@@ -140,7 +150,7 @@ export class SsoComponent implements OnInit {
         saml: this.samlData,
         common: this.commonData,
     }, {
-        updateOn: 'submit'
+        updateOn: 'submit',
     });
 
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private apiService: ApiService,
@@ -154,29 +164,6 @@ export class SsoComponent implements OnInit {
             this.organizationId = params.organizationId;
             await this.load();
         });
-    }
-
-    private initForm() {
-        this.commonData.get('configType').valueChanges.subscribe((newType: SsoType) => {
-            if (newType === SsoType.OpenIdConnect) {
-                this.openIdData.enable();
-                this.samlData.disable();
-            } else if (newType === SsoType.Saml2) {
-                this.openIdData.disable();
-                this.samlData.enable();
-            } else {
-                this.openIdData.disable();
-                this.samlData.disable();
-            }
-        });
-
-        this.samlData.get('idpBindingType').valueChanges.subscribe(() => {
-            this.samlData.get('idpArtifactResolutionServiceUrl').updateValueAndValidity();
-
-        });
-
-        this.samlData.get('spSigningBehavior').valueChanges.subscribe(() =>
-            this.samlData.get('idpX509PublicCert').updateValueAndValidity());
     }
 
     async load() {
@@ -256,16 +243,6 @@ export class SsoComponent implements OnInit {
         this.keyConnectorUrl.markAsPristine();
     }
 
-    get enableTestKeyConnector() {
-        return this.commonData.get('keyConnectorEnabled').value &&
-            this.keyConnectorUrl != null &&
-            this.keyConnectorUrl.value !== '';
-    }
-
-    get keyConnectorUrl() {
-        return this.commonData.get('keyConnectorUrl');
-    }
-
     getErrorCount(form: FormGroup): number {
         return Object.values(form.controls).reduce((acc: number, control: AbstractControl) => {
             if (control instanceof FormGroup) {
@@ -276,7 +253,30 @@ export class SsoComponent implements OnInit {
                 return acc + 0;
             }
             return acc + (Object.keys(control.errors).length);
-        }, 0)
+        }, 0);
+    }
+
+    private initForm() {
+        this.commonData.get('configType').valueChanges.subscribe((newType: SsoType) => {
+            if (newType === SsoType.OpenIdConnect) {
+                this.openIdData.enable();
+                this.samlData.disable();
+            } else if (newType === SsoType.Saml2) {
+                this.openIdData.disable();
+                this.samlData.enable();
+            } else {
+                this.openIdData.disable();
+                this.samlData.disable();
+            }
+        });
+
+        this.samlData.get('idpBindingType').valueChanges.subscribe(() => {
+            this.samlData.get('idpArtifactResolutionServiceUrl').updateValueAndValidity();
+
+        });
+
+        this.samlData.get('spSigningBehavior').valueChanges.subscribe(() =>
+            this.samlData.get('idpX509PublicCert').updateValueAndValidity());
     }
 
     private apiToForm(ssoSettings: OrganizationSsoResponse) {

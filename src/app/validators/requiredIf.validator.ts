@@ -9,5 +9,5 @@ export function requiredIf(predicate: (predicateCtrl: AbstractControl) => boolea
         return predicate(control)
             ? Validators.required(control)
             : null;
-    }
+    };
 }
