@@ -3,7 +3,9 @@ import {
     OnInit,
 } from '@angular/core';
 import {
+    AbstractControl,
     FormBuilder,
+    FormGroup,
     Validators
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -102,7 +104,7 @@ export class SsoComponent implements OnInit {
         expectedReturnAcrValue: [],
     });
 
-    samlData: any = this.fb.group({
+    samlData = this.fb.group({
         spNameIdFormat: [],
         spOutboundSigningAlgorithm: [],
         spSigningBehavior: [],
@@ -115,8 +117,9 @@ export class SsoComponent implements OnInit {
         idpSingleSignOnServiceUrl: [],
         idpSingleLogoutServiceUrl: [],
         idpArtifactResolutionServiceUrl: ['',
-            requiredIf('idpBindingType', bindingType => bindingType.value === Saml2BindingType.Artifact)],
-        idpX509PublicCert: [],
+            requiredIf(control => control.parent?.get('idpBindingType').value === Saml2BindingType.Artifact)],
+        idpX509PublicCert: ['',
+            requiredIf(control => control.parent?.get('spSigningBehavior').value !== Saml2SigningBehavior.Never)],
         idpOutboundSigningAlgorithm: [],
         idpAllowUnsolicitedAuthnResponse: [],
         idpDisableOutboundLogoutRequests: [],
