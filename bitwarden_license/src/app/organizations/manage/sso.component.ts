@@ -22,9 +22,7 @@ import { OrganizationSsoRequest } from 'jslib-common/models/request/organization
 import { OrganizationSsoResponse } from 'jslib-common/models/response/organization/organizationSsoResponse';
 
 import {
-    OpenIdConnectRedirectBehavior,
     Saml2BindingType,
-    Saml2NameIdFormat,
     Saml2SigningBehavior,
     SsoType,
 } from 'jslib-common/enums/ssoEnums';
@@ -47,41 +45,9 @@ export class SsoComponent implements OnInit {
         return this.commonData.get('keyConnectorUrl');
     }
 
-    readonly samlSigningAlgorithms = [
-        'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
-        'http://www.w3.org/2000/09/xmldsig#rsa-sha384',
-        'http://www.w3.org/2000/09/xmldsig#rsa-sha512',
-        'http://www.w3.org/2000/09/xmldsig#rsa-sha1',
-    ];
-
     readonly ssoTypeOptions = [
         { name: 'OpenID Connect', value: SsoType.OpenIdConnect },
         { name: 'SAML 2.0', value: SsoType.Saml2 },
-    ];
-    readonly openIdConnectRedirectOptions = [
-        { name: 'Redirect GET', value: OpenIdConnectRedirectBehavior.RedirectGet },
-        { name: 'Form POST', value: OpenIdConnectRedirectBehavior.FormPost },
-    ];
-    readonly saml2SigningBehaviourOptions = [
-        { name: 'If IdP Wants Authn Requests Signed', value: Saml2SigningBehavior.IfIdpWantAuthnRequestsSigned },
-        { name: 'Always', value: Saml2SigningBehavior.Always },
-        { name: 'Never', value: Saml2SigningBehavior.Never},
-    ];
-    readonly saml2BindingTypeOptions = [
-        {name: 'Redirect', value: Saml2BindingType.HttpRedirect },
-        {name: 'HTTP POST', value: Saml2BindingType.HttpPost },
-        {name: 'Artifact', value: Saml2BindingType.Artifact },
-    ];
-    readonly saml2NameIdFormatOptions = [
-        { name: 'Not Configured', value: Saml2NameIdFormat.NotConfigured },
-        { name: 'Unspecified', value: Saml2NameIdFormat.Unspecified },
-        { name: 'Email Address', value: Saml2NameIdFormat.EmailAddress },
-        { name: 'X.509 Subject Name', value: Saml2NameIdFormat.X509SubjectName },
-        { name: 'Windows Domain Qualified Name', value: Saml2NameIdFormat.WindowsDomainQualifiedName },
-        { name: 'Kerberos Principal Name', value: Saml2NameIdFormat.KerberosPrincipalName },
-        { name: 'Entity Identifier', value: Saml2NameIdFormat.EntityIdentifier },
-        { name: 'Persistent', value: Saml2NameIdFormat.Persistent },
-        { name: 'Transient', value: Saml2NameIdFormat.Transient },
     ];
 
     readonly ssoType = SsoType;
@@ -97,11 +63,9 @@ export class SsoComponent implements OnInit {
     spMetadataUrl: string;
     spAcsUrl: string;
 
-    openIdShowCustomizations: boolean = false;
-
     enabled = this.fb.control(false);
 
-    openIdData = this.fb.group({
+    openIdForm = this.fb.group({
         authority: ['', Validators.required],
         clientId: ['', Validators.required],
         clientSecret: ['', Validators.required],
@@ -116,7 +80,7 @@ export class SsoComponent implements OnInit {
         expectedReturnAcrValue: [],
     });
 
-    samlData = this.fb.group({
+    samlForm = this.fb.group({
         spNameIdFormat: [],
         spOutboundSigningAlgorithm: [],
         spSigningBehavior: [],
@@ -134,7 +98,7 @@ export class SsoComponent implements OnInit {
             requiredIf(control => control.parent?.get('spSigningBehavior').value !== Saml2SigningBehavior.Never)],
         idpOutboundSigningAlgorithm: [],
         idpAllowUnsolicitedAuthnResponse: [],
-        idpAllowOutboundLogoutRequests: [true], //TODO: update in model, handle transition
+        idpAllowOutboundLogoutRequests: [true], // TODO: update in model, handle transition
         idpWantAuthnRequestsSigned: [],
     });
 
@@ -148,8 +112,8 @@ export class SsoComponent implements OnInit {
     });
 
     ssoConfigForm = this.fb.group({
-        openId: this.openIdData,
-        saml: this.samlData,
+        openId: this.openIdForm,
+        saml: this.samlForm,
         common: this.commonData,
     }, {
         updateOn: 'submit',
@@ -160,7 +124,18 @@ export class SsoComponent implements OnInit {
         private userService: UserService) { }
 
     async ngOnInit() {
-        this.initForm();
+        this.commonData.get('configType').valueChanges.subscribe((newType: SsoType) => {
+            if (newType === SsoType.OpenIdConnect) {
+                this.openIdForm.enable();
+                this.samlForm.disable();
+            } else if (newType === SsoType.Saml2) {
+                this.openIdForm.disable();
+                this.samlForm.enable();
+            } else {
+                this.openIdForm.disable();
+                this.samlForm.disable();
+            }
+        });
 
         this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
@@ -182,18 +157,6 @@ export class SsoComponent implements OnInit {
         this.keyConnectorUrl.markAsDirty();
 
         this.loading = false;
-    }
-
-    copy(value: string) {
-        this.platformUtilsService.copyToClipboard(value);
-    }
-
-    launchUri(url: string) {
-        this.platformUtilsService.launchUri(url);
-    }
-
-    toggleOpenIdCustomizations() {
-        this.openIdShowCustomizations = !this.openIdShowCustomizations;
     }
 
     async submit() {
@@ -262,38 +225,15 @@ export class SsoComponent implements OnInit {
         }, 0);
     }
 
-    private initForm() {
-        this.commonData.get('configType').valueChanges.subscribe((newType: SsoType) => {
-            if (newType === SsoType.OpenIdConnect) {
-                this.openIdData.enable();
-                this.samlData.disable();
-            } else if (newType === SsoType.Saml2) {
-                this.openIdData.disable();
-                this.samlData.enable();
-            } else {
-                this.openIdData.disable();
-                this.samlData.disable();
-            }
-        });
-
-        this.samlData.get('idpBindingType').valueChanges.subscribe(() => {
-            this.samlData.get('idpArtifactResolutionServiceUrl').updateValueAndValidity();
-
-        });
-
-        this.samlData.get('spSigningBehavior').valueChanges.subscribe(() =>
-            this.samlData.get('idpX509PublicCert').updateValueAndValidity());
-    }
-
     private apiToForm(ssoSettings: OrganizationSsoResponse) {
         this.commonData.patchValue(ssoSettings.data);
-        this.samlData.patchValue(ssoSettings.data);
-        this.openIdData.patchValue(ssoSettings.data);
+        this.samlForm.patchValue(ssoSettings.data);
+        this.openIdForm.patchValue(ssoSettings.data);
         this.enabled.setValue(ssoSettings.enabled);
     }
 
     private formToApi() {
         const api = new SsoConfigApi();
-        return Object.assign(api, this.commonData.value, this.samlData.value, this.openIdData.value);
+        return Object.assign(api, this.commonData.value, this.samlForm.value, this.openIdForm.value);
     }
 }

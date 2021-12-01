@@ -1,0 +1,134 @@
+<div *ngIf="openIdForm != null" [formGroup]="openIdForm">
+    <div class="config-section">
+        <h2>{{'openIdConnectConfig' | i18n}}</h2>
+        <div class="form-group">
+            <label>{{'callbackPath' | i18n}}</label>
+            <div class="input-group">
+                <input class="form-control" readonly [value]="callbackPath">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-secondary"
+                        appA11yTitle="{{'copyValue' | i18n}}"
+                        (click)="copy(callbackPath)">
+                        <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>{{'signedOutCallbackPath' | i18n}}</label>
+            <div class="input-group">
+                <input class="form-control" readonly [value]="signedOutCallbackPath">
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-secondary"
+                        appA11yTitle="{{'copyValue' | i18n}}"
+                        (click)="copy(signedOutCallbackPath)">
+                        <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="authority">
+                {{'authority' | i18n}}
+                <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
+            </label>
+            <input class="form-control" formControlName="authority" id="authority" appChangeClearErrors>
+            <div class="text-danger" *ngIf="openIdForm.get('authority').hasError('required')" role="alert">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                {{'fieldRequiredError' | i18n:('authority' | i18n ) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="clientId">
+                {{'clientId' | i18n}}
+                <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
+            </label>
+            <input class="form-control" formControlName="clientId" id="clientId" appChangeClearErrors>
+            <div class="text-danger" *ngIf="openIdForm.get('clientId').hasError('required')" role="alert">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                {{'fieldRequiredError' | i18n:('clientId' | i18n) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="clientSecret">
+                {{'clientSecret' | i18n}}
+                <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
+            </label>
+            <input class="form-control" formControlName="clientSecret" id="clientSecret" appChangeClearErrors>
+            <div class="text-danger" *ngIf="openIdForm.get('clientSecret').hasError('required')" role="alert">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                {{'fieldRequiredError' | i18n:('clientSecret' | i18n) }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="metadataAddress">{{'metadataAddress' | i18n}}</label>
+            <input class="form-control" formControlName="metadataAddress" id="metadataAddress">
+        </div>
+        <div class="form-group">
+            <label for="redirectBehavior">
+                {{'oidcRedirectBehavior' | i18n}}
+                <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
+            </label>
+            <select class="form-control" formControlName="redirectBehavior" id="redirectBehavior">
+                <option *ngFor="let o of connectRedirectOptions" [ngValue]="o.value">{{o.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="getClaimsFromUserInfoEndpoint"
+                    formControlName="getClaimsFromUserInfoEndpoint">
+                <label class="form-check-label" for="getClaimsFromUserInfoEndpoint">
+                    {{'getClaimsFromUserInfoEndpoint' | i18n}}
+                </label>
+            </div>
+        </div>
+
+        <!-- Optional customizations -->
+        <div class="section-header d-flex flex-row align-items-center mt-5"
+            (click)="toggleCustomizations()">
+            <h3 class="mb-0 mr-2" id="customizations-header">{{'openIdOptionalCustomizations' | i18n}}</h3>
+            <button class="mb-1" href="#" appStopClick role="button" aria-controls="customizations"
+                [attr.aria-expanded]="showCustomizations"
+                aria-labelledby="customizations-header">
+                <i class="fa" aria-hidden="true"
+                    [ngClass]="{'fa-chevron-down': !showCustomizations, 
+                    'fa-chevron-up': showCustomizations}"></i>
+            </button>
+        </div>
+        <div id="customizations" [hidden]="!showCustomizations">
+            <div class="form-group">
+                <label for="additionalScopes">{{'additionalScopes' | i18n}}</label>
+                <input class="form-control" formControlName="additionalScopes" id="additionalScopes">
+                <small class="form-text text-muted">{{'separateMultipleWithComma' | i18n}}</small>
+            </div>
+            <div class="form-group">
+                <label for="additionalUserIdClaimTypes">{{'additionalUserIdClaimTypes' | i18n}}</label>
+                <input class="form-control" formControlName="additionalUserIdClaimTypes"
+                    id="additionalUserIdClaimTypes">
+                <small class="form-text text-muted">{{'separateMultipleWithComma' | i18n}}</small>
+            </div>
+            <div class="form-group">
+                <label for="additionalEmailClaimTypes">{{'additionalEmailClaimTypes' | i18n}}</label>
+                <input class="form-control" formControlName="additionalEmailClaimTypes"
+                    id="additionalEmailClaimTypes">
+                <small class="form-text text-muted">{{'separateMultipleWithComma' | i18n}}</small>
+            </div>
+            <div class="form-group">
+                <label for="additionalNameClaimTypes">{{'additionalNameClaimTypes' | i18n}}</label>
+                <input class="form-control" formControlName="additionalNameClaimTypes"
+                    id="additionalNameClaimTypes">
+                <small class="form-text text-muted">{{'separateMultipleWithComma' | i18n}}</small>
+            </div>
+            <div class="form-group">
+                <label for="acrValues">{{'acrValues' | i18n}}</label>
+                <input class="form-control" formControlName="acrValues" id="acrValues">
+                <small class="form-text text-muted">acr_values</small>
+            </div>
+            <div class="form-group">
+                <label for="expectedReturnAcrValue">{{'expectedReturnAcrValue' | i18n}}</label>
+                <input class="form-control" formControlName="expectedReturnAcrValue" id="expectedReturnAcrValue">
+                <small class="form-text text-muted">acr_validation</small>
+            </div>
+        </div>
+    </div>
+</div>
