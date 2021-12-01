@@ -94,7 +94,7 @@ export class SsoComponent implements OnInit {
         clientId: ['', Validators.required],
         clientSecret: ['', Validators.required],
         metadataAddress: [],
-        redirectBehavior: ['', Validators.required],
+        redirectBehavior: [],
         getClaimsFromUserInfoEndpoint: [],
         additionalScopes: [],
         additionalUserIdClaimTypes: [],
@@ -140,7 +140,7 @@ export class SsoComponent implements OnInit {
         saml: this.samlData,
         common: this.commonData,
     }, {
-        updateOn: 'blur'
+        updateOn: 'submit'
     });
 
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private apiService: ApiService,
@@ -148,6 +148,15 @@ export class SsoComponent implements OnInit {
         private userService: UserService) { }
 
     async ngOnInit() {
+        this.initForm();
+
+        this.route.parent.parent.params.subscribe(async params => {
+            this.organizationId = params.organizationId;
+            await this.load();
+        });
+    }
+
+    private initForm() {
         this.commonData.get('configType').valueChanges.subscribe((newType: SsoType) => {
             if (newType === SsoType.OpenIdConnect) {
                 this.openIdData.enable();
@@ -159,12 +168,15 @@ export class SsoComponent implements OnInit {
                 this.openIdData.disable();
                 this.samlData.disable();
             }
-        })
-
-        this.route.parent.parent.params.subscribe(async params => {
-            this.organizationId = params.organizationId;
-            await this.load();
         });
+
+        this.samlData.get('idpBindingType').valueChanges.subscribe(() => {
+            this.samlData.get('idpArtifactResolutionServiceUrl').updateValueAndValidity();
+
+        });
+
+        this.samlData.get('spSigningBehavior').valueChanges.subscribe(() =>
+            this.samlData.get('idpX509PublicCert').updateValueAndValidity());
     }
 
     async load() {
