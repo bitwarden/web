@@ -24,7 +24,6 @@
                 <option value="">-- {{'select' | i18n}} --</option>
                 <option *ngFor="let o of availableSponsorshipOrgs" [ngValue]="o.id">{{o.name}}</option>
             </select>
-            <small>{{'sponsoredFamiliesLeaveCopy' | i18n}}</small>
         </div>
         <div class="form-group col-7">
             <label for="accountEmail">{{'sponsoredFamiliesEmail' | i18n}}:</label>
@@ -36,7 +35,7 @@
             </button>
         </div>
     </form>
-    <div *ngIf="anyActiveSponsorships">
+    <div *ngIf="anyActiveSponsorships" class="border-bottom">
         <table class="table table-hover table-list">
             <thead>
                 <tr>
@@ -52,4 +51,5 @@
             </tbody>
         </table>
     </div>    
+    <small>{{'sponsoredFamiliesLeaveCopy' | i18n}}</small>
 </ng-container>
