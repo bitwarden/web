@@ -19,7 +19,10 @@ import { SsoConfigApi } from 'jslib-common/models/api/ssoConfigApi';
 import { Organization } from 'jslib-common/models/domain/organization';
 
 import { OrganizationSsoRequest } from 'jslib-common/models/request/organization/organizationSsoRequest';
-import { OrganizationSsoResponse } from 'jslib-common/models/response/organization/organizationSsoResponse';
+import {
+    OrganizationSsoResponse,
+    SsoUrls
+} from 'jslib-common/models/response/organization/organizationSsoResponse';
 
 import {
     Saml2BindingType,
@@ -57,11 +60,7 @@ export class SsoComponent implements OnInit {
     organization: Organization;
     formPromise: Promise<any>;
 
-    callbackPath: string;
-    signedOutCallbackPath: string;
-    spEntityId: string;
-    spMetadataUrl: string;
-    spAcsUrl: string;
+    ssoUrls: SsoUrls;
 
     enabled = this.fb.control(false);
 
@@ -148,11 +147,7 @@ export class SsoComponent implements OnInit {
         const ssoSettings = await this.apiService.getOrganizationSso(this.organizationId);
         this.apiToForm(ssoSettings);
 
-        this.callbackPath = ssoSettings.urls.callbackPath;
-        this.signedOutCallbackPath = ssoSettings.urls.signedOutCallbackPath;
-        this.spEntityId = ssoSettings.urls.spEntityId;
-        this.spMetadataUrl = ssoSettings.urls.spMetadataUrl;
-        this.spAcsUrl = ssoSettings.urls.spAcsUrl;
+        this.ssoUrls = ssoSettings.urls;
 
         this.keyConnectorUrl.markAsDirty();
 

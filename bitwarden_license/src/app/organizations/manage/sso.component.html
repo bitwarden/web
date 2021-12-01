@@ -98,12 +98,14 @@
 
     <!-- OIDC -->
     <app-org-manage-sso-openId *ngIf="commonData.get('configType').value === ssoType.OpenIdConnect"
-        [openIdForm]="openIdForm" [callbackPath]="callbackPath" [signedOutCallbackPath]="signedOutCallbackPath">
+        [openIdForm]="openIdForm" [callbackPath]="ssoUrls.callbackPath" 
+        [signedOutCallbackPath]="ssoUrls.signedOutCallbackPath">
     </app-org-manage-sso-openId>
 
     <!-- SAML2 SP -->
     <app-org-manage-sso-saml *ngIf="commonData.get('configType').value === ssoType.Saml2"
-        [samlForm]="samlForm" [spEntityId]="spEntityId" [spMetadataUrl]="spMetadataUrl" [spAcsUrl]="spAcsUrl">
+        [samlForm]="samlForm" [spEntityId]="ssoUrls.spEntityId" [spMetadataUrl]="ssoUrls.spMetadataUrl" 
+        [spAcsUrl]="ssoUrls.spAcsUrl">
     </app-org-manage-sso-saml>
 
     <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
