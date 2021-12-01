@@ -97,6 +97,8 @@ export class SsoComponent implements OnInit {
     spMetadataUrl: string;
     spAcsUrl: string;
 
+    openIdShowCustomizations: boolean = false;
+
     enabled = this.fb.control(false);
 
     openIdData = this.fb.group({
@@ -188,6 +190,10 @@ export class SsoComponent implements OnInit {
 
     launchUri(url: string) {
         this.platformUtilsService.launchUri(url);
+    }
+
+    toggleOpenIdCustomizations() {
+        this.openIdShowCustomizations = !this.openIdShowCustomizations;
     }
 
     async submit() {

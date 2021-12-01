@@ -182,32 +182,54 @@
                     </label>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="additionalScopes">{{'additionalScopes' | i18n}}</label>
-                <input class="form-control" formControlName="additionalScopes" id="additionalScopes">
+
+
+            <!-- Optional customizations -->
+            <div id="openIdCustomizations-header" class="section-header d-flex flex-row align-items-center mt-5"
+                (click)="toggleOpenIdCustomizations()">
+                <h3 class="mb-0 mr-2">{{'openIdOptionalCustomizations' | i18n}}</h3>
+                <button class="mb-1" href="#" appStopClick role="button" aria-controls="openIdCustomizations"
+                    [attr.aria-expanded]="openIdShowCustomizations"
+                    attr.aria-label="{{'openIdOptionalCustomizations' | i18n}}">
+                    <i class="fa" aria-hidden="true"
+                        [ngClass]="{'fa-chevron-down': !openIdShowCustomizations, 
+                        'fa-chevron-up': openIdShowCustomizations}"></i>
+                </button>
             </div>
-            <div class="form-group">
-                <label for="additionalUserIdClaimTypes">{{'additionalUserIdClaimTypes' | i18n}}</label>
-                <input class="form-control" formControlName="additionalUserIdClaimTypes"
-                    id="additionalUserIdClaimTypes">
-            </div>
-            <div class="form-group">
-                <label for="additionalEmailClaimTypes">{{'additionalEmailClaimTypes' | i18n}}</label>
-                <input class="form-control" formControlName="additionalEmailClaimTypes"
-                    id="additionalEmailClaimTypes">
-            </div>
-            <div class="form-group">
-                <label for="additionalNameClaimTypes">{{'additionalNameClaimTypes' | i18n}}</label>
-                <input class="form-control" formControlName="additionalNameClaimTypes"
-                    id="additionalNameClaimTypes">
-            </div>
-            <div class="form-group">
-                <label for="acrValues">{{'acrValues' | i18n}}</label>
-                <input class="form-control" formControlName="acrValues" id="acrValues">
-            </div>
-            <div class="form-group">
-                <label for="expectedReturnAcrValue">{{'expectedReturnAcrValue' | i18n}}</label>
-                <input class="form-control" formControlName="expectedReturnAcrValue" id="expectedReturnAcrValue">
+            <div id="openIdCustomizations" [hidden]="!openIdShowCustomizations">
+                <div class="form-group">
+                    <label for="additionalScopes">{{'additionalScopes' | i18n}}</label>
+                    <input class="form-control" formControlName="additionalScopes" id="additionalScopes">
+                    <small class="form-text text-muted">{{'separateMultipleWithComma' | i18n}}</small>
+                </div>
+                <div class="form-group">
+                    <label for="additionalUserIdClaimTypes">{{'additionalUserIdClaimTypes' | i18n}}</label>
+                    <input class="form-control" formControlName="additionalUserIdClaimTypes"
+                        id="additionalUserIdClaimTypes">
+                    <small class="form-text text-muted">{{'separateMultipleWithComma' | i18n}}</small>
+                </div>
+                <div class="form-group">
+                    <label for="additionalEmailClaimTypes">{{'additionalEmailClaimTypes' | i18n}}</label>
+                    <input class="form-control" formControlName="additionalEmailClaimTypes"
+                        id="additionalEmailClaimTypes">
+                    <small class="form-text text-muted">{{'separateMultipleWithComma' | i18n}}</small>
+                </div>
+                <div class="form-group">
+                    <label for="additionalNameClaimTypes">{{'additionalNameClaimTypes' | i18n}}</label>
+                    <input class="form-control" formControlName="additionalNameClaimTypes"
+                        id="additionalNameClaimTypes">
+                    <small class="form-text text-muted">{{'separateMultipleWithComma' | i18n}}</small>
+                </div>
+                <div class="form-group">
+                    <label for="acrValues">{{'acrValues' | i18n}}</label>
+                    <input class="form-control" formControlName="acrValues" id="acrValues">
+                    <small class="form-text text-muted">acr_values</small>
+                </div>
+                <div class="form-group">
+                    <label for="expectedReturnAcrValue">{{'expectedReturnAcrValue' | i18n}}</label>
+                    <input class="form-control" formControlName="expectedReturnAcrValue" id="expectedReturnAcrValue">
+                    <small class="form-text text-muted">acr_validation</small>
+                </div>
             </div>
         </div>
     </div>
