@@ -4450,10 +4450,10 @@
     "message": "Minimum Incoming Signing Algorithm"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "Expect signed assertions"
   },
   "spValidateCertificates": {
-    "message": "Validate Certificates"
+    "message": "Validate certificates"
   },
   "idpEntityId": {
     "message": "Entity ID"
@@ -4477,13 +4477,13 @@
     "message": "Outbound Signing Algorithm"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "Allow unsolicited authentication response"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Allow outbound logout requests"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+  "idpSignAuthenticationRequests": {
+    "message": "Sign authentication requests"
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
@@ -4755,10 +4755,16 @@
       }
     }
   },
-  "ssoConfigIdpArtifactResolutionRequired": {
-    "message": "Artifact Resolution URL is required if the Binding Type is \"Artifact\"."
+  "idpArtifactResolutionRequired": {
+    "message": "Required if the Binding Type is \"Artifact\"."
   },
-  "ssoConfigIdpX509PublicCertRequired": {
-    "message": "X509 Public Certificate is required unless the Signing Behaviour is \"Never\"."
+  "idpX509PublicCertRequired": {
+    "message": "Required unless the Signing Behaviour is \"Never\"."
+  },
+  "required": {
+    "message": "required"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Required if Entity ID is not a URL."
   }
 }

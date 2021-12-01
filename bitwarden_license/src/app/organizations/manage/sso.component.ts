@@ -132,7 +132,7 @@ export class SsoComponent implements OnInit {
             requiredIf(control => control.parent?.get('spSigningBehavior').value !== Saml2SigningBehavior.Never)],
         idpOutboundSigningAlgorithm: [],
         idpAllowUnsolicitedAuthnResponse: [],
-        idpDisableOutboundLogoutRequests: [],
+        idpAllowOutboundLogoutRequests: [true], //TODO: update in model, handle transition
         idpWantAuthnRequestsSigned: [],
     });
 

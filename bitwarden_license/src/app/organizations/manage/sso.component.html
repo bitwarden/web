@@ -55,7 +55,10 @@
             </app-callout>
         
             <div class="form-group">
-                <label for="keyConnectorUrl">{{'keyConnectorUrl' | i18n}}</label>
+                <label for="keyConnectorUrl">
+                    {{'keyConnectorUrl' | i18n}}
+                    <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
+                </label>
                 <div class="input-group">
                     <input class="form-control" formControlName="keyConnectorUrl" id="keyConnectorUrl" required>
                     <div class="input-group-append">
@@ -83,7 +86,9 @@
         </ng-container>
 
         <div class="form-group">
-            <label for="type">{{'type' | i18n}}</label>
+            <label for="type">{{'type' | i18n}}
+            <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
+            </label>
             <select class="form-control" id="type" formControlName="configType">
                 <option [ngValue]="0" disabled>{{'selectType' | i18n}}</option>
                 <option *ngFor="let o of ssoTypeOptions" [ngValue]="o.value">{{o.name}}</option>
@@ -123,7 +128,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="authority">{{'authority' | i18n}}</label>
+                <label for="authority">
+                    {{'authority' | i18n}}
+                    <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
+                </label>
                 <input class="form-control" formControlName="authority" id="authority" appChangeClearErrors>
                 <div class="text-danger" *ngIf="openIdData.get('authority').hasError('required')" role="alert">
                     <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
@@ -131,15 +139,21 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="clientId">{{'clientId' | i18n}}</label>
+                <label for="clientId">
+                    {{'clientId' | i18n}}
+                    <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
+                </label>
                 <input class="form-control" formControlName="clientId" id="clientId" appChangeClearErrors>
-                    <div class="text-danger" *ngIf="openIdData.get('clientId').hasError('required')" role="alert">
+                <div class="text-danger" *ngIf="openIdData.get('clientId').hasError('required')" role="alert">
                     <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                     {{'fieldRequiredError' | i18n:('clientId' | i18n) }}
                 </div>
             </div>
             <div class="form-group">
-                <label for="clientSecret">{{'clientSecret' | i18n}}</label>
+                <label for="clientSecret">
+                    {{'clientSecret' | i18n}}
+                    <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
+                </label>
                 <input class="form-control" formControlName="clientSecret" id="clientSecret" appChangeClearErrors>
                 <div class="text-danger" *ngIf="openIdData.get('clientSecret').hasError('required')" role="alert">
                     <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
@@ -151,7 +165,10 @@
                 <input class="form-control" formControlName="metadataAddress" id="metadataAddress">
             </div>
             <div class="form-group">
-                <label for="redirectBehavior">{{'oidcRedirectBehavior' | i18n}}</label>
+                <label for="redirectBehavior">
+                    {{'oidcRedirectBehavior' | i18n}}
+                    <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
+                </label>
                 <select class="form-control" formControlName="redirectBehavior" id="redirectBehavior">
                     <option *ngFor="let o of openIdConnectRedirectOptions" [ngValue]="o.value">{{o.name}}</option>
                 </select>
@@ -294,7 +311,10 @@
             <h2>{{'samlIdpConfig' | i18n}}</h2>
 
             <div class="form-group">
-                <label for="idpEntityId">{{'idpEntityId' | i18n}}</label>
+                <label for="idpEntityId">
+                    {{'idpEntityId' | i18n}}
+                    <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
+                </label>
                 <input class="form-control" formControlName="idpEntityId" id="idpEntityId" appChangeClearErrors>
                 <div class="text-danger" *ngIf="samlData.get('idpEntityId').hasError('required')" role="alert">
                     <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
@@ -310,6 +330,7 @@
             <div class="form-group">
                 <label for="idpSingleSignOnServiceUrl">{{'idpSingleSignOnServiceUrl' | i18n}}</label>
                 <input class="form-control" formControlName="idpSingleSignOnServiceUrl" id="idpSingleSignOnServiceUrl">
+                <small class="form-text text-muted">{{'idpSingleSignOnServiceUrlRequired' | i18n}}</small>
             </div>
             <div class="form-group">
                 <label for="idpSingleLogoutServiceUrl">{{'idpSingleLogoutServiceUrl' | i18n}}</label>
@@ -319,20 +340,22 @@
                 <label for="idpArtifactResolutionServiceUrl">{{'idpArtifactResolutionServiceUrl' | i18n}}</label>
                 <input class="form-control" formControlName="idpArtifactResolutionServiceUrl"
                     id="idpArtifactResolutionServiceUrl" appChangeClearErrors>
+                <small class="form-text text-muted">{{'idpArtifactResolutionRequired' | i18n}}</small>
                 <div class="text-danger" *ngIf="samlData.get('idpArtifactResolutionServiceUrl').hasError('required')"
                     role="alert">
                     <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                    {{'ssoConfigIdpArtifactResolutionRequired' | i18n }}
+                    {{'idpArtifactResolutionRequired' | i18n }}
                 </div>
             </div>
             <div class="form-group">
                 <label for="idpX509PublicCert">{{'idpX509PublicCert' | i18n}}</label>
                 <textarea formControlName="idpX509PublicCert" class="form-control form-control-sm text-monospace"
                     rows="6" id="idpX509PublicCert" appChangeClearErrors></textarea>
+                <small class="form-text text-muted">{{'idpX509PublicCertRequired' | i18n}}</small>
                 <div class="text-danger" *ngIf="samlData.get('idpX509PublicCert').hasError('required')"
                     role="alert">
                     <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                    {{'ssoConfigIdpX509PublicCertRequired' | i18n }}
+                    {{'idpX509PublicCertRequired' | i18n }}
                 </div>
             </div>
             <div class="form-group">
@@ -353,10 +376,10 @@
             </div>
             <div class="form-group">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="idpDisableOutboundLogoutRequests"
-                        formControlName="idpDisableOutboundLogoutRequests">
-                    <label class="form-check-label" for="idpDisableOutboundLogoutRequests">
-                        {{'idpDisableOutboundLogoutRequests' | i18n}}
+                    <input class="form-check-input" type="checkbox" id="idpAllowOutboundLogoutRequests"
+                        formControlName="idpAllowOutboundLogoutRequests">
+                    <label class="form-check-label" for="idpAllowOutboundLogoutRequests">
+                        {{'idpAllowOutboundLogoutRequests' | i18n}}
                     </label>
                 </div>
             </div>
@@ -365,7 +388,7 @@
                     <input class="form-check-input" type="checkbox" id="idpWantAuthnRequestsSigned"
                         formControlName="idpWantAuthnRequestsSigned">
                     <label class="form-check-label" for="idpWantAuthnRequestsSigned">
-                        {{'idpWantAuthnRequestsSigned' | i18n}}
+                        {{'idpSignAuthenticationRequests' | i18n}}
                     </label>
                 </div>
             </div>
