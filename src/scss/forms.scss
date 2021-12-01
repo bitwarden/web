@@ -199,6 +199,13 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 
+// Theming for invalid form elements - only if we're not using native HTML5 validation
+form:not([ngnativevalidate]):not([ngnativevalidate=""]) .form-control.ng-invalid {
+    @include themify($themes) {
+        border-color: themed('danger');
+    }
+}
+
 // Browser specific icons overlayed on input fields. e.g. caps lock indicator on password field
 ::-webkit-calendar-picker-indicator, input::-webkit-caps-lock-indicator, input::-webkit-credentials-auto-fill-button {
     @include themify($themes) {
