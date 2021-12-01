@@ -186,6 +186,7 @@ import { VerifyMasterPasswordComponent } from 'jslib-angular/components/verify-m
 import { A11yTitleDirective } from 'jslib-angular/directives/a11y-title.directive';
 import { ApiActionDirective } from 'jslib-angular/directives/api-action.directive';
 import { AutofocusDirective } from 'jslib-angular/directives/autofocus.directive';
+import { BlurClearErrorsDirective } from 'jslib-angular/directives/blur-clear-errors.directive';
 import { BlurClickDirective } from 'jslib-angular/directives/blur-click.directive';
 import { BoxRowDirective } from 'jslib-angular/directives/box-row.directive';
 import { FallbackSrcDirective } from 'jslib-angular/directives/fallback-src.directive';
@@ -317,6 +318,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         AttachmentsComponent,
         AutofocusDirective,
         AvatarComponent,
+        BlurClearErrorsDirective,
         BlurClickDirective,
         BoxRowDirective,
         BreachReportComponent,
@@ -477,6 +479,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         AvatarComponent,
         CalloutComponent,
         ApiActionDirective,
+        BlurClearErrorsDirective,
         StopClickDirective,
         StopPropDirective,
         I18nPipe,
