@@ -254,6 +254,19 @@ export class SsoComponent implements OnInit {
         return this.commonData.get('keyConnectorUrl');
     }
 
+    getErrorCount(form: FormGroup): number {
+        return Object.values(form.controls).reduce((acc: number, control: AbstractControl) => {
+            if (control instanceof FormGroup) {
+                return acc + this.getErrorCount(control);
+            }
+
+            if (control.errors == null) {
+                return acc + 0;
+            }
+            return acc + (Object.keys(control.errors).length);
+        }, 0)
+    }
+
     private apiToForm(ssoSettings: OrganizationSsoResponse) {
         this.commonData.patchValue(ssoSettings.data);
         this.samlData.patchValue(ssoSettings.data);
