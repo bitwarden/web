@@ -184,6 +184,7 @@ import { IconComponent } from 'jslib-angular/components/icon.component';
 import { VerifyMasterPasswordComponent } from 'jslib-angular/components/verify-master-password.component';
 
 import { A11yTitleDirective } from 'jslib-angular/directives/a11y-title.directive';
+import { A11yInvalidDirective } from 'jslib-angular/directives/a11y-invalid.directive';
 import { ApiActionDirective } from 'jslib-angular/directives/api-action.directive';
 import { AutofocusDirective } from 'jslib-angular/directives/autofocus.directive';
 import { BlurClickDirective } from 'jslib-angular/directives/blur-click.directive';
@@ -303,6 +304,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
     ],
     declarations: [
         A11yTitleDirective,
+        A11yInvalidDirective,
         AcceptEmergencyComponent,
         AcceptOrganizationComponent,
         AccessComponent,
@@ -478,6 +480,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
     ],
     exports: [
         A11yTitleDirective,
+        A11yInvalidDirective,
         ApiActionDirective,
         AvatarComponent,
         CalloutComponent,

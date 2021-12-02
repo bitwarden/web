@@ -33,7 +33,7 @@
                 <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
             </label>
             <input class="form-control" formControlName="authority" id="authority" appChangeClearErrors 
-                appChangeStripSpaces>
+                appChangeStripSpaces appA11yInvalid>
             <div class="text-danger" *ngIf="openIdForm.get('authority').hasError('required')" role="alert">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                 {{'fieldRequiredError' | i18n:('authority' | i18n ) }}
@@ -44,7 +44,7 @@
                 {{'clientId' | i18n}}
                 <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
             </label>
-            <input class="form-control" formControlName="clientId" id="clientId" appChangeClearErrors>
+            <input class="form-control" formControlName="clientId" id="clientId" appChangeClearErrors appA11yInvalid>
             <div class="text-danger" *ngIf="openIdForm.get('clientId').hasError('required')" role="alert">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                 {{'fieldRequiredError' | i18n:('clientId' | i18n) }}
@@ -55,7 +55,8 @@
                 {{'clientSecret' | i18n}}
                 <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
             </label>
-            <input class="form-control" formControlName="clientSecret" id="clientSecret" appChangeClearErrors>
+            <input class="form-control" formControlName="clientSecret" id="clientSecret" appChangeClearErrors 
+                appA11yInvalid>
             <div class="text-danger" *ngIf="openIdForm.get('clientSecret').hasError('required')" role="alert">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                 {{'fieldRequiredError' | i18n:('clientSecret' | i18n) }}

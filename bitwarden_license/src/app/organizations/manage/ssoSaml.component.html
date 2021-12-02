@@ -101,7 +101,8 @@
                 {{'idpEntityId' | i18n}}
                 <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
             </label>
-            <input class="form-control" formControlName="idpEntityId" id="idpEntityId" appChangeClearErrors>
+            <input class="form-control" formControlName="idpEntityId" id="idpEntityId" appChangeClearErrors
+                appA11yInvalid>
             <div class="text-danger" *ngIf="samlForm.get('idpEntityId').hasError('required')" role="alert">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                 {{'fieldRequiredError' | i18n:('idpEntityId' | i18n) }}
@@ -127,7 +128,7 @@
         <div class="form-group">
             <label for="idpArtifactResolutionServiceUrl">{{'idpArtifactResolutionServiceUrl' | i18n}}</label>
             <input class="form-control" formControlName="idpArtifactResolutionServiceUrl"
-                id="idpArtifactResolutionServiceUrl" appChangeClearErrors appChangeStripSpaces>
+                id="idpArtifactResolutionServiceUrl" appChangeClearErrors appChangeStripSpaces appA11yInvalid>
             <small class="form-text text-muted">{{'idpArtifactResolutionRequired' | i18n}}</small>
             <div class="text-danger" *ngIf="samlForm.get('idpArtifactResolutionServiceUrl').hasError('required')"
                 role="alert">
@@ -138,7 +139,7 @@
         <div class="form-group">
             <label for="idpX509PublicCert">{{'idpX509PublicCert' | i18n}}</label>
             <textarea formControlName="idpX509PublicCert" class="form-control form-control-sm text-monospace"
-                rows="6" id="idpX509PublicCert" appChangeClearErrors></textarea>
+                rows="6" id="idpX509PublicCert" appChangeClearErrors appA11yInvalid></textarea>
             <small class="form-text text-muted">{{'idpX509PublicCertRequired' | i18n}}</small>
             <div class="text-danger" *ngIf="samlForm.get('idpX509PublicCert').hasError('required')"
                 role="alert">
