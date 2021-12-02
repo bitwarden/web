@@ -62,8 +62,7 @@
                 </label>
                 <div class="input-group">
                     <input class="form-control" formControlName="keyConnectorUrl" id="keyConnectorUrl"
-                        appChangeClearErrors (change)="haveTestedKeyConnector = false"
-                        appChangeStripSpaces>
+                        appChangeClearErrors (change)="haveTestedKeyConnector = false" appChangeStripSpaces>
                     <div class="input-group-append">
                         <button type="button" class="btn btn-outline-secondary" (click)="validateKeyConnectorUrl()"
                             [disabled]="!enableTestKeyConnector">
