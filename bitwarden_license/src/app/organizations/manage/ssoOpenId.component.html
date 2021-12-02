@@ -94,12 +94,10 @@
         </div>
 
         <!-- Optional customizations -->
-        <div class="section-header d-flex flex-row align-items-center mt-5 mb-2"
-            (click)="toggleCustomizations()">
+        <div class="section-header d-flex flex-row align-items-center mt-3 mb-3" (click)="toggleCustomizations()">
             <h3 class="mb-0 mr-2" id="customizations-header">{{'openIdOptionalCustomizations' | i18n}}</h3>
-            <button class="mb-1 btn btn-link" href="#" appStopClick role="button" aria-controls="customizations"
-                [attr.aria-expanded]="showCustomizations"
-                aria-labelledby="customizations-header">
+            <button class="mb-1 btn btn-link" type="button" appStopClick role="button" aria-controls="customizations"
+                [attr.aria-expanded]="showCustomizations" aria-labelledby="customizations-header">
                 <i class="fa" aria-hidden="true"
                     [ngClass]="{'fa-chevron-down': !showCustomizations, 
                     'fa-chevron-up': showCustomizations}"></i>
