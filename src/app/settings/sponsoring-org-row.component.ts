@@ -31,8 +31,6 @@ export class SponsoringOrgRowComponent {
         try {
             this.revokeSponsorshipPromise = this.doRevokeSponsorship();
             await this.revokeSponsorshipPromise;
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('reclaimedFreePlan'));
-            this.sponsorshipRemoved.emit();
         } catch (e) {
             this.logService.error(e);
         }
@@ -58,5 +56,7 @@ export class SponsoringOrgRowComponent {
         }
 
         await this.apiService.deleteRevokeSponsorship(this.sponsoringOrg.id);
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('reclaimedFreePlan'));
+        this.sponsorshipRemoved.emit();
     }
 }
