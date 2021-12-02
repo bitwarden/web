@@ -68,6 +68,14 @@ export class RegisterComponent extends BaseRegisterComponent {
             } else {
                 this.referenceData.id = ('; ' + document.cookie).split('; reference=').pop().split(';').shift();
             }
+            // Are they coming from an email for sponsoring a families organization
+            if (qParams.sponsorshipToken != null) {
+                // After logging in redirect them to setup the families sponsorship
+                this.stateService.save('loginRedirect', {
+                    route: '/setup/families-for-enterprise',
+                    qParams: { token: qParams.sponsorshipToken },
+                });
+            }
             if (this.referenceData.id === '') {
                 this.referenceData.id = null;
             }

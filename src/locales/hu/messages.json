@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Logikai"
   },
+  "cfTypeLinked": {
+    "message": "Csatolt",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Eltávolítás"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Családnév"
+  },
+  "fullName": {
+    "message": "Teljes név"
   },
   "address1": {
     "message": "Cím 1"
@@ -832,9 +839,6 @@
   },
   "encExportAccountWarningDesc": {
     "message": "A fiók titkosítási kulcsai minden Bitwarden felhasználói fiókhoz egyediek, ezért nem importálhatunk titkosított exportálást egy másik fiókba."
-  },
-  "exportMasterPassword": {
-    "message": "A mesterjelszó megadása a széfadatok exportálásához."
   },
   "export": {
     "message": "Exportálás"
@@ -1736,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Az előfizetési terv 7 napos ingyenes próbaidőszakot tartalmaz. A választott fizetési mód nem kerül ráterhelésre a próbaidőszak végéig. Az számlázás alapja $INTERVAL$ időszak. Ez bármikor lemondható.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Az előfizetési terv 7 napos ingyenes próbaidőszakot tartalmaz. A választott fizetési mód nem kerül ráterhelésre a próbaidőszak végéig. Az számlázás alapja $INTERVAL$ időszak. Ez bármikor lemondható."
   },
   "paymentInformation": {
     "message": "Fizetési információ"
@@ -2811,10 +2809,6 @@
     "message": "A fiók felminősítése másik díjcsomagra az alábbi megadott információ alapján. Ellenőrizzük a fiókhoz adott aktív fizetési módot.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Vegyük fel a kapcsolatot az ügyfélszolgálattal a díjcsomag megváltoztatásához. Ellenőrizzük a fiókhoz hozzáadott fizetési módot.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "#$NUMBER$ számla",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2935,6 +2929,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "$COUNT$ felhasználónál több nem hívható meg magasabb szintű előfizetés nélkül.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "$COUNT$ felhasználónál több nem hívható meg magasabb szintű előfizetés nélkül. Az áttéréshez vegyük fel a kapcsolatot a vevőszolgálattal.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3524,7 +3536,7 @@
     "message": "Letiltva"
   },
   "sendLink": {
-    "message": "Send link",
+    "message": "Send hivatkozás",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "copySendLink": {
@@ -3594,7 +3606,7 @@
     "message": "Sürgősségi hozzáférés"
   },
   "emergencyAccessDesc": {
-    "message": "Sürgősségi hozzáférés kezelése és megadása megbízható kapcsolatoknak. A megbízható kapcsolatok sürgősségi helyzet esetén hozzáférést kérhetnek a fiókhoz vagy átvehetik azt. További információkat a funkció működésével kapcsolatban a súgó oldalon találhatsz."
+    "message": "Sürgősségi hozzáférés kezelése és megadása megbízható kapcsolatoknak. A megbízható kapcsolatok sürgősségi helyzet esetén hozzáférést kérhetnek a fiókhoz vagy átvehetik azt. További információkat a funkció működésével kapcsolatban a súgó oldalon találhatunk."
   },
   "emergencyAccessOwnerWarning": {
     "message": "Jelnleg egy vagy több szervezet tulajdonosa vagyunk. Ha átvételi hozzáférést adunk egy vészhelyzeti kapcsolattartónak, akkor az átvételt követően tulajdonosként használhatják az összes engedélyt."
@@ -3742,7 +3754,7 @@
     "message": "A szervezet tulajdonosai és adminisztrátorai mentesek az irányelv végrehajtása alól."
   },
   "personalOwnershipSubmitError": {
-    "message": "Egy vállalati házirend miatt korlátozásra került az elemek személyes tárolóba történő mentése. Módosítsa a Tulajdon opciót egy szervezetre és válasszon az elérhető gyűjtemények közül."
+    "message": "Egy vállalati házirend miatt korlátozásra került az elemek személyes tárolóba történő mentése. Módosítsuk a Tulajdon opciót egy szervezetre és válasszunk az elérhető gyűjtemények közül."
   },
   "disableSend": {
     "message": "Küdlés letiltása"
@@ -3816,6 +3828,9 @@
   },
   "accessReports": {
     "message": "Elérési jelentések"
+  },
+  "missingPermissions": {
+    "message": "Nincs megfelelő jogosultság a művelet végrehajtásához."
   },
   "manageAllCollections": {
     "message": "Összes gyűjtemény kezelése"
@@ -3977,7 +3992,7 @@
     "message": "Ezen a böngészőn a WebAuthn nem támogatott."
   },
   "webAuthnSuccess": {
-    "message": "<strong>A WebAuthn sikeresen ellenőrzésre került.!</strong><br>A fül már bezárható."
+    "message": "A WebAuthn sikeresen ellenőrzésre került.! A fül már bezárható."
   },
   "hintEqualsPassword": {
     "message": "A jelszavas tipp nem lehet azonos a jelszóval."
@@ -4026,6 +4041,15 @@
   },
   "eventResetSsoLink": {
     "message": "Sso hivatkozás visszaállítása $ID$ felhasználónál",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "firstSsoLogin": {
+    "message": "$ID$ logged in using Sso for the first time",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4448,5 +4472,104 @@
   },
   "ssoSettingsSaved": {
     "message": "Az egyszeri bejelentkezés konfigurációja mentésre került."
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "Nem érhető el a kulcskapcsoló. Próbáljuk újra később."
+  },
+  "keyConnectorUrl": {
+    "message": "Kulcskapcsoló webcím"
+  },
+  "sendVerificationCode": {
+    "message": "Send a verification code to your email"
+  },
+  "sendCode": {
+    "message": "Send Code"
+  },
+  "codeSent": {
+    "message": "Code Sent"
+  },
+  "verificationCode": {
+    "message": "Ellenőrző kód"
+  },
+  "confirmIdentity": {
+    "message": "Confirm your identity to continue."
+  },
+  "verificationCodeRequired": {
+    "message": "Az ellenőrző kód kötelező."
+  },
+  "invalidVerificationCode": {
+    "message": "Érvénytelen ellenőrző kód"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ jelenleg saját tárolású aláíráskulcsú SSO szervert használ. A mesterjelszó a továbbiakban nem szükséges a szervezeti tagsági bejelentkezéshez.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Szervezet elhagyása"
+  },
+  "removeMasterPassword": {
+    "message": "Mesterjelszó eltávolítása"
+  },
+  "removedMasterPassword": {
+    "message": "A mesterjelszó eltávolításra került."
+  },
+  "allowSso": {
+    "message": "SSO hitelesítés engedélyezése"
+  },
+  "allowSsoDesc": {
+    "message": "A beüzemeléskor a konfiguráció mentésre kerül és a tagok hitelesíthetnek az azonosítási szolgáltató hitelesítő adataival."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Engedélyezzük az",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO szabályzat",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "szolgáltatást az összes tag bejelentkezéséhez SSO szolgáltatással.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "A kulcscsatlakozó visszafejtésének beállításához SSO hitelesítés és egy szervezeti szabályzat szükséges."
+  },
+  "memberDecryptionOption": {
+    "message": "Tagi visszafejtési opciók"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "A hitelesítés után a tagok visszafejtik adataikat a mesterjelszavuk segítségével."
+  },
+  "keyConnector": {
+    "message": "Kulcskapcsoló"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Csatlakoztassuk az egyszeri bejelentkezést a által tárolt visszafejtési kulcsszerverhez. Ezzel a lehetőséggel a tagoknak nem kell használniuk fő jelszavukat a tároló adatainak visszafejtéséhez."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "A „Bejelentkezés SSO szolgáltatással és a kulcskapcsoló visszafejtésével” engedélyezve van. Ez a szabály csak a tulajdonosokra és a rendszergazdákra vonatkozik."
+  },
+  "enabledSso": {
+    "message": "Bekapcsolt SSO"
+  },
+  "disabledSso": {
+    "message": "Kikapcsolt SEO"
+  },
+  "enabledKeyConnector": {
+    "message": "Bekapcsolt kulcskapcsoló"
+  },
+  "disabledKeyConnector": {
+    "message": "Kikapcsolt kulcskapcsoló"
+  },
+  "keyConnectorWarning": {
+    "message": "A kulcskapcsoló beállítása után a tagok visszafejtési beállításai nem módosíthatók."
+  },
+  "migratedKeyConnector": {
+    "message": "Áttérve kulcskapcsolóra"
   }
 }

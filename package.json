@@ -1,6 +1,6 @@
 {
   "name": "bitwarden-web",
-  "version": "2.24.0",
+  "version": "2.24.4",
   "license": "GPL-3.0",
   "repository": "https://github.com/bitwarden/web",
   "scripts": {
@@ -29,7 +29,7 @@
     "dist:bit:selfhost": "npm run build:bit:selfhost:prod",
     "deploy": "npm run dist:bit && gh-pages -d build",
     "deploy:dev": "npm run dist:bit && gh-pages -d build -r git@github.com:kspearrin/bitwarden-web-dev.git",
-    "lint": "tslint 'src/**/*.ts' 'bitwarden_license/src/**/*.ts' || true",
+    "lint": "tslint 'src/**/*.ts' 'bitwarden_license/src/**/*.ts'",
     "lint:fix": "tslint 'src/**/*.ts' 'bitwarden_license/src/**/*.ts' --fix"
   },
   "devDependencies": {

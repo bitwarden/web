@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Булево"
   },
+  "cfTypeLinked": {
+    "message": "Свързано",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Премахване"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Фамилно име"
+  },
+  "fullName": {
+    "message": "Пълно име"
   },
   "address1": {
     "message": "Адрес 1"
@@ -832,9 +839,6 @@
   },
   "encExportAccountWarningDesc": {
     "message": "Ключовете за шифриране са уникални за всеки потребител, затова не може да внесете шифрирани данни от един потребител в регистрацията на друг."
-  },
-  "exportMasterPassword": {
-    "message": "Въведете главната парола, за да изнесете данните."
   },
   "export": {
     "message": "Изнасяне"
@@ -1736,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Планът ви идва с пробен период от 7 дена. Плащането няма се изиска преди това, след което ще се повтаря всеки $INTERVAL$. Може да се откажете по всяко време.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Планът ви идва с пробен период от 7 дена. Плащането няма се изиска преди това, след което ще се повтаря всеки $INTERVAL$. Може да се откажете по всяко време."
   },
   "paymentInformation": {
     "message": "Информация за плащането"
@@ -2811,10 +2809,6 @@
     "message": "Може да обновите плана си, като въведете изисканата информация по-долу. Уверете се, че имате действащ платежен метод към абонамента си.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Свържете се с поддръжката, за да смените плана си. Уверете се, че имате действащ платежен метод към абонамента си.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Фактура № $NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2935,6 +2929,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "Не можете да поканите повече от $COUNT$ потребители без да надградите плана си.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "Не можете да поканите повече от $COUNT$ потребители без да надградите плана си. Свържете се с поддръжката за надграждане.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,6 +3829,9 @@
   "accessReports": {
     "message": "Достъп до отчетите"
   },
+  "missingPermissions": {
+    "message": "Нямате нужните правомощия да извършите това действие."
+  },
   "manageAllCollections": {
     "message": "Управление на всички колекции"
   },
@@ -4026,6 +4041,15 @@
   },
   "eventResetSsoLink": {
     "message": "Подновяване на връзката за еднократна идентификация за потребител $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "firstSsoLogin": {
+    "message": "$ID$ logged in using Sso for the first time",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4432,21 +4456,120 @@
     "message": "Artifact Resolution Service URL"
   },
   "idpX509PublicCert": {
-    "message": "X509 Public Certificate"
+    "message": "Публичен сертификат X509"
   },
   "idpOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "Изходящ подписващ алгоритъм"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "Разрешаване на непоискан отговор при удостоверяване"
   },
   "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+    "message": "Забраняване на изходящи заявки за отписване"
   },
   "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+    "message": "Искане на подписани заявки за удостоверяване"
   },
   "ssoSettingsSaved": {
     "message": "Настройката на еднократната идентификация е запазена."
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "Конекторът за ключове е недостъпен. Опитайте отново по-късно."
+  },
+  "keyConnectorUrl": {
+    "message": "Адрес на конектора за ключове"
+  },
+  "sendVerificationCode": {
+    "message": "Send a verification code to your email"
+  },
+  "sendCode": {
+    "message": "Send Code"
+  },
+  "codeSent": {
+    "message": "Code Sent"
+  },
+  "verificationCode": {
+    "message": "Код за потвърждаване"
+  },
+  "confirmIdentity": {
+    "message": "Confirm your identity to continue."
+  },
+  "verificationCodeRequired": {
+    "message": "Кодът за потвърждение е задължителен."
+  },
+  "invalidVerificationCode": {
+    "message": "Грешен код за потвърждаване"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ използва еднократно удостоверяване със собствен сървър за ключове. Членовете на тази организация вече нямат нужда от главна парола за вписване.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Напускане на организацията"
+  },
+  "removeMasterPassword": {
+    "message": "Премахване на главната парола"
+  },
+  "removedMasterPassword": {
+    "message": "Главната парола е премахната."
+  },
+  "allowSso": {
+    "message": "Разрешаване на еднократното удостоверяване"
+  },
+  "allowSsoDesc": {
+    "message": "Once set up, your configuration will be saved and members will be able to authenticate using their Identity Provider credentials."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Включете",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "еднократното удостоверяване",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "за да задължите всички членове да се вписват чрез еднократно удостоверяване.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
+  },
+  "memberDecryptionOption": {
+    "message": "Member Decryption Options"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "След вписване, членовете ще дешифрират данните от трезорите си чрез главната си парола."
+  },
+  "keyConnector": {
+    "message": "Конектор за ключове"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Свържете вписването чрез еднократно удостоверяване със своя собствен сървър за ключове за дешифриране. Така няма да има нужда членовете да използват главната си парола, за да дешифрират данните от трезора си."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
+  },
+  "enabledSso": {
+    "message": "Еднократното удостоверяване е включено"
+  },
+  "disabledSso": {
+    "message": "Еднократното удостоверяване е изключено"
+  },
+  "enabledKeyConnector": {
+    "message": "Конекторът за ключове е включен"
+  },
+  "disabledKeyConnector": {
+    "message": "Конекторът за ключове е изключен"
+  },
+  "keyConnectorWarning": {
+    "message": "След като конекторът за ключове е бъде настроен, настройките на членовете за дешифриране няма да могат да бъда променени."
+  },
+  "migratedKeyConnector": {
+    "message": "Migrated to Key Connector"
   }
 }

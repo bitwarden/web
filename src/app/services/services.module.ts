@@ -42,6 +42,7 @@ import { ExportService } from 'jslib-common/services/export.service';
 import { FileUploadService } from 'jslib-common/services/fileUpload.service';
 import { FolderService } from 'jslib-common/services/folder.service';
 import { ImportService } from 'jslib-common/services/import.service';
+import { KeyConnectorService } from 'jslib-common/services/keyConnector.service';
 import { NotificationsService } from 'jslib-common/services/notifications.service';
 import { PasswordGenerationService } from 'jslib-common/services/passwordGeneration.service';
 import { PolicyService } from 'jslib-common/services/policy.service';
@@ -53,6 +54,7 @@ import { SyncService } from 'jslib-common/services/sync.service';
 import { TokenService } from 'jslib-common/services/token.service';
 import { TotpService } from 'jslib-common/services/totp.service';
 import { UserService } from 'jslib-common/services/user.service';
+import { UserVerificationService } from 'jslib-common/services/userVerification.service';
 import { VaultTimeoutService } from 'jslib-common/services/vaultTimeout.service';
 import { WebCryptoFunctionService } from 'jslib-common/services/webCryptoFunction.service';
 
@@ -70,6 +72,7 @@ import { FileUploadService as FileUploadServiceAbstraction }  from 'jslib-common
 import { FolderService as FolderServiceAbstraction } from 'jslib-common/abstractions/folder.service';
 import { I18nService as I18nServiceAbstraction } from 'jslib-common/abstractions/i18n.service';
 import { ImportService as ImportServiceAbstraction } from 'jslib-common/abstractions/import.service';
+import { KeyConnectorService as KeyConnectorServiceAbstraction } from 'jslib-common/abstractions/keyConnector.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService as MessagingServiceAbstraction } from 'jslib-common/abstractions/messaging.service';
 import { NotificationsService as NotificationsServiceAbstraction } from 'jslib-common/abstractions/notifications.service';
@@ -88,6 +91,7 @@ import { SyncService as SyncServiceAbstraction } from 'jslib-common/abstractions
 import { TokenService as TokenServiceAbstraction } from 'jslib-common/abstractions/token.service';
 import { TotpService as TotpServiceAbstraction } from 'jslib-common/abstractions/totp.service';
 import { UserService as UserServiceAbstraction } from 'jslib-common/abstractions/user.service';
+import { UserVerificationService as UserVerificationServiceAbstraction } from 'jslib-common/abstractions/userVerification.service';
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib-common/abstractions/vaultTimeout.service';
 import { ModalService } from './modal.service';
 
@@ -124,18 +128,21 @@ searchService = new SearchService(cipherService, consoleLogService, i18nService)
 const policyService = new PolicyService(userService, storageService, apiService);
 const sendService = new SendService(cryptoService, userService, apiService, fileUploadService, storageService,
     i18nService, cryptoFunctionService);
+const keyConnectorService = new KeyConnectorService(storageService, userService, cryptoService, apiService,
+    tokenService, consoleLogService);
 const vaultTimeoutService = new VaultTimeoutService(cipherService, folderService, collectionService,
     cryptoService, platformUtilsService, storageService, messagingService, searchService, userService, tokenService,
-    policyService, null, async () => messagingService.send('logout', { expired: false }));
+    policyService, keyConnectorService, null, async () => messagingService.send('logout', { expired: false }));
 const syncService = new SyncService(userService, apiService, settingsService,
     folderService, cipherService, cryptoService, collectionService, storageService, messagingService, policyService,
-    sendService, consoleLogService, async (expired: boolean) => messagingService.send('logout', { expired: expired }));
+    sendService, consoleLogService, tokenService, keyConnectorService,
+    async (expired: boolean) => messagingService.send('logout', { expired: expired }));
 const passwordGenerationService = new PasswordGenerationService(cryptoService, storageService, policyService);
 const totpService = new TotpService(storageService, cryptoFunctionService, consoleLogService);
 const containerService = new ContainerService(cryptoService);
 const authService = new AuthService(cryptoService, apiService,
     userService, tokenService, appIdService, i18nService, platformUtilsService, messagingService, vaultTimeoutService,
-    consoleLogService, cryptoFunctionService);
+    consoleLogService, cryptoFunctionService, environmentService, keyConnectorService);
 const exportService = new ExportService(folderService, cipherService, apiService, cryptoService);
 const importService = new ImportService(cipherService, folderService, apiService, i18nService, collectionService,
     platformUtilsService, cryptoService);
@@ -143,6 +150,7 @@ const notificationsService = new NotificationsService(userService, syncService, 
     environmentService, async () => messagingService.send('logout', { expired: true }), consoleLogService);
 const auditService = new AuditService(cryptoFunctionService, apiService);
 const eventLoggingService = new EventLoggingService(storageService, apiService, userService, cipherService, consoleLogService);
+const userVerificationService = new UserVerificationService(cryptoService, i18nService, apiService);
 
 containerService.attachToWindow(window);
 
@@ -226,6 +234,8 @@ export function initFactory(): Function {
         { provide: EventLoggingServiceAbstraction, useValue: eventLoggingService },
         { provide: PolicyServiceAbstraction, useValue: policyService },
         { provide: SendServiceAbstraction, useValue: sendService },
+        { provide: KeyConnectorServiceAbstraction, useValue: keyConnectorService },
+        { provide: UserVerificationServiceAbstraction, useValue: userVerificationService },
         { provide: PasswordRepromptServiceAbstraction, useClass: PasswordRepromptService },
         { provide: LogService, useValue: consoleLogService },
         {

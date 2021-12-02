@@ -48,6 +48,7 @@ export class OrganizationPlansComponent implements OnInit {
     @Input() organizationId: string;
     @Input() showFree = true;
     @Input() showCancel = false;
+    @Input() acceptingSponsorship = false;
     @Input() product: ProductType = ProductType.Free;
     @Input() plan: PlanType = PlanType.Free;
     @Input() providerId: string;
@@ -67,6 +68,7 @@ export class OrganizationPlansComponent implements OnInit {
     productTypes = ProductType;
     formPromise: Promise<any>;
     singleOrgPolicyBlock: boolean = false;
+    discount = 0;
 
     plans: PlanResponse[];
 
@@ -120,9 +122,17 @@ export class OrganizationPlansComponent implements OnInit {
         }
 
         validPlans = validPlans
-            .filter(plan => !plan.legacyYear
-                && !plan.disabled
-                && (plan.isAnnual || plan.product === this.productTypes.Free));
+        .filter(plan => !plan.legacyYear
+            && !plan.disabled
+            && (plan.isAnnual || plan.product === this.productTypes.Free));
+
+        if (this.acceptingSponsorship) {
+            const familyPlan = this.plans.find(plan => plan.type === PlanType.FamiliesAnnually);
+            this.discount = familyPlan.basePrice;
+            validPlans = [
+                familyPlan,
+            ];
+        }
 
         return validPlans;
     }
@@ -172,7 +182,7 @@ export class OrganizationPlansComponent implements OnInit {
         if (this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon) {
             subTotal += this.selectedPlan.premiumAccessOptionPrice;
         }
-        return subTotal;
+        return subTotal - this.discount;
     }
 
     get freeTrial() {
@@ -187,6 +197,16 @@ export class OrganizationPlansComponent implements OnInit {
 
     get total() {
         return (this.subtotal + this.taxCharges) || 0;
+    }
+
+    get paymentDesc() {
+        if (this.acceptingSponsorship) {
+            return this.i18nService.t('paymentSponsored');
+        } else if (this.freeTrial && this.createOrganization) {
+            return this.i18nService.t('paymentChargedWithTrial');
+        } else {
+            return this.i18nService.t('paymentCharged', this.i18nService.t(this.selectedPlanInterval));
+        }
     }
 
     changedProduct() {
@@ -235,7 +255,7 @@ export class OrganizationPlansComponent implements OnInit {
         }
 
         try {
-            const doSubmit = async () => {
+            const doSubmit = async (): Promise<string> => {
                 let orgId: string = null;
                 if (this.createOrganization) {
                     const shareKey = await this.cryptoService.makeShareKey();
@@ -259,12 +279,16 @@ export class OrganizationPlansComponent implements OnInit {
 
                 await this.apiService.refreshIdentityToken();
                 await this.syncService.fullSync(true);
-                this.router.navigate(['/organizations/' + orgId]);
+                if (!this.acceptingSponsorship) {
+                    this.router.navigate(['/organizations/' + orgId]);
+                }
+
+                return orgId;
             };
 
             this.formPromise = doSubmit();
-            await this.formPromise;
-            this.onSuccess.emit();
+            const organizationId = await this.formPromise;
+            this.onSuccess.emit({ organizationId: organizationId });
         } catch (e) {
             this.logService.error(e);
         }

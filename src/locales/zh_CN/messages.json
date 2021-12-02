@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "布尔"
   },
+  "cfTypeLinked": {
+    "message": "已链接",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "移除"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "姓"
+  },
+  "fullName": {
+    "message": "全名"
   },
   "address1": {
     "message": "地址 1"
@@ -748,7 +755,7 @@
     "message": "FIDO2 WebAuthn"
   },
   "webAuthnDesc": {
-    "message": "使用任何 WebAuthn 安全密钥访问您的帐户。"
+    "message": "使用任何启用了 WebAuthn 的安全钥匙访问您的帐户。"
   },
   "webAuthnMigrated": {
     "message": "（迁移自 FIDO）"
@@ -833,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "账户加密密钥对每个 Bitwarden 用户账户都是唯一的，所以您不能将加密的导出导入到另一个账户。"
   },
-  "exportMasterPassword": {
-    "message": "输入主密码来导出你的密码库数据。"
-  },
   "export": {
     "message": "导出"
   },
@@ -900,7 +904,7 @@
     "message": "更改电子邮件"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "继续操作将更改您的帐户电子邮件地址。这不会更改用于双重身份验证的电子邮件地址。 您可以在两步登录设置中更改它。"
+    "message": "继续操作将更改您的帐户电子邮件地址。这不会更改用于双重身份验证的电子邮件地址。您可以在两步登录设置中更改它。"
   },
   "newEmail": {
     "message": "新电子邮件"
@@ -963,7 +967,7 @@
     }
   },
   "kdfIterationsWarning": {
-    "message": "如果将 KDF 迭代设置得太高，可能会在 CPU 速度较慢的设备上登录（以及解锁）Bitwarden 时性能变差。建议您以 $INCREMENT$ 的增量值递增，然后在所有设备上行进测试。",
+    "message": "如果将 KDF 迭代设置得太高，可能会在 CPU 速度较慢的设备上登录（以及解锁）Bitwarden 时性能变差。建议您以 $INCREMENT$ 的增量值递增，然后在所有设备上进行测试。",
     "placeholders": {
       "increment": {
         "content": "$1",
@@ -1090,7 +1094,7 @@
     "message": "选项"
   },
   "optionsDesc": {
-    "message": "个性化你的网页版密码库体验。"
+    "message": "自定义您的网页版密码库体验。"
   },
   "optionsUpdated": {
     "message": "选项已更新"
@@ -1128,7 +1132,7 @@
     "message": "域名规则"
   },
   "domainRulesDesc": {
-    "message": "如果您在多个不同网站之间使用同一个登陆信息，您可以把这些网站标记为 “通用”。Bitwarden 会为您设置 “全局” 域名。"
+    "message": "如果您在多个不同网站之间使用同一个登陆信息，您可以把这些网站标记为「通用」。Bitwarden 会为您设置「全局」域名。"
   },
   "globalEqDomains": {
     "message": "全局通用域名"
@@ -1149,7 +1153,7 @@
     "message": "添加自定义域名"
   },
   "newCustomDomainDesc": {
-    "message": "输入用逗号分隔的域名列表。只能使用主域名，不需要输入子域名。例如，输入 \"google.com\" 而不是 \"www.google.com\"。您也可以输入 \"androidapp://package.name\" 以将 android 应用程序与其他网站域名关联。"
+    "message": "输入用逗号分隔的域名列表。只能输入「基础」域名，不要输入子域名。例如，输入「google.com」而不是「www.google.com」。您也可以输入「androidapp://package.name」以将 Android 应用程序与其他网站域名关联。"
   },
   "customDomainX": {
     "message": "自定义域名 $INDEX$",
@@ -1259,7 +1263,7 @@
     "message": "此两步登录提供程序已禁用。"
   },
   "twoFactorYubikeyAdd": {
-    "message": "向您的帐户添加新 YubiKey"
+    "message": "将一个新的 YubiKey 设备添加到您的帐户"
   },
   "twoFactorYubikeyPlugIn": {
     "message": "将 YubiKey 插入您电脑的 USB 端口。"
@@ -1271,7 +1275,7 @@
     "message": "按下 YubiKey 的按钮。"
   },
   "twoFactorYubikeySaveForm": {
-    "message": "保存表单"
+    "message": "保存表单。"
   },
   "twoFactorYubikeyWarning": {
     "message": "由于平台的限制，YubiKey 不能在所有 Bitwarden 应用程序上使用。您应该启用另一个两步登录提供程序，以便在无法使用 YubiKey 时可以访问您的帐户。支持的平台："
@@ -1367,7 +1371,7 @@
     "message": "给安全钥匙一个友好的名称来标识它。"
   },
   "twoFactorU2fPlugInReadKey": {
-    "message": "将安全钥匙插入计算机的 USB 端口，然后单击“读取钥匙”按钮。"
+    "message": "将安全钥匙插入计算机的 USB 端口，然后单击「读取钥匙」按钮。"
   },
   "twoFactorU2fTouchButton": {
     "message": "如果安全钥匙有按钮，请按下它。"
@@ -1385,7 +1389,7 @@
     "message": "等待您按下安全钥匙上的按钮"
   },
   "twoFactorU2fClickSave": {
-    "message": "单击下面的 \"保存\" 按钮，以启用此安全钥匙进行两步登录。"
+    "message": "单击下面的「保存」按钮，以启用此安全钥匙进行两步登录。"
   },
   "twoFactorU2fProblemReadingTryAgain": {
     "message": "读取安全钥匙时出现问题，请再试一次。"
@@ -1736,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "您的计划包含了 7 天的免费试用期。在试用期结束前，不会从您的支付方式中扣款。随后将会每 $INTERVAL$ 定期扣款。您可以随时取消。",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "您的计划包含了 7 天的免费试用期。在试用期结束前，不会从您的支付方式中扣款。您可以随时取消。"
   },
   "paymentInformation": {
     "message": "支付信息"
@@ -2155,7 +2153,7 @@
     "message": "策略"
   },
   "singleSignOn": {
-    "message": "单点登录（SSO）"
+    "message": "单点登录"
   },
   "editPolicy": {
     "message": "编辑策略"
@@ -2704,7 +2702,7 @@
     "message": "首先必须验证您帐户的电子邮件地址。"
   },
   "checkInboxForVerification": {
-    "message": "检查您的电子邮箱以获取验证链接。"
+    "message": "检查您的电子邮件收件箱以获取验证链接。"
   },
   "emailVerified": {
     "message": "您的电子邮件已验证。"
@@ -2804,15 +2802,11 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "更改计划",
+    "message": "升级计划",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "为了将您的帐户升级到另一个计划，请提供以下信息。同时请确保您账户已添加有一个有效的支付方式。",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
-  "changeBillingPlanDesc": {
-    "message": "如果您想更改计划，请联系客户支持。同时请确保您账户已添加有一个有效的支付方式。。",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
@@ -2889,7 +2883,7 @@
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
-    "message": "最大潜在席位成本"
+    "message": "最大潜在席位费用"
   },
   "addSeats": {
     "message": "添加席位",
@@ -2935,6 +2929,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "如果不升级你的计划，你不能邀请超过 $COUNT$ 位用户。",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "如果不升级你的计划，你不能邀请超过 $COUNT$ 位用户。请联系客户支持进行升级。",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3032,7 +3044,7 @@
     "message": "筛选器"
   },
   "vaultTimeout": {
-    "message": "密码库超时"
+    "message": "密码库超时时间"
   },
   "vaultTimeoutDesc": {
     "message": "选择您的密码库何时超时并执行所选的动作。"
@@ -3157,7 +3169,7 @@
     "message": "您的 API 密钥拥有组织的全部访问权限。请将其存放在安全的地方。"
   },
   "userApiKeyDesc": {
-    "message": "您的 API 密钥可用于在 Bitwarden CLI 中进行身份认证。"
+    "message": "您的 API 密钥可用于在 Bitwarden CLI 中进行身份验证。"
   },
   "userApiKeyWarning": {
     "message": "您的 API 密钥是另一套等效的身份验证机制。请严格保密。"
@@ -3269,7 +3281,7 @@
     "message": "已锁定的密码库需要重新输入主密码才能再次访问。"
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "已注销的密码库需要重新认证才能再次访问。"
+    "message": "已注销的密码库需要重新验证才能再次访问。"
   },
   "lock": {
     "message": "锁定",
@@ -3382,7 +3394,7 @@
     "message": "设置主密码"
   },
   "ssoCompleteRegistration": {
-    "message": "为使用单点登录（SSO）功能，请设置一个主密码以访问和保护您的密码库。"
+    "message": "要使用单点登录（SSO）功能，请设置一个主密码以访问和保护您的密码库。"
   },
   "identifier": {
     "message": "标识符"
@@ -3391,13 +3403,13 @@
     "message": "组织标识符"
   },
   "ssoLogInWithOrgIdentifier": {
-    "message": "要使用您组织的单点登录（SSO）门户登录。请首先输入您组织的标识符。"
+    "message": "要使用您组织的单点登录门户登录。请首先输入您组织的标识符。"
   },
   "enterpriseSingleSignOn": {
-    "message": "企业单点登录（SSO）"
+    "message": "企业单点登录"
   },
   "ssoHandOff": {
-    "message": "您现在可以在扩展中关闭此标签并继续。"
+    "message": "您现在可以在扩展中关闭此标签页并继续。"
   },
   "includeAllTeamsFeatures": {
     "message": "包含所有团队版功能"
@@ -3427,7 +3439,7 @@
     "message": "限制用户加入任何其他组织。"
   },
   "singleOrgBlockCreateMessage": {
-    "message": "您当前的组织策略禁止您加入多个组织。 请联系您的组织管理员，或从其他 Bitwarden 帐户注册。"
+    "message": "您当前的组织策略禁止您加入多个组织。请联系您的组织管理员，或从其他 Bitwarden 帐户注册。"
   },
   "singleOrgPolicyWarning": {
     "message": "不是所有者或管理员并且已是其他组织的成员的组织成员将从您的组织中移除。"
@@ -3436,7 +3448,7 @@
     "message": "单点登录身份验证"
   },
   "requireSsoPolicyDesc": {
-    "message": "要求用户使用企业单点登录（SSO）方式登录。"
+    "message": "要求用户使用企业单点登录方式登录。"
   },
   "prerequisite": {
     "message": "先决条件"
@@ -3736,7 +3748,7 @@
     "message": "个人所有权"
   },
   "personalOwnershipPolicyDesc": {
-    "message": "要求用户通过移除个人所有权选项将密码库项目保存到组织。"
+    "message": "通过移除个人所有权选项，要求用户将密码库项目保存到组织。"
   },
   "personalOwnershipExemption": {
     "message": "组织的所有者和管理员豁免此策略。"
@@ -3748,7 +3760,7 @@
     "message": "禁用 Send"
   },
   "disableSendPolicyDesc": {
-    "message": "不允许用户创建和编辑 Bitwarden Send。仍允许删除现有的 Send。",
+    "message": "不允许用户创建和编辑 Bitwarden Send。但允许删除现有的 Send。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
@@ -3816,6 +3828,9 @@
   },
   "accessReports": {
     "message": "访问报告"
+  },
+  "missingPermissions": {
+    "message": "您缺乏执行此操作所需的权限。"
   },
   "manageAllCollections": {
     "message": "管理所有集合"
@@ -4033,6 +4048,15 @@
       }
     }
   },
+  "firstSsoLogin": {
+    "message": "$ID$ logged in using Sso for the first time",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "重置密码"
   },
@@ -4115,7 +4139,7 @@
     "message": "主题"
   },
   "themeDesc": {
-    "message": "为您的网页密码库库选择一个主题。"
+    "message": "为您的网页密码库选择一个主题。"
   },
   "themeSystem": {
     "message": "使用系统主题"
@@ -4284,16 +4308,16 @@
     "message": "您的主密码最近被您组织的管理员更改过。要访问密码库，您必须立即更新主密码。继续操作将使您退出当前会话，要求您重新登录。其他设备上的活动会话可能会继续保持活动状态长达一小时。"
   },
   "maximumVaultTimeout": {
-    "message": "密码库超时"
+    "message": "密码库超时时间"
   },
   "maximumVaultTimeoutDesc": {
-    "message": "为所有用户配置最大密码库超时。"
+    "message": "为所有用户配置最大密码库超时时间。"
   },
   "maximumVaultTimeoutLabel": {
-    "message": "最大密码库超时"
+    "message": "最大密码库超时时间"
   },
   "invalidMaximumVaultTimeout": {
-    "message": "无效的最大密码库超时。"
+    "message": "无效的最大密码库超时时间。"
   },
   "hours": {
     "message": "小时"
@@ -4302,7 +4326,7 @@
     "message": "分钟"
   },
   "vaultTimeoutPolicyInEffect": {
-    "message": "您的组织策略正在影响您的密码库超时。最大允许的密码库超时时间是 $HOURS$ 小时 $MINUTES$ 分钟。",
+    "message": "您的组织策略正在影响您的密码库超时时间。最大允许的密码库超时时间是 $HOURS$ 小时 $MINUTES$ 分钟。",
     "placeholders": {
       "hours": {
         "content": "$1",
@@ -4315,10 +4339,10 @@
     }
   },
   "customVaultTimeout": {
-    "message": "自定义密码库超时"
+    "message": "自定义密码库超时时间"
   },
   "vaultTimeoutToLarge": {
-    "message": "您的密码库超时超出了您的组织设置的限制。"
+    "message": "您的密码库超时时间超出了您的组织设置的限制。"
   },
   "disablePersonalVaultExport": {
     "message": "禁用个人密码库导出"
@@ -4342,10 +4366,10 @@
     "message": "OpenID 连接配置"
   },
   "samlSpConfig": {
-    "message": "SAML 服务提供商配置"
+    "message": "SAML 服务提供程序配置"
   },
   "samlIdpConfig": {
-    "message": "SAML 身份提供商配置"
+    "message": "SAML 身份提供程序配置"
   },
   "callbackPath": {
     "message": "回调路径"
@@ -4354,7 +4378,7 @@
     "message": "注销回调路径"
   },
   "authority": {
-    "message": "权威"
+    "message": "权威机构"
   },
   "clientId": {
     "message": "客户 ID"
@@ -4387,7 +4411,7 @@
     "message": "请求的身份验证上下文类参考值（acr_value）"
   },
   "expectedReturnAcrValue": {
-    "message": "预期的 \"acr\" 声明值响应（acr 验证）"
+    "message": "响应中预期的「acr」声明值（acr 认证）"
   },
   "spEntityId": {
     "message": "SP 实体 ID"
@@ -4411,7 +4435,7 @@
     "message": "最小入站签名算法"
   },
   "spWantAssertionsSigned": {
-    "message": "要求断言被签名"
+    "message": "希望断言被签名"
   },
   "spValidateCertificates": {
     "message": "验证证书"
@@ -4444,9 +4468,108 @@
     "message": "禁用出站注销请求"
   },
   "idpWantAuthnRequestsSigned": {
-    "message": "要求身份验证请求被签名"
+    "message": "希望验证请求被签名"
   },
   "ssoSettingsSaved": {
     "message": "单点登录配置已保存。"
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "无法连接到密钥连接器，请稍后再试。"
+  },
+  "keyConnectorUrl": {
+    "message": "密钥连接器 URL"
+  },
+  "sendVerificationCode": {
+    "message": "Send a verification code to your email"
+  },
+  "sendCode": {
+    "message": "Send Code"
+  },
+  "codeSent": {
+    "message": "Code Sent"
+  },
+  "verificationCode": {
+    "message": "验证码"
+  },
+  "confirmIdentity": {
+    "message": "Confirm your identity to continue."
+  },
+  "verificationCodeRequired": {
+    "message": "必须填写验证码。"
+  },
+  "invalidVerificationCode": {
+    "message": "无效的验证码"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ 使用自托管密钥服务器 SSO。这个组织的成员登录时将不再需要主密码。",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "离开组织"
+  },
+  "removeMasterPassword": {
+    "message": "移除主密码"
+  },
+  "removedMasterPassword": {
+    "message": "主密码已移除。"
+  },
+  "allowSso": {
+    "message": "允许 SSO 身份验证"
+  },
+  "allowSsoDesc": {
+    "message": "设置后，您的配置将被保存，成员将能够使用他们的身份提供程序凭据进行身份验证。"
+  },
+  "ssoPolicyHelpStart": {
+    "message": "启用",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO 身份验证策略",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "要求所有会员使用 SSO 登录。",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "需要先设置密钥连接器解密，然后才能启用 SSO 身份验证和单一组织策略。"
+  },
+  "memberDecryptionOption": {
+    "message": "成员解密选项"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "验证后，成员将使用他们的主密码来解密密码库数据。"
+  },
+  "keyConnector": {
+    "message": "密钥连接器"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "连接 SSO 登录到您的自托管解密密钥服务器。使用此选项，成员将不再需要使用他们的主密码来解密密码库数据。联系 Bitwarden 支持以获取设置指导。"
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "“SSO 登录和密钥连接器解密”已启用。此策略仅适用于所有者和管理员。"
+  },
+  "enabledSso": {
+    "message": "已启用 SSO"
+  },
+  "disabledSso": {
+    "message": "已禁用 SSO"
+  },
+  "enabledKeyConnector": {
+    "message": "已启用密钥连接器"
+  },
+  "disabledKeyConnector": {
+    "message": "已禁用密钥连接器"
+  },
+  "keyConnectorWarning": {
+    "message": "一旦成员开始使用 密钥连接器，您的组织就无法恢复到主密码解密。 仅当您对部署和管理密钥服务器感到满意时才继续。"
+  },
+  "migratedKeyConnector": {
+    "message": "已迁移到密钥连接器"
   }
 }

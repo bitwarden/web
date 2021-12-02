@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Áno/Nie"
   },
+  "cfTypeLinked": {
+    "message": "Prepojené",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Odstrániť"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Priezvisko"
+  },
+  "fullName": {
+    "message": "Celé meno"
   },
   "address1": {
     "message": "Adresa 1"
@@ -832,9 +839,6 @@
   },
   "encExportAccountWarningDesc": {
     "message": "Šifrovacie kľúče účtu sú jedinečné pre každý používateľský účet Bitwarden, takže nemôžete importovať šifrovaný export do iného účtu."
-  },
-  "exportMasterPassword": {
-    "message": "Zadajte vaše hlavné heslo pre export údajov trezoru."
   },
   "export": {
     "message": "Exportovať"
@@ -1736,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Váš plán ponúka 7-dňovú skúšobnú dobu zadarmo. Z vašej karty nebude stiahnutý poplatok, kým sa neskončí skúšobná doba. Následne sa platba vykoná každý $INTERVAL$. Plán môžete kedykoľvek zrušiť.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Váš plán ponúka 7-dňovú skúšobnú dobu zadarmo. Z vašej platobnej metódy nebude stiahnutý poplatok, kým sa neskončí skúšobná doba. Plán môžete kedykoľvek zrušiť."
   },
   "paymentInformation": {
     "message": "Informácie o platbe"
@@ -2804,15 +2802,11 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Zmena plánu",
+    "message": "Navýšiť plán",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "Upgrade your account to another plan be providing the information below. Please ensure that you have an active payment method added to the account.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
-  "changeBillingPlanDesc": {
-    "message": "Ak by ste chceli zmeniť svoj plán, obráťte sa na zákaznícku podporu. Uistite sa prosím, že máte aktívnu platobnú metódu nastavenú pre tento účet.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
@@ -2935,6 +2929,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "Nemôžete pozvať viac ako $COUNT$ používateľov bez navýšenia vášho plánu.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "Nemôžete pozvať viac ako $COUNT$ používateľov bez navýšenia vášho plánu. Pre navýšenie plánu kontaktujte zákaznícku podporu.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,6 +3829,9 @@
   "accessReports": {
     "message": "Prístup k reportom"
   },
+  "missingPermissions": {
+    "message": "Na vykonanie tejto akcie vám chýbajú potrebné povolenia."
+  },
   "manageAllCollections": {
     "message": "Spravovať všetky zbierky"
   },
@@ -4026,6 +4041,15 @@
   },
   "eventResetSsoLink": {
     "message": "Resetovať odkaz SSO pre používateľa $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "firstSsoLogin": {
+    "message": "$ID$ logged in using Sso for the first time",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4448,5 +4472,104 @@
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "Unable to reach the Key Connector, try again later."
+  },
+  "keyConnectorUrl": {
+    "message": "Key Connector URL"
+  },
+  "sendVerificationCode": {
+    "message": "Send a verification code to your email"
+  },
+  "sendCode": {
+    "message": "Send Code"
+  },
+  "codeSent": {
+    "message": "Code Sent"
+  },
+  "verificationCode": {
+    "message": "Overovací kód"
+  },
+  "confirmIdentity": {
+    "message": "Confirm your identity to continue."
+  },
+  "verificationCodeRequired": {
+    "message": "Overovací kód je povinný."
+  },
+  "invalidVerificationCode": {
+    "message": "Neplatný verifikačný kód"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ používa SSO s vlastným kľúčovým serverom. Na prihlásenie členov tejto organizácie už nie je potrebné hlavné heslo.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Opustiť organizáciu"
+  },
+  "removeMasterPassword": {
+    "message": "Odstrániť hlavné heslo"
+  },
+  "removedMasterPassword": {
+    "message": "Hlavné heslo bolo odstránené."
+  },
+  "allowSso": {
+    "message": "Allow SSO authentication"
+  },
+  "allowSsoDesc": {
+    "message": "Once set up, your configuration will be saved and members will be able to authenticate using their Identity Provider credentials."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Enable the",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO Authentication policy",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "to require all members to log in with SSO.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
+  },
+  "memberDecryptionOption": {
+    "message": "Member Decryption Options"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Once authenticated, members will decrypt vault data using their Master Passwords."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt vault data. Contact Bitwarden Support for set up assistance."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
+  },
+  "enabledSso": {
+    "message": "SSO povolené"
+  },
+  "disabledSso": {
+    "message": "SSO zakázané"
+  },
+  "enabledKeyConnector": {
+    "message": "Enabled Key Connector"
+  },
+  "disabledKeyConnector": {
+    "message": "Disabled Key Connector"
+  },
+  "keyConnectorWarning": {
+    "message": "Once members begin using Key Connector, your Organization cannot revert to Master Password decryption. Proceed only if you are comfortable deploying and managing a key server."
+  },
+  "migratedKeyConnector": {
+    "message": "Migrated to Key Connector"
   }
 }

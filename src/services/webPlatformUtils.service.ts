@@ -156,7 +156,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     supportsWebAuthn(win: Window): boolean {
-        return (typeof(PublicKeyCredential) !== 'undefined');
+        return (typeof (PublicKeyCredential) !== 'undefined');
     }
 
     supportsDuo(): boolean {
@@ -304,8 +304,15 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     onDefaultSystemThemeChange(callback: ((theme: ThemeType.Light | ThemeType.Dark) => unknown)) {
-        this.prefersColorSchemeDark.addEventListener('change', ({ matches }) => {
-            callback(matches ? ThemeType.Dark : ThemeType.Light);
-        });
+        try {
+            this.prefersColorSchemeDark.addEventListener('change', ({ matches }) => {
+                callback(matches ? ThemeType.Dark : ThemeType.Light);
+            });
+        } catch (e) {
+            // Safari older than v14
+            this.prefersColorSchemeDark.addListener(ev => {
+                callback(ev.matches ? ThemeType.Dark : ThemeType.Light);
+            });
+        }
     }
 }

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { PolicyType } from 'jslib-common/enums/policyType';
 
@@ -29,8 +30,15 @@ export class ResetPasswordPolicyComponent extends BasePolicyComponent {
     });
 
     defaultTypes: { name: string; value: string; }[];
+    showKeyConnectorInfo: boolean = false;
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, private userService: UserService) {
         super();
+    }
+
+    async ngOnInit() {
+        super.ngOnInit();
+        const organization = await this.userService.getOrganization(this.policyResponse.organizationId);
+        this.showKeyConnectorInfo = organization.keyConnectorEnabled;
     }
 }

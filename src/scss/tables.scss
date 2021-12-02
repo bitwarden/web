@@ -68,6 +68,10 @@
         }
     }
 
+    td.table-action-right {
+        text-align: right;
+    }
+
     tr:not(:hover) td.table-list-options {
         > .dropdown:not(.show) button:not(:focus):not(:active), > button:not(:focus):not(:active) {
             @extend .sr-only;

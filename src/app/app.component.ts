@@ -32,6 +32,7 @@ import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { EventService } from 'jslib-common/abstractions/event.service';
 import { FolderService } from 'jslib-common/abstractions/folder.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { KeyConnectorService } from 'jslib-common/abstractions/keyConnector.service';
 import { NotificationsService } from 'jslib-common/abstractions/notifications.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
@@ -92,7 +93,8 @@ export class AppComponent implements OnDestroy, OnInit {
         private sanitizer: DomSanitizer, private searchService: SearchService,
         private notificationsService: NotificationsService, private routerService: RouterService,
         private stateService: StateService, private eventService: EventService,
-        private policyService: PolicyService, protected policyListService: PolicyListService) { }
+        private policyService: PolicyService, protected policyListService: PolicyListService,
+        private keyConnectorService: KeyConnectorService) { }
 
     ngOnInit() {
         this.ngZone.runOutsideAngular(() => {
@@ -163,6 +165,10 @@ export class AppComponent implements OnDestroy, OnInit {
                     case 'setFullWidth':
                         this.setFullWidth();
                         break;
+                    case 'convertAccountToKeyConnector':
+                        this.keyConnectorService.setConvertAccountRequired(true);
+                        this.router.navigate(['/remove-password']);
+                        break;
                     default:
                         break;
                 }
@@ -218,6 +224,7 @@ export class AppComponent implements OnDestroy, OnInit {
             this.policyService.clear(userId),
             this.passwordGenerationService.clear(),
             this.stateService.purge(),
+            this.keyConnectorService.clear(),
         ]);
 
         this.searchService.clearIndex();
