@@ -64,7 +64,6 @@ export class AppComponent implements OnDestroy, OnInit {
 
     toasterConfig: Partial<IndividualConfig> = {
         closeButton: true,
-        timeOut: 0,
     };
 
     private lastActivity: number = null;
