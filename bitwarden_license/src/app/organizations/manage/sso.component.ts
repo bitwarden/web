@@ -27,10 +27,14 @@ import {
 import { requiredIf } from 'jslib-angular/validators/requiredIf.validator';
 
 import {
+    OpenIdConnectRedirectBehavior,
     Saml2BindingType,
+    Saml2NameIdFormat,
     Saml2SigningBehavior,
     SsoType,
 } from 'jslib-common/enums/ssoEnums';
+
+const defaultSigningAlgorithm = 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256';
 
 @Component({
     selector: 'app-org-manage-sso',
@@ -53,6 +57,7 @@ export class SsoComponent implements OnInit {
         { name: 'SAML 2.0', value: SsoType.Saml2 },
     ];
 
+
     readonly ssoType = SsoType;
 
     loading = true;
@@ -70,7 +75,7 @@ export class SsoComponent implements OnInit {
         clientId: ['', Validators.required],
         clientSecret: ['', Validators.required],
         metadataAddress: [],
-        redirectBehavior: [],
+        redirectBehavior: [OpenIdConnectRedirectBehavior.RedirectGet],
         getClaimsFromUserInfoEndpoint: [],
         additionalScopes: [],
         additionalUserIdClaimTypes: [],
@@ -81,22 +86,22 @@ export class SsoComponent implements OnInit {
     });
 
     samlForm = this.fb.group({
-        spNameIdFormat: [],
-        spOutboundSigningAlgorithm: [],
-        spSigningBehavior: [],
-        spMinIncomingSigningAlgorithm: [],
+        spNameIdFormat: [Saml2NameIdFormat.NotConfigured],
+        spOutboundSigningAlgorithm: [defaultSigningAlgorithm],
+        spSigningBehavior: [Saml2SigningBehavior.IfIdpWantAuthnRequestsSigned],
+        spMinIncomingSigningAlgorithm: [defaultSigningAlgorithm],
         spWantAssertionsSigned: [],
         spValidateCertificates: [],
 
         idpEntityId: ['', Validators.required],
-        idpBindingType: [],
+        idpBindingType: [Saml2BindingType.HttpRedirect],
         idpSingleSignOnServiceUrl: [],
         idpSingleLogoutServiceUrl: [],
         idpArtifactResolutionServiceUrl: ['',
             requiredIf(control => control.parent?.get('idpBindingType').value === Saml2BindingType.Artifact)],
         idpX509PublicCert: ['',
             requiredIf(control => control.parent?.get('spSigningBehavior').value !== Saml2SigningBehavior.Never)],
-        idpOutboundSigningAlgorithm: [],
+        idpOutboundSigningAlgorithm: [defaultSigningAlgorithm],
         idpAllowUnsolicitedAuthnResponse: [],
         idpAllowOutboundLogoutRequests: [true], // TODO: update in model, handle transition
         idpWantAuthnRequestsSigned: [],
@@ -168,8 +173,8 @@ export class SsoComponent implements OnInit {
         this.formPromise = this.apiService.postOrganizationSso(this.organizationId, request);
 
         try {
-            const response = await this.formPromise;
-            this.populateForm(response);
+            // const response = await this.formPromise;
+            // this.populateForm(response);
             this.platformUtilsService.showToast('success', null, this.i18nService.t('ssoSettingsSaved'));
         } catch {
             // Logged by appApiAction, do nothing
@@ -204,17 +209,21 @@ export class SsoComponent implements OnInit {
             }
 
             if (control.errors == null) {
-                return acc + 0;
+                return acc;
             }
             return acc + (Object.keys(control.errors).length);
         }, 0);
     }
 
     private populateForm(ssoSettings: OrganizationSsoResponse) {
-        this.commonForm.patchValue(ssoSettings.data);
-        this.samlForm.patchValue(ssoSettings.data);
-        this.openIdForm.patchValue(ssoSettings.data);
         this.enabled.setValue(ssoSettings.enabled);
+        this.commonForm.patchValue(ssoSettings.data);
+
+        if (ssoSettings.data.configType === SsoType.OpenIdConnect) {
+            this.openIdForm.patchValue(ssoSettings.data);
+        } else if (ssoSettings.data.configType === this.ssoType.Saml2) {
+            this.samlForm.patchValue(ssoSettings.data);
+        }
     }
 
     private formToSsoConfigApi() {
