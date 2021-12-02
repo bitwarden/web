@@ -39,13 +39,13 @@ import { requiredIf } from '../../../../../src/app/validators/requiredIf.validat
 export class SsoComponent implements OnInit {
 
     get enableTestKeyConnector() {
-        return this.commonData.get('keyConnectorEnabled').value &&
+        return this.commonForm.get('keyConnectorEnabled').value &&
             this.keyConnectorUrl != null &&
             this.keyConnectorUrl.value !== '';
     }
 
     get keyConnectorUrl() {
-        return this.commonData.get('keyConnectorUrl');
+        return this.commonForm.get('keyConnectorUrl');
     }
 
     readonly ssoTypeOptions = [
@@ -101,7 +101,7 @@ export class SsoComponent implements OnInit {
         idpWantAuthnRequestsSigned: [],
     });
 
-    commonData = this.fb.group({
+    commonForm = this.fb.group({
         configType: [0, {
             updateOn: 'change',
         }],
@@ -113,7 +113,7 @@ export class SsoComponent implements OnInit {
     ssoConfigForm = this.fb.group({
         openId: this.openIdForm,
         saml: this.samlForm,
-        common: this.commonData,
+        common: this.commonForm,
     }, {
         updateOn: 'submit',
     });
@@ -123,7 +123,7 @@ export class SsoComponent implements OnInit {
         private userService: UserService) { }
 
     async ngOnInit() {
-        this.commonData.get('configType').valueChanges.subscribe((newType: SsoType) => {
+        this.commonForm.get('configType').valueChanges.subscribe((newType: SsoType) => {
             if (newType === SsoType.OpenIdConnect) {
                 this.openIdForm.enable();
                 this.samlForm.disable();
@@ -145,7 +145,7 @@ export class SsoComponent implements OnInit {
     async load() {
         this.organization = await this.userService.getOrganization(this.organizationId);
         const ssoSettings = await this.apiService.getOrganizationSso(this.organizationId);
-        this.apiToForm(ssoSettings);
+        this.populateForm(ssoSettings);
 
         this.ssoUrls = ssoSettings.urls;
 
@@ -163,7 +163,7 @@ export class SsoComponent implements OnInit {
 
         try {
             const response = await this.formPromise;
-            this.apiToForm(response);
+            this.populateForm(response);
             this.platformUtilsService.showToast('success', null, this.i18nService.t('ssoSettingsSaved'));
         } catch {
             // Logged by appApiAction, do nothing
@@ -173,7 +173,7 @@ export class SsoComponent implements OnInit {
     }
 
     async postData() {
-        if (this.commonData.get('keyConnectorEnabled').value) {
+        if (this.commonForm.get('keyConnectorEnabled').value) {
             await this.validateKeyConnectorUrl();
 
             if (this.keyConnectorUrl.hasError('invalidUrl')) {
@@ -220,8 +220,8 @@ export class SsoComponent implements OnInit {
         }, 0);
     }
 
-    private apiToForm(ssoSettings: OrganizationSsoResponse) {
-        this.commonData.patchValue(ssoSettings.data);
+    private populateForm(ssoSettings: OrganizationSsoResponse) {
+        this.commonForm.patchValue(ssoSettings.data);
         this.samlForm.patchValue(ssoSettings.data);
         this.openIdForm.patchValue(ssoSettings.data);
         this.enabled.setValue(ssoSettings.enabled);
@@ -229,6 +229,6 @@ export class SsoComponent implements OnInit {
 
     private formToApi() {
         const api = new SsoConfigApi();
-        return Object.assign(api, this.commonData.value, this.samlForm.value, this.openIdForm.value);
+        return Object.assign(api, this.commonForm.value, this.samlForm.value, this.openIdForm.value);
     }
 }

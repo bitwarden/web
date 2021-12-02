@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        <ng-container *ngIf="commonData.value.keyConnectorEnabled">
+        <ng-container *ngIf="commonForm.value.keyConnectorEnabled">
             <app-callout type="warning" [useAlertRole]="true">
                 {{'keyConnectorWarning' | i18n}}
             </app-callout>
@@ -97,13 +97,13 @@
     </ng-container>
 
     <!-- OIDC -->
-    <app-org-manage-sso-openId *ngIf="commonData.get('configType').value === ssoType.OpenIdConnect"
+    <app-org-manage-sso-openId *ngIf="commonForm.get('configType').value === ssoType.OpenIdConnect"
         [openIdForm]="openIdForm" [callbackPath]="ssoUrls.callbackPath" 
         [signedOutCallbackPath]="ssoUrls.signedOutCallbackPath">
     </app-org-manage-sso-openId>
 
     <!-- SAML2 SP -->
-    <app-org-manage-sso-saml *ngIf="commonData.get('configType').value === ssoType.Saml2"
+    <app-org-manage-sso-saml *ngIf="commonForm.get('configType').value === ssoType.Saml2"
         [samlForm]="samlForm" [spEntityId]="ssoUrls.spEntityId" [spMetadataUrl]="ssoUrls.spMetadataUrl" 
         [spAcsUrl]="ssoUrls.spAcsUrl">
     </app-org-manage-sso-saml>
