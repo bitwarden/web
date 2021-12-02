@@ -30,15 +30,16 @@
         <div class="form-group">
             <label>{{'memberDecryptionOption' | i18n}}</label>
             <div class="form-check form-check-block">
-                <input class="form-check-input" type="radio" id="memberDecryptionPass" [value]="false" formControlName="keyConnectorEnabled">
+                <input class="form-check-input" type="radio" id="memberDecryptionPass" [value]="false" 
+                    formControlName="keyConnectorEnabled">
                 <label class="form-check-label" for="memberDecryptionPass">
                     {{'masterPass' | i18n}}
                     <small>{{'memberDecryptionPassDesc' | i18n}}</small>
                 </label>
             </div>
             <div class="form-check mt-2 form-check-block">
-                <input class="form-check-input" type="radio" id="memberDecryptionKey" [value]="true" formControlName="keyConnectorEnabled"
-                    [attr.disabled]="!organization.useKeyConnector || null">
+                <input class="form-check-input" type="radio" id="memberDecryptionKey" [value]="true" 
+                    formControlName="keyConnectorEnabled" [attr.disabled]="!organization.useKeyConnector || null">
                 <label class="form-check-label" for="memberDecryptionKey">
                     {{'keyConnector' | i18n}}
                     <a target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}"
@@ -76,16 +77,15 @@
                         </button>
                     </div>
                 </div>
-                <div *ngIf="haveTestedKeyConnector" id="keyConnectorUrlDesc">
-                    <div class="text-danger" *ngIf="keyConnectorUrl.hasError('invalidUrl')" aria-live="polite">
+                <div *ngIf="haveTestedKeyConnector" id="keyConnectorUrlDesc" aria-live="polite">
+                    <small class="error-inline" *ngIf="keyConnectorUrl.hasError('invalidUrl') else keyConnectorSuccess">
                         <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                        <span class="sr-only">{{'error' | i18n}}:</span>
                         {{'keyConnectorTestFail' | i18n}}
-                    </div>
-                    <div class="text-success" *ngIf="!keyConnectorUrl.hasError('invalidUrl')" aria-live="polite">
+                    </small>
+                    <small #keyConnectorSuccess class="text-success">
                         <i class="fa fa-check-circle-o" aria-hidden="true"></i>
                         {{'keyConnectorTestSuccess' | i18n}}
-                    </div>
+                    </small>
                 </div>
             </div>
         </ng-container>

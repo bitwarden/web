@@ -103,11 +103,10 @@
             </label>
             <input class="form-control" formControlName="idpEntityId" id="idpEntityId" appChangeClearErrors
                 appA11yInvalid aria-describedby="idpEntityIdDesc">
-            <div id="idpEntityIdDesc" class="text-danger" *ngIf="samlForm.get('idpEntityId').hasError('required')">
+            <small id="idpEntityIdDesc" class="error-inline" *ngIf="samlForm.get('idpEntityId').hasError('required')">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                <span class="sr-only">{{'error' | i18n}}:</span>
                 {{'fieldRequiredError' | i18n }}
-            </div>
+            </small>
         </div>
         <div class="form-group">
             <label for="idpBindingType">{{'idpBindingType' | i18n}}</label>
@@ -139,12 +138,11 @@
                         {{'idpArtifactResolutionRequired' | i18n}}
                     </small>
                 </ng-template>
-                <div class="text-danger" *ngIf="samlForm.get('idpArtifactResolutionServiceUrl').hasError('required') 
+                <small class="error-inline" *ngIf="samlForm.get('idpArtifactResolutionServiceUrl').hasError('required') 
                     else idpArtifactResolutionServiceUrlHelper">
                     <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                    <span class="sr-only">{{'error' | i18n}}:</span>
                     {{'idpArtifactResolutionRequired' | i18n }}
-                </div>
+                </small>
             </div>
         </div>
         <div class="form-group">
@@ -158,12 +156,11 @@
                         {{'idpX509PublicCertRequired' | i18n}}
                     </small>
                 </ng-template>
-                <div class="text-danger" *ngIf="samlForm.get('idpX509PublicCert').hasError('required')
+                <small class="error-inline" *ngIf="samlForm.get('idpX509PublicCert').hasError('required')
                     else idpX509PublicCertHelper">
                     <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                    <span class="sr-only">{{'error' | i18n}}:</span>
                     {{'idpX509PublicCertRequired' | i18n }}
-                </div>
+                </small>
             </div>
         </div>
         <div class="form-group">

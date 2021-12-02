@@ -34,11 +34,10 @@
             </label>
             <input class="form-control" formControlName="authority" id="authority" aria-describedby="authorityDesc"
                 appChangeClearErrors appChangeStripSpaces appA11yInvalid>
-            <div id="authorityDesc" class="text-danger" *ngIf="openIdForm.get('authority').hasError('required')">
+            <small id="authorityDesc" class="error-inline" *ngIf="openIdForm.get('authority').hasError('required')">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                <span class="sr-only">{{'error' | i18n}}:</span>
                 {{'fieldRequiredError' | i18n }}
-            </div>
+            </small>
         </div>
         <div class="form-group">
             <label for="clientId">
@@ -47,11 +46,10 @@
             </label>
             <input class="form-control" formControlName="clientId" id="clientId" aria-describedby="clientIdDesc"
                 appChangeClearErrors appA11yInvalid>
-            <div id="clientIdDesc" class="text-danger" *ngIf="openIdForm.get('clientId').hasError('required')">
+            <small id="clientIdDesc" class="error-inline" *ngIf="openIdForm.get('clientId').hasError('required')">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                <span class="sr-only">{{'error' | i18n}}:</span>
                 {{'fieldRequiredError' | i18n }}
-            </div>
+            </small>
         </div>
         <div class="form-group">
             <label for="clientSecret">
@@ -60,11 +58,10 @@
             </label>
             <input class="form-control" formControlName="clientSecret" id="clientSecret"
                 aria-describedby="clientSecretDesc" appChangeClearErrors appA11yInvalid>
-            <div id="clientSecretDesc" class="text-danger" *ngIf="openIdForm.get('clientSecret').hasError('required')">
+            <small id="clientSecretDesc" class="error-inline" *ngIf="openIdForm.get('clientSecret').hasError('required')">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                <span class="sr-only">{{'error' | i18n}}:</span>
                 {{'fieldRequiredError' | i18n }}
-            </div>
+            </small>
         </div>
         <div class="form-group">
             <label for="metadataAddress">{{'metadataAddress' | i18n}}</label>

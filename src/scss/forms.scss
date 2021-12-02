@@ -216,6 +216,12 @@ input[type="radio"], input[type="checkbox"] {
     margin-top: 1rem;
 }
 
+.error-inline {
+    @include themify($themes) {
+        color: themed('danger');
+    }
+}
+
 // Theming for invalid form elements - only if we're not using native HTML5 validation
 form:not([ngnativevalidate]):not([ngnativevalidate=""]) .form-control.ng-invalid {
     @include themify($themes) {
