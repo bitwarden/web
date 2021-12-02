@@ -1,6 +1,6 @@
 <div *ngIf="openIdForm != null" [formGroup]="openIdForm">
     <div class="config-section">
-        <h2>{{'openIdConnectConfig' | i18n}}</h2>
+        <h2 class="secondary-header">{{'openIdConnectConfig' | i18n}}</h2>
         <div class="form-group">
             <label>{{'callbackPath' | i18n}}</label>
             <div class="input-group">
@@ -94,10 +94,10 @@
         </div>
 
         <!-- Optional customizations -->
-        <div class="section-header d-flex flex-row align-items-center mt-5"
+        <div class="section-header d-flex flex-row align-items-center mt-5 mb-2"
             (click)="toggleCustomizations()">
             <h3 class="mb-0 mr-2" id="customizations-header">{{'openIdOptionalCustomizations' | i18n}}</h3>
-            <button class="mb-1" href="#" appStopClick role="button" aria-controls="customizations"
+            <button class="mb-1 btn btn-link" href="#" appStopClick role="button" aria-controls="customizations"
                 [attr.aria-expanded]="showCustomizations"
                 aria-labelledby="customizations-header">
                 <i class="fa" aria-hidden="true"

@@ -199,6 +199,19 @@ input[type="radio"], input[type="checkbox"] {
     }
 }
 
+.section-header {
+    h3, .btn.btn-link {
+        @include themify($themes) {
+            color: themed('headingColor');
+        }
+    }
+
+    h3 {
+        font-weight: normal;
+        text-transform: uppercase;
+    }
+}
+
 // Theming for invalid form elements - only if we're not using native HTML5 validation
 form:not([ngnativevalidate]):not([ngnativevalidate=""]) .form-control.ng-invalid {
     @include themify($themes) {

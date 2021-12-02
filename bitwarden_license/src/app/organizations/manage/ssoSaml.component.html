@@ -1,7 +1,7 @@
 <div *ngIf="samlForm != null" [formGroup]="samlForm">
     <!-- SAML2 SP -->
     <div class="config-section">
-        <h2>{{'samlSpConfig' | i18n}}</h2>
+        <h2 class="secondary-header">{{'samlSpConfig' | i18n}}</h2>
         <div class="form-group">
             <label>{{'spEntityId' | i18n}}</label>
             <div class="input-group">
@@ -94,7 +94,7 @@
 
     <!-- SAML2 IDP -->
     <div class="config-section">
-        <h2>{{'samlIdpConfig' | i18n}}</h2>
+        <h2 class="secondary-header">{{'samlIdpConfig' | i18n}}</h2>
 
         <div class="form-group">
             <label for="idpEntityId">
