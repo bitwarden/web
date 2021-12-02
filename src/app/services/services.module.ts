@@ -3,8 +3,7 @@ import {
     LOCALE_ID,
     NgModule,
 } from '@angular/core';
-
-import { ToasterModule } from 'angular2-toaster';
+import { ToastrModule } from 'ngx-toastr';
 
 import { BroadcasterMessagingService } from '../../services/broadcasterMessaging.service';
 import { HtmlStorageService } from '../../services/htmlStorage.service';
@@ -189,7 +188,7 @@ export function initFactory(): Function {
 
 @NgModule({
     imports: [
-        ToasterModule,
+        ToastrModule,
     ],
     declarations: [],
     providers: [

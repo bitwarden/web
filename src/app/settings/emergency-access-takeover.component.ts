@@ -6,8 +6,6 @@ import {
     Output,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -45,7 +43,7 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
         messagingService: MessagingService, userService: UserService,
         passwordGenerationService: PasswordGenerationService,
         platformUtilsService: PlatformUtilsService, policyService: PolicyService,
-        private apiService: ApiService, private toasterService: ToasterService, private logService: LogService) {
+        private apiService: ApiService, private logService: LogService) {
         super(i18nService, cryptoService, messagingService, userService, passwordGenerationService,
             platformUtilsService, policyService);
     }
@@ -69,7 +67,7 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
         const oldEncKey = new SymmetricCryptoKey(oldKeyBuffer);
 
         if (oldEncKey == null) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'), this.i18nService.t('unexpectedError'));
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), this.i18nService.t('unexpectedError'));
             return;
         }
 

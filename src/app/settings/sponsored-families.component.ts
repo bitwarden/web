@@ -2,11 +2,12 @@ import {
     Component,
     OnInit,
 } from '@angular/core';
-import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
+
 import { PlanSponsorshipType } from 'jslib-common/enums/planSponsorshipType';
 import { Organization } from 'jslib-common/models/domain/organization';
 
@@ -26,7 +27,7 @@ export class SponsoredFamiliesComponent implements OnInit {
     formPromise: Promise<any>;
 
     constructor(private userService: UserService, private apiService: ApiService,
-        private i18nService: I18nService, private toasterService: ToasterService,
+        private i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
         private syncService: SyncService) { }
 
     async ngOnInit() {
@@ -41,7 +42,7 @@ export class SponsoredFamiliesComponent implements OnInit {
         });
 
         await this.formPromise;
-        this.toasterService.popAsync('success', null, this.i18nService.t('sponsorshipCreated'));
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('sponsorshipCreated'));
         this.formPromise = null;
         this.resetForm();
         await this.load(true);

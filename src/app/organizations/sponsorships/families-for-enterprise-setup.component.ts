@@ -8,10 +8,6 @@ import {
     ActivatedRoute,
     Router,
 } from '@angular/router';
-import {
-    Toast,
-    ToasterService,
-} from 'angular2-toaster';
 
 import { first } from 'rxjs/operators';
 
@@ -33,6 +29,7 @@ import { OrganizationSponsorshipRedeemRequest } from 'jslib-common/models/reques
 
 import { DeleteOrganizationComponent } from 'src/app/organizations/settings/delete-organization.component';
 
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { OrganizationPlansComponent } from 'src/app/settings/organization-plans.component';
 
 @Component({
@@ -65,7 +62,7 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
     _organizationPlansComponent: OrganizationPlansComponent;
     _selectedFamilyOrganizationId: string = '';
 
-    constructor(private router: Router, private toasterService: ToasterService,
+    constructor(private router: Router, private platformUtilsService: PlatformUtilsService,
         private i18nService: I18nService, private route: ActivatedRoute,
         private apiService: ApiService, private syncService: SyncService,
         private validationService: ValidationService, private userService: UserService,
@@ -76,13 +73,8 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
         this.route.queryParams.pipe(first()).subscribe(async qParams => {
             const error = qParams.token == null;
             if (error) {
-                const toast: Toast = {
-                    type: 'error',
-                    title: null,
-                    body: this.i18nService.t('sponsoredFamiliesAcceptFailed'),
-                    timeout: 10000,
-                };
-                this.toasterService.popAsync(toast);
+                this.platformUtilsService.showToast('error', null, this.i18nService.t('sponsoredFamiliesAcceptFailed'),
+                    { timeout: 10000 });
                 this.router.navigate(['/']);
                 return;
             }
@@ -124,7 +116,7 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
             request.sponsoredOrganizationId = organizationId;
 
             await this.apiService.postRedeemSponsorship(this.token, request);
-            this.toasterService.popAsync('success', null, this.i18nService.t('sponsoredFamiliesOfferRedeemed'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('sponsoredFamiliesOfferRedeemed'));
             await this.syncService.fullSync(true);
 
             this.router.navigate(['/']);

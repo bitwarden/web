@@ -1,11 +1,11 @@
-import { ToasterModule } from 'angular2-toaster';
-import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
+import { BitwardenToastModule } from 'jslib-angular/components/toastr.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -25,7 +25,9 @@ import { WildcardRoutingModule } from 'src/app/wildcard-routing.module';
         FormsModule,
         ReactiveFormsModule,
         ServicesModule,
-        ToasterModule.forRoot(),
+        BitwardenToastModule.forRoot({
+            maxOpened: 5,
+        }),
         InfiniteScrollModule,
         DragDropModule,
         AppRoutingModule,

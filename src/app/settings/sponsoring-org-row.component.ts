@@ -4,7 +4,6 @@ import {
     Input,
     Output,
 } from '@angular/core';
-import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
@@ -24,7 +23,7 @@ export class SponsoringOrgRowComponent {
     revokeSponsorshipPromise: Promise<any>;
     resendEmailPromise: Promise<any>;
 
-    constructor(private toasterService: ToasterService, private apiService: ApiService,
+    constructor(private apiService: ApiService,
         private i18nService: I18nService, private logService: LogService,
         private platformUtilsService: PlatformUtilsService) { }
 
@@ -32,7 +31,7 @@ export class SponsoringOrgRowComponent {
         try {
             this.revokeSponsorshipPromise = this.doRevokeSponsorship();
             await this.revokeSponsorshipPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('reclaimedFreePlan'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('reclaimedFreePlan'));
             this.sponsorshipRemoved.emit();
         } catch (e) {
             this.logService.error(e);
@@ -44,7 +43,7 @@ export class SponsoringOrgRowComponent {
     async resendEmail() {
         this.resendEmailPromise = this.apiService.postResendSponsorshipOffer(this.sponsoringOrg.id);
         await this.resendEmailPromise;
-        this.toasterService.popAsync('success', null, this.i18nService.t('emailSent'));
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('emailSent'));
         this.resendEmailPromise = null;
     }
 

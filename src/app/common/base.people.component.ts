@@ -3,7 +3,6 @@ import {
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import { ToasterService } from 'angular2-toaster';
 
 import { ValidationService } from 'jslib-angular/services/validation.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
@@ -90,8 +89,8 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
     private pagedUsersCount = 0;
 
     constructor(protected apiService: ApiService, private searchService: SearchService,
-        protected i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
-        protected toasterService: ToasterService, protected cryptoService: CryptoService,
+        protected i18nService: I18nService, protected platformUtilsService: PlatformUtilsService,
+        protected cryptoService: CryptoService,
         private storageService: StorageService, protected validationService: ValidationService,
         protected modalService: ModalService, private logService: LogService,
         private searchPipe: SearchPipe, protected userNamePipe: UserNamePipe ) { }
@@ -190,7 +189,8 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
         this.actionPromise = this.deleteUser(user.id);
         try {
             await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', this.userNamePipe.transform(user)));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('removedUserId',
+                this.userNamePipe.transform(user)));
             this.removeUser(user);
         } catch (e) {
             this.validationService.showError(e);
@@ -206,7 +206,8 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
         this.actionPromise = this.reinviteUser(user.id);
         try {
             await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenReinvited', this.userNamePipe.transform(user)));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('hasBeenReinvited',
+                this.userNamePipe.transform(user)));
         } catch (e) {
             this.validationService.showError(e);
         }
@@ -228,7 +229,8 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
                 this.actionPromise = this.confirmUser(user, publicKey);
                 await this.actionPromise;
                 updateUser(this);
-                this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', this.userNamePipe.transform(user)));
+                this.platformUtilsService.showToast('success', null, this.i18nService.t('hasBeenConfirmed',
+                    this.userNamePipe.transform(user)));
             } catch (e) {
                 this.validationService.showError(e);
                 throw e;

@@ -5,9 +5,7 @@ import {
     OnInit,
     Output
 } from '@angular/core';
-import { ToasterService } from 'angular2-toaster';
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
@@ -18,8 +16,6 @@ import { ProviderService } from '../services/provider.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 import { Provider } from 'jslib-common/models/domain/provider';
-
-import { PlanType } from 'jslib-common/enums/planType';
 
 @Component({
     selector: 'provider-add-organization',
@@ -36,9 +32,8 @@ export class AddOrganizationComponent implements OnInit {
     loading = true;
 
     constructor(private userService: UserService, private providerService: ProviderService,
-        private toasterService: ToasterService, private i18nService: I18nService,
-        private platformUtilsService: PlatformUtilsService, private validationService: ValidationService,
-        private apiService: ApiService) { }
+        private i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
+        private validationService: ValidationService) { }
 
     async ngOnInit() {
         await this.load();
@@ -77,7 +72,7 @@ export class AddOrganizationComponent implements OnInit {
             this.formPromise = null;
         }
 
-        this.toasterService.popAsync('success', null, this.i18nService.t('organizationJoinedProvider'));
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('organizationJoinedProvider'));
         this.onAddedOrganization.emit();
     }
 }

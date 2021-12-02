@@ -6,11 +6,10 @@ import {
     Output,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { OrganizationUserUpdateGroupsRequest } from 'jslib-common/models/request/organizationUserUpdateGroupsRequest';
 import { GroupResponse } from 'jslib-common/models/response/groupResponse';
@@ -32,7 +31,7 @@ export class UserGroupsComponent implements OnInit {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private logService: LogService) { }
+        private platformUtilsService: PlatformUtilsService, private logService: LogService) { }
 
     async ngOnInit() {
         const groupsResponse = await this.apiService.getGroups(this.organizationId);
@@ -77,7 +76,7 @@ export class UserGroupsComponent implements OnInit {
             this.formPromise = this.apiService.putOrganizationUserGroups(this.organizationId, this.organizationUserId,
                 request);
             await this.formPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('editedGroupsForUser', this.name));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('editedGroupsForUser', this.name));
             this.onSavedUser.emit();
         } catch (e) {
             this.logService.error(e);

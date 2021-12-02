@@ -1,13 +1,3 @@
-import * as jq from 'jquery';
-import Swal from 'sweetalert2';
-
-import {
-    BodyOutputType,
-    Toast,
-    ToasterConfig,
-    ToasterService,
-} from 'angular2-toaster';
-
 import {
     Component,
     NgZone,
@@ -20,6 +10,9 @@ import {
     NavigationEnd,
     Router,
 } from '@angular/router';
+import * as jq from 'jquery';
+import { IndividualConfig, ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 
@@ -69,12 +62,10 @@ const IdleTimeout = 60000 * 10; // 10 minutes
 })
 export class AppComponent implements OnDestroy, OnInit {
 
-    toasterConfig: ToasterConfig = new ToasterConfig({
-        showCloseButton: true,
-        mouseoverTimerStop: true,
-        animation: 'flyRight',
-        limit: 5,
-    });
+    toasterConfig: Partial<IndividualConfig> = {
+        closeButton: true,
+        timeOut: 0,
+    };
 
     private lastActivity: number = null;
     private idleTimer: number = null;
@@ -86,7 +77,7 @@ export class AppComponent implements OnDestroy, OnInit {
         private settingsService: SettingsService, private syncService: SyncService,
         private passwordGenerationService: PasswordGenerationService, private cipherService: CipherService,
         private authService: AuthService, private router: Router,
-        private toasterService: ToasterService, private i18nService: I18nService,
+        private toastrService: ToastrService, private i18nService: I18nService,
         private platformUtilsService: PlatformUtilsService, private ngZone: NgZone,
         private vaultTimeoutService: VaultTimeoutService, private storageService: StorageService,
         private cryptoService: CryptoService, private collectionService: CollectionService,
@@ -230,7 +221,7 @@ export class AppComponent implements OnDestroy, OnInit {
         this.searchService.clearIndex();
         this.authService.logOut(async () => {
             if (expired) {
-                this.toasterService.popAsync('warning', this.i18nService.t('loggedOut'),
+                this.platformUtilsService.showToast('warning', this.i18nService.t('loggedOut'),
                     this.i18nService.t('loginExpired'));
             }
 
@@ -266,30 +257,29 @@ export class AppComponent implements OnDestroy, OnInit {
     }
 
     private showToast(msg: any) {
-        const toast: Toast = {
-            type: msg.type,
-            title: msg.title,
-        };
+        let message = '';
+
+        const options = Object.assign({}, this.toasterConfig);
+
         if (typeof (msg.text) === 'string') {
-            toast.body = msg.text;
+            message = msg.text;
         } else if (msg.text.length === 1) {
-            toast.body = msg.text[0];
+            message = msg.text[0];
         } else {
-            let message = '';
             msg.text.forEach((t: string) =>
                 message += ('<p>' + this.sanitizer.sanitize(SecurityContext.HTML, t) + '</p>'));
-            toast.body = message;
-            toast.bodyOutputType = BodyOutputType.TrustedHtml;
+            options.enableHtml = true;
         }
         if (msg.options != null) {
             if (msg.options.trustedHtml === true) {
-                toast.bodyOutputType = BodyOutputType.TrustedHtml;
+                options.enableHtml = true;
             }
             if (msg.options.timeout != null && msg.options.timeout > 0) {
-                toast.timeout = msg.options.timeout;
+                options.timeOut = msg.options.timeout;
             }
         }
-        this.toasterService.popAsync(toast);
+
+        this.toastrService.show(message, msg.title, options, 'toast-' + msg.type);
     }
 
     private idleStateChanged() {

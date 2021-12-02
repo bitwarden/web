@@ -1,10 +1,5 @@
 import { Component } from '@angular/core';
 
-import {
-    Toast,
-    ToasterService,
-} from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
@@ -12,6 +7,7 @@ import { FolderService } from 'jslib-common/abstractions/folder.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 
 import { EncString } from 'jslib-common/models/domain/encString';
@@ -29,7 +25,7 @@ export class UpdateKeyComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private cryptoService: CryptoService,
+        private platformUtilsService: PlatformUtilsService, private cryptoService: CryptoService,
         private messagingService: MessagingService, private syncService: SyncService,
         private folderService: FolderService, private cipherService: CipherService,
         private logService: LogService) { }
@@ -41,7 +37,7 @@ export class UpdateKeyComponent {
         }
 
         if (this.masterPassword == null || this.masterPassword === '') {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('masterPassRequired'));
             return;
         }
@@ -51,13 +47,8 @@ export class UpdateKeyComponent {
                 return this.apiService.postAccountKey(request);
             });
             await this.formPromise;
-            const toast: Toast = {
-                type: 'success',
-                title: this.i18nService.t('keyUpdated'),
-                body: this.i18nService.t('logBackInOthersToo'),
-                timeout: 15000,
-            };
-            this.toasterService.popAsync(toast);
+            this.platformUtilsService.showToast('success', this.i18nService.t('keyUpdated'),
+                this.i18nService.t('logBackInOthersToo'), { timeout: 15000 });
             this.messagingService.send('logout');
         } catch (e) {
             this.logService.error(e);

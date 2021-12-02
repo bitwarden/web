@@ -4,13 +4,9 @@ import {
     Router,
 } from '@angular/router';
 
-import {
-    Toast,
-    ToasterService,
-} from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 import { EmergencyAccessAcceptRequest } from 'jslib-common/models/request/emergencyAccessAcceptRequest';
@@ -28,11 +24,11 @@ export class AcceptEmergencyComponent extends BaseAcceptComponent {
     protected failedShortMessage = 'emergencyInviteAcceptFailedShort';
     protected failedMessage = 'emergencyInviteAcceptFailed';
 
-    constructor(router: Router, toasterService: ToasterService,
+    constructor(router: Router, platformUtilsService: PlatformUtilsService,
         i18nService: I18nService, route: ActivatedRoute,
         private apiService: ApiService, userService: UserService,
         stateService: StateService) {
-        super(router, toasterService, i18nService, route, userService, stateService);
+        super(router, platformUtilsService, i18nService, route, userService, stateService);
     }
 
     async authedHandler(qParams: any): Promise<void> {
@@ -40,13 +36,8 @@ export class AcceptEmergencyComponent extends BaseAcceptComponent {
         request.token = qParams.token;
         this.actionPromise = this.apiService.postEmergencyAccessAccept(qParams.id, request);
         await this.actionPromise;
-        const toast: Toast = {
-            type: 'success',
-            title: this.i18nService.t('inviteAccepted'),
-            body: this.i18nService.t('emergencyInviteAcceptedDesc'),
-            timeout: 10000,
-        };
-        this.toasterService.popAsync(toast);
+        this.platformUtilService.showToast('success', this.i18nService.t('inviteAccepted'),
+            this.i18nService.t('emergencyInviteAcceptedDesc'), {timeout: 10000});
         this.router.navigate(['/vault']);
     }
 
