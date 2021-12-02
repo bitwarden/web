@@ -56,6 +56,7 @@ export class SsoComponent implements OnInit {
     readonly ssoType = SsoType;
 
     loading = true;
+    haveTestedKeyConnector = false;
     organizationId: string;
     organization: Organization;
     formPromise: Promise<any>;
@@ -102,12 +103,11 @@ export class SsoComponent implements OnInit {
     });
 
     commonForm = this.fb.group({
-        configType: [0, {
-            updateOn: 'change',
-        }],
-
-        keyConnectorEnabled: [],
-        keyConnectorUrl: [],
+        configType: [0],
+        keyConnectorEnabled: [false],
+        keyConnectorUrl: ['', {updateOn: 'blur'}],
+    }, {
+        updateOn: 'change',
     });
 
     ssoConfigForm = this.fb.group({
@@ -149,17 +149,23 @@ export class SsoComponent implements OnInit {
 
         this.ssoUrls = ssoSettings.urls;
 
-        this.keyConnectorUrl.markAsDirty();
-
         this.loading = false;
     }
 
     async submit() {
+        if (this.commonForm.get('keyConnectorEnabled').value) {
+            await this.validateKeyConnectorUrl();
+        }
+
         if (this.ssoConfigForm.invalid) {
             return;
         }
 
-        this.formPromise = this.postData();
+        const request = new OrganizationSsoRequest();
+        request.enabled = this.enabled.value;
+        request.data = this.formToSsoConfigApi();
+
+        this.formPromise = this.apiService.postOrganizationSso(this.organizationId, request);
 
         try {
             const response = await this.formPromise;
@@ -172,24 +178,8 @@ export class SsoComponent implements OnInit {
         this.formPromise = null;
     }
 
-    async postData() {
-        if (this.commonForm.get('keyConnectorEnabled').value) {
-            await this.validateKeyConnectorUrl();
-
-            if (this.keyConnectorUrl.hasError('invalidUrl')) {
-                throw new Error(this.i18nService.t('keyConnectorTestFail'));
-            }
-        }
-
-        const request = new OrganizationSsoRequest();
-        request.enabled = this.enabled.value;
-        request.data = this.formToApi();
-
-        return this.apiService.postOrganizationSso(this.organizationId, request);
-    }
-
     async validateKeyConnectorUrl() {
-        if (this.keyConnectorUrl.pristine) {
+        if (this.haveTestedKeyConnector) {
             return;
         }
 
@@ -204,7 +194,7 @@ export class SsoComponent implements OnInit {
             });
         }
 
-        this.keyConnectorUrl.markAsPristine();
+        this.haveTestedKeyConnector = true;
     }
 
     getErrorCount(form: FormGroup): number {
@@ -227,7 +217,7 @@ export class SsoComponent implements OnInit {
         this.enabled.setValue(ssoSettings.enabled);
     }
 
-    private formToApi() {
+    private formToSsoConfigApi() {
         const api = new SsoConfigApi();
         return Object.assign(api, this.commonForm.value, this.samlForm.value, this.openIdForm.value);
     }

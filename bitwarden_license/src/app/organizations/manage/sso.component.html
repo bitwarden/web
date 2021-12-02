@@ -49,7 +49,8 @@
             </div>
         </div>
 
-        <ng-container *ngIf="commonForm.value.keyConnectorEnabled">
+        <!-- Key Connector -->
+        <ng-container *ngIf="commonForm.get('keyConnectorEnabled').value">
             <app-callout type="warning" [useAlertRole]="true">
                 {{'keyConnectorWarning' | i18n}}
             </app-callout>
@@ -60,7 +61,8 @@
                     <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
                 </label>
                 <div class="input-group">
-                    <input class="form-control" formControlName="keyConnectorUrl" id="keyConnectorUrl" required>
+                    <input class="form-control" formControlName="keyConnectorUrl" id="keyConnectorUrl"
+                        appChangeClearErrors (change)="haveTestedKeyConnector = false">
                     <div class="input-group-append">
                         <button type="button" class="btn btn-outline-secondary" (click)="validateKeyConnectorUrl()"
                             [disabled]="!enableTestKeyConnector">
@@ -72,7 +74,7 @@
                         </button>
                     </div>
                 </div>
-                <ng-container *ngIf="keyConnectorUrl.pristine && !keyConnectorUrl.pending">
+                <ng-container *ngIf="haveTestedKeyConnector">
                     <div class="text-danger" *ngIf="keyConnectorUrl.hasError('invalidUrl')" role="alert">
                         <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                         {{'keyConnectorTestFail' | i18n}}
