@@ -24,13 +24,13 @@ import {
     SsoUrls
 } from 'jslib-common/models/response/organization/organizationSsoResponse';
 
+import { requiredIf } from 'jslib-angular/validators/requiredIf.validator';
+
 import {
     Saml2BindingType,
     Saml2SigningBehavior,
     SsoType,
 } from 'jslib-common/enums/ssoEnums';
-
-import { requiredIf } from '../../../../../src/app/validators/requiredIf.validator';
 
 @Component({
     selector: 'app-org-manage-sso',
