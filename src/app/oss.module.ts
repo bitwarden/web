@@ -183,8 +183,8 @@ import { CalloutComponent } from 'jslib-angular/components/callout.component';
 import { IconComponent } from 'jslib-angular/components/icon.component';
 import { VerifyMasterPasswordComponent } from 'jslib-angular/components/verify-master-password.component';
 
-import { A11yTitleDirective } from 'jslib-angular/directives/a11y-title.directive';
 import { A11yInvalidDirective } from 'jslib-angular/directives/a11y-invalid.directive';
+import { A11yTitleDirective } from 'jslib-angular/directives/a11y-title.directive';
 import { ApiActionDirective } from 'jslib-angular/directives/api-action.directive';
 import { AutofocusDirective } from 'jslib-angular/directives/autofocus.directive';
 import { BlurClickDirective } from 'jslib-angular/directives/blur-click.directive';
