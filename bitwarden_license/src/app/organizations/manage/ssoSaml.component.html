@@ -159,7 +159,7 @@
                     </small>
                 </ng-template>
                 <div class="text-danger" *ngIf="samlForm.get('idpX509PublicCert').hasError('required')
-                    else idpArtifactResolutionServiceUrlHelper">
+                    else idpX509PublicCertHelper">
                     <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                     <span class="sr-only">{{'error' | i18n}}:</span>
                     {{'idpX509PublicCertRequired' | i18n }}
