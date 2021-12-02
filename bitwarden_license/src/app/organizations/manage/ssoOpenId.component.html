@@ -32,7 +32,8 @@
                 {{'authority' | i18n}}
                 <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
             </label>
-            <input class="form-control" formControlName="authority" id="authority" appChangeClearErrors>
+            <input class="form-control" formControlName="authority" id="authority" appChangeClearErrors 
+                appChangeStripSpaces>
             <div class="text-danger" *ngIf="openIdForm.get('authority').hasError('required')" role="alert">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                 {{'fieldRequiredError' | i18n:('authority' | i18n ) }}
@@ -62,7 +63,7 @@
         </div>
         <div class="form-group">
             <label for="metadataAddress">{{'metadataAddress' | i18n}}</label>
-            <input class="form-control" formControlName="metadataAddress" id="metadataAddress">
+            <input class="form-control" formControlName="metadataAddress" id="metadataAddress" appChangeStripSpaces>
         </div>
         <div class="form-group">
             <label for="redirectBehavior">
