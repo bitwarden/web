@@ -20,10 +20,11 @@
     <ng-container formGroupName="common">
         <div class="form-group">
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" id="enabled" [formControl]="enabled" name="Enabled">
+                <input class="form-check-input" type="checkbox" id="enabled" aria-describedby="allowSsoDesc"
+                    [formControl]="enabled" name="Enabled">
                 <label class="form-check-label" for="enabled">{{'allowSso' | i18n}}</label>
             </div>
-            <small class="form-text text-muted">{{'allowSsoDesc' | i18n}}</small>
+            <small id="allowSsoDesc" class="form-text text-muted">{{'allowSsoDesc' | i18n}}</small>
         </div>
 
         <div class="form-group">
@@ -62,8 +63,8 @@
                 </label>
                 <div class="input-group">
                     <input class="form-control" formControlName="keyConnectorUrl" id="keyConnectorUrl"
-                        appChangeClearErrors (change)="haveTestedKeyConnector = false" appChangeStripSpaces
-                        appA11yInvalid>
+                        aria-describedby="keyConnectorUrlDesc" appChangeClearErrors 
+                        (change)="haveTestedKeyConnector = false" appChangeStripSpaces appA11yInvalid>
                     <div class="input-group-append">
                         <button type="button" class="btn btn-outline-secondary" (click)="validateKeyConnectorUrl()"
                             [disabled]="!enableTestKeyConnector">
@@ -75,16 +76,17 @@
                         </button>
                     </div>
                 </div>
-                <ng-container *ngIf="haveTestedKeyConnector">
-                    <div class="text-danger" *ngIf="keyConnectorUrl.hasError('invalidUrl')" role="alert">
+                <div *ngIf="haveTestedKeyConnector" id="keyConnectorUrlDesc">
+                    <div class="text-danger" *ngIf="keyConnectorUrl.hasError('invalidUrl')" aria-live="polite">
                         <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                        <span class="sr-only">{{'error' | i18n}}:</span>
                         {{'keyConnectorTestFail' | i18n}}
                     </div>
-                    <div class="text-success" *ngIf="!keyConnectorUrl.hasError('invalidUrl')" role="alert">
+                    <div class="text-success" *ngIf="!keyConnectorUrl.hasError('invalidUrl')" aria-live="polite">
                         <i class="fa fa-check-circle-o" aria-hidden="true"></i>
                         {{'keyConnectorTestSuccess' | i18n}}
                     </div>
-                </ng-container>
+                </div>
             </div>
         </ng-container>
 

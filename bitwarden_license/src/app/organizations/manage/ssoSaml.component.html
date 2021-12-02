@@ -102,10 +102,11 @@
                 <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
             </label>
             <input class="form-control" formControlName="idpEntityId" id="idpEntityId" appChangeClearErrors
-                appA11yInvalid>
-            <div class="text-danger" *ngIf="samlForm.get('idpEntityId').hasError('required')" role="alert">
+                appA11yInvalid aria-describedby="idpEntityIdDesc">
+            <div id="idpEntityIdDesc" class="text-danger" *ngIf="samlForm.get('idpEntityId').hasError('required')">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                {{'fieldRequiredError' | i18n:('idpEntityId' | i18n) }}
+                <span class="sr-only">{{'error' | i18n}}:</span>
+                {{'fieldRequiredError' | i18n }}
             </div>
         </div>
         <div class="form-group">
@@ -117,8 +118,10 @@
         <div class="form-group">
             <label for="idpSingleSignOnServiceUrl">{{'idpSingleSignOnServiceUrl' | i18n}}</label>
             <input class="form-control" formControlName="idpSingleSignOnServiceUrl" id="idpSingleSignOnServiceUrl"
-                appChangeStripSpaces>
-            <small class="form-text text-muted">{{'idpSingleSignOnServiceUrlRequired' | i18n}}</small>
+                aria-describedby="idpSingleSignOnServiceUrlDesc" appChangeStripSpaces>
+            <small id="idpSingleSignOnServiceUrlDesc" class="form-text text-muted">
+                {{'idpSingleSignOnServiceUrlRequired' | i18n}}
+            </small>
         </div>
         <div class="form-group">
             <label for="idpSingleLogoutServiceUrl">{{'idpSingleLogoutServiceUrl' | i18n}}</label>
@@ -128,23 +131,39 @@
         <div class="form-group">
             <label for="idpArtifactResolutionServiceUrl">{{'idpArtifactResolutionServiceUrl' | i18n}}</label>
             <input class="form-control" formControlName="idpArtifactResolutionServiceUrl"
-                id="idpArtifactResolutionServiceUrl" appChangeClearErrors appChangeStripSpaces appA11yInvalid>
-            <small class="form-text text-muted">{{'idpArtifactResolutionRequired' | i18n}}</small>
-            <div class="text-danger" *ngIf="samlForm.get('idpArtifactResolutionServiceUrl').hasError('required')"
-                role="alert">
-                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                {{'idpArtifactResolutionRequired' | i18n }}
+                id="idpArtifactResolutionServiceUrl" appChangeClearErrors appChangeStripSpaces appA11yInvalid
+                aria-describedby="idpArtifactResolutionServiceUrlDesc">
+            <div id="idpArtifactResolutionServiceUrlDesc">
+                <ng-template #idpArtifactResolutionServiceUrlHelper>
+                    <small class="form-text text-muted">
+                        {{'idpArtifactResolutionRequired' | i18n}}
+                    </small>
+                </ng-template>
+                <div class="text-danger" *ngIf="samlForm.get('idpArtifactResolutionServiceUrl').hasError('required') 
+                    else idpArtifactResolutionServiceUrlHelper">
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                    <span class="sr-only">{{'error' | i18n}}:</span>
+                    {{'idpArtifactResolutionRequired' | i18n }}
+                </div>
             </div>
         </div>
         <div class="form-group">
             <label for="idpX509PublicCert">{{'idpX509PublicCert' | i18n}}</label>
             <textarea formControlName="idpX509PublicCert" class="form-control form-control-sm text-monospace"
-                rows="6" id="idpX509PublicCert" appChangeClearErrors appA11yInvalid></textarea>
-            <small class="form-text text-muted">{{'idpX509PublicCertRequired' | i18n}}</small>
-            <div class="text-danger" *ngIf="samlForm.get('idpX509PublicCert').hasError('required')"
-                role="alert">
-                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                {{'idpX509PublicCertRequired' | i18n }}
+                rows="6" id="idpX509PublicCert" appChangeClearErrors appA11yInvalid
+                aria-describedby="idpX509PublicCertDesc"></textarea>
+            <div id="idpX509PublicCertDesc">
+                <ng-template #idpX509PublicCertHelper>
+                    <small class="form-text text-muted">
+                        {{'idpX509PublicCertRequired' | i18n}}
+                    </small>
+                </ng-template>
+                <div class="text-danger" *ngIf="samlForm.get('idpX509PublicCert').hasError('required')
+                    else idpArtifactResolutionServiceUrlHelper">
+                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                    <span class="sr-only">{{'error' | i18n}}:</span>
+                    {{'idpX509PublicCertRequired' | i18n }}
+                </div>
             </div>
         </div>
         <div class="form-group">

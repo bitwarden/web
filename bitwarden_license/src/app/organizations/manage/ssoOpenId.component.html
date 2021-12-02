@@ -32,11 +32,12 @@
                 {{'authority' | i18n}}
                 <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
             </label>
-            <input class="form-control" formControlName="authority" id="authority" appChangeClearErrors 
-                appChangeStripSpaces appA11yInvalid>
-            <div class="text-danger" *ngIf="openIdForm.get('authority').hasError('required')" role="alert">
+            <input class="form-control" formControlName="authority" id="authority" aria-describedby="authorityDesc"
+                appChangeClearErrors appChangeStripSpaces appA11yInvalid>
+            <div id="authorityDesc" class="text-danger" *ngIf="openIdForm.get('authority').hasError('required')">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                {{'fieldRequiredError' | i18n:('authority' | i18n ) }}
+                <span class="sr-only">{{'error' | i18n}}:</span>
+                {{'fieldRequiredError' | i18n }}
             </div>
         </div>
         <div class="form-group">
@@ -44,10 +45,12 @@
                 {{'clientId' | i18n}}
                 <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
             </label>
-            <input class="form-control" formControlName="clientId" id="clientId" appChangeClearErrors appA11yInvalid>
-            <div class="text-danger" *ngIf="openIdForm.get('clientId').hasError('required')" role="alert">
+            <input class="form-control" formControlName="clientId" id="clientId" aria-describedby="clientIdDesc"
+                appChangeClearErrors appA11yInvalid>
+            <div id="clientIdDesc" class="text-danger" *ngIf="openIdForm.get('clientId').hasError('required')">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                {{'fieldRequiredError' | i18n:('clientId' | i18n) }}
+                <span class="sr-only">{{'error' | i18n}}:</span>
+                {{'fieldRequiredError' | i18n }}
             </div>
         </div>
         <div class="form-group">
@@ -55,17 +58,21 @@
                 {{'clientSecret' | i18n}}
                 <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
             </label>
-            <input class="form-control" formControlName="clientSecret" id="clientSecret" appChangeClearErrors 
-                appA11yInvalid>
-            <div class="text-danger" *ngIf="openIdForm.get('clientSecret').hasError('required')" role="alert">
+            <input class="form-control" formControlName="clientSecret" id="clientSecret"
+                aria-describedby="clientSecretDesc" appChangeClearErrors appA11yInvalid>
+            <div id="clientSecretDesc" class="text-danger" *ngIf="openIdForm.get('clientSecret').hasError('required')">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                {{'fieldRequiredError' | i18n:('clientSecret' | i18n) }}
+                <span class="sr-only">{{'error' | i18n}}:</span>
+                {{'fieldRequiredError' | i18n }}
             </div>
         </div>
         <div class="form-group">
             <label for="metadataAddress">{{'metadataAddress' | i18n}}</label>
-            <input class="form-control" formControlName="metadataAddress" id="metadataAddress" appChangeStripSpaces>
-            <small class="text-muted form-text">{{'openIdAuthorityRequired' | i18n}}</small>
+            <input class="form-control" formControlName="metadataAddress" id="metadataAddress" 
+                aria-describedby="metadataAddressDesc" appChangeStripSpaces>
+            <small id="metadataAddressDesc" class="text-muted form-text">
+                {{'openIdAuthorityRequired' | i18n}}
+            </small>
         </div>
         <div class="form-group">
             <label for="redirectBehavior">
