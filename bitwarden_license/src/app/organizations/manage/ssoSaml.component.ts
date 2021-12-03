@@ -75,4 +75,12 @@ export class SsoSamlComponent implements OnInit {
     launchUri(url: string) {
         this.platformUtilsService.launchUri(url);
     }
+
+    get x509HasRequiredError() {
+        return this.samlForm.get('idpX509PublicCert').hasError('required');
+    }
+
+    get artifactUrlHasRequiredError() {
+        return this.samlForm.get('idpArtifactResolutionServiceUrl').hasError('required');
+    }
 }

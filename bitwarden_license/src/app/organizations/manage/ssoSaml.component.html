@@ -132,36 +132,21 @@
             <input class="form-control" formControlName="idpArtifactResolutionServiceUrl"
                 id="idpArtifactResolutionServiceUrl" appChangeClearErrors appChangeStripSpaces appA11yInvalid
                 aria-describedby="idpArtifactResolutionServiceUrlDesc">
-            <div id="idpArtifactResolutionServiceUrlDesc">
-                <ng-template #idpArtifactResolutionServiceUrlHelper>
-                    <small class="form-text text-muted">
-                        {{'idpArtifactResolutionRequired' | i18n}}
-                    </small>
-                </ng-template>
-                <small class="error-inline" *ngIf="samlForm.get('idpArtifactResolutionServiceUrl').hasError('required') 
-                    else idpArtifactResolutionServiceUrlHelper">
-                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                    {{'idpArtifactResolutionRequired' | i18n }}
-                </small>
-            </div>
+            <small id="idpArtifactResolutionServiceUrlDesc"
+                [ngClass]="artifactUrlHasRequiredError ? 'error-inline' : 'form-text text-muted'">
+                <i *ngIf="artifactUrlHasRequiredError" class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                {{'idpArtifactResolutionRequired' | i18n }}
+            </small>
         </div>
         <div class="form-group">
             <label for="idpX509PublicCert">{{'idpX509PublicCert' | i18n}}</label>
             <textarea formControlName="idpX509PublicCert" class="form-control form-control-sm text-monospace"
                 rows="6" id="idpX509PublicCert" appChangeClearErrors appA11yInvalid
                 aria-describedby="idpX509PublicCertDesc"></textarea>
-            <div id="idpX509PublicCertDesc">
-                <ng-template #idpX509PublicCertHelper>
-                    <small class="form-text text-muted">
-                        {{'idpX509PublicCertRequired' | i18n}}
-                    </small>
-                </ng-template>
-                <small class="error-inline" *ngIf="samlForm.get('idpX509PublicCert').hasError('required')
-                    else idpX509PublicCertHelper">
-                    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                    {{'idpX509PublicCertRequired' | i18n }}
-                </small>
-            </div>
+            <small id="idpX509PublicCertDesc" [ngClass]="x509HasRequiredError ? 'error-inline' : 'form-text text-muted'">
+                <i *ngIf="x509HasRequiredError" class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                {{'idpX509PublicCertRequired' | i18n}}
+            </small>
         </div>
         <div class="form-group">
             <label for="idpOutboundSigningAlgorithm">{{'idpOutboundSigningAlgorithm' | i18n}}</label>
