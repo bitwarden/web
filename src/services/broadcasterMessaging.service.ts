@@ -1,7 +1,9 @@
+import { Injectable } from '@angular/core';
+
+import { BroadcasterService } from 'jslib-common/abstractions/broadcaster.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 
-import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
-
+@Injectable()
 export class BroadcasterMessagingService implements MessagingService {
     constructor(private broadcasterService: BroadcasterService) { }
 

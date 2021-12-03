@@ -1,6 +1,6 @@
 import {
     Component,
-    NgZone
+    NgZone,
 } from '@angular/core';
 import { Router } from '@angular/router';
 
