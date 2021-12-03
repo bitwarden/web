@@ -1263,7 +1263,7 @@
     "message": "此两步登录提供程序已禁用。"
   },
   "twoFactorYubikeyAdd": {
-    "message": "将一个新的 YubiKey 设备添加到您的帐户"
+    "message": "将新的 YubiKey 添加到您的帐户"
   },
   "twoFactorYubikeyPlugIn": {
     "message": "将 YubiKey 插入您电脑的 USB 端口。"
@@ -2176,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "您确实要删除此用户吗？"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "警告！此用户需要密钥连接器来管理他们的加密。从您的组织中移除此用户将永久禁用他们的帐户。此操作无法撤消。您要继续吗？"
+  },
   "externalId": {
     "message": "外部 ID"
   },
@@ -2656,6 +2659,9 @@
   "resendInvitation": {
     "message": "重新发送邀请"
   },
+  "resendEmail": {
+    "message": "重新发送电子邮件"
+  },
   "hasBeenReinvited": {
     "message": "已重新邀请 $USER$。",
     "placeholders": {
@@ -2943,6 +2949,15 @@
   },
   "subscriptionFamiliesPlan": {
     "message": "如果不升级你的计划，你不能邀请超过 $COUNT$ 位用户。请联系客户支持进行升级。",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "您的订阅允许总共 $COUNT$ 位用户。您的计划由一个外部组织赞助和支付费用。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3394,7 +3409,7 @@
     "message": "设置主密码"
   },
   "ssoCompleteRegistration": {
-    "message": "要使用单点登录（SSO）功能，请设置一个主密码以访问和保护您的密码库。"
+    "message": "要完成 SSO 登录配置，请设置一个主密码以访问和保护您的密码库。"
   },
   "identifier": {
     "message": "标识符"
@@ -4049,7 +4064,7 @@
     }
   },
   "firstSsoLogin": {
-    "message": "$ID$ logged in using Sso for the first time",
+    "message": "$ID$ 首次使用 SSO 登录",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4473,6 +4488,123 @@
   "ssoSettingsSaved": {
     "message": "单点登录配置已保存。"
   },
+  "sponsoredFamilies": {
+    "message": "免费 Bitwarden 家庭"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "您和您的家人可使用免费的 Bitwarden 家庭版计划。即使您不在公司上班，您也可以使用个人电子邮件兑换此计划，以保护您的数据安全。"
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "立即兑换免费的 Bitwarden 家庭版计划，即使您不在公司上班也能确保您的数据安全。"
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Bitwarden 家庭版计划包含"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "最多 6 个用户的高级访问权限"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "用于家庭账号密码共享的集合"
+  },
+  "badToken": {
+    "message": "链接已失效。请让赞助方重新发送邀请。"
+  },
+  "reclaimedFreePlan": {
+    "message": "已回收免费计划"
+  },
+  "redeem": {
+    "message": "兑换"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "选择一个您希望发起的组织"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "您想兑换哪一个免费家庭的邀请？"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "输入您的个人电子邮件以兑换 Bitwarden 家庭"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "如果您离开或被从这个组织中移除，您的家庭计划将在计费周期结束时到期。"
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "接受现有组织的邀请或创建一个新的家庭组织。"
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "您已被邀请加入 Bitwarden 家庭计划组织。要继续，您需要登录到接受邀请的账户。"
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "无法接受邀请。请重新发送来自您企业帐户的邀请邮件，然后重试。"
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "无法接受邀请。$DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "兑换免费 Bitwarden 家庭组织邀请"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "免费 Bitwarden 家庭邀请已成功兑换"
+  },
+  "redeemed": {
+    "message": "已兑换"
+  },
+  "redeemedAccount": {
+    "message": "已兑换账户"
+  },
+  "revokeAccount": {
+    "message": "撤销账户 $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "重新发送赞助邮件到 $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "免费家庭计划"
+  },
+  "redeemNow": {
+    "message": "立即兑换"
+  },
+  "recipient": {
+    "message": "收件人"
+  },
+  "removeSponsorship": {
+    "message": "移除赞助"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "移除赞助后，将由您自己负责此订阅及其相关的账单。您确定要继续吗？"
+  },
+  "sponsorshipCreated": {
+    "message": "赞助已创建"
+  },
+  "revoke": {
+    "message": "撤销"
+  },
+  "emailSent": {
+    "message": "电子邮件已发送"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "移除这个帐户后，家庭组织的所有者将负责此订阅及其相关的账单。您确定要继续吗？"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "赞助已移除"
+  },
   "ssoKeyConnectorUnavailable": {
     "message": "无法连接到密钥连接器，请稍后再试。"
   },
@@ -4480,19 +4612,19 @@
     "message": "密钥连接器 URL"
   },
   "sendVerificationCode": {
-    "message": "Send a verification code to your email"
+    "message": "发送验证码到您的电子邮箱"
   },
   "sendCode": {
-    "message": "Send Code"
+    "message": "发送验证码"
   },
   "codeSent": {
-    "message": "Code Sent"
+    "message": "验证码已发送"
   },
   "verificationCode": {
     "message": "验证码"
   },
   "confirmIdentity": {
-    "message": "Confirm your identity to continue."
+    "message": "确认您的身份以继续。"
   },
   "verificationCodeRequired": {
     "message": "必须填写验证码。"
@@ -4549,7 +4681,7 @@
     "message": "密钥连接器"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "连接 SSO 登录到您的自托管解密密钥服务器。使用此选项，成员将不再需要使用他们的主密码来解密密码库数据。联系 Bitwarden 支持以获取设置指导。"
+    "message": "连接 SSO 登录到您的自托管解密密钥服务器。使用此选项后，成员将不再需要使用他们的主密码来解密密码库数据。联系 Bitwarden 支持以获取设置指导。"
   },
   "keyConnectorPolicyRestriction": {
     "message": "“SSO 登录和密钥连接器解密”已启用。此策略仅适用于所有者和管理员。"
@@ -4567,9 +4699,39 @@
     "message": "已禁用密钥连接器"
   },
   "keyConnectorWarning": {
-    "message": "一旦成员开始使用 密钥连接器，您的组织就无法恢复到主密码解密。 仅当您对部署和管理密钥服务器感到满意时才继续。"
+    "message": "一旦成员开始使用密钥连接器，您的组织就无法恢复到主密码解密。仅当您可以轻松地部署和管理密钥服务器时才继续。"
   },
   "migratedKeyConnector": {
     "message": "已迁移到密钥连接器"
+  },
+  "paymentSponsored": {
+    "message": "请提供一个与此组织相关联的付款方式。别担心，除非您选择附加功能或您的赞助到期，我们不会向您收取任何费用。 "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "赞助邀请已过期，您可以删除您创建的组织，以避免 7 天试用期结束时收取费用。您也可以关闭这个提示，以保留此组织并承担计费责任。"
+  },
+  "newFamiliesOrganization": {
+    "message": "新建家庭组织"
+  },
+  "acceptOffer": {
+    "message": "接受邀请"
+  },
+  "sponsoringOrg": {
+    "message": "赞助组织"
+  },
+  "keyConnectorTest": {
+    "message": "测试"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "成功！已连接密钥连接器。"
+  },
+  "keyConnectorTestFail": {
+    "message": "无法连接密钥连接器。请检查 URL。"
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "此赞助邀请已过期。"
+  },
+  "freeWithSponsorship": {
+    "message": "免费赞助"
   }
 }
