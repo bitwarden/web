@@ -39,7 +39,7 @@ const moduleRules = [
         }],
     },
     {
-        test: /\.(jpe?g|png|gif|svg)$/i,
+        test: /\.(jpe?g|png|gif|svg|webp|avif)$/i,
         exclude: /.*(fontawesome-webfont)\.svg/,
         use: [{
             loader: 'file-loader',
