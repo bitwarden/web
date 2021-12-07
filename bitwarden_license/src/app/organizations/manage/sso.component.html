@@ -82,10 +82,12 @@
                         <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
                         {{'keyConnectorTestFail' | i18n}}
                     </small>
-                    <small #keyConnectorSuccess class="text-success">
-                        <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-                        {{'keyConnectorTestSuccess' | i18n}}
-                    </small>
+                    <ng-template #keyConnectorSuccess>
+                        <small class="text-success">
+                            <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                            {{'keyConnectorTestSuccess' | i18n}}
+                        </small>
+                    </ng-template>
                 </div>
             </div>
         </ng-container>
