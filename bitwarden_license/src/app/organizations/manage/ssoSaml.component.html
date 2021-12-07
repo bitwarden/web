@@ -139,12 +139,15 @@
             </small>
         </div>
         <div class="form-group">
-            <label for="idpX509PublicCert">{{'idpX509PublicCert' | i18n}}</label>
+            <label for="idpX509PublicCert">
+                {{'idpX509PublicCert' | i18n}}
+                <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
+            </label>
             <textarea formControlName="idpX509PublicCert" class="form-control form-control-sm text-monospace"
                 rows="6" id="idpX509PublicCert" appA11yInvalid aria-describedby="idpX509PublicCertDesc"></textarea>
-            <small id="idpX509PublicCertDesc" [ngClass]="x509HasRequiredError ? 'error-inline' : 'form-text text-muted'">
-                <i *ngIf="x509HasRequiredError" class="fa fa-exclamation-circle" aria-hidden="true"></i>
-                {{'idpX509PublicCertRequired' | i18n}}
+            <small id="idpX509PublicCertDesc" class="error-inline" *ngIf="samlForm.get('idpX509PublicCert').hasError('required')">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                {{'fieldRequiredError' | i18n }}
             </small>
         </div>
         <div class="form-group">

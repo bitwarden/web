@@ -100,8 +100,7 @@ export class SsoComponent implements OnInit {
         idpSingleLogoutServiceUrl: [],
         idpArtifactResolutionServiceUrl: ['', dirtyValidator(
             requiredIfValidator(control => control.parent?.get('idpBindingType').value === Saml2BindingType.Artifact))],
-        idpX509PublicCert: ['', dirtyValidator(
-            requiredIfValidator(control => control.parent?.get('spSigningBehavior').value !== Saml2SigningBehavior.Never))],
+        idpX509PublicCert: ['', dirtyValidator(Validators.required)],
         idpOutboundSigningAlgorithm: [defaultSigningAlgorithm],
         idpAllowUnsolicitedAuthnResponse: [],
         idpAllowOutboundLogoutRequests: [true], // TODO: update in model, handle transition
