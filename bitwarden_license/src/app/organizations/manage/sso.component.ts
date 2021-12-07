@@ -24,7 +24,8 @@ import {
     SsoUrls
 } from 'jslib-common/models/response/organization/organizationSsoResponse';
 
-import { requiredIf } from 'jslib-angular/validators/requiredIf.validator';
+import { requiredIfValidator } from 'jslib-angular/validators/requiredIf.validator';
+import { dirtyValidator } from 'jslib-angular/validators/dirty.validator';
 
 import {
     OpenIdConnectRedirectBehavior,
@@ -71,9 +72,9 @@ export class SsoComponent implements OnInit {
     enabled = this.fb.control(false);
 
     openIdForm = this.fb.group({
-        authority: ['', Validators.required],
-        clientId: ['', Validators.required],
-        clientSecret: ['', Validators.required],
+        authority: ['', dirtyValidator(Validators.required)],
+        clientId: ['', dirtyValidator(Validators.required)],
+        clientSecret: ['', dirtyValidator(Validators.required)],
         metadataAddress: [],
         redirectBehavior: [OpenIdConnectRedirectBehavior.RedirectGet],
         getClaimsFromUserInfoEndpoint: [],
@@ -93,14 +94,14 @@ export class SsoComponent implements OnInit {
         spWantAssertionsSigned: [],
         spValidateCertificates: [],
 
-        idpEntityId: ['', Validators.required],
+        idpEntityId: ['', dirtyValidator(Validators.required)],
         idpBindingType: [Saml2BindingType.HttpRedirect],
         idpSingleSignOnServiceUrl: [],
         idpSingleLogoutServiceUrl: [],
-        idpArtifactResolutionServiceUrl: ['',
-            requiredIf(control => control.parent?.get('idpBindingType').value === Saml2BindingType.Artifact)],
-        idpX509PublicCert: ['',
-            requiredIf(control => control.parent?.get('spSigningBehavior').value !== Saml2SigningBehavior.Never)],
+        idpArtifactResolutionServiceUrl: ['', dirtyValidator(
+            requiredIfValidator(control => control.parent?.get('idpBindingType').value === Saml2BindingType.Artifact))],
+        idpX509PublicCert: ['', dirtyValidator(
+            requiredIfValidator(control => control.parent?.get('spSigningBehavior').value !== Saml2SigningBehavior.Never))],
         idpOutboundSigningAlgorithm: [defaultSigningAlgorithm],
         idpAllowUnsolicitedAuthnResponse: [],
         idpAllowOutboundLogoutRequests: [true], // TODO: update in model, handle transition
@@ -108,11 +109,9 @@ export class SsoComponent implements OnInit {
     });
 
     commonForm = this.fb.group({
-        configType: [0],
-        keyConnectorEnabled: [false],
-        keyConnectorUrl: ['', {updateOn: 'blur'}],
-    }, {
-        updateOn: 'change',
+        configType: [0, {updateOn: 'change'}],
+        keyConnectorEnabled: [false, {updateOn: 'change'}],
+        keyConnectorUrl: ['', dirtyValidator(Validators.required)],
     });
 
     ssoConfigForm = this.fb.group({
@@ -120,7 +119,7 @@ export class SsoComponent implements OnInit {
         saml: this.samlForm,
         common: this.commonForm,
     }, {
-        updateOn: 'submit',
+        updateOn: 'blur',
     });
 
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private apiService: ApiService,
@@ -158,11 +157,13 @@ export class SsoComponent implements OnInit {
     }
 
     async submit() {
+        this.validateForm(this.ssoConfigForm);
+
         if (this.commonForm.get('keyConnectorEnabled').value) {
             await this.validateKeyConnectorUrl();
         }
 
-        if (this.ssoConfigForm.invalid) {
+        if (!this.ssoConfigForm.valid) {
             return;
         }
 
@@ -213,6 +214,18 @@ export class SsoComponent implements OnInit {
             }
             return acc + (Object.keys(control.errors).length);
         }, 0);
+    }
+
+    private validateForm(form: FormGroup) {
+        Object.values(form.controls).forEach((control: AbstractControl) => {
+            if (control instanceof FormGroup) {
+                this.validateForm(control);
+            } else {
+                control.markAsDirty();
+                control.markAsTouched();
+                control.updateValueAndValidity();
+            }
+        });
     }
 
     private populateForm(ssoSettings: OrganizationSsoResponse) {

@@ -189,7 +189,6 @@ import { ApiActionDirective } from 'jslib-angular/directives/api-action.directiv
 import { AutofocusDirective } from 'jslib-angular/directives/autofocus.directive';
 import { BlurClickDirective } from 'jslib-angular/directives/blur-click.directive';
 import { BoxRowDirective } from 'jslib-angular/directives/box-row.directive';
-import { ChangeClearErrorsDirective } from 'jslib-angular/directives/change-clear-errors.directive';
 import { ChangeStripSpacesDirective } from 'jslib-angular/directives/change-strip-spaces.directive';
 import { FallbackSrcDirective } from 'jslib-angular/directives/fallback-src.directive';
 import { InputVerbatimDirective } from 'jslib-angular/directives/input-verbatim.directive';
@@ -330,7 +329,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         BulkRestoreComponent,
         BulkShareComponent,
         CalloutComponent,
-        ChangeClearErrorsDirective,
         ChangeStripSpacesDirective,
         ChangeEmailComponent,
         ChangeKdfComponent,
@@ -484,7 +482,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ApiActionDirective,
         AvatarComponent,
         CalloutComponent,
-        ChangeClearErrorsDirective,
         ChangeStripSpacesDirective,
         FooterComponent,
         I18nPipe,

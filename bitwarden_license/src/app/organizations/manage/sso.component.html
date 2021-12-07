@@ -64,8 +64,8 @@
                 </label>
                 <div class="input-group">
                     <input class="form-control" formControlName="keyConnectorUrl" id="keyConnectorUrl"
-                        aria-describedby="keyConnectorUrlDesc" appChangeClearErrors 
-                        (change)="haveTestedKeyConnector = false" appChangeStripSpaces appA11yInvalid>
+                        aria-describedby="keyConnectorUrlDesc" (change)="haveTestedKeyConnector = false" 
+                        appChangeStripSpaces appA11yInvalid>
                     <div class="input-group-append">
                         <button type="button" class="btn btn-outline-secondary" (click)="validateKeyConnectorUrl()"
                             [disabled]="!enableTestKeyConnector">
