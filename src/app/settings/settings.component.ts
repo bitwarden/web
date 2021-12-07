@@ -5,11 +5,10 @@ import {
     OnInit,
 } from '@angular/core';
 
+import { BroadcasterService } from 'jslib-common/abstractions/broadcaster.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { TokenService } from 'jslib-common/abstractions/token.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
-
-import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 
 const BroadcasterSubscriptionId = 'SettingsComponent';
 

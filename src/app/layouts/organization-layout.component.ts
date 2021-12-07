@@ -7,8 +7,7 @@ import {
 
 import { ActivatedRoute } from '@angular/router';
 
-import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
-
+import { BroadcasterService } from 'jslib-common/abstractions/broadcaster.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
