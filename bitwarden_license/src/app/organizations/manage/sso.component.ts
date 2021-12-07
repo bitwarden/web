@@ -110,7 +110,7 @@ export class SsoComponent implements OnInit {
     commonForm = this.fb.group({
         configType: [0, {updateOn: 'change'}],
         keyConnectorEnabled: [false, {updateOn: 'change'}],
-        keyConnectorUrl: ['', dirtyValidator(Validators.required)],
+        keyConnectorUrl: [''],
     });
 
     ssoConfigForm = this.fb.group({
