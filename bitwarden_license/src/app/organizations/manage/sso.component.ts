@@ -24,8 +24,8 @@ import {
     SsoUrls
 } from 'jslib-common/models/response/organization/organizationSsoResponse';
 
-import { requiredIfValidator } from 'jslib-angular/validators/requiredIf.validator';
 import { dirtyValidator } from 'jslib-angular/validators/dirty.validator';
+import { requiredIfValidator } from 'jslib-angular/validators/requiredIf.validator';
 
 import {
     OpenIdConnectRedirectBehavior,

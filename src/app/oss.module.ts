@@ -189,8 +189,8 @@ import { ApiActionDirective } from 'jslib-angular/directives/api-action.directiv
 import { AutofocusDirective } from 'jslib-angular/directives/autofocus.directive';
 import { BlurClickDirective } from 'jslib-angular/directives/blur-click.directive';
 import { BoxRowDirective } from 'jslib-angular/directives/box-row.directive';
-import { ChangeStripSpacesDirective } from 'jslib-angular/directives/change-strip-spaces.directive';
 import { FallbackSrcDirective } from 'jslib-angular/directives/fallback-src.directive';
+import { InputStripSpacesDirective } from 'jslib-angular/directives/input-strip-spaces.directive';
 import { InputVerbatimDirective } from 'jslib-angular/directives/input-verbatim.directive';
 import { SelectCopyDirective } from 'jslib-angular/directives/select-copy.directive';
 import { StopClickDirective } from 'jslib-angular/directives/stop-click.directive';
@@ -329,7 +329,6 @@ registerLocaleData(localeZhTw, 'zh-TW');
         BulkRestoreComponent,
         BulkShareComponent,
         CalloutComponent,
-        ChangeStripSpacesDirective,
         ChangeEmailComponent,
         ChangeKdfComponent,
         ChangePasswordComponent,
@@ -364,6 +363,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         IconComponent,
         ImportComponent,
         InactiveTwoFactorReportComponent,
+        InputStripSpacesDirective,
         InputVerbatimDirective,
         LinkSsoComponent,
         LockComponent,
@@ -482,9 +482,9 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ApiActionDirective,
         AvatarComponent,
         CalloutComponent,
-        ChangeStripSpacesDirective,
         FooterComponent,
         I18nPipe,
+        InputStripSpacesDirective,
         NavbarComponent,
         OrganizationPlansComponent,
         SearchPipe,
