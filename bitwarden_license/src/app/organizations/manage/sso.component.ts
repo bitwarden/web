@@ -173,8 +173,8 @@ export class SsoComponent implements OnInit {
         this.formPromise = this.apiService.postOrganizationSso(this.organizationId, request);
 
         try {
-            // const response = await this.formPromise;
-            // this.populateForm(response);
+            const response = await this.formPromise;
+            this.populateForm(response);
             this.platformUtilsService.showToast('success', null, this.i18nService.t('ssoSettingsSaved'));
         } catch {
             // Logged by appApiAction, do nothing
