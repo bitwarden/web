@@ -60,10 +60,6 @@ const IdleTimeout = 60000 * 10; // 10 minutes
 })
 export class AppComponent implements OnDestroy, OnInit {
 
-    toasterConfig: Partial<IndividualConfig> = {
-        closeButton: true,
-    };
-
     private lastActivity: number = null;
     private idleTimer: number = null;
     private isIdle = false;
@@ -256,7 +252,7 @@ export class AppComponent implements OnDestroy, OnInit {
     private showToast(msg: any) {
         let message = '';
 
-        const options = Object.assign({}, this.toasterConfig);
+        const options: Partial<IndividualConfig> = {};
 
         if (typeof (msg.text) === 'string') {
             message = msg.text;

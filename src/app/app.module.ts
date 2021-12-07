@@ -21,6 +21,8 @@ import { WildcardRoutingModule } from './wildcard-routing.module';
         ServicesModule,
         BitwardenToastModule.forRoot({
             maxOpened: 5,
+            autoDismiss: true,
+            closeButton: true,
         }),
         InfiniteScrollModule,
         DragDropModule,
