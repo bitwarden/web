@@ -3,7 +3,6 @@ import {
     OnInit,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { ExportService } from 'jslib-common/abstractions/export.service';
@@ -32,10 +31,10 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
     private providerUsersIdMap = new Map<string, any>();
 
     constructor(private apiService: ApiService, private route: ActivatedRoute, eventService: EventService,
-        i18nService: I18nService, toasterService: ToasterService, private userService: UserService,
-        exportService: ExportService, platformUtilsService: PlatformUtilsService, private router: Router,
-        logService: LogService, private userNamePipe: UserNamePipe) {
-        super(eventService, i18nService, toasterService, exportService, platformUtilsService, logService);
+        i18nService: I18nService, private userService: UserService, exportService: ExportService,
+        platformUtilsService: PlatformUtilsService, private router: Router, logService: LogService,
+        private userNamePipe: UserNamePipe) {
+        super(eventService, i18nService, exportService, platformUtilsService, logService);
     }
 
     async ngOnInit() {

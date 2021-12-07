@@ -11,8 +11,6 @@ import {
 
 import { first } from 'rxjs/operators';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
@@ -50,7 +48,7 @@ export class GroupsComponent implements OnInit {
 
     constructor(private apiService: ApiService, private route: ActivatedRoute,
         private i18nService: I18nService, private modalService: ModalService,
-        private toasterService: ToasterService, private platformUtilsService: PlatformUtilsService,
+        private platformUtilsService: PlatformUtilsService,
         private userService: UserService, private router: Router,
         private searchService: SearchService, private logService: LogService) { }
 
@@ -123,7 +121,7 @@ export class GroupsComponent implements OnInit {
 
         try {
             await this.apiService.deleteGroup(this.organizationId, group.id);
-            this.toasterService.popAsync('success', null, this.i18nService.t('deletedGroupId', group.name));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('deletedGroupId', group.name));
             this.removeGroup(group);
         } catch (e) {
             this.logService.error(e);

@@ -7,14 +7,10 @@ import {
     Router,
 } from '@angular/router';
 
-import {
-    Toast,
-    ToasterService,
-} from 'angular2-toaster';
-
 import { first } from 'rxjs/operators';
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
 import { UserService } from 'jslib-common/abstractions/user.service';
 
@@ -29,7 +25,7 @@ export abstract class BaseAcceptComponent implements OnInit {
     protected failedShortMessage = 'inviteAcceptFailedShort';
     protected failedMessage = 'inviteAcceptFailed';
 
-    constructor(protected router: Router, protected toasterService: ToasterService,
+    constructor(protected router: Router, protected platformUtilService: PlatformUtilsService,
         protected i18nService: I18nService, protected route: ActivatedRoute,
         protected userService: UserService, protected stateService: StateService) { }
 
@@ -64,14 +60,9 @@ export abstract class BaseAcceptComponent implements OnInit {
             }
 
             if (error) {
-                const toast: Toast = {
-                    type: 'error',
-                    title: null,
-                    body: errorMessage != null ? this.i18nService.t(this.failedShortMessage, errorMessage) :
-                        this.i18nService.t(this.failedMessage),
-                    timeout: 10000,
-                };
-                this.toasterService.popAsync(toast);
+                const message = errorMessage != null ? this.i18nService.t(this.failedShortMessage, errorMessage) :
+                        this.i18nService.t(this.failedMessage);
+                this.platformUtilService.showToast('error', null, message, {timeout: 10000});
                 this.router.navigate(['/']);
             }
 

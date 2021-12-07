@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { Verification } from 'jslib-common/types/verification';
@@ -19,7 +18,7 @@ export class DeauthorizeSessionsComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private userVerificationService: UserVerificationService,
+        private platformUtilsService: PlatformUtilsService, private userVerificationService: UserVerificationService,
         private messagingService: MessagingService, private logService: LogService) { }
 
     async submit() {
@@ -27,7 +26,7 @@ export class DeauthorizeSessionsComponent {
             this.formPromise = this.userVerificationService.buildRequest(this.masterPassword)
                 .then(request => this.apiService.postSecurityStamp(request));
             await this.formPromise;
-            this.toasterService.popAsync('success', this.i18nService.t('sessionsDeauthorized'),
+            this.platformUtilsService.showToast('success', this.i18nService.t('sessionsDeauthorized'),
                 this.i18nService.t('logBackIn'));
             this.messagingService.send('logout');
         } catch (e) {

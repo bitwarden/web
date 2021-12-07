@@ -9,7 +9,6 @@ import {
     Router
 } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
 import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
@@ -52,7 +51,7 @@ export class AccountComponent {
 
     constructor(private modalService: ModalService,
         private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private route: ActivatedRoute,
+        private route: ActivatedRoute,
         private syncService: SyncService, private platformUtilsService: PlatformUtilsService,
         private cryptoService: CryptoService, private logService: LogService,
         private router: Router) { }
@@ -90,7 +89,7 @@ export class AccountComponent {
                 return this.syncService.fullSync(true);
             });
             await this.formPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('organizationUpdated'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('organizationUpdated'));
         } catch (e) {
             this.logService.error(e);
         }
@@ -99,7 +98,7 @@ export class AccountComponent {
     async submitTaxInfo() {
         this.taxFormPromise = this.taxInfo.submitTaxInfo();
         await this.taxFormPromise;
-        this.toasterService.popAsync('success', null, this.i18nService.t('taxInfoUpdated'));
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('taxInfoUpdated'));
     }
 
     async deleteOrganization() {

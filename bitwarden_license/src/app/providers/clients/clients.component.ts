@@ -5,7 +5,6 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ToasterService } from 'angular2-toaster';
 
 import { first } from 'rxjs/operators';
 
@@ -58,9 +57,8 @@ export class ClientsComponent implements OnInit {
     constructor(private route: ActivatedRoute, private userService: UserService,
         private apiService: ApiService, private searchService: SearchService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
-        private toasterService: ToasterService, private validationService: ValidationService,
-        private providerService: ProviderService, private logService: LogService,
-        private modalService: ModalService) { }
+        private validationService: ValidationService, private providerService: ProviderService,
+        private logService: LogService, private modalService: ModalService) { }
 
     async ngOnInit() {
         this.route.parent.params.subscribe(async params => {
@@ -149,7 +147,8 @@ export class ClientsComponent implements OnInit {
         this.actionPromise = this.providerService.detachOrganizastion(this.providerId, organization.id);
         try {
             await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('detachedOrganization', organization.organizationName));
+            this.platformUtilsService.showToast('success', null,
+                this.i18nService.t('detachedOrganization', organization.organizationName));
             await this.load();
         } catch (e) {
             this.validationService.showError(e);

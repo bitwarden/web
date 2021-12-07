@@ -5,7 +5,6 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToasterService } from 'angular2-toaster';
 
 import { first } from 'rxjs/operators';
 
@@ -61,11 +60,11 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
 
     constructor(apiService: ApiService, private route: ActivatedRoute,
         i18nService: I18nService, modalService: ModalService,
-        platformUtilsService: PlatformUtilsService, toasterService: ToasterService,
+        platformUtilsService: PlatformUtilsService,
         cryptoService: CryptoService, private userService: UserService, private router: Router,
         storageService: StorageService, searchService: SearchService, validationService: ValidationService,
         logService: LogService, searchPipe: SearchPipe, userNamePipe: UserNamePipe) {
-        super(apiService, searchService, i18nService, platformUtilsService, toasterService, cryptoService,
+        super(apiService, searchService, i18nService, platformUtilsService, cryptoService,
             storageService, validationService, modalService, logService, searchPipe, userNamePipe);
     }
 
@@ -164,7 +163,7 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
         const filteredUsers = users.filter(u => u.status === ProviderUserStatusType.Invited);
 
         if (filteredUsers.length <= 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('noSelectedUsersApplicable'));
             return;
         }
