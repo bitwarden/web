@@ -54,10 +54,10 @@ export class SsoComponent implements OnInit {
     }
 
     readonly ssoTypeOptions = [
+        { name: this.i18nService.t('selectType'), value: SsoType.None, disabled: true },
         { name: 'OpenID Connect', value: SsoType.OpenIdConnect },
         { name: 'SAML 2.0', value: SsoType.Saml2 },
     ];
-
 
     readonly ssoType = SsoType;
 

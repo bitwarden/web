@@ -97,8 +97,7 @@
             <small class="text-muted form-text d-inline">({{'required' | i18n}})</small>
             </label>
             <select class="form-control" id="type" formControlName="configType">
-                <option [ngValue]="0" disabled>{{'selectType' | i18n}}</option>
-                <option *ngFor="let o of ssoTypeOptions" [ngValue]="o.value">{{o.name}}</option>
+                <option *ngFor="let o of ssoTypeOptions" [ngValue]="o.value" disabled={{o.disabled}}>{{o.name}}</option>
             </select>
         </div>
     </ng-container>
