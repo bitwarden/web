@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "真偽値"
   },
+  "cfTypeLinked": {
+    "message": "Linked",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "削除"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "姓"
+  },
+  "fullName": {
+    "message": "Full Name"
   },
   "address1": {
     "message": "住所 1"
@@ -832,9 +839,6 @@
   },
   "encExportAccountWarningDesc": {
     "message": "アカウント暗号化キーは各 Bitwarden ユーザーアカウントに固有であるため、暗号化されたエクスポートを別のアカウントにインポートすることはできません。"
-  },
-  "exportMasterPassword": {
-    "message": "保管庫のデータをエクスポートするにはマスターパスワードを入力してください。"
   },
   "export": {
     "message": "エクスポート"
@@ -1736,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "ご利用のプランでは、7日間の無料トライアルが可能です。トライアル期間が終わるまでは課金されません。トライアル終了後、$INTERVAL$毎に請求されます。いつでもキャンセルできます。",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "ご利用のプランでは、7日間の無料トライアルが可能です。トライアル期間が終わるまでは課金されません。トライアル終了後、$INTERVAL$毎に請求されます。いつでもキャンセルできます。"
   },
   "paymentInformation": {
     "message": "お支払い情報"
@@ -2811,10 +2809,6 @@
     "message": "下記の情報を入力してアカウントを他のプランにアップグレードしてください。アカウントに有効な支払い方法が追加されていることを確認してください。",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "契約プランを変更したい場合はサポートまでご連絡ください。アカウントに有効なお支払い方法が登録されていることをご確認ください。",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "請求 #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2935,6 +2929,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,6 +3829,9 @@
   "accessReports": {
     "message": "レポートにアクセス"
   },
+  "missingPermissions": {
+    "message": "You lack the necessary permissions to perform this action."
+  },
   "manageAllCollections": {
     "message": "すべてのコレクションを管理"
   },
@@ -4026,6 +4041,15 @@
   },
   "eventResetSsoLink": {
     "message": "Reset Sso link for user $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "firstSsoLogin": {
+    "message": "$ID$ logged in using Sso for the first time",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4448,5 +4472,104 @@
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "キーコネクターに到達できません。後でもう一度お試しください。"
+  },
+  "keyConnectorUrl": {
+    "message": "キーコネクター URL"
+  },
+  "sendVerificationCode": {
+    "message": "確認コードをメールに送信"
+  },
+  "sendCode": {
+    "message": "コードを送信"
+  },
+  "codeSent": {
+    "message": "確認コードを送信しました。"
+  },
+  "verificationCode": {
+    "message": "認証コード"
+  },
+  "confirmIdentity": {
+    "message": "続行するには本人確認を行ってください。"
+  },
+  "verificationCodeRequired": {
+    "message": "認証コードが必要です。"
+  },
+  "invalidVerificationCode": {
+    "message": "認証コードが間違っています"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ は自己ホストの鍵サーバで SSO を使用しています。この組織のメンバーのログインにマスターパスワードは必要ありません。",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "組織から脱退する"
+  },
+  "removeMasterPassword": {
+    "message": "マスターパスワードを削除する"
+  },
+  "removedMasterPassword": {
+    "message": "マスターパスワードを削除しました。"
+  },
+  "allowSso": {
+    "message": "SSO 認証を許可する"
+  },
+  "allowSsoDesc": {
+    "message": "セットアップが完了すると設定が保存され、メンバーは ID プロバイダーの資格情報を使用して認証することができます。"
+  },
+  "ssoPolicyHelpStart": {
+    "message": "すべてのメンバーが SSO でログインするには",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO ポリシー",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "を有効にしてください。",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
+  },
+  "memberDecryptionOption": {
+    "message": "メンバー復号オプション"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "認証が完了すると、メンバーはマスターパスワードを使用して保管庫データを復号します。"
+  },
+  "keyConnector": {
+    "message": "キーコネクター"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "SSO でログインして自己ホスト型の復号キーサーバーに接続します。このオプションを使用すると、メンバーは保管庫のデータを復号するためにマスターパスワードを使用する必要はありません。"
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "「SSO とキーコネクター複合でのログイン」が有効になっています。このポリシーは、オーナーと管理者にのみ適用されます。"
+  },
+  "enabledSso": {
+    "message": "SSO を有効にしました"
+  },
+  "disabledSso": {
+    "message": "SSOを無効にしました"
+  },
+  "enabledKeyConnector": {
+    "message": "キーコネクターを有効にしました"
+  },
+  "disabledKeyConnector": {
+    "message": "キーコネクターを無効にしました"
+  },
+  "keyConnectorWarning": {
+    "message": "キーコネクターがセットアップされると、メンバー復号オプションは変更できません。"
+  },
+  "migratedKeyConnector": {
+    "message": "キーコネクターに移行しました"
   }
 }
