@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "布林值"
   },
+  "cfTypeLinked": {
+    "message": "已連結",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "移除"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "姓"
+  },
+  "fullName": {
+    "message": "全名"
   },
   "address1": {
     "message": "地址 1"
@@ -712,7 +719,7 @@
     "message": "兩步驟登入選項"
   },
   "recoveryCodeDesc": {
-    "message": "無法使用任何兩步驟登入方式？請使用您的復原代碼以停用您賬戶的所有兩步驟登入方式。"
+    "message": "無法使用任何雙要素提供程式嗎？請使用您的復原代碼以停用您賬戶的所有雙要素提供程式。"
   },
   "recoveryCodeTitle": {
     "message": "復原代碼"
@@ -833,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "每個 Bitwarden 使用者帳戶的帳戶加密金鑰都不同，因此無法將加密過的匯出檔案匯入到不同帳戶中。"
   },
-  "exportMasterPassword": {
-    "message": "輸入您的主密碼以匯出密碼庫資料。"
-  },
   "export": {
     "message": "匯出"
   },
@@ -900,7 +904,7 @@
     "message": "變更電子郵件"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Proceeding will change your account email address. It will not change the email address used for two-factor authentication. You can change this email address in the Two-Step Login settings."
+    "message": "继续操作将變更您的帳戶電子郵件位址。這不會變更用于雙要素認證的電子郵件位址。您可以在雙要素登入設定中變更它。"
   },
   "newEmail": {
     "message": "新的電子郵件"
@@ -1002,7 +1006,7 @@
     "message": "組織密碼庫已清空。"
   },
   "vaultAccessedByProvider": {
-    "message": "Vault accessed by provider."
+    "message": "提供商存取了密碼庫。"
   },
   "purgeVaultDesc": {
     "message": "接下來的操作會刪除密碼庫當中的所有項目與資料夾。屬於組織的共享項目將不會刪除。"
@@ -1149,7 +1153,7 @@
     "message": "新增自訂網域"
   },
   "newCustomDomainDesc": {
-    "message": "輸入以逗號分隔的網域清單。只允許輸入基本網域，請勿輸入子網域名稱。例如，輸入「google.com」即可，而非「www.google.com」。您也可以輸入「androidapp://package.name」來將 Android 應用程式與其他網域名稱關聯起來。"
+    "message": "輸入以逗號分隔的網域清單。只允許輸入「基本」網域，請勿輸入子網域名稱。例如，輸入「google.com」即可，而非「www.google.com」。您也可以輸入「androidapp://package.name」來將 Android 應用程式與其他網域名稱關聯起來。"
   },
   "customDomainX": {
     "message": "自訂網域 $INDEX$",
@@ -1434,13 +1438,13 @@
     "message": "無效 2FA 報告"
   },
   "inactive2faReportDesc": {
-    "message": "兩步驟認證（2FA）是協助保護您帳號安全的一個重要安全性設定。如果網站提供兩步驟認證，您應永遠啟用它。"
+    "message": "雙要素認證（2FA）是協助保護您帳號安全的一個重要安全性設定。如果網站提供雙要素認證，您應永遠開啓它。"
   },
   "inactive2faFound": {
     "message": "發現未啟用 2FA 的登入資料"
   },
   "inactive2faFoundDesc": {
-    "message": "我們在您的密碼庫中找到 $COUNT$ 個可能未設定兩步驟認證的網站（根據 twofactorauth.org）。若要進一步保護這些帳戶，您應啟用兩步驟認證。",
+    "message": "我們在您的密碼庫中找到 $COUNT$ 個可能未設定雙要素認證的網站（根據 twofactorauth.org）。若要進一步保護這些帳戶，您應開啓雙要素認證。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1449,7 +1453,7 @@
     }
   },
   "noInactive2fa": {
-    "message": "沒有在您的密碼庫中找到未設定兩步驟認證的網站。"
+    "message": "沒有在您的密碼庫中找到未設定雙要素認證的網站。"
   },
   "instructions": {
     "message": "說明"
@@ -1648,7 +1652,7 @@
     "message": "密碼健康、帳戶體檢以及資料外洩報告，保障您的密碼庫安全。"
   },
   "premiumSignUpTotp": {
-    "message": "用於登入您的密碼庫的 TOTP 驗證碼 (2FA) 產生器。"
+    "message": "用於登入您的密碼庫的 TOTP 認證碼（2FA）產生器。"
   },
   "premiumSignUpSupport": {
     "message": "優先客戶支援。"
@@ -1736,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "您的方案包含了 7 天的免費試用。在試用期結束之前，不會從您的付款方式中扣款。隨後將會每 $INTERVAL$ 定期扣款。你可隨時取消。",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "您的方案包含了 7 天的免費試用。在試用期結束之前，不會從您的付款方式中扣款。你可隨時取消。"
   },
   "paymentInformation": {
     "message": "付款資訊"
@@ -2155,7 +2153,7 @@
     "message": "原則"
   },
   "singleSignOn": {
-    "message": "單一登入（SSO）"
+    "message": "單一登入"
   },
   "editPolicy": {
     "message": "編輯原則"
@@ -2257,7 +2255,7 @@
     "message": "可以管理組織的所有方面的具有最高權限的使用者。"
   },
   "clientOwnerDesc": {
-    "message": "This user should be independent of the Provider. If the Provider is disassociated with the organization, this user will maintain ownership of the organization."
+    "message": "此使用者應獨立於提供商。如果提供商與該組織解除關聯，此用戶將繼續保留組織的所有權。"
   },
   "admin": {
     "message": "管理員"
@@ -2269,13 +2267,13 @@
     "message": "使用者"
   },
   "userDesc": {
-    "message": "具有組織内已分配的集合的存取權限的普通使用者。"
+    "message": "具有組織内已指派的集合的存取權限的普通使用者。"
   },
   "manager": {
     "message": "經理"
   },
   "managerDesc": {
-    "message": "經理可以存取和管理組織内所分配的集合。"
+    "message": "經理可以存取和管理組織内已指派的集合。"
   },
   "all": {
     "message": "全部"
@@ -2329,7 +2327,7 @@
     "message": "登入失敗，密碼錯誤。"
   },
   "failedLogin2fa": {
-    "message": "登入失敗，兩步驟登入錯誤。"
+    "message": "兩步驟登入不正確，登入失敗。"
   },
   "exportedVault": {
     "message": "已匯出密碼庫"
@@ -2620,7 +2618,7 @@
     }
   },
   "accessedClientVault": {
-    "message": "Accessed $ID$ organization vault.",
+    "message": "已存取組織 $ID$ 的密碼庫。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2704,7 +2702,7 @@
     "message": "首先必須驗證您帳戶的電子郵件位址。"
   },
   "checkInboxForVerification": {
-    "message": "請檢查電子郵件收件箱以取得驗證連結。"
+    "message": "請檢查電子郵件收件匣以取得驗證連結。"
   },
   "emailVerified": {
     "message": "您的電子郵件已驗證。"
@@ -2804,15 +2802,11 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "變更方案",
+    "message": "升級方案",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "爲了將您的帳戶升級到另一個方案，請提供以下資訊。同時請確保您的帳戶已經有一個有效的付款方式。",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
-  "changeBillingPlanDesc": {
-    "message": "如果您想更改方案，請聯絡客戶支援。並請確保您的帳戶中添加了有效的付款方式。",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
@@ -2889,7 +2883,7 @@
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
-    "message": "Max potential seat cost"
+    "message": "最大潛在的席位費用"
   },
   "addSeats": {
     "message": "新增席位",
@@ -2900,7 +2894,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionDesc": {
-    "message": "對您的訂閱進行調整將導致按比例更改您的帳單總額。如果新邀請的使用者超過您的訂閱席位，您將立即收到按比例收取的額外使用者費用。"
+    "message": "對您的訂閱進行調整將導致按比例變更您的帳單總額。如果新邀請的使用者超過您的訂閱席位，您將立即收到按比例收取的額外使用者費用。"
   },
   "subscriptionUserSeats": {
     "message": "您的訂閱當中包含 $COUNT$ 位使用者的授權。",
@@ -2930,7 +2924,7 @@
     "message": "對您的訂閱進行調整將導致按比例更改您的帳單總額。如果新邀請的使用者超過您的訂閱席位，您將立即收到按比例收取的額外使用者費用。"
   },
   "subscriptionUserSeatsLimitedAutoscale": {
-    "message": "對您的訂閱進行調整將導致按比例更改您的帳單總額。如果新邀請的使用者超過您的訂閱席位，您將立即收到按比例收取的額外使用者費用，直到達到 $MAX$ 席位限制。",
+    "message": "對您的訂閱進行調整將導致按比例變更您的帳單總額。如果新邀請的使用者超過您的訂閱席位，您將立即收到按比例收取的額外使用者費用，直到達到 $MAX$ 席位限制。",
     "placeholders": {
       "max": {
         "content": "$1",
@@ -2938,8 +2932,26 @@
       }
     }
   },
+  "subscriptionFreePlan": {
+    "message": "除非升級方案，否則您最多只能邀請 $COUNT$ 位使用者。",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "除非升級方案，否則您最多只能邀請 $COUNT$ 位使用者。請聯絡客服支援進行升級。",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
   "subscriptionMaxReached": {
-    "message": "對您的訂閱進行調整將導致按比例更改您的帳單總額。在不增加訂閱席位的情況下，您不能邀請超過 $COUNT$ 個使用者。",
+    "message": "對您的訂閱進行調整將導致按比例變更您的帳單總額。在不增加訂閱席位的情況下，您不能邀請超過 $COUNT$ 個使用者。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3032,7 +3044,7 @@
     "message": "篩選器"
   },
   "vaultTimeout": {
-    "message": "密碼庫逾時"
+    "message": "密碼庫逾時時長"
   },
   "vaultTimeoutDesc": {
     "message": "選擇密碼庫多久之後逾時並執行選取的動作。"
@@ -3182,7 +3194,7 @@
     "message": "應用程式內購買"
   },
   "cannotPerformInAppPurchase": {
-    "message": "當你使用程式內購買這種付款方式時，不能執行此項操作。"
+    "message": "當你使用程式內購買付款方式時，不能執行這個動作。"
   },
   "manageSubscriptionFromStore": {
     "message": "你必須從應用程式內購買的商店中才能管理你的訂閱。"
@@ -3394,7 +3406,7 @@
     "message": "要使用組織的單一登入入口登入。請輸入您組織的識別符以開始。"
   },
   "enterpriseSingleSignOn": {
-    "message": "企業單一登入（SSO）"
+    "message": "企業單一登入"
   },
   "ssoHandOff": {
     "message": "您現在可以關閉此分頁，並且回到擴充套件繼續。"
@@ -3403,7 +3415,7 @@
     "message": "包含所有團隊版功能"
   },
   "includeSsoAuthentication": {
-    "message": "通過 SAML2.0 和 OpenID Connect 進行 SSO 身份認證"
+    "message": "透過 SAML2.0 和 OpenID Connect 進行 SSO 認證"
   },
   "includeEnterprisePolicies": {
     "message": "企業原則"
@@ -3742,7 +3754,7 @@
     "message": "組織的擁有者和管理員豁免此原則的執行。。"
   },
   "personalOwnershipSubmitError": {
-    "message": "由於某個企業原則，您被限制為儲存項目到您的個人密碼庫。將擁有權改爲組織，並從可用的集合中選擇。"
+    "message": "由於某個企業原則，您被限制為儲存項目到您的個人密碼庫。將擁有權變更爲組織，並從可用的集合中選擇。"
   },
   "disableSend": {
     "message": "停用 Send"
@@ -3817,6 +3829,9 @@
   "accessReports": {
     "message": "存取報告"
   },
+  "missingPermissions": {
+    "message": "您欠缺執行本動作必要的權限。"
+  },
   "manageAllCollections": {
     "message": "管理所有集合。"
   },
@@ -3824,19 +3839,19 @@
     "message": "創建新的集合"
   },
   "editAnyCollection": {
-    "message": "Edit Any Collection"
+    "message": "編輯任何集合"
   },
   "deleteAnyCollection": {
-    "message": "Delete Any Collection"
+    "message": "刪除任何集合"
   },
   "manageAssignedCollections": {
-    "message": "管理已分配的集合。"
+    "message": "管理已指派的集合。"
   },
   "editAssignedCollections": {
-    "message": "編輯已分配的集合"
+    "message": "編輯已指派的集合"
   },
   "deleteAssignedCollections": {
-    "message": "刪除已關聯的集合"
+    "message": "刪除已指派的集合"
   },
   "manageGroups": {
     "message": "管理群組"
@@ -3854,7 +3869,7 @@
     "message": "管理密碼重設"
   },
   "disableRequiredError": {
-    "message": "您必須先手動停用 $POLICYNAME$ 策略，然後才能停用此策略。",
+    "message": "您必須先手動停用 $POLICYNAME$ 原則，然後才能停用此原則。",
     "placeholders": {
       "policyName": {
         "content": "$1",
@@ -3866,7 +3881,7 @@
     "message": "一個組織原則正在影響您的擁有權選項。"
   },
   "personalOwnershipPolicyInEffectImports": {
-    "message": "某個組織虐策略已停用將項目匯入到您的個人密碼庫。"
+    "message": "某個組織原則已停用將項目匯入到您的個人密碼庫。"
   },
   "personalOwnershipCheckboxDesc": {
     "message": "為組織使用者禁用個人擁有權。"
@@ -4033,6 +4048,15 @@
       }
     }
   },
+  "firstSsoLogin": {
+    "message": "$ID$ 第一次使用 SSO 登入",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "重設密碼"
   },
@@ -4055,7 +4079,7 @@
     "message": "密碼重設成功！"
   },
   "resetPasswordEnrollmentWarning": {
-    "message": "註冊將允許組織管理者去變更您的主密碼。確定要註冊嗎？"
+    "message": "註冊後將允許組織管理者變更您的主密碼。確定要註冊嗎？"
   },
   "resetPasswordPolicy": {
     "message": "主密碼重設"
@@ -4079,13 +4103,13 @@
     "message": "要求自動註冊新使用者"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "此組織設定了讓您可自動重設密碼的企業政策。設定政策後，將允許組織管理員更改您的主控密碼。"
+    "message": "此組織有一個可以為您自動註冊密碼重設的企業原則。註冊後將允許組織管理員變更您的主密碼。"
   },
   "resetPasswordOrgKeysError": {
     "message": "組織金鑰回覆為空"
   },
   "resetPasswordDetailsError": {
-    "message": "重設密碼細節回覆為空"
+    "message": "重設密碼細節回應為空"
   },
   "trashCleanupWarning": {
     "message": "垃圾桶中超過 30 天的密碼將會被自動刪除。"
@@ -4100,7 +4124,7 @@
     "message": "確認主密碼"
   },
   "passwordConfirmationDesc": {
-    "message": "此操作受到保護。若要繼續，請重新輸入您的主密碼以驗證您的身份。"
+    "message": "這個動作受到保護。若要繼續，請重新輸入您的主密碼以驗證您的身份。"
   },
   "reinviteSelected": {
     "message": "重新傳送邀請"
@@ -4160,10 +4184,10 @@
     "message": "提供商設定"
   },
   "setupProviderLoginDesc": {
-    "message": "您被邀請設定一個新的供應商。要繼續，您需要登入或創建一個新的 Bitwarden 賬戶。"
+    "message": "您被邀請設定一個新的提供商。要繼續，您需要登入或創建一個新的 Bitwarden 帳戶。"
   },
   "setupProviderDesc": {
-    "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
+    "message": "請在下面輸入詳細資訊以完成提供商設定。如果您有任何問題，請聯絡客戶支援。"
   },
   "providerName": {
     "message": "提供商名稱"
@@ -4178,40 +4202,40 @@
     "message": "提供商管理"
   },
   "providerAdminDesc": {
-    "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
+    "message": "可以管理提供商的所有方面的具有最高存取權限的使用者，也可以存取和管理客戶組織。"
   },
   "serviceUser": {
     "message": "服務使用者"
   },
   "serviceUserDesc": {
-    "message": "Service users can access and manage all client organizations."
+    "message": "服務使用者可以存取和管理所有客戶組織。"
   },
   "providerInviteUserDesc": {
-    "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "通過在下面輸入他們的 Bitwarden 帳戶電子郵件位址，來邀請新的使用者加入您的提供商。如果他們還沒有 Bitwarden 帳戶，將提示他們創建新帳戶。"
   },
   "joinProvider": {
     "message": "加入提供商"
   },
   "joinProviderDesc": {
-    "message": "You've been invited to join the provider listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "您已被邀請加入上面列出的提供商。要接受邀請，您需要登入或創建新的 Bitwarden 帳戶。"
   },
   "providerInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask a provider admin to send a new invitation."
+    "message": "無法接受邀請。請要求提供商管理員發送一個新的邀請。"
   },
   "providerInviteAcceptedDesc": {
-    "message": "You can access this provider once an administrator confirms your membership. We'll send you an email when that happens."
+    "message": "管理員確認您的成員資格後，您就可以存取此提供商。發生這種情況時，我們會給你發送電子郵件。"
   },
   "providerUsersNeedConfirmed": {
-    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the provider until they are confirmed."
+    "message": "有使用者已接受邀請，但仍需要確認。在確認之前，使用者將無法存取提供商。"
   },
   "provider": {
     "message": "提供商"
   },
   "newClientOrganization": {
-    "message": "新的客戶組織"
+    "message": "新建客戶組織"
   },
   "newClientOrganizationDesc": {
-    "message": "Create a new client organization that will be associated with you as the provider. You will be able to access and manage this organization."
+    "message": "創建一個新的客戶組織，該組織將作為提供商與您關聯。您將能够存取和管理此組織。"
   },
   "addExistingOrganization": {
     "message": "添加現有的組織"
@@ -4236,7 +4260,7 @@
     "message": "已成功將組織添加到提供商"
   },
   "accessingUsingProvider": {
-    "message": "正使用提供商 $PROVIDER$ 訪問組織",
+    "message": "正使用提供商 $PROVIDER$ 存取組織",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4260,7 +4284,7 @@
     }
   },
   "detachedOrganization": {
-    "message": "The organization $ORGANIZATION$ has been detached from your provider.",
+    "message": "組織 $ORGANIZATION$ 已從您的供應商分離。",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4281,10 +4305,10 @@
     "message": "更新主密碼"
   },
   "updateMasterPasswordWarning": {
-    "message": "您的主密碼最近被您的組織管理者更改過。要存取密碼庫，您必須現在更新主密碼。繼續操作會登出目前的登入階段，要求您重新登入。其他裝置上使用中的登入階段可能持續最長一個小時。"
+    "message": "您的主密碼最近被您的組織管理者變更過。要存取密碼庫，您必須現在更新主密碼。繼續操作會登出目前的登入階段，要求您重新登入。其他裝置上使用中的登入階段可能持續最長一個小時。"
   },
   "maximumVaultTimeout": {
-    "message": "密碼庫逾時"
+    "message": "密碼庫逾時時長"
   },
   "maximumVaultTimeoutDesc": {
     "message": "為所有使用者配置一個最大密碼庫逾時時長。"
@@ -4302,7 +4326,7 @@
     "message": "分鐘"
   },
   "vaultTimeoutPolicyInEffect": {
-    "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "message": "您的組織策略正在影響您的密碼庫逾時時長。密碼庫逾時時長最多可以設定到 {0} 小時 {1} 分鐘。",
     "placeholders": {
       "hours": {
         "content": "$1",
@@ -4318,19 +4342,19 @@
     "message": "自定義密碼庫逾時時長"
   },
   "vaultTimeoutToLarge": {
-    "message": "Your vault timeout exceeds the restriction set by your organization."
+    "message": "您的密碼庫逾時時長超過組織限制。"
   },
   "disablePersonalVaultExport": {
     "message": "停用個人密碼庫匯出"
   },
   "disablePersonalVaultExportDesc": {
-    "message": "Prohibits users from exporting their private vault data."
+    "message": "禁止使用者匯出私人密碼庫資料。"
   },
   "vaultExportDisabled": {
     "message": "密碼庫匯出已停用"
   },
   "personalVaultExportPolicyInEffect": {
-    "message": "One or more organization policies prevents you from exporting your personal vault."
+    "message": "一個或多個組織原則不允許您匯出個人密碼庫。"
   },
   "selectType": {
     "message": "選擇 SSO 類型"
@@ -4342,19 +4366,19 @@
     "message": "OpenID 連接配置"
   },
   "samlSpConfig": {
-    "message": "SAML Service Provider Configuration"
+    "message": "SAML 服務提供程式配置"
   },
   "samlIdpConfig": {
-    "message": "SAML Identity Provider Configuration"
+    "message": "SAML 身份提供程式配置"
   },
   "callbackPath": {
-    "message": "Callback Path"
+    "message": "回呼路徑"
   },
   "signedOutCallbackPath": {
-    "message": "Signed Out Callback Path"
+    "message": "已經登出回呼路徑"
   },
   "authority": {
-    "message": "Authority"
+    "message": "授權單位"
   },
   "clientId": {
     "message": "客戶 ID"
@@ -4363,55 +4387,55 @@
     "message": "客戶金鑰"
   },
   "metadataAddress": {
-    "message": "Metadata Address"
+    "message": "中介資料位址"
   },
   "oidcRedirectBehavior": {
-    "message": "OIDC Redirect Behavior"
+    "message": "OIDC 重新導向行為"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "從使用者資訊端點獲取聲明"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "附加/自訂範圍（逗號分隔）"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "附加/自訂使用者 ID 聲明類型（逗號分隔）"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "附加/自訂電子郵件聲明類型（逗號分隔）"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "附加/自訂名稱聲明類型（逗號分隔）"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "請求的認證上下文類引用值（acr_value）"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "回應中預期的「acr」索賠值（acr 驗證）"
   },
   "spEntityId": {
     "message": "SP 實體 ID"
   },
   "spMetadataUrl": {
-    "message": "SAML 2.0 Metadata URL"
+    "message": "SAML 2.0 中介資料 URL"
   },
   "spAcsUrl": {
-    "message": "Assertion Consumer Service (ACS) URL"
+    "message": "宣告消費者服務（ACS）URL"
   },
   "spNameIdFormat": {
     "message": "名稱 ID 格式"
   },
   "spOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "傳出的簽名演算法"
   },
   "spSigningBehavior": {
-    "message": "Signing Behavior"
+    "message": "簽名行為"
   },
   "spMinIncomingSigningAlgorithm": {
-    "message": "Minimum Incoming Signing Algorithm"
+    "message": "最小傳入簽名演算法"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "希望宣告被簽名"
   },
   "spValidateCertificates": {
     "message": "驗證證書"
@@ -4420,33 +4444,132 @@
     "message": "實體 ID"
   },
   "idpBindingType": {
-    "message": "Binding Type"
+    "message": "綁定類型"
   },
   "idpSingleSignOnServiceUrl": {
-    "message": "Single Sign On Service URL"
+    "message": "單一登入服務 URL"
   },
   "idpSingleLogoutServiceUrl": {
-    "message": "Single Log Out Service URL"
+    "message": "單一登出服務 URL"
   },
   "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
+    "message": "工件解析服務 URL"
   },
   "idpX509PublicCert": {
     "message": "X509 公共證書"
   },
   "idpOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "傳出的簽名演算法"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "允許未經請求的認證回應"
   },
   "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+    "message": "停用傳出的登出請求"
   },
   "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+    "message": "希望認證請求被簽名"
   },
   "ssoSettingsSaved": {
-    "message": "Single Sign-On configuration was saved."
+    "message": "單一登入配置已儲存。"
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "無法連線到 Key Connector。請稍後再試。"
+  },
+  "keyConnectorUrl": {
+    "message": "Key Connector URL"
+  },
+  "sendVerificationCode": {
+    "message": "傳送驗證碼到您的信箱"
+  },
+  "sendCode": {
+    "message": "傳送驗證碼"
+  },
+  "codeSent": {
+    "message": "已送出驗證碼"
+  },
+  "verificationCode": {
+    "message": "驗證碼"
+  },
+  "confirmIdentity": {
+    "message": "請先確認身分後再繼續。"
+  },
+  "verificationCodeRequired": {
+    "message": "必須填寫驗證碼。"
+  },
+  "invalidVerificationCode": {
+    "message": "無效的驗證碼"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ 使用自我托管金輪伺服器 SSO。這個组织的成員登入時将不再需要主密碼。",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "離開組織"
+  },
+  "removeMasterPassword": {
+    "message": "移除主密碼"
+  },
+  "removedMasterPassword": {
+    "message": "主密碼已移除。"
+  },
+  "allowSso": {
+    "message": "允許 SSO 身分驗證"
+  },
+  "allowSsoDesc": {
+    "message": "設定後，您的配置將被儲存，成員將可以使用他們的身分提供程序憑據進行身分驗證。"
+  },
+  "ssoPolicyHelpStart": {
+    "message": "啟用",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO 認證原則",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "要求所有成員皆使用 SSO 登入。",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "SSO 認證及單一組織原則需要先設定 Key Connector 解密方式後才能使用。"
+  },
+  "memberDecryptionOption": {
+    "message": "成員解密選項"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "通過驗證後，成員將使用他們的主密碼解密密碼庫資料。"
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "鏈接 SSO 登入到您的自我托管解密金輪伺服器。使用此選項後，成員無需使用它們的主密碼解密密碼庫資料。聯絡 Bitwarden 支援以獲取設定協助。"
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "「SSO 登入和 Key Connector 解密」已啓用。此原則僅適用於所有者和管理員。"
+  },
+  "enabledSso": {
+    "message": "已啟用 SSO"
+  },
+  "disabledSso": {
+    "message": "已停用 SSO"
+  },
+  "enabledKeyConnector": {
+    "message": "已啟用 Key Connector"
+  },
+  "disabledKeyConnector": {
+    "message": "已停用 Key Connector"
+  },
+  "keyConnectorWarning": {
+    "message": "一旦成員開始使用 Key Connector，您的組織將無法復原為主密碼解謎。僅當您願意部署和託管金輪伺服器時再繼續。"
+  },
+  "migratedKeyConnector": {
+    "message": "已移轉到 Key Connector"
   }
 }

@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Boolean"
   },
+  "cfTypeLinked": {
+    "message": "Əlaqə yaradıldı",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Çıxart"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Soyad"
+  },
+  "fullName": {
+    "message": "Tam ad"
   },
   "address1": {
     "message": "Ünvan 1"
@@ -832,9 +839,6 @@
   },
   "encExportAccountWarningDesc": {
     "message": "Hesab şifrələmə açarları, hər Bitwarden istifadəçi hesabı üçün unikaldır, buna görə də şifrələnmiş bir ixracı, fərqli bir hesaba idxal edə bilməzsiniz."
-  },
-  "exportMasterPassword": {
-    "message": "Anbar verilənlərinizi ixrac etmək üçün ana parolunuzu daxil edin."
   },
   "export": {
     "message": "İxrac et"
@@ -1736,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Planınızda 7 günlük ödənişsiz sınaq var. Sınaq müddəti bitənə qədər ödəniş metodundan pul çıxılmayacaq. Faktura, hər $INTERVAL$ bir müntəzəm olaraq icra ediləcək. İstənilən vaxt imtina edə bilərsiniz.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Planınızda 7 günlük ödənişsiz sınaq var. Sınaq müddəti bitənə qədər ödəniş metodundan pul çıxılmayacaq. Faktura, hər $INTERVAL$ bir müntəzəm olaraq icra ediləcək. İstənilən vaxt imtina edə bilərsiniz."
   },
   "paymentInformation": {
     "message": "Ödəniş məlumatı"
@@ -2811,10 +2809,6 @@
     "message": "Aşağıdakı məlumatları qeyd edərək hesabınızı başqa bir plana yüksəldin. Zəhmət olmasa hesaba aktiv bir ödəniş metodu əlavə etdiyinizə əmin olun.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Planınızı dəyişdirmək istəsəniz, müştəri dəstəyi ilə əlaqə saxlayın. Zəhmət olmasa hesaba aktiv bir ödəniş metodu əlavə etdiyinizə əmin olun.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Faktura nömrəsi: $NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2935,6 +2929,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "Planınızı yüksəltmədən $COUNT$ istifadəçidən çoxunu dəvət edə bilməzsiniz.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "Planınızı yüksəltmədən $COUNT$ istifadəçidən çoxunu dəvət edə bilməzsiniz. Zəhmət olmasa yüksəltmək üçün Müştəri Dəstəyi ilə əlaqə saxlayın.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,6 +3829,9 @@
   "accessReports": {
     "message": "Hesabatlara müraciət"
   },
+  "missingPermissions": {
+    "message": "Bu əməliyyatı icra etmək üçün lazımi icazələri əldə etməmisiniz."
+  },
   "manageAllCollections": {
     "message": "Bütün kolleksiyaları idarə et"
   },
@@ -4026,6 +4041,15 @@
   },
   "eventResetSsoLink": {
     "message": "$ID$ istifadəçisi üçün SSO bağlantısını sıfırla",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "firstSsoLogin": {
+    "message": "$ID$ logged in using Sso for the first time",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4369,7 +4393,7 @@
     "message": "OIDC yönləndirmə davranışı"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "İstifadəçi məlumatı uc nöqtəsindən iddia edin"
   },
   "additionalScopes": {
     "message": "Additional/Custom Scopes (comma delimited)"
@@ -4448,5 +4472,104 @@
   },
   "ssoSettingsSaved": {
     "message": "Tək daxil olma konfiqurasiyası saxlanıldı."
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "Unable to reach the Key Connector, try again later."
+  },
+  "keyConnectorUrl": {
+    "message": "Key Connector URL"
+  },
+  "sendVerificationCode": {
+    "message": "Send a verification code to your email"
+  },
+  "sendCode": {
+    "message": "Send Code"
+  },
+  "codeSent": {
+    "message": "Code Sent"
+  },
+  "verificationCode": {
+    "message": "Təsdiqləmə kodu"
+  },
+  "confirmIdentity": {
+    "message": "Confirm your identity to continue."
+  },
+  "verificationCodeRequired": {
+    "message": "Təsdiq kodu lazımdır."
+  },
+  "invalidVerificationCode": {
+    "message": "Etibarsız təsdiqləmə kodu"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$, öz-özünə sahiblik edən açar serveri ilə SSO istifadə edir. Bu təşkilatın üzvlərinin giriş etməsi üçün artıq ana parol tələb edilməyəcək.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Təşkilatı tərk et"
+  },
+  "removeMasterPassword": {
+    "message": "Ana parolu sil"
+  },
+  "removedMasterPassword": {
+    "message": "Ana parol silindi."
+  },
+  "allowSso": {
+    "message": "SSO kimlik təsdiqləməsinə icazə ver"
+  },
+  "allowSsoDesc": {
+    "message": "Qurulduqdan sonra, konfiqurasiyanız saxlanılacaq və üzvləriniz, Kimlik Təchizatçısı üçün kimlik məlumatlarını istifadə edərək kimliklərini təsdiqləyə biləcək."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Bütün üzvlərin SSO ilə",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "giriş etməsini məcburi etmək üçün",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "SSO Siyasətini fəallaşdırın.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
+  },
+  "memberDecryptionOption": {
+    "message": "Üzv şifrə açma seçimləri"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Kimlik təsdiqləndikdən sonra üzvlər, Ana Parollarını istifadə edərək anbar verilənlərinin şifrələrini aça biləcək."
+  },
+  "keyConnector": {
+    "message": "Açar Bağlayıcı"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt vault data. Contact Bitwarden Support for set up assistance."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
+  },
+  "enabledSso": {
+    "message": "SSO fəaldır"
+  },
+  "disabledSso": {
+    "message": "SSO sıradan çıxarılıb"
+  },
+  "enabledKeyConnector": {
+    "message": "Açar Bağlayıcı fəaldır"
+  },
+  "disabledKeyConnector": {
+    "message": "Açar Bağlayıcı sıradan çıxarılıb"
+  },
+  "keyConnectorWarning": {
+    "message": "Açar Bağlayıcı qurulduqdan sonra, Üzv şifrə açma seçimləri dəyişdirilə bilməz."
+  },
+  "migratedKeyConnector": {
+    "message": "Açar Bağlayıcıya daşındı"
   }
 }

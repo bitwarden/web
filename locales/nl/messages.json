@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Boolean"
   },
+  "cfTypeLinked": {
+    "message": "Gekoppeld",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Verwijderen"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Achternaam"
+  },
+  "fullName": {
+    "message": "Volledige naam"
   },
   "address1": {
     "message": "Adres 1"
@@ -832,9 +839,6 @@
   },
   "encExportAccountWarningDesc": {
     "message": "Encryptiesleutels zijn uniek voor elk Bitwarden-gebruikersaccount, je kun kunt een versleutelde niet in een ander account importeren."
-  },
-  "exportMasterPassword": {
-    "message": "Voer je hoofdwachtwoord in om de kluisgegevens te exporteren."
   },
   "export": {
     "message": "Exporteren"
@@ -1736,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Je lidmaatschap omvat een gratis proefperiode van 7 dagen. Kosten worden pas in rekening gebracht als de proefperiode voorbij is. De betaling vindt ieder(e) $INTERVAL$ op terugkerende basis plaats. Je kunt op ieder moment opzeggen.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Je lidmaatschap omvat een gratis proefperiode van 7 dagen. Kosten worden pas in rekening gebracht als de proefperiode voorbij is. De betaling vindt ieder(e) $INTERVAL$ op terugkerende basis plaats. Je kunt op ieder moment opzeggen."
   },
   "paymentInformation": {
     "message": "Betaalgegevens"
@@ -2811,10 +2809,6 @@
     "message": "Upgrade je account naar een ander abonnement door onderstaande informatie door te geven. Verzeker jezelf ervan dat er een actieve betaalmethode aan het account is gekoppeld.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Neem contact op met de klantondersteuning als je je abonnement wilt aanpassen. Zorg ervoor dat je een actieve betaalmethode aan het account hebt toegevoegd.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Factuur #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2935,6 +2929,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "Je kunt niet meer dan $COUNT$ gebruikers uitnodigen zonder je abonnement te upgraden.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "Je kunt niet meer dan $COUNT$ gebruikers uitnodigen zonder je abonnement te upgraden. Neem contact op met Customer Support om te upgraden.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,6 +3829,9 @@
   "accessReports": {
     "message": "Rapporten"
   },
+  "missingPermissions": {
+    "message": "Je hebt geen rechten om deze actie uit te voeren."
+  },
   "manageAllCollections": {
     "message": "Alle verbindingen beheren"
   },
@@ -4026,6 +4041,15 @@
   },
   "eventResetSsoLink": {
     "message": "Sso-link voor gebruiker $ID$ opnieuw instellen",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "firstSsoLogin": {
+    "message": "$ID$ heeft voor de eerste keer ingelogd met Sso",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4448,5 +4472,104 @@
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuratie is opgeslagen."
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "Kan de sleutelconnector niet bereiken, probeer het later opnieuw."
+  },
+  "keyConnectorUrl": {
+    "message": "Key Connector URL"
+  },
+  "sendVerificationCode": {
+    "message": "Stuur een verificatiecode naar je e-mail"
+  },
+  "sendCode": {
+    "message": "Code versturen"
+  },
+  "codeSent": {
+    "message": "Code verstuurd"
+  },
+  "verificationCode": {
+    "message": "Verificatiecode"
+  },
+  "confirmIdentity": {
+    "message": "Bevestig je identiteit om door te gaan."
+  },
+  "verificationCodeRequired": {
+    "message": "Verificatiecode vereist."
+  },
+  "invalidVerificationCode": {
+    "message": "Ongeldige verificatiecode"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ gebruikt SSO met een zelf gehoste sleutelserver. Leden van deze organisatie kunnen inloggen zonder hoofdwachtwoord.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Organisatie verlaten"
+  },
+  "removeMasterPassword": {
+    "message": "Hoofdwachtwoord verwijderen"
+  },
+  "removedMasterPassword": {
+    "message": "Hoofdwachtwoord verwijderd."
+  },
+  "allowSso": {
+    "message": "SSO-authenticatie toestaan"
+  },
+  "allowSsoDesc": {
+    "message": "Na het instellen zal uw configuratie worden opgeslagen en kunnen leden zich authenticeren met behulp van hun Identity Provider inloggegevens."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Inschakelen",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO-beleid",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "om alle leden inloggen met SSO te verplichten.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "SSO-authenticatie en Enkele Organisatie-beleid zijn vereist voor het instellen van de versleuteling van de Key Connector."
+  },
+  "memberDecryptionOption": {
+    "message": "Member Decryption Options"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Eenmaal ingelogd, ontsleutelen leden kluisgegevens met hun hoofdwachtwoorden."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Verbind Login met SSO met je zelf gehoste decoderingssleutelserver. Met deze optie kunnen leden kluisgegevens ontsleutelen zonder hoofdwachtwoord."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Login met SSO en Key Connector Decryption\" is ingeschakeld. Dit beleid is alleen van toepassing op de eigenaren en beheerders."
+  },
+  "enabledSso": {
+    "message": "SSO ingeschakeld"
+  },
+  "disabledSso": {
+    "message": "SSO uitgeschakeld"
+  },
+  "enabledKeyConnector": {
+    "message": "Key Connector ingeschakeld"
+  },
+  "disabledKeyConnector": {
+    "message": "Key Connector uigeschakeld"
+  },
+  "keyConnectorWarning": {
+    "message": "Zodra Key Connector is ingesteld, kunnen Member Decryption Options niet worden gewijzigd."
+  },
+  "migratedKeyConnector": {
+    "message": "Gemigreerd naar Key Connector"
   }
 }

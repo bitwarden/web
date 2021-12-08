@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Wartość logiczna"
   },
+  "cfTypeLinked": {
+    "message": "Powiązane pole",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Usuń"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Nazwisko"
+  },
+  "fullName": {
+    "message": "Imię i nazwisko"
   },
   "address1": {
     "message": "Adres 1"
@@ -832,9 +839,6 @@
   },
   "encExportAccountWarningDesc": {
     "message": "Klucze szyfrowania konta są unikalne dla każdego użytkownika Bitwarden, więc nie możesz zaimportować zaszyfrowanego pliku eksportu na inne konto."
-  },
-  "exportMasterPassword": {
-    "message": "Wpisz hasło główne, aby wyeksportować dane z sejfu."
   },
   "export": {
     "message": "Eksportuj"
@@ -1736,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Twój plan zawiera 7-dniowy okres próbny. W tym czasie nie poniesiesz żadnych kosztów. Płatność będzie realizowana co $INTERVAL$. Możesz zrezygnować z niego w każdej chwili.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Twój plan zawiera 7-dniowy okres próbny. W tym czasie nie poniesiesz żadnych kosztów. Możesz zrezygnować z niego w każdej chwili."
   },
   "paymentInformation": {
     "message": "Informacje o płatności"
@@ -2131,7 +2129,7 @@
     "message": "Czy na pewno chcesz opuścić tę organizację?"
   },
   "leftOrganization": {
-    "message": "Opuściłeś organizację."
+    "message": "Nie należysz już do tej organizacji."
   },
   "defaultCollection": {
     "message": "Domyślna kolekcja"
@@ -2804,15 +2802,11 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Zmień plan",
+    "message": "Ulepsz plan",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "Zaktualizuj swoje konto do innego planu, podając poniższe informacje. Upewnij się, że do konta została dodana aktywna metoda płatności.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
-  "changeBillingPlanDesc": {
-    "message": "Jeśli chcesz zmienić swój plan, skontaktuj się z działem obsługi klienta. Upewnij się, że dodałeś do swojego konta aktywną formę płatności.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
@@ -2935,6 +2929,24 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "W obecnym planie nie możesz zaprosić więcej niż $COUNT$ użytkowników.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "W obecnym planie nie możesz zaprosić więcej niż $COUNT$ użytkowników. Aby ulepszyć plan, skontaktuj się z działem obsługi klienta.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3800,7 +3812,7 @@
     "message": "Podatek"
   },
   "custom": {
-    "message": "Niestandardowa"
+    "message": "Niestandardowe"
   },
   "customDesc": {
     "message": "Umożliwia zaawansowaną kontrolę uprawnień użytkownika."
@@ -3816,6 +3828,9 @@
   },
   "accessReports": {
     "message": "Dostęp do raportów"
+  },
+  "missingPermissions": {
+    "message": "Nie posiadasz uprawnień do wykonania tej akcji."
   },
   "manageAllCollections": {
     "message": "Zarządzaj wszystkimi kolekcjami"
@@ -4033,6 +4048,15 @@
       }
     }
   },
+  "firstSsoLogin": {
+    "message": "$ID$ logged in using Sso for the first time",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Zresetuj hasło"
   },
@@ -4094,7 +4118,7 @@
     "message": "Elementy znajdujące się w koszu od dłuższego czasu zostaną automatycznie usunięte."
   },
   "passwordPrompt": {
-    "message": "Powtórz hasło główne"
+    "message": "Potwierdź hasłem głównym"
   },
   "passwordConfirmation": {
     "message": "Potwierdź hasło główne"
@@ -4448,5 +4472,104 @@
   },
   "ssoSettingsSaved": {
     "message": "Konfiguracja logowania jednokrotnego została zapisana."
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "Nie można nawiązać połączenia z serwerem Key Connector. Spróbuj ponownie później."
+  },
+  "keyConnectorUrl": {
+    "message": "Adres URL serwera Key Connector"
+  },
+  "sendVerificationCode": {
+    "message": "Wyślij kod weryfikacyjny na mój adres e-mail"
+  },
+  "sendCode": {
+    "message": "Wyślij kod"
+  },
+  "codeSent": {
+    "message": "Kod został wysłany"
+  },
+  "verificationCode": {
+    "message": "Kod weryfikacyjny"
+  },
+  "confirmIdentity": {
+    "message": "Potwierdź swoją tożsamość, aby kontynuować."
+  },
+  "verificationCodeRequired": {
+    "message": "Kod weryfikacyjny jest wymagany."
+  },
+  "invalidVerificationCode": {
+    "message": "Kod weryfikacyjny jest nieprawidłowy"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "Organizacja $ORGANIZATION$ używa jednokrotnego logowania SSO z własnym serwerem kluczy. Użytkownicy nie muszą logować się za pomocą hasła głównego.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Opuść organizację"
+  },
+  "removeMasterPassword": {
+    "message": "Usuń hasło główne"
+  },
+  "removedMasterPassword": {
+    "message": "Hasło główne zostało usunięte."
+  },
+  "allowSso": {
+    "message": "Zezwalaj na logowanie jednokrotne SSO"
+  },
+  "allowSsoDesc": {
+    "message": "Użytkownicy będą mogli uwierzytelnić się za pomocą danych logowania dostawcy tożsamości."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Włącz",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "zasadę logowania jednokrotnego SSO",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": ", aby wymagać od wszystkich użytkowników logowania jednokrotnego SSO.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
+  },
+  "memberDecryptionOption": {
+    "message": "Opcje odszyfrowania użytkownika"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Po uwierzytelnieniu użytkownicy odszyfrują dane sejfu za pomocą hasła głównego."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Połącz logowanie jednokrotne SSO z odszyfrowaniem za pomocą własnego serwera kluczy. Użytkownicy nie będą musieli używać hasła głównego do odszyfrowania sejfu."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "Logowanie jednokrotne SSO z odszyfrowaniem za pomocą serwera Key Connector jest włączone. Ta zasada dotyczy tylko właścicieli i administratorów."
+  },
+  "enabledSso": {
+    "message": "Logowanie jednokrotne SSO zostało włączone"
+  },
+  "disabledSso": {
+    "message": "Logowanie jednokrotne SSO zostało wyłączone"
+  },
+  "enabledKeyConnector": {
+    "message": "Serwer Key Connector został włączony"
+  },
+  "disabledKeyConnector": {
+    "message": "Serwer Key Connector został wyłączony"
+  },
+  "keyConnectorWarning": {
+    "message": "Po włączeniu serwera Key Connector, opcje odszyfrowania użytkownika nie mogą zostać zmienione."
+  },
+  "migratedKeyConnector": {
+    "message": "Przeniesiony do serwera Key Connector"
   }
 }
