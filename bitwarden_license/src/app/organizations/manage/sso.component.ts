@@ -216,6 +216,10 @@ export class SsoComponent implements OnInit {
 
     private validateForm(form: FormGroup) {
         Object.values(form.controls).forEach((control: AbstractControl) => {
+            if (control.disabled) {
+                return;
+            }
+
             if (control instanceof FormGroup) {
                 this.validateForm(control);
             } else {

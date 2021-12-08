@@ -4747,7 +4747,13 @@
     "message": "1 error above needs your attention."
   },
   "fieldRequiredError": {
-    "message": "This field is required."
+    "message": "$FIELDNAME$ is required.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
   },
   "idpArtifactResolutionRequired": {
     "message": "Required if the Binding Type is \"Artifact\"."
