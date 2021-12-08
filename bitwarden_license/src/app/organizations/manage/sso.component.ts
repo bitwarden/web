@@ -24,8 +24,10 @@ import {
     SsoUrls
 } from 'jslib-common/models/response/organization/organizationSsoResponse';
 
-import { dirtyValidator } from 'jslib-angular/validators/dirty.validator';
-import { requiredIfValidator } from 'jslib-angular/validators/requiredIf.validator';
+import {
+    dirtyRequired,
+    dirtyRequiredIf,
+} from 'jslib-angular/validators/dirty.validator';
 
 import {
     OpenIdConnectRedirectBehavior,
@@ -73,9 +75,9 @@ export class SsoComponent implements OnInit {
     enabled = this.fb.control(false);
 
     openIdForm = this.fb.group({
-        authority: ['', dirtyValidator(Validators.required)],
-        clientId: ['', dirtyValidator(Validators.required)],
-        clientSecret: ['', dirtyValidator(Validators.required)],
+        authority: ['', dirtyRequired()],
+        clientId: ['', dirtyRequired()],
+        clientSecret: ['', dirtyRequired()],
         metadataAddress: [],
         redirectBehavior: [OpenIdConnectRedirectBehavior.RedirectGet],
         getClaimsFromUserInfoEndpoint: [],
@@ -95,13 +97,13 @@ export class SsoComponent implements OnInit {
         spWantAssertionsSigned: [],
         spValidateCertificates: [],
 
-        idpEntityId: ['', dirtyValidator(Validators.required)],
+        idpEntityId: ['', dirtyRequired()],
         idpBindingType: [Saml2BindingType.HttpRedirect],
         idpSingleSignOnServiceUrl: [],
         idpSingleLogoutServiceUrl: [],
-        idpArtifactResolutionServiceUrl: ['', dirtyValidator(
-            requiredIfValidator(control => control.parent?.get('idpBindingType').value === Saml2BindingType.Artifact))],
-        idpX509PublicCert: ['', dirtyValidator(Validators.required)],
+        idpArtifactResolutionServiceUrl: ['', dirtyRequiredIf(
+            control => control.parent?.get('idpBindingType').value === Saml2BindingType.Artifact)],
+        idpX509PublicCert: ['', dirtyRequired()],
         idpOutboundSigningAlgorithm: [defaultSigningAlgorithm],
         idpAllowUnsolicitedAuthnResponse: [],
         idpAllowOutboundLogoutRequests: [true],
