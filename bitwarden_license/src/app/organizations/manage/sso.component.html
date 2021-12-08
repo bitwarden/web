@@ -16,8 +16,8 @@
         {{'ssoPolicyHelpKeyConnector' | i18n}}
     </p>
     
-    <!-- Common -->
-    <ng-container formGroupName="common">
+    <!-- Root form -->
+    <ng-container>
         <div class="form-group">
             <div class="form-check">
                 <input class="form-check-input" type="checkbox" id="enabled" aria-describedby="allowSsoDesc"
@@ -52,7 +52,7 @@
         </div>
 
         <!-- Key Connector -->
-        <ng-container *ngIf="commonForm.get('keyConnectorEnabled').value">
+        <ng-container *ngIf="ssoConfigForm.get('keyConnectorEnabled').value">
             <app-callout type="warning" [useAlertRole]="true">
                 {{'keyConnectorWarning' | i18n}}
             </app-callout>
@@ -103,13 +103,13 @@
     </ng-container>
 
     <!-- OIDC -->
-    <app-org-manage-sso-openId *ngIf="commonForm.get('configType').value === ssoType.OpenIdConnect"
+    <app-org-manage-sso-openId *ngIf="ssoConfigForm.get('configType').value === ssoType.OpenIdConnect"
         [openIdForm]="openIdForm" [callbackPath]="ssoUrls.callbackPath" 
         [signedOutCallbackPath]="ssoUrls.signedOutCallbackPath">
     </app-org-manage-sso-openId>
 
     <!-- SAML2 SP -->
-    <app-org-manage-sso-saml *ngIf="commonForm.get('configType').value === ssoType.Saml2"
+    <app-org-manage-sso-saml *ngIf="ssoConfigForm.get('configType').value === ssoType.Saml2"
         [samlForm]="samlForm" [spEntityId]="ssoUrls.spEntityId" [spMetadataUrl]="ssoUrls.spMetadataUrl" 
         [spAcsUrl]="ssoUrls.spAcsUrl">
     </app-org-manage-sso-saml>

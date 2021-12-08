@@ -34,6 +34,7 @@ import {
     Saml2SigningBehavior,
     SsoType,
 } from 'jslib-common/enums/ssoEnums';
+import { SsoConfigView } from 'jslib-common/models/view/ssoConfigView';
 
 const defaultSigningAlgorithm = 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256';
 
@@ -44,13 +45,13 @@ const defaultSigningAlgorithm = 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha2
 export class SsoComponent implements OnInit {
 
     get enableTestKeyConnector() {
-        return this.commonForm.get('keyConnectorEnabled').value &&
+        return this.ssoConfigForm.get('keyConnectorEnabled').value &&
             this.keyConnectorUrl != null &&
             this.keyConnectorUrl.value !== '';
     }
 
     get keyConnectorUrl() {
-        return this.commonForm.get('keyConnectorUrl');
+        return this.ssoConfigForm.get('keyConnectorUrl');
     }
 
     readonly ssoTypeOptions = [
@@ -103,20 +104,16 @@ export class SsoComponent implements OnInit {
         idpX509PublicCert: ['', dirtyValidator(Validators.required)],
         idpOutboundSigningAlgorithm: [defaultSigningAlgorithm],
         idpAllowUnsolicitedAuthnResponse: [],
-        idpAllowOutboundLogoutRequests: [true], // TODO: update in model, handle transition
+        idpAllowOutboundLogoutRequests: [true],
         idpWantAuthnRequestsSigned: [],
     });
 
-    commonForm = this.fb.group({
-        configType: [0, {updateOn: 'change'}],
+    ssoConfigForm = this.fb.group({
+        configType: [SsoType.None, {updateOn: 'change'}],
         keyConnectorEnabled: [false, {updateOn: 'change'}],
         keyConnectorUrl: [''],
-    });
-
-    ssoConfigForm = this.fb.group({
         openId: this.openIdForm,
         saml: this.samlForm,
-        common: this.commonForm,
     }, {
         updateOn: 'blur',
     });
@@ -126,7 +123,7 @@ export class SsoComponent implements OnInit {
         private userService: UserService) { }
 
     async ngOnInit() {
-        this.commonForm.get('configType').valueChanges.subscribe((newType: SsoType) => {
+        this.ssoConfigForm.get('configType').valueChanges.subscribe((newType: SsoType) => {
             if (newType === SsoType.OpenIdConnect) {
                 this.openIdForm.enable();
                 this.samlForm.disable();
@@ -158,7 +155,7 @@ export class SsoComponent implements OnInit {
     async submit() {
         this.validateForm(this.ssoConfigForm);
 
-        if (this.commonForm.get('keyConnectorEnabled').value) {
+        if (this.ssoConfigForm.get('keyConnectorEnabled').value) {
             await this.validateKeyConnectorUrl();
         }
 
@@ -168,7 +165,7 @@ export class SsoComponent implements OnInit {
 
         const request = new OrganizationSsoRequest();
         request.enabled = this.enabled.value;
-        request.data = this.formToSsoConfigApi();
+        request.data = SsoConfigApi.fromView(this.ssoConfigForm.value as SsoConfigView);
 
         this.formPromise = this.apiService.postOrganizationSso(this.organizationId, request);
 
@@ -229,17 +226,10 @@ export class SsoComponent implements OnInit {
 
     private populateForm(ssoSettings: OrganizationSsoResponse) {
         this.enabled.setValue(ssoSettings.enabled);
-        this.commonForm.patchValue(ssoSettings.data);
 
-        if (ssoSettings.data.configType === SsoType.OpenIdConnect) {
-            this.openIdForm.patchValue(ssoSettings.data);
-        } else if (ssoSettings.data.configType === this.ssoType.Saml2) {
-            this.samlForm.patchValue(ssoSettings.data);
+        if (ssoSettings.data.configType != SsoType.None) {
+            const ssoConfigView = new SsoConfigView(ssoSettings.data);
+            this.ssoConfigForm.patchValue(ssoConfigView);
         }
-    }
-
-    private formToSsoConfigApi() {
-        const api = new SsoConfigApi();
-        return Object.assign(api, this.commonForm.value, this.samlForm.value, this.openIdForm.value);
     }
 }
