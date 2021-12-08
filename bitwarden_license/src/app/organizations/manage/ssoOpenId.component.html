@@ -34,8 +34,10 @@
             </label>
             <input class="form-control" formControlName="authority" id="authority" aria-describedby="authorityDesc"
                 appChangeStripSpaces appA11yInvalid>
-            <small id="authorityDesc" class="error-inline" *ngIf="openIdForm.get('authority').hasError('required')">
+            <small id="authorityDesc" class="error-inline" *ngIf="openIdForm.get('authority').hasError('required')"
+                role="alert">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                <span class="sr-only">{{ 'error' | i18n}}:</span>
                 {{'fieldRequiredError' | i18n }}
             </small>
         </div>
@@ -46,8 +48,10 @@
             </label>
             <input class="form-control" formControlName="clientId" id="clientId" aria-describedby="clientIdDesc"
                 appA11yInvalid>
-            <small id="clientIdDesc" class="error-inline" *ngIf="openIdForm.get('clientId').hasError('required')">
+            <small id="clientIdDesc" class="error-inline" *ngIf="openIdForm.get('clientId').hasError('required')"
+                role="alert">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                <span class="sr-only">{{ 'error' | i18n}}:</span>
                 {{'fieldRequiredError' | i18n }}
             </small>
         </div>
@@ -58,8 +62,10 @@
             </label>
             <input class="form-control" formControlName="clientSecret" id="clientSecret"
                 aria-describedby="clientSecretDesc" appA11yInvalid>
-            <small id="clientSecretDesc" class="error-inline" *ngIf="openIdForm.get('clientSecret').hasError('required')">
+            <small id="clientSecretDesc" class="error-inline" *ngIf="openIdForm.get('clientSecret').hasError('required')"
+                role="alert">
                 <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+                <span class="sr-only">{{ 'error' | i18n}}:</span>
                 {{'fieldRequiredError' | i18n }}
             </small>
         </div>
