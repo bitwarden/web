@@ -97,9 +97,9 @@ export class SsoComponent implements OnInit {
     spMetadataUrl: string;
     spAcsUrl: string;
 
-    enabled = this.fb.control(false);
+    enabled = this.formBuilder.control(false);
 
-    openIdForm = this.fb.group({
+    openIdForm = this.formBuilder.group({
         authority: ['', dirtyRequired()],
         clientId: ['', dirtyRequired()],
         clientSecret: ['', dirtyRequired()],
@@ -116,7 +116,7 @@ export class SsoComponent implements OnInit {
         updateOn: 'blur',
     });
 
-    samlForm = this.fb.group({
+    samlForm = this.formBuilder.group({
         spNameIdFormat: [Saml2NameIdFormat.NotConfigured],
         spOutboundSigningAlgorithm: [defaultSigningAlgorithm],
         spSigningBehavior: [Saml2SigningBehavior.IfIdpWantAuthnRequestsSigned],
@@ -139,7 +139,7 @@ export class SsoComponent implements OnInit {
         updateOn: 'blur',
     });
 
-    ssoConfigForm = this.fb.group({
+    ssoConfigForm = this.formBuilder.group({
         configType: [SsoType.None],
         keyConnectorEnabled: [false],
         keyConnectorUrl: [''],
@@ -147,7 +147,7 @@ export class SsoComponent implements OnInit {
         saml: this.samlForm,
     });
 
-    constructor(private fb: FormBuilder, private route: ActivatedRoute, private apiService: ApiService,
+    constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
         private userService: UserService) { }
 
