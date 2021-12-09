@@ -56,7 +56,7 @@ export function initFactory(window: Window, storageService: StorageServiceAbstra
     platformUtilsService: PlatformUtilsServiceAbstraction, cryptoService: CryptoServiceAbstraction): Function {
     return async () => {
         await (storageService as HtmlStorageService).init();
-        await this.stateService.init();
+        await stateService.init();
 
         const urls = process.env.URLS as Urls;
         urls.base ??= window.location.origin;
@@ -162,11 +162,10 @@ export function initFactory(window: Window, storageService: StorageServiceAbstra
                     platformUtilsService, logService, stateService);
             },
             deps: [
-                StorageServiceAbstraction,
-                'SECURE_STORAGE',
                 CryptoFunctionServiceAbstraction,
                 PlatformUtilsServiceAbstraction,
                 LogService,
+                StateServiceAbstraction,
             ],
         },
     ],

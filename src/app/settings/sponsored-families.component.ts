@@ -5,8 +5,8 @@ import {
 import { ToasterService } from 'angular2-toaster';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 import { PlanSponsorshipType } from 'jslib-common/enums/planSponsorshipType';
 import { Organization } from 'jslib-common/models/domain/organization';
 
@@ -25,7 +25,7 @@ export class SponsoredFamiliesComponent implements OnInit {
     // Conditional display properties
     formPromise: Promise<any>;
 
-    constructor(private userService: UserService, private apiService: ApiService,
+    constructor(private organizationService: OrganizationService, private apiService: ApiService,
         private i18nService: I18nService, private toasterService: ToasterService,
         private syncService: SyncService) { }
 
@@ -57,7 +57,7 @@ export class SponsoredFamiliesComponent implements OnInit {
             await this.syncService.fullSync(true);
         }
 
-        const allOrgs = await this.userService.getAllOrganizations();
+        const allOrgs = await this.organizationService.getAll();
         this.availableSponsorshipOrgs = allOrgs.filter(org => org.familySponsorshipAvailable);
 
         this.activeSponsorshipOrgs = allOrgs.filter(org => org.familySponsorshipFriendlyName !== null);

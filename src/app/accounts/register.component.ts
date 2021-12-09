@@ -71,7 +71,7 @@ export class RegisterComponent extends BaseRegisterComponent {
             // Are they coming from an email for sponsoring a families organization
             if (qParams.sponsorshipToken != null) {
                 // After logging in redirect them to setup the families sponsorship
-                this.stateService.save('loginRedirect', {
+                this.stateService.setLoginRedirect({
                     route: '/setup/families-for-enterprise',
                     qParams: { token: qParams.sponsorshipToken },
                 });

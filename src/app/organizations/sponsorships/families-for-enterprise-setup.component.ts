@@ -20,8 +20,8 @@ import { ValidationService } from 'jslib-angular/services/validation.service';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { PlanSponsorshipType } from 'jslib-common/enums/planSponsorshipType';
 import { PlanType } from 'jslib-common/enums/planType';
@@ -68,7 +68,7 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
     constructor(private router: Router, private toasterService: ToasterService,
         private i18nService: I18nService, private route: ActivatedRoute,
         private apiService: ApiService, private syncService: SyncService,
-        private validationService: ValidationService, private userService: UserService,
+        private validationService: ValidationService, private organizationService: OrganizationService,
         private modalService: ModalService) { }
 
     async ngOnInit() {
@@ -93,7 +93,7 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
             this.badToken = !await this.apiService.postPreValidateSponsorshipToken(this.token);
             this.loading = false;
 
-            this.existingFamilyOrganizations = (await this.userService.getAllOrganizations())
+            this.existingFamilyOrganizations = (await this.organizationService.getAll())
                 .filter(o => o.planProductType === ProductType.Families);
 
             if (this.existingFamilyOrganizations.length === 0) {
