@@ -133,8 +133,8 @@ const plugins = [
         ],
     }),
     new MiniCssExtractPlugin({
-        filename: '[name].[hash].css',
-        chunkFilename: '[id].[hash].css',
+        filename: '[name].[contenthash].css',
+        chunkFilename: '[id].[contenthash].css',
     }),
     new webpack.EnvironmentPlugin({
         'ENV': ENV,
@@ -252,7 +252,7 @@ const webpackConfig = {
         },
     },
     output: {
-        filename: '[name].[hash].js',
+        filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, 'build'),
     },
     module: { rules: moduleRules },
