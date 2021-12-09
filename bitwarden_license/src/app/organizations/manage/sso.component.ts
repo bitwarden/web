@@ -45,17 +45,6 @@ const defaultSigningAlgorithm = 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha2
     templateUrl: 'sso.component.html',
 })
 export class SsoComponent implements OnInit {
-
-    get enableTestKeyConnector() {
-        return this.ssoConfigForm.get('keyConnectorEnabled').value &&
-            this.keyConnectorUrl != null &&
-            this.keyConnectorUrl.value !== '';
-    }
-
-    get keyConnectorUrl() {
-        return this.ssoConfigForm.get('keyConnectorUrl');
-    }
-
     readonly ssoTypeOptions = [
         { name: this.i18nService.t('selectType'), value: SsoType.None, disabled: true },
         { name: 'OpenID Connect', value: SsoType.OpenIdConnect },
@@ -216,6 +205,16 @@ export class SsoComponent implements OnInit {
         }, 0);
     }
 
+    get enableTestKeyConnector() {
+        return this.ssoConfigForm.get('keyConnectorEnabled').value &&
+            this.keyConnectorUrl != null &&
+            this.keyConnectorUrl.value !== '';
+    }
+
+    get keyConnectorUrl() {
+        return this.ssoConfigForm.get('keyConnectorUrl');
+    }
+
     private validateForm(form: FormGroup) {
         Object.values(form.controls).forEach((control: AbstractControl) => {
             if (control.disabled) {
@@ -235,7 +234,7 @@ export class SsoComponent implements OnInit {
     private populateForm(ssoSettings: OrganizationSsoResponse) {
         this.enabled.setValue(ssoSettings.enabled);
 
-        if (ssoSettings.data.configType != SsoType.None) {
+        if (ssoSettings.data.configType !== SsoType.None) {
             const ssoConfigView = new SsoConfigView(ssoSettings.data);
             this.ssoConfigForm.patchValue(ssoConfigView);
         }
