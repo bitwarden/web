@@ -101,4 +101,4 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
             this.logService.error(e);
         }
     }
-
+}
