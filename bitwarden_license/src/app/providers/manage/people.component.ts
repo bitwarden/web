@@ -80,12 +80,12 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
             i18nService,
             platformUtilsService,
             cryptoService,
-            stateService,
             validationService,
             modalService,
             logService,
             searchPipe,
-            userNamePipe
+            userNamePipe,
+            stateService,
         );
     }
 
