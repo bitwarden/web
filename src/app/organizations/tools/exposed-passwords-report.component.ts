@@ -33,10 +33,12 @@ export class ExposedPasswordsReportComponent extends BaseExposedPasswordsReportC
     }
 
     ngOnInit() {
+        const dynamicSuper = Object.getPrototypeOf(this.constructor.prototype);
         this.route.parent.parent.params.subscribe(async params => {
             this.organization = await this.organizationService.get(params.organizationId);
             this.manageableCiphers = await this.cipherService.getAll();
-            super.ngOnInit();
+            // TODO: We should do something about this, calling super in an async function is bad
+            dynamicSuper.ngOnInit();
         });
     }
 

@@ -12,8 +12,6 @@ import {
     Router,
 } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
@@ -80,16 +78,38 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
     orgResetPasswordPolicyEnabled = false;
     callingUserType: OrganizationUserType = null;
 
-    constructor(apiService: ApiService, private route: ActivatedRoute,
-        i18nService: I18nService, modalService: ModalService,
-        platformUtilsService: PlatformUtilsService, toasterService: ToasterService,
-        cryptoService: CryptoService, private organizationService: OrganizationService, private router: Router,
-        stateService: StateService, searchService: SearchService,
-        validationService: ValidationService, private policyService: PolicyService,
-        logService: LogService, searchPipe: SearchPipe, userNamePipe: UserNamePipe, private syncService: SyncService) {
-        super(apiService, searchService, i18nService, platformUtilsService, toasterService, cryptoService,
-            stateService, validationService, modalService, logService, searchPipe, userNamePipe);
-    }
+    constructor(
+        apiService: ApiService,
+        private route: ActivatedRoute,
+        i18nService: I18nService,
+        modalService: ModalService,
+        platformUtilsService: PlatformUtilsService,
+        cryptoService: CryptoService,
+        private router: Router,
+        searchService: SearchService,
+        validationService: ValidationService,
+        private policyService: PolicyService,
+        logService: LogService,
+        searchPipe: SearchPipe,
+        userNamePipe: UserNamePipe,
+        private syncService: SyncService,
+        stateService: StateService,
+        private organizationService: OrganizationService,
+    ) {
+            super(
+                apiService,
+                searchService,
+                i18nService,
+                platformUtilsService,
+                cryptoService,
+                validationService,
+                modalService,
+                logService,
+                searchPipe,
+                userNamePipe,
+                stateService,
+            );
+        }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -239,7 +259,7 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
         const filteredUsers = users.filter(u => u.status === OrganizationUserStatusType.Invited);
 
         if (filteredUsers.length <= 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('noSelectedUsersApplicable'));
             return;
         }

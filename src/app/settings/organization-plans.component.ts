@@ -8,8 +8,6 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -73,7 +71,7 @@ export class OrganizationPlansComponent implements OnInit {
     plans: PlanResponse[];
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
+        private platformUtilsService: PlatformUtilsService,
         private cryptoService: CryptoService, private router: Router, private syncService: SyncService,
         private policyService: PolicyService, private organizationService: OrganizationService, private logService: LogService) {
         this.selfHosted = platformUtilsService.isSelfHost();
@@ -271,10 +269,10 @@ export class OrganizationPlansComponent implements OnInit {
                         orgId = await this.createCloudHosted(key, collectionCt, orgKeys, shareKey[1]);
                     }
 
-                    this.toasterService.popAsync('success', this.i18nService.t('organizationCreated'), this.i18nService.t('organizationReadyToGo'));
+                    this.platformUtilsService.showToast('success', this.i18nService.t('organizationCreated'), this.i18nService.t('organizationReadyToGo'));
                 } else {
                     orgId = await this.updateOrganization(orgId);
-                    this.toasterService.popAsync('success', null, this.i18nService.t('organizationUpgraded'));
+                    this.platformUtilsService.showToast('success', null, this.i18nService.t('organizationUpgraded'));
                 }
 
                 await this.apiService.refreshIdentityToken();

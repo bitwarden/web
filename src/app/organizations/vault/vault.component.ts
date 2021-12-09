@@ -14,13 +14,13 @@ import {
 
 import { first } from 'rxjs/operators';
 
+import { BroadcasterService } from 'jslib-common/abstractions/broadcaster.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 
-import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';

@@ -4,8 +4,6 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
@@ -35,9 +33,13 @@ export class OptionsComponent implements OnInit {
     private startingLocale: string;
     private startingTheme: string;
 
-    constructor(private stateService: StateService, private i18nService: I18nService,
-        private toasterService: ToasterService, private vaultTimeoutService: VaultTimeoutService,
-        private platformUtilsService: PlatformUtilsService, private messagingService: MessagingService) {
+    constructor(
+        private stateService: StateService,
+        private i18nService: I18nService,
+        private vaultTimeoutService: VaultTimeoutService,
+        private platformUtilsService: PlatformUtilsService,
+        private messagingService: MessagingService
+    ) {
         this.vaultTimeouts = [
             { name: i18nService.t('oneMinute'), value: 1 },
             { name: i18nService.t('fiveMinutes'), value: 5 },
@@ -81,7 +83,7 @@ export class OptionsComponent implements OnInit {
 
     async submit() {
         if (!this.vaultTimeout.valid) {
-            this.toasterService.popAsync('error', null, this.i18nService.t('vaultTimeoutToLarge'));
+            this.platformUtilsService.showToast('error', null, this.i18nService.t('vaultTimeoutToLarge'));
             return;
         }
 
@@ -102,7 +104,7 @@ export class OptionsComponent implements OnInit {
         if (this.locale !== this.startingLocale) {
             window.location.reload();
         } else {
-            this.toasterService.popAsync('success', null, this.i18nService.t('optionsUpdated'));
+            this.platformUtilsService.showToast('success', null, [this.i18nService.t('optionsUpdated'), this.i18nService.t('optionsUpdated')]);
         }
     }
 

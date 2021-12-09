@@ -11,6 +11,7 @@ import { SendComponent as BaseSendComponent } from 'jslib-angular/components/sen
 
 import { AddEditComponent } from './add-edit.component';
 
+import { BroadcasterService } from 'jslib-common/abstractions/broadcaster.service';
 import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
@@ -19,7 +20,6 @@ import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { SendService } from 'jslib-common/abstractions/send.service';
 
-import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 import { ModalService } from 'jslib-angular/services/modal.service';
 
 const BroadcasterSubscriptionId = 'SendComponent';

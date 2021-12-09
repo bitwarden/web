@@ -3,7 +3,6 @@ import {
     OnInit,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ToasterService } from 'angular2-toaster';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 import { OrganizationSubscriptionResponse } from 'jslib-common/models/response/organizationSubscriptionResponse';
@@ -43,7 +42,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     reinstatePromise: Promise<any>;
 
     constructor(private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
-        private i18nService: I18nService, private toasterService: ToasterService,
+        private i18nService: I18nService,
         private messagingService: MessagingService, private route: ActivatedRoute,
         private organizationService: OrganizationService, private logService: LogService) {
         this.selfHosted = platformUtilsService.isSelfHost();
@@ -82,7 +81,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         try {
             this.reinstatePromise = this.apiService.postOrganizationReinstate(this.organizationId);
             await this.reinstatePromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('reinstated'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('reinstated'));
             this.load();
         } catch (e) {
             this.logService.error(e);
@@ -103,7 +102,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         try {
             this.cancelPromise = this.apiService.postOrganizationCancel(this.organizationId);
             await this.cancelPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('canceledSubscription'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('canceledSubscription'));
             this.load();
         } catch (e) {
             this.logService.error(e);
@@ -170,7 +169,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         try {
             this.removeSponsorshipPromise = this.apiService.deleteRemoveSponsorship(this.organizationId);
             await this.removeSponsorshipPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('removeSponsorshipSuccess'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('removeSponsorshipSuccess'));
             await this.load();
         } catch (e) {
             this.logService.error(e);

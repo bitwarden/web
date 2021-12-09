@@ -5,15 +5,18 @@ import {
     Router,
 } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 @Injectable()
 export class OrganizationGuardService implements CanActivate {
-    constructor(private organizationService: OrganizationService, private router: Router,
-        private toasterService: ToasterService, private i18nService: I18nService) { }
+    constructor(
+        private router: Router,
+        private platformUtilsService: PlatformUtilsService,
+        private i18nService: I18nService,
+        private organizationService: OrganizationService,
+    ) { }
 
     async canActivate(route: ActivatedRouteSnapshot) {
         const org = await this.organizationService.get(route.params.organizationId);
@@ -22,7 +25,7 @@ export class OrganizationGuardService implements CanActivate {
             return false;
         }
         if (!org.isOwner && !org.enabled) {
-            this.toasterService.popAsync('error', null, this.i18nService.t('organizationIsDisabled'));
+            this.platformUtilsService.showToast('error', null, this.i18nService.t('organizationIsDisabled'));
             this.router.navigate(['/']);
             return false;
         }

@@ -4,11 +4,11 @@ import {
     Input,
     Output,
 } from '@angular/core';
-import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 import { CipherBulkDeleteRequest } from 'jslib-common/models/request/cipherBulkDeleteRequest';
@@ -25,7 +25,7 @@ export class BulkDeleteComponent {
 
     formPromise: Promise<any>;
 
-    constructor(private cipherService: CipherService, private toasterService: ToasterService,
+    constructor(private cipherService: CipherService, private platformUtilsService: PlatformUtilsService,
         private i18nService: I18nService, private apiService: ApiService) { }
 
     async submit() {
@@ -38,7 +38,7 @@ export class BulkDeleteComponent {
         await this.formPromise;
 
         this.onDeleted.emit();
-        this.toasterService.popAsync('success', null, this.i18nService.t(this.permanent ? 'permanentlyDeletedItems'
+        this.platformUtilsService.showToast('success', null, this.i18nService.t(this.permanent ? 'permanentlyDeletedItems'
             : 'deletedItems'));
     }
 

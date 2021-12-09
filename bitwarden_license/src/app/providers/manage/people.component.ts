@@ -5,7 +5,6 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToasterService } from 'angular2-toaster';
 
 import { first } from 'rxjs/operators';
 
@@ -59,14 +58,35 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
     providerId: string;
     accessEvents = false;
 
-    constructor(apiService: ApiService, private route: ActivatedRoute,
-        i18nService: I18nService, modalService: ModalService,
-        platformUtilsService: PlatformUtilsService, toasterService: ToasterService,
-        cryptoService: CryptoService, stateService: StateService, private router: Router, searchService: SearchService,
-        validationService: ValidationService, logService: LogService,
-        searchPipe: SearchPipe, userNamePipe: UserNamePipe, private providerService: ProviderService) {
-        super(apiService, searchService, i18nService, platformUtilsService, toasterService, cryptoService,
-            stateService, validationService, modalService, logService, searchPipe, userNamePipe);
+    constructor(
+        apiService: ApiService,
+        private route: ActivatedRoute,
+        i18nService: I18nService,
+        modalService: ModalService,
+        platformUtilsService: PlatformUtilsService,
+        cryptoService: CryptoService,
+        private router: Router,
+        searchService: SearchService,
+        validationService: ValidationService,
+        logService: LogService,
+        searchPipe: SearchPipe,
+        userNamePipe: UserNamePipe,
+        stateService: StateService,
+        private providerService: ProviderService,
+    ) {
+        super(
+            apiService,
+            searchService,
+            i18nService,
+            platformUtilsService,
+            cryptoService,
+            stateService,
+            validationService,
+            modalService,
+            logService,
+            searchPipe,
+            userNamePipe
+        );
     }
 
     ngOnInit() {
@@ -164,7 +184,7 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
         const filteredUsers = users.filter(u => u.status === ProviderUserStatusType.Invited);
 
         if (filteredUsers.length <= 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('noSelectedUsersApplicable'));
             return;
         }

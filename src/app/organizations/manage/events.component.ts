@@ -3,7 +3,6 @@ import {
     OnInit,
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToasterService } from 'angular2-toaster';
 
 import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
 
@@ -33,13 +32,26 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
 
     private orgUsersUserIdMap = new Map<string, any>();
 
-    constructor(private apiService: ApiService, private route: ActivatedRoute,
-        eventService: EventService, i18nService: I18nService,
-        toasterService: ToasterService, exportService: ExportService,
-        platformUtilsService: PlatformUtilsService, private router: Router,
-        logService: LogService, private userNamePipe: UserNamePipe,
-        private organizationService: OrganizationService, private providerService: ProviderService) {
-        super(eventService, i18nService, toasterService, exportService, platformUtilsService, logService);
+    constructor(
+        private apiService: ApiService,
+        private route: ActivatedRoute,
+        eventService: EventService,
+        i18nService: I18nService,
+        exportService: ExportService,
+        platformUtilsService: PlatformUtilsService,
+        private router: Router,
+        logService: LogService,
+        private userNamePipe: UserNamePipe,
+        private organizationService: OrganizationService,
+        private providerService: ProviderService,
+    ) {
+        super(
+            eventService,
+            i18nService,
+            exportService,
+            platformUtilsService,
+            logService
+        );
     }
 
     async ngOnInit() {

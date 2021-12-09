@@ -4,9 +4,6 @@ import {
     Output,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-import { stat } from 'fs';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { EventService } from 'jslib-common/abstractions/event.service';
@@ -36,12 +33,29 @@ export class CiphersComponent extends BaseCiphersComponent {
 
     protected allCiphers: CipherView[] = [];
 
-    constructor(searchService: SearchService, toasterService: ToasterService, i18nService: I18nService,
-        platformUtilsService: PlatformUtilsService, cipherService: CipherService,
-        private apiService: ApiService, eventService: EventService, totpService: TotpService,
-        stateService: StateService, passwordRepromptService: PasswordRepromptService, logService: LogService) {
-        super(searchService, toasterService, i18nService, platformUtilsService, cipherService,
-            eventService, totpService, stateService, passwordRepromptService, logService);
+    constructor(
+        searchService: SearchService,
+        i18nService: I18nService,
+        platformUtilsService: PlatformUtilsService,
+        cipherService: CipherService,
+        private apiService: ApiService,
+        eventService: EventService,
+        totpService: TotpService,
+        passwordRepromptService: PasswordRepromptService,
+        logService: LogService,
+        stateService: StateService,
+    ) {
+        super(
+            searchService,
+            i18nService,
+            platformUtilsService,
+            cipherService,
+            eventService,
+            totpService,
+            stateService,
+            passwordRepromptService,
+            logService
+        );
     }
 
     async load(filter: (cipher: CipherView) => boolean = null) {

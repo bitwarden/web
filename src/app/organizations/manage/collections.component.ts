@@ -5,7 +5,6 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ToasterService } from 'angular2-toaster';
 
 import { first } from 'rxjs/operators';
 
@@ -54,11 +53,17 @@ export class CollectionsComponent implements OnInit {
 
     private pagedCollectionsCount = 0;
 
-    constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private collectionService: CollectionService, private modalService: ModalService,
-        private toasterService: ToasterService, private i18nService: I18nService,
-        private platformUtilsService: PlatformUtilsService, private searchService: SearchService,
-        private logService: LogService, private organizationService: OrganizationService) { }
+    constructor(
+        private apiService: ApiService,
+        private route: ActivatedRoute,
+        private collectionService: CollectionService,
+        private modalService: ModalService,
+        private i18nService: I18nService,
+        private platformUtilsService: PlatformUtilsService,
+        private searchService: SearchService,
+        private logService: LogService,
+        private organizationService: OrganizationService,
+    ) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -119,7 +124,7 @@ export class CollectionsComponent implements OnInit {
         const canDelete = collection != null && this.canDelete(collection);
 
         if (!(canCreate || canEdit || canDelete)) {
-            this.toasterService.popAsync('error', null, this.i18nService.t('missingPermissions'));
+            this.platformUtilsService.showToast('error', null, this.i18nService.t('missingPermissions'));
             return;
         }
 
@@ -153,11 +158,11 @@ export class CollectionsComponent implements OnInit {
 
         try {
             await this.apiService.deleteCollection(this.organizationId, collection.id);
-            this.toasterService.popAsync('success', null, this.i18nService.t('deletedCollectionId', collection.name));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('deletedCollectionId', collection.name));
             this.removeCollection(collection);
         } catch (e) {
             this.logService.error(e);
-            this.toasterService.popAsync('error', null, this.i18nService.t('missingPermissions'));
+            this.platformUtilsService.showToast('error', null, this.i18nService.t('missingPermissions'));
         }
     }
 

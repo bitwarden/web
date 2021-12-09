@@ -6,8 +6,6 @@ import {
     Output,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -41,13 +39,26 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
 
     formPromise: Promise<any>;
 
-    constructor(i18nService: I18nService, cryptoService: CryptoService,
-        messagingService: MessagingService, stateService: StateService,
+    constructor(
+        i18nService: I18nService,
+        cryptoService: CryptoService,
+        messagingService: MessagingService,
+        stateService: StateService,
         passwordGenerationService: PasswordGenerationService,
-        platformUtilsService: PlatformUtilsService, policyService: PolicyService,
-        private apiService: ApiService, private toasterService: ToasterService, private logService: LogService) {
-        super(i18nService, cryptoService, messagingService, passwordGenerationService,
-            platformUtilsService, policyService, stateService);
+        platformUtilsService: PlatformUtilsService,
+        policyService: PolicyService,
+        private apiService: ApiService,
+        private logService: LogService
+    ) {
+        super(
+            i18nService,
+            cryptoService,
+            messagingService,
+            passwordGenerationService,
+            platformUtilsService,
+            policyService,
+            stateService,
+        );
     }
 
     async ngOnInit() {
@@ -69,7 +80,7 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
         const oldEncKey = new SymmetricCryptoKey(oldKeyBuffer);
 
         if (oldEncKey == null) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'), this.i18nService.t('unexpectedError'));
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'), this.i18nService.t('unexpectedError'));
             return;
         }
 
@@ -90,4 +101,4 @@ export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent im
             this.logService.error(e);
         }
     }
-}
+

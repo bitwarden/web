@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
@@ -28,9 +26,9 @@ export class TwoFactorYubiKeyComponent extends TwoFactorBaseComponent {
     disablePromise: Promise<any>;
 
     constructor(apiService: ApiService, i18nService: I18nService,
-        toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
+        platformUtilsService: PlatformUtilsService,
         logService: LogService, userVerificationService: UserVerificationService) {
-        super(apiService, i18nService, toasterService, platformUtilsService, logService, userVerificationService);
+        super(apiService, i18nService, platformUtilsService, logService, userVerificationService);
     }
 
     auth(authResponse: any) {
@@ -51,7 +49,7 @@ export class TwoFactorYubiKeyComponent extends TwoFactorBaseComponent {
             this.formPromise = this.apiService.putTwoFactorYubiKey(request);
             const response = await this.formPromise;
             await this.processResponse(response);
-            this.toasterService.popAsync('success', null, this.i18nService.t('yubikeysUpdated'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('yubikeysUpdated'));
         });
     }
 

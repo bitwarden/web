@@ -3,7 +3,7 @@ import {
     Injector,
     NgModule,
 } from '@angular/core';
-import { ToasterModule } from 'angular2-toaster';
+import { ToastrModule } from 'ngx-toastr';
 
 import { BroadcasterMessagingService } from '../../services/broadcasterMessaging.service';
 import { HtmlStorageService } from '../../services/htmlStorage.service';
@@ -88,7 +88,7 @@ export function initFactory(window: Window, storageService: StorageServiceAbstra
 
 @NgModule({
     imports: [
-        ToasterModule,
+        ToastrModule,
         JslibServicesModule,
     ],
     declarations: [],

@@ -4,7 +4,6 @@ import {
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
@@ -48,12 +47,18 @@ export class EmergencyAccessComponent implements OnInit {
     actionPromise: Promise<any>;
     isOrganizationOwner: boolean;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private modalService: ModalService, private platformUtilsService: PlatformUtilsService,
-        private toasterService: ToasterService, private cryptoService: CryptoService,
-        private stateService: StateService, private messagingService: MessagingService,
-        private userNamePipe: UserNamePipe, private logService: LogService,
-        private organizationService: OrganizationService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private modalService: ModalService,
+        private platformUtilsService: PlatformUtilsService,
+        private cryptoService: CryptoService,
+        private messagingService: MessagingService,
+        private userNamePipe: UserNamePipe,
+        private logService: LogService,
+        private stateService: StateService,
+        private organizationService: OrganizationService,
+    ) { }
 
     async ngOnInit() {
         this.canAccessPremium = await this.stateService.getCanAccessPremium();
@@ -100,7 +105,7 @@ export class EmergencyAccessComponent implements OnInit {
         }
         this.actionPromise = this.apiService.postEmergencyAccessReinvite(contact.id);
         await this.actionPromise;
-        this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenReinvited', contact.email));
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('hasBeenReinvited', contact.email));
         this.actionPromise = null;
     }
 
@@ -126,7 +131,7 @@ export class EmergencyAccessComponent implements OnInit {
                     await comp.formPromise;
 
                     updateUser();
-                    this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', this.userNamePipe.transform(contact)));
+                    this.platformUtilsService.showToast('success', null, this.i18nService.t('hasBeenConfirmed', this.userNamePipe.transform(contact)));
                 });
             });
             return;
@@ -136,7 +141,7 @@ export class EmergencyAccessComponent implements OnInit {
         await this.actionPromise;
         updateUser();
 
-        this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', this.userNamePipe.transform(contact)));
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('hasBeenConfirmed', this.userNamePipe.transform(contact)));
         this.actionPromise = null;
     }
 
@@ -150,7 +155,7 @@ export class EmergencyAccessComponent implements OnInit {
 
         try {
             await this.apiService.deleteEmergencyAccess(details.id);
-            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', this.userNamePipe.transform(details)));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('removedUserId', this.userNamePipe.transform(details)));
 
             if (details instanceof EmergencyAccessGranteeDetailsResponse) {
                 this.removeGrantee(details);
@@ -178,7 +183,7 @@ export class EmergencyAccessComponent implements OnInit {
         await this.apiService.postEmergencyAccessInitiate(details.id);
 
         details.status = EmergencyAccessStatusType.RecoveryInitiated;
-        this.toasterService.popAsync('success', null, this.i18nService.t('requestSent', this.userNamePipe.transform(details)));
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('requestSent', this.userNamePipe.transform(details)));
     }
 
     async approve(details: EmergencyAccessGranteeDetailsResponse) {
@@ -199,14 +204,14 @@ export class EmergencyAccessComponent implements OnInit {
         await this.apiService.postEmergencyAccessApprove(details.id);
         details.status = EmergencyAccessStatusType.RecoveryApproved;
 
-        this.toasterService.popAsync('success', null, this.i18nService.t('emergencyApproved', this.userNamePipe.transform(details)));
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('emergencyApproved', this.userNamePipe.transform(details)));
     }
 
     async reject(details: EmergencyAccessGranteeDetailsResponse) {
         await this.apiService.postEmergencyAccessReject(details.id);
         details.status = EmergencyAccessStatusType.Confirmed;
 
-        this.toasterService.popAsync('success', null, this.i18nService.t('emergencyRejected', this.userNamePipe.transform(details)));
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('emergencyRejected', this.userNamePipe.transform(details)));
     }
 
     async takeover(details: EmergencyAccessGrantorDetailsResponse) {
@@ -217,7 +222,7 @@ export class EmergencyAccessComponent implements OnInit {
 
             comp.onDone.subscribe(() => {
                 modal.close();
-                this.toasterService.popAsync('success', null, this.i18nService.t('passwordResetFor', this.userNamePipe.transform(details)));
+                this.platformUtilsService.showToast('success', null, this.i18nService.t('passwordResetFor', this.userNamePipe.transform(details)));
             });
         });
     }

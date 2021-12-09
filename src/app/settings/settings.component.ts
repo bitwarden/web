@@ -6,10 +6,9 @@ import {
 } from '@angular/core';
 
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
+import { BroadcasterService } from 'jslib-common/abstractions/broadcaster.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { TokenService } from 'jslib-common/abstractions/token.service';
-
-import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 
 const BroadcasterSubscriptionId = 'SettingsComponent';
 

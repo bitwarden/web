@@ -5,8 +5,6 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
@@ -36,7 +34,7 @@ export class PremiumComponent implements OnInit {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
+        private platformUtilsService: PlatformUtilsService,
         private tokenService: TokenService, private router: Router,
         private messagingService: MessagingService, private syncService: SyncService,
         private logService: LogService, private stateService: StateService) {
@@ -58,7 +56,7 @@ export class PremiumComponent implements OnInit {
             const fileEl = document.getElementById('file') as HTMLInputElement;
             files = fileEl.files;
             if (files == null || files.length === 0) {
-                this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                     this.i18nService.t('selectFile'));
                 return;
             }
@@ -67,7 +65,7 @@ export class PremiumComponent implements OnInit {
         try {
             if (this.selfHosted) {
                 if (!this.tokenService.getEmailVerified()) {
-                    this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                    this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                         this.i18nService.t('verifyEmailFirst'));
                     return;
                 }
@@ -106,7 +104,7 @@ export class PremiumComponent implements OnInit {
     async finalizePremium() {
         await this.apiService.refreshIdentityToken();
         await this.syncService.fullSync(true);
-        this.toasterService.popAsync('success', null, this.i18nService.t('premiumUpdated'));
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('premiumUpdated'));
         this.messagingService.send('purchasedPremium');
         this.router.navigate(['/settings/subscription']);
     }
