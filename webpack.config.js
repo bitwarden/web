@@ -7,7 +7,7 @@ const HtmlWebpackInjector = require('html-webpack-injector');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const AngularWebpackPlugin = require('@ngtools/webpack').AngularWebpackPlugin;
+const { AngularWebpackPlugin } = require('@ngtools/webpack');
 const pjson = require('./package.json');
 const config = require('./config.js');
 
