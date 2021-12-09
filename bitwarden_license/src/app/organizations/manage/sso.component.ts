@@ -87,6 +87,8 @@ export class SsoComponent implements OnInit {
         additionalNameClaimTypes: [],
         acrValues: [],
         expectedReturnAcrValue: [],
+    }, {
+        updateOn: 'blur',
     });
 
     samlForm = this.fb.group({
@@ -108,16 +110,16 @@ export class SsoComponent implements OnInit {
         idpAllowUnsolicitedAuthnResponse: [],
         idpAllowOutboundLogoutRequests: [true],
         idpWantAuthnRequestsSigned: [],
+    }, {
+        updateOn: 'blur',
     });
 
     ssoConfigForm = this.fb.group({
-        configType: [SsoType.None, {updateOn: 'change'}],
-        keyConnectorEnabled: [false, {updateOn: 'change'}],
+        configType: [SsoType.None],
+        keyConnectorEnabled: [false],
         keyConnectorUrl: [''],
         openId: this.openIdForm,
         saml: this.samlForm,
-    }, {
-        updateOn: 'blur',
     });
 
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private apiService: ApiService,
