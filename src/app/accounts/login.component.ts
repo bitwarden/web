@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+    Component,
+    NgZone,
+} from '@angular/core';
 import {
     ActivatedRoute,
     Router,
@@ -33,12 +36,13 @@ export class LoginComponent extends BaseLoginComponent {
         i18nService: I18nService, private route: ActivatedRoute, stateService: StateService,
         platformUtilsService: PlatformUtilsService, environmentService: EnvironmentService,
         passwordGenerationService: PasswordGenerationService, cryptoFunctionService: CryptoFunctionService,
-        private apiService: ApiService, private policyService: PolicyService, logService: LogService) {
+        private apiService: ApiService, private policyService: PolicyService, logService: LogService,
+        ngZone: NgZone) {
         super(authService, router,
             platformUtilsService, i18nService,
             stateService, environmentService,
             passwordGenerationService, cryptoFunctionService,
-            logService);
+            logService, ngZone);
         this.onSuccessfulLoginNavigate = this.goAfterLogIn;
     }
 
@@ -52,6 +56,15 @@ export class LoginComponent extends BaseLoginComponent {
             } else if (qParams.org != null) {
                 this.stateService.setLoginRedirect(
                     { route: '/settings/create-organization', qParams: { plan: qParams.org } });
+            }
+
+            // Are they coming from an email for sponsoring a families organization
+            if (qParams.sponsorshipToken != null) {
+                // After logging in redirect them to setup the families sponsorship
+                this.stateService.setLoginRedirect({
+                    route: '/setup/families-for-enterprise',
+                    qParams: { token: qParams.sponsorshipToken },
+                });
             }
             await super.ngOnInit();
         });

@@ -38,6 +38,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
 
     userOrg: Organization;
 
+    removeSponsorshipPromise: Promise<any>;
     cancelPromise: Promise<any>;
     reinstatePromise: Promise<any>;
 
@@ -156,6 +157,26 @@ export class OrganizationSubscriptionComponent implements OnInit {
         }
     }
 
+    async removeSponsorship() {
+        const isConfirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('removeSponsorshipConfirmation'),
+            this.i18nService.t('removeSponsorship'),
+            this.i18nService.t('remove'), this.i18nService.t('cancel'), 'warning');
+
+        if (!isConfirmed) {
+            return;
+        }
+
+        try {
+            this.removeSponsorshipPromise = this.apiService.deleteRemoveSponsorship(this.organizationId);
+            await this.removeSponsorshipPromise;
+            this.toasterService.popAsync('success', null, this.i18nService.t('removeSponsorshipSuccess'));
+            await this.load();
+        } catch (e) {
+            this.logService.error(e);
+        }
+    }
+
     get isExpired() {
         return this.sub != null && this.sub.expiration != null &&
             new Date(this.sub.expiration) < new Date();
@@ -207,6 +228,10 @@ export class OrganizationSubscriptionComponent implements OnInit {
         return this.sub.plan.hasAdditionalSeatsOption;
     }
 
+    get isSponsoredSubscription(): boolean {
+        return this.sub.subscription?.items.some(i => i.sponsoredSubscriptionItem);
+    }
+
     get canDownloadLicense() {
         return (this.sub.planType !== PlanType.Free && this.subscription == null) ||
             (this.subscription != null && !this.subscription.cancelled);
@@ -216,7 +241,11 @@ export class OrganizationSubscriptionComponent implements OnInit {
         if (this.sub.planType === PlanType.Free) {
             return this.i18nService.t('subscriptionFreePlan', this.sub.seats.toString());
         } else if (this.sub.planType === PlanType.FamiliesAnnually || this.sub.planType === PlanType.FamiliesAnnually2019) {
-            return this.i18nService.t('subscriptionFamiliesPlan', this.sub.seats.toString());
+            if (this.isSponsoredSubscription) {
+                return this.i18nService.t('subscriptionSponsoredFamiliesPlan', this.sub.seats.toString());
+            } else {
+                return this.i18nService.t('subscriptionFamiliesPlan', this.sub.seats.toString());
+            }
         } else if (this.sub.maxAutoscaleSeats === this.sub.seats && this.sub.seats != null) {
             return this.i18nService.t('subscriptionMaxReached', this.sub.seats.toString());
         } else if (this.sub.maxAutoscaleSeats == null) {

@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+    Component,
+    NgZone,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
@@ -26,10 +29,10 @@ export class LockComponent extends BaseLockComponent {
         cryptoService: CryptoService, vaultTimeoutService: VaultTimeoutService,
         environmentService: EnvironmentService, private routerService: RouterService,
         stateService: StateService, apiService: ApiService, logService: LogService,
-        keyConnectorService: KeyConnectorService) {
+        keyConnectorService: KeyConnectorService, ngZone: NgZone) {
         super(router, i18nService, platformUtilsService, messagingService, cryptoService,
             vaultTimeoutService, environmentService, stateService, apiService, logService,
-            keyConnectorService);
+            keyConnectorService, ngZone);
     }
 
     async ngOnInit() {

@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>{{'deleteOrganizationDesc' | i18n}}</p>
+                <p>{{descriptionKey | i18n}}</p>
                 <app-callout type="warning">{{'deleteOrganizationWarning' | i18n}}</app-callout>
                 <app-verify-master-password [(ngModel)]="masterPassword" ngDefaultControl name="secret">
                 </app-verify-master-password>

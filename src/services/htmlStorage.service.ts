@@ -1,3 +1,5 @@
+import { Injectable } from '@angular/core';
+
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { HtmlStorageLocation } from 'jslib-common/enums/htmlStorageLocation';
 
@@ -5,6 +7,7 @@ import { GlobalState } from 'jslib-common/models/domain/globalState';
 import { State } from 'jslib-common/models/domain/state';
 import { StorageOptions } from 'jslib-common/models/domain/storageOptions';
 
+@Injectable()
 export class HtmlStorageService implements StorageService {
     // TODO: I don't think anything is saved here anymore. The secureStorage instance in web is a memory store.
     // Regardless, this service needs to be revisted so we can not have special conditions in individual storage service types.

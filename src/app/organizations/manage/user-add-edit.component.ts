@@ -33,6 +33,7 @@ export class UserAddEditComponent implements OnInit {
     @Input() name: string;
     @Input() organizationUserId: string;
     @Input() organizationId: string;
+    @Input() usesKeyConnector: boolean = false;
     @Output() onSavedUser = new EventEmitter();
     @Output() onDeletedUser = new EventEmitter();
 
@@ -193,9 +194,10 @@ export class UserAddEditComponent implements OnInit {
             return;
         }
 
+        const message = this.usesKeyConnector ? 'removeUserConfirmationKeyConnector' : 'removeUserConfirmation';
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('removeUserConfirmation'), this.name,
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t(message), this.name, this.i18nService.t('yes'), this.i18nService.t('no'), 'warning'
+        );
         if (!confirmed) {
             return false;
         }

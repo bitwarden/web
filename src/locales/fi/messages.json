@@ -840,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "Tilin salausavaimet ovat ainutlaatuisia jokaiselle Bitwarden-käyttäjätilille, joten et voi tuoda salattua vientitiedostoa toiselle tilille."
   },
-  "exportMasterPassword": {
-    "message": "Syötä pääsalasanasi viedäksesi holvisi tiedot."
-  },
   "export": {
     "message": "Vie"
   },
@@ -907,10 +904,10 @@
     "message": "Vaihda sähköpostiosoite"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Jatko vaihtaa tilisi sähköpostiosoitteen, muttei kaksivaiheiseen tunnistamiseen käytettävää osoitetta. Tämän osoitteen voit vaihtaa kaksivaiheisen tunnistautumisen asetuksista."
+    "message": "Jatkamalla tilisi sähköpostiosoite vaihtuu, muttei kaksivaiheiseen kirjautumiseen käytettävä osoite. Sen voit vaihtaa kaksivaiheisen kirjautumisen asetuksista."
   },
   "newEmail": {
-    "message": "Uusi sähköposti"
+    "message": "Uusi sähköpostiosoite"
   },
   "code": {
     "message": "Koodi"
@@ -1045,7 +1042,7 @@
     "message": "Työkalut"
   },
   "importData": {
-    "message": "Tuo tiedot"
+    "message": "Tuo tietoja"
   },
   "importError": {
     "message": "Tuontivirhe"
@@ -1066,7 +1063,7 @@
     }
   },
   "importFormatError": {
-    "message": "Tietoja ei ole muotoiltu oikein. Tarkista tuotavan tiedoston muotoilu ja yritä uudelleen."
+    "message": "Tietoja ei ole muotoiltu oikein. Tarkista tuotava tiedosto ja yritä uudelleen."
   },
   "importNothingError": {
     "message": "Mitään ei tuotu."
@@ -1132,22 +1129,22 @@
     "message": "Oletus"
   },
   "domainRules": {
-    "message": "Verkkotunnusten säännöt"
+    "message": "Verkkotunnusten vastaavuudet"
   },
   "domainRulesDesc": {
     "message": "Jos kirjautumistietosi ovat samat useille verkkotunnuksille, voit merkata sivustot vastaavanlaisiksi. Bitwarden on luonut sinulle valmiiksi joitakin globaaleja verkkotunnuksia."
   },
   "globalEqDomains": {
-    "message": "Globaalit vastaavat verkkotunnukset"
+    "message": "Globaalit verkkotunnusten vastaavuudet"
   },
   "customEqDomains": {
-    "message": "Omat vastaavat verkkotunnukset"
+    "message": "Omat verkkotunnusten vastaavuudet"
   },
   "exclude": {
-    "message": "Poista sääntö käytöstä"
+    "message": "Älä käytä sääntöä"
   },
   "include": {
-    "message": "Ota sääntö käyttöön"
+    "message": "Käytä sääntöä"
   },
   "customize": {
     "message": "Muokkaa sääntöä"
@@ -1215,7 +1212,7 @@
     "message": "Premium-toiminnot ovat jo käytettävissäsi, johtuen organisaatiosta, jonka jäsen olet."
   },
   "manage": {
-    "message": "Hallinta"
+    "message": "Hallinnointi"
   },
   "disable": {
     "message": "Poista käytöstä"
@@ -1806,7 +1803,7 @@
     "message": "Lisenssi päivitetty"
   },
   "manageSubscription": {
-    "message": "Hallitse tilausta"
+    "message": "Hallinnoi tilausta"
   },
   "storage": {
     "message": "Tallennustila"
@@ -1887,7 +1884,7 @@
     "message": "Poistettava tallennustila, Gt"
   },
   "storageAddNote": {
-    "message": "Tallennuskapasiteetin lisäys muuttaa kokonaislaskutustasi ja korotus veloitetaan tilillesi tallennetulta maksutavalta välittömästi. Ensimmäinen veloitus sovitetaan tämänhetkisen laskutusjaksosi jäljellä olevalle ajalle."
+    "message": "Tallennuskapasiteetin lisäys muuttaa kokonaislaskutustasi ja korotus veloitetaan tilillesi tallennetulta maksutavalta välittömästi. Ensimmäinen veloitus sovitetaan nykyisen laskutuskautesi jäljellä olevalle ajalle."
   },
   "storageRemoveNote": {
     "message": "Tallennuskapasiteetin vähennys muuttaa kokonaislaskutustasi ja tämä huomioidaan seuraavan veloituksen yhteydessä."
@@ -1994,7 +1991,7 @@
     }
   },
   "planNameFamilies": {
-    "message": "Perheet"
+    "message": "Perheille"
   },
   "planDescFamilies": {
     "message": "Henkilökohtaiseen käyttöön, jaettavaksi perheen ja ystävien kanssa."
@@ -2084,7 +2081,7 @@
     "message": "Käyttäjät saavat Premium-ominaisuuksien käyttöoikeuden"
   },
   "controlAccessWithGroups": {
-    "message": "Hallitse käyttäjien oikeuksia ryhmillä"
+    "message": "Hallinnoi käyttäjien oikeuksia ryhmillä"
   },
   "syncUsersFromDirectory": {
     "message": "Synkronoi käyttäjät ja ryhmät käyttäjähakemistosta"
@@ -2178,6 +2175,9 @@
   },
   "removeUserConfirmation": {
     "message": "Haluatko varmasti poistaa käyttäjän?"
+  },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Varoitus! Tämä käyttäjä tarvitsee salauksensa hallintaan Key Connector -agenttia. Käyttäjän poistaminen organisaatiostasi poistaa heidän tilinsä käytöstä pysvästi. Toimenpide on pysyvä, eikä sen peruminen ole mahdollista. Haluatko jatkaa?"
   },
   "externalId": {
     "message": "Ulkoinen ID"
@@ -2659,6 +2659,9 @@
   "resendInvitation": {
     "message": "Lähetä kutsu uudelleen"
   },
+  "resendEmail": {
+    "message": "Lähetä sähköposti uudelleen"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ on kutsuttu uudelleen.",
     "placeholders": {
@@ -2741,7 +2744,7 @@
     "message": "Kutsun hyväksyntä ei onnistu. Pyydä organisaation ylläpitäjää lähettämään uusi kutsu."
   },
   "inviteAcceptFailedShort": {
-    "message": "Kutsun hyväksyntä ei onnistunut. $DESCRIPTION$",
+    "message": "Kutsua ei voitu hyväksyä. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -2801,7 +2804,7 @@
     "message": "Yhdysvalloissa olevilta asiakkailta vaaditaan postinumero myyntiverotuksen vaatimusten vuoksi. Muiden maiden asiakkaat voivat halutessaan toimittaa verotunnistenumeron (ALV/GST) ja/tai osoitteen, joka kirjataan laskuihin."
   },
   "billingPlan": {
-    "message": "Tilautyyppi",
+    "message": "Tilaustyyppi",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
@@ -2900,7 +2903,7 @@
     "message": "Tilausmuutokset aiheuttavat muutoksia laskutukseesi. Jos hiljattain kutsuttujen käyttäjien määrä ylittää tilauksesi käyttäjäpaikkojen enimmäismäärän, veloitetaan suhteutettu hinta uusista käyttäjistä välittömästi."
   },
   "subscriptionUserSeats": {
-    "message": "Tilauksesi sallii yhteensä $COUNT$ käyttäjää.",
+    "message": "Tilauksesi kattaa kaikkiaan $COUNT$ käyttäjää.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2953,6 +2956,15 @@
       }
     }
   },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Tilauksesi kattaa kaikkiaan $COUNT$ käyttäjää. Tilauksesi on sponsoroitu ja se laskutetaan ulkoiselta organisaatiolta.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
   "subscriptionMaxReached": {
     "message": "Tilausmuutokset johtavat suhteutettuihin muutoksiin laskutuksessasi. Voit kutsua enintään $COUNT$ käyttäjää kasvattamatta tilauksesi käyttäjäpaikkojen määrää.",
     "placeholders": {
@@ -2969,7 +2981,7 @@
     "message": "Poistettavat käyttäjäpaikat"
   },
   "seatsAddNote": {
-    "message": "Käyttäjäpaikkojen lisäys muuttaa kokonaislaskutustasi ja korotus veloitetaan tilillesi tallennetulta maksutavalta välittömästi. Ensimmäinen veloitus sovitetaan tämänhetkisen laskutusjaksosi jäljellä olevalle ajalle."
+    "message": "Käyttäjäpaikkojen lisäys muuttaa kokonaislaskutustasi ja korotus veloitetaan tilillesi tallennetulta maksutavalta välittömästi. Ensimmäinen veloitus sovitetaan nykyisen laskutuskautesi jäljellä olevalle ajalle."
   },
   "seatsRemoveNote": {
     "message": "Käyttäjäpaikkojen vähennys muuttaa kokonaislaskutustasi ja tämä huomioidaan seuraavan veloituksen yhteydessä."
@@ -3609,7 +3621,7 @@
     "message": "Varmuuskäyttö"
   },
   "emergencyAccessDesc": {
-    "message": "Myönnä ja hallitse luotettujen kontaktien varmuuskäyttöoikeuksia. Luotetut kontaktit voivat anoa oikeutta tilisi tarkasteluun tai hallintaan ongelmatilanteissa. Käy ohjesivullamme saadaksesi lisätietoja ja tarkempia tietoja siitä, miten Zero Knowledge -jako toimii (englanniksi)."
+    "message": "Myönnä ja hallinnoi luotettujen kontaktien varmuuskäyttöoikeuksia. Luotetut kontaktit voivat anoa oikeutta tilisi tarkasteluun tai hallintaan ongelmatilanteissa. Käy ohjesivullamme saadaksesi lisätietoja ja tarkempia tietoja siitä, miten Zero Knowledge -jako toimii (englanniksi)."
   },
   "emergencyAccessOwnerWarning": {
     "message": "Olet yhden tai useamman organisaation omistaja. Jos myönnät varmuuskontaktille hallintaoikeuden, on heillä haltuunoton jälkeen samat oikeudet."
@@ -3681,7 +3693,7 @@
     "message": "Kutsun hyväksyntä ei onnistu. Pyydä käyttäjää lähettämään uusi kutsu."
   },
   "emergencyInviteAcceptFailedShort": {
-    "message": "Kutsun hyväksyntä ei onnistunut. $DESCRIPTION$",
+    "message": "Kutsua ei voitu hyväksyä. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -4044,6 +4056,15 @@
   },
   "eventResetSsoLink": {
     "message": "Nollaa käyttäjän $ID$ SSO-linkki",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "firstSsoLogin": {
+    "message": "$ID$ kirjautui ensimmäistä kertaa käyttäen SSO-kirjautumista",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4467,17 +4488,143 @@
   "ssoSettingsSaved": {
     "message": "Kertakirjautumisen (SSO) määritykset tallennettiin."
   },
+  "sponsoredFamilies": {
+    "message": "Ilmainen Bitwarden Perheille"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Sinä ja perheesi olette oikeutettuja ilmaiseen Bitwardenin Perhetilaukseen. Lunasta etu henkilökohtaisella sähköpostillasi suojataksesi tietosi myös töiden ulkopuolella."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Lunasta ilmainen Bitwarden Perhetilauksesi tänään suojataksesi tietosi myös töiden ulkopuolella."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Bitwardenin Perhetilaus sisältää"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Premium-ominaisuudet 6 käyttäjälle"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Jaetut kokoelmat perhesalaisuuksille"
+  },
+  "badToken": {
+    "message": "Linkki ei ole enää voimassa. Pyydä sponsoria lähettämään tarjous uudelleen."
+  },
+  "reclaimedFreePlan": {
+    "message": "Lunastettu ilmaistilaus"
+  },
+  "redeem": {
+    "message": "Lunasta"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Valitse organisaatio, jota haluat sponsoroitavan"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Minkä ilmaisen Perhetilauksen tarjouksen haluaisit lunastaa?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Syötä henkilökohtainen sähköpostiosoitteesi lunastaaksesi Bitwarden Perhetilauksesi"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Jos poistut tai sinut poistetaan tästä organisaatiosta, päättyy Perhetilauksesi kuluvan laskutuskauden lopussa."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Hyväksy tarjous olemassa olevalle organisaatiolle tai luo uusi Perheorganisaatio."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Sinulle on tarjottu ilmaista Bitwarden Perheorganisaatiota. Jatkaaksesi sinun on kirjauduttava tarjouksen saaneelle tilille."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Tarjousta ei voida hyväksyä. Lähetä tarjoussähköposti uudelleen yritystililtäsi ja yritä uudelleen."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Tarjousta ei voitu hyväksyä. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Lunasta Bitwarden Perheorganisaation ilmaistarjous"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Bitwarden Perhetilauksen ilmaistarjous on lunastettu"
+  },
+  "redeemed": {
+    "message": "Lunastettu"
+  },
+  "redeemedAccount": {
+    "message": "Lunastettu tili"
+  },
+  "revokeAccount": {
+    "message": "Irtisano tili $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Lähetä sponsorointisähköposti uudelleen edunsaajalle $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Ilmainen Perhetilaus"
+  },
+  "redeemNow": {
+    "message": "Lunasta nyt"
+  },
+  "recipient": {
+    "message": "Vastaanottaja"
+  },
+  "removeSponsorship": {
+    "message": "Lopeta sponsorointi"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "Poistettuasi sponsoroinnin olet vastuussa tilauksesta ja siihen liittyvistä laskuista. Haluatko varmasti jatkaa?"
+  },
+  "sponsorshipCreated": {
+    "message": "Sponsorointi on luotu"
+  },
+  "revoke": {
+    "message": "Lopeta"
+  },
+  "emailSent": {
+    "message": "Sähköposti on lähetetty"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "Poistettuuan tämän tilin, on Perheorganisaation omistaja vastuussa tilauksesta ja siihen liittyvistä laskuista. Haluatko varmasti jatkaa?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Sponsorointi on lopetettu"
+  },
   "ssoKeyConnectorUnavailable": {
     "message": "Key Connector -agenttia ei tavoiteta. Yritä myöhemmin uudelleen."
   },
   "keyConnectorUrl": {
     "message": "Key Connector URL"
   },
-  "requestVerificationCode": {
-    "message": "Pyydä kertakäyttöinen salasana"
+  "sendVerificationCode": {
+    "message": "Lähetä vahvistuskoodi sähköpostiisi"
+  },
+  "sendCode": {
+    "message": "Lähetä koodi"
+  },
+  "codeSent": {
+    "message": "Koodi lähetetty"
   },
   "verificationCode": {
     "message": "Todennuskoodi"
+  },
+  "confirmIdentity": {
+    "message": "Vahvista henkilöllisyytesi jatkaaksesi."
   },
   "verificationCodeRequired": {
     "message": "Todennuskoodi vaaditaan."
@@ -4511,15 +4658,18 @@
   },
   "ssoPolicyHelpStart": {
     "message": "Ota",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
-    "message": "SSO-käytäntö",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "message": "SSO-todennuskäytäntö",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
     "message": "käyttöön pakottaaksesi kertakirjautumisen kaikille jäsenille.",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "\"SSO-todennus\" ja \"Yksittäinen organisaatio\" -käytännöt vaaditaan, jotta Key Connector -agentilla tapahtuva salauksenpurku voidaan määrittää."
   },
   "memberDecryptionOption": {
     "message": "Jäsenen salauksenpurkuvalinnat"
@@ -4531,7 +4681,7 @@
     "message": "Key Connector"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "Liitä SSO-kirjautuminen omaan salauksenpurkuavainpalvelimeesi. Tätä valintaa käyttämällä jäsenten ei tarvitse käyttää pääsalasanojaan holvin salauksen purkuun."
+    "message": "Liitä SSO-kirjautuminen omaan salauksenpurkuavainpalvelimeesi. Tätä valintaa käyttämällä jäsenten ei tarvitse käyttää pääsalasanojaan holvin salauksen purkuun. Ota yhtettä Bitwardenin tukeen saadaksesi apua määritykseen."
   },
   "keyConnectorPolicyRestriction": {
     "message": "\"SSO-kirjautuminen Key Connector -agentin salauksenpurulla\" on käytössä. Käytäntö vaikuttaa vain omistajiin ja ylläpitäjiin."
@@ -4549,9 +4699,39 @@
     "message": "Key Connector poistettiin käytöstä"
   },
   "keyConnectorWarning": {
-    "message": "Kun Key Connector -agentti on määritetty, ei jäsenen salauksenpurkuvalintoja voida muuttaa."
+    "message": "Kun käyttäjät alkavat käyttämään Key Connector -agenttia, organisaatiosi ei voi palata takaisin pääsalasanalla tapahtuvaan salauksenpurkuun. Jatka ainoastaan siinä tapauksessa, jos olet valmis määrittämään avainpalvelimen ja myös ylläpitämään sitä."
   },
   "migratedKeyConnector": {
-    "message": "Siirretty Key Connector -agenttiin"
+    "message": "Siirretty käyttämään Key Connector -agenttia"
+  },
+  "paymentSponsored": {
+    "message": "Ilmoita organisaatioon liitetty maksutapa. Voit olla huoletta, sillä emme veloita sinulta mitään, ellet itse valitse lisäominaisuuksia tai sponsorointi erääntyy. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "Sponsorointitarjous on erääntynyt ja voit poistaa luomasi organisaation välttääksesi veloituksen kun 7 päivän kokeilujaksosi päättyy. Muussa tapauksessa voit sulkea ilmoituksen, jolloin säilytät organisaation ja otat laskutusvastuun itsellesi."
+  },
+  "newFamiliesOrganization": {
+    "message": "Uusi Perheorganisaatio"
+  },
+  "acceptOffer": {
+    "message": "Hyväksy tarjous"
+  },
+  "sponsoringOrg": {
+    "message": "Sponsoroiva organisaatio"
+  },
+  "keyConnectorTest": {
+    "message": "Testaa"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Onnistui! Key Connector -agentti tavoitettiin."
+  },
+  "keyConnectorTestFail": {
+    "message": "Key Connector -agenttia ei tavoiteta. Tarkista URL-osoite."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "Sponsorointitarjous on erääntynyt."
+  },
+  "freeWithSponsorship": {
+    "message": "ILMAINEN sponsoroinnilla"
   }
 }

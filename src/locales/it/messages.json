@@ -840,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "Le chiavi di cifratura dell'account sono uniche per ogni account utente Bitwarden, quindi non è possibile importare un'esportazione cifrata in un account diverso."
   },
-  "exportMasterPassword": {
-    "message": "Inserisci la tua password principale per esportare i dati della tua cassaforte."
-  },
   "export": {
     "message": "Esporta"
   },
@@ -2179,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "Confermi di voler rimuovere questo utente?"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Attenzione! Questo utente richiede Key Connector per gestire la crittografia. Rimuovere questo utente dalla propria organizzazione disabiliterà definitivamente l'account. Questa azione non può essere annullata. Vuoi procedere?"
+  },
   "externalId": {
     "message": "Id esterno"
   },
@@ -2659,6 +2659,9 @@
   "resendInvitation": {
     "message": "Invia nuovamente l'invito"
   },
+  "resendEmail": {
+    "message": "Invia nuovamente l'email"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ è stato invitato.",
     "placeholders": {
@@ -2946,6 +2949,15 @@
   },
   "subscriptionFamiliesPlan": {
     "message": "Non puoi invitare più di $COUNT$ utenti senza aggiornare il tuo piano. Contatta il supporto clienti per aggiornare.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Il tuo abbonamento consente un totale di $COUNT$ utenti. Il tuo piano è sponsorizzato e addebitato a un'organizzazione esterna.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -4051,6 +4063,15 @@
       }
     }
   },
+  "firstSsoLogin": {
+    "message": "$ID$ ha effettuato l'accesso tramite SSO per la prima volta",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Ripristina password"
   },
@@ -4467,17 +4488,143 @@
   "ssoSettingsSaved": {
     "message": "La configurazione del Single Sign-On è stata salvata."
   },
+  "sponsoredFamilies": {
+    "message": "Bitwarden Families gratuito"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Tu e la tua famiglia siete eleggibili per Bitwarden Families gratis. Aderisci all'offerta con la tua mail personale e mantieni i tuoi dati al sicuro anche quando non sei a lavoro."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Riscatta oggi il tuo piano Bitwarden per famiglie gratuito per mantenere i tuoi dati al sicuro anche quando non sei al lavoro."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Il piano Bitwarden Families include"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Accesso premium fino a 6 utenti"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Raccolte condivise per segreti di famiglia"
+  },
+  "badToken": {
+    "message": "Il link non è più valido. Per favore chiedi allo sponsor di inviare nuovamente l'offerta."
+  },
+  "reclaimedFreePlan": {
+    "message": "Piano gratuito riscattato"
+  },
+  "redeem": {
+    "message": "Riscatta"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Seleziona l'organizzazione che desideri sponsorizzare"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Quale offerta gratis per famiglie vorresti riscattare?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Digita la tua email personale per riscattare Bitwarden per famiglie"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Se lasci o sei rimosso da questa organizzazione, il piano Famiglie scadrà alla fine del periodo di fatturazione."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Accetta l'offerta per un'organizzazione esistente o crea una nuova organizzazione Famiglie."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Ti è stato offerto un piano gratuito per Bitwarden per famiglie. Per continuare, devi accedere all'account che ha ricevuto l'offerta."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Impossibile accettare l'offerta. Invia nuovamente l'email di offerta dal tuo account aziendale e riprova."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Impossibile accettare l'offerta. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Riscatta l'offerta di Bitwarden Families (Organizzazione)"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Offerta gratuita di Bitwarden per famiglie riscattata correttamente"
+  },
+  "redeemed": {
+    "message": "Riscattato"
+  },
+  "redeemedAccount": {
+    "message": "Account riscattato"
+  },
+  "revokeAccount": {
+    "message": "Revoca l'account $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Reinvia l'email sponsor allo sponsor $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Piano Families gratis"
+  },
+  "redeemNow": {
+    "message": "Riscatta ora"
+  },
+  "recipient": {
+    "message": "Destinatario"
+  },
+  "removeSponsorship": {
+    "message": "Rimuovi sponsorizzazione"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "Dopo aver rimosso una sponsorizzazione, sarai responsabile di questo abbonamento e delle relative fatture. Sei sicuro di voler continuare?"
+  },
+  "sponsorshipCreated": {
+    "message": "Sponsorizzazione creata"
+  },
+  "revoke": {
+    "message": "Revoca"
+  },
+  "emailSent": {
+    "message": "Email inviata"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "Dopo aver rimosso questo account, il proprietario dell'organizzazione Famiglie sarà responsabile di questo abbonamento e delle relative fatture. Sei sicuro di voler continuare?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Sponsorizzazione rimossa"
+  },
   "ssoKeyConnectorUnavailable": {
     "message": "Impossibile raggiungere il key connector, riprova più tardi."
   },
   "keyConnectorUrl": {
     "message": "URL del key connector"
   },
-  "requestVerificationCode": {
-    "message": "Richiedi OTP"
+  "sendVerificationCode": {
+    "message": "Invia un codice di verifica alla tua email"
+  },
+  "sendCode": {
+    "message": "Invia codice"
+  },
+  "codeSent": {
+    "message": "Codice inviato"
   },
   "verificationCode": {
     "message": "Codice di verifica"
+  },
+  "confirmIdentity": {
+    "message": "Conferma la tua identità per continuare."
   },
   "verificationCodeRequired": {
     "message": "Il codice di verifica è obbligatorio."
@@ -4511,15 +4658,18 @@
   },
   "ssoPolicyHelpStart": {
     "message": "Abilita la",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
     "message": "policy SSO",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
     "message": "per obbligare tutti i membri ad accedere con SSO.",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "L'autenticazione SSO e i criteri dell'organizzazione unica sono necessari per configurare la decifratura del connettore chiave."
   },
   "memberDecryptionOption": {
     "message": "Opzioni di decifratura membro"
@@ -4553,5 +4703,35 @@
   },
   "migratedKeyConnector": {
     "message": "Migrato al key connector"
+  },
+  "paymentSponsored": {
+    "message": "Fornisci un metodo di pagamento da associare all'organizzazione. Non ti preoccupare, non ti addebiteremo nulla a meno che non selezioni funzionalità aggiuntive o la tua sponsorizzazione scada. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "L'offerta di sponsorizzazione è scaduta e puoi eliminare l'organizzazione creata per evitare un addebito al termine della prova di 7 giorni. Altrimenti puoi chiudere questa richiesta per mantenere l'organizzazione e assumerti la responsabilità della fatturazione."
+  },
+  "newFamiliesOrganization": {
+    "message": "Nuova organizzazione Famiglie"
+  },
+  "acceptOffer": {
+    "message": "Accetta l'offerta"
+  },
+  "sponsoringOrg": {
+    "message": "Organizzazione sponsor"
+  },
+  "keyConnectorTest": {
+    "message": "Prova"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Key connector raggiunto!"
+  },
+  "keyConnectorTestFail": {
+    "message": "Impossibile raggiungere il Key Connector. Controlla l'URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "L'offerta di sponsorizzazione è scaduta."
+  },
+  "freeWithSponsorship": {
+    "message": "GRATUITO con sponsorizzazione"
   }
 }

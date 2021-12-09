@@ -59,13 +59,13 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
                 for (let i = 0; i < c.login.uris.length; i++) {
                     const u = c.login.uris[i];
                     if (u.uri != null && u.uri !== '') {
-                        const hostname = Utils.getHostname(u.uri);
-                        if (hostname != null && this.services.has(hostname)) {
-                            if (this.services.get(hostname) != null) {
-                                docs.set(c.id, this.services.get(hostname));
+                        const uri = u.uri.replace('www.', '');
+                        const domain = Utils.getDomain(uri);
+                        if (domain != null && this.services.has(domain)) {
+                            if (this.services.get(domain) != null) {
+                                docs.set(c.id, this.services.get(domain));
                             }
                             inactive2faCiphers.push(c);
-                            break;
                         }
                     }
                 }
@@ -84,26 +84,25 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
         if (this.services.size > 0) {
             return;
         }
-        const response = await fetch(new Request('https://2fa.directory/api/v2/totp.json'));
+        const response = await fetch(new Request('https://2fa.directory/api/v3/totp.json'));
         if (response.status !== 200) {
             throw new Error();
         }
         const responseJson = await response.json();
-        for (const categoryName in responseJson) {
-            if (responseJson.hasOwnProperty(categoryName)) {
-                const category = responseJson[categoryName];
-                for (const serviceName in category) {
-                    if (category.hasOwnProperty(serviceName)) {
-                        const service = category[serviceName];
-                        if (service.url != null) {
-                            const hostname = Utils.getHostname(service.url);
-                            if (hostname != null) {
-                                this.services.set(hostname, service.doc);
-                            }
-                        }
-                    }
+        for (const service of responseJson) {
+            const serviceData = service[1];
+            if (serviceData.domain == null) {
+                continue;
+            }
+            if (serviceData.documentation == null) {
+                continue;
+            }
+            if (serviceData['additional-domains'] != null) {
+                for (const additionalDomain of serviceData['additional-domains']) {
+                    this.services.set(additionalDomain, serviceData.documentation);
                 }
             }
+            this.services.set(serviceData.domain, serviceData.documentation);
         }
     }
 }

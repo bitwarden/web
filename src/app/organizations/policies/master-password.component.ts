@@ -49,6 +49,6 @@ export class MasterPasswordPolicyComponent extends BasePolicyComponent {
     async ngOnInit() {
         super.ngOnInit();
         const organization = await this.organizationService.get(this.policyResponse.organizationId);
-        this.showKeyConnectorInfo = organization.usesKeyConnector;
+        this.showKeyConnectorInfo = organization.keyConnectorEnabled;
     }
 }

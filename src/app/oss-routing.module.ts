@@ -39,6 +39,7 @@ import {
     TwoFactorSetupComponent as OrgTwoFactorSetupComponent,
 } from './organizations/settings/two-factor-setup.component';
 
+import { FamiliesForEnterpriseSetupComponent } from './organizations/sponsorships/families-for-enterprise-setup.component';
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
 import {
     ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent,
@@ -98,6 +99,7 @@ import { Permissions } from 'jslib-common/enums/permissions';
 
 import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
 import { EmergencyAccessComponent } from './settings/emergency-access.component';
+import { SponsoredFamiliesComponent } from './settings/sponsored-families.component';
 
 const routes: Routes = [
     {
@@ -223,6 +225,11 @@ const routes: Routes = [
                             },
                         ],
                     },
+                    {
+                        path: 'sponsored-families',
+                        component: SponsoredFamiliesComponent,
+                        data: { titleId: 'sponsoredFamilies' },
+                    },
                 ],
             },
             {
@@ -266,6 +273,7 @@ const routes: Routes = [
                     },
                 ],
             },
+            { path: 'setup/families-for-enterprise', component: FamiliesForEnterpriseSetupComponent },
         ],
     },
     {

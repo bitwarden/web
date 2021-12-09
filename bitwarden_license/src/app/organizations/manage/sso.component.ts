@@ -8,6 +8,10 @@ import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserService } from 'jslib-common/abstractions/user.service';
+
+import { Organization } from 'jslib-common/models/domain/organization';
+
 import { OrganizationSsoRequest } from 'jslib-common/models/request/organization/organizationSsoRequest';
 
 @Component({
@@ -25,6 +29,7 @@ export class SsoComponent implements OnInit {
 
     loading = true;
     organizationId: string;
+    organization: Organization;
     formPromise: Promise<any>;
 
     callbackPath: string;
@@ -37,7 +42,7 @@ export class SsoComponent implements OnInit {
     data = this.fb.group({
         configType: [],
 
-        useKeyConnector: [],
+        keyConnectorEnabled: [],
         keyConnectorUrl: [],
 
         // OpenId
@@ -75,7 +80,8 @@ export class SsoComponent implements OnInit {
     });
 
     constructor(private fb: FormBuilder, private route: ActivatedRoute, private apiService: ApiService,
-        private platformUtilsService: PlatformUtilsService, private i18nService: I18nService) { }
+        private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
+        private userService: UserService) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -85,6 +91,7 @@ export class SsoComponent implements OnInit {
     }
 
     async load() {
+        this.organization = await this.userService.getOrganization(this.organizationId);
         const ssoSettings = await this.apiService.getOrganizationSso(this.organizationId);
 
         this.data.patchValue(ssoSettings.data);
@@ -95,6 +102,8 @@ export class SsoComponent implements OnInit {
         this.spEntityId = ssoSettings.urls.spEntityId;
         this.spMetadataUrl = ssoSettings.urls.spMetadataUrl;
         this.spAcsUrl = ssoSettings.urls.spAcsUrl;
+
+        this.keyConnectorUrl.markAsDirty();
 
         this.loading = false;
     }
@@ -108,17 +117,64 @@ export class SsoComponent implements OnInit {
     }
 
     async submit() {
+        this.formPromise = this.postData();
+
+        try {
+            const response = await this.formPromise;
+
+            this.data.patchValue(response.data);
+            this.enabled.setValue(response.enabled);
+
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('ssoSettingsSaved'));
+        } catch {
+            // Logged by appApiAction, do nothing
+        }
+
+        this.formPromise = null;
+    }
+
+    async postData() {
+        if (this.data.get('keyConnectorEnabled').value) {
+            await this.validateKeyConnectorUrl();
+
+            if (this.keyConnectorUrl.hasError('invalidUrl')) {
+                throw new Error(this.i18nService.t('keyConnectorTestFail'));
+            }
+        }
+
         const request = new OrganizationSsoRequest();
         request.enabled = this.enabled.value;
         request.data = this.data.value;
 
-        this.formPromise = this.apiService.postOrganizationSso(this.organizationId, request);
+        return this.apiService.postOrganizationSso(this.organizationId, request);
+    }
 
-        const response = await this.formPromise;
-        this.data.patchValue(response.data);
-        this.enabled.setValue(response.enabled);
+    async validateKeyConnectorUrl() {
+        if (this.keyConnectorUrl.pristine) {
+            return;
+        }
 
-        this.formPromise = null;
-        this.platformUtilsService.showToast('success', null, this.i18nService.t('ssoSettingsSaved'));
+        this.keyConnectorUrl.markAsPending();
+
+        try {
+            await this.apiService.getKeyConnectorAlive(this.keyConnectorUrl.value);
+            this.keyConnectorUrl.updateValueAndValidity();
+        } catch {
+            this.keyConnectorUrl.setErrors({
+                invalidUrl: true,
+            });
+        }
+
+        this.keyConnectorUrl.markAsPristine();
+    }
+
+    get enableTestKeyConnector() {
+        return this.data.get('keyConnectorEnabled').value &&
+            this.keyConnectorUrl != null &&
+            this.keyConnectorUrl.value !== '';
+    }
+
+    get keyConnectorUrl() {
+        return this.data.get('keyConnectorUrl');
     }
 }

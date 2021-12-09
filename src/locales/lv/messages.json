@@ -840,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "Katram Bitwarden kontam ir neatkārtojamas šifrēšanas atslēgas, tādēļ nav iespējams ievietot šifrētu izguvi citā kontā."
   },
-  "exportMasterPassword": {
-    "message": "Ievadīt galveno paroli, lai izgūtu glabātavas saturu."
-  },
   "export": {
     "message": "Izgūšana"
   },
@@ -2179,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "Vai tiešām noņemt šo lietotāju?"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Uzmanību! Šim lietotājam ir nepieciešams Key Connector, lai pārvaldītu šifrēšanu. Lietotāja noņemšana no apvienības neatgriezeniski atspējos viņa kontu. Šī darbība nevar tikt atdarīta. Vai turpināt?"
+  },
   "externalId": {
     "message": "Ārējais ID"
   },
@@ -2659,6 +2659,9 @@
   "resendInvitation": {
     "message": "Atkārtoti nosūtīt uzaicinājumu"
   },
+  "resendEmail": {
+    "message": "Atkārtoti nosūtīt e-pastu"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ tika atkārtoti uzaicināts.",
     "placeholders": {
@@ -2946,6 +2949,15 @@
   },
   "subscriptionFamiliesPlan": {
     "message": "Nevar uzaicināt vairāk kā $COUNT$ lietotāju(s) bez plāna paaugstināšanas. Lūgums sazināties ar klientu atbalstu, lai to izdarītu.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Abonements pieļauj $COUNT$ lietotāju(s). Plānu ir apmaksāts un norēķinus veic ārēja apvienība.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -4051,6 +4063,15 @@
       }
     }
   },
+  "firstSsoLogin": {
+    "message": "$ID$ pirmo reizi pierakstījās izmantojot vienoto pieteikšanos",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Atiestatīt paroli"
   },
@@ -4467,17 +4488,143 @@
   "ssoSettingsSaved": {
     "message": "Vienotās pieteikšanās uzstādījumi tika saglabāti."
   },
+  "sponsoredFamilies": {
+    "message": "Bezmaksas Bitwarden Families"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Tu un Tava ģimene esat atbilstīgi bezmaksas Bitwarden Families. Piesakies ar personīgo e-pasta adresi, lai turētu datus drošībā pat tad, kad neesi darbā!"
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Redeem your Free Bitwarden for Families plan today to keep your data secure even when you are not at work."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "The Bitwarden for Families plan include"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Premium piekļuve līdz 6 lietotājiem"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Ģimenes noslēpumu kopīgotie krājumi"
+  },
+  "badToken": {
+    "message": "Saite vairs nav derīga. Lūdz pabalstītāju atkārtoti nosūtīt piedāvājumu!"
+  },
+  "reclaimedFreePlan": {
+    "message": "Reclaimed free plan"
+  },
+  "redeem": {
+    "message": "Izmantot"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Select the organization you would like sponsored"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Kuru bezmaksas ģimeņu piedāvājumu Tu vēlies izmantot?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Enter your personal email to redeem Bitwarden Families"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "If you leave or are removed from the sponsoring organization, your Families plan will expire at the end of the billing period."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Accept offer for an existing organization or create a new Families organization."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "You've been offered a free Bitwarden Families Plan Organization. To continue, you need to log in to the account that received the offer."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Nav iespējams apstiprināt piedāvājumu. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Accept Free Bitwarden Families"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Free Bitwarden Families offer successfully redeemed"
+  },
+  "redeemed": {
+    "message": "Izmantots"
+  },
+  "redeemedAccount": {
+    "message": "Izmantots konts"
+  },
+  "revokeAccount": {
+    "message": "Atsaukt kontu $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Free Families Plan"
+  },
+  "redeemNow": {
+    "message": "Redeem Now"
+  },
+  "recipient": {
+    "message": "Recipient"
+  },
+  "removeSponsorship": {
+    "message": "Remove Sponsorship"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "After removing a sponsorship, you will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "sponsorshipCreated": {
+    "message": "Sponsorship Created"
+  },
+  "revoke": {
+    "message": "Atsaukt"
+  },
+  "emailSent": {
+    "message": "E-pasts nosūtīts"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "After removing this account, the Families organization owner will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Sponsorship Removed"
+  },
   "ssoKeyConnectorUnavailable": {
     "message": "Nav iespējams sasniegt Key Connector, tāpēc vēlāk jāmēģina atkal."
   },
   "keyConnectorUrl": {
     "message": "Key Connector URL"
   },
-  "requestVerificationCode": {
-    "message": "Pieprasīt vienreiz izmantojamo paroli"
+  "sendVerificationCode": {
+    "message": "Sūtīt apstiprinājuma kodu uz e-pastu"
+  },
+  "sendCode": {
+    "message": "Nosūtīt kodu"
+  },
+  "codeSent": {
+    "message": "Kods nosūtīts"
   },
   "verificationCode": {
     "message": "Apstiprinājuma kods"
+  },
+  "confirmIdentity": {
+    "message": "Apstiprināt identitāti, lai turpinātu."
   },
   "verificationCodeRequired": {
     "message": "Ir nepieciešams apstiprinājuma kods."
@@ -4511,15 +4658,18 @@
   },
   "ssoPolicyHelpStart": {
     "message": "Iespējot",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
     "message": "Vienotās pieteikšanās nosacījumi",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
     "message": ", lai pieprasītu dalībniekiem pierakstīties ar vienoto pieteikšanos.",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "Ir nepieciešami vienotās pieteikšanās un vienas apvienības nosacījumi, lai uzstādītu Key Connector šifrēšanu."
   },
   "memberDecryptionOption": {
     "message": "Dalībnieka atšifrēšanas iespējas"
@@ -4553,5 +4703,35 @@
   },
   "migratedKeyConnector": {
     "message": "Pāriets uz Key Connector"
+  },
+  "paymentSponsored": {
+    "message": "Please provide a payment method to associate with the organization. Don't worry, we won't charge you anything unless you select additional features or your sponsorship expires. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "The sponsorship offer has expired. You may delete the organization you created to avoid a charge at the end of your 7 day trial. Otherwise you may close this prompt to keep the organization and assume billing responsibility."
+  },
+  "newFamiliesOrganization": {
+    "message": "Jauna ģimeņu apvienība"
+  },
+  "acceptOffer": {
+    "message": "Pieņemt piedāvājumu"
+  },
+  "sponsoringOrg": {
+    "message": "Atbalstoša apvienība"
+  },
+  "keyConnectorTest": {
+    "message": "Pārbaude"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Panākums! Key Connector sasniegts."
+  },
+  "keyConnectorTestFail": {
+    "message": "Nav iespējams sasniegt Key Connector. Jāpārbauda URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "Atbalsta piedāvājums ir beidzies."
+  },
+  "freeWithSponsorship": {
+    "message": "Bezmaksas ar pabalstītājdarbību"
   }
 }

@@ -840,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "Les clés de chiffrement du compte sont spécifiques à chaque utilisateur Bitwarden. Vous ne pouvez donc pas importer d'export chiffré dans un compte différent."
   },
-  "exportMasterPassword": {
-    "message": "Saisissez votre mot de passe maître pour exporter les données de votre coffre."
-  },
   "export": {
     "message": "Exporter"
   },
@@ -2179,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "Êtes-vous sûr de vouloir retirer cet utilisateur ?"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Attention ! Cet utilisateur a besoin de Key Connector pour gérer son chiffrement. Supprimer cet utilisateur de votre organisation désactivera définitivement son compte. Cette action ne peut pas être annulée. Voulez-vous continuer?"
+  },
   "externalId": {
     "message": "Identifiant externe"
   },
@@ -2659,6 +2659,9 @@
   "resendInvitation": {
     "message": "Renvoyer l'invitation"
   },
+  "resendEmail": {
+    "message": "Renvoyer le Courriel"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ a été réinvité.",
     "placeholders": {
@@ -2946,6 +2949,15 @@
   },
   "subscriptionFamiliesPlan": {
     "message": "Vous ne pouvez pas inviter plus de $COUNT$ utilisateurs sans mettre votre plan à niveau. Veuillez contacter l'assistance clientèle pour mettre à niveau.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Votre abonnement permet un total de $COUNT$ utilisateurs. Votre abonnement est parrainé et facturé à une organisation externe.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -4051,6 +4063,15 @@
       }
     }
   },
+  "firstSsoLogin": {
+    "message": "$ID$ s'est connecté avec Sso pour la première fois",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Réinitialiser le mot de passe"
   },
@@ -4467,17 +4488,143 @@
   "ssoSettingsSaved": {
     "message": "La configuration de l'Authentification Unique a été enregistrée."
   },
+  "sponsoredFamilies": {
+    "message": "Bitwarden Familles Gratuit"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Vous et votre famille êtes éligibles pour Bitwarden Familles Gratuit. Réclamez-le avec votre courriel personnel pour garder vos données en sécurité même lorsque vous n'êtes pas au travail."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Réclamez votre abonnement Bitwarden pour les Familles Gratuit aujourd'hui pour garder vos données en sécurité même lorsque vous n'êtes pas au travail."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "L'abonnement Bitwarden pour les Familles inclut"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Accès premium pour un maximum de 6 utilisateurs"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Collections partagées pour les secrets de Famille"
+  },
+  "badToken": {
+    "message": "Le lien n'est plus valide. Merci de renvoyer l'offre au parrain."
+  },
+  "reclaimedFreePlan": {
+    "message": "Abonnement gratuit réclamé"
+  },
+  "redeem": {
+    "message": "Réclamer"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Sélectionnez l'organisation que vous souhaiteriez voir parrainée"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Quelle offre de Familles Gratuites aimeriez-vous réclamer?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Entrez votre adresse courriel personnelle pour réclamer Bitwarden Familles"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Si vous quittez ou que vous êtes retiré de cette organisation, votre forfait Familles expirera à la fin de la période de facturation."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Accepter une offre pour une organisation existante ou créer une nouvelle organisation Familles."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Vous avez reçu une offre gratuite pour une Organisation de l'Abonnement Familles de Bitwarden. Pour continuer, vous devez vous connecter au compte qui a reçu l'offre."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Impossible d'accepter l'offre. Veuillez renvoyer le courriel de l'offre de votre compte d'entreprise et réessayer."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Impossible d'accepter l'offre. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Réclamez l'Offre Gratuite de l'Organisation Bitwarden Familles"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "L'offre gratuite de Bitwarden Familles a été réclamée avec succès"
+  },
+  "redeemed": {
+    "message": "Réclamée"
+  },
+  "redeemedAccount": {
+    "message": "Compte Réclamé"
+  },
+  "revokeAccount": {
+    "message": "Révoquer le compte $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Renvoyer le courriel de Parrainage au parrain $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Abonnement Gratuit à Familles"
+  },
+  "redeemNow": {
+    "message": "Réclamer Maintenant"
+  },
+  "recipient": {
+    "message": "Bénéficiaire"
+  },
+  "removeSponsorship": {
+    "message": "Supprimer le Parrainage"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "Après avoir supprimé un parrainage, vous serez responsable de cet abonnement et des factures associées. Êtes-vous sûr de vouloir continuer ?"
+  },
+  "sponsorshipCreated": {
+    "message": "Parrainage Créé"
+  },
+  "revoke": {
+    "message": "Révoquer"
+  },
+  "emailSent": {
+    "message": "Courriel Envoyé"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "Après avoir supprimé ce compte, le propriétaire de l'organisation Familles sera responsable de cet abonnement et des factures associées. Êtes-vous sûr de vouloir continuer ?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Parrainage Supprimé"
+  },
   "ssoKeyConnectorUnavailable": {
     "message": "Impossible de contacter Key Connector, réessayez plus tard."
   },
   "keyConnectorUrl": {
     "message": "URL de Key Connector"
   },
-  "requestVerificationCode": {
-    "message": "Demander un mot de passe à usage unique"
+  "sendVerificationCode": {
+    "message": "Envoyer un code de vérification à votre adresse email"
+  },
+  "sendCode": {
+    "message": "Envoyer le code"
+  },
+  "codeSent": {
+    "message": "Code envoyé"
   },
   "verificationCode": {
     "message": "Code de Vérification"
+  },
+  "confirmIdentity": {
+    "message": "Confirmez votre identité pour continuer."
   },
   "verificationCodeRequired": {
     "message": "Le code de vérification est requis."
@@ -4511,15 +4658,18 @@
   },
   "ssoPolicyHelpStart": {
     "message": "Activer la",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
     "message": "Politique SSO",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
     "message": "pour obliger tous les membres à se connecter avec SSO.",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "Les politiques d'Authentification SSO et d'Organisation Unique sont requises pour mettre en place le décryptage de Key Connector."
   },
   "memberDecryptionOption": {
     "message": "Options de Déchiffrement des Membres"
@@ -4553,5 +4703,35 @@
   },
   "migratedKeyConnector": {
     "message": "Migration vers Key Connector"
+  },
+  "paymentSponsored": {
+    "message": "Veuillez fournir un moyen de paiement à associer à l'organisation. Ne vous inquiétez pas, nous ne vous facturerons rien à moins que vous sélectionniez des fonctionnalités supplémentaires ou que votre parrainage expire. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "L'offre de parrainage a expiré, vous pouvez supprimer l'organisation que vous avez créée pour éviter d'être chargé à la fin de votre essai de 7 jours. Dans le cas contraire, vous pouvez fermer cette avis pour conserver l'organisation et assumer la responsabilité de la facturation."
+  },
+  "newFamiliesOrganization": {
+    "message": "Nouvelle Organisation Familles"
+  },
+  "acceptOffer": {
+    "message": "Accepter l'Offre"
+  },
+  "sponsoringOrg": {
+    "message": "Organisation Parrainant"
+  },
+  "keyConnectorTest": {
+    "message": "Test"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Succès! Key Connector rejoint."
+  },
+  "keyConnectorTestFail": {
+    "message": "Key Connector ne peut être contacté. Vérifiez l'URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "L'offre de parrainage a expirée."
+  },
+  "freeWithSponsorship": {
+    "message": "GRATUIT avec le parrainage"
   }
 }

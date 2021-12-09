@@ -28,6 +28,7 @@ import { FolderAddEditComponent } from './folder-add-edit.component';
 import { GroupingsComponent } from './groupings.component';
 import { ShareComponent } from './share.component';
 
+import { BroadcasterService } from 'jslib-common/abstractions/broadcaster.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
@@ -37,7 +38,6 @@ import { ProviderService } from 'jslib-common/abstractions/provider.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { TokenService } from 'jslib-common/abstractions/token.service';
 
-import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 import { ModalService } from 'jslib-angular/services/modal.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
 
@@ -66,9 +66,11 @@ export class VaultComponent implements OnInit, OnDestroy {
     showBrowserOutdated = false;
     showUpdateKey = false;
     showPremiumCallout = false;
+    showRedeemSponsorship = false;
     showProviders = false;
     deleted: boolean = false;
     trashCleanupWarning: string = null;
+
 
     constructor(private syncService: SyncService, private route: ActivatedRoute,
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
@@ -94,6 +96,9 @@ export class VaultComponent implements OnInit, OnDestroy {
                 !this.platformUtilsService.isSelfHost();
 
             this.showProviders = (await this.providerService.getAll()).length > 0;
+
+            const allOrgs = await this.userService.getAllOrganizations();
+            this.showRedeemSponsorship = allOrgs.some(o => o.familySponsorshipAvailable) && !allOrgs.some(o => o.familySponsorshipFriendlyName != null);
 
             await Promise.all([
                 this.groupingsComponent.load(),

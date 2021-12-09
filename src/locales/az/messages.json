@@ -840,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "Hesab şifrələmə açarları, hər Bitwarden istifadəçi hesabı üçün unikaldır, buna görə də şifrələnmiş bir ixracı, fərqli bir hesaba idxal edə bilməzsiniz."
   },
-  "exportMasterPassword": {
-    "message": "Anbar verilənlərinizi ixrac etmək üçün ana parolunuzu daxil edin."
-  },
   "export": {
     "message": "İxrac et"
   },
@@ -2179,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "Bu istifadəçini çıxartmaq istədiyinizə əminsiniz?"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Xəbərdarlıq! Bu istifadəçi, şifrələmələrini idarə etmək üçün Açar Bağlayıcı tələb edir. Bu istifadəçini təşkilatınızdan silsəniz, hesabı birdəfəlik sıradan çıxarılacaq. Bu əməliyyatın geri dönüşü yoxdur. Davam etmək istəyirsiniz?"
+  },
   "externalId": {
     "message": "Xarici kimlik"
   },
@@ -2659,6 +2659,9 @@
   "resendInvitation": {
     "message": "Dəvəti yenidən göndər"
   },
+  "resendEmail": {
+    "message": "E-poçtu təkrar göndər"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ yenidən dəvət edildi.",
     "placeholders": {
@@ -2946,6 +2949,15 @@
   },
   "subscriptionFamiliesPlan": {
     "message": "Planınızı yüksəltmədən $COUNT$ istifadəçidən çoxunu dəvət edə bilməzsiniz. Zəhmət olmasa yüksəltmək üçün Müştəri Dəstəyi ilə əlaqə saxlayın.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Abunəliyiniz cəmi $COUNT$ istifadəçiyə icazə verir. Planınız, sponsorludur və xarici bir təşkilata ödənilir.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -4051,6 +4063,15 @@
       }
     }
   },
+  "firstSsoLogin": {
+    "message": "$ID$, ilk dəfə Sso istifadə edərək giriş etdi",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Parol sıfırlama"
   },
@@ -4390,22 +4411,22 @@
     "message": "İstifadəçi məlumatı uc nöqtəsindən iddia edin"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "Əlavə/Özəl əhatə dairələri (vergüllə ayrıldı)"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "Əlavə/Özəl istifadəçi kimliyi tələb növləri (vergüllə ayrıldı)"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "Əlavə/Özəl e-poçt tələb növləri (vergüllə ayrıldı)"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "Əlavə/Özəl ad tələb növləri (vergüllə ayrıldı)"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "Tələb edilən kimlik təsdiqləmə kontekst istinad dəyərləri (acr_values)"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "Cavab olaraq gözlənilən \"acr\" tələb dəyəri (acr təsdiqləməsi)"
   },
   "spEntityId": {
     "message": "SP Varlıq Kimliyi"
@@ -4467,17 +4488,143 @@
   "ssoSettingsSaved": {
     "message": "Tək daxil olma konfiqurasiyası saxlanıldı."
   },
+  "sponsoredFamilies": {
+    "message": "Ödənişsiz Bitwarden Ailələri"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Siz və ailəniz Ödənişsiz Bitwarden Ailələri üçün uyğunsunuz. İşdə olmadığınız vaxtlarda belə verilənlərinizi güvənli saxlamaq üçün özəl e-poçtunuzu istifadə edin."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "İşdə olmadığınız vaxtlarda belə verilənlərinizi güvənli saxlamaq üçün Ailələr üçün nəzərdə tutulan Ödənişsiz Bitwarden planını bu gün istifadə edin."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Ailələr üçün Bitwarden planı bunları ehtiva edir"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "6 istifadəçiyə qədər Premium müraciət"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Ailə sirləri üçün paylaşılan kolleksiyalar"
+  },
+  "badToken": {
+    "message": "Bağlantı artıq etibarlı deyil. Zəhmət olmasa sponsorun təklifi yenidən göndərməsini təmin edin."
+  },
+  "reclaimedFreePlan": {
+    "message": "Geri alınmış ödənişsiz plan"
+  },
+  "redeem": {
+    "message": "İstifadə et"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Sponsor olmasını istədiyiniz təşkilatı seçin"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Hansı Ödənişsiz Ailələr təklifindən faydalanmaq istəyirsiniz?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "\"Bitwarden Ailələri\"ni istifadə etmək üçün özəl e-poçtunuzu daxil edin"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Bu təşkilatı tərk etsəniz və ya bu təşkilatdan çıxarılsanız, Ailələr planınızın istifadə müddəti faktura dövrünün sonunda başa çatacaq."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Mövcud bir təşkilat üçün bir təklifi qəbul edin və ya yeni bir Ailələr təşkilatını yaradın."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Sizə ödənişsiz bir Bitwarden Ailələr Planı Təşkilatı təklif edildi. Davam etmək üçün, təklifi alan hesaba giriş etməlisiniz."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Təklif qəbul edilə bilmir. Zəhmət olmasa müəssisə hesabınızdan təklif e-poçtunu təkrar göndərib yenidən sınayın."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Təklif qəbul edilə bilmir. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "\"Ödənişsiz Bitwarden Ailələri\"ni qəbul et"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Ödənişsiz Bitwarden Ailələri təklifi uğurla istifadə edildi"
+  },
+  "redeemed": {
+    "message": "İstifadə edildi"
+  },
+  "redeemedAccount": {
+    "message": "İstifadə edilən hesab"
+  },
+  "revokeAccount": {
+    "message": "$NAME$ hesabını ləğv et",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Sponsorluq e-poçtunu $NAME$ sponsorluğuna təkrar göndər",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Ödənişsiz Ailələr Planı"
+  },
+  "redeemNow": {
+    "message": "İndi istifadə et"
+  },
+  "recipient": {
+    "message": "Alıcı"
+  },
+  "removeSponsorship": {
+    "message": "Sponsorluğu sil"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "After removing a sponsorship, you will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "sponsorshipCreated": {
+    "message": "Sponsorship Created"
+  },
+  "revoke": {
+    "message": "Revoke"
+  },
+  "emailSent": {
+    "message": "Email Sent"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "After removing this account, the Families organization owner will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Sponsorship Removed"
+  },
   "ssoKeyConnectorUnavailable": {
-    "message": "Unable to reach the Key Connector, try again later."
+    "message": "Açar Bağlayıcı əlçatmazdır, daha sonra yenidən sınayın."
   },
   "keyConnectorUrl": {
-    "message": "Key Connector URL"
+    "message": "Açar Bağlayıcı URL-si"
   },
-  "requestVerificationCode": {
-    "message": "Tək istifadəlik parol tələb et"
+  "sendVerificationCode": {
+    "message": "E-poçtunuza bir təsdiqləmə kodu göndərin"
+  },
+  "sendCode": {
+    "message": "Kod göndər"
+  },
+  "codeSent": {
+    "message": "Kod göndərildi"
   },
   "verificationCode": {
     "message": "Təsdiqləmə kodu"
+  },
+  "confirmIdentity": {
+    "message": "Davam etmək üçün kimliyinizi təsdiqləyin."
   },
   "verificationCodeRequired": {
     "message": "Təsdiq kodu lazımdır."
@@ -4511,15 +4658,18 @@
   },
   "ssoPolicyHelpStart": {
     "message": "Bütün üzvlərin SSO ilə",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
     "message": "giriş etməsini məcburi etmək üçün",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
     "message": "SSO Siyasətini fəallaşdırın.",
-    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Policy to require all members to log in with SSO.'"
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
   },
   "memberDecryptionOption": {
     "message": "Üzv şifrə açma seçimləri"
@@ -4531,7 +4681,7 @@
     "message": "Açar Bağlayıcı"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt vault data."
+    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt vault data. Contact Bitwarden Support for set up assistance."
   },
   "keyConnectorPolicyRestriction": {
     "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
@@ -4553,5 +4703,35 @@
   },
   "migratedKeyConnector": {
     "message": "Açar Bağlayıcıya daşındı"
+  },
+  "paymentSponsored": {
+    "message": "Please provide a payment method to associate with the organization. Don't worry, we won't charge you anything unless you select additional features or your sponsorship expires. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "The sponsorship offer has expired. You may delete the organization you created to avoid a charge at the end of your 7 day trial. Otherwise you may close this prompt to keep the organization and assume billing responsibility."
+  },
+  "newFamiliesOrganization": {
+    "message": "New Families Organization"
+  },
+  "acceptOffer": {
+    "message": "Accept Offer"
+  },
+  "sponsoringOrg": {
+    "message": "Sponsoring Organization"
+  },
+  "keyConnectorTest": {
+    "message": "Test"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Uğurlu! Açar Bağlayıcı əlçatandır."
+  },
+  "keyConnectorTestFail": {
+    "message": "Açar Bağlayıcıya müraciət edilə bilmir. URL-ni yoxlayın."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "The sponsorship offer has expired."
+  },
+  "freeWithSponsorship": {
+    "message": "FREE with sponsorship"
   }
 }
