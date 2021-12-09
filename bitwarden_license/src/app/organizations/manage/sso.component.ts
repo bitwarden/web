@@ -6,7 +6,6 @@ import {
     AbstractControl,
     FormBuilder,
     FormGroup,
-    Validators
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 
@@ -153,6 +152,7 @@ export class SsoComponent implements OnInit {
         }
 
         if (!this.ssoConfigForm.valid) {
+            this.readOutErrors();
             return;
         }
 
@@ -238,5 +238,25 @@ export class SsoComponent implements OnInit {
             const ssoConfigView = new SsoConfigView(ssoSettings.data);
             this.ssoConfigForm.patchValue(ssoConfigView);
         }
+    }
+
+    private readOutErrors() {
+        const errorText = this.i18nService.t('error') ;
+        const errorCount = this.getErrorCount(this.ssoConfigForm);
+        const errorCountText = this.i18nService.t(errorCount === 1 ? 'formErrorSummarySingle' : 'formErrorSummaryPlural',
+            errorCount.toString());
+
+        const div = document.createElement('div');
+        div.className = 'sr-only';
+        div.id = 'srErrorCount';
+        div.setAttribute('aria-live', 'polite');
+        div.innerText = errorText + ': ' + errorCountText;
+
+        const existing = document.getElementById('srErrorCount');
+        if (existing != null) {
+            existing.remove();
+        }
+
+        document.body.append(div);
     }
 }

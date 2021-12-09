@@ -115,12 +115,13 @@
         [spAcsUrl]="ssoUrls.spAcsUrl">
     </app-org-manage-sso-saml>
 
-    <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading" aria-describedby="errorSummary">
+    <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
         <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
         <span>{{'save' | i18n}}</span>
     </button>
     <div id="errorSummary" class="error-summary text-danger" *ngIf="this.getErrorCount(ssoConfigForm) as errorCount">
         <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        <span class="sr-only">{{ 'error' | i18n}}:</span>
         {{ (errorCount === 1 ? 'formErrorSummarySingle' : 'formErrorSummaryPlural') | i18n: errorCount }}
     </div>
 </form>
