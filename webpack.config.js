@@ -194,7 +194,7 @@ const devServer = NODE_ENV !== 'development' ? {} : {
         },
     },
     hot: false,
-    allowedHosts: envConfig.dev?.allowedHosts,
+    allowedHosts: envConfig.dev?.allowedHosts ?? 'auto',
     client: {
         overlay: {
             errors: true,
