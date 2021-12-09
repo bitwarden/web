@@ -66,7 +66,7 @@ export class TwoFactorVerifyComponent {
 
     private apiCall(request: SecretVerificationRequest): Promise<TwoFactorResponse> {
         switch (this.type) {
-            case -1:
+            case -1 as TwoFactorProviderType:
                 return this.apiService.getTwoFactorRecover(request);
             case TwoFactorProviderType.Duo:
             case TwoFactorProviderType.OrganizationDuo:
