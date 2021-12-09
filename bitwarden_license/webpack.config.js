@@ -1,4 +1,4 @@
-const AngularWebpackPlugin = require('@ngtools/webpack').AngularWebpackPlugin;
+const { AngularWebpackPlugin } = require('@ngtools/webpack');
 
 const webpackConfig = require('../webpack.config');
 
