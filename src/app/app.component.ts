@@ -85,7 +85,7 @@ export class AppComponent implements OnDestroy, OnInit {
         private stateService: StateService,
         private eventService: EventService,
         private policyService: PolicyService,
-        protected policyListService: PolicyListService, 
+        protected policyListService: PolicyListService,
         private keyConnectorService: KeyConnectorService
     ) { }
 
