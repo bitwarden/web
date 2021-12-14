@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { StorageService } from 'jslib-common/abstractions/storage.service';
+
 import { HtmlStorageLocation } from 'jslib-common/enums/htmlStorageLocation';
 
 import { GlobalState } from 'jslib-common/models/domain/globalState';
@@ -9,9 +10,6 @@ import { StorageOptions } from 'jslib-common/models/domain/storageOptions';
 
 @Injectable()
 export class HtmlStorageService implements StorageService {
-    // TODO: I don't think anything is saved here anymore. The secureStorage instance in web is a memory store.
-    // Regardless, this service needs to be revisted so we can not have special conditions in individual storage service types.
-    private memoryStorage = new Map<string, string>();
 
     get defaultOptions(): StorageOptions {
         return { htmlStorageLocation: HtmlStorageLocation.Session };
@@ -30,9 +28,6 @@ export class HtmlStorageService implements StorageService {
         switch (options.htmlStorageLocation) {
             case HtmlStorageLocation.Local:
                 json = window.localStorage.getItem(key);
-                break;
-            case HtmlStorageLocation.Memory:
-                json = this.memoryStorage.get(key);
                 break;
             case HtmlStorageLocation.Session:
                  default:
@@ -65,9 +60,6 @@ export class HtmlStorageService implements StorageService {
             case HtmlStorageLocation.Local:
                 window.localStorage.setItem(key, json);
                 break;
-            case HtmlStorageLocation.Memory:
-                this.memoryStorage.set(key, json);
-                break;
             case HtmlStorageLocation.Session:
                  default:
                 window.sessionStorage.setItem(key, json);
@@ -80,9 +72,6 @@ export class HtmlStorageService implements StorageService {
         switch (options.htmlStorageLocation) {
             case HtmlStorageLocation.Local:
                 window.localStorage.removeItem(key);
-                break;
-            case HtmlStorageLocation.Memory:
-                this.memoryStorage.delete(key);
                 break;
             case HtmlStorageLocation.Session:
                  default:

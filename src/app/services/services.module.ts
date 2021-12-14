@@ -152,15 +152,7 @@ export function initFactory(window: Window, storageService: StorageServiceAbstra
         },
         {
             provide: CryptoServiceAbstraction,
-            useFactory: (
-                cryptoFunctionService: CryptoFunctionServiceAbstraction,
-                platformUtilsService: PlatformUtilsServiceAbstraction,
-                logService: LogService,
-                stateService: StateServiceAbstraction,
-            ) => {
-                return new CryptoService(cryptoFunctionService,
-                    platformUtilsService, logService, stateService);
-            },
+            useClass: CryptoService,
             deps: [
                 CryptoFunctionServiceAbstraction,
                 PlatformUtilsServiceAbstraction,

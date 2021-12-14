@@ -13,6 +13,7 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { TotpService } from 'jslib-common/abstractions/totp.service';
 
 import { CiphersComponent as BaseCiphersComponent } from 'jslib-angular/components/ciphers.component';
@@ -21,7 +22,6 @@ import { CipherRepromptType } from 'jslib-common/enums/cipherRepromptType';
 import { CipherType } from 'jslib-common/enums/cipherType';
 import { EventType } from 'jslib-common/enums/eventType';
 
-import { StateService } from 'jslib-common/abstractions/state.service';
 import { CipherView } from 'jslib-common/models/view/cipherView';
 
 const MaxCheckedCount = 500;

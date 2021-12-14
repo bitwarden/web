@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
-
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 @Component({

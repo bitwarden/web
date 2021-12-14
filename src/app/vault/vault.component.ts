@@ -35,11 +35,11 @@ import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { ProviderService } from 'jslib-common/abstractions/provider.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { TokenService } from 'jslib-common/abstractions/token.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
 
 const BroadcasterSubscriptionId = 'VaultComponent';
 

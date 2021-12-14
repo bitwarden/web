@@ -10,6 +10,7 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 import { ValidationService } from 'jslib-angular/services/validation.service';
@@ -28,7 +29,6 @@ import { ProviderUserUserDetailsResponse } from 'jslib-common/models/response/pr
 
 import { Utils } from 'jslib-common/misc/utils';
 
-import { StateService } from 'jslib-common/abstractions/state.service';
 import { UserConfirmComponent } from '../organizations/manage/user-confirm.component';
 
 type StatusType = OrganizationUserStatusType | ProviderUserStatusType;

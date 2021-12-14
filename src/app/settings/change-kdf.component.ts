@@ -9,10 +9,10 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { KdfRequest } from 'jslib-common/models/request/kdfRequest';
 
-import { StateService } from 'jslib-common/abstractions/state.service';
 import { KdfType } from 'jslib-common/enums/kdfType';
 
 @Component({

@@ -72,12 +72,12 @@ export class OptionsComponent implements OnInit {
     }
 
     async ngOnInit() {
-        this.vaultTimeout.setValue(await this.vaultTimeoutService.getVaultTimeout() ?? 15);
-        this.vaultTimeoutAction = await this.stateService.getVaultTimeoutAction() ?? 'lock';
-        this.disableIcons = await this.stateService.getDisableFavicon() ?? false;
-        this.enableGravatars = await this.stateService.getEnableGravitars() ?? false;
-        this.enableFullWidth = await this.stateService.getEnableFullWidth() ?? false;
-        this.locale = this.startingLocale = await this.stateService.getLocale() ?? 'en';
+        this.vaultTimeout.setValue(await this.vaultTimeoutService.getVaultTimeout());
+        this.vaultTimeoutAction = await this.stateService.getVaultTimeoutAction();
+        this.disableIcons = await this.stateService.getDisableFavicon();
+        this.enableGravatars = await this.stateService.getEnableGravitars();
+        this.enableFullWidth = await this.stateService.getEnableFullWidth();
+        this.locale = await this.stateService.getLocale() ?? this.startingLocale;
         this.theme = await this.stateService.getTheme() ?? this.startingTheme;
     }
 

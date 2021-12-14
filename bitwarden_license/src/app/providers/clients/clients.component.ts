@@ -13,7 +13,7 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { ProviderService as BaseProviderService } from 'jslib-common/abstractions/provider.service';
+import { ProviderService } from 'jslib-common/abstractions/provider.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
@@ -27,7 +27,7 @@ import {
     ProviderOrganizationOrganizationDetailsResponse
 } from 'jslib-common/models/response/provider/providerOrganizationResponse';
 
-import { ProviderService } from '../services/provider.service';
+import { WebProviderService } from '../services/provider.service';
 
 import { AddOrganizationComponent } from './add-organization.component';
 
@@ -57,13 +57,13 @@ export class ClientsComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private baseProviderService: BaseProviderService,
+        private providerService: ProviderService,
         private apiService: ApiService,
         private searchService: SearchService,
         private platformUtilsService: PlatformUtilsService,
         private i18nService: I18nService,
         private validationService: ValidationService,
-        private providerService: ProviderService,
+        private webProviderService: WebProviderService,
         private logService: LogService,
         private modalService: ModalService,
         private organizationService: OrganizationService
@@ -84,7 +84,7 @@ export class ClientsComponent implements OnInit {
     async load() {
         const response = await this.apiService.getProviderClients(this.providerId);
         this.clients = response.data != null && response.data.length > 0 ? response.data : [];
-        this.manageOrganizations = (await this.baseProviderService.get(this.providerId)).type === ProviderUserType.ProviderAdmin;
+        this.manageOrganizations = (await this.providerService.get(this.providerId)).type === ProviderUserType.ProviderAdmin;
         const candidateOrgs = (await this.organizationService.getAll()).filter(o => o.isOwner && o.providerId == null);
         const allowedOrgsIds = await Promise.all(candidateOrgs.map(o => this.apiService.getOrganization(o.id))).then(orgs =>
             orgs.filter(o => !DisallowedPlanTypes.includes(o.planType))
@@ -153,7 +153,7 @@ export class ClientsComponent implements OnInit {
             return false;
         }
 
-        this.actionPromise = this.providerService.detachOrganizastion(this.providerId, organization.id);
+        this.actionPromise = this.webProviderService.detachOrganizastion(this.providerId, organization.id);
         try {
             await this.actionPromise;
             this.platformUtilsService.showToast('success', null,

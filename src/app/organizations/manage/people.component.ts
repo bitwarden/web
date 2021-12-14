@@ -22,6 +22,7 @@ import { OrganizationService } from 'jslib-common/abstractions/organization.serv
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
@@ -41,7 +42,6 @@ import { PolicyType } from 'jslib-common/enums/policyType';
 import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
 import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
 
-import { StateService } from 'jslib-common/abstractions/state.service';
 import { BasePeopleComponent } from '../../common/base.people.component';
 import { BulkConfirmComponent } from './bulk/bulk-confirm.component';
 import { BulkRemoveComponent } from './bulk/bulk-remove.component';

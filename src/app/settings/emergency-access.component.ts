@@ -12,6 +12,7 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { EmergencyAccessConfirmRequest } from 'jslib-common/models/request/emergencyAccessConfirmRequest';
 
@@ -28,7 +29,6 @@ import { EmergencyAccessConfirmComponent } from './emergency-access-confirm.comp
 import { EmergencyAccessTakeoverComponent } from './emergency-access-takeover.component';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
 
 @Component({
     selector: 'emergency-access',

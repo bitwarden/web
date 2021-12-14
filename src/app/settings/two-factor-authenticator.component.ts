@@ -8,6 +8,7 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { UpdateTwoFactorAuthenticatorRequest } from 'jslib-common/models/request/updateTwoFactorAuthenticatorRequest';
@@ -15,7 +16,6 @@ import { TwoFactorAuthenticatorResponse } from 'jslib-common/models/response/two
 
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 
-import { StateService } from 'jslib-common/abstractions/state.service';
 import { TwoFactorBaseComponent } from './two-factor-base.component';
 
 @Component({

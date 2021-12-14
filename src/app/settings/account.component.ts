@@ -11,9 +11,9 @@ import { PurgeVaultComponent } from './purge-vault.component';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { KeyConnectorService } from 'jslib-common/abstractions/keyConnector.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
 
 @Component({
     selector: 'app-account',

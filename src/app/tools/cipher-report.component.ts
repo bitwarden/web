@@ -13,11 +13,11 @@ import { AddEditComponent } from '../vault/add-edit.component';
 
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { CipherRepromptType } from 'jslib-common/enums/cipherRepromptType';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
 
 @Directive()
 export class CipherReportComponent {
