@@ -4,18 +4,16 @@ import {
     ViewContainerRef
 } from '@angular/core';
 
-import { ValidationService } from 'jslib-angular/services/validation.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
-
-import { ConstantsService } from 'jslib-common/services/constants.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
+import { ValidationService } from 'jslib-angular/services/validation.service';
 
 import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
 import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
@@ -88,12 +86,19 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
 
     private pagedUsersCount = 0;
 
-    constructor(protected apiService: ApiService, private searchService: SearchService,
-        protected i18nService: I18nService, protected platformUtilsService: PlatformUtilsService,
+    constructor(
+        protected apiService: ApiService,
+        private searchService: SearchService,
+        protected i18nService: I18nService,
+        protected platformUtilsService: PlatformUtilsService,
         protected cryptoService: CryptoService,
-        private storageService: StorageService, protected validationService: ValidationService,
-        protected modalService: ModalService, private logService: LogService,
-        private searchPipe: SearchPipe, protected userNamePipe: UserNamePipe ) { }
+        protected validationService: ValidationService,
+        protected modalService: ModalService,
+        private logService: LogService,
+        private searchPipe: SearchPipe,
+        protected userNamePipe: UserNamePipe,
+        protected stateService: StateService,
+    ) { }
 
     abstract edit(user: UserType): void;
     abstract getUsers(): Promise<ListResponse<UserType>>;
@@ -247,7 +252,7 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
             const publicKeyResponse = await this.apiService.getUserPublicKey(user.userId);
             const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
 
-            const autoConfirm = await this.storageService.get<boolean>(ConstantsService.autoConfirmFingerprints);
+            const autoConfirm = await this.stateService.getAutoConfirmFingerPrints();
             if (autoConfirm == null || !autoConfirm) {
                 const [modal] = await this.modalService.openViewRef(UserConfirmComponent, this.confirmModalRef, comp => {
                     comp.name = this.userNamePipe.transform(user);

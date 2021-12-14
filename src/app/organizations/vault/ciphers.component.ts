@@ -12,10 +12,11 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { TotpService } from 'jslib-common/abstractions/totp.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
+
 import { CipherView } from 'jslib-common/models/view/cipherView';
 
 import { CiphersComponent as BaseCiphersComponent } from '../../vault/ciphers.component';
@@ -32,13 +33,29 @@ export class CiphersComponent extends BaseCiphersComponent {
 
     protected allCiphers: CipherView[] = [];
 
-    constructor(searchService: SearchService, i18nService: I18nService,
-        platformUtilsService: PlatformUtilsService, cipherService: CipherService,
-        private apiService: ApiService, eventService: EventService, totpService: TotpService,
-        userService: UserService, passwordRepromptService: PasswordRepromptService,
-        logService: LogService) {
-        super(searchService, i18nService, platformUtilsService, cipherService,
-            eventService, totpService, userService, passwordRepromptService, logService);
+    constructor(
+        searchService: SearchService,
+        i18nService: I18nService,
+        platformUtilsService: PlatformUtilsService,
+        cipherService: CipherService,
+        private apiService: ApiService,
+        eventService: EventService,
+        totpService: TotpService,
+        passwordRepromptService: PasswordRepromptService,
+        logService: LogService,
+        stateService: StateService,
+    ) {
+        super(
+            searchService,
+            i18nService,
+            platformUtilsService,
+            cipherService,
+            eventService,
+            totpService,
+            stateService,
+            passwordRepromptService,
+            logService
+        );
     }
 
     async load(filter: (cipher: CipherView) => boolean = null) {

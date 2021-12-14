@@ -12,10 +12,10 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { PaymentComponent } from './payment.component';
 import { TaxInfoComponent } from './tax-info.component';
@@ -73,7 +73,7 @@ export class OrganizationPlansComponent implements OnInit {
     constructor(private apiService: ApiService, private i18nService: I18nService,
         private platformUtilsService: PlatformUtilsService,
         private cryptoService: CryptoService, private router: Router, private syncService: SyncService,
-        private policyService: PolicyService, private userService: UserService, private logService: LogService) {
+        private policyService: PolicyService, private organizationService: OrganizationService, private logService: LogService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -307,7 +307,7 @@ export class OrganizationPlansComponent implements OnInit {
         request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
 
         // Retrieve org info to backfill pub/priv key if necessary
-        const org = await this.userService.getOrganization(this.organizationId);
+        const org = await this.organizationService.get(this.organizationId);
         if (!org.hasPublicAndPrivateKeys) {
             const orgShareKey = await this.cryptoService.getOrgKey(this.organizationId);
             const orgKeys = await this.cryptoService.makeKeyPair(orgShareKey);

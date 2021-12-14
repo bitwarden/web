@@ -8,11 +8,11 @@ import {
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { ProviderService } from 'jslib-common/abstractions/provider.service';
 
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
-import { ProviderService } from '../services/provider.service';
+import { WebProviderService } from '../services/webProvider.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 import { Provider } from 'jslib-common/models/domain/provider';
@@ -31,9 +31,13 @@ export class AddOrganizationComponent implements OnInit {
     formPromise: Promise<any>;
     loading = true;
 
-    constructor(private userService: UserService, private providerService: ProviderService,
-        private i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
-        private validationService: ValidationService) { }
+    constructor(
+        private providerService: ProviderService,
+        private webProviderService: WebProviderService,
+        private i18nService: I18nService,
+        private platformUtilsService: PlatformUtilsService,
+        private validationService: ValidationService
+    ) { }
 
     async ngOnInit() {
         await this.load();
@@ -44,7 +48,7 @@ export class AddOrganizationComponent implements OnInit {
             return;
         }
 
-        this.provider = await this.userService.getProvider(this.providerId);
+        this.provider = await this.providerService.get(this.providerId);
 
         this.loading = false;
     }
@@ -63,7 +67,7 @@ export class AddOrganizationComponent implements OnInit {
         }
 
         try {
-            this.formPromise = this.providerService.addOrganizationToProvider(this.providerId, organization.id);
+            this.formPromise = this.webProviderService.addOrganizationToProvider(this.providerId, organization.id);
             await this.formPromise;
         } catch (e) {
             this.validationService.showError(e);

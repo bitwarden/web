@@ -12,9 +12,9 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -53,11 +53,17 @@ export class CollectionsComponent implements OnInit {
 
     private pagedCollectionsCount = 0;
 
-    constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private collectionService: CollectionService, private modalService: ModalService,
+    constructor(
+        private apiService: ApiService,
+        private route: ActivatedRoute,
+        private collectionService: CollectionService,
+        private modalService: ModalService,
         private i18nService: I18nService,
-        private platformUtilsService: PlatformUtilsService, private userService: UserService,
-        private searchService: SearchService, private logService: LogService) { }
+        private platformUtilsService: PlatformUtilsService,
+        private searchService: SearchService,
+        private logService: LogService,
+        private organizationService: OrganizationService,
+    ) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
@@ -70,7 +76,7 @@ export class CollectionsComponent implements OnInit {
     }
 
     async load() {
-        this.organization = await this.userService.getOrganization(this.organizationId);
+        this.organization = await this.organizationService.get(this.organizationId);
         this.canCreate = this.organization.canCreateNewCollections;
 
         const decryptCollections = async (r: ListResponse<CollectionResponse>) => {

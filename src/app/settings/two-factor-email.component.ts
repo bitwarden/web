@@ -4,7 +4,7 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { TwoFactorEmailRequest } from 'jslib-common/models/request/twoFactorEmailRequest';
@@ -27,11 +27,21 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
     formPromise: Promise<any>;
     emailPromise: Promise<any>;
 
-    constructor(apiService: ApiService, i18nService: I18nService,
+    constructor(
+        apiService: ApiService,
+        i18nService: I18nService,
         platformUtilsService: PlatformUtilsService,
-        logService: LogService, userVerificationService: UserVerificationService,
-        private userService: UserService) {
-        super(apiService, i18nService, platformUtilsService, logService, userVerificationService);
+        logService: LogService,
+        userVerificationService: UserVerificationService,
+        private stateService: StateService,
+    ) {
+        super(
+            apiService,
+            i18nService,
+            platformUtilsService,
+            logService,
+            userVerificationService
+        );
     }
 
     auth(authResponse: any) {
@@ -76,7 +86,7 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
         this.email = response.email;
         this.enabled = response.enabled;
         if (!this.enabled && (this.email == null || this.email === '')) {
-            this.email = await this.userService.getEmail();
+            this.email = await this.stateService.getEmail();
         }
     }
 }

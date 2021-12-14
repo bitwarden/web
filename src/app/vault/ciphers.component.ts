@@ -13,8 +13,8 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { TotpService } from 'jslib-common/abstractions/totp.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { CiphersComponent as BaseCiphersComponent } from 'jslib-angular/components/ciphers.component';
 
@@ -50,13 +50,13 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     constructor(searchService: SearchService,
         protected i18nService: I18nService, protected platformUtilsService: PlatformUtilsService,
         protected cipherService: CipherService, protected eventService: EventService,
-        protected totpService: TotpService, protected userService: UserService,
+        protected totpService: TotpService, protected stateService: StateService,
         protected passwordRepromptService: PasswordRepromptService, private logService: LogService) {
         super(searchService);
     }
 
     async ngOnInit() {
-        this.userHasPremiumAccess = await this.userService.canAccessPremium();
+        this.userHasPremiumAccess = await this.stateService.getCanAccessPremium();
     }
 
     ngOnDestroy() {

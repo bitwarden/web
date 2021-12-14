@@ -9,7 +9,7 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { KeyConnectorService } from 'jslib-common/abstractions/keyConnector.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { UpdateProfileRequest } from 'jslib-common/models/request/updateProfileRequest';
 
@@ -27,15 +27,20 @@ export class ProfileComponent implements OnInit {
 
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private platformUtilsService: PlatformUtilsService, private userService: UserService,
-        private cryptoService: CryptoService, private logService: LogService,
-        private keyConnectorService: KeyConnectorService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private platformUtilsService: PlatformUtilsService,
+        private cryptoService: CryptoService,
+        private logService: LogService,
+        private keyConnectorService: KeyConnectorService,
+        private stateService: StateService,
+    ) { }
 
     async ngOnInit() {
         this.profile = await this.apiService.getProfile();
         this.loading = false;
-        const fingerprint = await this.cryptoService.getFingerprint(await this.userService.getUserId());
+        const fingerprint = await this.cryptoService.getFingerprint(await this.stateService.getUserId());
         if (fingerprint != null) {
             this.fingerprint = fingerprint.join('-');
         }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { ProviderService } from 'jslib-common/abstractions/provider.service';
 
 import { Provider } from 'jslib-common/models/domain/provider';
 
@@ -14,7 +14,7 @@ export class ProvidersLayoutComponent {
     provider: Provider;
     private providerId: string;
 
-    constructor(private route: ActivatedRoute, private userService: UserService) { }
+    constructor(private route: ActivatedRoute, private providerService: ProviderService) { }
 
     ngOnInit() {
         document.body.classList.remove('layout_frontend');
@@ -25,7 +25,7 @@ export class ProvidersLayoutComponent {
     }
 
     async load() {
-        this.provider = await this.userService.getProvider(this.providerId);
+        this.provider = await this.providerService.get(this.providerId);
     }
 
     get showMenuBar() {

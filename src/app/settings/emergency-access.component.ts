@@ -10,16 +10,17 @@ import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
+
+import { EmergencyAccessConfirmRequest } from 'jslib-common/models/request/emergencyAccessConfirmRequest';
+
+import { EmergencyAccessGranteeDetailsResponse, EmergencyAccessGrantorDetailsResponse } from 'jslib-common/models/response/emergencyAccessResponse';
 
 import { EmergencyAccessStatusType } from 'jslib-common/enums/emergencyAccessStatusType';
 import { EmergencyAccessType } from 'jslib-common/enums/emergencyAccessType';
 import { Utils } from 'jslib-common/misc/utils';
-import { EmergencyAccessConfirmRequest } from 'jslib-common/models/request/emergencyAccessConfirmRequest';
-import { EmergencyAccessGranteeDetailsResponse, EmergencyAccessGrantorDetailsResponse } from 'jslib-common/models/response/emergencyAccessResponse';
-import { ConstantsService } from 'jslib-common/services/constants.service';
 
 import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
 
@@ -35,7 +36,7 @@ import { ModalService } from 'jslib-angular/services/modal.service';
 })
 export class EmergencyAccessComponent implements OnInit {
     @ViewChild('addEdit', { read: ViewContainerRef, static: true }) addEditModalRef: ViewContainerRef;
-    @ViewChild('takeoverTemplate', { read: ViewContainerRef, static: true}) takeoverModalRef: ViewContainerRef;
+    @ViewChild('takeoverTemplate', { read: ViewContainerRef, static: true }) takeoverModalRef: ViewContainerRef;
     @ViewChild('confirmTemplate', { read: ViewContainerRef, static: true }) confirmModalRef: ViewContainerRef;
 
     canAccessPremium: boolean;
@@ -46,16 +47,22 @@ export class EmergencyAccessComponent implements OnInit {
     actionPromise: Promise<any>;
     isOrganizationOwner: boolean;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private modalService: ModalService, private platformUtilsService: PlatformUtilsService,
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private modalService: ModalService,
+        private platformUtilsService: PlatformUtilsService,
         private cryptoService: CryptoService,
-        private storageService: StorageService, private userService: UserService,
-        private messagingService: MessagingService, private userNamePipe: UserNamePipe,
-        private logService: LogService) { }
+        private messagingService: MessagingService,
+        private userNamePipe: UserNamePipe,
+        private logService: LogService,
+        private stateService: StateService,
+        private organizationService: OrganizationService,
+    ) { }
 
     async ngOnInit() {
-        this.canAccessPremium = await this.userService.canAccessPremium();
-        const orgs = await this.userService.getAllOrganizations();
+        this.canAccessPremium = await this.stateService.getCanAccessPremium();
+        const orgs = await this.organizationService.getAll();
         this.isOrganizationOwner = orgs.some(o => o.isOwner);
         this.load();
     }
@@ -111,7 +118,7 @@ export class EmergencyAccessComponent implements OnInit {
             return;
         }
 
-        const autoConfirm = await this.storageService.get<boolean>(ConstantsService.autoConfirmFingerprints);
+        const autoConfirm = await this.stateService.getAutoConfirmFingerPrints();
         if (autoConfirm == null || !autoConfirm) {
             const [modal] = await this.modalService.openViewRef(EmergencyAccessConfirmComponent, this.confirmModalRef, comp => {
                 comp.name = this.userNamePipe.transform(contact);

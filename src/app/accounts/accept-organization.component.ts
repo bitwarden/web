@@ -11,7 +11,6 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { OrganizationUserAcceptRequest } from 'jslib-common/models/request/organizationUserAcceptRequest';
 import { OrganizationUserResetPasswordEnrollmentRequest } from 'jslib-common/models/request/organizationUserResetPasswordEnrollmentRequest';
@@ -29,12 +28,24 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
 
     protected requiredParameters: string[] = ['organizationId', 'organizationUserId', 'token'];
 
-    constructor(router: Router, platformUtilsService: PlatformUtilsService,
-        i18nService: I18nService, route: ActivatedRoute,
-        private apiService: ApiService, userService: UserService,
-        stateService: StateService, private cryptoService: CryptoService,
-        private policyService: PolicyService, private logService: LogService) {
-        super(router, platformUtilsService, i18nService, route, userService, stateService);
+    constructor(
+        router: Router,
+        platformUtilsService: PlatformUtilsService,
+        i18nService: I18nService,
+        route: ActivatedRoute,
+        private apiService: ApiService,
+        stateService: StateService,
+        private cryptoService: CryptoService,
+        private policyService: PolicyService,
+        private logService: LogService
+    ) {
+        super(
+            router,
+            platformUtilsService,
+            i18nService,
+            route,
+            stateService
+        );
     }
 
     async authedHandler(qParams: any): Promise<void> {
@@ -60,10 +71,7 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
                     const resetRequest = new OrganizationUserResetPasswordEnrollmentRequest();
                     resetRequest.resetPasswordKey = encryptedKey.encryptedString;
 
-                    // Get User Id
-                    const userId = await this.userService.getUserId();
-
-                    return this.apiService.putOrganizationUserResetPasswordEnrollment(qParams.organizationId, userId, resetRequest);
+                    return this.apiService.putOrganizationUserResetPasswordEnrollment(qParams.organizationId, await this.stateService.getUserId(), resetRequest);
                 });
         } else {
             this.actionPromise = this.apiService.postOrganizationUserAccept(qParams.organizationId,
@@ -74,7 +82,7 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
         this.platformUtilService.showToast('success', this.i18nService.t('inviteAccepted'),
             this.i18nService.t('inviteAcceptedDesc'), {timeout: 10000});
 
-        await this.stateService.remove('orgInvitation');
+        await this.stateService.setOrganizationInvitation(null);
         this.router.navigate(['/vault']);
     }
 
@@ -84,7 +92,7 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
             // Fix URL encoding of space issue with Angular
             this.orgName = this.orgName.replace(/\+/g, ' ');
         }
-        await this.stateService.save('orgInvitation', qParams);
+        await this.stateService.setOrganizationInvitation(qParams);
     }
 
     private async performResetPasswordAutoEnroll(qParams: any): Promise<boolean> {

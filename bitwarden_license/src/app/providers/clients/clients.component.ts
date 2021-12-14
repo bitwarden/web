@@ -11,9 +11,10 @@ import { first } from 'rxjs/operators';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { ProviderService } from 'jslib-common/abstractions/provider.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 import { ValidationService } from 'jslib-angular/services/validation.service';
@@ -26,7 +27,7 @@ import {
     ProviderOrganizationOrganizationDetailsResponse
 } from 'jslib-common/models/response/provider/providerOrganizationResponse';
 
-import { ProviderService } from '../services/provider.service';
+import { WebProviderService } from '../services/webProvider.service';
 
 import { AddOrganizationComponent } from './add-organization.component';
 
@@ -54,11 +55,19 @@ export class ClientsComponent implements OnInit {
     protected actionPromise: Promise<any>;
     private pagedClientsCount = 0;
 
-    constructor(private route: ActivatedRoute, private userService: UserService,
-        private apiService: ApiService, private searchService: SearchService,
-        private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
-        private validationService: ValidationService, private providerService: ProviderService,
-        private logService: LogService, private modalService: ModalService) { }
+    constructor(
+        private route: ActivatedRoute,
+        private providerService: ProviderService,
+        private apiService: ApiService,
+        private searchService: SearchService,
+        private platformUtilsService: PlatformUtilsService,
+        private i18nService: I18nService,
+        private validationService: ValidationService,
+        private webProviderService: WebProviderService,
+        private logService: LogService,
+        private modalService: ModalService,
+        private organizationService: OrganizationService
+    ) { }
 
     async ngOnInit() {
         this.route.parent.params.subscribe(async params => {
@@ -75,8 +84,8 @@ export class ClientsComponent implements OnInit {
     async load() {
         const response = await this.apiService.getProviderClients(this.providerId);
         this.clients = response.data != null && response.data.length > 0 ? response.data : [];
-        this.manageOrganizations = (await this.userService.getProvider(this.providerId)).type === ProviderUserType.ProviderAdmin;
-        const candidateOrgs = (await this.userService.getAllOrganizations()).filter(o => o.isOwner && o.providerId == null);
+        this.manageOrganizations = (await this.providerService.get(this.providerId)).type === ProviderUserType.ProviderAdmin;
+        const candidateOrgs = (await this.organizationService.getAll()).filter(o => o.isOwner && o.providerId == null);
         const allowedOrgsIds = await Promise.all(candidateOrgs.map(o => this.apiService.getOrganization(o.id))).then(orgs =>
             orgs.filter(o => !DisallowedPlanTypes.includes(o.planType))
                 .map(o => o.id));
@@ -144,7 +153,7 @@ export class ClientsComponent implements OnInit {
             return false;
         }
 
-        this.actionPromise = this.providerService.detachOrganizastion(this.providerId, organization.id);
+        this.actionPromise = this.webProviderService.detachOrganizastion(this.providerId, organization.id);
         try {
             await this.actionPromise;
             this.platformUtilsService.showToast('success', null,

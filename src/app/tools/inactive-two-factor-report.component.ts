@@ -7,7 +7,7 @@ import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -28,9 +28,9 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
     cipherDocs = new Map<string, string>();
 
     constructor(protected cipherService: CipherService, modalService: ModalService,
-        messagingService: MessagingService, userService: UserService, private logService: LogService,
+        messagingService: MessagingService, stateService: StateService, private logService: LogService,
         passwordRepromptService: PasswordRepromptService) {
-        super(modalService, userService, messagingService, passwordRepromptService, true);
+        super(modalService, messagingService, true, stateService, passwordRepromptService);
     }
 
     async ngOnInit() {

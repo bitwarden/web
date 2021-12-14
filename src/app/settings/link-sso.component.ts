@@ -14,7 +14,6 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
 
 import { SsoComponent } from 'jslib-angular/components/sso.component';
 
@@ -32,11 +31,9 @@ export class LinkSsoComponent extends SsoComponent implements AfterContentInit {
         apiService: ApiService, authService: AuthService,
         router: Router, route: ActivatedRoute,
         cryptoFunctionService: CryptoFunctionService, passwordGenerationService: PasswordGenerationService,
-        storageService: StorageService, stateService: StateService, environmentService: EnvironmentService,
-        logService: LogService) {
+        stateService: StateService, environmentService: EnvironmentService, logService: LogService) {
         super(authService, router,
-            i18nService, route,
-            storageService, stateService,
+            i18nService, route, stateService,
             platformUtilsService, apiService,
             cryptoFunctionService, environmentService, passwordGenerationService, logService);
 

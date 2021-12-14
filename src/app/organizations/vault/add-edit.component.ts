@@ -9,13 +9,13 @@ import { FolderService } from 'jslib-common/abstractions/folder.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
 import { TotpService } from 'jslib-common/abstractions/totp.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { CipherData } from 'jslib-common/models/data/cipherData';
 import { Cipher } from 'jslib-common/models/domain/cipher';
@@ -36,14 +36,14 @@ export class AddEditComponent extends BaseAddEditComponent {
     constructor(cipherService: CipherService, folderService: FolderService,
         i18nService: I18nService, platformUtilsService: PlatformUtilsService,
         auditService: AuditService, stateService: StateService,
-        userService: UserService, collectionService: CollectionService,
-        totpService: TotpService, passwordGenerationService: PasswordGenerationService,
-        private apiService: ApiService, messagingService: MessagingService,
-        eventService: EventService, policyService: PolicyService, logService: LogService,
-        passwordRepromptService: PasswordRepromptService) {
+        collectionService: CollectionService, totpService: TotpService,
+        passwordGenerationService: PasswordGenerationService, private apiService: ApiService,
+        messagingService: MessagingService, eventService: EventService,
+        policyService: PolicyService, logService: LogService,
+        passwordRepromptService: PasswordRepromptService, organizationService: OrganizationService) {
         super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
-            userService, collectionService, totpService, passwordGenerationService, messagingService,
-            eventService, policyService, passwordRepromptService, logService);
+            collectionService, totpService, passwordGenerationService, messagingService,
+            eventService, policyService, organizationService, logService, passwordRepromptService);
     }
 
     protected allowOwnershipAssignment() {

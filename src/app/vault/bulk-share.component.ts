@@ -10,8 +10,8 @@ import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { CipherView } from 'jslib-common/models/view/cipherView';
 import { CollectionView } from 'jslib-common/models/view/collectionView';
@@ -37,14 +37,14 @@ export class BulkShareComponent implements OnInit {
 
     constructor(private cipherService: CipherService, private platformUtilsService: PlatformUtilsService,
         private i18nService: I18nService, private collectionService: CollectionService,
-        private userService: UserService, private logService: LogService) { }
+        private organizationService: OrganizationService, private logService: LogService) { }
 
     async ngOnInit() {
         this.shareableCiphers = this.ciphers.filter(c => !c.hasOldAttachments && c.organizationId == null);
         this.nonShareableCount = this.ciphers.length - this.shareableCiphers.length;
         const allCollections = await this.collectionService.getAllDecrypted();
         this.writeableCollections = allCollections.filter(c => !c.readOnly);
-        this.organizations = await this.userService.getAllOrganizations();
+        this.organizations = await this.organizationService.getAll();
         if (this.organizationId == null && this.organizations.length > 0) {
             this.organizationId = this.organizations[0].id;
         }

@@ -33,10 +33,7 @@ import { StateService } from 'jslib-common/abstractions/state.service';
 import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { TokenService } from 'jslib-common/abstractions/token.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.service';
-
-import { ConstantsService } from 'jslib-common/services/constants.service';
 
 import { PolicyListService } from './services/policy-list.service';
 import { RouterService } from './services/router.service';
@@ -65,20 +62,32 @@ export class AppComponent implements OnDestroy, OnInit {
     private isIdle = false;
 
     constructor(
-        private broadcasterService: BroadcasterService, private userService: UserService,
-        private tokenService: TokenService, private folderService: FolderService,
-        private settingsService: SettingsService, private syncService: SyncService,
-        private passwordGenerationService: PasswordGenerationService, private cipherService: CipherService,
-        private authService: AuthService, private router: Router,
-        private toastrService: ToastrService, private i18nService: I18nService,
-        private platformUtilsService: PlatformUtilsService, private ngZone: NgZone,
-        private vaultTimeoutService: VaultTimeoutService, private storageService: StorageService,
-        private cryptoService: CryptoService, private collectionService: CollectionService,
-        private sanitizer: DomSanitizer, private searchService: SearchService,
-        private notificationsService: NotificationsService, private routerService: RouterService,
-        private stateService: StateService, private eventService: EventService,
-        private policyService: PolicyService, protected policyListService: PolicyListService,
-        private keyConnectorService: KeyConnectorService) { }
+        private broadcasterService: BroadcasterService,
+        private tokenService: TokenService,
+        private folderService: FolderService,
+        private settingsService: SettingsService,
+        private syncService: SyncService,
+        private passwordGenerationService: PasswordGenerationService,
+        private cipherService: CipherService,
+        private authService: AuthService,
+        private router: Router,
+        private toastrService: ToastrService,
+        private i18nService: I18nService,
+        private platformUtilsService: PlatformUtilsService,
+        private ngZone: NgZone,
+        private vaultTimeoutService: VaultTimeoutService,
+        private cryptoService: CryptoService,
+        private collectionService: CollectionService,
+        private sanitizer: DomSanitizer,
+        private searchService: SearchService,
+        private notificationsService: NotificationsService,
+        private routerService: RouterService,
+        private stateService: StateService,
+        private eventService: EventService,
+        private policyService: PolicyService,
+        protected policyListService: PolicyListService,
+        private keyConnectorService: KeyConnectorService
+    ) { }
 
     ngOnInit() {
         this.ngZone.runOutsideAngular(() => {
@@ -193,21 +202,18 @@ export class AppComponent implements OnDestroy, OnInit {
 
     private async logOut(expired: boolean) {
         await this.eventService.uploadEvents();
-        const userId = await this.userService.getUserId();
-
+        const userId = await this.stateService.getUserId();
         await Promise.all([
             this.eventService.clearEvents(),
             this.syncService.setLastSync(new Date(0)),
             this.tokenService.clearToken(),
             this.cryptoService.clearKeys(),
-            this.userService.clear(),
             this.settingsService.clear(userId),
             this.cipherService.clear(userId),
             this.folderService.clear(userId),
             this.collectionService.clear(userId),
             this.policyService.clear(userId),
             this.passwordGenerationService.clear(),
-            this.stateService.purge(),
             this.keyConnectorService.clear(),
         ]);
 
@@ -218,6 +224,7 @@ export class AppComponent implements OnDestroy, OnInit {
                     this.i18nService.t('loginExpired'));
             }
 
+            await this.stateService.clean({ userId: userId });
             Swal.close();
             this.router.navigate(['/']);
         });
@@ -230,8 +237,7 @@ export class AppComponent implements OnDestroy, OnInit {
         }
 
         this.lastActivity = now;
-        this.storageService.save(ConstantsService.lastActiveKey, now);
-
+        this.stateService.setLastActive(now);
         // Idle states
         if (this.isIdle) {
             this.isIdle = false;
@@ -284,7 +290,7 @@ export class AppComponent implements OnDestroy, OnInit {
     }
 
     private async setFullWidth() {
-        const enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
+        const enableFullWidth = await this.stateService.getEnableFullWidth();
         if (enableFullWidth) {
             document.body.classList.add('full-width');
         } else {

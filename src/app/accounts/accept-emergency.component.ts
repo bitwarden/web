@@ -8,7 +8,6 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 import { EmergencyAccessAcceptRequest } from 'jslib-common/models/request/emergencyAccessAcceptRequest';
 import { BaseAcceptComponent } from '../common/base.accept.component';
 
@@ -24,11 +23,21 @@ export class AcceptEmergencyComponent extends BaseAcceptComponent {
     protected failedShortMessage = 'emergencyInviteAcceptFailedShort';
     protected failedMessage = 'emergencyInviteAcceptFailed';
 
-    constructor(router: Router, platformUtilsService: PlatformUtilsService,
-        i18nService: I18nService, route: ActivatedRoute,
-        private apiService: ApiService, userService: UserService,
-        stateService: StateService) {
-        super(router, platformUtilsService, i18nService, route, userService, stateService);
+    constructor(
+        router: Router,
+        platformUtilsService: PlatformUtilsService,
+        i18nService: I18nService,
+        route: ActivatedRoute,
+        private apiService: ApiService,
+        stateService: StateService
+    ) {
+        super(
+            router,
+            platformUtilsService,
+            i18nService,
+            route,
+            stateService
+        );
     }
 
     async authedHandler(qParams: any): Promise<void> {

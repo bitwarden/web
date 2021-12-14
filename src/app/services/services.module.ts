@@ -22,7 +22,6 @@ import { JslibServicesModule } from 'jslib-angular/services/jslib-services.modul
 import { ModalService as ModalServiceAbstraction } from 'jslib-angular/services/modal.service';
 
 import { AuthService } from 'jslib-common/services/auth.service';
-import { ConstantsService } from 'jslib-common/services/constants.service';
 import { ContainerService } from 'jslib-common/services/container.service';
 import { CryptoService } from 'jslib-common/services/crypto.service';
 import { EventService as EventLoggingService } from 'jslib-common/services/event.service';
@@ -57,6 +56,7 @@ export function initFactory(window: Window, storageService: StorageServiceAbstra
     platformUtilsService: PlatformUtilsServiceAbstraction, cryptoService: CryptoServiceAbstraction): Function {
     return async () => {
         await (storageService as HtmlStorageService).init();
+        await stateService.init();
 
         const urls = process.env.URLS as Urls;
         urls.base ??= window.location.origin;
@@ -65,7 +65,7 @@ export function initFactory(window: Window, storageService: StorageServiceAbstra
         setTimeout(() => notificationsService.init(), 3000);
 
         vaultTimeoutService.init(true);
-        const locale = await storageService.get<string>(ConstantsService.localeKey);
+        const locale = await stateService.getLocale();
         await i18nService.init(locale);
         eventLoggingService.init(true);
         authService.init();
@@ -74,16 +74,12 @@ export function initFactory(window: Window, storageService: StorageServiceAbstra
 
         // Initial theme is set in index.html which must be updated if there are any changes to theming logic
         platformUtilsService.onDefaultSystemThemeChange(async sysTheme => {
-            const bwTheme = await storageService.get<ThemeType>(ConstantsService.themeKey);
+            const bwTheme = await stateService.getTheme();
             if (bwTheme === ThemeType.System) {
                 htmlEl.classList.remove('theme_' + ThemeType.Light, 'theme_' + ThemeType.Dark);
                 htmlEl.classList.add('theme_' + sysTheme);
             }
         });
-
-        stateService.save(ConstantsService.disableFaviconKey,
-            await storageService.get<boolean>(ConstantsService.disableFaviconKey));
-        stateService.save('enableGravatars', await storageService.get<boolean>('enableGravatars'));
 
         const containerService = new ContainerService(cryptoService);
         containerService.attachToWindow(window);
@@ -130,13 +126,13 @@ export function initFactory(window: Window, storageService: StorageServiceAbstra
         {
             provide: PlatformUtilsServiceAbstraction,
             useFactory: (i18nService: I18nServiceAbstraction, messagingService: MessagingServiceAbstraction,
-                logService: LogService, injector: Injector) => new WebPlatformUtilsService(i18nService,
-                    messagingService, logService, () => injector.get(StorageServiceAbstraction)),
+                logService: LogService, stateService: StateServiceAbstraction) => new WebPlatformUtilsService(i18nService,
+                    messagingService, logService, stateService),
             deps: [
                 I18nServiceAbstraction,
                 MessagingServiceAbstraction,
                 LogService,
-                Injector, // TODO: Get rid of circular dependency!
+                StateServiceAbstraction,
             ],
         },
         { provide: MessagingServiceAbstraction, useClass: BroadcasterMessagingService },
@@ -156,19 +152,12 @@ export function initFactory(window: Window, storageService: StorageServiceAbstra
         },
         {
             provide: CryptoServiceAbstraction,
-            useFactory: (storageService: StorageServiceAbstraction, secureStorageService: StorageServiceAbstraction,
-                cryptoFunctionService: CryptoFunctionServiceAbstraction,
-                platformUtilsService: PlatformUtilsServiceAbstraction, logService: LogService) => {
-                const storageImplementation = platformUtilsService.isDev() ? storageService : secureStorageService;
-                return new CryptoService(storageService, storageImplementation, cryptoFunctionService,
-                    platformUtilsService, logService);
-            },
+            useClass: CryptoService,
             deps: [
-                StorageServiceAbstraction,
-                'SECURE_STORAGE',
                 CryptoFunctionServiceAbstraction,
                 PlatformUtilsServiceAbstraction,
                 LogService,
+                StateServiceAbstraction,
             ],
         },
     ],

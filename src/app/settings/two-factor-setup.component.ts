@@ -9,7 +9,7 @@ import {
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { TwoFactorProviders } from 'jslib-common/services/auth.service';
 
@@ -46,12 +46,12 @@ export class TwoFactorSetupComponent implements OnInit {
     loading = true;
     modal: ModalRef;
 
-    constructor(protected apiService: ApiService, protected userService: UserService,
-        protected modalService: ModalService, protected messagingService: MessagingService,
-        protected policyService: PolicyService) { }
+    constructor(protected apiService: ApiService, protected modalService: ModalService,
+        protected messagingService: MessagingService, protected policyService: PolicyService,
+        private stateService: StateService) { }
 
     async ngOnInit() {
-        this.canAccessPremium = await this.userService.canAccessPremium();
+        this.canAccessPremium = await this.stateService.getCanAccessPremium();
 
         for (const key in TwoFactorProviders) {
             if (!TwoFactorProviders.hasOwnProperty(key)) {

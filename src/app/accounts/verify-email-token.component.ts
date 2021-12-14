@@ -13,7 +13,7 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { VerifyEmailRequest } from 'jslib-common/models/request/verifyEmailRequest';
 
@@ -22,10 +22,15 @@ import { VerifyEmailRequest } from 'jslib-common/models/request/verifyEmailReque
     templateUrl: 'verify-email-token.component.html',
 })
 export class VerifyEmailTokenComponent implements OnInit {
-    constructor(private router: Router, private platformUtilsService: PlatformUtilsService,
-        private i18nService: I18nService, private route: ActivatedRoute,
-        private apiService: ApiService, private userService: UserService,
-        private logService: LogService) { }
+    constructor(
+        private router: Router,
+        private platformUtilsService: PlatformUtilsService,
+        private i18nService: I18nService,
+        private route: ActivatedRoute,
+        private apiService: ApiService,
+        private logService: LogService,
+        private stateService: StateService
+    ) { }
 
     ngOnInit() {
         this.route.queryParams.pipe(first()).subscribe(async qParams => {
@@ -33,8 +38,7 @@ export class VerifyEmailTokenComponent implements OnInit {
                 try {
                     await this.apiService.postAccountVerifyEmailToken(
                         new VerifyEmailRequest(qParams.userId, qParams.token));
-                    const authed = await this.userService.isAuthenticated();
-                    if (authed) {
+                    if (await this.stateService.getIsAuthenticated()) {
                         await this.apiService.refreshIdentityToken();
                     }
                     this.platformUtilsService.showToast('success', null, this.i18nService.t('emailVerified'));

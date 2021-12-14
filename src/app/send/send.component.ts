@@ -19,7 +19,6 @@ import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.se
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { SendService } from 'jslib-common/abstractions/send.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -34,11 +33,11 @@ export class SendComponent extends BaseSendComponent {
 
     constructor(sendService: SendService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, environmentService: EnvironmentService,
-        ngZone: NgZone, searchService: SearchService, policyService: PolicyService, userService: UserService,
-        private modalService: ModalService, private broadcasterService: BroadcasterService,
-        logService: LogService) {
+        ngZone: NgZone, searchService: SearchService,
+        policyService: PolicyService, private modalService: ModalService,
+        private broadcasterService: BroadcasterService, logService: LogService) {
         super(sendService, i18nService, platformUtilsService, environmentService, ngZone, searchService,
-            policyService, userService, logService);
+            policyService, logService);
     }
 
     async ngOnInit() {
