@@ -1,5 +1,5 @@
 <ng-container *ngIf="loading">
-    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+    <i class="bwi bwi-spinner bwi-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
     <span class="sr-only">{{'loading' | i18n}}</span>
 </ng-container>
 <ng-container *ngIf="createOrganization && selfHosted">
@@ -12,7 +12,7 @@
                 'bitwarden_organization_license.json'}}</small>
         </div>
         <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+            <i class="bwi bwi-spinner bwi-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
             <span>{{'submit' | i18n}}</span>
         </button>
     </form>
@@ -251,7 +251,7 @@
     </div>
     <div class="mt-4">
         <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+            <i class="bwi bwi-spinner bwi-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
             <span>{{'submit' | i18n}}</span>
         </button>
         <button type="button" class="btn btn-outline-secondary" (click)="cancel()" *ngIf="showCancel">

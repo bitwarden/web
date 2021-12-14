@@ -44,7 +44,7 @@
                             <iframe id="duo_iframe"></iframe>
                         </div>
                     </ng-container>
-                    <i class="fa fa-spinner text-muted fa-spin pull-right" title="{{'loading' | i18n}}"
+                    <i class="bwi bwi-spinner text-muted bwi-spin pull-right" title="{{'loading' | i18n}}"
                         *ngIf="form.loading && selectedProviderType === providerType.WebAuthn" aria-hidden="true"></i>
                     <div class="form-check" *ngIf="selectedProviderType != null">
                         <input id="remember" type="checkbox" name="Remember" class="form-check-input"
@@ -61,9 +61,9 @@
                             *ngIf="selectedProviderType != null && selectedProviderType !== providerType.Duo && 
                         selectedProviderType !== providerType.OrganizationDuo && selectedProviderType !== providerType.WebAuthn">
                             <span>
-                                <i class="fa fa-sign-in" aria-hidden="true"></i> {{'continue' | i18n}}
+                                <i class="bwi bwi-sign-in" aria-hidden="true"></i> {{'continue' | i18n}}
                             </span>
-                            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                            <i class="bwi bwi-spinner bwi-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                         </button>
                         <a routerLink="/" class="btn btn-outline-secondary btn-block ml-2 mt-0">
                             {{'cancel' | i18n}}

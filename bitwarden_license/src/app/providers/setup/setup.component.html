@@ -14,13 +14,14 @@
             </div>
             <div class="form-group col-6">
                 <label for="billingEmail">{{'billingEmail' | i18n}}</label>
-                <input id="billingEmail" class="form-control" type="text" name="BillingEmail" [(ngModel)]="billingEmail" required>
+                <input id="billingEmail" class="form-control" type="text" name="BillingEmail" [(ngModel)]="billingEmail"
+                    required>
             </div>
         </div>
 
         <div class="mt-4">
             <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-                <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                <i class="bwi bwi-spinner bwi-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                 <span>{{'submit' | i18n}}</span>
             </button>
             <button type="button" class="btn btn-outline-secondary" (click)="cancel()" *ngIf="showCancel">

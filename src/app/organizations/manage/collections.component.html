@@ -7,13 +7,13 @@
                 [(ngModel)]="searchText">
         </div>
         <button type="button" *ngIf="this.canCreate" class="btn btn-sm btn-outline-primary ml-3" (click)="add()">
-            <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+            <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
             {{'newCollection' | i18n}}
         </button>
     </div>
 </div>
 <ng-container *ngIf="loading">
-    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+    <i class="bwi bwi-spinner bwi-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
     <span class="sr-only">{{'loading' | i18n}}</span>
 </ng-container>
 <ng-container
@@ -30,15 +30,16 @@
                     <div class="dropdown" appListDropdown *ngIf="this.canEdit(c) || this.canDelete(c)">
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false" appA11yTitle="{{'options' | i18n}}">
-                            <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+                            <i class="bwi bwi-cog bwi-lg" aria-hidden="true"></i>
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a class="dropdown-item" href="#" appStopClick *ngIf="this.canEdit(c)" (click)="users(c)">
-                                <i class="fa fa-fw fa-users" aria-hidden="true"></i>
+                                <i class="bwi bwi-fw bwi-users" aria-hidden="true"></i>
                                 {{'users' | i18n}}
                             </a>
-                            <a class="dropdown-item text-danger" href="#" appStopClick *ngIf="this.canDelete(c)" (click)="delete(c)">
-                                <i class="fa fa-fw fa-trash-o" aria-hidden="true"></i>
+                            <a class="dropdown-item text-danger" href="#" appStopClick *ngIf="this.canDelete(c)"
+                                (click)="delete(c)">
+                                <i class="bwi bwi-fw bwi-trash" aria-hidden="true"></i>
                                 {{'delete' | i18n}}
                             </a>
                         </div>

@@ -75,7 +75,7 @@ app-vault-groupings, app-org-vault-groupings, .groupings {
         }
 
         li {
-            > .fa, > div > .fa {
+            > .bwi, > div > .bwi {
                 cursor: pointer;
             }
         }
@@ -94,7 +94,7 @@ app-vault-groupings, app-org-vault-groupings, .groupings {
                 }
             }
 
-            > .fa, > div > .fa {
+            > .bwi, > div > .bwi {
                 @include themify($themes) {
                     color: themed('linkColor');
                 }

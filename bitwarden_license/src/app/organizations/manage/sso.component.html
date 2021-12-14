@@ -3,7 +3,7 @@
 </div>
 
 <ng-container *ngIf="loading">
-    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+    <i class="bwi bwi-spinner bwi-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
     <span class="sr-only">{{'loading' | i18n}}</span>
 </ng-container>
 
@@ -15,7 +15,7 @@
         <br>
         {{'ssoPolicyHelpKeyConnector' | i18n}}
     </p>
-    
+
     <div class="form-group">
         <div class="form-check">
             <input class="form-check-input" type="checkbox" id="enabled" [formControl]="enabled" name="Enabled">
@@ -27,15 +27,16 @@
     <div class="form-group">
         <label>{{'memberDecryptionOption' | i18n}}</label>
         <div class="form-check form-check-block">
-            <input class="form-check-input" type="radio" id="memberDecryptionPass" [value]="false" formControlName="keyConnectorEnabled">
+            <input class="form-check-input" type="radio" id="memberDecryptionPass" [value]="false"
+                formControlName="keyConnectorEnabled">
             <label class="form-check-label" for="memberDecryptionPass">
                 {{'masterPass' | i18n}}
                 <small>{{'memberDecryptionPassDesc' | i18n}}</small>
             </label>
         </div>
         <div class="form-check mt-2 form-check-block">
-            <input class="form-check-input" type="radio" id="memberDecryptionKey" [value]="true" formControlName="keyConnectorEnabled"
-                [attr.disabled]="!organization.useKeyConnector || null">
+            <input class="form-check-input" type="radio" id="memberDecryptionKey" [value]="true"
+                formControlName="keyConnectorEnabled" [attr.disabled]="!organization.useKeyConnector || null">
             <label class="form-check-label" for="memberDecryptionKey">
                 {{'keyConnector' | i18n}}
                 <a target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}"
@@ -51,7 +52,7 @@
         <app-callout type="warning" [useAlertRole]="true">
             {{'keyConnectorWarning' | i18n}}
         </app-callout>
-    
+
         <div class="form-group">
             <label for="keyConnectorUrl">{{'keyConnectorUrl' | i18n}}</label>
             <div class="input-group">
@@ -98,10 +99,9 @@
                 <div class="input-group">
                     <input class="form-control" readonly [value]="callbackPath">
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-outline-secondary"
-                            appA11yTitle="{{'copyValue' | i18n}}"
+                        <button type="button" class="btn btn-outline-secondary" appA11yTitle="{{'copyValue' | i18n}}"
                             (click)="copy(callbackPath)">
-                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                            <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
@@ -111,10 +111,9 @@
                 <div class="input-group">
                     <input class="form-control" readonly [value]="signedOutCallbackPath">
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-outline-secondary"
-                            appA11yTitle="{{'copyValue' | i18n}}"
+                        <button type="button" class="btn btn-outline-secondary" appA11yTitle="{{'copyValue' | i18n}}"
                             (click)="copy(signedOutCallbackPath)">
-                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                            <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
@@ -162,13 +161,11 @@
             </div>
             <div class="form-group">
                 <label for="additionalEmailClaimTypes">{{'additionalEmailClaimTypes' | i18n}}</label>
-                <input class="form-control" formControlName="additionalEmailClaimTypes"
-                    id="additionalEmailClaimTypes">
+                <input class="form-control" formControlName="additionalEmailClaimTypes" id="additionalEmailClaimTypes">
             </div>
             <div class="form-group">
                 <label for="additionalNameClaimTypes">{{'additionalNameClaimTypes' | i18n}}</label>
-                <input class="form-control" formControlName="additionalNameClaimTypes"
-                    id="additionalNameClaimTypes">
+                <input class="form-control" formControlName="additionalNameClaimTypes" id="additionalNameClaimTypes">
             </div>
             <div class="form-group">
                 <label for="acrValues">{{'acrValues' | i18n}}</label>
@@ -188,12 +185,11 @@
             <div class="form-group">
                 <label>{{'spEntityId' | i18n}}</label>
                 <div class="input-group">
-                    <input class="form-control" readonly [value]="spEntityId" >
+                    <input class="form-control" readonly [value]="spEntityId">
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-outline-secondary"
-                            appA11yTitle="{{'copyValue' | i18n}}"
+                        <button type="button" class="btn btn-outline-secondary" appA11yTitle="{{'copyValue' | i18n}}"
                             (click)="copy(spEntityId)">
-                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                            <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
@@ -203,15 +199,13 @@
                 <div class="input-group">
                     <input class="form-control" readonly [value]="spMetadataUrl">
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-outline-secondary"
-                            appA11yTitle="{{'launch' | i18n}}"
+                        <button type="button" class="btn btn-outline-secondary" appA11yTitle="{{'launch' | i18n}}"
                             (click)="launchUri(spMetadataUrl)">
-                            <i class="fa fa-lg fa-external-link" aria-hidden="true"></i>
+                            <i class="bwi bwi-lg bwi-external-link" aria-hidden="true"></i>
                         </button>
-                        <button type="button" class="btn btn-outline-secondary"
-                            appA11yTitle="{{'copyValue' | i18n}}"
+                        <button type="button" class="btn btn-outline-secondary" appA11yTitle="{{'copyValue' | i18n}}"
                             (click)="copy(spMetadataUrl)">
-                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                            <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
@@ -221,10 +215,9 @@
                 <div class="input-group">
                     <input class="form-control" readonly [value]="spAcsUrl">
                     <div class="input-group-append">
-                        <button type="button" class="btn btn-outline-secondary"
-                            appA11yTitle="{{'copyValue' | i18n}}"
+                        <button type="button" class="btn btn-outline-secondary" appA11yTitle="{{'copyValue' | i18n}}"
                             (click)="copy(spAcsUrl)">
-                            <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                            <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
                         </button>
                     </div>
                 </div>
@@ -357,7 +350,7 @@
     </div>
 
     <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+        <i class="bwi bwi-spinner bwi-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
         <span>{{'save' | i18n}}</span>
     </button>
 </form>

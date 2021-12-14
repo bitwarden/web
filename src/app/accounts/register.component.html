@@ -45,7 +45,7 @@
                         <div class="card d-block">
                             <div class="card-body">
                                 <app-callout title="{{'createOrganizationStep1' | i18n}}" type="info"
-                                    icon="fa-thumb-tack" *ngIf="showCreateOrgMessage">
+                                    icon="bwi-thumb-tack" *ngIf="showCreateOrgMessage">
                                     {{'createOrganizationCreatePersonalAccount' | i18n}}
                                 </app-callout>
                                 <div class="form-group">
@@ -79,8 +79,8 @@
                                             <button type="button" class="ml-1 btn btn-link"
                                                 appA11yTitle="{{'toggleVisibility' | i18n}}"
                                                 (click)="togglePassword(false)">
-                                                <i class="fa fa-lg" aria-hidden="true"
-                                                    [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                                                <i class="bwi bwi-lg" aria-hidden="true"
+                                                    [ngClass]="{'bwi-eye-2': !showPassword, 'bwi-eye-slash-2': showPassword}"></i>
                                             </button>
                                             <div class="progress-bar invisible"></div>
                                         </div>
@@ -95,8 +95,8 @@
                                             [(ngModel)]="confirmMasterPassword" required appInputVerbatim>
                                         <button type="button" class="ml-1 btn btn-link"
                                             appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="togglePassword(true)">
-                                            <i class="fa fa-lg" aria-hidden="true"
-                                                [ngClass]="{'fa-eye': !showPassword, 'fa-eye-slash': showPassword}"></i>
+                                            <i class="bwi bwi-lg" aria-hidden="true"
+                                                [ngClass]="{'bwi-eye-2': !showPassword, 'bwi-eye-slash-2': showPassword}"></i>
                                         </button>
                                     </div>
                                 </div>
@@ -124,7 +124,7 @@
                                     <button type="submit" class="btn btn-primary btn-block btn-submit"
                                         [disabled]="form.loading">
                                         <span>{{'submit' | i18n}}</span>
-                                        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}"
+                                        <i class="bwi bwi-spinner bwi-spin" title="{{'loading' | i18n}}"
                                             aria-hidden="true"></i>
                                     </button>
                                     <a routerLink="/" class="btn btn-outline-secondary btn-block ml-2 mt-0">

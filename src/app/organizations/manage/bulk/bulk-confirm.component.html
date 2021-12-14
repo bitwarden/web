@@ -11,7 +11,7 @@
             </div>
             <div class="modal-body">
                 <div class="card-body text-center" *ngIf="loading">
-                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                    <i class="bwi bwi-spinner bwi-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                     {{'loading' | i18n}}
                 </div>
                 <app-callout type="danger" *ngIf="filteredUsers.length <= 0">
@@ -89,8 +89,9 @@
                 </ng-container>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary btn-submit" *ngIf="!done" [disabled]="loading" (click)="submit()">
-                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                <button type="submit" class="btn btn-primary btn-submit" *ngIf="!done" [disabled]="loading"
+                    (click)="submit()">
+                    <i class="bwi bwi-spinner bwi-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                     <span>{{'confirm' | i18n}}</span>
                 </button>
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>

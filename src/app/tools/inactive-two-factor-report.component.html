@@ -2,14 +2,14 @@
     <h1>
         {{'inactive2faReport' | i18n}}
         <small *ngIf="hasLoaded && loading">
-            <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+            <i class="bwi bwi-spinner bwi-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
             <span class="sr-only">{{'loading' | i18n}}</span>
         </small>
     </h1>
 </div>
 <p>{{'inactive2faReportDesc' | i18n}}</p>
 <div *ngIf="!hasLoaded && loading">
-    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+    <i class="bwi bwi-spinner bwi-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
     <span class="sr-only">{{'loading' | i18n}}</span>
 </div>
 <div class="mt-4" *ngIf="hasLoaded">
@@ -29,11 +29,12 @@
                     <td class="reduced-lh wrap">
                         <a href="#" appStopClick (click)="selectCipher(c)" title="{{'editItem' | i18n}}">{{c.name}}</a>
                         <ng-container *ngIf="!organization && c.organizationId">
-                            <i class="fa fa-cube" appStopProp title="{{'shared' | i18n}}" aria-hidden="true"></i>
+                            <i class="bwi bwi-collection" appStopProp title="{{'shared' | i18n}}"
+                                aria-hidden="true"></i>
                             <span class="sr-only">{{'shared' | i18n}}</span>
                         </ng-container>
                         <ng-container *ngIf="c.hasAttachments">
-                            <i class="fa fa-paperclip" appStopProp title="{{'attachments' | i18n}}"
+                            <i class="bwi bwi-paperclip" appStopProp title="{{'attachments' | i18n}}"
                                 aria-hidden="true"></i>
                             <span class="sr-only">{{'attachments' | i18n}}</span>
                         </ng-container>

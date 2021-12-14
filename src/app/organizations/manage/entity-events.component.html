@@ -11,7 +11,7 @@
                 </button>
             </div>
             <div class="modal-body" *ngIf="!loaded">
-                <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                <i class="bwi bwi-spinner bwi-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                 <span class="sr-only">{{'loading' | i18n}}</span>
             </div>
             <div class="modal-body" *ngIf="loaded">
@@ -28,7 +28,7 @@
                     <button #refreshBtn [appApiAction]="refreshPromise" type="button"
                         class="btn btn-sm btn-outline-primary ml-3" (click)="loadEvents(true)"
                         [disabled]="loaded && refreshBtn.loading">
-                        <i class="fa fa-refresh fa-fw" [ngClass]="{'fa-spin': loaded && refreshBtn.loading}"
+                        <i class="bwi bwi-refresh bwi-fw" [ngClass]="{'bwi-spin': loaded && refreshBtn.loading}"
                             aria-hidden="true"></i>
                         {{'refresh' | i18n}}
                     </button>
@@ -52,7 +52,7 @@
                         <tr *ngFor="let e of events">
                             <td>{{e.date | date:'medium'}}</td>
                             <td>
-                                <i class="text-muted fa fa-lg {{e.appIcon}}" title="{{e.appName}}, {{e.ip}}"
+                                <i class="text-muted bwi bwi-lg {{e.appIcon}}" title="{{e.appName}}, {{e.ip}}"
                                     aria-hidden="true"></i>
                                 <span class="sr-only">{{e.appName}}, {{e.ip}}</span>
                             </td>
@@ -65,7 +65,7 @@
                 </table>
                 <button #moreBtn [appApiAction]="morePromise" type="button" class="btn btn-block btn-link btn-submit"
                     (click)="loadEvents(false)" [disabled]="loaded && moreBtn.loading" *ngIf="continuationToken">
-                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                    <i class="bwi bwi-spinner bwi-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                     <span>{{'loadMore' | i18n}}</span>
                 </button>
             </div>

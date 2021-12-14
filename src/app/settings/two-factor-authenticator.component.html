@@ -23,26 +23,26 @@
                         </p>
                     </ng-container>
                     <ng-container *ngIf="enabled">
-                        <app-callout type="success" title="{{'enabled' | i18n}}" icon="fa-check-circle">
+                        <app-callout type="success" title="{{'enabled' | i18n}}" icon="bwi-check-circle">
                             <p>{{'twoStepLoginProviderEnabled' | i18n}}</p>
                             {{'twoStepAuthenticatorReaddDesc' | i18n}}
                         </app-callout>
                         <img class="float-right mfaType0" alt="Authenticator app logo">
                         <p>{{'twoStepAuthenticatorNeedApp' | i18n}}</p>
                     </ng-container>
-                    <ul class="fa-ul">
+                    <ul class="bwi-ul">
                         <li>
-                            <i class="fa-li fa fa-apple"></i>{{'iosDevices' | i18n}}:
+                            <i class="bwi-li bwi bwi-apple"></i>{{'iosDevices' | i18n}}:
                             <a href="https://itunes.apple.com/us/app/authy/id494168017?mt=8" target="_blank"
                                 rel="noopener">Authy</a>
                         </li>
                         <li>
-                            <i class="fa-li fa fa-android"></i>{{'androidDevices' | i18n}}:
+                            <i class="bwi-li bwi bwi-android"></i>{{'androidDevices' | i18n}}:
                             <a href="https://play.google.com/store/apps/details?id=com.authy.authy" target="_blank"
                                 rel="noopener">Authy</a>
                         </li>
                         <li>
-                            <i class="fa-li fa fa-windows"></i>{{'windowsDevices' | i18n}}:
+                            <i class="bwi-bwi bwi bwi-windows"></i>{{'windowsDevices' | i18n}}:
                             <a href="https://www.microsoft.com/p/authenticator/9wzdncrfj3rj" target="_blank"
                                 rel="noopener">Microsoft Authenticator</a>
                         </li>
@@ -64,12 +64,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-                        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                        <i class="bwi bwi-spinner bwi-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                         <span *ngIf="!enabled">{{'enable' | i18n}}</span>
                         <span *ngIf="enabled">{{'disable' | i18n}}</span>
                     </button>
-                    <button type="button" class="btn btn-outline-secondary"
-                        data-dismiss="modal">{{'close' | i18n}}</button>
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' |
+                        i18n}}</button>
                 </div>
             </form>
         </div>

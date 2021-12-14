@@ -2,7 +2,7 @@
     <h1>{{'myOrganization' | i18n}}</h1>
 </div>
 <div *ngIf="loading">
-    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+    <i class="bwi bwi-spinner bwi-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
     <span class="sr-only">{{'loading' | i18n}}</span>
 </div>
 <form *ngIf="org && !loading" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
@@ -25,8 +25,7 @@
             </div>
             <div class="form-group">
                 <label for="identifier">{{'identifier' | i18n}}</label>
-                <input id="identifier" class="form-control" type="text" name="Identifier"
-                    [(ngModel)]="org.identifier">
+                <input id="identifier" class="form-control" type="text" name="Identifier" [(ngModel)]="org.identifier">
             </div>
         </div>
         <div class="col-6">
@@ -34,7 +33,7 @@
         </div>
     </div>
     <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+        <i class="bwi bwi-spinner bwi-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
         <span>{{'save' | i18n}}</span>
     </button>
 </form>
@@ -56,13 +55,13 @@
 </div>
 <p>{{'taxInformationDesc' | i18n}}</p>
 <div *ngIf="!org || loading">
-    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+    <i class="bwi bwi-spinner bwi-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
     <span class="sr-only">{{'loading' | i18n}}</span>
 </div>
 <form *ngIf="org && !loading" #formTax (ngSubmit)="submitTaxInfo()" [appApiAction]="taxFormPromise" ngNativeValidate>
     <app-tax-info></app-tax-info>
     <button type="submit" class="btn btn-primary btn-submit" [disabled]="formTax.loading">
-        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+        <i class="bwi bwi-spinner bwi-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
         <span>{{'save' | i18n}}</span>
     </button>
 </form>
@@ -72,8 +71,8 @@
 <div class="card border-danger">
     <div class="card-body">
         <p>{{'dangerZoneDesc' | i18n}}</p>
-        <button type="button" class="btn btn-outline-danger"
-            (click)="deleteOrganization()">{{'deleteOrganization' | i18n}}</button>
+        <button type="button" class="btn btn-outline-danger" (click)="deleteOrganization()">{{'deleteOrganization' |
+            i18n}}</button>
         <button type="button" class="btn btn-outline-danger" (click)="purgeVault()">{{'purgeVault' | i18n}}</button>
     </div>
 </div>

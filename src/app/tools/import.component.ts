@@ -142,7 +142,7 @@ export class ImportComponent implements OnInit {
             heightAuto: false,
             buttonsStyling: false,
             icon: 'error' as SweetAlertIcon,
-            iconHtml: `<i class="swal-custom-icon fa fa-bolt text-danger"></i>`,
+            iconHtml: `<i class="swal-custom-icon bwi bwi-bolt text-danger"></i>`,
             input: 'textarea',
             inputValue: error.message,
             inputAttributes: {
@@ -154,7 +154,7 @@ export class ImportComponent implements OnInit {
             confirmButtonText: this.i18nService.t('ok'),
             onOpen: popupEl => {
                 popupEl.querySelector('.swal2-textarea').scrollTo(0, 0);
-             },
+            },
         });
     }
 

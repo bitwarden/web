@@ -1,38 +1,38 @@
 <div class="page-header">
     <h1>{{'goPremium' | i18n}}</h1>
 </div>
-<app-callout type="info" *ngIf="canAccessPremium" title="{{'youHavePremiumAccess' | i18n}}" icon="fa-star">
+<app-callout type="info" *ngIf="canAccessPremium" title="{{'youHavePremiumAccess' | i18n}}" icon="bwi-star-f">
     {{'alreadyPremiumFromOrg' | i18n}}
 </app-callout>
 <app-callout type="success">
     <p>{{'premiumUpgradeUnlockFeatures' | i18n}}</p>
-    <ul class="fa-ul">
+    <ul class="bwi-ul">
         <li>
-            <i class="fa fa-check text-success fa-li" aria-hidden="true"></i>
+            <i class="bwi bwi-check text-success bwi-li" aria-hidden="true"></i>
             {{'premiumSignUpStorage' | i18n}}
         </li>
         <li>
-            <i class="fa fa-check text-success fa-li" aria-hidden="true"></i>
+            <i class="bwi bwi-check text-success bwi-li" aria-hidden="true"></i>
             {{'premiumSignUpTwoStep' | i18n}}
         </li>
         <li>
-            <i class="fa fa-check text-success fa-li" aria-hidden="true"></i>
+            <i class="bwi bwi-check text-success bwi-li" aria-hidden="true"></i>
             {{'premiumSignUpEmergency' |i18n}}
         </li>
         <li>
-            <i class="fa fa-check text-success fa-li" aria-hidden="true"></i>
+            <i class="bwi bwi-check text-success bwi-li" aria-hidden="true"></i>
             {{'premiumSignUpReports' | i18n}}
         </li>
         <li>
-            <i class="fa fa-check text-success fa-li" aria-hidden="true"></i>
+            <i class="bwi bwi-check text-success bwi-li" aria-hidden="true"></i>
             {{'premiumSignUpTotp' | i18n}}
         </li>
         <li>
-            <i class="fa fa-check text-success fa-li" aria-hidden="true"></i>
+            <i class="bwi bwi-check text-success bwi-li" aria-hidden="true"></i>
             {{'premiumSignUpSupport' | i18n}}
         </li>
         <li>
-            <i class="fa fa-check text-success fa-li" aria-hidden="true"></i>
+            <i class="bwi bwi-check text-success bwi-li" aria-hidden="true"></i>
             {{'premiumSignUpFuture' | i18n}}
         </li>
     </ul>
@@ -51,7 +51,7 @@
             <small class="form-text text-muted">{{'licenseFileDesc' | i18n : 'bitwarden_premium_license.json'}}</small>
         </div>
         <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+            <i class="bwi bwi-spinner bwi-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
             <span>{{'submit' | i18n}}</span>
         </button>
     </form>
@@ -64,13 +64,14 @@
             <input id="additionalStorage" class="form-control" type="number" name="AdditionalStorageGb"
                 [(ngModel)]="additionalStorage" min="0" max="99" step="1"
                 placeholder="{{'additionalStorageGbDesc' | i18n}}">
-            <small
-                class="text-muted form-text">{{'additionalStorageIntervalDesc' | i18n : '1 GB' : (storageGbPrice | currency:'$') : ('year' | i18n)}}</small>
+            <small class="text-muted form-text">{{'additionalStorageIntervalDesc' | i18n : '1 GB' : (storageGbPrice |
+                currency:'$') : ('year' | i18n)}}</small>
         </div>
     </div>
     <h2 class="spaced-header">{{'summary' | i18n}}</h2>
     {{'premiumMembership' | i18n}}: {{premiumPrice | currency:'$'}}
-    <br> {{'additionalStorageGb' | i18n}}: {{additionalStorage || 0}} GB &times; {{storageGbPrice | currency:'$'}} = {{additionalStorageTotal
+    <br> {{'additionalStorageGb' | i18n}}: {{additionalStorage || 0}} GB &times; {{storageGbPrice | currency:'$'}} =
+    {{additionalStorageTotal
     | currency:'$'}}
     <hr class="my-3">
     <h2 class="spaced-header mb-4">{{'paymentInformation' | i18n}}</h2>
@@ -90,7 +91,7 @@
     </div>
     <small class="text-muted font-italic">{{'paymentChargedAnnually' | i18n}}</small>
     <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+        <i class="bwi bwi-spinner bwi-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
         <span>{{'submit' | i18n}}</span>
     </button>
 </form>

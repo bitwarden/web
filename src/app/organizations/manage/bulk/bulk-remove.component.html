@@ -66,8 +66,9 @@
                 </ng-container>
             </div>
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary btn-submit" *ngIf="!done && users.length > 0" [disabled]="loading" (click)="submit()">
-                    <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
+                <button type="submit" class="btn btn-primary btn-submit" *ngIf="!done && users.length > 0"
+                    [disabled]="loading" (click)="submit()">
+                    <i class="bwi bwi-spinner bwi-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
                     <span>{{'removeUsers' | i18n}}</span>
                 </button>
                 <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">{{'close' | i18n}}</button>
