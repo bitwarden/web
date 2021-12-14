@@ -12,7 +12,7 @@ import { ProviderService } from 'jslib-common/abstractions/provider.service';
 
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
-import { WebProviderService } from '../services/provider.service';
+import { WebProviderService } from '../services/webProvider.service';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 import { Provider } from 'jslib-common/models/domain/provider';

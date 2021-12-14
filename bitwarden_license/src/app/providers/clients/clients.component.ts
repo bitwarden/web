@@ -27,7 +27,7 @@ import {
     ProviderOrganizationOrganizationDetailsResponse
 } from 'jslib-common/models/response/provider/providerOrganizationResponse';
 
-import { WebProviderService } from '../services/provider.service';
+import { WebProviderService } from '../services/webProvider.service';
 
 import { AddOrganizationComponent } from './add-organization.component';
 

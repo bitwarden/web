@@ -7,7 +7,7 @@ import { ModalService } from 'jslib-angular/services/modal.service';
 
 import { ProviderGuardService } from './services/provider-guard.service';
 import { ProviderTypeGuardService } from './services/provider-type-guard.service';
-import { WebProviderService } from './services/provider.service';
+import { WebProviderService } from './services/webProvider.service';
 
 import { ProvidersLayoutComponent } from './providers-layout.component';
 import { ProvidersRoutingModule } from './providers-routing.module';
