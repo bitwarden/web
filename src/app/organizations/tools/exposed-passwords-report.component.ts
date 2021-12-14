@@ -6,6 +6,7 @@ import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -13,7 +14,6 @@ import {
     ExposedPasswordsReportComponent as BaseExposedPasswordsReportComponent,
 } from '../../tools/exposed-passwords-report.component';
 
-import { StateService } from 'jslib-common/abstractions/state.service';
 import { Cipher } from 'jslib-common/models/domain/cipher';
 import { CipherView } from 'jslib-common/models/view/cipherView';
 
