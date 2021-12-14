@@ -83,9 +83,9 @@
     <div class="form-group">
         <label for="type">{{'type' | i18n}}</label>
         <select class="form-control" id="type" formControlName="configType">
-            <option value="0" disabled>{{'selectType' | i18n}}</option>
-            <option value="1">OpenID Connect</option>
-            <option value="2">SAML 2.0</option>
+            <option [ngValue]="0" disabled>{{'selectType' | i18n}}</option>
+            <option [ngValue]="1">OpenID Connect</option>
+            <option [ngValue]="2">SAML 2.0</option>
         </select>
     </div>
 
@@ -138,8 +138,8 @@
             <div class="form-group">
                 <label for="redirectBehavior">{{'oidcRedirectBehavior' | i18n}}</label>
                 <select class="form-control" formControlName="redirectBehavior" id="redirectBehavior">
-                    <option value="0">Redirect GET</option>
-                    <option value="1">Form POST</option>
+                    <option [ngValue]="0">Redirect GET</option>
+                    <option [ngValue]="1">Form POST</option>
                 </select>
             </div>
             <div class="form-group">
