@@ -1,16 +1,16 @@
-import { Directive } from '@angular/core';
+import { Directive } from "@angular/core";
 
-import { ExportService } from 'jslib-common/abstractions/export.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { ExportService } from "jslib-common/abstractions/export.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
-import { EventView } from 'jslib-common/models/view/eventView';
+import { EventView } from "jslib-common/models/view/eventView";
 
-import { EventResponse } from 'jslib-common/models/response/eventResponse';
-import { ListResponse } from 'jslib-common/models/response/listResponse';
+import { EventResponse } from "jslib-common/models/response/eventResponse";
+import { ListResponse } from "jslib-common/models/response/listResponse";
 
-import { EventService } from 'src/app/services/event.service';
+import { EventService } from "src/app/services/event.service";
 
 @Directive()
 export abstract class BaseEventsComponent {
@@ -27,9 +27,13 @@ export abstract class BaseEventsComponent {
 
     abstract readonly exportFileName: string;
 
-    constructor(protected eventService: EventService, protected i18nService: I18nService,
-        protected exportService: ExportService, protected platformUtilsService: PlatformUtilsService,
-        protected logService: LogService) {
+    constructor(
+        protected eventService: EventService,
+        protected i18nService: I18nService,
+        protected exportService: ExportService,
+        protected platformUtilsService: PlatformUtilsService,
+        protected logService: LogService
+    ) {
         const defaultDates = this.eventService.getDefaultDateFilters();
         this.start = defaultDates[0];
         this.end = defaultDates[1];
@@ -97,29 +101,35 @@ export abstract class BaseEventsComponent {
         this.refreshPromise = null;
     }
 
-    protected abstract requestEvents(startDate: string, endDate: string, continuationToken: string): Promise<ListResponse<EventResponse>>;
-    protected abstract getUserName(r: EventResponse, userId: string): { name: string, email: string };
+    protected abstract requestEvents(
+        startDate: string,
+        endDate: string,
+        continuationToken: string
+    ): Promise<ListResponse<EventResponse>>;
+    protected abstract getUserName(r: EventResponse, userId: string): { name: string; email: string };
 
     protected async loadAndParseEvents(startDate: string, endDate: string, continuationToken: string) {
         const response = await this.requestEvents(startDate, endDate, continuationToken);
 
-        const events = await Promise.all(response.data.map(async r => {
-            const userId = r.actingUserId == null ? r.userId : r.actingUserId;
-            const eventInfo = await this.eventService.getEventInfo(r);
-            const user = this.getUserName(r, userId);
-            return new EventView({
-                message: eventInfo.message,
-                humanReadableMessage: eventInfo.humanReadableMessage,
-                appIcon: eventInfo.appIcon,
-                appName: eventInfo.appName,
-                userId: userId,
-                userName: user != null ? user.name : this.i18nService.t('unknown'),
-                userEmail: user != null ? user.email : '',
-                date: r.date,
-                ip: r.ipAddress,
-                type: r.type,
-            });
-        }));
+        const events = await Promise.all(
+            response.data.map(async (r) => {
+                const userId = r.actingUserId == null ? r.userId : r.actingUserId;
+                const eventInfo = await this.eventService.getEventInfo(r);
+                const user = this.getUserName(r, userId);
+                return new EventView({
+                    message: eventInfo.message,
+                    humanReadableMessage: eventInfo.humanReadableMessage,
+                    appIcon: eventInfo.appIcon,
+                    appName: eventInfo.appName,
+                    userId: userId,
+                    userName: user != null ? user.name : this.i18nService.t("unknown"),
+                    userEmail: user != null ? user.email : "",
+                    date: r.date,
+                    ip: r.ipAddress,
+                    type: r.type,
+                });
+            })
+        );
         return { continuationToken: response.continuationToken, events: events };
     }
 
@@ -128,8 +138,11 @@ export abstract class BaseEventsComponent {
         try {
             dates = this.eventService.formatDateFilters(this.start, this.end);
         } catch (e) {
-            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('invalidDateRange'));
+            this.platformUtilsService.showToast(
+                "error",
+                this.i18nService.t("errorOccurred"),
+                this.i18nService.t("invalidDateRange")
+            );
             return null;
         }
         return dates;
@@ -150,7 +163,7 @@ export abstract class BaseEventsComponent {
         }
 
         const data = await this.exportService.getEventExport(events);
-        const fileName = this.exportService.getFileName(this.exportFileName, 'csv');
-        this.platformUtilsService.saveFile(window, data, { type: 'text/plain' }, fileName);
+        const fileName = this.exportService.getFileName(this.exportFileName, "csv");
+        this.platformUtilsService.saveFile(window, data, { type: "text/plain" }, fileName);
     }
 }

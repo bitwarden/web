@@ -1,14 +1,11 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-    selector: 'app-user-layout',
-    templateUrl: 'user-layout.component.html',
+    selector: "app-user-layout",
+    templateUrl: "user-layout.component.html",
 })
 export class UserLayoutComponent implements OnInit {
     ngOnInit() {
-        document.body.classList.remove('layout_frontend');
+        document.body.classList.remove("layout_frontend");
     }
 }
