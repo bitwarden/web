@@ -11,50 +11,50 @@ import { Utils } from "jslib-common/misc/utils";
 
 @Injectable()
 export class ModalService extends BaseModalService {
-    el: any = null;
-    modalOpen: boolean = false;
+  el: any = null;
+  modalOpen: boolean = false;
 
-    constructor(
-        componentFactoryResolver: ComponentFactoryResolver,
-        applicationRef: ApplicationRef,
-        injector: Injector,
-        private messagingService: MessagingService
-    ) {
-        super(componentFactoryResolver, applicationRef, injector);
-    }
+  constructor(
+    componentFactoryResolver: ComponentFactoryResolver,
+    applicationRef: ApplicationRef,
+    injector: Injector,
+    private messagingService: MessagingService
+  ) {
+    super(componentFactoryResolver, applicationRef, injector);
+  }
 
-    protected setupHandlers(modalRef: ModalRef) {
-        modalRef.onCreated.pipe(first()).subscribe(() => {
-            const modals = Array.from(document.querySelectorAll(".modal"));
-            if (modals.length > 0) {
-                this.el = jq(modals[0]);
-                this.el.modal("show");
+  protected setupHandlers(modalRef: ModalRef) {
+    modalRef.onCreated.pipe(first()).subscribe(() => {
+      const modals = Array.from(document.querySelectorAll(".modal"));
+      if (modals.length > 0) {
+        this.el = jq(modals[0]);
+        this.el.modal("show");
 
-                this.el.on("show.bs.modal", () => {
-                    modalRef.show();
-                    this.messagingService.send("modalShow");
-                });
-                this.el.on("shown.bs.modal", () => {
-                    modalRef.shown();
-                    this.messagingService.send("modalShown");
-                    if (!Utils.isMobileBrowser) {
-                        this.el.find("*[appAutoFocus]").focus();
-                    }
-                });
-                this.el.on("hide.bs.modal", () => {
-                    this.messagingService.send("modalClose");
-                });
-                this.el.on("hidden.bs.modal", () => {
-                    modalRef.closed();
-                    this.messagingService.send("modalClosed");
-                });
-            }
+        this.el.on("show.bs.modal", () => {
+          modalRef.show();
+          this.messagingService.send("modalShow");
         });
-
-        modalRef.onClose.pipe(first()).subscribe(() => {
-            if (this.el != null) {
-                this.el.modal("hide");
-            }
+        this.el.on("shown.bs.modal", () => {
+          modalRef.shown();
+          this.messagingService.send("modalShown");
+          if (!Utils.isMobileBrowser) {
+            this.el.find("*[appAutoFocus]").focus();
+          }
         });
-    }
+        this.el.on("hide.bs.modal", () => {
+          this.messagingService.send("modalClose");
+        });
+        this.el.on("hidden.bs.modal", () => {
+          modalRef.closed();
+          this.messagingService.send("modalClosed");
+        });
+      }
+    });
+
+    modalRef.onClose.pipe(first()).subscribe(() => {
+      if (this.el != null) {
+        this.el.modal("hide");
+      }
+    });
+  }
 }
