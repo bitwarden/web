@@ -9,44 +9,44 @@ import { TokenService } from "jslib-common/abstractions/token.service";
 import { Provider } from "jslib-common/models/domain/provider";
 
 @Component({
-    selector: "app-navbar",
-    templateUrl: "navbar.component.html",
+  selector: "app-navbar",
+  templateUrl: "navbar.component.html",
 })
 export class NavbarComponent implements OnInit {
-    selfHosted = false;
-    name: string;
-    email: string;
-    providers: Provider[] = [];
+  selfHosted = false;
+  name: string;
+  email: string;
+  providers: Provider[] = [];
 
-    constructor(
-        private messagingService: MessagingService,
-        private platformUtilsService: PlatformUtilsService,
-        private tokenService: TokenService,
-        private providerService: ProviderService,
-        private syncService: SyncService
-    ) {
-        this.selfHosted = this.platformUtilsService.isSelfHost();
+  constructor(
+    private messagingService: MessagingService,
+    private platformUtilsService: PlatformUtilsService,
+    private tokenService: TokenService,
+    private providerService: ProviderService,
+    private syncService: SyncService
+  ) {
+    this.selfHosted = this.platformUtilsService.isSelfHost();
+  }
+
+  async ngOnInit() {
+    this.name = await this.tokenService.getName();
+    this.email = await this.tokenService.getEmail();
+    if (this.name == null || this.name.trim() === "") {
+      this.name = this.email;
     }
 
-    async ngOnInit() {
-        this.name = await this.tokenService.getName();
-        this.email = await this.tokenService.getEmail();
-        if (this.name == null || this.name.trim() === "") {
-            this.name = this.email;
-        }
-
-        // Ensure provides are loaded
-        if ((await this.syncService.getLastSync()) == null) {
-            await this.syncService.fullSync(false);
-        }
-        this.providers = await this.providerService.getAll();
+    // Ensure provides are loaded
+    if ((await this.syncService.getLastSync()) == null) {
+      await this.syncService.fullSync(false);
     }
+    this.providers = await this.providerService.getAll();
+  }
 
-    lock() {
-        this.messagingService.send("lockVault");
-    }
+  lock() {
+    this.messagingService.send("lockVault");
+  }
 
-    logOut() {
-        this.messagingService.send("logout");
-    }
+  logOut() {
+    this.messagingService.send("logout");
+  }
 }
