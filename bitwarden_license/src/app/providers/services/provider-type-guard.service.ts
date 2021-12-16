@@ -5,16 +5,16 @@ import {
     Router,
 } from '@angular/router';
 
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { ProviderService } from 'jslib-common/abstractions/provider.service';
 
 import { Permissions } from 'jslib-common/enums/permissions';
 
 @Injectable()
 export class ProviderTypeGuardService implements CanActivate {
-    constructor(private userService: UserService, private router: Router) { }
+    constructor(private providerService: ProviderService, private router: Router) { }
 
     async canActivate(route: ActivatedRouteSnapshot) {
-        const provider = await this.userService.getProvider(route.params.providerId);
+        const provider = await this.providerService.get(route.params.providerId);
         const permissions = route.data == null ? null : route.data.permissions as Permissions[];
 
         if (

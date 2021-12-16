@@ -5,16 +5,16 @@ import {
     Router,
 } from '@angular/router';
 
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 
 import { Permissions } from 'jslib-common/enums/permissions';
 
 @Injectable()
 export class OrganizationTypeGuardService implements CanActivate {
-    constructor(private userService: UserService, private router: Router) { }
+    constructor(private organizationService: OrganizationService, private router: Router) { }
 
     async canActivate(route: ActivatedRouteSnapshot) {
-        const org = await this.userService.getOrganization(route.params.organizationId);
+        const org = await this.organizationService.get(route.params.organizationId);
         const permissions = route.data == null ? null : route.data.permissions as Permissions[];
 
         if (

@@ -3,20 +3,17 @@ import {
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import { ToasterService } from 'angular2-toaster';
 
-import { ValidationService } from 'jslib-angular/services/validation.service';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
-
-import { ConstantsService } from 'jslib-common/services/constants.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
+import { ValidationService } from 'jslib-angular/services/validation.service';
 
 import { SearchPipe } from 'jslib-angular/pipes/search.pipe';
 import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
@@ -89,12 +86,19 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
 
     private pagedUsersCount = 0;
 
-    constructor(protected apiService: ApiService, private searchService: SearchService,
-        protected i18nService: I18nService, private platformUtilsService: PlatformUtilsService,
-        protected toasterService: ToasterService, protected cryptoService: CryptoService,
-        private storageService: StorageService, protected validationService: ValidationService,
-        protected modalService: ModalService, private logService: LogService,
-        private searchPipe: SearchPipe, protected userNamePipe: UserNamePipe ) { }
+    constructor(
+        protected apiService: ApiService,
+        private searchService: SearchService,
+        protected i18nService: I18nService,
+        protected platformUtilsService: PlatformUtilsService,
+        protected cryptoService: CryptoService,
+        protected validationService: ValidationService,
+        protected modalService: ModalService,
+        private logService: LogService,
+        private searchPipe: SearchPipe,
+        protected userNamePipe: UserNamePipe,
+        protected stateService: StateService,
+    ) { }
 
     abstract edit(user: UserType): void;
     abstract getUsers(): Promise<ListResponse<UserType>>;
@@ -180,7 +184,7 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
 
     async remove(user: UserType) {
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('removeUserConfirmation'), this.userNamePipe.transform(user),
+            this.deleteWarningMessage(user), this.userNamePipe.transform(user),
             this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
 
         if (!confirmed) {
@@ -190,7 +194,8 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
         this.actionPromise = this.deleteUser(user.id);
         try {
             await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', this.userNamePipe.transform(user)));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('removedUserId',
+                this.userNamePipe.transform(user)));
             this.removeUser(user);
         } catch (e) {
             this.validationService.showError(e);
@@ -206,7 +211,8 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
         this.actionPromise = this.reinviteUser(user.id);
         try {
             await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenReinvited', this.userNamePipe.transform(user)));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('hasBeenReinvited',
+                this.userNamePipe.transform(user)));
         } catch (e) {
             this.validationService.showError(e);
         }
@@ -228,7 +234,8 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
                 this.actionPromise = this.confirmUser(user, publicKey);
                 await this.actionPromise;
                 updateUser(this);
-                this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', this.userNamePipe.transform(user)));
+                this.platformUtilsService.showToast('success', null, this.i18nService.t('hasBeenConfirmed',
+                    this.userNamePipe.transform(user)));
             } catch (e) {
                 this.validationService.showError(e);
                 throw e;
@@ -245,7 +252,7 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
             const publicKeyResponse = await this.apiService.getUserPublicKey(user.userId);
             const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
 
-            const autoConfirm = await this.storageService.get<boolean>(ConstantsService.autoConfirmFingerprints);
+            const autoConfirm = await this.stateService.getAutoConfirmFingerPrints();
             if (autoConfirm == null || !autoConfirm) {
                 const [modal] = await this.modalService.openViewRef(UserConfirmComponent, this.confirmModalRef, comp => {
                     comp.name = this.userNamePipe.transform(user);
@@ -286,6 +293,10 @@ export abstract class BasePeopleComponent<UserType extends ProviderUserUserDetai
             this.resetPaging();
         }
         return !searching && this.users && this.users.length > this.pageSize;
+    }
+
+    protected deleteWarningMessage(user: UserType): string {
+        return this.i18nService.t('removeUserConfirmation');
     }
 
     protected getCheckedUsers() {

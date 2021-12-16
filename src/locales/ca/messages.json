@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Booleà"
   },
+  "cfTypeLinked": {
+    "message": "Enllaçat",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Suprimeix"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Cognoms"
+  },
+  "fullName": {
+    "message": "Nom complet"
   },
   "address1": {
     "message": "Adreça 1"
@@ -833,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "Les claus de xifratge són exclusives de cada compte d'usuari Bitwarden, de manera que no podeu importar una exportació xifrada a un compte diferent."
   },
-  "exportMasterPassword": {
-    "message": "Introduïu la contrasenya mestra per exportar les dades de la caixa forta."
-  },
   "export": {
     "message": "Exporta"
   },
@@ -900,7 +904,7 @@
     "message": "Canvia el correu electrònic"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Proceeding will change your account email address. It will not change the email address used for two-factor authentication. You can change this email address in the Two-Step Login settings."
+    "message": "Si continueu, canviarà l'adreça de correu electrònic del vostre compte. No canviarà l'adreça de correu electrònic utilitzada per a l'autenticació de dos factors. Podeu canviar aquesta adreça de correu electrònic a la configuració d'inici de sessió en dues passes."
   },
   "newEmail": {
     "message": "Nou correu electrònic"
@@ -1002,7 +1006,7 @@
     "message": "S'ha purgat la caixa forta de l'organització."
   },
   "vaultAccessedByProvider": {
-    "message": "Vault accessed by provider."
+    "message": "Caixa forta accedida pel proveïdor."
   },
   "purgeVaultDesc": {
     "message": "Procediu a continuació per esborrar tots els elements i carpetes de la vostra caixa forta. Els elements compartits i que pertanyen a una organització no se suprimiran."
@@ -1736,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "El vostre pla inclou una prova gratuïta de 7 dies. El mètode de pagament no es cobrarà fins que no s'haja acabat la prova. La facturació es farà de manera recurrent cada $INTERVAL$. Podeu cancel·lar-ho en qualsevol moment.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "El vostre pla inclou una prova gratuïta de 7 dies. El mètode de pagament no es cobrarà fins que no s'haja acabat la prova. La facturació es farà de manera recurrent cada $INTERVAL$. Podeu cancel·lar-ho en qualsevol moment."
   },
   "paymentInformation": {
     "message": "Informació de pagament"
@@ -2155,7 +2153,7 @@
     "message": "Polítiques"
   },
   "singleSignOn": {
-    "message": "Single Sign-On"
+    "message": "Inici de sessió únic"
   },
   "editPolicy": {
     "message": "Edita la política"
@@ -2177,6 +2175,9 @@
   },
   "removeUserConfirmation": {
     "message": "Esteu segur que voleu suprimir aquest usuari?"
+  },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Warning! This user requires Key Connector to manage their encryption. Removing this user from your organization will permanently disable their account. This action cannot be undone. Do you want to proceed?"
   },
   "externalId": {
     "message": "Id extern"
@@ -2248,7 +2249,7 @@
     "message": "Confirmat"
   },
   "clientOwnerEmail": {
-    "message": "Client Owner Email"
+    "message": "Correu electrònic del propietari del client"
   },
   "owner": {
     "message": "Propietari"
@@ -2257,7 +2258,7 @@
     "message": "L'usuari d'accés més elevat que pot gestionar tots els aspectes de la vostra organització."
   },
   "clientOwnerDesc": {
-    "message": "This user should be independent of the Provider. If the Provider is disassociated with the organization, this user will maintain ownership of the organization."
+    "message": "Aquest usuari ha de ser independent del proveïdor. Si el proveïdor està desvinculat de l'organització, aquest usuari mantindrà la propietat de l'organització."
   },
   "admin": {
     "message": "Administrador"
@@ -2593,7 +2594,7 @@
     }
   },
   "createdOrganizationId": {
-    "message": "Created organization $ID$.",
+    "message": "Organització $ID$ creada.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2602,7 +2603,7 @@
     }
   },
   "addedOrganizationId": {
-    "message": "Added organization $ID$.",
+    "message": "Organització $ID$ afegida.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2611,7 +2612,7 @@
     }
   },
   "removedOrganizationId": {
-    "message": "Removed organization $ID$.",
+    "message": "Organització $ID$ suprimida.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2620,7 +2621,7 @@
     }
   },
   "accessedClientVault": {
-    "message": "Accessed $ID$ organization vault.",
+    "message": "S'ha accedit a la caixa forta de l'organització $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2657,6 +2658,9 @@
   },
   "resendInvitation": {
     "message": "Tornar a enviar invitació"
+  },
+  "resendEmail": {
+    "message": "Resend Email"
   },
   "hasBeenReinvited": {
     "message": "S'ha reconvidat a $USER$.",
@@ -2811,10 +2815,6 @@
     "message": "Actualitzeu el compte a un altre pla proporcionant la informació següent. Assegureu-vos que heu afegit un mètode de pagament actiu al compte.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Poseu-vos en contacte amb l'assistència al client si voleu canviar el vostre pla. Assegureu-vos que heu afegit un mètode de pagament actiu al compte.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Factura #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2882,14 +2882,14 @@
     "message": "Introduïu la vostra id d'instal·lació"
   },
   "limitSubscriptionDesc": {
-    "message": "Set a seat limit for your subscription. Once this limit is reached, you will not be able to invite new users."
+    "message": "Estableix un límit de places per a la teua subscripció. Un vegada s'arribe a aquest límit, no podreu convidar usuaris nous."
   },
   "maxSeatLimit": {
-    "message": "Maximum Seat Limit (optional)",
+    "message": "Límit màxim de places (opcional)",
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
-    "message": "Max potential seat cost"
+    "message": "Cost potencial màxim per plaça"
   },
   "addSeats": {
     "message": "Afegeix reserves",
@@ -2900,7 +2900,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionDesc": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "Els ajustos a la vostra subscripció donaran lloc a canvis prorratejats als vostres totals de facturació. Si els nous usuaris convidats superen les vostres places de subscripció, rebreu immediatament un càrrec prorratejat pels usuaris addicionals."
   },
   "subscriptionUserSeats": {
     "message": "La vostra subscripció permet un total de $COUNT$ usuaris.",
@@ -2912,25 +2912,25 @@
     }
   },
   "limitSubscription": {
-    "message": "Limit Subscription (Optional)"
+    "message": "Limita la subscripció (opcional)"
   },
   "subscriptionSeats": {
-    "message": "Subscription Seats"
+    "message": "Places de subscripció"
   },
   "subscriptionUpdated": {
-    "message": "Subscription updated"
+    "message": "S'ha actualitzat la subscripció"
   },
   "additionalOptions": {
-    "message": "Additional Options"
+    "message": "Opcions addicionals"
   },
   "additionalOptionsDesc": {
-    "message": "For additional help in managing your subscription, please contact Customer Support."
+    "message": "Per obtenir ajuda addicional per gestionar la vostra subscripció, poseu-vos en contacte amb el servei d'atenció al client."
   },
   "subscriptionUserSeatsUnlimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "Els ajustos a la vostra subscripció donaran lloc a canvis prorratejats als vostres totals de facturació. Si els nous usuaris convidats superen les vostres places de subscripció, rebreu immediatament un càrrec prorratejat pels usuaris addicionals."
   },
   "subscriptionUserSeatsLimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users until your $MAX$ seat limit is reached.",
+    "message": "Els ajustaments a la vostra subscripció es traduiran en canvis prorratejats en els vostres totals de facturació. Si els usuaris recentment convidats excedeixen les vostres places de subscripció, rebreu immediatament un càrrec previst dels usuaris addicionals fins que s'aconseguisca arribar al vostre límit de places ($MAX$).",
     "placeholders": {
       "max": {
         "content": "$1",
@@ -2938,8 +2938,35 @@
       }
     }
   },
+  "subscriptionFreePlan": {
+    "message": "No podeu convidar més de $COUNT$ usuaris sense actualitzar el vostre pla.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "No podeu convidar més de $COUNT$ usuaris sense actualitzar el vostre pla. Poseu-vos en contacte amb el servei d'assistència al client per actualitzar.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Your subscription allows for a total of $COUNT$ users. Your plan is sponsored and billed to an external organization.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
   "subscriptionMaxReached": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. You cannot invite more than $COUNT$ users without increasing your subscription seats.",
+    "message": "Els ajustos a la vostra subscripció donaran lloc a canvis prorratejats als vostres totals de facturació. No podeu convidar més de $COUNT$ usuaris sense augmentar les vostres places de subscripció.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3817,26 +3844,29 @@
   "accessReports": {
     "message": "Informes d’accés"
   },
+  "missingPermissions": {
+    "message": "No teniu permisos per realitzar aquesta acció."
+  },
   "manageAllCollections": {
     "message": "Administra totes les col·leccions"
   },
   "createNewCollections": {
-    "message": "Create New Collections"
+    "message": "Crea noves col·leccions"
   },
   "editAnyCollection": {
-    "message": "Edit Any Collection"
+    "message": "Edita alguna col·lecció"
   },
   "deleteAnyCollection": {
-    "message": "Delete Any Collection"
+    "message": "Suprimeix alguna la col·lecció"
   },
   "manageAssignedCollections": {
     "message": "Administra les col·leccions assignades"
   },
   "editAssignedCollections": {
-    "message": "Edit Assigned Collections"
+    "message": "Edita col·leccions asignades"
   },
   "deleteAssignedCollections": {
-    "message": "Delete Assigned Collections"
+    "message": "Suprimeix col·leccions asignades"
   },
   "manageGroups": {
     "message": "Administra els Grups"
@@ -3854,7 +3884,7 @@
     "message": "Gestiona el restabliment de la contrasenya"
   },
   "disableRequiredError": {
-    "message": "You must manually disable the $POLICYNAME$ policy before this policy can be disabled.",
+    "message": "Heu de desactivar manualment la política $POLICYNAME$ abans que aquesta política es puga desactivar.",
     "placeholders": {
       "policyName": {
         "content": "$1",
@@ -3866,7 +3896,7 @@
     "message": "Una política d’organització afecta les vostres opcions de propietat."
   },
   "personalOwnershipPolicyInEffectImports": {
-    "message": "An organization policy has disabled importing items into your personal vault."
+    "message": "Una política d'organització ha desactivat la importació d'elements a la vostra caixa forta personal."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Desactiva la propietat personal per als usuaris de l'organització"
@@ -4025,7 +4055,16 @@
     }
   },
   "eventResetSsoLink": {
-    "message": "Reset Sso link for user $ID$",
+    "message": "Restableix l'enllaç SSO per a l'usuari $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "firstSsoLogin": {
+    "message": "$ID$ logged in using Sso for the first time",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4112,19 +4151,19 @@
     "message": "Esteu segur que voleu eliminar els usuaris següents? El procés pot tardar uns segons a completar-se i no es pot interrompre ni cancel·lar."
   },
   "theme": {
-    "message": "Theme"
+    "message": "Tema"
   },
   "themeDesc": {
-    "message": "Choose a theme for your web vault."
+    "message": "Trieu el tema per a la caixa forta."
   },
   "themeSystem": {
-    "message": "Use System Theme"
+    "message": "Utilitza tema del sistema"
   },
   "themeDark": {
-    "message": "Dark"
+    "message": "Fosc"
   },
   "themeLight": {
-    "message": "Light"
+    "message": "Clar"
   },
   "confirmSelected": {
     "message": "Confirma la selecció"
@@ -4157,70 +4196,70 @@
     "message": "L'administració d'usuaris també ha d'estar habilitada amb el permís de l'administració de restabliment de contrasenyes"
   },
   "setupProvider": {
-    "message": "Provider Setup"
+    "message": "Configuració del proveïdor"
   },
   "setupProviderLoginDesc": {
-    "message": "You've been invited to setup a new provider. To continue, you need to log in or create a new Bitwarden account."
+    "message": "T'han convidat a configurar un proveïdor nou. Per continuar, heu d'iniciar sessió o crear un nou compte de Bitwarden."
   },
   "setupProviderDesc": {
-    "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
+    "message": "Introduïu els detalls a continuació per completar la configuració del proveïdor. Poseu-vos en contacte amb el servei d'atenció al client si teniu cap pregunta."
   },
   "providerName": {
-    "message": "Provider Name"
+    "message": "Nom del proveïdor"
   },
   "providerSetup": {
-    "message": "The provider has been set up."
+    "message": "S'ha configurat el proveïdor."
   },
   "clients": {
     "message": "Clients"
   },
   "providerAdmin": {
-    "message": "Provider Admin"
+    "message": "Administrador del proveïdor"
   },
   "providerAdminDesc": {
-    "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
+    "message": "L'usuari amb el màxim accés que pot gestionar tots els aspectes del vostre proveïdor, així com accedir i gestionar organitzacions de clients."
   },
   "serviceUser": {
-    "message": "Service User"
+    "message": "Usuari del servei"
   },
   "serviceUserDesc": {
-    "message": "Service users can access and manage all client organizations."
+    "message": "Els usuaris del servei poden accedir i gestionar totes les organitzacions client."
   },
   "providerInviteUserDesc": {
-    "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Convida un nou usuari a la vostra organització introduint l'adreça electrònica del compte de Bitwarden a continuació. Si encara no tenen un compte de Bitwarden, se us demanarà que creeu un compte nou."
   },
   "joinProvider": {
-    "message": "Join Provider"
+    "message": "Uniu-vos al proveïdor"
   },
   "joinProviderDesc": {
-    "message": "You've been invited to join the provider listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Heu estat convidat a unir-vos al proveïdor llistat més amunt. Per acceptar la invitació, heu d'iniciar sessió o crear un compte nou a Bitwarden."
   },
   "providerInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask a provider admin to send a new invitation."
+    "message": "No es pot acceptar la invitació. Demaneu a l'administrador d'una organització que envie una invitació nova."
   },
   "providerInviteAcceptedDesc": {
-    "message": "You can access this provider once an administrator confirms your membership. We'll send you an email when that happens."
+    "message": "Podeu accedir a aquesta organització una vegada que un administrador confirme la vostra pertinença. Rebreu un correu electrònic quan això passe."
   },
   "providerUsersNeedConfirmed": {
-    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the provider until they are confirmed."
+    "message": "Teniu usuaris que han acceptat la seua invitació, però encara cal confirmar-la. Els usuaris no tindran accés al proveïdor fins que estiguen confirmats."
   },
   "provider": {
-    "message": "Provider"
+    "message": "Proveïdor"
   },
   "newClientOrganization": {
-    "message": "New Client Organization"
+    "message": "Nova organització de clients"
   },
   "newClientOrganizationDesc": {
-    "message": "Create a new client organization that will be associated with you as the provider. You will be able to access and manage this organization."
+    "message": "Creeu una nova organització client que s'associarà amb vosaltres com a proveïdor. Podreu accedir i gestionar aquesta organització."
   },
   "addExistingOrganization": {
-    "message": "Add Existing Organization"
+    "message": "Afig organització existent"
   },
   "myProvider": {
-    "message": "My Provider"
+    "message": "El meu proveïdor"
   },
   "addOrganizationConfirmation": {
-    "message": "Are you sure you want to add $ORGANIZATION$ as a client to $PROVIDER$?",
+    "message": "Esteu segur que voleu afegir $ORGANIZATION$ com a client a $PROVIDER$?",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4233,7 +4272,7 @@
     }
   },
   "organizationJoinedProvider": {
-    "message": "Organization was successfully added to the provider"
+    "message": "L'organització s'ha afegit correctament al proveïdor"
   },
   "accessingUsingProvider": {
     "message": "Accessing organization using provider $PROVIDER$",
@@ -4378,75 +4417,321 @@
     "message": "Additional/Custom User ID Claim Types (comma delimited)"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "Tipus de reclamació de correu electrònic addicionals/personalitzats (delimitats per comes)"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "Tipus de reclamació de noms addicionals/personalitzats (delimitats per comes)"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "Valors de referència de classe de context d'autenticació sol·licitats (acr_values)"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "Valor esperat de la reclamació \"acr\" en resposta (validació d'acr)"
   },
   "spEntityId": {
-    "message": "SP Entity ID"
+    "message": "ID de l'entitat SP"
   },
   "spMetadataUrl": {
-    "message": "SAML 2.0 Metadata URL"
+    "message": "URL de metadades SAML 2.0"
   },
   "spAcsUrl": {
-    "message": "Assertion Consumer Service (ACS) URL"
+    "message": "URL del Servei de Consum d'Assercions (ACS)"
   },
   "spNameIdFormat": {
-    "message": "Name ID Format"
+    "message": "Format de l'ID del nom"
   },
   "spOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "Algoritme de signatura d'eixida"
   },
   "spSigningBehavior": {
-    "message": "Signing Behavior"
+    "message": "Comportament de signatura"
   },
   "spMinIncomingSigningAlgorithm": {
-    "message": "Minimum Incoming Signing Algorithm"
+    "message": "Algoritme de signatura entrant mínim"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "Voleu les afirmacions signades"
   },
   "spValidateCertificates": {
-    "message": "Validate Certificates"
+    "message": "Validar certificats"
   },
   "idpEntityId": {
-    "message": "Entity ID"
+    "message": "Identificador de l'entitat"
   },
   "idpBindingType": {
-    "message": "Binding Type"
+    "message": "Tipus de vinculació"
   },
   "idpSingleSignOnServiceUrl": {
-    "message": "Single Sign On Service URL"
+    "message": "URL del servei d'inici de sessió únic"
   },
   "idpSingleLogoutServiceUrl": {
-    "message": "Single Log Out Service URL"
+    "message": "URL del servei de tancament de sessió únic"
   },
   "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
+    "message": "URL del servei de resolució d'artefactes"
   },
   "idpX509PublicCert": {
-    "message": "X509 Public Certificate"
+    "message": "Certificat públic X509"
   },
   "idpOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "Algoritme de signatura d'eixida"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "Permet la resposta d'autenticació no sol·licitada"
   },
   "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+    "message": "Desactiva les sol·licituds de tancament de sessió d'eixida"
   },
   "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+    "message": "Voleu que les sol·licituds d'autenticació estiguen signades"
   },
   "ssoSettingsSaved": {
-    "message": "Single Sign-On configuration was saved."
+    "message": "S'ha guardat la configuració de l'inici de sessió únic."
+  },
+  "sponsoredFamilies": {
+    "message": "Free Bitwarden Families"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "You and your family are eligible for Free Bitwarden Families. Redeem with your personal email to keep your data secure even when you are not at work."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Redeem your Free Bitwarden for Families plan today to keep your data secure even when you are not at work."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "The Bitwarden for Families plan include"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Premium access for up to 6 users"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Shared collections for Family secrets"
+  },
+  "badToken": {
+    "message": "The link is no longer valid. Please have the sponsor resend the offer."
+  },
+  "reclaimedFreePlan": {
+    "message": "Reclaimed free plan"
+  },
+  "redeem": {
+    "message": "Redeem"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Select the organization you would like sponsored"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Which Free Families offer would you like to redeem?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Enter your personal email to redeem Bitwarden Families"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "If you leave or are removed from the sponsoring organization, your Families plan will expire at the end of the billing period."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Accept offer for an existing organization or create a new Families organization."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "You've been offered a free Bitwarden Families Plan Organization. To continue, you need to log in to the account that received the offer."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Unable to accept offer. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Accept Free Bitwarden Families"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Free Bitwarden Families offer successfully redeemed"
+  },
+  "redeemed": {
+    "message": "Redeemed"
+  },
+  "redeemedAccount": {
+    "message": "Redeemed Account"
+  },
+  "revokeAccount": {
+    "message": "Revoke account $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Free Families Plan"
+  },
+  "redeemNow": {
+    "message": "Redeem Now"
+  },
+  "recipient": {
+    "message": "Recipient"
+  },
+  "removeSponsorship": {
+    "message": "Remove Sponsorship"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "After removing a sponsorship, you will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "sponsorshipCreated": {
+    "message": "Sponsorship Created"
+  },
+  "revoke": {
+    "message": "Revoke"
+  },
+  "emailSent": {
+    "message": "Email Sent"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "After removing this account, the Families organization owner will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Sponsorship Removed"
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "Unable to reach the Key Connector, try again later."
+  },
+  "keyConnectorUrl": {
+    "message": "Key Connector URL"
+  },
+  "sendVerificationCode": {
+    "message": "Send a verification code to your email"
+  },
+  "sendCode": {
+    "message": "Send Code"
+  },
+  "codeSent": {
+    "message": "Code Sent"
+  },
+  "verificationCode": {
+    "message": "Verification Code"
+  },
+  "confirmIdentity": {
+    "message": "Confirm your identity to continue."
+  },
+  "verificationCodeRequired": {
+    "message": "Verification code is required."
+  },
+  "invalidVerificationCode": {
+    "message": "Invalid verification code"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ is using SSO with a self-hosted key server. A master password is no longer required to log in for members of this organization.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Leave Organization"
+  },
+  "removeMasterPassword": {
+    "message": "Remove Master Password"
+  },
+  "removedMasterPassword": {
+    "message": "Master password removed."
+  },
+  "allowSso": {
+    "message": "Allow SSO authentication"
+  },
+  "allowSsoDesc": {
+    "message": "Once set up, your configuration will be saved and members will be able to authenticate using their Identity Provider credentials."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Enable the",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO Authentication policy",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "to require all members to log in with SSO.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
+  },
+  "memberDecryptionOption": {
+    "message": "Member Decryption Options"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Once authenticated, members will decrypt vault data using their Master Passwords."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt vault data. Contact Bitwarden Support for set up assistance."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
+  },
+  "enabledSso": {
+    "message": "Enabled SSO"
+  },
+  "disabledSso": {
+    "message": "Disabled SSO"
+  },
+  "enabledKeyConnector": {
+    "message": "Enabled Key Connector"
+  },
+  "disabledKeyConnector": {
+    "message": "Disabled Key Connector"
+  },
+  "keyConnectorWarning": {
+    "message": "Once members begin using Key Connector, your Organization cannot revert to Master Password decryption. Proceed only if you are comfortable deploying and managing a key server."
+  },
+  "migratedKeyConnector": {
+    "message": "Migrated to Key Connector"
+  },
+  "paymentSponsored": {
+    "message": "Please provide a payment method to associate with the organization. Don't worry, we won't charge you anything unless you select additional features or your sponsorship expires. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "The sponsorship offer has expired. You may delete the organization you created to avoid a charge at the end of your 7 day trial. Otherwise you may close this prompt to keep the organization and assume billing responsibility."
+  },
+  "newFamiliesOrganization": {
+    "message": "New Families Organization"
+  },
+  "acceptOffer": {
+    "message": "Accept Offer"
+  },
+  "sponsoringOrg": {
+    "message": "Sponsoring Organization"
+  },
+  "keyConnectorTest": {
+    "message": "Test"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Success! Key Connector reached."
+  },
+  "keyConnectorTestFail": {
+    "message": "Cannot reach Key Connector. Check URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "The sponsorship offer has expired."
+  },
+  "freeWithSponsorship": {
+    "message": "FREE with sponsorship"
   }
 }

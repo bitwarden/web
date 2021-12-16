@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Логічне значення"
   },
+  "cfTypeLinked": {
+    "message": "Пов'язано",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Вилучити"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Прізвище"
+  },
+  "fullName": {
+    "message": "Повне ім'я"
   },
   "address1": {
     "message": "Адреса 1"
@@ -832,9 +839,6 @@
   },
   "encExportAccountWarningDesc": {
     "message": "Ключі шифрування унікальні для кожного облікового запису користувача Bitwarden, тому ви не можете імпортувати зашифрований експорт до іншого облікового запису."
-  },
-  "exportMasterPassword": {
-    "message": "Введіть головний пароль, щоб експортувати дані сховища."
   },
   "export": {
     "message": "Експорт"
@@ -1736,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Ваш тарифний план має 7 днів безплатного пробного періоду. З вас не буде стягнуто плату до завершення цього періоду. Оплата стягуватиметься автоматично кожен $INTERVAL$. Ви можете скасувати це в будь-який час.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Ваш тарифний план має 7 днів безплатного пробного періоду. З вас не буде стягнуто плату до завершення цього періоду. Ви можете скасувати це в будь-який час."
   },
   "paymentInformation": {
     "message": "Інформація про оплату"
@@ -2177,6 +2175,9 @@
   },
   "removeUserConfirmation": {
     "message": "Ви справді хочете вилучити цього користувача?"
+  },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Попередження! Цей користувач потребує Key Connector для керування шифруванням. Вилучення цього користувача з вашої організації остаточно вимкне його обліковий запис. Цю дію неможливо скасувати. Ви хочете продовжити?"
   },
   "externalId": {
     "message": "Зовнішній ID"
@@ -2658,6 +2659,9 @@
   "resendInvitation": {
     "message": "Повторно надіслати запрошення"
   },
+  "resendEmail": {
+    "message": "Надіслати лист повторно"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ було повторно запрошено.",
     "placeholders": {
@@ -2804,15 +2808,11 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Змінити тарифний план",
+    "message": "Оновити тарифний план",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "Перейдіть на передплату вищого рівня, вказавши інформацію внизу. Переконайтеся, що ваш обліковий запис має актуальні дані про спосіб оплати.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
-  "changeBillingPlanDesc": {
-    "message": "Зв'яжіться зі службою підтримки клієнтів, якщо ви бажаєте змінити свій тарифний план. Будь ласка, переконайтеся, що у вас є активний спосіб оплати доданий до облікового запису.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
@@ -2935,6 +2935,33 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "Ви не можете запросити більше $COUNT$ користувачів без переходу на вищий тарифний план.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "Ви не можете запросити більше $COUNT$ користувачів без оновлення вашого тарифного плану. Будь ласка, зв'яжіться зі службою підтримки для оновлення.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Ваша передплата дозволяє всього $COUNT$ користувачів. Ваш тарифний план спонсорується та оплачується сторонньою організацією.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,6 +3844,9 @@
   "accessReports": {
     "message": "Доступ до звітів"
   },
+  "missingPermissions": {
+    "message": "У вас недостатньо повноважень для виконання цієї дії."
+  },
   "manageAllCollections": {
     "message": "Керування всіма збірками"
   },
@@ -4026,6 +4056,15 @@
   },
   "eventResetSsoLink": {
     "message": "Скинути SSO-посилання для користувача $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "firstSsoLogin": {
+    "message": "$ID$ вперше виконує вхід з використанням SSO",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4448,5 +4487,251 @@
   },
   "ssoSettingsSaved": {
     "message": "Конфігурацію єдиного входу збережено."
+  },
+  "sponsoredFamilies": {
+    "message": "Bitwarden Families безплатно"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Ви та ваша сім'я маєте право на Bitwarden Families безплатно. Активуйте доступ з особистою електронною адресою, щоб зберігати свої дані захищеними навіть коли ви не на роботі."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Активуйте сьогодні безплатний тарифний план Bitwarden Families, щоб зберігати свої дані захищеними, навіть коли ви не на роботі."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Тариф Bitwarden Families включає"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Преміум-доступ до 6 користувачів"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Спільні збірки для обміну паролями"
+  },
+  "badToken": {
+    "message": "Посилання більше не дійсне. Попросіть спонсора повторно надіслати пропозицію."
+  },
+  "reclaimedFreePlan": {
+    "message": "Безплатний тариф відновлено"
+  },
+  "redeem": {
+    "message": "Активувати"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Оберіть організацію, від якої ви бажаєте бути спонсорованими"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Яку безплатну сімейну пропозицію ви бажаєте активувати?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Введіть особисту електронну адресу для активації Bitwarden Families"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Якщо ви покинете цю організацію, ваш доступ до тарифного плану Bitwarden Families завершиться в кінці оплаченого періоду."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Прийняти пропозицію для наявної організації або створити нову сімейну організацію."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Вам запропоновано безплатний тарифний план Bitwarden Families від організації. Щоб продовжити, вам необхідно увійти в обліковий запис, на який вам прийшла пропозиція."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Не вдалося прийняти пропозицію. Будь ласка, повторно надішліть лист з пропозицією зі свого корпоративного облікового запису та спробуйте знову."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Не вдалося прийняти пропозицію. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Прийняти безплатно Bitwarden Families"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Пропозицію безплатного доступу Bitwarden Families успішно активовано"
+  },
+  "redeemed": {
+    "message": "Активовано"
+  },
+  "redeemedAccount": {
+    "message": "Обліковий запис активовано"
+  },
+  "revokeAccount": {
+    "message": "Відкликати обліковий запис $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Повторно надіслати лист про спонсорування до $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Безплатний сімейний план"
+  },
+  "redeemNow": {
+    "message": "Активувати зараз"
+  },
+  "recipient": {
+    "message": "Отримувач"
+  },
+  "removeSponsorship": {
+    "message": "Вилучити спонсорування"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "Після вилучення спонсорування, ви будете відповідальні за цю передплату та пов'язані рахунки. Ви дійсно хочете продовжити?"
+  },
+  "sponsorshipCreated": {
+    "message": "Спонсорування створено"
+  },
+  "revoke": {
+    "message": "Відкликати"
+  },
+  "emailSent": {
+    "message": "Лист надіслано"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "Після вилучення цього облікового запису, власники сімейної організації будуть відповідальними за цю передплату та пов'язані рахунки. Ви дійсно хочете продовжити?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Спонсорування вилучено"
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "Не вдається отримати доступ до Key Connector. Спробуйте знову пізніше."
+  },
+  "keyConnectorUrl": {
+    "message": "URL-адреса Key Connector"
+  },
+  "sendVerificationCode": {
+    "message": "Надіслати код підтвердження е-поштою"
+  },
+  "sendCode": {
+    "message": "Надіслати код"
+  },
+  "codeSent": {
+    "message": "Код надіслано"
+  },
+  "verificationCode": {
+    "message": "Код підтвердження"
+  },
+  "confirmIdentity": {
+    "message": "Підтвердьте свої облікові дані для продовження."
+  },
+  "verificationCodeRequired": {
+    "message": "Потрібний код підтвердження."
+  },
+  "invalidVerificationCode": {
+    "message": "Недійсний код підтвердження"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ використовує SSO з власним сервером ключів. Головний пароль для учасників цієї організації більше не вимагається.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Покинути організацію"
+  },
+  "removeMasterPassword": {
+    "message": "Вилучити головний пароль"
+  },
+  "removedMasterPassword": {
+    "message": "Головний пароль вилучено."
+  },
+  "allowSso": {
+    "message": "Дозволити авторизацію SSO"
+  },
+  "allowSsoDesc": {
+    "message": "Після налаштування вашу конфігурацію буде збережено та учасники зможуть авторизуватися з використанням облікових даних їхнього постачальника."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Увімкнути",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "Політика авторизації SSO",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "щоб вимагати в усіх учасників виконувати вхід з SSO.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "Для встановлення розшифрування Key Connector необхідні політики авторизації SSO та єдиної організації."
+  },
+  "memberDecryptionOption": {
+    "message": "Налаштування розшифрування учасників"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Після авторизації учасники розшифровуватимуть дані сховища з використанням їх головного пароля."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Під'єднайте вхід з SSO до свого власного сервера ключів розшифрування. Скориставшись цією можливістю, учасникам не потрібен буде головний пароль для розшифрування даних сховища. Для отримання допомоги з налаштуванням зв'яжіться зі службою підтримки Bitwarden."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Вхід з SSO та розшифрування Key Connector\" увімкнено. Ця політика застосовується лише для власників та адміністраторів."
+  },
+  "enabledSso": {
+    "message": "SSO увімкнено"
+  },
+  "disabledSso": {
+    "message": "SSO вимкнено"
+  },
+  "enabledKeyConnector": {
+    "message": "Key Connector увімкнено"
+  },
+  "disabledKeyConnector": {
+    "message": "Key Connector вимкнено"
+  },
+  "keyConnectorWarning": {
+    "message": "Як тільки учасники почнуть користуватися Key Connector, ваша організація не зможе повернутися до розшифрування з головним паролем. Продовжуйте тільки якщо ви готові розгортати сервер ключів та керувати ним."
+  },
+  "migratedKeyConnector": {
+    "message": "Виконано перехід на Key Connector"
+  },
+  "paymentSponsored": {
+    "message": "Будь ласка, вкажіть спосіб оплати для організації. Не хвилюйтеся, гроші не списуватимуться доки ви не виберете додаткові функції чи не завершиться термін дії передплати. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "Термін дії спонсорської пропозиції завершився. Ви можете видалити створену організацію, щоб уникнути списання грошей після завершення 7 днів пробного періоду. Або ж ви можете закрити цей запит, щоб зберегти організацію та прийняти відповідальність за сплату рахунків."
+  },
+  "newFamiliesOrganization": {
+    "message": "Нова сімейна організація"
+  },
+  "acceptOffer": {
+    "message": "Прийняти пропозицію"
+  },
+  "sponsoringOrg": {
+    "message": "Організація спонсорування"
+  },
+  "keyConnectorTest": {
+    "message": "Тест"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Успішно! Key Connector під'єднано."
+  },
+  "keyConnectorTestFail": {
+    "message": "Неможливо під'єднатися до Key Connector. Перевірте URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "Термін дії пропозиції спонсорування завершилась."
+  },
+  "freeWithSponsorship": {
+    "message": "БЕЗПЛАТНО зі спонсоруванням"
   }
 }

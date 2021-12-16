@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Boolescher Wert"
   },
+  "cfTypeLinked": {
+    "message": "Verknüpft",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Entfernen"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Nachname"
+  },
+  "fullName": {
+    "message": "Vollständiger Name"
   },
   "address1": {
     "message": "Adresse 1"
@@ -832,9 +839,6 @@
   },
   "encExportAccountWarningDesc": {
     "message": "Die Verschlüsselungscodes eines Kontos sind für jedes Bitwarden Benutzerkonto einzigartig, deshalb können Sie keinen verschlüsselten Export in ein anderes Konto importieren."
-  },
-  "exportMasterPassword": {
-    "message": "Geben Sie das Master-Passwort ein, um Ihre Tresordaten zu exportieren."
   },
   "export": {
     "message": "Export"
@@ -1440,7 +1444,7 @@
     "message": "Anmeldungen ohne 2FA gefunden"
   },
   "inactive2faFoundDesc": {
-    "message": "Wir haben $COUNT$ Webseiten in Ihrem Tresor gefunden, die eine Zwei-Faktor Authentifizierung anbieten (laut twofactorauth.org), aber bei denen diese Funktion möglicherweise nicht aktiviert ist. Um diese Accounts abzusichern, sollten Sie die Zwei-Faktor Authentifizierung aktivieren.",
+    "message": "Wir haben $COUNT$ Webseite(n) in Ihrem Tresor gefunden, die eine Zwei-Faktor Authentifizierung anbieten (laut 2fa.directory), aber bei denen diese Funktion möglicherweise nicht aktiviert ist. Um diese Accounts abzusichern, sollten Sie die Zwei-Faktor Authentifizierung aktivieren.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1736,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Ihr Abo startet mit einer kostenlosen Probezeit von 7 Tagen. Ihre Karte wird nicht belastet, bis die Probezeit abgelaufen ist. Die Rechnung kommt wiederkehrend jeden/jedes $INTERVAL$. Sie können jederzeit kündigen.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Ihr Abo startet mit einer kostenlosen Probezeit von 7 Tagen. Ihre Karte wird nicht belastet, bis die Probezeit abgelaufen ist. Die Rechnung kommt wiederkehrend jeden/jedes $INTERVAL$. Sie können jederzeit kündigen."
   },
   "paymentInformation": {
     "message": "Zahlungsinformationen"
@@ -2178,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "Sind Sie sich sicher, dass Sie diesen Benutzer löschen wollen?"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Warnung! Dieser Benutzer benötigt Key Connector, um seine Verschlüsselung zu verwalten. Das Entfernen dieses Benutzers aus deiner Organisation wird sein Konto dauerhaft deaktivieren. Diese Aktion kann nicht rückgängig gemacht werden. Möchtest du fortfahren?"
+  },
   "externalId": {
     "message": "Externe ID"
   },
@@ -2215,7 +2216,7 @@
     "message": "Benutzer einladen"
   },
   "inviteUserDesc": {
-    "message": "Laden Sie einen neuen Benutzer zu Ihrer Organisation ein, indem Sie deren Bitwarden-Konto-Email eintragen. Falls dieser noch kein Bitwarden-Konto besitzt, wird er/sie zur Erstellung eines neuen Kontos aufgefordert."
+    "message": "Lade einen neuen Benutzer zu deinem Anbieter ein, indem du die E-Mail-Adresse seines Bitwarden-Kontos unten einträgst. Falls dieser noch kein Bitwarden-Konto besitzt, wird er/sie zur Erstellung eines neuen Kontos aufgefordert."
   },
   "inviteMultipleEmailDesc": {
     "message": "Sie können bis zu $COUNT$ Benutzer auf einmal einladen, indem Sie eine Liste von E-Mail-Adressen mit je einem Komma trennen.",
@@ -2658,6 +2659,9 @@
   "resendInvitation": {
     "message": "Einladung erneut versenden"
   },
+  "resendEmail": {
+    "message": "E-Mail erneut senden"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ wurde erneut eingeladen.",
     "placeholders": {
@@ -2728,7 +2732,7 @@
     "message": "Organisation beitreten"
   },
   "joinOrganizationDesc": {
-    "message": "Sie wurden eingeladen, der oben genannten Organisation beizutreten. Um die Einladung anzunehmen, müssen Sie ein Bitwarden-Konto erstellen oder sich mit Ihrem bestehenden Konto anmelden."
+    "message": "Du wurdest eingeladen, dem oben genannten Anbieter beizutreten. Um die Einladung anzunehmen, musst du ein Bitwarden-Konto erstellen, oder dich mit deinem bestehenden Bitwarden-Konto anmelden."
   },
   "inviteAccepted": {
     "message": "Einladung angenommen"
@@ -2809,10 +2813,6 @@
   },
   "changeBillingPlanUpgrade": {
     "message": "Ändern sie ihr Konto zu einem anderen Tarif, indem Sie folgende Informationen bereitstellen. Bitte stellen Sie sicher, dass Sie eine aktive Zahlungsmethode zu ihren Konto hinzugefügt haben.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
-  "changeBillingPlanDesc": {
-    "message": "Kontaktieren Sie den Kundensupport, um Ihr Abo zu ändern. Bitte stellen Sie sicher, dass Sie eine aktive Zahlungsmethode zu Ihrem Konto hinzugefügt haben.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
@@ -2935,6 +2935,33 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "Du kannst nicht mehr als $COUNT$ Benutzer einladen ohne dein Abo hochzustufen.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "Du kannst nicht mehr als $COUNT$ Benutzer einladen ohne dein Abo hochzustufen. Bitte kontaktiere dafür den Kundenservice.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Dein Abo erlaubt insgesamt $COUNT$ Benutzer. Dein Abo wird gefördert und von einer externen Organisation bezahlt.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3148,7 +3175,7 @@
     "message": "API-Schlüssel"
   },
   "apiKeyDesc": {
-    "message": "Ihr API-Schlüssel kann zur Authentifizierung für die öffentlichen Bitwarden-API benutzt werden."
+    "message": "Dein API-Schlüssel kann zur Authentifizierung für die öffentlichen Bitwarden-API benutzt werden."
   },
   "apiKeyRotateDesc": {
     "message": "Mit der Erneuerung des API-Schlüssels wird der bisherige Schlüssel ungültig. Sie können Ihren API-Schlüssel erneuern, wenn die sichere Verwendung Ihres aktuellen Schlüssel nicht mehr gewährleistet ist."
@@ -3481,7 +3508,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSendConfirmation": {
-    "message": "Sind Sie sicher, dass Sie dieses Send löschen möchten?",
+    "message": "Bist du sicher, dass du dieses Send löschen möchtest?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "whatTypeOfSend": {
@@ -3587,7 +3614,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
-    "message": "Es gibt keine Sends aufzulisten.",
+    "message": "Keine Sends zu finden.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
@@ -3817,6 +3844,9 @@
   "accessReports": {
     "message": "Zugriff auf Berichte"
   },
+  "missingPermissions": {
+    "message": "Dir fehlt die erforderliche Berechtigung, um diese Aktion auszuführen."
+  },
   "manageAllCollections": {
     "message": "Alle Sammlungen verwalten"
   },
@@ -4026,6 +4056,15 @@
   },
   "eventResetSsoLink": {
     "message": "SSO Link für Benutzer $ID$ zurücksetzen",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "firstSsoLogin": {
+    "message": "$ID$ hat sich zum ersten Mal mit SSO angemeldet",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4448,5 +4487,251 @@
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On Konfiguration wurde gespeichert."
+  },
+  "sponsoredFamilies": {
+    "message": "Kostenloses Bitwarden Familienabo"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Du und deine Familie haben Anspruch auf ein kostenloses Bitwarden Familienabo. Mit deiner persönlichen E-Mail einlösen, um deine Daten zu schützen, auch wenn du nicht am Arbeitsplatz bist."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Löse dein kostenloses Bitwarden für Familien Abo heute ein, um deine Daten zu schützen, auch wenn du nicht am Arbeitsplatz bist."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Das Bitwarden für Familien Abo beinhaltet"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Premium-Zugang für bis zu 6 Benutzer"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Gemeinsame Sammlungen für Familiengeheimnisse"
+  },
+  "badToken": {
+    "message": "Der Link ist nicht mehr gültig. Bitte lasse dir vom Förderer das Angebot erneut senden."
+  },
+  "reclaimedFreePlan": {
+    "message": "Kostenloses Abo zurückgefordert"
+  },
+  "redeem": {
+    "message": "Einlösen"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Wähle die Organisation aus, die du gerne fördern möchtest"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Welches kostenlose Familienangebot möchtest du einlösen?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Gebe deine persönliche E-Mail ein, um Bitwarden Familien einlösen zu können"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Wenn du diese Organisation verlässt oder aus ihr entfernt wirst, läuft dein Familien-Abo am Ende des Abrechnungszeitraums ab."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Angebot für eine bestehende Organisation akzeptieren oder eine neue Familien-Organisation erstellen."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Dir wurde ein kostenloses Bitwarden Familien-Organisationsabo angeboten. Um fortzufahren, musst du dich in das Konto einloggen, das das Angebot erhalten hat."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Angebot kann nicht angenommen werden. Bitte sende die Angebotsmail von deinem Unternehmenskonto erneut und versuche es noch einmal."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Angebot kann nicht angenommen werden. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Kostenloses Bitwarden Familien-Organisationsangebot einlösen"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Kostenloses Bitwarden Familien-Angebot erfolgreich eingelöst"
+  },
+  "redeemed": {
+    "message": "Eingelöst"
+  },
+  "redeemedAccount": {
+    "message": "Eingelöstes Konto"
+  },
+  "revokeAccount": {
+    "message": "Konto $NAME$ zurückziehen",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Sponsoring-E-Mail erneut an $NAME$ Sponsoring senden",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Kostenloses Familien Abo"
+  },
+  "redeemNow": {
+    "message": "Jetzt einlösen"
+  },
+  "recipient": {
+    "message": "Empfänger"
+  },
+  "removeSponsorship": {
+    "message": "Sponsoring entfernen"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "Nachdem du eine Förderung entfernt hast, bist du für dieses Abo und die damit verbundenen Rechnungen verantwortlich. Bist du sicher, dass du fortfahren möchtest?"
+  },
+  "sponsorshipCreated": {
+    "message": "Förderung erstellt"
+  },
+  "revoke": {
+    "message": "Zurückziehen"
+  },
+  "emailSent": {
+    "message": "E-Mail gesendet"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "Nach dem Entfernen dieses Kontos ist der Besitzer der Familienorganisation für dieses Abo und die damit verbundenen Rechnungen verantwortlich. Bist du sicher, dass du fortfahren möchtest?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Förderung entfernt"
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "Der Key Connector konnte nicht erreicht werden. Versuche es später erneut."
+  },
+  "keyConnectorUrl": {
+    "message": "Key Connector URL"
+  },
+  "sendVerificationCode": {
+    "message": "Einen Bestätigungscode an deine E-Mail senden"
+  },
+  "sendCode": {
+    "message": "Code senden"
+  },
+  "codeSent": {
+    "message": "Code gesendet"
+  },
+  "verificationCode": {
+    "message": "Verifizierungscode"
+  },
+  "confirmIdentity": {
+    "message": "Bestätige deine Identität, um fortzufahren."
+  },
+  "verificationCodeRequired": {
+    "message": "Verifizierungscode ist erforderlich."
+  },
+  "invalidVerificationCode": {
+    "message": "Ungültiger Verifizierungscode"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ verwendet SSO mit einem selbst gehosteten Schlüsselserver. Ein Master-Passwort ist nicht mehr erforderlich, damit sich Mitglieder dieser Organisation anmelden können.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Organisation verlassen"
+  },
+  "removeMasterPassword": {
+    "message": "Master-Passwort entfernen"
+  },
+  "removedMasterPassword": {
+    "message": "Master-Passwort entfernt."
+  },
+  "allowSso": {
+    "message": "SSO-Authentifizierung erlauben"
+  },
+  "allowSsoDesc": {
+    "message": "Nach der Einrichtung wird deine Konfiguration gespeichert und die Mitglieder können sich mit ihren Identitätsanbieter-Anmeldedaten authentifizieren."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Aktiviere die",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO-Richtlinie",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": ", um zu erzwingen, dass sich alle Mitglieder mit SSO anmelden.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "SSO-Authentifizierung und Richtlinien für eine einzelne Organisation werden benötigt, um die Key Connector Entschlüsselung einzurichten."
+  },
+  "memberDecryptionOption": {
+    "message": "Entschlüsselungsoptionen für Mitglieder"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Einmal authentifiziert, entschlüsseln Mitglieder Tresordaten mit ihren Master-Passwörtern."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Verbinde die Anmeldung über SSO mit deinem selbst gehosteten Entschlüssel-Schlüssel-Server. Mit dieser Option müssen Mitglieder ihre Masterpasswörter nicht verwenden, um Tresordaten zu entschlüsseln."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Anmelden mit SSO und Key-Connector-Entschlüsselung\" ist aktiviert. Diese Richtlinie gilt nur für Eigentümer und Adminstratoren."
+  },
+  "enabledSso": {
+    "message": "SSO aktiviert"
+  },
+  "disabledSso": {
+    "message": "SSO deaktiviert"
+  },
+  "enabledKeyConnector": {
+    "message": "Key Connector aktiviert"
+  },
+  "disabledKeyConnector": {
+    "message": "Key Connector deaktiviert"
+  },
+  "keyConnectorWarning": {
+    "message": "Sobald der Key Connector eingerichtet ist, können die Mitglieder-Entschlüsselungsoptionen nicht geändert werden."
+  },
+  "migratedKeyConnector": {
+    "message": "Zum Key Connector migriert"
+  },
+  "paymentSponsored": {
+    "message": "Bitte gib eine Zahlungsmethode an, die mit der Organisation verbunden wird. Keine Sorge, wir werden dir nichts berechnen, es sei denn, du wählst zusätzliche Funktionen aus oder deine Förderung läuft ab. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "Das Förderangebot ist abgelaufen. Du kannst die Organisation, die du erstellt hast, löschen, um eine Gebühr am Ende deiner 7-Tage-Testversion zu vermeiden. Andernfalls kannst du diese Meldung schließen, um die Organisation zu behalten und die Rechnungsverantwortung zu übernehmen."
+  },
+  "newFamiliesOrganization": {
+    "message": "Neue Familien-Organisation"
+  },
+  "acceptOffer": {
+    "message": "Angebot annehmen"
+  },
+  "sponsoringOrg": {
+    "message": "Förderorganisation"
+  },
+  "keyConnectorTest": {
+    "message": "Test"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Erfolg! Key Connector erreicht."
+  },
+  "keyConnectorTestFail": {
+    "message": "Key Connector nicht erreichbar. URL überprüfen."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "Das Förderangebot ist abgelaufen."
+  },
+  "freeWithSponsorship": {
+    "message": "KOSTENLOS mit Förderung"
   }
 }

@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Логическое"
   },
+  "cfTypeLinked": {
+    "message": "Связано",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Удалить"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Фамилия"
+  },
+  "fullName": {
+    "message": "Полное имя"
   },
   "address1": {
     "message": "Строка адреса 1"
@@ -832,9 +839,6 @@
   },
   "encExportAccountWarningDesc": {
     "message": "Ключи шифрования уникальны для каждой учетной записи Bitwarden, поэтому нельзя импортировать зашифрованное хранилище в другой аккаунт."
-  },
-  "exportMasterPassword": {
-    "message": "Введите мастер-пароль для экспорта данных из хранилища."
   },
   "export": {
     "message": "Экспорт"
@@ -1736,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Ваш план включает семидневную бесплатную пробную версию. Ваш метод оплаты не будет использован до окончания пробной версии. Оплата будет осуществляться каждый $INTERVAL$. Вы можете отменить в любое время.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Ваш план включает семидневную бесплатную пробную версию. Ваш метод оплаты не будет использован до окончания пробной версии. Оплата будет выполняться каждый $INTERVAL$. Вы можете отказаться в любое время."
   },
   "paymentInformation": {
     "message": "Платежная информация"
@@ -2177,6 +2175,9 @@
   },
   "removeUserConfirmation": {
     "message": "Вы действительно хотите удалить этого пользователя?"
+  },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Внимание! Этому пользователю необходим соединитель ключей для управления шифрованием. Удаление этого пользователя из вашей организации приведет к окончательному отключению его учетной записи. Это действие нельзя отменить. Вы хотите продолжить?"
   },
   "externalId": {
     "message": "Внешний ID"
@@ -2658,6 +2659,9 @@
   "resendInvitation": {
     "message": "Пригласить повторно"
   },
+  "resendEmail": {
+    "message": "Отправить email повторно"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ был приглашен повторно.",
     "placeholders": {
@@ -2811,10 +2815,6 @@
     "message": "Обновите свой аккаунт до другого плана, предоставив информацию ниже. Пожалуйста, убедитесь, что в вашем аккаунте есть активный способ оплаты.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Если вы хотите изменить свой план, обратитесь в службу поддержки. Убедитесь, что у вас есть активный способ оплаты, добавленный в аккаунт.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Счет #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2935,6 +2935,33 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "Вы не можете пригласить более $COUNT$ пользователей без обновления вашего плана.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "Вы не можете пригласить более $COUNT$ пользователей без обновления вашего плана. Для обновления обратитесь в службу поддержки клиентов.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Ваша подписка разрешена в общей сложности для $COUNT$ пользователей. Ваш план спонсируется и оплачивается внешней организацией.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3200,7 +3227,7 @@
     "message": "Требовать от пользователей настройки двухэтапной авторизации в их личных аккаунтах."
   },
   "twoStepLoginPolicyWarning": {
-    "message": "Участники организации, у которых в личном аккаунте не включена двухфакторная аутентификация, будут удалены из организации и получат об этом уведомление по электронной почте."
+    "message": "Члены организации, у которых в личном аккаунте отключена двухфакторная аутентификация, будут удалены из организации и получат об этом уведомление по email."
   },
   "twoStepLoginPolicyUserWarning": {
     "message": "Вы участник организации, которая требует, чтобы в вашем аккаунте была включена двухфакторная аутентификация. Если вы отключите всех провайдеров двухфакторной аутентификации, то будете автоматически удалены из этих организаций."
@@ -3817,6 +3844,9 @@
   "accessReports": {
     "message": "Доступ к отчетам"
   },
+  "missingPermissions": {
+    "message": "У вас нет необходимых разрешений для выполнения этого действия."
+  },
   "manageAllCollections": {
     "message": "Управлять всеми коллекциями"
   },
@@ -4026,6 +4056,15 @@
   },
   "eventResetSsoLink": {
     "message": "Сбросить SSO-ссылку для пользователя $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "firstSsoLogin": {
+    "message": "$ID$ впервые выполнил вход используя SSO",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4348,13 +4387,13 @@
     "message": "Конфигурация поставщика удостоверений SAML"
   },
   "callbackPath": {
-    "message": "Callback Path"
+    "message": "Резервный маршрут"
   },
   "signedOutCallbackPath": {
-    "message": "Signed Out Callback Path"
+    "message": "Выход с резервного маршрута"
   },
   "authority": {
-    "message": "Учреждение"
+    "message": "Сервер авторизации"
   },
   "clientId": {
     "message": "ID клиента"
@@ -4369,25 +4408,25 @@
     "message": "Поведение перенаправления OIDC"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "Получать запросы от конечной точки информации о пользователе"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "Дополнительные/пользовательские области видимости (разделенные запятыми)"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "Дополнительные/пользовательские типы требований к ID пользователя (разделенные запятыми)"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "Дополнительные/пользовательские типы требований к email (разделенные запятыми)"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "Дополнительные/пользовательские типы требований к имени (разделенные запятыми)"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "Запрошенные справочные значения класса контекста аутентификации (acr_values)"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "Ожидаемый \"acr\" Значение утверждения в ответе (проверка acr)"
   },
   "spEntityId": {
     "message": "ID объекта SP"
@@ -4448,5 +4487,251 @@
   },
   "ssoSettingsSaved": {
     "message": "Конфигурация единого входа сохранена."
+  },
+  "sponsoredFamilies": {
+    "message": "Бесплатные семьи Bitwarden"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Вы и ваша семья имеют право на бесплатные семьи Bitwarden. Используйте свой личный адрес электронной почты, чтобы защитить данные даже тогда, когда вы не на работе."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Воспользуйтесь бесплатным планом Bit warden для семей сегодня, чтобы обеспечить безопасность ваших данных, даже когда вы не на работе."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "План Bitwarden для Семей включает"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Премиум-доступ для 6 пользователей"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Общие коллекции для Семейных секретов"
+  },
+  "badToken": {
+    "message": "Ссылка больше не действительна. Пожалуйста, попросите спонсора повторно отправить предложение."
+  },
+  "reclaimedFreePlan": {
+    "message": "Reclaimed free plan"
+  },
+  "redeem": {
+    "message": "Redeem"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Выберите организацию, которую вы хотите спонсировать"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Какое бесплатное Семейное предложение вы хотели бы использовать?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Введите свой личный адрес электронной почты, чтобы активировать Семейный Bitwarden"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Если вы покинете или откажетесь от организации со спонсорским предложением, срок действия вашего семейного плана истечет в конце расчетного периода."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Примите предложение существующей организации или создайте новую Семейную организацию."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Вам предложили бесплатный Семейный план Bitwarden. Чтобы продолжить, вам необходимо войти в учетную запись, в которую поступило предложение."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Не удается принять предложение. Отправьте письмо с предложением еще раз из своей корпоративной учетной записи и повторите попытку."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Невозможно принять предложение. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Принять бесплатный Семейный план Bitwarden"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Бесплатное Семейное предложение Bitwarden успешно активировано"
+  },
+  "redeemed": {
+    "message": "Redeemed"
+  },
+  "redeemedAccount": {
+    "message": "Redeemed Account"
+  },
+  "revokeAccount": {
+    "message": "Revoke account $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Бесплатный Семейный план"
+  },
+  "redeemNow": {
+    "message": "Redeem Now"
+  },
+  "recipient": {
+    "message": "Получатель"
+  },
+  "removeSponsorship": {
+    "message": "Remove Sponsorship"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "После удаления спонсорства вы будете нести ответственность за эту подписку и связанные с ней счета. Вы уверены что хотите продолжить?"
+  },
+  "sponsorshipCreated": {
+    "message": "Sponsorship Created"
+  },
+  "revoke": {
+    "message": "Revoke"
+  },
+  "emailSent": {
+    "message": "Email Sent"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "После удаления этой учетной записи владелец организации Семейства будет нести ответственность за эту подписку и связанные счета. Вы уверены что хотите продолжить?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Спонсорство удалено"
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "Не удается подключиться к соединителю ключей, повторите попытку позже."
+  },
+  "keyConnectorUrl": {
+    "message": "URL соединителя ключей"
+  },
+  "sendVerificationCode": {
+    "message": "Отправить код подтверждения на ваш email"
+  },
+  "sendCode": {
+    "message": "Отправить код"
+  },
+  "codeSent": {
+    "message": "Код отправлен"
+  },
+  "verificationCode": {
+    "message": "Код подтверждения"
+  },
+  "confirmIdentity": {
+    "message": "Подтвердите вашу личность, чтобы продолжить."
+  },
+  "verificationCodeRequired": {
+    "message": "Необходимо ввести код подтверждения."
+  },
+  "invalidVerificationCode": {
+    "message": "Неверный код подтверждения"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ использует SSO с собственным сервером ключей. Для авторизации членам этой организации больше не требуется мастер-пароль.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Покинуть организацию"
+  },
+  "removeMasterPassword": {
+    "message": "Удалить мастер-пароль"
+  },
+  "removedMasterPassword": {
+    "message": "Мастер-пароль удален."
+  },
+  "allowSso": {
+    "message": "Разрешить аутентификацию SSO"
+  },
+  "allowSsoDesc": {
+    "message": "После настройки ваша конфигурация будет сохранена, и пользователи смогут проходить аутентификацию, используя свои учетные данные Провайдера идентификации."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Активировать",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "политику SSO",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "для обеспечения авторизации всех членов при помощи единого входа.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "Для настройки расшифровки соединителя ключей требуются политики проверки подлинности SSO и единой организации."
+  },
+  "memberDecryptionOption": {
+    "message": "Параметры расшифровки членов"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "После аутентификации участники будут расшифровывать данные хранилища, используя свои мастер-пароли."
+  },
+  "keyConnector": {
+    "message": "Соединитель ключей"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Подключите авторизацию посредством SSO к вашему собственному серверу расшифровки ключей. При использовании этой опции членам не нужно будет использовать свои мастер-пароли для расшифровки данных хранилища."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Авторизация посредством SSO и расшифровки соединителя ключей\" включена. Эта политика будет применяться только к владельцам и администраторам."
+  },
+  "enabledSso": {
+    "message": "SSO включен"
+  },
+  "disabledSso": {
+    "message": "SSO отключен"
+  },
+  "enabledKeyConnector": {
+    "message": "Соединитель ключей включен"
+  },
+  "disabledKeyConnector": {
+    "message": "Соединитель ключей отключен"
+  },
+  "keyConnectorWarning": {
+    "message": "После настройки соединителя ключей параметры расшифровки членов не могут быть изменены."
+  },
+  "migratedKeyConnector": {
+    "message": "Выполнена миграция на соединитель ключей"
+  },
+  "paymentSponsored": {
+    "message": "Укажите способ оплаты для сопоставления с организацией. Не волнуйтесь, мы не будем ничего взимать с вас, если вы не выберете дополнительные функции или ваше спонсорское предложение не истечет. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "Срок действия спонсорского предложения истек. Вы можете удалить созданную вами организацию, чтобы избежать списания средств по истечении 7-дневного пробного периода. В противном случае вы можете закрыть эту подсказку, чтобы сохранить организацию и принять на себя платежные обязательства."
+  },
+  "newFamiliesOrganization": {
+    "message": "Новая Семейная организация"
+  },
+  "acceptOffer": {
+    "message": "Принять предложение"
+  },
+  "sponsoringOrg": {
+    "message": "Спонсорская организация"
+  },
+  "keyConnectorTest": {
+    "message": "Тест"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Успешно! Соединитель ключей проверен."
+  },
+  "keyConnectorTestFail": {
+    "message": "Не удается связаться с соединителем ключей. Проверьте URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "Срок действия спонсорского предложения истек."
+  },
+  "freeWithSponsorship": {
+    "message": "БЕСПЛАТНО при спонсорской поддержке"
   }
 }

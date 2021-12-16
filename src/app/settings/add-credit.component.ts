@@ -11,8 +11,9 @@ import {
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { PayPalConfig } from 'jslib-common/abstractions/environment.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
 
@@ -45,8 +46,9 @@ export class AddCreditComponent implements OnInit {
     private name: string;
     private email: string;
 
-    constructor(private userService: UserService, private apiService: ApiService,
-        private platformUtilsService: PlatformUtilsService, private logService: LogService) {
+    constructor(private stateService: StateService, private apiService: ApiService,
+        private platformUtilsService: PlatformUtilsService, private organizationService: OrganizationService,
+        private logService: LogService) {
         const payPalConfig = process.env.PAYPAL_CONFIG as PayPalConfig;
         this.ppButtonFormAction = payPalConfig.buttonAction;
         this.ppButtonBusinessId = payPalConfig.businessId;
@@ -58,7 +60,7 @@ export class AddCreditComponent implements OnInit {
                 this.creditAmount = '20.00';
             }
             this.ppButtonCustomField = 'organization_id:' + this.organizationId;
-            const org = await this.userService.getOrganization(this.organizationId);
+            const org = await this.organizationService.get(this.organizationId);
             if (org != null) {
                 this.subject = org.name;
                 this.name = org.name;
@@ -67,8 +69,8 @@ export class AddCreditComponent implements OnInit {
             if (this.creditAmount == null) {
                 this.creditAmount = '10.00';
             }
-            this.userId = await this.userService.getUserId();
-            this.subject = await this.userService.getEmail();
+            this.userId = await this.stateService.getUserId();
+            this.subject = await this.stateService.getEmail();
             this.email = this.subject;
             this.ppButtonCustomField = 'user_id:' + this.userId;
         }

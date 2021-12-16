@@ -4,14 +4,13 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
-import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
+import { Verification } from 'jslib-common/types/verification';
 
 @Component({
     selector: 'app-purge-vault',
@@ -20,26 +19,19 @@ import { PasswordVerificationRequest } from 'jslib-common/models/request/passwor
 export class PurgeVaultComponent {
     @Input() organizationId?: string = null;
 
-    masterPassword: string;
+    masterPassword: Verification;
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private cryptoService: CryptoService,
+        private platformUtilsService: PlatformUtilsService, private userVerificationService: UserVerificationService,
         private router: Router, private logService: LogService) { }
 
     async submit() {
-        if (this.masterPassword == null || this.masterPassword === '') {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('masterPassRequired'));
-            return;
-        }
-
-        const request = new PasswordVerificationRequest();
-        request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
         try {
-            this.formPromise = this.apiService.postPurgeCiphers(request, this.organizationId);
+            this.formPromise = this.userVerificationService.buildRequest(this.masterPassword)
+                .then(request => this.apiService.postPurgeCiphers(request, this.organizationId));
             await this.formPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('vaultPurged'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('vaultPurged'));
             if (this.organizationId != null) {
                 this.router.navigate(['organizations', this.organizationId, 'vault']);
             } else {

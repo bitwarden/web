@@ -3,7 +3,6 @@ import {
     OnInit,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ToasterService } from 'angular2-toaster';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 import { OrganizationSubscriptionResponse } from 'jslib-common/models/response/organizationSubscriptionResponse';
@@ -12,8 +11,8 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { PlanType } from 'jslib-common/enums/planType';
 
@@ -38,13 +37,14 @@ export class OrganizationSubscriptionComponent implements OnInit {
 
     userOrg: Organization;
 
+    removeSponsorshipPromise: Promise<any>;
     cancelPromise: Promise<any>;
     reinstatePromise: Promise<any>;
 
     constructor(private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
-        private i18nService: I18nService, private toasterService: ToasterService,
+        private i18nService: I18nService,
         private messagingService: MessagingService, private route: ActivatedRoute,
-        private userService: UserService, private logService: LogService) {
+        private organizationService: OrganizationService, private logService: LogService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -62,7 +62,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         }
 
         this.loading = true;
-        this.userOrg = await this.userService.getOrganization(this.organizationId);
+        this.userOrg = await this.organizationService.get(this.organizationId);
         this.sub = await this.apiService.getOrganizationSubscription(this.organizationId);
         this.loading = false;
     }
@@ -81,7 +81,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         try {
             this.reinstatePromise = this.apiService.postOrganizationReinstate(this.organizationId);
             await this.reinstatePromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('reinstated'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('reinstated'));
             this.load();
         } catch (e) {
             this.logService.error(e);
@@ -102,7 +102,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         try {
             this.cancelPromise = this.apiService.postOrganizationCancel(this.organizationId);
             await this.cancelPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('canceledSubscription'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('canceledSubscription'));
             this.load();
         } catch (e) {
             this.logService.error(e);
@@ -153,6 +153,26 @@ export class OrganizationSubscriptionComponent implements OnInit {
         this.showAdjustStorage = false;
         if (load) {
             this.load();
+        }
+    }
+
+    async removeSponsorship() {
+        const isConfirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t('removeSponsorshipConfirmation'),
+            this.i18nService.t('removeSponsorship'),
+            this.i18nService.t('remove'), this.i18nService.t('cancel'), 'warning');
+
+        if (!isConfirmed) {
+            return;
+        }
+
+        try {
+            this.removeSponsorshipPromise = this.apiService.deleteRemoveSponsorship(this.organizationId);
+            await this.removeSponsorshipPromise;
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('removeSponsorshipSuccess'));
+            await this.load();
+        } catch (e) {
+            this.logService.error(e);
         }
     }
 
@@ -207,6 +227,10 @@ export class OrganizationSubscriptionComponent implements OnInit {
         return this.sub.plan.hasAdditionalSeatsOption;
     }
 
+    get isSponsoredSubscription(): boolean {
+        return this.sub.subscription?.items.some(i => i.sponsoredSubscriptionItem);
+    }
+
     get canDownloadLicense() {
         return (this.sub.planType !== PlanType.Free && this.subscription == null) ||
             (this.subscription != null && !this.subscription.cancelled);
@@ -216,7 +240,11 @@ export class OrganizationSubscriptionComponent implements OnInit {
         if (this.sub.planType === PlanType.Free) {
             return this.i18nService.t('subscriptionFreePlan', this.sub.seats.toString());
         } else if (this.sub.planType === PlanType.FamiliesAnnually || this.sub.planType === PlanType.FamiliesAnnually2019) {
-            return this.i18nService.t('subscriptionFamiliesPlan', this.sub.seats.toString());
+            if (this.isSponsoredSubscription) {
+                return this.i18nService.t('subscriptionSponsoredFamiliesPlan', this.sub.seats.toString());
+            } else {
+                return this.i18nService.t('subscriptionFamiliesPlan', this.sub.seats.toString());
+            }
         } else if (this.sub.maxAutoscaleSeats === this.sub.seats && this.sub.seats != null) {
             return this.i18nService.t('subscriptionMaxReached', this.sub.seats.toString());
         } else if (this.sub.maxAutoscaleSeats == null) {

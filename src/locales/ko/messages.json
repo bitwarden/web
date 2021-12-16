@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "참 / 거짓"
   },
+  "cfTypeLinked": {
+    "message": "연결됨",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "제거"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "성"
+  },
+  "fullName": {
+    "message": "전체 이름"
   },
   "address1": {
     "message": "주소 1"
@@ -833,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "모든 Bitwarden 사용자 계정은 고유한 계정 암호화 키를 가지고 있습니다. 따라서, 다른 계정에서는 암호화된 내보내기를 가져올 수 없습니다."
   },
-  "exportMasterPassword": {
-    "message": "보관함 데이터를 내보내려면 마스터 비밀번호를 입력하세요."
-  },
   "export": {
     "message": "내보내기"
   },
@@ -1002,7 +1006,7 @@
     "message": "삭제 된 조직 보관함"
   },
   "vaultAccessedByProvider": {
-    "message": "Vault accessed by provider."
+    "message": "보관함에 제공자가 액세스했습니다."
   },
   "purgeVaultDesc": {
     "message": "보관함 내의 모든 항목과 폴더를 삭제하려면 다음 단계로 나아가십시오. 조직에 속한 공유 항목들은 삭제되지 않습니다."
@@ -1736,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "귀하의 플랜은 7일 무료 평가판입니다. 평가 기간이 만료될 때까지 카드에서 대금이 지불되지 않습니다. 이후 정기적으로 매 $INTERVAL$ 청구됩니다. 언제든지 취소할 수 있습니다.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "귀하의 플랜은 7일 무료 평가판입니다. 평가 기간이 만료될 때까지 카드에서 대금이 지불되지 않습니다. 이후 정기적으로 매 $INTERVAL$ 청구됩니다. 언제든지 취소할 수 있습니다."
   },
   "paymentInformation": {
     "message": "결제 정보"
@@ -2178,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "정말 이 사용자를 제거하시겠습니까?"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Warning! This user requires Key Connector to manage their encryption. Removing this user from your organization will permanently disable their account. This action cannot be undone. Do you want to proceed?"
+  },
   "externalId": {
     "message": "외부 ID"
   },
@@ -2248,7 +2249,7 @@
     "message": "확인됨"
   },
   "clientOwnerEmail": {
-    "message": "Client Owner Email"
+    "message": "클라이언트 소유자 이메일"
   },
   "owner": {
     "message": "소유자"
@@ -2658,6 +2659,9 @@
   "resendInvitation": {
     "message": "초대장 다시 보내기"
   },
+  "resendEmail": {
+    "message": "Resend Email"
+  },
   "hasBeenReinvited": {
     "message": "$USER$가 다시 초대되었습니다.",
     "placeholders": {
@@ -2811,10 +2815,6 @@
     "message": "아래 정보를 제공하여 계정을 다른 플랜으로 업그레이드하십시오. 계정에 활성화된 결제 방식이 추가되어 있는지 확인하십시오.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "플랜을 변경하려면 고객 지원팀에 문의하십시오. 계정에 활성화된 결제 방식이 추가되어 있는지 확인하십시오.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "청구서 #$NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2885,7 +2885,7 @@
     "message": "Set a seat limit for your subscription. Once this limit is reached, you will not be able to invite new users."
   },
   "maxSeatLimit": {
-    "message": "Maximum Seat Limit (optional)",
+    "message": "최대 시트 제한 (선택)",
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
@@ -2912,16 +2912,16 @@
     }
   },
   "limitSubscription": {
-    "message": "Limit Subscription (Optional)"
+    "message": "구독 제한 (선택)"
   },
   "subscriptionSeats": {
-    "message": "Subscription Seats"
+    "message": "구독 시트"
   },
   "subscriptionUpdated": {
-    "message": "Subscription updated"
+    "message": "구독 업데이트됨"
   },
   "additionalOptions": {
-    "message": "Additional Options"
+    "message": "추가 옵션"
   },
   "additionalOptionsDesc": {
     "message": "구독과 관련하여 추가적인 도움이 필요한 경우 고객 지원에 문의하십시오."
@@ -2935,6 +2935,33 @@
       "max": {
         "content": "$1",
         "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Your subscription allows for a total of $COUNT$ users. Your plan is sponsored and billed to an external organization.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
       }
     }
   },
@@ -3817,26 +3844,29 @@
   "accessReports": {
     "message": "보고서 접근"
   },
+  "missingPermissions": {
+    "message": "You lack the necessary permissions to perform this action."
+  },
   "manageAllCollections": {
     "message": "모든 컬렉션 관리"
   },
   "createNewCollections": {
-    "message": "Create New Collections"
+    "message": "새 컬렉션 만들기"
   },
   "editAnyCollection": {
-    "message": "Edit Any Collection"
+    "message": "아무 컬렉션 편집"
   },
   "deleteAnyCollection": {
-    "message": "Delete Any Collection"
+    "message": "아무 컬렉션 삭제"
   },
   "manageAssignedCollections": {
     "message": "할당된 컬렉션 관리"
   },
   "editAssignedCollections": {
-    "message": "Edit Assigned Collections"
+    "message": "할당된 컬렉션 수정"
   },
   "deleteAssignedCollections": {
-    "message": "Delete Assigned Collections"
+    "message": "할당된 컬렉션 삭제"
   },
   "manageGroups": {
     "message": "그룹 관리"
@@ -4025,7 +4055,16 @@
     }
   },
   "eventResetSsoLink": {
-    "message": "Reset Sso link for user $ID$",
+    "message": "사용자 $ID$ SSO 링크 초기화",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "firstSsoLogin": {
+    "message": "$ID$ logged in using Sso for the first time",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4157,7 +4196,7 @@
     "message": "비밀번호 재설정 관리 권한으로 사용자 관리도 활성화해야 합니다"
   },
   "setupProvider": {
-    "message": "Provider Setup"
+    "message": "공급자 설정"
   },
   "setupProviderLoginDesc": {
     "message": "You've been invited to setup a new provider. To continue, you need to log in or create a new Bitwarden account."
@@ -4166,22 +4205,22 @@
     "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
   },
   "providerName": {
-    "message": "Provider Name"
+    "message": "공급자 이름"
   },
   "providerSetup": {
     "message": "The provider has been set up."
   },
   "clients": {
-    "message": "Clients"
+    "message": "클라이언트"
   },
   "providerAdmin": {
-    "message": "Provider Admin"
+    "message": "공급자 관리자"
   },
   "providerAdminDesc": {
     "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
   },
   "serviceUser": {
-    "message": "Service User"
+    "message": "서비스 사용자"
   },
   "serviceUserDesc": {
     "message": "Service users can access and manage all client organizations."
@@ -4190,7 +4229,7 @@
     "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
   },
   "joinProvider": {
-    "message": "Join Provider"
+    "message": "공급자 참가"
   },
   "joinProviderDesc": {
     "message": "You've been invited to join the provider listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
@@ -4205,19 +4244,19 @@
     "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the provider until they are confirmed."
   },
   "provider": {
-    "message": "Provider"
+    "message": "공급자"
   },
   "newClientOrganization": {
-    "message": "New Client Organization"
+    "message": "새 클라이언트 조직"
   },
   "newClientOrganizationDesc": {
     "message": "Create a new client organization that will be associated with you as the provider. You will be able to access and manage this organization."
   },
   "addExistingOrganization": {
-    "message": "Add Existing Organization"
+    "message": "이미 있는 조직 추가"
   },
   "myProvider": {
-    "message": "My Provider"
+    "message": "내 공급자"
   },
   "addOrganizationConfirmation": {
     "message": "Are you sure you want to add $ORGANIZATION$ as a client to $PROVIDER$?",
@@ -4245,10 +4284,10 @@
     }
   },
   "providerIsDisabled": {
-    "message": "Provider is disabled."
+    "message": "공급자가 비활성화되었습니다."
   },
   "providerUpdated": {
-    "message": "Provider updated"
+    "message": "공급자 업데이트됨"
   },
   "yourProviderIs": {
     "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
@@ -4272,25 +4311,25 @@
     "message": "Are you sure you want to detach this organization? The organization will continue to exist but will no longer be managed by the provider."
   },
   "add": {
-    "message": "Add"
+    "message": "추가"
   },
   "updatedMasterPassword": {
-    "message": "Updated Master Password"
+    "message": "마스터 비밀번호 변경됨"
   },
   "updateMasterPassword": {
-    "message": "Update Master Password"
+    "message": "마스터 비밀번호 변경"
   },
   "updateMasterPasswordWarning": {
     "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
   },
   "maximumVaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "보관함 시간 제한"
   },
   "maximumVaultTimeoutDesc": {
     "message": "Configure a maximum vault timeout for all users."
   },
   "maximumVaultTimeoutLabel": {
-    "message": "Maximum Vault Timeout"
+    "message": "최대 보관함 시간 제한"
   },
   "invalidMaximumVaultTimeout": {
     "message": "Invalid Maximum Vault Timeout."
@@ -4315,31 +4354,31 @@
     }
   },
   "customVaultTimeout": {
-    "message": "Custom Vault Timeout"
+    "message": "사용자 지정 보관함 시간 제한"
   },
   "vaultTimeoutToLarge": {
     "message": "Your vault timeout exceeds the restriction set by your organization."
   },
   "disablePersonalVaultExport": {
-    "message": "Disable Personal Vault Export"
+    "message": "개인 보관함 내보내기 비활성화"
   },
   "disablePersonalVaultExportDesc": {
     "message": "Prohibits users from exporting their private vault data."
   },
   "vaultExportDisabled": {
-    "message": "Vault Export Disabled"
+    "message": "보관함 내보내기 비활성화됨"
   },
   "personalVaultExportPolicyInEffect": {
     "message": "One or more organization policies prevents you from exporting your personal vault."
   },
   "selectType": {
-    "message": "Select SSO Type"
+    "message": "SSO 유형 선택"
   },
   "type": {
     "message": "유형"
   },
   "openIdConnectConfig": {
-    "message": "OpenID Connect Configuration"
+    "message": "OpenID 연결 설정"
   },
   "samlSpConfig": {
     "message": "SAML Service Provider Configuration"
@@ -4348,25 +4387,25 @@
     "message": "SAML Identity Provider Configuration"
   },
   "callbackPath": {
-    "message": "Callback Path"
+    "message": "콜백 경로"
   },
   "signedOutCallbackPath": {
-    "message": "Signed Out Callback Path"
+    "message": "로그아웃 콜백 경로"
   },
   "authority": {
-    "message": "Authority"
+    "message": "기관"
   },
   "clientId": {
-    "message": "Client ID"
+    "message": "클라이언트 ID"
   },
   "clientSecret": {
-    "message": "Client Secret"
+    "message": "클라이언트 비밀"
   },
   "metadataAddress": {
-    "message": "Metadata Address"
+    "message": "메타데이터 액세스"
   },
   "oidcRedirectBehavior": {
-    "message": "OIDC Redirect Behavior"
+    "message": "OIDC 리다이렉트 동작"
   },
   "getClaimsFromUserInfoEndpoint": {
     "message": "Get Claims From User Info Endpoint"
@@ -4375,10 +4414,10 @@
     "message": "Additional/Custom Scopes (comma delimited)"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "추가/사용자 지정 사용자 ID 클레임 유형 (쉼표로 구분됨)"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "추가/사용자 지정 이메일 클레임 유형 (쉼표로 구분됨)"
   },
   "additionalNameClaimTypes": {
     "message": "Additional/Custom Name Claim Types (comma delimited)"
@@ -4390,52 +4429,52 @@
     "message": "Expected \"acr\" Claim Value In Response (acr validation)"
   },
   "spEntityId": {
-    "message": "SP Entity ID"
+    "message": "SP 엔티티 ID"
   },
   "spMetadataUrl": {
-    "message": "SAML 2.0 Metadata URL"
+    "message": "SAML 2.0 메타데이터 URL"
   },
   "spAcsUrl": {
     "message": "Assertion Consumer Service (ACS) URL"
   },
   "spNameIdFormat": {
-    "message": "Name ID Format"
+    "message": "이름 ID 형식"
   },
   "spOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "아웃바운드 서명 알고리즘"
   },
   "spSigningBehavior": {
-    "message": "Signing Behavior"
+    "message": "로그인 동작"
   },
   "spMinIncomingSigningAlgorithm": {
     "message": "Minimum Incoming Signing Algorithm"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "어써션 서명 필요"
   },
   "spValidateCertificates": {
-    "message": "Validate Certificates"
+    "message": "인증서 확인"
   },
   "idpEntityId": {
-    "message": "Entity ID"
+    "message": "엔티티 ID"
   },
   "idpBindingType": {
-    "message": "Binding Type"
+    "message": "바인딩 유형"
   },
   "idpSingleSignOnServiceUrl": {
-    "message": "Single Sign On Service URL"
+    "message": "SSO 서비스 URL"
   },
   "idpSingleLogoutServiceUrl": {
-    "message": "Single Log Out Service URL"
+    "message": "SLO 서비스 URL"
   },
   "idpArtifactResolutionServiceUrl": {
     "message": "Artifact Resolution Service URL"
   },
   "idpX509PublicCert": {
-    "message": "X509 Public Certificate"
+    "message": "X509 공개 인증서"
   },
   "idpOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "아웃바운드 서명 알고리즘"
   },
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Allow Unsolicited Authentication Response"
@@ -4448,5 +4487,251 @@
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
+  },
+  "sponsoredFamilies": {
+    "message": "Free Bitwarden Families"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "You and your family are eligible for Free Bitwarden Families. Redeem with your personal email to keep your data secure even when you are not at work."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Redeem your Free Bitwarden for Families plan today to keep your data secure even when you are not at work."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "The Bitwarden for Families plan include"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Premium access for up to 6 users"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Shared collections for Family secrets"
+  },
+  "badToken": {
+    "message": "The link is no longer valid. Please have the sponsor resend the offer."
+  },
+  "reclaimedFreePlan": {
+    "message": "Reclaimed free plan"
+  },
+  "redeem": {
+    "message": "Redeem"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Select the organization you would like sponsored"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Which Free Families offer would you like to redeem?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Enter your personal email to redeem Bitwarden Families"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "If you leave or are removed from the sponsoring organization, your Families plan will expire at the end of the billing period."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Accept offer for an existing organization or create a new Families organization."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "You've been offered a free Bitwarden Families Plan Organization. To continue, you need to log in to the account that received the offer."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Unable to accept offer. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Accept Free Bitwarden Families"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Free Bitwarden Families offer successfully redeemed"
+  },
+  "redeemed": {
+    "message": "Redeemed"
+  },
+  "redeemedAccount": {
+    "message": "Redeemed Account"
+  },
+  "revokeAccount": {
+    "message": "Revoke account $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Free Families Plan"
+  },
+  "redeemNow": {
+    "message": "Redeem Now"
+  },
+  "recipient": {
+    "message": "Recipient"
+  },
+  "removeSponsorship": {
+    "message": "Remove Sponsorship"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "After removing a sponsorship, you will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "sponsorshipCreated": {
+    "message": "Sponsorship Created"
+  },
+  "revoke": {
+    "message": "Revoke"
+  },
+  "emailSent": {
+    "message": "Email Sent"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "After removing this account, the Families organization owner will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Sponsorship Removed"
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "Unable to reach the Key Connector, try again later."
+  },
+  "keyConnectorUrl": {
+    "message": "키 커넥터 URL"
+  },
+  "sendVerificationCode": {
+    "message": "Send a verification code to your email"
+  },
+  "sendCode": {
+    "message": "코드 전송"
+  },
+  "codeSent": {
+    "message": "코드 전송됨"
+  },
+  "verificationCode": {
+    "message": "인증 코드"
+  },
+  "confirmIdentity": {
+    "message": "Confirm your identity to continue."
+  },
+  "verificationCodeRequired": {
+    "message": "인증 코드는 반드시 입력해야 합니다."
+  },
+  "invalidVerificationCode": {
+    "message": "유효하지 않은 확인 코드"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ is using SSO with a self-hosted key server. A master password is no longer required to log in for members of this organization.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "조직 나가기"
+  },
+  "removeMasterPassword": {
+    "message": "마스터 비밀번호 제거"
+  },
+  "removedMasterPassword": {
+    "message": "마스터 비밀번호가 제거되었습니다."
+  },
+  "allowSso": {
+    "message": "SSO 인증 허용"
+  },
+  "allowSsoDesc": {
+    "message": "Once set up, your configuration will be saved and members will be able to authenticate using their Identity Provider credentials."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "활성화:",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO 인증 정책",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "to require all members to log in with SSO.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
+  },
+  "memberDecryptionOption": {
+    "message": "멤버 복호화 옵션"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Once authenticated, members will decrypt vault data using their Master Passwords."
+  },
+  "keyConnector": {
+    "message": "키 커넥터"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt vault data. Contact Bitwarden Support for set up assistance."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
+  },
+  "enabledSso": {
+    "message": "SSO 활성화됨"
+  },
+  "disabledSso": {
+    "message": "SSO 비활성화됨"
+  },
+  "enabledKeyConnector": {
+    "message": "키 커넥터 활성화됨"
+  },
+  "disabledKeyConnector": {
+    "message": "키 커넥터 비활성화됨"
+  },
+  "keyConnectorWarning": {
+    "message": "Once members begin using Key Connector, your Organization cannot revert to Master Password decryption. Proceed only if you are comfortable deploying and managing a key server."
+  },
+  "migratedKeyConnector": {
+    "message": "키 커넥터로 마이그레이션됨"
+  },
+  "paymentSponsored": {
+    "message": "Please provide a payment method to associate with the organization. Don't worry, we won't charge you anything unless you select additional features or your sponsorship expires. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "The sponsorship offer has expired. You may delete the organization you created to avoid a charge at the end of your 7 day trial. Otherwise you may close this prompt to keep the organization and assume billing responsibility."
+  },
+  "newFamiliesOrganization": {
+    "message": "New Families Organization"
+  },
+  "acceptOffer": {
+    "message": "Accept Offer"
+  },
+  "sponsoringOrg": {
+    "message": "Sponsoring Organization"
+  },
+  "keyConnectorTest": {
+    "message": "테스트"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Success! Key Connector reached."
+  },
+  "keyConnectorTestFail": {
+    "message": "Cannot reach Key Connector. Check URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "The sponsorship offer has expired."
+  },
+  "freeWithSponsorship": {
+    "message": "FREE with sponsorship"
   }
 }

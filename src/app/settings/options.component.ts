@@ -4,16 +4,11 @@ import {
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
 import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.service';
-
-import { ConstantsService } from 'jslib-common/services/constants.service';
 
 import { ThemeType } from 'jslib-common/enums/themeType';
 import { Utils } from 'jslib-common/misc/utils';
@@ -38,10 +33,13 @@ export class OptionsComponent implements OnInit {
     private startingLocale: string;
     private startingTheme: string;
 
-    constructor(private storageService: StorageService, private stateService: StateService,
-        private i18nService: I18nService, private toasterService: ToasterService,
-        private vaultTimeoutService: VaultTimeoutService, private platformUtilsService: PlatformUtilsService,
-        private messagingService: MessagingService) {
+    constructor(
+        private stateService: StateService,
+        private i18nService: I18nService,
+        private vaultTimeoutService: VaultTimeoutService,
+        private platformUtilsService: PlatformUtilsService,
+        private messagingService: MessagingService
+    ) {
         this.vaultTimeouts = [
             { name: i18nService.t('oneMinute'), value: 1 },
             { name: i18nService.t('fiveMinutes'), value: 5 },
@@ -67,7 +65,7 @@ export class OptionsComponent implements OnInit {
         localeOptions.splice(0, 0, { name: i18nService.t('default'), value: null });
         this.localeOptions = localeOptions;
         this.themeOptions = [
-            { name: i18nService.t('themeLight'), value: null },
+            { name: i18nService.t('themeLight'), value: ThemeType.Light },
             { name: i18nService.t('themeDark'), value: ThemeType.Dark },
             { name: i18nService.t('themeSystem'), value: ThemeType.System },
         ];
@@ -75,40 +73,38 @@ export class OptionsComponent implements OnInit {
 
     async ngOnInit() {
         this.vaultTimeout.setValue(await this.vaultTimeoutService.getVaultTimeout());
-        this.vaultTimeoutAction = await this.storageService.get<string>(ConstantsService.vaultTimeoutActionKey);
-        this.disableIcons = await this.storageService.get<boolean>(ConstantsService.disableFaviconKey);
-        this.enableGravatars = await this.storageService.get<boolean>('enableGravatars');
-        this.enableFullWidth = await this.storageService.get<boolean>('enableFullWidth');
-        this.locale = this.startingLocale = await this.storageService.get<string>(ConstantsService.localeKey);
-        this.theme = this.startingTheme = await this.storageService.get<ThemeType>(ConstantsService.themeKey);
+        this.vaultTimeoutAction = await this.stateService.getVaultTimeoutAction();
+        this.disableIcons = await this.stateService.getDisableFavicon();
+        this.enableGravatars = await this.stateService.getEnableGravitars();
+        this.enableFullWidth = await this.stateService.getEnableFullWidth();
+        this.locale = await this.stateService.getLocale() ?? this.startingLocale;
+        this.theme = await this.stateService.getTheme() ?? this.startingTheme;
     }
 
     async submit() {
         if (!this.vaultTimeout.valid) {
-            this.toasterService.popAsync('error', null, this.i18nService.t('vaultTimeoutToLarge'));
+            this.platformUtilsService.showToast('error', null, this.i18nService.t('vaultTimeoutToLarge'));
             return;
         }
 
         await this.vaultTimeoutService.setVaultTimeoutOptions(this.vaultTimeout.value, this.vaultTimeoutAction);
-        await this.storageService.save(ConstantsService.disableFaviconKey, this.disableIcons);
-        await this.stateService.save(ConstantsService.disableFaviconKey, this.disableIcons);
-        await this.storageService.save('enableGravatars', this.enableGravatars);
-        await this.stateService.save('enableGravatars', this.enableGravatars);
-        await this.storageService.save('enableFullWidth', this.enableFullWidth);
+        await this.stateService.setDisableFavicon(this.disableIcons);
+        await this.stateService.setEnableGravitars(this.enableGravatars);
+        await this.stateService.setEnableFullWidth(this.enableFullWidth);
         this.messagingService.send('setFullWidth');
         if (this.theme !== this.startingTheme) {
-            await this.storageService.save(ConstantsService.themeKey, this.theme);
+            await this.stateService.setTheme(this.theme);
             this.startingTheme = this.theme;
             const effectiveTheme = await this.platformUtilsService.getEffectiveTheme();
             const htmlEl = window.document.documentElement;
             htmlEl.classList.remove('theme_' + ThemeType.Light, 'theme_' + ThemeType.Dark);
             htmlEl.classList.add('theme_' + effectiveTheme);
         }
-        await this.storageService.save(ConstantsService.localeKey, this.locale);
+        await this.stateService.setLocale(this.locale);
         if (this.locale !== this.startingLocale) {
             window.location.reload();
         } else {
-            this.toasterService.popAsync('success', null, this.i18nService.t('optionsUpdated'));
+            this.platformUtilsService.showToast('success', null, [this.i18nService.t('optionsUpdated'), this.i18nService.t('optionsUpdated')]);
         }
     }
 

@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
-import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
+import { SecretVerificationRequest } from 'jslib-common/models/request/secretVerificationRequest';
 
 import { ApiKeyResponse } from 'jslib-common/models/response/apiKeyResponse';
+
+import { Verification } from 'jslib-common/types/verification';
 
 @Component({
     selector: 'app-api-key',
@@ -17,7 +16,7 @@ import { ApiKeyResponse } from 'jslib-common/models/response/apiKeyResponse';
 export class ApiKeyComponent {
     keyType: string;
     isRotation: boolean;
-    postKey: (entityId: string, request: PasswordVerificationRequest) => Promise<ApiKeyResponse>;
+    postKey: (entityId: string, request: SecretVerificationRequest) => Promise<ApiKeyResponse>;
     entityId: string;
     scope: string;
     grantType: string;
@@ -25,25 +24,17 @@ export class ApiKeyComponent {
     apiKeyWarning: string;
     apiKeyDescription: string;
 
-    masterPassword: string;
+    masterPassword: Verification;
     formPromise: Promise<ApiKeyResponse>;
     clientId: string;
     clientSecret: string;
 
-    constructor(private i18nService: I18nService, private toasterService: ToasterService,
-        private cryptoService: CryptoService, private logService: LogService) { }
+    constructor(private userVerificationService: UserVerificationService, private logService: LogService) { }
 
     async submit() {
-        if (this.masterPassword == null || this.masterPassword === '') {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('masterPassRequired'));
-            return;
-        }
-
-        const request = new PasswordVerificationRequest();
-        request.masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, null);
         try {
-            this.formPromise = this.postKey(this.entityId, request);
+            this.formPromise = this.userVerificationService.buildRequest(this.masterPassword)
+                .then(request => this.postKey(this.entityId, request));
             const response = await this.formPromise;
             this.clientSecret = response.apiKey;
             this.clientId = `${this.keyType}.${this.entityId}`;

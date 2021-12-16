@@ -6,8 +6,6 @@ import {
     Output,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -33,6 +31,7 @@ export class UserAddEditComponent implements OnInit {
     @Input() name: string;
     @Input() organizationUserId: string;
     @Input() organizationId: string;
+    @Input() usesKeyConnector: boolean = false;
     @Output() onSavedUser = new EventEmitter();
     @Output() onDeletedUser = new EventEmitter();
 
@@ -85,7 +84,7 @@ export class UserAddEditComponent implements OnInit {
     }
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private collectionService: CollectionService,
+        private collectionService: CollectionService,
         private platformUtilsService: PlatformUtilsService, private logService: LogService) { }
 
     async ngOnInit() {
@@ -180,7 +179,7 @@ export class UserAddEditComponent implements OnInit {
                 this.formPromise = this.apiService.postOrganizationUserInvite(this.organizationId, request);
             }
             await this.formPromise;
-            this.toasterService.popAsync('success', null,
+            this.platformUtilsService.showToast('success', null,
                 this.i18nService.t(this.editMode ? 'editedUserId' : 'invitedUsers', this.name));
             this.onSavedUser.emit();
         } catch (e) {
@@ -193,9 +192,10 @@ export class UserAddEditComponent implements OnInit {
             return;
         }
 
+        const message = this.usesKeyConnector ? 'removeUserConfirmationKeyConnector' : 'removeUserConfirmation';
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('removeUserConfirmation'), this.name,
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t(message), this.name, this.i18nService.t('yes'), this.i18nService.t('no'), 'warning'
+        );
         if (!confirmed) {
             return false;
         }
@@ -203,7 +203,7 @@ export class UserAddEditComponent implements OnInit {
         try {
             this.deletePromise = this.apiService.deleteOrganizationUser(this.organizationId, this.organizationUserId);
             await this.deletePromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', this.name));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('removedUserId', this.name));
             this.onDeletedUser.emit();
         } catch (e) {
             this.logService.error(e);

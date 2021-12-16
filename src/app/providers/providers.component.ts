@@ -5,7 +5,7 @@ import {
 } from '@angular/core';
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { ProviderService } from 'jslib-common/abstractions/provider.service';
 
 import { Provider } from 'jslib-common/models/domain/provider';
 
@@ -22,7 +22,7 @@ export class ProvidersComponent implements OnInit {
     loaded: boolean = false;
     actionPromise: Promise<any>;
 
-    constructor(private userService: UserService, private i18nService: I18nService) { }
+    constructor(private providerService: ProviderService, private i18nService: I18nService) { }
 
     async ngOnInit() {
         document.body.classList.remove('layout_frontend');
@@ -30,7 +30,7 @@ export class ProvidersComponent implements OnInit {
     }
 
     async load() {
-        const providers = await this.userService.getAllProviders();
+        const providers = await this.providerService.getAll();
         providers.sort(Utils.getSortFunction(this.i18nService, 'name'));
         this.providers = providers;
         this.loaded = true;

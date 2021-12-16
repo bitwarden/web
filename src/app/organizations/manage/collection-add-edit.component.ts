@@ -6,14 +6,12 @@ import {
     Output,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { EncString } from 'jslib-common/models/domain/encString';
 import { SymmetricCryptoKey } from 'jslib-common/models/domain/symmetricCryptoKey';
@@ -47,13 +45,17 @@ export class CollectionAddEditComponent implements OnInit {
 
     private orgKey: SymmetricCryptoKey;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private platformUtilsService: PlatformUtilsService,
-        private cryptoService: CryptoService, private userService: UserService,
-        private logService: LogService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private platformUtilsService: PlatformUtilsService,
+        private cryptoService: CryptoService,
+        private logService: LogService,
+        private organizationService: OrganizationService
+    ) { }
 
     async ngOnInit() {
-        const organization = await this.userService.getOrganization(this.organizationId);
+        const organization = await this.organizationService.get(this.organizationId);
         this.accessGroups = organization.useGroups;
         this.editMode = this.loading = this.collectionId != null;
         if (this.accessGroups) {
@@ -128,7 +130,7 @@ export class CollectionAddEditComponent implements OnInit {
                 this.formPromise = this.apiService.postCollection(this.organizationId, request);
             }
             await this.formPromise;
-            this.toasterService.popAsync('success', null,
+            this.platformUtilsService.showToast('success', null,
                 this.i18nService.t(this.editMode ? 'editedCollectionId' : 'createdCollectionId', this.name));
             this.onSavedCollection.emit();
         } catch (e) {
@@ -151,7 +153,7 @@ export class CollectionAddEditComponent implements OnInit {
         try {
             this.deletePromise = this.apiService.deleteCollection(this.organizationId, this.collectionId);
             await this.deletePromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('deletedCollectionId', this.name));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('deletedCollectionId', this.name));
             this.onDeletedCollection.emit();
         } catch (e) {
             this.logService.error(e);

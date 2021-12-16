@@ -16,6 +16,7 @@ import { LoginComponent } from './accounts/login.component';
 import { RecoverDeleteComponent } from './accounts/recover-delete.component';
 import { RecoverTwoFactorComponent } from './accounts/recover-two-factor.component';
 import { RegisterComponent } from './accounts/register.component';
+import { RemovePasswordComponent } from './accounts/remove-password.component';
 import { SetPasswordComponent } from './accounts/set-password.component';
 import { SsoComponent } from './accounts/sso.component';
 import { TwoFactorComponent } from './accounts/two-factor.component';
@@ -38,6 +39,7 @@ import {
     TwoFactorSetupComponent as OrgTwoFactorSetupComponent,
 } from './organizations/settings/two-factor-setup.component';
 
+import { FamiliesForEnterpriseSetupComponent } from './organizations/sponsorships/families-for-enterprise-setup.component';
 import { ExportComponent as OrgExportComponent } from './organizations/tools/export.component';
 import {
     ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent,
@@ -97,6 +99,7 @@ import { Permissions } from 'jslib-common/enums/permissions';
 
 import { EmergencyAccessViewComponent } from './settings/emergency-access-view.component';
 import { EmergencyAccessComponent } from './settings/emergency-access.component';
+import { SponsoredFamiliesComponent } from './settings/sponsored-families.component';
 
 const routes: Routes = [
     {
@@ -170,6 +173,12 @@ const routes: Routes = [
                 canActivate: [AuthGuardService],
                 data: { titleId: 'updateTempPassword' },
             },
+            {
+                path: 'remove-password',
+                component: RemovePasswordComponent,
+                canActivate: [AuthGuardService],
+                data: { titleId: 'removeMasterPassword' },
+            },
         ],
     },
     {
@@ -216,6 +225,11 @@ const routes: Routes = [
                             },
                         ],
                     },
+                    {
+                        path: 'sponsored-families',
+                        component: SponsoredFamiliesComponent,
+                        data: { titleId: 'sponsoredFamilies' },
+                    },
                 ],
             },
             {
@@ -259,6 +273,7 @@ const routes: Routes = [
                     },
                 ],
             },
+            { path: 'setup/families-for-enterprise', component: FamiliesForEnterpriseSetupComponent },
         ],
     },
     {

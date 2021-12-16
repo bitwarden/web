@@ -7,9 +7,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
-import { ToasterModule } from 'angular2-toaster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ToastrModule } from 'ngx-toastr';
 
 import { NestedCheckboxComponent } from './components/nested-checkbox.component';
 import { PasswordRepromptComponent } from './components/password-reprompt.component';
@@ -29,6 +28,7 @@ import { LoginComponent } from './accounts/login.component';
 import { RecoverDeleteComponent } from './accounts/recover-delete.component';
 import { RecoverTwoFactorComponent } from './accounts/recover-two-factor.component';
 import { RegisterComponent } from './accounts/register.component';
+import { RemovePasswordComponent } from './accounts/remove-password.component';
 import { SetPasswordComponent } from './accounts/set-password.component';
 import { SsoComponent } from './accounts/sso.component';
 import { TwoFactorOptionsComponent } from './accounts/two-factor-options.component';
@@ -89,6 +89,7 @@ import {
     WeakPasswordsReportComponent as OrgWeakPasswordsReportComponent,
 } from './organizations/tools/weak-passwords-report.component';
 
+import { FamiliesForEnterpriseSetupComponent } from './organizations/sponsorships/families-for-enterprise-setup.component';
 import { AddEditComponent as OrgAddEditComponent } from './organizations/vault/add-edit.component';
 import { AttachmentsComponent as OrgAttachmentsComponent } from './organizations/vault/attachments.component';
 import { CiphersComponent as OrgCiphersComponent } from './organizations/vault/ciphers.component';
@@ -129,6 +130,8 @@ import { PremiumComponent } from './settings/premium.component';
 import { ProfileComponent } from './settings/profile.component';
 import { PurgeVaultComponent } from './settings/purge-vault.component';
 import { SettingsComponent } from './settings/settings.component';
+import { SponsoredFamiliesComponent } from './settings/sponsored-families.component';
+import { SponsoringOrgRowComponent } from './settings/sponsoring-org-row.component';
 import { TaxInfoComponent } from './settings/tax-info.component';
 import { TwoFactorAuthenticatorComponent } from './settings/two-factor-authenticator.component';
 import { TwoFactorDuoComponent } from './settings/two-factor-duo.component';
@@ -177,6 +180,8 @@ import { ProvidersComponent } from './providers/providers.component';
 import { AvatarComponent } from 'jslib-angular/components/avatar.component';
 import { CalloutComponent } from 'jslib-angular/components/callout.component';
 import { IconComponent } from 'jslib-angular/components/icon.component';
+import { BitwardenToast } from 'jslib-angular/components/toastr.component';
+import { VerifyMasterPasswordComponent } from 'jslib-angular/components/verify-master-password.component';
 
 import { A11yTitleDirective } from 'jslib-angular/directives/a11y-title.directive';
 import { ApiActionDirective } from 'jslib-angular/directives/api-action.directive';
@@ -290,7 +295,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         FormsModule,
         InfiniteScrollModule,
         DragDropModule,
-        ToasterModule.forChild(),
+        ToastrModule,
         ReactiveFormsModule,
         RouterModule,
     ],
@@ -303,6 +308,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SetPasswordComponent,
         AddCreditComponent,
         AddEditComponent,
+        AddEditCustomFieldsComponent,
         AdjustPaymentComponent,
         AdjustSubscription,
         AdjustStorageComponent,
@@ -343,6 +349,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ExportComponent,
         ExposedPasswordsReportComponent,
         FallbackSrcDirective,
+        FamiliesForEnterpriseSetupComponent,
         FolderAddEditComponent,
         FooterComponent,
         FrontendLayoutComponent,
@@ -419,6 +426,8 @@ registerLocaleData(localeZhTw, 'zh-TW');
         SendComponent,
         SettingsComponent,
         ShareComponent,
+        SponsoredFamiliesComponent,
+        SponsoringOrgRowComponent,
         SsoComponent,
         StopClickDirective,
         StopPropDirective,
@@ -460,6 +469,8 @@ registerLocaleData(localeZhTw, 'zh-TW');
         ResetPasswordPolicyComponent,
         VaultTimeoutInputComponent,
         AddEditCustomFieldsComponent,
+        VerifyMasterPasswordComponent,
+        RemovePasswordComponent,
     ],
     exports: [
         A11yTitleDirective,
