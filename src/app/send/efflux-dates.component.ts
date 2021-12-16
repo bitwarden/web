@@ -10,16 +10,16 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { EffluxDatesComponent as BaseEffluxDatesComponent } from "jslib-angular/components/send/efflux-dates.component";
 
 @Component({
-    selector: "app-send-efflux-dates",
-    templateUrl: "efflux-dates.component.html",
-    viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
+  selector: "app-send-efflux-dates",
+  templateUrl: "efflux-dates.component.html",
+  viewProviders: [{ provide: ControlContainer, useExisting: NgForm }],
 })
 export class EffluxDatesComponent extends BaseEffluxDatesComponent {
-    constructor(
-        protected i18nService: I18nService,
-        protected platformUtilsService: PlatformUtilsService,
-        protected datePipe: DatePipe
-    ) {
-        super(i18nService, platformUtilsService, datePipe);
-    }
+  constructor(
+    protected i18nService: I18nService,
+    protected platformUtilsService: PlatformUtilsService,
+    protected datePipe: DatePipe
+  ) {
+    super(i18nService, platformUtilsService, datePipe);
+  }
 }
