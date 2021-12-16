@@ -11,29 +11,29 @@ import { CollectionView } from "jslib-common/models/view/collectionView";
 import { CollectionsComponent as BaseCollectionsComponent } from "jslib-angular/components/collections.component";
 
 @Component({
-    selector: "app-vault-collections",
-    templateUrl: "collections.component.html",
+  selector: "app-vault-collections",
+  templateUrl: "collections.component.html",
 })
 export class CollectionsComponent extends BaseCollectionsComponent implements OnDestroy {
-    constructor(
-        collectionService: CollectionService,
-        platformUtilsService: PlatformUtilsService,
-        i18nService: I18nService,
-        cipherService: CipherService,
-        logService: LogService
-    ) {
-        super(collectionService, platformUtilsService, i18nService, cipherService, logService);
-    }
+  constructor(
+    collectionService: CollectionService,
+    platformUtilsService: PlatformUtilsService,
+    i18nService: I18nService,
+    cipherService: CipherService,
+    logService: LogService
+  ) {
+    super(collectionService, platformUtilsService, i18nService, cipherService, logService);
+  }
 
-    ngOnDestroy() {
-        this.selectAll(false);
-    }
+  ngOnDestroy() {
+    this.selectAll(false);
+  }
 
-    check(c: CollectionView, select?: boolean) {
-        (c as any).checked = select == null ? !(c as any).checked : select;
-    }
+  check(c: CollectionView, select?: boolean) {
+    (c as any).checked = select == null ? !(c as any).checked : select;
+  }
 
-    selectAll(select: boolean) {
-        this.collections.forEach((c) => this.check(c, select));
-    }
+  selectAll(select: boolean) {
+    this.collections.forEach((c) => this.check(c, select));
+  }
 }
