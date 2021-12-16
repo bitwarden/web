@@ -10,35 +10,37 @@
 
 .password-letter {
     @include themify($themes) {
-        color: themed('pwLetter');
+        color: themed("pwLetter");
     }
 }
 
 .password-number {
     @include themify($themes) {
-        color: themed('pwNumber');
+        color: themed("pwNumber");
     }
 }
 
 .password-special {
     @include themify($themes) {
-        color: themed('pwSpecial');
+        color: themed("pwSpecial");
     }
 }
 
-app-vault-groupings, app-org-vault-groupings, .groupings {
+app-vault-groupings,
+app-org-vault-groupings,
+.groupings {
     .card {
         #search {
             margin-bottom: 1rem;
             @include themify($themes) {
-                background-color: themed('inputBackgroundColor');
-                border-color: themed('inputBorderColor');
-                color: themed('inputTextColor');
+                background-color: themed("inputBackgroundColor");
+                border-color: themed("inputBorderColor");
+                color: themed("inputTextColor");
             }
 
             &::placeholder {
                 @include themify($themes) {
-                    color: themed('inputPlaceholderColor');
+                    color: themed("inputPlaceholderColor");
                 }
             }
         }
@@ -47,7 +49,7 @@ app-vault-groupings, app-org-vault-groupings, .groupings {
             font-weight: normal;
             text-transform: uppercase;
             @include themify($themes) {
-                color: themed('textMuted');
+                color: themed("textMuted");
             }
         }
 
@@ -57,14 +59,14 @@ app-vault-groupings, app-org-vault-groupings, .groupings {
 
         .card-body a {
             @include themify($themes) {
-                color: themed('headingColor');
-                font-weight: themed('linkWeight');
+                color: themed("headingColor");
+                font-weight: themed("linkWeight");
             }
 
             &:hover {
                 &.text-muted {
                     @include themify($themes) {
-                        color: themed('iconHover') !important;
+                        color: themed("iconHover") !important;
                     }
                 }
             }
@@ -75,28 +77,32 @@ app-vault-groupings, app-org-vault-groupings, .groupings {
         }
 
         li {
-            > .fa, > div > .fa {
+            > .fa,
+            > div > .fa {
                 cursor: pointer;
             }
         }
 
         li.active {
-            > .show-active, > div .show-active {
+            > .show-active,
+            > div .show-active {
                 display: inline;
             }
         }
 
         li.active {
-            > a:first-of-type, > div a:first-of-type {
+            > a:first-of-type,
+            > div a:first-of-type {
                 font-weight: bold;
                 @include themify($themes) {
-                    color: themed('linkColor');
+                    color: themed("linkColor");
                 }
             }
 
-            > .fa, > div > .fa {
+            > .fa,
+            > div > .fa {
                 @include themify($themes) {
-                    color: themed('linkColor');
+                    color: themed("linkColor");
                 }
             }
         }
@@ -111,7 +117,7 @@ app-password-generator {
     .card-password {
         .card-body {
             @include themify($themes) {
-                background: themed('foregroundColor');
+                background: themed("foregroundColor");
             }
             align-items: center;
             display: flex;
@@ -128,7 +134,7 @@ app-password-generator-history {
     .list-group-item {
         line-height: 1;
         @include themify($themes) {
-            background: themed('backgroundColor');
+            background: themed("backgroundColor");
         }
 
         .password {
@@ -152,7 +158,7 @@ app-avatar {
 app-user-billing {
     .progress {
         height: 20px;
-        
+
         .progress-bar {
             min-width: 50px;
         }
@@ -165,16 +171,15 @@ app-sponsored-families {
     }
 }
 
-
 /* Register Layout Page */
 .layout {
     &.enterprise2 {
         header {
-            background: #175DDC;
-            color: #CED4DA;
+            background: #175ddc;
+            color: #ced4da;
 
             &:before {
-                background: #175DDC;
+                background: #175ddc;
                 content: "";
                 height: 416px;
                 left: 0;
@@ -193,7 +198,7 @@ app-sponsored-families {
         }
 
         h2 {
-            color: #FFFFFF;
+            color: #ffffff;
             font-size: 1.8rem;
             margin: 100px 0 150px 0;
         }
@@ -208,7 +213,7 @@ app-sponsored-families {
             }
             &:not(.highlight) {
                 &:before {
-                    color: #1252A3;
+                    color: #1252a3;
                 }
             }
 

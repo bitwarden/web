@@ -1,6 +1,6 @@
-﻿import * as u2f from 'u2f';
+﻿import * as u2f from "u2f";
 
-document.addEventListener('DOMContentLoaded', function (event) {
+document.addEventListener("DOMContentLoaded", function (event) {
     init();
 });
 
@@ -13,37 +13,36 @@ var parentUrl = null,
 function init() {
     start();
     onMessage();
-    info('ready');
+    info("ready");
 }
 
 function start() {
     sentSuccess = false;
 
     if (!u2f.isSupported) {
-        error('U2F is not supported in this browser.');
+        error("U2F is not supported in this browser.");
         return;
     }
 
-    var data = getQsParam('data');
+    var data = getQsParam("data");
     if (!data) {
-        error('No data.');
+        error("No data.");
         return;
     }
 
-    parentUrl = getQsParam('parent');
+    parentUrl = getQsParam("parent");
     if (!parentUrl) {
-        error('No parent.');
+        error("No parent.");
         return;
-    }
-    else {
-        var link = document.createElement('a');
+    } else {
+        var link = document.createElement("a");
         link.href = parentUrl;
         parentOrigin = link.origin;
     }
 
-    var versionQs = getQsParam('v');
+    var versionQs = getQsParam("v");
     if (!versionQs) {
-        error('No version.');
+        error("No version.");
         return;
     }
 
@@ -51,18 +50,17 @@ function start() {
         version = parseInt(versionQs);
         var jsonString = b64Decode(data);
         var json = JSON.parse(jsonString);
-    }
-    catch (e) {
-        error('Cannot parse data.');
+    } catch (e) {
+        error("Cannot parse data.");
         return;
     }
 
     if (!json.appId || !json.challenge || !json.keys || !json.keys.length) {
-        error('Invalid data parameters.');
+        error("Invalid data parameters.");
         return;
     }
 
-    stop = false
+    stop = false;
     initU2f(json);
 }
 
@@ -71,42 +69,50 @@ function initU2f(obj) {
         return;
     }
 
-    u2f.sign(obj.appId, obj.challenge, obj.keys, function (data) {
-        if (data.errorCode) {
-            if (data.errorCode !== 5) {
-                error('U2F Error: ' + data.errorCode);
-                setTimeout(function () {
+    u2f.sign(
+        obj.appId,
+        obj.challenge,
+        obj.keys,
+        function (data) {
+            if (data.errorCode) {
+                if (data.errorCode !== 5) {
+                    error("U2F Error: " + data.errorCode);
+                    setTimeout(function () {
+                        initU2f(obj);
+                    }, 1000);
+                } else {
                     initU2f(obj);
-                }, 1000)
-            }
-            else {
-                initU2f(obj);
+                }
+
+                return;
             }
 
-            return;
-        }
-
-        success(data);
-    }, 10);
+            success(data);
+        },
+        10
+    );
 }
 
 function onMessage() {
-    window.addEventListener('message', function (event) {
-        if (!event.origin || event.origin === '' || event.origin !== parentOrigin) {
-            return;
-        }
+    window.addEventListener(
+        "message",
+        function (event) {
+            if (!event.origin || event.origin === "" || event.origin !== parentOrigin) {
+                return;
+            }
 
-        if (event.data === 'stop') {
-            stop = true;
-        }
-        else if (event.data === 'start' && stop) {
-            start();
-        }
-    }, false);
+            if (event.data === "stop") {
+                stop = true;
+            } else if (event.data === "start" && stop) {
+                start();
+            }
+        },
+        false
+    );
 }
 
 function error(message) {
-    parent.postMessage('error|' + message, parentUrl);
+    parent.postMessage("error|" + message, parentUrl);
 }
 
 function success(data) {
@@ -115,26 +121,30 @@ function success(data) {
     }
 
     var dataString = JSON.stringify(data);
-    parent.postMessage('success|' + dataString, parentUrl);
+    parent.postMessage("success|" + dataString, parentUrl);
     sentSuccess = true;
 }
 
 function info(message) {
-    parent.postMessage('info|' + message, parentUrl);
+    parent.postMessage("info|" + message, parentUrl);
 }
 
 function getQsParam(name) {
     var url = window.location.href;
-    name = name.replace(/[\[\]]/g, '\\$&');
-    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
         results = regex.exec(url);
     if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+    if (!results[2]) return "";
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
 
 function b64Decode(str) {
-    return decodeURIComponent(Array.prototype.map.call(atob(str), function (c) {
-        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-    }).join(''));
+    return decodeURIComponent(
+        Array.prototype.map
+            .call(atob(str), function (c) {
+                return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+            })
+            .join("")
+    );
 }

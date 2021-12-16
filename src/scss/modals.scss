@@ -2,7 +2,7 @@
     border: none;
     border-radius: none;
     @include themify($themes) {
-        background-color: themed('backgroundColor');
+        background-color: themed("backgroundColor");
     }
 }
 
@@ -16,29 +16,30 @@
     width: $modal-sm;
 }
 
-.modal-lg { 
+.modal-lg {
     width: $modal-lg;
 }
 
 .modal-header {
     @include themify($themes) {
-        background-color: themed('foregroundColor');
-        border-bottom: 1px solid themed('separator');
-        color: themed('textColor');
+        background-color: themed("foregroundColor");
+        border-bottom: 1px solid themed("separator");
+        color: themed("textColor");
     }
 }
 
 .modal-body {
     @include themify($themes) {
-        background-color: themed('foregroundColor');
-        color: themed('textColor');
+        background-color: themed("foregroundColor");
+        color: themed("textColor");
     }
 
-    h3, .section-header > * {
+    h3,
+    .section-header > * {
         font-weight: normal;
         text-transform: uppercase;
         @include themify($themes) {
-            color: themed('textMuted');
+            color: themed("textMuted");
         }
     }
 }
@@ -46,7 +47,7 @@
     :first-child {
         border-top: none;
     }
-    
+
     :last-child {
         border-bottom: none;
     }
@@ -60,7 +61,7 @@
     div:first-child {
         border-top: none;
     }
-    
+
     div:last-child {
         border-bottom: none;
     }
@@ -70,20 +71,20 @@
     border-radius: 0.3rem 0.3rem 0 0;
     justify-content: flex-start;
     @include themify($themes) {
-        background-color: themed('footerBackgroundColor');
-        border-top: 1px solid themed('separator');
+        background-color: themed("footerBackgroundColor");
+        border-top: 1px solid themed("separator");
     }
 }
 
 .close {
     @include themify($themes) {
-        color: themed('textColor');
+        color: themed("textColor");
     }
 }
 
 #totpImage {
     @include themify($themes) {
-        filter: themed('imgFilter');
+        filter: themed("imgFilter");
     }
 }
 
@@ -115,7 +116,7 @@
         .totp-circle {
             fill: none;
             @include themify($themes) {
-                stroke: themed('primary');
+                stroke: themed("primary");
             }
 
             &.inner {
@@ -137,15 +138,16 @@
     }
 
     &.low {
-        .totp-sec, .totp-code {
+        .totp-sec,
+        .totp-code {
             @include themify($themes) {
-                color: themed('danger');
+                color: themed("danger");
             }
         }
 
         .totp-circle {
             @include themify($themes) {
-                stroke: themed('danger');
+                stroke: themed("danger");
             }
         }
     }
@@ -156,6 +158,6 @@
     opacity: 0.8;
     z-index: $zindex-tooltip !important;
     @include themify($themes) {
-        background: themed('cdkDraggingBackground');
+        background: themed("cdkDraggingBackground");
     }
 }

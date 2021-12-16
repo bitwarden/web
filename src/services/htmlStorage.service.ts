@@ -1,26 +1,26 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
-import { StorageService } from 'jslib-common/abstractions/storage.service';
+import { StorageService } from "jslib-common/abstractions/storage.service";
 
-import { HtmlStorageLocation } from 'jslib-common/enums/htmlStorageLocation';
+import { HtmlStorageLocation } from "jslib-common/enums/htmlStorageLocation";
 
-import { GlobalState } from 'jslib-common/models/domain/globalState';
-import { State } from 'jslib-common/models/domain/state';
-import { StorageOptions } from 'jslib-common/models/domain/storageOptions';
+import { GlobalState } from "jslib-common/models/domain/globalState";
+import { State } from "jslib-common/models/domain/state";
+import { StorageOptions } from "jslib-common/models/domain/storageOptions";
 
 @Injectable()
 export class HtmlStorageService implements StorageService {
-
     get defaultOptions(): StorageOptions {
         return { htmlStorageLocation: HtmlStorageLocation.Session };
     }
 
     async init() {
-        const state = await this.get<State>('state', { htmlStorageLocation: HtmlStorageLocation.Local }) ?? new State();
+        const state =
+            (await this.get<State>("state", { htmlStorageLocation: HtmlStorageLocation.Local })) ?? new State();
         state.globals = state.globals ?? new GlobalState();
         state.globals.vaultTimeout = state.globals.vaultTimeout ?? 15;
-        state.globals.vaultTimeoutAction = state.globals.vaultTimeoutAction ?? 'lock';
-        await this.save('state', state, { htmlStorageLocation: HtmlStorageLocation.Local });
+        state.globals.vaultTimeoutAction = state.globals.vaultTimeoutAction ?? "lock";
+        await this.save("state", state, { htmlStorageLocation: HtmlStorageLocation.Local });
     }
 
     get<T>(key: string, options: StorageOptions = this.defaultOptions): Promise<T> {
@@ -30,7 +30,7 @@ export class HtmlStorageService implements StorageService {
                 json = window.localStorage.getItem(key);
                 break;
             case HtmlStorageLocation.Session:
-                 default:
+            default:
                 json = window.sessionStorage.getItem(key);
                 break;
         }
@@ -43,7 +43,7 @@ export class HtmlStorageService implements StorageService {
     }
 
     async has(key: string, options: StorageOptions = this.defaultOptions): Promise<boolean> {
-        return await this.get(key, options) != null;
+        return (await this.get(key, options)) != null;
     }
 
     save(key: string, obj: any, options: StorageOptions = this.defaultOptions): Promise<any> {
@@ -61,7 +61,7 @@ export class HtmlStorageService implements StorageService {
                 window.localStorage.setItem(key, json);
                 break;
             case HtmlStorageLocation.Session:
-                 default:
+            default:
                 window.sessionStorage.setItem(key, json);
                 break;
         }
@@ -74,7 +74,7 @@ export class HtmlStorageService implements StorageService {
                 window.localStorage.removeItem(key);
                 break;
             case HtmlStorageLocation.Session:
-                 default:
+            default:
                 window.sessionStorage.removeItem(key);
                 break;
         }

@@ -1,15 +1,15 @@
-import { b64Decode, getQsParam } from './common';
-import { buildDataString, parseWebauthnJson } from './common-webauthn';
+import { b64Decode, getQsParam } from "./common";
+import { buildDataString, parseWebauthnJson } from "./common-webauthn";
 
 // tslint:disable-next-line
-require('./webauthn.scss');
+require("./webauthn.scss");
 
 let parsed = false;
 let webauthnJson: any;
 let parentUrl: string = null;
 let parentOrigin: string = null;
 let sentSuccess = false;
-let locale: string = 'en';
+let locale: string = "en";
 
 let locales: any = {};
 
@@ -18,20 +18,20 @@ function parseParameters() {
         return;
     }
 
-    parentUrl = getQsParam('parent');
+    parentUrl = getQsParam("parent");
     if (!parentUrl) {
-        error('No parent.');
+        error("No parent.");
         return;
     } else {
         parentUrl = decodeURIComponent(parentUrl);
         parentOrigin = new URL(parentUrl).origin;
     }
 
-    locale = getQsParam('locale').replace('-', '_');
+    locale = getQsParam("locale").replace("-", "_");
 
-    const version = getQsParam('v');
+    const version = getQsParam("v");
 
-    if (version === '1') {
+    if (version === "1") {
         parseParametersV1();
     } else {
         parseParametersV2();
@@ -40,9 +40,9 @@ function parseParameters() {
 }
 
 function parseParametersV1() {
-    const data = getQsParam('data');
+    const data = getQsParam("data");
     if (!data) {
-        error('No data.');
+        error("No data.");
         return;
     }
 
@@ -50,40 +50,38 @@ function parseParametersV1() {
 }
 
 function parseParametersV2() {
-    let dataObj: { data: any, btnText: string; } = null;
+    let dataObj: { data: any; btnText: string } = null;
     try {
-        dataObj = JSON.parse(b64Decode(getQsParam('data')));
-    }
-    catch (e) {
-        error('Cannot parse data.');
+        dataObj = JSON.parse(b64Decode(getQsParam("data")));
+    } catch (e) {
+        error("Cannot parse data.");
         return;
     }
 
     webauthnJson = dataObj.data;
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-
+document.addEventListener("DOMContentLoaded", async () => {
     parseParameters();
     try {
         locales = await loadLocales(locale);
     } catch {
         // tslint:disable-next-line:no-console
-        console.error('Failed to load the locale', locale);
-        locales = await loadLocales('en');
+        console.error("Failed to load the locale", locale);
+        locales = await loadLocales("en");
     }
 
-    document.getElementById('msg').innerText = translate('webAuthnFallbackMsg');
-    document.getElementById('remember-label').innerText = translate('rememberMe');
+    document.getElementById("msg").innerText = translate("webAuthnFallbackMsg");
+    document.getElementById("remember-label").innerText = translate("rememberMe");
 
-    const button = document.getElementById('webauthn-button');
-    button.innerText = translate('webAuthnAuthenticate');
+    const button = document.getElementById("webauthn-button");
+    button.innerText = translate("webAuthnAuthenticate");
     button.onclick = start;
 
-    document.getElementById('spinner').classList.add('d-none');
-    const content = document.getElementById('content');
-    content.classList.add('d-block');
-    content.classList.remove('d-none');
+    document.getElementById("spinner").classList.add("d-none");
+    const content = document.getElementById("content");
+    content.classList.add("d-block");
+    content.classList.remove("d-none");
 });
 
 async function loadLocales(newLocale: string) {
@@ -93,7 +91,7 @@ async function loadLocales(newLocale: string) {
 }
 
 function translate(id: string) {
-    return locales[id]?.message || '';
+    return locales[id]?.message || "";
 }
 
 function start() {
@@ -101,23 +99,22 @@ function start() {
         return;
     }
 
-    if (!('credentials' in navigator)) {
-        error(translate('webAuthnNotSupported'));
+    if (!("credentials" in navigator)) {
+        error(translate("webAuthnNotSupported"));
         return;
     }
 
     parseParameters();
     if (!webauthnJson) {
-        error('No data.');
+        error("No data.");
         return;
     }
 
     let json: any;
     try {
         json = parseWebauthnJson(webauthnJson);
-    }
-    catch (e) {
-        error('Cannot parse data.');
+    } catch (e) {
+        error("Cannot parse data.");
         return;
     }
 
@@ -126,43 +123,45 @@ function start() {
 
 async function initWebAuthn(obj: any) {
     try {
-        const assertedCredential = await navigator.credentials.get({ publicKey: obj }) as PublicKeyCredential;
+        const assertedCredential = (await navigator.credentials.get({
+            publicKey: obj,
+        })) as PublicKeyCredential;
 
         if (sentSuccess) {
             return;
         }
 
         const dataString = buildDataString(assertedCredential);
-        const remember = (document.getElementById('remember') as HTMLInputElement).checked;
-        window.postMessage({ command: 'webAuthnResult', data: dataString, remember: remember }, '*');
+        const remember = (document.getElementById("remember") as HTMLInputElement).checked;
+        window.postMessage({ command: "webAuthnResult", data: dataString, remember: remember }, "*");
 
         sentSuccess = true;
-        success(translate('webAuthnSuccess'));
+        success(translate("webAuthnSuccess"));
     } catch (err) {
         error(err);
     }
 }
 
 function error(message: string) {
-    const el = document.getElementById('msg');
+    const el = document.getElementById("msg");
     resetMsgBox(el);
     el.textContent = message;
-    el.classList.add('alert');
-    el.classList.add('alert-danger');
+    el.classList.add("alert");
+    el.classList.add("alert-danger");
 }
 
 function success(message: string) {
-    (document.getElementById('webauthn-button') as HTMLButtonElement).disabled = true;
+    (document.getElementById("webauthn-button") as HTMLButtonElement).disabled = true;
 
-    const el = document.getElementById('msg');
+    const el = document.getElementById("msg");
     resetMsgBox(el);
     el.textContent = message;
-    el.classList.add('alert');
-    el.classList.add('alert-success');
+    el.classList.add("alert");
+    el.classList.add("alert-success");
 }
 
 function resetMsgBox(el: HTMLElement) {
-    el.classList.remove('alert');
-    el.classList.remove('alert-danger');
-    el.classList.remove('alert-success');
+    el.classList.remove("alert");
+    el.classList.remove("alert-danger");
+    el.classList.remove("alert-success");
 }

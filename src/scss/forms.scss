@@ -4,31 +4,34 @@
 
 ::placeholder {
     @include themify($themes) {
-        color: themed('inputPlaceholderColor');
+        color: themed("inputPlaceholderColor");
     }
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
     &:required {
         box-shadow: none;
     }
 }
 
 input[type="search"]::-webkit-search-cancel-button {
-    -webkit-appearance: 
-    -cancel-button;
+    -webkit-appearance: -cancel-button;
 }
 
-label:not(.form-check-label):not(.btn), label.bold {
+label:not(.form-check-label):not(.btn),
+label.bold {
     font-weight: 600;
     @include themify($themes) {
-        color: themed('headingColor');
+        color: themed("headingColor");
     }
 }
 
-label.form-check-label, .form-control-file {
+label.form-check-label,
+.form-control-file {
     @include themify($themes) {
-        color: themed('headingColor');
+        color: themed("headingColor");
     }
 }
 
@@ -40,7 +43,7 @@ label.form-check-label, .form-control-file {
             display: block;
             font-weight: normal;
             @include themify($themes) {
-                color: themed('textMuted');
+                color: themed("textMuted");
             }
         }
 
@@ -60,32 +63,34 @@ label.form-check-label, .form-control-file {
 
 .form-group {
     .form-group-child-check {
-        @extend .ml-4
+        @extend .ml-4;
     }
 }
 
 .form-inline {
-    input[type='datetime-local'] {
+    input[type="datetime-local"] {
         width: 200px;
     }
 }
 
-.form-control  {
+.form-control {
     @include themify($themes) {
-        background-color: themed('inputBackgroundColor');
-        border-color: themed('inputBorderColor');
-        color: themed('inputTextColor');
+        background-color: themed("inputBackgroundColor");
+        border-color: themed("inputBorderColor");
+        color: themed("inputTextColor");
     }
 
-    &:disabled, &[readonly] {
+    &:disabled,
+    &[readonly] {
         @include themify($themes) {
-            background-color: themed('inputDisabledBackground');
-            color: themed('inputDisabledColor');
+            background-color: themed("inputDisabledBackground");
+            color: themed("inputDisabledColor");
         }
     }
 }
 
-input[type="radio"], input[type="checkbox"] {
+input[type="radio"],
+input[type="checkbox"] {
     cursor: pointer;
 }
 
@@ -95,51 +100,52 @@ input[type="radio"], input[type="checkbox"] {
     &.is-focused {
         outline: 0;
         @include themify($themes) {
-            background-color: themed('inputBackgroundColor');
-            border-color: themed('inputBorderColor');
-            box-shadow: 0 0 0 $input-focus-width rgba(mix(color-yiq(themed('primary')), themed('primary'), 15%), .5);
-            color: themed('inputTextColor');
+            background-color: themed("inputBackgroundColor");
+            border-color: themed("inputBorderColor");
+            box-shadow: 0 0 0 $input-focus-width rgba(mix(color-yiq(themed("primary")), themed("primary"), 15%), 0.5);
+            color: themed("inputTextColor");
         }
-    
+
         &.is-invalid {
             opacity: 0.75;
             @include themify($themes) {
-                box-shadow: 0 0 0 $input-focus-width themed('danger');
+                box-shadow: 0 0 0 $input-focus-width themed("danger");
             }
         }
     }
-    
+
     &.is-invalid {
         @include themify($themes) {
-            border-color: themed('danger');
+            border-color: themed("danger");
         }
     }
 }
 
-.dropdown-menu, .dropdown-item  {
+.dropdown-menu,
+.dropdown-item {
     @include themify($themes) {
-        background-color: themed('dropdownBackground');
-        color: themed('dropdownTextColor');
+        background-color: themed("dropdownBackground");
+        color: themed("dropdownTextColor");
     }
 }
 
 .dropdown-item {
     @include themify($themes) {
-        color: themed('dropdownTextColor');
+        color: themed("dropdownTextColor");
     }
 
     &.text-danger {
         @include themify($themes) {
-            color: themed('danger') !important;
+            color: themed("danger") !important;
         }
     }
     &:hover {
         @include themify($themes) {
-            background-color: themed('dropdownHover');
+            background-color: themed("dropdownHover");
         }
     }
-    &:active{
-        background-color: rgba(0,0,0,0.1) !important;
+    &:active {
+        background-color: rgba(0, 0, 0, 0.1) !important;
     }
 }
 
@@ -148,7 +154,7 @@ input[type="radio"], input[type="checkbox"] {
         cursor: pointer;
     }
     @include themify($themes) {
-        border: 1px solid themed('listItemBorder');
+        border: 1px solid themed("listItemBorder");
     }
 }
 
@@ -158,20 +164,20 @@ input[type="radio"], input[type="checkbox"] {
         z-index: 100;
     }
     @include themify($themes) {
-        background-color: themed('foregroundColor');
-        border-color: themed('listItemBorder');
-        color: themed('textColor');
+        background-color: themed("foregroundColor");
+        border-color: themed("listItemBorder");
+        color: themed("textColor");
     }
-    >.two-factor-content {
+    > .two-factor-content {
         justify-content: center;
         flex-direction: row;
         display: flex;
-        >.text-col {
+        > .text-col {
             flex-direction: column;
             flex: 1;
         }
-        >.logo-col {
-            min-width: 100px; 
+        > .logo-col {
+            min-width: 100px;
             margin-right: 20px;
             display: flex;
             align-items: center;
@@ -180,28 +186,30 @@ input[type="radio"], input[type="checkbox"] {
                 height: fit-content;
             }
         }
-        >.btn-col {
+        > .btn-col {
             width: 85px;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-    }      
+    }
 }
 
 .list-group-item.active {
     font-weight: bold !important;
     padding-left: calc(#{$list-group-item-padding-x} - 3px);
     @include themify($themes) {
-        border-color: themed('borderColor');
-        border-left: 3px solid themed('borderPrimaryColor');
-        color: themed('listItemActive');
+        border-color: themed("borderColor");
+        border-left: 3px solid themed("borderPrimaryColor");
+        color: themed("listItemActive");
     }
 }
 
 // Browser specific icons overlayed on input fields. e.g. caps lock indicator on password field
-::-webkit-calendar-picker-indicator, input::-webkit-caps-lock-indicator, input::-webkit-credentials-auto-fill-button {
+::-webkit-calendar-picker-indicator,
+input::-webkit-caps-lock-indicator,
+input::-webkit-credentials-auto-fill-button {
     @include themify($themes) {
-        filter: themed('browserInputIconsFilter');
+        filter: themed("browserInputIconsFilter");
     }
 }

@@ -1,22 +1,22 @@
 .table {
     @include themify($themes) {
-        color: themed('textColor');
+        color: themed("textColor");
     }
 
     td {
         vertical-align: middle;
         @include themify($themes) {
-            color: themed('textColor');
+            color: themed("textColor");
         }
 
         & > a {
             &:not(.badge) {
                 @include themify($themes) {
-                    color: themed('tableLinkColor');
+                    color: themed("tableLinkColor");
                 }
                 &:hover {
                     @include themify($themes) {
-                        color: themed('tableLinkColorHover');
+                        color: themed("tableLinkColorHover");
                     }
                 }
             }
@@ -24,21 +24,23 @@
 
         &.reduced-lh {
             line-height: 1;
-            
+
             small {
                 font-size: 80%;
             }
         }
 
-        small, > .fa, .icon {
+        small,
+        > .fa,
+        .icon {
             @include themify($themes) {
-                color: themed('textMuted');
+                color: themed("textMuted");
             }
         }
 
         .fa-globe {
             @include themify($themes) {
-                color: themed('iconColor');
+                color: themed("iconColor");
             }
         }
     }
@@ -73,7 +75,8 @@
     }
 
     tr:not(:hover) td.table-list-options {
-        > .dropdown:not(.show) button:not(:focus):not(:active), > button:not(:focus):not(:active) {
+        > .dropdown:not(.show) button:not(:focus):not(:active),
+        > button:not(:focus):not(:active) {
             @extend .sr-only;
         }
     }
@@ -82,7 +85,7 @@
         max-width: 45px;
         text-align: center;
         width: 45px;
-        
+
         img {
             @extend .rounded;
             @extend .img-fluid;
@@ -98,15 +101,16 @@
     td.table-list-strike {
         text-decoration: line-through;
         @include themify($themes) {
-            color: themed('textMuted');
+            color: themed("textMuted");
         }
     }
 
     &.table-list {
-        &.table td, .table th {
+        &.table td,
+        .table th {
             &:not(tr:first-child td) {
                 @include themify($themes) {
-                    border-top: 1px solid themed('tableSeparator');
+                    border-top: 1px solid themed("tableSeparator");
                 }
             }
         }
@@ -125,7 +129,7 @@
 
 .table-hover tbody tr:hover {
     @include themify($themes) {
-        background-color: themed('tableRowHover');
-        color: themed('tableColorHover');
+        background-color: themed("tableRowHover");
+        color: themed("tableColorHover");
     }
 }

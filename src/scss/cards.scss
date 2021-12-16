@@ -1,20 +1,21 @@
 .card {
     @include themify($themes) {
-        background-color: themed('foregroundColor');
-        border-color: themed('borderColor');
-        color: themed('textColor');
+        background-color: themed("foregroundColor");
+        border-color: themed("borderColor");
+        color: themed("textColor");
     }
-    
+
     &.text-danger {
         &.text-danger > .card-body {
             @include themify($themes) {
-                color: themed('danger');
+                color: themed("danger");
             }
         }
     }
 }
 
-.card-header, .modal-header {
+.card-header,
+.modal-header {
     font-weight: bold;
     text-transform: uppercase;
 
@@ -27,14 +28,14 @@
 
 .card-header {
     @include themify($themes) {
-        background-color: themed('headerColor');
-        color: themed('headingColor');
+        background-color: themed("headerColor");
+        color: themed("headingColor");
     }
 
     a:hover {
-        &:not(.badge){
+        &:not(.badge) {
             @include themify($themes) {
-                color: themed('learnMoreHover');
+                color: themed("learnMoreHover");
             }
         }
     }
@@ -42,7 +43,7 @@
 
 .card-body-header {
     font-size: $font-size-lg;
-    @extend .mb-4
+    @extend .mb-4;
 }
 
 .card ul.fa-ul.card-ul {
@@ -81,12 +82,12 @@
 .card-body {
     &:not(.bg-light > .card-body) {
         @include themify($themes) {
-            background-color: themed('foregroundColor');
-            color: themed('textColor');
+            background-color: themed("foregroundColor");
+            color: themed("textColor");
         }
         &.card-body a:not(li a) {
             @include themify($themes) {
-                font-weight: themed('linkWeight');
+                font-weight: themed("linkWeight");
             }
         }
     }

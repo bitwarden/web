@@ -4,9 +4,9 @@
     margin-bottom: $alert-margin-bottom;
     padding: $alert-padding-y $alert-padding-x;
     @include themify($themes) {
-        background-color: themed('calloutBackground');
-        border: 1px solid themed('borderColor');
-        color: themed('calloutColor');
+        background-color: themed("calloutBackground");
+        border: 1px solid themed("borderColor");
+        color: themed("calloutColor");
     }
 
     .callout-heading {
@@ -20,59 +20,59 @@
 
     &.callout-primary {
         @include themify($themes) {
-            border-left-color: themed('primary');
+            border-left-color: themed("primary");
         }
         .callout-heading {
             @include themify($themes) {
-                color: themed('primary');
+                color: themed("primary");
             }
         }
     }
 
     &.callout-info {
         @include themify($themes) {
-            border-left-color: themed('info');
+            border-left-color: themed("info");
         }
 
         .callout-heading {
             @include themify($themes) {
-                color: themed('info');
+                color: themed("info");
             }
         }
     }
 
     &.callout-danger {
         @include themify($themes) {
-            border-left-color: themed('danger');
+            border-left-color: themed("danger");
         }
 
         .callout-heading {
             @include themify($themes) {
-                color: themed('danger');
+                color: themed("danger");
             }
         }
     }
 
     &.callout-success {
         @include themify($themes) {
-            border-left-color: themed('success');
+            border-left-color: themed("success");
         }
 
         .callout-heading {
             @include themify($themes) {
-                color: themed('success');
+                color: themed("success");
             }
         }
     }
 
     &.callout-warning {
         @include themify($themes) {
-            border-left-color: themed('warning');
+            border-left-color: themed("warning");
         }
 
         .callout-heading {
             @include themify($themes) {
-                color: themed('warning');
+                color: themed("warning");
             }
         }
     }

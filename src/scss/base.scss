@@ -13,14 +13,14 @@ body {
             background-color: $white;
         }
         @include themify($themes) {
-            background-color: themed('layoutFrontendColor');
-            color: themed('headingColor');
+            background-color: themed("layoutFrontendColor");
+            color: themed("headingColor");
         }
     }
 
     @include themify($themes) {
-        background-color: themed('backgroundColor');
-        color: themed('textColor');
+        background-color: themed("backgroundColor");
+        color: themed("textColor");
     }
 
     &.full-width:not(.layout_frontend) {
@@ -38,24 +38,29 @@ body {
     width: 980px;
 }
 
-.page-header, .secondary-header {
+.page-header,
+.secondary-header {
     margin-bottom: 0.5rem;
     padding-bottom: 0.6rem;
     @include themify($themes) {
-        border-bottom: 1px solid themed('separator');
+        border-bottom: 1px solid themed("separator");
     }
 
     &:not(.text-danger) {
-        h1, h2, h3, h4 {
+        h1,
+        h2,
+        h3,
+        h4 {
             margin: 0;
             @include themify($themes) {
-                color: themed('headingColor');
+                color: themed("headingColor");
             }
         }
     }
 }
 
-.secondary-header, .spaced-header {
+.secondary-header,
+.spaced-header {
     margin-top: 4rem;
 }
 
@@ -67,10 +72,10 @@ img.logo {
 
     &.logo-themed {
         @include themify($themes) {
-            content: url('../images/logo-' + themed('logoSuffix') + '@2x.png');
+            content: url("../images/logo-" + themed("logoSuffix") + "@2x.png");
         }
     }
-} 
+}
 
 .page-content {
     margin-top: 20px;
@@ -80,13 +85,14 @@ img.logo {
     margin-top: 40px;
     padding: 40px 0 40px 0;
     @include themify($themes) {
-        border-top: 1px solid themed('separator');
+        border-top: 1px solid themed("separator");
     }
 }
 
-hr, .dropdown-divider {
+hr,
+.dropdown-divider {
     @include themify($themes) {
-        border-top: 1px solid themed('separatorHr');
+        border-top: 1px solid themed("separatorHr");
     }
 }
 
@@ -102,10 +108,13 @@ hr, .dropdown-divider {
     cursor: move !important;
 }
 
-
-h1, h2, h3, h4, h5 {
+h1,
+h2,
+h3,
+h4,
+h5 {
     @include themify($themes) {
-        color: themed('headingColor');
+        color: themed("headingColor");
     }
 
     small {
@@ -114,27 +123,27 @@ h1, h2, h3, h4, h5 {
 
     &.spaced-header {
         @include themify($themes) {
-            color: themed('headingColor');
+            color: themed("headingColor");
         }
     }
 }
 
 a {
     @include themify($themes) {
-        color: themed('linkColor');
+        color: themed("linkColor");
     }
 
     &.text-body {
         @include themify($themes) {
-            color: themed('headingColor') !important;
-            font-weight: themed('linkWeight');
+            color: themed("headingColor") !important;
+            font-weight: themed("linkWeight");
         }
     }
 }
 
 code {
     @include themify($themes) {
-        color: themed('codeColor');
+        color: themed("codeColor");
     }
 }
 
@@ -154,9 +163,13 @@ code {
     font-weight: 600;
 }
 
-.btn:focus, .swal2-popup .swal2-actions button:focus, .btn.focus, .swal2-popup .swal2-actions button.focus, .form-control:focus {
+.btn:focus,
+.swal2-popup .swal2-actions button:focus,
+.btn.focus,
+.swal2-popup .swal2-actions button.focus,
+.form-control:focus {
     @include themify($themes) {
-        box-shadow: 0 0 0 0.2rem themed('focus');
+        box-shadow: 0 0 0 0.2rem themed("focus");
     }
 }
 
@@ -164,88 +177,95 @@ code {
 
 .bg-primary {
     @include themify($themes) {
-        background-color: themed('bgPrimaryColor');
+        background-color: themed("bgPrimaryColor");
     }
 }
 
 .bg-light {
     @include themify($themes) {
-        background-color: themed('bgLightColor') !important;
+        background-color: themed("bgLightColor") !important;
     }
 }
 
 .bg-success {
     @include themify($themes) {
-        background-color: themed('success') !important;
-        color: themed('successTextColor') !important;
+        background-color: themed("success") !important;
+        color: themed("successTextColor") !important;
     }
 }
 
 .bg-warning {
     @include themify($themes) {
-        background-color: themed('warning') !important;
-        color: themed('warningTextColor') !important;
+        background-color: themed("warning") !important;
+        color: themed("warningTextColor") !important;
     }
 }
 
-.bg-error, .bg-danger {
+.bg-error,
+.bg-danger {
     @include themify($themes) {
-        background-color: themed('danger') !important;
-        color: themed('dangerTextColor') !important;
+        background-color: themed("danger") !important;
+        color: themed("dangerTextColor") !important;
     }
 }
 
 .bg-info {
     @include themify($themes) {
-        background-color: themed('info') !important;
-        color: themed('infoTextColor') !important;
+        background-color: themed("info") !important;
+        color: themed("infoTextColor") !important;
     }
 }
 
 .border-primary {
     @include themify($themes) {
-        border-color: themed('borderPrimaryColor') !important;
+        border-color: themed("borderPrimaryColor") !important;
     }
 }
 
 .border-warning {
     @include themify($themes) {
-        border-color: themed('warning') !important;
+        border-color: themed("warning") !important;
     }
 }
 
 .border-danger {
     @include themify($themes) {
-        border-color: themed('danger') !important;
+        border-color: themed("danger") !important;
     }
 }
 
 .border-info {
     @include themify($themes) {
-        border-color: themed('info') !important;
+        border-color: themed("info") !important;
     }
 }
 
 .text-success {
     @include themify($themes) {
-        color: themed('success') !important;
+        color: themed("success") !important;
     }
-    
-    & > h1,h2,h3,h4 {
+
+    & > h1,
+    h2,
+    h3,
+    h4 {
         @include themify($themes) {
-            color: themed('success') !important;
+            color: themed("success") !important;
         }
     }
 }
 
 .text-warning {
     @include themify($themes) {
-        color: themed('warning') !important;
+        color: themed("warning") !important;
     }
 
-    & > h1,h2,h3,h4 {
+    & > h1,
+    h2,
+    h3,
+    h4 {
         @include themify($themes) {
-            color: themed('warning') !important;
+            color: themed("warning") !important;
         }
     }
 }
@@ -253,12 +273,15 @@ code {
 .text-danger {
     &:not(.dropdown-item) {
         @include themify($themes) {
-            color: themed('danger') !important;
+            color: themed("danger") !important;
         }
 
-        & > h1,h2,h3,h4 {
+        & > h1,
+        h2,
+        h3,
+        h4 {
             @include themify($themes) {
-                color: themed('danger') !important;
+                color: themed("danger") !important;
             }
         }
     }
@@ -266,6 +289,6 @@ code {
 
 .text-muted {
     @include themify($themes) {
-        color: themed('textMuted') !important;
+        color: themed("textMuted") !important;
     }
 }

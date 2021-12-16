@@ -1,4 +1,4 @@
-import { StorageService } from 'jslib-common/abstractions/storage.service';
+import { StorageService } from "jslib-common/abstractions/storage.service";
 
 export class MemoryStorageService implements StorageService {
     private store = new Map<string, any>();

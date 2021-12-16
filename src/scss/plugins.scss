@@ -1,7 +1,7 @@
 #duo-frame {
     height: 330px;
     @include themify($themes) {
-        background: themed('imgLoading') 0 0 no-repeat;
+        background: themed("imgLoading") 0 0 no-repeat;
     }
 
     iframe {
@@ -14,7 +14,7 @@
 #web-authn-frame {
     height: 290px;
     @include themify($themes) {
-        background: themed('imgLoading') 0 0 no-repeat;
+        background: themed("imgLoading") 0 0 no-repeat;
     }
 
     iframe {
@@ -38,14 +38,14 @@
 
 @each $mfaType in $mfaTypes {
     .mfaType#{$mfaType} {
-        content: url('../images/two-factor/' + $mfaType + '.png');
+        content: url("../images/two-factor/" + $mfaType + ".png");
         max-width: 100px;
     }
 }
 
 .mfaType1 {
     @include themify($themes) {
-        content: url('../images/two-factor/1' + themed('mfaLogoSuffix'));
+        content: url("../images/two-factor/1" + themed("mfaLogoSuffix"));
         max-width: 100px;
         max-height: 45px;
     }
@@ -53,22 +53,22 @@
 
 .mfaType7 {
     @include themify($themes) {
-        content: url('../images/two-factor/7' + themed('mfaLogoSuffix'));
+        content: url("../images/two-factor/7" + themed("mfaLogoSuffix"));
         max-width: 100px;
     }
 }
 
 .recovery-code-img {
     @include themify($themes) {
-        content: url('../images/two-factor/rc' + themed('mfaLogoSuffix'));
+        content: url("../images/two-factor/rc" + themed("mfaLogoSuffix"));
         max-width: 100px;
-        max-height: 45px; 
+        max-height: 45px;
     }
 }
 
 .progress {
     @include themify($themes) {
-        background-color: themed('pwStrengthBackground');
+        background-color: themed("pwStrengthBackground");
     }
 }
 
@@ -81,7 +81,8 @@
     }
 }
 
-.braintree-placeholder, .braintree-sheet__header {
+.braintree-placeholder,
+.braintree-sheet__header {
     display: none;
 }
 
@@ -101,31 +102,31 @@
 
 [data-braintree-id="upper-container"]::before {
     @include themify($themes) {
-        background-color: themed('backgroundColor');
+        background-color: themed("backgroundColor");
     }
 }
 
 .card [data-braintree-id="upper-container"]::before {
     @include themify($themes) {
-        background-color: themed('foregroundColor');
+        background-color: themed("foregroundColor");
     }
 }
 
 [data-braintree-id="paypal-button"] {
     @include themify($themes) {
-        background-color: themed('backgroundColor');
+        background-color: themed("backgroundColor");
     }
 }
 
 .card [data-braintree-id="paypal-button"] {
     @include themify($themes) {
-        background-color: themed('foregroundColor');
+        background-color: themed("foregroundColor");
     }
 }
 
 .paypal-button-text {
     @include themify($themes) {
-        color: themed('textColor');
+        color: themed("textColor");
     }
 }
 
@@ -134,20 +135,20 @@
 [class*="swal2-"] {
     &:not(.swal2-container, .swal2-confirm, .swal2-cancel, .swal2-deny) {
         @include themify($themes) {
-            background-color: themed('backgroundColor');
-            color: themed('textColor');
+            background-color: themed("backgroundColor");
+            color: themed("textColor");
         }
     }
 }
 
 .swal2-container {
-    background-color: rgba(0,0,0,.3);
+    background-color: rgba(0, 0, 0, 0.3);
 }
 
 .swal2-popup {
     @include themify($themes) {
-        background-color: themed('backgroundColor');
-        color: themed('textColor');
+        background-color: themed("backgroundColor");
+        color: themed("textColor");
     }
     border: $modal-content-border-width solid #9a9a9a;
     @include border-radius($modal-content-border-radius);
@@ -169,7 +170,7 @@
         font-size: $font-size-base;
         padding-bottom: 15px;
         @include themify($themes) {
-            border-bottom: $modal-footer-border-width solid themed('separator');
+            border-bottom: $modal-footer-border-width solid themed("separator");
         }
     }
 
@@ -184,7 +185,7 @@
         margin: 0;
         padding: 10px 0 15px;
         @include themify($themes) {
-            color: themed('headingColor');
+            color: themed("headingColor");
         }
     }
 
@@ -192,20 +193,20 @@
         font-size: $font-size-base;
         padding: 0 15px 15px;
         @include themify($themes) {
-            color: themed('textColor');
+            color: themed("textColor");
         }
     }
 
     .swal2-actions {
         @include border-radius($modal-content-border-radius);
-        display: flex; 
+        display: flex;
         flex-direction: row;
         font-size: $font-size-base;
         justify-content: flex-start;
         margin: 0;
         padding: 15px;
         @include themify($themes) {
-            background-color: themed('backgroundColor');
+            background-color: themed("backgroundColor");
         }
 
         button {

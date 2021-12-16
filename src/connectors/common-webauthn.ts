@@ -24,12 +24,12 @@ export function buildDataString(assertedCredential: PublicKeyCredential) {
 export function parseWebauthnJson(jsonString: string) {
     const json = JSON.parse(jsonString);
 
-    const challenge = json.challenge.replace(/-/g, '+').replace(/_/g, '/');
-    json.challenge = Uint8Array.from(atob(challenge), c => c.charCodeAt(0));
+    const challenge = json.challenge.replace(/-/g, "+").replace(/_/g, "/");
+    json.challenge = Uint8Array.from(atob(challenge), (c) => c.charCodeAt(0));
 
     json.allowCredentials.forEach((listItem: any) => {
-        const fixedId = listItem.id.replace(/\_/g, '/').replace(/\-/g, '+');
-        listItem.id = Uint8Array.from(atob(fixedId), c => c.charCodeAt(0));
+        const fixedId = listItem.id.replace(/\_/g, "/").replace(/\-/g, "+");
+        listItem.id = Uint8Array.from(atob(fixedId), (c) => c.charCodeAt(0));
     });
 
     return json;
@@ -49,7 +49,7 @@ function coerceToBase64Url(thing: any) {
 
     // Uint8Array to base64
     if (thing instanceof Uint8Array) {
-        let str = '';
+        let str = "";
         const len = thing.byteLength;
 
         for (let i = 0; i < len; i++) {
@@ -58,13 +58,13 @@ function coerceToBase64Url(thing: any) {
         thing = window.btoa(str);
     }
 
-    if (typeof thing !== 'string') {
-        throw new Error('could not coerce to string');
+    if (typeof thing !== "string") {
+        throw new Error("could not coerce to string");
     }
 
     // base64 to base64url
     // NOTE: "=" at the end of challenge is optional, strip it off here
-    thing = thing.replace(/\+/g, '-').replace(/\//g, '_').replace(/=*$/g, '');
+    thing = thing.replace(/\+/g, "-").replace(/\//g, "_").replace(/=*$/g, "");
 
     return thing;
 }

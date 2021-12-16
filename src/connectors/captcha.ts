@@ -1,16 +1,16 @@
-import { b64Decode, getQsParam } from './common';
+import { b64Decode, getQsParam } from "./common";
 
 declare var hcaptcha: any;
 
-if (window.location.pathname.includes('mobile')) {
+if (window.location.pathname.includes("mobile")) {
     // tslint:disable-next-line
-    require('./captcha-mobile.scss');
+    require("./captcha-mobile.scss");
 } else {
     // tslint:disable-next-line
-    require('./captcha.scss');
+    require("./captcha.scss");
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
     init();
 });
 
@@ -30,15 +30,15 @@ async function init() {
 async function start() {
     sentSuccess = false;
 
-    const data = getQsParam('data');
+    const data = getQsParam("data");
     if (!data) {
-        error('No data.');
+        error("No data.");
         return;
     }
 
-    parentUrl = getQsParam('parent');
+    parentUrl = getQsParam("parent");
     if (!parentUrl) {
-        error('No parent.');
+        error("No parent.");
         return;
     } else {
         parentUrl = decodeURIComponent(parentUrl);
@@ -48,35 +48,34 @@ async function start() {
     let decodedData: any;
     try {
         decodedData = JSON.parse(b64Decode(data));
-    }
-    catch (e) {
-        error('Cannot parse data.');
+    } catch (e) {
+        error("Cannot parse data.");
         return;
     }
     mobileResponse = decodedData.callbackUri != null || decodedData.mobile === true;
 
-    let src = 'https://hcaptcha.com/1/api.js?render=explicit';
+    let src = "https://hcaptcha.com/1/api.js?render=explicit";
 
     // Set language code
     if (decodedData.locale) {
-        src += `&hl=${encodeURIComponent(decodedData.locale) ?? 'en'}`;
+        src += `&hl=${encodeURIComponent(decodedData.locale) ?? "en"}`;
     }
 
     // Set captchaRequired subtitle for mobile
-    const subtitleEl = document.getElementById('captchaRequired');
+    const subtitleEl = document.getElementById("captchaRequired");
     if (decodedData.captchaRequiredText && subtitleEl) {
         subtitleEl.textContent = decodedData.captchaRequiredText;
     }
 
-    const script = document.createElement('script');
+    const script = document.createElement("script");
     script.src = src;
     script.async = true;
     script.defer = true;
-    script.addEventListener('load', e => {
-        hcaptcha.render('captcha', {
+    script.addEventListener("load", (e) => {
+        hcaptcha.render("captcha", {
             sitekey: encodeURIComponent(decodedData.siteKey),
-            callback: 'captchaSuccess',
-            'error-callback': 'captchaError',
+            callback: "captchaSuccess",
+            "error-callback": "captchaError",
         });
         watchHeight();
     });
@@ -85,51 +84,56 @@ async function start() {
 
 function captchaSuccess(response: string) {
     if (mobileResponse) {
-        document.location.replace('bitwarden://captcha-callback?token=' + encodeURIComponent(response));
+        document.location.replace("bitwarden://captcha-callback?token=" + encodeURIComponent(response));
     } else {
         success(response);
     }
 }
 
 function captchaError() {
-    error('An error occurred with the captcha. Try again.');
+    error("An error occurred with the captcha. Try again.");
 }
 
 function onMessage() {
-    window.addEventListener('message', event => {
-        if (!event.origin || event.origin === '' || event.origin !== parentOrigin) {
-            return;
-        }
+    window.addEventListener(
+        "message",
+        (event) => {
+            if (!event.origin || event.origin === "" || event.origin !== parentOrigin) {
+                return;
+            }
 
-        if (event.data === 'start') {
-            start();
-        }
-    }, false);
+            if (event.data === "start") {
+                start();
+            }
+        },
+        false
+    );
 }
 
 function error(message: string) {
-    parent.postMessage('error|' + message, parentUrl);
+    parent.postMessage("error|" + message, parentUrl);
 }
 
 function success(data: string) {
     if (sentSuccess) {
         return;
     }
-    parent.postMessage('success|' + data, parentUrl);
+    parent.postMessage("success|" + data, parentUrl);
     sentSuccess = true;
 }
 
 function info(message: string | object) {
-    parent.postMessage('info|' + JSON.stringify(message), parentUrl);
+    parent.postMessage("info|" + JSON.stringify(message), parentUrl);
 }
 
 async function watchHeight() {
     const imagesDiv = document.body.lastChild as HTMLElement;
     while (true) {
         info({
-            height: imagesDiv.style.visibility === 'hidden' ?
-                document.documentElement.offsetHeight :
-                document.documentElement.scrollHeight,
+            height:
+                imagesDiv.style.visibility === "hidden"
+                    ? document.documentElement.offsetHeight
+                    : document.documentElement.scrollHeight,
             width: document.documentElement.scrollWidth,
         });
         await sleep(100);
@@ -137,6 +141,5 @@ async function watchHeight() {
 }
 
 async function sleep(ms: number) {
-    await new Promise(r => setTimeout(r, ms));
+    await new Promise((r) => setTimeout(r, ms));
 }
-
