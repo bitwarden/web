@@ -14,30 +14,30 @@ import { UnsecuredWebsitesReportComponent as BaseUnsecuredWebsitesReportComponen
 import { CipherView } from "jslib-common/models/view/cipherView";
 
 @Component({
-    selector: "app-unsecured-websites-report",
-    templateUrl: "../../tools/unsecured-websites-report.component.html",
+  selector: "app-unsecured-websites-report",
+  templateUrl: "../../tools/unsecured-websites-report.component.html",
 })
 export class UnsecuredWebsitesReportComponent extends BaseUnsecuredWebsitesReportComponent {
-    constructor(
-        cipherService: CipherService,
-        modalService: ModalService,
-        messagingService: MessagingService,
-        stateService: StateService,
-        private route: ActivatedRoute,
-        private organizationService: OrganizationService,
-        passwordRepromptService: PasswordRepromptService
-    ) {
-        super(cipherService, modalService, messagingService, stateService, passwordRepromptService);
-    }
+  constructor(
+    cipherService: CipherService,
+    modalService: ModalService,
+    messagingService: MessagingService,
+    stateService: StateService,
+    private route: ActivatedRoute,
+    private organizationService: OrganizationService,
+    passwordRepromptService: PasswordRepromptService
+  ) {
+    super(cipherService, modalService, messagingService, stateService, passwordRepromptService);
+  }
 
-    async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
-            this.organization = await this.organizationService.get(params.organizationId);
-            await super.ngOnInit();
-        });
-    }
+  async ngOnInit() {
+    this.route.parent.parent.params.subscribe(async (params) => {
+      this.organization = await this.organizationService.get(params.organizationId);
+      await super.ngOnInit();
+    });
+  }
 
-    getAllCiphers(): Promise<CipherView[]> {
-        return this.cipherService.getAllFromApiForOrganization(this.organization.id);
-    }
+  getAllCiphers(): Promise<CipherView[]> {
+    return this.cipherService.getAllFromApiForOrganization(this.organization.id);
+  }
 }

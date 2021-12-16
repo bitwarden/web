@@ -13,124 +13,135 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { Utils } from "jslib-common/misc/utils";
 
 @Component({
-    selector: "app-entity-users",
-    templateUrl: "entity-users.component.html",
+  selector: "app-entity-users",
+  templateUrl: "entity-users.component.html",
 })
 export class EntityUsersComponent implements OnInit {
-    @Input() entity: "group" | "collection";
-    @Input() entityId: string;
-    @Input() entityName: string;
-    @Input() organizationId: string;
-    @Output() onEditedUsers = new EventEmitter();
+  @Input() entity: "group" | "collection";
+  @Input() entityId: string;
+  @Input() entityName: string;
+  @Input() organizationId: string;
+  @Output() onEditedUsers = new EventEmitter();
 
-    organizationUserType = OrganizationUserType;
-    organizationUserStatusType = OrganizationUserStatusType;
+  organizationUserType = OrganizationUserType;
+  organizationUserStatusType = OrganizationUserStatusType;
 
-    showSelected = false;
-    loading = true;
-    formPromise: Promise<any>;
-    selectedCount = 0;
-    searchText: string;
+  showSelected = false;
+  loading = true;
+  formPromise: Promise<any>;
+  selectedCount = 0;
+  searchText: string;
 
-    private allUsers: OrganizationUserUserDetailsResponse[] = [];
+  private allUsers: OrganizationUserUserDetailsResponse[] = [];
 
-    constructor(
-        private apiService: ApiService,
-        private i18nService: I18nService,
-        private platformUtilsService: PlatformUtilsService,
-        private logService: LogService
-    ) {}
+  constructor(
+    private apiService: ApiService,
+    private i18nService: I18nService,
+    private platformUtilsService: PlatformUtilsService,
+    private logService: LogService
+  ) {}
 
-    async ngOnInit() {
-        await this.loadUsers();
-        this.loading = false;
+  async ngOnInit() {
+    await this.loadUsers();
+    this.loading = false;
+  }
+
+  get users() {
+    if (this.showSelected) {
+      return this.allUsers.filter((u) => (u as any).checked);
+    } else {
+      return this.allUsers;
     }
+  }
 
-    get users() {
-        if (this.showSelected) {
-            return this.allUsers.filter((u) => (u as any).checked);
-        } else {
-            return this.allUsers;
-        }
-    }
-
-    async loadUsers() {
-        const users = await this.apiService.getOrganizationUsers(this.organizationId);
-        this.allUsers = users.data.map((r) => r).sort(Utils.getSortFunction(this.i18nService, "email"));
-        if (this.entity === "group") {
-            const response = await this.apiService.getGroupUsers(this.organizationId, this.entityId);
-            if (response != null && users.data.length > 0) {
-                response.forEach((s) => {
-                    const user = users.data.filter((u) => u.id === s);
-                    if (user != null && user.length > 0) {
-                        (user[0] as any).checked = true;
-                    }
-                });
-            }
-        } else if (this.entity === "collection") {
-            const response = await this.apiService.getCollectionUsers(this.organizationId, this.entityId);
-            if (response != null && users.data.length > 0) {
-                response.forEach((s) => {
-                    const user = users.data.filter((u) => !u.accessAll && u.id === s.id);
-                    if (user != null && user.length > 0) {
-                        (user[0] as any).checked = true;
-                        (user[0] as any).readOnly = s.readOnly;
-                        (user[0] as any).hidePasswords = s.hidePasswords;
-                    }
-                });
-            }
-        }
-
-        this.allUsers.forEach((u) => {
-            if (this.entity === "collection" && u.accessAll) {
-                (u as any).checked = true;
-            }
-            if ((u as any).checked) {
-                this.selectedCount++;
-            }
+  async loadUsers() {
+    const users = await this.apiService.getOrganizationUsers(this.organizationId);
+    this.allUsers = users.data.map((r) => r).sort(Utils.getSortFunction(this.i18nService, "email"));
+    if (this.entity === "group") {
+      const response = await this.apiService.getGroupUsers(this.organizationId, this.entityId);
+      if (response != null && users.data.length > 0) {
+        response.forEach((s) => {
+          const user = users.data.filter((u) => u.id === s);
+          if (user != null && user.length > 0) {
+            (user[0] as any).checked = true;
+          }
         });
+      }
+    } else if (this.entity === "collection") {
+      const response = await this.apiService.getCollectionUsers(this.organizationId, this.entityId);
+      if (response != null && users.data.length > 0) {
+        response.forEach((s) => {
+          const user = users.data.filter((u) => !u.accessAll && u.id === s.id);
+          if (user != null && user.length > 0) {
+            (user[0] as any).checked = true;
+            (user[0] as any).readOnly = s.readOnly;
+            (user[0] as any).hidePasswords = s.hidePasswords;
+          }
+        });
+      }
     }
 
-    check(u: OrganizationUserUserDetailsResponse) {
-        if (this.entity === "collection" && u.accessAll) {
-            return;
-        }
-        (u as any).checked = !(u as any).checked;
-        this.selectedChanged(u);
-    }
+    this.allUsers.forEach((u) => {
+      if (this.entity === "collection" && u.accessAll) {
+        (u as any).checked = true;
+      }
+      if ((u as any).checked) {
+        this.selectedCount++;
+      }
+    });
+  }
 
-    selectedChanged(u: OrganizationUserUserDetailsResponse) {
-        if ((u as any).checked) {
-            this.selectedCount++;
-        } else {
-            if (this.entity === "collection") {
-                (u as any).readOnly = false;
-                (u as any).hidePasswords = false;
-            }
-            this.selectedCount--;
-        }
+  check(u: OrganizationUserUserDetailsResponse) {
+    if (this.entity === "collection" && u.accessAll) {
+      return;
     }
+    (u as any).checked = !(u as any).checked;
+    this.selectedChanged(u);
+  }
 
-    filterSelected(showSelected: boolean) {
-        this.showSelected = showSelected;
+  selectedChanged(u: OrganizationUserUserDetailsResponse) {
+    if ((u as any).checked) {
+      this.selectedCount++;
+    } else {
+      if (this.entity === "collection") {
+        (u as any).readOnly = false;
+        (u as any).hidePasswords = false;
+      }
+      this.selectedCount--;
     }
+  }
 
-    async submit() {
-        try {
-            if (this.entity === "group") {
-                const selections = this.users.filter((u) => (u as any).checked).map((u) => u.id);
-                this.formPromise = this.apiService.putGroupUsers(this.organizationId, this.entityId, selections);
-            } else {
-                const selections = this.users
-                    .filter((u) => (u as any).checked && !u.accessAll)
-                    .map((u) => new SelectionReadOnlyRequest(u.id, !!(u as any).readOnly, !!(u as any).hidePasswords));
-                this.formPromise = this.apiService.putCollectionUsers(this.organizationId, this.entityId, selections);
-            }
-            await this.formPromise;
-            this.platformUtilsService.showToast("success", null, this.i18nService.t("updatedUsers"));
-            this.onEditedUsers.emit();
-        } catch (e) {
-            this.logService.error(e);
-        }
+  filterSelected(showSelected: boolean) {
+    this.showSelected = showSelected;
+  }
+
+  async submit() {
+    try {
+      if (this.entity === "group") {
+        const selections = this.users.filter((u) => (u as any).checked).map((u) => u.id);
+        this.formPromise = this.apiService.putGroupUsers(
+          this.organizationId,
+          this.entityId,
+          selections
+        );
+      } else {
+        const selections = this.users
+          .filter((u) => (u as any).checked && !u.accessAll)
+          .map(
+            (u) =>
+              new SelectionReadOnlyRequest(u.id, !!(u as any).readOnly, !!(u as any).hidePasswords)
+          );
+        this.formPromise = this.apiService.putCollectionUsers(
+          this.organizationId,
+          this.entityId,
+          selections
+        );
+      }
+      await this.formPromise;
+      this.platformUtilsService.showToast("success", null, this.i18nService.t("updatedUsers"));
+      this.onEditedUsers.emit();
+    } catch (e) {
+      this.logService.error(e);
     }
+  }
 }

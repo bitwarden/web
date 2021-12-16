@@ -25,121 +25,129 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { OrganizationPlansComponent } from "src/app/settings/organization-plans.component";
 
 @Component({
-    selector: "families-for-enterprise-setup",
-    templateUrl: "families-for-enterprise-setup.component.html",
+  selector: "families-for-enterprise-setup",
+  templateUrl: "families-for-enterprise-setup.component.html",
 })
 export class FamiliesForEnterpriseSetupComponent implements OnInit {
-    @ViewChild(OrganizationPlansComponent, { static: false })
-    set organizationPlansComponent(value: OrganizationPlansComponent) {
-        if (!value) {
-            return;
-        }
-
-        value.plan = PlanType.FamiliesAnnually;
-        value.product = ProductType.Families;
-        value.acceptingSponsorship = true;
-        value.onSuccess.subscribe(this.onOrganizationCreateSuccess.bind(this));
+  @ViewChild(OrganizationPlansComponent, { static: false })
+  set organizationPlansComponent(value: OrganizationPlansComponent) {
+    if (!value) {
+      return;
     }
 
-    @ViewChild("deleteOrganizationTemplate", { read: ViewContainerRef, static: true })
-    deleteModalRef: ViewContainerRef;
+    value.plan = PlanType.FamiliesAnnually;
+    value.product = ProductType.Families;
+    value.acceptingSponsorship = true;
+    value.onSuccess.subscribe(this.onOrganizationCreateSuccess.bind(this));
+  }
 
-    loading = true;
-    badToken = false;
-    formPromise: Promise<any>;
+  @ViewChild("deleteOrganizationTemplate", { read: ViewContainerRef, static: true })
+  deleteModalRef: ViewContainerRef;
 
-    token: string;
-    existingFamilyOrganizations: Organization[];
+  loading = true;
+  badToken = false;
+  formPromise: Promise<any>;
 
-    showNewOrganization: boolean = false;
-    _organizationPlansComponent: OrganizationPlansComponent;
-    _selectedFamilyOrganizationId: string = "";
+  token: string;
+  existingFamilyOrganizations: Organization[];
 
-    constructor(
-        private router: Router,
-        private platformUtilsService: PlatformUtilsService,
-        private i18nService: I18nService,
-        private route: ActivatedRoute,
-        private apiService: ApiService,
-        private syncService: SyncService,
-        private validationService: ValidationService,
-        private organizationService: OrganizationService,
-        private modalService: ModalService
-    ) {}
+  showNewOrganization: boolean = false;
+  _organizationPlansComponent: OrganizationPlansComponent;
+  _selectedFamilyOrganizationId: string = "";
 
-    async ngOnInit() {
-        document.body.classList.remove("layout_frontend");
-        this.route.queryParams.pipe(first()).subscribe(async (qParams) => {
-            const error = qParams.token == null;
-            if (error) {
-                this.platformUtilsService.showToast(
-                    "error",
-                    null,
-                    this.i18nService.t("sponsoredFamiliesAcceptFailed"),
-                    { timeout: 10000 }
-                );
-                this.router.navigate(["/"]);
-                return;
-            }
+  constructor(
+    private router: Router,
+    private platformUtilsService: PlatformUtilsService,
+    private i18nService: I18nService,
+    private route: ActivatedRoute,
+    private apiService: ApiService,
+    private syncService: SyncService,
+    private validationService: ValidationService,
+    private organizationService: OrganizationService,
+    private modalService: ModalService
+  ) {}
 
-            this.token = qParams.token;
+  async ngOnInit() {
+    document.body.classList.remove("layout_frontend");
+    this.route.queryParams.pipe(first()).subscribe(async (qParams) => {
+      const error = qParams.token == null;
+      if (error) {
+        this.platformUtilsService.showToast(
+          "error",
+          null,
+          this.i18nService.t("sponsoredFamiliesAcceptFailed"),
+          { timeout: 10000 }
+        );
+        this.router.navigate(["/"]);
+        return;
+      }
 
-            await this.syncService.fullSync(true);
-            this.badToken = !(await this.apiService.postPreValidateSponsorshipToken(this.token));
-            this.loading = false;
+      this.token = qParams.token;
 
-            this.existingFamilyOrganizations = (await this.organizationService.getAll()).filter(
-                (o) => o.planProductType === ProductType.Families
-            );
+      await this.syncService.fullSync(true);
+      this.badToken = !(await this.apiService.postPreValidateSponsorshipToken(this.token));
+      this.loading = false;
 
-            if (this.existingFamilyOrganizations.length === 0) {
-                this.selectedFamilyOrganizationId = "createNew";
-            }
-        });
+      this.existingFamilyOrganizations = (await this.organizationService.getAll()).filter(
+        (o) => o.planProductType === ProductType.Families
+      );
+
+      if (this.existingFamilyOrganizations.length === 0) {
+        this.selectedFamilyOrganizationId = "createNew";
+      }
+    });
+  }
+
+  async submit() {
+    this.formPromise = this.doSubmit(this._selectedFamilyOrganizationId);
+    await this.formPromise;
+    this.formPromise = null;
+  }
+
+  get selectedFamilyOrganizationId() {
+    return this._selectedFamilyOrganizationId;
+  }
+
+  set selectedFamilyOrganizationId(value: string) {
+    this._selectedFamilyOrganizationId = value;
+    this.showNewOrganization = value === "createNew";
+  }
+
+  private async doSubmit(organizationId: string) {
+    try {
+      const request = new OrganizationSponsorshipRedeemRequest();
+      request.planSponsorshipType = PlanSponsorshipType.FamiliesForEnterprise;
+      request.sponsoredOrganizationId = organizationId;
+
+      await this.apiService.postRedeemSponsorship(this.token, request);
+      this.platformUtilsService.showToast(
+        "success",
+        null,
+        this.i18nService.t("sponsoredFamiliesOfferRedeemed")
+      );
+      await this.syncService.fullSync(true);
+
+      this.router.navigate(["/"]);
+    } catch (e) {
+      if (this.showNewOrganization) {
+        await this.modalService.openViewRef(
+          DeleteOrganizationComponent,
+          this.deleteModalRef,
+          (comp) => {
+            comp.organizationId = organizationId;
+            comp.descriptionKey = "orgCreatedSponsorshipInvalid";
+            comp.onSuccess.subscribe(() => {
+              this.router.navigate(["/"]);
+            });
+          }
+        );
+      }
+      this.validationService.showError(this.i18nService.t("sponsorshipTokenHasExpired"));
     }
+  }
 
-    async submit() {
-        this.formPromise = this.doSubmit(this._selectedFamilyOrganizationId);
-        await this.formPromise;
-        this.formPromise = null;
-    }
-
-    get selectedFamilyOrganizationId() {
-        return this._selectedFamilyOrganizationId;
-    }
-
-    set selectedFamilyOrganizationId(value: string) {
-        this._selectedFamilyOrganizationId = value;
-        this.showNewOrganization = value === "createNew";
-    }
-
-    private async doSubmit(organizationId: string) {
-        try {
-            const request = new OrganizationSponsorshipRedeemRequest();
-            request.planSponsorshipType = PlanSponsorshipType.FamiliesForEnterprise;
-            request.sponsoredOrganizationId = organizationId;
-
-            await this.apiService.postRedeemSponsorship(this.token, request);
-            this.platformUtilsService.showToast("success", null, this.i18nService.t("sponsoredFamiliesOfferRedeemed"));
-            await this.syncService.fullSync(true);
-
-            this.router.navigate(["/"]);
-        } catch (e) {
-            if (this.showNewOrganization) {
-                await this.modalService.openViewRef(DeleteOrganizationComponent, this.deleteModalRef, (comp) => {
-                    comp.organizationId = organizationId;
-                    comp.descriptionKey = "orgCreatedSponsorshipInvalid";
-                    comp.onSuccess.subscribe(() => {
-                        this.router.navigate(["/"]);
-                    });
-                });
-            }
-            this.validationService.showError(this.i18nService.t("sponsorshipTokenHasExpired"));
-        }
-    }
-
-    private async onOrganizationCreateSuccess(value: any) {
-        // Use newly created organization id
-        await this.doSubmit(value.organizationId);
-    }
+  private async onOrganizationCreateSuccess(value: any) {
+    // Use newly created organization id
+    await this.doSubmit(value.organizationId);
+  }
 }

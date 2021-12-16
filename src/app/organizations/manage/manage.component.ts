@@ -6,25 +6,25 @@ import { OrganizationService } from "jslib-common/abstractions/organization.serv
 import { Organization } from "jslib-common/models/domain/organization";
 
 @Component({
-    selector: "app-org-manage",
-    templateUrl: "manage.component.html",
+  selector: "app-org-manage",
+  templateUrl: "manage.component.html",
 })
 export class ManageComponent implements OnInit {
-    organization: Organization;
-    accessPolicies: boolean = false;
-    accessGroups: boolean = false;
-    accessEvents: boolean = false;
-    accessSso: boolean = false;
+  organization: Organization;
+  accessPolicies: boolean = false;
+  accessGroups: boolean = false;
+  accessEvents: boolean = false;
+  accessSso: boolean = false;
 
-    constructor(private route: ActivatedRoute, private organizationService: OrganizationService) {}
+  constructor(private route: ActivatedRoute, private organizationService: OrganizationService) {}
 
-    ngOnInit() {
-        this.route.parent.params.subscribe(async (params) => {
-            this.organization = await this.organizationService.get(params.organizationId);
-            this.accessPolicies = this.organization.usePolicies;
-            this.accessSso = this.organization.useSso;
-            this.accessEvents = this.organization.useEvents;
-            this.accessGroups = this.organization.useGroups;
-        });
-    }
+  ngOnInit() {
+    this.route.parent.params.subscribe(async (params) => {
+      this.organization = await this.organizationService.get(params.organizationId);
+      this.accessPolicies = this.organization.usePolicies;
+      this.accessSso = this.organization.useSso;
+      this.accessEvents = this.organization.useEvents;
+      this.accessGroups = this.organization.useGroups;
+    });
+  }
 }

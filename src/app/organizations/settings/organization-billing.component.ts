@@ -9,25 +9,25 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { UserBillingComponent } from "../../settings/user-billing.component";
 
 @Component({
-    selector: "app-org-billing",
-    templateUrl: "../../settings/user-billing.component.html",
+  selector: "app-org-billing",
+  templateUrl: "../../settings/user-billing.component.html",
 })
 export class OrganizationBillingComponent extends UserBillingComponent implements OnInit {
-    constructor(
-        apiService: ApiService,
-        i18nService: I18nService,
-        private route: ActivatedRoute,
-        platformUtilsService: PlatformUtilsService,
-        logService: LogService
-    ) {
-        super(apiService, i18nService, platformUtilsService, logService);
-    }
+  constructor(
+    apiService: ApiService,
+    i18nService: I18nService,
+    private route: ActivatedRoute,
+    platformUtilsService: PlatformUtilsService,
+    logService: LogService
+  ) {
+    super(apiService, i18nService, platformUtilsService, logService);
+  }
 
-    async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
-            this.organizationId = params.organizationId;
-            await this.load();
-            this.firstLoaded = true;
-        });
-    }
+  async ngOnInit() {
+    this.route.parent.parent.params.subscribe(async (params) => {
+      this.organizationId = params.organizationId;
+      await this.load();
+      this.firstLoaded = true;
+    });
+  }
 }

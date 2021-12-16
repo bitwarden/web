@@ -15,31 +15,38 @@ import { InactiveTwoFactorReportComponent as BaseInactiveTwoFactorReportComponen
 import { CipherView } from "jslib-common/models/view/cipherView";
 
 @Component({
-    selector: "app-inactive-two-factor-report",
-    templateUrl: "../../tools/inactive-two-factor-report.component.html",
+  selector: "app-inactive-two-factor-report",
+  templateUrl: "../../tools/inactive-two-factor-report.component.html",
 })
 export class InactiveTwoFactorReportComponent extends BaseInactiveTwoFactorReportComponent {
-    constructor(
-        cipherService: CipherService,
-        modalService: ModalService,
-        messagingService: MessagingService,
-        stateService: StateService,
-        private route: ActivatedRoute,
-        logService: LogService,
-        passwordRepromptService: PasswordRepromptService,
-        private organizationService: OrganizationService
-    ) {
-        super(cipherService, modalService, messagingService, stateService, logService, passwordRepromptService);
-    }
+  constructor(
+    cipherService: CipherService,
+    modalService: ModalService,
+    messagingService: MessagingService,
+    stateService: StateService,
+    private route: ActivatedRoute,
+    logService: LogService,
+    passwordRepromptService: PasswordRepromptService,
+    private organizationService: OrganizationService
+  ) {
+    super(
+      cipherService,
+      modalService,
+      messagingService,
+      stateService,
+      logService,
+      passwordRepromptService
+    );
+  }
 
-    async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
-            this.organization = await this.organizationService.get(params.organizationId);
-            await super.ngOnInit();
-        });
-    }
+  async ngOnInit() {
+    this.route.parent.parent.params.subscribe(async (params) => {
+      this.organization = await this.organizationService.get(params.organizationId);
+      await super.ngOnInit();
+    });
+  }
 
-    getAllCiphers(): Promise<CipherView[]> {
-        return this.cipherService.getAllFromApiForOrganization(this.organization.id);
-    }
+  getAllCiphers(): Promise<CipherView[]> {
+    return this.cipherService.getAllFromApiForOrganization(this.organization.id);
+  }
 }

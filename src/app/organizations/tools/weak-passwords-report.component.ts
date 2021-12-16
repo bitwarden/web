@@ -17,45 +17,45 @@ import { CipherView } from "jslib-common/models/view/cipherView";
 import { WeakPasswordsReportComponent as BaseWeakPasswordsReportComponent } from "../../tools/weak-passwords-report.component";
 
 @Component({
-    selector: "app-weak-passwords-report",
-    templateUrl: "../../tools/weak-passwords-report.component.html",
+  selector: "app-weak-passwords-report",
+  templateUrl: "../../tools/weak-passwords-report.component.html",
 })
 export class WeakPasswordsReportComponent extends BaseWeakPasswordsReportComponent {
-    manageableCiphers: Cipher[];
+  manageableCiphers: Cipher[];
 
-    constructor(
-        cipherService: CipherService,
-        passwordGenerationService: PasswordGenerationService,
-        modalService: ModalService,
-        messagingService: MessagingService,
-        stateService: StateService,
-        private route: ActivatedRoute,
-        private organizationService: OrganizationService,
-        passwordRepromptService: PasswordRepromptService
-    ) {
-        super(
-            cipherService,
-            passwordGenerationService,
-            modalService,
-            messagingService,
-            stateService,
-            passwordRepromptService
-        );
-    }
+  constructor(
+    cipherService: CipherService,
+    passwordGenerationService: PasswordGenerationService,
+    modalService: ModalService,
+    messagingService: MessagingService,
+    stateService: StateService,
+    private route: ActivatedRoute,
+    private organizationService: OrganizationService,
+    passwordRepromptService: PasswordRepromptService
+  ) {
+    super(
+      cipherService,
+      passwordGenerationService,
+      modalService,
+      messagingService,
+      stateService,
+      passwordRepromptService
+    );
+  }
 
-    async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async (params) => {
-            this.organization = await this.organizationService.get(params.organizationId);
-            this.manageableCiphers = await this.cipherService.getAll();
-            await super.ngOnInit();
-        });
-    }
+  async ngOnInit() {
+    this.route.parent.parent.params.subscribe(async (params) => {
+      this.organization = await this.organizationService.get(params.organizationId);
+      this.manageableCiphers = await this.cipherService.getAll();
+      await super.ngOnInit();
+    });
+  }
 
-    getAllCiphers(): Promise<CipherView[]> {
-        return this.cipherService.getAllFromApiForOrganization(this.organization.id);
-    }
+  getAllCiphers(): Promise<CipherView[]> {
+    return this.cipherService.getAllFromApiForOrganization(this.organization.id);
+  }
 
-    canManageCipher(c: CipherView): boolean {
-        return this.manageableCiphers.some((x) => x.id === c.id);
-    }
+  canManageCipher(c: CipherView): boolean {
+    return this.manageableCiphers.some((x) => x.id === c.id);
+  }
 }

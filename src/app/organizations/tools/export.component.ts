@@ -14,56 +14,56 @@ import { UserVerificationService } from "jslib-common/abstractions/userVerificat
 import { ExportComponent as BaseExportComponent } from "../../tools/export.component";
 
 @Component({
-    selector: "app-org-export",
-    templateUrl: "../../tools/export.component.html",
+  selector: "app-org-export",
+  templateUrl: "../../tools/export.component.html",
 })
 export class ExportComponent extends BaseExportComponent {
-    constructor(
-        cryptoService: CryptoService,
-        i18nService: I18nService,
-        platformUtilsService: PlatformUtilsService,
-        exportService: ExportService,
-        eventService: EventService,
-        private route: ActivatedRoute,
-        policyService: PolicyService,
-        logService: LogService,
-        userVerificationService: UserVerificationService,
-        fb: FormBuilder
-    ) {
-        super(
-            cryptoService,
-            i18nService,
-            platformUtilsService,
-            exportService,
-            eventService,
-            policyService,
-            logService,
-            userVerificationService,
-            fb
-        );
-    }
+  constructor(
+    cryptoService: CryptoService,
+    i18nService: I18nService,
+    platformUtilsService: PlatformUtilsService,
+    exportService: ExportService,
+    eventService: EventService,
+    private route: ActivatedRoute,
+    policyService: PolicyService,
+    logService: LogService,
+    userVerificationService: UserVerificationService,
+    fb: FormBuilder
+  ) {
+    super(
+      cryptoService,
+      i18nService,
+      platformUtilsService,
+      exportService,
+      eventService,
+      policyService,
+      logService,
+      userVerificationService,
+      fb
+    );
+  }
 
-    async ngOnInit() {
-        await super.ngOnInit();
-        this.route.parent.parent.params.subscribe(async (params) => {
-            this.organizationId = params.organizationId;
-        });
-    }
+  async ngOnInit() {
+    await super.ngOnInit();
+    this.route.parent.parent.params.subscribe(async (params) => {
+      this.organizationId = params.organizationId;
+    });
+  }
 
-    async checkExportDisabled() {
-        return;
-    }
+  async checkExportDisabled() {
+    return;
+  }
 
-    getExportData() {
-        return this.exportService.getOrganizationExport(this.organizationId, this.format);
-    }
+  getExportData() {
+    return this.exportService.getOrganizationExport(this.organizationId, this.format);
+  }
 
-    getFileName() {
-        return super.getFileName("org");
-    }
+  getFileName() {
+    return super.getFileName("org");
+  }
 
-    async collectEvent(): Promise<any> {
-        // TODO
-        // await this.eventService.collect(EventType.Organization_ClientExportedVault);
-    }
+  async collectEvent(): Promise<any> {
+    // TODO
+    // await this.eventService.collect(EventType.Organization_ClientExportedVault);
+  }
 }

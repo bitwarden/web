@@ -11,78 +11,82 @@ import { GroupResponse } from "jslib-common/models/response/groupResponse";
 import { Utils } from "jslib-common/misc/utils";
 
 @Component({
-    selector: "app-user-groups",
-    templateUrl: "user-groups.component.html",
+  selector: "app-user-groups",
+  templateUrl: "user-groups.component.html",
 })
 export class UserGroupsComponent implements OnInit {
-    @Input() name: string;
-    @Input() organizationUserId: string;
-    @Input() organizationId: string;
-    @Output() onSavedUser = new EventEmitter();
+  @Input() name: string;
+  @Input() organizationUserId: string;
+  @Input() organizationId: string;
+  @Output() onSavedUser = new EventEmitter();
 
-    loading = true;
-    groups: GroupResponse[] = [];
-    formPromise: Promise<any>;
+  loading = true;
+  groups: GroupResponse[] = [];
+  formPromise: Promise<any>;
 
-    constructor(
-        private apiService: ApiService,
-        private i18nService: I18nService,
-        private platformUtilsService: PlatformUtilsService,
-        private logService: LogService
-    ) {}
+  constructor(
+    private apiService: ApiService,
+    private i18nService: I18nService,
+    private platformUtilsService: PlatformUtilsService,
+    private logService: LogService
+  ) {}
 
-    async ngOnInit() {
-        const groupsResponse = await this.apiService.getGroups(this.organizationId);
-        const groups = groupsResponse.data.map((r) => r);
-        groups.sort(Utils.getSortFunction(this.i18nService, "name"));
-        this.groups = groups;
+  async ngOnInit() {
+    const groupsResponse = await this.apiService.getGroups(this.organizationId);
+    const groups = groupsResponse.data.map((r) => r);
+    groups.sort(Utils.getSortFunction(this.i18nService, "name"));
+    this.groups = groups;
 
-        try {
-            const userGroups = await this.apiService.getOrganizationUserGroups(
-                this.organizationId,
-                this.organizationUserId
-            );
-            if (userGroups != null && this.groups != null) {
-                userGroups.forEach((ug) => {
-                    const group = this.groups.filter((g) => g.id === ug);
-                    if (group != null && group.length > 0) {
-                        (group[0] as any).checked = true;
-                    }
-                });
-            }
-        } catch (e) {
-            this.logService.error(e);
-        }
-
-        this.loading = false;
+    try {
+      const userGroups = await this.apiService.getOrganizationUserGroups(
+        this.organizationId,
+        this.organizationUserId
+      );
+      if (userGroups != null && this.groups != null) {
+        userGroups.forEach((ug) => {
+          const group = this.groups.filter((g) => g.id === ug);
+          if (group != null && group.length > 0) {
+            (group[0] as any).checked = true;
+          }
+        });
+      }
+    } catch (e) {
+      this.logService.error(e);
     }
 
-    check(g: GroupResponse, select?: boolean) {
-        (g as any).checked = select == null ? !(g as any).checked : select;
-        if (!(g as any).checked) {
-            (g as any).readOnly = false;
-        }
-    }
+    this.loading = false;
+  }
 
-    selectAll(select: boolean) {
-        this.groups.forEach((g) => this.check(g, select));
+  check(g: GroupResponse, select?: boolean) {
+    (g as any).checked = select == null ? !(g as any).checked : select;
+    if (!(g as any).checked) {
+      (g as any).readOnly = false;
     }
+  }
 
-    async submit() {
-        const request = new OrganizationUserUpdateGroupsRequest();
-        request.groupIds = this.groups.filter((g) => (g as any).checked).map((g) => g.id);
+  selectAll(select: boolean) {
+    this.groups.forEach((g) => this.check(g, select));
+  }
 
-        try {
-            this.formPromise = this.apiService.putOrganizationUserGroups(
-                this.organizationId,
-                this.organizationUserId,
-                request
-            );
-            await this.formPromise;
-            this.platformUtilsService.showToast("success", null, this.i18nService.t("editedGroupsForUser", this.name));
-            this.onSavedUser.emit();
-        } catch (e) {
-            this.logService.error(e);
-        }
+  async submit() {
+    const request = new OrganizationUserUpdateGroupsRequest();
+    request.groupIds = this.groups.filter((g) => (g as any).checked).map((g) => g.id);
+
+    try {
+      this.formPromise = this.apiService.putOrganizationUserGroups(
+        this.organizationId,
+        this.organizationUserId,
+        request
+      );
+      await this.formPromise;
+      this.platformUtilsService.showToast(
+        "success",
+        null,
+        this.i18nService.t("editedGroupsForUser", this.name)
+      );
+      this.onSavedUser.emit();
+    } catch (e) {
+      this.logService.error(e);
     }
+  }
 }

@@ -6,29 +6,29 @@ import { PlanType } from "jslib-common/enums/planType";
 import { ProductType } from "jslib-common/enums/productType";
 
 @Component({
-    selector: "app-change-plan",
-    templateUrl: "change-plan.component.html",
+  selector: "app-change-plan",
+  templateUrl: "change-plan.component.html",
 })
 export class ChangePlanComponent {
-    @Input() organizationId: string;
-    @Output() onChanged = new EventEmitter();
-    @Output() onCanceled = new EventEmitter();
+  @Input() organizationId: string;
+  @Output() onChanged = new EventEmitter();
+  @Output() onCanceled = new EventEmitter();
 
-    formPromise: Promise<any>;
-    defaultUpgradePlan: PlanType = PlanType.FamiliesAnnually;
-    defaultUpgradeProduct: ProductType = ProductType.Families;
+  formPromise: Promise<any>;
+  defaultUpgradePlan: PlanType = PlanType.FamiliesAnnually;
+  defaultUpgradeProduct: ProductType = ProductType.Families;
 
-    constructor(private logService: LogService) {}
+  constructor(private logService: LogService) {}
 
-    async submit() {
-        try {
-            this.onChanged.emit();
-        } catch (e) {
-            this.logService.error(e);
-        }
+  async submit() {
+    try {
+      this.onChanged.emit();
+    } catch (e) {
+      this.logService.error(e);
     }
+  }
 
-    cancel() {
-        this.onCanceled.emit();
-    }
+  cancel() {
+    this.onCanceled.emit();
+  }
 }
