@@ -1,25 +1,25 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 
-import { BaseAcceptComponent } from 'src/app/common/base.accept.component';
+import { BaseAcceptComponent } from "src/app/common/base.accept.component";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
 
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
-import { ProviderUserAcceptRequest } from 'jslib-common/models/request/provider/providerUserAcceptRequest';
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { StateService } from "jslib-common/abstractions/state.service";
+import { ProviderUserAcceptRequest } from "jslib-common/models/request/provider/providerUserAcceptRequest";
 
 @Component({
-    selector: 'app-accept-provider',
-    templateUrl: 'accept-provider.component.html',
+    selector: "app-accept-provider",
+    templateUrl: "accept-provider.component.html",
 })
 export class AcceptProviderComponent extends BaseAcceptComponent {
     providerName: string;
 
-    failedMessage = 'providerInviteAcceptFailed';
+    failedMessage = "providerInviteAcceptFailed";
 
-    requiredParameters = ['providerId', 'providerUserId', 'token'];
+    requiredParameters = ["providerId", "providerUserId", "token"];
 
     constructor(
         router: Router,
@@ -27,7 +27,7 @@ export class AcceptProviderComponent extends BaseAcceptComponent {
         route: ActivatedRoute,
         stateService: StateService,
         private apiService: ApiService,
-        platformUtilService: PlatformUtilsService,
+        platformUtilService: PlatformUtilsService
     ) {
         super(router, platformUtilService, i18nService, route, stateService);
     }
@@ -37,9 +37,13 @@ export class AcceptProviderComponent extends BaseAcceptComponent {
         request.token = qParams.token;
 
         await this.apiService.postProviderUserAccept(qParams.providerId, qParams.providerUserId, request);
-        this.platformUtilService.showToast('success', this.i18nService.t('inviteAccepted'),
-            this.i18nService.t('providerInviteAcceptedDesc'), { timeout: 10000 });
-        this.router.navigate(['/vault']);
+        this.platformUtilService.showToast(
+            "success",
+            this.i18nService.t("inviteAccepted"),
+            this.i18nService.t("providerInviteAcceptedDesc"),
+            { timeout: 10000 }
+        );
+        this.router.navigate(["/vault"]);
     }
 
     async unauthedHandler(qParams: any) {

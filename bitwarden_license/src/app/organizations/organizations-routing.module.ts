@@ -1,25 +1,25 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { RouterModule, Routes } from "@angular/router";
 
-import { AuthGuardService } from 'jslib-angular/services/auth-guard.service';
+import { AuthGuardService } from "jslib-angular/services/auth-guard.service";
 
-import { Permissions } from 'jslib-common/enums/permissions';
+import { Permissions } from "jslib-common/enums/permissions";
 
-import { OrganizationLayoutComponent } from 'src/app/layouts/organization-layout.component';
-import { ManageComponent } from 'src/app/organizations/manage/manage.component';
-import { OrganizationGuardService } from 'src/app/services/organization-guard.service';
-import { OrganizationTypeGuardService } from 'src/app/services/organization-type-guard.service';
+import { OrganizationLayoutComponent } from "src/app/layouts/organization-layout.component";
+import { ManageComponent } from "src/app/organizations/manage/manage.component";
+import { OrganizationGuardService } from "src/app/services/organization-guard.service";
+import { OrganizationTypeGuardService } from "src/app/services/organization-type-guard.service";
 
-import { SsoComponent } from './manage/sso.component';
+import { SsoComponent } from "./manage/sso.component";
 
 const routes: Routes = [
     {
-        path: 'organizations/:organizationId',
+        path: "organizations/:organizationId",
         component: OrganizationLayoutComponent,
         canActivate: [AuthGuardService, OrganizationGuardService],
         children: [
             {
-                path: 'manage',
+                path: "manage",
                 component: ManageComponent,
                 canActivate: [OrganizationTypeGuardService],
                 data: {
@@ -38,7 +38,7 @@ const routes: Routes = [
                 },
                 children: [
                     {
-                        path: 'sso',
+                        path: "sso",
                         component: SsoComponent,
                     },
                 ],
@@ -51,4 +51,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })
-export class OrganizationsRoutingModule { }
+export class OrganizationsRoutingModule {}

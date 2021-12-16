@@ -1,21 +1,17 @@
-import {
-    Component,
-    Input,
-} from '@angular/core';
+import { Component, Input } from "@angular/core";
 
-import { ProviderUserBulkConfirmRequest } from 'jslib-common/models/request/provider/providerUserBulkConfirmRequest';
-import { ProviderUserBulkRequest } from 'jslib-common/models/request/provider/providerUserBulkRequest';
+import { ProviderUserBulkConfirmRequest } from "jslib-common/models/request/provider/providerUserBulkConfirmRequest";
+import { ProviderUserBulkRequest } from "jslib-common/models/request/provider/providerUserBulkRequest";
 
-import { ProviderUserStatusType } from 'jslib-common/enums/providerUserStatusType';
+import { ProviderUserStatusType } from "jslib-common/enums/providerUserStatusType";
 
-import { BulkConfirmComponent as OrganizationBulkConfirmComponent } from 'src/app/organizations/manage/bulk/bulk-confirm.component';
-import { BulkUserDetails } from 'src/app/organizations/manage/bulk/bulk-status.component';
+import { BulkConfirmComponent as OrganizationBulkConfirmComponent } from "src/app/organizations/manage/bulk/bulk-confirm.component";
+import { BulkUserDetails } from "src/app/organizations/manage/bulk/bulk-status.component";
 
 @Component({
-    templateUrl: '../../../../../../src/app/organizations/manage/bulk/bulk-confirm.component.html',
+    templateUrl: "../../../../../../src/app/organizations/manage/bulk/bulk-confirm.component.html",
 })
 export class BulkConfirmComponent extends OrganizationBulkConfirmComponent {
-
     @Input() providerId: string;
 
     protected isAccepted(user: BulkUserDetails) {
@@ -23,7 +19,7 @@ export class BulkConfirmComponent extends OrganizationBulkConfirmComponent {
     }
 
     protected async getPublicKeys() {
-        const request = new ProviderUserBulkRequest(this.filteredUsers.map(user => user.id));
+        const request = new ProviderUserBulkRequest(this.filteredUsers.map((user) => user.id));
         return await this.apiService.postProviderUsersPublicKey(this.providerId, request);
     }
 

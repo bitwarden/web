@@ -1,30 +1,27 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { ExportService } from 'jslib-common/abstractions/export.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { ProviderService } from 'jslib-common/abstractions/provider.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { ExportService } from "jslib-common/abstractions/export.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { ProviderService } from "jslib-common/abstractions/provider.service";
 
-import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
+import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
 
-import { EventResponse } from 'jslib-common/models/response/eventResponse';
+import { EventResponse } from "jslib-common/models/response/eventResponse";
 
-import { EventService } from 'src/app/services/event.service';
+import { EventService } from "src/app/services/event.service";
 
-import { BaseEventsComponent } from 'src/app/common/base.events.component';
+import { BaseEventsComponent } from "src/app/common/base.events.component";
 
 @Component({
-    selector: 'provider-events',
-    templateUrl: 'events.component.html',
+    selector: "provider-events",
+    templateUrl: "events.component.html",
 })
 export class EventsComponent extends BaseEventsComponent implements OnInit {
-    exportFileName: string = 'provider-events';
+    exportFileName: string = "provider-events";
     providerId: string;
 
     private providerUsersUserIdMap = new Map<string, any>();
@@ -40,23 +37,17 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
         platformUtilsService: PlatformUtilsService,
         private router: Router,
         logService: LogService,
-        private userNamePipe: UserNamePipe,
+        private userNamePipe: UserNamePipe
     ) {
-        super(
-            eventService,
-            i18nService,
-            exportService,
-            platformUtilsService,
-            logService,
-        );
+        super(eventService, i18nService, exportService, platformUtilsService, logService);
     }
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async params => {
+        this.route.parent.parent.params.subscribe(async (params) => {
             this.providerId = params.providerId;
             const provider = await this.providerService.get(this.providerId);
             if (provider == null || !provider.useEvents) {
-                this.router.navigate(['/providers', this.providerId]);
+                this.router.navigate(["/providers", this.providerId]);
                 return;
             }
             await this.load();
@@ -65,7 +56,7 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
 
     async load() {
         const response = await this.apiService.getProviderUsers(this.providerId);
-        response.data.forEach(u => {
+        response.data.forEach((u) => {
             const name = this.userNamePipe.transform(u);
             this.providerUsersIdMap.set(u.id, { name: name, email: u.email });
             this.providerUsersUserIdMap.set(u.userId, { name: name, email: u.email });
@@ -79,6 +70,8 @@ export class EventsComponent extends BaseEventsComponent implements OnInit {
     }
 
     protected getUserName(r: EventResponse, userId: string) {
-        return userId != null && this.providerUsersUserIdMap.has(userId) ? this.providerUsersUserIdMap.get(userId) : null;
+        return userId != null && this.providerUsersUserIdMap.has(userId)
+            ? this.providerUsersUserIdMap.get(userId)
+            : null;
     }
 }

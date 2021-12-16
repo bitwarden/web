@@ -1,30 +1,26 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { OrganizationService } from 'jslib-common/abstractions/organization.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { OrganizationService } from "jslib-common/abstractions/organization.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
-import { Organization } from 'jslib-common/models/domain/organization';
+import { Organization } from "jslib-common/models/domain/organization";
 
-import { OrganizationSsoRequest } from 'jslib-common/models/request/organization/organizationSsoRequest';
+import { OrganizationSsoRequest } from "jslib-common/models/request/organization/organizationSsoRequest";
 
 @Component({
-    selector: 'app-org-manage-sso',
-    templateUrl: 'sso.component.html',
+    selector: "app-org-manage-sso",
+    templateUrl: "sso.component.html",
 })
 export class SsoComponent implements OnInit {
-
     samlSigningAlgorithms = [
-        'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
-        'http://www.w3.org/2000/09/xmldsig#rsa-sha384',
-        'http://www.w3.org/2000/09/xmldsig#rsa-sha512',
-        'http://www.w3.org/2000/09/xmldsig#rsa-sha1',
+        "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256",
+        "http://www.w3.org/2000/09/xmldsig#rsa-sha384",
+        "http://www.w3.org/2000/09/xmldsig#rsa-sha512",
+        "http://www.w3.org/2000/09/xmldsig#rsa-sha1",
     ];
 
     loading = true;
@@ -79,12 +75,17 @@ export class SsoComponent implements OnInit {
         idpWantAuthnRequestsSigned: [],
     });
 
-    constructor(private fb: FormBuilder, private route: ActivatedRoute, private apiService: ApiService,
-        private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
-        private organizationService: OrganizationService) { }
+    constructor(
+        private fb: FormBuilder,
+        private route: ActivatedRoute,
+        private apiService: ApiService,
+        private platformUtilsService: PlatformUtilsService,
+        private i18nService: I18nService,
+        private organizationService: OrganizationService
+    ) {}
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async params => {
+        this.route.parent.parent.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
             await this.load();
         });
@@ -125,7 +126,7 @@ export class SsoComponent implements OnInit {
             this.data.patchValue(response.data);
             this.enabled.setValue(response.enabled);
 
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('ssoSettingsSaved'));
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("ssoSettingsSaved"));
         } catch {
             // Logged by appApiAction, do nothing
         }
@@ -134,11 +135,11 @@ export class SsoComponent implements OnInit {
     }
 
     async postData() {
-        if (this.data.get('keyConnectorEnabled').value) {
+        if (this.data.get("keyConnectorEnabled").value) {
             await this.validateKeyConnectorUrl();
 
-            if (this.keyConnectorUrl.hasError('invalidUrl')) {
-                throw new Error(this.i18nService.t('keyConnectorTestFail'));
+            if (this.keyConnectorUrl.hasError("invalidUrl")) {
+                throw new Error(this.i18nService.t("keyConnectorTestFail"));
             }
         }
 
@@ -169,12 +170,14 @@ export class SsoComponent implements OnInit {
     }
 
     get enableTestKeyConnector() {
-        return this.data.get('keyConnectorEnabled').value &&
+        return (
+            this.data.get("keyConnectorEnabled").value &&
             this.keyConnectorUrl != null &&
-            this.keyConnectorUrl.value !== '';
+            this.keyConnectorUrl.value !== ""
+        );
     }
 
     get keyConnectorUrl() {
-        return this.data.get('keyConnectorUrl');
+        return this.data.get("keyConnectorUrl");
     }
 }

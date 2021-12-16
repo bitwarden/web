@@ -1,19 +1,19 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { SyncService } from 'jslib-common/abstractions/sync.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { SyncService } from "jslib-common/abstractions/sync.service";
 
-import { ProviderUpdateRequest } from 'jslib-common/models/request/provider/providerUpdateRequest';
+import { ProviderUpdateRequest } from "jslib-common/models/request/provider/providerUpdateRequest";
 
-import { ProviderResponse } from 'jslib-common/models/response/provider/providerResponse';
+import { ProviderResponse } from "jslib-common/models/response/provider/providerResponse";
 
 @Component({
-    selector: 'provider-account',
-    templateUrl: 'account.component.html',
+    selector: "provider-account",
+    templateUrl: "account.component.html",
 })
 export class AccountComponent {
     selfHosted = false;
@@ -24,13 +24,18 @@ export class AccountComponent {
 
     private providerId: string;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private route: ActivatedRoute, private syncService: SyncService,
-        private platformUtilsService: PlatformUtilsService, private logService: LogService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private route: ActivatedRoute,
+        private syncService: SyncService,
+        private platformUtilsService: PlatformUtilsService,
+        private logService: LogService
+    ) {}
 
     async ngOnInit() {
         this.selfHosted = this.platformUtilsService.isSelfHost();
-        this.route.parent.parent.params.subscribe(async params => {
+        this.route.parent.parent.params.subscribe(async (params) => {
             this.providerId = params.providerId;
             try {
                 this.provider = await this.apiService.getProvider(this.providerId);
@@ -52,7 +57,7 @@ export class AccountComponent {
                 return this.syncService.fullSync(true);
             });
             await this.formPromise;
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('providerUpdated'));
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("providerUpdated"));
         } catch (e) {
             this.logService.error(`Handled exception: ${e}`);
         }

@@ -1,28 +1,21 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { ProviderService } from 'jslib-common/abstractions/provider.service';
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { ProviderService } from "jslib-common/abstractions/provider.service";
 
-import { ValidationService } from 'jslib-angular/services/validation.service';
+import { ValidationService } from "jslib-angular/services/validation.service";
 
-import { WebProviderService } from '../services/webProvider.service';
+import { WebProviderService } from "../services/webProvider.service";
 
-import { Organization } from 'jslib-common/models/domain/organization';
-import { Provider } from 'jslib-common/models/domain/provider';
+import { Organization } from "jslib-common/models/domain/organization";
+import { Provider } from "jslib-common/models/domain/provider";
 
 @Component({
-    selector: 'provider-add-organization',
-    templateUrl: 'add-organization.component.html',
+    selector: "provider-add-organization",
+    templateUrl: "add-organization.component.html",
 })
 export class AddOrganizationComponent implements OnInit {
-
     @Input() providerId: string;
     @Input() organizations: Organization[];
     @Output() onAddedOrganization = new EventEmitter();
@@ -37,7 +30,7 @@ export class AddOrganizationComponent implements OnInit {
         private i18nService: I18nService,
         private platformUtilsService: PlatformUtilsService,
         private validationService: ValidationService
-    ) { }
+    ) {}
 
     async ngOnInit() {
         await this.load();
@@ -59,8 +52,12 @@ export class AddOrganizationComponent implements OnInit {
         }
 
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('addOrganizationConfirmation', organization.name, this.provider.name), organization.name,
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t("addOrganizationConfirmation", organization.name, this.provider.name),
+            organization.name,
+            this.i18nService.t("yes"),
+            this.i18nService.t("no"),
+            "warning"
+        );
 
         if (!confirmed) {
             return false;
@@ -76,7 +73,7 @@ export class AddOrganizationComponent implements OnInit {
             this.formPromise = null;
         }
 
-        this.platformUtilsService.showToast('success', null, this.i18nService.t('organizationJoinedProvider'));
+        this.platformUtilsService.showToast("success", null, this.i18nService.t("organizationJoinedProvider"));
         this.onAddedOrganization.emit();
     }
 }

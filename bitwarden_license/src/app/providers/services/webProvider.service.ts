@@ -1,14 +1,18 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { SyncService } from 'jslib-common/abstractions/sync.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { CryptoService } from "jslib-common/abstractions/crypto.service";
+import { SyncService } from "jslib-common/abstractions/sync.service";
 
-import { ProviderAddOrganizationRequest } from 'jslib-common/models/request/provider/providerAddOrganizationRequest';
+import { ProviderAddOrganizationRequest } from "jslib-common/models/request/provider/providerAddOrganizationRequest";
 
 @Injectable()
 export class WebProviderService {
-    constructor(private cryptoService: CryptoService, private syncService: SyncService, private apiService: ApiService) {}
+    constructor(
+        private cryptoService: CryptoService,
+        private syncService: SyncService,
+        private apiService: ApiService
+    ) {}
 
     async addOrganizationToProvider(providerId: string, organizationId: string) {
         const orgKey = await this.cryptoService.getOrgKey(organizationId);
