@@ -1,30 +1,30 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
-import { CipherType } from 'jslib-common/enums/cipherType';
-import { EventType } from 'jslib-common/enums/eventType';
+import { CipherType } from "jslib-common/enums/cipherType";
+import { EventType } from "jslib-common/enums/eventType";
 
-import { AuditService } from 'jslib-common/abstractions/audit.service';
-import { CipherService } from 'jslib-common/abstractions/cipher.service';
-import { CollectionService } from 'jslib-common/abstractions/collection.service';
-import { EventService } from 'jslib-common/abstractions/event.service';
-import { FolderService } from 'jslib-common/abstractions/folder.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { OrganizationService } from 'jslib-common/abstractions/organization.service';
-import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
-import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { PolicyService } from 'jslib-common/abstractions/policy.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
-import { TotpService } from 'jslib-common/abstractions/totp.service';
+import { AuditService } from "jslib-common/abstractions/audit.service";
+import { CipherService } from "jslib-common/abstractions/cipher.service";
+import { CollectionService } from "jslib-common/abstractions/collection.service";
+import { EventService } from "jslib-common/abstractions/event.service";
+import { FolderService } from "jslib-common/abstractions/folder.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { MessagingService } from "jslib-common/abstractions/messaging.service";
+import { OrganizationService } from "jslib-common/abstractions/organization.service";
+import { PasswordGenerationService } from "jslib-common/abstractions/passwordGeneration.service";
+import { PasswordRepromptService } from "jslib-common/abstractions/passwordReprompt.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { PolicyService } from "jslib-common/abstractions/policy.service";
+import { StateService } from "jslib-common/abstractions/state.service";
+import { TotpService } from "jslib-common/abstractions/totp.service";
 
-import { AddEditComponent as BaseAddEditComponent } from 'jslib-angular/components/add-edit.component';
-import { LoginUriView } from 'jslib-common/models/view/loginUriView';
+import { AddEditComponent as BaseAddEditComponent } from "jslib-angular/components/add-edit.component";
+import { LoginUriView } from "jslib-common/models/view/loginUriView";
 
 @Component({
-    selector: 'app-vault-add-edit',
-    templateUrl: 'add-edit.component.html',
+    selector: "app-vault-add-edit",
+    templateUrl: "add-edit.component.html",
 })
 export class AddEditComponent extends BaseAddEditComponent {
     canAccessPremium: boolean;
@@ -40,15 +40,38 @@ export class AddEditComponent extends BaseAddEditComponent {
 
     protected totpInterval: number;
 
-    constructor(cipherService: CipherService, folderService: FolderService,
-        i18nService: I18nService, platformUtilsService: PlatformUtilsService,
-        auditService: AuditService, stateService: StateService,
-        collectionService: CollectionService, protected totpService: TotpService,
-        protected passwordGenerationService: PasswordGenerationService, protected messagingService: MessagingService,
-        eventService: EventService, protected policyService: PolicyService, organizationService: OrganizationService, logService: LogService,
-        passwordRepromptService: PasswordRepromptService) {
-        super(cipherService, folderService, i18nService, platformUtilsService, auditService, stateService,
-            collectionService, messagingService, eventService, policyService, logService, passwordRepromptService, organizationService);
+    constructor(
+        cipherService: CipherService,
+        folderService: FolderService,
+        i18nService: I18nService,
+        platformUtilsService: PlatformUtilsService,
+        auditService: AuditService,
+        stateService: StateService,
+        collectionService: CollectionService,
+        protected totpService: TotpService,
+        protected passwordGenerationService: PasswordGenerationService,
+        protected messagingService: MessagingService,
+        eventService: EventService,
+        protected policyService: PolicyService,
+        organizationService: OrganizationService,
+        logService: LogService,
+        passwordRepromptService: PasswordRepromptService
+    ) {
+        super(
+            cipherService,
+            folderService,
+            i18nService,
+            platformUtilsService,
+            auditService,
+            stateService,
+            collectionService,
+            messagingService,
+            eventService,
+            policyService,
+            logService,
+            passwordRepromptService,
+            organizationService
+        );
     }
 
     async ngOnInit() {
@@ -59,8 +82,11 @@ export class AddEditComponent extends BaseAddEditComponent {
         this.cleanUp();
 
         this.canAccessPremium = await this.stateService.getCanAccessPremium();
-        if (this.cipher.type === CipherType.Login && this.cipher.login.totp &&
-            (this.cipher.organizationUseTotp || this.canAccessPremium)) {
+        if (
+            this.cipher.type === CipherType.Login &&
+            this.cipher.login.totp &&
+            (this.cipher.organizationUseTotp || this.canAccessPremium)
+        ) {
             await this.totpUpdateCode();
             const interval = this.totpService.getTimeInterval(this.cipher.login.totp);
             await this.totpTick(interval);
@@ -89,15 +115,18 @@ export class AddEditComponent extends BaseAddEditComponent {
         }
 
         this.platformUtilsService.copyToClipboard(value, { window: window });
-        this.platformUtilsService.showToast('info', null,
-            this.i18nService.t('valueCopied', this.i18nService.t(typeI18nKey)));
+        this.platformUtilsService.showToast(
+            "info",
+            null,
+            this.i18nService.t("valueCopied", this.i18nService.t(typeI18nKey))
+        );
 
         if (this.editMode) {
-            if (typeI18nKey === 'password') {
+            if (typeI18nKey === "password") {
                 this.eventService.collect(EventType.Cipher_ClientToggledHiddenFieldVisible, this.cipherId);
-            } else if (typeI18nKey === 'securityCode') {
+            } else if (typeI18nKey === "securityCode") {
                 this.eventService.collect(EventType.Cipher_ClientCopiedCardCode, this.cipherId);
-            } else if (aType === 'H_Field') {
+            } else if (aType === "H_Field") {
                 this.eventService.collect(EventType.Cipher_ClientCopiedHiddenField, this.cipherId);
             }
         }
@@ -114,13 +143,15 @@ export class AddEditComponent extends BaseAddEditComponent {
 
     premiumRequired() {
         if (!this.canAccessPremium) {
-            this.messagingService.send('premiumRequired');
+            this.messagingService.send("premiumRequired");
             return;
         }
     }
 
     upgradeOrganization() {
-        this.messagingService.send('upgradeOrganization', { organizationId: this.cipher.organizationId });
+        this.messagingService.send("upgradeOrganization", {
+            organizationId: this.cipher.organizationId,
+        });
     }
 
     viewHistory() {
@@ -145,7 +176,7 @@ export class AddEditComponent extends BaseAddEditComponent {
         if (this.totpCode != null) {
             if (this.totpCode.length > 4) {
                 const half = Math.floor(this.totpCode.length / 2);
-                this.totpCodeFormatted = this.totpCode.substring(0, half) + ' ' + this.totpCode.substring(half);
+                this.totpCodeFormatted = this.totpCode.substring(0, half) + " " + this.totpCode.substring(half);
             } else {
                 this.totpCodeFormatted = this.totpCode;
             }
@@ -158,8 +189,11 @@ export class AddEditComponent extends BaseAddEditComponent {
     }
 
     protected allowOwnershipAssignment() {
-        return (!this.editMode || this.cloneMode) && this.ownershipOptions != null
-            && (this.ownershipOptions.length > 1 || !this.allowPersonal);
+        return (
+            (!this.editMode || this.cloneMode) &&
+            this.ownershipOptions != null &&
+            (this.ownershipOptions.length > 1 || !this.allowPersonal)
+        );
     }
 
     private async totpTick(intervalSeconds: number) {
@@ -167,7 +201,7 @@ export class AddEditComponent extends BaseAddEditComponent {
         const mod = epoch % intervalSeconds;
 
         this.totpSec = intervalSeconds - mod;
-        this.totpDash = +(Math.round((((78.6 / intervalSeconds) * mod) + 'e+2') as any) + 'e-2');
+        this.totpDash = +(Math.round(((78.6 / intervalSeconds) * mod + "e+2") as any) + "e-2");
         this.totpLow = this.totpSec <= 7;
         if (mod === 0) {
             await this.totpUpdateCode();

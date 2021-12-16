@@ -1,76 +1,135 @@
 <ng-container>
-    <h3 class="mt-4">{{'customFields' | i18n}}</h3>
+    <h3 class="mt-4">{{ "customFields" | i18n }}</h3>
     <div cdkDropList (cdkDropListDropped)="drop($event)" *ngIf="cipher.hasFields">
-        <div class="row" cdkDrag *ngFor="let f of cipher.fields; let i = index; trackBy:trackByFunction">
+        <div class="row" cdkDrag *ngFor="let f of cipher.fields; let i = index; trackBy: trackByFunction">
             <div class="col-5 form-group">
                 <div class="d-flex">
-                    <label for="fieldName{{i}}">{{'name' | i18n}}</label>
-                    <a class="ml-auto" href="https://help.bitwarden.com/article/custom-fields/"
-                        target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}">
+                    <label for="fieldName{{ i }}">{{ "name" | i18n }}</label>
+                    <a
+                        class="ml-auto"
+                        href="https://help.bitwarden.com/article/custom-fields/"
+                        target="_blank"
+                        rel="noopener"
+                        appA11yTitle="{{ 'learnMore' | i18n }}"
+                    >
                         <i class="fa fa-question-circle-o" aria-hidden="true"></i>
                     </a>
                 </div>
-                <input id="fieldName{{i}}" type="text" name="Field.Name{{i}}" [(ngModel)]="f.name"
-                    class="form-control" appInputVerbatim [disabled]="cipher.isDeleted || viewOnly">
+                <input
+                    id="fieldName{{ i }}"
+                    type="text"
+                    name="Field.Name{{ i }}"
+                    [(ngModel)]="f.name"
+                    class="form-control"
+                    appInputVerbatim
+                    [disabled]="cipher.isDeleted || viewOnly"
+                />
             </div>
             <div class="col-7 form-group">
-                <label for="fieldValue{{i}}">{{'value' | i18n}}</label>
+                <label for="fieldValue{{ i }}">{{ "value" | i18n }}</label>
                 <div class="d-flex align-items-center">
                     <!-- Text -->
                     <div class="input-group" *ngIf="f.type === fieldType.Text">
-                        <input id="fieldValue{{i}}" class="form-control" type="text" name="Field.Value{{i}}"
-                            [(ngModel)]="f.value" appInputVerbatim
-                            [disabled]="cipher.isDeleted || viewOnly">
+                        <input
+                            id="fieldValue{{ i }}"
+                            class="form-control"
+                            type="text"
+                            name="Field.Value{{ i }}"
+                            [(ngModel)]="f.value"
+                            appInputVerbatim
+                            [disabled]="cipher.isDeleted || viewOnly"
+                        />
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-outline-secondary"
-                                appA11yTitle="{{'copyValue' | i18n}}"
-                                (click)="copy(f.value, 'value', 'Field')">
+                            <button
+                                type="button"
+                                class="btn btn-outline-secondary"
+                                appA11yTitle="{{ 'copyValue' | i18n }}"
+                                (click)="copy(f.value, 'value', 'Field')"
+                            >
                                 <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>
                     <!-- Hidden -->
                     <div class="input-group" *ngIf="f.type === fieldType.Hidden">
-                        <input id="fieldValue{{i}}" type="{{f.showValue ? 'text' : 'password'}}"
-                            name="Field.Value{{i}}" [(ngModel)]="f.value"
-                            class="form-control text-monospace" appInputVerbatim autocomplete="new-password"
-                            [disabled]="cipher.isDeleted || viewOnly || (!cipher.viewPassword && !f.newField)">
+                        <input
+                            id="fieldValue{{ i }}"
+                            type="{{ f.showValue ? 'text' : 'password' }}"
+                            name="Field.Value{{ i }}"
+                            [(ngModel)]="f.value"
+                            class="form-control text-monospace"
+                            appInputVerbatim
+                            autocomplete="new-password"
+                            [disabled]="cipher.isDeleted || viewOnly || (!cipher.viewPassword && !f.newField)"
+                        />
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-outline-secondary"
-                                appA11yTitle="{{'toggleVisibility' | i18n}}" (click)="toggleFieldValue(f)"
-                                [disabled]="!cipher.viewPassword && !f.newField">
-                                <i class="fa fa-lg" aria-hidden="true"
-                                    [ngClass]="{'fa-eye': !f.showValue, 'fa-eye-slash': f.showValue}">
+                            <button
+                                type="button"
+                                class="btn btn-outline-secondary"
+                                appA11yTitle="{{ 'toggleVisibility' | i18n }}"
+                                (click)="toggleFieldValue(f)"
+                                [disabled]="!cipher.viewPassword && !f.newField"
+                            >
+                                <i
+                                    class="fa fa-lg"
+                                    aria-hidden="true"
+                                    [ngClass]="{ 'fa-eye': !f.showValue, 'fa-eye-slash': f.showValue }"
+                                >
                                 </i>
                             </button>
-                            <button type="button" class="btn btn-outline-secondary"
-                                appA11yTitle="{{'copyValue' | i18n}}"
+                            <button
+                                type="button"
+                                class="btn btn-outline-secondary"
+                                appA11yTitle="{{ 'copyValue' | i18n }}"
                                 (click)="copy(f.value, 'value', f.type === fieldType.Hidden ? 'H_Field' : 'Field')"
-                                [disabled]="!cipher.viewPassword && !f.newField">
+                                [disabled]="!cipher.viewPassword && !f.newField"
+                            >
                                 <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
                             </button>
                         </div>
                     </div>
                     <!-- Linked -->
                     <div class="input-group" *ngIf="f.type === fieldType.Linked">
-                        <select id="fieldValue{{i}}" name="Field.Value{{i}}" class="form-control" [(ngModel)]="f.linkedId"
+                        <select
+                            id="fieldValue{{ i }}"
+                            name="Field.Value{{ i }}"
+                            class="form-control"
+                            [(ngModel)]="f.linkedId"
                             *ngIf="f.type === fieldType.Linked && cipher.linkedFieldOptions != null"
-                            [disabled]="cipher.isDeleted || viewOnly">
-                            <option *ngFor="let o of linkedFieldOptions" [ngValue]="o.value">{{o.name}}</option>
+                            [disabled]="cipher.isDeleted || viewOnly"
+                        >
+                            <option *ngFor="let o of linkedFieldOptions" [ngValue]="o.value">{{ o.name }}</option>
                         </select>
                     </div>
                     <div class="flex-fill">
                         <!-- Boolean -->
-                        <input id="fieldValue{{i}}" name="Field.Value{{i}}" type="checkbox"
-                            [(ngModel)]="f.value" *ngIf="f.type === fieldType.Boolean" appTrueFalseValue
-                            trueValue="true" falseValue="false" [disabled]="cipher.isDeleted || viewOnly">
+                        <input
+                            id="fieldValue{{ i }}"
+                            name="Field.Value{{ i }}"
+                            type="checkbox"
+                            [(ngModel)]="f.value"
+                            *ngIf="f.type === fieldType.Boolean"
+                            appTrueFalseValue
+                            trueValue="true"
+                            falseValue="false"
+                            [disabled]="cipher.isDeleted || viewOnly"
+                        />
                     </div>
-                    <button type="button" class="btn btn-link text-danger ml-2" (click)="removeField(f)"
-                        appA11yTitle="{{'remove' | i18n}}" *ngIf="!cipher.isDeleted && !viewOnly">
+                    <button
+                        type="button"
+                        class="btn btn-link text-danger ml-2"
+                        (click)="removeField(f)"
+                        appA11yTitle="{{ 'remove' | i18n }}"
+                        *ngIf="!cipher.isDeleted && !viewOnly"
+                    >
                         <i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
                     </button>
-                    <button type="button" class="btn btn-link text-muted cursor-move"
-                        appA11yTitle="{{'dragToSort' | i18n}}" *ngIf="!cipher.isDeleted && !viewOnly">
+                    <button
+                        type="button"
+                        class="btn btn-link text-muted cursor-move"
+                        appA11yTitle="{{ 'dragToSort' | i18n }}"
+                        *ngIf="!cipher.isDeleted && !viewOnly"
+                    >
                         <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
                     </button>
                 </div>
@@ -78,17 +137,16 @@
         </div>
     </div>
     <!-- Add new custom field -->
-    <a href="#" appStopClick (click)="addField()" class="d-inline-block mb-2"
-        *ngIf="!cipher.isDeleted && !viewOnly">
-        <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i> {{'newCustomField' | i18n}}
+    <a href="#" appStopClick (click)="addField()" class="d-inline-block mb-2" *ngIf="!cipher.isDeleted && !viewOnly">
+        <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i> {{ "newCustomField" | i18n }}
     </a>
     <div class="row" *ngIf="!cipher.isDeleted && !viewOnly">
         <div class="col-5">
-            <label for="addFieldType" class="sr-only">{{'type' | i18n}}</label>
+            <label for="addFieldType" class="sr-only">{{ "type" | i18n }}</label>
             <select id="addFieldType" class="form-control" name="AddFieldType" [(ngModel)]="addFieldType">
-                <option *ngFor="let o of addFieldTypeOptions" [ngValue]="o.value">{{o.name}}</option>
+                <option *ngFor="let o of addFieldTypeOptions" [ngValue]="o.value">{{ o.name }}</option>
                 <option *ngIf="cipher.linkedFieldOptions != null" [ngValue]="addFieldLinkedTypeOption.value">
-                    {{addFieldLinkedTypeOption.name}}
+                    {{ addFieldLinkedTypeOption.name }}
                 </option>
             </select>
         </div>

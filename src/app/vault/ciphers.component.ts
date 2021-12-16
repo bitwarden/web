@@ -1,34 +1,28 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnDestroy,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output } from "@angular/core";
 
-import { CipherService } from 'jslib-common/abstractions/cipher.service';
-import { EventService } from 'jslib-common/abstractions/event.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { SearchService } from 'jslib-common/abstractions/search.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
-import { TotpService } from 'jslib-common/abstractions/totp.service';
+import { CipherService } from "jslib-common/abstractions/cipher.service";
+import { EventService } from "jslib-common/abstractions/event.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PasswordRepromptService } from "jslib-common/abstractions/passwordReprompt.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { SearchService } from "jslib-common/abstractions/search.service";
+import { StateService } from "jslib-common/abstractions/state.service";
+import { TotpService } from "jslib-common/abstractions/totp.service";
 
-import { CiphersComponent as BaseCiphersComponent } from 'jslib-angular/components/ciphers.component';
+import { CiphersComponent as BaseCiphersComponent } from "jslib-angular/components/ciphers.component";
 
-import { CipherRepromptType } from 'jslib-common/enums/cipherRepromptType';
-import { CipherType } from 'jslib-common/enums/cipherType';
-import { EventType } from 'jslib-common/enums/eventType';
+import { CipherRepromptType } from "jslib-common/enums/cipherRepromptType";
+import { CipherType } from "jslib-common/enums/cipherType";
+import { EventType } from "jslib-common/enums/eventType";
 
-import { CipherView } from 'jslib-common/models/view/cipherView';
+import { CipherView } from "jslib-common/models/view/cipherView";
 
 const MaxCheckedCount = 500;
 
 @Component({
-    selector: 'app-vault-ciphers',
-    templateUrl: 'ciphers.component.html',
+    selector: "app-vault-ciphers",
+    templateUrl: "ciphers.component.html",
 })
 export class CiphersComponent extends BaseCiphersComponent implements OnDestroy {
     @Input() showAddNew = true;
@@ -47,11 +41,17 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     private pagedCiphersCount = 0;
     private refreshing = false;
 
-    constructor(searchService: SearchService,
-        protected i18nService: I18nService, protected platformUtilsService: PlatformUtilsService,
-        protected cipherService: CipherService, protected eventService: EventService,
-        protected totpService: TotpService, protected stateService: StateService,
-        protected passwordRepromptService: PasswordRepromptService, private logService: LogService) {
+    constructor(
+        searchService: SearchService,
+        protected i18nService: I18nService,
+        protected platformUtilsService: PlatformUtilsService,
+        protected cipherService: CipherService,
+        protected eventService: EventService,
+        protected totpService: TotpService,
+        protected stateService: StateService,
+        protected passwordRepromptService: PasswordRepromptService,
+        private logService: LogService
+    ) {
         super(searchService);
     }
 
@@ -102,7 +102,11 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     }
 
     async doSearch(indexedCiphers?: CipherView[]) {
-        this.ciphers = await this.searchService.searchCiphers(this.searchText, [this.filter, this.deletedFilter], indexedCiphers);
+        this.ciphers = await this.searchService.searchCiphers(
+            this.searchText,
+            [this.filter, this.deletedFilter],
+            indexedCiphers
+        );
         this.resetPaging();
     }
 
@@ -111,14 +115,14 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     }
 
     async attachments(c: CipherView) {
-        if (!await this.repromptCipher(c)) {
+        if (!(await this.repromptCipher(c))) {
             return;
         }
         this.onAttachmentsClicked.emit(c);
     }
 
     async share(c: CipherView) {
-        if (!await this.repromptCipher(c)) {
+        if (!(await this.repromptCipher(c))) {
             return;
         }
         this.onShareClicked.emit(c);
@@ -129,14 +133,14 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     }
 
     async clone(c: CipherView) {
-        if (!await this.repromptCipher(c)) {
+        if (!(await this.repromptCipher(c))) {
             return;
         }
         this.onCloneClicked.emit(c);
     }
 
     async delete(c: CipherView): Promise<boolean> {
-        if (!await this.repromptCipher(c)) {
+        if (!(await this.repromptCipher(c))) {
             return;
         }
         if (this.actionPromise != null) {
@@ -144,9 +148,12 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         }
         const permanent = c.isDeleted;
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t(permanent ? 'permanentlyDeleteItemConfirmation' : 'deleteItemConfirmation'),
-            this.i18nService.t(permanent ? 'permanentlyDeleteItem' : 'deleteItem'),
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t(permanent ? "permanentlyDeleteItemConfirmation" : "deleteItemConfirmation"),
+            this.i18nService.t(permanent ? "permanentlyDeleteItem" : "deleteItem"),
+            this.i18nService.t("yes"),
+            this.i18nService.t("no"),
+            "warning"
+        );
         if (!confirmed) {
             return false;
         }
@@ -154,8 +161,11 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         try {
             this.actionPromise = this.deleteCipher(c.id, permanent);
             await this.actionPromise;
-            this.platformUtilsService.showToast('success', null, this.i18nService.t(permanent ? 'permanentlyDeletedItem'
-                : 'deletedItem'));
+            this.platformUtilsService.showToast(
+                "success",
+                null,
+                this.i18nService.t(permanent ? "permanentlyDeletedItem" : "deletedItem")
+            );
             this.refresh();
         } catch (e) {
             this.logService.error(e);
@@ -168,9 +178,12 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
             return;
         }
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('restoreItemConfirmation'),
-            this.i18nService.t('restoreItem'),
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t("restoreItemConfirmation"),
+            this.i18nService.t("restoreItem"),
+            this.i18nService.t("yes"),
+            this.i18nService.t("no"),
+            "warning"
+        );
         if (!confirmed) {
             return false;
         }
@@ -178,7 +191,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         try {
             this.actionPromise = this.cipherService.restoreWithServer(c.id);
             await this.actionPromise;
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('restoredItem'));
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("restoredItem"));
             this.refresh();
         } catch (e) {
             this.logService.error(e);
@@ -187,11 +200,11 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     }
 
     async copy(cipher: CipherView, value: string, typeI18nKey: string, aType: string) {
-        if (this.passwordRepromptService.protectedFields().includes(aType) && !await this.repromptCipher(cipher)) {
+        if (this.passwordRepromptService.protectedFields().includes(aType) && !(await this.repromptCipher(cipher))) {
             return;
         }
 
-        if (value == null || aType === 'TOTP' && !this.displayTotpCopyButton(cipher)) {
+        if (value == null || (aType === "TOTP" && !this.displayTotpCopyButton(cipher))) {
             return;
         } else if (value === cipher.login.totp) {
             value = await this.totpService.getCode(value);
@@ -202,12 +215,15 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         }
 
         this.platformUtilsService.copyToClipboard(value, { window: window });
-        this.platformUtilsService.showToast('info', null,
-            this.i18nService.t('valueCopied', this.i18nService.t(typeI18nKey)));
+        this.platformUtilsService.showToast(
+            "info",
+            null,
+            this.i18nService.t("valueCopied", this.i18nService.t(typeI18nKey))
+        );
 
-        if (typeI18nKey === 'password' || typeI18nKey === 'verificationCodeTotp') {
+        if (typeI18nKey === "password" || typeI18nKey === "verificationCodeTotp") {
             this.eventService.collect(EventType.Cipher_ClientToggledHiddenFieldVisible, cipher.id);
-        } else if (typeI18nKey === 'securityCode') {
+        } else if (typeI18nKey === "securityCode") {
             this.eventService.collect(EventType.Cipher_ClientCopiedCardCode, cipher.id);
         }
     }
@@ -216,9 +232,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         if (select) {
             this.selectAll(false);
         }
-        const selectCount = select && this.ciphers.length > MaxCheckedCount
-            ? MaxCheckedCount
-            : this.ciphers.length;
+        const selectCount = select && this.ciphers.length > MaxCheckedCount ? MaxCheckedCount : this.ciphers.length;
         for (let i = 0; i < selectCount; i++) {
             this.checkCipher(this.ciphers[i], select);
         }
@@ -232,16 +246,15 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         if (this.ciphers == null) {
             return [];
         }
-        return this.ciphers.filter(c => !!(c as any).checked);
+        return this.ciphers.filter((c) => !!(c as any).checked);
     }
 
     getSelectedIds(): string[] {
-        return this.getSelected().map(c => c.id);
+        return this.getSelected().map((c) => c.id);
     }
 
     displayTotpCopyButton(cipher: CipherView) {
-        return (cipher?.login?.hasTotp ?? false) &&
-            (cipher.organizationUseTotp || this.userHasPremiumAccess);
+        return (cipher?.login?.hasTotp ?? false) && (cipher.organizationUseTotp || this.userHasPremiumAccess);
     }
 
     async selectCipher(cipher: CipherView) {
@@ -259,6 +272,6 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     }
 
     protected async repromptCipher(c: CipherView) {
-        return c.reprompt === CipherRepromptType.None || await this.passwordRepromptService.showPasswordPrompt();
+        return c.reprompt === CipherRepromptType.None || (await this.passwordRepromptService.showPasswordPrompt());
     }
 }

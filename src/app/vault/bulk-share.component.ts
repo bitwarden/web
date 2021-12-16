@@ -1,26 +1,20 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
-import { CipherService } from 'jslib-common/abstractions/cipher.service';
-import { CollectionService } from 'jslib-common/abstractions/collection.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { OrganizationService } from 'jslib-common/abstractions/organization.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { CipherService } from "jslib-common/abstractions/cipher.service";
+import { CollectionService } from "jslib-common/abstractions/collection.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { OrganizationService } from "jslib-common/abstractions/organization.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
-import { CipherView } from 'jslib-common/models/view/cipherView';
-import { CollectionView } from 'jslib-common/models/view/collectionView';
+import { CipherView } from "jslib-common/models/view/cipherView";
+import { CollectionView } from "jslib-common/models/view/collectionView";
 
-import { Organization } from 'jslib-common/models/domain/organization';
+import { Organization } from "jslib-common/models/domain/organization";
 
 @Component({
-    selector: 'app-vault-bulk-share',
-    templateUrl: 'bulk-share.component.html',
+    selector: "app-vault-bulk-share",
+    templateUrl: "bulk-share.component.html",
 })
 export class BulkShareComponent implements OnInit {
     @Input() ciphers: CipherView[] = [];
@@ -35,15 +29,20 @@ export class BulkShareComponent implements OnInit {
 
     private writeableCollections: CollectionView[] = [];
 
-    constructor(private cipherService: CipherService, private platformUtilsService: PlatformUtilsService,
-        private i18nService: I18nService, private collectionService: CollectionService,
-        private organizationService: OrganizationService, private logService: LogService) { }
+    constructor(
+        private cipherService: CipherService,
+        private platformUtilsService: PlatformUtilsService,
+        private i18nService: I18nService,
+        private collectionService: CollectionService,
+        private organizationService: OrganizationService,
+        private logService: LogService
+    ) {}
 
     async ngOnInit() {
-        this.shareableCiphers = this.ciphers.filter(c => !c.hasOldAttachments && c.organizationId == null);
+        this.shareableCiphers = this.ciphers.filter((c) => !c.hasOldAttachments && c.organizationId == null);
         this.nonShareableCount = this.ciphers.length - this.shareableCiphers.length;
         const allCollections = await this.collectionService.getAllDecrypted();
-        this.writeableCollections = allCollections.filter(c => !c.readOnly);
+        this.writeableCollections = allCollections.filter((c) => !c.readOnly);
         this.organizations = await this.organizationService.getAll();
         if (this.organizationId == null && this.organizations.length > 0) {
             this.organizationId = this.organizations[0].id;
@@ -60,19 +59,24 @@ export class BulkShareComponent implements OnInit {
         if (this.organizationId == null || this.writeableCollections.length === 0) {
             this.collections = [];
         } else {
-            this.collections = this.writeableCollections.filter(c => c.organizationId === this.organizationId);
+            this.collections = this.writeableCollections.filter((c) => c.organizationId === this.organizationId);
         }
     }
 
     async submit() {
-        const checkedCollectionIds = this.collections.filter(c => (c as any).checked).map(c => c.id);
+        const checkedCollectionIds = this.collections.filter((c) => (c as any).checked).map((c) => c.id);
         try {
-            this.formPromise = this.cipherService.shareManyWithServer(this.shareableCiphers, this.organizationId,
-                checkedCollectionIds);
+            this.formPromise = this.cipherService.shareManyWithServer(
+                this.shareableCiphers,
+                this.organizationId,
+                checkedCollectionIds
+            );
             await this.formPromise;
             this.onShared.emit();
-            const orgName = this.organizations.find(o => o.id === this.organizationId)?.name ?? this.i18nService.t('organization');
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('movedItemsToOrg', orgName));
+            const orgName =
+                this.organizations.find((o) => o.id === this.organizationId)?.name ??
+                this.i18nService.t("organization");
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("movedItemsToOrg", orgName));
         } catch (e) {
             this.logService.error(e);
         }
@@ -84,7 +88,7 @@ export class BulkShareComponent implements OnInit {
 
     selectAll(select: boolean) {
         const collections = select ? this.collections : this.writeableCollections;
-        collections.forEach(c => this.check(c, select));
+        collections.forEach((c) => this.check(c, select));
     }
 
     get canSave() {

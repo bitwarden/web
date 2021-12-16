@@ -1,21 +1,16 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CipherService } from 'jslib-common/abstractions/cipher.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { CipherService } from "jslib-common/abstractions/cipher.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
-import { Organization } from 'jslib-common/models/domain/organization';
-import { CipherBulkDeleteRequest } from 'jslib-common/models/request/cipherBulkDeleteRequest';
+import { Organization } from "jslib-common/models/domain/organization";
+import { CipherBulkDeleteRequest } from "jslib-common/models/request/cipherBulkDeleteRequest";
 
 @Component({
-    selector: 'app-vault-bulk-delete',
-    templateUrl: 'bulk-delete.component.html',
+    selector: "app-vault-bulk-delete",
+    templateUrl: "bulk-delete.component.html",
 })
 export class BulkDeleteComponent {
     @Input() cipherIds: string[] = [];
@@ -25,8 +20,12 @@ export class BulkDeleteComponent {
 
     formPromise: Promise<any>;
 
-    constructor(private cipherService: CipherService, private platformUtilsService: PlatformUtilsService,
-        private i18nService: I18nService, private apiService: ApiService) { }
+    constructor(
+        private cipherService: CipherService,
+        private platformUtilsService: PlatformUtilsService,
+        private i18nService: I18nService,
+        private apiService: ApiService
+    ) {}
 
     async submit() {
         if (!this.organization || !this.organization.canEditAnyCollection) {
@@ -38,8 +37,11 @@ export class BulkDeleteComponent {
         await this.formPromise;
 
         this.onDeleted.emit();
-        this.platformUtilsService.showToast('success', null, this.i18nService.t(this.permanent ? 'permanentlyDeletedItems'
-            : 'deletedItems'));
+        this.platformUtilsService.showToast(
+            "success",
+            null,
+            this.i18nService.t(this.permanent ? "permanentlyDeletedItems" : "deletedItems")
+        );
     }
 
     private async deleteCiphers() {
