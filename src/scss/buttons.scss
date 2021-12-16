@@ -1,235 +1,236 @@
 .btn-primary,
 .swal2-confirm {
+  @include themify($themes) {
+    background-color: themed("btnPrimary");
+    border-color: themed("btnPrimary");
+    color: themed("btnPrimaryText");
+  }
+
+  &:hover:not(:disabled),
+  &:active:not(:disabled) {
     @include themify($themes) {
-        background-color: themed("btnPrimary");
-        border-color: themed("btnPrimary");
-        color: themed("btnPrimaryText");
+      background-color: themed("btnPrimaryHover");
+      border-color: themed("btnPrimaryBorderHover");
+      color: themed("btnPrimaryText");
     }
+  }
 
-    &:hover:not(:disabled),
-    &:active:not(:disabled) {
-        @include themify($themes) {
-            background-color: themed("btnPrimaryHover");
-            border-color: themed("btnPrimaryBorderHover");
-            color: themed("btnPrimaryText");
-        }
-    }
-
-    &:disabled {
-        opacity: 0.65;
-    }
+  &:disabled {
+    opacity: 0.65;
+  }
 }
 
 .btn-outline-primary {
-    @include themify($themes) {
-        background-color: themed("btnOutlinePrimaryBackground");
-        border-color: themed("btnOutlinePrimaryBorder");
-        color: themed("btnOutlinePrimaryText");
-    }
+  @include themify($themes) {
+    background-color: themed("btnOutlinePrimaryBackground");
+    border-color: themed("btnOutlinePrimaryBorder");
+    color: themed("btnOutlinePrimaryText");
+  }
 
-    &:hover:not(:disabled),
-    &:active {
-        @include themify($themes) {
-            background-color: themed("btnOutlinePrimaryBackgroundHover");
-            border-color: themed("btnOutlinePrimaryBorderHover");
-            color: themed("btnOutlinePrimaryTextHover");
-        }
+  &:hover:not(:disabled),
+  &:active {
+    @include themify($themes) {
+      background-color: themed("btnOutlinePrimaryBackgroundHover");
+      border-color: themed("btnOutlinePrimaryBorderHover");
+      color: themed("btnOutlinePrimaryTextHover");
     }
+  }
 }
 
 .btn-secondary,
 .swal2-cancel {
+  @include themify($themes) {
+    background-color: themed("btnSecondary");
+    border-color: themed("btnSecondaryBorder");
+    color: themed("btnSecondaryText");
+  }
+
+  &:hover:not(:disabled),
+  &:active:not(:disabled) {
     @include themify($themes) {
-        background-color: themed("btnSecondary");
-        border-color: themed("btnSecondaryBorder");
-        color: themed("btnSecondaryText");
+      background-color: themed("btnSecondaryHover");
+      border-color: themed("btnSecondaryBorderHover");
+      color: themed("btnSecondaryTextHover");
     }
+  }
 
-    &:hover:not(:disabled),
-    &:active:not(:disabled) {
-        @include themify($themes) {
-            background-color: themed("btnSecondaryHover");
-            border-color: themed("btnSecondaryBorderHover");
-            color: themed("btnSecondaryTextHover");
-        }
-    }
+  &:disabled {
+    opacity: 0.65;
+  }
 
-    &:disabled {
-        opacity: 0.65;
+  &:focus,
+  &.focus {
+    @include themify($themes) {
+      box-shadow: 0 0 0 $btn-focus-width
+        rgba(mix(color-yiq(themed("primary")), themed("primary"), 15%), 0.5);
     }
-
-    &:focus,
-    &.focus {
-        @include themify($themes) {
-            box-shadow: 0 0 0 $btn-focus-width rgba(mix(color-yiq(themed("primary")), themed("primary"), 15%), 0.5);
-        }
-    }
+  }
 }
 
 .btn-outline-secondary {
-    @include themify($themes) {
-        background-color: themed("btnOutlineSecondaryBackground");
-        border-color: themed("btnOutlineSecondaryBorder");
-        color: themed("btnOutlineSecondaryText");
-    }
+  @include themify($themes) {
+    background-color: themed("btnOutlineSecondaryBackground");
+    border-color: themed("btnOutlineSecondaryBorder");
+    color: themed("btnOutlineSecondaryText");
+  }
 
-    &:hover:not(:disabled),
-    &:active {
-        @include themify($themes) {
-            background-color: themed("btnOutlineSecondaryBackgroundHover");
-            border-color: themed("btnOutlineSecondaryBorderHover");
-            color: themed("btnOutlineSecondaryTextHover");
-        }
+  &:hover:not(:disabled),
+  &:active {
+    @include themify($themes) {
+      background-color: themed("btnOutlineSecondaryBackgroundHover");
+      border-color: themed("btnOutlineSecondaryBorderHover");
+      color: themed("btnOutlineSecondaryTextHover");
     }
+  }
 }
 
 .show > .btn-outline-secondary {
-    &.dropdown-toggle,
-    &:focus {
-        @include themify($themes) {
-            background-color: themed("btnOutlineSecondaryBackground");
-            border-color: themed("btnOutlineSecondaryBorder");
-            color: themed("btnOutlineSecondaryText");
-        }
+  &.dropdown-toggle,
+  &:focus {
+    @include themify($themes) {
+      background-color: themed("btnOutlineSecondaryBackground");
+      border-color: themed("btnOutlineSecondaryBorder");
+      color: themed("btnOutlineSecondaryText");
     }
+  }
 
-    &:hover {
-        @include themify($themes) {
-            background-color: themed("btnOutlineSecondaryBackgroundHover");
-            border-color: themed("btnOutlineSecondaryBorderHover");
-            color: themed("btnOutlineSecondaryTextHover");
-        }
+  &:hover {
+    @include themify($themes) {
+      background-color: themed("btnOutlineSecondaryBackgroundHover");
+      border-color: themed("btnOutlineSecondaryBorderHover");
+      color: themed("btnOutlineSecondaryTextHover");
     }
+  }
 }
 
 .btn-danger,
 .swal2-deny {
-    @include themify($themes) {
-        background-color: themed("btnDanger");
-        border-color: themed("btnDanger");
-        color: themed("btnDangerText");
-    }
+  @include themify($themes) {
+    background-color: themed("btnDanger");
+    border-color: themed("btnDanger");
+    color: themed("btnDangerText");
+  }
 
-    &:hover:not(:disabled),
-    &:active:not(:disabled) {
-        @include themify($themes) {
-            background-color: themed("btnDangerHover");
-            border-color: themed("btnDangerHover");
-            color: themed("btnDangerText");
-        }
+  &:hover:not(:disabled),
+  &:active:not(:disabled) {
+    @include themify($themes) {
+      background-color: themed("btnDangerHover");
+      border-color: themed("btnDangerHover");
+      color: themed("btnDangerText");
     }
+  }
 }
 
 .btn-outline-danger {
-    @include themify($themes) {
-        background-color: themed("btnOutlineDangerBackground");
-        border-color: themed("btnOutlineDangerBorder");
-        color: themed("btnOutlineDangerText");
-    }
+  @include themify($themes) {
+    background-color: themed("btnOutlineDangerBackground");
+    border-color: themed("btnOutlineDangerBorder");
+    color: themed("btnOutlineDangerText");
+  }
 
-    &:hover:not(:disabled),
-    &:active {
-        @include themify($themes) {
-            background-color: themed("btnOutlineDangerBackgroundHover");
-            border-color: themed("btnOutlineDangerBorderHover");
-            color: themed("btnOutlineDangerTextHover");
-        }
+  &:hover:not(:disabled),
+  &:active {
+    @include themify($themes) {
+      background-color: themed("btnOutlineDangerBackgroundHover");
+      border-color: themed("btnOutlineDangerBorderHover");
+      color: themed("btnOutlineDangerTextHover");
     }
+  }
 }
 
 .btn-link {
-    &:focus,
-    &.focus {
-        outline-color: -webkit-focus-ring-color;
-        outline-offset: 1px;
-        outline-style: auto;
-        outline-width: 1px;
-    }
+  &:focus,
+  &.focus {
+    outline-color: -webkit-focus-ring-color;
+    outline-offset: 1px;
+    outline-style: auto;
+    outline-width: 1px;
+  }
 
-    &:not(.text-danger):not(.cursor-move) {
-        @include themify($themes) {
-            color: themed("btnLinkText");
-        }
+  &:not(.text-danger):not(.cursor-move) {
+    @include themify($themes) {
+      color: themed("btnLinkText");
     }
+  }
 
-    &:hover:not(.text-danger):not(.cursor-move) {
-        @include themify($themes) {
-            color: themed("btnLinkTextHover");
-        }
+  &:hover:not(.text-danger):not(.cursor-move) {
+    @include themify($themes) {
+      color: themed("btnLinkTextHover");
     }
+  }
 }
 
 .btn-submit {
-    position: relative;
+  position: relative;
 
+  .fa-spinner {
+    align-items: center;
+    bottom: 0;
+    display: none;
+    justify-content: center;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &:disabled:not(.manual),
+  &.loading {
     .fa-spinner {
-        align-items: center;
-        bottom: 0;
-        display: none;
-        justify-content: center;
-        left: 0;
-        position: absolute;
-        right: 0;
-        top: 0;
+      display: flex;
     }
 
-    &:disabled:not(.manual),
-    &.loading {
-        .fa-spinner {
-            display: flex;
-        }
-
-        span {
-            visibility: hidden;
-        }
+    span {
+      visibility: hidden;
     }
+  }
 }
 
 .badge-primary {
-    @include themify($themes) {
-        background-color: themed("badgePrimaryBackground");
-        color: themed("badgePrimaryText");
-    }
+  @include themify($themes) {
+    background-color: themed("badgePrimaryBackground");
+    color: themed("badgePrimaryText");
+  }
 
-    &:hover {
-        @include themify($themes) {
-            background-color: themed("badgePrimaryBackgroundHover");
-            color: themed("badgePrimaryText");
-        }
+  &:hover {
+    @include themify($themes) {
+      background-color: themed("badgePrimaryBackgroundHover");
+      color: themed("badgePrimaryText");
     }
+  }
 }
 
 .badge-secondary {
-    @include themify($themes) {
-        background-color: themed("badgeSecondaryBackground");
-        color: themed("badgeSecondaryText");
-    }
+  @include themify($themes) {
+    background-color: themed("badgeSecondaryBackground");
+    color: themed("badgeSecondaryText");
+  }
 }
 
 .badge-info {
-    @include themify($themes) {
-        background-color: themed("badgeInfoBackground");
-        color: themed("badgeInfoText");
-    }
+  @include themify($themes) {
+    background-color: themed("badgeInfoBackground");
+    color: themed("badgeInfoText");
+  }
 }
 
 .badge-danger {
-    @include themify($themes) {
-        background-color: themed("badgeDangerBackground");
-        color: themed("badgeDangerText");
-    }
+  @include themify($themes) {
+    background-color: themed("badgeDangerBackground");
+    color: themed("badgeDangerText");
+  }
 }
 
 .badge-warning {
-    @include themify($themes) {
-        background-color: themed("warning");
-        color: themed("warningTextColor");
-    }
+  @include themify($themes) {
+    background-color: themed("warning");
+    color: themed("warningTextColor");
+  }
 }
 
 .badge-success {
-    @include themify($themes) {
-        background-color: themed("success");
-        color: themed("successTextColor");
-    }
+  @include themify($themes) {
+    background-color: themed("success");
+    color: themed("successTextColor");
+  }
 }

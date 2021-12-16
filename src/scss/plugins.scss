@@ -1,227 +1,227 @@
 #duo-frame {
-    height: 330px;
-    @include themify($themes) {
-        background: themed("imgLoading") 0 0 no-repeat;
-    }
+  height: 330px;
+  @include themify($themes) {
+    background: themed("imgLoading") 0 0 no-repeat;
+  }
 
-    iframe {
-        border: none;
-        height: 100%;
-        width: 100%;
-    }
+  iframe {
+    border: none;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 #web-authn-frame {
-    height: 290px;
-    @include themify($themes) {
-        background: themed("imgLoading") 0 0 no-repeat;
-    }
+  height: 290px;
+  @include themify($themes) {
+    background: themed("imgLoading") 0 0 no-repeat;
+  }
 
-    iframe {
-        border: none;
-        height: 100%;
-        width: 100%;
-    }
+  iframe {
+    border: none;
+    height: 100%;
+    width: 100%;
+  }
 }
 
 #hcaptcha_iframe {
-    border: none;
-    transition: height 0.25s linear;
-    width: 100%;
+  border: none;
+  transition: height 0.25s linear;
+  width: 100%;
 }
 
 .list-group-2fa {
-    .logo-2fa {
-        min-width: 100px;
-    }
+  .logo-2fa {
+    min-width: 100px;
+  }
 }
 
 @each $mfaType in $mfaTypes {
-    .mfaType#{$mfaType} {
-        content: url("../images/two-factor/" + $mfaType + ".png");
-        max-width: 100px;
-    }
+  .mfaType#{$mfaType} {
+    content: url("../images/two-factor/" + $mfaType + ".png");
+    max-width: 100px;
+  }
 }
 
 .mfaType1 {
-    @include themify($themes) {
-        content: url("../images/two-factor/1" + themed("mfaLogoSuffix"));
-        max-width: 100px;
-        max-height: 45px;
-    }
+  @include themify($themes) {
+    content: url("../images/two-factor/1" + themed("mfaLogoSuffix"));
+    max-width: 100px;
+    max-height: 45px;
+  }
 }
 
 .mfaType7 {
-    @include themify($themes) {
-        content: url("../images/two-factor/7" + themed("mfaLogoSuffix"));
-        max-width: 100px;
-    }
+  @include themify($themes) {
+    content: url("../images/two-factor/7" + themed("mfaLogoSuffix"));
+    max-width: 100px;
+  }
 }
 
 .recovery-code-img {
-    @include themify($themes) {
-        content: url("../images/two-factor/rc" + themed("mfaLogoSuffix"));
-        max-width: 100px;
-        max-height: 45px;
-    }
+  @include themify($themes) {
+    content: url("../images/two-factor/rc" + themed("mfaLogoSuffix"));
+    max-width: 100px;
+    max-height: 45px;
+  }
 }
 
 .progress {
-    @include themify($themes) {
-        background-color: themed("pwStrengthBackground");
-    }
+  @include themify($themes) {
+    background-color: themed("pwStrengthBackground");
+  }
 }
 
 // Braintree
 
 #bt-dropin-container {
-    min-height: 50px;
-    @include themify($themes) {
-        background: themed("loadingSvg") center center no-repeat;
-    }
+  min-height: 50px;
+  @include themify($themes) {
+    background: themed("loadingSvg") center center no-repeat;
+  }
 }
 
 .braintree-placeholder,
 .braintree-sheet__header {
-    display: none;
+  display: none;
 }
 
 .braintree-sheet__content--button {
-    min-height: 0;
-    padding: 0;
-    text-align: left;
+  min-height: 0;
+  padding: 0;
+  text-align: left;
 }
 
 .braintree-sheet__container {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .braintree-sheet {
-    border: none;
+  border: none;
 }
 
 [data-braintree-id="upper-container"]::before {
-    @include themify($themes) {
-        background-color: themed("backgroundColor");
-    }
+  @include themify($themes) {
+    background-color: themed("backgroundColor");
+  }
 }
 
 .card [data-braintree-id="upper-container"]::before {
-    @include themify($themes) {
-        background-color: themed("foregroundColor");
-    }
+  @include themify($themes) {
+    background-color: themed("foregroundColor");
+  }
 }
 
 [data-braintree-id="paypal-button"] {
-    @include themify($themes) {
-        background-color: themed("backgroundColor");
-    }
+  @include themify($themes) {
+    background-color: themed("backgroundColor");
+  }
 }
 
 .card [data-braintree-id="paypal-button"] {
-    @include themify($themes) {
-        background-color: themed("foregroundColor");
-    }
+  @include themify($themes) {
+    background-color: themed("foregroundColor");
+  }
 }
 
 .paypal-button-text {
-    @include themify($themes) {
-        color: themed("textColor");
-    }
+  @include themify($themes) {
+    color: themed("textColor");
+  }
 }
 
 // SweetAlert2
 
 [class*="swal2-"] {
-    &:not(.swal2-container, .swal2-confirm, .swal2-cancel, .swal2-deny) {
-        @include themify($themes) {
-            background-color: themed("backgroundColor");
-            color: themed("textColor");
-        }
+  &:not(.swal2-container, .swal2-confirm, .swal2-cancel, .swal2-deny) {
+    @include themify($themes) {
+      background-color: themed("backgroundColor");
+      color: themed("textColor");
     }
+  }
 }
 
 .swal2-container {
-    background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .swal2-popup {
+  @include themify($themes) {
+    background-color: themed("backgroundColor");
+    color: themed("textColor");
+  }
+  border: $modal-content-border-width solid #9a9a9a;
+  @include border-radius($modal-content-border-radius);
+  padding: 15px 0 0;
+  width: 34em; // slightly bigger than the hardcoded 478px in v1.
+
+  .swal2-header {
+    padding: 0 15px;
+  }
+
+  .swal2-icon {
+    border: none;
+    height: auto;
+    margin: 0 auto;
+    width: auto;
+  }
+
+  .swal2-content {
+    font-size: $font-size-base;
+    padding-bottom: 15px;
     @include themify($themes) {
-        background-color: themed("backgroundColor");
-        color: themed("textColor");
+      border-bottom: $modal-footer-border-width solid themed("separator");
     }
-    border: $modal-content-border-width solid #9a9a9a;
+  }
+
+  i.swal-custom-icon {
+    display: block;
+    font-size: 35px;
+    margin: 0 auto;
+  }
+
+  .swal2-title {
+    font-size: $font-size-lg;
+    margin: 0;
+    padding: 10px 0 15px;
+    @include themify($themes) {
+      color: themed("headingColor");
+    }
+  }
+
+  .swal2-content {
+    font-size: $font-size-base;
+    padding: 0 15px 15px;
+    @include themify($themes) {
+      color: themed("textColor");
+    }
+  }
+
+  .swal2-actions {
     @include border-radius($modal-content-border-radius);
-    padding: 15px 0 0;
-    width: 34em; // slightly bigger than the hardcoded 478px in v1.
-
-    .swal2-header {
-        padding: 0 15px;
+    display: flex;
+    flex-direction: row;
+    font-size: $font-size-base;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 15px;
+    @include themify($themes) {
+      background-color: themed("backgroundColor");
     }
 
-    .swal2-icon {
-        border: none;
-        height: auto;
-        margin: 0 auto;
-        width: auto;
+    button {
+      margin-right: 10px;
+      @extend .btn;
     }
+  }
 
-    .swal2-content {
-        font-size: $font-size-base;
-        padding-bottom: 15px;
-        @include themify($themes) {
-            border-bottom: $modal-footer-border-width solid themed("separator");
-        }
-    }
-
-    i.swal-custom-icon {
-        display: block;
-        font-size: 35px;
-        margin: 0 auto;
-    }
-
-    .swal2-title {
-        font-size: $font-size-lg;
-        margin: 0;
-        padding: 10px 0 15px;
-        @include themify($themes) {
-            color: themed("headingColor");
-        }
-    }
-
-    .swal2-content {
-        font-size: $font-size-base;
-        padding: 0 15px 15px;
-        @include themify($themes) {
-            color: themed("textColor");
-        }
-    }
-
-    .swal2-actions {
-        @include border-radius($modal-content-border-radius);
-        display: flex;
-        flex-direction: row;
-        font-size: $font-size-base;
-        justify-content: flex-start;
-        margin: 0;
-        padding: 15px;
-        @include themify($themes) {
-            background-color: themed("backgroundColor");
-        }
-
-        button {
-            margin-right: 10px;
-            @extend .btn;
-        }
-    }
-
-    .swal2-validation-message {
-        margin: 0 -15px;
-    }
+  .swal2-validation-message {
+    margin: 0 -15px;
+  }
 }
 
 date-input-polyfill {
-    &[data-open="true"] {
-        z-index: 10000 !important;
-    }
+  &[data-open="true"] {
+    z-index: 10000 !important;
+  }
 }
