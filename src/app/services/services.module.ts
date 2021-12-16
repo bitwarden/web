@@ -26,6 +26,7 @@ import { ContainerService } from 'jslib-common/services/container.service';
 import { CryptoService } from 'jslib-common/services/crypto.service';
 import { EventService as EventLoggingService } from 'jslib-common/services/event.service';
 import { ImportService } from 'jslib-common/services/import.service';
+import { StateService } from 'jslib-common/services/state.service';
 import { VaultTimeoutService } from 'jslib-common/services/vaultTimeout.service';
 
 import { ApiService as ApiServiceAbstraction } from 'jslib-common/abstractions/api.service';
@@ -44,6 +45,7 @@ import { MessagingService as MessagingServiceAbstraction } from 'jslib-common/ab
 import { NotificationsService as NotificationsServiceAbstraction } from 'jslib-common/abstractions/notifications.service';
 import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from 'jslib-common/abstractions/platformUtils.service';
 import { StateService as StateServiceAbstraction } from 'jslib-common/abstractions/state.service';
+import { StateMigrationService } from 'jslib-common/abstractions/stateMigration.service';
 import { StorageService as StorageServiceAbstraction } from 'jslib-common/abstractions/storage.service';
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from 'jslib-common/abstractions/vaultTimeout.service';
 
@@ -158,6 +160,30 @@ export function initFactory(window: Window, storageService: StorageServiceAbstra
                 PlatformUtilsServiceAbstraction,
                 LogService,
                 StateServiceAbstraction,
+            ],
+        },
+        {
+            provide: StateServiceAbstraction,
+            useFactory: (
+                storageService: StorageServiceAbstraction,
+                secureStorageService: StorageServiceAbstraction,
+                logService: LogService,
+                stateMigrationService: StateMigrationService,
+            ) => new StateService(
+                storageService,
+                // TODO: platformUtilsService.isDev has a helper for this, but using that service here results in a circular dependency.
+                // We have a tech debt item in the backlog to break up platformUtilsService, but in the meantime simply checking the environement here is less cumbersome.
+                process.env.NODE_ENV === 'development' ?
+                    storageService :
+                    secureStorageService,
+                logService,
+                stateMigrationService,
+            ),
+            deps: [
+                StorageServiceAbstraction,
+                'SECURE_STORAGE',
+                LogService,
+                StateMigrationService,
             ],
         },
     ],
