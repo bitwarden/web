@@ -14,33 +14,33 @@ import { UpdateTempPasswordComponent as BaseUpdateTempPasswordComponent } from "
 import { StateService } from "jslib-common/abstractions/state.service";
 
 @Component({
-    selector: "app-update-temp-password",
-    templateUrl: "update-temp-password.component.html",
+  selector: "app-update-temp-password",
+  templateUrl: "update-temp-password.component.html",
 })
 export class UpdateTempPasswordComponent extends BaseUpdateTempPasswordComponent {
-    constructor(
-        i18nService: I18nService,
-        platformUtilsService: PlatformUtilsService,
-        passwordGenerationService: PasswordGenerationService,
-        policyService: PolicyService,
-        cryptoService: CryptoService,
-        messagingService: MessagingService,
-        apiService: ApiService,
-        logService: LogService,
-        stateService: StateService,
-        syncService: SyncService
-    ) {
-        super(
-            i18nService,
-            platformUtilsService,
-            passwordGenerationService,
-            policyService,
-            cryptoService,
-            messagingService,
-            apiService,
-            stateService,
-            syncService,
-            logService
-        );
-    }
+  constructor(
+    i18nService: I18nService,
+    platformUtilsService: PlatformUtilsService,
+    passwordGenerationService: PasswordGenerationService,
+    policyService: PolicyService,
+    cryptoService: CryptoService,
+    messagingService: MessagingService,
+    apiService: ApiService,
+    logService: LogService,
+    stateService: StateService,
+    syncService: SyncService
+  ) {
+    super(
+      i18nService,
+      platformUtilsService,
+      passwordGenerationService,
+      policyService,
+      cryptoService,
+      messagingService,
+      apiService,
+      stateService,
+      syncService,
+      logService
+    );
+  }
 }

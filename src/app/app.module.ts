@@ -14,22 +14,22 @@ import { ServicesModule } from "./services/services.module";
 import { WildcardRoutingModule } from "./wildcard-routing.module";
 
 @NgModule({
-    imports: [
-        OssModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        ServicesModule,
-        BitwardenToastModule.forRoot({
-            maxOpened: 5,
-            autoDismiss: true,
-            closeButton: true,
-        }),
-        InfiniteScrollModule,
-        DragDropModule,
-        OssRoutingModule,
-        WildcardRoutingModule, // Needs to be last to catch all non-existing routes
-    ],
-    declarations: [AppComponent],
-    bootstrap: [AppComponent],
+  imports: [
+    OssModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ServicesModule,
+    BitwardenToastModule.forRoot({
+      maxOpened: 5,
+      autoDismiss: true,
+      closeButton: true,
+    }),
+    InfiniteScrollModule,
+    DragDropModule,
+    OssRoutingModule,
+    WildcardRoutingModule, // Needs to be last to catch all non-existing routes
+  ],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

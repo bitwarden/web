@@ -14,35 +14,35 @@ import { SyncService } from "jslib-common/abstractions/sync.service";
 import { SetPasswordComponent as BaseSetPasswordComponent } from "jslib-angular/components/set-password.component";
 
 @Component({
-    selector: "app-set-password",
-    templateUrl: "set-password.component.html",
+  selector: "app-set-password",
+  templateUrl: "set-password.component.html",
 })
 export class SetPasswordComponent extends BaseSetPasswordComponent {
-    constructor(
-        apiService: ApiService,
-        i18nService: I18nService,
-        cryptoService: CryptoService,
-        messagingService: MessagingService,
-        passwordGenerationService: PasswordGenerationService,
-        platformUtilsService: PlatformUtilsService,
-        policyService: PolicyService,
-        router: Router,
-        syncService: SyncService,
-        route: ActivatedRoute,
-        stateService: StateService
-    ) {
-        super(
-            i18nService,
-            cryptoService,
-            messagingService,
-            passwordGenerationService,
-            platformUtilsService,
-            policyService,
-            router,
-            apiService,
-            syncService,
-            route,
-            stateService
-        );
-    }
+  constructor(
+    apiService: ApiService,
+    i18nService: I18nService,
+    cryptoService: CryptoService,
+    messagingService: MessagingService,
+    passwordGenerationService: PasswordGenerationService,
+    platformUtilsService: PlatformUtilsService,
+    policyService: PolicyService,
+    router: Router,
+    syncService: SyncService,
+    route: ActivatedRoute,
+    stateService: StateService
+  ) {
+    super(
+      i18nService,
+      cryptoService,
+      messagingService,
+      passwordGenerationService,
+      platformUtilsService,
+      policyService,
+      router,
+      apiService,
+      syncService,
+      route,
+      stateService
+    );
+  }
 }

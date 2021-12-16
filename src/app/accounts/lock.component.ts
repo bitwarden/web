@@ -17,49 +17,49 @@ import { RouterService } from "../services/router.service";
 import { LockComponent as BaseLockComponent } from "jslib-angular/components/lock.component";
 
 @Component({
-    selector: "app-lock",
-    templateUrl: "lock.component.html",
+  selector: "app-lock",
+  templateUrl: "lock.component.html",
 })
 export class LockComponent extends BaseLockComponent {
-    constructor(
-        router: Router,
-        i18nService: I18nService,
-        platformUtilsService: PlatformUtilsService,
-        messagingService: MessagingService,
-        cryptoService: CryptoService,
-        vaultTimeoutService: VaultTimeoutService,
-        environmentService: EnvironmentService,
-        private routerService: RouterService,
-        stateService: StateService,
-        apiService: ApiService,
-        logService: LogService,
-        keyConnectorService: KeyConnectorService,
-        ngZone: NgZone
-    ) {
-        super(
-            router,
-            i18nService,
-            platformUtilsService,
-            messagingService,
-            cryptoService,
-            vaultTimeoutService,
-            environmentService,
-            stateService,
-            apiService,
-            logService,
-            keyConnectorService,
-            ngZone
-        );
-    }
+  constructor(
+    router: Router,
+    i18nService: I18nService,
+    platformUtilsService: PlatformUtilsService,
+    messagingService: MessagingService,
+    cryptoService: CryptoService,
+    vaultTimeoutService: VaultTimeoutService,
+    environmentService: EnvironmentService,
+    private routerService: RouterService,
+    stateService: StateService,
+    apiService: ApiService,
+    logService: LogService,
+    keyConnectorService: KeyConnectorService,
+    ngZone: NgZone
+  ) {
+    super(
+      router,
+      i18nService,
+      platformUtilsService,
+      messagingService,
+      cryptoService,
+      vaultTimeoutService,
+      environmentService,
+      stateService,
+      apiService,
+      logService,
+      keyConnectorService,
+      ngZone
+    );
+  }
 
-    async ngOnInit() {
-        await super.ngOnInit();
-        this.onSuccessfulSubmit = async () => {
-            const previousUrl = this.routerService.getPreviousUrl();
-            if (previousUrl !== "/" && previousUrl.indexOf("lock") === -1) {
-                this.successRoute = previousUrl;
-            }
-            this.router.navigate([this.successRoute]);
-        };
-    }
+  async ngOnInit() {
+    await super.ngOnInit();
+    this.onSuccessfulSubmit = async () => {
+      const previousUrl = this.routerService.getPreviousUrl();
+      if (previousUrl !== "/" && previousUrl.indexOf("lock") === -1) {
+        this.successRoute = previousUrl;
+      }
+      this.router.navigate([this.successRoute]);
+    };
+  }
 }

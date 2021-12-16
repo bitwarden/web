@@ -23,122 +23,128 @@ import { PolicyData } from "jslib-common/models/data/policyData";
 import { ReferenceEventRequest } from "jslib-common/models/request/referenceEventRequest";
 
 @Component({
-    selector: "app-register",
-    templateUrl: "register.component.html",
+  selector: "app-register",
+  templateUrl: "register.component.html",
 })
 export class RegisterComponent extends BaseRegisterComponent {
-    showCreateOrgMessage = false;
-    layout = "";
-    enforcedPolicyOptions: MasterPasswordPolicyOptions;
+  showCreateOrgMessage = false;
+  layout = "";
+  enforcedPolicyOptions: MasterPasswordPolicyOptions;
 
-    private policies: Policy[];
+  private policies: Policy[];
 
-    constructor(
-        authService: AuthService,
-        router: Router,
-        i18nService: I18nService,
-        cryptoService: CryptoService,
-        apiService: ApiService,
-        private route: ActivatedRoute,
-        stateService: StateService,
-        platformUtilsService: PlatformUtilsService,
-        passwordGenerationService: PasswordGenerationService,
-        private policyService: PolicyService,
-        environmentService: EnvironmentService,
-        logService: LogService
-    ) {
-        super(
-            authService,
-            router,
-            i18nService,
-            cryptoService,
-            apiService,
-            stateService,
-            platformUtilsService,
-            passwordGenerationService,
-            environmentService,
-            logService
-        );
-    }
+  constructor(
+    authService: AuthService,
+    router: Router,
+    i18nService: I18nService,
+    cryptoService: CryptoService,
+    apiService: ApiService,
+    private route: ActivatedRoute,
+    stateService: StateService,
+    platformUtilsService: PlatformUtilsService,
+    passwordGenerationService: PasswordGenerationService,
+    private policyService: PolicyService,
+    environmentService: EnvironmentService,
+    logService: LogService
+  ) {
+    super(
+      authService,
+      router,
+      i18nService,
+      cryptoService,
+      apiService,
+      stateService,
+      platformUtilsService,
+      passwordGenerationService,
+      environmentService,
+      logService
+    );
+  }
 
-    async ngOnInit() {
-        this.route.queryParams.pipe(first()).subscribe((qParams) => {
-            this.referenceData = new ReferenceEventRequest();
-            if (qParams.email != null && qParams.email.indexOf("@") > -1) {
-                this.email = qParams.email;
-            }
-            if (qParams.premium != null) {
-                this.stateService.setLoginRedirect({ route: "/settings/premium" });
-            } else if (qParams.org != null) {
-                this.showCreateOrgMessage = true;
-                this.referenceData.flow = qParams.org;
-                this.stateService.setLoginRedirect({
-                    route: "/settings/create-organization",
-                    qParams: { plan: qParams.org },
-                });
-            }
-            if (qParams.layout != null) {
-                this.layout = this.referenceData.layout = qParams.layout;
-            }
-            if (qParams.reference != null) {
-                this.referenceData.id = qParams.reference;
-            } else {
-                this.referenceData.id = ("; " + document.cookie).split("; reference=").pop().split(";").shift();
-            }
-            // Are they coming from an email for sponsoring a families organization
-            if (qParams.sponsorshipToken != null) {
-                // After logging in redirect them to setup the families sponsorship
-                this.stateService.setLoginRedirect({
-                    route: "/setup/families-for-enterprise",
-                    qParams: { token: qParams.sponsorshipToken },
-                });
-            }
-            if (this.referenceData.id === "") {
-                this.referenceData.id = null;
-            }
+  async ngOnInit() {
+    this.route.queryParams.pipe(first()).subscribe((qParams) => {
+      this.referenceData = new ReferenceEventRequest();
+      if (qParams.email != null && qParams.email.indexOf("@") > -1) {
+        this.email = qParams.email;
+      }
+      if (qParams.premium != null) {
+        this.stateService.setLoginRedirect({ route: "/settings/premium" });
+      } else if (qParams.org != null) {
+        this.showCreateOrgMessage = true;
+        this.referenceData.flow = qParams.org;
+        this.stateService.setLoginRedirect({
+          route: "/settings/create-organization",
+          qParams: { plan: qParams.org },
         });
-        const invite = await this.stateService.getOrganizationInvitation();
-        if (invite != null) {
-            try {
-                const policies = await this.apiService.getPoliciesByToken(
-                    invite.organizationId,
-                    invite.token,
-                    invite.email,
-                    invite.organizationUserId
-                );
-                if (policies.data != null) {
-                    const policiesData = policies.data.map((p) => new PolicyData(p));
-                    this.policies = policiesData.map((p) => new Policy(p));
-                }
-            } catch (e) {
-                this.logService.error(e);
-            }
+      }
+      if (qParams.layout != null) {
+        this.layout = this.referenceData.layout = qParams.layout;
+      }
+      if (qParams.reference != null) {
+        this.referenceData.id = qParams.reference;
+      } else {
+        this.referenceData.id = ("; " + document.cookie)
+          .split("; reference=")
+          .pop()
+          .split(";")
+          .shift();
+      }
+      // Are they coming from an email for sponsoring a families organization
+      if (qParams.sponsorshipToken != null) {
+        // After logging in redirect them to setup the families sponsorship
+        this.stateService.setLoginRedirect({
+          route: "/setup/families-for-enterprise",
+          qParams: { token: qParams.sponsorshipToken },
+        });
+      }
+      if (this.referenceData.id === "") {
+        this.referenceData.id = null;
+      }
+    });
+    const invite = await this.stateService.getOrganizationInvitation();
+    if (invite != null) {
+      try {
+        const policies = await this.apiService.getPoliciesByToken(
+          invite.organizationId,
+          invite.token,
+          invite.email,
+          invite.organizationUserId
+        );
+        if (policies.data != null) {
+          const policiesData = policies.data.map((p) => new PolicyData(p));
+          this.policies = policiesData.map((p) => new Policy(p));
         }
-
-        if (this.policies != null) {
-            this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(this.policies);
-        }
-
-        await super.ngOnInit();
+      } catch (e) {
+        this.logService.error(e);
+      }
     }
 
-    async submit() {
-        if (
-            this.enforcedPolicyOptions != null &&
-            !this.policyService.evaluateMasterPassword(
-                this.masterPasswordScore,
-                this.masterPassword,
-                this.enforcedPolicyOptions
-            )
-        ) {
-            this.platformUtilsService.showToast(
-                "error",
-                this.i18nService.t("errorOccurred"),
-                this.i18nService.t("masterPasswordPolicyRequirementsNotMet")
-            );
-            return;
-        }
-
-        await super.submit();
+    if (this.policies != null) {
+      this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(
+        this.policies
+      );
     }
+
+    await super.ngOnInit();
+  }
+
+  async submit() {
+    if (
+      this.enforcedPolicyOptions != null &&
+      !this.policyService.evaluateMasterPassword(
+        this.masterPasswordScore,
+        this.masterPassword,
+        this.enforcedPolicyOptions
+      )
+    ) {
+      this.platformUtilsService.showToast(
+        "error",
+        this.i18nService.t("errorOccurred"),
+        this.i18nService.t("masterPasswordPolicyRequirementsNotMet")
+      );
+      return;
+    }
+
+    await super.submit();
+  }
 }
