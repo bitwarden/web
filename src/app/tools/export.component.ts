@@ -13,39 +13,39 @@ import { UserVerificationService } from "jslib-common/abstractions/userVerificat
 import { ExportComponent as BaseExportComponent } from "jslib-angular/components/export.component";
 
 @Component({
-    selector: "app-export",
-    templateUrl: "export.component.html",
+  selector: "app-export",
+  templateUrl: "export.component.html",
 })
 export class ExportComponent extends BaseExportComponent {
-    organizationId: string;
+  organizationId: string;
 
-    constructor(
-        cryptoService: CryptoService,
-        i18nService: I18nService,
-        platformUtilsService: PlatformUtilsService,
-        exportService: ExportService,
-        eventService: EventService,
-        policyService: PolicyService,
-        logService: LogService,
-        userVerificationService: UserVerificationService,
-        fb: FormBuilder
-    ) {
-        super(
-            cryptoService,
-            i18nService,
-            platformUtilsService,
-            exportService,
-            eventService,
-            policyService,
-            window,
-            logService,
-            userVerificationService,
-            fb
-        );
-    }
+  constructor(
+    cryptoService: CryptoService,
+    i18nService: I18nService,
+    platformUtilsService: PlatformUtilsService,
+    exportService: ExportService,
+    eventService: EventService,
+    policyService: PolicyService,
+    logService: LogService,
+    userVerificationService: UserVerificationService,
+    fb: FormBuilder
+  ) {
+    super(
+      cryptoService,
+      i18nService,
+      platformUtilsService,
+      exportService,
+      eventService,
+      policyService,
+      window,
+      logService,
+      userVerificationService,
+      fb
+    );
+  }
 
-    protected saved() {
-        super.saved();
-        this.platformUtilsService.showToast("success", null, this.i18nService.t("exportSuccess"));
-    }
+  protected saved() {
+    super.saved();
+    this.platformUtilsService.showToast("success", null, this.i18nService.t("exportSuccess"));
+  }
 }

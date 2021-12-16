@@ -1,28 +1,39 @@
-<form #form (ngSubmit)="submit()" ngNativeValidate [appApiAction]="formPromise" [formGroup]="exportForm">
-    <div class="page-header">
-        <h1>{{ "exportVault" | i18n }}</h1>
-    </div>
+<form
+  #form
+  (ngSubmit)="submit()"
+  ngNativeValidate
+  [appApiAction]="formPromise"
+  [formGroup]="exportForm"
+>
+  <div class="page-header">
+    <h1>{{ "exportVault" | i18n }}</h1>
+  </div>
 
-    <app-callout type="error" title="{{ 'vaultExportDisabled' | i18n }}" *ngIf="disabledByPolicy">
-        {{ "personalVaultExportPolicyInEffect" | i18n }}
-    </app-callout>
+  <app-callout type="error" title="{{ 'vaultExportDisabled' | i18n }}" *ngIf="disabledByPolicy">
+    {{ "personalVaultExportPolicyInEffect" | i18n }}
+  </app-callout>
 
-    <div class="row">
-        <div class="form-group col-6">
-            <label for="format">{{ "fileFormat" | i18n }}</label>
-            <select class="form-control" id="format" name="Format" formControlName="format">
-                <option *ngFor="let f of formatOptions" [value]="f.value">{{ f.name }}</option>
-            </select>
-        </div>
+  <div class="row">
+    <div class="form-group col-6">
+      <label for="format">{{ "fileFormat" | i18n }}</label>
+      <select class="form-control" id="format" name="Format" formControlName="format">
+        <option *ngFor="let f of formatOptions" [value]="f.value">{{ f.name }}</option>
+      </select>
     </div>
-    <div class="row">
-        <div class="form-group col-6">
-            <app-verify-master-password ngDefaultControl formControlName="secret" name="secret">
-            </app-verify-master-password>
-        </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-6">
+      <app-verify-master-password ngDefaultControl formControlName="secret" name="secret">
+      </app-verify-master-password>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="form.loading || exportForm.disabled">
-        <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true" *ngIf="form.loading"></i>
-        <span *ngIf="!form.loading">{{ "exportVault" | i18n }}</span>
-    </button>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="form.loading || exportForm.disabled">
+    <i
+      class="fa fa-spinner fa-spin"
+      title="{{ 'loading' | i18n }}"
+      aria-hidden="true"
+      *ngIf="form.loading"
+    ></i>
+    <span *ngIf="!form.loading">{{ "exportVault" | i18n }}</span>
+  </button>
 </form>
