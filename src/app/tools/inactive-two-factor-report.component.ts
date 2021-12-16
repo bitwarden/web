@@ -1,35 +1,37 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import { CipherService } from 'jslib-common/abstractions/cipher.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
+import { CipherService } from "jslib-common/abstractions/cipher.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { MessagingService } from "jslib-common/abstractions/messaging.service";
+import { PasswordRepromptService } from "jslib-common/abstractions/passwordReprompt.service";
+import { StateService } from "jslib-common/abstractions/state.service";
 
-import { ModalService } from 'jslib-angular/services/modal.service';
+import { ModalService } from "jslib-angular/services/modal.service";
 
-import { CipherView } from 'jslib-common/models/view/cipherView';
+import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { CipherType } from 'jslib-common/enums/cipherType';
+import { CipherType } from "jslib-common/enums/cipherType";
 
-import { Utils } from 'jslib-common/misc/utils';
+import { Utils } from "jslib-common/misc/utils";
 
-import { CipherReportComponent } from './cipher-report.component';
+import { CipherReportComponent } from "./cipher-report.component";
 
 @Component({
-    selector: 'app-inactive-two-factor-report',
-    templateUrl: 'inactive-two-factor-report.component.html',
+    selector: "app-inactive-two-factor-report",
+    templateUrl: "inactive-two-factor-report.component.html",
 })
 export class InactiveTwoFactorReportComponent extends CipherReportComponent implements OnInit {
     services = new Map<string, string>();
     cipherDocs = new Map<string, string>();
 
-    constructor(protected cipherService: CipherService, modalService: ModalService,
-        messagingService: MessagingService, stateService: StateService, private logService: LogService,
-        passwordRepromptService: PasswordRepromptService) {
+    constructor(
+        protected cipherService: CipherService,
+        modalService: ModalService,
+        messagingService: MessagingService,
+        stateService: StateService,
+        private logService: LogService,
+        passwordRepromptService: PasswordRepromptService
+    ) {
         super(modalService, messagingService, true, stateService, passwordRepromptService);
     }
 
@@ -51,15 +53,19 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
             const inactive2faCiphers: CipherView[] = [];
             const promises: Promise<void>[] = [];
             const docs = new Map<string, string>();
-            allCiphers.forEach(c => {
-                if (c.type !== CipherType.Login || (c.login.totp != null && c.login.totp !== '') || !c.login.hasUris ||
-                    c.isDeleted) {
+            allCiphers.forEach((c) => {
+                if (
+                    c.type !== CipherType.Login ||
+                    (c.login.totp != null && c.login.totp !== "") ||
+                    !c.login.hasUris ||
+                    c.isDeleted
+                ) {
                     return;
                 }
                 for (let i = 0; i < c.login.uris.length; i++) {
                     const u = c.login.uris[i];
-                    if (u.uri != null && u.uri !== '') {
-                        const uri = u.uri.replace('www.', '');
+                    if (u.uri != null && u.uri !== "") {
+                        const uri = u.uri.replace("www.", "");
                         const domain = Utils.getDomain(uri);
                         if (domain != null && this.services.has(domain)) {
                             if (this.services.get(domain) != null) {
@@ -84,7 +90,7 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
         if (this.services.size > 0) {
             return;
         }
-        const response = await fetch(new Request('https://2fa.directory/api/v3/totp.json'));
+        const response = await fetch(new Request("https://2fa.directory/api/v3/totp.json"));
         if (response.status !== 200) {
             throw new Error();
         }
@@ -97,8 +103,8 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
             if (serviceData.documentation == null) {
                 continue;
             }
-            if (serviceData['additional-domains'] != null) {
-                for (const additionalDomain of serviceData['additional-domains']) {
+            if (serviceData["additional-domains"] != null) {
+                for (const additionalDomain of serviceData["additional-domains"]) {
                     this.services.set(additionalDomain, serviceData.documentation);
                 }
             }

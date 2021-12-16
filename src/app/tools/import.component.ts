@@ -1,22 +1,19 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { ImportOption, ImportService } from 'jslib-common/abstractions/import.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { PolicyService } from 'jslib-common/abstractions/policy.service';
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { ImportOption, ImportService } from "jslib-common/abstractions/import.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { PolicyService } from "jslib-common/abstractions/policy.service";
 
-import { PolicyType } from 'jslib-common/enums/policyType';
+import { PolicyType } from "jslib-common/enums/policyType";
 
-import Swal, { SweetAlertIcon } from 'sweetalert2';
+import Swal, { SweetAlertIcon } from "sweetalert2";
 
 @Component({
-    selector: 'app-import',
-    templateUrl: 'import.component.html',
+    selector: "app-import",
+    templateUrl: "import.component.html",
 })
 export class ImportComponent implements OnInit {
     featuredImportOptions: ImportOption[];
@@ -28,12 +25,16 @@ export class ImportComponent implements OnInit {
     importBlockedByPolicy: boolean = false;
 
     protected organizationId: string = null;
-    protected successNavigate: any[] = ['vault'];
+    protected successNavigate: any[] = ["vault"];
 
-    constructor(protected i18nService: I18nService,
-        protected importService: ImportService, protected router: Router,
-        protected platformUtilsService: PlatformUtilsService, protected policyService: PolicyService,
-        private logService: LogService) { }
+    constructor(
+        protected i18nService: I18nService,
+        protected importService: ImportService,
+        protected router: Router,
+        protected platformUtilsService: PlatformUtilsService,
+        protected policyService: PolicyService,
+        private logService: LogService
+    ) {}
 
     async ngOnInit() {
         this.setImportOptions();
@@ -48,8 +49,9 @@ export class ImportComponent implements OnInit {
                 return 0;
             }
 
-            return this.i18nService.collator ? this.i18nService.collator.compare(a.name, b.name) :
-                a.name.localeCompare(b.name);
+            return this.i18nService.collator
+                ? this.i18nService.collator.compare(a.name, b.name)
+                : a.name.localeCompare(b.name);
         });
 
         this.importBlockedByPolicy = await this.policyService.policyAppliesToUser(PolicyType.PersonalOwnership);
@@ -57,8 +59,11 @@ export class ImportComponent implements OnInit {
 
     async submit() {
         if (this.importBlockedByPolicy) {
-            this.platformUtilsService.showToast('error', null,
-                this.i18nService.t('personalOwnershipPolicyInEffectImports'));
+            this.platformUtilsService.showToast(
+                "error",
+                null,
+                this.i18nService.t("personalOwnershipPolicyInEffectImports")
+            );
             return;
         }
 
@@ -66,17 +71,23 @@ export class ImportComponent implements OnInit {
 
         const importer = this.importService.getImporter(this.format, this.organizationId);
         if (importer === null) {
-            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('selectFormat'));
+            this.platformUtilsService.showToast(
+                "error",
+                this.i18nService.t("errorOccurred"),
+                this.i18nService.t("selectFormat")
+            );
             this.loading = false;
             return;
         }
 
-        const fileEl = document.getElementById('file') as HTMLInputElement;
+        const fileEl = document.getElementById("file") as HTMLInputElement;
         const files = fileEl.files;
-        if ((files == null || files.length === 0) && (this.fileContents == null || this.fileContents === '')) {
-            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('selectFile'));
+        if ((files == null || files.length === 0) && (this.fileContents == null || this.fileContents === "")) {
+            this.platformUtilsService.showToast(
+                "error",
+                this.i18nService.t("errorOccurred"),
+                this.i18nService.t("selectFile")
+            );
             this.loading = false;
             return;
         }
@@ -93,9 +104,12 @@ export class ImportComponent implements OnInit {
             }
         }
 
-        if (fileContents == null || fileContents === '') {
-            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('selectFile'));
+        if (fileContents == null || fileContents === "") {
+            this.platformUtilsService.showToast(
+                "error",
+                this.i18nService.t("errorOccurred"),
+                this.i18nService.t("selectFile")
+            );
             this.loading = false;
             return;
         }
@@ -108,7 +122,7 @@ export class ImportComponent implements OnInit {
                 this.loading = false;
                 return;
             }
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('importSuccess'));
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("importSuccess"));
             this.router.navigate(this.successNavigate);
         } catch (e) {
             this.logService.error(e);
@@ -122,18 +136,21 @@ export class ImportComponent implements OnInit {
             return null;
         }
 
-        const results = this.featuredImportOptions.concat(this.importOptions).filter(o => o.id === this.format);
+        const results = this.featuredImportOptions.concat(this.importOptions).filter((o) => o.id === this.format);
         if (results.length > 0) {
-            return this.i18nService.t('instructionsFor', results[0].name);
+            return this.i18nService.t("instructionsFor", results[0].name);
         }
         return null;
     }
 
     protected setImportOptions() {
-        this.featuredImportOptions = [{
-            id: null,
-            name: '-- ' + this.i18nService.t('select') + ' --',
-        }, ...this.importService.featuredImportOptions];
+        this.featuredImportOptions = [
+            {
+                id: null,
+                name: "-- " + this.i18nService.t("select") + " --",
+            },
+            ...this.importService.featuredImportOptions,
+        ];
         this.importOptions = this.importService.regularImportOptions;
     }
 
@@ -141,32 +158,32 @@ export class ImportComponent implements OnInit {
         await Swal.fire({
             heightAuto: false,
             buttonsStyling: false,
-            icon: 'error' as SweetAlertIcon,
+            icon: "error" as SweetAlertIcon,
             iconHtml: `<i class="swal-custom-icon fa fa-bolt text-danger"></i>`,
-            input: 'textarea',
+            input: "textarea",
             inputValue: error.message,
             inputAttributes: {
-                'readonly': 'true',
+                readonly: "true",
             },
-            titleText: this.i18nService.t('importError'),
-            text: this.i18nService.t('importErrorDesc'),
+            titleText: this.i18nService.t("importError"),
+            text: this.i18nService.t("importErrorDesc"),
             showConfirmButton: true,
-            confirmButtonText: this.i18nService.t('ok'),
-            onOpen: popupEl => {
-                popupEl.querySelector('.swal2-textarea').scrollTo(0, 0);
-             },
+            confirmButtonText: this.i18nService.t("ok"),
+            onOpen: (popupEl) => {
+                popupEl.querySelector(".swal2-textarea").scrollTo(0, 0);
+            },
         });
     }
 
     private getFileContents(file: File): Promise<string> {
         return new Promise((resolve, reject) => {
             const reader = new FileReader();
-            reader.readAsText(file, 'utf-8');
-            reader.onload = evt => {
-                if (this.format === 'lastpasscsv' && file.type === 'text/html') {
+            reader.readAsText(file, "utf-8");
+            reader.onload = (evt) => {
+                if (this.format === "lastpasscsv" && file.type === "text/html") {
                     const parser = new DOMParser();
-                    const doc = parser.parseFromString((evt.target as any).result, 'text/html');
-                    const pre = doc.querySelector('pre');
+                    const doc = parser.parseFromString((evt.target as any).result, "text/html");
+                    const pre = doc.querySelector("pre");
                     if (pre != null) {
                         resolve(pre.textContent);
                         return;

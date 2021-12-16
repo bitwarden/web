@@ -1,35 +1,36 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import { CipherService } from 'jslib-common/abstractions/cipher.service';
-import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
-import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
+import { CipherService } from "jslib-common/abstractions/cipher.service";
+import { MessagingService } from "jslib-common/abstractions/messaging.service";
+import { PasswordGenerationService } from "jslib-common/abstractions/passwordGeneration.service";
+import { PasswordRepromptService } from "jslib-common/abstractions/passwordReprompt.service";
+import { StateService } from "jslib-common/abstractions/state.service";
 
-import { ModalService } from 'jslib-angular/services/modal.service';
+import { ModalService } from "jslib-angular/services/modal.service";
 
-import { CipherView } from 'jslib-common/models/view/cipherView';
+import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { CipherType } from 'jslib-common/enums/cipherType';
+import { CipherType } from "jslib-common/enums/cipherType";
 
-import { CipherReportComponent } from './cipher-report.component';
+import { CipherReportComponent } from "./cipher-report.component";
 
 @Component({
-    selector: 'app-weak-passwords-report',
-    templateUrl: 'weak-passwords-report.component.html',
+    selector: "app-weak-passwords-report",
+    templateUrl: "weak-passwords-report.component.html",
 })
 export class WeakPasswordsReportComponent extends CipherReportComponent implements OnInit {
-
     passwordStrengthMap = new Map<string, [string, string]>();
 
     private passwordStrengthCache = new Map<string, number>();
 
-    constructor(protected cipherService: CipherService, protected passwordGenerationService: PasswordGenerationService,
-        modalService: ModalService, messagingService: MessagingService,
-        stateService: StateService, passwordRepromptService: PasswordRepromptService) {
+    constructor(
+        protected cipherService: CipherService,
+        protected passwordGenerationService: PasswordGenerationService,
+        modalService: ModalService,
+        messagingService: MessagingService,
+        stateService: StateService,
+        passwordRepromptService: PasswordRepromptService
+    ) {
         super(modalService, messagingService, true, stateService, passwordRepromptService);
     }
 
@@ -43,14 +44,14 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
         const allCiphers = await this.getAllCiphers();
         const weakPasswordCiphers: CipherView[] = [];
         const isUserNameNotEmpty = (c: CipherView): boolean => {
-            return c.login.username != null && c.login.username.trim() !== '';
+            return c.login.username != null && c.login.username.trim() !== "";
         };
         const getCacheKey = (c: CipherView): string => {
-            return c.login.password + '_____' + (isUserNameNotEmpty(c) ? c.login.username : '');
+            return c.login.password + "_____" + (isUserNameNotEmpty(c) ? c.login.username : "");
         };
 
-        allCiphers.forEach(c => {
-            if (c.type !== CipherType.Login || c.login.password == null || c.login.password === '' || c.isDeleted) {
+        allCiphers.forEach((c) => {
+            if (c.type !== CipherType.Login || c.login.password == null || c.login.password === "" || c.isDeleted) {
                 return;
             }
             const hasUserName = isUserNameNotEmpty(c);
@@ -58,18 +59,29 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
             if (!this.passwordStrengthCache.has(cacheKey)) {
                 let userInput: string[] = [];
                 if (hasUserName) {
-                    const atPosition = c.login.username.indexOf('@');
+                    const atPosition = c.login.username.indexOf("@");
                     if (atPosition > -1) {
-                        userInput = userInput.concat(
-                            c.login.username.substr(0, atPosition).trim().toLowerCase().split(/[^A-Za-z0-9]/))
-                            .filter(i => i.length >= 3);
+                        userInput = userInput
+                            .concat(
+                                c.login.username
+                                    .substr(0, atPosition)
+                                    .trim()
+                                    .toLowerCase()
+                                    .split(/[^A-Za-z0-9]/)
+                            )
+                            .filter((i) => i.length >= 3);
                     } else {
-                        userInput = c.login.username.trim().toLowerCase().split(/[^A-Za-z0-9]/)
-                            .filter(i => i.length >= 3);
+                        userInput = c.login.username
+                            .trim()
+                            .toLowerCase()
+                            .split(/[^A-Za-z0-9]/)
+                            .filter((i) => i.length >= 3);
                     }
                 }
-                const result = this.passwordGenerationService.passwordStrength(c.login.password,
-                    userInput.length > 0 ? userInput : null);
+                const result = this.passwordGenerationService.passwordStrength(
+                    c.login.password,
+                    userInput.length > 0 ? userInput : null
+                );
                 this.passwordStrengthCache.set(cacheKey, result.score);
             }
             const score = this.passwordStrengthCache.get(cacheKey);
@@ -79,8 +91,7 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
             }
         });
         weakPasswordCiphers.sort((a, b) => {
-            return this.passwordStrengthCache.get(getCacheKey(a)) -
-                this.passwordStrengthCache.get(getCacheKey(b));
+            return this.passwordStrengthCache.get(getCacheKey(a)) - this.passwordStrengthCache.get(getCacheKey(b));
         });
         this.ciphers = weakPasswordCiphers;
     }
@@ -97,13 +108,13 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
     private scoreKey(score: number): [string, string] {
         switch (score) {
             case 4:
-                return ['strong', 'success'];
+                return ["strong", "success"];
             case 3:
-                return ['good', 'primary'];
+                return ["good", "primary"];
             case 2:
-                return ['weak', 'warning'];
+                return ["weak", "warning"];
             default:
-                return ['veryWeak', 'danger'];
+                return ["veryWeak", "danger"];
         }
     }
 }
