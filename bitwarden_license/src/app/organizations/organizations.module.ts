@@ -8,7 +8,7 @@ import { SsoComponent } from "./manage/sso.component";
 import { OrganizationsRoutingModule } from "./organizations-routing.module";
 
 @NgModule({
-    imports: [CommonModule, FormsModule, ReactiveFormsModule, OssModule, OrganizationsRoutingModule],
-    declarations: [SsoComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, OssModule, OrganizationsRoutingModule],
+  declarations: [SsoComponent],
 })
 export class OrganizationsModule {}

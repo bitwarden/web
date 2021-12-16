@@ -5,19 +5,19 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { ProviderService } from "jslib-common/abstractions/provider.service";
 
 @Component({
-    selector: "provider-settings",
-    templateUrl: "settings.component.html",
+  selector: "provider-settings",
+  templateUrl: "settings.component.html",
 })
 export class SettingsComponent {
-    constructor(
-        private route: ActivatedRoute,
-        private providerService: ProviderService,
-        private platformUtilsService: PlatformUtilsService
-    ) {}
+  constructor(
+    private route: ActivatedRoute,
+    private providerService: ProviderService,
+    private platformUtilsService: PlatformUtilsService
+  ) {}
 
-    ngOnInit() {
-        this.route.parent.params.subscribe(async (params) => {
-            const provider = await this.providerService.get(params.providerId);
-        });
-    }
+  ngOnInit() {
+    this.route.parent.params.subscribe(async (params) => {
+      const provider = await this.providerService.get(params.providerId);
+    });
+  }
 }

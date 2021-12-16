@@ -19,26 +19,30 @@ import { ServicesModule } from "src/app/services/services.module";
 import { WildcardRoutingModule } from "src/app/wildcard-routing.module";
 
 @NgModule({
-    imports: [
-        OssModule,
-        BrowserAnimationsModule,
-        FormsModule,
-        ReactiveFormsModule,
-        ServicesModule,
-        BitwardenToastModule.forRoot({
-            maxOpened: 5,
-            autoDismiss: true,
-            closeButton: true,
-        }),
-        InfiniteScrollModule,
-        DragDropModule,
-        AppRoutingModule,
-        OssRoutingModule,
-        OrganizationsModule,
-        RouterModule,
-        WildcardRoutingModule, // Needs to be last to catch all non-existing routes
-    ],
-    declarations: [AppComponent, MaximumVaultTimeoutPolicyComponent, DisablePersonalVaultExportPolicyComponent],
-    bootstrap: [AppComponent],
+  imports: [
+    OssModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
+    ServicesModule,
+    BitwardenToastModule.forRoot({
+      maxOpened: 5,
+      autoDismiss: true,
+      closeButton: true,
+    }),
+    InfiniteScrollModule,
+    DragDropModule,
+    AppRoutingModule,
+    OssRoutingModule,
+    OrganizationsModule,
+    RouterModule,
+    WildcardRoutingModule, // Needs to be last to catch all non-existing routes
+  ],
+  declarations: [
+    AppComponent,
+    MaximumVaultTimeoutPolicyComponent,
+    DisablePersonalVaultExportPolicyComponent,
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

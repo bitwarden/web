@@ -24,100 +24,100 @@ import { ProviderTypeGuardService } from "./services/provider-type-guard.service
 import { AccountComponent } from "./settings/account.component";
 
 const routes: Routes = [
-    {
-        path: "",
-        canActivate: [AuthGuardService],
-        component: ProvidersComponent,
-    },
-    {
-        path: "",
-        component: FrontendLayoutComponent,
+  {
+    path: "",
+    canActivate: [AuthGuardService],
+    component: ProvidersComponent,
+  },
+  {
+    path: "",
+    component: FrontendLayoutComponent,
+    children: [
+      {
+        path: "setup-provider",
+        component: SetupProviderComponent,
+        data: { titleId: "setupProvider" },
+      },
+      {
+        path: "accept-provider",
+        component: AcceptProviderComponent,
+        data: { titleId: "acceptProvider" },
+      },
+    ],
+  },
+  {
+    path: "",
+    canActivate: [AuthGuardService],
+    children: [
+      {
+        path: "setup",
+        component: SetupComponent,
+      },
+      {
+        path: ":providerId",
+        component: ProvidersLayoutComponent,
+        canActivate: [ProviderGuardService],
         children: [
-            {
-                path: "setup-provider",
-                component: SetupProviderComponent,
-                data: { titleId: "setupProvider" },
-            },
-            {
-                path: "accept-provider",
-                component: AcceptProviderComponent,
-                data: { titleId: "acceptProvider" },
-            },
+          { path: "", pathMatch: "full", redirectTo: "clients" },
+          { path: "clients/create", component: CreateOrganizationComponent },
+          { path: "clients", component: ClientsComponent, data: { titleId: "clients" } },
+          {
+            path: "manage",
+            component: ManageComponent,
+            children: [
+              {
+                path: "",
+                pathMatch: "full",
+                redirectTo: "people",
+              },
+              {
+                path: "people",
+                component: PeopleComponent,
+                canActivate: [ProviderTypeGuardService],
+                data: {
+                  titleId: "people",
+                  permissions: [Permissions.ManageUsers],
+                },
+              },
+              {
+                path: "events",
+                component: EventsComponent,
+                canActivate: [ProviderTypeGuardService],
+                data: {
+                  titleId: "eventLogs",
+                  permissions: [Permissions.AccessEventLogs],
+                },
+              },
+            ],
+          },
+          {
+            path: "settings",
+            component: SettingsComponent,
+            children: [
+              {
+                path: "",
+                pathMatch: "full",
+                redirectTo: "account",
+              },
+              {
+                path: "account",
+                component: AccountComponent,
+                canActivate: [ProviderTypeGuardService],
+                data: {
+                  titleId: "myProvider",
+                  permissions: [Permissions.ManageProvider],
+                },
+              },
+            ],
+          },
         ],
-    },
-    {
-        path: "",
-        canActivate: [AuthGuardService],
-        children: [
-            {
-                path: "setup",
-                component: SetupComponent,
-            },
-            {
-                path: ":providerId",
-                component: ProvidersLayoutComponent,
-                canActivate: [ProviderGuardService],
-                children: [
-                    { path: "", pathMatch: "full", redirectTo: "clients" },
-                    { path: "clients/create", component: CreateOrganizationComponent },
-                    { path: "clients", component: ClientsComponent, data: { titleId: "clients" } },
-                    {
-                        path: "manage",
-                        component: ManageComponent,
-                        children: [
-                            {
-                                path: "",
-                                pathMatch: "full",
-                                redirectTo: "people",
-                            },
-                            {
-                                path: "people",
-                                component: PeopleComponent,
-                                canActivate: [ProviderTypeGuardService],
-                                data: {
-                                    titleId: "people",
-                                    permissions: [Permissions.ManageUsers],
-                                },
-                            },
-                            {
-                                path: "events",
-                                component: EventsComponent,
-                                canActivate: [ProviderTypeGuardService],
-                                data: {
-                                    titleId: "eventLogs",
-                                    permissions: [Permissions.AccessEventLogs],
-                                },
-                            },
-                        ],
-                    },
-                    {
-                        path: "settings",
-                        component: SettingsComponent,
-                        children: [
-                            {
-                                path: "",
-                                pathMatch: "full",
-                                redirectTo: "account",
-                            },
-                            {
-                                path: "account",
-                                component: AccountComponent,
-                                canActivate: [ProviderTypeGuardService],
-                                data: {
-                                    titleId: "myProvider",
-                                    permissions: [Permissions.ManageProvider],
-                                },
-                            },
-                        ],
-                    },
-                ],
-            },
-        ],
-    },
+      },
+    ],
+  },
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)],
-    exports: [RouterModule],
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
 })
 export class ProvidersRoutingModule {}

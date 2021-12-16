@@ -11,7 +11,7 @@ require("src/scss/styles.scss");
 import { AppModule } from "./app.module";
 
 if (process.env.NODE_ENV === "production") {
-    enableProdMode();
+  enableProdMode();
 }
 
 platformBrowserDynamic().bootstrapModule(AppModule, { preserveWhitespaces: true });

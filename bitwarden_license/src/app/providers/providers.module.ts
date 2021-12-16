@@ -33,28 +33,31 @@ import { SetupComponent } from "./setup/setup.component";
 import { OssModule } from "src/app/oss.module";
 
 @NgModule({
-    imports: [CommonModule, FormsModule, OssModule, ProvidersRoutingModule],
-    declarations: [
-        AcceptProviderComponent,
-        AccountComponent,
-        AddOrganizationComponent,
-        BulkConfirmComponent,
-        BulkRemoveComponent,
-        ClientsComponent,
-        CreateOrganizationComponent,
-        EventsComponent,
-        ManageComponent,
-        PeopleComponent,
-        ProvidersLayoutComponent,
-        SettingsComponent,
-        SetupComponent,
-        SetupProviderComponent,
-        UserAddEditComponent,
-    ],
-    providers: [WebProviderService, ProviderGuardService, ProviderTypeGuardService],
+  imports: [CommonModule, FormsModule, OssModule, ProvidersRoutingModule],
+  declarations: [
+    AcceptProviderComponent,
+    AccountComponent,
+    AddOrganizationComponent,
+    BulkConfirmComponent,
+    BulkRemoveComponent,
+    ClientsComponent,
+    CreateOrganizationComponent,
+    EventsComponent,
+    ManageComponent,
+    PeopleComponent,
+    ProvidersLayoutComponent,
+    SettingsComponent,
+    SetupComponent,
+    SetupProviderComponent,
+    UserAddEditComponent,
+  ],
+  providers: [WebProviderService, ProviderGuardService, ProviderTypeGuardService],
 })
 export class ProvidersModule {
-    constructor(modalService: ModalService, componentFactoryResolver: ComponentFactoryResolver) {
-        modalService.registerComponentFactoryResolver(AddOrganizationComponent, componentFactoryResolver);
-    }
+  constructor(modalService: ModalService, componentFactoryResolver: ComponentFactoryResolver) {
+    modalService.registerComponentFactoryResolver(
+      AddOrganizationComponent,
+      componentFactoryResolver
+    );
+  }
 }
