@@ -1,62 +1,52 @@
-import {
-    Component,
-    NgZone,
-    OnDestroy,
-    OnInit,
-    SecurityContext,
-} from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
-import {
-    NavigationEnd,
-    Router,
-} from '@angular/router';
-import * as jq from 'jquery';
-import { IndividualConfig, ToastrService } from 'ngx-toastr';
-import Swal from 'sweetalert2';
+import { Component, NgZone, OnDestroy, OnInit, SecurityContext } from "@angular/core";
+import { DomSanitizer } from "@angular/platform-browser";
+import { NavigationEnd, Router } from "@angular/router";
+import * as jq from "jquery";
+import { IndividualConfig, ToastrService } from "ngx-toastr";
+import Swal from "sweetalert2";
 
-import { AuthService } from 'jslib-common/abstractions/auth.service';
-import { BroadcasterService } from 'jslib-common/abstractions/broadcaster.service';
-import { CipherService } from 'jslib-common/abstractions/cipher.service';
-import { CollectionService } from 'jslib-common/abstractions/collection.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { EventService } from 'jslib-common/abstractions/event.service';
-import { FolderService } from 'jslib-common/abstractions/folder.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { KeyConnectorService } from 'jslib-common/abstractions/keyConnector.service';
-import { NotificationsService } from 'jslib-common/abstractions/notifications.service';
-import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { PolicyService } from 'jslib-common/abstractions/policy.service';
-import { SearchService } from 'jslib-common/abstractions/search.service';
-import { SettingsService } from 'jslib-common/abstractions/settings.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
-import { SyncService } from 'jslib-common/abstractions/sync.service';
-import { TokenService } from 'jslib-common/abstractions/token.service';
-import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.service';
+import { AuthService } from "jslib-common/abstractions/auth.service";
+import { BroadcasterService } from "jslib-common/abstractions/broadcaster.service";
+import { CipherService } from "jslib-common/abstractions/cipher.service";
+import { CollectionService } from "jslib-common/abstractions/collection.service";
+import { CryptoService } from "jslib-common/abstractions/crypto.service";
+import { EventService } from "jslib-common/abstractions/event.service";
+import { FolderService } from "jslib-common/abstractions/folder.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { KeyConnectorService } from "jslib-common/abstractions/keyConnector.service";
+import { NotificationsService } from "jslib-common/abstractions/notifications.service";
+import { PasswordGenerationService } from "jslib-common/abstractions/passwordGeneration.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { PolicyService } from "jslib-common/abstractions/policy.service";
+import { SearchService } from "jslib-common/abstractions/search.service";
+import { SettingsService } from "jslib-common/abstractions/settings.service";
+import { StateService } from "jslib-common/abstractions/state.service";
+import { StorageService } from "jslib-common/abstractions/storage.service";
+import { SyncService } from "jslib-common/abstractions/sync.service";
+import { TokenService } from "jslib-common/abstractions/token.service";
+import { VaultTimeoutService } from "jslib-common/abstractions/vaultTimeout.service";
 
-import { PolicyListService } from './services/policy-list.service';
-import { RouterService } from './services/router.service';
+import { PolicyListService } from "./services/policy-list.service";
+import { RouterService } from "./services/router.service";
 
-import { DisableSendPolicy } from './organizations/policies/disable-send.component';
-import { MasterPasswordPolicy } from './organizations/policies/master-password.component';
-import { PasswordGeneratorPolicy } from './organizations/policies/password-generator.component';
-import { PersonalOwnershipPolicy } from './organizations/policies/personal-ownership.component';
-import { RequireSsoPolicy } from './organizations/policies/require-sso.component';
-import { ResetPasswordPolicy } from './organizations/policies/reset-password.component';
-import { SendOptionsPolicy } from './organizations/policies/send-options.component';
-import { SingleOrgPolicy } from './organizations/policies/single-org.component';
-import { TwoFactorAuthenticationPolicy } from './organizations/policies/two-factor-authentication.component';
+import { DisableSendPolicy } from "./organizations/policies/disable-send.component";
+import { MasterPasswordPolicy } from "./organizations/policies/master-password.component";
+import { PasswordGeneratorPolicy } from "./organizations/policies/password-generator.component";
+import { PersonalOwnershipPolicy } from "./organizations/policies/personal-ownership.component";
+import { RequireSsoPolicy } from "./organizations/policies/require-sso.component";
+import { ResetPasswordPolicy } from "./organizations/policies/reset-password.component";
+import { SendOptionsPolicy } from "./organizations/policies/send-options.component";
+import { SingleOrgPolicy } from "./organizations/policies/single-org.component";
+import { TwoFactorAuthenticationPolicy } from "./organizations/policies/two-factor-authentication.component";
 
-const BroadcasterSubscriptionId = 'AppComponent';
+const BroadcasterSubscriptionId = "AppComponent";
 const IdleTimeout = 60000 * 10; // 10 minutes
 
 @Component({
-    selector: 'app-root',
-    templateUrl: 'app.component.html',
+    selector: "app-root",
+    templateUrl: "app.component.html",
 })
 export class AppComponent implements OnDestroy, OnInit {
-
     private lastActivity: number = null;
     private idleTimer: number = null;
     private isIdle = false;
@@ -87,7 +77,7 @@ export class AppComponent implements OnDestroy, OnInit {
         private policyService: PolicyService,
         protected policyListService: PolicyListService,
         private keyConnectorService: KeyConnectorService
-    ) { }
+    ) {}
 
     ngOnInit() {
         this.ngZone.runOutsideAngular(() => {
@@ -102,65 +92,75 @@ export class AppComponent implements OnDestroy, OnInit {
         this.broadcasterService.subscribe(BroadcasterSubscriptionId, async (message: any) => {
             this.ngZone.run(async () => {
                 switch (message.command) {
-                    case 'loggedIn':
-                    case 'loggedOut':
-                    case 'unlocked':
+                    case "loggedIn":
+                    case "loggedOut":
+                    case "unlocked":
                         this.notificationsService.updateConnection(false);
                         break;
-                    case 'authBlocked':
-                        this.router.navigate(['/']);
+                    case "authBlocked":
+                        this.router.navigate(["/"]);
                         break;
-                    case 'logout':
+                    case "logout":
                         this.logOut(!!message.expired);
                         break;
-                    case 'lockVault':
+                    case "lockVault":
                         await this.vaultTimeoutService.lock();
                         break;
-                    case 'locked':
+                    case "locked":
                         this.notificationsService.updateConnection(false);
-                        this.router.navigate(['lock']);
+                        this.router.navigate(["lock"]);
                         break;
-                    case 'lockedUrl':
+                    case "lockedUrl":
                         window.setTimeout(() => this.routerService.setPreviousUrl(message.url), 500);
                         break;
-                    case 'syncStarted':
+                    case "syncStarted":
                         break;
-                    case 'syncCompleted':
+                    case "syncCompleted":
                         break;
-                    case 'upgradeOrganization':
+                    case "upgradeOrganization":
                         const upgradeConfirmed = await this.platformUtilsService.showDialog(
-                            this.i18nService.t('upgradeOrganizationDesc'), this.i18nService.t('upgradeOrganization'),
-                            this.i18nService.t('upgradeOrganization'), this.i18nService.t('cancel'));
+                            this.i18nService.t("upgradeOrganizationDesc"),
+                            this.i18nService.t("upgradeOrganization"),
+                            this.i18nService.t("upgradeOrganization"),
+                            this.i18nService.t("cancel")
+                        );
                         if (upgradeConfirmed) {
-                            this.router.navigate(['organizations', message.organizationId, 'settings', 'billing']);
+                            this.router.navigate(["organizations", message.organizationId, "settings", "billing"]);
                         }
                         break;
-                    case 'premiumRequired':
+                    case "premiumRequired":
                         const premiumConfirmed = await this.platformUtilsService.showDialog(
-                            this.i18nService.t('premiumRequiredDesc'), this.i18nService.t('premiumRequired'),
-                            this.i18nService.t('learnMore'), this.i18nService.t('cancel'));
+                            this.i18nService.t("premiumRequiredDesc"),
+                            this.i18nService.t("premiumRequired"),
+                            this.i18nService.t("learnMore"),
+                            this.i18nService.t("cancel")
+                        );
                         if (premiumConfirmed) {
-                            this.router.navigate(['settings/premium']);
+                            this.router.navigate(["settings/premium"]);
                         }
                         break;
-                    case 'emailVerificationRequired':
+                    case "emailVerificationRequired":
                         const emailVerificationConfirmed = await this.platformUtilsService.showDialog(
-                            this.i18nService.t('emailVerificationRequiredDesc'),
-                            this.i18nService.t('emailVerificationRequired'),
-                            this.i18nService.t('learnMore'), this.i18nService.t('cancel'));
+                            this.i18nService.t("emailVerificationRequiredDesc"),
+                            this.i18nService.t("emailVerificationRequired"),
+                            this.i18nService.t("learnMore"),
+                            this.i18nService.t("cancel")
+                        );
                         if (emailVerificationConfirmed) {
-                            this.platformUtilsService.launchUri('https://bitwarden.com/help/article/create-bitwarden-account/');
+                            this.platformUtilsService.launchUri(
+                                "https://bitwarden.com/help/article/create-bitwarden-account/"
+                            );
                         }
                         break;
-                    case 'showToast':
+                    case "showToast":
                         this.showToast(message);
                         break;
-                    case 'setFullWidth':
+                    case "setFullWidth":
                         this.setFullWidth();
                         break;
-                    case 'convertAccountToKeyConnector':
+                    case "convertAccountToKeyConnector":
                         this.keyConnectorService.setConvertAccountRequired(true);
-                        this.router.navigate(['/remove-password']);
+                        this.router.navigate(["/remove-password"]);
                         break;
                     default:
                         break;
@@ -168,14 +168,14 @@ export class AppComponent implements OnDestroy, OnInit {
             });
         });
 
-        this.router.events.subscribe(event => {
+        this.router.events.subscribe((event) => {
             if (event instanceof NavigationEnd) {
-                const modals = Array.from(document.querySelectorAll('.modal'));
+                const modals = Array.from(document.querySelectorAll(".modal"));
                 for (const modal of modals) {
-                    (jq(modal) as any).modal('hide');
+                    (jq(modal) as any).modal("hide");
                 }
 
-                if (document.querySelector('.swal-modal') != null) {
+                if (document.querySelector(".swal-modal") != null) {
                     Swal.close(undefined);
                 }
             }
@@ -220,18 +220,21 @@ export class AppComponent implements OnDestroy, OnInit {
         this.searchService.clearIndex();
         this.authService.logOut(async () => {
             if (expired) {
-                this.platformUtilsService.showToast('warning', this.i18nService.t('loggedOut'),
-                    this.i18nService.t('loginExpired'));
+                this.platformUtilsService.showToast(
+                    "warning",
+                    this.i18nService.t("loggedOut"),
+                    this.i18nService.t("loginExpired")
+                );
             }
 
             await this.stateService.clean({ userId: userId });
             Swal.close();
-            this.router.navigate(['/']);
+            this.router.navigate(["/"]);
         });
     }
 
     private async recordActivity() {
-        const now = (new Date()).getTime();
+        const now = new Date().getTime();
         if (this.lastActivity != null && now - this.lastActivity < 250) {
             return;
         }
@@ -256,17 +259,18 @@ export class AppComponent implements OnDestroy, OnInit {
     }
 
     private showToast(msg: any) {
-        let message = '';
+        let message = "";
 
         const options: Partial<IndividualConfig> = {};
 
-        if (typeof (msg.text) === 'string') {
+        if (typeof msg.text === "string") {
             message = msg.text;
         } else if (msg.text.length === 1) {
             message = msg.text[0];
         } else {
-            msg.text.forEach((t: string) =>
-                message += ('<p>' + this.sanitizer.sanitize(SecurityContext.HTML, t) + '</p>'));
+            msg.text.forEach(
+                (t: string) => (message += "<p>" + this.sanitizer.sanitize(SecurityContext.HTML, t) + "</p>")
+            );
             options.enableHtml = true;
         }
         if (msg.options != null) {
@@ -278,7 +282,7 @@ export class AppComponent implements OnDestroy, OnInit {
             }
         }
 
-        this.toastrService.show(message, msg.title, options, 'toast-' + msg.type);
+        this.toastrService.show(message, msg.title, options, "toast-" + msg.type);
     }
 
     private idleStateChanged() {
@@ -292,9 +296,9 @@ export class AppComponent implements OnDestroy, OnInit {
     private async setFullWidth() {
         const enableFullWidth = await this.stateService.getEnableFullWidth();
         if (enableFullWidth) {
-            document.body.classList.add('full-width');
+            document.body.classList.add("full-width");
         } else {
-            document.body.classList.remove('full-width');
+            document.body.classList.remove("full-width");
         }
     }
 }

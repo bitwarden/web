@@ -1,32 +1,29 @@
-import { Component } from '@angular/core';
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { Component } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { PolicyService } from 'jslib-common/abstractions/policy.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { CryptoService } from "jslib-common/abstractions/crypto.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { PolicyService } from "jslib-common/abstractions/policy.service";
+import { StateService } from "jslib-common/abstractions/state.service";
 
-import { OrganizationUserAcceptRequest } from 'jslib-common/models/request/organizationUserAcceptRequest';
-import { OrganizationUserResetPasswordEnrollmentRequest } from 'jslib-common/models/request/organizationUserResetPasswordEnrollmentRequest';
+import { OrganizationUserAcceptRequest } from "jslib-common/models/request/organizationUserAcceptRequest";
+import { OrganizationUserResetPasswordEnrollmentRequest } from "jslib-common/models/request/organizationUserResetPasswordEnrollmentRequest";
 
-import { Utils } from 'jslib-common/misc/utils';
-import { Policy } from 'jslib-common/models/domain/policy';
-import { BaseAcceptComponent } from '../common/base.accept.component';
+import { Utils } from "jslib-common/misc/utils";
+import { Policy } from "jslib-common/models/domain/policy";
+import { BaseAcceptComponent } from "../common/base.accept.component";
 
 @Component({
-    selector: 'app-accept-organization',
-    templateUrl: 'accept-organization.component.html',
+    selector: "app-accept-organization",
+    templateUrl: "accept-organization.component.html",
 })
 export class AcceptOrganizationComponent extends BaseAcceptComponent {
     orgName: string;
 
-    protected requiredParameters: string[] = ['organizationId', 'organizationUserId', 'token'];
+    protected requiredParameters: string[] = ["organizationId", "organizationUserId", "token"];
 
     constructor(
         router: Router,
@@ -39,26 +36,22 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
         private policyService: PolicyService,
         private logService: LogService
     ) {
-        super(
-            router,
-            platformUtilsService,
-            i18nService,
-            route,
-            stateService
-        );
+        super(router, platformUtilsService, i18nService, route, stateService);
     }
 
     async authedHandler(qParams: any): Promise<void> {
         const request = new OrganizationUserAcceptRequest();
         request.token = qParams.token;
         if (await this.performResetPasswordAutoEnroll(qParams)) {
-            this.actionPromise = this.apiService.postOrganizationUserAccept(qParams.organizationId,
-                qParams.organizationUserId, request).then(() => {
+            this.actionPromise = this.apiService
+                .postOrganizationUserAccept(qParams.organizationId, qParams.organizationUserId, request)
+                .then(() => {
                     // Retrieve Public Key
                     return this.apiService.getOrganizationKeys(qParams.organizationId);
-                }).then(async response => {
+                })
+                .then(async (response) => {
                     if (response == null) {
-                        throw new Error(this.i18nService.t('resetPasswordOrgKeysError'));
+                        throw new Error(this.i18nService.t("resetPasswordOrgKeysError"));
                     }
 
                     const publicKey = Utils.fromB64ToArray(response.publicKey);
@@ -71,26 +64,37 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
                     const resetRequest = new OrganizationUserResetPasswordEnrollmentRequest();
                     resetRequest.resetPasswordKey = encryptedKey.encryptedString;
 
-                    return this.apiService.putOrganizationUserResetPasswordEnrollment(qParams.organizationId, await this.stateService.getUserId(), resetRequest);
+                    return this.apiService.putOrganizationUserResetPasswordEnrollment(
+                        qParams.organizationId,
+                        await this.stateService.getUserId(),
+                        resetRequest
+                    );
                 });
         } else {
-            this.actionPromise = this.apiService.postOrganizationUserAccept(qParams.organizationId,
-                qParams.organizationUserId, request);
+            this.actionPromise = this.apiService.postOrganizationUserAccept(
+                qParams.organizationId,
+                qParams.organizationUserId,
+                request
+            );
         }
 
         await this.actionPromise;
-        this.platformUtilService.showToast('success', this.i18nService.t('inviteAccepted'),
-            this.i18nService.t('inviteAcceptedDesc'), {timeout: 10000});
+        this.platformUtilService.showToast(
+            "success",
+            this.i18nService.t("inviteAccepted"),
+            this.i18nService.t("inviteAcceptedDesc"),
+            { timeout: 10000 }
+        );
 
         await this.stateService.setOrganizationInvitation(null);
-        this.router.navigate(['/vault']);
+        this.router.navigate(["/vault"]);
     }
 
     async unauthedHandler(qParams: any): Promise<void> {
         this.orgName = qParams.organizationName;
         if (this.orgName != null) {
             // Fix URL encoding of space issue with Angular
-            this.orgName = this.orgName.replace(/\+/g, ' ');
+            this.orgName = this.orgName.replace(/\+/g, " ");
         }
         await this.stateService.setOrganizationInvitation(qParams);
     }
@@ -98,8 +102,12 @@ export class AcceptOrganizationComponent extends BaseAcceptComponent {
     private async performResetPasswordAutoEnroll(qParams: any): Promise<boolean> {
         let policyList: Policy[] = null;
         try {
-            const policies = await this.apiService.getPoliciesByToken(qParams.organizationId, qParams.token,
-                qParams.email, qParams.organizationUserId);
+            const policies = await this.apiService.getPoliciesByToken(
+                qParams.organizationId,
+                qParams.token,
+                qParams.email,
+                qParams.organizationUserId
+            );
             policyList = this.policyService.mapPoliciesFromToken(policies);
         } catch (e) {
             this.logService.error(e);

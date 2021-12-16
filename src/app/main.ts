@@ -1,16 +1,16 @@
-import { enableProdMode } from '@angular/core';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { enableProdMode } from "@angular/core";
+import { platformBrowserDynamic } from "@angular/platform-browser-dynamic";
 
-import 'bootstrap';
-import 'jquery';
-import 'popper.js';
+import "bootstrap";
+import "jquery";
+import "popper.js";
 
 // tslint:disable-next-line
-require('../scss/styles.scss');
+require("../scss/styles.scss");
 
-import { AppModule } from './app.module';
+import { AppModule } from "./app.module";
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === "production") {
     enableProdMode();
 }
 
