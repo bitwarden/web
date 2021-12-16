@@ -17,83 +17,87 @@ import { EmergencyAccessAttachmentsComponent } from "./emergency-access-attachme
 import { EmergencyAddEditComponent } from "./emergency-add-edit.component";
 
 @Component({
-    selector: "emergency-access-view",
-    templateUrl: "emergency-access-view.component.html",
+  selector: "emergency-access-view",
+  templateUrl: "emergency-access-view.component.html",
 })
 export class EmergencyAccessViewComponent implements OnInit {
-    @ViewChild("cipherAddEdit", { read: ViewContainerRef, static: true })
-    cipherAddEditModalRef: ViewContainerRef;
-    @ViewChild("attachments", { read: ViewContainerRef, static: true })
-    attachmentsModalRef: ViewContainerRef;
+  @ViewChild("cipherAddEdit", { read: ViewContainerRef, static: true })
+  cipherAddEditModalRef: ViewContainerRef;
+  @ViewChild("attachments", { read: ViewContainerRef, static: true })
+  attachmentsModalRef: ViewContainerRef;
 
-    id: string;
-    ciphers: CipherView[] = [];
-    loaded = false;
+  id: string;
+  ciphers: CipherView[] = [];
+  loaded = false;
 
-    constructor(
-        private cipherService: CipherService,
-        private cryptoService: CryptoService,
-        private modalService: ModalService,
-        private router: Router,
-        private route: ActivatedRoute,
-        private apiService: ApiService
-    ) {}
+  constructor(
+    private cipherService: CipherService,
+    private cryptoService: CryptoService,
+    private modalService: ModalService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private apiService: ApiService
+  ) {}
 
-    ngOnInit() {
-        this.route.params.subscribe((qParams) => {
-            if (qParams.id == null) {
-                return this.router.navigate(["settings/emergency-access"]);
-            }
+  ngOnInit() {
+    this.route.params.subscribe((qParams) => {
+      if (qParams.id == null) {
+        return this.router.navigate(["settings/emergency-access"]);
+      }
 
-            this.id = qParams.id;
+      this.id = qParams.id;
 
-            this.load();
-        });
-    }
+      this.load();
+    });
+  }
 
-    async selectCipher(cipher: CipherView) {
-        const [_, childComponent] = await this.modalService.openViewRef(
-            EmergencyAddEditComponent,
-            this.cipherAddEditModalRef,
-            (comp) => {
-                comp.cipherId = cipher == null ? null : cipher.id;
-                comp.cipher = cipher;
-            }
-        );
+  async selectCipher(cipher: CipherView) {
+    const [_, childComponent] = await this.modalService.openViewRef(
+      EmergencyAddEditComponent,
+      this.cipherAddEditModalRef,
+      (comp) => {
+        comp.cipherId = cipher == null ? null : cipher.id;
+        comp.cipher = cipher;
+      }
+    );
 
-        return childComponent;
-    }
+    return childComponent;
+  }
 
-    async load() {
-        const response = await this.apiService.postEmergencyAccessView(this.id);
-        this.ciphers = await this.getAllCiphers(response);
-        this.loaded = true;
-    }
+  async load() {
+    const response = await this.apiService.postEmergencyAccessView(this.id);
+    this.ciphers = await this.getAllCiphers(response);
+    this.loaded = true;
+  }
 
-    async viewAttachments(cipher: CipherView) {
-        await this.modalService.openViewRef(EmergencyAccessAttachmentsComponent, this.attachmentsModalRef, (comp) => {
-            comp.cipher = cipher;
-            comp.emergencyAccessId = this.id;
-        });
-    }
+  async viewAttachments(cipher: CipherView) {
+    await this.modalService.openViewRef(
+      EmergencyAccessAttachmentsComponent,
+      this.attachmentsModalRef,
+      (comp) => {
+        comp.cipher = cipher;
+        comp.emergencyAccessId = this.id;
+      }
+    );
+  }
 
-    protected async getAllCiphers(response: EmergencyAccessViewResponse): Promise<CipherView[]> {
-        const ciphers = response.ciphers;
+  protected async getAllCiphers(response: EmergencyAccessViewResponse): Promise<CipherView[]> {
+    const ciphers = response.ciphers;
 
-        const decCiphers: CipherView[] = [];
-        const oldKeyBuffer = await this.cryptoService.rsaDecrypt(response.keyEncrypted);
-        const oldEncKey = new SymmetricCryptoKey(oldKeyBuffer);
+    const decCiphers: CipherView[] = [];
+    const oldKeyBuffer = await this.cryptoService.rsaDecrypt(response.keyEncrypted);
+    const oldEncKey = new SymmetricCryptoKey(oldKeyBuffer);
 
-        const promises: any[] = [];
-        ciphers.forEach((cipherResponse) => {
-            const cipherData = new CipherData(cipherResponse);
-            const cipher = new Cipher(cipherData);
-            promises.push(cipher.decrypt(oldEncKey).then((c) => decCiphers.push(c)));
-        });
+    const promises: any[] = [];
+    ciphers.forEach((cipherResponse) => {
+      const cipherData = new CipherData(cipherResponse);
+      const cipher = new Cipher(cipherData);
+      promises.push(cipher.decrypt(oldEncKey).then((c) => decCiphers.push(c)));
+    });
 
-        await Promise.all(promises);
-        decCiphers.sort(this.cipherService.getLocaleSortingFunction());
+    await Promise.all(promises);
+    decCiphers.sort(this.cipherService.getLocaleSortingFunction());
 
-        return decCiphers;
-    }
+    return decCiphers;
+  }
 }

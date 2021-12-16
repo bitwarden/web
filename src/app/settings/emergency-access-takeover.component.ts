@@ -20,90 +20,94 @@ import { PolicyResponse } from "jslib-common/models/response/policyResponse";
 import { ChangePasswordComponent } from "jslib-angular/components/change-password.component";
 
 @Component({
-    selector: "emergency-access-takeover",
-    templateUrl: "emergency-access-takeover.component.html",
+  selector: "emergency-access-takeover",
+  templateUrl: "emergency-access-takeover.component.html",
 })
 export class EmergencyAccessTakeoverComponent extends ChangePasswordComponent implements OnInit {
-    @Output() onDone = new EventEmitter();
-    @Input() emergencyAccessId: string;
-    @Input() name: string;
-    @Input() email: string;
-    @Input() kdf: KdfType;
-    @Input() kdfIterations: number;
+  @Output() onDone = new EventEmitter();
+  @Input() emergencyAccessId: string;
+  @Input() name: string;
+  @Input() email: string;
+  @Input() kdf: KdfType;
+  @Input() kdfIterations: number;
 
-    formPromise: Promise<any>;
+  formPromise: Promise<any>;
 
-    constructor(
-        i18nService: I18nService,
-        cryptoService: CryptoService,
-        messagingService: MessagingService,
-        stateService: StateService,
-        passwordGenerationService: PasswordGenerationService,
-        platformUtilsService: PlatformUtilsService,
-        policyService: PolicyService,
-        private apiService: ApiService,
-        private logService: LogService
-    ) {
-        super(
-            i18nService,
-            cryptoService,
-            messagingService,
-            passwordGenerationService,
-            platformUtilsService,
-            policyService,
-            stateService
-        );
+  constructor(
+    i18nService: I18nService,
+    cryptoService: CryptoService,
+    messagingService: MessagingService,
+    stateService: StateService,
+    passwordGenerationService: PasswordGenerationService,
+    platformUtilsService: PlatformUtilsService,
+    policyService: PolicyService,
+    private apiService: ApiService,
+    private logService: LogService
+  ) {
+    super(
+      i18nService,
+      cryptoService,
+      messagingService,
+      passwordGenerationService,
+      platformUtilsService,
+      policyService,
+      stateService
+    );
+  }
+
+  async ngOnInit() {
+    const response = await this.apiService.getEmergencyGrantorPolicies(this.emergencyAccessId);
+    if (response.data != null && response.data.length > 0) {
+      const policies = response.data.map(
+        (policyResponse: PolicyResponse) => new Policy(new PolicyData(policyResponse))
+      );
+      this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(
+        policies
+      );
+    }
+  }
+
+  async submit() {
+    if (!(await this.strongPassword())) {
+      return;
     }
 
-    async ngOnInit() {
-        const response = await this.apiService.getEmergencyGrantorPolicies(this.emergencyAccessId);
-        if (response.data != null && response.data.length > 0) {
-            const policies = response.data.map(
-                (policyResponse: PolicyResponse) => new Policy(new PolicyData(policyResponse))
-            );
-            this.enforcedPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(policies);
-        }
+    const takeoverResponse = await this.apiService.postEmergencyAccessTakeover(
+      this.emergencyAccessId
+    );
+
+    const oldKeyBuffer = await this.cryptoService.rsaDecrypt(takeoverResponse.keyEncrypted);
+    const oldEncKey = new SymmetricCryptoKey(oldKeyBuffer);
+
+    if (oldEncKey == null) {
+      this.platformUtilsService.showToast(
+        "error",
+        this.i18nService.t("errorOccurred"),
+        this.i18nService.t("unexpectedError")
+      );
+      return;
     }
 
-    async submit() {
-        if (!(await this.strongPassword())) {
-            return;
-        }
+    const key = await this.cryptoService.makeKey(
+      this.masterPassword,
+      this.email,
+      takeoverResponse.kdf,
+      takeoverResponse.kdfIterations
+    );
+    const masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, key);
 
-        const takeoverResponse = await this.apiService.postEmergencyAccessTakeover(this.emergencyAccessId);
+    const encKey = await this.cryptoService.remakeEncKey(key, oldEncKey);
 
-        const oldKeyBuffer = await this.cryptoService.rsaDecrypt(takeoverResponse.keyEncrypted);
-        const oldEncKey = new SymmetricCryptoKey(oldKeyBuffer);
+    const request = new EmergencyAccessPasswordRequest();
+    request.newMasterPasswordHash = masterPasswordHash;
+    request.key = encKey[1].encryptedString;
 
-        if (oldEncKey == null) {
-            this.platformUtilsService.showToast(
-                "error",
-                this.i18nService.t("errorOccurred"),
-                this.i18nService.t("unexpectedError")
-            );
-            return;
-        }
+    this.apiService.postEmergencyAccessPassword(this.emergencyAccessId, request);
 
-        const key = await this.cryptoService.makeKey(
-            this.masterPassword,
-            this.email,
-            takeoverResponse.kdf,
-            takeoverResponse.kdfIterations
-        );
-        const masterPasswordHash = await this.cryptoService.hashPassword(this.masterPassword, key);
-
-        const encKey = await this.cryptoService.remakeEncKey(key, oldEncKey);
-
-        const request = new EmergencyAccessPasswordRequest();
-        request.newMasterPasswordHash = masterPasswordHash;
-        request.key = encKey[1].encryptedString;
-
-        this.apiService.postEmergencyAccessPassword(this.emergencyAccessId, request);
-
-        try {
-            this.onDone.emit();
-        } catch (e) {
-            this.logService.error(e);
-        }
+    try {
+      this.onDone.emit();
+    } catch (e) {
+      this.logService.error(e);
     }
+  }
 }

@@ -1,53 +1,53 @@
 <div class="page-header">
-    <h1>{{ "myAccount" | i18n }}</h1>
+  <h1>{{ "myAccount" | i18n }}</h1>
 </div>
 <app-profile></app-profile>
 <ng-container *ngIf="showChangeEmail">
-    <div class="secondary-header">
-        <h1>{{ "changeEmail" | i18n }}</h1>
-    </div>
-    <app-change-email></app-change-email>
+  <div class="secondary-header">
+    <h1>{{ "changeEmail" | i18n }}</h1>
+  </div>
+  <app-change-email></app-change-email>
 </ng-container>
 <ng-container *ngIf="showChangePassword">
-    <div class="secondary-header">
-        <h1>{{ "changeMasterPassword" | i18n }}</h1>
-    </div>
-    <app-change-password></app-change-password>
+  <div class="secondary-header">
+    <h1>{{ "changeMasterPassword" | i18n }}</h1>
+  </div>
+  <app-change-password></app-change-password>
 </ng-container>
 <ng-container *ngIf="showChangeKdf">
-    <div class="secondary-header">
-        <h1>{{ "encKeySettings" | i18n }}</h1>
-    </div>
-    <app-change-kdf></app-change-kdf>
+  <div class="secondary-header">
+    <h1>{{ "encKeySettings" | i18n }}</h1>
+  </div>
+  <app-change-kdf></app-change-kdf>
 </ng-container>
 <div class="secondary-header border-0 mb-0">
-    <h1>{{ "apiKey" | i18n }}</h1>
+  <h1>{{ "apiKey" | i18n }}</h1>
 </div>
 <p>
-    {{ "userApiKeyDesc" | i18n }}
+  {{ "userApiKeyDesc" | i18n }}
 </p>
 <button type="button" class="btn btn-outline-secondary" (click)="viewUserApiKey()">
-    {{ "viewApiKey" | i18n }}
+  {{ "viewApiKey" | i18n }}
 </button>
 <button type="button" class="btn btn-outline-secondary" (click)="rotateUserApiKey()">
-    {{ "rotateApiKey" | i18n }}
+  {{ "rotateApiKey" | i18n }}
 </button>
 <div class="secondary-header text-danger border-0 mb-0">
-    <h1>{{ "dangerZone" | i18n }}</h1>
+  <h1>{{ "dangerZone" | i18n }}</h1>
 </div>
 <div class="card border-danger">
-    <div class="card-body">
-        <p>{{ "dangerZoneDesc" | i18n }}</p>
-        <button type="button" class="btn btn-outline-danger" (click)="deauthorizeSessions()">
-            {{ "deauthorizeSessions" | i18n }}
-        </button>
-        <button type="button" class="btn btn-outline-danger" (click)="purgeVault()">
-            {{ "purgeVault" | i18n }}
-        </button>
-        <button type="button" class="btn btn-outline-danger" (click)="deleteAccount()">
-            {{ "deleteAccount" | i18n }}
-        </button>
-    </div>
+  <div class="card-body">
+    <p>{{ "dangerZoneDesc" | i18n }}</p>
+    <button type="button" class="btn btn-outline-danger" (click)="deauthorizeSessions()">
+      {{ "deauthorizeSessions" | i18n }}
+    </button>
+    <button type="button" class="btn btn-outline-danger" (click)="purgeVault()">
+      {{ "purgeVault" | i18n }}
+    </button>
+    <button type="button" class="btn btn-outline-danger" (click)="deleteAccount()">
+      {{ "deleteAccount" | i18n }}
+    </button>
+  </div>
 </div>
 <ng-template #deauthorizeSessionsTemplate></ng-template>
 <ng-template #purgeVaultTemplate></ng-template>

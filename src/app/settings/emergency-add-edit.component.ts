@@ -21,54 +21,54 @@ import { Cipher } from "jslib-common/models/domain/cipher";
 import { AddEditComponent as BaseAddEditComponent } from "../vault/add-edit.component";
 
 @Component({
-    selector: "app-org-vault-add-edit",
-    templateUrl: "../vault/add-edit.component.html",
+  selector: "app-org-vault-add-edit",
+  templateUrl: "../vault/add-edit.component.html",
 })
 export class EmergencyAddEditComponent extends BaseAddEditComponent {
-    originalCipher: Cipher = null;
-    viewOnly = true;
+  originalCipher: Cipher = null;
+  viewOnly = true;
 
-    constructor(
-        cipherService: CipherService,
-        folderService: FolderService,
-        i18nService: I18nService,
-        platformUtilsService: PlatformUtilsService,
-        auditService: AuditService,
-        stateService: StateService,
-        collectionService: CollectionService,
-        totpService: TotpService,
-        passwordGenerationService: PasswordGenerationService,
-        messagingService: MessagingService,
-        eventService: EventService,
-        policyService: PolicyService,
-        passwordRepromptService: PasswordRepromptService,
-        organizationService: OrganizationService,
-        logService: LogService
-    ) {
-        super(
-            cipherService,
-            folderService,
-            i18nService,
-            platformUtilsService,
-            auditService,
-            stateService,
-            collectionService,
-            totpService,
-            passwordGenerationService,
-            messagingService,
-            eventService,
-            policyService,
-            organizationService,
-            logService,
-            passwordRepromptService
-        );
-    }
+  constructor(
+    cipherService: CipherService,
+    folderService: FolderService,
+    i18nService: I18nService,
+    platformUtilsService: PlatformUtilsService,
+    auditService: AuditService,
+    stateService: StateService,
+    collectionService: CollectionService,
+    totpService: TotpService,
+    passwordGenerationService: PasswordGenerationService,
+    messagingService: MessagingService,
+    eventService: EventService,
+    policyService: PolicyService,
+    passwordRepromptService: PasswordRepromptService,
+    organizationService: OrganizationService,
+    logService: LogService
+  ) {
+    super(
+      cipherService,
+      folderService,
+      i18nService,
+      platformUtilsService,
+      auditService,
+      stateService,
+      collectionService,
+      totpService,
+      passwordGenerationService,
+      messagingService,
+      eventService,
+      policyService,
+      organizationService,
+      logService,
+      passwordRepromptService
+    );
+  }
 
-    async load() {
-        this.title = this.i18nService.t("viewItem");
-    }
+  async load() {
+    this.title = this.i18nService.t("viewItem");
+  }
 
-    protected async loadCipher() {
-        return Promise.resolve(this.originalCipher);
-    }
+  protected async loadCipher() {
+    return Promise.resolve(this.originalCipher);
+  }
 }

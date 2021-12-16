@@ -13,39 +13,39 @@ import { AttachmentView } from "jslib-common/models/view/attachmentView";
 import { AttachmentsComponent as BaseAttachmentsComponent } from "jslib-angular/components/attachments.component";
 
 @Component({
-    selector: "emergency-access-attachments",
-    templateUrl: "../vault/attachments.component.html",
+  selector: "emergency-access-attachments",
+  templateUrl: "../vault/attachments.component.html",
 })
 export class EmergencyAccessAttachmentsComponent extends BaseAttachmentsComponent {
-    viewOnly = true;
-    canAccessAttachments = true;
+  viewOnly = true;
+  canAccessAttachments = true;
 
-    constructor(
-        cipherService: CipherService,
-        i18nService: I18nService,
-        cryptoService: CryptoService,
-        stateService: StateService,
-        platformUtilsService: PlatformUtilsService,
-        apiService: ApiService,
-        logService: LogService
-    ) {
-        super(
-            cipherService,
-            i18nService,
-            cryptoService,
-            platformUtilsService,
-            apiService,
-            window,
-            logService,
-            stateService
-        );
-    }
+  constructor(
+    cipherService: CipherService,
+    i18nService: I18nService,
+    cryptoService: CryptoService,
+    stateService: StateService,
+    platformUtilsService: PlatformUtilsService,
+    apiService: ApiService,
+    logService: LogService
+  ) {
+    super(
+      cipherService,
+      i18nService,
+      cryptoService,
+      platformUtilsService,
+      apiService,
+      window,
+      logService,
+      stateService
+    );
+  }
 
-    protected async init() {
-        // Do nothing since cipher is already decoded
-    }
+  protected async init() {
+    // Do nothing since cipher is already decoded
+  }
 
-    protected showFixOldAttachments(attachment: AttachmentView) {
-        return false;
-    }
+  protected showFixOldAttachments(attachment: AttachmentView) {
+    return false;
+  }
 }
