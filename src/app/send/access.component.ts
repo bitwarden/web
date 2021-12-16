@@ -1,32 +1,29 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from "@angular/router";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { CryptoFunctionService } from 'jslib-common/abstractions/cryptoFunction.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { CryptoService } from "jslib-common/abstractions/crypto.service";
+import { CryptoFunctionService } from "jslib-common/abstractions/cryptoFunction.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
-import { Utils } from 'jslib-common/misc/utils';
+import { Utils } from "jslib-common/misc/utils";
 
-import { SendAccess } from 'jslib-common/models/domain/sendAccess';
-import { SymmetricCryptoKey } from 'jslib-common/models/domain/symmetricCryptoKey';
+import { SendAccess } from "jslib-common/models/domain/sendAccess";
+import { SymmetricCryptoKey } from "jslib-common/models/domain/symmetricCryptoKey";
 
-import { SendAccessView } from 'jslib-common/models/view/sendAccessView';
+import { SendAccessView } from "jslib-common/models/view/sendAccessView";
 
-import { SendType } from 'jslib-common/enums/sendType';
-import { SendAccessRequest } from 'jslib-common/models/request/sendAccessRequest';
-import { ErrorResponse } from 'jslib-common/models/response/errorResponse';
+import { SendType } from "jslib-common/enums/sendType";
+import { SendAccessRequest } from "jslib-common/models/request/sendAccessRequest";
+import { ErrorResponse } from "jslib-common/models/response/errorResponse";
 
-import { SendAccessResponse } from 'jslib-common/models/response/sendAccessResponse';
+import { SendAccessResponse } from "jslib-common/models/response/sendAccessResponse";
 
 @Component({
-    selector: 'app-send-access',
-    templateUrl: 'access.component.html',
+    selector: "app-send-access",
+    templateUrl: "access.component.html",
 })
 export class AccessComponent implements OnInit {
     send: SendAccessView;
@@ -46,10 +43,14 @@ export class AccessComponent implements OnInit {
     private decKey: SymmetricCryptoKey;
     private accessRequest: SendAccessRequest;
 
-    constructor(private i18nService: I18nService, private cryptoFunctionService: CryptoFunctionService,
-        private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
-        private route: ActivatedRoute, private cryptoService: CryptoService) {
-    }
+    constructor(
+        private i18nService: I18nService,
+        private cryptoFunctionService: CryptoFunctionService,
+        private apiService: ApiService,
+        private platformUtilsService: PlatformUtilsService,
+        private route: ActivatedRoute,
+        private cryptoService: CryptoService
+    ) {}
 
     get sendText() {
         if (this.send == null || this.send.text == null) {
@@ -73,7 +74,7 @@ export class AccessComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.route.params.subscribe(async params => {
+        this.route.params.subscribe(async (params) => {
             this.id = params.sendId;
             this.key = params.key;
             if (this.key == null || this.id == null) {
@@ -92,18 +93,17 @@ export class AccessComponent implements OnInit {
             return;
         }
 
-
         const downloadData = await this.apiService.getSendFileDownloadData(this.send, this.accessRequest);
 
         if (Utils.isNullOrWhitespace(downloadData.url)) {
-            this.platformUtilsService.showToast('error', null, this.i18nService.t('missingSendFile'));
+            this.platformUtilsService.showToast("error", null, this.i18nService.t("missingSendFile"));
             return;
         }
 
         this.downloading = true;
-        const response = await fetch(new Request(downloadData.url, { cache: 'no-store' }));
+        const response = await fetch(new Request(downloadData.url, { cache: "no-store" }));
         if (response.status !== 200) {
-            this.platformUtilsService.showToast('error', null, this.i18nService.t('errorOccurred'));
+            this.platformUtilsService.showToast("error", null, this.i18nService.t("errorOccurred"));
             this.downloading = false;
             return;
         }
@@ -113,7 +113,7 @@ export class AccessComponent implements OnInit {
             const decBuf = await this.cryptoService.decryptFromBytes(buf, this.decKey);
             this.platformUtilsService.saveFile(window, decBuf, null, this.send.file.fileName);
         } catch (e) {
-            this.platformUtilsService.showToast('error', null, this.i18nService.t('errorOccurred'));
+            this.platformUtilsService.showToast("error", null, this.i18nService.t("errorOccurred"));
         }
 
         this.downloading = false;
@@ -121,8 +121,11 @@ export class AccessComponent implements OnInit {
 
     copyText() {
         this.platformUtilsService.copyToClipboard(this.send.text.text);
-        this.platformUtilsService.showToast('success', null,
-            this.i18nService.t('valueCopied', this.i18nService.t('sendTypeText')));
+        this.platformUtilsService.showToast(
+            "success",
+            null,
+            this.i18nService.t("valueCopied", this.i18nService.t("sendTypeText"))
+        );
     }
 
     toggleText() {
@@ -136,7 +139,7 @@ export class AccessComponent implements OnInit {
         const keyArray = Utils.fromUrlB64ToArray(this.key);
         this.accessRequest = new SendAccessRequest();
         if (this.password != null) {
-            const passwordHash = await this.cryptoFunctionService.pbkdf2(this.password, keyArray, 'sha256', 100000);
+            const passwordHash = await this.cryptoFunctionService.pbkdf2(this.password, keyArray, "sha256", 100000);
             this.accessRequest.password = Utils.fromBufferToB64(passwordHash);
         }
         try {
