@@ -1,18 +1,12 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
+import { CryptoService } from "jslib-common/abstractions/crypto.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { StateService } from "jslib-common/abstractions/state.service";
 
 @Component({
-    selector: 'app-user-confirm',
-    templateUrl: 'user-confirm.component.html',
+    selector: "app-user-confirm",
+    templateUrl: "user-confirm.component.html",
 })
 export class UserConfirmComponent implements OnInit {
     @Input() name: string;
@@ -25,15 +19,18 @@ export class UserConfirmComponent implements OnInit {
     fingerprint: string;
     formPromise: Promise<any>;
 
-    constructor(private cryptoService: CryptoService, private logService: LogService,
-        private stateService: StateService) { }
+    constructor(
+        private cryptoService: CryptoService,
+        private logService: LogService,
+        private stateService: StateService
+    ) {}
 
     async ngOnInit() {
         try {
             if (this.publicKey != null) {
                 const fingerprint = await this.cryptoService.getFingerprint(this.userId, this.publicKey.buffer);
                 if (fingerprint != null) {
-                    this.fingerprint = fingerprint.join('-');
+                    this.fingerprint = fingerprint.join("-");
                 }
             }
         } catch (e) {

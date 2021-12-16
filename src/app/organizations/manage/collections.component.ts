@@ -1,43 +1,36 @@
-import {
-    Component,
-    OnInit,
-    ViewChild,
-    ViewContainerRef,
-} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
-import { first } from 'rxjs/operators';
+import { first } from "rxjs/operators";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CollectionService } from 'jslib-common/abstractions/collection.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { OrganizationService } from 'jslib-common/abstractions/organization.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { SearchService } from 'jslib-common/abstractions/search.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { CollectionService } from "jslib-common/abstractions/collection.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { OrganizationService } from "jslib-common/abstractions/organization.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { SearchService } from "jslib-common/abstractions/search.service";
 
-import { ModalService } from 'jslib-angular/services/modal.service';
+import { ModalService } from "jslib-angular/services/modal.service";
 
-import { CollectionData } from 'jslib-common/models/data/collectionData';
-import { Collection } from 'jslib-common/models/domain/collection';
-import { Organization } from 'jslib-common/models/domain/organization';
-import {
-    CollectionDetailsResponse,
-    CollectionResponse,
-} from 'jslib-common/models/response/collectionResponse';
-import { ListResponse } from 'jslib-common/models/response/listResponse';
-import { CollectionView } from 'jslib-common/models/view/collectionView';
+import { CollectionData } from "jslib-common/models/data/collectionData";
+import { Collection } from "jslib-common/models/domain/collection";
+import { Organization } from "jslib-common/models/domain/organization";
+import { CollectionDetailsResponse, CollectionResponse } from "jslib-common/models/response/collectionResponse";
+import { ListResponse } from "jslib-common/models/response/listResponse";
+import { CollectionView } from "jslib-common/models/view/collectionView";
 
-import { CollectionAddEditComponent } from './collection-add-edit.component';
-import { EntityUsersComponent } from './entity-users.component';
+import { CollectionAddEditComponent } from "./collection-add-edit.component";
+import { EntityUsersComponent } from "./entity-users.component";
 
 @Component({
-    selector: 'app-org-manage-collections',
-    templateUrl: 'collections.component.html',
+    selector: "app-org-manage-collections",
+    templateUrl: "collections.component.html",
 })
 export class CollectionsComponent implements OnInit {
-    @ViewChild('addEdit', { read: ViewContainerRef, static: true }) addEditModalRef: ViewContainerRef;
-    @ViewChild('usersTemplate', { read: ViewContainerRef, static: true }) usersModalRef: ViewContainerRef;
+    @ViewChild("addEdit", { read: ViewContainerRef, static: true }) addEditModalRef: ViewContainerRef;
+    @ViewChild("usersTemplate", { read: ViewContainerRef, static: true })
+    usersModalRef: ViewContainerRef;
 
     loading = true;
     organization: Organization;
@@ -62,14 +55,14 @@ export class CollectionsComponent implements OnInit {
         private platformUtilsService: PlatformUtilsService,
         private searchService: SearchService,
         private logService: LogService,
-        private organizationService: OrganizationService,
-    ) { }
+        private organizationService: OrganizationService
+    ) {}
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async params => {
+        this.route.parent.parent.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
             await this.load();
-            this.route.queryParams.pipe(first()).subscribe(async qParams => {
+            this.route.queryParams.pipe(first()).subscribe(async (qParams) => {
                 this.searchText = qParams.search;
             });
         });
@@ -80,8 +73,9 @@ export class CollectionsComponent implements OnInit {
         this.canCreate = this.organization.canCreateNewCollections;
 
         const decryptCollections = async (r: ListResponse<CollectionResponse>) => {
-            const collections = r.data.filter(c => c.organizationId === this.organizationId).map(d =>
-                new Collection(new CollectionData(d as CollectionDetailsResponse)));
+            const collections = r.data
+                .filter((c) => c.organizationId === this.organizationId)
+                .map((d) => new Collection(new CollectionData(d as CollectionDetailsResponse)));
             return await this.collectionService.decryptMany(collections);
         };
 
@@ -111,8 +105,9 @@ export class CollectionsComponent implements OnInit {
             pagedSize = this.pagedCollectionsCount;
         }
         if (this.collections.length > pagedLength) {
-            this.pagedCollections =
-                this.pagedCollections.concat(this.collections.slice(pagedLength, pagedLength + pagedSize));
+            this.pagedCollections = this.pagedCollections.concat(
+                this.collections.slice(pagedLength, pagedLength + pagedSize)
+            );
         }
         this.pagedCollectionsCount = this.pagedCollections.length;
         this.didScroll = this.pagedCollections.length > this.pageSize;
@@ -124,24 +119,28 @@ export class CollectionsComponent implements OnInit {
         const canDelete = collection != null && this.canDelete(collection);
 
         if (!(canCreate || canEdit || canDelete)) {
-            this.platformUtilsService.showToast('error', null, this.i18nService.t('missingPermissions'));
+            this.platformUtilsService.showToast("error", null, this.i18nService.t("missingPermissions"));
             return;
         }
 
-        const [modal] = await this.modalService.openViewRef(CollectionAddEditComponent, this.addEditModalRef, comp => {
-            comp.organizationId = this.organizationId;
-            comp.collectionId = collection != null ? collection.id : null;
-            comp.canSave = canCreate || canEdit;
-            comp.canDelete = canDelete;
-            comp.onSavedCollection.subscribe(() => {
-                modal.close();
-                this.load();
-            });
-            comp.onDeletedCollection.subscribe(() => {
-                modal.close();
-                this.removeCollection(collection);
-            });
-        });
+        const [modal] = await this.modalService.openViewRef(
+            CollectionAddEditComponent,
+            this.addEditModalRef,
+            (comp) => {
+                comp.organizationId = this.organizationId;
+                comp.collectionId = collection != null ? collection.id : null;
+                comp.canSave = canCreate || canEdit;
+                comp.canDelete = canDelete;
+                comp.onSavedCollection.subscribe(() => {
+                    modal.close();
+                    this.load();
+                });
+                comp.onDeletedCollection.subscribe(() => {
+                    modal.close();
+                    this.removeCollection(collection);
+                });
+            }
+        );
     }
 
     add() {
@@ -150,26 +149,34 @@ export class CollectionsComponent implements OnInit {
 
     async delete(collection: CollectionView) {
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('deleteCollectionConfirmation'), collection.name,
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t("deleteCollectionConfirmation"),
+            collection.name,
+            this.i18nService.t("yes"),
+            this.i18nService.t("no"),
+            "warning"
+        );
         if (!confirmed) {
             return false;
         }
 
         try {
             await this.apiService.deleteCollection(this.organizationId, collection.id);
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('deletedCollectionId', collection.name));
+            this.platformUtilsService.showToast(
+                "success",
+                null,
+                this.i18nService.t("deletedCollectionId", collection.name)
+            );
             this.removeCollection(collection);
         } catch (e) {
             this.logService.error(e);
-            this.platformUtilsService.showToast('error', null, this.i18nService.t('missingPermissions'));
+            this.platformUtilsService.showToast("error", null, this.i18nService.t("missingPermissions"));
         }
     }
 
     async users(collection: CollectionView) {
-        const [modal] = await this.modalService.openViewRef(EntityUsersComponent, this.usersModalRef, comp => {
+        const [modal] = await this.modalService.openViewRef(EntityUsersComponent, this.usersModalRef, (comp) => {
             comp.organizationId = this.organizationId;
-            comp.entity = 'collection';
+            comp.entity = "collection";
             comp.entityId = collection.id;
             comp.entityName = collection.name;
 
@@ -202,7 +209,10 @@ export class CollectionsComponent implements OnInit {
             return true;
         }
 
-        if (this.organization.canEditAssignedCollections && this.assignedCollections.some(c => c.id === collection.id)) {
+        if (
+            this.organization.canEditAssignedCollections &&
+            this.assignedCollections.some((c) => c.id === collection.id)
+        ) {
             return true;
         }
         return false;
@@ -213,7 +223,10 @@ export class CollectionsComponent implements OnInit {
             return true;
         }
 
-        if (this.organization.canDeleteAssignedCollections && this.assignedCollections.some(c => c.id === collection.id)) {
+        if (
+            this.organization.canDeleteAssignedCollections &&
+            this.assignedCollections.some((c) => c.id === collection.id)
+        ) {
             return true;
         }
         return false;

@@ -1,29 +1,34 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CipherService } from 'jslib-common/abstractions/cipher.service';
-import { CollectionService } from 'jslib-common/abstractions/collection.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { CipherService } from "jslib-common/abstractions/cipher.service";
+import { CollectionService } from "jslib-common/abstractions/collection.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
-import { CipherData } from 'jslib-common/models/data/cipherData';
-import { Cipher } from 'jslib-common/models/domain/cipher';
-import { Organization } from 'jslib-common/models/domain/organization';
-import { CipherCollectionsRequest } from 'jslib-common/models/request/cipherCollectionsRequest';
+import { CipherData } from "jslib-common/models/data/cipherData";
+import { Cipher } from "jslib-common/models/domain/cipher";
+import { Organization } from "jslib-common/models/domain/organization";
+import { CipherCollectionsRequest } from "jslib-common/models/request/cipherCollectionsRequest";
 
-import { CollectionsComponent as BaseCollectionsComponent } from '../../vault/collections.component';
+import { CollectionsComponent as BaseCollectionsComponent } from "../../vault/collections.component";
 
 @Component({
-    selector: 'app-org-vault-collections',
-    templateUrl: '../../vault/collections.component.html',
+    selector: "app-org-vault-collections",
+    templateUrl: "../../vault/collections.component.html",
 })
 export class CollectionsComponent extends BaseCollectionsComponent {
     organization: Organization;
 
-    constructor(collectionService: CollectionService, platformUtilsService: PlatformUtilsService,
-        i18nService: I18nService, cipherService: CipherService,
-        private apiService: ApiService, logService: LogService) {
+    constructor(
+        collectionService: CollectionService,
+        platformUtilsService: PlatformUtilsService,
+        i18nService: I18nService,
+        cipherService: CipherService,
+        private apiService: ApiService,
+        logService: LogService
+    ) {
         super(collectionService, platformUtilsService, i18nService, cipherService, logService);
         this.allowSelectNone = true;
     }

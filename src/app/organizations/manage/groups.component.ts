@@ -1,39 +1,32 @@
-import {
-    Component,
-    OnInit,
-    ViewChild,
-    ViewContainerRef,
-} from '@angular/core';
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 
-import { first } from 'rxjs/operators';
+import { first } from "rxjs/operators";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { OrganizationService } from 'jslib-common/abstractions/organization.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { SearchService } from 'jslib-common/abstractions/search.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { OrganizationService } from "jslib-common/abstractions/organization.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { SearchService } from "jslib-common/abstractions/search.service";
 
-import { ModalService } from 'jslib-angular/services/modal.service';
+import { ModalService } from "jslib-angular/services/modal.service";
 
-import { GroupResponse } from 'jslib-common/models/response/groupResponse';
+import { GroupResponse } from "jslib-common/models/response/groupResponse";
 
-import { Utils } from 'jslib-common/misc/utils';
+import { Utils } from "jslib-common/misc/utils";
 
-import { EntityUsersComponent } from './entity-users.component';
-import { GroupAddEditComponent } from './group-add-edit.component';
+import { EntityUsersComponent } from "./entity-users.component";
+import { GroupAddEditComponent } from "./group-add-edit.component";
 
 @Component({
-    selector: 'app-org-groups',
-    templateUrl: 'groups.component.html',
+    selector: "app-org-groups",
+    templateUrl: "groups.component.html",
 })
 export class GroupsComponent implements OnInit {
-    @ViewChild('addEdit', { read: ViewContainerRef, static: true }) addEditModalRef: ViewContainerRef;
-    @ViewChild('usersTemplate', { read: ViewContainerRef, static: true }) usersModalRef: ViewContainerRef;
+    @ViewChild("addEdit", { read: ViewContainerRef, static: true }) addEditModalRef: ViewContainerRef;
+    @ViewChild("usersTemplate", { read: ViewContainerRef, static: true })
+    usersModalRef: ViewContainerRef;
 
     loading = true;
     organizationId: string;
@@ -55,19 +48,19 @@ export class GroupsComponent implements OnInit {
         private router: Router,
         private searchService: SearchService,
         private logService: LogService,
-        private organizationService: OrganizationService,
-    ) { }
+        private organizationService: OrganizationService
+    ) {}
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async params => {
+        this.route.parent.parent.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
             const organization = await this.organizationService.get(this.organizationId);
             if (organization == null || !organization.useGroups) {
-                this.router.navigate(['/organizations', this.organizationId]);
+                this.router.navigate(["/organizations", this.organizationId]);
                 return;
             }
             await this.load();
-            this.route.queryParams.pipe(first()).subscribe(async qParams => {
+            this.route.queryParams.pipe(first()).subscribe(async (qParams) => {
                 this.searchText = qParams.search;
             });
         });
@@ -76,7 +69,7 @@ export class GroupsComponent implements OnInit {
     async load() {
         const response = await this.apiService.getGroups(this.organizationId);
         const groups = response.data != null && response.data.length > 0 ? response.data : [];
-        groups.sort(Utils.getSortFunction(this.i18nService, 'name'));
+        groups.sort(Utils.getSortFunction(this.i18nService, "name"));
         this.groups = groups;
         this.resetPaging();
         this.loading = false;
@@ -99,7 +92,7 @@ export class GroupsComponent implements OnInit {
     }
 
     async edit(group: GroupResponse) {
-        const [modal] = await this.modalService.openViewRef(GroupAddEditComponent, this.addEditModalRef, comp => {
+        const [modal] = await this.modalService.openViewRef(GroupAddEditComponent, this.addEditModalRef, (comp) => {
             comp.organizationId = this.organizationId;
             comp.groupId = group != null ? group.id : null;
             comp.onSavedGroup.subscribe(() => {
@@ -119,15 +112,19 @@ export class GroupsComponent implements OnInit {
 
     async delete(group: GroupResponse) {
         const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('deleteGroupConfirmation'), group.name,
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+            this.i18nService.t("deleteGroupConfirmation"),
+            group.name,
+            this.i18nService.t("yes"),
+            this.i18nService.t("no"),
+            "warning"
+        );
         if (!confirmed) {
             return false;
         }
 
         try {
             await this.apiService.deleteGroup(this.organizationId, group.id);
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('deletedGroupId', group.name));
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("deletedGroupId", group.name));
             this.removeGroup(group);
         } catch (e) {
             this.logService.error(e);
@@ -135,9 +132,9 @@ export class GroupsComponent implements OnInit {
     }
 
     async users(group: GroupResponse) {
-        const [modal] = await this.modalService.openViewRef(EntityUsersComponent, this.usersModalRef, comp => {
+        const [modal] = await this.modalService.openViewRef(EntityUsersComponent, this.usersModalRef, (comp) => {
             comp.organizationId = this.organizationId;
-            comp.entity = 'group';
+            comp.entity = "group";
             comp.entityId = group.id;
             comp.entityName = group.name;
 

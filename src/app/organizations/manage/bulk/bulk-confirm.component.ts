@@ -1,27 +1,22 @@
-import {
-    Component,
-    Input,
-    OnInit,
-} from '@angular/core';
+import { Component, Input, OnInit } from "@angular/core";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { CryptoService } from "jslib-common/abstractions/crypto.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
 
-import { OrganizationUserBulkConfirmRequest } from 'jslib-common/models/request/organizationUserBulkConfirmRequest';
-import { OrganizationUserBulkRequest } from 'jslib-common/models/request/organizationUserBulkRequest';
+import { OrganizationUserBulkConfirmRequest } from "jslib-common/models/request/organizationUserBulkConfirmRequest";
+import { OrganizationUserBulkRequest } from "jslib-common/models/request/organizationUserBulkRequest";
 
-import { OrganizationUserStatusType } from 'jslib-common/enums/organizationUserStatusType';
+import { OrganizationUserStatusType } from "jslib-common/enums/organizationUserStatusType";
 
-import { Utils } from 'jslib-common/misc/utils';
-import { BulkUserDetails } from './bulk-status.component';
+import { Utils } from "jslib-common/misc/utils";
+import { BulkUserDetails } from "./bulk-status.component";
 
 @Component({
-    selector: 'app-bulk-confirm',
-    templateUrl: 'bulk-confirm.component.html',
+    selector: "app-bulk-confirm",
+    templateUrl: "bulk-confirm.component.html",
 })
 export class BulkConfirmComponent implements OnInit {
-
     @Input() organizationId: string;
     @Input() users: BulkUserDetails[];
 
@@ -35,12 +30,15 @@ export class BulkConfirmComponent implements OnInit {
     done: boolean = false;
     error: string;
 
-    constructor(protected cryptoService: CryptoService, protected apiService: ApiService,
-      private i18nService: I18nService) { }
+    constructor(
+        protected cryptoService: CryptoService,
+        protected apiService: ApiService,
+        private i18nService: I18nService
+    ) {}
 
     async ngOnInit() {
-        this.excludedUsers = this.users.filter(u => !this.isAccepted(u));
-        this.filteredUsers = this.users.filter(u => this.isAccepted(u));
+        this.excludedUsers = this.users.filter((u) => !this.isAccepted(u));
+        this.filteredUsers = this.users.filter((u) => this.isAccepted(u));
 
         if (this.filteredUsers.length <= 0) {
             this.done = true;
@@ -53,7 +51,7 @@ export class BulkConfirmComponent implements OnInit {
             const fingerprint = await this.cryptoService.getFingerprint(entry.userId, publicKey.buffer);
             if (fingerprint != null) {
                 this.publicKeys.set(entry.id, publicKey);
-                this.fingerprints.set(entry.id, fingerprint.join('-'));
+                this.fingerprints.set(entry.id, fingerprint.join("-"));
             }
         }
 
@@ -78,8 +76,8 @@ export class BulkConfirmComponent implements OnInit {
             }
             const response = await this.postConfirmRequest(userIdsWithKeys);
 
-            response.data.forEach(entry => {
-                const error = entry.error !== '' ? entry.error : this.i18nService.t('bulkConfirmMessage');
+            response.data.forEach((entry) => {
+                const error = entry.error !== "" ? entry.error : this.i18nService.t("bulkConfirmMessage");
                 this.statuses.set(entry.id, error);
             });
 
@@ -95,7 +93,7 @@ export class BulkConfirmComponent implements OnInit {
     }
 
     protected async getPublicKeys() {
-        const request = new OrganizationUserBulkRequest(this.filteredUsers.map(user => user.id));
+        const request = new OrganizationUserBulkRequest(this.filteredUsers.map((user) => user.id));
         return await this.apiService.postOrganizationUsersPublicKey(this.organizationId, request);
     }
 

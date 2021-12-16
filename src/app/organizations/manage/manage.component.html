@@ -2,31 +2,55 @@
     <div class="row">
         <div class="col-3">
             <div class="card" *ngIf="organization">
-                <div class="card-header">{{'manage' | i18n}}</div>
+                <div class="card-header">{{ "manage" | i18n }}</div>
                 <div class="list-group list-group-flush">
-                    <a routerLink="people" class="list-group-item" routerLinkActive="active"
-                        *ngIf="organization.canManageUsers">
-                        {{'people' | i18n}}
+                    <a
+                        routerLink="people"
+                        class="list-group-item"
+                        routerLinkActive="active"
+                        *ngIf="organization.canManageUsers"
+                    >
+                        {{ "people" | i18n }}
                     </a>
-                    <a routerLink="collections" class="list-group-item" routerLinkActive="active"
-                        *ngIf="organization.canViewAllCollections || organization.canViewAssignedCollections">
-                        {{'collections' | i18n}}
+                    <a
+                        routerLink="collections"
+                        class="list-group-item"
+                        routerLinkActive="active"
+                        *ngIf="organization.canViewAllCollections || organization.canViewAssignedCollections"
+                    >
+                        {{ "collections" | i18n }}
                     </a>
-                    <a routerLink="groups" class="list-group-item" routerLinkActive="active"
-                        *ngIf="organization.canManageGroups && accessGroups">
-                        {{'groups' | i18n}}
+                    <a
+                        routerLink="groups"
+                        class="list-group-item"
+                        routerLinkActive="active"
+                        *ngIf="organization.canManageGroups && accessGroups"
+                    >
+                        {{ "groups" | i18n }}
                     </a>
-                    <a routerLink="policies" class="list-group-item" routerLinkActive="active"
-                        *ngIf="organization.canManagePolicies && accessPolicies">
-                        {{'policies' | i18n}}
+                    <a
+                        routerLink="policies"
+                        class="list-group-item"
+                        routerLinkActive="active"
+                        *ngIf="organization.canManagePolicies && accessPolicies"
+                    >
+                        {{ "policies" | i18n }}
                     </a>
-                    <a routerLink="sso" class="list-group-item" routerLinkActive="active"
-                        *ngIf="organization.canManageSso && accessSso">
-                        {{'singleSignOn' | i18n}}
+                    <a
+                        routerLink="sso"
+                        class="list-group-item"
+                        routerLinkActive="active"
+                        *ngIf="organization.canManageSso && accessSso"
+                    >
+                        {{ "singleSignOn" | i18n }}
                     </a>
-                    <a routerLink="events" class="list-group-item" routerLinkActive="active"
-                        *ngIf="organization.canAccessEventLogs && accessEvents">
-                        {{'eventLogs' | i18n}}
+                    <a
+                        routerLink="events"
+                        class="list-group-item"
+                        routerLinkActive="active"
+                        *ngIf="organization.canAccessEventLogs && accessEvents"
+                    >
+                        {{ "eventLogs" | i18n }}
                     </a>
                 </div>
             </div>

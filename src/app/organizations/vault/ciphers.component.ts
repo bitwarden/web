@@ -1,29 +1,25 @@
-import {
-    Component,
-    EventEmitter,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Output } from "@angular/core";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CipherService } from 'jslib-common/abstractions/cipher.service';
-import { EventService } from 'jslib-common/abstractions/event.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { SearchService } from 'jslib-common/abstractions/search.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
-import { TotpService } from 'jslib-common/abstractions/totp.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { CipherService } from "jslib-common/abstractions/cipher.service";
+import { EventService } from "jslib-common/abstractions/event.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PasswordRepromptService } from "jslib-common/abstractions/passwordReprompt.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { SearchService } from "jslib-common/abstractions/search.service";
+import { StateService } from "jslib-common/abstractions/state.service";
+import { TotpService } from "jslib-common/abstractions/totp.service";
 
-import { Organization } from 'jslib-common/models/domain/organization';
+import { Organization } from "jslib-common/models/domain/organization";
 
-import { CipherView } from 'jslib-common/models/view/cipherView';
+import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { CiphersComponent as BaseCiphersComponent } from '../../vault/ciphers.component';
+import { CiphersComponent as BaseCiphersComponent } from "../../vault/ciphers.component";
 
 @Component({
-    selector: 'app-org-vault-ciphers',
-    templateUrl: '../../vault/ciphers.component.html',
+    selector: "app-org-vault-ciphers",
+    templateUrl: "../../vault/ciphers.component.html",
 })
 export class CiphersComponent extends BaseCiphersComponent {
     @Output() onEventsClicked = new EventEmitter<CipherView>();
@@ -43,7 +39,7 @@ export class CiphersComponent extends BaseCiphersComponent {
         totpService: TotpService,
         passwordRepromptService: PasswordRepromptService,
         logService: LogService,
-        stateService: StateService,
+        stateService: StateService
     ) {
         super(
             searchService,
@@ -63,7 +59,9 @@ export class CiphersComponent extends BaseCiphersComponent {
             this.accessEvents = this.organization.useEvents;
             this.allCiphers = await this.cipherService.getAllFromApiForOrganization(this.organization.id);
         } else {
-            this.allCiphers = (await this.cipherService.getAllDecrypted()).filter(c => c.organizationId === this.organization.id);
+            this.allCiphers = (await this.cipherService.getAllDecrypted()).filter(
+                (c) => c.organizationId === this.organization.id
+            );
         }
         await this.searchService.indexCiphers(this.organization.id, this.allCiphers);
         await this.applyFilter(filter);

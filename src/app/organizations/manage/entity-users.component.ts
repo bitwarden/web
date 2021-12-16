@@ -1,29 +1,23 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
 
-import { OrganizationUserStatusType } from 'jslib-common/enums/organizationUserStatusType';
-import { OrganizationUserType } from 'jslib-common/enums/organizationUserType';
-import { SelectionReadOnlyRequest } from 'jslib-common/models/request/selectionReadOnlyRequest';
-import { OrganizationUserUserDetailsResponse } from 'jslib-common/models/response/organizationUserResponse';
+import { OrganizationUserStatusType } from "jslib-common/enums/organizationUserStatusType";
+import { OrganizationUserType } from "jslib-common/enums/organizationUserType";
+import { SelectionReadOnlyRequest } from "jslib-common/models/request/selectionReadOnlyRequest";
+import { OrganizationUserUserDetailsResponse } from "jslib-common/models/response/organizationUserResponse";
 
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { Utils } from 'jslib-common/misc/utils';
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { Utils } from "jslib-common/misc/utils";
 
 @Component({
-    selector: 'app-entity-users',
-    templateUrl: 'entity-users.component.html',
+    selector: "app-entity-users",
+    templateUrl: "entity-users.component.html",
 })
 export class EntityUsersComponent implements OnInit {
-    @Input() entity: 'group' | 'collection';
+    @Input() entity: "group" | "collection";
     @Input() entityId: string;
     @Input() entityName: string;
     @Input() organizationId: string;
@@ -40,8 +34,12 @@ export class EntityUsersComponent implements OnInit {
 
     private allUsers: OrganizationUserUserDetailsResponse[] = [];
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private platformUtilsService: PlatformUtilsService, private logService: LogService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private platformUtilsService: PlatformUtilsService,
+        private logService: LogService
+    ) {}
 
     async ngOnInit() {
         await this.loadUsers();
@@ -50,7 +48,7 @@ export class EntityUsersComponent implements OnInit {
 
     get users() {
         if (this.showSelected) {
-            return this.allUsers.filter(u => (u as any).checked);
+            return this.allUsers.filter((u) => (u as any).checked);
         } else {
             return this.allUsers;
         }
@@ -58,22 +56,22 @@ export class EntityUsersComponent implements OnInit {
 
     async loadUsers() {
         const users = await this.apiService.getOrganizationUsers(this.organizationId);
-        this.allUsers = users.data.map(r => r).sort(Utils.getSortFunction(this.i18nService, 'email'));
-        if (this.entity === 'group') {
+        this.allUsers = users.data.map((r) => r).sort(Utils.getSortFunction(this.i18nService, "email"));
+        if (this.entity === "group") {
             const response = await this.apiService.getGroupUsers(this.organizationId, this.entityId);
             if (response != null && users.data.length > 0) {
-                response.forEach(s => {
-                    const user = users.data.filter(u => u.id === s);
+                response.forEach((s) => {
+                    const user = users.data.filter((u) => u.id === s);
                     if (user != null && user.length > 0) {
                         (user[0] as any).checked = true;
                     }
                 });
             }
-        } else if (this.entity === 'collection') {
+        } else if (this.entity === "collection") {
             const response = await this.apiService.getCollectionUsers(this.organizationId, this.entityId);
             if (response != null && users.data.length > 0) {
-                response.forEach(s => {
-                    const user = users.data.filter(u => !u.accessAll && u.id === s.id);
+                response.forEach((s) => {
+                    const user = users.data.filter((u) => !u.accessAll && u.id === s.id);
                     if (user != null && user.length > 0) {
                         (user[0] as any).checked = true;
                         (user[0] as any).readOnly = s.readOnly;
@@ -83,8 +81,8 @@ export class EntityUsersComponent implements OnInit {
             }
         }
 
-        this.allUsers.forEach(u => {
-            if (this.entity === 'collection' && u.accessAll) {
+        this.allUsers.forEach((u) => {
+            if (this.entity === "collection" && u.accessAll) {
                 (u as any).checked = true;
             }
             if ((u as any).checked) {
@@ -94,7 +92,7 @@ export class EntityUsersComponent implements OnInit {
     }
 
     check(u: OrganizationUserUserDetailsResponse) {
-        if (this.entity === 'collection' && u.accessAll) {
+        if (this.entity === "collection" && u.accessAll) {
             return;
         }
         (u as any).checked = !(u as any).checked;
@@ -105,7 +103,7 @@ export class EntityUsersComponent implements OnInit {
         if ((u as any).checked) {
             this.selectedCount++;
         } else {
-            if (this.entity === 'collection') {
+            if (this.entity === "collection") {
                 (u as any).readOnly = false;
                 (u as any).hidePasswords = false;
             }
@@ -119,16 +117,17 @@ export class EntityUsersComponent implements OnInit {
 
     async submit() {
         try {
-            if (this.entity === 'group') {
-                const selections = this.users.filter(u => (u as any).checked).map(u => u.id);
+            if (this.entity === "group") {
+                const selections = this.users.filter((u) => (u as any).checked).map((u) => u.id);
                 this.formPromise = this.apiService.putGroupUsers(this.organizationId, this.entityId, selections);
             } else {
-                const selections = this.users.filter(u => (u as any).checked && !u.accessAll)
-                    .map(u => new SelectionReadOnlyRequest(u.id, !!(u as any).readOnly, !!(u as any).hidePasswords));
+                const selections = this.users
+                    .filter((u) => (u as any).checked && !u.accessAll)
+                    .map((u) => new SelectionReadOnlyRequest(u.id, !!(u as any).readOnly, !!(u as any).hidePasswords));
                 this.formPromise = this.apiService.putCollectionUsers(this.organizationId, this.entityId, selections);
             }
             await this.formPromise;
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('updatedUsers'));
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("updatedUsers"));
             this.onEditedUsers.emit();
         } catch (e) {
             this.logService.error(e);

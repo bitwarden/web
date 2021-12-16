@@ -1,24 +1,21 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
-import { Organization } from 'jslib-common/models/domain/organization';
-import { OrganizationSubscriptionResponse } from 'jslib-common/models/response/organizationSubscriptionResponse';
+import { Organization } from "jslib-common/models/domain/organization";
+import { OrganizationSubscriptionResponse } from "jslib-common/models/response/organizationSubscriptionResponse";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { OrganizationService } from 'jslib-common/abstractions/organization.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { MessagingService } from "jslib-common/abstractions/messaging.service";
+import { OrganizationService } from "jslib-common/abstractions/organization.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
-import { PlanType } from 'jslib-common/enums/planType';
+import { PlanType } from "jslib-common/enums/planType";
 
 @Component({
-    selector: 'app-org-subscription',
-    templateUrl: 'organization-subscription.component.html',
+    selector: "app-org-subscription",
+    templateUrl: "organization-subscription.component.html",
 })
 export class OrganizationSubscriptionComponent implements OnInit {
     loading = false;
@@ -41,15 +38,20 @@ export class OrganizationSubscriptionComponent implements OnInit {
     cancelPromise: Promise<any>;
     reinstatePromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
+    constructor(
+        private apiService: ApiService,
+        private platformUtilsService: PlatformUtilsService,
         private i18nService: I18nService,
-        private messagingService: MessagingService, private route: ActivatedRoute,
-        private organizationService: OrganizationService, private logService: LogService) {
+        private messagingService: MessagingService,
+        private route: ActivatedRoute,
+        private organizationService: OrganizationService,
+        private logService: LogService
+    ) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async params => {
+        this.route.parent.parent.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
             await this.load();
             this.firstLoaded = true;
@@ -72,8 +74,12 @@ export class OrganizationSubscriptionComponent implements OnInit {
             return;
         }
 
-        const confirmed = await this.platformUtilsService.showDialog(this.i18nService.t('reinstateConfirmation'),
-            this.i18nService.t('reinstateSubscription'), this.i18nService.t('yes'), this.i18nService.t('cancel'));
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t("reinstateConfirmation"),
+            this.i18nService.t("reinstateSubscription"),
+            this.i18nService.t("yes"),
+            this.i18nService.t("cancel")
+        );
         if (!confirmed) {
             return;
         }
@@ -81,7 +87,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         try {
             this.reinstatePromise = this.apiService.postOrganizationReinstate(this.organizationId);
             await this.reinstatePromise;
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('reinstated'));
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("reinstated"));
             this.load();
         } catch (e) {
             this.logService.error(e);
@@ -93,8 +99,13 @@ export class OrganizationSubscriptionComponent implements OnInit {
             return;
         }
 
-        const confirmed = await this.platformUtilsService.showDialog(this.i18nService.t('cancelConfirmation'),
-            this.i18nService.t('cancelSubscription'), this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t("cancelConfirmation"),
+            this.i18nService.t("cancelSubscription"),
+            this.i18nService.t("yes"),
+            this.i18nService.t("no"),
+            "warning"
+        );
         if (!confirmed) {
             return;
         }
@@ -102,7 +113,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         try {
             this.cancelPromise = this.apiService.postOrganizationCancel(this.organizationId);
             await this.cancelPromise;
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('canceledSubscription'));
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("canceledSubscription"));
             this.load();
         } catch (e) {
             this.logService.error(e);
@@ -136,7 +147,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         this.showUpdateLicense = false;
         if (updated) {
             this.load();
-            this.messagingService.send('updatedOrgLicense');
+            this.messagingService.send("updatedOrgLicense");
         }
     }
 
@@ -158,9 +169,12 @@ export class OrganizationSubscriptionComponent implements OnInit {
 
     async removeSponsorship() {
         const isConfirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('removeSponsorshipConfirmation'),
-            this.i18nService.t('removeSponsorship'),
-            this.i18nService.t('remove'), this.i18nService.t('cancel'), 'warning');
+            this.i18nService.t("removeSponsorshipConfirmation"),
+            this.i18nService.t("removeSponsorship"),
+            this.i18nService.t("remove"),
+            this.i18nService.t("cancel"),
+            "warning"
+        );
 
         if (!isConfirmed) {
             return;
@@ -169,7 +183,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         try {
             this.removeSponsorshipPromise = this.apiService.deleteRemoveSponsorship(this.organizationId);
             await this.removeSponsorshipPromise;
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('removeSponsorshipSuccess'));
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("removeSponsorshipSuccess"));
             await this.load();
         } catch (e) {
             this.logService.error(e);
@@ -177,8 +191,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     get isExpired() {
-        return this.sub != null && this.sub.expiration != null &&
-            new Date(this.sub.expiration) < new Date();
+        return this.sub != null && this.sub.expiration != null && new Date(this.sub.expiration) < new Date();
     }
 
     get subscriptionMarkedForCancel() {
@@ -194,8 +207,9 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     get storagePercentage() {
-        return this.sub != null && this.sub.maxStorageGb ?
-            +(100 * (this.sub.storageGb / this.sub.maxStorageGb)).toFixed(2) : 0;
+        return this.sub != null && this.sub.maxStorageGb
+            ? +(100 * (this.sub.storageGb / this.sub.maxStorageGb)).toFixed(2)
+            : 0;
     }
 
     get storageProgressWidth() {
@@ -204,7 +218,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
 
     get billingInterval() {
         const monthly = !this.sub.plan.isAnnual;
-        return monthly ? 'month' : 'year';
+        return monthly ? "month" : "year";
     }
 
     get storageGbPrice() {
@@ -228,29 +242,34 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
 
     get isSponsoredSubscription(): boolean {
-        return this.sub.subscription?.items.some(i => i.sponsoredSubscriptionItem);
+        return this.sub.subscription?.items.some((i) => i.sponsoredSubscriptionItem);
     }
 
     get canDownloadLicense() {
-        return (this.sub.planType !== PlanType.Free && this.subscription == null) ||
-            (this.subscription != null && !this.subscription.cancelled);
+        return (
+            (this.sub.planType !== PlanType.Free && this.subscription == null) ||
+            (this.subscription != null && !this.subscription.cancelled)
+        );
     }
 
     get subscriptionDesc() {
         if (this.sub.planType === PlanType.Free) {
-            return this.i18nService.t('subscriptionFreePlan', this.sub.seats.toString());
-        } else if (this.sub.planType === PlanType.FamiliesAnnually || this.sub.planType === PlanType.FamiliesAnnually2019) {
+            return this.i18nService.t("subscriptionFreePlan", this.sub.seats.toString());
+        } else if (
+            this.sub.planType === PlanType.FamiliesAnnually ||
+            this.sub.planType === PlanType.FamiliesAnnually2019
+        ) {
             if (this.isSponsoredSubscription) {
-                return this.i18nService.t('subscriptionSponsoredFamiliesPlan', this.sub.seats.toString());
+                return this.i18nService.t("subscriptionSponsoredFamiliesPlan", this.sub.seats.toString());
             } else {
-                return this.i18nService.t('subscriptionFamiliesPlan', this.sub.seats.toString());
+                return this.i18nService.t("subscriptionFamiliesPlan", this.sub.seats.toString());
             }
         } else if (this.sub.maxAutoscaleSeats === this.sub.seats && this.sub.seats != null) {
-            return this.i18nService.t('subscriptionMaxReached', this.sub.seats.toString());
+            return this.i18nService.t("subscriptionMaxReached", this.sub.seats.toString());
         } else if (this.sub.maxAutoscaleSeats == null) {
-            return this.i18nService.t('subscriptionUserSeatsUnlimitedAutoscale');
+            return this.i18nService.t("subscriptionUserSeatsUnlimitedAutoscale");
         } else {
-            return this.i18nService.t('subscriptionUserSeatsLimitedAutoscale', this.sub.maxAutoscaleSeats.toString());
+            return this.i18nService.t("subscriptionUserSeatsLimitedAutoscale", this.sub.maxAutoscaleSeats.toString());
         }
     }
 

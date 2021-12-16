@@ -1,43 +1,40 @@
-import {
-    Component,
-    ViewChild,
-    ViewContainerRef,
-} from '@angular/core';
+import { Component, ViewChild, ViewContainerRef } from "@angular/core";
 
-import {
-    ActivatedRoute,
-    Router
-} from '@angular/router';
+import { ActivatedRoute, Router } from "@angular/router";
 
-import { ModalService } from 'jslib-angular/services/modal.service';
+import { ModalService } from "jslib-angular/services/modal.service";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { SyncService } from 'jslib-common/abstractions/sync.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { CryptoService } from "jslib-common/abstractions/crypto.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { SyncService } from "jslib-common/abstractions/sync.service";
 
-import { OrganizationKeysRequest } from 'jslib-common/models/request/organizationKeysRequest';
-import { OrganizationUpdateRequest } from 'jslib-common/models/request/organizationUpdateRequest';
+import { OrganizationKeysRequest } from "jslib-common/models/request/organizationKeysRequest";
+import { OrganizationUpdateRequest } from "jslib-common/models/request/organizationUpdateRequest";
 
-import { OrganizationResponse } from 'jslib-common/models/response/organizationResponse';
+import { OrganizationResponse } from "jslib-common/models/response/organizationResponse";
 
-import { ApiKeyComponent } from '../../settings/api-key.component';
-import { PurgeVaultComponent } from '../../settings/purge-vault.component';
-import { TaxInfoComponent } from '../../settings/tax-info.component';
+import { ApiKeyComponent } from "../../settings/api-key.component";
+import { PurgeVaultComponent } from "../../settings/purge-vault.component";
+import { TaxInfoComponent } from "../../settings/tax-info.component";
 
-import { DeleteOrganizationComponent } from './delete-organization.component';
+import { DeleteOrganizationComponent } from "./delete-organization.component";
 
 @Component({
-    selector: 'app-org-account',
-    templateUrl: 'account.component.html',
+    selector: "app-org-account",
+    templateUrl: "account.component.html",
 })
 export class AccountComponent {
-    @ViewChild('deleteOrganizationTemplate', { read: ViewContainerRef, static: true }) deleteModalRef: ViewContainerRef;
-    @ViewChild('purgeOrganizationTemplate', { read: ViewContainerRef, static: true }) purgeModalRef: ViewContainerRef;
-    @ViewChild('apiKeyTemplate', { read: ViewContainerRef, static: true }) apiKeyModalRef: ViewContainerRef;
-    @ViewChild('rotateApiKeyTemplate', { read: ViewContainerRef, static: true }) rotateApiKeyModalRef: ViewContainerRef;
+    @ViewChild("deleteOrganizationTemplate", { read: ViewContainerRef, static: true })
+    deleteModalRef: ViewContainerRef;
+    @ViewChild("purgeOrganizationTemplate", { read: ViewContainerRef, static: true })
+    purgeModalRef: ViewContainerRef;
+    @ViewChild("apiKeyTemplate", { read: ViewContainerRef, static: true })
+    apiKeyModalRef: ViewContainerRef;
+    @ViewChild("rotateApiKeyTemplate", { read: ViewContainerRef, static: true })
+    rotateApiKeyModalRef: ViewContainerRef;
     @ViewChild(TaxInfoComponent) taxInfo: TaxInfoComponent;
 
     selfHosted = false;
@@ -49,16 +46,21 @@ export class AccountComponent {
 
     private organizationId: string;
 
-    constructor(private modalService: ModalService,
-        private apiService: ApiService, private i18nService: I18nService,
+    constructor(
+        private modalService: ModalService,
+        private apiService: ApiService,
+        private i18nService: I18nService,
         private route: ActivatedRoute,
-        private syncService: SyncService, private platformUtilsService: PlatformUtilsService,
-        private cryptoService: CryptoService, private logService: LogService,
-        private router: Router) { }
+        private syncService: SyncService,
+        private platformUtilsService: PlatformUtilsService,
+        private cryptoService: CryptoService,
+        private logService: LogService,
+        private router: Router
+    ) {}
 
     async ngOnInit() {
         this.selfHosted = this.platformUtilsService.isSelfHost();
-        this.route.parent.parent.params.subscribe(async params => {
+        this.route.parent.parent.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
             try {
                 this.org = await this.apiService.getOrganization(this.organizationId);
@@ -89,7 +91,7 @@ export class AccountComponent {
                 return this.syncService.fullSync(true);
             });
             await this.formPromise;
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('organizationUpdated'));
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("organizationUpdated"));
         } catch (e) {
             this.logService.error(e);
         }
@@ -98,48 +100,48 @@ export class AccountComponent {
     async submitTaxInfo() {
         this.taxFormPromise = this.taxInfo.submitTaxInfo();
         await this.taxFormPromise;
-        this.platformUtilsService.showToast('success', null, this.i18nService.t('taxInfoUpdated'));
+        this.platformUtilsService.showToast("success", null, this.i18nService.t("taxInfoUpdated"));
     }
 
     async deleteOrganization() {
-        await this.modalService.openViewRef(DeleteOrganizationComponent, this.deleteModalRef, comp => {
+        await this.modalService.openViewRef(DeleteOrganizationComponent, this.deleteModalRef, (comp) => {
             comp.organizationId = this.organizationId;
             comp.onSuccess.subscribe(() => {
-                this.router.navigate(['/']);
+                this.router.navigate(["/"]);
             });
         });
     }
 
     async purgeVault() {
-        await this.modalService.openViewRef(PurgeVaultComponent, this.purgeModalRef, comp => {
+        await this.modalService.openViewRef(PurgeVaultComponent, this.purgeModalRef, (comp) => {
             comp.organizationId = this.organizationId;
         });
     }
 
     async viewApiKey() {
-        await this.modalService.openViewRef(ApiKeyComponent, this.apiKeyModalRef, comp => {
-            comp.keyType = 'organization';
+        await this.modalService.openViewRef(ApiKeyComponent, this.apiKeyModalRef, (comp) => {
+            comp.keyType = "organization";
             comp.entityId = this.organizationId;
             comp.postKey = this.apiService.postOrganizationApiKey.bind(this.apiService);
-            comp.scope = 'api.organization';
-            comp.grantType = 'client_credentials';
-            comp.apiKeyTitle = 'apiKey';
-            comp.apiKeyWarning = 'apiKeyWarning';
-            comp.apiKeyDescription = 'apiKeyDesc';
+            comp.scope = "api.organization";
+            comp.grantType = "client_credentials";
+            comp.apiKeyTitle = "apiKey";
+            comp.apiKeyWarning = "apiKeyWarning";
+            comp.apiKeyDescription = "apiKeyDesc";
         });
     }
 
     async rotateApiKey() {
-        await this.modalService.openViewRef(ApiKeyComponent, this.rotateApiKeyModalRef, comp => {
-            comp.keyType = 'organization';
+        await this.modalService.openViewRef(ApiKeyComponent, this.rotateApiKeyModalRef, (comp) => {
+            comp.keyType = "organization";
             comp.isRotation = true;
             comp.entityId = this.organizationId;
             comp.postKey = this.apiService.postOrganizationRotateApiKey.bind(this.apiService);
-            comp.scope = 'api.organization';
-            comp.grantType = 'client_credentials';
-            comp.apiKeyTitle = 'apiKey';
-            comp.apiKeyWarning = 'apiKeyWarning';
-            comp.apiKeyDescription = 'apiKeyRotateDesc';
+            comp.scope = "api.organization";
+            comp.grantType = "client_credentials";
+            comp.apiKeyTitle = "apiKey";
+            comp.apiKeyWarning = "apiKeyWarning";
+            comp.apiKeyDescription = "apiKeyRotateDesc";
         });
     }
 }

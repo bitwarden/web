@@ -1,18 +1,13 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
-import { LogService } from 'jslib-common/abstractions/log.service';
+import { LogService } from "jslib-common/abstractions/log.service";
 
-import { PlanType } from 'jslib-common/enums/planType';
-import { ProductType } from 'jslib-common/enums/productType';
+import { PlanType } from "jslib-common/enums/planType";
+import { ProductType } from "jslib-common/enums/productType";
 
 @Component({
-    selector: 'app-change-plan',
-    templateUrl: 'change-plan.component.html',
+    selector: "app-change-plan",
+    templateUrl: "change-plan.component.html",
 })
 export class ChangePlanComponent {
     @Input() organizationId: string;
@@ -23,7 +18,7 @@ export class ChangePlanComponent {
     defaultUpgradePlan: PlanType = PlanType.FamiliesAnnually;
     defaultUpgradeProduct: ProductType = ProductType.Families;
 
-    constructor(private logService: LogService) { }
+    constructor(private logService: LogService) {}
 
     async submit() {
         try {

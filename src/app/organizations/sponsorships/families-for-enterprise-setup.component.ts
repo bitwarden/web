@@ -1,40 +1,32 @@
-import {
-    Component,
-    OnInit,
-    ViewChild,
-    ViewContainerRef,
-} from '@angular/core';
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
 
-import { first } from 'rxjs/operators';
+import { first } from "rxjs/operators";
 
-import { ModalService } from 'jslib-angular/services/modal.service';
-import { ValidationService } from 'jslib-angular/services/validation.service';
+import { ModalService } from "jslib-angular/services/modal.service";
+import { ValidationService } from "jslib-angular/services/validation.service";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { OrganizationService } from 'jslib-common/abstractions/organization.service';
-import { SyncService } from 'jslib-common/abstractions/sync.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { OrganizationService } from "jslib-common/abstractions/organization.service";
+import { SyncService } from "jslib-common/abstractions/sync.service";
 
-import { PlanSponsorshipType } from 'jslib-common/enums/planSponsorshipType';
-import { PlanType } from 'jslib-common/enums/planType';
-import { ProductType } from 'jslib-common/enums/productType';
+import { PlanSponsorshipType } from "jslib-common/enums/planSponsorshipType";
+import { PlanType } from "jslib-common/enums/planType";
+import { ProductType } from "jslib-common/enums/productType";
 
-import { Organization } from 'jslib-common/models/domain/organization';
+import { Organization } from "jslib-common/models/domain/organization";
 
-import { OrganizationSponsorshipRedeemRequest } from 'jslib-common/models/request/organization/organizationSponsorshipRedeemRequest';
+import { OrganizationSponsorshipRedeemRequest } from "jslib-common/models/request/organization/organizationSponsorshipRedeemRequest";
 
-import { DeleteOrganizationComponent } from 'src/app/organizations/settings/delete-organization.component';
+import { DeleteOrganizationComponent } from "src/app/organizations/settings/delete-organization.component";
 
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { OrganizationPlansComponent } from 'src/app/settings/organization-plans.component';
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { OrganizationPlansComponent } from "src/app/settings/organization-plans.component";
 
 @Component({
-    selector: 'families-for-enterprise-setup',
-    templateUrl: 'families-for-enterprise-setup.component.html',
+    selector: "families-for-enterprise-setup",
+    templateUrl: "families-for-enterprise-setup.component.html",
 })
 export class FamiliesForEnterpriseSetupComponent implements OnInit {
     @ViewChild(OrganizationPlansComponent, { static: false })
@@ -49,7 +41,8 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
         value.onSuccess.subscribe(this.onOrganizationCreateSuccess.bind(this));
     }
 
-    @ViewChild('deleteOrganizationTemplate', { read: ViewContainerRef, static: true }) deleteModalRef: ViewContainerRef;
+    @ViewChild("deleteOrganizationTemplate", { read: ViewContainerRef, static: true })
+    deleteModalRef: ViewContainerRef;
 
     loading = true;
     badToken = false;
@@ -60,36 +53,47 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
 
     showNewOrganization: boolean = false;
     _organizationPlansComponent: OrganizationPlansComponent;
-    _selectedFamilyOrganizationId: string = '';
+    _selectedFamilyOrganizationId: string = "";
 
-    constructor(private router: Router, private platformUtilsService: PlatformUtilsService,
-        private i18nService: I18nService, private route: ActivatedRoute,
-        private apiService: ApiService, private syncService: SyncService,
-        private validationService: ValidationService, private organizationService: OrganizationService,
-        private modalService: ModalService) { }
+    constructor(
+        private router: Router,
+        private platformUtilsService: PlatformUtilsService,
+        private i18nService: I18nService,
+        private route: ActivatedRoute,
+        private apiService: ApiService,
+        private syncService: SyncService,
+        private validationService: ValidationService,
+        private organizationService: OrganizationService,
+        private modalService: ModalService
+    ) {}
 
     async ngOnInit() {
-        document.body.classList.remove('layout_frontend');
-        this.route.queryParams.pipe(first()).subscribe(async qParams => {
+        document.body.classList.remove("layout_frontend");
+        this.route.queryParams.pipe(first()).subscribe(async (qParams) => {
             const error = qParams.token == null;
             if (error) {
-                this.platformUtilsService.showToast('error', null, this.i18nService.t('sponsoredFamiliesAcceptFailed'),
-                    { timeout: 10000 });
-                this.router.navigate(['/']);
+                this.platformUtilsService.showToast(
+                    "error",
+                    null,
+                    this.i18nService.t("sponsoredFamiliesAcceptFailed"),
+                    { timeout: 10000 }
+                );
+                this.router.navigate(["/"]);
                 return;
             }
 
             this.token = qParams.token;
 
             await this.syncService.fullSync(true);
-            this.badToken = !await this.apiService.postPreValidateSponsorshipToken(this.token);
+            this.badToken = !(await this.apiService.postPreValidateSponsorshipToken(this.token));
             this.loading = false;
 
-            this.existingFamilyOrganizations = (await this.organizationService.getAll())
-                .filter(o => o.planProductType === ProductType.Families);
+            this.existingFamilyOrganizations = (await this.organizationService.getAll()).filter(
+                (o) => o.planProductType === ProductType.Families
+            );
 
             if (this.existingFamilyOrganizations.length === 0) {
-                this.selectedFamilyOrganizationId = 'createNew';
+                this.selectedFamilyOrganizationId = "createNew";
             }
         });
     }
@@ -106,7 +110,7 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
 
     set selectedFamilyOrganizationId(value: string) {
         this._selectedFamilyOrganizationId = value;
-        this.showNewOrganization = value === 'createNew';
+        this.showNewOrganization = value === "createNew";
     }
 
     private async doSubmit(organizationId: string) {
@@ -116,21 +120,21 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
             request.sponsoredOrganizationId = organizationId;
 
             await this.apiService.postRedeemSponsorship(this.token, request);
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('sponsoredFamiliesOfferRedeemed'));
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("sponsoredFamiliesOfferRedeemed"));
             await this.syncService.fullSync(true);
 
-            this.router.navigate(['/']);
+            this.router.navigate(["/"]);
         } catch (e) {
             if (this.showNewOrganization) {
-                await this.modalService.openViewRef(DeleteOrganizationComponent, this.deleteModalRef, comp => {
+                await this.modalService.openViewRef(DeleteOrganizationComponent, this.deleteModalRef, (comp) => {
                     comp.organizationId = organizationId;
-                    comp.descriptionKey = 'orgCreatedSponsorshipInvalid';
+                    comp.descriptionKey = "orgCreatedSponsorshipInvalid";
                     comp.onSuccess.subscribe(() => {
-                        this.router.navigate(['/']);
+                        this.router.navigate(["/"]);
                     });
                 });
             }
-            this.validationService.showError(this.i18nService.t('sponsorshipTokenHasExpired'));
+            this.validationService.showError(this.i18nService.t("sponsorshipTokenHasExpired"));
         }
     }
 

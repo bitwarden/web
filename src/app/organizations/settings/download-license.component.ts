@@ -1,17 +1,12 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
 @Component({
-    selector: 'app-download-license',
-    templateUrl: 'download-license.component.html',
+    selector: "app-download-license",
+    templateUrl: "download-license.component.html",
 })
 export class DownloadLicenseComponent {
     @Input() organizationId: string;
@@ -21,11 +16,14 @@ export class DownloadLicenseComponent {
     installationId: string;
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
-        private logService: LogService) { }
+    constructor(
+        private apiService: ApiService,
+        private platformUtilsService: PlatformUtilsService,
+        private logService: LogService
+    ) {}
 
     async submit() {
-        if (this.installationId == null || this.installationId === '') {
+        if (this.installationId == null || this.installationId === "") {
             return;
         }
 
@@ -33,7 +31,7 @@ export class DownloadLicenseComponent {
             this.formPromise = this.apiService.getOrganizationLicense(this.organizationId, this.installationId);
             const license = await this.formPromise;
             const licenseString = JSON.stringify(license, null, 2);
-            this.platformUtilsService.saveFile(window, licenseString, null, 'bitwarden_organization_license.json');
+            this.platformUtilsService.saveFile(window, licenseString, null, "bitwarden_organization_license.json");
             this.onDownloaded.emit();
         } catch (e) {
             this.logService.error(e);
