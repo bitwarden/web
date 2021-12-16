@@ -1,24 +1,21 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { CryptoService } from "jslib-common/abstractions/crypto.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { MessagingService } from "jslib-common/abstractions/messaging.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { StateService } from "jslib-common/abstractions/state.service";
 
-import { EmailRequest } from 'jslib-common/models/request/emailRequest';
-import { EmailTokenRequest } from 'jslib-common/models/request/emailTokenRequest';
+import { EmailRequest } from "jslib-common/models/request/emailRequest";
+import { EmailTokenRequest } from "jslib-common/models/request/emailTokenRequest";
 
-import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
+import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
 
 @Component({
-    selector: 'app-change-email',
-    templateUrl: 'change-email.component.html',
+    selector: "app-change-email",
+    templateUrl: "change-email.component.html",
 })
 export class ChangeEmailComponent implements OnInit {
     masterPassword: string;
@@ -36,19 +33,20 @@ export class ChangeEmailComponent implements OnInit {
         private cryptoService: CryptoService,
         private messagingService: MessagingService,
         private logService: LogService,
-        private stateService: StateService,
-    ) { }
+        private stateService: StateService
+    ) {}
 
     async ngOnInit() {
         const twoFactorProviders = await this.apiService.getTwoFactorProviders();
-        this.showTwoFactorEmailWarning = twoFactorProviders.data.some(p => p.type === TwoFactorProviderType.Email &&
-            p.enabled);
+        this.showTwoFactorEmailWarning = twoFactorProviders.data.some(
+            (p) => p.type === TwoFactorProviderType.Email && p.enabled
+        );
     }
 
     async submit() {
         const hasEncKey = await this.cryptoService.hasEncKey();
         if (!hasEncKey) {
-            this.platformUtilsService.showToast('error', null, this.i18nService.t('updateKey'));
+            this.platformUtilsService.showToast("error", null, this.i18nService.t("updateKey"));
             return;
         }
 
@@ -79,9 +77,12 @@ export class ChangeEmailComponent implements OnInit {
                 this.formPromise = this.apiService.postEmail(request);
                 await this.formPromise;
                 this.reset();
-                this.platformUtilsService.showToast('success', this.i18nService.t('emailChanged'),
-                    this.i18nService.t('logBackIn'));
-                this.messagingService.send('logout');
+                this.platformUtilsService.showToast(
+                    "success",
+                    this.i18nService.t("emailChanged"),
+                    this.i18nService.t("logBackIn")
+                );
+                this.messagingService.send("logout");
             } catch (e) {
                 this.logService.error(e);
             }

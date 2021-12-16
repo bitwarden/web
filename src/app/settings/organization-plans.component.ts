@@ -1,43 +1,36 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    ViewChild,
-} from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from "@angular/core";
+import { Router } from "@angular/router";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { OrganizationService } from 'jslib-common/abstractions/organization.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { PolicyService } from 'jslib-common/abstractions/policy.service';
-import { SyncService } from 'jslib-common/abstractions/sync.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { CryptoService } from "jslib-common/abstractions/crypto.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { OrganizationService } from "jslib-common/abstractions/organization.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { PolicyService } from "jslib-common/abstractions/policy.service";
+import { SyncService } from "jslib-common/abstractions/sync.service";
 
-import { PaymentComponent } from './payment.component';
-import { TaxInfoComponent } from './tax-info.component';
+import { PaymentComponent } from "./payment.component";
+import { TaxInfoComponent } from "./tax-info.component";
 
-import { EncString } from 'jslib-common/models/domain/encString';
-import { SymmetricCryptoKey } from 'jslib-common/models/domain/symmetricCryptoKey';
+import { EncString } from "jslib-common/models/domain/encString";
+import { SymmetricCryptoKey } from "jslib-common/models/domain/symmetricCryptoKey";
 
-import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
-import { PlanType } from 'jslib-common/enums/planType';
-import { PolicyType } from 'jslib-common/enums/policyType';
-import { ProductType } from 'jslib-common/enums/productType';
+import { PaymentMethodType } from "jslib-common/enums/paymentMethodType";
+import { PlanType } from "jslib-common/enums/planType";
+import { PolicyType } from "jslib-common/enums/policyType";
+import { ProductType } from "jslib-common/enums/productType";
 
-import { OrganizationCreateRequest } from 'jslib-common/models/request/organizationCreateRequest';
-import { OrganizationKeysRequest } from 'jslib-common/models/request/organizationKeysRequest';
-import { OrganizationUpgradeRequest } from 'jslib-common/models/request/organizationUpgradeRequest';
-import { ProviderOrganizationCreateRequest } from 'jslib-common/models/request/provider/providerOrganizationCreateRequest';
+import { OrganizationCreateRequest } from "jslib-common/models/request/organizationCreateRequest";
+import { OrganizationKeysRequest } from "jslib-common/models/request/organizationKeysRequest";
+import { OrganizationUpgradeRequest } from "jslib-common/models/request/organizationUpgradeRequest";
+import { ProviderOrganizationCreateRequest } from "jslib-common/models/request/provider/providerOrganizationCreateRequest";
 
-import { PlanResponse } from 'jslib-common/models/response/planResponse';
+import { PlanResponse } from "jslib-common/models/response/planResponse";
 
 @Component({
-    selector: 'app-organization-plans',
-    templateUrl: 'organization-plans.component.html',
+    selector: "app-organization-plans",
+    templateUrl: "organization-plans.component.html",
 })
 export class OrganizationPlansComponent implements OnInit {
     @ViewChild(PaymentComponent) paymentComponent: PaymentComponent;
@@ -70,10 +63,17 @@ export class OrganizationPlansComponent implements OnInit {
 
     plans: PlanResponse[];
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
         private platformUtilsService: PlatformUtilsService,
-        private cryptoService: CryptoService, private router: Router, private syncService: SyncService,
-        private policyService: PolicyService, private organizationService: OrganizationService, private logService: LogService) {
+        private cryptoService: CryptoService,
+        private router: Router,
+        private syncService: SyncService,
+        private policyService: PolicyService,
+        private organizationService: OrganizationService,
+        private logService: LogService
+    ) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -99,44 +99,39 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get selectedPlan() {
-        return this.plans.find(plan => plan.type === this.plan);
+        return this.plans.find((plan) => plan.type === this.plan);
     }
 
     get selectedPlanInterval() {
-        return this.selectedPlan.isAnnual
-            ? 'year'
-            : 'month';
+        return this.selectedPlan.isAnnual ? "year" : "month";
     }
 
     get selectableProducts() {
-        let validPlans = this.plans.filter(plan => plan.type !== PlanType.Custom);
+        let validPlans = this.plans.filter((plan) => plan.type !== PlanType.Custom);
 
         if (this.ownedBusiness) {
-            validPlans = validPlans.filter(plan => plan.canBeUsedByBusiness);
+            validPlans = validPlans.filter((plan) => plan.canBeUsedByBusiness);
         }
 
         if (!this.showFree) {
-            validPlans = validPlans.filter(plan => plan.product !== ProductType.Free);
+            validPlans = validPlans.filter((plan) => plan.product !== ProductType.Free);
         }
 
-        validPlans = validPlans
-        .filter(plan => !plan.legacyYear
-            && !plan.disabled
-            && (plan.isAnnual || plan.product === this.productTypes.Free));
+        validPlans = validPlans.filter(
+            (plan) => !plan.legacyYear && !plan.disabled && (plan.isAnnual || plan.product === this.productTypes.Free)
+        );
 
         if (this.acceptingSponsorship) {
-            const familyPlan = this.plans.find(plan => plan.type === PlanType.FamiliesAnnually);
+            const familyPlan = this.plans.find((plan) => plan.type === PlanType.FamiliesAnnually);
             this.discount = familyPlan.basePrice;
-            validPlans = [
-                familyPlan,
-            ];
+            validPlans = [familyPlan];
         }
 
         return validPlans;
     }
 
     get selectablePlans() {
-        return this.plans.filter(plan => !plan.legacyYear && !plan.disabled && plan.product === this.product);
+        return this.plans.filter((plan) => !plan.legacyYear && !plan.disabled && plan.product === this.product);
     }
 
     additionalStoragePriceMonthly(selectedPlan: PlanResponse) {
@@ -188,22 +183,22 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     get taxCharges() {
-        return this.taxComponent != null && this.taxComponent.taxRate != null ?
-            (this.taxComponent.taxRate / 100) * this.subtotal :
-            0;
+        return this.taxComponent != null && this.taxComponent.taxRate != null
+            ? (this.taxComponent.taxRate / 100) * this.subtotal
+            : 0;
     }
 
     get total() {
-        return (this.subtotal + this.taxCharges) || 0;
+        return this.subtotal + this.taxCharges || 0;
     }
 
     get paymentDesc() {
         if (this.acceptingSponsorship) {
-            return this.i18nService.t('paymentSponsored');
+            return this.i18nService.t("paymentSponsored");
         } else if (this.freeTrial && this.createOrganization) {
-            return this.i18nService.t('paymentChargedWithTrial');
+            return this.i18nService.t("paymentChargedWithTrial");
         } else {
-            return this.i18nService.t('paymentCharged', this.i18nService.t(this.selectedPlanInterval));
+            return this.i18nService.t("paymentCharged", this.i18nService.t(this.selectedPlanInterval));
         }
     }
 
@@ -217,8 +212,11 @@ export class OrganizationPlansComponent implements OnInit {
         }
         if (!this.selectedPlan.hasAdditionalSeatsOption) {
             this.additionalSeats = 0;
-        } else if (!this.additionalSeats && !this.selectedPlan.baseSeats &&
-            this.selectedPlan.hasAdditionalSeatsOption) {
+        } else if (
+            !this.additionalSeats &&
+            !this.selectedPlan.baseSeats &&
+            this.selectedPlan.hasAdditionalSeatsOption
+        ) {
             this.additionalSeats = 1;
         }
     }
@@ -232,10 +230,9 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     changedCountry() {
-        this.paymentComponent.hideBank = this.taxComponent.taxInfo.country !== 'US';
+        this.paymentComponent.hideBank = this.taxComponent.taxInfo.country !== "US";
         // Bank Account payments are only available for US customers
-        if (this.paymentComponent.hideBank &&
-            this.paymentComponent.method === PaymentMethodType.BankAccount) {
+        if (this.paymentComponent.hideBank && this.paymentComponent.method === PaymentMethodType.BankAccount) {
             this.paymentComponent.method = PaymentMethodType.Card;
             this.paymentComponent.changeMethod();
         }
@@ -259,7 +256,9 @@ export class OrganizationPlansComponent implements OnInit {
                     const shareKey = await this.cryptoService.makeShareKey();
                     const key = shareKey[0].encryptedString;
                     const collection = await this.cryptoService.encrypt(
-                        this.i18nService.t('defaultCollection'), shareKey[1]);
+                        this.i18nService.t("defaultCollection"),
+                        shareKey[1]
+                    );
                     const collectionCt = collection.encryptedString;
                     const orgKeys = await this.cryptoService.makeKeyPair(shareKey[1]);
 
@@ -269,16 +268,20 @@ export class OrganizationPlansComponent implements OnInit {
                         orgId = await this.createCloudHosted(key, collectionCt, orgKeys, shareKey[1]);
                     }
 
-                    this.platformUtilsService.showToast('success', this.i18nService.t('organizationCreated'), this.i18nService.t('organizationReadyToGo'));
+                    this.platformUtilsService.showToast(
+                        "success",
+                        this.i18nService.t("organizationCreated"),
+                        this.i18nService.t("organizationReadyToGo")
+                    );
                 } else {
                     orgId = await this.updateOrganization(orgId);
-                    this.platformUtilsService.showToast('success', null, this.i18nService.t('organizationUpgraded'));
+                    this.platformUtilsService.showToast("success", null, this.i18nService.t("organizationUpgraded"));
                 }
 
                 await this.apiService.refreshIdentityToken();
                 await this.syncService.fullSync(true);
                 if (!this.acceptingSponsorship) {
-                    this.router.navigate(['/organizations/' + orgId]);
+                    this.router.navigate(["/organizations/" + orgId]);
                 }
 
                 return orgId;
@@ -321,7 +324,12 @@ export class OrganizationPlansComponent implements OnInit {
         return this.organizationId;
     }
 
-    private async createCloudHosted(key: string, collectionCt: string, orgKeys: [string, EncString], orgKey: SymmetricCryptoKey) {
+    private async createCloudHosted(
+        key: string,
+        collectionCt: string,
+        orgKeys: [string, EncString],
+        orgKey: SymmetricCryptoKey
+    ) {
         const request = new OrganizationCreateRequest();
         request.key = key;
         request.collectionName = collectionCt;
@@ -339,8 +347,7 @@ export class OrganizationPlansComponent implements OnInit {
             request.businessName = this.ownedBusiness ? this.businessName : null;
             request.additionalSeats = this.additionalSeats;
             request.additionalStorageGb = this.additionalStorage;
-            request.premiumAccessAddon = this.selectedPlan.hasPremiumAccessOption &&
-                this.premiumAccessAddon;
+            request.premiumAccessAddon = this.selectedPlan.hasPremiumAccessOption && this.premiumAccessAddon;
             request.planType = this.selectedPlan.type;
             request.billingAddressPostalCode = this.taxComponent.taxInfo.postalCode;
             request.billingAddressCountry = this.taxComponent.taxInfo.country;
@@ -356,8 +363,11 @@ export class OrganizationPlansComponent implements OnInit {
         if (this.providerId) {
             const providerRequest = new ProviderOrganizationCreateRequest(this.clientOwnerEmail, request);
             const providerKey = await this.cryptoService.getProviderKey(this.providerId);
-            providerRequest.organizationCreateRequest.key = (await this.cryptoService.encrypt(orgKey.key, providerKey)).encryptedString;
-            const orgId = (await this.apiService.postProviderCreateOrganization(this.providerId, providerRequest)).organizationId;
+            providerRequest.organizationCreateRequest.key = (
+                await this.cryptoService.encrypt(orgKey.key, providerKey)
+            ).encryptedString;
+            const orgId = (await this.apiService.postProviderCreateOrganization(this.providerId, providerRequest))
+                .organizationId;
 
             return orgId;
         } else {
@@ -366,16 +376,16 @@ export class OrganizationPlansComponent implements OnInit {
     }
 
     private async createSelfHosted(key: string, collectionCt: string, orgKeys: [string, EncString]) {
-        const fileEl = document.getElementById('file') as HTMLInputElement;
+        const fileEl = document.getElementById("file") as HTMLInputElement;
         const files = fileEl.files;
         if (files == null || files.length === 0) {
-            throw new Error(this.i18nService.t('selectFile'));
+            throw new Error(this.i18nService.t("selectFile"));
         }
 
         const fd = new FormData();
-        fd.append('license', files[0]);
-        fd.append('key', key);
-        fd.append('collectionName', collectionCt);
+        fd.append("license", files[0]);
+        fd.append("key", key);
+        fd.append("collectionName", collectionCt);
         const response = await this.apiService.postOrganizationLicense(fd);
         const orgId = response.id;
 

@@ -1,43 +1,42 @@
-import {
-    Component,
-    OnInit,
-    Type,
-    ViewChild,
-    ViewContainerRef,
-} from '@angular/core';
+import { Component, OnInit, Type, ViewChild, ViewContainerRef } from "@angular/core";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { PolicyService } from 'jslib-common/abstractions/policy.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { MessagingService } from "jslib-common/abstractions/messaging.service";
+import { PolicyService } from "jslib-common/abstractions/policy.service";
+import { StateService } from "jslib-common/abstractions/state.service";
 
-import { TwoFactorProviders } from 'jslib-common/services/auth.service';
+import { TwoFactorProviders } from "jslib-common/services/auth.service";
 
-import { ModalService } from 'jslib-angular/services/modal.service';
+import { ModalService } from "jslib-angular/services/modal.service";
 
-import { ModalRef } from 'jslib-angular/components/modal/modal.ref';
+import { ModalRef } from "jslib-angular/components/modal/modal.ref";
 
-import { PolicyType } from 'jslib-common/enums/policyType';
-import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
+import { PolicyType } from "jslib-common/enums/policyType";
+import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
 
-import { TwoFactorAuthenticatorComponent } from './two-factor-authenticator.component';
-import { TwoFactorDuoComponent } from './two-factor-duo.component';
-import { TwoFactorEmailComponent } from './two-factor-email.component';
-import { TwoFactorRecoveryComponent } from './two-factor-recovery.component';
-import { TwoFactorWebAuthnComponent } from './two-factor-webauthn.component';
-import { TwoFactorYubiKeyComponent } from './two-factor-yubikey.component';
+import { TwoFactorAuthenticatorComponent } from "./two-factor-authenticator.component";
+import { TwoFactorDuoComponent } from "./two-factor-duo.component";
+import { TwoFactorEmailComponent } from "./two-factor-email.component";
+import { TwoFactorRecoveryComponent } from "./two-factor-recovery.component";
+import { TwoFactorWebAuthnComponent } from "./two-factor-webauthn.component";
+import { TwoFactorYubiKeyComponent } from "./two-factor-yubikey.component";
 
 @Component({
-    selector: 'app-two-factor-setup',
-    templateUrl: 'two-factor-setup.component.html',
+    selector: "app-two-factor-setup",
+    templateUrl: "two-factor-setup.component.html",
 })
 export class TwoFactorSetupComponent implements OnInit {
-    @ViewChild('recoveryTemplate', { read: ViewContainerRef, static: true }) recoveryModalRef: ViewContainerRef;
-    @ViewChild('authenticatorTemplate', { read: ViewContainerRef, static: true }) authenticatorModalRef: ViewContainerRef;
-    @ViewChild('yubikeyTemplate', { read: ViewContainerRef, static: true }) yubikeyModalRef: ViewContainerRef;
-    @ViewChild('duoTemplate', { read: ViewContainerRef, static: true }) duoModalRef: ViewContainerRef;
-    @ViewChild('emailTemplate', { read: ViewContainerRef, static: true }) emailModalRef: ViewContainerRef;
-    @ViewChild('webAuthnTemplate', { read: ViewContainerRef, static: true }) webAuthnModalRef: ViewContainerRef;
+    @ViewChild("recoveryTemplate", { read: ViewContainerRef, static: true })
+    recoveryModalRef: ViewContainerRef;
+    @ViewChild("authenticatorTemplate", { read: ViewContainerRef, static: true })
+    authenticatorModalRef: ViewContainerRef;
+    @ViewChild("yubikeyTemplate", { read: ViewContainerRef, static: true })
+    yubikeyModalRef: ViewContainerRef;
+    @ViewChild("duoTemplate", { read: ViewContainerRef, static: true }) duoModalRef: ViewContainerRef;
+    @ViewChild("emailTemplate", { read: ViewContainerRef, static: true })
+    emailModalRef: ViewContainerRef;
+    @ViewChild("webAuthnTemplate", { read: ViewContainerRef, static: true })
+    webAuthnModalRef: ViewContainerRef;
 
     organizationId: string;
     providers: any[] = [];
@@ -46,9 +45,13 @@ export class TwoFactorSetupComponent implements OnInit {
     loading = true;
     modal: ModalRef;
 
-    constructor(protected apiService: ApiService, protected modalService: ModalService,
-        protected messagingService: MessagingService, protected policyService: PolicyService,
-        private stateService: StateService) { }
+    constructor(
+        protected apiService: ApiService,
+        protected modalService: ModalService,
+        protected messagingService: MessagingService,
+        protected policyService: PolicyService,
+        private stateService: StateService
+    ) {}
 
     async ngOnInit() {
         this.canAccessPremium = await this.stateService.getCanAccessPremium();
@@ -80,8 +83,8 @@ export class TwoFactorSetupComponent implements OnInit {
     async load() {
         this.loading = true;
         const providerList = await this.getTwoFactorProviders();
-        providerList.data.forEach(p => {
-            this.providers.forEach(p2 => {
+        providerList.data.forEach((p) => {
+            this.providers.forEach((p2) => {
                 if (p.type === p2.type) {
                     p2.enabled = p.enabled;
                 }
@@ -134,7 +137,7 @@ export class TwoFactorSetupComponent implements OnInit {
 
     async premiumRequired() {
         if (!this.canAccessPremium) {
-            this.messagingService.send('premiumRequired');
+            this.messagingService.send("premiumRequired");
             return;
         }
     }
@@ -158,7 +161,7 @@ export class TwoFactorSetupComponent implements OnInit {
         if (!enabled && this.modal != null) {
             this.modal.close();
         }
-        this.providers.forEach(p => {
+        this.providers.forEach((p) => {
             if (p.type === type) {
                 p.enabled = enabled;
             }
@@ -167,7 +170,7 @@ export class TwoFactorSetupComponent implements OnInit {
     }
 
     private async evaluatePolicies() {
-        if (this.organizationId == null && this.providers.filter(p => p.enabled).length === 1) {
+        if (this.organizationId == null && this.providers.filter((p) => p.enabled).length === 1) {
             this.showPolicyWarning = await this.policyService.policyAppliesToUser(PolicyType.TwoFactorAuthentication);
         } else {
             this.showPolicyWarning = false;

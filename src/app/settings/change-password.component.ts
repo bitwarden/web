@@ -1,54 +1,67 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CipherService } from 'jslib-common/abstractions/cipher.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { FolderService } from 'jslib-common/abstractions/folder.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { OrganizationService } from 'jslib-common/abstractions/organization.service';
-import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { PolicyService } from 'jslib-common/abstractions/policy.service';
-import { SendService } from 'jslib-common/abstractions/send.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
-import { SyncService } from 'jslib-common/abstractions/sync.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { CipherService } from "jslib-common/abstractions/cipher.service";
+import { CryptoService } from "jslib-common/abstractions/crypto.service";
+import { FolderService } from "jslib-common/abstractions/folder.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { MessagingService } from "jslib-common/abstractions/messaging.service";
+import { OrganizationService } from "jslib-common/abstractions/organization.service";
+import { PasswordGenerationService } from "jslib-common/abstractions/passwordGeneration.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { PolicyService } from "jslib-common/abstractions/policy.service";
+import { SendService } from "jslib-common/abstractions/send.service";
+import { StateService } from "jslib-common/abstractions/state.service";
+import { SyncService } from "jslib-common/abstractions/sync.service";
 
-import {
-    ChangePasswordComponent as BaseChangePasswordComponent,
-} from 'jslib-angular/components/change-password.component';
+import { ChangePasswordComponent as BaseChangePasswordComponent } from "jslib-angular/components/change-password.component";
 
-import { EmergencyAccessStatusType } from 'jslib-common/enums/emergencyAccessStatusType';
-import { Utils } from 'jslib-common/misc/utils';
+import { EmergencyAccessStatusType } from "jslib-common/enums/emergencyAccessStatusType";
+import { Utils } from "jslib-common/misc/utils";
 
-import { EncString } from 'jslib-common/models/domain/encString';
-import { SymmetricCryptoKey } from 'jslib-common/models/domain/symmetricCryptoKey';
+import { EncString } from "jslib-common/models/domain/encString";
+import { SymmetricCryptoKey } from "jslib-common/models/domain/symmetricCryptoKey";
 
-import { CipherWithIdRequest } from 'jslib-common/models/request/cipherWithIdRequest';
-import { EmergencyAccessUpdateRequest } from 'jslib-common/models/request/emergencyAccessUpdateRequest';
-import { FolderWithIdRequest } from 'jslib-common/models/request/folderWithIdRequest';
-import { OrganizationUserResetPasswordEnrollmentRequest } from 'jslib-common/models/request/organizationUserResetPasswordEnrollmentRequest';
-import { PasswordRequest } from 'jslib-common/models/request/passwordRequest';
-import { SendWithIdRequest } from 'jslib-common/models/request/sendWithIdRequest';
-import { UpdateKeyRequest } from 'jslib-common/models/request/updateKeyRequest';
+import { CipherWithIdRequest } from "jslib-common/models/request/cipherWithIdRequest";
+import { EmergencyAccessUpdateRequest } from "jslib-common/models/request/emergencyAccessUpdateRequest";
+import { FolderWithIdRequest } from "jslib-common/models/request/folderWithIdRequest";
+import { OrganizationUserResetPasswordEnrollmentRequest } from "jslib-common/models/request/organizationUserResetPasswordEnrollmentRequest";
+import { PasswordRequest } from "jslib-common/models/request/passwordRequest";
+import { SendWithIdRequest } from "jslib-common/models/request/sendWithIdRequest";
+import { UpdateKeyRequest } from "jslib-common/models/request/updateKeyRequest";
 
 @Component({
-    selector: 'app-change-password',
-    templateUrl: 'change-password.component.html',
+    selector: "app-change-password",
+    templateUrl: "change-password.component.html",
 })
 export class ChangePasswordComponent extends BaseChangePasswordComponent {
     rotateEncKey = false;
     currentMasterPassword: string;
 
-    constructor(i18nService: I18nService,
-        cryptoService: CryptoService, messagingService: MessagingService,
-        stateService: StateService, passwordGenerationService: PasswordGenerationService,
-        platformUtilsService: PlatformUtilsService, policyService: PolicyService,
-        private folderService: FolderService, private cipherService: CipherService,
-        private syncService: SyncService, private apiService: ApiService,
-        private sendService: SendService, private organizationService: OrganizationService) {
-        super(i18nService, cryptoService, messagingService, passwordGenerationService,
-            platformUtilsService, policyService, stateService);
+    constructor(
+        i18nService: I18nService,
+        cryptoService: CryptoService,
+        messagingService: MessagingService,
+        stateService: StateService,
+        passwordGenerationService: PasswordGenerationService,
+        platformUtilsService: PlatformUtilsService,
+        policyService: PolicyService,
+        private folderService: FolderService,
+        private cipherService: CipherService,
+        private syncService: SyncService,
+        private apiService: ApiService,
+        private sendService: SendService,
+        private organizationService: OrganizationService
+    ) {
+        super(
+            i18nService,
+            cryptoService,
+            messagingService,
+            passwordGenerationService,
+            platformUtilsService,
+            policyService,
+            stateService
+        );
     }
 
     async rotateEncKeyClicked() {
@@ -66,21 +79,32 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
 
             if (hasOldAttachments) {
                 const learnMore = await this.platformUtilsService.showDialog(
-                    this.i18nService.t('oldAttachmentsNeedFixDesc'), null,
-                    this.i18nService.t('learnMore'), this.i18nService.t('close'), 'warning');
+                    this.i18nService.t("oldAttachmentsNeedFixDesc"),
+                    null,
+                    this.i18nService.t("learnMore"),
+                    this.i18nService.t("close"),
+                    "warning"
+                );
                 if (learnMore) {
                     this.platformUtilsService.launchUri(
-                        'https://help.bitwarden.com/article/attachments/#fixing-old-attachments');
+                        "https://help.bitwarden.com/article/attachments/#fixing-old-attachments"
+                    );
                 }
                 this.rotateEncKey = false;
                 return;
             }
 
             const result = await this.platformUtilsService.showDialog(
-                this.i18nService.t('updateEncryptionKeyWarning') + ' ' +
-                this.i18nService.t('updateEncryptionKeyExportWarning') + ' ' +
-                this.i18nService.t('rotateEncKeyConfirmation'), this.i18nService.t('rotateEncKeyTitle'),
-                this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+                this.i18nService.t("updateEncryptionKeyWarning") +
+                    " " +
+                    this.i18nService.t("updateEncryptionKeyExportWarning") +
+                    " " +
+                    this.i18nService.t("rotateEncKeyConfirmation"),
+                this.i18nService.t("rotateEncKeyTitle"),
+                this.i18nService.t("yes"),
+                this.i18nService.t("no"),
+                "warning"
+            );
             if (!result) {
                 this.rotateEncKey = false;
             }
@@ -90,7 +114,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
     async submit() {
         const hasEncKey = await this.cryptoService.hasEncKey();
         if (!hasEncKey) {
-            this.platformUtilsService.showToast('error', null, this.i18nService.t('updateKey'));
+            this.platformUtilsService.showToast("error", null, this.i18nService.t("updateKey"));
             return;
         }
 
@@ -98,9 +122,12 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
     }
 
     async setupSubmitActions() {
-        if (this.currentMasterPassword == null || this.currentMasterPassword === '') {
-            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
-                this.i18nService.t('masterPassRequired'));
+        if (this.currentMasterPassword == null || this.currentMasterPassword === "") {
+            this.platformUtilsService.showToast(
+                "error",
+                this.i18nService.t("errorOccurred"),
+                this.i18nService.t("masterPassRequired")
+            );
             return false;
         }
 
@@ -111,8 +138,11 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
         return super.setupSubmitActions();
     }
 
-    async performSubmitActions(newMasterPasswordHash: string, newKey: SymmetricCryptoKey,
-        newEncKey: [SymmetricCryptoKey, EncString]) {
+    async performSubmitActions(
+        newMasterPasswordHash: string,
+        newKey: SymmetricCryptoKey,
+        newEncKey: [SymmetricCryptoKey, EncString]
+    ) {
         const request = new PasswordRequest();
         request.masterPasswordHash = await this.cryptoService.hashPassword(this.currentMasterPassword, null);
         request.newMasterPasswordHash = newMasterPasswordHash;
@@ -129,11 +159,14 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
 
             await this.formPromise;
 
-            this.platformUtilsService.showToast('success', this.i18nService.t('masterPasswordChanged'),
-                this.i18nService.t('logBackIn'));
-            this.messagingService.send('logout');
+            this.platformUtilsService.showToast(
+                "success",
+                this.i18nService.t("masterPasswordChanged"),
+                this.i18nService.t("logBackIn")
+            );
+            this.messagingService.send("logout");
         } catch {
-            this.platformUtilsService.showToast('error', null, this.i18nService.t('errorOccurred'));
+            this.platformUtilsService.showToast("error", null, this.i18nService.t("errorOccurred"));
         }
     }
 
@@ -169,11 +202,13 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
         }
 
         const sends = await this.sendService.getAll();
-        await Promise.all(sends.map(async send => {
-            const cryptoKey = await this.cryptoService.decryptToBytes(send.key, null);
-            send.key = await this.cryptoService.encrypt(cryptoKey, encKey[0]) ?? send.key;
-            request.sends.push(new SendWithIdRequest(send));
-        }));
+        await Promise.all(
+            sends.map(async (send) => {
+                const cryptoKey = await this.cryptoService.decryptToBytes(send.key, null);
+                send.key = (await this.cryptoService.encrypt(cryptoKey, encKey[0])) ?? send.key;
+                request.sends.push(new SendWithIdRequest(send));
+            })
+        );
 
         await this.apiService.postAccountKey(request);
 
@@ -190,7 +225,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
             EmergencyAccessStatusType.RecoveryApproved,
         ];
 
-        const filteredAccesses = emergencyAccess.data.filter(d => allowedStatuses.includes(d.status));
+        const filteredAccesses = emergencyAccess.data.filter((d) => allowedStatuses.includes(d.status));
 
         for (const details of filteredAccesses) {
             const publicKeyResponse = await this.apiService.getUserPublicKey(details.granteeId);

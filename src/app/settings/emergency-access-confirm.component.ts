@@ -1,21 +1,15 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { CryptoService } from "jslib-common/abstractions/crypto.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { StateService } from "jslib-common/abstractions/state.service";
 
-import { Utils } from 'jslib-common/misc/utils';
+import { Utils } from "jslib-common/misc/utils";
 
 @Component({
-    selector: 'emergency-access-confirm',
-    templateUrl: 'emergency-access-confirm.component.html',
+    selector: "emergency-access-confirm",
+    templateUrl: "emergency-access-confirm.component.html",
 })
 export class EmergencyAccessConfirmComponent implements OnInit {
     @Input() name: string;
@@ -28,8 +22,12 @@ export class EmergencyAccessConfirmComponent implements OnInit {
     loading = true;
     fingerprint: string;
 
-    constructor(private apiService: ApiService, private cryptoService: CryptoService,
-        private stateService: StateService, private logService: LogService) { }
+    constructor(
+        private apiService: ApiService,
+        private cryptoService: CryptoService,
+        private stateService: StateService,
+        private logService: LogService
+    ) {}
 
     async ngOnInit() {
         try {
@@ -38,7 +36,7 @@ export class EmergencyAccessConfirmComponent implements OnInit {
                 const publicKey = Utils.fromB64ToArray(publicKeyResponse.publicKey);
                 const fingerprint = await this.cryptoService.getFingerprint(this.userId, publicKey.buffer);
                 if (fingerprint != null) {
-                    this.fingerprint = fingerprint.join('-');
+                    this.fingerprint = fingerprint.join("-");
                 }
             }
         } catch (e) {

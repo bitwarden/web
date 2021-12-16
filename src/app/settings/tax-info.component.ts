@@ -1,18 +1,14 @@
-import {
-    Component,
-    EventEmitter,
-    Output,
-} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { OrganizationTaxInfoUpdateRequest } from 'jslib-common/models/request/organizationTaxInfoUpdateRequest';
-import { TaxInfoUpdateRequest } from 'jslib-common/models/request/taxInfoUpdateRequest';
-import { TaxRateResponse } from 'jslib-common/models/response/taxRateResponse';
+import { Component, EventEmitter, Output } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { OrganizationTaxInfoUpdateRequest } from "jslib-common/models/request/organizationTaxInfoUpdateRequest";
+import { TaxInfoUpdateRequest } from "jslib-common/models/request/taxInfoUpdateRequest";
+import { TaxRateResponse } from "jslib-common/models/response/taxRateResponse";
 
 @Component({
-    selector: 'app-tax-info',
-    templateUrl: 'tax-info.component.html',
+    selector: "app-tax-info",
+    templateUrl: "tax-info.component.html",
 })
 export class TaxInfoComponent {
     @Output() onCountryChanged = new EventEmitter();
@@ -26,7 +22,7 @@ export class TaxInfoComponent {
         city: null,
         state: null,
         postalCode: null,
-        country: 'US',
+        country: "US",
         includeTaxId: false,
     };
 
@@ -39,14 +35,14 @@ export class TaxInfoComponent {
         city: null,
         state: null,
         postalCode: null,
-        country: 'US',
+        country: "US",
         includeTaxId: false,
     };
 
-    constructor(private apiService: ApiService, private route: ActivatedRoute, private logService: LogService) { }
+    constructor(private apiService: ApiService, private route: ActivatedRoute, private logService: LogService) {}
 
     async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async params => {
+        this.route.parent.parent.params.subscribe(async (params) => {
             this.organizationId = params.organizationId;
             if (this.organizationId) {
                 try {
@@ -59,27 +55,28 @@ export class TaxInfoComponent {
                         this.taxInfo.city = taxInfo.city;
                         this.taxInfo.state = taxInfo.state;
                         this.taxInfo.postalCode = taxInfo.postalCode;
-                        this.taxInfo.country = taxInfo.country || 'US';
-                        this.taxInfo.includeTaxId = this.taxInfo.country !== 'US' && (
-                            !!taxInfo.taxId
-                            || !!taxInfo.line1
-                            || !!taxInfo.line2
-                            || !!taxInfo.city
-                            || !!taxInfo.state);
+                        this.taxInfo.country = taxInfo.country || "US";
+                        this.taxInfo.includeTaxId =
+                            this.taxInfo.country !== "US" &&
+                            (!!taxInfo.taxId ||
+                                !!taxInfo.line1 ||
+                                !!taxInfo.line2 ||
+                                !!taxInfo.city ||
+                                !!taxInfo.state);
                     }
-                }  catch (e) {
+                } catch (e) {
                     this.logService.error(e);
                 }
             } else {
                 const taxInfo = await this.apiService.getTaxInfo();
                 if (taxInfo) {
                     this.taxInfo.postalCode = taxInfo.postalCode;
-                    this.taxInfo.country = taxInfo.country || 'US';
+                    this.taxInfo.country = taxInfo.country || "US";
                 }
             }
             this.pristine = Object.assign({}, this.taxInfo);
             // If not the default (US) then trigger onCountryChanged
-            if (this.taxInfo.country !== 'US') {
+            if (this.taxInfo.country !== "US") {
                 this.onCountryChanged.emit();
             }
         });
@@ -91,9 +88,8 @@ export class TaxInfoComponent {
 
     get taxRate() {
         if (this.taxRates != null) {
-            const localTaxRate = this.taxRates.find(x =>
-                x.country === this.taxInfo.country &&
-                x.postalCode === this.taxInfo.postalCode
+            const localTaxRate = this.taxRates.find(
+                (x) => x.country === this.taxInfo.country && x.postalCode === this.taxInfo.postalCode
             );
             return localTaxRate?.rate ?? null;
         }
@@ -121,15 +117,18 @@ export class TaxInfoComponent {
 
     submitTaxInfo(): Promise<any> {
         if (!this.hasChanged()) {
-            return new Promise<void>(resolve => { resolve(); });
+            return new Promise<void>((resolve) => {
+                resolve();
+            });
         }
         const request = this.getTaxInfoRequest();
-        return this.organizationId ? this.apiService.putOrganizationTaxInfo(this.organizationId,
-            request as OrganizationTaxInfoUpdateRequest) : this.apiService.putTaxInfo(request);
+        return this.organizationId
+            ? this.apiService.putOrganizationTaxInfo(this.organizationId, request as OrganizationTaxInfoUpdateRequest)
+            : this.apiService.putTaxInfo(request);
     }
 
     changeCountry() {
-        if (this.taxInfo.country === 'US') {
+        if (this.taxInfo.country === "US") {
             this.taxInfo.includeTaxId = false;
             this.taxInfo.taxId = null;
             this.taxInfo.line1 = null;

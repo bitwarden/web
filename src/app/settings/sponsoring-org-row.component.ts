@@ -1,19 +1,14 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-} from '@angular/core';
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
-import { Organization } from 'jslib-common/models/domain/organization';
+import { Organization } from "jslib-common/models/domain/organization";
 
 @Component({
-    selector: '[sponsoring-org-row]',
-    templateUrl: 'sponsoring-org-row.component.html',
+    selector: "[sponsoring-org-row]",
+    templateUrl: "sponsoring-org-row.component.html",
 })
 export class SponsoringOrgRowComponent {
     @Input() sponsoringOrg: Organization = null;
@@ -23,9 +18,12 @@ export class SponsoringOrgRowComponent {
     revokeSponsorshipPromise: Promise<any>;
     resendEmailPromise: Promise<any>;
 
-    constructor(private apiService: ApiService,
-        private i18nService: I18nService, private logService: LogService,
-        private platformUtilsService: PlatformUtilsService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private logService: LogService,
+        private platformUtilsService: PlatformUtilsService
+    ) {}
 
     async revokeSponsorship() {
         try {
@@ -41,22 +39,25 @@ export class SponsoringOrgRowComponent {
     async resendEmail() {
         this.resendEmailPromise = this.apiService.postResendSponsorshipOffer(this.sponsoringOrg.id);
         await this.resendEmailPromise;
-        this.platformUtilsService.showToast('success', null, this.i18nService.t('emailSent'));
+        this.platformUtilsService.showToast("success", null, this.i18nService.t("emailSent"));
         this.resendEmailPromise = null;
     }
 
     private async doRevokeSponsorship() {
         const isConfirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('revokeSponsorshipConfirmation'),
-            `${this.i18nService.t('remove')} ${this.sponsoringOrg.familySponsorshipFriendlyName}?`,
-            this.i18nService.t('remove'), this.i18nService.t('cancel'), 'warning');
+            this.i18nService.t("revokeSponsorshipConfirmation"),
+            `${this.i18nService.t("remove")} ${this.sponsoringOrg.familySponsorshipFriendlyName}?`,
+            this.i18nService.t("remove"),
+            this.i18nService.t("cancel"),
+            "warning"
+        );
 
         if (!isConfirmed) {
             return;
         }
 
         await this.apiService.deleteRevokeSponsorship(this.sponsoringOrg.id);
-        this.platformUtilsService.showToast('success', null, this.i18nService.t('reclaimedFreePlan'));
+        this.platformUtilsService.showToast("success", null, this.i18nService.t("reclaimedFreePlan"));
         this.sponsorshipRemoved.emit();
     }
 }

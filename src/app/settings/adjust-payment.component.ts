@@ -1,26 +1,20 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-    ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
-import { PaymentRequest } from 'jslib-common/models/request/paymentRequest';
+import { PaymentRequest } from "jslib-common/models/request/paymentRequest";
 
-import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
+import { PaymentMethodType } from "jslib-common/enums/paymentMethodType";
 
-import { PaymentComponent } from './payment.component';
-import { TaxInfoComponent } from './tax-info.component';
+import { PaymentComponent } from "./payment.component";
+import { TaxInfoComponent } from "./tax-info.component";
 
 @Component({
-    selector: 'app-adjust-payment',
-    templateUrl: 'adjust-payment.component.html',
+    selector: "app-adjust-payment",
+    templateUrl: "adjust-payment.component.html",
 })
 export class AdjustPaymentComponent {
     @ViewChild(PaymentComponent, { static: true }) paymentComponent: PaymentComponent;
@@ -34,13 +28,17 @@ export class AdjustPaymentComponent {
     paymentMethodType = PaymentMethodType;
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private platformUtilsService: PlatformUtilsService, private logService: LogService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private platformUtilsService: PlatformUtilsService,
+        private logService: LogService
+    ) {}
 
     async submit() {
         try {
             const request = new PaymentRequest();
-            this.formPromise = this.paymentComponent.createPaymentToken().then(result => {
+            this.formPromise = this.paymentComponent.createPaymentToken().then((result) => {
                 request.paymentToken = result[0];
                 request.paymentMethodType = result[1];
                 request.postalCode = this.taxInfoComponent.taxInfo.postalCode;
@@ -58,7 +56,7 @@ export class AdjustPaymentComponent {
                 }
             });
             await this.formPromise;
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('updatedPaymentMethod'));
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("updatedPaymentMethod"));
             this.onAdjusted.emit();
         } catch (e) {
             this.logService.error(e);
@@ -70,7 +68,7 @@ export class AdjustPaymentComponent {
     }
 
     changeCountry() {
-        if (this.taxInfoComponent.taxInfo.country === 'US') {
+        if (this.taxInfoComponent.taxInfo.country === "US") {
             this.paymentComponent.hideBank = !this.organizationId;
         } else {
             this.paymentComponent.hideBank = true;

@@ -1,20 +1,20 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { UserVerificationService } from "jslib-common/abstractions/userVerification.service";
 
-import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
-import { UpdateTwoFactorDuoRequest } from 'jslib-common/models/request/updateTwoFactorDuoRequest';
-import { TwoFactorDuoResponse } from 'jslib-common/models/response/twoFactorDuoResponse';
+import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
+import { UpdateTwoFactorDuoRequest } from "jslib-common/models/request/updateTwoFactorDuoRequest";
+import { TwoFactorDuoResponse } from "jslib-common/models/response/twoFactorDuoResponse";
 
-import { TwoFactorBaseComponent } from './two-factor-base.component';
+import { TwoFactorBaseComponent } from "./two-factor-base.component";
 
 @Component({
-    selector: 'app-two-factor-duo',
-    templateUrl: 'two-factor-duo.component.html',
+    selector: "app-two-factor-duo",
+    templateUrl: "two-factor-duo.component.html",
 })
 export class TwoFactorDuoComponent extends TwoFactorBaseComponent {
     type = TwoFactorProviderType.Duo;
@@ -23,9 +23,13 @@ export class TwoFactorDuoComponent extends TwoFactorBaseComponent {
     host: string;
     formPromise: Promise<any>;
 
-    constructor(apiService: ApiService, i18nService: I18nService,
+    constructor(
+        apiService: ApiService,
+        i18nService: I18nService,
         platformUtilsService: PlatformUtilsService,
-        logService: LogService, userVerificationService: UserVerificationService) {
+        logService: LogService,
+        userVerificationService: UserVerificationService
+    ) {
         super(apiService, i18nService, platformUtilsService, logService, userVerificationService);
     }
 

@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { I18nService } from "jslib-common/abstractions/i18n.service";
 
-import { TwoFactorRecoverResponse } from 'jslib-common/models/response/twoFactorRescoverResponse';
+import { TwoFactorRecoverResponse } from "jslib-common/models/response/twoFactorRescoverResponse";
 
-import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
+import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
 
 @Component({
-    selector: 'app-two-factor-recovery',
-    templateUrl: 'two-factor-recovery.component.html',
+    selector: "app-two-factor-recovery",
+    templateUrl: "two-factor-recovery.component.html",
 })
 export class TwoFactorRecoveryComponent {
     type = -1;
@@ -16,7 +16,7 @@ export class TwoFactorRecoveryComponent {
     authed: boolean;
     twoFactorProviderType = TwoFactorProviderType;
 
-    constructor(private i18nService: I18nService) { }
+    constructor(private i18nService: I18nService) {}
 
     auth(authResponse: any) {
         this.authed = true;
@@ -25,11 +25,18 @@ export class TwoFactorRecoveryComponent {
 
     print() {
         const w = window.open();
-        w.document.write('<div style="font-size: 18px; text-align: center;">' +
-            '<p>' + this.i18nService.t('twoFactorRecoveryYourCode') + ':</p>' +
-            '<code style="font-family: Menlo, Monaco, Consolas, \'Courier New\', monospace;">' +
-            this.code + '</code></div>' +
-            '<p style="text-align: center;">' + new Date() + '</p>');
+        w.document.write(
+            '<div style="font-size: 18px; text-align: center;">' +
+                "<p>" +
+                this.i18nService.t("twoFactorRecoveryYourCode") +
+                ":</p>" +
+                "<code style=\"font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;\">" +
+                this.code +
+                "</code></div>" +
+                '<p style="text-align: center;">' +
+                new Date() +
+                "</p>"
+        );
         w.onafterprint = () => w.close();
         w.print();
     }
@@ -38,7 +45,10 @@ export class TwoFactorRecoveryComponent {
         if (s == null) {
             return null;
         }
-        return s.replace(/(.{4})/g, '$1 ').trim().toUpperCase();
+        return s
+            .replace(/(.{4})/g, "$1 ")
+            .trim()
+            .toUpperCase();
     }
 
     private processResponse(response: TwoFactorRecoverResponse) {

@@ -1,27 +1,24 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { OrganizationService } from 'jslib-common/abstractions/organization.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { SyncService } from 'jslib-common/abstractions/sync.service';
+import { Component, OnInit } from "@angular/core";
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { OrganizationService } from "jslib-common/abstractions/organization.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { SyncService } from "jslib-common/abstractions/sync.service";
 
-import { PlanSponsorshipType } from 'jslib-common/enums/planSponsorshipType';
-import { Organization } from 'jslib-common/models/domain/organization';
+import { PlanSponsorshipType } from "jslib-common/enums/planSponsorshipType";
+import { Organization } from "jslib-common/models/domain/organization";
 
 @Component({
-    selector: 'app-sponsored-families',
-    templateUrl: 'sponsored-families.component.html',
+    selector: "app-sponsored-families",
+    templateUrl: "sponsored-families.component.html",
 })
 export class SponsoredFamiliesComponent implements OnInit {
     loading = false;
 
     availableSponsorshipOrgs: Organization[] = [];
     activeSponsorshipOrgs: Organization[] = [];
-    selectedSponsorshipOrgId: string = '';
-    sponsorshipEmail: string = '';
+    selectedSponsorshipOrgId: string = "";
+    sponsorshipEmail: string = "";
 
     // Conditional display properties
     formPromise: Promise<any>;
@@ -31,8 +28,8 @@ export class SponsoredFamiliesComponent implements OnInit {
         private i18nService: I18nService,
         private platformUtilsService: PlatformUtilsService,
         private syncService: SyncService,
-        private organizationService: OrganizationService,
-    ) { }
+        private organizationService: OrganizationService
+    ) {}
 
     async ngOnInit() {
         await this.load();
@@ -46,7 +43,7 @@ export class SponsoredFamiliesComponent implements OnInit {
         });
 
         await this.formPromise;
-        this.platformUtilsService.showToast('success', null, this.i18nService.t('sponsorshipCreated'));
+        this.platformUtilsService.showToast("success", null, this.i18nService.t("sponsorshipCreated"));
         this.formPromise = null;
         this.resetForm();
         await this.load(true);
@@ -63,9 +60,9 @@ export class SponsoredFamiliesComponent implements OnInit {
         }
 
         const allOrgs = await this.organizationService.getAll();
-        this.availableSponsorshipOrgs = allOrgs.filter(org => org.familySponsorshipAvailable);
+        this.availableSponsorshipOrgs = allOrgs.filter((org) => org.familySponsorshipAvailable);
 
-        this.activeSponsorshipOrgs = allOrgs.filter(org => org.familySponsorshipFriendlyName !== null);
+        this.activeSponsorshipOrgs = allOrgs.filter((org) => org.familySponsorshipFriendlyName !== null);
 
         if (this.availableSponsorshipOrgs.length === 1) {
             this.selectedSponsorshipOrgId = this.availableSponsorshipOrgs[0].id;
@@ -73,10 +70,9 @@ export class SponsoredFamiliesComponent implements OnInit {
         this.loading = false;
     }
 
-
     private async resetForm() {
-        this.sponsorshipEmail = '';
-        this.selectedSponsorshipOrgId = '';
+        this.sponsorshipEmail = "";
+        this.selectedSponsorshipOrgId = "";
     }
 
     get anyActiveSponsorships(): boolean {

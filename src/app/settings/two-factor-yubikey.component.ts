@@ -1,21 +1,21 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { UserVerificationService } from "jslib-common/abstractions/userVerification.service";
 
-import { UpdateTwoFactorYubioOtpRequest } from 'jslib-common/models/request/updateTwoFactorYubioOtpRequest';
-import { TwoFactorYubiKeyResponse } from 'jslib-common/models/response/twoFactorYubiKeyResponse';
+import { UpdateTwoFactorYubioOtpRequest } from "jslib-common/models/request/updateTwoFactorYubioOtpRequest";
+import { TwoFactorYubiKeyResponse } from "jslib-common/models/response/twoFactorYubiKeyResponse";
 
-import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
+import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
 
-import { TwoFactorBaseComponent } from './two-factor-base.component';
+import { TwoFactorBaseComponent } from "./two-factor-base.component";
 
 @Component({
-    selector: 'app-two-factor-yubikey',
-    templateUrl: 'two-factor-yubikey.component.html',
+    selector: "app-two-factor-yubikey",
+    templateUrl: "two-factor-yubikey.component.html",
 })
 export class TwoFactorYubiKeyComponent extends TwoFactorBaseComponent {
     type = TwoFactorProviderType.Yubikey;
@@ -25,9 +25,13 @@ export class TwoFactorYubiKeyComponent extends TwoFactorBaseComponent {
     formPromise: Promise<any>;
     disablePromise: Promise<any>;
 
-    constructor(apiService: ApiService, i18nService: I18nService,
+    constructor(
+        apiService: ApiService,
+        i18nService: I18nService,
         platformUtilsService: PlatformUtilsService,
-        logService: LogService, userVerificationService: UserVerificationService) {
+        logService: LogService,
+        userVerificationService: UserVerificationService
+    ) {
         super(apiService, i18nService, platformUtilsService, logService, userVerificationService);
     }
 
@@ -49,7 +53,7 @@ export class TwoFactorYubiKeyComponent extends TwoFactorBaseComponent {
             this.formPromise = this.apiService.putTwoFactorYubiKey(request);
             const response = await this.formPromise;
             await this.processResponse(response);
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('yubikeysUpdated'));
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("yubikeysUpdated"));
         });
     }
 
@@ -74,7 +78,7 @@ export class TwoFactorYubiKeyComponent extends TwoFactorBaseComponent {
         this.nfc = response.nfc || !response.enabled;
     }
 
-    private padRight(str: string, character = '•', size = 44) {
+    private padRight(str: string, character = "•", size = 44) {
         if (str == null || character == null || str.length >= size) {
             return str;
         }

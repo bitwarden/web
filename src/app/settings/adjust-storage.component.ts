@@ -1,36 +1,27 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-    ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 
-import {
-    ActivatedRoute,
-    Router,
-} from '@angular/router';
+import { ActivatedRoute, Router } from "@angular/router";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
-import { StorageRequest } from 'jslib-common/models/request/storageRequest';
+import { StorageRequest } from "jslib-common/models/request/storageRequest";
 
-import { PaymentResponse } from 'jslib-common/models/response/paymentResponse';
+import { PaymentResponse } from "jslib-common/models/response/paymentResponse";
 
-import { PaymentComponent } from './payment.component';
+import { PaymentComponent } from "./payment.component";
 
 @Component({
-    selector: 'app-adjust-storage',
-    templateUrl: 'adjust-storage.component.html',
+    selector: "app-adjust-storage",
+    templateUrl: "adjust-storage.component.html",
 })
 export class AdjustStorageComponent {
     @Input() storageGbPrice = 0;
     @Input() add = true;
     @Input() organizationId: string;
-    @Input() interval = 'year';
+    @Input() interval = "year";
     @Output() onAdjusted = new EventEmitter<number>();
     @Output() onCanceled = new EventEmitter();
 
@@ -39,9 +30,14 @@ export class AdjustStorageComponent {
     storageAdjustment = 0;
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private platformUtilsService: PlatformUtilsService, private router: Router,
-        private activatedRoute: ActivatedRoute, private logService: LogService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private platformUtilsService: PlatformUtilsService,
+        private router: Router,
+        private activatedRoute: ActivatedRoute,
+        private logService: LogService
+    ) {}
 
     async submit() {
         try {
@@ -72,12 +68,19 @@ export class AdjustStorageComponent {
             await this.formPromise;
             this.onAdjusted.emit(this.storageAdjustment);
             if (paymentFailed) {
-                this.platformUtilsService.showToast('warning', null,
-                    this.i18nService.t('couldNotChargeCardPayInvoice'), { timeout: 10000 });
-                this.router.navigate(['../billing'], { relativeTo: this.activatedRoute });
+                this.platformUtilsService.showToast(
+                    "warning",
+                    null,
+                    this.i18nService.t("couldNotChargeCardPayInvoice"),
+                    { timeout: 10000 }
+                );
+                this.router.navigate(["../billing"], { relativeTo: this.activatedRoute });
             } else {
-                this.platformUtilsService.showToast('success', null,
-                    this.i18nService.t('adjustedStorage', request.storageGbAdjustment.toString()));
+                this.platformUtilsService.showToast(
+                    "success",
+                    null,
+                    this.i18nService.t("adjustedStorage", request.storageGbAdjustment.toString())
+                );
             }
         } catch (e) {
             this.logService.error(e);

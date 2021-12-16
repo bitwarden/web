@@ -1,23 +1,23 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
-import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { StateService } from "jslib-common/abstractions/state.service";
+import { UserVerificationService } from "jslib-common/abstractions/userVerification.service";
 
-import { TwoFactorEmailRequest } from 'jslib-common/models/request/twoFactorEmailRequest';
+import { TwoFactorEmailRequest } from "jslib-common/models/request/twoFactorEmailRequest";
 
-import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
-import { UpdateTwoFactorEmailRequest } from 'jslib-common/models/request/updateTwoFactorEmailRequest';
-import { TwoFactorEmailResponse } from 'jslib-common/models/response/twoFactorEmailResponse';
+import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
+import { UpdateTwoFactorEmailRequest } from "jslib-common/models/request/updateTwoFactorEmailRequest";
+import { TwoFactorEmailResponse } from "jslib-common/models/response/twoFactorEmailResponse";
 
-import { TwoFactorBaseComponent } from './two-factor-base.component';
+import { TwoFactorBaseComponent } from "./two-factor-base.component";
 
 @Component({
-    selector: 'app-two-factor-email',
-    templateUrl: 'two-factor-email.component.html',
+    selector: "app-two-factor-email",
+    templateUrl: "two-factor-email.component.html",
 })
 export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
     type = TwoFactorProviderType.Email;
@@ -33,15 +33,9 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
         platformUtilsService: PlatformUtilsService,
         logService: LogService,
         userVerificationService: UserVerificationService,
-        private stateService: StateService,
+        private stateService: StateService
     ) {
-        super(
-            apiService,
-            i18nService,
-            platformUtilsService,
-            logService,
-            userVerificationService
-        );
+        super(apiService, i18nService, platformUtilsService, logService, userVerificationService);
     }
 
     auth(authResponse: any) {
@@ -85,7 +79,7 @@ export class TwoFactorEmailComponent extends TwoFactorBaseComponent {
         this.token = null;
         this.email = response.email;
         this.enabled = response.enabled;
-        if (!this.enabled && (this.email == null || this.email === '')) {
+        if (!this.enabled && (this.email == null || this.email === "")) {
             this.email = await this.stateService.getEmail();
         }
     }

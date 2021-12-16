@@ -1,20 +1,17 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
-import { SubscriptionResponse } from 'jslib-common/models/response/subscriptionResponse';
+import { SubscriptionResponse } from "jslib-common/models/response/subscriptionResponse";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { TokenService } from 'jslib-common/abstractions/token.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { TokenService } from "jslib-common/abstractions/token.service";
 
 @Component({
-    selector: 'app-user-subscription',
-    templateUrl: 'user-subscription.component.html',
+    selector: "app-user-subscription",
+    templateUrl: "user-subscription.component.html",
 })
 export class UserSubscriptionComponent implements OnInit {
     loading = false;
@@ -28,9 +25,14 @@ export class UserSubscriptionComponent implements OnInit {
     cancelPromise: Promise<any>;
     reinstatePromise: Promise<any>;
 
-    constructor(private tokenService: TokenService, private apiService: ApiService,
-        private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
-        private router: Router, private logService: LogService) {
+    constructor(
+        private tokenService: TokenService,
+        private apiService: ApiService,
+        private platformUtilsService: PlatformUtilsService,
+        private i18nService: I18nService,
+        private router: Router,
+        private logService: LogService
+    ) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -48,7 +50,7 @@ export class UserSubscriptionComponent implements OnInit {
             this.loading = true;
             this.sub = await this.apiService.getUserSubscription();
         } else {
-            this.router.navigate(['/settings/premium']);
+            this.router.navigate(["/settings/premium"]);
             return;
         }
 
@@ -61,13 +63,22 @@ export class UserSubscriptionComponent implements OnInit {
         }
 
         if (this.usingInAppPurchase) {
-            this.platformUtilsService.showDialog(this.i18nService.t('manageSubscriptionFromStore'),
-                this.i18nService.t('cancelSubscription'), null, null, 'warning');
+            this.platformUtilsService.showDialog(
+                this.i18nService.t("manageSubscriptionFromStore"),
+                this.i18nService.t("cancelSubscription"),
+                null,
+                null,
+                "warning"
+            );
             return;
         }
 
-        const confirmed = await this.platformUtilsService.showDialog(this.i18nService.t('reinstateConfirmation'),
-            this.i18nService.t('reinstateSubscription'), this.i18nService.t('yes'), this.i18nService.t('cancel'));
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t("reinstateConfirmation"),
+            this.i18nService.t("reinstateSubscription"),
+            this.i18nService.t("yes"),
+            this.i18nService.t("cancel")
+        );
         if (!confirmed) {
             return;
         }
@@ -75,7 +86,7 @@ export class UserSubscriptionComponent implements OnInit {
         try {
             this.reinstatePromise = this.apiService.postReinstatePremium();
             await this.reinstatePromise;
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('reinstated'));
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("reinstated"));
             this.load();
         } catch (e) {
             this.logService.error(e);
@@ -88,13 +99,23 @@ export class UserSubscriptionComponent implements OnInit {
         }
 
         if (this.usingInAppPurchase) {
-            this.platformUtilsService.showDialog(this.i18nService.t('manageSubscriptionFromStore'),
-                this.i18nService.t('cancelSubscription'), null, null, 'warning');
+            this.platformUtilsService.showDialog(
+                this.i18nService.t("manageSubscriptionFromStore"),
+                this.i18nService.t("cancelSubscription"),
+                null,
+                null,
+                "warning"
+            );
             return;
         }
 
-        const confirmed = await this.platformUtilsService.showDialog(this.i18nService.t('cancelConfirmation'),
-            this.i18nService.t('cancelSubscription'), this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
+        const confirmed = await this.platformUtilsService.showDialog(
+            this.i18nService.t("cancelConfirmation"),
+            this.i18nService.t("cancelSubscription"),
+            this.i18nService.t("yes"),
+            this.i18nService.t("no"),
+            "warning"
+        );
         if (!confirmed) {
             return;
         }
@@ -102,7 +123,7 @@ export class UserSubscriptionComponent implements OnInit {
         try {
             this.cancelPromise = this.apiService.postCancelPremium();
             await this.cancelPromise;
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('canceledSubscription'));
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("canceledSubscription"));
             this.load();
         } catch (e) {
             this.logService.error(e);
@@ -115,7 +136,7 @@ export class UserSubscriptionComponent implements OnInit {
         }
 
         const licenseString = JSON.stringify(this.sub.license, null, 2);
-        this.platformUtilsService.saveFile(window, licenseString, null, 'bitwarden_premium_license.json');
+        this.platformUtilsService.saveFile(window, licenseString, null, "bitwarden_premium_license.json");
     }
 
     updateLicense() {
@@ -134,8 +155,13 @@ export class UserSubscriptionComponent implements OnInit {
 
     adjustStorage(add: boolean) {
         if (this.usingInAppPurchase) {
-            this.platformUtilsService.showDialog(this.i18nService.t('cannotPerformInAppPurchase'),
-                this.i18nService.t(add ? 'addStorage' : 'removeStorage'), null, null, 'warning');
+            this.platformUtilsService.showDialog(
+                this.i18nService.t("cannotPerformInAppPurchase"),
+                this.i18nService.t(add ? "addStorage" : "removeStorage"),
+                null,
+                null,
+                "warning"
+            );
             return;
         }
         this.adjustStorageAdd = add;
@@ -162,8 +188,9 @@ export class UserSubscriptionComponent implements OnInit {
     }
 
     get storagePercentage() {
-        return this.sub != null && this.sub.maxStorageGb ?
-            +(100 * (this.sub.storageGb / this.sub.maxStorageGb)).toFixed(2) : 0;
+        return this.sub != null && this.sub.maxStorageGb
+            ? +(100 * (this.sub.storageGb / this.sub.maxStorageGb)).toFixed(2)
+            : 0;
     }
 
     get storageProgressWidth() {

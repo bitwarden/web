@@ -1,22 +1,19 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import { BillingResponse } from 'jslib-common/models/response/billingResponse';
+import { BillingResponse } from "jslib-common/models/response/billingResponse";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
-import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
-import { TransactionType } from 'jslib-common/enums/transactionType';
-import { VerifyBankRequest } from 'jslib-common/models/request/verifyBankRequest';
+import { PaymentMethodType } from "jslib-common/enums/paymentMethodType";
+import { TransactionType } from "jslib-common/enums/transactionType";
+import { VerifyBankRequest } from "jslib-common/models/request/verifyBankRequest";
 
 @Component({
-    selector: 'app-user-billing',
-    templateUrl: 'user-billing.component.html',
+    selector: "app-user-billing",
+    templateUrl: "user-billing.component.html",
 })
 export class UserBillingComponent implements OnInit {
     loading = false;
@@ -32,9 +29,12 @@ export class UserBillingComponent implements OnInit {
 
     verifyBankPromise: Promise<any>;
 
-    constructor(protected apiService: ApiService, protected i18nService: I18nService,
+    constructor(
+        protected apiService: ApiService,
+        protected i18nService: I18nService,
         protected platformUtilsService: PlatformUtilsService,
-        private logService: LogService) { }
+        private logService: LogService
+    ) {}
 
     async ngOnInit() {
         await this.load();
@@ -65,7 +65,7 @@ export class UserBillingComponent implements OnInit {
             request.amount2 = this.verifyAmount2;
             this.verifyBankPromise = this.apiService.postOrganizationVerifyBank(this.organizationId, request);
             await this.verifyBankPromise;
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('verifiedBankAccount'));
+            this.platformUtilsService.showToast("success", null, this.i18nService.t("verifiedBankAccount"));
             this.load();
         } catch (e) {
             this.logService.error(e);
@@ -74,8 +74,13 @@ export class UserBillingComponent implements OnInit {
 
     addCredit() {
         if (this.paymentSourceInApp) {
-            this.platformUtilsService.showDialog(this.i18nService.t('cannotPerformInAppPurchase'),
-                this.i18nService.t('addCredit'), null, null, 'warning');
+            this.platformUtilsService.showDialog(
+                this.i18nService.t("cannotPerformInAppPurchase"),
+                this.i18nService.t("addCredit"),
+                null,
+                null,
+                "warning"
+            );
             return;
         }
         this.showAddCredit = true;
@@ -90,8 +95,13 @@ export class UserBillingComponent implements OnInit {
 
     changePayment() {
         if (this.paymentSourceInApp) {
-            this.platformUtilsService.showDialog(this.i18nService.t('cannotPerformInAppPurchase'),
-                this.i18nService.t('changePaymentMethod'), null, null, 'warning');
+            this.platformUtilsService.showDialog(
+                this.i18nService.t("cannotPerformInAppPurchase"),
+                this.i18nService.t("changePaymentMethod"),
+                null,
+                null,
+                "warning"
+            );
             return;
         }
         this.showAdjustPayment = true;
@@ -117,9 +127,11 @@ export class UserBillingComponent implements OnInit {
     }
 
     get paymentSourceInApp() {
-        return this.paymentSource != null &&
+        return (
+            this.paymentSource != null &&
             (this.paymentSource.type === PaymentMethodType.AppleInApp ||
-                this.paymentSource.type === PaymentMethodType.GoogleInApp);
+                this.paymentSource.type === PaymentMethodType.GoogleInApp)
+        );
     }
 
     get invoices() {

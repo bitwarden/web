@@ -1,34 +1,34 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 
-import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
-import { VerificationType } from 'jslib-common/enums/verificationType';
+import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
+import { VerificationType } from "jslib-common/enums/verificationType";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { UserVerificationService } from "jslib-common/abstractions/userVerification.service";
 
-import { Verification } from 'jslib-common/types/verification';
+import { Verification } from "jslib-common/types/verification";
 
-import { TwoFactorAuthenticatorResponse } from 'jslib-common/models/response/twoFactorAuthenticatorResponse';
-import { TwoFactorDuoResponse } from 'jslib-common/models/response/twoFactorDuoResponse';
-import { TwoFactorEmailResponse } from 'jslib-common/models/response/twoFactorEmailResponse';
-import { TwoFactorRecoverResponse } from 'jslib-common/models/response/twoFactorRescoverResponse';
-import { TwoFactorWebAuthnResponse } from 'jslib-common/models/response/twoFactorWebAuthnResponse';
-import { TwoFactorYubiKeyResponse } from 'jslib-common/models/response/twoFactorYubiKeyResponse';
+import { TwoFactorAuthenticatorResponse } from "jslib-common/models/response/twoFactorAuthenticatorResponse";
+import { TwoFactorDuoResponse } from "jslib-common/models/response/twoFactorDuoResponse";
+import { TwoFactorEmailResponse } from "jslib-common/models/response/twoFactorEmailResponse";
+import { TwoFactorRecoverResponse } from "jslib-common/models/response/twoFactorRescoverResponse";
+import { TwoFactorWebAuthnResponse } from "jslib-common/models/response/twoFactorWebAuthnResponse";
+import { TwoFactorYubiKeyResponse } from "jslib-common/models/response/twoFactorYubiKeyResponse";
 
-import { SecretVerificationRequest } from 'jslib-common/models/request/secretVerificationRequest';
+import { SecretVerificationRequest } from "jslib-common/models/request/secretVerificationRequest";
 
-type TwoFactorResponse = TwoFactorRecoverResponse | TwoFactorDuoResponse | TwoFactorEmailResponse |
-    TwoFactorWebAuthnResponse | TwoFactorAuthenticatorResponse | TwoFactorYubiKeyResponse;
+type TwoFactorResponse =
+    | TwoFactorRecoverResponse
+    | TwoFactorDuoResponse
+    | TwoFactorEmailResponse
+    | TwoFactorWebAuthnResponse
+    | TwoFactorAuthenticatorResponse
+    | TwoFactorYubiKeyResponse;
 
 @Component({
-    selector: 'app-two-factor-verify',
-    templateUrl: 'two-factor-verify.component.html',
+    selector: "app-two-factor-verify",
+    templateUrl: "two-factor-verify.component.html",
 })
 export class TwoFactorVerifyComponent {
     @Input() type: TwoFactorProviderType;
@@ -38,20 +38,21 @@ export class TwoFactorVerifyComponent {
     secret: Verification;
     formPromise: Promise<TwoFactorResponse>;
 
-    constructor(private apiService: ApiService, private logService: LogService,
-        private userVerificationService: UserVerificationService) { }
+    constructor(
+        private apiService: ApiService,
+        private logService: LogService,
+        private userVerificationService: UserVerificationService
+    ) {}
 
     async submit() {
         let hashedSecret: string;
 
         try {
-            this.formPromise = this.userVerificationService.buildRequest(this.secret)
-                .then(request => {
-                    hashedSecret = this.secret.type === VerificationType.MasterPassword
-                        ? request.masterPasswordHash
-                        : request.otp;
-                    return this.apiCall(request);
-                });
+            this.formPromise = this.userVerificationService.buildRequest(this.secret).then((request) => {
+                hashedSecret =
+                    this.secret.type === VerificationType.MasterPassword ? request.masterPasswordHash : request.otp;
+                return this.apiCall(request);
+            });
 
             const response = await this.formPromise;
             this.onAuthed.emit({

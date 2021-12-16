@@ -1,26 +1,22 @@
-import {
-    Component,
-    OnDestroy,
-    OnInit,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from "@angular/core";
 
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
-import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { StateService } from "jslib-common/abstractions/state.service";
+import { UserVerificationService } from "jslib-common/abstractions/userVerification.service";
 
-import { UpdateTwoFactorAuthenticatorRequest } from 'jslib-common/models/request/updateTwoFactorAuthenticatorRequest';
-import { TwoFactorAuthenticatorResponse } from 'jslib-common/models/response/twoFactorAuthenticatorResponse';
+import { UpdateTwoFactorAuthenticatorRequest } from "jslib-common/models/request/updateTwoFactorAuthenticatorRequest";
+import { TwoFactorAuthenticatorResponse } from "jslib-common/models/response/twoFactorAuthenticatorResponse";
 
-import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
+import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
 
-import { TwoFactorBaseComponent } from './two-factor-base.component';
+import { TwoFactorBaseComponent } from "./two-factor-base.component";
 
 @Component({
-    selector: 'app-two-factor-authenticator',
-    templateUrl: 'two-factor-authenticator.component.html',
+    selector: "app-two-factor-authenticator",
+    templateUrl: "two-factor-authenticator.component.html",
 })
 export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent implements OnInit, OnDestroy {
     type = TwoFactorProviderType.Authenticator;
@@ -38,15 +34,9 @@ export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent impl
         logService: LogService,
         private stateService: StateService
     ) {
-        super(
-            apiService,
-            i18nService,
-            platformUtilsService,
-            logService,
-            userVerificationService
-        );
-        this.qrScript = window.document.createElement('script');
-        this.qrScript.src = 'scripts/qrious.min.js';
+        super(apiService, i18nService, platformUtilsService, logService, userVerificationService);
+        this.qrScript = window.document.createElement("script");
+        this.qrScript.src = "scripts/qrious.min.js";
         this.qrScript.async = true;
     }
 
@@ -90,9 +80,13 @@ export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent impl
         const email = await this.stateService.getEmail();
         window.setTimeout(() => {
             const qr = new (window as any).QRious({
-                element: document.getElementById('qr'),
-                value: 'otpauth://totp/Bitwarden:' + encodeURIComponent(email) +
-                    '?secret=' + encodeURIComponent(this.key) + '&issuer=Bitwarden',
+                element: document.getElementById("qr"),
+                value:
+                    "otpauth://totp/Bitwarden:" +
+                    encodeURIComponent(email) +
+                    "?secret=" +
+                    encodeURIComponent(this.key) +
+                    "&issuer=Bitwarden",
                 size: 160,
             });
         }, 100);
