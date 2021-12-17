@@ -127,12 +127,10 @@ export function initFactory(
     },
     { provide: StorageServiceAbstraction, useClass: HtmlStorageService },
     {
-        provide: 'SECURE_STORAGE',
-        // TODO: platformUtilsService.isDev has a helper for this, but using that service here results in a circular dependency.
-        // We have a tech debt item in the backlog to break up platformUtilsService, but in the meantime simply checking the environement here is less cumbersome.
-        useClass: process.env.NODE_ENV === 'development' ?
-            HtmlStorageService :
-            MemoryStorageService,
+      provide: "SECURE_STORAGE",
+      // TODO: platformUtilsService.isDev has a helper for this, but using that service here results in a circular dependency.
+      // We have a tech debt item in the backlog to break up platformUtilsService, but in the meantime simply checking the environement here is less cumbersome.
+      useClass: process.env.NODE_ENV === "development" ? HtmlStorageService : MemoryStorageService,
     },
     {
       provide: PlatformUtilsServiceAbstraction,
