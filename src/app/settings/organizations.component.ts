@@ -77,7 +77,7 @@ export class OrganizationsComponent implements OnInit {
 
   async unlinkSso(org: Organization) {
     const confirmed = await this.platformUtilsService.showDialog(
-      "Are you sure you want to unlink SSO for this organization?",
+      this.i18nService.t("unlinkSsoConfirmation"),
       org.name,
       this.i18nService.t("yes"),
       this.i18nService.t("no"),
