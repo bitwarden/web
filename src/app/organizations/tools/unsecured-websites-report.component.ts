@@ -1,40 +1,43 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 
-import { CipherService } from 'jslib-common/abstractions/cipher.service';
-import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { OrganizationService } from 'jslib-common/abstractions/organization.service';
-import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
+import { CipherService } from "jslib-common/abstractions/cipher.service";
+import { MessagingService } from "jslib-common/abstractions/messaging.service";
+import { OrganizationService } from "jslib-common/abstractions/organization.service";
+import { PasswordRepromptService } from "jslib-common/abstractions/passwordReprompt.service";
+import { StateService } from "jslib-common/abstractions/state.service";
 
-import { ModalService } from 'jslib-angular/services/modal.service';
+import { ModalService } from "jslib-angular/services/modal.service";
 
-import {
-    UnsecuredWebsitesReportComponent as BaseUnsecuredWebsitesReportComponent,
-} from '../../tools/unsecured-websites-report.component';
+import { UnsecuredWebsitesReportComponent as BaseUnsecuredWebsitesReportComponent } from "../../tools/unsecured-websites-report.component";
 
-import { CipherView } from 'jslib-common/models/view/cipherView';
+import { CipherView } from "jslib-common/models/view/cipherView";
 
 @Component({
-    selector: 'app-unsecured-websites-report',
-    templateUrl: '../../tools/unsecured-websites-report.component.html',
+  selector: "app-unsecured-websites-report",
+  templateUrl: "../../tools/unsecured-websites-report.component.html",
 })
 export class UnsecuredWebsitesReportComponent extends BaseUnsecuredWebsitesReportComponent {
-    constructor(cipherService: CipherService, modalService: ModalService,
-        messagingService: MessagingService, stateService: StateService,
-        private route: ActivatedRoute, private organizationService: OrganizationService,
-        passwordRepromptService: PasswordRepromptService) {
-        super(cipherService, modalService, messagingService, stateService, passwordRepromptService);
-    }
+  constructor(
+    cipherService: CipherService,
+    modalService: ModalService,
+    messagingService: MessagingService,
+    stateService: StateService,
+    private route: ActivatedRoute,
+    private organizationService: OrganizationService,
+    passwordRepromptService: PasswordRepromptService
+  ) {
+    super(cipherService, modalService, messagingService, stateService, passwordRepromptService);
+  }
 
-    async ngOnInit() {
-        this.route.parent.parent.params.subscribe(async params => {
-            this.organization = await this.organizationService.get(params.organizationId);
-            await super.ngOnInit();
-        });
-    }
+  async ngOnInit() {
+    this.route.parent.parent.params.subscribe(async (params) => {
+      this.organization = await this.organizationService.get(params.organizationId);
+      await super.ngOnInit();
+    });
+  }
 
-    getAllCiphers(): Promise<CipherView[]> {
-        return this.cipherService.getAllFromApiForOrganization(this.organization.id);
-    }
+  getAllCiphers(): Promise<CipherView[]> {
+    return this.cipherService.getAllFromApiForOrganization(this.organization.id);
+  }
 }
