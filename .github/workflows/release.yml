@@ -11,13 +11,13 @@ on:
         type: choice
         options:
           - Initial Release
-          - Rerun
+          - Redeploy
 
 jobs:
   setup:
     name: Setup
     runs-on: ubuntu-20.04
-    if: ${{ github.event.inputs.release_type != 'Rerun' }}
+    if: ${{ github.event.inputs.release_type != 'Redeploy' }}
     outputs:
       release_version: ${{ steps.version.outputs.package }}
       tag_version: ${{ steps.version.outputs.tag }}
