@@ -43,7 +43,6 @@ import { MessagingService as MessagingServiceAbstraction } from "jslib-common/ab
 import { NotificationsService as NotificationsServiceAbstraction } from "jslib-common/abstractions/notifications.service";
 import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from "jslib-common/abstractions/platformUtils.service";
 import { StateService as StateServiceAbstraction } from "jslib-common/abstractions/state.service";
-import { StateMigrationService } from 'jslib-common/abstractions/stateMigration.service';
 import { StorageService as StorageServiceAbstraction } from "jslib-common/abstractions/storage.service";
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from "jslib-common/abstractions/vaultTimeout.service";
 
