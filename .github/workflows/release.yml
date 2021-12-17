@@ -17,6 +17,7 @@ jobs:
   setup:
     name: Setup
     runs-on: ubuntu-20.04
+    if: ${{ github.event.inputs.release_type != 'Rerun' }}
     outputs:
       release_version: ${{ steps.version.outputs.package }}
       tag_version: ${{ steps.version.outputs.tag }}
@@ -168,6 +169,7 @@ jobs:
   release:
     name: Create GitHub Release
     runs-on: ubuntu-20.04
+    if: ${{ github.event.inputs.release_type == 'Initial Release' }}
     needs:
       - setup
       - self-host
