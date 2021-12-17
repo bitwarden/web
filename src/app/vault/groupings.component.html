@@ -1,116 +1,169 @@
 <div class="card vault-filters">
-    <div class="card-header d-flex">
-        {{'filters' | i18n}}
-        <a class="ml-auto" href="https://help.bitwarden.com/article/searching-vault/" target="_blank" rel="noopener"
-            appA11yTitle="{{'learnMore' | i18n}}">
-            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+  <div class="card-header d-flex">
+    {{ "filters" | i18n }}
+    <a
+      class="ml-auto"
+      href="https://help.bitwarden.com/article/searching-vault/"
+      target="_blank"
+      rel="noopener"
+      appA11yTitle="{{ 'learnMore' | i18n }}"
+    >
+      <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+    </a>
+  </div>
+  <div class="card-body">
+    <input
+      type="search"
+      placeholder="{{ searchPlaceholder || ('searchVault' | i18n) }}"
+      id="search"
+      class="form-control"
+      [(ngModel)]="searchText"
+      (input)="searchTextChanged()"
+      autocomplete="off"
+      appAutofocus
+    />
+    <ul class="fa-ul card-ul">
+      <li [ngClass]="{ active: selectedAll }">
+        <a href="#" appStopClick (click)="selectAll()">
+          <i class="fa-li fa fa-fw fa-th"></i>{{ "allItems" | i18n }}
         </a>
-    </div>
-    <div class="card-body">
-        <input type="search" placeholder="{{searchPlaceholder || ('searchVault' | i18n)}}" id="search"
-            class="form-control" [(ngModel)]="searchText" (input)="searchTextChanged()" autocomplete="off" appAutofocus>
+      </li>
+      <li [ngClass]="{ active: selectedFavorites }" *ngIf="showFavorites">
+        <a href="#" appStopClick (click)="selectFavorites()">
+          <i class="fa-li fa fa-fw fa-star"></i>{{ "favorites" | i18n }}
+        </a>
+      </li>
+      <li [ngClass]="{ active: selectedTrash }" *ngIf="showTrash">
+        <a href="#" appStopClick (click)="selectTrash()">
+          <i class="fa-li fa fa-fw fa-trash-o"></i>{{ "trash" | i18n }}
+        </a>
+      </li>
+    </ul>
+    <h3>{{ "types" | i18n }}</h3>
+    <ul class="fa-ul card-ul">
+      <li [ngClass]="{ active: selectedType === cipherType.Login }">
+        <a href="#" appStopClick (click)="selectType(cipherType.Login)">
+          <i class="fa-li fa fa-fw fa-globe"></i>{{ "typeLogin" | i18n }}
+        </a>
+      </li>
+      <li [ngClass]="{ active: selectedType === cipherType.Card }">
+        <a href="#" appStopClick (click)="selectType(cipherType.Card)">
+          <i class="fa-li fa fa-fw fa-credit-card"></i>{{ "typeCard" | i18n }}
+        </a>
+      </li>
+      <li [ngClass]="{ active: selectedType === cipherType.Identity }">
+        <a href="#" appStopClick (click)="selectType(cipherType.Identity)">
+          <i class="fa-li fa fa-fw fa-id-card-o"></i>{{ "typeIdentity" | i18n }}
+        </a>
+      </li>
+      <li [ngClass]="{ active: selectedType === cipherType.SecureNote }">
+        <a href="#" appStopClick (click)="selectType(cipherType.SecureNote)">
+          <i class="fa-li fa fa-fw fa-sticky-note-o"></i>{{ "typeSecureNote" | i18n }}
+        </a>
+      </li>
+    </ul>
+    <p *ngIf="!loaded" class="text-muted">
+      <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+      <span class="sr-only">{{ "loading" | i18n }}</span>
+    </p>
+    <ng-container *ngIf="loaded">
+      <ng-container *ngIf="showFolders">
+        <h3 class="d-flex">
+          {{ "folders" | i18n }}
+          <a
+            href="#"
+            class="text-muted ml-auto"
+            appStopClick
+            (click)="addFolder()"
+            appA11yTitle="{{ 'addFolder' | i18n }}"
+          >
+            <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+          </a>
+        </h3>
         <ul class="fa-ul card-ul">
-            <li [ngClass]="{active: selectedAll}">
-                <a href="#" appStopClick (click)="selectAll()">
-                    <i class="fa-li fa fa-fw fa-th"></i>{{'allItems' | i18n}}
+          <ng-template #recursiveFolders let-folders>
+            <li
+              *ngFor="let f of folders"
+              [ngClass]="{ active: selectedFolder && f.node.id === selectedFolderId }"
+            >
+              <div class="d-flex">
+                <i
+                  *ngIf="f.children.length"
+                  class="fa-li fa"
+                  title="{{ 'toggleCollapse' | i18n }}"
+                  [ngClass]="{
+                    'fa-caret-right': isCollapsed(f.node),
+                    'fa-caret-down': !isCollapsed(f.node)
+                  }"
+                  (click)="collapse(f.node)"
+                ></i>
+                <a href="#" class="text-break" appStopClick (click)="selectFolder(f.node)">
+                  <i
+                    *ngIf="f.children.length === 0"
+                    class="fa-li fa fa-folder-o"
+                    aria-hidden="true"
+                  ></i
+                  >{{ f.node.name }}
                 </a>
-            </li>
-            <li [ngClass]="{active: selectedFavorites}" *ngIf="showFavorites">
-                <a href="#" appStopClick (click)="selectFavorites()">
-                    <i class="fa-li fa fa-fw fa-star"></i>{{'favorites' | i18n}}
+                <a
+                  href="#"
+                  class="text-muted ml-auto show-active"
+                  appStopClick
+                  (click)="editFolder(f.node)"
+                  appA11yTitle="{{ 'editFolder' | i18n }}"
+                  *ngIf="f.node.id"
+                >
+                  <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
                 </a>
+              </div>
+              <ul class="fa-ul card-ul carets" *ngIf="f.children.length && !isCollapsed(f.node)">
+                <ng-container
+                  *ngTemplateOutlet="recursiveFolders; context: { $implicit: f.children }"
+                >
+                </ng-container>
+              </ul>
             </li>
-            <li [ngClass]="{active: selectedTrash}" *ngIf="showTrash">
-                <a href="#" appStopClick (click)="selectTrash()">
-                    <i class="fa-li fa fa-fw fa-trash-o"></i>{{'trash' | i18n}}
-                </a>
-            </li>
+          </ng-template>
+          <ng-container *ngTemplateOutlet="recursiveFolders; context: { $implicit: nestedFolders }">
+          </ng-container>
         </ul>
-        <h3>{{'types' | i18n}}</h3>
+      </ng-container>
+      <ng-container *ngIf="showCollections && collections && collections.length">
+        <h3>{{ "collections" | i18n }}</h3>
         <ul class="fa-ul card-ul">
-            <li [ngClass]="{active: selectedType === cipherType.Login}">
-                <a href="#" appStopClick (click)="selectType(cipherType.Login)">
-                    <i class="fa-li fa fa-fw fa-globe"></i>{{'typeLogin' | i18n}}
-                </a>
+          <ng-template #recursiveCollections let-collections>
+            <li
+              *ngFor="let c of collections"
+              [ngClass]="{ active: c.node.id === selectedCollectionId }"
+            >
+              <i
+                *ngIf="c.children.length"
+                class="fa-li fa"
+                title="{{ 'toggleCollapse' | i18n }}"
+                [ngClass]="{
+                  'fa-caret-right': isCollapsed(c.node),
+                  'fa-caret-down': !isCollapsed(c.node)
+                }"
+                (click)="collapse(c.node)"
+              ></i>
+              <a href="#" class="text-break" appStopClick (click)="selectCollection(c.node)">
+                <i *ngIf="c.children.length === 0" class="fa-li fa fa-cube" aria-hidden="true"></i
+                >{{ c.node.name }}
+              </a>
+              <ul class="fa-ul card-ul carets" *ngIf="c.children.length && !isCollapsed(c.node)">
+                <ng-container
+                  *ngTemplateOutlet="recursiveCollections; context: { $implicit: c.children }"
+                >
+                </ng-container>
+              </ul>
             </li>
-            <li [ngClass]="{active: selectedType === cipherType.Card}">
-                <a href="#" appStopClick (click)="selectType(cipherType.Card)">
-                    <i class="fa-li fa fa-fw fa-credit-card"></i>{{'typeCard' | i18n}}
-                </a>
-            </li>
-            <li [ngClass]="{active: selectedType === cipherType.Identity}">
-                <a href="#" appStopClick (click)="selectType(cipherType.Identity)">
-                    <i class="fa-li fa fa-fw fa-id-card-o"></i>{{'typeIdentity' | i18n}}
-                </a>
-            </li>
-            <li [ngClass]="{active: selectedType === cipherType.SecureNote}">
-                <a href="#" appStopClick (click)="selectType(cipherType.SecureNote)">
-                    <i class="fa-li fa fa-fw fa-sticky-note-o"></i>{{'typeSecureNote' | i18n}}
-                </a>
-            </li>
+          </ng-template>
+          <ng-container
+            *ngTemplateOutlet="recursiveCollections; context: { $implicit: nestedCollections }"
+          >
+          </ng-container>
         </ul>
-        <p *ngIf="!loaded" class="text-muted">
-            <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
-            <span class="sr-only">{{'loading' | i18n}}</span>
-        </p>
-        <ng-container *ngIf="loaded">
-            <ng-container *ngIf="showFolders">
-                <h3 class="d-flex">
-                    {{'folders' | i18n}}
-                    <a href="#" class="text-muted ml-auto" appStopClick (click)="addFolder()"
-                        appA11yTitle="{{'addFolder' | i18n}}">
-                        <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
-                    </a>
-                </h3>
-                <ul class="fa-ul card-ul">
-                    <ng-template #recursiveFolders let-folders>
-                        <li *ngFor="let f of folders"
-                            [ngClass]="{active: selectedFolder && f.node.id === selectedFolderId}">
-                            <div class="d-flex">
-                                <i *ngIf="f.children.length" class="fa-li fa" title="{{'toggleCollapse' | i18n}}"
-                                    [ngClass]="{'fa-caret-right': isCollapsed(f.node), 'fa-caret-down': !isCollapsed(f.node)}"
-                                    (click)="collapse(f.node)"></i>
-                                <a href="#" class="text-break" appStopClick (click)="selectFolder(f.node)">
-                                    <i *ngIf="f.children.length === 0" class="fa-li fa fa-folder-o" aria-hidden="true"></i>{{f.node.name}}
-                                </a>
-                                <a href="#" class="text-muted ml-auto show-active" appStopClick
-                                    (click)="editFolder(f.node)" appA11yTitle="{{'editFolder' | i18n}}"
-                                    *ngIf="f.node.id">
-                                    <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
-                                </a>
-                            </div>
-                            <ul class="fa-ul card-ul carets" *ngIf="f.children.length && !isCollapsed(f.node)">
-                                <ng-container *ngTemplateOutlet="recursiveFolders; context:{ $implicit: f.children }">
-                                </ng-container>
-                            </ul>
-                        </li>
-                    </ng-template>
-                    <ng-container *ngTemplateOutlet="recursiveFolders; context:{ $implicit: nestedFolders }">
-                    </ng-container>
-                </ul>
-            </ng-container>
-            <ng-container *ngIf="showCollections && collections && collections.length">
-                <h3>{{'collections' | i18n}}</h3>
-                <ul class="fa-ul card-ul">
-                    <ng-template #recursiveCollections let-collections>
-                        <li *ngFor="let c of collections" [ngClass]="{active: c.node.id === selectedCollectionId}">
-                            <i *ngIf="c.children.length" class="fa-li fa" title="{{'toggleCollapse' | i18n}}"
-                                [ngClass]="{'fa-caret-right': isCollapsed(c.node), 'fa-caret-down': !isCollapsed(c.node)}"
-                                (click)="collapse(c.node)"></i>
-                            <a href="#" class="text-break" appStopClick (click)="selectCollection(c.node)">
-                                <i *ngIf="c.children.length === 0" class="fa-li fa fa-cube" aria-hidden="true"></i>{{c.node.name}}
-                            </a>
-                            <ul class="fa-ul card-ul carets" *ngIf="c.children.length && !isCollapsed(c.node)">
-                                <ng-container
-                                    *ngTemplateOutlet="recursiveCollections; context:{ $implicit: c.children }">
-                                </ng-container>
-                            </ul>
-                        </li>
-                    </ng-template>
-                    <ng-container *ngTemplateOutlet="recursiveCollections; context:{ $implicit: nestedCollections }">
-                    </ng-container>
-                </ul>
-            </ng-container>
-        </ng-container>
-    </div>
+      </ng-container>
+    </ng-container>
+  </div>
 </div>

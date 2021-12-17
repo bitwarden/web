@@ -1,28 +1,24 @@
-import {
-    Component,
-    OnDestroy,
-    OnInit,
-} from '@angular/core';
+import { Component, OnDestroy, OnInit } from "@angular/core";
 
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
 @Component({
-    selector: 'app-frontend-layout',
-    templateUrl: 'frontend-layout.component.html',
+  selector: "app-frontend-layout",
+  templateUrl: "frontend-layout.component.html",
 })
 export class FrontendLayoutComponent implements OnInit, OnDestroy {
-    version: string;
-    year: string = '2015';
+  version: string;
+  year: string = "2015";
 
-    constructor(private platformUtilsService: PlatformUtilsService) { }
+  constructor(private platformUtilsService: PlatformUtilsService) {}
 
-    async ngOnInit() {
-        this.year = new Date().getFullYear().toString();
-        this.version = await this.platformUtilsService.getApplicationVersion();
-        document.body.classList.add('layout_frontend');
-    }
+  async ngOnInit() {
+    this.year = new Date().getFullYear().toString();
+    this.version = await this.platformUtilsService.getApplicationVersion();
+    document.body.classList.add("layout_frontend");
+  }
 
-    ngOnDestroy() {
-        document.body.classList.remove('layout_frontend');
-    }
+  ngOnDestroy() {
+    document.body.classList.remove("layout_frontend");
+  }
 }

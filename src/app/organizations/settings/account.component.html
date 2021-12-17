@@ -1,81 +1,123 @@
 <div class="page-header">
-    <h1>{{'myOrganization' | i18n}}</h1>
+  <h1>{{ "myOrganization" | i18n }}</h1>
 </div>
 <div *ngIf="loading">
-    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
-    <span class="sr-only">{{'loading' | i18n}}</span>
+  <i class="fa fa-spinner fa-spin text-muted" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+  <span class="sr-only">{{ "loading" | i18n }}</span>
 </div>
-<form *ngIf="org && !loading" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
-    <div class="row">
-        <div class="col-6">
-            <div class="form-group">
-                <label for="name">{{'organizationName' | i18n}}</label>
-                <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="org.name"
-                    [disabled]="selfHosted">
-            </div>
-            <div class="form-group">
-                <label for="billingEmail">{{'billingEmail' | i18n}}</label>
-                <input id="billingEmail" class="form-control" type="text" name="BillingEmail"
-                    [(ngModel)]="org.billingEmail" [disabled]="selfHosted">
-            </div>
-            <div class="form-group">
-                <label for="businessName">{{'businessName' | i18n}}</label>
-                <input id="businessName" class="form-control" type="text" name="BusinessName"
-                    [(ngModel)]="org.businessName" [disabled]="selfHosted">
-            </div>
-            <div class="form-group">
-                <label for="identifier">{{'identifier' | i18n}}</label>
-                <input id="identifier" class="form-control" type="text" name="Identifier"
-                    [(ngModel)]="org.identifier">
-            </div>
-        </div>
-        <div class="col-6">
-            <app-avatar data="{{org.name}}" dynamic="true" size="75" fontSize="35"></app-avatar>
-        </div>
+<form
+  *ngIf="org && !loading"
+  #form
+  (ngSubmit)="submit()"
+  [appApiAction]="formPromise"
+  ngNativeValidate
+>
+  <div class="row">
+    <div class="col-6">
+      <div class="form-group">
+        <label for="name">{{ "organizationName" | i18n }}</label>
+        <input
+          id="name"
+          class="form-control"
+          type="text"
+          name="Name"
+          [(ngModel)]="org.name"
+          [disabled]="selfHosted"
+        />
+      </div>
+      <div class="form-group">
+        <label for="billingEmail">{{ "billingEmail" | i18n }}</label>
+        <input
+          id="billingEmail"
+          class="form-control"
+          type="text"
+          name="BillingEmail"
+          [(ngModel)]="org.billingEmail"
+          [disabled]="selfHosted"
+        />
+      </div>
+      <div class="form-group">
+        <label for="businessName">{{ "businessName" | i18n }}</label>
+        <input
+          id="businessName"
+          class="form-control"
+          type="text"
+          name="BusinessName"
+          [(ngModel)]="org.businessName"
+          [disabled]="selfHosted"
+        />
+      </div>
+      <div class="form-group">
+        <label for="identifier">{{ "identifier" | i18n }}</label>
+        <input
+          id="identifier"
+          class="form-control"
+          type="text"
+          name="Identifier"
+          [(ngModel)]="org.identifier"
+        />
+      </div>
     </div>
-    <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
-        <span>{{'save' | i18n}}</span>
-    </button>
+    <div class="col-6">
+      <app-avatar data="{{ org.name }}" dynamic="true" size="75" fontSize="35"></app-avatar>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+    <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+    <span>{{ "save" | i18n }}</span>
+  </button>
 </form>
 <ng-container *ngIf="canUseApi">
-    <div class="secondary-header border-0 mb-0">
-        <h1>{{'apiKey' | i18n}}</h1>
-    </div>
-    <p>
-        {{'apiKeyDesc' | i18n}}
-        <a href="https://docs.bitwarden.com" target="_blank" rel="noopener">
-            {{'learnMore' | i18n}}
-        </a>
-    </p>
-    <button type="button" class="btn btn-outline-secondary" (click)="viewApiKey()">{{'viewApiKey' | i18n}}</button>
-    <button type="button" class="btn btn-outline-secondary" (click)="rotateApiKey()">{{'rotateApiKey' | i18n}}</button>
+  <div class="secondary-header border-0 mb-0">
+    <h1>{{ "apiKey" | i18n }}</h1>
+  </div>
+  <p>
+    {{ "apiKeyDesc" | i18n }}
+    <a href="https://docs.bitwarden.com" target="_blank" rel="noopener">
+      {{ "learnMore" | i18n }}
+    </a>
+  </p>
+  <button type="button" class="btn btn-outline-secondary" (click)="viewApiKey()">
+    {{ "viewApiKey" | i18n }}
+  </button>
+  <button type="button" class="btn btn-outline-secondary" (click)="rotateApiKey()">
+    {{ "rotateApiKey" | i18n }}
+  </button>
 </ng-container>
 <div class="secondary-header border-0 mb-0">
-    <h1>{{'taxInformation' | i18n}}</h1>
+  <h1>{{ "taxInformation" | i18n }}</h1>
 </div>
-<p>{{'taxInformationDesc' | i18n}}</p>
+<p>{{ "taxInformationDesc" | i18n }}</p>
 <div *ngIf="!org || loading">
-    <i class="fa fa-spinner fa-spin text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
-    <span class="sr-only">{{'loading' | i18n}}</span>
+  <i class="fa fa-spinner fa-spin text-muted" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+  <span class="sr-only">{{ "loading" | i18n }}</span>
 </div>
-<form *ngIf="org && !loading" #formTax (ngSubmit)="submitTaxInfo()" [appApiAction]="taxFormPromise" ngNativeValidate>
-    <app-tax-info></app-tax-info>
-    <button type="submit" class="btn btn-primary btn-submit" [disabled]="formTax.loading">
-        <i class="fa fa-spinner fa-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
-        <span>{{'save' | i18n}}</span>
-    </button>
+<form
+  *ngIf="org && !loading"
+  #formTax
+  (ngSubmit)="submitTaxInfo()"
+  [appApiAction]="taxFormPromise"
+  ngNativeValidate
+>
+  <app-tax-info></app-tax-info>
+  <button type="submit" class="btn btn-primary btn-submit" [disabled]="formTax.loading">
+    <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+    <span>{{ "save" | i18n }}</span>
+  </button>
 </form>
 <div class="secondary-header text-danger border-0 mb-0">
-    <h1>{{'dangerZone' | i18n}}</h1>
+  <h1>{{ "dangerZone" | i18n }}</h1>
 </div>
 <div class="card border-danger">
-    <div class="card-body">
-        <p>{{'dangerZoneDesc' | i18n}}</p>
-        <button type="button" class="btn btn-outline-danger"
-            (click)="deleteOrganization()">{{'deleteOrganization' | i18n}}</button>
-        <button type="button" class="btn btn-outline-danger" (click)="purgeVault()">{{'purgeVault' | i18n}}</button>
-    </div>
+  <div class="card-body">
+    <p>{{ "dangerZoneDesc" | i18n }}</p>
+    <button type="button" class="btn btn-outline-danger" (click)="deleteOrganization()">
+      {{ "deleteOrganization" | i18n }}
+    </button>
+    <button type="button" class="btn btn-outline-danger" (click)="purgeVault()">
+      {{ "purgeVault" | i18n }}
+    </button>
+  </div>
 </div>
 <ng-template #deleteOrganizationTemplate></ng-template>
 <ng-template #purgeOrganizationTemplate></ng-template>
