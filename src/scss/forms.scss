@@ -74,7 +74,11 @@ label.form-check-label, .form-control-file {
     @include themify($themes) {
         background-color: themed('inputBackgroundColor');
         border-color: themed('inputBorderColor');
-        color: themed('inputTextColor');
+        color: themed('inputTextColor');  
+        
+        option {
+            background-color: themed('backgroundColor');
+        }
     }
 
     &:disabled, &[readonly] {
@@ -82,7 +86,7 @@ label.form-check-label, .form-control-file {
             background-color: themed('inputDisabledBackground');
             color: themed('inputDisabledColor');
         }
-    }
+    }  
 }
 
 input[type="radio"], input[type="checkbox"] {
