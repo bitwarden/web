@@ -4016,10 +4016,10 @@
     "message": "Записаться на сброс пароля"
   },
   "enrolledPasswordReset": {
-    "message": "Записано на сброс пароля"
+    "message": "Запрос на сброс пароля зарегистрирован"
   },
   "withdrawPasswordReset": {
-    "message": "Отменить сброс пароля"
+    "message": "Отписаться от сброса пароля"
   },
   "enrollPasswordResetSuccess": {
     "message": "Регистрация успешна!"
@@ -4037,7 +4037,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "Пользователь $ID$ отменил помощь по сбросу пароля.",
+    "message": "Пользователь $ID$ отказался от помощи по сбросу пароля.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4103,19 +4103,19 @@
     "message": "Разрешить администраторам организации сбрасывать мастер-пароль пользователей организации."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Пользователи в организации должны самостоятельно зарегистрироваться или быть автоматически зарегистрированными, чтобы администраторы могли сбросить их мастер-пароль."
+    "message": "Пользователи организации должны зарегистрироваться самостоятельно или быть зарегистрированными автоматически, чтобы администраторы могли сбросить их мастер-пароль."
   },
   "resetPasswordPolicyAutoEnroll": {
     "message": "Автоматическая регистрация"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "Все пользователи будут автоматически зачислены на сброс пароля после того, как их приглашение будет принято."
+    "message": "Все пользователи будут автоматически записаны на сброс пароля, после того как их приглашение будет принято, и им не будет разрешено отказаться от его выполнения."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Пользователи, уже входящие в организацию, не будут задним числом зачислены на сброс пароля. Им придется зарегистрироваться самостоятельно, чтобы администраторы могли сбросить их мастер-пароль."
+    "message": "Пользователи, уже входящие в организацию, не смогут записаться на сброс пароля задним числом. Они должны будут зарегистрироваться самостоятельно, прежде чем администраторы смогут сбросить их мастер-пароль."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Автоматически регистрировать новых пользователей"
+    "message": "Автоматически записывать новых пользователей"
   },
   "resetPasswordAutoEnrollInviteWarning": {
     "message": "В этой организации действует корпоративная политика, которая автоматически зарегистрирует вас на сброс пароля. Регистрация позволит администраторам организации изменить ваш мастер-пароль."
@@ -4423,7 +4423,7 @@
     "message": "Дополнительные/пользовательские типы требований к имени (разделенные запятыми)"
   },
   "acrValues": {
-    "message": "Запрошенные справочные значения класса контекста аутентификации (acr_values)"
+    "message": "Запрашиваемый контекст аутентификации 'Класс справочных значений' (acr_values)"
   },
   "expectedReturnAcrValue": {
     "message": "Ожидаемый \"acr\" Значение утверждения в ответе (проверка acr)"
@@ -4555,10 +4555,10 @@
     "message": "Redeemed"
   },
   "redeemedAccount": {
-    "message": "Redeemed Account"
+    "message": "Активированный аккаунт"
   },
   "revokeAccount": {
-    "message": "Revoke account $NAME$",
+    "message": "Отозвать активацию аккаунта $NAME$",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4594,10 +4594,10 @@
     "message": "Sponsorship Created"
   },
   "revoke": {
-    "message": "Revoke"
+    "message": "Отозвать"
   },
   "emailSent": {
-    "message": "Email Sent"
+    "message": "Письмо отправлено"
   },
   "revokeSponsorshipConfirmation": {
     "message": "После удаления этой учетной записи владелец организации Семейства будет нести ответственность за эту подписку и связанные счета. Вы уверены что хотите продолжить?"
@@ -4661,7 +4661,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
-    "message": "политику SSO",
+    "message": "Политика аутентификации SSO",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {

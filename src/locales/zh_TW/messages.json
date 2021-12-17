@@ -158,16 +158,16 @@
     "message": "透過拖曳來排序"
   },
   "cfTypeText": {
-    "message": "文字"
+    "message": "文字型"
   },
   "cfTypeHidden": {
-    "message": "隱藏"
+    "message": "隱藏型"
   },
   "cfTypeBoolean": {
     "message": "布林值"
   },
   "cfTypeLinked": {
-    "message": "已連結",
+    "message": "連結型",
     "description": "This describes a field that is 'linked' (related) to another field."
   },
   "remove": {
@@ -3526,14 +3526,14 @@
     "message": "逾期日期"
   },
   "expirationDateDesc": {
-    "message": "如果設定了，對此 Send 的存取將在指定的日期和時間后逾期。",
+    "message": "如果設定此選項，對此 Send 的存取將在指定的日期和時間後逾期。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
     "message": "最大存取次數"
   },
   "maxAccessCountDesc": {
-    "message": "如果設定了，達到最大存取次數后，使用者將無法存取此 Send。",
+    "message": "如果設定此選項，當達到最大存取次數時，使用者將無法再次存取此 Send。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
@@ -4489,10 +4489,10 @@
     "message": "單一登入配置已儲存。"
   },
   "sponsoredFamilies": {
-    "message": "免費的 Bitwarden 家庭方案"
+    "message": "免費的 Bitwarden 家庭"
   },
   "sponsoredFamiliesEligible": {
-    "message": "您與家庭成員可使用免費的 Bitwarden 家庭方案。以即使您不在公司上班，也可以使用您的個人電子郵件來兌換此方案，以保護您的資料安全。"
+    "message": "您與家庭成員可使用免費的 Bitwarden 家庭方案。以即使您不在公司上班，也可以使用您的私人電子郵件來兌換此方案，以保護您的資料安全。"
   },
   "sponsoredFamiliesEligibleCard": {
     "message": "立即兌換您的免費 Bitwarden 家庭方案，以保護您的資料安全，即使您不在公司上班也可以。"
@@ -4507,7 +4507,7 @@
     "message": "用於家庭間共享帳號密碼的集合"
   },
   "badToken": {
-    "message": "連結已經失效。請讓贊助人重寄優惠。"
+    "message": "連結已經失效。請讓贊助人重寄邀請。"
   },
   "reclaimedFreePlan": {
     "message": "已回收免費方案"
@@ -4516,10 +4516,10 @@
     "message": "兌換"
   },
   "sponsoredFamiliesSelectOffer": {
-    "message": "選擇您希望贊助的組織"
+    "message": "選擇您希望被贊助的組織"
   },
   "familiesSponsoringOrgSelect": {
-    "message": "您想兌換哪一個免費家庭版優惠呢？"
+    "message": "您想兌換哪一個免費家庭邀請呢？"
   },
   "sponsoredFamiliesEmail": {
     "message": "輸入您的私人電子郵件以兌換 Bitwarden 家庭"
@@ -4546,7 +4546,7 @@
     }
   },
   "sponsoredFamiliesOffer": {
-    "message": "接受免費 Bitwarden 家庭組織邀請"
+    "message": "接受免費 Bitwarden 家庭"
   },
   "sponsoredFamiliesOfferRedeemed": {
     "message": "免費 Bitwarden 家庭邀請已成功兌換"
@@ -4699,19 +4699,19 @@
     "message": "已停用 Key Connector"
   },
   "keyConnectorWarning": {
-    "message": "一旦成員開始使用 Key Connector，您的組織將無法復原為主密碼解密。僅當您可以輕鬆地部署和管理金輪伺服器時再繼續。"
+    "message": "一旦成員開始使用 Key Connector，您的組織將無法復原為使用主密碼解密。僅當您可以輕鬆地部署和管理金輪伺服器時再繼續。"
   },
   "migratedKeyConnector": {
     "message": "已移轉到 Key Connector"
   },
   "paymentSponsored": {
-    "message": "請提供一個與此組織關聯的付款方式。別擔心，我們不會向您收取任何費用，除非您選擇進階功能或您的贊助到期。"
+    "message": "請提供一個與此組織關聯的付款方式。別擔心，我們不會向您收取任何費用，除非您選擇進階功能或您的贊助到期。 "
   },
   "orgCreatedSponsorshipInvalid": {
     "message": "贊助邀請已逾期，您可以删除您創建的組織，以避免在 7 天試用期結束時收取費用。 您也可以關閉此提示以保留該組織並承擔計費責任。"
   },
   "newFamiliesOrganization": {
-    "message": "新增家庭組織"
+    "message": "新的家庭組織"
   },
   "acceptOffer": {
     "message": "接受邀請"
@@ -4732,6 +4732,6 @@
     "message": "此贊助邀請已逾期。"
   },
   "freeWithSponsorship": {
-    "message": "免費（贊助）"
+    "message": "免費贊助"
   }
 }
