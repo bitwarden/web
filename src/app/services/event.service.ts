@@ -316,7 +316,7 @@ export class EventService {
             case DeviceType.EdgeExtension:
                 return ['bwi-edge', this.i18nService.t('extension') + ' - Edge'];
             case DeviceType.VivaldiExtension:
-                return ['bwi-puzzle-piece', this.i18nService.t('extension') + ' - Vivaldi'];
+                return ['bwi-puzzle', this.i18nService.t('extension') + ' - Vivaldi'];
             case DeviceType.SafariExtension:
                 return ['bwi-safari', this.i18nService.t('extension') + ' - Safari'];
             case DeviceType.WindowsDesktop:

@@ -9,7 +9,7 @@
             {{'moveSelected' | i18n}}
         </button>
         <button class="dropdown-item" appStopClick (click)="bulkShare()" *ngIf="!deleted && !organization">
-            <i class="bwi bwi-fw bwi-arrow-circle-o-right" aria-hidden="true"></i>
+            <i class="bwi bwi-fw bwi-arrow-circle-right" aria-hidden="true"></i>
             {{'moveSelectedToOrg' | i18n}}
         </button>
         <button class="dropdown-item" (click)="bulkRestore()" *ngIf="deleted && !organization">
