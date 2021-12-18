@@ -1,93 +1,94 @@
 .card {
-    @include themify($themes) {
-        background-color: themed('foregroundColor');
-        border-color: themed('borderColor');
-        color: themed('textColor');
+  @include themify($themes) {
+    background-color: themed("foregroundColor");
+    border-color: themed("borderColor");
+    color: themed("textColor");
+  }
+
+  &.text-danger {
+    &.text-danger > .card-body {
+      @include themify($themes) {
+        color: themed("danger");
+      }
     }
-    
-    &.text-danger {
-        &.text-danger > .card-body {
-            @include themify($themes) {
-                color: themed('danger');
-            }
-        }
-    }
+  }
 }
 
-.card-header, .modal-header {
-    font-weight: bold;
-    text-transform: uppercase;
+.card-header,
+.modal-header {
+  font-weight: bold;
+  text-transform: uppercase;
 
-    small {
-        font-weight: normal;
-        text-transform: none;
-        @extend .text-muted;
-    }
+  small {
+    font-weight: normal;
+    text-transform: none;
+    @extend .text-muted;
+  }
 }
 
 .card-header {
-    @include themify($themes) {
-        background-color: themed('headerColor');
-        color: themed('headingColor');
-    }
+  @include themify($themes) {
+    background-color: themed("headerColor");
+    color: themed("headingColor");
+  }
 
-    a:hover {
-        &:not(.badge){
-            @include themify($themes) {
-                color: themed('learnMoreHover');
-            }
-        }
+  a:hover {
+    &:not(.badge) {
+      @include themify($themes) {
+        color: themed("learnMoreHover");
+      }
     }
+  }
 }
 
 .card-body-header {
-    font-size: $font-size-lg;
-    @extend .mb-4
+  font-size: $font-size-lg;
+  @extend .mb-4;
 }
 
 .card ul.bwi-ul.card-ul {
-    margin-left: 1.9em;
+  margin-left: 1.9em;
 
-    li {
-        word-break: break-all;
-    }
+  li {
+    word-break: break-all;
+  }
+
+  .bwi-li {
+    top: 4px;
+  }
+
+  &.carets {
+    margin-left: 1.1em;
 
     .bwi-li {
-        top: 4px;
+      left: -17px;
+      width: 1.1em;
     }
+  }
 
+  ul {
     &.carets {
-        margin-left: 1.1em;
-
-        .bwi-li {
-            left: -17px;
-            width: 1.1em;
-        }
+      margin-left: 0.85em;
     }
-
-    ul {
-        &.carets {
-            margin-left: 0.85em;
-        }
-    }
+  }
 }
 
 .card-org-plans {
-    h2 {
-        font-size: $font-size-lg;
-    }
+  h2 {
+    font-size: $font-size-lg;
+  }
 }
 
 .card-body {
-    &:not(.bg-light > .card-body) {
-        @include themify($themes) {
-            background-color: themed('foregroundColor');
-            color: themed('textColor');
-        }
-        &.card-body a:not(li a) {
-            @include themify($themes) {
-                font-weight: themed('linkWeight');
-            }
-        }
+  &:not(.bg-light > .card-body) {
+    @include themify($themes) {
+      background-color: themed("foregroundColor");
+      color: themed("textColor");
     }
+    &.card-body a:not(li a) {
+      @include themify($themes) {
+        font-weight: themed("linkWeight");
+      }
+    }
+  }
 }

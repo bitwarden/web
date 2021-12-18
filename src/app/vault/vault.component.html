@@ -1,115 +1,149 @@
 <div class="container page-content">
-    <div class="row">
-        <div class="col-3">
-            <app-vault-groupings (onAllClicked)="clearGroupingFilters()" (onFavoritesClicked)="filterFavorites()"
-                (onCipherTypeClicked)="filterCipherType($event)" (onFolderClicked)="filterFolder($event.id)"
-                (onAddFolder)="addFolder()" (onEditFolder)="editFolder($event.id)"
-                (onCollectionClicked)="filterCollection($event.id)" (onSearchTextChanged)="filterSearchText($event)"
-                (onTrashClicked)="filterDeleted()">
-            </app-vault-groupings>
-        </div>
-        <div class="col-6">
-            <div class="page-header d-flex">
-                <h1>
-                    {{'myVault' | i18n}}
-                    <small #actionSpinner [appApiAction]="ciphersComponent.actionPromise">
-                        <ng-container *ngIf="actionSpinner.loading">
-                            <i class="bwi bwi-spinner bwi-spin text-muted" title="{{'loading' | i18n}}"
-                                aria-hidden="true"></i>
-                            <span class="sr-only">{{'loading' | i18n}}</span>
-                        </ng-container>
-                    </small>
-                </h1>
-                <div class="ml-auto d-flex">
-                    <app-vault-bulk-actions [ciphersComponent]="ciphersComponent" [deleted]="deleted">
-                    </app-vault-bulk-actions>
-                    <button type="button" class="btn btn-outline-primary btn-sm" (click)="addCipher()" *ngIf="!deleted">
-                        <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>{{'addItem' | i18n}}
-                    </button>
-                </div>
-            </div>
-            <app-callout type="warning" *ngIf="deleted" icon="bwi-exclamation-triangle">
-                {{trashCleanupWarning}}
-            </app-callout>
-            <app-vault-ciphers (onCipherClicked)="editCipher($event)"
-                (onAttachmentsClicked)="editCipherAttachments($event)" (onAddCipher)="addCipher()"
-                (onShareClicked)="shareCipher($event)" (onCollectionsClicked)="editCipherCollections($event)"
-                (onCloneClicked)="cloneCipher($event)">
-            </app-vault-ciphers>
-        </div>
-        <div class="col-3">
-            <div class="card border-warning mb-4" *ngIf="showUpdateKey">
-                <div class="card-header bg-warning text-white">
-                    <i class="bwi bwi-exclamation-triangle bwi-fw" aria-hidden="true"></i> {{'updateKeyTitle' | i18n}}
-                </div>
-                <div class="card-body">
-                    <p>{{'updateEncryptionKeyShortDesc' | i18n}}</p>
-                    <button class="btn btn-block btn-outline-secondary" type="button" (click)="updateKey()">
-                        {{'updateEncryptionKey' | i18n}}
-                    </button>
-                </div>
-            </div>
-            <app-verify-email *ngIf="showVerifyEmail" class="d-block mb-4"></app-verify-email>
-            <div class="card border-warning mb-4" *ngIf="showBrowserOutdated">
-                <div class="card-header bg-warning text-white">
-                    <i class="bwi bwi-exclamation-triangle bwi-fw" aria-hidden="true"></i> {{'updateBrowser' | i18n}}
-                </div>
-                <div class="card-body">
-                    <p>{{'updateBrowserDesc' | i18n}}</p>
-                    <a class="btn btn-block btn-outline-secondary" target="_blank"
-                        href="https://browser-update.org/update-browser.html" rel="noopener">
-                        {{'updateBrowser' | i18n}}
-                    </a>
-                </div>
-            </div>
-            <div class="card border-success mb-4" *ngIf="showPremiumCallout">
-                <div class="card-header bg-success text-white">
-                    <i class="bwi bwi-star-f bwi-fw" aria-hidden="true"></i> {{'goPremium' | i18n}}
-                </div>
-                <div class="card-body">
-                    <p>{{'premiumUpgradeUnlockFeatures' | i18n}}</p>
-                    <a class="btn btn-block btn-outline-secondary" routerLink="/settings/premium">
-                        {{'goPremium' | i18n}}
-                    </a>
-                </div>
-            </div>
-            <div class="card mb-4">
-                <div class="card-header d-flex">
-                    {{'organizations' | i18n}}
-                    <a class="ml-auto" href="https://help.bitwarden.com/article/what-is-an-organization/"
-                        target="_blank" rel="noopener" appA11yTitle="{{'learnMore' | i18n}}">
-                        <i class="bwi bwi-question-circle" aria-hidden="true"></i>
-                    </a>
-                </div>
-                <div class="card-body">
-                    <app-organizations [vault]="true"></app-organizations>
-                </div>
-            </div>
-            <div class="card border-success mb-4" *ngIf="showRedeemSponsorship">
-                <div class="card-header bg-success text-white">
-                    {{'freeFamiliesPlan' | i18n}}
-                </div>
-                <div class="card-body">
-                    <p>{{'sponsoredFamiliesEligible' | i18n}}</p>
-                    <a class="btn btn-block btn-outline-secondary" routerLink="/settings/sponsored-families">
-                        {{'redeemNow' | i18n}}
-                    </a>
-                </div>
-            </div>
-            <div class="card mt-4" *ngIf="showProviders">
-                <div class="card-header d-flex">
-                    {{'providers' | i18n}}
-                    <a class="ml-auto" href="https://bitwarden.com/help/article/about-providers/" target="_blank"
-                        rel="noopener" appA11yTitle="{{'learnMore' | i18n}}">
-                        <i class="bwi bwi-question-circle" aria-hidden="true"></i>
-                    </a>
-                </div>
-                <div class="card-body">
-                    <app-providers vault="true"></app-providers>
-                </div>
-            </div>
-        </div>
+  <div class="row">
+    <div class="col-3">
+      <app-vault-groupings
+        (onAllClicked)="clearGroupingFilters()"
+        (onFavoritesClicked)="filterFavorites()"
+        (onCipherTypeClicked)="filterCipherType($event)"
+        (onFolderClicked)="filterFolder($event.id)"
+        (onAddFolder)="addFolder()"
+        (onEditFolder)="editFolder($event.id)"
+        (onCollectionClicked)="filterCollection($event.id)"
+        (onSearchTextChanged)="filterSearchText($event)"
+        (onTrashClicked)="filterDeleted()"
+      >
+      </app-vault-groupings>
     </div>
+    <div class="col-6">
+      <div class="page-header d-flex">
+        <h1>
+          {{ "myVault" | i18n }}
+          <small #actionSpinner [appApiAction]="ciphersComponent.actionPromise">
+            <ng-container *ngIf="actionSpinner.loading">
+              <i
+                class="bwi bwi-spinner bwi-spin text-muted"
+                title="{{ 'loading' | i18n }}"
+                aria-hidden="true"
+              ></i>
+              <span class="sr-only">{{ "loading" | i18n }}</span>
+            </ng-container>
+          </small>
+        </h1>
+        <div class="ml-auto d-flex">
+          <app-vault-bulk-actions [ciphersComponent]="ciphersComponent" [deleted]="deleted">
+          </app-vault-bulk-actions>
+          <button
+            type="button"
+            class="btn btn-outline-primary btn-sm"
+            (click)="addCipher()"
+            *ngIf="!deleted"
+          >
+            <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>{{ "addItem" | i18n }}
+          </button>
+        </div>
+      </div>
+      <app-callout type="warning" *ngIf="deleted" icon="bwi-exclamation-triangle">
+        {{ trashCleanupWarning }}
+      </app-callout>
+      <app-vault-ciphers
+        (onCipherClicked)="editCipher($event)"
+        (onAttachmentsClicked)="editCipherAttachments($event)"
+        (onAddCipher)="addCipher()"
+        (onShareClicked)="shareCipher($event)"
+        (onCollectionsClicked)="editCipherCollections($event)"
+        (onCloneClicked)="cloneCipher($event)"
+      >
+      </app-vault-ciphers>
+    </div>
+    <div class="col-3">
+      <div class="card border-warning mb-4" *ngIf="showUpdateKey">
+        <div class="card-header bg-warning text-white">
+          <i class="bwi bwi-exclamation-triangle bwi-fw" aria-hidden="true"></i>
+          {{ "updateKeyTitle" | i18n }}
+        </div>
+        <div class="card-body">
+          <p>{{ "updateEncryptionKeyShortDesc" | i18n }}</p>
+          <button class="btn btn-block btn-outline-secondary" type="button" (click)="updateKey()">
+            {{ "updateEncryptionKey" | i18n }}
+          </button>
+        </div>
+      </div>
+      <app-verify-email *ngIf="showVerifyEmail" class="d-block mb-4"></app-verify-email>
+      <div class="card border-warning mb-4" *ngIf="showBrowserOutdated">
+        <div class="card-header bg-warning text-white">
+          <i class="bwi bwi-exclamation-triangle bwi-fw" aria-hidden="true"></i>
+          {{ "updateBrowser" | i18n }}
+        </div>
+        <div class="card-body">
+          <p>{{ "updateBrowserDesc" | i18n }}</p>
+          <a
+            class="btn btn-block btn-outline-secondary"
+            target="_blank"
+            href="https://browser-update.org/update-browser.html"
+            rel="noopener"
+          >
+            {{ "updateBrowser" | i18n }}
+          </a>
+        </div>
+      </div>
+      <div class="card border-success mb-4" *ngIf="showPremiumCallout">
+        <div class="card-header bg-success text-white">
+          <i class="bwi bwi-star-f bwi-fw" aria-hidden="true"></i> {{ "goPremium" | i18n }}
+        </div>
+        <div class="card-body">
+          <p>{{ "premiumUpgradeUnlockFeatures" | i18n }}</p>
+          <a class="btn btn-block btn-outline-secondary" routerLink="/settings/premium">
+            {{ "goPremium" | i18n }}
+          </a>
+        </div>
+      </div>
+      <div class="card mb-4">
+        <div class="card-header d-flex">
+          {{ "organizations" | i18n }}
+          <a
+            class="ml-auto"
+            href="https://help.bitwarden.com/article/what-is-an-organization/"
+            target="_blank"
+            rel="noopener"
+            appA11yTitle="{{ 'learnMore' | i18n }}"
+          >
+            <i class="bwi bwi-question-circle" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="card-body">
+          <app-organizations [vault]="true"></app-organizations>
+        </div>
+      </div>
+      <div class="card border-success mb-4" *ngIf="showRedeemSponsorship">
+        <div class="card-header bg-success text-white">
+          {{ "freeFamiliesPlan" | i18n }}
+        </div>
+        <div class="card-body">
+          <p>{{ "sponsoredFamiliesEligible" | i18n }}</p>
+          <a class="btn btn-block btn-outline-secondary" routerLink="/settings/sponsored-families">
+            {{ "redeemNow" | i18n }}
+          </a>
+        </div>
+      </div>
+      <div class="card mt-4" *ngIf="showProviders">
+        <div class="card-header d-flex">
+          {{ "providers" | i18n }}
+          <a
+            class="ml-auto"
+            href="https://bitwarden.com/help/article/about-providers/"
+            target="_blank"
+            rel="noopener"
+            appA11yTitle="{{ 'learnMore' | i18n }}"
+          >
+            <i class="bwi bwi-question-circle" aria-hidden="true"></i>
+          </a>
+        </div>
+        <div class="card-body">
+          <app-providers vault="true"></app-providers>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <ng-template #attachments></ng-template>
 <ng-template #folderAddEdit></ng-template>

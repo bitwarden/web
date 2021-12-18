@@ -48,16 +48,14 @@ You can also manually adjusting your API endpoint settings by adding `config/loc
 
 ```json
 {
-    "dev": {
-        "proxyApi": "http://your-api-url",
-        "proxyIdentity": "http://your-identity-url",
-        "proxyEvents": "http://your-events-url",
-        "proxyNotifications": "http://your-notifications-url",
-        "allowedHosts": ["hostnames-to-allow-in-webpack"],
-    },
-    "urls": {
-      
-    }
+  "dev": {
+    "proxyApi": "http://your-api-url",
+    "proxyIdentity": "http://your-identity-url",
+    "proxyEvents": "http://your-events-url",
+    "proxyNotifications": "http://your-notifications-url",
+    "allowedHosts": ["hostnames-to-allow-in-webpack"]
+  },
+  "urls": {}
 }
 ```
 

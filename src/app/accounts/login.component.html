@@ -1,62 +1,102 @@
 <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" class="container" ngNativeValidate>
-    <div class="row justify-content-md-center mt-5">
-        <div class="col-5">
-            <img class="mb-2 logo logo-themed" alt="Bitwarden">
-            <p class="lead text-center mx-4 mb-4">{{'loginOrCreateNewAccount' | i18n}}</p>
-            <div class="card d-block">
-                <div class="card-body">
-                    <app-callout type="warning" title="{{'resetPasswordPolicyAutoEnroll' | i18n}}"
-                        *ngIf="showResetPasswordAutoEnrollWarning">
-                        {{'resetPasswordAutoEnrollInviteWarning' | i18n}}
-                    </app-callout>
-                    <div class="form-group">
-                        <label for="email">{{'emailAddress' | i18n}}</label>
-                        <input id="email" class="form-control" type="text" name="Email" [(ngModel)]="email" required
-                            inputmode="email" appInputVerbatim="false">
-                    </div>
-                    <div class="form-group">
-                        <label for="masterPassword">{{'masterPass' | i18n}}</label>
-                        <div class="d-flex">
-                            <input id="masterPassword" type="{{showPassword ? 'text' : 'password'}}"
-                                name="MasterPassword" class="text-monospace form-control" [(ngModel)]="masterPassword"
-                                required appInputVerbatim>
-                            <button type="button" class="ml-1 btn btn-link" appA11yTitle="{{'toggleVisibility' | i18n}}"
-                                (click)="togglePassword()">
-                                <i class="bwi bwi-lg" aria-hidden="true"
-                                    [ngClass]="{'bwi-eye-2': !showPassword, 'bwi-eye-2-slash': showPassword}"></i>
-                            </button>
-                        </div>
-                        <small class="form-text">
-                            <a routerLink="/hint">{{'getMasterPasswordHint' | i18n}}</a>
-                        </small>
-                    </div>
-                    <div class="form-check mb-3">
-                        <input type="checkbox" class="form-check-input" id="rememberEmail" name="RememberEmail"
-                            [(ngModel)]="rememberEmail">
-                        <label class="form-check-label" for="rememberEmail">{{'rememberEmail' | i18n}}</label>
-                    </div>
-                    <div class="mb-n3" [hidden]="!showCaptcha()"><iframe id="hcaptcha_iframe" height="80"></iframe>
-                    </div>
-                    <hr>
-                    <div class="d-flex">
-                        <button type="submit" class="btn btn-primary btn-block btn-submit" [disabled]="form.loading">
-                            <span>
-                                <i class="bwi bwi-sign-in" aria-hidden="true"></i> {{'logIn' | i18n}}
-                            </span>
-                            <i class="bwi bwi-spinner bwi-spin" title="{{'loading' | i18n}}" aria-hidden="true"></i>
-                        </button>
-                        <a routerLink="/register" [queryParams]="{email: email}"
-                            class="btn btn-outline-secondary btn-block ml-2 mt-0">
-                            <i class="bwu bwi-pencil-square-o" aria-hidden="true"></i> {{'createAccount' | i18n}}
-                        </a>
-                    </div>
-                    <div class="d-flex">
-                        <a routerLink="/sso" class="btn btn-outline-secondary btn-block mt-2">
-                            <i class="bwi bwi-bank" aria-hidden="true"></i> {{'enterpriseSingleSignOn' | i18n}}
-                        </a>
-                    </div>
-                </div>
+  <div class="row justify-content-md-center mt-5">
+    <div class="col-5">
+      <img class="mb-2 logo logo-themed" alt="Bitwarden" />
+      <p class="lead text-center mx-4 mb-4">{{ "loginOrCreateNewAccount" | i18n }}</p>
+      <div class="card d-block">
+        <div class="card-body">
+          <app-callout
+            type="warning"
+            title="{{ 'resetPasswordPolicyAutoEnroll' | i18n }}"
+            *ngIf="showResetPasswordAutoEnrollWarning"
+          >
+            {{ "resetPasswordAutoEnrollInviteWarning" | i18n }}
+          </app-callout>
+          <div class="form-group">
+            <label for="email">{{ "emailAddress" | i18n }}</label>
+            <input
+              id="email"
+              class="form-control"
+              type="text"
+              name="Email"
+              [(ngModel)]="email"
+              required
+              inputmode="email"
+              appInputVerbatim="false"
+            />
+          </div>
+          <div class="form-group">
+            <label for="masterPassword">{{ "masterPass" | i18n }}</label>
+            <div class="d-flex">
+              <input
+                id="masterPassword"
+                type="{{ showPassword ? 'text' : 'password' }}"
+                name="MasterPassword"
+                class="text-monospace form-control"
+                [(ngModel)]="masterPassword"
+                required
+                appInputVerbatim
+              />
+              <button
+                type="button"
+                class="ml-1 btn btn-link"
+                appA11yTitle="{{ 'toggleVisibility' | i18n }}"
+                (click)="togglePassword()"
+              >
+                <i
+                  class="bwi bwi-lg"
+                  aria-hidden="true"
+                  [ngClass]="{ 'bwi-eye-2': !showPassword, 'bwi-eye-2-slash': showPassword }"
+                ></i>
+              </button>
             </div>
+            <small class="form-text">
+              <a routerLink="/hint">{{ "getMasterPasswordHint" | i18n }}</a>
+            </small>
+          </div>
+          <div class="form-check mb-3">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="rememberEmail"
+              name="RememberEmail"
+              [(ngModel)]="rememberEmail"
+            />
+            <label class="form-check-label" for="rememberEmail">{{ "rememberEmail" | i18n }}</label>
+          </div>
+          <div class="mb-n3" [hidden]="!showCaptcha()">
+            <iframe id="hcaptcha_iframe" height="80"></iframe>
+          </div>
+          <hr />
+          <div class="d-flex">
+            <button
+              type="submit"
+              class="btn btn-primary btn-block btn-submit"
+              [disabled]="form.loading"
+            >
+              <span> <i class="bwi bwi-sign-in" aria-hidden="true"></i> {{ "logIn" | i18n }} </span>
+              <i
+                class="bwi bwi-spinner bwi-spin"
+                title="{{ 'loading' | i18n }}"
+                aria-hidden="true"
+              ></i>
+            </button>
+            <a
+              routerLink="/register"
+              [queryParams]="{ email: email }"
+              class="btn btn-outline-secondary btn-block ml-2 mt-0"
+            >
+              <i class="bwu bwi-pencil-square-o" aria-hidden="true"></i>
+              {{ "createAccount" | i18n }}
+            </a>
+          </div>
+          <div class="d-flex">
+            <a routerLink="/sso" class="btn btn-outline-secondary btn-block mt-2">
+              <i class="bwi bwi-bank" aria-hidden="true"></i> {{ "enterpriseSingleSignOn" | i18n }}
+            </a>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </form>
