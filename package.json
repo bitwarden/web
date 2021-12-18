@@ -30,7 +30,9 @@
     "deploy": "npm run dist:bit && gh-pages -d build",
     "deploy:dev": "npm run dist:bit && gh-pages -d build -r git@github.com:kspearrin/bitwarden-web-dev.git",
     "lint": "tslint 'src/**/*.ts' 'bitwarden_license/src/**/*.ts'",
-    "lint:fix": "tslint 'src/**/*.ts' 'bitwarden_license/src/**/*.ts' --fix"
+    "lint:fix": "tslint 'src/**/*.ts' 'bitwarden_license/src/**/*.ts' --fix",
+    "prettier": "prettier --write .",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@angular/compiler-cli": "^12.2.13",
@@ -48,7 +50,10 @@
     "html-loader": "^3.0.1",
     "html-webpack-injector": "1.1.4",
     "html-webpack-plugin": "^5.5.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.2",
     "mini-css-extract-plugin": "^2.4.5",
+    "prettier": "2.5.1",
     "process": "^0.11.10",
     "sass": "^1.32.10",
     "sass-loader": "^12.4.0",
@@ -94,5 +99,8 @@
   "engines": {
     "node": "~16",
     "npm": "~8"
+  },
+  "lint-staged": {
+    "*.{js,ts,css,scss,md}": "prettier --write"
   }
 }

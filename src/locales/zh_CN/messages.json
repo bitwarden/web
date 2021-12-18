@@ -158,16 +158,16 @@
     "message": "拖动排序"
   },
   "cfTypeText": {
-    "message": "文本"
+    "message": "文本型"
   },
   "cfTypeHidden": {
-    "message": "隐藏"
+    "message": "隐藏型"
   },
   "cfTypeBoolean": {
-    "message": "布尔"
+    "message": "布尔型"
   },
   "cfTypeLinked": {
-    "message": "已链接",
+    "message": "链接型",
     "description": "This describes a field that is 'linked' (related) to another field."
   },
   "remove": {
@@ -2177,7 +2177,7 @@
     "message": "您确实要删除此用户吗？"
   },
   "removeUserConfirmationKeyConnector": {
-    "message": "警告！此用户需要密钥连接器来管理他们的加密。从您的组织中移除此用户将永久禁用他们的帐户。此操作无法撤消。您要继续吗？"
+    "message": "警告！此用户需要 Key Connector 来管理他们的加密。从您的组织中移除此用户将永久禁用他们的帐户。此操作无法撤消。您要继续吗？"
   },
   "externalId": {
     "message": "外部 ID"
@@ -3526,14 +3526,14 @@
     "message": "过期日期"
   },
   "expirationDateDesc": {
-    "message": "如果设置了，此 Send 的访问将在指定的日期和时间后过期。",
+    "message": "设置后，对此 Send 的访问将在指定的日期和时间后过期。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
     "message": "最大访问次数"
   },
   "maxAccessCountDesc": {
-    "message": "如果设置，达到最大访问次数后用户将无法访问此 Send。",
+    "message": "设置后，当达到最大访问次数时用户将不再能够访问此 Send。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
@@ -4516,10 +4516,10 @@
     "message": "兑换"
   },
   "sponsoredFamiliesSelectOffer": {
-    "message": "选择一个您希望发起的组织"
+    "message": "选择您想要赞助的组织"
   },
   "familiesSponsoringOrgSelect": {
-    "message": "您想兑换哪一个免费家庭的邀请？"
+    "message": "您想兑换哪一个免费家庭邀请？"
   },
   "sponsoredFamiliesEmail": {
     "message": "输入您的个人电子邮件以兑换 Bitwarden 家庭"
@@ -4546,7 +4546,7 @@
     }
   },
   "sponsoredFamiliesOffer": {
-    "message": "兑换免费 Bitwarden 家庭组织邀请"
+    "message": "接受免费的 Bitwarden 家庭组织"
   },
   "sponsoredFamiliesOfferRedeemed": {
     "message": "免费 Bitwarden 家庭邀请已成功兑换"
@@ -4606,10 +4606,10 @@
     "message": "赞助已移除"
   },
   "ssoKeyConnectorUnavailable": {
-    "message": "无法连接到密钥连接器，请稍后再试。"
+    "message": "无法连接到 Key Connector，请稍后再试。"
   },
   "keyConnectorUrl": {
-    "message": "密钥连接器 URL"
+    "message": "Key Connector URL"
   },
   "sendVerificationCode": {
     "message": "发送验证码到您的电子邮箱"
@@ -4669,7 +4669,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpKeyConnector": {
-    "message": "需要先设置密钥连接器解密，然后才能启用 SSO 身份验证和单一组织策略。"
+    "message": "需要先设置 Key Connector 解密，然后才能启用 SSO 身份验证和单一组织策略。"
   },
   "memberDecryptionOption": {
     "message": "成员解密选项"
@@ -4678,13 +4678,13 @@
     "message": "验证后，成员将使用他们的主密码来解密密码库数据。"
   },
   "keyConnector": {
-    "message": "密钥连接器"
+    "message": "Key Connector"
   },
   "memberDecryptionKeyConnectorDesc": {
     "message": "连接 SSO 登录到您的自托管解密密钥服务器。使用此选项后，成员将不再需要使用他们的主密码来解密密码库数据。联系 Bitwarden 支持以获取设置指导。"
   },
   "keyConnectorPolicyRestriction": {
-    "message": "“SSO 登录和密钥连接器解密”已启用。此策略仅适用于所有者和管理员。"
+    "message": "「SSO 登录和 Key Connector 解密」已启用。此策略仅适用于所有者和管理员。"
   },
   "enabledSso": {
     "message": "已启用 SSO"
@@ -4693,25 +4693,25 @@
     "message": "已禁用 SSO"
   },
   "enabledKeyConnector": {
-    "message": "已启用密钥连接器"
+    "message": "已启用 Key Connector"
   },
   "disabledKeyConnector": {
-    "message": "已禁用密钥连接器"
+    "message": "已禁用 Key Connector"
   },
   "keyConnectorWarning": {
-    "message": "一旦成员开始使用密钥连接器，您的组织就无法恢复到主密码解密。仅当您可以轻松地部署和管理密钥服务器时才继续。"
+    "message": "一旦成员开始使用 Key Connector，您的组织就无法恢复到使用主密码解密。仅当您可以轻松地部署和管理密钥服务器时才继续。"
   },
   "migratedKeyConnector": {
-    "message": "已迁移到密钥连接器"
+    "message": "已迁移到 Key Connector"
   },
   "paymentSponsored": {
-    "message": "请提供一个与此组织相关联的付款方式。别担心，除非您选择附加功能或您的赞助到期，我们不会向您收取任何费用。 "
+    "message": "请提供一个与组织关联的付款方式。无需担心，我们不会向您收取任何费用，除非您选择附加功能或您的赞助到期。 "
   },
   "orgCreatedSponsorshipInvalid": {
     "message": "赞助邀请已过期，您可以删除您创建的组织，以避免 7 天试用期结束时收取费用。您也可以关闭这个提示，以保留此组织并承担计费责任。"
   },
   "newFamiliesOrganization": {
-    "message": "新建家庭组织"
+    "message": "新的家庭组织"
   },
   "acceptOffer": {
     "message": "接受邀请"
@@ -4723,10 +4723,10 @@
     "message": "测试"
   },
   "keyConnectorTestSuccess": {
-    "message": "成功！已连接密钥连接器。"
+    "message": "成功！已连接 Key Connector。"
   },
   "keyConnectorTestFail": {
-    "message": "无法连接密钥连接器。请检查 URL。"
+    "message": "无法连接 Key Connector。请检查 URL。"
   },
   "sponsorshipTokenHasExpired": {
     "message": "此赞助邀请已过期。"
