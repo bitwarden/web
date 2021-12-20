@@ -17,7 +17,6 @@ jobs:
   setup:
     name: Setup
     runs-on: ubuntu-20.04
-    if: ${{ github.event.inputs.release_type != 'Redeploy' }}
     outputs:
       release_version: ${{ steps.version.outputs.package }}
       tag_version: ${{ steps.version.outputs.tag }}
@@ -43,7 +42,8 @@ jobs:
             curl -sL https://api.github.com/repos/$GITHUB_REPOSITORY/releases/latest | jq -r ".tag_name"
           )
 
-          if [ "v$version" == "$previous_release_tag_version" ]; then
+          if [ "v$version" == "$previous_release_tag_version" ] && \
+          [ "${{ github.event.inputs.release_type }}" == "Initial Release" ]; then
             echo "[!] Already released v$version. Please bump version to continue"
             exit 1
           fi
@@ -169,7 +169,6 @@ jobs:
   release:
     name: Create GitHub Release
     runs-on: ubuntu-20.04
-    if: ${{ github.event.inputs.release_type == 'Initial Release' }}
     needs:
       - setup
       - self-host
