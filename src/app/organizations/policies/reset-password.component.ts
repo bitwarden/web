@@ -1,44 +1,43 @@
-import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { Component } from "@angular/core";
+import { FormBuilder } from "@angular/forms";
+import { OrganizationService } from "jslib-common/abstractions/organization.service";
 
-import { PolicyType } from 'jslib-common/enums/policyType';
+import { PolicyType } from "jslib-common/enums/policyType";
 
-import { Organization } from 'jslib-common/models/domain/organization';
+import { Organization } from "jslib-common/models/domain/organization";
 
-import { BasePolicy, BasePolicyComponent } from './base-policy.component';
+import { BasePolicy, BasePolicyComponent } from "./base-policy.component";
 
 export class ResetPasswordPolicy extends BasePolicy {
-    name = 'resetPasswordPolicy';
-    description = 'resetPasswordPolicyDescription';
-    type = PolicyType.ResetPassword;
-    component = ResetPasswordPolicyComponent;
+  name = "resetPasswordPolicy";
+  description = "resetPasswordPolicyDescription";
+  type = PolicyType.ResetPassword;
+  component = ResetPasswordPolicyComponent;
 
-    display(organization: Organization) {
-        return organization.useResetPassword;
-    }
+  display(organization: Organization) {
+    return organization.useResetPassword;
+  }
 }
 
 @Component({
-    selector: 'policy-reset-password',
-    templateUrl: 'reset-password.component.html',
+  selector: "policy-reset-password",
+  templateUrl: "reset-password.component.html",
 })
 export class ResetPasswordPolicyComponent extends BasePolicyComponent {
+  data = this.fb.group({
+    autoEnrollEnabled: false,
+  });
 
-    data = this.fb.group({
-        autoEnrollEnabled: false,
-    });
+  defaultTypes: { name: string; value: string }[];
+  showKeyConnectorInfo: boolean = false;
 
-    defaultTypes: { name: string; value: string; }[];
-    showKeyConnectorInfo: boolean = false;
+  constructor(private fb: FormBuilder, private organizationService: OrganizationService) {
+    super();
+  }
 
-    constructor(private fb: FormBuilder, private userService: UserService) {
-        super();
-    }
-
-    async ngOnInit() {
-        super.ngOnInit();
-        const organization = await this.userService.getOrganization(this.policyResponse.organizationId);
-        this.showKeyConnectorInfo = organization.keyConnectorEnabled;
-    }
+  async ngOnInit() {
+    super.ngOnInit();
+    const organization = await this.organizationService.get(this.policyResponse.organizationId);
+    this.showKeyConnectorInfo = organization.keyConnectorEnabled;
+  }
 }

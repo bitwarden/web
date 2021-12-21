@@ -2176,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "Er du sikker på, at du vil fjerne denne bruger?"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Advarsel! Denne bruger behøver Key Connector til krypteringshåndtering. Fjernes brugeren fra din organisation, deaktiveres vedkommendes konto permanent. Denne handling kan ikke fortrydes. Vil du fortsætte?"
+  },
   "externalId": {
     "message": "Eksternt id"
   },
@@ -2656,6 +2659,9 @@
   "resendInvitation": {
     "message": "Send invitation igen"
   },
+  "resendEmail": {
+    "message": "Send e-mail igen"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ er blevet inviteret igen.",
     "placeholders": {
@@ -2943,6 +2949,15 @@
   },
   "subscriptionFamiliesPlan": {
     "message": "Du kan ikke invitere mere end $COUNT$ brugere uden at opgradere dit abonnement. Kontakt venligst kundesupport for at opgradere.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Dit abonnement giver mulighed for i alt $COUNT$ brugere. Dit abonnement er sponsoreret og faktureret til en ekstern organisation.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -4049,7 +4064,7 @@
     }
   },
   "firstSsoLogin": {
-    "message": "$ID$ logget ind vha. SSO for første gang",
+    "message": "$ID$ loggede ind med SSO for første gang",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4473,6 +4488,123 @@
   "ssoSettingsSaved": {
     "message": "Single Sign-On opsætning blev gemt."
   },
+  "sponsoredFamilies": {
+    "message": "Gratis Bitwarden Familier"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Du og din familie er berettiget til gratis Bitwarden Familier. Indløs med din personlige e-mail for at holde dine data sikre, selv når du ikke er på arbejde."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Indløs dit gratis Bitwarden til Familier-abonnement i dag for at sikre dine data, selv når du ikke er på arbejde."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Bitwarden til Familier-abonnementet omfatter"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Premium-adgang for op til 6 brugere"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Delte samlinger til Familiehemmeligheder"
+  },
+  "badToken": {
+    "message": "Linket er ikke længere gyldigt. Bed sponsoren sende et nyt tilbud."
+  },
+  "reclaimedFreePlan": {
+    "message": "Konvertér til gratis abonnement"
+  },
+  "redeem": {
+    "message": "Indløs"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Vælg den organisation, du gerne vil have sponsoreret"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Hvilket gratis Familier-tilbud vil du gerne indløse?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Angiv din personlige e-mail for at indløse Bitwarden Familier"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Forlader eller fjernes du fra sponsororganisationen, udløber dit Familier-abonnement ved faktureringsperiodens udløb."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Acceptér tilbud for en eksisterende organisation, eller opret en ny Familier-organisation."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Du er blevet tilbudt en gratis Bitwarden Familier-abonnement organisation. For at fortsætte skal du logge ind på den konto, der modtog tilbuddet."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Tilbuddet kan ikke accepteres. Gensend venligst tilbudsmailen fra din virksomhedskonto, og forsøg igen."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Kan ikke acceptere tilbud. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Acceptér gratis Bitwarden Familier"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Gratis Bitwarden Familier-tilbud er blevet indløst"
+  },
+  "redeemed": {
+    "message": "Indløst"
+  },
+  "redeemedAccount": {
+    "message": "Indløst konto"
+  },
+  "revokeAccount": {
+    "message": "Ophæv kontoen $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Gensend sponsorat-e-mail til $NAME$ sponsorat",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Gratis Familier-abonnement"
+  },
+  "redeemNow": {
+    "message": "Indløs nu"
+  },
+  "recipient": {
+    "message": "Modtager"
+  },
+  "removeSponsorship": {
+    "message": "Fjern sponsorat"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "Efter at have fjernet et sponsorat, vil du være ansvarlig for dette abonnement og relaterede fakturaer. Er du sikker på, at du vil fortsætte?"
+  },
+  "sponsorshipCreated": {
+    "message": "Sponsorat oprettet"
+  },
+  "revoke": {
+    "message": "Tilbagekald"
+  },
+  "emailSent": {
+    "message": "E-mail sendt"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "Efter at have fjernet denne konto, vil Familier-organisationens ejer være ansvarlig for dette abonnement og relaterede fakturaer. Er du sikker på, at du vil fortsætte?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Sponsoratet fjernet"
+  },
   "ssoKeyConnectorUnavailable": {
     "message": "Kan ikke kontakte Key Connector, forsøg igen senere."
   },
@@ -4529,7 +4661,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
-    "message": "SSO-politikken",
+    "message": "SSO-godkendelsespolitik",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
@@ -4537,7 +4669,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpKeyConnector": {
-    "message": "Opsætning af Key Connector-dekryptering kræver SSO Authentication og Single Organization-politikker."
+    "message": "SSO-godkendelse og Enkel organisation-politikker er påkrævet for at konfigurere Key Connector-dekryptering."
   },
   "memberDecryptionOption": {
     "message": "Medlemsdekrypteringsindstillinger"
@@ -4549,7 +4681,7 @@
     "message": "Key Connector"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "Forbind Login med SSO til din selv-hostede dekrypteringsnøgleserver. Ved at bruge denne mulighed behøver medlemmer ikke at bruge deres hovedadgangskode til at dekryptere boksdata."
+    "message": "Forbind Login med SSO til din selv-hostede dekrypteringsnøgleserver. Ved at bruge denne mulighed behøver medlemmer ikke at bruge deres hovedadgangskoder til at dekryptere boksdata. Kontakt Bitwarden support for at få hjælp til opsætning."
   },
   "keyConnectorPolicyRestriction": {
     "message": "\"Login med SSO og Key Connector-dekryptering\" er aktiveret. Denne politik omfatter kun ejere og Admins."
@@ -4567,9 +4699,39 @@
     "message": "Key Connector deaktiveret"
   },
   "keyConnectorWarning": {
-    "message": "Når først Key Connector er opsat, kan medlemsdekrypteringsindstillingerne ikke ændres."
+    "message": "Når medlemmer begynder at bruge Key Connector, kan din organisation ikke vende tilbage til hovedadgangskode-dekryptering. Fortsæt kun, hvis du er fortrolig med at implementere og administrere en nøgleserver."
   },
   "migratedKeyConnector": {
     "message": "Migreret til Key Connector"
+  },
+  "paymentSponsored": {
+    "message": "Angiv en betalingsmetode der skal tilknyttes organisationen. Bare rolig, vi vil ikke opkræve dig noget, medmindre du vælger yderligere funktioner, eller dit sponsorat udløber."
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "Sponsortilbuddet er udløbet. Du kan slette den organisation, du har oprettet, for at undgå en opkrævning ved udløbet af din 7-dages prøveperiode. Ellers kan du lukke denne prompt for at beholde organisationen og påtage dig faktureringsansvaret."
+  },
+  "newFamiliesOrganization": {
+    "message": "Ny Familier-organisation"
+  },
+  "acceptOffer": {
+    "message": "Acceptér tilbud"
+  },
+  "sponsoringOrg": {
+    "message": "Sponsorerende organisation"
+  },
+  "keyConnectorTest": {
+    "message": "Test"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Succes! Key Connector nået."
+  },
+  "keyConnectorTestFail": {
+    "message": "Key Connector kan ikke nås. Tjek URL'en."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "Sponsortilbuddet er udløbet."
+  },
+  "freeWithSponsorship": {
+    "message": "GRATIS med sponsorat"
   }
 }

@@ -9,8 +9,8 @@ on:
         required: false
   push:
     branches-ignore:
-      - 'l10n_master'
-      - 'gh-pages'
+      - "l10n_master"
+      - "gh-pages"
 
 jobs:
   cloc:
@@ -28,7 +28,6 @@ jobs:
       - name: Print lines of code
         run: cloc --include-lang TypeScript,JavaScript,HTML,Sass,CSS --vcs git
 
-
   setup:
     name: Setup
     runs-on: ubuntu-20.04
@@ -40,9 +39,7 @@ jobs:
 
       - name: Get GitHub sha as version
         id: version
-        run: |
-          echo "::set-output name=value::${GITHUB_SHA:0:7}"
-
+        run: echo "::set-output name=value::${GITHUB_SHA:0:7}"
 
   build-oss-selfhost:
     name: Build OSS zip
@@ -54,17 +51,13 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
         with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
+          node-version: "16"
 
       - name: Cache npm
         id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # v2.1.6
         with:
-          path: '~/.npm'
+          path: "~/.npm"
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
@@ -89,12 +82,11 @@ jobs:
           zip -r web-$_VERSION-selfhosted-open-source.zip build
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@ee69f02b3dfdecd58bb31b4d133da38ba6fe3700  # v2.2.3
+        uses: actions/upload-artifact@ee69f02b3dfdecd58bb31b4d133da38ba6fe3700 # v2.2.3
         with:
           name: web-${{ env._VERSION }}-selfhosted-open-source.zip
           path: ./web-${{ env._VERSION }}-selfhosted-open-source.zip
           if-no-files-found: error
-
 
   build-cloud:
     name: Build Cloud zip
@@ -106,17 +98,13 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
         with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
+          node-version: "16"
 
       - name: Cache npm
         id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # v2.1.6
         with:
-          path: '~/.npm'
+          path: "~/.npm"
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
@@ -141,12 +129,11 @@ jobs:
           zip -r web-$_VERSION-cloud-COMMERCIAL.zip build
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@ee69f02b3dfdecd58bb31b4d133da38ba6fe3700  # v2.2.3
+        uses: actions/upload-artifact@ee69f02b3dfdecd58bb31b4d133da38ba6fe3700 # v2.2.3
         with:
           name: web-${{ env._VERSION }}-cloud-COMMERCIAL.zip
           path: ./web-${{ env._VERSION }}-cloud-COMMERCIAL.zip
           if-no-files-found: error
-
 
   build-commercial-selfhost:
     name: Build SelfHost Docker image
@@ -158,17 +145,13 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
         with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
+          node-version: "16"
 
       - name: Cache npm
         id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # v2.1.6
         with:
-          path: '~/.npm'
+          path: "~/.npm"
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
@@ -182,7 +165,7 @@ jobs:
           echo "GitHub event: $GITHUB_EVENT"
 
       - name: Setup DCT
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/release'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix'
         id: setup-dct
         uses: bitwarden/gh-actions/setup-docker-trust@a8c384a05a974c05c48374c818b004be221d43ff
         with:
@@ -208,7 +191,7 @@ jobs:
           zip -r web-$_VERSION-selfhosted-COMMERCIAL.zip build
 
       - name: Upload build artifact
-        uses: actions/upload-artifact@ee69f02b3dfdecd58bb31b4d133da38ba6fe3700  # v2.2.3
+        uses: actions/upload-artifact@ee69f02b3dfdecd58bb31b4d133da38ba6fe3700 # v2.2.3
         with:
           name: web-${{ env._VERSION }}-selfhosted-COMMERCIAL.zip
           path: ./web-${{ env._VERSION }}-selfhosted-COMMERCIAL.zip
@@ -228,12 +211,12 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: docker tag bitwarden/web bitwarden/web:dev
 
-      - name: Tag release branch
-        if: github.ref == 'refs/heads/release'
-        run: docker tag bitwarden/web bitwarden/web:latest
+      - name: Tag hotfix branch
+        if: github.ref == 'refs/heads/hotfix'
+        run: docker tag bitwarden/web bitwarden/web:hotfix
 
       - name: List Docker images
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/release'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix'
         run: docker images
 
       - name: Push rc image
@@ -250,17 +233,16 @@ jobs:
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
 
-      - name: Push latest image
-        if: github.ref == 'refs/heads/release'
-        run: docker push bitwarden/web:latest
+      - name: Push hotfix image
+        if: github.ref == 'refs/heads/hotfix'
+        run: docker push bitwarden/web:hotfix
         env:
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
 
       - name: Log out of Docker
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/release'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix'
         run: docker logout
-
 
   build-qa:
     name: Build Docker images for QA environment
@@ -269,17 +251,13 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
         with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
+          node-version: "16"
 
       - name: Cache npm
         id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # v2.1.6
         with:
-          path: '~/.npm'
+          path: "~/.npm"
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
@@ -326,21 +304,21 @@ jobs:
           docker --version
           docker build -t bitwardenqa.azurecr.io/web .
 
-      - name: Get image tag
-        id: image-tag
-        run: |
-          IMAGE_TAG=$(echo "$GITHUB_REF" | awk '{split($0, a, "/"); print a[3];}')
-          TAG_EXTENSION=${{ github.event.inputs.custom_tag_extension }}
+      # - name: Get image tag
+      #   id: image-tag
+      #   run: |
+      #     IMAGE_TAG=$(echo "$GITHUB_REF" | awk '{split($0, a, "/"); print a[3];}')
+      #     TAG_EXTENSION=${{ github.event.inputs.custom_tag_extension }}
 
-          if [[ $TAG_EXTENSION ]]; then
-            IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
-          fi
-          echo "::set-output name=value::$IMAGE_TAG"
+      #     if [[ $TAG_EXTENSION ]]; then
+      #       IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
+      #     fi
+      #     echo "::set-output name=value::$IMAGE_TAG"
 
-      - name: Tag image
-        env:
-          IMAGE_TAG: ${{ steps.image-tag.outputs.value }}
-        run: docker tag bitwardenqa.azurecr.io/web "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
+      # - name: Tag image
+      #   env:
+      #     IMAGE_TAG: ${{ steps.image-tag.outputs.value }}
+      #   run: docker tag bitwardenqa.azurecr.io/web "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
 
       - name: Tag dev
         if: github.ref == 'refs/heads/master'
@@ -349,10 +327,10 @@ jobs:
       - name: List Docker images
         run: docker images
 
-      - name: Push image
-        env:
-          IMAGE_TAG: ${{ steps.image-tag.outputs.value }}
-        run: docker push "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
+      # - name: Push image
+      #   env:
+      #     IMAGE_TAG: ${{ steps.image-tag.outputs.value }}
+      #   run: docker push "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
 
       - name: Push dev images
         if: github.ref == 'refs/heads/master'
@@ -361,7 +339,6 @@ jobs:
       - name: Log out of Docker
         run: docker logout
 
-
   windows:
     name: Test code on Windows
     runs-on: windows-2019
@@ -369,26 +346,22 @@ jobs:
       - name: Set up NuGet
         uses: nuget/setup-nuget@04b0c2b8d1b97922f67eca497d7cf0bf17b8ffe1
         with:
-          nuget-version: 'latest'
+          nuget-version: "latest"
 
       - name: Set up MSBuild
         uses: microsoft/setup-msbuild@c26a08ba26249b81327e26f6ef381897b6a8754d
 
       - name: Cache npm
         id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353 # v2.1.6
         with:
-          path: '~/.npm'
+          path: "~/.npm"
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
         with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
+          node-version: "16"
 
       - name: Print environment
         run: |
@@ -415,7 +388,6 @@ jobs:
       - name: NPM build
         run: npm run build:bit:cloud
 
-
   crowdin-push:
     name: Crowdin Push
     if: github.ref == 'refs/heads/master'
@@ -429,7 +401,7 @@ jobs:
       _CROWDIN_PROJECT_ID: "308189"
     steps:
       - name: Checkout repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f  # v2.3.4
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f # v2.3.4
 
       - name: Login to Azure
         uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
@@ -444,7 +416,7 @@ jobs:
           secrets: "crowdin-api-token"
 
       - name: Upload Sources
-        uses: crowdin/github-action@e39093fd75daae7859c68eded4b43d42ec78d8ea  # v1.3.2
+        uses: crowdin/github-action@e39093fd75daae7859c68eded4b43d42ec78d8ea # v1.3.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CROWDIN_API_TOKEN: ${{ steps.retrieve-secrets.outputs.crowdin-api-token }}
@@ -453,7 +425,6 @@ jobs:
           crowdin_branch_name: master
           upload_sources: true
           upload_translations: false
-
 
   check-failures:
     name: Check for failures
@@ -514,7 +485,7 @@ jobs:
           secrets: "devops-alerts-slack-webhook-url"
 
       - name: Notify Slack on failure
-        uses: act10ns/slack@e4e71685b9b239384b0f676a63c32367f59c2522  # v1.2.2
+        uses: act10ns/slack@e4e71685b9b239384b0f676a63c32367f59c2522 # v1.2.2
         if: failure()
         env:
           SLACK_WEBHOOK_URL: ${{ steps.retrieve-secrets.outputs.devops-alerts-slack-webhook-url }}

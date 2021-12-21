@@ -1,178 +1,214 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
-import { ToasterService } from 'angular2-toaster';
+import { SubscriptionResponse } from "jslib-common/models/response/subscriptionResponse";
 
-import { SubscriptionResponse } from 'jslib-common/models/response/subscriptionResponse';
-
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { TokenService } from 'jslib-common/abstractions/token.service';
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { TokenService } from "jslib-common/abstractions/token.service";
 
 @Component({
-    selector: 'app-user-subscription',
-    templateUrl: 'user-subscription.component.html',
+  selector: "app-user-subscription",
+  templateUrl: "user-subscription.component.html",
 })
 export class UserSubscriptionComponent implements OnInit {
-    loading = false;
-    firstLoaded = false;
-    adjustStorageAdd = true;
-    showAdjustStorage = false;
-    showUpdateLicense = false;
-    sub: SubscriptionResponse;
-    selfHosted = false;
+  loading = false;
+  firstLoaded = false;
+  adjustStorageAdd = true;
+  showAdjustStorage = false;
+  showUpdateLicense = false;
+  sub: SubscriptionResponse;
+  selfHosted = false;
 
-    cancelPromise: Promise<any>;
-    reinstatePromise: Promise<any>;
+  cancelPromise: Promise<any>;
+  reinstatePromise: Promise<any>;
 
-    constructor(private tokenService: TokenService, private apiService: ApiService,
-        private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
-        private toasterService: ToasterService, private router: Router, private logService: LogService) {
-        this.selfHosted = platformUtilsService.isSelfHost();
+  constructor(
+    private tokenService: TokenService,
+    private apiService: ApiService,
+    private platformUtilsService: PlatformUtilsService,
+    private i18nService: I18nService,
+    private router: Router,
+    private logService: LogService
+  ) {
+    this.selfHosted = platformUtilsService.isSelfHost();
+  }
+
+  async ngOnInit() {
+    await this.load();
+    this.firstLoaded = true;
+  }
+
+  async load() {
+    if (this.loading) {
+      return;
     }
 
-    async ngOnInit() {
-        await this.load();
-        this.firstLoaded = true;
+    if (this.tokenService.getPremium()) {
+      this.loading = true;
+      this.sub = await this.apiService.getUserSubscription();
+    } else {
+      this.router.navigate(["/settings/premium"]);
+      return;
     }
 
-    async load() {
-        if (this.loading) {
-            return;
-        }
+    this.loading = false;
+  }
 
-        if (this.tokenService.getPremium()) {
-            this.loading = true;
-            this.sub = await this.apiService.getUserSubscription();
-        } else {
-            this.router.navigate(['/settings/premium']);
-            return;
-        }
-
-        this.loading = false;
+  async reinstate() {
+    if (this.loading) {
+      return;
     }
 
-    async reinstate() {
-        if (this.loading) {
-            return;
-        }
-
-        if (this.usingInAppPurchase) {
-            this.platformUtilsService.showDialog(this.i18nService.t('manageSubscriptionFromStore'),
-                this.i18nService.t('cancelSubscription'), null, null, 'warning');
-            return;
-        }
-
-        const confirmed = await this.platformUtilsService.showDialog(this.i18nService.t('reinstateConfirmation'),
-            this.i18nService.t('reinstateSubscription'), this.i18nService.t('yes'), this.i18nService.t('cancel'));
-        if (!confirmed) {
-            return;
-        }
-
-        try {
-            this.reinstatePromise = this.apiService.postReinstatePremium();
-            await this.reinstatePromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('reinstated'));
-            this.load();
-        } catch (e) {
-            this.logService.error(e);
-        }
+    if (this.usingInAppPurchase) {
+      this.platformUtilsService.showDialog(
+        this.i18nService.t("manageSubscriptionFromStore"),
+        this.i18nService.t("cancelSubscription"),
+        null,
+        null,
+        "warning"
+      );
+      return;
     }
 
-    async cancel() {
-        if (this.loading) {
-            return;
-        }
-
-        if (this.usingInAppPurchase) {
-            this.platformUtilsService.showDialog(this.i18nService.t('manageSubscriptionFromStore'),
-                this.i18nService.t('cancelSubscription'), null, null, 'warning');
-            return;
-        }
-
-        const confirmed = await this.platformUtilsService.showDialog(this.i18nService.t('cancelConfirmation'),
-            this.i18nService.t('cancelSubscription'), this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
-        if (!confirmed) {
-            return;
-        }
-
-        try {
-            this.cancelPromise = this.apiService.postCancelPremium();
-            await this.cancelPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('canceledSubscription'));
-            this.load();
-        } catch (e) {
-            this.logService.error(e);
-        }
+    const confirmed = await this.platformUtilsService.showDialog(
+      this.i18nService.t("reinstateConfirmation"),
+      this.i18nService.t("reinstateSubscription"),
+      this.i18nService.t("yes"),
+      this.i18nService.t("cancel")
+    );
+    if (!confirmed) {
+      return;
     }
 
-    downloadLicense() {
-        if (this.loading) {
-            return;
-        }
+    try {
+      this.reinstatePromise = this.apiService.postReinstatePremium();
+      await this.reinstatePromise;
+      this.platformUtilsService.showToast("success", null, this.i18nService.t("reinstated"));
+      this.load();
+    } catch (e) {
+      this.logService.error(e);
+    }
+  }
 
-        const licenseString = JSON.stringify(this.sub.license, null, 2);
-        this.platformUtilsService.saveFile(window, licenseString, null, 'bitwarden_premium_license.json');
+  async cancel() {
+    if (this.loading) {
+      return;
     }
 
-    updateLicense() {
-        if (this.loading) {
-            return;
-        }
-        this.showUpdateLicense = true;
+    if (this.usingInAppPurchase) {
+      this.platformUtilsService.showDialog(
+        this.i18nService.t("manageSubscriptionFromStore"),
+        this.i18nService.t("cancelSubscription"),
+        null,
+        null,
+        "warning"
+      );
+      return;
     }
 
-    closeUpdateLicense(load: boolean) {
-        this.showUpdateLicense = false;
-        if (load) {
-            this.load();
-        }
+    const confirmed = await this.platformUtilsService.showDialog(
+      this.i18nService.t("cancelConfirmation"),
+      this.i18nService.t("cancelSubscription"),
+      this.i18nService.t("yes"),
+      this.i18nService.t("no"),
+      "warning"
+    );
+    if (!confirmed) {
+      return;
     }
 
-    adjustStorage(add: boolean) {
-        if (this.usingInAppPurchase) {
-            this.platformUtilsService.showDialog(this.i18nService.t('cannotPerformInAppPurchase'),
-                this.i18nService.t(add ? 'addStorage' : 'removeStorage'), null, null, 'warning');
-            return;
-        }
-        this.adjustStorageAdd = add;
-        this.showAdjustStorage = true;
+    try {
+      this.cancelPromise = this.apiService.postCancelPremium();
+      await this.cancelPromise;
+      this.platformUtilsService.showToast(
+        "success",
+        null,
+        this.i18nService.t("canceledSubscription")
+      );
+      this.load();
+    } catch (e) {
+      this.logService.error(e);
+    }
+  }
+
+  downloadLicense() {
+    if (this.loading) {
+      return;
     }
 
-    closeStorage(load: boolean) {
-        this.showAdjustStorage = false;
-        if (load) {
-            this.load();
-        }
-    }
+    const licenseString = JSON.stringify(this.sub.license, null, 2);
+    this.platformUtilsService.saveFile(
+      window,
+      licenseString,
+      null,
+      "bitwarden_premium_license.json"
+    );
+  }
 
-    get subscriptionMarkedForCancel() {
-        return this.subscription != null && !this.subscription.cancelled && this.subscription.cancelAtEndDate;
+  updateLicense() {
+    if (this.loading) {
+      return;
     }
+    this.showUpdateLicense = true;
+  }
 
-    get subscription() {
-        return this.sub != null ? this.sub.subscription : null;
+  closeUpdateLicense(load: boolean) {
+    this.showUpdateLicense = false;
+    if (load) {
+      this.load();
     }
+  }
 
-    get nextInvoice() {
-        return this.sub != null ? this.sub.upcomingInvoice : null;
+  adjustStorage(add: boolean) {
+    if (this.usingInAppPurchase) {
+      this.platformUtilsService.showDialog(
+        this.i18nService.t("cannotPerformInAppPurchase"),
+        this.i18nService.t(add ? "addStorage" : "removeStorage"),
+        null,
+        null,
+        "warning"
+      );
+      return;
     }
+    this.adjustStorageAdd = add;
+    this.showAdjustStorage = true;
+  }
 
-    get storagePercentage() {
-        return this.sub != null && this.sub.maxStorageGb ?
-            +(100 * (this.sub.storageGb / this.sub.maxStorageGb)).toFixed(2) : 0;
+  closeStorage(load: boolean) {
+    this.showAdjustStorage = false;
+    if (load) {
+      this.load();
     }
+  }
 
-    get storageProgressWidth() {
-        return this.storagePercentage < 5 ? 5 : 0;
-    }
+  get subscriptionMarkedForCancel() {
+    return (
+      this.subscription != null && !this.subscription.cancelled && this.subscription.cancelAtEndDate
+    );
+  }
 
-    get usingInAppPurchase() {
-        return this.sub != null ? this.sub.usingInAppPurchase : false;
-    }
+  get subscription() {
+    return this.sub != null ? this.sub.subscription : null;
+  }
+
+  get nextInvoice() {
+    return this.sub != null ? this.sub.upcomingInvoice : null;
+  }
+
+  get storagePercentage() {
+    return this.sub != null && this.sub.maxStorageGb
+      ? +(100 * (this.sub.storageGb / this.sub.maxStorageGb)).toFixed(2)
+      : 0;
+  }
+
+  get storageProgressWidth() {
+    return this.storagePercentage < 5 ? 5 : 0;
+  }
+
+  get usingInAppPurchase() {
+    return this.sub != null ? this.sub.usingInAppPurchase : false;
+  }
 }
