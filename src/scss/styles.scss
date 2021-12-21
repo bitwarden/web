@@ -1,6 +1,4 @@
 @import "../../jslib/angular/src/scss/webfonts.css";
-$dark-icon-themes: 'theme_dark';
-@import "../../jslib/angular/src/scss/icons.scss";
 
 @import "./variables";
 
@@ -58,3 +56,6 @@ $dark-icon-themes: 'theme_dark';
 @import "./plugins";
 @import "./tables";
 @import "./toasts";
+
+$dark-icon-themes: "theme_dark";
+@import "../../jslib/angular/src/scss/icons.scss"; // Needs to be after font-awesome
