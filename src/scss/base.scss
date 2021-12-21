@@ -18,19 +18,6 @@ body {
     }
   }
 
-  &.layout_frontend {
-    @media (prefers-color-scheme: dark) {
-      background-color: $darkDarkBlue2;
-    }
-    @media (prefers-color-scheme: light) {
-      background-color: $white;
-    }
-    @include themify($themes) {
-      background-color: themed("layoutFrontendColor");
-      color: themed("headingColor");
-    }
-  }
-
   @include themify($themes) {
     background-color: themed("backgroundColor");
     color: themed("textColor");

@@ -72,46 +72,38 @@ app-org-vault-groupings,
       }
     }
 
-    &:hover {
-      &.text-muted {
+    .show-active {
+      display: none;
+    }
+
+    li {
+      > .fa,
+      > div > .fa {
+        cursor: pointer;
+      }
+    }
+
+    li.active {
+      > .show-active,
+      > div .show-active {
+        display: inline;
+      }
+    }
+
+    li.active {
+      > a:first-of-type,
+      > div a:first-of-type {
+        font-weight: bold;
         @include themify($themes) {
-          color: themed("iconHover") !important;
+          color: themed("linkColor");
         }
       }
-    }
-  }
 
-  .show-active {
-    display: none;
-  }
-
-  li {
-    > .fa,
-    > div > .fa {
-      cursor: pointer;
-    }
-  }
-
-  li.active {
-    > .show-active,
-    > div .show-active {
-      display: inline;
-    }
-  }
-
-  li.active {
-    > a:first-of-type,
-    > div a:first-of-type {
-      font-weight: bold;
-      @include themify($themes) {
-        color: themed("linkColor");
-      }
-    }
-
-    > .fa,
-    > div > .fa {
-      @include themify($themes) {
-        color: themed("linkColor");
+      > .fa,
+      > div > .fa {
+        @include themify($themes) {
+          color: themed("linkColor");
+        }
       }
     }
   }
