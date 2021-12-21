@@ -40,7 +40,7 @@
 @import "~bootstrap/scss/_utilities";
 @import "~bootstrap/scss/_print";
 
-@import '~ngx-toastr/toastr';
+@import "~ngx-toastr/toastr";
 @import "~font-awesome/scss/font-awesome.scss";
 @import "~sweetalert2/src/sweetalert2.scss";
 
@@ -55,3 +55,5 @@
 @import "./plugins";
 @import "./tables";
 @import "./toasts";
+
+@import "../../jslib/angular/src/scss/icons.scss"; // Needs to be after font-awesome

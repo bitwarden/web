@@ -3,7 +3,15 @@ name: Release
 
 on:
   workflow_dispatch:
-    inputs: {}
+    inputs:
+      release_type:
+        description: 'Release Options'
+        required: true
+        default: 'Initial Release'
+        type: choice
+        options:
+          - Initial Release
+          - Redeploy
 
 jobs:
   setup:
@@ -34,7 +42,8 @@ jobs:
             curl -sL https://api.github.com/repos/$GITHUB_REPOSITORY/releases/latest | jq -r ".tag_name"
           )
 
-          if [ "v$version" == "$previous_release_tag_version" ]; then
+          if [ "v$version" == "$previous_release_tag_version" ] && \
+          [ "${{ github.event.inputs.release_type }}" == "Initial Release" ]; then
             echo "[!] Already released v$version. Please bump version to continue"
             exit 1
           fi
@@ -47,7 +56,6 @@ jobs:
         run: |
           BRANCH_NAME=$(basename ${{ github.ref }})
           echo "::set-output name=branch-name::$BRANCH_NAME"
-
 
   self-host:
     name: Release self-host docker
@@ -95,7 +103,6 @@ jobs:
 
       - name: Log out of Docker
         run: docker logout
-
 
   ghpages-deploy:
     name: Deploy Web Vault
@@ -159,7 +166,6 @@ jobs:
             --base gh-pages \
             --head "$PR_BRANCH"
 
-
   release:
     name: Create GitHub Release
     runs-on: ubuntu-20.04
@@ -175,7 +181,7 @@ jobs:
           workflow_conclusion: success
           branch: ${{ needs.setup.outputs.branch-name }}
           artifacts: "web-*-selfhosted-COMMERCIAL.zip,
-                      web-*-selfhosted-open-source.zip"
+            web-*-selfhosted-open-source.zip"
 
       - name: Rename assets
         run: |
@@ -190,6 +196,6 @@ jobs:
           tag: "${{ needs.setup.outputs.tag_version }}"
           body: "<insert release notes here>"
           artifacts: "web-${{ needs.setup.outputs.release_version }}-selfhosted-COMMERCIAL.zip,
-                      web-${{ needs.setup.outputs.release_version }}-selfhosted-open-source.zip"
+            web-${{ needs.setup.outputs.release_version }}-selfhosted-open-source.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
