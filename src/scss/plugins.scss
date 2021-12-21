@@ -189,37 +189,36 @@
     }
   }
 
-    .swal2-title {
-        font-size: $font-size-lg;
-        margin: 0;
-        padding: 10px 0 15px;
-        @include themify($themes) {
-            color: themed('textHeadingColor');
-        }
-    }
-  }
-
-  .swal2-actions {
-    @include border-radius($modal-content-border-radius);
-    display: flex;
-    flex-direction: row;
-    font-size: $font-size-base;
-    justify-content: flex-start;
+  .swal2-title {
+    font-size: $font-size-lg;
     margin: 0;
-    padding: 15px;
+    padding: 10px 0 15px;
     @include themify($themes) {
-      background-color: themed("backgroundColor");
-    }
-
-    button {
-      margin-right: 10px;
-      @extend .btn;
+      color: themed("textHeadingColor");
     }
   }
+}
 
-  .swal2-validation-message {
-    margin: 0 -15px;
+.swal2-actions {
+  @include border-radius($modal-content-border-radius);
+  display: flex;
+  flex-direction: row;
+  font-size: $font-size-base;
+  justify-content: flex-start;
+  margin: 0;
+  padding: 15px;
+  @include themify($themes) {
+    background-color: themed("backgroundColor");
   }
+
+  button {
+    margin-right: 10px;
+    @extend .btn;
+  }
+}
+
+.swal2-validation-message {
+  margin: 0 -15px;
 }
 
 date-input-polyfill {

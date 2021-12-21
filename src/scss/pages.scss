@@ -57,20 +57,11 @@ app-org-vault-groupings,
       margin-bottom: 0;
     }
 
-        .card-body a {
-            @include themify($themes) {
-                color: themed('textHeadingColor');
-                font-weight: themed('linkWeight');
-            }
-
-            &:hover {
-                &.text-muted {
-                    @include themify($themes) {
-                        color: themed('iconHover') !important;
-                    }
-                }
-            }
-        }
+    .card-body a {
+      @include themify($themes) {
+        color: themed("textHeadingColor");
+        font-weight: themed("linkWeight");
+      }
 
       &:hover {
         &.text-muted {
@@ -81,38 +72,46 @@ app-org-vault-groupings,
       }
     }
 
-    .show-active {
-      display: none;
-    }
-
-    li {
-      > .fa,
-      > div > .fa {
-        cursor: pointer;
-      }
-    }
-
-    li.active {
-      > .show-active,
-      > div .show-active {
-        display: inline;
-      }
-    }
-
-    li.active {
-      > a:first-of-type,
-      > div a:first-of-type {
-        font-weight: bold;
+    &:hover {
+      &.text-muted {
         @include themify($themes) {
-          color: themed("linkColor");
+          color: themed("iconHover") !important;
         }
       }
+    }
+  }
 
-      > .fa,
-      > div > .fa {
-        @include themify($themes) {
-          color: themed("linkColor");
-        }
+  .show-active {
+    display: none;
+  }
+
+  li {
+    > .fa,
+    > div > .fa {
+      cursor: pointer;
+    }
+  }
+
+  li.active {
+    > .show-active,
+    > div .show-active {
+      display: inline;
+    }
+  }
+
+  li.active {
+    > a:first-of-type,
+    > div a:first-of-type {
+      font-weight: bold;
+      @include themify($themes) {
+        color: themed("linkColor");
+      }
+    }
+
+    > .fa,
+    > div > .fa {
+      @include themify($themes) {
+        color: themed("linkColor");
       }
     }
   }

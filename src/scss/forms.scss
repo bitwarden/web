@@ -20,17 +20,19 @@ input[type="search"]::-webkit-search-cancel-button {
   -webkit-appearance: -cancel-button;
 }
 
-label:not(.form-check-label):not(.btn), label.bold {
-    font-weight: 600;
-    @include themify($themes) {
-        color: themed('textHeadingColor');
-    }
+label:not(.form-check-label):not(.btn),
+label.bold {
+  font-weight: 600;
+  @include themify($themes) {
+    color: themed("textHeadingColor");
+  }
 }
 
-label.form-check-label, .form-control-file {
-    @include themify($themes) {
-        color: themed('textHeadingColor');
-    }
+label.form-check-label,
+.form-control-file {
+  @include themify($themes) {
+    color: themed("textHeadingColor");
+  }
 }
 
 .form-check-block {

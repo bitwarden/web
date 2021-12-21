@@ -3,20 +3,20 @@ html {
 }
 
 body {
-    min-width: 1010px;
+  min-width: 1010px;
 
-    &.layout_frontend {
-        @media (prefers-color-scheme: dark) {
-            background-color: $darkDarkBlue2;
-        }
-        @media (prefers-color-scheme: light) {
-            background-color: $white;
-        }
-        @include themify($themes) {
-            background-color: themed('layoutFrontendColor');
-            color: themed('textHeadingColor');
-        }
+  &.layout_frontend {
+    @media (prefers-color-scheme: dark) {
+      background-color: $darkDarkBlue2;
     }
+    @media (prefers-color-scheme: light) {
+      background-color: $white;
+    }
+    @include themify($themes) {
+      background-color: themed("layoutFrontendColor");
+      color: themed("textHeadingColor");
+    }
+  }
 
   &.layout_frontend {
     @media (prefers-color-scheme: dark) {
@@ -45,28 +45,31 @@ body {
 }
 
 .container {
-    margin: 0 auto;
-    max-width: none !important;
-    padding: 0;
-    width: 980px;
+  margin: 0 auto;
+  max-width: none !important;
+  padding: 0;
+  width: 980px;
 }
 
 .page-header,
 .secondary-header {
-    margin-bottom: 0.5rem;
-    padding-bottom: 0.6rem;
-    @include themify($themes) {
-        border-bottom: 1px solid themed('separator');
-    }
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.6rem;
+  @include themify($themes) {
+    border-bottom: 1px solid themed("separator");
+  }
 
-    &:not(.text-danger) {
-        h1, h2, h3, h4 {
-            margin: 0;
-            @include themify($themes) {
-                color: themed('textHeadingColor');
-            }
-        }
+  &:not(.text-danger) {
+    h1,
+    h2,
+    h3,
+    h4 {
+      margin: 0;
+      @include themify($themes) {
+        color: themed("textHeadingColor");
+      }
     }
+  }
 }
 
 .secondary-header,
@@ -127,15 +130,15 @@ h5 {
     color: themed("headingColor");
   }
 
-    small {
-        font-size: 80%;
-    }
+  small {
+    font-size: 80%;
+  }
 
-    &.spaced-header {
-        @include themify($themes) {
-            color: themed('textHeadingColor');
-        }
+  &.spaced-header {
+    @include themify($themes) {
+      color: themed("textHeadingColor");
     }
+  }
 }
 
 a {
@@ -143,12 +146,12 @@ a {
     color: themed("linkColor");
   }
 
-    &.text-body {
-        @include themify($themes) {
-            color: themed('textHeadingColor') !important;
-            font-weight: themed('linkWeight');
-        }
+  &.text-body {
+    @include themify($themes) {
+      color: themed("textHeadingColor") !important;
+      font-weight: themed("linkWeight");
     }
+  }
 }
 
 code {
@@ -198,31 +201,32 @@ code {
 }
 
 .bg-success {
-    @include themify($themes) {
-        background-color: themed('success') !important;
-        color: themed('textSuccessColor') !important;
-    }
+  @include themify($themes) {
+    background-color: themed("success") !important;
+    color: themed("textSuccessColor") !important;
+  }
 }
 
 .bg-warning {
-    @include themify($themes) {
-        background-color: themed('warning') !important;
-        color: themed('textWarningColor') !important;
-    }
+  @include themify($themes) {
+    background-color: themed("warning") !important;
+    color: themed("textWarningColor") !important;
+  }
 }
 
-.bg-error, .bg-danger {
-    @include themify($themes) {
-        background-color: themed('danger') !important;
-        color: themed('textDangerColor') !important;
-    }
+.bg-error,
+.bg-danger {
+  @include themify($themes) {
+    background-color: themed("danger") !important;
+    color: themed("textDangerColor") !important;
+  }
 }
 
 .bg-info {
-    @include themify($themes) {
-        background-color: themed('info') !important;
-        color: themed('textInfoColor') !important;
-    }
+  @include themify($themes) {
+    background-color: themed("info") !important;
+    color: themed("textInfoColor") !important;
+  }
 }
 
 .border-primary {

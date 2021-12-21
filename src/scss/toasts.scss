@@ -41,20 +41,17 @@
       }
     }
 
-        &.toast-danger, &.toast-error {
-            @include themify($themes) {
-                background-color: themed('danger');
-            }
+    &.toast-danger,
+    &.toast-error {
+      @include themify($themes) {
+        background-color: themed("danger");
+      }
 
-            &, &:before, & .toast-close-button {
-                @include themify($themes) {
-                    color: themed('textDangerColor') !important;
-                }
-            }
-
-            .icon i::before {
-                content: "\f0e7";
-            }
+      &,
+      &:before,
+      & .toast-close-button {
+        @include themify($themes) {
+          color: themed("textDangerColor") !important;
         }
       }
 
@@ -63,23 +60,23 @@
       }
     }
 
-            &, &:before, & .toast-close-button {
-                @include themify($themes) {
-                    color: themed('textWarningColor') !important;
-                }
-            }
+    &.toast-warning {
+      @include themify($themes) {
+        background-color: themed("warning");
+      }
 
       &,
       &:before,
       & .toast-close-button {
         @include themify($themes) {
-          color: themed("warningTextColor") !important;
+          color: themed("textWarningColor") !important;
         }
       }
 
       .icon i::before {
         content: "\f071";
       }
+    }
 
     &.toast-info {
       @include themify($themes) {
@@ -116,3 +113,5 @@
         content: "\f00C";
       }
     }
+  }
+}
