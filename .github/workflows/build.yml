@@ -307,7 +307,7 @@ jobs:
       - name: Get image tag
         id: image-tag
         run: |
-          IMAGE_TAG="${GITHUB_REF:11}"
+          IMAGE_TAG=$("${GITHUB_REF:11}" | sed "s#/#-#g")
           TAG_EXTENSION=${{ github.event.inputs.custom_tag_extension }}
 
           if [[ $TAG_EXTENSION ]]; then
