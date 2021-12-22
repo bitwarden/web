@@ -20,7 +20,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     private messagingService: MessagingService,
     private logService: LogService,
     private stateService: StateService
-  ) {}
+  ) { }
 
   getDevice(): DeviceType {
     if (this.browserCache != null) {
@@ -204,7 +204,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
           iconClasses = "bwi-exclamation-triangle text-warning";
           break;
         case "error":
-          iconClasses = "bwi-bolt text-danger";
+          iconClasses = "bwi-error text-danger";
           break;
         case "info":
           iconClasses = "bwi-info-circle text-info";
