@@ -304,21 +304,21 @@ jobs:
           docker --version
           docker build -t bitwardenqa.azurecr.io/web .
 
-      # - name: Get image tag
-      #   id: image-tag
-      #   run: |
-      #     IMAGE_TAG=$(echo "$GITHUB_REF" | awk '{split($0, a, "/"); print a[3];}')
-      #     TAG_EXTENSION=${{ github.event.inputs.custom_tag_extension }}
+      - name: Get image tag
+        id: image-tag
+        run: |
+          IMAGE_TAG=$(echo "$GITHUB_REF" | awk '{split($0, a, "/"); print a[3];}')
+          TAG_EXTENSION=${{ github.event.inputs.custom_tag_extension }}
 
-      #     if [[ $TAG_EXTENSION ]]; then
-      #       IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
-      #     fi
-      #     echo "::set-output name=value::$IMAGE_TAG"
+          if [[ $TAG_EXTENSION ]]; then
+            IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
+          fi
+          echo "::set-output name=value::$IMAGE_TAG"
 
-      # - name: Tag image
-      #   env:
-      #     IMAGE_TAG: ${{ steps.image-tag.outputs.value }}
-      #   run: docker tag bitwardenqa.azurecr.io/web "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
+      - name: Tag image
+         env:
+           IMAGE_TAG: ${{ steps.image-tag.outputs.value }}
+         run: docker tag bitwardenqa.azurecr.io/web "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
 
       - name: Tag dev
         if: github.ref == 'refs/heads/master'
@@ -327,10 +327,10 @@ jobs:
       - name: List Docker images
         run: docker images
 
-      # - name: Push image
-      #   env:
-      #     IMAGE_TAG: ${{ steps.image-tag.outputs.value }}
-      #   run: docker push "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
+      - name: Push image
+        env:
+          IMAGE_TAG: ${{ steps.image-tag.outputs.value }}
+        run: docker push "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
 
       - name: Push dev images
         if: github.ref == 'refs/heads/master'
