@@ -54,7 +54,7 @@ jobs:
       - name: Get image tag
         id: image_tag
         run: |
-          IMAGE_TAG="${GITHUB_REF:10}"
+          IMAGE_TAG="${GITHUB_REF:11}"
           TAG_EXTENSION=${{ github.event.inputs.image_extension }}
 
           if [[ $TAG_EXTENSION ]]; then
