@@ -9,8 +9,8 @@ on:
         required: false
 
 env:
-  _QA_CLUSTER_RESOURCE_GROUP: "bitwarden-devops"
-  _QA_CLUSTER_NAME: "dev-aks"
+  _QA_CLUSTER_RESOURCE_GROUP: "bw-env-qa"
+  _QA_CLUSTER_NAME: "bw-aks-qa"
   _QA_K8S_NAMESPACE: "bw-qa"
   _QA_K8S_APP_NAME: "bw-web"
 
