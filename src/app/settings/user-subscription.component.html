@@ -3,7 +3,7 @@
     {{ "premiumMembership" | i18n }}
     <small *ngIf="firstLoaded && loading">
       <i
-        class="bwi bwi-spinner bwi-spin text-muted"
+        class="bwi-spinner bwi-spin text-muted"
         title="{{ 'loading' | i18n }}"
         aria-hidden="true"
       ></i>
@@ -12,11 +12,7 @@
   </h1>
 </div>
 <ng-container *ngIf="!firstLoaded && loading">
-  <i
-    class="bwi bwi-spinner bwi-spin text-muted"
-    title="{{ 'loading' | i18n }}"
-    aria-hidden="true"
-  ></i>
+  <i class="bwi-spinner bwi-spin text-muted" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
   <span class="sr-only">{{ "loading" | i18n }}</span>
 </ng-container>
 <ng-container *ngIf="sub">
@@ -41,7 +37,7 @@
       [appApiAction]="reinstatePromise"
       [disabled]="reinstateBtn.loading"
     >
-      <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+      <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
       <span>{{ "reinstateSubscription" | i18n }}</span>
     </button>
   </app-callout>
@@ -139,7 +135,7 @@
         [disabled]="cancelBtn.loading"
         *ngIf="subscription && !subscription.cancelled && !subscriptionMarkedForCancel"
       >
-        <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+        <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
         <span>{{ "cancelSubscription" | i18n }}</span>
       </button>
     </div>

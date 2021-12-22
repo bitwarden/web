@@ -51,7 +51,7 @@
               #removeKeyBtn
               [appApiAction]="k.removePromise"
             >
-              <i class="bwi-li bwi bwi-key"></i>
+              <i class="bwi-li bwi-key"></i>
               <strong *ngIf="!k.configured || !k.name">{{ "webAuthnkeyX" | i18n: i + 1 }}</strong>
               <strong *ngIf="k.configured && k.name">{{ k.name }}</strong>
               <ng-container *ngIf="k.configured && !removeKeyBtn.loading">
@@ -61,7 +61,7 @@
               </ng-container>
               <ng-container *ngIf="keysConfiguredCount > 1 && k.configured">
                 <i
-                  class="bwi bwi-spin bwi-spinner text-muted bwi-fw"
+                  class="bwi-spin bwi-spinner text-muted bwi-fw"
                   title="{{ 'loading' | i18n }}"
                   *ngIf="removeKeyBtn.loading"
                   aria-hidden="true"
@@ -103,19 +103,19 @@
             {{ "readKey" | i18n }}
           </button>
           <ng-container *ngIf="readKeyBtn.loading">
-            <i class="bwi bwi-spinner bwi-spin text-muted" aria-hidden="true"></i>
+            <i class="bwi-spinner bwi-spin text-muted" aria-hidden="true"></i>
           </ng-container>
           <ng-container *ngIf="!readKeyBtn.loading">
             <ng-container *ngIf="webAuthnListening">
-              <i class="bwi bwi-spinner bwi-spin text-muted" aria-hidden="true"></i>
+              <i class="bwi-spinner bwi-spin text-muted" aria-hidden="true"></i>
               {{ "twoFactorU2fWaiting" | i18n }}...
             </ng-container>
             <ng-container *ngIf="webAuthnResponse">
-              <i class="bwi bwi-check-circle text-success" aria-hidden="true"></i>
+              <i class="bwi-check-circle text-success" aria-hidden="true"></i>
               {{ "twoFactorU2fClickSave" | i18n }}
             </ng-container>
             <ng-container *ngIf="webAuthnError">
-              <i class="bwi bwi-exclamation-triangle text-danger" aria-hidden="true"></i>
+              <i class="bwi-exclamation-triangle text-danger" aria-hidden="true"></i>
               {{ "twoFactorU2fProblemReadingTryAgain" | i18n }}
             </ng-container>
           </ng-container>
@@ -127,7 +127,7 @@
             [disabled]="form.loading || !webAuthnResponse"
           >
             <i
-              class="bwi bwi-spinner bwi-spin"
+              class="bwi-spinner bwi-spin"
               *ngIf="form.loading"
               title="{{ 'loading' | i18n }}"
               aria-hidden="true"
@@ -143,11 +143,7 @@
             (click)="disable()"
             *ngIf="enabled"
           >
-            <i
-              class="bwi bwi-spinner bwi-spin"
-              title="{{ 'loading' | i18n }}"
-              aria-hidden="true"
-            ></i>
+            <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
             <span>{{ "disableAllKeys" | i18n }}</span>
           </button>
           <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">

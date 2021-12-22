@@ -26,9 +26,9 @@
           <tbody>
             <tr *ngFor="let a of cipher.attachments">
               <td class="table-list-icon">
-                <i class="bwi bwi-fw bwi-lg bwi-file" *ngIf="!a.downloading" aria-hidden="true"></i>
+                <i class="bwi-fw bwi-lg bwi-file" *ngIf="!a.downloading" aria-hidden="true"></i>
                 <i
-                  class="bwi bwi-spinner bwi-lg bwi-fw bwi-spin"
+                  class="bwi-spinner bwi-lg bwi-fw bwi-spin"
                   *ngIf="a.downloading"
                   aria-hidden="true"
                 ></i>
@@ -43,7 +43,7 @@
                       rel="noopener"
                     >
                       <i
-                        class="bwi bwi-exclamation-triangle text-warning"
+                        class="bwi-exclamation-triangle text-warning"
                         title="{{ 'attachmentFixDesc' | i18n }}"
                         aria-hidden="true"
                       ></i>
@@ -75,12 +75,12 @@
                   [disabled]="deleteBtn.loading"
                 >
                   <i
-                    class="bwi bwi-trash bwi-lg bwi-fw"
+                    class="bwi-trash bwi-lg bwi-fw"
                     [hidden]="deleteBtn.loading"
                     aria-hidden="true"
                   ></i>
                   <i
-                    class="bwi bwi-spinner bwi-spin bwi-lg bwi-fw"
+                    class="bwi-spinner bwi-spin bwi-lg bwi-fw"
                     [hidden]="!deleteBtn.loading"
                     title="{{ 'loading' | i18n }}"
                     aria-hidden="true"
@@ -104,7 +104,7 @@
           [disabled]="form.loading"
           *ngIf="!viewOnly"
         >
-          <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+          <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
           <span>{{ "save" | i18n }}</span>
         </button>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">

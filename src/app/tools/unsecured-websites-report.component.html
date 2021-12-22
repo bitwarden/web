@@ -3,7 +3,7 @@
     {{ "unsecuredWebsitesReport" | i18n }}
     <small *ngIf="hasLoaded && loading">
       <i
-        class="bwi bwi-spinner bwi-spin text-muted"
+        class="bwi-spinner bwi-spin text-muted"
         title="{{ 'loading' | i18n }}"
         aria-hidden="true"
       ></i>
@@ -13,11 +13,7 @@
 </div>
 <p>{{ "unsecuredWebsitesReportDesc" | i18n }}</p>
 <div *ngIf="!hasLoaded && loading">
-  <i
-    class="bwi bwi-spinner bwi-spin text-muted"
-    title="{{ 'loading' | i18n }}"
-    aria-hidden="true"
-  ></i>
+  <i class="bwi-spinner bwi-spin text-muted" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
   <span class="sr-only">{{ "loading" | i18n }}</span>
 </div>
 <div class="mt-4" *ngIf="hasLoaded">
@@ -40,7 +36,7 @@
             }}</a>
             <ng-container *ngIf="!organization && c.organizationId">
               <i
-                class="bwi bwi-collection"
+                class="bwi-collection"
                 appStopProp
                 title="{{ 'shared' | i18n }}"
                 aria-hidden="true"
@@ -49,7 +45,7 @@
             </ng-container>
             <ng-container *ngIf="c.hasAttachments">
               <i
-                class="bwi bwi-paperclip"
+                class="bwi-paperclip"
                 appStopProp
                 title="{{ 'attachments' | i18n }}"
                 aria-hidden="true"

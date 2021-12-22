@@ -90,7 +90,7 @@
             </div>
           </ng-container>
           <i
-            class="bwi bwi-spinner text-muted bwi-spin pull-right"
+            class="bwi-spinner text-muted bwi-spin pull-right"
             title="{{ 'loading' | i18n }}"
             *ngIf="form.loading && selectedProviderType === providerType.WebAuthn"
             aria-hidden="true"
@@ -122,14 +122,8 @@
                 selectedProviderType !== providerType.WebAuthn
               "
             >
-              <span>
-                <i class="bwi bwi-sign-in" aria-hidden="true"></i> {{ "continue" | i18n }}
-              </span>
-              <i
-                class="bwi bwi-spinner bwi-spin"
-                title="{{ 'loading' | i18n }}"
-                aria-hidden="true"
-              ></i>
+              <span> <i class="bwi-sign-in" aria-hidden="true"></i> {{ "continue" | i18n }} </span>
+              <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
             </button>
             <a routerLink="/" class="btn btn-outline-secondary btn-block ml-2 mt-0">
               {{ "cancel" | i18n }}

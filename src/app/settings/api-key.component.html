@@ -60,7 +60,7 @@
           [disabled]="form.loading"
           *ngIf="!clientSecret"
         >
-          <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+          <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
           <span>{{ (isRotation ? "rotateApiKey" : "viewApiKey") | i18n }}</span>
         </button>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">

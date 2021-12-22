@@ -21,7 +21,7 @@
       <div class="card d-block">
         <div class="card-body" *ngIf="loading" class="text-center">
           <i
-            class="bwi bwi-spinner bwi-spin bwi-2x text-muted"
+            class="bwi-spinner bwi-spin bwi-2x text-muted"
             title="{{ 'loading' | i18n }}"
             aria-hidden="true"
           ></i>
@@ -49,14 +49,8 @@
               class="btn btn-primary btn-block btn-submit"
               [disabled]="form.loading"
             >
-              <span>
-                <i class="bwi bwi-sign-in" aria-hidden="true"></i> {{ "continue" | i18n }}
-              </span>
-              <i
-                class="bwi bwi-spinner bwi-spin"
-                title="{{ 'loading' | i18n }}"
-                aria-hidden="true"
-              ></i>
+              <span> <i class="bwi-sign-in" aria-hidden="true"></i> {{ "continue" | i18n }} </span>
+              <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
             </button>
           </div>
         </div>
@@ -93,14 +87,14 @@
               *ngIf="send.text.hidden"
             >
               <i
-                class="bwi bwi-lg"
+                class="bwi-lg"
                 aria-hidden="true"
                 [ngClass]="{ 'bwi-eye-2': !showText, 'bwi-eye-slash-2': showText }"
               ></i>
               {{ "toggleVisibility" | i18n }}
             </button>
             <button class="btn btn-block btn-link" type="button" (click)="copyText()">
-              <i class="bwi bwi-copy" aria-hidden="true"></i> {{ "copyValue" | i18n }}
+              <i class="bwi-copy" aria-hidden="true"></i> {{ "copyValue" | i18n }}
             </button>
           </ng-container>
           <!-- File -->
@@ -112,7 +106,7 @@
               (click)="download()"
               *ngIf="!downloading"
             >
-              <i class="bwi bwi-download" aria-hidden="true"></i>
+              <i class="bwi-download" aria-hidden="true"></i>
               {{ "downloadFile" | i18n }} ({{ send.file.sizeName }})
             </button>
             <button
@@ -121,11 +115,7 @@
               *ngIf="downloading"
               disabled="true"
             >
-              <i
-                class="bwi bwi-spinner bwi-spin"
-                title="{{ 'loading' | i18n }}"
-                aria-hidden="true"
-              ></i>
+              <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
             </button>
           </ng-container>
           <p *ngIf="expirationDate" class="text-center text-muted">

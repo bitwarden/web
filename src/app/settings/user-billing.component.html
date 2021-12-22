@@ -8,16 +8,12 @@
     *ngIf="firstLoaded"
     [disabled]="loading"
   >
-    <i class="bwi bwi-refresh bwi-fw" [ngClass]="{ 'bwi-spin': loading }" aria-hidden="true"></i>
+    <i class="bwi-refresh bwi-fw" [ngClass]="{ 'bwi-spin': loading }" aria-hidden="true"></i>
     {{ "refresh" | i18n }}
   </button>
 </div>
 <ng-container *ngIf="!firstLoaded && loading">
-  <i
-    class="bwi bwi-spinner bwi-spin text-muted"
-    title="{{ 'loading' | i18n }}"
-    aria-hidden="true"
-  ></i>
+  <i class="bwi-spinner bwi-spin text-muted" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
   <span class="sr-only">{{ "loading" | i18n }}</span>
 </ng-container>
 <ng-container *ngIf="billing">
@@ -100,14 +96,14 @@
           class="btn btn-outline-primary btn-submit"
           [disabled]="verifyForm.loading"
         >
-          <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+          <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
           <span>{{ "verifyBankAccount" | i18n }}</span>
         </button>
       </form>
     </app-callout>
     <p>
       <i
-        class="bwi bwi-fw"
+        class="bwi-fw"
         [ngClass]="{
           'bwi-credit-card': paymentSource.type === paymentMethodType.Card,
           'bwi-bank': paymentSource.type === paymentMethodType.BankAccount,
@@ -151,7 +147,7 @@
             class="mr-2"
             appA11yTitle="{{ 'downloadInvoice' | i18n }}"
           >
-            <i class="bwi bwi-file-pdf" aria-hidden="true"></i
+            <i class="bwi-file-pdf" aria-hidden="true"></i
           ></a>
           <a href="{{ i.url }}" target="_blank" rel="noopener" title="{{ 'viewInvoice' | i18n }}">
             {{ "invoiceNumber" | i18n: i.number }}</a
@@ -160,11 +156,11 @@
         <td>{{ i.amount | currency: "$" }}</td>
         <td>
           <span *ngIf="i.paid">
-            <i class="bwi bwi-check text-success" aria-hidden="true"></i>
+            <i class="bwi-check text-success" aria-hidden="true"></i>
             {{ "paid" | i18n }}
           </span>
           <span *ngIf="!i.paid">
-            <i class="bwi bwi-exclamation-circle text-muted" aria-hidden="true"></i>
+            <i class="bwi-exclamation-circle text-muted" aria-hidden="true"></i>
             {{ "unpaid" | i18n }}
           </span>
         </td>
@@ -185,7 +181,7 @@
         </td>
         <td>
           <i
-            class="bwi bwi-fw"
+            class="bwi-fw"
             *ngIf="t.paymentMethodType"
             aria-hidden="true"
             [ngClass]="{

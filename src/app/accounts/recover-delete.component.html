@@ -27,11 +27,7 @@
               [disabled]="form.loading"
             >
               <span>{{ "submit" | i18n }}</span>
-              <i
-                class="bwi bwi-spinner bwi-spin"
-                title="{{ 'loading' | i18n }}"
-                aria-hidden="true"
-              ></i>
+              <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
             </button>
             <a routerLink="/" class="btn btn-outline-secondary btn-block ml-2 mt-0">
               {{ "cancel" | i18n }}

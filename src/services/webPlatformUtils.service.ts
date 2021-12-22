@@ -20,7 +20,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     private messagingService: MessagingService,
     private logService: LogService,
     private stateService: StateService
-  ) { }
+  ) {}
 
   getDevice(): DeviceType {
     if (this.browserCache != null) {

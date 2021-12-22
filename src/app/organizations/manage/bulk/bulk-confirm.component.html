@@ -16,7 +16,7 @@
       </div>
       <div class="modal-body">
         <div class="card-body text-center" *ngIf="loading">
-          <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+          <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
           {{ "loading" | i18n }}
         </div>
         <app-callout type="danger" *ngIf="filteredUsers.length <= 0">
@@ -51,7 +51,8 @@
                   size="25"
                   [circle]="true"
                   [fontSize]="14"
-                ></app-avatar>
+                >
+                </app-avatar>
               </td>
               <td>
                 {{ user.email }}
@@ -69,7 +70,8 @@
                   size="25"
                   [circle]="true"
                   [fontSize]="14"
-                ></app-avatar>
+                >
+                </app-avatar>
               </td>
               <td>
                 {{ user.email }}
@@ -97,7 +99,8 @@
                   size="25"
                   [circle]="true"
                   [fontSize]="14"
-                ></app-avatar>
+                >
+                </app-avatar>
               </td>
               <td>
                 {{ user.email }}
@@ -121,7 +124,7 @@
           [disabled]="loading"
           (click)="submit()"
         >
-          <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+          <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
           <span>{{ "confirm" | i18n }}</span>
         </button>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">

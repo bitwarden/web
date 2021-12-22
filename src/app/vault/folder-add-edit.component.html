@@ -32,7 +32,7 @@
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-          <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+          <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
           <span>{{ "save" | i18n }}</span>
         </button>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
@@ -49,13 +49,9 @@
             [disabled]="deleteBtn.loading"
             [appApiAction]="deletePromise"
           >
+            <i class="bwi-trash bwi-lg bwi-fw" [hidden]="deleteBtn.loading" aria-hidden="true"></i>
             <i
-              class="bwi bwi-trash bwi-lg bwi-fw"
-              [hidden]="deleteBtn.loading"
-              aria-hidden="true"
-            ></i>
-            <i
-              class="bwi bwi-spinner bwi-spin bwi-lg bwi-fw"
+              class="bwi-spinner bwi-spin bwi-lg bwi-fw"
               [hidden]="!deleteBtn.loading"
               title="{{ 'loading' | i18n }}"
               aria-hidden="true"

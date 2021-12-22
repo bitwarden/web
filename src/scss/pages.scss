@@ -78,7 +78,8 @@ app-org-vault-groupings,
 
     li {
       > .bwi,
-      > div > .bwi {
+      > div > [class^="bwi-"],
+      [class*=" bwi-"] {
         cursor: pointer;
       }
     }
@@ -99,8 +100,10 @@ app-org-vault-groupings,
         }
       }
 
-      > .bwi,
-      > div > .bwi {
+      > [class^="bwi-"],
+      [class*=" bwi-"],
+      > div > [class^="bwi-"],
+      [class*=" bwi-"] {
         @include themify($themes) {
           color: themed("linkColor");
         }

@@ -34,7 +34,7 @@ export class ImportComponent implements OnInit {
     protected platformUtilsService: PlatformUtilsService,
     protected policyService: PolicyService,
     private logService: LogService
-  ) { }
+  ) {}
 
   async ngOnInit() {
     this.setImportOptions();
@@ -166,7 +166,7 @@ export class ImportComponent implements OnInit {
       heightAuto: false,
       buttonsStyling: false,
       icon: "error" as SweetAlertIcon,
-      iconHtml: `<i class="swal-custom-icon bwi bwi-error text-danger"></i>`,
+      iconHtml: `<i class="swal-custom-icon bwi-error text-danger"></i>`,
       input: "textarea",
       inputValue: error.message,
       inputAttributes: {

@@ -20,7 +20,7 @@
       </div>
       <div class="modal-body" *ngIf="loading">
         <i
-          class="bwi bwi-spinner bwi-spin text-muted"
+          class="bwi-spinner bwi-spin text-muted"
           title="{{ 'loading' | i18n }}"
           aria-hidden="true"
         ></i>
@@ -91,7 +91,7 @@
                   {{ g.name }}
                   <ng-container *ngIf="g.accessAll">
                     <i
-                      class="bwi bwi-th text-muted bwi-fw"
+                      class="bwi-th text-muted bwi-fw"
                       title="{{ 'groupAccessAllItems' | i18n }}"
                       aria-hidden="true"
                     ></i>
@@ -126,7 +126,7 @@
           [disabled]="form.loading"
           *ngIf="this.canSave"
         >
-          <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+          <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
           <span>{{ "save" | i18n }}</span>
         </button>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
@@ -143,13 +143,9 @@
             [disabled]="deleteBtn.loading"
             [appApiAction]="deletePromise"
           >
+            <i class="bwi-trash bwi-lg bwi-fw" [hidden]="deleteBtn.loading" aria-hidden="true"></i>
             <i
-              class="bwi bwi-trash bwi-lg bwi-fw"
-              [hidden]="deleteBtn.loading"
-              aria-hidden="true"
-            ></i>
-            <i
-              class="bwi bwi-spinner bwi-spin bwi-lg bwi-fw"
+              class="bwi-spinner bwi-spin bwi-lg bwi-fw"
               [hidden]="!deleteBtn.loading"
               title="{{ 'loading' | i18n }}"
               aria-hidden="true"

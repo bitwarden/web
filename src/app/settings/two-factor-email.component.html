@@ -64,7 +64,7 @@
                 [disabled]="sendBtn.loading"
               >
                 <i
-                  class="bwi bwi-spinner bwi-spin"
+                  class="bwi-spinner bwi-spin"
                   title="{{ 'loading' | i18n }}"
                   aria-hidden="true"
                 ></i>
@@ -90,11 +90,7 @@
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-            <i
-              class="bwi bwi-spinner bwi-spin"
-              title="{{ 'loading' | i18n }}"
-              aria-hidden="true"
-            ></i>
+            <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
             <span *ngIf="!enabled">{{ "enable" | i18n }}</span>
             <span *ngIf="enabled">{{ "disable" | i18n }}</span>
           </button>
