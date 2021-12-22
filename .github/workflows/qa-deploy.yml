@@ -51,21 +51,21 @@ jobs:
           echo "---az get-creds---"
           az aks get-credentials -n $_QA_CLUSTER_NAME -g $_QA_CLUSTER_RESOURCE_GROUP
 
-      # - name: Get image tag
-      #   id: image_tag
-      #   run: |
-      #     IMAGE_TAG=$(echo "$GITHUB_REF" | awk '{split($0, a, "/"); print a[3];}')
-      #     TAG_EXTENSION=${{ github.event.inputs.image_extension }}
+      - name: Get image tag
+        id: image_tag
+        run: |
+          IMAGE_TAG=$(echo "$GITHUB_REF" | awk '{split($0, a, "/"); print a[3];}')
+          TAG_EXTENSION=${{ github.event.inputs.image_extension }}
 
-      #     if [[ $TAG_EXTENSION ]]; then
-      #       IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
-      #     fi
-      #     echo "::set-output name=value::$IMAGE_TAG"
+          if [[ $TAG_EXTENSION ]]; then
+            IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
+          fi
+          echo "::set-output name=value::$IMAGE_TAG"
 
       - name: Deploy Web image
         env:
-          # IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
-          IMAGE_TAG: dev
+          IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
+#           IMAGE_TAG: dev
         run: |
           kubectl set image -n $_QA_K8S_NAMESPACE deployment/web web=bitwardenqa.azurecr.io/web:$IMAGE_TAG --record
           kubectl rollout restart -n $_QA_K8S_NAMESPACE deployment/web
