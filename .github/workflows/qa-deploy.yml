@@ -37,10 +37,10 @@ jobs:
           keyvault: "bitwarden-qa-kv"
           secrets: "qa-aks-kubectl-credentials"
 
-      - name: Login to dev-aks-kubectl SP
+      - name: Login with qa-aks-kubectl-credentials SP
         uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
         with:
-          creds: ${{ env.dev-aks-kubectl-credentials }}
+          creds: ${{ env.qa-aks-kubectl-credentials }}
 
       - name: Setup AKS access
         env:
