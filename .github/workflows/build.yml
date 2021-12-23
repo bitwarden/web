@@ -329,7 +329,7 @@ jobs:
       - name: Get image tag
         id: image-tag
         run: |
-          IMAGE_TAG=$(echo "$GITHUB_REF" | awk '{split($0, a, "/"); print a[3];}')
+          IMAGE_TAG=$(echo "${GITHUB_REF:11}" | sed "s#/#-#g")
           TAG_EXTENSION=${{ github.event.inputs.custom_tag_extension }}
 
           if [[ $TAG_EXTENSION ]]; then
