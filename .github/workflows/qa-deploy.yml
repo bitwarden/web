@@ -43,8 +43,8 @@ jobs:
           creds: ${{ env.qa-aks-kubectl-credentials }}
 
       - name: Setup AKS access
-        env:
-          USER_ID: ${{ env.qa-kubectl-managed-identity-clientId }}
+        #env:
+        #  USER_ID: ${{ env.qa-kubectl-managed-identity-clientId }}
         run: |
           echo "---az install---"
           az aks install-cli --install-location ./kubectl --kubelogin-install-location ./kubelogin
