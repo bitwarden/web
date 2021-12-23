@@ -9,8 +9,8 @@ on:
         required: false
 
 env:
-  _QA_CLUSTER_RESOURCE_GROUP: "bitwarden-devops"
-  _QA_CLUSTER_NAME: "dev-aks"
+  _QA_CLUSTER_RESOURCE_GROUP: "bw-env-qa"
+  _QA_CLUSTER_NAME: "bw-aks-qa"
   _QA_K8S_NAMESPACE: "bw-qa"
   _QA_K8S_APP_NAME: "bw-web"
 
@@ -35,37 +35,36 @@ jobs:
         uses: Azure/get-keyvault-secrets@80ccd3fafe5662407cc2e55f202ee34bfff8c403
         with:
           keyvault: "bitwarden-qa-kv"
-          secrets: "dev-aks-kubectl-credentials"
+          secrets: "qa-aks-kubectl-credentials"
 
-      - name: Login to dev-aks-kubectl SP
+      - name: Login with qa-aks-kubectl-credentials SP
         uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
         with:
-          creds: ${{ env.dev-aks-kubectl-credentials }}
+          creds: ${{ env.qa-aks-kubectl-credentials }}
 
       - name: Setup AKS access
-        env:
-          USER_ID: ${{ env.qa-kubectl-managed-identity-clientId }}
+        #env:
+        #  USER_ID: ${{ env.qa-kubectl-managed-identity-clientId }}
         run: |
           echo "---az install---"
           az aks install-cli --install-location ./kubectl --kubelogin-install-location ./kubelogin
           echo "---az get-creds---"
           az aks get-credentials -n $_QA_CLUSTER_NAME -g $_QA_CLUSTER_RESOURCE_GROUP
 
-      # - name: Get image tag
-      #   id: image_tag
-      #   run: |
-      #     IMAGE_TAG=$(echo "$GITHUB_REF" | awk '{split($0, a, "/"); print a[3];}')
-      #     TAG_EXTENSION=${{ github.event.inputs.image_extension }}
+      - name: Get image tag
+        id: image_tag
+        run: |
+          IMAGE_TAG=$(echo "${GITHUB_REF:11}" | sed "s#/#-#g")
+          TAG_EXTENSION=${{ github.event.inputs.image_extension }}
 
-      #     if [[ $TAG_EXTENSION ]]; then
-      #       IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
-      #     fi
-      #     echo "::set-output name=value::$IMAGE_TAG"
+          if [[ $TAG_EXTENSION ]]; then
+            IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
+          fi
+          echo "::set-output name=value::$IMAGE_TAG"
 
       - name: Deploy Web image
         env:
-          # IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
-          IMAGE_TAG: dev
+          IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
         run: |
           kubectl set image -n $_QA_K8S_NAMESPACE deployment/web web=bitwardenqa.azurecr.io/web:$IMAGE_TAG --record
           kubectl rollout restart -n $_QA_K8S_NAMESPACE deployment/web
