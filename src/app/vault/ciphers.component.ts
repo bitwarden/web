@@ -90,20 +90,15 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         const organizations = await this.userService.getAllOrganizations();
         const organizationNames = new Map<string, string>();
 
-        if (organizations.length > 0) {
-            organizations.forEach(organization => {
-                organizationNames.set(organization.id, organization.name);
-            });
-        }
+        organizations.forEach(organization => {
+            organizationNames.set(organization.id, organization.name);
+        });
 
         return organizationNames;
     }
 
     getOrganizationById(c: CipherView): string {
-        if (c.organizationId != null) {
-            return this.organizationNames.get(c.organizationId);
-        }
-        return this.i18nService.t('myVault');
+        return (c.organizationId != null ? this.organizationNames.get(c.organizationId) : this.i18nService.t('myVault'));
     }
 
     sortCiphers(sortBy: string): void {
@@ -114,16 +109,16 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
             this.sortedDescending = true;
         }
 
-        const self = this;
-
         if (sortBy === 'lastEdited') {
-            this.ciphers.sort((a: CipherView, b: CipherView) => {
-                if (self.sortedDescending) {
-                    return new Date(b.revisionDate).valueOf() - new Date(a.revisionDate).valueOf();
-                } else {
-                    return new Date(a.revisionDate).valueOf() - new Date(b.revisionDate).valueOf();
-                }
-            });
+            if (this.sortedDescending) {
+                this.ciphers.sort((a: CipherView, b: CipherView) => {
+                    return b.revisionDate.valueOf() - a.revisionDate.valueOf();
+                });
+            } else {
+                this.ciphers.sort((a: CipherView, b: CipherView) => {
+                    return a.revisionDate.valueOf() - b.revisionDate.valueOf();
+                });
+            }
             this.showData = 'lastEdited';
         } else if (sortBy === 'dateCreated') {
             // TO-DO
@@ -132,7 +127,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
                 const sortingValue1 = a.organizationId == null ? 'Personal' : this.organizationNames.get(a.organizationId);
                 const sortingValue2 = b.organizationId == null ? 'Personal' : this.organizationNames.get(b.organizationId);
 
-                if (self.sortedDescending) {
+                if (this.sortedDescending) {
                     return sortingValue1.localeCompare(sortingValue2);
                 } else {
                     return sortingValue2.localeCompare(sortingValue1);

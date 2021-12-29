@@ -13,14 +13,14 @@
                 <th scope="col" colspan="2" class="show-arrow-on-hover table-col-sort cipher-sort-table-header">
                     <div class="input-group m-0 font-weight-bold">
                         <div (click)="sortCiphers(option.value)" *ngIf="sortedDescending; else elseBlock2" class="input-group-prepend no-bg">
-                            <label class="input-group-text bg-transparent border-0" for="inputGroupSelect01"><i class="sorting-arrow fa fa-arrow-down" aria-hidden="true"></i></label>
+                            <label class="input-group-text bg-transparent border-0" for="sortOptions"><i class="sorting-arrow fa fa-arrow-down" aria-hidden="true"></i></label>
                         </div>
                         <ng-template #elseBlock2>
                             <div (click)="sortCiphers(option.value)" class="input-group-prepend">
-                                <label class="input-group-text bg-transparent border-0" for="inputGroupSelect01"><i class="sorting-arrow fa fa-arrow-up" aria-hidden="true"></i></label>
+                                <label class="input-group-text bg-transparent border-0" for="sortOptions"><i class="sorting-arrow fa fa-arrow-up" aria-hidden="true"></i></label>
                             </div>
                         </ng-template>
-                        <select #option (change)="changeDataToShow(option.value)" class="border-0 custom-select bg-transparent font-weight-bold" id="inputGroupSelect01">
+                        <select #option (change)="changeDataToShow(option.value)" class="border-0 custom-select bg-transparent font-weight-bold" id="sortOptions">
                             <option value="owner">{{'owner' | i18n}}</option>
                             <option value="dateCreated">{{'dateCreated' | i18n}}</option>
                             <option value="lastEdited">{{'lastEdited' | i18n}}</option>
@@ -56,14 +56,12 @@
                     <br>
                     <small appStopProp>{{c.subTitle}}</small>
                 </td>
-                <td *ngIf="showData == 'owner'">
-                    <small appStopProp>{{ getOrganizationById(c) }}</small>
-                </td>
-                <td *ngIf="showData == 'dateCreated'">
-                    <small appStopProp></small>
-                </td>
-                <td *ngIf="showData == 'lastEdited'">
-                    <small appStopProp>{{ revisionDate(c.revisionDate) }}</small>
+                <td>
+                    <small appStopProp>
+                        <span *ngIf="showData === 'owner'">{{ getOrganizationById(c) }}</span>
+                        <span *ngIf="showData === 'dateCreated'"></span>
+                        <span *ngIf="showData === 'lastEdited'">{{ revisionDate(c.revisionDate) }}</span>
+                    </small>
                 </td>
                 <td class="table-list-options">
                     <div class="dropdown" appListDropdown>
