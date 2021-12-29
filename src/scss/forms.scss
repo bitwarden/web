@@ -78,6 +78,10 @@ label.form-check-label,
     background-color: themed("inputBackgroundColor");
     border-color: themed("inputBorderColor");
     color: themed("inputTextColor");
+
+    option {
+      background-color: themed("backgroundColor");
+    }
   }
 
   &:disabled,
