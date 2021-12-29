@@ -46,8 +46,8 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
     organizationNames = new Map<string, string>();
     sortedDescending = true;
-    sortBy: string = '';
-    readonly sortByOptions: string[] = ['name', 'owner', 'dateCreated', 'lastEdited'];
+    sortBy: string = 'name';
+    showData: string = 'owner';
 
     private didScroll = false;
     private pagedCiphersCount = 0;
@@ -107,60 +107,44 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     }
 
     sortCiphers(sortBy: string): void {
-        if (this.sortByOptions.includes(sortBy)) {
-            if (sortBy === this.sortBy) {
-                this.sortedDescending = !this.sortedDescending;
-            } else {
-                this.sortBy = sortBy;
-                this.sortedDescending = true;
-            }
-
-            const self = this;
-
-            if (sortBy === 'lastEdited') {
-                this.ciphers.sort((a: CipherView, b: CipherView) => {
-                    if (self.sortedDescending) {
-                       return new Date(b.revisionDate).valueOf() - new Date(a.revisionDate).valueOf();
-                    } else {
-                        return new Date(a.revisionDate).valueOf() - new Date(b.revisionDate).valueOf();
-                    }
-                });
-            } else if (sortBy === 'dateCreated') {
-                // TO-DO
-            } else if (sortBy === 'owner') {
-                const sortingArray = this.organizationNames;
-
-                this.ciphers.sort((a: CipherView, b: CipherView) => {
-                    let sortingValue1;
-                    let sortingValue2;
-
-                    if (a.organizationId == null) {
-                        sortingValue1 = 'Personal';
-                    } else {
-                        sortingValue1 = sortingArray.get(a.organizationId);
-                    }
-
-                    if (b.organizationId == null) {
-                        sortingValue2 = 'Personal';
-                    } else {
-                        sortingValue2 = sortingArray.get(b.organizationId);
-                    }
-
-                    if (self.sortedDescending) {
-                        return sortingValue1.localeCompare(sortingValue2);
-                    } else {
-                        return sortingValue2.localeCompare(sortingValue1);
-                    }
-                });
-            } else if (sortBy === 'name') {
-                if (this.sortedDescending) {
-                    this.ciphers.sort((a, b) => a.name.localeCompare(b.name));
-                } else {
-                    this.ciphers.sort((a, b) => b.name.localeCompare(a.name));
-                }
-            }
+        if (sortBy === this.sortBy) {
+            this.sortedDescending = !this.sortedDescending;
         } else {
-            this.sortBy = '';
+            this.sortBy = sortBy;
+            this.sortedDescending = true;
+        }
+
+        const self = this;
+
+        if (sortBy === 'lastEdited') {
+            this.ciphers.sort((a: CipherView, b: CipherView) => {
+                if (self.sortedDescending) {
+                    return new Date(b.revisionDate).valueOf() - new Date(a.revisionDate).valueOf();
+                } else {
+                    return new Date(a.revisionDate).valueOf() - new Date(b.revisionDate).valueOf();
+                }
+            });
+            this.showData = 'lastEdited';
+        } else if (sortBy === 'dateCreated') {
+            // TO-DO
+        } else if (sortBy === 'owner') {
+            this.ciphers.sort((a: CipherView, b: CipherView) => {
+                const sortingValue1 = a.organizationId == null ? 'Personal' : this.organizationNames.get(a.organizationId);
+                const sortingValue2 = b.organizationId == null ? 'Personal' : this.organizationNames.get(b.organizationId);
+
+                if (self.sortedDescending) {
+                    return sortingValue1.localeCompare(sortingValue2);
+                } else {
+                    return sortingValue2.localeCompare(sortingValue1);
+                }
+            });
+            this.showData = 'owner';
+        } else if (sortBy === 'name') {
+            if (this.sortedDescending) {
+                this.ciphers.sort((a, b) => a.name.localeCompare(b.name));
+            } else {
+                this.ciphers.sort((a, b) => b.name.localeCompare(a.name));
+            }
         }
     }
 
@@ -168,12 +152,12 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
         this.sortCiphers(this.sortBy);
     }
 
-    revisionDate(c: CipherView): string {
-        const revisionDate = c.revisionDate;
+    changeDataToShow(type: string): void {
+        this.showData = type;
+    }
 
-        if (revisionDate) {
-            return revisionDate.toLocaleDateString('en-US');
-        }
+    revisionDate(date: Date): string {
+        return (date ? date.toLocaleDateString('en-US') : null);
     }
 
     async refresh() {
