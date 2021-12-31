@@ -19,7 +19,7 @@ export class PasswordGeneratorPolicy extends BasePolicy {
   templateUrl: "password-generator.component.html",
 })
 export class PasswordGeneratorPolicyComponent extends BasePolicyComponent {
-  data = this.fb.group({
+  data = this.formBuilder.group({
     defaultType: [null],
     minLength: [null],
     useUpper: [null],
@@ -35,7 +35,7 @@ export class PasswordGeneratorPolicyComponent extends BasePolicyComponent {
 
   defaultTypes: { name: string; value: string }[];
 
-  constructor(private fb: FormBuilder, i18nService: I18nService) {
+  constructor(private formBuilder: FormBuilder, i18nService: I18nService) {
     super();
 
     this.defaultTypes = [
