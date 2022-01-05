@@ -18,6 +18,8 @@ import { SetPasswordComponent } from "./accounts/set-password.component";
 import { SsoComponent } from "./accounts/sso.component";
 import { TwoFactorComponent } from "./accounts/two-factor.component";
 import { UpdateTempPasswordComponent } from "./accounts/update-temp-password.component";
+import { UpdatePasswordComponent } from "./accounts/update-password.component";
+import { ChangePasswordComponent } from "./settings/change-password.component";
 import { VerifyEmailTokenComponent } from "./accounts/verify-email-token.component";
 import { VerifyRecoverDeleteComponent } from "./accounts/verify-recover-delete.component";
 
@@ -161,6 +163,12 @@ const routes: Routes = [
         component: UpdateTempPasswordComponent,
         canActivate: [AuthGuardService],
         data: { titleId: "updateTempPassword" },
+      },
+      {
+        path: "update-password",
+        component: UpdatePasswordComponent,
+        canActivate: [AuthGuardService],
+        data: { titleId: "updatePassword" },
       },
       {
         path: "remove-password",

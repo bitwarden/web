@@ -17,6 +17,10 @@ import { StateService } from "jslib-common/abstractions/state.service";
 import { LoginComponent as BaseLoginComponent } from "jslib-angular/components/login.component";
 
 import { Policy } from "jslib-common/models/domain/policy";
+import { MasterPasswordPolicyOptions } from "jslib-common/models/domain/masterPasswordPolicyOptions";
+import { PolicyResponse } from "jslib-common/models/response/policyResponse";
+import { PolicyData } from "jslib-common/models/data/policyData";
+import { ListResponse } from "jslib-common/models/response/listResponse";
 
 @Component({
   selector: "app-login",
@@ -24,6 +28,8 @@ import { Policy } from "jslib-common/models/domain/policy";
 })
 export class LoginComponent extends BaseLoginComponent {
   showResetPasswordAutoEnrollWarning = false;
+  enforcedPasswordPolicyOptions: MasterPasswordPolicyOptions;
+  policies: ListResponse<PolicyResponse>;
 
   constructor(
     authService: AuthService,
@@ -84,29 +90,54 @@ export class LoginComponent extends BaseLoginComponent {
     if (invite != null) {
       let policyList: Policy[] = null;
       try {
-        const policies = await this.apiService.getPoliciesByToken(
+        this.policies = await this.apiService.getPoliciesByToken(
           invite.organizationId,
           invite.token,
           invite.email,
           invite.organizationUserId
         );
-        policyList = this.policyService.mapPoliciesFromToken(policies);
+        policyList = this.policyService.mapPoliciesFromToken(this.policies);
       } catch (e) {
         this.logService.error(e);
       }
 
       if (policyList != null) {
-        const result = this.policyService.getResetPasswordPolicyOptions(
+        const resetPasswordPolicy = this.policyService.getResetPasswordPolicyOptions(
           policyList,
           invite.organizationId
         );
         // Set to true if policy enabled and auto-enroll enabled
-        this.showResetPasswordAutoEnrollWarning = result[1] && result[0].autoEnrollEnabled;
+        this.showResetPasswordAutoEnrollWarning = resetPasswordPolicy[1] && resetPasswordPolicy[0].autoEnrollEnabled;
+        
+        this.enforcedPasswordPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(policyList);
       }
     }
   }
 
   async goAfterLogIn() {
+    // Check master password against policy
+    if (this.enforcedPasswordPolicyOptions != null) {
+      const strengthResult = this.passwordGenerationService.passwordStrength(
+        this.masterPassword,
+        this.getPasswordStrengthUserInput()
+      ); 
+      const masterPasswordScore = strengthResult == null ? null : strengthResult.score;
+
+      // If invalid, save policies and require update
+      if (!this.policyService.evaluateMasterPassword(
+        masterPasswordScore,
+        this.masterPassword,
+        this.enforcedPasswordPolicyOptions
+      )) {
+        const policiesData: { [id: string]: PolicyData } = {};
+        this.policies.data.map((p) => policiesData[p.id] = new PolicyData(p));
+        await this.policyService.replace(policiesData);
+        this.router.navigate(["update-password"]);
+        return;
+      }
+
+    }
+
     const loginRedirect = await this.stateService.getLoginRedirect();
     if (loginRedirect != null) {
       this.router.navigate([loginRedirect.route], { queryParams: loginRedirect.qParams });
@@ -114,5 +145,20 @@ export class LoginComponent extends BaseLoginComponent {
     } else {
       this.router.navigate([this.successRoute]);
     }
+  }
+
+  private getPasswordStrengthUserInput() {
+    let userInput: string[] = [];
+    const atPosition = this.email.indexOf("@");
+    if (atPosition > -1) {
+      userInput = userInput.concat(
+        this.email
+          .substr(0, atPosition)
+          .trim()
+          .toLowerCase()
+          .split(/[^A-Za-z0-9]/)
+      );
+    }
+    return userInput;
   }
 }
