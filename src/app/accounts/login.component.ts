@@ -16,11 +16,11 @@ import { StateService } from "jslib-common/abstractions/state.service";
 
 import { LoginComponent as BaseLoginComponent } from "jslib-angular/components/login.component";
 
-import { Policy } from "jslib-common/models/domain/policy";
-import { MasterPasswordPolicyOptions } from "jslib-common/models/domain/masterPasswordPolicyOptions";
-import { PolicyResponse } from "jslib-common/models/response/policyResponse";
 import { PolicyData } from "jslib-common/models/data/policyData";
+import { MasterPasswordPolicyOptions } from "jslib-common/models/domain/masterPasswordPolicyOptions";
+import { Policy } from "jslib-common/models/domain/policy";
 import { ListResponse } from "jslib-common/models/response/listResponse";
+import { PolicyResponse } from "jslib-common/models/response/policyResponse";
 
 @Component({
   selector: "app-login",
@@ -107,9 +107,11 @@ export class LoginComponent extends BaseLoginComponent {
           invite.organizationId
         );
         // Set to true if policy enabled and auto-enroll enabled
-        this.showResetPasswordAutoEnrollWarning = resetPasswordPolicy[1] && resetPasswordPolicy[0].autoEnrollEnabled;
-        
-        this.enforcedPasswordPolicyOptions = await this.policyService.getMasterPasswordPolicyOptions(policyList);
+        this.showResetPasswordAutoEnrollWarning =
+          resetPasswordPolicy[1] && resetPasswordPolicy[0].autoEnrollEnabled;
+
+        this.enforcedPasswordPolicyOptions =
+          await this.policyService.getMasterPasswordPolicyOptions(policyList);
       }
     }
   }
@@ -120,22 +122,23 @@ export class LoginComponent extends BaseLoginComponent {
       const strengthResult = this.passwordGenerationService.passwordStrength(
         this.masterPassword,
         this.getPasswordStrengthUserInput()
-      ); 
+      );
       const masterPasswordScore = strengthResult == null ? null : strengthResult.score;
 
       // If invalid, save policies and require update
-      if (!this.policyService.evaluateMasterPassword(
-        masterPasswordScore,
-        this.masterPassword,
-        this.enforcedPasswordPolicyOptions
-      )) {
+      if (
+        !this.policyService.evaluateMasterPassword(
+          masterPasswordScore,
+          this.masterPassword,
+          this.enforcedPasswordPolicyOptions
+        )
+      ) {
         const policiesData: { [id: string]: PolicyData } = {};
-        this.policies.data.map((p) => policiesData[p.id] = new PolicyData(p));
+        this.policies.data.map((p) => (policiesData[p.id] = new PolicyData(p)));
         await this.policyService.replace(policiesData);
         this.router.navigate(["update-password"]);
         return;
       }
-
     }
 
     const loginRedirect = await this.stateService.getLoginRedirect();
