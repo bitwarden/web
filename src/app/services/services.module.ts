@@ -5,6 +5,7 @@ import { BroadcasterMessagingService } from "../../services/broadcasterMessaging
 import { HtmlStorageService } from "../../services/htmlStorage.service";
 import { I18nService } from "../../services/i18n.service";
 import { MemoryStorageService } from "../../services/memoryStorage.service";
+import { StateService } from "../../services/state.service";
 import { WebPlatformUtilsService } from "../../services/webPlatformUtils.service";
 
 import { EventService } from "./event.service";
@@ -43,6 +44,7 @@ import { MessagingService as MessagingServiceAbstraction } from "jslib-common/ab
 import { NotificationsService as NotificationsServiceAbstraction } from "jslib-common/abstractions/notifications.service";
 import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from "jslib-common/abstractions/platformUtils.service";
 import { StateService as StateServiceAbstraction } from "jslib-common/abstractions/state.service";
+import { StateMigrationService as StateMigrationServiceAbstraction } from "jslib-common/abstractions/stateMigration.service";
 import { StorageService as StorageServiceAbstraction } from "jslib-common/abstractions/storage.service";
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from "jslib-common/abstractions/vaultTimeout.service";
 
@@ -126,7 +128,12 @@ export function initFactory(
       deps: ["WINDOW"],
     },
     { provide: StorageServiceAbstraction, useClass: HtmlStorageService },
-    { provide: "SECURE_STORAGE", useClass: MemoryStorageService },
+    {
+      provide: "SECURE_STORAGE",
+      // TODO: platformUtilsService.isDev has a helper for this, but using that service here results in a circular dependency.
+      // We have a tech debt item in the backlog to break up platformUtilsService, but in the meantime simply checking the environement here is less cumbersome.
+      useClass: process.env.NODE_ENV === "development" ? HtmlStorageService : MemoryStorageService,
+    },
     {
       provide: PlatformUtilsServiceAbstraction,
       useFactory: (
@@ -165,6 +172,16 @@ export function initFactory(
         PlatformUtilsServiceAbstraction,
         LogService,
         StateServiceAbstraction,
+      ],
+    },
+    {
+      provide: StateServiceAbstraction,
+      useClass: StateService,
+      deps: [
+        StorageServiceAbstraction,
+        "SECURE_STORAGE",
+        LogService,
+        StateMigrationServiceAbstraction,
       ],
     },
   ],
