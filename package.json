@@ -101,7 +101,7 @@
     "npm": "~8"
   },
   "lint-staged": {
-    "*": "prettier --write",
+    "*": "prettier --ignore-unknown --write",
     "*.png": "node scripts/optimize.js"
   }
 }
