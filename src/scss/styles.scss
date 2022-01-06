@@ -57,25 +57,3 @@
 @import "./toasts";
 
 @import "../../jslib/angular/src/scss/icons.scss"; // Needs to be after font-awesome
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --color-primary: 255 115 179;
-  --color-secondary: 111 114 185;
-  /* ... */
-}
-
-.theme_light {
-  --color-primary: 2 82 204;
-  --color-secondary: 255 196 2;
-  /* ... */
-}
-
-.theme_dark {
-  --color-primary: 192 178 131;
-  --color-secondary: 220 208 192;
-  /* ... */
-}

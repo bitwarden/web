@@ -158,6 +158,8 @@ import { GroupingsComponent } from "./vault/groupings.component";
 import { ShareComponent } from "./vault/share.component";
 import { VaultComponent } from "./vault/vault.component";
 
+import { ButtonComponent } from "./components/buttons/button.component";
+
 import { ProvidersComponent } from "./providers/providers.component";
 
 import { AvatarComponent } from "jslib-angular/components/avatar.component";
@@ -454,6 +456,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     AddEditCustomFieldsComponent,
     VerifyMasterPasswordComponent,
     RemovePasswordComponent,
+    ButtonComponent,
   ],
   exports: [
     A11yTitleDirective,
