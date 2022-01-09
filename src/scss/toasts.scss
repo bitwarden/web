@@ -56,7 +56,7 @@
       }
 
       .icon i::before {
-        content: "\f0e7";
+        content: map_get($icons, "error");
       }
     }
 
@@ -74,7 +74,7 @@
       }
 
       .icon i::before {
-        content: "\f071";
+        content: map_get($icons, "exclamation-triangle");
       }
     }
 
@@ -92,7 +92,7 @@
       }
 
       .icon i:before {
-        content: "\f05a";
+        content: map_get($icons, "info-circle");
       }
     }
 
@@ -110,7 +110,7 @@
       }
 
       .icon i:before {
-        content: "\f00C";
+        content: map_get($icons, "check");
       }
     }
   }
