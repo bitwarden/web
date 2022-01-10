@@ -1,4 +1,9 @@
-<nav class="navbar navbar-expand navbar-dark" [ngClass]="{ 'nav-background-alt': selfHosted }">
+<nav
+  class="navbar navbar-expand navbar-dark"
+  [ngClass]="{
+    'nav-background-alt': selfHosted
+  }"
+>
   <div class="container">
     <a class="navbar-brand" routerLink="/" appA11yTitle="{{ 'pageTitle' | i18n: 'Bitwarden' }}">
       <i class="fa fa-shield" aria-hidden="true"></i>

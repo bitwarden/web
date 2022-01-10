@@ -95,7 +95,8 @@
   <h2 class="spaced-header">{{ "summary" | i18n }}</h2>
   {{ "premiumMembership" | i18n }}: {{ premiumPrice | currency: "$" }} <br />
   {{ "additionalStorageGb" | i18n }}: {{ additionalStorage || 0 }} GB &times;
-  {{ storageGbPrice | currency: "$" }} = {{ additionalStorageTotal | currency: "$" }}
+  {{ storageGbPrice | currency: "$" }} =
+  {{ additionalStorageTotal | currency: "$" }}
   <hr class="my-3" />
   <h2 class="spaced-header mb-4">{{ "paymentInformation" | i18n }}</h2>
   <app-payment [hideBank]="true"></app-payment>

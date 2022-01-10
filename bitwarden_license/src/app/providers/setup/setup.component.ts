@@ -48,7 +48,9 @@ export class SetupComponent implements OnInit {
           "error",
           null,
           this.i18nService.t("emergencyInviteAcceptFailed"),
-          { timeout: 10000 }
+          {
+            timeout: 10000,
+          }
         );
         this.router.navigate(["/"]);
         return;

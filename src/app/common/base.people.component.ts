@@ -35,7 +35,10 @@ const MaxCheckedCount = 500;
 export abstract class BasePeopleComponent<
   UserType extends ProviderUserUserDetailsResponse | OrganizationUserUserDetailsResponse
 > {
-  @ViewChild("confirmTemplate", { read: ViewContainerRef, static: true })
+  @ViewChild("confirmTemplate", {
+    read: ViewContainerRef,
+    static: true,
+  })
   confirmModalRef: ViewContainerRef;
 
   get allCount() {

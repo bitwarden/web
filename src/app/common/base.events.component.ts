@@ -110,7 +110,13 @@ export abstract class BaseEventsComponent {
     endDate: string,
     continuationToken: string
   ): Promise<ListResponse<EventResponse>>;
-  protected abstract getUserName(r: EventResponse, userId: string): { name: string; email: string };
+  protected abstract getUserName(
+    r: EventResponse,
+    userId: string
+  ): {
+    name: string;
+    email: string;
+  };
 
   protected async loadAndParseEvents(
     startDate: string,
@@ -138,7 +144,10 @@ export abstract class BaseEventsComponent {
         });
       })
     );
-    return { continuationToken: response.continuationToken, events: events };
+    return {
+      continuationToken: response.continuationToken,
+      events: events,
+    };
   }
 
   protected parseDates() {
@@ -172,6 +181,13 @@ export abstract class BaseEventsComponent {
 
     const data = await this.exportService.getEventExport(events);
     const fileName = this.exportService.getFileName(this.exportFileName, "csv");
-    this.platformUtilsService.saveFile(window, data, { type: "text/plain" }, fileName);
+    this.platformUtilsService.saveFile(
+      window,
+      data,
+      {
+        type: "text/plain",
+      },
+      fileName
+    );
   }
 }
