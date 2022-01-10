@@ -17,11 +17,11 @@ export class SendOptionsPolicy extends BasePolicy {
   templateUrl: "send-options.component.html",
 })
 export class SendOptionsPolicyComponent extends BasePolicyComponent {
-  data = this.fb.group({
+  data = this.formBuilder.group({
     disableHideEmail: false,
   });
 
-  constructor(private fb: FormBuilder) {
+  constructor(private formBuilder: FormBuilder) {
     super();
   }
 }
