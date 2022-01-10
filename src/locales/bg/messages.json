@@ -2176,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "Сигурни ли сте, че искате да изтриете този потребител?"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Внимание! Този потребител има нужда от конектор за ключове, за да управлява шифроването си. Ако премахнете потребителя от организацията, ще заключите завинаги достъпа му до неговата регистрация. Това действие е необратимо. Наистина ли искате да продължите?"
+  },
   "externalId": {
     "message": "Външен идентификатор"
   },
@@ -2656,6 +2659,9 @@
   "resendInvitation": {
     "message": "Изпращане на поканата наново"
   },
+  "resendEmail": {
+    "message": "Повторно изпращане на писмото"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ потребители са поканени.",
     "placeholders": {
@@ -2943,6 +2949,15 @@
   },
   "subscriptionFamiliesPlan": {
     "message": "Не можете да поканите повече от $COUNT$ потребители без да надградите плана си. Свържете се с поддръжката за надграждане.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Абонаментът Ви позволява не повече от $COUNT$ потребители. Планът Ви е спонсориран и се плаща от външна организация.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3428,6 +3443,9 @@
   },
   "unlinkSso": {
     "message": "Прекъсване на еднократна идентификация"
+  },
+  "unlinkSsoConfirmation": {
+    "message": "Наистина ли искате да премахнете еднократното удостоверяване за тази организация?"
   },
   "linkSso": {
     "message": "Свързване на еднократна идентификация"
@@ -4049,7 +4067,7 @@
     }
   },
   "firstSsoLogin": {
-    "message": "$ID$ logged in using Sso for the first time",
+    "message": "$ID$ се вписа за първи път с еднократно удостоверяване",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4473,6 +4491,123 @@
   "ssoSettingsSaved": {
     "message": "Настройката на еднократната идентификация е запазена."
   },
+  "sponsoredFamilies": {
+    "message": "Free Bitwarden Families"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "You and your family are eligible for Free Bitwarden Families. Redeem with your personal email to keep your data secure even when you are not at work."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Redeem your Free Bitwarden for Families plan today to keep your data secure even when you are not at work."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Семейният план на Битуорден включва"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Premium access for up to 6 users"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Споделени колекции за семейни тайни"
+  },
+  "badToken": {
+    "message": "Връзката е с изтекла давност. Помолете спонсора да изпрати отново предложението."
+  },
+  "reclaimedFreePlan": {
+    "message": "Reclaimed free plan"
+  },
+  "redeem": {
+    "message": "Redeem"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Select the organization you would like sponsored"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "От кое предложение за безплатен семеен план искате да се възползвате?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Enter your personal email to redeem Bitwarden Families"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "If you leave or are removed from the sponsoring organization, your Families plan will expire at the end of the billing period."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Accept offer for an existing organization or create a new Families organization."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "You've been offered a free Bitwarden Families Plan Organization. To continue, you need to log in to the account that received the offer."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Unable to accept offer. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Accept Free Bitwarden Families"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Free Bitwarden Families offer successfully redeemed"
+  },
+  "redeemed": {
+    "message": "Redeemed"
+  },
+  "redeemedAccount": {
+    "message": "Redeemed Account"
+  },
+  "revokeAccount": {
+    "message": "Revoke account $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Безплатен семеен план"
+  },
+  "redeemNow": {
+    "message": "Redeem Now"
+  },
+  "recipient": {
+    "message": "Получател"
+  },
+  "removeSponsorship": {
+    "message": "Премахване на спонсорирането"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "After removing a sponsorship, you will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "sponsorshipCreated": {
+    "message": "Sponsorship Created"
+  },
+  "revoke": {
+    "message": "Revoke"
+  },
+  "emailSent": {
+    "message": "Писмото е изпратено"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "After removing this account, the Families organization owner will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Sponsorship Removed"
+  },
   "ssoKeyConnectorUnavailable": {
     "message": "Конекторът за ключове е недостъпен. Опитайте отново по-късно."
   },
@@ -4480,19 +4615,19 @@
     "message": "Адрес на конектора за ключове"
   },
   "sendVerificationCode": {
-    "message": "Send a verification code to your email"
+    "message": "Изпращане на код за потвърждаване до Вашата ел. поща"
   },
   "sendCode": {
-    "message": "Send Code"
+    "message": "Изпращане на кода"
   },
   "codeSent": {
-    "message": "Code Sent"
+    "message": "Кодът е изпратен"
   },
   "verificationCode": {
     "message": "Код за потвърждаване"
   },
   "confirmIdentity": {
-    "message": "Confirm your identity to continue."
+    "message": "Потвърдете самоличността си, за да продължите."
   },
   "verificationCodeRequired": {
     "message": "Кодът за потвърждение е задължителен."
@@ -4571,5 +4706,35 @@
   },
   "migratedKeyConnector": {
     "message": "Migrated to Key Connector"
+  },
+  "paymentSponsored": {
+    "message": "Please provide a payment method to associate with the organization. Don't worry, we won't charge you anything unless you select additional features or your sponsorship expires. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "The sponsorship offer has expired. You may delete the organization you created to avoid a charge at the end of your 7 day trial. Otherwise you may close this prompt to keep the organization and assume billing responsibility."
+  },
+  "newFamiliesOrganization": {
+    "message": "New Families Organization"
+  },
+  "acceptOffer": {
+    "message": "Приемане на предложението"
+  },
+  "sponsoringOrg": {
+    "message": "Sponsoring Organization"
+  },
+  "keyConnectorTest": {
+    "message": "Тест"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Успешно свързване! Конекторът за ключове е достъпен."
+  },
+  "keyConnectorTestFail": {
+    "message": "Конекторът за ключове е недостъпен. Проверете адреса."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "The sponsorship offer has expired."
+  },
+  "freeWithSponsorship": {
+    "message": "БЕЗПЛАТНО чрез спонсориране"
   }
 }

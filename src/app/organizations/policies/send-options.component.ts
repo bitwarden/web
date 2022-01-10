@@ -1,28 +1,27 @@
-import { Component } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { Component } from "@angular/core";
+import { FormBuilder } from "@angular/forms";
 
-import { PolicyType } from 'jslib-common/enums/policyType';
+import { PolicyType } from "jslib-common/enums/policyType";
 
-import { BasePolicy, BasePolicyComponent } from './base-policy.component';
+import { BasePolicy, BasePolicyComponent } from "./base-policy.component";
 
 export class SendOptionsPolicy extends BasePolicy {
-    name = 'sendOptions';
-    description = 'sendOptionsPolicyDesc';
-    type = PolicyType.SendOptions;
-    component = SendOptionsPolicyComponent;
+  name = "sendOptions";
+  description = "sendOptionsPolicyDesc";
+  type = PolicyType.SendOptions;
+  component = SendOptionsPolicyComponent;
 }
 
 @Component({
-    selector: 'policy-send-options',
-    templateUrl: 'send-options.component.html',
+  selector: "policy-send-options",
+  templateUrl: "send-options.component.html",
 })
 export class SendOptionsPolicyComponent extends BasePolicyComponent {
+  data = this.formBuilder.group({
+    disableHideEmail: false,
+  });
 
-    data = this.fb.group({
-        disableHideEmail: false,
-    });
-
-    constructor(private fb: FormBuilder) {
-        super();
-    }
+  constructor(private formBuilder: FormBuilder) {
+    super();
+  }
 }

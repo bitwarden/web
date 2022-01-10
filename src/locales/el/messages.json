@@ -167,7 +167,7 @@
     "message": "Δυαδικό"
   },
   "cfTypeLinked": {
-    "message": "Linked",
+    "message": "Συνδεδεμένο",
     "description": "This describes a field that is 'linked' (related) to another field."
   },
   "remove": {
@@ -316,7 +316,7 @@
     "message": "Επώνυμο"
   },
   "fullName": {
-    "message": "Full Name"
+    "message": "Ονοματεπώνυμο"
   },
   "address1": {
     "message": "Διεύθυνση 1"
@@ -2176,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "Είστε βέβαιοι ότι θέλετε να αφαιρέσετε αυτό τον χρήστη;"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Προσοχή! Αυτός ο χρήστης απαιτεί σύνδεση κλειδιού για τη διαχείριση της κρυπτογράφησης του. Η αφαίρεση αυτού του χρήστη από τον οργανισμό σας θα απενεργοποιήσει οριστικά τον λογαριασμό του. Αυτή η ενέργεια δεν μπορεί να αναιρεθεί. Θέλετε να συνεχίσετε;"
+  },
   "externalId": {
     "message": "Εξωτερικό ID"
   },
@@ -2656,6 +2659,9 @@
   "resendInvitation": {
     "message": "Αποστολή Πρόσκλησης Ξανά"
   },
+  "resendEmail": {
+    "message": "Επαναποστολή e-mail"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ έχει ξανα-προσκληθεί.",
     "placeholders": {
@@ -2933,7 +2939,7 @@
     }
   },
   "subscriptionFreePlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "message": "Δεν μπορείτε να προσκαλέσετε περισσότερους από $COUNT$ χρήστες χωρίς αναβάθμιση του σχεδίου σας.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2942,7 +2948,16 @@
     }
   },
   "subscriptionFamiliesPlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "message": "Δεν μπορείτε να προσκαλέσετε περισσότερους από $COUNT$ χρήστες χωρίς αναβάθμιση του προγράμματός σας. Επικοινωνήστε με την Υποστήριξη πελατών για αναβάθμιση.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Η συνδρομή σας επιτρέπει συνολικά $COUNT$ χρήστες. Το πρόγραμμα σας χορηγείται και χρεώνεται σε εξωτερικό οργανισμό.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3429,6 +3444,9 @@
   "unlinkSso": {
     "message": "Αποσύνδεση SSO"
   },
+  "unlinkSsoConfirmation": {
+    "message": "Are you sure you want to unlink SSO for this organization?"
+  },
   "linkSso": {
     "message": "Σύνδεσμος SSO"
   },
@@ -3830,7 +3848,7 @@
     "message": "Αναφορές Πρόσβασης"
   },
   "missingPermissions": {
-    "message": "You lack the necessary permissions to perform this action."
+    "message": "Δεν έχετε τα απαραίτητα δικαιώματα για να εκτελέσετε αυτήν την ενέργεια."
   },
   "manageAllCollections": {
     "message": "Διαχείριση Όλων Των Συλλογών"
@@ -4049,7 +4067,7 @@
     }
   },
   "firstSsoLogin": {
-    "message": "$ID$ logged in using Sso for the first time",
+    "message": "$ID$ συνδέθηκε χρησιμοποιώντας το Sso για πρώτη φορά",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4473,35 +4491,152 @@
   "ssoSettingsSaved": {
     "message": "Οι ρυθμίσεις για απλή σύνδεση αποθηκεύτηκαν."
   },
+  "sponsoredFamilies": {
+    "message": "Δωρεάν Bitwarden Families"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Εσείς και η οικογένεια σας έχετε δικαίωμα για Δωρεάν Bitwarden Families. Εξαργυρώστε με το προσωπικό σας email για να διατηρείτε τα δεδομένα σας ασφαλή ακόμα και όταν δεν εργάζεστε."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Εξαργυρώστε το Δωρεάν Bitwarden Families σήμερα για να διατηρήσουν τα δεδομένα σας ασφαλή ακόμα και όταν δεν είστε στη δουλειά."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Το πλάνο Bitwarden Families περιλαμβάνει"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Premium πρόσβαση για έως 6 χρήστες"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Κοινές συλλογές για οικογενειακά μυστικά"
+  },
+  "badToken": {
+    "message": "Ο σύνδεσμος δεν είναι πλέον έγκυρος. Παρακαλώ στείλτε ξανά την προσφορά."
+  },
+  "reclaimedFreePlan": {
+    "message": "Επαναλαμβανόμενο ελεύθερο πλάνο"
+  },
+  "redeem": {
+    "message": "Εξαργύρωση"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Επιλέξτε τον οργανισμό που θα θέλατε"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Ποια Free Families προσφορά θα θέλατε να εξαργυρώσετε;"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Εισάγετε το προσωπικό σας email για να εξαργυρώσετε το Bitwarden Families"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Αν φύγετε ή απομακρυνθείτε από αυτόν τον οργανισμό, το πλάνο Families θα λήξει στο τέλος της περιόδου τιμολόγησης."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Αποδοχή προσφοράς για έναν υπάρχοντα οργανισμό ή δημιουργία ενός νέου οργανισμού οικογενειών."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Έχετε προσφερθεί έναn δωρεάν οργανισμό πλάνου Bitwarden Families. Για να συνεχίσετε, πρέπει να συνδεθείτε στο λογαριασμό που έλαβε την προσφορά."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Δεν είναι δυνατή η αποδοχή προσφοράς. Παρακαλώ στείλτε ξανά το email προσφοράς από τον λογαριασμό επιχείρησής σας και προσπαθήστε ξανά."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Αδυναμία αποδοχής προσφοράς. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Αποδοχή Δωρεάν Bitwarden Families"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "H Δωρεάν προσφορά Bitwarden Families, εξαργυρώθηκε με επιτυχία"
+  },
+  "redeemed": {
+    "message": "Εξαργυρώθηκε"
+  },
+  "redeemedAccount": {
+    "message": "Εξαργυρωμένος Λογαριασμός"
+  },
+  "revokeAccount": {
+    "message": "Ανάκληση λογαριασμού $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Επαναποστολή email χορηγίας σε $NAME$ χορηγία",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Δωρεάν Πλάνο Families"
+  },
+  "redeemNow": {
+    "message": "Εξαργυρώστε Τώρα"
+  },
+  "recipient": {
+    "message": "Παραλήπτης"
+  },
+  "removeSponsorship": {
+    "message": "Αφαίρεση Χορηγίας"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "Μετά την αφαίρεση μιας χορηγίας, θα είστε υπεύθυνοι για αυτή τη συνδρομή και τα σχετικά τιμολόγια. Είστε βέβαιοι ότι θέλετε να συνεχίσετε;"
+  },
+  "sponsorshipCreated": {
+    "message": "Χορηγία Δημιουργήθηκε"
+  },
+  "revoke": {
+    "message": "Ανάκληση"
+  },
+  "emailSent": {
+    "message": "Το Email Εστάλη"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "Μετά την αφαίρεση αυτού του λογαριασμού, ο ιδιοκτήτης του οργανισμού families θα είναι υπεύθυνος για αυτή τη συνδρομή και τα σχετικά τιμολόγια. Είστε βέβαιοι ότι θέλετε να συνεχίσετε;"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Χορηγία Αφαιρέθηκε"
+  },
   "ssoKeyConnectorUnavailable": {
-    "message": "Unable to reach the Key Connector, try again later."
+    "message": "Δεν είναι δυνατή η πρόσβαση στον σύνδεσμο κλειδιού, προσπαθήστε ξανά αργότερα."
   },
   "keyConnectorUrl": {
-    "message": "Key Connector URL"
+    "message": "URL Σύνδεσης Κλειδιού"
   },
   "sendVerificationCode": {
-    "message": "Send a verification code to your email"
+    "message": "Στείλτε έναν κωδικό επαλήθευσης στο email σας"
   },
   "sendCode": {
-    "message": "Send Code"
+    "message": "Αποστολή Κωδικού"
   },
   "codeSent": {
-    "message": "Code Sent"
+    "message": "Ο Κωδικός Στάλθηκε"
   },
   "verificationCode": {
-    "message": "Verification Code"
+    "message": "Κωδικός Επαλήθευσης"
   },
   "confirmIdentity": {
-    "message": "Confirm your identity to continue."
+    "message": "Επιβεβαιώστε την ταυτότητα σας για να συνεχίσετε."
   },
   "verificationCodeRequired": {
-    "message": "Verification code is required."
+    "message": "Απαιτείται ο κωδικός επαλήθευσης."
   },
   "invalidVerificationCode": {
-    "message": "Invalid verification code"
+    "message": "Μη έγκυρος κωδικός επαλήθευσης"
   },
   "convertOrganizationEncryptionDesc": {
-    "message": "$ORGANIZATION$ is using SSO with a self-hosted key server. A master password is no longer required to log in for members of this organization.",
+    "message": "$ORGANIZATION$ χρησιμοποιεί SSO με έναν αυτοεξυπηρετητή κλειδιών. Ένας κύριος κωδικός πρόσβασης δεν απαιτείται πλέον για να συνδεθείτε για τα μέλη αυτού του οργανισμού.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4510,66 +4645,96 @@
     }
   },
   "leaveOrganization": {
-    "message": "Leave Organization"
+    "message": "Αποχώρηση από τον οργανισμό"
   },
   "removeMasterPassword": {
-    "message": "Remove Master Password"
+    "message": "Αφαίρεση Κύριου Κωδικού Πρόσβασης"
   },
   "removedMasterPassword": {
-    "message": "Master password removed."
+    "message": "Ο κύριος κωδικός αφαιρέθηκε."
   },
   "allowSso": {
-    "message": "Allow SSO authentication"
+    "message": "Να επιτρέπεται έλεγχος ταυτότητας SSO"
   },
   "allowSsoDesc": {
-    "message": "Once set up, your configuration will be saved and members will be able to authenticate using their Identity Provider credentials."
+    "message": "Μόλις συσταθεί, οι ρυθμίσεις σας θα αποθηκευτούν και τα μέλη θα είναι σε θέση να πιστοποιήσουν τον έλεγχο ταυτότητας χρησιμοποιώντας τα διαπιστευτήρια του παρόχου ταυτότητας."
   },
   "ssoPolicyHelpStart": {
-    "message": "Enable the",
+    "message": "Ενεργοποίηση του",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
-    "message": "SSO Authentication policy",
+    "message": "Πολιτική ελέγχου ταυτότητας SSO",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
-    "message": "to require all members to log in with SSO.",
+    "message": "για να απαιτήσει από όλα τα μέλη να συνδεθούν με SSO.",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpKeyConnector": {
-    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
+    "message": "Απαιτούνται πολιτικές ελέγχου ταυτότητας και ενιαίου οργανισμού για τη δημιουργία αποκρυπτογράφησης κλειδιών σύνδεσης."
   },
   "memberDecryptionOption": {
-    "message": "Member Decryption Options"
+    "message": "Επιλογές Αποκρυπτογράφησης Μελών"
   },
   "memberDecryptionPassDesc": {
-    "message": "Once authenticated, members will decrypt vault data using their Master Passwords."
+    "message": "Μόλις ελεγχθεί, τα μέλη θα αποκρυπτογραφήσουν τα δεδομένα vault χρησιμοποιώντας τους Κύριους Κωδικούς Πρόσβασης."
   },
   "keyConnector": {
-    "message": "Key Connector"
+    "message": "Σύνδεσμος Κλειδιού"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt vault data. Contact Bitwarden Support for set up assistance."
+    "message": "Συνδεθείτε με SSO στον αυτο-φιλοξενημένο διακομιστή κλειδιών αποκρυπτογράφησης. Χρησιμοποιώντας αυτή την επιλογή, τα μέλη δεν θα χρειαστεί να χρησιμοποιήσουν τους Κύριους κωδικούς πρόσβασης τους για να αποκρυπτογραφήσουν τα δεδομένα θησαυ/κιου."
   },
   "keyConnectorPolicyRestriction": {
-    "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
+    "message": "\"Σύνδεση με αποκρυπτογράφηση SSO και Key Connector \" είναι ενεργοποιημένη. Αυτή η πολιτική θα ισχύει μόνο για Ιδιοκτήτες και Διαχειριστές."
   },
   "enabledSso": {
-    "message": "Enabled SSO"
+    "message": "Ενεργοποιημένο SSO"
   },
   "disabledSso": {
-    "message": "Disabled SSO"
+    "message": "Απενεργοποιημένο SSO"
   },
   "enabledKeyConnector": {
-    "message": "Enabled Key Connector"
+    "message": "Ενεργοποιημένος Σύνδεσμος Κλειδιών"
   },
   "disabledKeyConnector": {
-    "message": "Disabled Key Connector"
+    "message": "Απενεργοποιημένη Σύνδεση Κλειδιών"
   },
   "keyConnectorWarning": {
-    "message": "Once members begin using Key Connector, your Organization cannot revert to Master Password decryption. Proceed only if you are comfortable deploying and managing a key server."
+    "message": "Μόλις τα μέλη αρχίσουν να χρησιμοποιούν το Key Connector, ο Οργανισμός σας δεν μπορεί να επανέλθει στην αποκρυπτογράφηση Master Password. Προχωρήστε μόνο εάν είστε άνετοι στην ανάπτυξη και διαχείριση ενός εξυπηρετητή κλειδιών."
   },
   "migratedKeyConnector": {
-    "message": "Migrated to Key Connector"
+    "message": "Μετεγκατάσταση στον σύνδεσμο κλειδιού"
+  },
+  "paymentSponsored": {
+    "message": "Παρακαλώ δώστε μια μέθοδο πληρωμής για να συσχετίσετε με τον οργανισμό. Μην ανησυχείτε, δεν θα σας χρεώσουμε τίποτα, εκτός αν επιλέξετε πρόσθετες λειτουργίες ή η εγγυοδοσία σας λήξει. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "Η προσφορά χορηγίας έχει λήξει. Μπορείτε να διαγράψετε τον οργανισμό που δημιουργήσατε για να αποφύγετε μια χρέωση στο τέλος της δοκιμής 7 ημερών. Διαφορετικά, μπορείτε να κλείσετε αυτή την προτροπή για να κρατήσει την οργάνωση και να αναλάβει την ευθύνη χρέωσης."
+  },
+  "newFamiliesOrganization": {
+    "message": "Νέος Οργανισμός Families"
+  },
+  "acceptOffer": {
+    "message": "Αποδοχή Προσφοράς"
+  },
+  "sponsoringOrg": {
+    "message": "Χορηγούμενος Οργανισμός"
+  },
+  "keyConnectorTest": {
+    "message": "Δοκιμή"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Επιτυχία! Η σύνδεση με τα πλήκτρα έφτασε."
+  },
+  "keyConnectorTestFail": {
+    "message": "Αδύνατη η πρόσβαση στον σύνδεσμο κλειδιού. Ελέγξτε το URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "Η προσφορά χορηγίας έχει λήξει."
+  },
+  "freeWithSponsorship": {
+    "message": "ΔΩΡΕΑΝ με χορηγία"
   }
 }

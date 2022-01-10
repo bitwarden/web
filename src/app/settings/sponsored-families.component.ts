@@ -1,88 +1,91 @@
-import {
-    Component,
-    OnInit,
-} from '@angular/core';
-import { ToasterService } from 'angular2-toaster';
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { SyncService } from 'jslib-common/abstractions/sync.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
-import { PlanSponsorshipType } from 'jslib-common/enums/planSponsorshipType';
-import { Organization } from 'jslib-common/models/domain/organization';
+import { Component, OnInit } from "@angular/core";
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { OrganizationService } from "jslib-common/abstractions/organization.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { SyncService } from "jslib-common/abstractions/sync.service";
+
+import { PlanSponsorshipType } from "jslib-common/enums/planSponsorshipType";
+import { Organization } from "jslib-common/models/domain/organization";
 
 @Component({
-    selector: 'app-sponsored-families',
-    templateUrl: 'sponsored-families.component.html',
+  selector: "app-sponsored-families",
+  templateUrl: "sponsored-families.component.html",
 })
 export class SponsoredFamiliesComponent implements OnInit {
-    loading = false;
+  loading = false;
 
-    availableSponsorshipOrgs: Organization[] = [];
-    activeSponsorshipOrgs: Organization[] = [];
-    selectedSponsorshipOrgId: string = '';
-    sponsorshipEmail: string = '';
+  availableSponsorshipOrgs: Organization[] = [];
+  activeSponsorshipOrgs: Organization[] = [];
+  selectedSponsorshipOrgId: string = "";
+  sponsorshipEmail: string = "";
 
-    // Conditional display properties
-    formPromise: Promise<any>;
+  // Conditional display properties
+  formPromise: Promise<any>;
 
-    constructor(private userService: UserService, private apiService: ApiService,
-        private i18nService: I18nService, private toasterService: ToasterService,
-        private syncService: SyncService) { }
+  constructor(
+    private apiService: ApiService,
+    private i18nService: I18nService,
+    private platformUtilsService: PlatformUtilsService,
+    private syncService: SyncService,
+    private organizationService: OrganizationService
+  ) {}
 
-    async ngOnInit() {
-        await this.load();
+  async ngOnInit() {
+    await this.load();
+  }
+
+  async submit() {
+    this.formPromise = this.apiService.postCreateSponsorship(this.selectedSponsorshipOrgId, {
+      sponsoredEmail: this.sponsorshipEmail,
+      planSponsorshipType: PlanSponsorshipType.FamiliesForEnterprise,
+      friendlyName: this.sponsorshipEmail,
+    });
+
+    await this.formPromise;
+    this.platformUtilsService.showToast("success", null, this.i18nService.t("sponsorshipCreated"));
+    this.formPromise = null;
+    this.resetForm();
+    await this.load(true);
+  }
+
+  async load(forceReload: boolean = false) {
+    if (this.loading) {
+      return;
     }
 
-    async submit() {
-        this.formPromise = this.apiService.postCreateSponsorship(this.selectedSponsorshipOrgId, {
-            sponsoredEmail: this.sponsorshipEmail,
-            planSponsorshipType: PlanSponsorshipType.FamiliesForEnterprise,
-            friendlyName: this.sponsorshipEmail,
-        });
-
-        await this.formPromise;
-        this.toasterService.popAsync('success', null, this.i18nService.t('sponsorshipCreated'));
-        this.formPromise = null;
-        this.resetForm();
-        await this.load(true);
+    this.loading = true;
+    if (forceReload) {
+      await this.syncService.fullSync(true);
     }
 
-    async load(forceReload: boolean = false) {
-        if (this.loading) {
-            return;
-        }
+    const allOrgs = await this.organizationService.getAll();
+    this.availableSponsorshipOrgs = allOrgs.filter((org) => org.familySponsorshipAvailable);
 
-        this.loading = true;
-        if (forceReload) {
-            await this.syncService.fullSync(true);
-        }
+    this.activeSponsorshipOrgs = allOrgs.filter(
+      (org) => org.familySponsorshipFriendlyName !== null
+    );
 
-        const allOrgs = await this.userService.getAllOrganizations();
-        this.availableSponsorshipOrgs = allOrgs.filter(org => org.familySponsorshipAvailable);
-
-        this.activeSponsorshipOrgs = allOrgs.filter(org => org.familySponsorshipFriendlyName !== null);
-
-        if (this.availableSponsorshipOrgs.length === 1) {
-            this.selectedSponsorshipOrgId = this.availableSponsorshipOrgs[0].id;
-        }
-        this.loading = false;
+    if (this.availableSponsorshipOrgs.length === 1) {
+      this.selectedSponsorshipOrgId = this.availableSponsorshipOrgs[0].id;
     }
+    this.loading = false;
+  }
 
+  private async resetForm() {
+    this.sponsorshipEmail = "";
+    this.selectedSponsorshipOrgId = "";
+  }
 
-    private async resetForm() {
-        this.sponsorshipEmail = '';
-        this.selectedSponsorshipOrgId = '';
-    }
+  get anyActiveSponsorships(): boolean {
+    return this.activeSponsorshipOrgs.length > 0;
+  }
 
-    get anyActiveSponsorships(): boolean {
-        return this.activeSponsorshipOrgs.length > 0;
-    }
+  get anyOrgsAvailable(): boolean {
+    return this.availableSponsorshipOrgs.length > 0;
+  }
 
-    get anyOrgsAvailable(): boolean {
-        return this.availableSponsorshipOrgs.length > 0;
-    }
-
-    get moreThanOneOrgAvailable(): boolean {
-        return this.availableSponsorshipOrgs.length > 1;
-    }
+  get moreThanOneOrgAvailable(): boolean {
+    return this.availableSponsorshipOrgs.length > 1;
+  }
 }

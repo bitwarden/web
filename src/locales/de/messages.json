@@ -2176,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "Sind Sie sich sicher, dass Sie diesen Benutzer löschen wollen?"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Warnung! Dieser Benutzer benötigt Key Connector, um seine Verschlüsselung zu verwalten. Das Entfernen dieses Benutzers aus deiner Organisation wird sein Konto dauerhaft deaktivieren. Diese Aktion kann nicht rückgängig gemacht werden. Möchtest du fortfahren?"
+  },
   "externalId": {
     "message": "Externe ID"
   },
@@ -2213,7 +2216,7 @@
     "message": "Benutzer einladen"
   },
   "inviteUserDesc": {
-    "message": "Laden Sie einen neuen Benutzer zu Ihrer Organisation ein, indem Sie deren Bitwarden-Konto-Email eintragen. Falls dieser noch kein Bitwarden-Konto besitzt, wird er/sie zur Erstellung eines neuen Kontos aufgefordert."
+    "message": "Lade einen neuen Benutzer zu deinem Anbieter ein, indem du die E-Mail-Adresse seines Bitwarden-Kontos unten einträgst. Falls dieser noch kein Bitwarden-Konto besitzt, wird er/sie zur Erstellung eines neuen Kontos aufgefordert."
   },
   "inviteMultipleEmailDesc": {
     "message": "Sie können bis zu $COUNT$ Benutzer auf einmal einladen, indem Sie eine Liste von E-Mail-Adressen mit je einem Komma trennen.",
@@ -2656,6 +2659,9 @@
   "resendInvitation": {
     "message": "Einladung erneut versenden"
   },
+  "resendEmail": {
+    "message": "E-Mail erneut senden"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ wurde erneut eingeladen.",
     "placeholders": {
@@ -2726,7 +2732,7 @@
     "message": "Organisation beitreten"
   },
   "joinOrganizationDesc": {
-    "message": "Sie wurden eingeladen, der oben genannten Organisation beizutreten. Um die Einladung anzunehmen, müssen Sie ein Bitwarden-Konto erstellen oder sich mit Ihrem bestehenden Konto anmelden."
+    "message": "Du wurdest eingeladen, dem oben genannten Anbieter beizutreten. Um die Einladung anzunehmen, musst du ein Bitwarden-Konto erstellen, oder dich mit deinem bestehenden Bitwarden-Konto anmelden."
   },
   "inviteAccepted": {
     "message": "Einladung angenommen"
@@ -2950,6 +2956,15 @@
       }
     }
   },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Dein Abo erlaubt insgesamt $COUNT$ Benutzer. Dein Abo wird gefördert und von einer externen Organisation bezahlt.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
   "subscriptionMaxReached": {
     "message": "Anpassungen an deinem Abo führen zu anteiligen Änderungen an deiner Rechnungssumme. Du kannst nicht mehr als $COUNT$ Benutzer einladen ohne deine Abo-Benutzerplätze zu erhöhen.",
     "placeholders": {
@@ -3160,7 +3175,7 @@
     "message": "API-Schlüssel"
   },
   "apiKeyDesc": {
-    "message": "Ihr API-Schlüssel kann zur Authentifizierung für die öffentlichen Bitwarden-API benutzt werden."
+    "message": "Dein API-Schlüssel kann zur Authentifizierung für die öffentlichen Bitwarden-API benutzt werden."
   },
   "apiKeyRotateDesc": {
     "message": "Mit der Erneuerung des API-Schlüssels wird der bisherige Schlüssel ungültig. Sie können Ihren API-Schlüssel erneuern, wenn die sichere Verwendung Ihres aktuellen Schlüssel nicht mehr gewährleistet ist."
@@ -3429,6 +3444,9 @@
   "unlinkSso": {
     "message": "SSO Verknüpfung aufheben"
   },
+  "unlinkSsoConfirmation": {
+    "message": "Bist du sicher, dass du SSO für diese Organisation aufheben möchtest?"
+  },
   "linkSso": {
     "message": "SSO verknüpfen"
   },
@@ -3493,7 +3511,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "deleteSendConfirmation": {
-    "message": "Sind Sie sicher, dass Sie dieses Send löschen möchten?",
+    "message": "Bist du sicher, dass du dieses Send löschen möchtest?",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "whatTypeOfSend": {
@@ -3599,7 +3617,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
-    "message": "Es gibt keine Sends aufzulisten.",
+    "message": "Keine Sends zu finden.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
@@ -4473,6 +4491,123 @@
   "ssoSettingsSaved": {
     "message": "Single Sign-On Konfiguration wurde gespeichert."
   },
+  "sponsoredFamilies": {
+    "message": "Kostenloses Bitwarden Familienabo"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Du und deine Familie haben Anspruch auf ein kostenloses Bitwarden Familienabo. Mit deiner persönlichen E-Mail einlösen, um deine Daten zu schützen, auch wenn du nicht am Arbeitsplatz bist."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Löse dein kostenloses Bitwarden für Familien Abo heute ein, um deine Daten zu schützen, auch wenn du nicht am Arbeitsplatz bist."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Das Bitwarden für Familien Abo beinhaltet"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Premium-Zugang für bis zu 6 Benutzer"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Gemeinsame Sammlungen für Familiengeheimnisse"
+  },
+  "badToken": {
+    "message": "Der Link ist nicht mehr gültig. Bitte lasse dir vom Förderer das Angebot erneut senden."
+  },
+  "reclaimedFreePlan": {
+    "message": "Kostenloses Abo zurückgefordert"
+  },
+  "redeem": {
+    "message": "Einlösen"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Wähle die Organisation aus, die du gerne fördern möchtest"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Welches kostenlose Familienangebot möchtest du einlösen?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Gebe deine persönliche E-Mail ein, um Bitwarden Familien einlösen zu können"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Wenn du diese Organisation verlässt oder aus ihr entfernt wirst, läuft dein Familien-Abo am Ende des Abrechnungszeitraums ab."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Angebot für eine bestehende Organisation akzeptieren oder eine neue Familien-Organisation erstellen."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Dir wurde ein kostenloses Bitwarden Familien-Organisationsabo angeboten. Um fortzufahren, musst du dich in das Konto einloggen, das das Angebot erhalten hat."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Angebot kann nicht angenommen werden. Bitte sende die Angebotsmail von deinem Unternehmenskonto erneut und versuche es noch einmal."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Angebot kann nicht angenommen werden. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Kostenloses Bitwarden Familien-Organisationsangebot einlösen"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Kostenloses Bitwarden Familien-Angebot erfolgreich eingelöst"
+  },
+  "redeemed": {
+    "message": "Eingelöst"
+  },
+  "redeemedAccount": {
+    "message": "Eingelöstes Konto"
+  },
+  "revokeAccount": {
+    "message": "Konto $NAME$ zurückziehen",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Sponsoring-E-Mail erneut an $NAME$ Sponsoring senden",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Kostenloses Familien Abo"
+  },
+  "redeemNow": {
+    "message": "Jetzt einlösen"
+  },
+  "recipient": {
+    "message": "Empfänger"
+  },
+  "removeSponsorship": {
+    "message": "Sponsoring entfernen"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "Nachdem du eine Förderung entfernt hast, bist du für dieses Abo und die damit verbundenen Rechnungen verantwortlich. Bist du sicher, dass du fortfahren möchtest?"
+  },
+  "sponsorshipCreated": {
+    "message": "Förderung erstellt"
+  },
+  "revoke": {
+    "message": "Zurückziehen"
+  },
+  "emailSent": {
+    "message": "E-Mail gesendet"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "Nach dem Entfernen dieses Kontos ist der Besitzer der Familienorganisation für dieses Abo und die damit verbundenen Rechnungen verantwortlich. Bist du sicher, dass du fortfahren möchtest?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Förderung entfernt"
+  },
   "ssoKeyConnectorUnavailable": {
     "message": "Der Key Connector konnte nicht erreicht werden. Versuche es später erneut."
   },
@@ -4571,5 +4706,35 @@
   },
   "migratedKeyConnector": {
     "message": "Zum Key Connector migriert"
+  },
+  "paymentSponsored": {
+    "message": "Bitte gib eine Zahlungsmethode an, die mit der Organisation verbunden wird. Keine Sorge, wir werden dir nichts berechnen, es sei denn, du wählst zusätzliche Funktionen aus oder deine Förderung läuft ab. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "Das Förderangebot ist abgelaufen. Du kannst die Organisation, die du erstellt hast, löschen, um eine Gebühr am Ende deiner 7-Tage-Testversion zu vermeiden. Andernfalls kannst du diese Meldung schließen, um die Organisation zu behalten und die Rechnungsverantwortung zu übernehmen."
+  },
+  "newFamiliesOrganization": {
+    "message": "Neue Familien-Organisation"
+  },
+  "acceptOffer": {
+    "message": "Angebot annehmen"
+  },
+  "sponsoringOrg": {
+    "message": "Förderorganisation"
+  },
+  "keyConnectorTest": {
+    "message": "Test"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Erfolg! Key Connector erreicht."
+  },
+  "keyConnectorTestFail": {
+    "message": "Key Connector nicht erreichbar. URL überprüfen."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "Das Förderangebot ist abgelaufen."
+  },
+  "freeWithSponsorship": {
+    "message": "KOSTENLOS mit Förderung"
   }
 }

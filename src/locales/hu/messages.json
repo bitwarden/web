@@ -2176,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "Biztosan eltávolításra kerüljön ez a felhasználó?"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Figyelem! Ennek a felhasználónak kulcskapcsolóra van szüksége a titkosítás kezeléséhez. Ha eltávolítjuk ezt a felhasználót a szervezetből, azzal véglegesen letiltjuk a fiókját. Ez a művelet nem visszavonható. Folytatás?"
+  },
   "externalId": {
     "message": "Külső azonosító"
   },
@@ -2656,6 +2659,9 @@
   "resendInvitation": {
     "message": "Meghívás újraküldése"
   },
+  "resendEmail": {
+    "message": "Email újraküldése"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ ismételten meghívásra került.",
     "placeholders": {
@@ -2943,6 +2949,15 @@
   },
   "subscriptionFamiliesPlan": {
     "message": "$COUNT$ felhasználónál több nem hívható meg magasabb szintű előfizetés nélkül. Az áttéréshez vegyük fel a kapcsolatot a vevőszolgálattal.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Az előfizetés összesen $COUNT$ felhasználót tesz lehetővé. A csomagot egy külső szervezet szponzorálja és számlázza ki.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3428,6 +3443,9 @@
   },
   "unlinkSso": {
     "message": "SSO szétkapcsolása"
+  },
+  "unlinkSsoConfirmation": {
+    "message": "Biztosan szeretnénk az SSO leválasztását ennél a szervezetnél?"
   },
   "linkSso": {
     "message": "SSO csatolása"
@@ -4049,7 +4067,7 @@
     }
   },
   "firstSsoLogin": {
-    "message": "$ID$ logged in using Sso for the first time",
+    "message": "$ID$ első alkalommal jelentkezett be Sso szolgáltatássl.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4473,6 +4491,123 @@
   "ssoSettingsSaved": {
     "message": "Az egyszeri bejelentkezés konfigurációja mentésre került."
   },
+  "sponsoredFamilies": {
+    "message": "Díjmentes Bitwarden családi csomag"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "A felhasználó és családja jogosult az ingyenes Bitwarden családok programra. Váltsuk ezt be személyes email címmel, hogy az adatok biztonságban legyenek még akkor is, amikor éppen nem dolgozunk."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Váltsuk be ingyenes Bitwarden családoknak előfizetést még ma, hogy az adatok biztonságban legyenek, még akkor is, amikor éppen nem dolgozunk."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "A Bitwarden családoknak csomag tartalmazza:"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Prémium hozzáférés legfeljebb 6 felhasználónak"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Megosztott gyűjtemények a családi titkoknak"
+  },
+  "badToken": {
+    "message": "The link is no longer valid. Please have the sponsor resend the offer."
+  },
+  "reclaimedFreePlan": {
+    "message": "Visszaállás díjmentes csomagra"
+  },
+  "redeem": {
+    "message": "Beváltás"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Válasszuk ki a szponzorálni kívánt szervezetet."
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Which Free Families offer would you like to redeem?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "A Bitwarden családok beváltásához adjuk meg a személyes email címünket."
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Ha kilépünk ebből a szervezetből vagy eltávolítás történik, a Családi csomag a számlázási időszak végén lejár."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Meglévő szervezet ajánlatának elfogadása vagy új Családi szervezet létrehozása."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Ingyenes Bitwarden Családi csomag szervezetet ajánlottak fel. A folytatáshoz be kell jelentkezni az ajánlatot fogadó fiókba."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Nem sikerült elfogadni az ajánlatot. Küldjük el ismét az ajánlati emailt a vállalati fiókból és próbáljuk újra."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Az ajánlatot nem lehet elfogadni. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Váltsuk be az ingyenes Bitwarden családi szervezet ajánlatot"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Az ingyenes Bitwarden családi szervezet ajánlat beváltásra került."
+  },
+  "redeemed": {
+    "message": "Beváltva"
+  },
+  "redeemedAccount": {
+    "message": "Beváltott fiók"
+  },
+  "revokeAccount": {
+    "message": "$NAME$ fiók visszavonása",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Szponzorálási email ismételt elküldése $NAME$ szponzorációnak",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Díjmentes családi csomag"
+  },
+  "redeemNow": {
+    "message": "Beváltás most"
+  },
+  "recipient": {
+    "message": "Címzett"
+  },
+  "removeSponsorship": {
+    "message": "Szponzoráció eltávolítása"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "A szponzorálás eltávolítása után felelősséget vállalunk az előfizetésért és a kapcsolódó számlákért. Biztosan folytatjuk?"
+  },
+  "sponsorshipCreated": {
+    "message": "A szponzoráció létrejött."
+  },
+  "revoke": {
+    "message": "Visszavonás"
+  },
+  "emailSent": {
+    "message": "Az email elküldésre került."
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "A fiók eltávolítása után a Családok szervezetének tulajdonosa lesz felelős az előfizetésért és a kapcsolódó számlákért. Biztosan folytatjuk?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "A szponzoráció eltávolításra került."
+  },
   "ssoKeyConnectorUnavailable": {
     "message": "Nem érhető el a kulcskapcsoló. Próbáljuk újra később."
   },
@@ -4480,19 +4615,19 @@
     "message": "Kulcskapcsoló webcím"
   },
   "sendVerificationCode": {
-    "message": "Send a verification code to your email"
+    "message": "Ellenőrző kód elküldése a saját email címre"
   },
   "sendCode": {
-    "message": "Send Code"
+    "message": "Kód küldése"
   },
   "codeSent": {
-    "message": "Code Sent"
+    "message": "A kód elküldésre került."
   },
   "verificationCode": {
     "message": "Ellenőrző kód"
   },
   "confirmIdentity": {
-    "message": "Confirm your identity to continue."
+    "message": "A folytatáshoz meg kell erősíteni a személyazonosságot."
   },
   "verificationCodeRequired": {
     "message": "Az ellenőrző kód kötelező."
@@ -4571,5 +4706,35 @@
   },
   "migratedKeyConnector": {
     "message": "Áttérve kulcskapcsolóra"
+  },
+  "paymentSponsored": {
+    "message": "Adjunk meg egy, a szervezethez társítandó fizetési módot. Nem kell aggódni, nem kerül semmi felszámításra, hacsak nem választunk további funkciókat vagy ha szponzorálás lejár. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "A szponzorálási ajánlat lejárt, törölhető a létrehozott szervezet a 7 napos próbaidőszak végén jelentkező díj elkerüléséért. Ellenkező esetben bezárhatjuk ezt az üzenetet a szervezet megtartásához és a számlázási felelősség vállalásához."
+  },
+  "newFamiliesOrganization": {
+    "message": "Új családi szervezet"
+  },
+  "acceptOffer": {
+    "message": "Ajánlat elfogadása"
+  },
+  "sponsoringOrg": {
+    "message": "Szponzoráló szervezet"
+  },
+  "keyConnectorTest": {
+    "message": "Teszt"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "A művelet sikeres. A kulcskapcsoló elérésre került."
+  },
+  "keyConnectorTestFail": {
+    "message": "Nem érhető el a kulcskapcsoló. Ellenőrizzük a webcímet."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "A szponzorálási ajánlat lejárt."
+  },
+  "freeWithSponsorship": {
+    "message": "FREE with sponsorship"
   }
 }

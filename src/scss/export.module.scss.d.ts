@@ -1,8 +1,8 @@
 export interface ThemeVariableExport {
-    lightInputColor: string;
-    lightInputPlaceholderColor: string;
-    darkInputColor: string;
-    darkInputPlaceholderColor: string;
+  lightInputColor: string;
+  lightInputPlaceholderColor: string;
+  darkInputColor: string;
+  darkInputPlaceholderColor: string;
 }
 
 export const ThemeVariables: ThemeVariableExport;

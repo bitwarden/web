@@ -9,8 +9,8 @@ on:
         required: false
   push:
     branches-ignore:
-      - 'l10n_master'
-      - 'gh-pages'
+      - "l10n_master"
+      - "gh-pages"
 
 jobs:
   cloc:
@@ -28,7 +28,6 @@ jobs:
       - name: Print lines of code
         run: cloc --include-lang TypeScript,JavaScript,HTML,Sass,CSS --vcs git
 
-
   setup:
     name: Setup
     runs-on: ubuntu-20.04
@@ -40,9 +39,7 @@ jobs:
 
       - name: Get GitHub sha as version
         id: version
-        run: |
-          echo "::set-output name=value::${GITHUB_SHA:0:7}"
-
+        run: echo "::set-output name=value::${GITHUB_SHA:0:7}"
 
   build-oss-selfhost:
     name: Build OSS zip
@@ -54,17 +51,13 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
         with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
+          node-version: "16"
 
       - name: Cache npm
         id: npm-cache
         uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
         with:
-          path: '~/.npm'
+          path: "~/.npm"
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
@@ -95,7 +88,6 @@ jobs:
           path: ./web-${{ env._VERSION }}-selfhosted-open-source.zip
           if-no-files-found: error
 
-
   build-cloud:
     name: Build Cloud zip
     runs-on: ubuntu-20.04
@@ -106,17 +98,13 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
         with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
+          node-version: "16"
 
       - name: Cache npm
         id: npm-cache
         uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
         with:
-          path: '~/.npm'
+          path: "~/.npm"
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
@@ -147,7 +135,6 @@ jobs:
           path: ./web-${{ env._VERSION }}-cloud-COMMERCIAL.zip
           if-no-files-found: error
 
-
   build-commercial-selfhost:
     name: Build SelfHost Docker image
     runs-on: ubuntu-20.04
@@ -158,17 +145,13 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
         with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
+          node-version: "16"
 
       - name: Cache npm
         id: npm-cache
         uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
         with:
-          path: '~/.npm'
+          path: "~/.npm"
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
@@ -182,7 +165,7 @@ jobs:
           echo "GitHub event: $GITHUB_EVENT"
 
       - name: Setup DCT
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/release'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix'
         id: setup-dct
         uses: bitwarden/gh-actions/setup-docker-trust@a8c384a05a974c05c48374c818b004be221d43ff
         with:
@@ -228,12 +211,12 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: docker tag bitwarden/web bitwarden/web:dev
 
-      - name: Tag release branch
-        if: github.ref == 'refs/heads/release'
-        run: docker tag bitwarden/web bitwarden/web:latest
+      - name: Tag hotfix branch
+        if: github.ref == 'refs/heads/hotfix'
+        run: docker tag bitwarden/web bitwarden/web:hotfix
 
       - name: List Docker images
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/release'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix'
         run: docker images
 
       - name: Push rc image
@@ -250,17 +233,16 @@ jobs:
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
 
-      - name: Push latest image
-        if: github.ref == 'refs/heads/release'
-        run: docker push bitwarden/web:latest
+      - name: Push hotfix image
+        if: github.ref == 'refs/heads/hotfix'
+        run: docker push bitwarden/web:hotfix
         env:
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
 
       - name: Log out of Docker
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/release'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix'
         run: docker logout
-
 
   build-qa:
     name: Build Docker images for QA environment
@@ -269,17 +251,13 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
         with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
+          node-version: "16"
 
       - name: Cache npm
         id: npm-cache
         uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
         with:
-          path: '~/.npm'
+          path: "~/.npm"
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
@@ -329,7 +307,7 @@ jobs:
       - name: Get image tag
         id: image-tag
         run: |
-          IMAGE_TAG=$(echo "$GITHUB_REF" | awk '{split($0, a, "/"); print a[3];}')
+          IMAGE_TAG=$(echo "${GITHUB_REF:11}" | sed "s#/#-#g")
           TAG_EXTENSION=${{ github.event.inputs.custom_tag_extension }}
 
           if [[ $TAG_EXTENSION ]]; then
@@ -361,7 +339,6 @@ jobs:
       - name: Log out of Docker
         run: docker logout
 
-
   windows:
     name: Test code on Windows
     runs-on: windows-2019
@@ -369,7 +346,7 @@ jobs:
       - name: Set up NuGet
         uses: nuget/setup-nuget@04b0c2b8d1b97922f67eca497d7cf0bf17b8ffe1
         with:
-          nuget-version: 'latest'
+          nuget-version: "latest"
 
       - name: Set up MSBuild
         uses: microsoft/setup-msbuild@c26a08ba26249b81327e26f6ef381897b6a8754d
@@ -378,17 +355,13 @@ jobs:
         id: npm-cache
         uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
         with:
-          path: '~/.npm'
+          path: "~/.npm"
           key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
         with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
+          node-version: "16"
 
       - name: Print environment
         run: |
@@ -414,7 +387,6 @@ jobs:
 
       - name: NPM build
         run: npm run build:bit:cloud
-
 
   crowdin-push:
     name: Crowdin Push
@@ -453,7 +425,6 @@ jobs:
           crowdin_branch_name: master
           upload_sources: true
           upload_translations: false
-
 
   check-failures:
     name: Check for failures

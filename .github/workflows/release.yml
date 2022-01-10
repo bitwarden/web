@@ -3,7 +3,15 @@ name: Release
 
 on:
   workflow_dispatch:
-    inputs: {}
+    inputs:
+      release_type:
+        description: 'Release Options'
+        required: true
+        default: 'Initial Release'
+        type: choice
+        options:
+          - Initial Release
+          - Redeploy
 
 jobs:
   setup:
@@ -34,7 +42,8 @@ jobs:
             curl -sL https://api.github.com/repos/$GITHUB_REPOSITORY/releases/latest | jq -r ".tag_name"
           )
 
-          if [ "v$version" == "$previous_release_tag_version" ]; then
+          if [ "v$version" == "$previous_release_tag_version" ] && \
+          [ "${{ github.event.inputs.release_type }}" == "Initial Release" ]; then
             echo "[!] Already released v$version. Please bump version to continue"
             exit 1
           fi
@@ -48,12 +57,12 @@ jobs:
           BRANCH_NAME=$(basename ${{ github.ref }})
           echo "::set-output name=branch-name::$BRANCH_NAME"
 
-
   self-host:
     name: Release self-host docker
     runs-on: ubuntu-20.04
     needs: setup
     env:
+      _BRANCH_NAME: ${{ needs.setup.outputs.branch-name }}
       _RELEASE_VERSION: ${{ needs.setup.outputs.release_version }}
     steps:
       - name: Print environment
@@ -73,26 +82,27 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
-      - name: Pull latest selfhost Release image
-        run: docker pull bitwarden/web:latest
+      - name: Pull latest selfhost image
+        run: docker pull bitwarden/web:$_BRANCH_NAME
 
-      - name: Tag version
+      - name: Tag version and latest
         run: |
-          docker tag bitwarden/web:latest bitwarden/web:$_RELEASE_VERSION
+          docker tag bitwarden/web:$_BRANCH_NAME bitwarden/web:$_RELEASE_VERSION
+          docker tag bitwarden/web:$_BRANCH_NAME bitwarden/web:latest
 
       - name: List Docker images
         run: docker images
 
-      - name: Push images
-        run: |
-          docker push bitwarden/web:$_RELEASE_VERSION
+      - name: Push version and latest image
         env:
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
+        run: |
+          docker push bitwarden/web:$_RELEASE_VERSION
+          docker push bitwarden/web:latest
 
       - name: Log out of Docker
         run: docker logout
-
 
   ghpages-deploy:
     name: Deploy Web Vault
@@ -116,8 +126,6 @@ jobs:
 
       - name: Checkout Repo
         uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f  # v2.3.4
-        with:
-          ref: release
 
       - name: Setup git config
         run: |
@@ -158,7 +166,6 @@ jobs:
             --base gh-pages \
             --head "$PR_BRANCH"
 
-
   release:
     name: Create GitHub Release
     runs-on: ubuntu-20.04
@@ -174,7 +181,7 @@ jobs:
           workflow_conclusion: success
           branch: ${{ needs.setup.outputs.branch-name }}
           artifacts: "web-*-selfhosted-COMMERCIAL.zip,
-                      web-*-selfhosted-open-source.zip"
+            web-*-selfhosted-open-source.zip"
 
       - name: Rename assets
         run: |
@@ -189,6 +196,6 @@ jobs:
           tag: "${{ needs.setup.outputs.tag_version }}"
           body: "<insert release notes here>"
           artifacts: "web-${{ needs.setup.outputs.release_version }}-selfhosted-COMMERCIAL.zip,
-                      web-${{ needs.setup.outputs.release_version }}-selfhosted-open-source.zip"
+            web-${{ needs.setup.outputs.release_version }}-selfhosted-open-source.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true

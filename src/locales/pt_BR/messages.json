@@ -1991,7 +1991,7 @@
     }
   },
   "planNameFamilies": {
-    "message": "Famílias"
+    "message": "Families"
   },
   "planDescFamilies": {
     "message": "Para uso pessoal, para compartilhar com a família & amigos."
@@ -2175,6 +2175,9 @@
   },
   "removeUserConfirmation": {
     "message": "Você tem certeza que deseja remover este(a) usuário(a)?"
+  },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Aviso! Este usuário precisa do Conector de Chave para gerenciar sua criptografia. Remover este usuário de sua organização desativará permanentemente sua conta. Essa ação não pode ser desfeita. Você quer prosseguir?"
   },
   "externalId": {
     "message": "ID externa"
@@ -2656,6 +2659,9 @@
   "resendInvitation": {
     "message": "Reenviar o Convite"
   },
+  "resendEmail": {
+    "message": "Reenviar E-mail"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ foi convidado(a).",
     "placeholders": {
@@ -2802,7 +2808,7 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Alterar Plano",
+    "message": "Atualizar Plano",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
@@ -2943,6 +2949,15 @@
   },
   "subscriptionFamiliesPlan": {
     "message": "Você não pode convidar mais de $COUNT$ usuários sem atualizar seu plano. Entre em contato com o Suporte ao Cliente para atualizar.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Sua assinatura permite um total de $COUNT$ usuários. Seu plano é patrocinado e cobrado por uma organização externa.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3428,6 +3443,9 @@
   },
   "unlinkSso": {
     "message": "Desvincular SSO"
+  },
+  "unlinkSsoConfirmation": {
+    "message": "Você tem certeza que deseja desvincular o SSO para esta organização?"
   },
   "linkSso": {
     "message": "Vincular SSO"
@@ -4473,6 +4491,123 @@
   "ssoSettingsSaved": {
     "message": "Configuração de logon único foi salva."
   },
+  "sponsoredFamilies": {
+    "message": "Bitwarden Families Gratuito"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Você e sua família estão elegíveis para o Bitwarden Families Gratuito. Resgate com seu e-mail pessoal para manter seus dados seguros mesmo quando você não estiver no trabalho."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Resgate o seu plano Bitwarden for Families Grátis hoje para manter seus dados seguros mesmo quando você não estiver no trabalho."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "O plano Bitwarden Families inclui"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Acesso premium para até 6 usuários"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Coleções compartilhadas de segredos de Família"
+  },
+  "badToken": {
+    "message": "O link não é mais válido. Peça ao patrocinador para reenviar a oferta."
+  },
+  "reclaimedFreePlan": {
+    "message": "Plano gratuito recuperado"
+  },
+  "redeem": {
+    "message": "Resgatar"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Selecione a organização que você gostaria de patrocinar"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Qual oferta do Families Grátis você gostaria de resgatar?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Digite seu e-mail pessoal para resgatar o Bitwarden Families"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Se você sair ou for removido desta organização, seu plano do Families irá expirar no final do período de cobrança."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Aceite a oferta de uma organização existente ou crie uma nova organização de Famílias."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Foi oferecida a você uma Organização do Plano Bitwarden Families gratuita. Para continuar, você precisa entrar na conta que recebeu a oferta."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Não é possível aceitar a oferta. Reenvie o e-mail da oferta da conta corporativa e tente novamente."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Não é possível aceitar a oferta. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Resgatar Oferta de Organização do Bitwarden Families Gratuita"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "A Oferta Gratuita do Bitwarden Families foi resgatada com sucesso"
+  },
+  "redeemed": {
+    "message": "Resgatado"
+  },
+  "redeemedAccount": {
+    "message": "Conta Resgatada"
+  },
+  "revokeAccount": {
+    "message": "Revogar conta $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Reenviar e-mail de Patrocínio para $NAME$ patrocínio",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Plano Familiar Gratuito"
+  },
+  "redeemNow": {
+    "message": "Resgatar Agora"
+  },
+  "recipient": {
+    "message": "Destinatário"
+  },
+  "removeSponsorship": {
+    "message": "Remover Patrocínio"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "Depois de remover um patrocínio, você será responsável por essa assinatura e faturas relacionadas. Tem certeza de que quer continuar?"
+  },
+  "sponsorshipCreated": {
+    "message": "Patrocínio Criado"
+  },
+  "revoke": {
+    "message": "Revogar"
+  },
+  "emailSent": {
+    "message": "E-mail Enviado"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "Depois de remover esta conta, o proprietário da organização das Famílias será responsável por essa assinatura e faturas relacionadas. Tem certeza de que quer continuar?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Patrocínio Removido"
+  },
   "ssoKeyConnectorUnavailable": {
     "message": "Não foi possível acessar o Conector de Chave, tente novamente mais tarde."
   },
@@ -4571,5 +4706,35 @@
   },
   "migratedKeyConnector": {
     "message": "Migrado para o Conector de Chave"
+  },
+  "paymentSponsored": {
+    "message": "Por favor, forneça uma forma de pagamento para associar à organização. Não se preocupe, não cobraremos nada, a menos que você selecione recursos adicionais ou seu patrocínio expire. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "A oferta de patrocínio expirou, você pode excluir a organização que criou para evitar uma cobrança no final do seu teste de 7 dias. Caso contrário, você pode fechar este alerta para manter a organização e assumir a responsabilidade pela cobrança."
+  },
+  "newFamiliesOrganization": {
+    "message": "Nova Organização de Famílias"
+  },
+  "acceptOffer": {
+    "message": "Aceitar Oferta"
+  },
+  "sponsoringOrg": {
+    "message": "Organização Patrocinadora"
+  },
+  "keyConnectorTest": {
+    "message": "Testar"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Sucesso! Conector de Chave acessado."
+  },
+  "keyConnectorTestFail": {
+    "message": "Não foi possível acessar o Conector de Chave. Verifique a URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "A oferta de patrocínio expirou."
+  },
+  "freeWithSponsorship": {
+    "message": "GRÁTIS com patrocínio"
   }
 }

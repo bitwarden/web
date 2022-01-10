@@ -2176,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "Esteu segur que voleu suprimir aquest usuari?"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Advertència! Aquest usuari requereix un connector clau per gestionar el seu xifrat. La supressió d'aquest usuari des de la vostra organització desactivarà permanentment el seu compte. Aquesta acció no es pot desfer. Voleu continuar?"
+  },
   "externalId": {
     "message": "Id extern"
   },
@@ -2656,6 +2659,9 @@
   "resendInvitation": {
     "message": "Tornar a enviar invitació"
   },
+  "resendEmail": {
+    "message": "Tornar a enviar l'email"
+  },
   "hasBeenReinvited": {
     "message": "S'ha reconvidat a $USER$.",
     "placeholders": {
@@ -2943,6 +2949,15 @@
   },
   "subscriptionFamiliesPlan": {
     "message": "No podeu convidar més de $COUNT$ usuaris sense actualitzar el vostre pla. Poseu-vos en contacte amb el servei d'assistència al client per actualitzar.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "La vostra subscripció permet un nombre total de $COUNT$ usuaris. El vostre pla està patrocinat i facturat per una organització externa.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3428,6 +3443,9 @@
   },
   "unlinkSso": {
     "message": "Desenllaça SSO"
+  },
+  "unlinkSsoConfirmation": {
+    "message": "Esteu segur que voleu desenllaçar SSO per a aquesta organització?"
   },
   "linkSso": {
     "message": "Enllaça SSO"
@@ -4049,7 +4067,7 @@
     }
   },
   "firstSsoLogin": {
-    "message": "$ID$ logged in using Sso for the first time",
+    "message": "$ID$ connectat a SSO per primera vegada",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4260,7 +4278,7 @@
     "message": "L'organització s'ha afegit correctament al proveïdor"
   },
   "accessingUsingProvider": {
-    "message": "Accessing organization using provider $PROVIDER$",
+    "message": "Accedeix a l'organització mitjançant el proveïdor $PROVIDER$",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4269,13 +4287,13 @@
     }
   },
   "providerIsDisabled": {
-    "message": "Provider is disabled."
+    "message": "S'ha deshabilitat el proveïdor."
   },
   "providerUpdated": {
-    "message": "Provider updated"
+    "message": "S'ha actualitzat el proveïdor"
   },
   "yourProviderIs": {
-    "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
+    "message": "El vostre proveïdor és $PROVIDER$. Tenen privilegis administratius i de facturació en la vostra organització.",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4284,7 +4302,7 @@
     }
   },
   "detachedOrganization": {
-    "message": "The organization $ORGANIZATION$ has been detached from your provider.",
+    "message": "L'organització $ORGANIZATION$ ha estat separada del vostre proveïdor.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4293,40 +4311,40 @@
     }
   },
   "detachOrganizationConfirmation": {
-    "message": "Are you sure you want to detach this organization? The organization will continue to exist but will no longer be managed by the provider."
+    "message": "Esteu segur que voleu separar aquesta organització? L'organització continuarà existint, però ja no serà gestionada pel proveïdor."
   },
   "add": {
-    "message": "Add"
+    "message": "Afegeix"
   },
   "updatedMasterPassword": {
-    "message": "Updated Master Password"
+    "message": "Contrasenya mestra actualitzada"
   },
   "updateMasterPassword": {
-    "message": "Update Master Password"
+    "message": "Actualitza contrasenya mestra"
   },
   "updateMasterPasswordWarning": {
-    "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Un administrador de l'organització ha canviat recentment la contrasenya principal. Per accedir a la caixa forta, heu d'actualitzar-la ara. Si continueu, es tancarà la sessió actual i heu de tornar a iniciar-la. És possible que les sessions obertes en altres dispositius continuen actives fins a una hora."
   },
   "maximumVaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Temps d'espera de la caixa forta"
   },
   "maximumVaultTimeoutDesc": {
-    "message": "Configure a maximum vault timeout for all users."
+    "message": "Configureu un temps d'espera màxima a la caixa forta per a tots els usuaris."
   },
   "maximumVaultTimeoutLabel": {
-    "message": "Maximum Vault Timeout"
+    "message": "Temps d'espera màxima a la caixa forta"
   },
   "invalidMaximumVaultTimeout": {
-    "message": "Invalid Maximum Vault Timeout."
+    "message": "Temps d'espera màxima a la caixa forta no vàlid."
   },
   "hours": {
-    "message": "Hours"
+    "message": "Hores"
   },
   "minutes": {
-    "message": "Minutes"
+    "message": "Minuts"
   },
   "vaultTimeoutPolicyInEffect": {
-    "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "message": "Les polítiques de l'organització afecten el temps d'espera de la caixa forta. El temps d'espera màxim permès d'aquesta és de $HOURS$ hores i $MINUTES$ minuts",
     "placeholders": {
       "hours": {
         "content": "$1",
@@ -4339,28 +4357,28 @@
     }
   },
   "customVaultTimeout": {
-    "message": "Custom Vault Timeout"
+    "message": "Temps d'espera a la caixa forta personalitzat"
   },
   "vaultTimeoutToLarge": {
-    "message": "Your vault timeout exceeds the restriction set by your organization."
+    "message": "El temps d'espera de la caixa forta supera les restriccions establertes per la vostra organització."
   },
   "disablePersonalVaultExport": {
-    "message": "Disable Personal Vault Export"
+    "message": "Inhabilita l'exportació de la caixa forta personal"
   },
   "disablePersonalVaultExportDesc": {
-    "message": "Prohibits users from exporting their private vault data."
+    "message": "Prohibeix als usuaris exportar les dades de la seua caixa forta privada."
   },
   "vaultExportDisabled": {
-    "message": "Vault Export Disabled"
+    "message": "L'exportació de la caixa forta està deshabilitada"
   },
   "personalVaultExportPolicyInEffect": {
-    "message": "One or more organization policies prevents you from exporting your personal vault."
+    "message": "Una o més polítiques d'organització us impedeixen exportar la vostra caixa forta."
   },
   "selectType": {
-    "message": "Select SSO Type"
+    "message": "Selecciona el tipus d'SSO"
   },
   "type": {
-    "message": "Type"
+    "message": "Tipus"
   },
   "openIdConnectConfig": {
     "message": "OpenID Connect Configuration"
@@ -4378,10 +4396,10 @@
     "message": "Signed Out Callback Path"
   },
   "authority": {
-    "message": "Authority"
+    "message": "Autoritat"
   },
   "clientId": {
-    "message": "Client ID"
+    "message": "ID de Client"
   },
   "clientSecret": {
     "message": "Client Secret"
@@ -4473,6 +4491,123 @@
   "ssoSettingsSaved": {
     "message": "S'ha guardat la configuració de l'inici de sessió únic."
   },
+  "sponsoredFamilies": {
+    "message": "Free Bitwarden Families"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "You and your family are eligible for Free Bitwarden Families. Redeem with your personal email to keep your data secure even when you are not at work."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Redeem your Free Bitwarden for Families plan today to keep your data secure even when you are not at work."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "The Bitwarden for Families plan include"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Premium access for up to 6 users"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Shared collections for Family secrets"
+  },
+  "badToken": {
+    "message": "The link is no longer valid. Please have the sponsor resend the offer."
+  },
+  "reclaimedFreePlan": {
+    "message": "Reclaimed free plan"
+  },
+  "redeem": {
+    "message": "Redeem"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Select the organization you would like sponsored"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Which Free Families offer would you like to redeem?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Enter your personal email to redeem Bitwarden Families"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "If you leave or are removed from the sponsoring organization, your Families plan will expire at the end of the billing period."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Accept offer for an existing organization or create a new Families organization."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "You've been offered a free Bitwarden Families Plan Organization. To continue, you need to log in to the account that received the offer."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Unable to accept offer. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Accept Free Bitwarden Families"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Free Bitwarden Families offer successfully redeemed"
+  },
+  "redeemed": {
+    "message": "Redeemed"
+  },
+  "redeemedAccount": {
+    "message": "Redeemed Account"
+  },
+  "revokeAccount": {
+    "message": "Revoke account $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Free Families Plan"
+  },
+  "redeemNow": {
+    "message": "Redeem Now"
+  },
+  "recipient": {
+    "message": "Recipient"
+  },
+  "removeSponsorship": {
+    "message": "Remove Sponsorship"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "After removing a sponsorship, you will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "sponsorshipCreated": {
+    "message": "Sponsorship Created"
+  },
+  "revoke": {
+    "message": "Revoca"
+  },
+  "emailSent": {
+    "message": "Correu electrònic enviat"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "After removing this account, the Families organization owner will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Sponsorship Removed"
+  },
   "ssoKeyConnectorUnavailable": {
     "message": "Unable to reach the Key Connector, try again later."
   },
@@ -4483,25 +4618,25 @@
     "message": "Send a verification code to your email"
   },
   "sendCode": {
-    "message": "Send Code"
+    "message": "Envia codi"
   },
   "codeSent": {
-    "message": "Code Sent"
+    "message": "Codi enviat"
   },
   "verificationCode": {
-    "message": "Verification Code"
+    "message": "Codi de verificació"
   },
   "confirmIdentity": {
-    "message": "Confirm your identity to continue."
+    "message": "Confirmeu la vostra identitat per continuar."
   },
   "verificationCodeRequired": {
-    "message": "Verification code is required."
+    "message": "El codi de verificació és obligatori."
   },
   "invalidVerificationCode": {
-    "message": "Invalid verification code"
+    "message": "Codi de verificació no vàlid"
   },
   "convertOrganizationEncryptionDesc": {
-    "message": "$ORGANIZATION$ is using SSO with a self-hosted key server. A master password is no longer required to log in for members of this organization.",
+    "message": "$ORGANIZATION$ està utilitzant SSO amb un servidor autoallotjat de claus. Ja no es requereix una contrasenya mestra d'inici de sessió per als membres d'aquesta organització.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4510,30 +4645,30 @@
     }
   },
   "leaveOrganization": {
-    "message": "Leave Organization"
+    "message": "Abandona l'organització"
   },
   "removeMasterPassword": {
-    "message": "Remove Master Password"
+    "message": "Suprimiu la contrasenya mestra"
   },
   "removedMasterPassword": {
-    "message": "Master password removed."
+    "message": "S'ha suprimit la contrasenya mestra."
   },
   "allowSso": {
-    "message": "Allow SSO authentication"
+    "message": "Permetre l'autenticació SSO"
   },
   "allowSsoDesc": {
-    "message": "Once set up, your configuration will be saved and members will be able to authenticate using their Identity Provider credentials."
+    "message": "Una vegada configurat, es guardarà la configuració i els membres podran autenticar-se utilitzant les seues credencials de proveïdor d'identitat."
   },
   "ssoPolicyHelpStart": {
-    "message": "Enable the",
+    "message": "Habilita la",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
-    "message": "SSO Authentication policy",
+    "message": "Política d'autenticació SSO",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
-    "message": "to require all members to log in with SSO.",
+    "message": "per obligar que tots els membres inicien la sessió amb SSO.",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpKeyConnector": {
@@ -4555,10 +4690,10 @@
     "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
   },
   "enabledSso": {
-    "message": "Enabled SSO"
+    "message": "SSO habilitat"
   },
   "disabledSso": {
-    "message": "Disabled SSO"
+    "message": "SSO deshabilitat"
   },
   "enabledKeyConnector": {
     "message": "Enabled Key Connector"
@@ -4571,5 +4706,35 @@
   },
   "migratedKeyConnector": {
     "message": "Migrated to Key Connector"
+  },
+  "paymentSponsored": {
+    "message": "Please provide a payment method to associate with the organization. Don't worry, we won't charge you anything unless you select additional features or your sponsorship expires. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "The sponsorship offer has expired. You may delete the organization you created to avoid a charge at the end of your 7 day trial. Otherwise you may close this prompt to keep the organization and assume billing responsibility."
+  },
+  "newFamiliesOrganization": {
+    "message": "New Families Organization"
+  },
+  "acceptOffer": {
+    "message": "Accept Offer"
+  },
+  "sponsoringOrg": {
+    "message": "Sponsoring Organization"
+  },
+  "keyConnectorTest": {
+    "message": "Prova"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Success! Key Connector reached."
+  },
+  "keyConnectorTestFail": {
+    "message": "Cannot reach Key Connector. Check URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "The sponsorship offer has expired."
+  },
+  "freeWithSponsorship": {
+    "message": "FREE with sponsorship"
   }
 }
