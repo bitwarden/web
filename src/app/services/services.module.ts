@@ -5,6 +5,7 @@ import { BroadcasterMessagingService } from "../../services/broadcasterMessaging
 import { HtmlStorageService } from "../../services/htmlStorage.service";
 import { I18nService } from "../../services/i18n.service";
 import { MemoryStorageService } from "../../services/memoryStorage.service";
+import { PasswordRepromptService } from "../../services/passwordReprompt.service";
 import { StateService } from "../../services/state.service";
 import { WebPlatformUtilsService } from "../../services/webPlatformUtils.service";
 
@@ -42,6 +43,7 @@ import { ImportService as ImportServiceAbstraction } from "jslib-common/abstract
 import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService as MessagingServiceAbstraction } from "jslib-common/abstractions/messaging.service";
 import { NotificationsService as NotificationsServiceAbstraction } from "jslib-common/abstractions/notifications.service";
+import { PasswordRepromptService as PasswordRepromptServiceAbstraction } from "jslib-common/abstractions/passwordReprompt.service";
 import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from "jslib-common/abstractions/platformUtils.service";
 import { StateService as StateServiceAbstraction } from "jslib-common/abstractions/state.service";
 import { StateMigrationService as StateMigrationServiceAbstraction } from "jslib-common/abstractions/stateMigration.service";
@@ -183,6 +185,10 @@ export function initFactory(
         LogService,
         StateMigrationServiceAbstraction,
       ],
+    },
+    {
+      provide: PasswordRepromptServiceAbstraction,
+      useClass: PasswordRepromptService,
     },
   ],
 })
