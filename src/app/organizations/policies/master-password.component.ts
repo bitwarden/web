@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 
 import { PolicyType } from 'jslib-common/enums/policyType';
 
@@ -33,7 +33,7 @@ export class MasterPasswordPolicyComponent extends BasePolicyComponent {
     passwordScores: { name: string; value: number; }[];
     showKeyConnectorInfo: boolean = false;
 
-    constructor(private fb: FormBuilder, i18nService: I18nService, private userService: UserService) {
+    constructor(private fb: FormBuilder, i18nService: I18nService, private organizationService: OrganizationService) {
         super();
 
         this.passwordScores = [
@@ -48,7 +48,7 @@ export class MasterPasswordPolicyComponent extends BasePolicyComponent {
 
     async ngOnInit() {
         super.ngOnInit();
-        const organization = await this.userService.getOrganization(this.policyResponse.organizationId);
+        const organization = await this.organizationService.get(this.policyResponse.organizationId);
         this.showKeyConnectorInfo = organization.keyConnectorEnabled;
     }
 }

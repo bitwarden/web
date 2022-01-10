@@ -1,5 +1,4 @@
 import { Directive } from '@angular/core';
-import { ToasterService } from 'angular2-toaster';
 
 import { ExportService } from 'jslib-common/abstractions/export.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -29,8 +28,8 @@ export abstract class BaseEventsComponent {
     abstract readonly exportFileName: string;
 
     constructor(protected eventService: EventService, protected i18nService: I18nService,
-        protected toasterService: ToasterService, protected exportService: ExportService,
-        protected platformUtilsService: PlatformUtilsService, protected logService: LogService) {
+        protected exportService: ExportService, protected platformUtilsService: PlatformUtilsService,
+        protected logService: LogService) {
         const defaultDates = this.eventService.getDefaultDateFilters();
         this.start = defaultDates[0];
         this.end = defaultDates[1];
@@ -129,7 +128,7 @@ export abstract class BaseEventsComponent {
         try {
             dates = this.eventService.formatDateFilters(this.start, this.end);
         } catch (e) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('invalidDateRange'));
             return null;
         }

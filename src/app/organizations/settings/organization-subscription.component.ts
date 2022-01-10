@@ -3,7 +3,6 @@ import {
     OnInit,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ToasterService } from 'angular2-toaster';
 
 import { Organization } from 'jslib-common/models/domain/organization';
 import { OrganizationSubscriptionResponse } from 'jslib-common/models/response/organizationSubscriptionResponse';
@@ -12,8 +11,8 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { PlanType } from 'jslib-common/enums/planType';
 
@@ -43,9 +42,9 @@ export class OrganizationSubscriptionComponent implements OnInit {
     reinstatePromise: Promise<any>;
 
     constructor(private apiService: ApiService, private platformUtilsService: PlatformUtilsService,
-        private i18nService: I18nService, private toasterService: ToasterService,
+        private i18nService: I18nService,
         private messagingService: MessagingService, private route: ActivatedRoute,
-        private userService: UserService, private logService: LogService) {
+        private organizationService: OrganizationService, private logService: LogService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -63,7 +62,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         }
 
         this.loading = true;
-        this.userOrg = await this.userService.getOrganization(this.organizationId);
+        this.userOrg = await this.organizationService.get(this.organizationId);
         this.sub = await this.apiService.getOrganizationSubscription(this.organizationId);
         this.loading = false;
     }
@@ -82,7 +81,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         try {
             this.reinstatePromise = this.apiService.postOrganizationReinstate(this.organizationId);
             await this.reinstatePromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('reinstated'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('reinstated'));
             this.load();
         } catch (e) {
             this.logService.error(e);
@@ -103,7 +102,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         try {
             this.cancelPromise = this.apiService.postOrganizationCancel(this.organizationId);
             await this.cancelPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('canceledSubscription'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('canceledSubscription'));
             this.load();
         } catch (e) {
             this.logService.error(e);
@@ -170,7 +169,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
         try {
             this.removeSponsorshipPromise = this.apiService.deleteRemoveSponsorship(this.organizationId);
             await this.removeSponsorshipPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('removeSponsorshipSuccess'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('removeSponsorshipSuccess'));
             await this.load();
         } catch (e) {
             this.logService.error(e);

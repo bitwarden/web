@@ -5,7 +5,6 @@ import {
     ViewContainerRef
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ToasterService } from 'angular2-toaster';
 
 import { first } from 'rxjs/operators';
 
@@ -14,9 +13,9 @@ import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { ProviderService } from 'jslib-common/abstractions/provider.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 import { ValidationService } from 'jslib-angular/services/validation.service';
@@ -59,20 +58,41 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
     providerId: string;
     accessEvents = false;
 
-    constructor(apiService: ApiService, private route: ActivatedRoute,
-        i18nService: I18nService, modalService: ModalService,
-        platformUtilsService: PlatformUtilsService, toasterService: ToasterService,
-        cryptoService: CryptoService, private userService: UserService, private router: Router,
-        storageService: StorageService, searchService: SearchService, validationService: ValidationService,
-        logService: LogService, searchPipe: SearchPipe, userNamePipe: UserNamePipe) {
-        super(apiService, searchService, i18nService, platformUtilsService, toasterService, cryptoService,
-            storageService, validationService, modalService, logService, searchPipe, userNamePipe);
+    constructor(
+        apiService: ApiService,
+        private route: ActivatedRoute,
+        i18nService: I18nService,
+        modalService: ModalService,
+        platformUtilsService: PlatformUtilsService,
+        cryptoService: CryptoService,
+        private router: Router,
+        searchService: SearchService,
+        validationService: ValidationService,
+        logService: LogService,
+        searchPipe: SearchPipe,
+        userNamePipe: UserNamePipe,
+        stateService: StateService,
+        private providerService: ProviderService,
+    ) {
+        super(
+            apiService,
+            searchService,
+            i18nService,
+            platformUtilsService,
+            cryptoService,
+            validationService,
+            modalService,
+            logService,
+            searchPipe,
+            userNamePipe,
+            stateService,
+        );
     }
 
     ngOnInit() {
         this.route.parent.params.subscribe(async params => {
             this.providerId = params.providerId;
-            const provider = await this.userService.getProvider(this.providerId);
+            const provider = await this.providerService.get(this.providerId);
 
             if (!provider.canManageUsers) {
                 this.router.navigate(['../'], { relativeTo: this.route });
@@ -164,7 +184,7 @@ export class PeopleComponent extends BasePeopleComponent<ProviderUserUserDetails
         const filteredUsers = users.filter(u => u.status === ProviderUserStatusType.Invited);
 
         if (filteredUsers.length <= 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('noSelectedUsersApplicable'));
             return;
         }

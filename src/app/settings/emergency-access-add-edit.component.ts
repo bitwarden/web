@@ -6,11 +6,10 @@ import {
     Output,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { EmergencyAccessType } from 'jslib-common/enums/emergencyAccessType';
 import { EmergencyAccessInviteRequest } from 'jslib-common/models/request/emergencyAccessInviteRequest';
@@ -40,7 +39,7 @@ export class EmergencyAccessAddEditComponent implements OnInit {
     waitTime: number;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private logService: LogService) { }
+        private platformUtilsService: PlatformUtilsService, private logService: LogService) { }
 
     async ngOnInit() {
         this.editMode = this.loading = this.emergencyAccessId != null;
@@ -90,7 +89,7 @@ export class EmergencyAccessAddEditComponent implements OnInit {
             }
 
             await this.formPromise;
-            this.toasterService.popAsync('success', null,
+            this.platformUtilsService.showToast('success', null,
                 this.i18nService.t(this.editMode ? 'editedUserId' : 'invitedUsers', this.name));
             this.onSaved.emit();
         } catch (e) {

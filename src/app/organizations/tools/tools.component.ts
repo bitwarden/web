@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Organization } from 'jslib-common/models/domain/organization';
 
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 
 @Component({
     selector: 'app-org-tools',
@@ -15,12 +15,12 @@ export class ToolsComponent {
     accessReports = false;
     loading = true;
 
-    constructor(private route: ActivatedRoute, private userService: UserService,
+    constructor(private route: ActivatedRoute, private organizationService: OrganizationService,
         private messagingService: MessagingService) { }
 
     ngOnInit() {
         this.route.parent.params.subscribe(async params => {
-            this.organization = await this.userService.getOrganization(params.organizationId);
+            this.organization = await this.organizationService.get(params.organizationId);
             // TODO: Maybe we want to just make sure they are not on a free plan? Just compare useTotp for now
             // since all paid plans include useTotp
             this.accessReports = this.organization.useTotp;

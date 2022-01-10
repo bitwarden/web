@@ -40,8 +40,7 @@ jobs:
 
       - name: Get GitHub sha as version
         id: version
-        run: |
-          echo "::set-output name=value::${GITHUB_SHA:0:7}"
+        run: echo "::set-output name=value::${GITHUB_SHA:0:7}"
 
 
   build-oss-selfhost:
@@ -54,11 +53,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
         with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
+          node-version: '16'
 
       - name: Cache npm
         id: npm-cache
@@ -106,11 +101,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
         with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
+          node-version: '16'
 
       - name: Cache npm
         id: npm-cache
@@ -158,11 +149,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
         with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
+          node-version: '16'
 
       - name: Cache npm
         id: npm-cache
@@ -182,7 +169,7 @@ jobs:
           echo "GitHub event: $GITHUB_EVENT"
 
       - name: Setup DCT
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/release'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix'
         id: setup-dct
         uses: bitwarden/gh-actions/setup-docker-trust@a8c384a05a974c05c48374c818b004be221d43ff
         with:
@@ -228,12 +215,12 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: docker tag bitwarden/web bitwarden/web:dev
 
-      - name: Tag release branch
-        if: github.ref == 'refs/heads/release'
-        run: docker tag bitwarden/web bitwarden/web:latest
+      - name: Tag hotfix branch
+        if: github.ref == 'refs/heads/hotfix'
+        run: docker tag bitwarden/web bitwarden/web:hotfix
 
       - name: List Docker images
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/release'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix'
         run: docker images
 
       - name: Push rc image
@@ -250,15 +237,15 @@ jobs:
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
 
-      - name: Push latest image
-        if: github.ref == 'refs/heads/release'
-        run: docker push bitwarden/web:latest
+      - name: Push hotfix image
+        if: github.ref == 'refs/heads/hotfix'
+        run: docker push bitwarden/web:hotfix
         env:
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
 
       - name: Log out of Docker
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/release'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix'
         run: docker logout
 
 
@@ -269,11 +256,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
         with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
+          node-version: '16'
 
       - name: Cache npm
         id: npm-cache
@@ -326,21 +309,21 @@ jobs:
           docker --version
           docker build -t bitwardenqa.azurecr.io/web .
 
-      - name: Get image tag
-        id: image-tag
-        run: |
-          IMAGE_TAG=$(echo "$GITHUB_REF" | awk '{split($0, a, "/"); print a[3];}')
-          TAG_EXTENSION=${{ github.event.inputs.custom_tag_extension }}
+      # - name: Get image tag
+      #   id: image-tag
+      #   run: |
+      #     IMAGE_TAG=$(echo "$GITHUB_REF" | awk '{split($0, a, "/"); print a[3];}')
+      #     TAG_EXTENSION=${{ github.event.inputs.custom_tag_extension }}
 
-          if [[ $TAG_EXTENSION ]]; then
-            IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
-          fi
-          echo "::set-output name=value::$IMAGE_TAG"
+      #     if [[ $TAG_EXTENSION ]]; then
+      #       IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
+      #     fi
+      #     echo "::set-output name=value::$IMAGE_TAG"
 
-      - name: Tag image
-        env:
-          IMAGE_TAG: ${{ steps.image-tag.outputs.value }}
-        run: docker tag bitwardenqa.azurecr.io/web "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
+      # - name: Tag image
+      #   env:
+      #     IMAGE_TAG: ${{ steps.image-tag.outputs.value }}
+      #   run: docker tag bitwardenqa.azurecr.io/web "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
 
       - name: Tag dev
         if: github.ref == 'refs/heads/master'
@@ -349,10 +332,10 @@ jobs:
       - name: List Docker images
         run: docker images
 
-      - name: Push image
-        env:
-          IMAGE_TAG: ${{ steps.image-tag.outputs.value }}
-        run: docker push "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
+      # - name: Push image
+      #   env:
+      #     IMAGE_TAG: ${{ steps.image-tag.outputs.value }}
+      #   run: docker push "bitwardenqa.azurecr.io/web:$IMAGE_TAG"
 
       - name: Push dev images
         if: github.ref == 'refs/heads/master'
@@ -384,11 +367,7 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
         with:
-          node-version: '14'
-
-      - name: Update NPM
-        run: |
-          npm install -g npm@7
+          node-version: '16'
 
       - name: Print environment
         run: |
@@ -409,8 +388,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run linter
-        run: npm run lint
+      # - name: Run linter
+      #   run: npm run lint
 
       - name: NPM build
         run: npm run build:bit:cloud

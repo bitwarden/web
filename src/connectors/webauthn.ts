@@ -83,7 +83,7 @@ function parseParametersV2() {
         btnText: string;
         btnReturnText: string;
         callbackUri?: string;
-        mobile?: boolean
+        mobile?: boolean;
     } = null;
     try {
         dataObj = JSON.parse(b64Decode(getQsParam('data')));

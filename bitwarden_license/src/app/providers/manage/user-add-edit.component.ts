@@ -6,8 +6,6 @@ import {
     Output,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
@@ -44,8 +42,7 @@ export class UserAddEditComponent implements OnInit {
     userType = ProviderUserType;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private platformUtilsService: PlatformUtilsService,
-        private logService: LogService) { }
+        private platformUtilsService: PlatformUtilsService, private logService: LogService) { }
 
     async ngOnInit() {
         this.editMode = this.loading = this.providerUserId != null;
@@ -79,7 +76,7 @@ export class UserAddEditComponent implements OnInit {
                 this.formPromise = this.apiService.postProviderUserInvite(this.providerId, request);
             }
             await this.formPromise;
-            this.toasterService.popAsync('success', null,
+            this.platformUtilsService.showToast('success', null,
                 this.i18nService.t(this.editMode ? 'editedUserId' : 'invitedUsers', this.name));
             this.onSavedUser.emit();
         } catch (e) {
@@ -102,7 +99,7 @@ export class UserAddEditComponent implements OnInit {
         try {
             this.deletePromise = this.apiService.deleteProviderUser(this.providerId, this.providerUserId);
             await this.deletePromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', this.name));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('removedUserId', this.name));
             this.onDeletedUser.emit();
         } catch (e) {
             this.logService.error(e);

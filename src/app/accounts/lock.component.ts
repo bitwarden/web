@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import {
+    Component,
+    NgZone,
+} from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
@@ -10,8 +13,6 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 import { VaultTimeoutService } from 'jslib-common/abstractions/vaultTimeout.service';
 
 import { RouterService } from '../services/router.service';
@@ -25,19 +26,18 @@ import { LockComponent as BaseLockComponent } from 'jslib-angular/components/loc
 export class LockComponent extends BaseLockComponent {
     constructor(router: Router, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, messagingService: MessagingService,
-        userService: UserService, cryptoService: CryptoService,
-        storageService: StorageService, vaultTimeoutService: VaultTimeoutService,
+        cryptoService: CryptoService, vaultTimeoutService: VaultTimeoutService,
         environmentService: EnvironmentService, private routerService: RouterService,
         stateService: StateService, apiService: ApiService, logService: LogService,
-        keyConnectorService: KeyConnectorService) {
-        super(router, i18nService, platformUtilsService, messagingService, userService, cryptoService,
-            storageService, vaultTimeoutService, environmentService, stateService, apiService, logService,
-            keyConnectorService);
+        keyConnectorService: KeyConnectorService, ngZone: NgZone) {
+        super(router, i18nService, platformUtilsService, messagingService, cryptoService,
+            vaultTimeoutService, environmentService, stateService, apiService, logService,
+            keyConnectorService, ngZone);
     }
 
     async ngOnInit() {
         await super.ngOnInit();
-        this.onSuccessfulSubmit = () => {
+        this.onSuccessfulSubmit = async () => {
             const previousUrl = this.routerService.getPreviousUrl();
             if (previousUrl !== '/' && previousUrl.indexOf('lock') === -1) {
                 this.successRoute = previousUrl;

@@ -4,13 +4,11 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { UpdateTwoFactorAuthenticatorRequest } from 'jslib-common/models/request/updateTwoFactorAuthenticatorRequest';
@@ -32,11 +30,21 @@ export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent impl
 
     private qrScript: HTMLScriptElement;
 
-    constructor(apiService: ApiService, i18nService: I18nService,
-        toasterService: ToasterService, userVerificationService: UserVerificationService,
-        platformUtilsService: PlatformUtilsService, logService: LogService,
-        private userService: UserService) {
-        super(apiService, i18nService, toasterService, platformUtilsService, logService, userVerificationService);
+    constructor(
+        apiService: ApiService,
+        i18nService: I18nService,
+        userVerificationService: UserVerificationService,
+        platformUtilsService: PlatformUtilsService,
+        logService: LogService,
+        private stateService: StateService
+    ) {
+        super(
+            apiService,
+            i18nService,
+            platformUtilsService,
+            logService,
+            userVerificationService
+        );
         this.qrScript = window.document.createElement('script');
         this.qrScript.src = 'scripts/qrious.min.js';
         this.qrScript.async = true;
@@ -79,7 +87,7 @@ export class TwoFactorAuthenticatorComponent extends TwoFactorBaseComponent impl
         this.token = null;
         this.enabled = response.enabled;
         this.key = response.key;
-        const email = await this.userService.getEmail();
+        const email = await this.stateService.getEmail();
         window.setTimeout(() => {
             const qr = new (window as any).QRious({
                 element: document.getElementById('qr'),

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
@@ -26,9 +25,8 @@ export class AccountComponent {
     private providerId: string;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private route: ActivatedRoute,
-        private syncService: SyncService, private platformUtilsService: PlatformUtilsService,
-        private logService: LogService) { }
+        private route: ActivatedRoute, private syncService: SyncService,
+        private platformUtilsService: PlatformUtilsService, private logService: LogService) { }
 
     async ngOnInit() {
         this.selfHosted = this.platformUtilsService.isSelfHost();
@@ -54,7 +52,7 @@ export class AccountComponent {
                 return this.syncService.fullSync(true);
             });
             await this.formPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('providerUpdated'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('providerUpdated'));
         } catch (e) {
             this.logService.error(`Handled exception: ${e}`);
         }

@@ -53,11 +53,11 @@ export class RegisterComponent extends BaseRegisterComponent {
                 this.email = qParams.email;
             }
             if (qParams.premium != null) {
-                this.stateService.save('loginRedirect', { route: '/settings/premium' });
+                this.stateService.setLoginRedirect({ route: '/settings/premium' });
             } else if (qParams.org != null) {
                 this.showCreateOrgMessage = true;
                 this.referenceData.flow = qParams.org;
-                this.stateService.save('loginRedirect',
+                this.stateService.setLoginRedirect(
                     { route: '/settings/create-organization', qParams: { plan: qParams.org } });
             }
             if (qParams.layout != null) {
@@ -71,7 +71,7 @@ export class RegisterComponent extends BaseRegisterComponent {
             // Are they coming from an email for sponsoring a families organization
             if (qParams.sponsorshipToken != null) {
                 // After logging in redirect them to setup the families sponsorship
-                this.stateService.save('loginRedirect', {
+                this.stateService.setLoginRedirect({
                     route: '/setup/families-for-enterprise',
                     qParams: { token: qParams.sponsorshipToken },
                 });
@@ -80,7 +80,7 @@ export class RegisterComponent extends BaseRegisterComponent {
                 this.referenceData.id = null;
             }
         });
-        const invite = await this.stateService.get<any>('orgInvitation');
+        const invite = await this.stateService.getOrganizationInvitation();
         if (invite != null) {
             try {
                 const policies = await this.apiService.getPoliciesByToken(invite.organizationId, invite.token,

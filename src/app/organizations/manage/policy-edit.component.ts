@@ -9,11 +9,10 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { PolicyType } from 'jslib-common/enums/policyType';
 
@@ -45,7 +44,7 @@ export class PolicyEditComponent {
     private policyResponse: PolicyResponse;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private componentFactoryResolver: ComponentFactoryResolver,
+        private platformUtilsService: PlatformUtilsService, private componentFactoryResolver: ComponentFactoryResolver,
         private cdr: ChangeDetectorRef, private logService: LogService) {
     }
 
@@ -78,14 +77,14 @@ export class PolicyEditComponent {
         try {
             request = await this.policyComponent.buildRequest(this.policiesEnabledMap);
         } catch (e) {
-            this.toasterService.pop('error', null, e);
+            this.platformUtilsService.showToast('error', null, e);
             return;
         }
 
         try {
             this.formPromise = this.apiService.putPolicy(this.organizationId, this.policy.type, request);
             await this.formPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('editedPolicyId', this.i18nService.t(this.policy.name)));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('editedPolicyId', this.i18nService.t(this.policy.name)));
             this.onSavedPolicy.emit();
         } catch (e) {
             this.logService.error(e);

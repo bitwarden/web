@@ -6,17 +6,20 @@
     const htmlEl = document.documentElement;
     let theme = defaultTheme;
 
-    const savedTheme = window.localStorage.getItem('theme');
-    if (savedTheme != null) {
-        if (savedTheme.indexOf('system') > -1) {
-            theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        } else if (savedTheme.indexOf('dark') > -1) {
-            theme = 'dark';
+    const stateJson = window.localStorage.getItem('state');
+    if (stateJson != null) {
+        const globals = JSON.parse(stateJson).globals;
+        if (globals != null && globals.theme != null) {
+            if (globals.theme.indexOf('system') > -1) {
+                theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            } else if (globals.theme.indexOf('dark') > -1) {
+                theme = 'dark';
+            }
         }
-    }
 
-    if (!htmlEl.classList.contains('theme_' + theme)) {
-        htmlEl.classList.remove('theme_' + defaultTheme);
-        htmlEl.classList.add('theme_' + theme);
+        if (!htmlEl.classList.contains('theme_' + theme)) {
+            htmlEl.classList.remove('theme_' + defaultTheme);
+            htmlEl.classList.add('theme_' + theme);
+        }
     }
 })();

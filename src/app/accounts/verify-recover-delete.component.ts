@@ -9,11 +9,10 @@ import {
 
 import { first } from 'rxjs/operators';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { VerifyDeleteRecoverRequest } from 'jslib-common/models/request/verifyDeleteRecoverRequest';
 
@@ -29,7 +28,7 @@ export class VerifyRecoverDeleteComponent implements OnInit {
     private token: string;
 
     constructor(private router: Router, private apiService: ApiService,
-        private toasterService: ToasterService, private i18nService: I18nService,
+        private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
         private route: ActivatedRoute, private logService: LogService) {
     }
 
@@ -50,7 +49,7 @@ export class VerifyRecoverDeleteComponent implements OnInit {
             const request = new VerifyDeleteRecoverRequest(this.userId, this.token);
             this.formPromise = this.apiService.postAccountRecoverDeleteToken(request);
             await this.formPromise;
-            this.toasterService.popAsync('success', this.i18nService.t('accountDeleted'),
+            this.platformUtilsService.showToast('success', this.i18nService.t('accountDeleted'),
                 this.i18nService.t('accountDeletedDesc'));
             this.router.navigate(['/']);
         } catch (e) {

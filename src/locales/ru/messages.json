@@ -2176,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "Вы действительно хотите удалить этого пользователя?"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Внимание! Этому пользователю необходим соединитель ключей для управления шифрованием. Удаление этого пользователя из вашей организации приведет к окончательному отключению его учетной записи. Это действие нельзя отменить. Вы хотите продолжить?"
+  },
   "externalId": {
     "message": "Внешний ID"
   },
@@ -2656,6 +2659,9 @@
   "resendInvitation": {
     "message": "Пригласить повторно"
   },
+  "resendEmail": {
+    "message": "Отправить email повторно"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ был приглашен повторно.",
     "placeholders": {
@@ -2943,6 +2949,15 @@
   },
   "subscriptionFamiliesPlan": {
     "message": "Вы не можете пригласить более $COUNT$ пользователей без обновления вашего плана. Для обновления обратитесь в службу поддержки клиентов.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Ваша подписка разрешена в общей сложности для $COUNT$ пользователей. Ваш план спонсируется и оплачивается внешней организацией.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -4001,10 +4016,10 @@
     "message": "Записаться на сброс пароля"
   },
   "enrolledPasswordReset": {
-    "message": "Записано на сброс пароля"
+    "message": "Запрос на сброс пароля зарегистрирован"
   },
   "withdrawPasswordReset": {
-    "message": "Отменить сброс пароля"
+    "message": "Отписаться от сброса пароля"
   },
   "enrollPasswordResetSuccess": {
     "message": "Регистрация успешна!"
@@ -4022,7 +4037,7 @@
     }
   },
   "eventWithdrawPasswordReset": {
-    "message": "Пользователь $ID$ отменил помощь по сбросу пароля.",
+    "message": "Пользователь $ID$ отказался от помощи по сбросу пароля.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4088,19 +4103,19 @@
     "message": "Разрешить администраторам организации сбрасывать мастер-пароль пользователей организации."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Пользователи в организации должны самостоятельно зарегистрироваться или быть автоматически зарегистрированными, чтобы администраторы могли сбросить их мастер-пароль."
+    "message": "Пользователи организации должны зарегистрироваться самостоятельно или быть зарегистрированными автоматически, чтобы администраторы могли сбросить их мастер-пароль."
   },
   "resetPasswordPolicyAutoEnroll": {
     "message": "Автоматическая регистрация"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "Все пользователи будут автоматически зачислены на сброс пароля после того, как их приглашение будет принято."
+    "message": "Все пользователи будут автоматически записаны на сброс пароля, после того как их приглашение будет принято, и им не будет разрешено отказаться от его выполнения."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Пользователи, уже входящие в организацию, не будут задним числом зачислены на сброс пароля. Им придется зарегистрироваться самостоятельно, чтобы администраторы могли сбросить их мастер-пароль."
+    "message": "Пользователи, уже входящие в организацию, не смогут записаться на сброс пароля задним числом. Они должны будут зарегистрироваться самостоятельно, прежде чем администраторы смогут сбросить их мастер-пароль."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Автоматически регистрировать новых пользователей"
+    "message": "Автоматически записывать новых пользователей"
   },
   "resetPasswordAutoEnrollInviteWarning": {
     "message": "В этой организации действует корпоративная политика, которая автоматически зарегистрирует вас на сброс пароля. Регистрация позволит администраторам организации изменить ваш мастер-пароль."
@@ -4408,7 +4423,7 @@
     "message": "Дополнительные/пользовательские типы требований к имени (разделенные запятыми)"
   },
   "acrValues": {
-    "message": "Запрошенные справочные значения класса контекста аутентификации (acr_values)"
+    "message": "Запрашиваемый контекст аутентификации 'Класс справочных значений' (acr_values)"
   },
   "expectedReturnAcrValue": {
     "message": "Ожидаемый \"acr\" Значение утверждения в ответе (проверка acr)"
@@ -4473,6 +4488,123 @@
   "ssoSettingsSaved": {
     "message": "Конфигурация единого входа сохранена."
   },
+  "sponsoredFamilies": {
+    "message": "Бесплатные семьи Bitwarden"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Вы и ваша семья имеют право на бесплатные семьи Bitwarden. Используйте свой личный адрес электронной почты, чтобы защитить данные даже тогда, когда вы не на работе."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Воспользуйтесь бесплатным планом Bit warden для семей сегодня, чтобы обеспечить безопасность ваших данных, даже когда вы не на работе."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "План Bitwarden для Семей включает"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Премиум-доступ для 6 пользователей"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Общие коллекции для Семейных секретов"
+  },
+  "badToken": {
+    "message": "Ссылка больше не действительна. Пожалуйста, попросите спонсора повторно отправить предложение."
+  },
+  "reclaimedFreePlan": {
+    "message": "Reclaimed free plan"
+  },
+  "redeem": {
+    "message": "Redeem"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Выберите организацию, которую вы хотите спонсировать"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Какое бесплатное Семейное предложение вы хотели бы использовать?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Введите свой личный адрес электронной почты, чтобы активировать Семейный Bitwarden"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Если вы покинете или откажетесь от организации со спонсорским предложением, срок действия вашего семейного плана истечет в конце расчетного периода."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Примите предложение существующей организации или создайте новую Семейную организацию."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Вам предложили бесплатный Семейный план Bitwarden. Чтобы продолжить, вам необходимо войти в учетную запись, в которую поступило предложение."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Не удается принять предложение. Отправьте письмо с предложением еще раз из своей корпоративной учетной записи и повторите попытку."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Невозможно принять предложение. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Принять бесплатный Семейный план Bitwarden"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Бесплатное Семейное предложение Bitwarden успешно активировано"
+  },
+  "redeemed": {
+    "message": "Redeemed"
+  },
+  "redeemedAccount": {
+    "message": "Активированный аккаунт"
+  },
+  "revokeAccount": {
+    "message": "Отозвать активацию аккаунта $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Бесплатный Семейный план"
+  },
+  "redeemNow": {
+    "message": "Redeem Now"
+  },
+  "recipient": {
+    "message": "Получатель"
+  },
+  "removeSponsorship": {
+    "message": "Remove Sponsorship"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "После удаления спонсорства вы будете нести ответственность за эту подписку и связанные с ней счета. Вы уверены что хотите продолжить?"
+  },
+  "sponsorshipCreated": {
+    "message": "Sponsorship Created"
+  },
+  "revoke": {
+    "message": "Отозвать"
+  },
+  "emailSent": {
+    "message": "Письмо отправлено"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "После удаления этой учетной записи владелец организации Семейства будет нести ответственность за эту подписку и связанные счета. Вы уверены что хотите продолжить?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Спонсорство удалено"
+  },
   "ssoKeyConnectorUnavailable": {
     "message": "Не удается подключиться к соединителю ключей, повторите попытку позже."
   },
@@ -4529,7 +4661,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
-    "message": "политику SSO",
+    "message": "Политика аутентификации SSO",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
@@ -4571,5 +4703,35 @@
   },
   "migratedKeyConnector": {
     "message": "Выполнена миграция на соединитель ключей"
+  },
+  "paymentSponsored": {
+    "message": "Укажите способ оплаты для сопоставления с организацией. Не волнуйтесь, мы не будем ничего взимать с вас, если вы не выберете дополнительные функции или ваше спонсорское предложение не истечет. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "Срок действия спонсорского предложения истек. Вы можете удалить созданную вами организацию, чтобы избежать списания средств по истечении 7-дневного пробного периода. В противном случае вы можете закрыть эту подсказку, чтобы сохранить организацию и принять на себя платежные обязательства."
+  },
+  "newFamiliesOrganization": {
+    "message": "Новая Семейная организация"
+  },
+  "acceptOffer": {
+    "message": "Принять предложение"
+  },
+  "sponsoringOrg": {
+    "message": "Спонсорская организация"
+  },
+  "keyConnectorTest": {
+    "message": "Тест"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Успешно! Соединитель ключей проверен."
+  },
+  "keyConnectorTestFail": {
+    "message": "Не удается связаться с соединителем ключей. Проверьте URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "Срок действия спонсорского предложения истек."
+  },
+  "freeWithSponsorship": {
+    "message": "БЕСПЛАТНО при спонсорской поддержке"
   }
 }

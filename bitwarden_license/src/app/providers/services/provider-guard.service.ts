@@ -5,24 +5,27 @@ import {
     Router,
 } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { ProviderService } from 'jslib-common/abstractions/provider.service';
 
 @Injectable()
 export class ProviderGuardService implements CanActivate {
-    constructor(private userService: UserService, private router: Router,
-        private toasterService: ToasterService, private i18nService: I18nService) { }
+    constructor(
+        private router: Router,
+        private platformUtilsService: PlatformUtilsService,
+        private i18nService: I18nService,
+        private providerService: ProviderService,
+    ) { }
 
     async canActivate(route: ActivatedRouteSnapshot) {
-        const provider = await this.userService.getProvider(route.params.providerId);
+        const provider = await this.providerService.get(route.params.providerId);
         if (provider == null) {
             this.router.navigate(['/']);
             return false;
         }
         if (!provider.isProviderAdmin && !provider.enabled) {
-            this.toasterService.popAsync('error', null, this.i18nService.t('providerIsDisabled'));
+            this.platformUtilsService.showToast('error', null, this.i18nService.t('providerIsDisabled'));
             this.router.navigate(['/']);
             return false;
         }
