@@ -40,13 +40,17 @@ async function start() {
     return;
   }
 
-  const keyConnectorUrl = decodedData.url;
+  const keyConnectorUrl = new URL(decodedData.url);
   const bearerAccessToken = decodedData.token;
   const operation = decodedData.operation;
   const key = decodedData.key;
 
+  if (keyConnectorUrl.hostname === "vault.bitwarden.com") {
+    error("Invalid hostname.");
+  }
+
   if (operation === "get") {
-    const getRequest = new Request(keyConnectorUrl + "/user-keys", {
+    const getRequest = new Request(keyConnectorUrl.href + "/user-keys", {
       cache: "no-store",
       method: "GET",
       headers: new Headers({
@@ -64,7 +68,7 @@ async function start() {
     }
     success(new KeyConnectorUserKeyResponse(await response.json()));
   } else if (operation === "post") {
-    const postRequest = new Request(keyConnectorUrl + "/user-keys", {
+    const postRequest = new Request(keyConnectorUrl.href + "/user-keys", {
       cache: "no-store",
       method: "POST",
       headers: new Headers({
@@ -111,8 +115,10 @@ function success(response: KeyConnectorUserKeyResponse) {
   if (sentSuccess) {
     return;
   }
-  const lol = "success|" + (response != null && response.key != null ? response.key : "");
-  parent.postMessage(lol, parentUrl);
+  parent.postMessage(
+    "success|" + response != null && response.key != null ? response.key : "",
+    parentUrl
+  );
   sentSuccess = true;
 }
 
