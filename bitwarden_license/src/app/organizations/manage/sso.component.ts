@@ -176,6 +176,7 @@ export class SsoComponent implements OnInit {
     this.samlForm.get("idpBindingType").valueChanges.subscribe(() => {
       this.samlForm.get("idpArtifactResolutionServiceUrl").updateValueAndValidity();
     });
+  }
 
     this.samlForm
       .get("spSigningBehavior")
