@@ -4,11 +4,11 @@ import { ToastrModule } from "ngx-toastr";
 import { BroadcasterMessagingService } from "../../services/broadcasterMessaging.service";
 import { HtmlStorageService } from "../../services/htmlStorage.service";
 import { I18nService } from "../../services/i18n.service";
+import { KeyConnectorService } from "../../services/keyConnector.service";
 import { MemoryStorageService } from "../../services/memoryStorage.service";
 import { PasswordRepromptService } from "../../services/passwordReprompt.service";
 import { StateService } from "../../services/state.service";
 import { WebPlatformUtilsService } from "../../services/webPlatformUtils.service";
-import { KeyConnectorService } from "../../services/keyConnector.service";
 
 import { EventService } from "./event.service";
 import { ModalService } from "./modal.service";
@@ -41,6 +41,7 @@ import { EventService as EventLoggingServiceAbstraction } from "jslib-common/abs
 import { FolderService as FolderServiceAbstraction } from "jslib-common/abstractions/folder.service";
 import { I18nService as I18nServiceAbstraction } from "jslib-common/abstractions/i18n.service";
 import { ImportService as ImportServiceAbstraction } from "jslib-common/abstractions/import.service";
+import { KeyConnectorService as KeyConnectorServiceAbstraction } from "jslib-common/abstractions/keyConnector.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService as MessagingServiceAbstraction } from "jslib-common/abstractions/messaging.service";
 import { NotificationsService as NotificationsServiceAbstraction } from "jslib-common/abstractions/notifications.service";
@@ -50,7 +51,6 @@ import { StateService as StateServiceAbstraction } from "jslib-common/abstractio
 import { StateMigrationService as StateMigrationServiceAbstraction } from "jslib-common/abstractions/stateMigration.service";
 import { StorageService as StorageServiceAbstraction } from "jslib-common/abstractions/storage.service";
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from "jslib-common/abstractions/vaultTimeout.service";
-import { KeyConnectorService as KeyConnectorServiceAbstraction } from "jslib-common/abstractions/keyConnector.service";
 
 import { ThemeType } from "jslib-common/enums/themeType";
 
