@@ -50,7 +50,7 @@ async function start() {
   }
 
   if (operation === "get") {
-    const getRequest = new Request(keyConnectorUrl.href + "/user-keys", {
+    const getRequest = new Request(keyConnectorUrl.href + "user-keys", {
       cache: "no-store",
       method: "GET",
       headers: new Headers({
@@ -68,7 +68,7 @@ async function start() {
     }
     success(new KeyConnectorUserKeyResponse(await response.json()));
   } else if (operation === "post") {
-    const postRequest = new Request(keyConnectorUrl.href + "/user-keys", {
+    const postRequest = new Request(keyConnectorUrl.href + "user-keys", {
       cache: "no-store",
       method: "POST",
       headers: new Headers({
@@ -116,7 +116,7 @@ function success(response: KeyConnectorUserKeyResponse) {
     return;
   }
   parent.postMessage(
-    "success|" + response != null && response.key != null ? response.key : "",
+    "success|" + (response != null && response.key != null ? response.key : ""),
     parentUrl
   );
   sentSuccess = true;

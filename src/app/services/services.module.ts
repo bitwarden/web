@@ -8,6 +8,7 @@ import { MemoryStorageService } from "../../services/memoryStorage.service";
 import { PasswordRepromptService } from "../../services/passwordReprompt.service";
 import { StateService } from "../../services/state.service";
 import { WebPlatformUtilsService } from "../../services/webPlatformUtils.service";
+import { KeyConnectorService } from "../../services/keyConnector.service";
 
 import { EventService } from "./event.service";
 import { ModalService } from "./modal.service";
@@ -49,6 +50,7 @@ import { StateService as StateServiceAbstraction } from "jslib-common/abstractio
 import { StateMigrationService as StateMigrationServiceAbstraction } from "jslib-common/abstractions/stateMigration.service";
 import { StorageService as StorageServiceAbstraction } from "jslib-common/abstractions/storage.service";
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from "jslib-common/abstractions/vaultTimeout.service";
+import { KeyConnectorService as KeyConnectorServiceAbstraction } from "jslib-common/abstractions/keyConnector.service";
 
 import { ThemeType } from "jslib-common/enums/themeType";
 
@@ -189,6 +191,10 @@ export function initFactory(
     {
       provide: PasswordRepromptServiceAbstraction,
       useClass: PasswordRepromptService,
+    },
+    {
+      provide: KeyConnectorServiceAbstraction,
+      useClass: KeyConnectorService,
     },
   ],
 })
