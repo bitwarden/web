@@ -1,44 +1,64 @@
 <div class="container page-content">
-    <div class="row">
-        <div class="col-3">
-            <div class="card">
-                <div class="card-header">{{'settings' | i18n}}</div>
-                <div class="list-group list-group-flush">
-                    <a routerLink="account" class="list-group-item" routerLinkActive="active">
-                        {{'myAccount' | i18n}}
-                    </a>
-                    <a routerLink="options" class="list-group-item" routerLinkActive="active">
-                        {{'options' | i18n}}
-                    </a>
-                    <a routerLink="organizations" class="list-group-item" routerLinkActive="active">
-                        {{'organizations' | i18n}}
-                    </a>
-                    <a routerLink="subscription" class="list-group-item" routerLinkActive="active" *ngIf="premium">
-                        {{'premiumMembership' | i18n}}
-                    </a>
-                    <a routerLink="premium" class="list-group-item" routerLinkActive="active" *ngIf="!premium">
-                        {{'goPremium' | i18n}}
-                    </a>
-                    <a routerLink="billing" class="list-group-item" routerLinkActive="active" *ngIf="!selfHosted">
-                        {{'billing' | i18n}}
-                    </a>
-                    <a routerLink="two-factor" class="list-group-item" routerLinkActive="active">
-                        {{'twoStepLogin' | i18n}}
-                    </a>
-                    <a routerLink="domain-rules" class="list-group-item" routerLinkActive="active">
-                        {{'domainRules' | i18n}}
-                    </a>
-                    <a routerLink="emergency-access" class="list-group-item" routerLinkActive="active">
-                        {{'emergencyAccess' | i18n}}
-                    </a>
-                    <a routerLink="sponsored-families" class="list-group-item" routerLinkActive="active" *ngIf="hasFamilySponsorshipAvailable">
-                        {{'sponsoredFamilies' | i18n}}
-                    </a>
-                </div>
-            </div>
+  <div class="row">
+    <div class="col-3">
+      <div class="card">
+        <div class="card-header">{{ "settings" | i18n }}</div>
+        <div class="list-group list-group-flush">
+          <a routerLink="account" class="list-group-item" routerLinkActive="active">
+            {{ "myAccount" | i18n }}
+          </a>
+          <a routerLink="options" class="list-group-item" routerLinkActive="active">
+            {{ "options" | i18n }}
+          </a>
+          <a routerLink="organizations" class="list-group-item" routerLinkActive="active">
+            {{ "organizations" | i18n }}
+          </a>
+          <a
+            routerLink="subscription"
+            class="list-group-item"
+            routerLinkActive="active"
+            *ngIf="premium"
+          >
+            {{ "premiumMembership" | i18n }}
+          </a>
+          <a
+            routerLink="premium"
+            class="list-group-item"
+            routerLinkActive="active"
+            *ngIf="!premium"
+          >
+            {{ "goPremium" | i18n }}
+          </a>
+          <a
+            routerLink="billing"
+            class="list-group-item"
+            routerLinkActive="active"
+            *ngIf="!selfHosted"
+          >
+            {{ "billing" | i18n }}
+          </a>
+          <a routerLink="two-factor" class="list-group-item" routerLinkActive="active">
+            {{ "twoStepLogin" | i18n }}
+          </a>
+          <a routerLink="domain-rules" class="list-group-item" routerLinkActive="active">
+            {{ "domainRules" | i18n }}
+          </a>
+          <a routerLink="emergency-access" class="list-group-item" routerLinkActive="active">
+            {{ "emergencyAccess" | i18n }}
+          </a>
+          <a
+            routerLink="sponsored-families"
+            class="list-group-item"
+            routerLinkActive="active"
+            *ngIf="hasFamilySponsorshipAvailable"
+          >
+            {{ "sponsoredFamilies" | i18n }}
+          </a>
         </div>
-        <div class="col-9">
-            <router-outlet></router-outlet>
-        </div>
+      </div>
     </div>
+    <div class="col-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>

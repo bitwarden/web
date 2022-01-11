@@ -1,49 +1,67 @@
 <div class="page-header">
-    <h1>{{'twoStepLogin' | i18n}}</h1>
+  <h1>{{ "twoStepLogin" | i18n }}</h1>
 </div>
-<p *ngIf="!organizationId">{{'twoStepLoginDesc' | i18n}}</p>
-<p *ngIf="organizationId">{{'twoStepLoginOrganizationDesc' | i18n}}</p>
+<p *ngIf="!organizationId">{{ "twoStepLoginDesc" | i18n }}</p>
+<p *ngIf="organizationId">{{ "twoStepLoginOrganizationDesc" | i18n }}</p>
 <app-callout type="warning" *ngIf="!organizationId">
-    <p>{{'twoStepLoginRecoveryWarning' | i18n}}</p>
-    <button type="button" class="btn btn-outline-secondary"
-        (click)="recoveryCode()">{{'viewRecoveryCode' | i18n}}</button>
+  <p>{{ "twoStepLoginRecoveryWarning" | i18n }}</p>
+  <button type="button" class="btn btn-outline-secondary" (click)="recoveryCode()">
+    {{ "viewRecoveryCode" | i18n }}
+  </button>
 </app-callout>
-<h2 [ngClass]="{'mt-5':!organizationId}">
-    {{'providers' | i18n}}
-    <small *ngIf="loading">
-        <i class="fa fa-spinner fa-spin fa-fw text-muted" title="{{'loading' | i18n}}" aria-hidden="true"></i>
-        <span class="sr-only">{{'loading' | i18n}}</span>
-    </small>
+<h2 [ngClass]="{ 'mt-5': !organizationId }">
+  {{ "providers" | i18n }}
+  <small *ngIf="loading">
+    <i
+      class="fa fa-spinner fa-spin fa-fw text-muted"
+      title="{{ 'loading' | i18n }}"
+      aria-hidden="true"
+    ></i>
+    <span class="sr-only">{{ "loading" | i18n }}</span>
+  </small>
 </h2>
 <app-callout type="warning" *ngIf="showPolicyWarning">
-    {{'twoStepLoginPolicyUserWarning' | i18n}}
+  {{ "twoStepLoginPolicyUserWarning" | i18n }}
 </app-callout>
 <ul class="list-group list-group-2fa">
-    <li *ngFor="let p of providers" class="list-group-item d-flex align-items-center">
-        <div class="logo-2fa d-flex justify-content-center">
-            <img [class]="'mfaType' + p.type" [alt]="p.name + ' logo'">
-        </div>
-        <div class="mx-4">
-            <h3 class="mb-0">
-                {{p.name}}
-                <ng-container *ngIf="p.enabled">
-                    <i class="fa fa-check text-success fa-fw" title="{{'enabled' | i18n}}" aria-hidden="true"></i>
-                    <span class="sr-only">{{'enabled' | i18n}}</span>
-                </ng-container>
-                <a href="#" appStopClick class="badge badge-primary" *ngIf="!canAccessPremium && p.premium"
-                    (click)="premiumRequired()">
-                    {{'premium' | i18n}}
-                </a>
-            </h3>
-            {{p.description}}
-        </div>
-        <div class="ml-auto">
-            <button type="button" class="btn btn-outline-secondary btn-sm" [disabled]="!canAccessPremium && p.premium"
-                (click)="manage(p.type)">
-                {{'manage' | i18n}}
-            </button>
-        </div>
-    </li>
+  <li *ngFor="let p of providers" class="list-group-item d-flex align-items-center">
+    <div class="logo-2fa d-flex justify-content-center">
+      <img [class]="'mfaType' + p.type" [alt]="p.name + ' logo'" />
+    </div>
+    <div class="mx-4">
+      <h3 class="mb-0">
+        {{ p.name }}
+        <ng-container *ngIf="p.enabled">
+          <i
+            class="fa fa-check text-success fa-fw"
+            title="{{ 'enabled' | i18n }}"
+            aria-hidden="true"
+          ></i>
+          <span class="sr-only">{{ "enabled" | i18n }}</span>
+        </ng-container>
+        <a
+          href="#"
+          appStopClick
+          class="badge badge-primary"
+          *ngIf="!canAccessPremium && p.premium"
+          (click)="premiumRequired()"
+        >
+          {{ "premium" | i18n }}
+        </a>
+      </h3>
+      {{ p.description }}
+    </div>
+    <div class="ml-auto">
+      <button
+        type="button"
+        class="btn btn-outline-secondary btn-sm"
+        [disabled]="!canAccessPremium && p.premium"
+        (click)="manage(p.type)"
+      >
+        {{ "manage" | i18n }}
+      </button>
+    </div>
+  </li>
 </ul>
 
 <ng-template #authenticatorTemplate></ng-template>
