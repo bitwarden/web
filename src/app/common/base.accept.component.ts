@@ -60,7 +60,9 @@ export abstract class BaseAcceptComponent implements OnInit {
           errorMessage != null
             ? this.i18nService.t(this.failedShortMessage, errorMessage)
             : this.i18nService.t(this.failedMessage);
-        this.platformUtilService.showToast("error", null, message, { timeout: 10000 });
+        this.platformUtilService.showToast("error", null, message, {
+          timeout: 10000,
+        });
         this.router.navigate(["/"]);
       }
 
