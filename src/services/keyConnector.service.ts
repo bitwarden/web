@@ -51,7 +51,7 @@ export class KeyConnectorService extends BaseKeyConnectorService {
     return frame.promise.then((key: string) => new KeyConnectorUserKeyResponse({ Key: key }));
   }
 
-  async postUserKeyToKeyConnector(url: string, request: KeyConnectorUserKeyRequest) {
+  async postUserKeyToKeyConnector(url: string, request: KeyConnectorUserKeyRequest): Promise<void> {
     if (this.platformUtilsService.isSelfHost()) {
       return super.postUserKeyToKeyConnector(url, request);
     }
@@ -59,6 +59,7 @@ export class KeyConnectorService extends BaseKeyConnectorService {
     const frame = this.createIframe();
     frame.frame.initPost(await this.apiService.getActiveBearerToken(), url, request.key);
 
+    // tslint:disable-next-line
     return frame.promise.then(() => {});
   }
 
