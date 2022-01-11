@@ -61,12 +61,16 @@ async function start() {
     getRequest.headers.set("Cache-Control", "no-store");
     getRequest.headers.set("Pragma", "no-cache");
 
-    const response = await fetch(getRequest);
-    if (response.status !== 200) {
+    try {
+      const response = await fetch(getRequest);
+      if (response.status !== 200) {
+        throw new Error();
+      }
+      success(new KeyConnectorUserKeyResponse(await response.json()));
+    } catch {
       error("Error getting key");
       return;
     }
-    success(new KeyConnectorUserKeyResponse(await response.json()));
   } else if (operation === "post") {
     const postRequest = new Request(keyConnectorUrl.href + "user-keys", {
       cache: "no-store",
@@ -79,8 +83,12 @@ async function start() {
       body: JSON.stringify({ key: key }),
     });
 
-    const response = await fetch(postRequest);
-    if (response.status !== 200) {
+    try {
+      const response = await fetch(postRequest);
+      if (response.status !== 200) {
+        throw new Error();
+      }
+    } catch {
       error("Error posting key");
       return;
     }
