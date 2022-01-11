@@ -40,7 +40,7 @@ export class KeyConnectorService extends BaseKeyConnectorService {
     );
   }
 
-  async getUserKeyFromKeyConnector(url: string): Promise<KeyConnectorUserKeyResponse> {
+  protected async getUserKeyFromKeyConnector(url: string): Promise<KeyConnectorUserKeyResponse> {
     if (this.platformUtilsService.isSelfHost()) {
       return super.getUserKeyFromKeyConnector(url);
     }
@@ -51,7 +51,10 @@ export class KeyConnectorService extends BaseKeyConnectorService {
     return frame.promise.then((key: string) => new KeyConnectorUserKeyResponse({ Key: key }));
   }
 
-  async postUserKeyToKeyConnector(url: string, request: KeyConnectorUserKeyRequest): Promise<void> {
+  protected async postUserKeyToKeyConnector(
+    url: string,
+    request: KeyConnectorUserKeyRequest
+  ): Promise<void> {
     if (this.platformUtilsService.isSelfHost()) {
       return super.postUserKeyToKeyConnector(url, request);
     }
