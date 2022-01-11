@@ -26,13 +26,16 @@ export class KeyConnectorService extends BaseKeyConnectorService {
     logService: LogService,
     organizationService: OrganizationService,
     private environmentService: EnvironmentService,
-    private i18nService: I18nService,
     private platformUtilsService: PlatformUtilsService
   ) {
     super(stateService, cryptoService, apiService, tokenService, logService, organizationService);
   }
 
   async getAndSetKey(url: string): Promise<void> {
+    if (this.platformUtilsService.isSelfHost()) {
+      return super.getAndSetKey(url);
+    }
+
     const el = document.createElement("iframe");
     el.id = "cme_iframe";
     document.body.appendChild(el);
