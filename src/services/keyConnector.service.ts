@@ -45,53 +45,35 @@ export class KeyConnectorService extends BaseKeyConnectorService {
       return super.getUserKeyFromKeyConnector(url);
     }
 
-    const el = document.createElement("iframe");
-    el.id = "cme_iframe";
-    document.body.appendChild(el);
+    const frame = this.createIframe();
+    frame.frame.initGet(await this.apiService.getActiveBearerToken(), url);
 
-    const webVaultUrl = this.environmentService.getWebVaultUrl();
-
-    const promise: Promise<KeyConnectorUserKeyResponse> = new Promise(async (resolve) => {
-      const iframe = new CMEIFrame(
-        window,
-        webVaultUrl,
-        (key: string) => {
-          resolve(new KeyConnectorUserKeyResponse({ Key: key }));
-        },
-        (error: string) => {
-          this.platformUtilsService.showToast("error", null, error);
-        },
-        (info: string) => {
-          this.logService.info(info);
-        }
-      );
-
-      iframe.init(await this.apiService.getActiveBearerToken(), url);
-    });
-
-    promise.finally(() => el.remove());
-
-    return promise;
+    return frame.promise.then((key: string) => new KeyConnectorUserKeyResponse({ Key: key }));
   }
 
-  postUserKeyToKeyConnector(url: string, request: KeyConnectorUserKeyRequest) {
+  async postUserKeyToKeyConnector(url: string, request: KeyConnectorUserKeyRequest) {
     if (this.platformUtilsService.isSelfHost()) {
       return super.postUserKeyToKeyConnector(url, request);
     }
 
-    const el = document.createElement("iframe");
-    el.id = "cme_iframe";
-    document.body.appendChild(el);
+    const frame = this.createIframe();
+    frame.frame.initPost(await this.apiService.getActiveBearerToken(), url, request.key);
+
+    return frame.promise.then(() => {});
+  }
+
+  private createIframe(): { frame: CMEIFrame; promise: Promise<string> } {
+    const el = this.createIframeElement();
 
     const webVaultUrl = this.environmentService.getWebVaultUrl();
 
-    const promise: Promise<void> = new Promise(async (resolve) => {
-      const iframe = new CMEIFrame(
+    let iframe: CMEIFrame;
+
+    const promise: Promise<string> = new Promise(async (resolve) => {
+      iframe = new CMEIFrame(
         window,
         webVaultUrl,
-        () => {
-          resolve();
-        },
+        resolve,
         (error: string) => {
           this.platformUtilsService.showToast("error", null, error);
         },
@@ -99,12 +81,21 @@ export class KeyConnectorService extends BaseKeyConnectorService {
           this.logService.info(info);
         }
       );
-
-      iframe.initPost(await this.apiService.getActiveBearerToken(), url, request.key);
     });
 
     promise.finally(() => el.remove());
 
-    return promise;
+    return {
+      frame: iframe,
+      promise: promise,
+    };
+  }
+
+  private createIframeElement() {
+    const el = document.createElement("iframe");
+    el.id = "cme_iframe";
+    document.body.appendChild(el);
+
+    return el;
   }
 }
