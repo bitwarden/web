@@ -7,7 +7,7 @@ const HtmlWebpackInjector = require('html-webpack-injector');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const AngularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin;
+const { AngularWebpackPlugin } = require('@ngtools/webpack');
 const pjson = require('./package.json');
 const config = require('./config.js');
 
@@ -30,42 +30,28 @@ const moduleRules = [
     {
         test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
         exclude: /loading(|-white).svg/,
-        use: [{
-            loader: 'file-loader',
-            options: {
-                name: '[name].[ext]',
-                outputPath: 'fonts/',
-            },
-        }],
+        generator: {
+            filename: 'fonts/[name].[ext]',
+        },
+        type: 'asset/resource',
     },
     {
         test: /\.(jpe?g|png|gif|svg)$/i,
         exclude: /.*(fontawesome-webfont)\.svg/,
-        use: [{
-            loader: 'file-loader',
-            options: {
-                name: '[name].[ext]',
-                outputPath: 'images/',
-            },
-        }],
+        generator: {
+            filename: 'images/[name].[ext]',
+        },
+        type: 'asset/resource',
     },
     {
         test: /\.scss$/,
         use: [
             {
                 loader: MiniCssExtractPlugin.loader,
-                options: {
-                    publicPath: '../',
-                },
             },
             'css-loader',
             'sass-loader',
         ],
-    },
-    // Hide System.import warnings. ref: https://github.com/angular/angular/issues/21560
-    {
-        test: /[\/\\]@angular[\/\\].+\.js$/,
-        parser: { system: true },
     },
     {
         test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
@@ -147,8 +133,8 @@ const plugins = [
         ],
     }),
     new MiniCssExtractPlugin({
-        filename: '[name].[hash].css',
-        chunkFilename: '[id].[hash].css',
+        filename: '[name].[contenthash].css',
+        chunkFilename: '[id].[contenthash].css',
     }),
     new webpack.EnvironmentPlugin({
         'ENV': ENV,
@@ -160,7 +146,10 @@ const plugins = [
         'BRAINTREE_KEY': envConfig['braintreeKey'] ?? '',
         'PAYPAL_CONFIG': envConfig['paypal'] ?? {},
     }),
-    new AngularCompilerPlugin({
+    new webpack.ProvidePlugin({
+        process: 'process/browser',
+    }),
+    new AngularWebpackPlugin({
         tsConfigPath: 'tsconfig.json',
         entryModule: 'src/app/app.module#AppModule',
         sourceMap: true,
@@ -170,9 +159,12 @@ const plugins = [
 // ref: https://webpack.js.org/configuration/dev-server/#devserver
 let certSuffix = fs.existsSync('dev-server.local.pem') ? '.local' : '.shared';
 const devServer = NODE_ENV !== 'development' ? {} : {
-    https: {
-        key: fs.readFileSync('dev-server' + certSuffix + '.pem'),
-        cert: fs.readFileSync('dev-server' + certSuffix + '.pem'),
+    server: {
+        type: 'https',
+        options: {
+            key: fs.readFileSync('dev-server' + certSuffix + '.pem'),
+            cert: fs.readFileSync('dev-server' + certSuffix + '.pem'),
+        },
     },
     // host: '192.168.1.9',
     proxy: {
@@ -202,7 +194,13 @@ const devServer = NODE_ENV !== 'development' ? {} : {
         },
     },
     hot: false,
-    allowedHosts: envConfig.dev?.allowedHosts,
+    allowedHosts: envConfig.dev?.allowedHosts ?? 'auto',
+    client: {
+        overlay: {
+            errors: true,
+            warnings: false,
+        },
+    },
 };
 
 const webpackConfig = {
@@ -240,7 +238,6 @@ const webpackConfig = {
                 terserOptions: {
                     safari10: true,
                 },
-                sourceMap: true,
             }),
         ],
     },
@@ -248,9 +245,14 @@ const webpackConfig = {
         extensions: ['.ts', '.js'],
         symlinks: false,
         modules: [path.resolve('node_modules')],
+        fallback: {
+            "buffer": false,
+            "util": require.resolve("util/"),
+            "assert": false,
+        },
     },
     output: {
-        filename: '[name].[hash].js',
+        filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, 'build'),
     },
     module: { rules: moduleRules },

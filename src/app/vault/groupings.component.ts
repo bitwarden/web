@@ -6,8 +6,7 @@ import {
 
 import { CollectionService } from 'jslib-common/abstractions/collection.service';
 import { FolderService } from 'jslib-common/abstractions/folder.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { GroupingsComponent as BaseGroupingsComponent } from 'jslib-angular/components/groupings.component';
 
@@ -22,8 +21,8 @@ export class GroupingsComponent extends BaseGroupingsComponent {
     searchPlaceholder: string = null;
 
     constructor(collectionService: CollectionService, folderService: FolderService,
-        storageService: StorageService, userService: UserService) {
-        super(collectionService, folderService, storageService, userService);
+        stateService: StateService) {
+        super(collectionService, folderService, stateService);
     }
 
     searchTextChanged() {

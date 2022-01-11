@@ -4,8 +4,6 @@ import {
     Output,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
@@ -32,7 +30,7 @@ export abstract class TwoFactorBaseComponent {
     protected verificationType: VerificationType;
 
     constructor(protected apiService: ApiService, protected i18nService: I18nService,
-        protected toasterService: ToasterService, protected platformUtilsService: PlatformUtilsService,
+        protected platformUtilsService: PlatformUtilsService,
         protected logService: LogService, protected userVerificationService: UserVerificationService) { }
 
     protected auth(authResponse: any) {
@@ -67,7 +65,7 @@ export abstract class TwoFactorBaseComponent {
             }
             await promise;
             this.enabled = false;
-            this.toasterService.popAsync('success', null, this.i18nService.t('twoStepDisabled'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('twoStepDisabled'));
             this.onUpdated.emit(false);
         }  catch (e) {
             this.logService.error(e);

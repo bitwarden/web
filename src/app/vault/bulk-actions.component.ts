@@ -4,10 +4,10 @@ import {
     ViewChild,
     ViewContainerRef,
 } from '@angular/core';
-import { ToasterService } from 'angular2-toaster';
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { CipherRepromptType } from 'jslib-common/enums/cipherRepromptType';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
@@ -34,7 +34,7 @@ export class BulkActionsComponent {
     @ViewChild('bulkMoveTemplate', { read: ViewContainerRef, static: true }) bulkMoveModalRef: ViewContainerRef;
     @ViewChild('bulkShareTemplate', { read: ViewContainerRef, static: true }) bulkShareModalRef: ViewContainerRef;
 
-    constructor(private toasterService: ToasterService, private i18nService: I18nService,
+    constructor(private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
         private modalService: ModalService, private passwordRepromptService: PasswordRepromptService) { }
 
     async bulkDelete() {
@@ -44,7 +44,7 @@ export class BulkActionsComponent {
 
         const selectedIds = this.ciphersComponent.getSelectedIds();
         if (selectedIds.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('nothingSelected'));
             return;
         }
@@ -67,7 +67,7 @@ export class BulkActionsComponent {
 
         const selectedIds = this.ciphersComponent.getSelectedIds();
         if (selectedIds.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('nothingSelected'));
             return;
         }
@@ -88,7 +88,7 @@ export class BulkActionsComponent {
 
         const selectedCiphers = this.ciphersComponent.getSelected();
         if (selectedCiphers.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('nothingSelected'));
             return;
         }
@@ -109,7 +109,7 @@ export class BulkActionsComponent {
 
         const selectedIds = this.ciphersComponent.getSelectedIds();
         if (selectedIds.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('nothingSelected'));
             return;
         }

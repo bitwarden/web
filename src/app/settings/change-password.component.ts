@@ -6,12 +6,13 @@ import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { FolderService } from 'jslib-common/abstractions/folder.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SendService } from 'jslib-common/abstractions/send.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import {
     ChangePasswordComponent as BaseChangePasswordComponent,
@@ -41,12 +42,13 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
 
     constructor(i18nService: I18nService,
         cryptoService: CryptoService, messagingService: MessagingService,
-        userService: UserService, passwordGenerationService: PasswordGenerationService,
+        stateService: StateService, passwordGenerationService: PasswordGenerationService,
         platformUtilsService: PlatformUtilsService, policyService: PolicyService,
         private folderService: FolderService, private cipherService: CipherService,
-        private syncService: SyncService, private apiService: ApiService, private sendService: SendService) {
-        super(i18nService, cryptoService, messagingService, userService, passwordGenerationService,
-            platformUtilsService, policyService);
+        private syncService: SyncService, private apiService: ApiService,
+        private sendService: SendService, private organizationService: OrganizationService) {
+        super(i18nService, cryptoService, messagingService, passwordGenerationService,
+            platformUtilsService, policyService, stateService);
     }
 
     async rotateEncKeyClicked() {
@@ -206,7 +208,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
     }
 
     private async updateAllResetPasswordKeys(encKey: SymmetricCryptoKey) {
-        const orgs = await this.userService.getAllOrganizations();
+        const orgs = await this.organizationService.getAll();
 
         for (const org of orgs) {
             // If not already enrolled, skip

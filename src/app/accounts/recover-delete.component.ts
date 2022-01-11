@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { DeleteRecoverRequest } from 'jslib-common/models/request/deleteRecoverRequest';
 
@@ -18,7 +17,7 @@ export class RecoverDeleteComponent {
     formPromise: Promise<any>;
 
     constructor(private router: Router, private apiService: ApiService,
-        private toasterService: ToasterService, private i18nService: I18nService,
+        private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
         private logService: LogService) {
     }
 
@@ -28,7 +27,7 @@ export class RecoverDeleteComponent {
             request.email = this.email.trim().toLowerCase();
             this.formPromise = this.apiService.postAccountRecoverDelete(request);
             await this.formPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('deleteRecoverEmailSent'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('deleteRecoverEmailSent'));
             this.router.navigate(['/']);
         } catch (e) {
             this.logService.error(e);

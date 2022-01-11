@@ -7,9 +7,7 @@ import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
-
-import { ConstantsService } from 'jslib-common/services/constants.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 export class WebPlatformUtilsService implements PlatformUtilsService {
     identityClientId: string = 'web';
@@ -18,7 +16,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     private prefersColorSchemeDark = window.matchMedia('(prefers-color-scheme: dark)');
 
     constructor(private i18nService: I18nService, private messagingService: MessagingService,
-        private logService: LogService, private storageService: () => StorageService) { }
+        private logService: LogService, private stateService: StateService) { }
 
     getDevice(): DeviceType {
         if (this.browserCache != null) {
@@ -293,7 +291,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     async getEffectiveTheme(): Promise<ThemeType.Light | ThemeType.Dark> {
-        const theme = await this.storageService().get<ThemeType>(ConstantsService.themeKey);
+        const theme = await this.stateService.getTheme();
         if (theme === ThemeType.Dark) {
             return ThemeType.Dark;
         } else if (theme === ThemeType.System) {

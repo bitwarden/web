@@ -11,8 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 import { SsoConfigApi } from 'jslib-common/models/api/ssoConfigApi';
 
 import { Organization } from 'jslib-common/models/domain/organization';
@@ -149,7 +149,7 @@ export class SsoComponent implements OnInit {
 
     constructor(private formBuilder: FormBuilder, private route: ActivatedRoute, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
-        private userService: UserService) { }
+        private organizationService: OrganizationService) { }
 
     async ngOnInit() {
         this.ssoConfigForm.get('configType').valueChanges.subscribe((newType: SsoType) => {
@@ -180,7 +180,7 @@ export class SsoComponent implements OnInit {
     }
 
     async load() {
-        this.organization = await this.userService.getOrganization(this.organizationId);
+        this.organization = await this.organizationService.get(this.organizationId);
         const ssoSettings = await this.apiService.getOrganizationSso(this.organizationId);
         this.populateForm(ssoSettings);
 

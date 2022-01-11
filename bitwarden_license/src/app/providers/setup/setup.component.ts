@@ -6,10 +6,6 @@ import {
     ActivatedRoute,
     Router,
 } from '@angular/router';
-import {
-    Toast,
-    ToasterService,
-} from 'angular2-toaster';
 
 import { first } from 'rxjs/operators';
 
@@ -18,6 +14,7 @@ import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 
 import { ValidationService } from 'jslib-angular/services/validation.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { ProviderSetupRequest } from 'jslib-common/models/request/provider/providerSetupRequest';
 
@@ -36,7 +33,7 @@ export class SetupComponent implements OnInit {
     name: string;
     billingEmail: string;
 
-    constructor(private router: Router, private toasterService: ToasterService,
+    constructor(private router: Router, private platformUtilsService: PlatformUtilsService,
         private i18nService: I18nService, private route: ActivatedRoute,
         private cryptoService: CryptoService, private apiService: ApiService,
         private syncService: SyncService, private validationService: ValidationService) { }
@@ -47,13 +44,8 @@ export class SetupComponent implements OnInit {
             const error = qParams.providerId == null || qParams.email == null || qParams.token == null;
 
             if (error) {
-                const toast: Toast = {
-                    type: 'error',
-                    title: null,
-                    body: this.i18nService.t('emergencyInviteAcceptFailed'),
-                    timeout: 10000,
-                };
-                this.toasterService.popAsync(toast);
+                this.platformUtilsService.showToast('error', null, this.i18nService.t('emergencyInviteAcceptFailed'),
+                    { timeout: 10000 });
                 this.router.navigate(['/']);
                 return;
             }
@@ -92,7 +84,7 @@ export class SetupComponent implements OnInit {
             request.key = key;
 
             const provider = await this.apiService.postProviderSetup(this.providerId, request);
-            this.toasterService.popAsync('success', null, this.i18nService.t('providerSetup'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('providerSetup'));
             await this.syncService.fullSync(true);
 
             this.router.navigate(['/providers', provider.id]);

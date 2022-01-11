@@ -4,23 +4,23 @@ import {
     ViewChild,
     ViewContainerRef
 } from '@angular/core';
-import { ToasterService } from 'angular2-toaster';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
+
+import { EmergencyAccessConfirmRequest } from 'jslib-common/models/request/emergencyAccessConfirmRequest';
+
+import { EmergencyAccessGranteeDetailsResponse, EmergencyAccessGrantorDetailsResponse } from 'jslib-common/models/response/emergencyAccessResponse';
 
 import { EmergencyAccessStatusType } from 'jslib-common/enums/emergencyAccessStatusType';
 import { EmergencyAccessType } from 'jslib-common/enums/emergencyAccessType';
 import { Utils } from 'jslib-common/misc/utils';
-import { EmergencyAccessConfirmRequest } from 'jslib-common/models/request/emergencyAccessConfirmRequest';
-import { EmergencyAccessGranteeDetailsResponse, EmergencyAccessGrantorDetailsResponse } from 'jslib-common/models/response/emergencyAccessResponse';
-import { ConstantsService } from 'jslib-common/services/constants.service';
 
 import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
 
@@ -36,7 +36,7 @@ import { ModalService } from 'jslib-angular/services/modal.service';
 })
 export class EmergencyAccessComponent implements OnInit {
     @ViewChild('addEdit', { read: ViewContainerRef, static: true }) addEditModalRef: ViewContainerRef;
-    @ViewChild('takeoverTemplate', { read: ViewContainerRef, static: true}) takeoverModalRef: ViewContainerRef;
+    @ViewChild('takeoverTemplate', { read: ViewContainerRef, static: true }) takeoverModalRef: ViewContainerRef;
     @ViewChild('confirmTemplate', { read: ViewContainerRef, static: true }) confirmModalRef: ViewContainerRef;
 
     canAccessPremium: boolean;
@@ -47,16 +47,22 @@ export class EmergencyAccessComponent implements OnInit {
     actionPromise: Promise<any>;
     isOrganizationOwner: boolean;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private modalService: ModalService, private platformUtilsService: PlatformUtilsService,
-        private toasterService: ToasterService, private cryptoService: CryptoService,
-        private storageService: StorageService, private userService: UserService,
-        private messagingService: MessagingService, private userNamePipe: UserNamePipe,
-        private logService: LogService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private modalService: ModalService,
+        private platformUtilsService: PlatformUtilsService,
+        private cryptoService: CryptoService,
+        private messagingService: MessagingService,
+        private userNamePipe: UserNamePipe,
+        private logService: LogService,
+        private stateService: StateService,
+        private organizationService: OrganizationService,
+    ) { }
 
     async ngOnInit() {
-        this.canAccessPremium = await this.userService.canAccessPremium();
-        const orgs = await this.userService.getAllOrganizations();
+        this.canAccessPremium = await this.stateService.getCanAccessPremium();
+        const orgs = await this.organizationService.getAll();
         this.isOrganizationOwner = orgs.some(o => o.isOwner);
         this.load();
     }
@@ -99,7 +105,7 @@ export class EmergencyAccessComponent implements OnInit {
         }
         this.actionPromise = this.apiService.postEmergencyAccessReinvite(contact.id);
         await this.actionPromise;
-        this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenReinvited', contact.email));
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('hasBeenReinvited', contact.email));
         this.actionPromise = null;
     }
 
@@ -112,7 +118,7 @@ export class EmergencyAccessComponent implements OnInit {
             return;
         }
 
-        const autoConfirm = await this.storageService.get<boolean>(ConstantsService.autoConfirmFingerprints);
+        const autoConfirm = await this.stateService.getAutoConfirmFingerPrints();
         if (autoConfirm == null || !autoConfirm) {
             const [modal] = await this.modalService.openViewRef(EmergencyAccessConfirmComponent, this.confirmModalRef, comp => {
                 comp.name = this.userNamePipe.transform(contact);
@@ -125,7 +131,7 @@ export class EmergencyAccessComponent implements OnInit {
                     await comp.formPromise;
 
                     updateUser();
-                    this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', this.userNamePipe.transform(contact)));
+                    this.platformUtilsService.showToast('success', null, this.i18nService.t('hasBeenConfirmed', this.userNamePipe.transform(contact)));
                 });
             });
             return;
@@ -135,7 +141,7 @@ export class EmergencyAccessComponent implements OnInit {
         await this.actionPromise;
         updateUser();
 
-        this.toasterService.popAsync('success', null, this.i18nService.t('hasBeenConfirmed', this.userNamePipe.transform(contact)));
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('hasBeenConfirmed', this.userNamePipe.transform(contact)));
         this.actionPromise = null;
     }
 
@@ -149,7 +155,7 @@ export class EmergencyAccessComponent implements OnInit {
 
         try {
             await this.apiService.deleteEmergencyAccess(details.id);
-            this.toasterService.popAsync('success', null, this.i18nService.t('removedUserId', this.userNamePipe.transform(details)));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('removedUserId', this.userNamePipe.transform(details)));
 
             if (details instanceof EmergencyAccessGranteeDetailsResponse) {
                 this.removeGrantee(details);
@@ -177,7 +183,7 @@ export class EmergencyAccessComponent implements OnInit {
         await this.apiService.postEmergencyAccessInitiate(details.id);
 
         details.status = EmergencyAccessStatusType.RecoveryInitiated;
-        this.toasterService.popAsync('success', null, this.i18nService.t('requestSent', this.userNamePipe.transform(details)));
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('requestSent', this.userNamePipe.transform(details)));
     }
 
     async approve(details: EmergencyAccessGranteeDetailsResponse) {
@@ -198,14 +204,14 @@ export class EmergencyAccessComponent implements OnInit {
         await this.apiService.postEmergencyAccessApprove(details.id);
         details.status = EmergencyAccessStatusType.RecoveryApproved;
 
-        this.toasterService.popAsync('success', null, this.i18nService.t('emergencyApproved', this.userNamePipe.transform(details)));
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('emergencyApproved', this.userNamePipe.transform(details)));
     }
 
     async reject(details: EmergencyAccessGranteeDetailsResponse) {
         await this.apiService.postEmergencyAccessReject(details.id);
         details.status = EmergencyAccessStatusType.Confirmed;
 
-        this.toasterService.popAsync('success', null, this.i18nService.t('emergencyRejected', this.userNamePipe.transform(details)));
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('emergencyRejected', this.userNamePipe.transform(details)));
     }
 
     async takeover(details: EmergencyAccessGrantorDetailsResponse) {
@@ -216,7 +222,7 @@ export class EmergencyAccessComponent implements OnInit {
 
             comp.onDone.subscribe(() => {
                 modal.close();
-                this.toasterService.popAsync('success', null, this.i18nService.t('passwordResetFor', this.userNamePipe.transform(details)));
+                this.platformUtilsService.showToast('success', null, this.i18nService.t('passwordResetFor', this.userNamePipe.transform(details)));
             });
         });
     }

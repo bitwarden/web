@@ -15,11 +15,8 @@ import { LogService } from 'jslib-common/abstractions/log.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
 
 import { SsoComponent as BaseSsoComponent } from 'jslib-angular/components/sso.component';
-
-const IdentifierStorageKey = 'ssoOrgIdentifier';
 
 @Component({
     selector: 'app-sso',
@@ -28,11 +25,11 @@ const IdentifierStorageKey = 'ssoOrgIdentifier';
 export class SsoComponent extends BaseSsoComponent {
     constructor(authService: AuthService, router: Router,
         i18nService: I18nService, route: ActivatedRoute,
-        storageService: StorageService, stateService: StateService,
-        platformUtilsService: PlatformUtilsService, apiService: ApiService,
-        cryptoFunctionService: CryptoFunctionService, environmentService: EnvironmentService,
-        passwordGenerationService: PasswordGenerationService, logService: LogService) {
-        super(authService, router, i18nService, route, storageService, stateService, platformUtilsService,
+        stateService: StateService, platformUtilsService: PlatformUtilsService,
+        apiService: ApiService, cryptoFunctionService: CryptoFunctionService,
+        environmentService: EnvironmentService, passwordGenerationService: PasswordGenerationService,
+        logService: LogService) {
+        super(authService, router, i18nService, route, stateService, platformUtilsService,
             apiService, cryptoFunctionService, environmentService, passwordGenerationService, logService);
         this.redirectUri = window.location.origin + '/sso-connector.html';
         this.clientId = 'web';
@@ -44,7 +41,7 @@ export class SsoComponent extends BaseSsoComponent {
             if (qParams.identifier != null) {
                 this.identifier = qParams.identifier;
             } else {
-                const storedIdentifier = await this.storageService.get<string>(IdentifierStorageKey);
+                const storedIdentifier = await this.stateService.getSsoOrgIdentifier();
                 if (storedIdentifier != null) {
                     this.identifier = storedIdentifier;
                 }
@@ -53,7 +50,7 @@ export class SsoComponent extends BaseSsoComponent {
     }
 
     async submit() {
-        await this.storageService.save(IdentifierStorageKey, this.identifier);
+        await this.stateService.setSsoOrganizationIdentifier(this.identifier);
         if (this.clientId === 'browser') {
             document.cookie = `ssoHandOffMessage=${this.i18nService.t('ssoHandOff')};SameSite=strict`;
         }

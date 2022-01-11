@@ -7,9 +7,8 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-
-import { ToasterModule } from 'angular2-toaster';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { ToastrModule } from 'ngx-toastr';
 
 import { NestedCheckboxComponent } from './components/nested-checkbox.component';
 import { PasswordRepromptComponent } from './components/password-reprompt.component';
@@ -181,6 +180,7 @@ import { ProvidersComponent } from './providers/providers.component';
 import { AvatarComponent } from 'jslib-angular/components/avatar.component';
 import { CalloutComponent } from 'jslib-angular/components/callout.component';
 import { IconComponent } from 'jslib-angular/components/icon.component';
+import { BitwardenToast } from 'jslib-angular/components/toastr.component';
 import { VerifyMasterPasswordComponent } from 'jslib-angular/components/verify-master-password.component';
 
 import { A11yInvalidDirective } from 'jslib-angular/directives/a11y-invalid.directive';
@@ -297,7 +297,7 @@ registerLocaleData(localeZhTw, 'zh-TW');
         FormsModule,
         InfiniteScrollModule,
         DragDropModule,
-        ToasterModule.forChild(),
+        ToastrModule,
         ReactiveFormsModule,
         RouterModule,
     ],
