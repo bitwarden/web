@@ -9,7 +9,7 @@ import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-import { TwoFactorService } from 'jslib-common/abstractions/twoFactor.service';
+import { TwoFactorService } from "jslib-common/abstractions/twoFactor.service";
 
 import { ModalService } from "jslib-angular/services/modal.service";
 
