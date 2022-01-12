@@ -110,11 +110,6 @@ export class VaultComponent implements OnInit, OnDestroy {
 
       this.showProviders = (await this.providerService.getAll()).length > 0;
 
-      const allOrgs = await this.organizationService.getAll();
-      this.showRedeemSponsorship =
-        allOrgs.some((o) => o.familySponsorshipAvailable) &&
-        !allOrgs.some((o) => o.familySponsorshipFriendlyName != null);
-
       await Promise.all([this.groupingsComponent.load(), this.organizationsComponent.load()]);
       this.showUpdateKey = !(await this.cryptoService.hasEncKey());
 
