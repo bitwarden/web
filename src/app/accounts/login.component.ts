@@ -4,11 +4,15 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { first } from "rxjs/operators";
 
 import { ApiService } from "jslib-common/abstractions/api.service";
+import { AppIdService } from "jslib-common/abstractions/appId.service";
 import { AuthService } from "jslib-common/abstractions/auth.service";
+import { BroadcasterService } from "jslib-common/abstractions/broadcaster.service";
 import { CryptoFunctionService } from "jslib-common/abstractions/cryptoFunction.service";
+import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { EnvironmentService } from "jslib-common/abstractions/environment.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
+import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { PasswordGenerationService } from "jslib-common/abstractions/passwordGeneration.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
@@ -35,10 +39,14 @@ export class LoginComponent extends BaseLoginComponent {
     environmentService: EnvironmentService,
     passwordGenerationService: PasswordGenerationService,
     cryptoFunctionService: CryptoFunctionService,
-    private apiService: ApiService,
+    apiService: ApiService,
     private policyService: PolicyService,
     logService: LogService,
-    ngZone: NgZone
+    ngZone: NgZone,
+    appIdService: AppIdService,
+    broadcasterService: BroadcasterService,
+    cryptoService: CryptoService,
+    messagingService: MessagingService
   ) {
     super(
       authService,
@@ -50,7 +58,12 @@ export class LoginComponent extends BaseLoginComponent {
       passwordGenerationService,
       cryptoFunctionService,
       logService,
-      ngZone
+      ngZone,
+      apiService,
+      appIdService,
+      broadcasterService,
+      cryptoService,
+      messagingService
     );
     this.onSuccessfulLoginNavigate = this.goAfterLogIn;
   }

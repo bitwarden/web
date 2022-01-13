@@ -3,8 +3,9 @@ import { DomSanitizer } from "@angular/platform-browser";
 import { NavigationEnd, Router } from "@angular/router";
 import * as jq from "jquery";
 import { IndividualConfig, ToastrService } from "ngx-toastr";
-import Swal from "sweetalert2";
+import Swal, { SweetAlertIcon } from "sweetalert2";
 
+import { ApiService } from "jslib-common/abstractions/api.service";
 import { AuthService } from "jslib-common/abstractions/auth.service";
 import { BroadcasterService } from "jslib-common/abstractions/broadcaster.service";
 import { CipherService } from "jslib-common/abstractions/cipher.service";
@@ -38,6 +39,10 @@ import { ResetPasswordPolicy } from "./organizations/policies/reset-password.com
 import { SendOptionsPolicy } from "./organizations/policies/send-options.component";
 import { SingleOrgPolicy } from "./organizations/policies/single-org.component";
 import { TwoFactorAuthenticationPolicy } from "./organizations/policies/two-factor-authentication.component";
+
+import { Utils } from "jslib-common/misc/utils";
+import { AuthRequestUpdateRequest } from "jslib-common/models/request/authRequestUpdateRequest";
+import { AppIdService } from "jslib-common/abstractions/appId.service";
 
 const BroadcasterSubscriptionId = "AppComponent";
 const IdleTimeout = 60000 * 10; // 10 minutes
@@ -76,7 +81,9 @@ export class AppComponent implements OnDestroy, OnInit {
     private eventService: EventService,
     private policyService: PolicyService,
     protected policyListService: PolicyListService,
-    private keyConnectorService: KeyConnectorService
+    private keyConnectorService: KeyConnectorService,
+    private apiService: ApiService,
+    private appIdService: AppIdService
   ) {}
 
   ngOnInit() {
@@ -166,6 +173,49 @@ export class AppComponent implements OnDestroy, OnInit {
           case "convertAccountToKeyConnector":
             this.keyConnectorService.setConvertAccountRequired(true);
             this.router.navigate(["/remove-password"]);
+            break;
+          case "closeDialog":
+            Swal.close();
+            break;
+          case "authRequest":
+            Swal.close();
+            const authRequestId = message.id;
+            console.log("Got request for " + authRequestId);
+            const authRequest = await this.apiService.getAuthRequest(authRequestId);
+            const email = await this.stateService.getEmail();
+            const requestPublicKey = Utils.fromB64ToArray(authRequest.publicKey).buffer;
+            const fingerprint = await this.cryptoService.getFingerprint(email, requestPublicKey);
+            const authRequestConfirmed = await this.platformUtilsService.showDialog(
+              `Another device is requesting to log into your Bitwarden account. Do you want to allow it?<br /><br />
+              <b><u>Details</u></b><br />
+              Device: Opera Browser<br />
+              IP Address: ${authRequest.requestIpAddress}<br />
+              Time: ${authRequest.creationDate}<br /><br />
+              <b><u>Public Key Fingerprint</u></b><br />
+              <code>${fingerprint.join("-")}</code>`,
+              "New Login Request",
+              "Yes, Allow",
+              "No, Deny",
+              null,
+              true
+            );
+            if (authRequestConfirmed) {
+              const masterKey = await this.cryptoService.getKey();
+              const masterKeyHash = await this.cryptoService.getKeyHash();
+              const encMasterKey = await this.cryptoService.rsaEncrypt(
+                masterKey.key,
+                requestPublicKey
+              );
+              const encMasterKeyHash = await this.cryptoService.rsaEncrypt(
+                Utils.fromB64ToArray(masterKeyHash).buffer,
+                requestPublicKey
+              );
+              const authRequestUpdate = new AuthRequestUpdateRequest();
+              authRequestUpdate.deviceIdentifier = await this.appIdService.getAppId();
+              authRequestUpdate.key = encMasterKey.encryptedString;
+              authRequestUpdate.masterPasswordHash = encMasterKeyHash.encryptedString;
+              this.apiService.putAuthRequest(authRequest.id, authRequestUpdate);
+            }
             break;
           default:
             break;
