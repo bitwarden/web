@@ -1,4 +1,5 @@
 <div class="layout" [ngClass]="['layout', layout]">
+  <!-- ENTERPRISE 2 Header -->
   <header class="header" *ngIf="layout === 'enterprise2'">
     <div class="container">
       <div class="row">
@@ -12,34 +13,106 @@
       </div>
     </div>
   </header>
+
+  <!-- CNET Campaign Enterprise Header -->
+  <header class="header" *ngIf="layout === 'cnetcmpgnent'">
+    <div class="container">
+      <div class="row">
+        <div class="col-7">
+          <img
+            alt="Bitwarden"
+            class="logo mb-2"
+            src="../../images/register-layout/logo-horizontal-white.svg"
+          />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CNET Campaign Teams Header -->
+  <header class="header" *ngIf="layout === 'cnetcmpgnteams'">
+    <div class="container">
+      <div class="row">
+        <div class="col-7">
+          <img
+            alt="Bitwarden"
+            class="logo mb-2"
+            src="../../images/register-layout/logo-horizontal-white.svg"
+          />
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CNET Campaign Premium Header -->
+  <header class="header" *ngIf="layout === 'cnetcmpgnind'">
+    <div class="container">
+      <div class="row">
+        <div class="col-7">
+          <img
+            alt="Bitwarden"
+            class="logo mb-2"
+            src="../../images/register-layout/logo-horizontal-white.svg"
+          />
+        </div>
+      </div>
+    </div>
+  </header>
+
   <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" class="container" ngNativeValidate>
     <div class="row">
       <div class="col-7" *ngIf="layout">
         <div class="mt-5">
+          <!-- Enterprise 2 Body -->
           <div *ngIf="layout === 'enterprise2'">
-            <h2>Companies globally trust Bitwarden for password management.</h2>
-            <p>Start your 7-day free trial!</p>
-            <p class="highlight">Quickly deploy your <b>organization</b></p>
-            <p>Use Bitwarden across all platforms</p>
+            <h1>Start Your Enterprise Free Trial Now</h1>
+            <h2>Millions of individuals, teams, and organizations worldwide trust Bitwarden for secure password storage and sharing.</h2>
             <p>Collaborate and share securely</p>
+            <p>Deploy and manage quickly and easily</p>
+            <p>Access anywhere on any device</p>
+            <p>Create your account to get started</p>
             <figure>
               <figcaption>
                 <cite>
-                  <img src="../../images/register-layout/wired-logo.png" alt="Wired" />
+                  <img src="../../images/register-layout/forbes-logo.svg" alt="Forbes Logo" />
                 </cite>
               </figcaption>
               <blockquote>
-                "Bitwarden has become a popular choice among open-source software advocates. After
-                using it for a few months, I can see why." - February 2020
+                “Bitwarden boasts the backing of some of the world’s best security experts and an attractive, easy-to-use interface”
               </blockquote>
             </figure>
           </div>
-          <div *ngIf="layout === 'enterprise3'">
-            <p>Enterprise 3 layout</p>
+
+          <!-- CNET Campaign Enterprise Body -->
+          <div *ngIf="layout === 'cnetcmpgnent'">
+            <h1>Start Your Enterprise Free Trial Now</h1>
+            <h2>Millions of individuals, teams, and organizations worldwide trust Bitwarden for secure password storage and sharing.</h2>
+            <p>Collaborate and share securely</p>
+            <p>Deploy and manage quickly and easily</p>
+            <p>Access anywhere on any device</p>
+            <p>Create your account to get started</p>
           </div>
-          <div *ngIf="layout === 'enterprise4'">
-            <p>Enterprise 4 layout</p>
+
+          <!-- CNET Campaign Teams Body -->
+          <div *ngIf="layout === 'cnetcmpgnteams'">
+            <h1>Start Your Teams Free Trial Now</h1>
+            <h2>Millions of individuals, teams, and organizations worldwide trust Bitwarden for secure password storage and sharing.</h2>
+            <p>Collaborate and share securely</p>
+            <p>Deploy and manage quickly and easily</p>
+            <p>Access anywhere on any device</p>
+            <p>Create your account to get started</p>
           </div>
+
+          <!-- CNET Campaign Premium Body -->
+          <div *ngIf="layout === 'cnetcmpgnind'">
+            <h1>Start Your Premium Account Now</h1>
+            <h2>Millions of individuals, teams, and organizations worldwide trust Bitwarden for secure password storage and sharing.</h2>
+            <p>Store logins, secure notes, and more</p>
+            <p>Secure your account with advanced two-step login</p>
+            <p>Access anywhere on any device</p>
+            <p>Create your account to get started</p>
+          </div>
+
         </div>
       </div>
       <div [ngClass]="{ 'col-5': layout, 'col-12': !layout }">
@@ -210,6 +283,82 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-7 d-flex align-items-center">
+
+        <div *ngIf="layout === 'cnetcmpgnent'">
+          <figure>
+            <figcaption>
+              <cite>
+                <img src="../../images/register-layout/cnet-logo.svg" class="w-25 d-block mx-auto" alt="cnet logo" />
+              </cite>
+            </figcaption>
+            <blockquote class="mx-auto text-center px-4">
+              "No more excuses; start using Bitwarden today. The identity you save could be your
+              own. The money definitely will be."
+            </blockquote>
+          </figure>
+        </div>
+
+        <div *ngIf="layout === 'cnetcmpgnind'">
+          <figure>
+            <figcaption>
+              <cite>
+                <img src="../../images/register-layout/cnet-logo.svg" class="w-25 d-block mx-auto" alt="cnet logo" />
+              </cite>
+            </figcaption>
+            <blockquote class="mx-auto text-center px-4">
+              "No more excuses; start using Bitwarden today. The identity you save could be your
+              own. The money definitely will be."
+            </blockquote>
+          </figure>
+        </div>
+
+        <div *ngIf="layout === 'cnetcmpgnteams'">
+          <figure>
+            <figcaption>
+              <cite>
+                <img src="../../images/register-layout/cnet-logo.svg" class="w-25 d-block mx-auto" alt="cnet logo" />
+              </cite>
+            </figcaption>
+            <blockquote class="mx-auto text-center px-4">
+              "No more excuses; start using Bitwarden today. The identity you save could be your
+              own. The money definitely will be."
+            </blockquote>
+          </figure>
+        </div>
+
+        <div *ngIf="layout === 'enterprise2'">
+          <figure>
+            <figcaption>
+              <cite>
+                <img src="../../images/register-layout/forbes-logo.svg" class="w-25 d-block mx-auto" alt="Forbes Logo" />
+              </cite>
+            </figcaption>
+            <blockquote class="mx-auto text-center px-4">
+              “Bitwarden boasts the backing of some of the world’s best security experts and an attractive, easy-to-use interface”
+            </blockquote>
+          </figure>
+        </div>
+
+        <div *ngIf="layout === 'teams1'">
+          <figure>
+            <figcaption>
+              <cite>
+                <img src="../../images/register-layout/forbes-logo.svg" class="w-25 d-block mx-auto" alt="Forbes Logo" />
+              </cite>
+            </figcaption>
+            <blockquote class="mx-auto text-center px-4">
+              “Bitwarden boasts the backing of some of the world’s best security experts and an attractive, easy-to-use interface”
+            </blockquote>
+          </figure>
+        </div>
+
+      </div>
+      <div class="col-5 d-flex align-items-center justify-content-center">
+        <img src="../../images/register-layout/usnews-360-badge.svg" class="w-50 d-block" alt="US News 360 Reviews Best Passowrd Manager" />
       </div>
     </div>
   </form>
