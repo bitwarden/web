@@ -74,7 +74,7 @@ We recently migrated to using Prettier as code formatter. All previous branches 
 1. Check out your local Branch
 2. Run `git merge 2b0a9d995e0147601ca8ae4778434a19354a60c2`
 3. Resolve any merge conflicts, commit.
-4. Run `npm run prettier `
+4. Run `npm run prettier`
 5. Commit
 6. Run `git merge -Xours 56477eb39cfd8a73c9920577d24d75fed36e2cf5`
 7. Push
