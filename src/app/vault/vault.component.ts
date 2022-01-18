@@ -37,6 +37,9 @@ import { SyncService } from "jslib-common/abstractions/sync.service";
 import { TokenService } from "jslib-common/abstractions/token.service";
 
 import { ModalService } from "jslib-angular/services/modal.service";
+// featureFlag: Test
+import { TestService } from 'jslib-common/services/test.service';
+// endFeatureFlag
 
 const BroadcasterSubscriptionId = "VaultComponent";
 
@@ -89,10 +92,12 @@ export class VaultComponent implements OnInit, OnDestroy {
     private ngZone: NgZone,
     private stateService: StateService,
     private organizationService: OrganizationService,
-    private providerService: ProviderService
+    private providerService: ProviderService,
+    /* featureFlag: Test */private testService: TestService, // endFeatureFlag
   ) {}
 
   async ngOnInit() {
+    /** featureFlag: Test */ this.testService.Print("test service was loaded"); // endFeatureFlag
     this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
     this.showBrowserOutdated = window.navigator.userAgent.indexOf("MSIE") !== -1;
     this.trashCleanupWarning = this.i18nService.t(

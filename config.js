@@ -30,7 +30,24 @@ function loadConfig(configName) {
   }
 }
 
+function generateSubstitutions(configObj) {
+  let result = {};
+
+  Object.keys(configObj.compileFlags ?? {}).forEach(key => {
+    result = { ...result, ...generateSubstitutionsForFlag(key) };
+  });
+
+  return result;
+}
+
+function generateSubstitutionsForFlag(flagName) {
+  return {
+    "featureFlag: (.*)[\\s\\S]*?\\/\\/ endFeatureFlag": ""
+  };
+}
+
 module.exports = {
   load,
   log,
+  generateSubstitutions,
 };

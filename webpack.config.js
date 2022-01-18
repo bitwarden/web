@@ -17,6 +17,9 @@ const NODE_ENV = process.env.NODE_ENV == null ? "development" : process.env.NODE
 const envConfig = config.load(ENV);
 config.log(envConfig);
 
+const fileReplacements = {};
+const substitutions = config.generateSubstitutions(envConfig);
+
 const moduleRules = [
   {
     test: /\.ts$/,
@@ -155,6 +158,8 @@ const plugins = [
     tsConfigPath: "tsconfig.json",
     entryModule: "src/app/app.module#AppModule",
     sourceMap: true,
+    fileReplacements: fileReplacements,
+    substitutions: substitutions,
   }),
 ];
 
