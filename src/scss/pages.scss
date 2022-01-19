@@ -173,65 +173,8 @@ app-sponsored-families {
 
 /* Register Layout Page */
 .layout {
-  &.enterprise2 {
-    header {
-      background: #175ddc;
-      color: #ced4da;
-
-      &:before {
-        background: #175ddc;
-        content: "";
-        height: 416px;
-        left: 0;
-        position: absolute;
-        top: -76px;
-        transform: skewY(-3deg);
-        width: 100%;
-        z-index: -1;
-      }
-      img.logo {
-        height: 57px;
-        margin: 12px 0 0;
-        max-width: 284px;
-        width: 284px;
-      }
-    }
-
-    h2 {
-      color: #ffffff;
-      font-size: 1.8rem;
-      margin: 100px 0 150px 0;
-    }
-
-    p {
-      font-size: 1.4rem;
-      margin: 20px 0 40px 0;
-
-      &:before {
-        content: "/";
-        padding-right: 12px;
-      }
-      &:not(.highlight) {
-        &:before {
-          color: #1252a3;
-        }
-      }
-
-      b {
-        &:after {
-          content: "⟶";
-          font-size: 2rem;
-          padding-left: 6px;
-        }
-      }
-    }
-
-    blockquote {
-      font-size: 1.4rem;
-      margin: 20px 0 0 0;
-      padding-right: 40px;
-    }
-  }
+  &.teams1,
+  &.enterprise2 ,
   &.cnetcmpgnent,
   &.cnetcmpgnteams,
   &.cnetcmpgnind {
