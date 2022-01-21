@@ -164,7 +164,6 @@ export class AppComponent implements OnDestroy, OnInit {
             this.setFullWidth();
             break;
           case "convertAccountToKeyConnector":
-            this.keyConnectorService.setConvertAccountRequired(true);
             this.router.navigate(["/remove-password"]);
             break;
           default:

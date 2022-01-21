@@ -1,13 +1,6 @@
 {
+  "extends": "./jslib/shared/tsconfig",
   "compilerOptions": {
-    "moduleResolution": "node",
-    "noImplicitAny": true,
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "module": "commonjs",
-    "target": "es2015",
-    "lib": ["es5", "es6", "dom"],
-    "sourceMap": true,
     "baseUrl": ".",
     "paths": {
       "tldjs": ["jslib/common/src/misc/tldjs.noop"],
