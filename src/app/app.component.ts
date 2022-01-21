@@ -153,7 +153,7 @@ export class AppComponent implements OnDestroy, OnInit {
             );
             if (emailVerificationConfirmed) {
               this.platformUtilsService.launchUri(
-                "https://bitwarden.com/help/article/create-bitwarden-account/"
+                "https://bitwarden.com/help/create-bitwarden-account/"
               );
             }
             break;
