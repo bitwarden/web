@@ -78,11 +78,6 @@ const plugins = [
     chunks: ["connectors/duo"],
   }),
   new HtmlWebpackPlugin({
-    template: "./src/connectors/u2f.html",
-    filename: "u2f-connector.html",
-    chunks: ["connectors/u2f"],
-  }),
-  new HtmlWebpackPlugin({
     template: "./src/connectors/webauthn.html",
     filename: "webauthn-connector.html",
     chunks: ["connectors/webauthn"],
@@ -123,7 +118,6 @@ const plugins = [
       { from: "./src/404", to: "404" },
       { from: "./src/images", to: "images" },
       { from: "./src/locales", to: "locales" },
-      { from: "./src/scripts", to: "scripts" },
       { from: "./node_modules/qrious/dist/qrious.min.js", to: "scripts" },
       { from: "./node_modules/braintree-web-drop-in/dist/browser/dropin.js", to: "scripts" },
       {
@@ -215,16 +209,12 @@ const webpackConfig = {
   entry: {
     "app/polyfills": "./src/app/polyfills.ts",
     "app/main": "./src/app/main.ts",
-    "connectors/u2f": "./src/connectors/u2f.js",
     "connectors/webauthn": "./src/connectors/webauthn.ts",
     "connectors/webauthn-fallback": "./src/connectors/webauthn-fallback.ts",
     "connectors/duo": "./src/connectors/duo.ts",
     "connectors/sso": "./src/connectors/sso.ts",
     "connectors/captcha": "./src/connectors/captcha.ts",
     theme_head: "./src/theme.js",
-  },
-  externals: {
-    u2f: "u2f",
   },
   optimization: {
     splitChunks: {
