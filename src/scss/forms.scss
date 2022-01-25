@@ -77,7 +77,11 @@ label.form-check-label,
   @include themify($themes) {
     background-color: themed("inputBackgroundColor");
     border-color: themed("inputBorderColor");
-    color: themed("inputTextColor");
+    color: themed('inputTextColor');  
+    
+    option {
+        background-color: themed('backgroundColor');
+    }
   }
 
   &:disabled,
