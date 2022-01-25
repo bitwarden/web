@@ -9,7 +9,7 @@ import { BulkConfirmComponent as OrganizationBulkConfirmComponent } from "src/ap
 import { BulkUserDetails } from "src/app/organizations/manage/bulk/bulk-status.component";
 
 @Component({
-  templateUrl: "../../../../../../src/app/organizations/manage/bulk/bulk-confirm.component.html",
+  templateUrl: "../../../../../../../src/app/organizations/manage/bulk/bulk-confirm.component.html",
 })
 export class BulkConfirmComponent extends OrganizationBulkConfirmComponent {
   @Input() providerId: string;

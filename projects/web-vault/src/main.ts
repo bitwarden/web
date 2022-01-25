@@ -5,13 +5,15 @@ import "bootstrap";
 import "jquery";
 import "popper.js";
 
-// tslint:disable-next-line
-require("src/scss/styles.scss");
+import { AppModule } from "./app/app.module";
 
-import { AppModule } from "./app.module";
+// TODO: Investigate if we can use environment.
+// import { environment } from './environments/environment';
 
 if (process.env.NODE_ENV === "production") {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule, { preserveWhitespaces: true });
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch((err) => console.error(err));

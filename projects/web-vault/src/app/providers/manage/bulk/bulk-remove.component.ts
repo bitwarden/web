@@ -5,7 +5,7 @@ import { ProviderUserBulkRequest } from "jslib-common/models/request/provider/pr
 import { BulkRemoveComponent as OrganizationBulkRemoveComponent } from "src/app/organizations/manage/bulk/bulk-remove.component";
 
 @Component({
-  templateUrl: "../../../../../../src/app/organizations/manage/bulk/bulk-remove.component.html",
+  templateUrl: "../../../../../../../src/app/organizations/manage/bulk/bulk-remove.component.html",
 })
 export class BulkRemoveComponent extends OrganizationBulkRemoveComponent {
   @Input() providerId: string;

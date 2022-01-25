@@ -44,7 +44,7 @@ const IdleTimeout = 60000 * 10; // 10 minutes
 
 @Component({
   selector: "app-root",
-  templateUrl: "app.component.html",
+  template: "",
 })
 export class AppComponent implements OnDestroy, OnInit {
   private lastActivity: number = null;
