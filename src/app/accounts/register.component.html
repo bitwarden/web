@@ -1,66 +1,8 @@
 <div class="layout" [ngClass]="['layout', layout]">
-  <!-- ENTERPRISE 2 Header -->
-  <header class="header" *ngIf="layout === 'enterprise2'">
-    <div class="container">
-      <div class="row">
-        <div class="col-7">
-          <img
-            alt="Bitwarden"
-            class="logo mb-2"
-            src="../../images/register-layout/logo-horizontal-white.svg"
-          />
-        </div>
-      </div>
-    </div>
-  </header>
+  
 
   <!-- TEAMS 1 Header -->
-  <header class="header" *ngIf="layout === 'teams1'">
-    <div class="container">
-      <div class="row">
-        <div class="col-7">
-          <img
-            alt="Bitwarden"
-            class="logo mb-2"
-            src="../../images/register-layout/logo-horizontal-white.svg"
-          />
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- CNET Campaign Enterprise Header -->
-  <header class="header" *ngIf="layout === 'cnetcmpgnent'">
-    <div class="container">
-      <div class="row">
-        <div class="col-7">
-          <img
-            alt="Bitwarden"
-            class="logo mb-2"
-            src="../../images/register-layout/logo-horizontal-white.svg"
-          />
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- CNET Campaign Teams Header -->
-  <header class="header" *ngIf="layout === 'cnetcmpgnteams'">
-    <div class="container">
-      <div class="row">
-        <div class="col-7">
-          <img
-            alt="Bitwarden"
-            class="logo mb-2"
-            src="../../images/register-layout/logo-horizontal-white.svg"
-          />
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- CNET Campaign Premium Header -->
-  <header class="header" *ngIf="layout === 'cnetcmpgnind'">
+  <header class="header" *ngIf="layout === 'default' || layout === 'teams' || layout === 'teams1' || layout === 'teams2' || layout === 'enterprise' || layout === 'enterprise1' || layout === 'enterprise2' || layout === 'cnetcmpgnent' || layout === 'cnetcmpgnteams' || layout === 'cnetcmpgnind'">
     <div class="container">
       <div class="row">
         <div class="col-7">
@@ -79,9 +21,19 @@
       <div class="col-7" *ngIf="layout">
         <div class="mt-5">
 
-          <!-- Enterprise 2 Body -->
-          <div *ngIf="layout === 'enterprise2'">
-            <h1>Start Your Enterprise Free Trial Now</h1>
+          <!-- Default Body -->
+          <div *ngIf="layout === 'teams' || layout === 'enterprise' || layout === 'enterprise1' || layout === 'default'">
+            <h1>The Bitwarden Password Manager</h1>
+            <h2>Trusted by millions of individuals, teams, and organizations worldwide for secure password storage and sharing.</h2>
+            <p>Store logins, secure notes, and more</p>
+            <p>Collaborate and share securely</p>
+            <p>Access anywhere on any device</p>
+            <p>Create your account to get started</p>
+          </div>
+
+          <!-- Teams & Enterprise Body -->
+          <div *ngIf="layout === 'teams1' || layout === 'enterprise2'">
+            <h1>Start Your <span *ngIf="layout === 'teams1'">Teams<br></span><span *ngIf="layout === 'enterprise2'">Enterprise</span> Free Trial Now</h1>
             <h2>Millions of individuals, teams, and organizations worldwide trust Bitwarden for secure password storage and sharing.</h2>
             <p>Collaborate and share securely</p>
             <p>Deploy and manage quickly and easily</p>
@@ -89,29 +41,9 @@
             <p>Create your account to get started</p>
           </div>
 
-          <!-- Teams 1 Body -->
-          <div *ngIf="layout === 'teams1'">
-            <h1>Start Your Teams<br>Free Trial Now</h1>
-            <h2>Millions of individuals, teams, and organizations worldwide trust Bitwarden for secure password storage and sharing.</h2>
-            <p>Collaborate and share securely</p>
-            <p>Deploy and manage quickly and easily</p>
-            <p>Access anywhere on any device</p>
-            <p>Create your account to get started</p>
-          </div>
-
-          <!-- CNET Campaign Enterprise Body -->
-          <div *ngIf="layout === 'cnetcmpgnent'">
-            <h1>Start Your Enterprise Free Trial Now</h1>
-            <h2>Millions of individuals, teams, and organizations worldwide trust Bitwarden for secure password storage and sharing.</h2>
-            <p>Collaborate and share securely</p>
-            <p>Deploy and manage quickly and easily</p>
-            <p>Access anywhere on any device</p>
-            <p>Create your account to get started</p>
-          </div>
-
-          <!-- CNET Campaign Teams Body -->
-          <div *ngIf="layout === 'cnetcmpgnteams'">
-            <h1>Start Your Teams Free Trial Now</h1>
+          <!-- CNET Campaign Teams & Enterprise Body -->
+          <div *ngIf="layout === 'cnetcmpgnteams' || layout === 'cnetcmpgnent'">
+            <h1>Start Your <span *ngIf="layout === 'cnetcmpgnteams'">Teams<br></span><span *ngIf="layout === 'cnetcmpgnent'">Enterprise</span> Free Trial Now</h1>
             <h2>Millions of individuals, teams, and organizations worldwide trust Bitwarden for secure password storage and sharing.</h2>
             <p>Collaborate and share securely</p>
             <p>Deploy and manage quickly and easily</p>
@@ -304,7 +236,7 @@
     <div class="row">
       <div class="col-7 d-flex align-items-center">
 
-        <div *ngIf="layout === 'cnetcmpgnent'">
+        <div *ngIf="layout === 'cnetcmpgnent' || layout === 'cnetcmpgnteams' || layout === 'cnetcmpgnind'">
           <figure>
             <figcaption>
               <cite>
@@ -318,48 +250,7 @@
           </figure>
         </div>
 
-        <div *ngIf="layout === 'cnetcmpgnind'">
-          <figure>
-            <figcaption>
-              <cite>
-                <img src="../../images/register-layout/cnet-logo.svg" class="w-25 d-block mx-auto" alt="cnet logo" />
-              </cite>
-            </figcaption>
-            <blockquote class="mx-auto text-center px-4">
-              "No more excuses; start using Bitwarden today. The identity you save could be your
-              own. The money definitely will be."
-            </blockquote>
-          </figure>
-        </div>
-
-        <div *ngIf="layout === 'cnetcmpgnteams'">
-          <figure>
-            <figcaption>
-              <cite>
-                <img src="../../images/register-layout/cnet-logo.svg" class="w-25 d-block mx-auto" alt="cnet logo" />
-              </cite>
-            </figcaption>
-            <blockquote class="mx-auto text-center px-4">
-              "No more excuses; start using Bitwarden today. The identity you save could be your
-              own. The money definitely will be."
-            </blockquote>
-          </figure>
-        </div>
-
-        <div *ngIf="layout === 'enterprise2'">
-          <figure>
-            <figcaption>
-              <cite>
-                <img src="../../images/register-layout/forbes-logo.svg" class="w-25 d-block mx-auto" alt="Forbes Logo" />
-              </cite>
-            </figcaption>
-            <blockquote class="mx-auto text-center px-4">
-              “Bitwarden boasts the backing of some of the world's best security experts and an attractive, easy-to-use interface”
-            </blockquote>
-          </figure>
-        </div>
-
-        <div *ngIf="layout === 'teams1'">
+        <div *ngIf="layout === 'teams' || layout === 'teams1' || layout === 'teams2' || layout === 'enterprise' || layout === 'enterprise1' || layout === 'enterprise2' || layout === 'default'">
           <figure>
             <figcaption>
               <cite>
@@ -373,16 +264,10 @@
         </div>
 
       </div>
-      <div *ngIf="layout === 'cnetcmpgnent'" class="col-5 d-flex align-items-center justify-content-center">
+      <div *ngIf="layout === 'cnetcmpgnent' || layout === 'cnetcmpgnteams' || layout === 'cnetcmpgnind'" class="col-5 d-flex align-items-center justify-content-center">
         <img src="../../images/register-layout/usnews-360-badge.svg" class="w-50 d-block" alt="US News 360 Reviews Best Password Manager" />
       </div>
-      <div *ngIf="layout === 'cnetcmpgnind'" class="col-5 d-flex align-items-center justify-content-center">
-        <img src="../../images/register-layout/usnews-360-badge.svg" class="w-50 d-block" alt="US News 360 Reviews Best Password Manager" />
-      </div>
-      <div *ngIf="layout === 'cnetcmpgnteams'" class="col-5 d-flex align-items-center justify-content-center">
-        <img src="../../images/register-layout/usnews-360-badge.svg" class="w-50 d-block" alt="US News 360 Reviews Best Password Manager" />
-      </div>
-      <div *ngIf="layout === 'enterprise2'" class="col-5 d-flex align-items-center justify-content-center">
+      <div *ngIf="layout === 'teams' || layout === 'teams1' || layout === 'teams2' || layout === 'enterprise' || layout === 'enterprise1' || layout === 'enterprise2' || layout === 'default'" class="col-5 d-flex align-items-center justify-content-center">
         <img src="../../images/register-layout/usnews-360-badge.svg" class="w-50 d-block" alt="US News 360 Reviews Best Password Manager" />
       </div>
     </div>
