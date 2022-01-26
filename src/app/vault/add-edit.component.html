@@ -587,6 +587,7 @@
                 id="idEmail"
                 class="form-control"
                 type="text"
+                inputmode="email"
                 name="Identity.Email"
                 [(ngModel)]="cipher.identity.email"
                 appInputVerbatim
@@ -599,6 +600,7 @@
                 id="idPhone"
                 class="form-control"
                 type="text"
+                inputmode="tel"
                 name="Identity.Phone"
                 [(ngModel)]="cipher.identity.phone"
                 [disabled]="cipher.isDeleted || viewOnly"
