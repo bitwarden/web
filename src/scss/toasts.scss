@@ -53,7 +53,7 @@
       &:before,
       & .toast-close-button {
         @include themify($themes) {
-          color: themed("dangerTextColor") !important;
+          color: themed("textDangerColor") !important;
         }
       }
 
@@ -71,7 +71,7 @@
       &:before,
       & .toast-close-button {
         @include themify($themes) {
-          color: themed("warningTextColor") !important;
+          color: themed("textWarningColor") !important;
         }
       }
 
@@ -89,7 +89,7 @@
       &:before,
       & .toast-close-button {
         @include themify($themes) {
-          color: themed("infoTextColor") !important;
+          color: themed("textInfoColor") !important;
         }
       }
 
@@ -107,7 +107,7 @@
       &:before,
       & .toast-close-button {
         @include themify($themes) {
-          color: themed("successTextColor") !important;
+          color: themed("textSuccessColor") !important;
         }
       }
 
