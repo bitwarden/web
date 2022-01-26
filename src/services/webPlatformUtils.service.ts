@@ -198,16 +198,16 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
       // If you add custom types to this part, the type to SweetAlertIcon cast below needs to be changed.
       switch (type) {
         case "success":
-          iconClasses = "bwi-check text-success";
+          iconClasses = "bwi bwi-check text-success";
           break;
         case "warning":
-          iconClasses = "bwi-exclamation-triangle text-warning";
+          iconClasses = "bwi bwi-exclamation-triangle text-warning";
           break;
         case "error":
-          iconClasses = "bwi-error text-danger";
+          iconClasses = "bwi bwi-error text-danger";
           break;
         case "info":
-          iconClasses = "bwi-info-circle text-info";
+          iconClasses = "bwi bwi-info-circle text-info";
           break;
         default:
           break;

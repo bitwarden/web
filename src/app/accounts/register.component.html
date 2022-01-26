@@ -51,7 +51,7 @@
                 <app-callout
                   title="{{ 'createOrganizationStep1' | i18n }}"
                   type="info"
-                  icon="bwi-thumb-tack"
+                  icon="bwi bwi-thumb-tack"
                   *ngIf="showCreateOrgMessage"
                 >
                   {{ "createOrganizationCreatePersonalAccount" | i18n }}
@@ -114,7 +114,7 @@
                         (click)="togglePassword(false)"
                       >
                         <i
-                          class="bwi-lg"
+                          class="bwi bwi-lg"
                           aria-hidden="true"
                           [ngClass]="{
                             'bwi-eye-2': !showPassword,
@@ -146,7 +146,7 @@
                       (click)="togglePassword(true)"
                     >
                       <i
-                        class="bwi-lg"
+                        class="bwi bwi-lg"
                         aria-hidden="true"
                         [ngClass]="{ 'bwi-eye-2': !showPassword, 'bwi-eye-slash-2': showPassword }"
                       ></i>
@@ -197,7 +197,7 @@
                   >
                     <span>{{ "submit" | i18n }}</span>
                     <i
-                      class="bwi-spinner bwi-spin"
+                      class="bwi bwi-spinner bwi-spin"
                       title="{{ 'loading' | i18n }}"
                       aria-hidden="true"
                     ></i>

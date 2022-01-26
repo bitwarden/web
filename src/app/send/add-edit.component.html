@@ -213,7 +213,7 @@
                     (click)="togglePasswordVisible()"
                   >
                     <i
-                      class="bwi-lg"
+                      class="bwi bwi-lg"
                       aria-hidden="true"
                       [ngClass]="{ 'bwi-eye-2': !showPassword, 'bwi-eye-slash-2': showPassword }"
                     ></i>
@@ -272,7 +272,7 @@
           [ngClass]="{ loading: form.loading }"
           [disabled]="form.loading || disableSend"
         >
-          <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+          <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
           <span>{{ "save" | i18n }}</span>
         </button>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
@@ -289,9 +289,13 @@
             [disabled]="deleteBtn.loading"
             [appApiAction]="deletePromise"
           >
-            <i class="bwi-trash bwi-lg bwi-fw" [hidden]="deleteBtn.loading" aria-hidden="true"></i>
             <i
-              class="bwi-spinner bwi-spin bwi-lg bwi-fw"
+              class="bwi bwi-trash bwi-lg bwi-fw"
+              [hidden]="deleteBtn.loading"
+              aria-hidden="true"
+            ></i>
+            <i
+              class="bwi bwi-spinner bwi-spin bwi-lg bwi-fw"
               [hidden]="!deleteBtn.loading"
               title="{{ 'loading' | i18n }}"
               aria-hidden="true"

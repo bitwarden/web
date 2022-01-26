@@ -31,8 +31,7 @@
     }
 
     small,
-    > [class^="bwi-"],
-    [class*=" bwi-"],
+    > .bwi,
     .icon {
       @include themify($themes) {
         color: themed("textMuted");

@@ -8,7 +8,7 @@
       rel="noopener"
       appA11yTitle="{{ 'learnMore' | i18n }}"
     >
-      <i class="bwi-question-circle" aria-hidden="true"></i>
+      <i class="bwi bwi-question-circle" aria-hidden="true"></i>
     </a>
   </div>
   <div class="card-body">
@@ -25,17 +25,17 @@
     <ul class="bwi-ul card-ul">
       <li [ngClass]="{ active: selectedAll }">
         <a href="#" appStopClick (click)="selectAll()">
-          <i class="bwi-li bwi-fw bwi-filter"></i>{{ "allItems" | i18n }}
+          <i class="bwi bwi-li bwi-fw bwi-filter"></i>{{ "allItems" | i18n }}
         </a>
       </li>
       <li [ngClass]="{ active: selectedFavorites }" *ngIf="showFavorites">
         <a href="#" appStopClick (click)="selectFavorites()">
-          <i class="bwi-li bwi-fw bwi-star-f"></i>{{ "favorites" | i18n }}
+          <i class="bwi bwi-li bwi-fw bwi-star-f"></i>{{ "favorites" | i18n }}
         </a>
       </li>
       <li [ngClass]="{ active: selectedTrash }" *ngIf="showTrash">
         <a href="#" appStopClick (click)="selectTrash()">
-          <i class="bwi-li bwi-fw bwi-trash"></i>{{ "trash" | i18n }}
+          <i class="bwi bwi-li bwi-fw bwi-trash"></i>{{ "trash" | i18n }}
         </a>
       </li>
     </ul>
@@ -43,27 +43,27 @@
     <ul class="bwi-ul card-ul">
       <li [ngClass]="{ active: selectedType === cipherType.Login }">
         <a href="#" appStopClick (click)="selectType(cipherType.Login)">
-          <i class="bwi-li bwi-fw bwi-globe"></i>{{ "typeLogin" | i18n }}
+          <i class="bwi bwi-li bwi-fw bwi-globe"></i>{{ "typeLogin" | i18n }}
         </a>
       </li>
       <li [ngClass]="{ active: selectedType === cipherType.Card }">
         <a href="#" appStopClick (click)="selectType(cipherType.Card)">
-          <i class="bwi-li bwi-fw bwi-credit-card"></i>{{ "typeCard" | i18n }}
+          <i class="bwi bwi-li bwi-fw bwi-credit-card"></i>{{ "typeCard" | i18n }}
         </a>
       </li>
       <li [ngClass]="{ active: selectedType === cipherType.Identity }">
         <a href="#" appStopClick (click)="selectType(cipherType.Identity)">
-          <i class="bwi-li bwi-fw bwi-id-card"></i>{{ "typeIdentity" | i18n }}
+          <i class="bwi bwi-li bwi-fw bwi-id-card"></i>{{ "typeIdentity" | i18n }}
         </a>
       </li>
       <li [ngClass]="{ active: selectedType === cipherType.SecureNote }">
         <a href="#" appStopClick (click)="selectType(cipherType.SecureNote)">
-          <i class="bwi-li bwi-fw bwi-sticky-note"></i>{{ "typeSecureNote" | i18n }}
+          <i class="bwi bwi-li bwi-fw bwi-sticky-note"></i>{{ "typeSecureNote" | i18n }}
         </a>
       </li>
     </ul>
     <p *ngIf="!loaded" class="text-muted">
-      <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+      <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
       <span class="sr-only">{{ "loading" | i18n }}</span>
     </p>
     <ng-container *ngIf="loaded">
@@ -77,7 +77,7 @@
             (click)="addFolder()"
             appA11yTitle="{{ 'addFolder' | i18n }}"
           >
-            <i class="bwi-plus bwi-fw" aria-hidden="true"></i>
+            <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
           </a>
         </h3>
         <ul class="bwi-ul card-ul">
@@ -100,7 +100,7 @@
                 <a href="#" class="text-break" appStopClick (click)="selectFolder(f.node)">
                   <i
                     *ngIf="f.children.length === 0"
-                    class="bwi-li bwi-folder"
+                    class="bwi bwi-li bwi-folder"
                     aria-hidden="true"
                   ></i
                   >{{ f.node.name }}
@@ -113,7 +113,7 @@
                   appA11yTitle="{{ 'editFolder' | i18n }}"
                   *ngIf="f.node.id"
                 >
-                  <i class="bwi-pencil bwi-fw" aria-hidden="true"></i>
+                  <i class="bwi bwi-pencil bwi-fw" aria-hidden="true"></i>
                 </a>
               </div>
               <ul class="bwi-ul card-ul carets" *ngIf="f.children.length && !isCollapsed(f.node)">
@@ -149,7 +149,7 @@
               <a href="#" class="text-break" appStopClick (click)="selectCollection(c.node)">
                 <i
                   *ngIf="c.children.length === 0"
-                  class="bwi-li bwi-collection"
+                  class="bwi bwi-li bwi-collection"
                   aria-hidden="true"
                 ></i
                 >{{ c.node.name }}

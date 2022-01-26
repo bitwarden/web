@@ -23,7 +23,7 @@
       </div>
       <div class="modal-body" *ngIf="loading || !users">
         <i
-          class="bwi-spinner bwi-spin text-muted"
+          class="bwi bwi-spinner bwi-spin text-muted"
           title="{{ 'loading' | i18n }}"
           aria-hidden="true"
         ></i>
@@ -129,7 +129,7 @@
                 <td *ngIf="entity === 'collection'">
                   <ng-container *ngIf="u.accessAll">
                     <i
-                      class="bwi-filter"
+                      class="bwi bwi-filter"
                       title="{{ 'userAccessAllItems' | i18n }}"
                       aria-hidden="true"
                     ></i>
@@ -168,7 +168,7 @@
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-          <i class="bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+          <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
           <span>{{ "save" | i18n }}</span>
         </button>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
