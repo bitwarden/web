@@ -62,6 +62,7 @@ import { OrganizationBillingComponent } from "./organizations/settings/organizat
 import { OrganizationSubscriptionComponent } from "./organizations/settings/organization-subscription.component";
 import { SettingsComponent as OrgSettingComponent } from "./organizations/settings/settings.component";
 import { TwoFactorSetupComponent as OrgTwoFactorSetupComponent } from "./organizations/settings/two-factor-setup.component";
+import { BillingSyncApiKeyComponent } from "./organizations/settings/billing-sync-api-key.component";
 
 import { ExportComponent as OrgExportComponent } from "./organizations/tools/export.component";
 import { ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent } from "./organizations/tools/exposed-passwords-report.component";
@@ -454,6 +455,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     AddEditCustomFieldsComponent,
     VerifyMasterPasswordComponent,
     RemovePasswordComponent,
+    BillingSyncApiKeyComponent,
   ],
   exports: [
     A11yTitleDirective,

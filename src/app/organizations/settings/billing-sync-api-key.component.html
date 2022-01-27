@@ -1,0 +1,70 @@
+<div class="modal fade" role="dialog" aria-modal="true" aria-labelledby="billingSyncApiKeyTitle">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <form
+      class="modal-content"
+      #form
+      (ngSubmit)="submit()"
+      [appApiAction]="formPromise"
+      ngNativeValidate
+    >
+      <div class="modal-header">
+        <h2 class="modal-title" id="billingSyncApiKeyTitle">Change this</h2>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          appA11yTitle="{{ 'close' | i18n }}"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-verify-master-password
+          [(ngModel)]="masterPassword"
+          ngDefaultControl
+          name="secret"
+          *ngIf="!clientSecret"
+        >
+        </app-verify-master-password>
+        <app-callout type="warning" *ngIf="clientSecret && showRotateScreen">
+          Rotate Billing Warning here
+        </app-callout>
+        <div *ngIf="clientSecret && !showRotateScreen">
+          <label for="clientSecret">Billing Sync Key</label>
+          <div class="input-group">
+            <input id="clientSecret"
+              class="form-control text-monospace"
+              type="text"
+              [(ngModel)]="clientSecret"
+              name="clientSecret"
+              disabled />
+            <div class="input-group-append">
+              <button
+                type="button"
+                class="btn btn-outline-secondary"
+                (click)="copy()"
+                [appA11yTitle]="'copy' | i18n"
+              >
+                <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="submit"
+          class="btn btn-primary btn-submit"
+          [disabled]="form.loading"
+          *ngIf="!clientSecret"
+        >
+          <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" *ngIf="form.loading"></i>
+          <span>Thing</span>
+        </button>
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+          {{ "close" | i18n }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

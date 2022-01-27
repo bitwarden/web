@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 import { Organization } from "jslib-common/models/domain/organization";
@@ -12,12 +12,20 @@ import { OrganizationService } from "jslib-common/abstractions/organization.serv
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
 import { PlanType } from "jslib-common/enums/planType";
+import { OrganizationApiKeyInformationResponse } from "jslib-common/models/response/organizationApiKeyInformationResponse";
+import { OrganizationApiKeyType } from "jslib-common/enums/organizationApiKeyType";
+import { ModalService } from "jslib-angular/services/modal.service";
+import { BillingSyncApiKeyComponent } from "./billing-sync-api-key.component";
 
 @Component({
   selector: "app-org-subscription",
   templateUrl: "organization-subscription.component.html",
 })
 export class OrganizationSubscriptionComponent implements OnInit {
+  @ViewChild("setupBillingSyncTemplate", { read: ViewContainerRef, static: true})
+  setupBillingSyncModalRef: ViewContainerRef;
+
+
   loading = false;
   firstLoaded = false;
   organizationId: string;
@@ -31,6 +39,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
   showChangePlan = false;
   sub: OrganizationSubscriptionResponse;
   selfHosted = false;
+  apiKeyInformation: OrganizationApiKeyInformationResponse[];
 
   userOrg: Organization;
 
@@ -45,7 +54,8 @@ export class OrganizationSubscriptionComponent implements OnInit {
     private messagingService: MessagingService,
     private route: ActivatedRoute,
     private organizationService: OrganizationService,
-    private logService: LogService
+    private logService: LogService,
+    private modalService: ModalService
   ) {
     this.selfHosted = platformUtilsService.isSelfHost();
   }
@@ -66,6 +76,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     this.loading = true;
     this.userOrg = await this.organizationService.get(this.organizationId);
     this.sub = await this.apiService.getOrganizationSubscription(this.organizationId);
+    this.apiKeyInformation = (await this.apiService.getOrganizationApiKeyInformation(this.organizationId)).data;
     this.loading = false;
   }
 
@@ -134,6 +145,16 @@ export class OrganizationSubscriptionComponent implements OnInit {
 
   downloadLicense() {
     this.showDownloadLicense = !this.showDownloadLicense;
+  }
+
+  async manageBillingSync() {
+    const hasBillingKey = this.apiKeyInformation.some((i) => i.keyType === OrganizationApiKeyType.BillingSync);
+    await this.modalService.openViewRef(
+      BillingSyncApiKeyComponent,
+      this.setupBillingSyncModalRef,
+      (comp) => {
+        comp.organizationId = this.organizationId;
+    });
   }
 
   closeDownloadLicense() {
@@ -262,6 +283,10 @@ export class OrganizationSubscriptionComponent implements OnInit {
       (this.sub.planType !== PlanType.Free && this.subscription == null) ||
       (this.subscription != null && !this.subscription.cancelled)
     );
+  }
+
+  get canManageBillingSync() {
+    return !this.selfHosted;
   }
 
   get subscriptionDesc() {
