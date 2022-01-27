@@ -6,7 +6,7 @@
   <h2>{{ "customEqDomains" | i18n }}</h2>
   <p *ngIf="loading">
     <i
-      class="fa fa-spinner fa-spin text-muted"
+      class="bwi bwi-spinner bwi-spin text-muted"
       title="{{ 'loading' | i18n }}"
       aria-hidden="true"
     ></i>
@@ -33,22 +33,22 @@
         (click)="remove(i)"
         appA11yTitle="{{ 'remove' | i18n }}"
       >
-        <i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
+        <i class="bwi bwi-minus-circle bwi-lg" aria-hidden="true"></i>
       </button>
     </div>
     <button type="button" (click)="add()" class="btn btn-outline-secondary btn-sm mb-2">
-      <i class="fa fa-plus fa-fw" aria-hidden="true"></i> {{ "newCustomDomain" | i18n }}
+      <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i> {{ "newCustomDomain" | i18n }}
     </button>
     <small class="text-muted d-block mb-3">{{ "newCustomDomainDesc" | i18n }}</small>
   </ng-container>
   <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-    <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+    <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
     <span>{{ "save" | i18n }}</span>
   </button>
   <h2 class="spaced-header">{{ "globalEqDomains" | i18n }}</h2>
   <p *ngIf="loading">
     <i
-      class="fa fa-spinner fa-spin text-muted"
+      class="bwi bwi-spinner bwi-spin text-muted"
       title="{{ 'loading' | i18n }}"
       aria-hidden="true"
     ></i>
@@ -68,7 +68,7 @@
               aria-expanded="false"
               appA11yTitle="{{ 'options' | i18n }}"
             >
-              <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+              <i class="bwi bwi-cog bwi-lg" aria-hidden="true"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-right">
               <a
@@ -78,7 +78,7 @@
                 (click)="toggleExcluded(d)"
                 *ngIf="!d.excluded"
               >
-                <i class="fa fa-fw fa-close" aria-hidden="true"></i>
+                <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
                 {{ "exclude" | i18n }}
               </a>
               <a
@@ -88,11 +88,11 @@
                 (click)="toggleExcluded(d)"
                 *ngIf="d.excluded"
               >
-                <i class="fa fa-fw fa-plus" aria-hidden="true"></i>
+                <i class="bwi bwi-fw bwi-plus" aria-hidden="true"></i>
                 {{ "include" | i18n }}
               </a>
               <a class="dropdown-item" href="#" appStopClick (click)="customize(d)">
-                <i class="fa fa-fw fa-scissors" aria-hidden="true"></i>
+                <i class="bwi bwi-fw bwi-cut" aria-hidden="true"></i>
                 {{ "customize" | i18n }}
               </a>
             </div>
@@ -102,7 +102,7 @@
     </tbody>
   </table>
   <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-    <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+    <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
     <span>{{ "save" | i18n }}</span>
   </button>
 </form>

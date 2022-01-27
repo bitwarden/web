@@ -25,12 +25,17 @@
             >{{ c.name }}</a
           >
           <ng-container *ngIf="!organization && c.organizationId">
-            <i class="fa fa-cube" appStopProp title="{{ 'shared' | i18n }}" aria-hidden="true"></i>
+            <i
+              class="bwi bwi-collection"
+              appStopProp
+              title="{{ 'shared' | i18n }}"
+              aria-hidden="true"
+            ></i>
             <span class="sr-only">{{ "shared" | i18n }}</span>
           </ng-container>
           <ng-container *ngIf="c.hasAttachments">
             <i
-              class="fa fa-paperclip"
+              class="bwi bwi-paperclip"
               appStopProp
               title="{{ 'attachments' | i18n }}"
               aria-hidden="true"
@@ -38,7 +43,7 @@
             <span class="sr-only">{{ "attachments" | i18n }}</span>
             <ng-container *ngIf="showFixOldAttachments(c)">
               <i
-                class="fa fa-exclamation-triangle text-warning"
+                class="bwi bwi-exclamation-triangle text-warning"
                 appStopProp
                 title="{{ 'attachmentsNeedFix' | i18n }}"
                 aria-hidden="true"
@@ -60,7 +65,7 @@
               aria-expanded="false"
               appA11yTitle="{{ 'options' | i18n }}"
             >
-              <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+              <i class="bwi bwi-cog bwi-lg" aria-hidden="true"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
               <ng-container *ngIf="c.type === cipherType.Login && !c.isDeleted">
@@ -70,7 +75,7 @@
                   appStopClick
                   (click)="copy(c, c.login.username, 'username', 'Username')"
                 >
-                  <i class="fa fa-fw fa-clone" aria-hidden="true"></i>
+                  <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
                   {{ "copyUsername" | i18n }}
                 </a>
                 <a
@@ -80,7 +85,7 @@
                   (click)="copy(c, c.login.password, 'password', 'Password')"
                   *ngIf="c.viewPassword"
                 >
-                  <i class="fa fa-fw fa-clone" aria-hidden="true"></i>
+                  <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
                   {{ "copyPassword" | i18n }}
                 </a>
                 <a
@@ -90,7 +95,7 @@
                   (click)="copy(c, c.login.totp, 'verificationCodeTotp', 'TOTP')"
                   *ngIf="displayTotpCopyButton(c)"
                 >
-                  <i class="fa fa-fw fa-clone" aria-hidden="true"></i>
+                  <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
                   {{ "copyVerificationCode" | i18n }}
                 </a>
                 <a
@@ -100,12 +105,12 @@
                   *ngIf="c.login.canLaunch"
                   (click)="launch(c.login.launchUri)"
                 >
-                  <i class="fa fa-fw fa-share-square-o" aria-hidden="true"></i>
+                  <i class="bwi bwi-fw bwi-share-square" aria-hidden="true"></i>
                   {{ "launch" | i18n }}
                 </a>
               </ng-container>
               <a class="dropdown-item" href="#" appStopClick (click)="attachments(c)">
-                <i class="fa fa-fw fa-paperclip" aria-hidden="true"></i>
+                <i class="bwi bwi-fw bwi-paperclip" aria-hidden="true"></i>
                 {{ "attachments" | i18n }}
               </a>
               <a
@@ -115,7 +120,7 @@
                 *ngIf="((!organization && !c.organizationId) || organization) && !c.isDeleted"
                 (click)="clone(c)"
               >
-                <i class="fa fa-fw fa-files-o" aria-hidden="true"></i>
+                <i class="bwi bwi-fw bwi-files" aria-hidden="true"></i>
                 {{ "clone" | i18n }}
               </a>
               <a
@@ -125,7 +130,7 @@
                 *ngIf="!organization && !c.organizationId && !c.isDeleted"
                 (click)="share(c)"
               >
-                <i class="fa fa-fw fa-arrow-circle-o-right" aria-hidden="true"></i>
+                <i class="bwi bwi-fw bwi-arrow-circle-right" aria-hidden="true"></i>
                 {{ "moveToOrganization" | i18n }}
               </a>
               <a
@@ -135,7 +140,7 @@
                 *ngIf="c.organizationId && !c.isDeleted"
                 (click)="collections(c)"
               >
-                <i class="fa fa-fw fa-cubes" aria-hidden="true"></i>
+                <i class="bwi bwi-fw bwi-collection" aria-hidden="true"></i>
                 {{ "collections" | i18n }}
               </a>
               <a
@@ -145,7 +150,7 @@
                 *ngIf="c.organizationId && accessEvents"
                 (click)="events(c)"
               >
-                <i class="fa fa-fw fa-file-text-o" aria-hidden="true"></i>
+                <i class="bwi bwi-fw bwi-file-text" aria-hidden="true"></i>
                 {{ "eventLogs" | i18n }}
               </a>
               <a
@@ -155,11 +160,11 @@
                 (click)="restore(c)"
                 *ngIf="c.isDeleted"
               >
-                <i class="fa fa-fw fa-undo" aria-hidden="true"></i>
+                <i class="bwi bwi-fw bwi-undo" aria-hidden="true"></i>
                 {{ "restore" | i18n }}
               </a>
               <a class="dropdown-item text-danger" href="#" appStopClick (click)="delete(c)">
-                <i class="fa fa-fw fa-trash-o" aria-hidden="true"></i>
+                <i class="bwi bwi-fw bwi-trash" aria-hidden="true"></i>
                 {{ (c.isDeleted ? "permanentlyDelete" : "delete") | i18n }}
               </a>
             </div>
@@ -171,7 +176,7 @@
   <div class="no-items" *ngIf="!filteredCiphers.length">
     <ng-container *ngIf="!loaded">
       <i
-        class="fa fa-spinner fa-spin text-muted"
+        class="bwi bwi-spinner bwi-spin text-muted"
         title="{{ 'loading' | i18n }}"
         aria-hidden="true"
       ></i>
@@ -180,7 +185,7 @@
     <ng-container *ngIf="loaded">
       <p>{{ "noItemsInList" | i18n }}</p>
       <button (click)="addCipher()" class="btn btn-outline-primary" *ngIf="showAddNew">
-        <i class="fa fa-plus fa-fw"></i>{{ "addItem" | i18n }}
+        <i class="bwi bwi-plus bwi-fw"></i>{{ "addItem" | i18n }}
       </button>
     </ng-container>
   </div>
