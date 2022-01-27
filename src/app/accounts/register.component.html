@@ -53,13 +53,7 @@
           </div>
 
           <!-- Teams & Enterprise Body -->
-          <div
-            *ngIf="
-              layout === 'teams1' ||
-              layout === 'teams2' ||
-              layout === 'enterprise2'
-            "
-          >
+          <div *ngIf="layout === 'teams1' || layout === 'teams2' || layout === 'enterprise2'">
             <h1>
               Start Your <span *ngIf="layout === 'teams1' || layout === 'teams1'">Teams<br /></span
               ><span *ngIf="layout === 'enterprise2'">Enterprise</span> Free Trial Now
@@ -278,9 +272,7 @@
       <div class="col-7 d-flex align-items-center">
         <div
           *ngIf="
-            layout === 'cnetcmpgnent' ||
-            layout === 'cnetcmpgnteams' ||
-            layout === 'cnetcmpgnind'
+            layout === 'cnetcmpgnent' || layout === 'cnetcmpgnteams' || layout === 'cnetcmpgnind'
           "
         >
           <figure>
@@ -330,9 +322,7 @@
       </div>
       <div
         *ngIf="
-          layout === 'cnetcmpgnent' ||
-          layout === 'cnetcmpgnteams' ||
-          layout === 'cnetcmpgnind'
+          layout === 'cnetcmpgnent' || layout === 'cnetcmpgnteams' || layout === 'cnetcmpgnind'
         "
         class="col-5 d-flex align-items-center justify-content-center"
       >
