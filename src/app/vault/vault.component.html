@@ -114,17 +114,6 @@
           <app-organizations [vault]="true"></app-organizations>
         </div>
       </div>
-      <div class="card border-success mb-4" *ngIf="showRedeemSponsorship">
-        <div class="card-header bg-success text-white">
-          {{ "freeFamiliesPlan" | i18n }}
-        </div>
-        <div class="card-body">
-          <p>{{ "sponsoredFamiliesEligible" | i18n }}</p>
-          <a class="btn btn-block btn-outline-secondary" routerLink="/settings/sponsored-families">
-            {{ "redeemNow" | i18n }}
-          </a>
-        </div>
-      </div>
       <div class="card mt-4" *ngIf="showProviders">
         <div class="card-header d-flex">
           {{ "providers" | i18n }}
