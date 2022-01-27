@@ -24,14 +24,14 @@ label:not(.form-check-label):not(.btn),
 label.bold {
   font-weight: 600;
   @include themify($themes) {
-    color: themed("headingColor");
+    color: themed("textHeadingColor");
   }
 }
 
 label.form-check-label,
 .form-control-file {
   @include themify($themes) {
-    color: themed("headingColor");
+    color: themed("textHeadingColor");
   }
 }
 
@@ -78,6 +78,10 @@ label.form-check-label,
     background-color: themed("inputBackgroundColor");
     border-color: themed("inputBorderColor");
     color: themed("inputTextColor");
+
+    option {
+      background-color: themed("backgroundColor");
+    }
   }
 
   &:disabled,
