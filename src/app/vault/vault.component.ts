@@ -69,7 +69,6 @@ export class VaultComponent implements OnInit, OnDestroy {
   showBrowserOutdated = false;
   showUpdateKey = false;
   showPremiumCallout = false;
-  showRedeemSponsorship = false;
   showProviders = false;
   deleted: boolean = false;
   trashCleanupWarning: string = null;
