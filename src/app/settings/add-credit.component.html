@@ -15,7 +15,7 @@
           [(ngModel)]="method"
         />
         <label class="form-check-label" for="credit-method-paypal">
-          <i class="fa fa-fw fa-paypal" aria-hidden="true"></i> PayPal</label
+          <i class="bwi bwi-fw bwi-paypal" aria-hidden="true"></i> PayPal</label
         >
       </div>
       <div class="form-check form-check-inline">
@@ -28,7 +28,7 @@
           [(ngModel)]="method"
         />
         <label class="form-check-label" for="credit-method-bitcoin">
-          <i class="fa fa-fw fa-bitcoin" aria-hidden="true"></i> Bitcoin</label
+          <i class="bwi bwi-fw bwi-bitcoin" aria-hidden="true"></i> Bitcoin</label
         >
       </div>
     </div>
@@ -53,7 +53,7 @@
       <small class="form-text text-muted">{{ "creditDelayed" | i18n }}</small>
     </div>
     <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading || ppLoading">
-      <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+      <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
       <span>{{ "submit" | i18n }}</span>
     </button>
     <button type="button" class="btn btn-outline-secondary" (click)="cancel()">

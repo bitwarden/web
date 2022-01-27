@@ -13,7 +13,7 @@
       aria-expanded="false"
       appA11yTitle="{{ 'options' | i18n }}"
     >
-      <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+      <i class="bwi bwi-cog bwi-lg" aria-hidden="true"></i>
     </button>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
       <button
@@ -24,7 +24,7 @@
         (click)="resendEmail()"
         [attr.aria-label]="'resendEmailLabel' | i18n: sponsoringOrg.familySponsorshipFriendlyName"
       >
-        <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+        <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
         <span>{{ "resendEmail" | i18n }}</span>
       </button>
       <button
@@ -35,7 +35,7 @@
         (click)="revokeSponsorship()"
         [attr.aria-label]="'revokeAccount' | i18n: sponsoringOrg.familySponsorshipFriendlyName"
       >
-        <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+        <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
         <span>{{ "remove" | i18n }}</span>
       </button>
     </div>

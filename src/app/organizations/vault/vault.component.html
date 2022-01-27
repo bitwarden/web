@@ -20,7 +20,7 @@
           <small #actionSpinner [appApiAction]="ciphersComponent.actionPromise">
             <ng-container *ngIf="actionSpinner.loading">
               <i
-                class="fa fa-spinner fa-spin text-muted"
+                class="bwi bwi-spinner bwi-spin text-muted"
                 title="{{ 'loading' | i18n }}"
                 aria-hidden="true"
               ></i>
@@ -41,11 +41,11 @@
             (click)="addCipher()"
             *ngIf="!deleted"
           >
-            <i class="fa fa-plus fa-fw" aria-hidden="true"></i>{{ "addItem" | i18n }}
+            <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>{{ "addItem" | i18n }}
           </button>
         </div>
       </div>
-      <app-callout type="warning" *ngIf="deleted" icon="fa-warning">
+      <app-callout type="warning" *ngIf="deleted" icon="bwi bwi-exclamation-triangle">
         {{ trashCleanupWarning }}
       </app-callout>
       <app-org-vault-ciphers

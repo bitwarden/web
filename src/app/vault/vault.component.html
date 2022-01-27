@@ -21,7 +21,7 @@
           <small #actionSpinner [appApiAction]="ciphersComponent.actionPromise">
             <ng-container *ngIf="actionSpinner.loading">
               <i
-                class="fa fa-spinner fa-spin text-muted"
+                class="bwi bwi-spinner bwi-spin text-muted"
                 title="{{ 'loading' | i18n }}"
                 aria-hidden="true"
               ></i>
@@ -38,11 +38,11 @@
             (click)="addCipher()"
             *ngIf="!deleted"
           >
-            <i class="fa fa-plus fa-fw" aria-hidden="true"></i>{{ "addItem" | i18n }}
+            <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>{{ "addItem" | i18n }}
           </button>
         </div>
       </div>
-      <app-callout type="warning" *ngIf="deleted" icon="fa-warning">
+      <app-callout type="warning" *ngIf="deleted" icon="bwi-exclamation-triangle">
         {{ trashCleanupWarning }}
       </app-callout>
       <app-vault-ciphers
@@ -58,7 +58,8 @@
     <div class="col-3">
       <div class="card border-warning mb-4" *ngIf="showUpdateKey">
         <div class="card-header bg-warning text-white">
-          <i class="fa fa-warning fa-fw" aria-hidden="true"></i> {{ "updateKeyTitle" | i18n }}
+          <i class="bwi bwi-exclamation-triangle bwi-fw" aria-hidden="true"></i>
+          {{ "updateKeyTitle" | i18n }}
         </div>
         <div class="card-body">
           <p>{{ "updateEncryptionKeyShortDesc" | i18n }}</p>
@@ -70,7 +71,8 @@
       <app-verify-email *ngIf="showVerifyEmail" class="d-block mb-4"></app-verify-email>
       <div class="card border-warning mb-4" *ngIf="showBrowserOutdated">
         <div class="card-header bg-warning text-white">
-          <i class="fa fa-warning fa-fw" aria-hidden="true"></i> {{ "updateBrowser" | i18n }}
+          <i class="bwi bwi-exclamation-triangle bwi-fw" aria-hidden="true"></i>
+          {{ "updateBrowser" | i18n }}
         </div>
         <div class="card-body">
           <p>{{ "updateBrowserDesc" | i18n }}</p>
@@ -86,7 +88,7 @@
       </div>
       <div class="card border-success mb-4" *ngIf="showPremiumCallout">
         <div class="card-header bg-success text-white">
-          <i class="fa fa-star fa-fw" aria-hidden="true"></i> {{ "goPremium" | i18n }}
+          <i class="bwi bwi-star-f bwi-fw" aria-hidden="true"></i> {{ "goPremium" | i18n }}
         </div>
         <div class="card-body">
           <p>{{ "premiumUpgradeUnlockFeatures" | i18n }}</p>
@@ -105,7 +107,7 @@
             rel="noopener"
             appA11yTitle="{{ 'learnMore' | i18n }}"
           >
-            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+            <i class="bwi bwi-question-circle" aria-hidden="true"></i>
           </a>
         </div>
         <div class="card-body">
@@ -133,7 +135,7 @@
             rel="noopener"
             appA11yTitle="{{ 'learnMore' | i18n }}"
           >
-            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+            <i class="bwi bwi-question-circle" aria-hidden="true"></i>
           </a>
         </div>
         <div class="card-body">
