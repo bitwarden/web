@@ -119,3 +119,33 @@ h2 {
   padding: 40px 0 40px 0;
   border-top: 1px solid #dee2e6;
 }
+
+/* Bitwarden icons, manually copied */
+
+@font-face {
+  font-family: "bwi-font";
+  src: url(../images/bwi-font.svg) format("svg"), url(../fonts/bwi-font.ttf) format("truetype"),
+    url(../fonts/bwi-font.woff) format("woff"), url(../fonts/bwi-font.woff2) format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+.bwi {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "bwi-font" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  display: inline-block;
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bwi-shield:before {
+  content: "\e932";
+}
