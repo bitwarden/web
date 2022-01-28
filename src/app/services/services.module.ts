@@ -75,7 +75,7 @@ export function initFactory(
 
     const urls = process.env.URLS as Urls;
     urls.base ??= window.location.origin;
-    environmentService.setUrls(urls, false);
+    environmentService.setUrls(urls);
 
     setTimeout(() => notificationsService.init(), 3000);
 
