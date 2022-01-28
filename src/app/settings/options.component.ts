@@ -19,7 +19,7 @@ export class OptionsComponent implements OnInit {
   disableIcons: boolean;
   enableGravatars: boolean;
   enableFullWidth: boolean;
-  theme: ThemeType = ThemeType.Light;
+  theme: ThemeType;
   locale: string;
   vaultTimeouts: { name: string; value: number }[];
   localeOptions: any[];
@@ -28,7 +28,7 @@ export class OptionsComponent implements OnInit {
   vaultTimeout: FormControl = new FormControl(null);
 
   private startingLocale: string;
-  private startingTheme: ThemeType = ThemeType.Light;
+  private startingTheme: ThemeType;
 
   constructor(
     private stateService: StateService,
