@@ -1,339 +1,371 @@
-import {
-    Component,
-    EventEmitter,
-    Input,
-    OnDestroy,
-    Output,
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, Output } from "@angular/core";
 
-import { CipherService } from 'jslib-common/abstractions/cipher.service';
-import { EventService } from 'jslib-common/abstractions/event.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { LogService } from 'jslib-common/abstractions/log.service';
-import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { SearchService } from 'jslib-common/abstractions/search.service';
-import { StateService } from 'jslib-common/abstractions/state.service';
-import { TotpService } from 'jslib-common/abstractions/totp.service';
+import { CipherService } from "jslib-common/abstractions/cipher.service";
+import { EventService } from "jslib-common/abstractions/event.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { LogService } from "jslib-common/abstractions/log.service";
+import { PasswordRepromptService } from "jslib-common/abstractions/passwordReprompt.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { SearchService } from "jslib-common/abstractions/search.service";
+import { StateService } from "jslib-common/abstractions/state.service";
+import { TotpService } from "jslib-common/abstractions/totp.service";
 
-import { CiphersComponent as BaseCiphersComponent } from 'jslib-angular/components/ciphers.component';
+import { CiphersComponent as BaseCiphersComponent } from "jslib-angular/components/ciphers.component";
 
-import { CipherRepromptType } from 'jslib-common/enums/cipherRepromptType';
-import { CipherType } from 'jslib-common/enums/cipherType';
-import { EventType } from 'jslib-common/enums/eventType';
+import { CipherRepromptType } from "jslib-common/enums/cipherRepromptType";
+import { CipherType } from "jslib-common/enums/cipherType";
+import { EventType } from "jslib-common/enums/eventType";
 
-import { CipherView } from 'jslib-common/models/view/cipherView';
+import { CipherView } from "jslib-common/models/view/cipherView";
 
 const MaxCheckedCount = 500;
 
 @Component({
-    selector: 'app-vault-ciphers',
-    templateUrl: 'ciphers.component.html',
+  selector: "app-vault-ciphers",
+  templateUrl: "ciphers.component.html",
 })
 export class CiphersComponent extends BaseCiphersComponent implements OnDestroy {
-    @Input() showAddNew = true;
-    @Output() onAttachmentsClicked = new EventEmitter<CipherView>();
-    @Output() onShareClicked = new EventEmitter<CipherView>();
-    @Output() onCollectionsClicked = new EventEmitter<CipherView>();
-    @Output() onCloneClicked = new EventEmitter<CipherView>();
+  @Input() showAddNew = true;
+  @Output() onAttachmentsClicked = new EventEmitter<CipherView>();
+  @Output() onShareClicked = new EventEmitter<CipherView>();
+  @Output() onCollectionsClicked = new EventEmitter<CipherView>();
+  @Output() onCloneClicked = new EventEmitter<CipherView>();
 
-    pagedCiphers: CipherView[] = [];
-    pageSize = 200;
-    cipherType = CipherType;
-    actionPromise: Promise<any>;
-    userHasPremiumAccess = false;
+  pagedCiphers: CipherView[] = [];
+  pageSize = 200;
+  cipherType = CipherType;
+  actionPromise: Promise<any>;
+  userHasPremiumAccess = false;
 
-    organizationNames = new Map<string, string>();
-    sortedDescending = true;
-    sortBy: string = 'name';
-    showData: string = 'owner';
+  organizationNames = new Map<string, string>();
+  sortedDescending = true;
+  sortBy: string = "name";
+  showData: string = "owner";
 
-    private didScroll = false;
-    private pagedCiphersCount = 0;
-    private refreshing = false;
+  private didScroll = false;
+  private pagedCiphersCount = 0;
+  private refreshing = false;
 
-    constructor(searchService: SearchService,
-        protected i18nService: I18nService, protected platformUtilsService: PlatformUtilsService,
-        protected cipherService: CipherService, protected eventService: EventService,
-        protected totpService: TotpService, protected stateService: StateService,
-        protected passwordRepromptService: PasswordRepromptService, private logService: LogService) {
-        super(searchService);
+  constructor(
+    searchService: SearchService,
+    protected i18nService: I18nService,
+    protected platformUtilsService: PlatformUtilsService,
+    protected cipherService: CipherService,
+    protected eventService: EventService,
+    protected totpService: TotpService,
+    protected stateService: StateService,
+    protected passwordRepromptService: PasswordRepromptService,
+    private logService: LogService
+  ) {
+    super(searchService);
+  }
+
+  async ngOnInit() {
+    this.userHasPremiumAccess = await this.stateService.getCanAccessPremium();
+    this.organizationNames = await this.loadOrganizationNames();
+  }
+
+  ngOnDestroy() {
+    this.selectAll(false);
+  }
+
+  loadMore() {
+    if (this.ciphers.length <= this.pageSize) {
+      return;
+    }
+    const pagedLength = this.pagedCiphers.length;
+    let pagedSize = this.pageSize;
+    if (this.refreshing && pagedLength === 0 && this.pagedCiphersCount > this.pageSize) {
+      pagedSize = this.pagedCiphersCount;
+    }
+    if (this.ciphers.length > pagedLength) {
+      this.pagedCiphers = this.pagedCiphers.concat(
+        this.ciphers.slice(pagedLength, pagedLength + pagedSize)
+      );
+    }
+    this.pagedCiphersCount = this.pagedCiphers.length;
+    this.didScroll = this.pagedCiphers.length > this.pageSize;
+  }
+
+  async loadOrganizationNames(): Promise<Map<string, string>> {
+    const organizations = await this.userService.getAllOrganizations();
+    const organizationNames = new Map<string, string>();
+
+    organizations.forEach((organization) => {
+      organizationNames.set(organization.id, organization.name);
+    });
+
+    return organizationNames;
+  }
+
+  getOrganizationById(c: CipherView): string {
+    return c.organizationId != null
+      ? this.organizationNames.get(c.organizationId)
+      : this.i18nService.t("myVault");
+  }
+
+  sortCiphers(sortBy: string): void {
+    if (sortBy === this.sortBy) {
+      this.sortedDescending = !this.sortedDescending;
+    } else {
+      this.sortBy = sortBy;
+      this.sortedDescending = true;
     }
 
-    async ngOnInit() {
-        this.userHasPremiumAccess = await this.stateService.getCanAccessPremium();
-        this.organizationNames = await this.loadOrganizationNames();
-    }
-
-    ngOnDestroy() {
-        this.selectAll(false);
-    }
-
-    loadMore() {
-        if (this.ciphers.length <= this.pageSize) {
-            return;
-        }
-        const pagedLength = this.pagedCiphers.length;
-        let pagedSize = this.pageSize;
-        if (this.refreshing && pagedLength === 0 && this.pagedCiphersCount > this.pageSize) {
-            pagedSize = this.pagedCiphersCount;
-        }
-        if (this.ciphers.length > pagedLength) {
-            this.pagedCiphers = this.pagedCiphers.concat(this.ciphers.slice(pagedLength, pagedLength + pagedSize));
-        }
-        this.pagedCiphersCount = this.pagedCiphers.length;
-        this.didScroll = this.pagedCiphers.length > this.pageSize;
-    }
-
-    async loadOrganizationNames(): Promise<Map<string, string>> {
-        const organizations = await this.userService.getAllOrganizations();
-        const organizationNames = new Map<string, string>();
-
-        organizations.forEach(organization => {
-            organizationNames.set(organization.id, organization.name);
+    if (sortBy === "lastEdited") {
+      if (this.sortedDescending) {
+        this.ciphers.sort((a: CipherView, b: CipherView) => {
+          return b.revisionDate.valueOf() - a.revisionDate.valueOf();
         });
+      } else {
+        this.ciphers.sort((a: CipherView, b: CipherView) => {
+          return a.revisionDate.valueOf() - b.revisionDate.valueOf();
+        });
+      }
+      this.showData = "lastEdited";
+    } else if (sortBy === "dateCreated") {
+      // TO-DO
+    } else if (sortBy === "owner") {
+      this.ciphers.sort((a: CipherView, b: CipherView) => {
+        const sortingValue1 =
+          a.organizationId == null ? "Personal" : this.organizationNames.get(a.organizationId);
+        const sortingValue2 =
+          b.organizationId == null ? "Personal" : this.organizationNames.get(b.organizationId);
 
-        return organizationNames;
-    }
-
-    getOrganizationById(c: CipherView): string {
-        return (c.organizationId != null ? this.organizationNames.get(c.organizationId) : this.i18nService.t('myVault'));
-    }
-
-    sortCiphers(sortBy: string): void {
-        if (sortBy === this.sortBy) {
-            this.sortedDescending = !this.sortedDescending;
+        if (this.sortedDescending) {
+          return sortingValue1.localeCompare(sortingValue2);
         } else {
-            this.sortBy = sortBy;
-            this.sortedDescending = true;
+          return sortingValue2.localeCompare(sortingValue1);
         }
+      });
+      this.showData = "owner";
+    } else if (sortBy === "name") {
+      if (this.sortedDescending) {
+        this.ciphers.sort((a, b) => a.name.localeCompare(b.name));
+      } else {
+        this.ciphers.sort((a, b) => b.name.localeCompare(a.name));
+      }
+    }
+  }
 
-        if (sortBy === 'lastEdited') {
-            if (this.sortedDescending) {
-                this.ciphers.sort((a: CipherView, b: CipherView) => {
-                    return b.revisionDate.valueOf() - a.revisionDate.valueOf();
-                });
-            } else {
-                this.ciphers.sort((a: CipherView, b: CipherView) => {
-                    return a.revisionDate.valueOf() - b.revisionDate.valueOf();
-                });
-            }
-            this.showData = 'lastEdited';
-        } else if (sortBy === 'dateCreated') {
-            // TO-DO
-        } else if (sortBy === 'owner') {
-            this.ciphers.sort((a: CipherView, b: CipherView) => {
-                const sortingValue1 = a.organizationId == null ? 'Personal' : this.organizationNames.get(a.organizationId);
-                const sortingValue2 = b.organizationId == null ? 'Personal' : this.organizationNames.get(b.organizationId);
+  reverseSort(): void {
+    this.sortCiphers(this.sortBy);
+  }
 
-                if (this.sortedDescending) {
-                    return sortingValue1.localeCompare(sortingValue2);
-                } else {
-                    return sortingValue2.localeCompare(sortingValue1);
-                }
-            });
-            this.showData = 'owner';
-        } else if (sortBy === 'name') {
-            if (this.sortedDescending) {
-                this.ciphers.sort((a, b) => a.name.localeCompare(b.name));
-            } else {
-                this.ciphers.sort((a, b) => b.name.localeCompare(a.name));
-            }
-        }
+  changeDataToShow(type: string): void {
+    this.showData = type;
+  }
+
+  revisionDate(date: Date): string {
+    return date ? date.toLocaleDateString("en-US") : null;
+  }
+
+  async refresh() {
+    try {
+      this.refreshing = true;
+      await this.reload(this.filter, this.deleted);
+    } finally {
+      this.refreshing = false;
+    }
+  }
+
+  isPaging() {
+    const searching = this.isSearching();
+    if (searching && this.didScroll) {
+      this.resetPaging();
+    }
+    return !searching && this.ciphers.length > this.pageSize;
+  }
+
+  async resetPaging() {
+    this.pagedCiphers = [];
+    this.loadMore();
+  }
+
+  async doSearch(indexedCiphers?: CipherView[]) {
+    this.ciphers = await this.searchService.searchCiphers(
+      this.searchText,
+      [this.filter, this.deletedFilter],
+      indexedCiphers
+    );
+    this.resetPaging();
+  }
+
+  launch(uri: string) {
+    this.platformUtilsService.launchUri(uri);
+  }
+
+  async attachments(c: CipherView) {
+    if (!(await this.repromptCipher(c))) {
+      return;
+    }
+    this.onAttachmentsClicked.emit(c);
+  }
+
+  async share(c: CipherView) {
+    if (!(await this.repromptCipher(c))) {
+      return;
+    }
+    this.onShareClicked.emit(c);
+  }
+
+  collections(c: CipherView) {
+    this.onCollectionsClicked.emit(c);
+  }
+
+  async clone(c: CipherView) {
+    if (!(await this.repromptCipher(c))) {
+      return;
+    }
+    this.onCloneClicked.emit(c);
+  }
+
+  async delete(c: CipherView): Promise<boolean> {
+    if (!(await this.repromptCipher(c))) {
+      return;
+    }
+    if (this.actionPromise != null) {
+      return;
+    }
+    const permanent = c.isDeleted;
+    const confirmed = await this.platformUtilsService.showDialog(
+      this.i18nService.t(
+        permanent ? "permanentlyDeleteItemConfirmation" : "deleteItemConfirmation"
+      ),
+      this.i18nService.t(permanent ? "permanentlyDeleteItem" : "deleteItem"),
+      this.i18nService.t("yes"),
+      this.i18nService.t("no"),
+      "warning"
+    );
+    if (!confirmed) {
+      return false;
     }
 
-    reverseSort(): void {
-        this.sortCiphers(this.sortBy);
+    try {
+      this.actionPromise = this.deleteCipher(c.id, permanent);
+      await this.actionPromise;
+      this.platformUtilsService.showToast(
+        "success",
+        null,
+        this.i18nService.t(permanent ? "permanentlyDeletedItem" : "deletedItem")
+      );
+      this.refresh();
+    } catch (e) {
+      this.logService.error(e);
+    }
+    this.actionPromise = null;
+  }
+
+  async restore(c: CipherView): Promise<boolean> {
+    if (this.actionPromise != null || !c.isDeleted) {
+      return;
+    }
+    const confirmed = await this.platformUtilsService.showDialog(
+      this.i18nService.t("restoreItemConfirmation"),
+      this.i18nService.t("restoreItem"),
+      this.i18nService.t("yes"),
+      this.i18nService.t("no"),
+      "warning"
+    );
+    if (!confirmed) {
+      return false;
     }
 
-    changeDataToShow(type: string): void {
-        this.showData = type;
+    try {
+      this.actionPromise = this.cipherService.restoreWithServer(c.id);
+      await this.actionPromise;
+      this.platformUtilsService.showToast("success", null, this.i18nService.t("restoredItem"));
+      this.refresh();
+    } catch (e) {
+      this.logService.error(e);
+    }
+    this.actionPromise = null;
+  }
+
+  async copy(cipher: CipherView, value: string, typeI18nKey: string, aType: string) {
+    if (
+      this.passwordRepromptService.protectedFields().includes(aType) &&
+      !(await this.repromptCipher(cipher))
+    ) {
+      return;
     }
 
-    revisionDate(date: Date): string {
-        return (date ? date.toLocaleDateString('en-US') : null);
+    if (value == null || (aType === "TOTP" && !this.displayTotpCopyButton(cipher))) {
+      return;
+    } else if (value === cipher.login.totp) {
+      value = await this.totpService.getCode(value);
     }
 
-    async refresh() {
-        try {
-            this.refreshing = true;
-            await this.reload(this.filter, this.deleted);
-        } finally {
-            this.refreshing = false;
-        }
+    if (!cipher.viewPassword) {
+      return;
     }
 
-    isPaging() {
-        const searching = this.isSearching();
-        if (searching && this.didScroll) {
-            this.resetPaging();
-        }
-        return !searching && this.ciphers.length > this.pageSize;
+    this.platformUtilsService.copyToClipboard(value, { window: window });
+    this.platformUtilsService.showToast(
+      "info",
+      null,
+      this.i18nService.t("valueCopied", this.i18nService.t(typeI18nKey))
+    );
+
+    if (typeI18nKey === "password" || typeI18nKey === "verificationCodeTotp") {
+      this.eventService.collect(EventType.Cipher_ClientToggledHiddenFieldVisible, cipher.id);
+    } else if (typeI18nKey === "securityCode") {
+      this.eventService.collect(EventType.Cipher_ClientCopiedCardCode, cipher.id);
     }
+  }
 
-    async resetPaging() {
-        this.pagedCiphers = [];
-        this.loadMore();
+  selectAll(select: boolean) {
+    if (select) {
+      this.selectAll(false);
     }
-
-    async doSearch(indexedCiphers?: CipherView[]) {
-        this.ciphers = await this.searchService.searchCiphers(this.searchText, [this.filter, this.deletedFilter], indexedCiphers);
-        this.resetPaging();
+    const selectCount =
+      select && this.ciphers.length > MaxCheckedCount ? MaxCheckedCount : this.ciphers.length;
+    for (let i = 0; i < selectCount; i++) {
+      this.checkCipher(this.ciphers[i], select);
     }
+  }
 
-    launch(uri: string) {
-        this.platformUtilsService.launchUri(uri);
+  checkCipher(c: CipherView, select?: boolean) {
+    (c as any).checked = select == null ? !(c as any).checked : select;
+  }
+
+  getSelected(): CipherView[] {
+    if (this.ciphers == null) {
+      return [];
     }
+    return this.ciphers.filter((c) => !!(c as any).checked);
+  }
 
-    async attachments(c: CipherView) {
-        if (!await this.repromptCipher(c)) {
-            return;
-        }
-        this.onAttachmentsClicked.emit(c);
+  getSelectedIds(): string[] {
+    return this.getSelected().map((c) => c.id);
+  }
+
+  displayTotpCopyButton(cipher: CipherView) {
+    return (
+      (cipher?.login?.hasTotp ?? false) && (cipher.organizationUseTotp || this.userHasPremiumAccess)
+    );
+  }
+
+  async selectCipher(cipher: CipherView) {
+    if (await this.repromptCipher(cipher)) {
+      super.selectCipher(cipher);
     }
+  }
 
-    async share(c: CipherView) {
-        if (!await this.repromptCipher(c)) {
-            return;
-        }
-        this.onShareClicked.emit(c);
-    }
+  protected deleteCipher(id: string, permanent: boolean) {
+    return permanent
+      ? this.cipherService.deleteWithServer(id)
+      : this.cipherService.softDeleteWithServer(id);
+  }
 
-    collections(c: CipherView) {
-        this.onCollectionsClicked.emit(c);
-    }
+  protected showFixOldAttachments(c: CipherView) {
+    return c.hasOldAttachments && c.organizationId == null;
+  }
 
-    async clone(c: CipherView) {
-        if (!await this.repromptCipher(c)) {
-            return;
-        }
-        this.onCloneClicked.emit(c);
-    }
-
-    async delete(c: CipherView): Promise<boolean> {
-        if (!await this.repromptCipher(c)) {
-            return;
-        }
-        if (this.actionPromise != null) {
-            return;
-        }
-        const permanent = c.isDeleted;
-        const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t(permanent ? 'permanentlyDeleteItemConfirmation' : 'deleteItemConfirmation'),
-            this.i18nService.t(permanent ? 'permanentlyDeleteItem' : 'deleteItem'),
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
-        if (!confirmed) {
-            return false;
-        }
-
-        try {
-            this.actionPromise = this.deleteCipher(c.id, permanent);
-            await this.actionPromise;
-            this.platformUtilsService.showToast('success', null, this.i18nService.t(permanent ? 'permanentlyDeletedItem'
-                : 'deletedItem'));
-            this.refresh();
-        } catch (e) {
-            this.logService.error(e);
-        }
-        this.actionPromise = null;
-    }
-
-    async restore(c: CipherView): Promise<boolean> {
-        if (this.actionPromise != null || !c.isDeleted) {
-            return;
-        }
-        const confirmed = await this.platformUtilsService.showDialog(
-            this.i18nService.t('restoreItemConfirmation'),
-            this.i18nService.t('restoreItem'),
-            this.i18nService.t('yes'), this.i18nService.t('no'), 'warning');
-        if (!confirmed) {
-            return false;
-        }
-
-        try {
-            this.actionPromise = this.cipherService.restoreWithServer(c.id);
-            await this.actionPromise;
-            this.platformUtilsService.showToast('success', null, this.i18nService.t('restoredItem'));
-            this.refresh();
-        } catch (e) {
-            this.logService.error(e);
-        }
-        this.actionPromise = null;
-    }
-
-    async copy(cipher: CipherView, value: string, typeI18nKey: string, aType: string) {
-        if (this.passwordRepromptService.protectedFields().includes(aType) && !await this.repromptCipher(cipher)) {
-            return;
-        }
-
-        if (value == null || aType === 'TOTP' && !this.displayTotpCopyButton(cipher)) {
-            return;
-        } else if (value === cipher.login.totp) {
-            value = await this.totpService.getCode(value);
-        }
-
-        if (!cipher.viewPassword) {
-            return;
-        }
-
-        this.platformUtilsService.copyToClipboard(value, { window: window });
-        this.platformUtilsService.showToast('info', null,
-            this.i18nService.t('valueCopied', this.i18nService.t(typeI18nKey)));
-
-        if (typeI18nKey === 'password' || typeI18nKey === 'verificationCodeTotp') {
-            this.eventService.collect(EventType.Cipher_ClientToggledHiddenFieldVisible, cipher.id);
-        } else if (typeI18nKey === 'securityCode') {
-            this.eventService.collect(EventType.Cipher_ClientCopiedCardCode, cipher.id);
-        }
-    }
-
-    selectAll(select: boolean) {
-        if (select) {
-            this.selectAll(false);
-        }
-        const selectCount = select && this.ciphers.length > MaxCheckedCount
-            ? MaxCheckedCount
-            : this.ciphers.length;
-        for (let i = 0; i < selectCount; i++) {
-            this.checkCipher(this.ciphers[i], select);
-        }
-    }
-
-    checkCipher(c: CipherView, select?: boolean) {
-        (c as any).checked = select == null ? !(c as any).checked : select;
-    }
-
-    getSelected(): CipherView[] {
-        if (this.ciphers == null) {
-            return [];
-        }
-        return this.ciphers.filter(c => !!(c as any).checked);
-    }
-
-    getSelectedIds(): string[] {
-        return this.getSelected().map(c => c.id);
-    }
-
-    displayTotpCopyButton(cipher: CipherView) {
-        return (cipher?.login?.hasTotp ?? false) &&
-            (cipher.organizationUseTotp || this.userHasPremiumAccess);
-    }
-
-    async selectCipher(cipher: CipherView) {
-        if (await this.repromptCipher(cipher)) {
-            super.selectCipher(cipher);
-        }
-    }
-
-    protected deleteCipher(id: string, permanent: boolean) {
-        return permanent ? this.cipherService.deleteWithServer(id) : this.cipherService.softDeleteWithServer(id);
-    }
-
-    protected showFixOldAttachments(c: CipherView) {
-        return c.hasOldAttachments && c.organizationId == null;
-    }
-
-    protected async repromptCipher(c: CipherView) {
-        return c.reprompt === CipherRepromptType.None || await this.passwordRepromptService.showPasswordPrompt();
-    }
+  protected async repromptCipher(c: CipherView) {
+    return (
+      c.reprompt === CipherRepromptType.None ||
+      (await this.passwordRepromptService.showPasswordPrompt())
+    );
+  }
 }

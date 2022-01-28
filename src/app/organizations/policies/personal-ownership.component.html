@@ -1,10 +1,18 @@
 <app-callout type="warning">
-    {{'personalOwnershipExemption' | i18n}}
+  {{ "personalOwnershipExemption" | i18n }}
 </app-callout>
 
 <div class="form-group">
-    <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="enabled" [formControl]="enabled" name="Enabled">
-        <label class="form-check-label" for="enabled">{{'personalOwnershipCheckboxDesc' | i18n}}</label>
-    </div>
+  <div class="form-check">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      id="enabled"
+      [formControl]="enabled"
+      name="Enabled"
+    />
+    <label class="form-check-label" for="enabled">{{
+      "personalOwnershipCheckboxDesc" | i18n
+    }}</label>
+  </div>
 </div>
