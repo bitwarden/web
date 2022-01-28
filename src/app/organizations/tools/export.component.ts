@@ -28,7 +28,7 @@ export class ExportComponent extends BaseExportComponent {
     policyService: PolicyService,
     logService: LogService,
     userVerificationService: UserVerificationService,
-    fb: FormBuilder
+    formBuilder: FormBuilder
   ) {
     super(
       cryptoService,
@@ -39,7 +39,7 @@ export class ExportComponent extends BaseExportComponent {
       policyService,
       logService,
       userVerificationService,
-      fb
+      formBuilder
     );
   }
 

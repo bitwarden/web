@@ -382,47 +382,50 @@ export class EventService {
   private getAppInfo(deviceType: DeviceType): [string, string] {
     switch (deviceType) {
       case DeviceType.Android:
-        return ["fa-android", this.i18nService.t("mobile") + " - Android"];
+        return ["bwi-android", this.i18nService.t("mobile") + " - Android"];
       case DeviceType.iOS:
-        return ["fa-apple", this.i18nService.t("mobile") + " - iOS"];
+        return ["bwi-apple", this.i18nService.t("mobile") + " - iOS"];
       case DeviceType.UWP:
-        return ["fa-windows", this.i18nService.t("mobile") + " - Windows"];
+        return ["bwi-windows", this.i18nService.t("mobile") + " - Windows"];
       case DeviceType.ChromeExtension:
-        return ["fa-chrome", this.i18nService.t("extension") + " - Chrome"];
+        return ["bwi-chrome", this.i18nService.t("extension") + " - Chrome"];
       case DeviceType.FirefoxExtension:
-        return ["fa-firefox", this.i18nService.t("extension") + " - Firefox"];
+        return ["bwi-firefox", this.i18nService.t("extension") + " - Firefox"];
       case DeviceType.OperaExtension:
-        return ["fa-opera", this.i18nService.t("extension") + " - Opera"];
+        return ["bwi-opera", this.i18nService.t("extension") + " - Opera"];
       case DeviceType.EdgeExtension:
-        return ["fa-edge", this.i18nService.t("extension") + " - Edge"];
+        return ["bwi-edge", this.i18nService.t("extension") + " - Edge"];
       case DeviceType.VivaldiExtension:
-        return ["fa-puzzle-piece", this.i18nService.t("extension") + " - Vivaldi"];
+        return ["bwi-puzzle", this.i18nService.t("extension") + " - Vivaldi"];
       case DeviceType.SafariExtension:
-        return ["fa-safari", this.i18nService.t("extension") + " - Safari"];
+        return ["bwi-safari", this.i18nService.t("extension") + " - Safari"];
       case DeviceType.WindowsDesktop:
-        return ["fa-windows", this.i18nService.t("desktop") + " - Windows"];
+        return ["bwi-windows", this.i18nService.t("desktop") + " - Windows"];
       case DeviceType.MacOsDesktop:
-        return ["fa-apple", this.i18nService.t("desktop") + " - macOS"];
+        return ["bwi-apple", this.i18nService.t("desktop") + " - macOS"];
       case DeviceType.LinuxDesktop:
-        return ["fa-linux", this.i18nService.t("desktop") + " - Linux"];
+        return ["bwi-linux", this.i18nService.t("desktop") + " - Linux"];
       case DeviceType.ChromeBrowser:
-        return ["fa-globe", this.i18nService.t("webVault") + " - Chrome"];
+        return ["bwi-globe", this.i18nService.t("webVault") + " - Chrome"];
       case DeviceType.FirefoxBrowser:
-        return ["fa-globe", this.i18nService.t("webVault") + " - Firefox"];
+        return ["bwi-globe", this.i18nService.t("webVault") + " - Firefox"];
       case DeviceType.OperaBrowser:
-        return ["fa-globe", this.i18nService.t("webVault") + " - Opera"];
+        return ["bwi-globe", this.i18nService.t("webVault") + " - Opera"];
       case DeviceType.SafariBrowser:
-        return ["fa-globe", this.i18nService.t("webVault") + " - Safari"];
+        return ["bwi-globe", this.i18nService.t("webVault") + " - Safari"];
       case DeviceType.VivaldiBrowser:
-        return ["fa-globe", this.i18nService.t("webVault") + " - Vivaldi"];
+        return ["bwi-globe", this.i18nService.t("webVault") + " - Vivaldi"];
       case DeviceType.EdgeBrowser:
-        return ["fa-globe", this.i18nService.t("webVault") + " - Edge"];
+        return ["bwi-globe", this.i18nService.t("webVault") + " - Edge"];
       case DeviceType.IEBrowser:
-        return ["fa-globe", this.i18nService.t("webVault") + " - IE"];
+        return ["bwi-globe", this.i18nService.t("webVault") + " - IE"];
       case DeviceType.UnknownBrowser:
-        return ["fa-globe", this.i18nService.t("webVault") + " - " + this.i18nService.t("unknown")];
+        return [
+          "bwi-globe",
+          this.i18nService.t("webVault") + " - " + this.i18nService.t("unknown"),
+        ];
       default:
-        return ["fa-globe", this.i18nService.t("unknown")];
+        return ["bwi-globe", this.i18nService.t("unknown")];
     }
   }
 

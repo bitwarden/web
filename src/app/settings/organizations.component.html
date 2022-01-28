@@ -1,16 +1,16 @@
 <ng-container *ngIf="vault">
   <p *ngIf="!loaded" class="text-muted">
-    <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+    <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
     <span class="sr-only">{{ "loading" | i18n }}</span>
   </p>
   <ng-container *ngIf="loaded">
-    <ul class="fa-ul card-ul carets" *ngIf="organizations && organizations.length">
+    <ul class="bwi-ul card-ul carets" *ngIf="organizations && organizations.length">
       <li *ngFor="let o of organizations">
         <a [routerLink]="['/organizations', o.id]" class="text-body">
-          <i class="fa-li fa fa-caret-right" aria-hidden="true"></i> {{ o.name }}
+          <i class="bwi bwi-li bwi-caret-right" aria-hidden="true"></i> {{ o.name }}
           <ng-container *ngIf="!o.enabled">
             <i
-              class="fa fa-exclamation-triangle text-danger"
+              class="bwi bwi-exclamation-triangle text-danger"
               title="{{ 'organizationIsDisabled' | i18n }}"
               aria-hidden="true"
             ></i>
@@ -22,7 +22,7 @@
     <p *ngIf="!organizations || !organizations.length">{{ "noOrganizationsList" | i18n }}</p>
   </ng-container>
   <a href="#" routerLink="/settings/create-organization" class="btn btn-block btn-outline-primary">
-    <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+    <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
     {{ "newOrganization" | i18n }}
   </a>
 </ng-container>
@@ -33,7 +33,7 @@
       <small [appApiAction]="actionPromise" #action>
         <ng-container *ngIf="action.loading">
           <i
-            class="fa fa-spinner fa-spin text-muted"
+            class="bwi bwi-spinner bwi-spin text-muted"
             title="{{ 'loading' | i18n }}"
             aria-hidden="true"
           ></i>
@@ -47,13 +47,13 @@
       class="btn btn-sm btn-outline-primary ml-auto"
       *ngIf="!loaded || (organizations && organizations.length)"
     >
-      <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+      <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
       {{ "newOrganization" | i18n }}
     </a>
   </div>
   <ng-container *ngIf="!loaded">
     <i
-      class="fa fa-spinner fa-spin text-muted"
+      class="bwi bwi-spinner bwi-spin text-muted"
       title="{{ 'loading' | i18n }}"
       aria-hidden="true"
     ></i>
@@ -63,7 +63,7 @@
     <ng-container *ngIf="!organizations || !organizations.length">
       <p>{{ "noOrganizationsList" | i18n }}</p>
       <a href="#" routerLink="/settings/create-organization" class="btn btn-outline-primary">
-        <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+        <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
         {{ "newOrganization" | i18n }}
       </a>
     </ng-container>
@@ -77,7 +77,7 @@
             <a href="#" [routerLink]="['/organizations', o.id]">{{ o.name }}</a>
             <ng-container *ngIf="!o.enabled">
               <i
-                class="fa fa-exclamation-triangle text-danger"
+                class="bwi bwi-exclamation-triangle text-danger"
                 title="{{ 'organizationIsDisabled' | i18n }}"
                 aria-hidden="true"
               ></i>
@@ -85,7 +85,7 @@
             </ng-container>
             <ng-container *ngIf="showEnrolledStatus(o)">
               <i
-                class="fa fa-key"
+                class="bwi bwi-key"
                 appStopProp
                 title="{{ 'enrolledPasswordReset' | i18n }}"
                 aria-hidden="true"
@@ -103,7 +103,7 @@
                 aria-expanded="false"
                 appA11yTitle="{{ 'options' | i18n }}"
               >
-                <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+                <i class="bwi bwi-cog bwi-lg" aria-hidden="true"></i>
               </button>
               <div class="dropdown-menu dropdown-menu-right">
                 <a
@@ -113,7 +113,7 @@
                   appStopClick
                   (click)="toggleResetPasswordEnrollment(o)"
                 >
-                  <i class="fa fa-fw fa-key" aria-hidden="true"></i>
+                  <i class="bwi bwi-fw bwi-key" aria-hidden="true"></i>
                   {{ "enrollPasswordReset" | i18n }}
                 </a>
                 <a
@@ -123,7 +123,7 @@
                   appStopClick
                   (click)="toggleResetPasswordEnrollment(o)"
                 >
-                  <i class="fa fa-fw fa-undo" aria-hidden="true"></i>
+                  <i class="bwi bwi-fw bwi-undo" aria-hidden="true"></i>
                   {{ "withdrawPasswordReset" | i18n }}
                 </a>
                 <ng-container *ngIf="o.useSso && o.identifier">
@@ -134,7 +134,7 @@
                     appStopClick
                     (click)="unlinkSso(o)"
                   >
-                    <i class="fa fa-fw fa-chain-broken" aria-hidden="true"></i>
+                    <i class="bwi bwi-fw bwi-chain-broken" aria-hidden="true"></i>
                     {{ "unlinkSso" | i18n }}
                   </a>
                   <ng-template #linkSso>
@@ -142,7 +142,7 @@
                   </ng-template>
                 </ng-container>
                 <a class="dropdown-item text-danger" href="#" appStopClick (click)="leave(o)">
-                  <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>
+                  <i class="bwi bwi-fw bwi-sign-out" aria-hidden="true"></i>
                   {{ "leave" | i18n }}
                 </a>
               </div>

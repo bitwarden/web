@@ -31,15 +31,15 @@ const moduleRules = [
     test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
     exclude: /loading(|-white).svg/,
     generator: {
-      filename: "fonts/[name].[ext]",
+      filename: "fonts/[name][ext]",
     },
     type: "asset/resource",
   },
   {
-    test: /\.(jpe?g|png|gif|svg)$/i,
+    test: /\.(jpe?g|png|gif|svg|webp|avif)$/i,
     exclude: /.*(fontawesome-webfont)\.svg/,
     generator: {
-      filename: "images/[name].[ext]",
+      filename: "images/[name][ext]",
     },
     type: "asset/resource",
   },
@@ -76,11 +76,6 @@ const plugins = [
     template: "./src/connectors/duo.html",
     filename: "duo-connector.html",
     chunks: ["connectors/duo"],
-  }),
-  new HtmlWebpackPlugin({
-    template: "./src/connectors/u2f.html",
-    filename: "u2f-connector.html",
-    chunks: ["connectors/u2f"],
   }),
   new HtmlWebpackPlugin({
     template: "./src/connectors/webauthn.html",
@@ -123,7 +118,6 @@ const plugins = [
       { from: "./src/404", to: "404" },
       { from: "./src/images", to: "images" },
       { from: "./src/locales", to: "locales" },
-      { from: "./src/scripts", to: "scripts" },
       { from: "./node_modules/qrious/dist/qrious.min.js", to: "scripts" },
       { from: "./node_modules/braintree-web-drop-in/dist/browser/dropin.js", to: "scripts" },
       {
@@ -215,16 +209,12 @@ const webpackConfig = {
   entry: {
     "app/polyfills": "./src/app/polyfills.ts",
     "app/main": "./src/app/main.ts",
-    "connectors/u2f": "./src/connectors/u2f.js",
     "connectors/webauthn": "./src/connectors/webauthn.ts",
     "connectors/webauthn-fallback": "./src/connectors/webauthn-fallback.ts",
     "connectors/duo": "./src/connectors/duo.ts",
     "connectors/sso": "./src/connectors/sso.ts",
     "connectors/captcha": "./src/connectors/captcha.ts",
     theme_head: "./src/theme.js",
-  },
-  externals: {
-    u2f: "u2f",
   },
   optimization: {
     splitChunks: {

@@ -59,7 +59,7 @@ app-org-vault-groupings,
 
     .card-body a {
       @include themify($themes) {
-        color: themed("headingColor");
+        color: themed("textHeadingColor");
         font-weight: themed("linkWeight");
       }
 
@@ -77,8 +77,8 @@ app-org-vault-groupings,
     }
 
     li {
-      > .fa,
-      > div > .fa {
+      > .bwi,
+      > div > .bwi {
         cursor: pointer;
       }
     }
@@ -99,8 +99,8 @@ app-org-vault-groupings,
         }
       }
 
-      > .fa,
-      > div > .fa {
+      > .bwi,
+      > div > .bwi {
         @include themify($themes) {
           color: themed("linkColor");
         }

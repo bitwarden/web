@@ -1,6 +1,6 @@
 {
-  "name": "bitwarden-web",
-  "version": "2.25.0",
+  "name": "@bitwarden/web-vault",
+  "version": "2.25.1",
   "license": "GPL-3.0",
   "repository": "https://github.com/bitwarden/web",
   "scripts": {
@@ -101,6 +101,7 @@
     "npm": "~8"
   },
   "lint-staged": {
-    "*.{js,ts,css,scss,md}": "prettier --write"
+    "*": "prettier --ignore-unknown --write",
+    "*.png": "node scripts/optimize.js"
   }
 }

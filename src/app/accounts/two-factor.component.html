@@ -58,7 +58,11 @@
           </ng-container>
           <ng-container *ngIf="selectedProviderType === providerType.Yubikey">
             <p class="text-center">{{ "insertYubiKey" | i18n }}</p>
-            <img src="../../images/yubikey.jpg" class="rounded img-fluid mb-3" alt="" />
+            <picture>
+              <source srcset="../../images/yubikey.avif" type="image/avif" />
+              <source srcset="../../images/yubikey.webp" type="image/webp" />
+              <img src="../../images/yubikey.jpg" class="rounded img-fluid mb-3" alt="" />
+            </picture>
             <div class="form-group">
               <label for="code" class="sr-only">{{ "verificationCode" | i18n }}</label>
               <input
@@ -90,7 +94,7 @@
             </div>
           </ng-container>
           <i
-            class="fa fa-spinner text-muted fa-spin pull-right"
+            class="bwi bwi-spinner text-muted bwi-spin pull-right"
             title="{{ 'loading' | i18n }}"
             *ngIf="form.loading && selectedProviderType === providerType.WebAuthn"
             aria-hidden="true"
@@ -123,10 +127,10 @@
               "
             >
               <span>
-                <i class="fa fa-sign-in" aria-hidden="true"></i> {{ "continue" | i18n }}
+                <i class="bwi bwi-sign-in" aria-hidden="true"></i> {{ "continue" | i18n }}
               </span>
               <i
-                class="fa fa-spinner fa-spin"
+                class="bwi bwi-spinner bwi-spin"
                 title="{{ 'loading' | i18n }}"
                 aria-hidden="true"
               ></i>

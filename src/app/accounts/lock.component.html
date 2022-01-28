@@ -2,7 +2,7 @@
   <div class="row justify-content-md-center mt-5">
     <div class="col-5">
       <p class="text-center mb-4">
-        <i class="fa fa-lock fa-4x text-muted" aria-hidden="true"></i>
+        <i class="bwi bwi-lock bwi-4x text-muted" aria-hidden="true"></i>
       </p>
       <p class="lead text-center mx-4 mb-4">{{ "yourVaultIsLocked" | i18n }}</p>
       <div class="card d-block">
@@ -27,9 +27,9 @@
                 (click)="togglePassword()"
               >
                 <i
-                  class="fa fa-lg"
+                  class="bwi bwi-lg"
                   aria-hidden="true"
-                  [ngClass]="{ 'fa-eye': !showPassword, 'fa-eye-slash': showPassword }"
+                  [ngClass]="{ 'bwi-eye': !showPassword, 'bwi-eye-slash': showPassword }"
                 ></i>
               </button>
             </div>
@@ -44,11 +44,9 @@
               class="btn btn-primary btn-block btn-submit"
               [disabled]="form.loading"
             >
-              <span>
-                <i class="fa fa-unlock-alt" aria-hidden="true"></i> {{ "unlock" | i18n }}
-              </span>
+              <span> <i class="bwi bwi-unlock" aria-hidden="true"></i> {{ "unlock" | i18n }} </span>
               <i
-                class="fa fa-spinner fa-spin"
+                class="bwi bwi-spinner bwi-spin"
                 title="{{ 'loading' | i18n }}"
                 aria-hidden="true"
               ></i>

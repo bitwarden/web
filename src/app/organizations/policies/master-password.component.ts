@@ -20,7 +20,7 @@ export class MasterPasswordPolicy extends BasePolicy {
   templateUrl: "master-password.component.html",
 })
 export class MasterPasswordPolicyComponent extends BasePolicyComponent {
-  data = this.fb.group({
+  data = this.formBuilder.group({
     minComplexity: [null],
     minLength: [null],
     requireUpper: [null],
@@ -33,7 +33,7 @@ export class MasterPasswordPolicyComponent extends BasePolicyComponent {
   showKeyConnectorInfo: boolean = false;
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     i18nService: I18nService,
     private organizationService: OrganizationService
   ) {

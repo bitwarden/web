@@ -10,7 +10,7 @@
       (change)="changeMethod()"
     />
     <label class="form-check-label" for="method-card">
-      <i class="fa fa-fw fa-credit-card" aria-hidden="true"></i> {{ "creditCard" | i18n }}</label
+      <i class="bwi bwi-fw bwi-credit-card" aria-hidden="true"></i> {{ "creditCard" | i18n }}</label
     >
   </div>
   <div class="form-check form-check-inline mr-4" *ngIf="!hideBank">
@@ -24,7 +24,7 @@
       (change)="changeMethod()"
     />
     <label class="form-check-label" for="method-bank">
-      <i class="fa fa-fw fa-university" aria-hidden="true"></i> {{ "bankAccount" | i18n }}</label
+      <i class="bwi bwi-fw bwi-bank" aria-hidden="true"></i> {{ "bankAccount" | i18n }}</label
     >
   </div>
   <div class="form-check form-check-inline" *ngIf="!hidePaypal">
@@ -38,7 +38,7 @@
       (change)="changeMethod()"
     />
     <label class="form-check-label" for="method-paypal">
-      <i class="fa fa-fw fa-paypal" aria-hidden="true"></i> PayPal</label
+      <i class="bwi bwi-fw bwi-paypal" aria-hidden="true"></i> PayPal</label
     >
   </div>
   <div class="form-check form-check-inline" *ngIf="!hideCredit">
@@ -52,7 +52,7 @@
       (change)="changeMethod()"
     />
     <label class="form-check-label" for="method-credit">
-      <i class="fa fa-fw fa-dollar" aria-hidden="true"></i> {{ "accountCredit" | i18n }}</label
+      <i class="bwi bwi-fw bwi-dollar" aria-hidden="true"></i> {{ "accountCredit" | i18n }}</label
     >
   </div>
 </div>
@@ -87,7 +87,7 @@
           class="ml-auto"
           appA11yTitle="{{ 'learnMore' | i18n }}"
         >
-          <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+          <i class="bwi bwi-question-circle" aria-hidden="true"></i>
         </a>
       </div>
       <div id="stripe-card-cvc-element" class="form-control stripe-form-control"></div>
