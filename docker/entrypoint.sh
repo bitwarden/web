@@ -34,5 +34,4 @@ cp /etc/bitwarden/web/app-id.json /app/app-id.json
 chown -R $USERNAME:$GROUPNAME /app
 chown -R $USERNAME:$GROUPNAME /bitwarden_server
 
-exec gosu $USERNAME:$GROUPNAME dotnet /bitwarden_server/Server.dll \
-    /contentRoot=/app /webRoot=. /serveUnknown=false /webVault=true
+exec nginx -g daemon off;
