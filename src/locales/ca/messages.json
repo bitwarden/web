@@ -1740,7 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "El vostre pla inclou una prova gratuïta de 7 dies. El mètode de pagament no es cobrarà fins que no s'haja acabat la prova. La facturació es farà de manera recurrent cada $INTERVAL$. Podeu cancel·lar-ho en qualsevol moment."
+    "message": "El vostre pla inclou una prova gratuïta de 7 dies. El mètode de pagament no es cobrarà fins que no s'haja acabat la prova. Podeu cancel·lar-ho en qualsevol moment."
   },
   "paymentInformation": {
     "message": "Informació de pagament"
@@ -2660,7 +2660,7 @@
     "message": "Tornar a enviar invitació"
   },
   "resendEmail": {
-    "message": "Tornar a enviar l'email"
+    "message": "Torna a enviar l'email"
   },
   "hasBeenReinvited": {
     "message": "S'ha reconvidat a $USER$.",
@@ -3164,7 +3164,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "No sol·liciteu tornar a comprovar la frase de les empremtes dactilars",
+    "message": "No sol·liciteu tornar a comprovar la frase de les empremtes dactilars (No recomanat)",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -4381,16 +4381,16 @@
     "message": "Tipus"
   },
   "openIdConnectConfig": {
-    "message": "OpenID Connect Configuration"
+    "message": "Configuració OpenID Connect"
   },
   "samlSpConfig": {
-    "message": "SAML Service Provider Configuration"
+    "message": "Configuració del proveïdor de serveis SAML"
   },
   "samlIdpConfig": {
-    "message": "SAML Identity Provider Configuration"
+    "message": "Configuració del proveïdor d'identitats SAML"
   },
   "callbackPath": {
-    "message": "Callback Path"
+    "message": "Camí de retorn de trucada"
   },
   "signedOutCallbackPath": {
     "message": "Signed Out Callback Path"
@@ -4417,7 +4417,7 @@
     "message": "Additional/Custom Scopes (comma delimited)"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "Tipus de reclamació d'ID d'usuaris addicionals/personalitzats (delimitats per comes)"
   },
   "additionalEmailClaimTypes": {
     "message": "Tipus de reclamació de correu electrònic addicionals/personalitzats (delimitats per comes)"
@@ -4492,22 +4492,22 @@
     "message": "S'ha guardat la configuració de l'inici de sessió únic."
   },
   "sponsoredFamilies": {
-    "message": "Free Bitwarden Families"
+    "message": "Familias de Bitwarden gratis"
   },
   "sponsoredFamiliesEligible": {
-    "message": "You and your family are eligible for Free Bitwarden Families. Redeem with your personal email to keep your data secure even when you are not at work."
+    "message": "Tú y tu familia sois elegibles para Familias Bitwarden gratis. Canjealo con tu correo electrónico personal para mantener tus datos seguros incluso cuando no estés en el trabajo."
   },
   "sponsoredFamiliesEligibleCard": {
-    "message": "Redeem your Free Bitwarden for Families plan today to keep your data secure even when you are not at work."
+    "message": "Canjea tu plan gratuito de Bitwarden para familias hoy mismo para mantener tus datos seguros incluso cuando no estés en el trabajo."
   },
   "sponsoredFamiliesInclude": {
-    "message": "The Bitwarden for Families plan include"
+    "message": "El plan Bitwarden paraFamilias incluye"
   },
   "sponsoredFamiliesPremiumAccess": {
-    "message": "Premium access for up to 6 users"
+    "message": "Acceso Premium para un máximo de 6 usuarios"
   },
   "sponsoredFamiliesSharedCollections": {
-    "message": "Shared collections for Family secrets"
+    "message": "Colecciones compartidas para los secretos de familia"
   },
   "badToken": {
     "message": "The link is no longer valid. Please have the sponsor resend the offer."
@@ -4516,7 +4516,7 @@
     "message": "Reclaimed free plan"
   },
   "redeem": {
-    "message": "Redeem"
+    "message": "Bescanvia"
   },
   "sponsoredFamiliesSelectOffer": {
     "message": "Select the organization you would like sponsored"
@@ -4549,19 +4549,19 @@
     }
   },
   "sponsoredFamiliesOffer": {
-    "message": "Accept Free Bitwarden Families"
+    "message": "Acepta Bitwarden Familias gratuito"
   },
   "sponsoredFamiliesOfferRedeemed": {
-    "message": "Free Bitwarden Families offer successfully redeemed"
+    "message": "Oferta gratuita de Bitwarden Familias canjeada con éxito"
   },
   "redeemed": {
-    "message": "Redeemed"
+    "message": "Canjeado"
   },
   "redeemedAccount": {
-    "message": "Redeemed Account"
+    "message": "Cuenta canjeada"
   },
   "revokeAccount": {
-    "message": "Revoke account $NAME$",
+    "message": "Revocar la cuenta $NAME$",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4579,7 +4579,7 @@
     }
   },
   "freeFamiliesPlan": {
-    "message": "Free Families Plan"
+    "message": "Plan Familias Gratuito"
   },
   "redeemNow": {
     "message": "Redeem Now"
@@ -4678,7 +4678,7 @@
     "message": "Member Decryption Options"
   },
   "memberDecryptionPassDesc": {
-    "message": "Once authenticated, members will decrypt vault data using their Master Passwords."
+    "message": "Un vegada autenticats, els membres desxifraran les dades de la caixa forta amb les seues contrasenyes mestres."
   },
   "keyConnector": {
     "message": "Key Connector"
@@ -4735,6 +4735,6 @@
     "message": "The sponsorship offer has expired."
   },
   "freeWithSponsorship": {
-    "message": "FREE with sponsorship"
+    "message": "GRATIS con patrocinio"
   }
 }

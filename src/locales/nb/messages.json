@@ -167,7 +167,7 @@
     "message": "Boolsk verdi"
   },
   "cfTypeLinked": {
-    "message": "Linked",
+    "message": "Tilknyttet",
     "description": "This describes a field that is 'linked' (related) to another field."
   },
   "remove": {
@@ -316,7 +316,7 @@
     "message": "Etternavn"
   },
   "fullName": {
-    "message": "Full Name"
+    "message": "Fullt navn"
   },
   "address1": {
     "message": "Adresse 1"
@@ -904,7 +904,7 @@
     "message": "Endre e-postadresse"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Proceeding will change your account email address. It will not change the email address used for two-factor authentication. You can change this email address in the Two-Step Login settings."
+    "message": "Å fortsette vil endre din kontos e-post adresse. Det vil ikke endre e-postadressen som brukes ved 2-trinnsinnlogging. Du kan endre denne e-postadressen i 2-trinns innloggingsinnstillinger."
   },
   "newEmail": {
     "message": "Ny E-postadresse"
@@ -1006,7 +1006,7 @@
     "message": "Tømte organisasjonens hvelv."
   },
   "vaultAccessedByProvider": {
-    "message": "Vault accessed by provider."
+    "message": "Hvelv tilgjengelig av leverandør."
   },
   "purgeVaultDesc": {
     "message": "Fortsett nedenfor for å slette alle objektet og mapper i ditt hvelv. Objekter som tilhører en organisasjon som du deler med, vil ikke bli slettet."
@@ -1359,7 +1359,7 @@
     "message": "Er du sikker på at du vil fjerne denne sikkerhetsnøkkelen?"
   },
   "twoFactorWebAuthnAdd": {
-    "message": "Add a WebAuthn security key to your account"
+    "message": "Legg til en WebAuthn sikkerhetsnøkkel til kontoen din"
   },
   "readKey": {
     "message": "Les nøkkel"
@@ -1395,10 +1395,10 @@
     "message": "Det oppsto et problem med å lese sikkerhetsnøkkelen. Prøv igjen."
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+    "message": "På grunn av plattformbegrensninger, kan ikke WebAuthn brukes på alle Bitwarden-apper. Du bør aktivere en annen 2-trinnsinnloggingsleverandør, slik at du kan få tilgang til kontoen din når WebAuthn ikke kan brukes. Støttede plattformer:"
   },
   "twoFactorWebAuthnSupportWeb": {
-    "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
+    "message": "Netthvelv og nettleserutvidelser, på en datamaskin med en WebAuthn støttende nettleser (Chrome, Opera, Vivaldi, eller Firefox med FIDO U2F aktivert)."
   },
   "twoFactorRecoveryYourCode": {
     "message": "Din 2-trinnsinnloggingsgjenopprettingskode for Bitwarden"
@@ -2153,7 +2153,7 @@
     "message": "Vilkår"
   },
   "singleSignOn": {
-    "message": "Single Sign-On"
+    "message": "Enkelt pålogging"
   },
   "editPolicy": {
     "message": "Endre vilkår"
@@ -2177,7 +2177,7 @@
     "message": "Er du sikker på at du vil slette denne brukeren?"
   },
   "removeUserConfirmationKeyConnector": {
-    "message": "Warning! This user requires Key Connector to manage their encryption. Removing this user from your organization will permanently disable their account. This action cannot be undone. Do you want to proceed?"
+    "message": "Advarsel! Denne brukeren krever nøkkelkobling for å administrere krypteringen. Fjerner du denne brukeren fra organisasjonen din vil deaktivere kontoen sin. Denne handlingen kan ikke angres. Vil du fortsette?"
   },
   "externalId": {
     "message": "Ekstern ID"
@@ -2249,7 +2249,7 @@
     "message": "Bekreftet"
   },
   "clientOwnerEmail": {
-    "message": "Client Owner Email"
+    "message": "Klienteier e-post"
   },
   "owner": {
     "message": "Eier"
@@ -2258,7 +2258,7 @@
     "message": "Høyestetilgangsbrukeren som kan behandle alle aspekter av din organisasjon."
   },
   "clientOwnerDesc": {
-    "message": "This user should be independent of the Provider. If the Provider is disassociated with the organization, this user will maintain ownership of the organization."
+    "message": "Denne brukeren bør være uavhengig av leverandøren. Hvis leverandøren er uavhengig av organisasjonen, vil denne brukeren opprettholde eierskap til organisasjonen."
   },
   "admin": {
     "message": "Admin"
@@ -2369,7 +2369,7 @@
     }
   },
   "movedItemIdToOrg": {
-    "message": "Moved item $ID$ to an organization.",
+    "message": "Flyttet elementet $ID$ til en organisasjon.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2594,7 +2594,7 @@
     }
   },
   "createdOrganizationId": {
-    "message": "Created organization $ID$.",
+    "message": "Opprettet organisasjon $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2603,7 +2603,7 @@
     }
   },
   "addedOrganizationId": {
-    "message": "Added organization $ID$.",
+    "message": "La til organisasjon $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2612,7 +2612,7 @@
     }
   },
   "removedOrganizationId": {
-    "message": "Removed organization $ID$.",
+    "message": "Fjernet organisasjonen $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2621,7 +2621,7 @@
     }
   },
   "accessedClientVault": {
-    "message": "Accessed $ID$ organization vault.",
+    "message": "Benyttet $ID$ organisasjonshvelv.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2660,7 +2660,7 @@
     "message": "Send invitasjonen på nytt"
   },
   "resendEmail": {
-    "message": "Resend Email"
+    "message": "Send e-post på nytt"
   },
   "hasBeenReinvited": {
     "message": "$USER$ har blitt invitert på nytt.",
@@ -2717,10 +2717,10 @@
     "message": "Klarte ikke å bekrefte E-postadressen din. Prøv å sende en ny bekreftelses-E-post."
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "E-postbekreftelse kreves"
   },
   "emailVerificationRequiredDesc": {
-    "message": "You must verify your email to use this feature."
+    "message": "Du må bekrefte e-posten din for å bruke denne funksjonen."
   },
   "updateBrowser": {
     "message": "Oppdater nettleseren"
@@ -2882,14 +2882,14 @@
     "message": "Skriv inn din installasjons-ID"
   },
   "limitSubscriptionDesc": {
-    "message": "Set a seat limit for your subscription. Once this limit is reached, you will not be able to invite new users."
+    "message": "Angi en seteramme for ditt abonnement. Når denne grensen er nådd, vil du ikke kunne invitere nye brukere."
   },
   "maxSeatLimit": {
-    "message": "Maximum Seat Limit (optional)",
+    "message": "Maksimal setegrense (valgfritt)",
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
-    "message": "Max potential seat cost"
+    "message": "Maks. potensielle setekostnader"
   },
   "addSeats": {
     "message": "Legg til seter",
@@ -2900,7 +2900,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionDesc": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "Justeringer av ditt abonnement vil resultere i utsatt endring av dine faktureringsbeløp. Hvis nyinviterte brukere overstiger ditt abonnementssete, vil du umiddelbart få et betalt for ekstra brukere."
   },
   "subscriptionUserSeats": {
     "message": "Ditt abonnement tillater opptil $COUNT$ brukere.",
@@ -2912,25 +2912,25 @@
     }
   },
   "limitSubscription": {
-    "message": "Limit Subscription (Optional)"
+    "message": "Begrens abonnement (valgfritt)"
   },
   "subscriptionSeats": {
-    "message": "Subscription Seats"
+    "message": "Abonnements seter"
   },
   "subscriptionUpdated": {
-    "message": "Subscription updated"
+    "message": "Abonnement er oppdatert"
   },
   "additionalOptions": {
-    "message": "Additional Options"
+    "message": "Tilleggsvalg"
   },
   "additionalOptionsDesc": {
-    "message": "For additional help in managing your subscription, please contact Customer Support."
+    "message": "For ytterligere hjelp til å administrere ditt abonnement, ta kontakt med kundestøtte."
   },
   "subscriptionUserSeatsUnlimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "Justeringer av ditt abonnement vil resultere i utsatt endring av dine faktureringsbeløp. Hvis nyinviterte brukere overstiger ditt abonnementssete, vil du umiddelbart få et betalt for ekstra brukere."
   },
   "subscriptionUserSeatsLimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users until your $MAX$ seat limit is reached.",
+    "message": "Justeringer av ditt abonnement vil resultere i utsatt endring av dine faktureringsbeløp. Om nyinviterte brukere overskrider ditt abonnementssete, umiddelbart vil du få en skattekostnad for tilleggsbrukerne inntil din plass på $MAX$ er nådd.",
     "placeholders": {
       "max": {
         "content": "$1",
@@ -2939,7 +2939,7 @@
     }
   },
   "subscriptionFreePlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan.",
+    "message": "Du kan ikke invitere flere enn $COUNT$ brukere uten å oppgradere abonnementet ditt.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2948,7 +2948,7 @@
     }
   },
   "subscriptionFamiliesPlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "message": "Du kan ikke invitere flere enn $COUNT$ brukere uten å oppgradere planen. Kontakt kundestøtte for å oppgradere.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2957,7 +2957,7 @@
     }
   },
   "subscriptionSponsoredFamiliesPlan": {
-    "message": "Your subscription allows for a total of $COUNT$ users. Your plan is sponsored and billed to an external organization.",
+    "message": "Ditt abonnement tillater totalt $COUNT$ brukere. Din plan er sponset og fakturert til en ekstern organisasjon.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2966,7 +2966,7 @@
     }
   },
   "subscriptionMaxReached": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. You cannot invite more than $COUNT$ users without increasing your subscription seats.",
+    "message": "Justeringer av ditt abonnement vil resultere i autorerte endringer av dine regningssummer beløp. Du kan ikke invitere flere enn $COUNT$ brukere uten å øke abonnementssetene.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3184,10 +3184,10 @@
     "message": "Din API-nøkkel har full tilgang til organisasjonen. Det bør holdes hemmelig."
   },
   "userApiKeyDesc": {
-    "message": "Your API key can be used to authenticate in the Bitwarden CLI."
+    "message": "API-nøkkelen din kan brukes til å godkjenne i Bitwarden sin CLI."
   },
   "userApiKeyWarning": {
-    "message": "Your API key is an alternative authentication mechanism. It should be kept secret."
+    "message": "Din API-nøkkel er en alternativ autentiseringsmekanisme. Det bør holdes hemmelig."
   },
   "oauth2ClientCredentials": {
     "message": "OAuth 2.0-klientinformasjon",
@@ -3418,7 +3418,7 @@
     "message": "Organisasjons identifikator"
   },
   "ssoLogInWithOrgIdentifier": {
-    "message": "Log in using your organization's single sign-on portal. Please enter your organization's identifier to begin."
+    "message": "Logg inn ved hjelp av din organisasjons eneste signalportal. Angi din organisasjons identifikator for å begynne."
   },
   "enterpriseSingleSignOn": {
     "message": "Bedriftsinnlogging (SSO)"
@@ -3427,28 +3427,28 @@
     "message": "Du kan nå lukke denne fanen og fortsette i utvidelsen."
   },
   "includeAllTeamsFeatures": {
-    "message": "All Teams features, plus:"
+    "message": "Alle Lag funksjoner, plus:"
   },
   "includeSsoAuthentication": {
-    "message": "SSO Authentication via SAML2.0 and OpenID Connect"
+    "message": "SSO autentisering via SAML2.0 og OpenID Koble til"
   },
   "includeEnterprisePolicies": {
-    "message": "Enterprise Policies"
+    "message": "Bedriftens retningslinjer"
   },
   "ssoValidationFailed": {
-    "message": "SSO Validation Failed"
+    "message": "SSO validering feilet"
   },
   "ssoIdentifierRequired": {
-    "message": "Organization Identifier is required."
+    "message": "Organisasjonsidentifikator er påkrevd."
   },
   "unlinkSso": {
-    "message": "Unlink SSO"
+    "message": "Koble fra SSO"
   },
   "unlinkSsoConfirmation": {
-    "message": "Are you sure you want to unlink SSO for this organization?"
+    "message": "Er du sikker på at du vil oppheve koblingen til SSO for denne organisasjonen?"
   },
   "linkSso": {
-    "message": "Link SSO"
+    "message": "Lenke SSO"
   },
   "singleOrg": {
     "message": "Enkel organisasjon"
@@ -3463,19 +3463,19 @@
     "message": "Organisasjonsmedlemmer som ikke er eiere eller administratorer, og som allerede er medlem av en annen organisasjon, blir fjernet fra din organisasjon."
   },
   "requireSso": {
-    "message": "Single Sign-On Authentication"
+    "message": "Single på-på-autentisering"
   },
   "requireSsoPolicyDesc": {
-    "message": "Require users to log in with the Enterprise Single Sign-On method."
+    "message": "Krev brukere å logge inn med Enterprise Single Sign-On metoden."
   },
   "prerequisite": {
     "message": "Forutsetninger"
   },
   "requireSsoPolicyReq": {
-    "message": "The Single Organization enterprise policy must be enabled before activating this policy."
+    "message": "Virksomhetspolitikken for enkeltorganisasjoner må være i stand til å aktivere denne politikken."
   },
   "requireSsoPolicyReqError": {
-    "message": "Single Organization policy not enabled."
+    "message": "Retningslinjer for én organisasjon ikke aktivert."
   },
   "requireSsoExemption": {
     "message": "Organization Owners and Administrators are exempt from this policy's enforcement."
@@ -4106,79 +4106,79 @@
     "message": "Allow administrators in the organization to reset organization users' master password."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Users in the organization will need to self-enroll or be auto-enrolled before administrators can reset their master password."
+    "message": "Brukere i organisasjonen må bytte selv eller bli automatisk registrert før administratorer kan tilbakestille sitt hovedpassord."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Automatic Enrollment"
+    "message": "Automatisk registrering"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "All users will be automatically enrolled in password reset once their invite is accepted and will not be allowed to withdraw."
+    "message": "Alle brukere vil automatisk bli registrert i tilbakestilling av passord når deres invitasjon er akseptert og vil ikke kunne trekke tilbake."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
-    "message": "Users already in the organization will not be retroactively enrolled in password reset. They will need to self-enroll before administrators can reset their master password."
+    "message": "Brukere som allerede er i organisasjonen, vil ikke komme tilbake med tilbakestilling av passord. De må kjøre selv før administratorer kan tilbakestille passordet sitt."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Require new users to be enrolled automatically"
+    "message": "Krever at nye brukere inkluderes automatisk"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "This organization has an enterprise policy that will automatically enroll you in password reset. Enrollment will allow organization administrators to change your master password."
+    "message": "Denne organisasjonen har en virksomhet som automatisk registrerer deg innen tilbakestilling av passord. Innsending vil gjøre det mulig for organisasjonsadministratorer å endre passordet ditt."
   },
   "resetPasswordOrgKeysError": {
-    "message": "Organization Keys response is null"
+    "message": "Organisasjonsnøkler respons er null"
   },
   "resetPasswordDetailsError": {
-    "message": "Reset Password Details response is null"
+    "message": "Tilbakestilling av passorddetaljer er null"
   },
   "trashCleanupWarning": {
-    "message": "Items that have been in Trash more than 30 days will be automatically deleted."
+    "message": "Elementer som har vært i papirkurv mer enn 30 dager vil automatisk bli slettet."
   },
   "trashCleanupWarningSelfHosted": {
-    "message": "Items that have been in Trash for a while will be automatically deleted."
+    "message": "Elementer som har vært i papirkurven for en stund vil bli slettet automatisk."
   },
   "passwordPrompt": {
-    "message": "Master password re-prompt"
+    "message": "Forespørsel om hovedpassord på nytt"
   },
   "passwordConfirmation": {
-    "message": "Master password confirmation"
+    "message": "Superpassord bekreftelse"
   },
   "passwordConfirmationDesc": {
-    "message": "This action is protected. To continue, please re-enter your master password to verify your identity."
+    "message": "Denne handlingen er beskyttet. For å fortsette, skriv inn superpassordet på nytt for å bekrefte identiteten din."
   },
   "reinviteSelected": {
-    "message": "Resend Invitations"
+    "message": "Send invitasjoner på nytt"
   },
   "noSelectedUsersApplicable": {
-    "message": "This action is not applicable to any of the selected users."
+    "message": "Denne handlingen er ikke relevant for noen av de valgte brukerne."
   },
   "removeUsersWarning": {
-    "message": "Are you sure you want to remove the following users? The process may take a few seconds to complete and cannot be interrupted or canceled."
+    "message": "Er du sikker på at du vil fjerne følgende brukere? Prosessen kan ta noen sekunder å fullføre og ikke kan avbrytes eller avbrytes."
   },
   "theme": {
-    "message": "Theme"
+    "message": "Tema"
   },
   "themeDesc": {
-    "message": "Choose a theme for your web vault."
+    "message": "Velg et tema for netthvelvet ditt."
   },
   "themeSystem": {
-    "message": "Use System Theme"
+    "message": "Bruk systemtema"
   },
   "themeDark": {
-    "message": "Dark"
+    "message": "Mørkt"
   },
   "themeLight": {
-    "message": "Light"
+    "message": "Lyst"
   },
   "confirmSelected": {
     "message": "Bekreft valgte"
   },
   "bulkConfirmStatus": {
-    "message": "Bulk action status"
+    "message": "Massehandling status"
   },
   "bulkConfirmMessage": {
     "message": "Bekreftet vellykket."
   },
   "bulkReinviteMessage": {
-    "message": "Reinvited successfully."
+    "message": "Reinvitasjon vellykket."
   },
   "bulkRemovedMessage": {
     "message": "Fjernet"
@@ -4193,76 +4193,76 @@
     "message": "Fjern brukere"
   },
   "error": {
-    "message": "Error"
+    "message": "Feil"
   },
   "resetPasswordManageUsers": {
-    "message": "Manage Users must also be enabled with the Manage Password Reset permission"
+    "message": "Behandle brukere må også være aktivert med tilgang for 'Administrere passord'-tilbakestilling"
   },
   "setupProvider": {
-    "message": "Provider Setup"
+    "message": "Oppsett av søkeleverandør"
   },
   "setupProviderLoginDesc": {
-    "message": "You've been invited to setup a new provider. To continue, you need to log in or create a new Bitwarden account."
+    "message": "Du har blitt invitert til å sette opp en ny leverandør. For å fortsette, må du logge på eller lage en ny Bitwarden-konto."
   },
   "setupProviderDesc": {
-    "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
+    "message": "Skriv inn opplysningene nedenfor for å fullføre leverandøroppsettet. Kontakt kundestøtte hvis du har spørsmål."
   },
   "providerName": {
-    "message": "Provider Name"
+    "message": "Navn på søkeleverandør"
   },
   "providerSetup": {
-    "message": "The provider has been set up."
+    "message": "Leverandøren har blitt satt opp."
   },
   "clients": {
-    "message": "Clients"
+    "message": "Klienter"
   },
   "providerAdmin": {
-    "message": "Provider Admin"
+    "message": "Administrator for søkeleverandør"
   },
   "providerAdminDesc": {
-    "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
+    "message": "Høyestetilgangsbrukeren som kan behandle alle aspekter av leverandøren i tillegg til tilgang og styring av klientorganisasjoner."
   },
   "serviceUser": {
-    "message": "Service User"
+    "message": "Tjeneste bruker"
   },
   "serviceUserDesc": {
-    "message": "Service users can access and manage all client organizations."
+    "message": "Tjenestebrukere kan få tilgang til og administrere alle kundeorganisasjoner."
   },
   "providerInviteUserDesc": {
-    "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+    "message": "Inviter en ny bruker til leverandøren din ved å skrive inn E-postadressen til Bitwarden-kontoen deres nedenfor. Dersom de ikke allerede har en Bitwarden-konto, vil de bli bedt om å opprette en ny konto."
   },
   "joinProvider": {
-    "message": "Join Provider"
+    "message": "Koble til leverandør"
   },
   "joinProviderDesc": {
-    "message": "You've been invited to join the provider listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Du har blitt invitert til å bli med i leverandøren som er listet opp ovenfor. For å godkjenne invitasjonen, må du enten logge på eller lage en ny Bitwarden-konto."
   },
   "providerInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask a provider admin to send a new invitation."
+    "message": "Klarte ikke å godkjenne invitasjonen. Spør en leverandøradministrator om å sende en ny invitasjon."
   },
   "providerInviteAcceptedDesc": {
-    "message": "You can access this provider once an administrator confirms your membership. We'll send you an email when that happens."
+    "message": "Du kan få tilgang til denne leverandøren så fort en administrator godkjenner ditt medlemskap. Vi vil sende deg E-post når det skjer."
   },
   "providerUsersNeedConfirmed": {
-    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the provider until they are confirmed."
+    "message": "Du har brukere som har akseptert sin invitasjon, men som fortsatt må bekreftes. Brukere vil ikke ha tilgang til leverandøren før de er bekreftet."
   },
   "provider": {
-    "message": "Provider"
+    "message": "Leverandør"
   },
   "newClientOrganization": {
-    "message": "New Client Organization"
+    "message": "Ny klientorganisasjon"
   },
   "newClientOrganizationDesc": {
-    "message": "Create a new client organization that will be associated with you as the provider. You will be able to access and manage this organization."
+    "message": "Opprett en ny bestillerorganisasjon som vil være tilknyttet deg som leverandør. Du vil kunne få tilgang til og styre denne organisasjonen."
   },
   "addExistingOrganization": {
-    "message": "Add Existing Organization"
+    "message": "Legg til eksisterende organisasjon"
   },
   "myProvider": {
-    "message": "My Provider"
+    "message": "Min leverandør"
   },
   "addOrganizationConfirmation": {
-    "message": "Are you sure you want to add $ORGANIZATION$ as a client to $PROVIDER$?",
+    "message": "Er du sikker på at du vil legge til $ORGANIZATION$ som klient til $PROVIDER$-?",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4275,10 +4275,10 @@
     }
   },
   "organizationJoinedProvider": {
-    "message": "Organization was successfully added to the provider"
+    "message": "Organisasjonen ble lagt til i leverandøren"
   },
   "accessingUsingProvider": {
-    "message": "Accessing organization using provider $PROVIDER$",
+    "message": "Tilgang til organisasjon med leverandør $PROVIDER$",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4287,7 +4287,7 @@
     }
   },
   "providerIsDisabled": {
-    "message": "Provider is disabled."
+    "message": "Leverandør er deaktivert."
   },
   "providerUpdated": {
     "message": "Provider updated"
@@ -4510,31 +4510,31 @@
     "message": "Shared collections for Family secrets"
   },
   "badToken": {
-    "message": "The link is no longer valid. Please have the sponsor resend the offer."
+    "message": "Lenken er ikke lenger gyldig. Vennligst ha sponsor på nytt tilbudet."
   },
   "reclaimedFreePlan": {
-    "message": "Reclaimed free plan"
+    "message": "Ny gratis plan"
   },
   "redeem": {
-    "message": "Redeem"
+    "message": "Løs inn"
   },
   "sponsoredFamiliesSelectOffer": {
-    "message": "Select the organization you would like sponsored"
+    "message": "Velg den organisasjonen du ønsker å ha sponset"
   },
   "familiesSponsoringOrgSelect": {
-    "message": "Which Free Families offer would you like to redeem?"
+    "message": "Hvilket gratis familier tilbyr deg å innløse?"
   },
   "sponsoredFamiliesEmail": {
-    "message": "Enter your personal email to redeem Bitwarden Families"
+    "message": "Skriv inn din personlige e-post til Bitwarden sin familier"
   },
   "sponsoredFamiliesLeaveCopy": {
-    "message": "If you leave or are removed from the sponsoring organization, your Families plan will expire at the end of the billing period."
+    "message": "Hvis du forlater eller fjernes fra sponsor organisasjonen, vil din familieplan utløpe etter utløpet av faktureringsperioden."
   },
   "acceptBitwardenFamiliesHelp": {
-    "message": "Accept offer for an existing organization or create a new Families organization."
+    "message": "Godta tilbudet til en eksisterende organisasjon eller opprett en ny Familie-organisasjon."
   },
   "setupSponsoredFamiliesLoginDesc": {
-    "message": "You've been offered a free Bitwarden Families Plan Organization. To continue, you need to log in to the account that received the offer."
+    "message": "Du har blitt tilbudt en gratis Bitwarden Familier Planlegg-organisasjon. For å fortsette må du logge inn på kontoen som mottok tilbudet."
   },
   "sponsoredFamiliesAcceptFailed": {
     "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
