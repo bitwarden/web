@@ -148,12 +148,13 @@ export class OrganizationSubscriptionComponent implements OnInit {
   }
 
   async manageBillingSync() {
-    const hasBillingKey = this.apiKeyInformation.some((i) => i.keyType === OrganizationApiKeyType.BillingSync);
+    const hasBillingToken = this.apiKeyInformation.some((i) => i.keyType === OrganizationApiKeyType.BillingSync);
     await this.modalService.openViewRef(
       BillingSyncApiKeyComponent,
       this.setupBillingSyncModalRef,
       (comp) => {
         comp.organizationId = this.organizationId;
+        comp.hasBillingToken = hasBillingToken;
     });
   }
 

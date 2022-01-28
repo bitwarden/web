@@ -8,7 +8,9 @@
       ngNativeValidate
     >
       <div class="modal-header">
-        <h2 class="modal-title" id="billingSyncApiKeyTitle">Change this</h2>
+        <h2 class="modal-title" id="billingSyncApiKeyTitle">
+          {{ ( hasBillingToken ? 'generateBillingSyncToken' : 'viewBillingSyncToken' ) | i18n }}
+        </h2>
         <button
           type="button"
           class="close"
@@ -30,6 +32,7 @@
           Rotate Billing Warning here
         </app-callout>
         <div *ngIf="clientSecret && !showRotateScreen">
+          <p>{{ 'copyPasteBillingSync' | i18n }}</p>
           <label for="clientSecret">Billing Sync Key</label>
           <div class="input-group">
             <input id="clientSecret"
@@ -49,6 +52,7 @@
               </button>
             </div>
           </div>
+          <p class="mt-4">{{ 'billingSyncCanAccess' | i18n }}</p>
         </div>
       </div>
       <div class="modal-footer">

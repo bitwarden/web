@@ -13,6 +13,7 @@ import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.se
 })
 export class BillingSyncApiKeyComponent {
   organizationId: string;
+  hasBillingToken: boolean;
 
   showRotateScreen: boolean;
   masterPassword: Verification;
