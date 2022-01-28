@@ -32,6 +32,6 @@ mkhomedir_helper $USERNAME
 chown -R $USERNAME:$GROUPNAME /etc/bitwarden
 cp /etc/bitwarden/web/app-id.json /app/app-id.json
 chown -R $USERNAME:$GROUPNAME /app
-chown -R $USERNAME:$GROUPNAME /bitwarden_server
+#chown -R $USERNAME:$GROUPNAME /bitwarden_server
 
-exec nginx -g daemon off;
+#exec nginx -g 'daemon off;'
