@@ -111,6 +111,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
       this.sortBy = sortBy;
       this.sortedDescending = true;
     }
+  }
 
     if (sortBy === "lastEdited") {
       if (this.sortedDescending) {
@@ -295,6 +296,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     } else if (value === cipher.login.totp) {
       value = await this.totpService.getCode(value);
     }
+  }
 
     if (!cipher.viewPassword) {
       return;
