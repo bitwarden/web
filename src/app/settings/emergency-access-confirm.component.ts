@@ -6,11 +6,10 @@ import {
     Output,
 } from '@angular/core';
 
-import { ConstantsService } from 'jslib-common/services/constants.service';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { Utils } from 'jslib-common/misc/utils';
 
@@ -30,7 +29,7 @@ export class EmergencyAccessConfirmComponent implements OnInit {
     fingerprint: string;
 
     constructor(private apiService: ApiService, private cryptoService: CryptoService,
-        private storageService: StorageService) { }
+        private stateService: StateService, private logService: LogService) { }
 
     async ngOnInit() {
         try {
@@ -42,7 +41,9 @@ export class EmergencyAccessConfirmComponent implements OnInit {
                     this.fingerprint = fingerprint.join('-');
                 }
             }
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
         this.loading = false;
     }
 
@@ -52,11 +53,13 @@ export class EmergencyAccessConfirmComponent implements OnInit {
         }
 
         if (this.dontAskAgain) {
-            await this.storageService.save(ConstantsService.autoConfirmFingerprints, true);
+            await this.stateService.setAutoConfirmFingerprints(true);
         }
 
         try {
             this.onConfirmed.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }

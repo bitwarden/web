@@ -11,10 +11,10 @@ import {
     Router,
 } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { StorageRequest } from 'jslib-common/models/request/storageRequest';
 
@@ -40,8 +40,8 @@ export class AdjustStorageComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private router: Router,
-        private activatedRoute: ActivatedRoute) { }
+        private platformUtilsService: PlatformUtilsService, private router: Router,
+        private activatedRoute: ActivatedRoute, private logService: LogService) { }
 
     async submit() {
         try {
@@ -72,17 +72,16 @@ export class AdjustStorageComponent {
             await this.formPromise;
             this.onAdjusted.emit(this.storageAdjustment);
             if (paymentFailed) {
-                this.toasterService.popAsync({
-                    body: this.i18nService.t('couldNotChargeCardPayInvoice'),
-                    type: 'warning',
-                    timeout: 10000,
-                });
+                this.platformUtilsService.showToast('warning', null,
+                    this.i18nService.t('couldNotChargeCardPayInvoice'), { timeout: 10000 });
                 this.router.navigate(['../billing'], { relativeTo: this.activatedRoute });
             } else {
-                this.toasterService.popAsync('success', null,
+                this.platformUtilsService.showToast('success', null,
                     this.i18nService.t('adjustedStorage', request.storageGbAdjustment.toString()));
             }
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     cancel() {

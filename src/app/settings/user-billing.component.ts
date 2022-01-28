@@ -3,12 +3,11 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { BillingResponse } from 'jslib-common/models/response/billingResponse';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { PaymentMethodType } from 'jslib-common/enums/paymentMethodType';
@@ -34,7 +33,8 @@ export class UserBillingComponent implements OnInit {
     verifyBankPromise: Promise<any>;
 
     constructor(protected apiService: ApiService, protected i18nService: I18nService,
-        protected toasterService: ToasterService, protected platformUtilsService: PlatformUtilsService) { }
+        protected platformUtilsService: PlatformUtilsService,
+        private logService: LogService) { }
 
     async ngOnInit() {
         await this.load();
@@ -65,9 +65,11 @@ export class UserBillingComponent implements OnInit {
             request.amount2 = this.verifyAmount2;
             this.verifyBankPromise = this.apiService.postOrganizationVerifyBank(this.organizationId, request);
             await this.verifyBankPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('verifiedBankAccount'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('verifiedBankAccount'));
             this.load();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     addCredit() {

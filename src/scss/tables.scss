@@ -10,12 +10,14 @@
         }
 
         & > a {
-            @include themify($themes) {
-                color: themed('tableLinkColor');
-            }
-            &:hover {
+            &:not(.badge) {
                 @include themify($themes) {
-                    color: themed('tableLinkColorHover');
+                    color: themed('tableLinkColor');
+                }
+                &:hover {
+                    @include themify($themes) {
+                        color: themed('tableLinkColorHover');
+                    }
                 }
             }
         }
@@ -64,6 +66,10 @@
         .dropdown-menu {
             line-height: $line-height-base;
         }
+    }
+
+    td.table-action-right {
+        text-align: right;
     }
 
     tr:not(:hover) td.table-list-options {

@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Wartość logiczna"
   },
+  "cfTypeLinked": {
+    "message": "Powiązane pole",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Usuń"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Nazwisko"
+  },
+  "fullName": {
+    "message": "Imię i nazwisko"
   },
   "address1": {
     "message": "Adres 1"
@@ -833,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "Klucze szyfrowania konta są unikalne dla każdego użytkownika Bitwarden, więc nie możesz zaimportować zaszyfrowanego pliku eksportu na inne konto."
   },
-  "exportMasterPassword": {
-    "message": "Wpisz hasło główne, aby wyeksportować dane z sejfu."
-  },
   "export": {
     "message": "Eksportuj"
   },
@@ -899,6 +903,9 @@
   "changeEmail": {
     "message": "Zmień adres e-mail"
   },
+  "changeEmailTwoFactorWarning": {
+    "message": "Kontynuowanie spowoduje zmianę adresu e-mail konta. Nie spowoduje to zmiany adresu używanego do logowania dwustopniowego. Możesz zmienić ten adres w ustawieniach logowania dwustopniowego."
+  },
   "newEmail": {
     "message": "Nowy adres e-mail"
   },
@@ -921,10 +928,10 @@
     "message": "Adres e-mail został zmieniony"
   },
   "logBackIn": {
-    "message": "Proszę zalogować się ponownie."
+    "message": "Zaloguj się ponownie."
   },
   "logBackInOthersToo": {
-    "message": "Proszę zalogować się ponownie. Jeśli używasz innych aplikacji Bitwarden, wyloguj się i zaloguj ponownie również w nich."
+    "message": "Zaloguj się ponownie. Jeśli używasz innych aplikacji Bitwarden, wyloguj się i zaloguj ponownie również w nich."
   },
   "changeMasterPassword": {
     "message": "Zmień hasło główne"
@@ -997,6 +1004,9 @@
   },
   "purgedOrganizationVault": {
     "message": "Sejf organizacji został wyczyszczony."
+  },
+  "vaultAccessedByProvider": {
+    "message": "Dostęp do sejfu przez dostawcę."
   },
   "purgeVaultDesc": {
     "message": "Kontynuuj poniżej, aby usunąć wszystkie elementy i foldery z sejfu. Elementy udostępnione organizacji nie zostaną usunięte."
@@ -1730,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Twój plan zawiera 7-dniowy okres próbny. W tym czasie nie poniesiesz żadnych kosztów. Płatność będzie realizowana co $INTERVAL$. Możesz zrezygnować z niego w każdej chwili.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Twój plan zawiera 7-dniowy okres próbny. W tym czasie nie poniesiesz żadnych kosztów. Możesz zrezygnować z niego w każdej chwili."
   },
   "paymentInformation": {
     "message": "Informacje o płatności"
@@ -2125,7 +2129,7 @@
     "message": "Czy na pewno chcesz opuścić tę organizację?"
   },
   "leftOrganization": {
-    "message": "Opuściłeś organizację."
+    "message": "Nie należysz już do tej organizacji."
   },
   "defaultCollection": {
     "message": "Domyślna kolekcja"
@@ -2148,6 +2152,9 @@
   "policies": {
     "message": "Zasady"
   },
+  "singleSignOn": {
+    "message": "Logowanie jednokrotne"
+  },
   "editPolicy": {
     "message": "Edytuj zasady"
   },
@@ -2168,6 +2175,9 @@
   },
   "removeUserConfirmation": {
     "message": "Czy na pewno chcesz usunąć tego użytkownika?"
+  },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Uwaga! Ten użytkownik wymaga połączenia kluczy do zarządzania szyfrowaniem. Usunięcie tego użytkownika z Twojej organizacji spowoduje trwałe wyłączenie jego konta. Tej czynności nie można cofnąć. Czy chcesz kontynuować?"
   },
   "externalId": {
     "message": "Identyfikator zewnętrzny"
@@ -2238,11 +2248,17 @@
   "confirmed": {
     "message": "Potwierdzone"
   },
+  "clientOwnerEmail": {
+    "message": "Adres e-mail właściciela organizacji"
+  },
   "owner": {
     "message": "Właściciel"
   },
   "ownerDesc": {
     "message": "Użytkownik z najwyższym uprawnieniem, który może zarządzać wszystkimi ustawieniami organizacji."
+  },
+  "clientOwnerDesc": {
+    "message": "Ten użytkownik powinien być niezależny od dostawcy. Jeśli dostawca zostanie odłączony od organizacji, użytkownik ten zachowa własność organizacji."
   },
   "admin": {
     "message": "Administrator"
@@ -2577,6 +2593,42 @@
       }
     }
   },
+  "createdOrganizationId": {
+    "message": "Organizacja $ID$ została utworzona.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "addedOrganizationId": {
+    "message": "Organizacja $ID$ została dodana.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "removedOrganizationId": {
+    "message": "Organizacja $ID$ została usunięta.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "accessedClientVault": {
+    "message": "Dostęp do sejfu organizacji $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
   "device": {
     "message": "Urządzenie"
   },
@@ -2606,6 +2658,9 @@
   },
   "resendInvitation": {
     "message": "Wyślij ponownie zaproszenie"
+  },
+  "resendEmail": {
+    "message": "Wyślij e-mail ponownie"
   },
   "hasBeenReinvited": {
     "message": "Użytkownik $USER$ został ponownie zaproszony.",
@@ -2677,7 +2732,7 @@
     "message": "Dołącz do organizacji"
   },
   "joinOrganizationDesc": {
-    "message": "Zostałeś zaproszony do dołączenia do poniższej organizacji. Aby zaakceptować zaproszenie, musisz się zalogować lub utworzyć nowe konto Bitwarden."
+    "message": "Zostałeś zaproszony do dołączenia do poniższej organizacji. Aby zaakceptować zaproszenie, musisz zalogować się lub utworzyć nowe konto Bitwarden."
   },
   "inviteAccepted": {
     "message": "Zaproszenie zostało zaakceptowane"
@@ -2753,15 +2808,11 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Zmień plan",
+    "message": "Ulepsz plan",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "Zaktualizuj swoje konto do innego planu, podając poniższe informacje. Upewnij się, że do konta została dodana aktywna metoda płatności.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
-  "changeBillingPlanDesc": {
-    "message": "Jeśli chcesz zmienić swój plan, skontaktuj się z działem obsługi klienta. Upewnij się, że dodałeś do swojego konta aktywną formę płatności.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
@@ -2830,6 +2881,16 @@
   "enterInstallationId": {
     "message": "Wpisz identyfikator instalacji"
   },
+  "limitSubscriptionDesc": {
+    "message": "Ustaw limit liczby stanowisk subskrypcji. Po osiągnięciu tego limitu nie będziesz mógł zapraszać nowych użytkowników."
+  },
+  "maxSeatLimit": {
+    "message": "Maksymalna liczba stanowisk (opcjonalnie)",
+    "description": "Upper limit of seats to allow through autoscaling"
+  },
+  "maxSeatCost": {
+    "message": "Maksymalny potencjalny koszt stanowisk"
+  },
   "addSeats": {
     "message": "Dodaj stanowiska",
     "description": "Seat = User Seat"
@@ -2838,8 +2899,74 @@
     "message": "Usuń stanowiska",
     "description": "Seat = User Seat"
   },
+  "subscriptionDesc": {
+    "message": "Zmiany w subskrypcji spowodują proporcjonalne zmiany w rozliczeniach. Jeśli nowo zaproszeni użytkownicy przekroczą liczbę stanowisk w subskrypcji, otrzymasz proporcjonalną opłatę za dodatkowych użytkowników."
+  },
   "subscriptionUserSeats": {
     "message": "Twoja subskrypcja pozwala na łączną liczbę $COUNT$ użytkowników.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "limitSubscription": {
+    "message": "Limit subskrypcji (opcjonalnie)"
+  },
+  "subscriptionSeats": {
+    "message": "Liczba stanowisk"
+  },
+  "subscriptionUpdated": {
+    "message": "Subskrypcja została zaktualizowana"
+  },
+  "additionalOptions": {
+    "message": "Dodatkowe opcje"
+  },
+  "additionalOptionsDesc": {
+    "message": "Aby uzyskać dodatkową pomoc w zarządzaniu subskrypcją, skontaktuj się z działem obsługi klienta."
+  },
+  "subscriptionUserSeatsUnlimitedAutoscale": {
+    "message": "Zmiany w subskrypcji spowodują proporcjonalne zmiany w rozliczeniach. Jeśli nowo zaproszeni użytkownicy przekroczą liczbę stanowisk w subskrypcji, otrzymasz proporcjonalną opłatę za dodatkowych użytkowników."
+  },
+  "subscriptionUserSeatsLimitedAutoscale": {
+    "message": "Zmiany w subskrypcji spowodują proporcjonalne zmiany w rozliczeniach. Jeśli nowo zaproszeni użytkownicy przekroczą liczbę stanowisk w subskrypcji, otrzymasz proporcjonalną opłatę za dodatkowych użytkowników, aż do osiągnięcia limitu maksymalnej liczby stanowisk.",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "W obecnym planie nie możesz zaprosić więcej niż $COUNT$ użytkowników.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "W obecnym planie nie możesz zaprosić więcej niż $COUNT$ użytkowników. Aby ulepszyć plan, skontaktuj się z działem obsługi klienta.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Twoja subskrypcja pozwala na utworzenie $COUNT$ użytkowników. Twój plan jest sponsorowany i opłacany przez zewnętrzną organizację.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionMaxReached": {
+    "message": "Zmiany w subskrypcji spowodują proporcjonalne zmiany w rozliczeniach. Nie można zaprosić więcej niż $COUNT$ użytkowników bez zwiększenia liczby stanowisk w subskrypcji.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3282,7 +3409,7 @@
     "message": "Ustaw hasło główne"
   },
   "ssoCompleteRegistration": {
-    "message": "Aby zakończyć logowanie jednokrotne SSO, ustaw hasło główne, aby uzyskać dostęp do sejfu."
+    "message": "W celu zakończenia jednokrotnego logowania SSO, ustaw hasło główne, aby uzyskać dostęp do sejfu."
   },
   "identifier": {
     "message": "Identyfikator"
@@ -3298,10 +3425,6 @@
   },
   "ssoHandOff": {
     "message": "Możesz teraz zamknąć tę kartę i kontynuować w rozszerzeniu."
-  },
-  "businessPortal": {
-    "message": "Portal biznesowy",
-    "description": "The web portal used by business organizations for configuring certain features."
   },
   "includeAllTeamsFeatures": {
     "message": "Wszystkie funkcje zespołów oraz:"
@@ -3323,9 +3446,6 @@
   },
   "linkSso": {
     "message": "Połącz logowanie jednokrotne SSO"
-  },
-  "webPoliciesDeprecationWarning": {
-    "message": "Miejsce konfiguracji zasady zostało przeniesione i ta strona zostanie wkrótce wycofana. Kliknij poniżej, aby przejść do zasad przedsiębiorstwa."
   },
   "singleOrg": {
     "message": "Pojedyncza organizacja"
@@ -3707,16 +3827,13 @@
     "message": "Podatek"
   },
   "custom": {
-    "message": "Niestandardowa"
+    "message": "Niestandardowe"
   },
   "customDesc": {
     "message": "Umożliwia zaawansowaną kontrolę uprawnień użytkownika."
   },
   "permissions": {
     "message": "Uprawnienia"
-  },
-  "accessBusinessPortal": {
-    "message": "Dostęp do portalu biznesowego"
   },
   "accessEventLogs": {
     "message": "Dostęp do dziennika zdarzeń"
@@ -3727,11 +3844,29 @@
   "accessReports": {
     "message": "Dostęp do raportów"
   },
+  "missingPermissions": {
+    "message": "Nie posiadasz uprawnień do wykonania tej akcji."
+  },
   "manageAllCollections": {
     "message": "Zarządzaj wszystkimi kolekcjami"
   },
+  "createNewCollections": {
+    "message": "Utwórz nowe kolekcje"
+  },
+  "editAnyCollection": {
+    "message": "Edytuj dowolną kolekcję"
+  },
+  "deleteAnyCollection": {
+    "message": "Usuń dowolną kolekcję"
+  },
   "manageAssignedCollections": {
     "message": "Zarządzaj przypisanymi kolekcjami"
+  },
+  "editAssignedCollections": {
+    "message": "Edytuj przypisane kolekcje"
+  },
+  "deleteAssignedCollections": {
+    "message": "Usuń przypisane kolekcje"
   },
   "manageGroups": {
     "message": "Zarządzaj grupami"
@@ -3748,11 +3883,20 @@
   "manageResetPassword": {
     "message": "Zarządzaj resetowaniem hasła"
   },
-  "disableRequireSsoError": {
-    "message": "Musisz wyłączyć zasadę uwierzytelniania logowaniem jednokrotnym przed wyłączeniem tej zasady."
+  "disableRequiredError": {
+    "message": "Przed wyłączeniem tej zasady, musisz wyłączyć zasadę $POLICYNAME$.",
+    "placeholders": {
+      "policyName": {
+        "content": "$1",
+        "example": "Single Sign-On Authentication"
+      }
+    }
   },
   "personalOwnershipPolicyInEffect": {
     "message": "Zasada organizacji ma wpływ na opcję własności elementów."
+  },
+  "personalOwnershipPolicyInEffectImports": {
+    "message": "Zasada organizacji uniemożliwia importowanie elementów do Twojego sejfu."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Wyłącz opcję własności osobistej dla użytkowników organizacji"
@@ -3910,6 +4054,24 @@
       }
     }
   },
+  "eventResetSsoLink": {
+    "message": "Resetuj link logowania jednokrotnego SSO dla użytkownika $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "firstSsoLogin": {
+    "message": "$ID$ zalogował się przy użyciu SSO po raz pierwszy",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Zresetuj hasło"
   },
@@ -3956,7 +4118,7 @@
     "message": "Automatycznie rejestruj nowych użytkowników"
   },
   "resetPasswordAutoEnrollInviteWarning": {
-    "message": "Ta organizacja posiada zasadę, która automatycznie rejestruje użytkowników do resetowania hasła. Rejestracja zezwala administratorom organizacji na zmianę Twojego hasła głównego."
+    "message": "Ta organizacja posługuje się zasadą, która automatycznie rejestruje użytkowników do resetowania hasła. Rejestracja umożliwia administratorom organizacji zmianę Twojego hasła głównego."
   },
   "resetPasswordOrgKeysError": {
     "message": "Odpowiedź kluczy organizacji jest pusta"
@@ -3971,7 +4133,7 @@
     "message": "Elementy znajdujące się w koszu od dłuższego czasu zostaną automatycznie usunięte."
   },
   "passwordPrompt": {
-    "message": "Powtórz hasło główne"
+    "message": "Potwierdź hasłem głównym"
   },
   "passwordConfirmation": {
     "message": "Potwierdź hasło główne"
@@ -3987,6 +4149,21 @@
   },
   "removeUsersWarning": {
     "message": "Czy na pewno chcesz usunąć następujących użytkowników? Proces może potrwać kilka sekund i nie może zostać przerwany lub anulowany."
+  },
+  "theme": {
+    "message": "Motyw"
+  },
+  "themeDesc": {
+    "message": "Wybierz motyw dla sejfu internetowego."
+  },
+  "themeSystem": {
+    "message": "Użyj motywu systemowego"
+  },
+  "themeDark": {
+    "message": "Ciemny"
+  },
+  "themeLight": {
+    "message": "Jasny"
   },
   "confirmSelected": {
     "message": "Potwierdź zaznaczone"
@@ -4017,5 +4194,544 @@
   },
   "resetPasswordManageUsers": {
     "message": "Zasada \"Zarządzaj użytkownikami\" musi być włączona wraz z uprawnieniem \"Zarządzaj resetowaniem hasła\""
+  },
+  "setupProvider": {
+    "message": "Ustawienia dostawcy"
+  },
+  "setupProviderLoginDesc": {
+    "message": "Zostałeś zaproszony do konfiguracji nowego dostawcy. Aby kontynuować, zaloguj się lub utwórz nowe konto Bitwarden."
+  },
+  "setupProviderDesc": {
+    "message": "Wpisz dane, aby zakończyć konfigurację dostawcy. W razie pytań skontaktuj się z działem obsługi klienta."
+  },
+  "providerName": {
+    "message": "Nazwa dostawcy"
+  },
+  "providerSetup": {
+    "message": "Dostawca został skonfigurowany."
+  },
+  "clients": {
+    "message": "Klienci"
+  },
+  "providerAdmin": {
+    "message": "Administrator dostawcy"
+  },
+  "providerAdminDesc": {
+    "message": "Użytkownik z najwyższym uprawnieniem, który może zarządzać wszystkimi ustawieniami dostawcy oraz uzyskiwać dostęp do organizacji klientów i zarządzać nimi."
+  },
+  "serviceUser": {
+    "message": "Serwisant"
+  },
+  "serviceUserDesc": {
+    "message": "Serwisant może uzyskać dostęp do wszystkich klientów organizacji i nimi zarządzać."
+  },
+  "providerInviteUserDesc": {
+    "message": "Zaproś nowego użytkownika do Twojego dostawcy poprzez wpisanie poniżej jego adresu e-mail. Jeśli nie posiada on jeszcze konta Bitwarden, zostanie poproszony o jego utworzenie."
+  },
+  "joinProvider": {
+    "message": "Dołącz do dostawcy"
+  },
+  "joinProviderDesc": {
+    "message": "Zostałeś zaproszony do dołączenia do poniższego dostawcy. Aby zaakceptować zaproszenie, musisz zalogować się lub utworzyć nowe konto Bitwarden."
+  },
+  "providerInviteAcceptFailed": {
+    "message": "Nie można zaakceptować zaproszenia. Poproś administratora o wysłanie nowego zaproszenia."
+  },
+  "providerInviteAcceptedDesc": {
+    "message": "Dostęp do tego dostawcy otrzymasz po potwierdzeniu członkostwa przez administratora. Dostaniesz wtedy wiadomość e-mail."
+  },
+  "providerUsersNeedConfirmed": {
+    "message": "Posiadasz użytkowników, którzy zaakceptowali zaproszenie, ale muszą jeszcze zostać potwierdzeni. Użytkownicy nie będą posiadali dostępu do dostawcy, dopóki nie zostaną potwierdzeni."
+  },
+  "provider": {
+    "message": "Dostawca"
+  },
+  "newClientOrganization": {
+    "message": "Nowa organizacja klienta"
+  },
+  "newClientOrganizationDesc": {
+    "message": "Utwórz nową organizację klienta, która będzie powiązana z Tobą jako dostawcą. Będziesz miał dostęp do tej organizacji i będziesz mógł nią zarządzać."
+  },
+  "addExistingOrganization": {
+    "message": "Dodaj obecną organizację"
+  },
+  "myProvider": {
+    "message": "Mój dostawca"
+  },
+  "addOrganizationConfirmation": {
+    "message": "Czy na pewno chcesz dodać $ORGANIZATION$ jako organizację klienta do dostawcy $PROVIDER$?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      },
+      "provider": {
+        "content": "$2",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "organizationJoinedProvider": {
+    "message": "Organizacja została dodana do dostawcy"
+  },
+  "accessingUsingProvider": {
+    "message": "Dostęp do organizacji za pomocą dostawcy $PROVIDER$",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "providerIsDisabled": {
+    "message": "Dostawca jest wyłączony."
+  },
+  "providerUpdated": {
+    "message": "Dostawca został zaktualizowany"
+  },
+  "yourProviderIs": {
+    "message": "Twój dostawca to $PROVIDER$. Posiada on uprawnienia administracyjne i rozliczeniowe dla Twojej organizacji.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "detachedOrganization": {
+    "message": "Organizacja $ORGANIZATION$ została odłączona od Twojego dostawcy.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "detachOrganizationConfirmation": {
+    "message": "Czy na pewno chcesz odłączyć tę organizację? Organizacja będzie nadal istnieć, ale nie będzie już zarządzana przez dostawcę."
+  },
+  "add": {
+    "message": "Dodaj"
+  },
+  "updatedMasterPassword": {
+    "message": "Hasło główne zostało zaktualizowane"
+  },
+  "updateMasterPassword": {
+    "message": "Zaktualizuj hasło główne"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Hasło główne zostało zmienione przez administratora Twojej organizacji. Musisz je zaktualizować, aby uzyskać dostęp do sejfu. Ta czynność spowoduje wylogowanie z bieżącej sesji, przez co konieczne będzie ponowne zalogowanie się. Aktywne sesje na innych urządzeniach mogą pozostać aktywne przez maksymalnie godzinę."
+  },
+  "maximumVaultTimeout": {
+    "message": "Blokowanie sejfu"
+  },
+  "maximumVaultTimeoutDesc": {
+    "message": "Ustaw maksymalny czas blokowania sejfu dla wszystkich użytkowników."
+  },
+  "maximumVaultTimeoutLabel": {
+    "message": "Maksymalny czas blokowania sejfu"
+  },
+  "invalidMaximumVaultTimeout": {
+    "message": "Maksymalny czas blokowania sejfu jest nieprawidłowy."
+  },
+  "hours": {
+    "message": "Godziny"
+  },
+  "minutes": {
+    "message": "Minuty"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Zasady organizacji mają wpływ czas blokowania sejfu. Maksymalny dozwolony czas wynosi $HOURS$ godz. i $MINUTES$ min.",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "customVaultTimeout": {
+    "message": "Niestandardowy czas blokowania sejfu"
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Czas blokowania sejfu przekracza limit określony przez organizację."
+  },
+  "disablePersonalVaultExport": {
+    "message": "Wyłącz eksportowanie osobistego sejfu"
+  },
+  "disablePersonalVaultExportDesc": {
+    "message": "Zabrania użytkownikom eksportowania ich prywatnych danych sejfu."
+  },
+  "vaultExportDisabled": {
+    "message": "Eksportowanie sejfu zostało wyłączone"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Co najmniej jedna zasada organizacji uniemożliwia wyeksportowanie Twojego sejfu."
+  },
+  "selectType": {
+    "message": "Wybierz rodzaj logowania jednokrotnego SSO"
+  },
+  "type": {
+    "message": "Rodzaj"
+  },
+  "openIdConnectConfig": {
+    "message": "Konfiguracja połączenia OpenID"
+  },
+  "samlSpConfig": {
+    "message": "Konfiguracja dostawcy usługi SAML"
+  },
+  "samlIdpConfig": {
+    "message": "Konfiguracja dostawcy tożsamości SAML"
+  },
+  "callbackPath": {
+    "message": "Ścieżka wywołania zwrotnego"
+  },
+  "signedOutCallbackPath": {
+    "message": "Ścieżka wywołania zwrotnego wylogowania"
+  },
+  "authority": {
+    "message": "Dostawca tożsamości"
+  },
+  "clientId": {
+    "message": "Identyfikator klienta"
+  },
+  "clientSecret": {
+    "message": "Sekret"
+  },
+  "metadataAddress": {
+    "message": "Adres metadanych"
+  },
+  "oidcRedirectBehavior": {
+    "message": "Zachowanie przekierowania OIDC"
+  },
+  "getClaimsFromUserInfoEndpoint": {
+    "message": "Uzyskaj elementy Claim od punktu końcowego informacji o użytkowniku"
+  },
+  "additionalScopes": {
+    "message": "Dodatkowe / niestandardowe zakresy (oddzielone przecinkami)"
+  },
+  "additionalUserIdClaimTypes": {
+    "message": "Dodatkowe / niestandardowe elementy Claim identyfikatora użytkownika (oddzielone przecinkami)"
+  },
+  "additionalEmailClaimTypes": {
+    "message": "Dodatkowe / niestandardowe elementy Claim adresu e-mail (oddzielone przecinkami)"
+  },
+  "additionalNameClaimTypes": {
+    "message": "Dodatkowe / niestandardowe elementy Claim nazwy (oddzielone przecinkami)"
+  },
+  "acrValues": {
+    "message": "Żądane wartości referencyjne klasy kontekstu uwierzytelniania (acr_values)"
+  },
+  "expectedReturnAcrValue": {
+    "message": "Oczekiwano wartości \"acr\" elementu Claim w odpowiedzi (weryfikacja acr)"
+  },
+  "spEntityId": {
+    "message": "Identyfikator jednostki SP"
+  },
+  "spMetadataUrl": {
+    "message": "Adres URL metadanych SAML 2.0"
+  },
+  "spAcsUrl": {
+    "message": "Adres URL usługi Assertion Consumer Service (ACS)"
+  },
+  "spNameIdFormat": {
+    "message": "Format identyfikatora nazwy"
+  },
+  "spOutboundSigningAlgorithm": {
+    "message": "Algorytm podpisu wychodzącego"
+  },
+  "spSigningBehavior": {
+    "message": "Zachowanie przy podpisywaniu"
+  },
+  "spMinIncomingSigningAlgorithm": {
+    "message": "Minimalny algorytm podpisu przychodzącego"
+  },
+  "spWantAssertionsSigned": {
+    "message": "Chcę podpisać asercję"
+  },
+  "spValidateCertificates": {
+    "message": "Zweryfikuj certyfikaty"
+  },
+  "idpEntityId": {
+    "message": "Identyfikator jednostki"
+  },
+  "idpBindingType": {
+    "message": "Typ powiązania"
+  },
+  "idpSingleSignOnServiceUrl": {
+    "message": "Adres URL logowania jednokrotnego"
+  },
+  "idpSingleLogoutServiceUrl": {
+    "message": "Adres URL wylogowania jednokrotnego"
+  },
+  "idpArtifactResolutionServiceUrl": {
+    "message": "Adres URL usługi Artifact Resolution Service"
+  },
+  "idpX509PublicCert": {
+    "message": "Certyfikat publiczny X509"
+  },
+  "idpOutboundSigningAlgorithm": {
+    "message": "Algorytm podpisu wychodzącego"
+  },
+  "idpAllowUnsolicitedAuthnResponse": {
+    "message": "Zezwalaj na niezamówioną odpowiedź uwierzytelniania"
+  },
+  "idpDisableOutboundLogoutRequests": {
+    "message": "Wyłącz wychodzące żądania wylogowania"
+  },
+  "idpWantAuthnRequestsSigned": {
+    "message": "Chcę podpisać żądania uwierzytelniania"
+  },
+  "ssoSettingsSaved": {
+    "message": "Konfiguracja logowania jednokrotnego została zapisana."
+  },
+  "sponsoredFamilies": {
+    "message": "Darmowe rodziny Bitwarden"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Ty i Twoja rodzina kwalifikujecie się do bezpłatnych rodzin Bitwarden. Otrzymaj dostęp wykorzystując swój osobisty e-mail, aby zabezpieczyć swoje dane nawet wtedy, gdy nie jesteś w pracy."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Zrealizuj swój darmowy Bitwarden dla Rodzin, aby zapewnić bezpieczeństwo swoich danych nawet wtedy, gdy nie jesteś w pracy."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Plan Rodziny Bitwarden zawiera"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Dostęp premium dla maksymalnie 6 użytkowników"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Udostępnione kolekcje dla sekretów rodziny"
+  },
+  "badToken": {
+    "message": "Link nie jest już ważny. Prosimy o ponowne wysłanie oferty przez sponsora."
+  },
+  "reclaimedFreePlan": {
+    "message": "Odzyskano bezpłatny plan"
+  },
+  "redeem": {
+    "message": "Wykup"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Wybierz organizację, którą chcesz za sponsorować"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Którą z darmowych ofert rodzinnych chciałbyś użyć?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Enter your personal email to redeem Bitwarden Families"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "If you leave or are removed from the sponsoring organization, your Families plan will expire at the end of the billing period."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Accept offer for an existing organization or create a new Families organization."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "You've been offered a free Bitwarden Families Plan Organization. To continue, you need to log in to the account that received the offer."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Unable to accept offer. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Accept Free Bitwarden Families"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Free Bitwarden Families offer successfully redeemed"
+  },
+  "redeemed": {
+    "message": "Wykupione"
+  },
+  "redeemedAccount": {
+    "message": "Konto wykupione"
+  },
+  "revokeAccount": {
+    "message": "Revoke account $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Darmowy plan rodzin"
+  },
+  "redeemNow": {
+    "message": "Redeem Now"
+  },
+  "recipient": {
+    "message": "Recipient"
+  },
+  "removeSponsorship": {
+    "message": "Remove Sponsorship"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "After removing a sponsorship, you will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "sponsorshipCreated": {
+    "message": "Sponsorship Created"
+  },
+  "revoke": {
+    "message": "Revoke"
+  },
+  "emailSent": {
+    "message": "Wiadomość została wysłana"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "After removing this account, the Families organization owner will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Sponsorship Removed"
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "Nie można nawiązać połączenia z serwerem Key Connector. Spróbuj ponownie później."
+  },
+  "keyConnectorUrl": {
+    "message": "Adres URL serwera Key Connector"
+  },
+  "sendVerificationCode": {
+    "message": "Wyślij kod weryfikacyjny na adres e-mail"
+  },
+  "sendCode": {
+    "message": "Wyślij kod"
+  },
+  "codeSent": {
+    "message": "Kod został wysłany"
+  },
+  "verificationCode": {
+    "message": "Kod weryfikacyjny"
+  },
+  "confirmIdentity": {
+    "message": "Potwierdź swoją tożsamość, aby kontynuować."
+  },
+  "verificationCodeRequired": {
+    "message": "Kod weryfikacyjny jest wymagany."
+  },
+  "invalidVerificationCode": {
+    "message": "Kod weryfikacyjny jest nieprawidłowy"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "Organizacja $ORGANIZATION$ używa jednokrotnego logowania SSO z własnym serwerem kluczy. Użytkownicy nie muszą logować się za pomocą hasła głównego.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Opuść organizację"
+  },
+  "removeMasterPassword": {
+    "message": "Usuń hasło główne"
+  },
+  "removedMasterPassword": {
+    "message": "Hasło główne zostało usunięte."
+  },
+  "allowSso": {
+    "message": "Zezwalaj na logowanie jednokrotne SSO"
+  },
+  "allowSsoDesc": {
+    "message": "Użytkownicy będą mogli uwierzytelnić się za pomocą danych logowania dostawcy tożsamości."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Włącz",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "zasadę logowania jednokrotnego SSO",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": ", aby wymagać od wszystkich użytkowników logowania jednokrotnego SSO.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
+  },
+  "memberDecryptionOption": {
+    "message": "Opcje odszyfrowania użytkownika"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Po uwierzytelnieniu użytkownicy odszyfrują dane sejfu za pomocą hasła głównego."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Połącz logowanie jednokrotne SSO z odszyfrowaniem za pomocą własnego serwera kluczy. Użytkownicy nie będą musieli używać hasła głównego do odszyfrowania sejfu."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "Logowanie jednokrotne SSO z odszyfrowaniem za pomocą serwera Key Connector jest włączone. Ta zasada dotyczy tylko właścicieli i administratorów."
+  },
+  "enabledSso": {
+    "message": "Logowanie jednokrotne SSO zostało włączone"
+  },
+  "disabledSso": {
+    "message": "Logowanie jednokrotne SSO zostało wyłączone"
+  },
+  "enabledKeyConnector": {
+    "message": "Serwer Key Connector został włączony"
+  },
+  "disabledKeyConnector": {
+    "message": "Serwer Key Connector został wyłączony"
+  },
+  "keyConnectorWarning": {
+    "message": "Po włączeniu serwera Key Connector, opcje odszyfrowania użytkownika nie mogą zostać zmienione."
+  },
+  "migratedKeyConnector": {
+    "message": "Przeniesiony do serwera Key Connector"
+  },
+  "paymentSponsored": {
+    "message": "Please provide a payment method to associate with the organization. Don't worry, we won't charge you anything unless you select additional features or your sponsorship expires. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "The sponsorship offer has expired. You may delete the organization you created to avoid a charge at the end of your 7 day trial. Otherwise you may close this prompt to keep the organization and assume billing responsibility."
+  },
+  "newFamiliesOrganization": {
+    "message": "Nowa organizacja rodzin"
+  },
+  "acceptOffer": {
+    "message": "Zaakceptuj ofertę"
+  },
+  "sponsoringOrg": {
+    "message": "Organizacja sponsorska"
+  },
+  "keyConnectorTest": {
+    "message": "Test"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Połączenie z serwerem Key Connector zostało nawiązane."
+  },
+  "keyConnectorTestFail": {
+    "message": "Nie można nawiązać połączenia z serwerem Key Connector. Sprawdź adres URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "Oferta sponsorowania wygasła."
+  },
+  "freeWithSponsorship": {
+    "message": "DARMOWA ze sponsorowaniem"
   }
 }

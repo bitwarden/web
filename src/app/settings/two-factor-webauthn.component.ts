@@ -3,15 +3,15 @@ import {
     NgZone,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
 
 import { TwoFactorProviderType } from 'jslib-common/enums/twoFactorProviderType';
 
-import { PasswordVerificationRequest } from 'jslib-common/models/request/passwordVerificationRequest';
+import { SecretVerificationRequest } from 'jslib-common/models/request/secretVerificationRequest';
 import { UpdateTwoFactorWebAuthnDeleteRequest } from 'jslib-common/models/request/updateTwoFactorWebAuthnDeleteRequest';
 import { UpdateTwoFactorWebAuthnRequest } from 'jslib-common/models/request/updateTwoFactorWebAuthnRequest';
 import {
@@ -38,9 +38,9 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
     formPromise: Promise<any>;
 
     constructor(apiService: ApiService, i18nService: I18nService,
-        toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
-        private ngZone: NgZone) {
-        super(apiService, i18nService, toasterService, platformUtilsService);
+        platformUtilsService: PlatformUtilsService,
+        private ngZone: NgZone, logService: LogService, userVerificationService: UserVerificationService) {
+        super(apiService, i18nService, platformUtilsService, logService, userVerificationService);
     }
 
     auth(authResponse: any) {
@@ -48,13 +48,12 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
         this.processResponse(authResponse.response);
     }
 
-    submit() {
+    async submit() {
         if (this.webAuthnResponse == null || this.keyIdAvailable == null) {
             // Should never happen.
             return Promise.reject();
         }
-        const request = new UpdateTwoFactorWebAuthnRequest();
-        request.masterPasswordHash = this.masterPasswordHash;
+        const request = await this.buildRequestModel(UpdateTwoFactorWebAuthnRequest);
         request.deviceResponse = this.webAuthnResponse;
         request.id = this.keyIdAvailable;
         request.name = this.name;
@@ -81,28 +80,30 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
         if (!confirmed) {
             return;
         }
-        const request = new UpdateTwoFactorWebAuthnDeleteRequest();
+        const request = await this.buildRequestModel(UpdateTwoFactorWebAuthnDeleteRequest);
         request.id = key.id;
-        request.masterPasswordHash = this.masterPasswordHash;
         try {
             key.removePromise = this.apiService.deleteTwoFactorWebAuthn(request);
             const response = await key.removePromise;
             key.removePromise = null;
             await this.processResponse(response);
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     async readKey() {
         if (this.keyIdAvailable == null) {
             return;
         }
-        const request = new PasswordVerificationRequest();
-        request.masterPasswordHash = this.masterPasswordHash;
+        const request = await this.buildRequestModel(SecretVerificationRequest);
         try {
             this.challengePromise = this.apiService.getTwoFactorWebAuthnChallenge(request);
             const challenge = await this.challengePromise;
             this.readDevice(challenge);
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     private readDevice(webAuthnChallenge: ChallengeResponse) {

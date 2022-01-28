@@ -4,8 +4,9 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { AttachmentView } from 'jslib-common/models/view/attachmentView';
 
@@ -19,9 +20,10 @@ export class AttachmentsComponent extends BaseAttachmentsComponent {
     viewOnly = false;
 
     constructor(cipherService: CipherService, i18nService: I18nService,
-        cryptoService: CryptoService, userService: UserService,
-        platformUtilsService: PlatformUtilsService, apiService: ApiService) {
-        super(cipherService, i18nService, cryptoService, userService, platformUtilsService, apiService, window);
+        cryptoService: CryptoService, stateService: StateService,
+        platformUtilsService: PlatformUtilsService, apiService: ApiService, logService: LogService) {
+        super(cipherService, i18nService, cryptoService, platformUtilsService, apiService, window, logService,
+            stateService);
     }
 
     protected async reupload(attachment: AttachmentView) {

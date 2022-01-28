@@ -11,15 +11,15 @@ import { SendComponent as BaseSendComponent } from 'jslib-angular/components/sen
 
 import { AddEditComponent } from './add-edit.component';
 
+import { BroadcasterService } from 'jslib-common/abstractions/broadcaster.service';
 import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
 import { SendService } from 'jslib-common/abstractions/send.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 import { ModalService } from 'jslib-angular/services/modal.service';
 
 const BroadcasterSubscriptionId = 'SendComponent';
@@ -33,10 +33,11 @@ export class SendComponent extends BaseSendComponent {
 
     constructor(sendService: SendService, i18nService: I18nService,
         platformUtilsService: PlatformUtilsService, environmentService: EnvironmentService,
-        ngZone: NgZone, searchService: SearchService, policyService: PolicyService, userService: UserService,
-        private modalService: ModalService, private broadcasterService: BroadcasterService) {
+        ngZone: NgZone, searchService: SearchService,
+        policyService: PolicyService, private modalService: ModalService,
+        private broadcasterService: BroadcasterService, logService: LogService) {
         super(sendService, i18nService, platformUtilsService, environmentService, ngZone, searchService,
-            policyService, userService);
+            policyService, logService);
     }
 
     async ngOnInit() {

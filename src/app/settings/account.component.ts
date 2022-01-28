@@ -10,7 +10,8 @@ import { DeleteAccountComponent } from './delete-account.component';
 import { PurgeVaultComponent } from './purge-vault.component';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { KeyConnectorService } from 'jslib-common/abstractions/keyConnector.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -25,8 +26,17 @@ export class AccountComponent {
     @ViewChild('viewUserApiKeyTemplate', { read: ViewContainerRef, static: true }) viewUserApiKeyModalRef: ViewContainerRef;
     @ViewChild('rotateUserApiKeyTemplate', { read: ViewContainerRef, static: true }) rotateUserApiKeyModalRef: ViewContainerRef;
 
+    showChangePassword = true;
+    showChangeKdf = true;
+    showChangeEmail = true;
+
     constructor(private modalService: ModalService, private apiService: ApiService,
-        private userService: UserService) { }
+        private keyConnectorService: KeyConnectorService, private stateService: StateService) { }
+
+    async ngOnInit() {
+        this.showChangeEmail = this.showChangeKdf = this.showChangePassword =
+            !await this.keyConnectorService.getUsesKeyConnector();
+    }
 
     async deauthorizeSessions() {
         await this.modalService.openViewRef(DeauthorizeSessionsComponent, this.deauthModalRef);
@@ -41,7 +51,7 @@ export class AccountComponent {
     }
 
     async viewUserApiKey() {
-        const entityId = await this.userService.getUserId();
+        const entityId = await this.stateService.getUserId();
         await this.modalService.openViewRef(ApiKeyComponent, this.viewUserApiKeyModalRef, comp => {
             comp.keyType = 'user';
             comp.entityId = entityId;
@@ -55,7 +65,7 @@ export class AccountComponent {
     }
 
     async rotateUserApiKey() {
-        const entityId = await this.userService.getUserId();
+        const entityId = await this.stateService.getUserId();
         await this.modalService.openViewRef(ApiKeyComponent, this.rotateUserApiKeyModalRef, comp => {
             comp.keyType = 'user';
             comp.isRotation = true;

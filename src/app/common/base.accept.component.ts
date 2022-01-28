@@ -7,14 +7,11 @@ import {
     Router,
 } from '@angular/router';
 
-import {
-    Toast,
-    ToasterService,
-} from 'angular2-toaster';
+import { first } from 'rxjs/operators';
 
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 @Directive()
 export abstract class BaseAcceptComponent implements OnInit {
@@ -27,26 +24,20 @@ export abstract class BaseAcceptComponent implements OnInit {
     protected failedShortMessage = 'inviteAcceptFailedShort';
     protected failedMessage = 'inviteAcceptFailed';
 
-    constructor(protected router: Router, protected toasterService: ToasterService,
+    constructor(protected router: Router, protected platformUtilService: PlatformUtilsService,
         protected i18nService: I18nService, protected route: ActivatedRoute,
-        protected userService: UserService, protected stateService: StateService) { }
+        protected stateService: StateService) { }
 
     abstract authedHandler(qParams: any): Promise<void>;
     abstract unauthedHandler(qParams: any): Promise<void>;
 
     ngOnInit() {
-        let fired = false;
-        this.route.queryParams.subscribe(async qParams => {
-            if (fired) {
-                return;
-            }
-            fired = true;
-            await this.stateService.remove('loginRedirect');
-
+        this.route.queryParams.pipe(first()).subscribe(async qParams => {
+            await this.stateService.setLoginRedirect(null);
             let error = this.requiredParameters.some(e => qParams?.[e] == null || qParams[e] === '');
             let errorMessage: string = null;
             if (!error) {
-                this.authed = await this.userService.isAuthenticated();
+                this.authed = await this.stateService.getIsAuthenticated();
 
                 if (this.authed) {
                     try {
@@ -56,7 +47,7 @@ export abstract class BaseAcceptComponent implements OnInit {
                         errorMessage = e.message;
                     }
                 } else {
-                    await this.stateService.save('loginRedirect', {
+                    await this.stateService.setLoginRedirect({
                         route: this.getRedirectRoute(),
                         qParams: qParams,
                     });
@@ -67,14 +58,9 @@ export abstract class BaseAcceptComponent implements OnInit {
             }
 
             if (error) {
-                const toast: Toast = {
-                    type: 'error',
-                    title: null,
-                    body: errorMessage != null ? this.i18nService.t(this.failedShortMessage, errorMessage) :
-                        this.i18nService.t(this.failedMessage),
-                    timeout: 10000,
-                };
-                this.toasterService.popAsync(toast);
+                const message = errorMessage != null ? this.i18nService.t(this.failedShortMessage, errorMessage) :
+                        this.i18nService.t(this.failedMessage);
+                this.platformUtilService.showToast('error', null, message, {timeout: 10000});
                 this.router.navigate(['/']);
             }
 

@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 @Component({
     selector: 'app-verify-email',
@@ -13,7 +13,7 @@ export class VerifyEmailComponent {
     actionPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService) { }
+        private platformUtilsService: PlatformUtilsService, private logService: LogService) { }
 
     async send() {
         if (this.actionPromise != null) {
@@ -22,8 +22,10 @@ export class VerifyEmailComponent {
         try {
             this.actionPromise = this.apiService.postAccountVerifyEmail();
             await this.actionPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('checkInboxForVerification'));
-        } catch { }
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('checkInboxForVerification'));
+        } catch (e) {
+            this.logService.error(e);
+        }
         this.actionPromise = null;
     }
 }

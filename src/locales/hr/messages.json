@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Boolean"
   },
+  "cfTypeLinked": {
+    "message": "Povezano",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Ukloni"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Prezime"
+  },
+  "fullName": {
+    "message": "Ime i prezime"
   },
   "address1": {
     "message": "Adresa 1"
@@ -833,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "Ključ za šifriranje jedinstven je za svakog Bitwarden korisnika, kako bi se šifrirani izvoz mogao uvesti u drugi korisnički račun."
   },
-  "exportMasterPassword": {
-    "message": "Unesi glavnu lozinku za izvoz podataka iz trezora."
-  },
   "export": {
     "message": "Izvoz"
   },
@@ -898,6 +902,9 @@
   },
   "changeEmail": {
     "message": "Promijeni e-poštu"
+  },
+  "changeEmailTwoFactorWarning": {
+    "message": "Promijeniti ćeš adresu e-pošte računa. Ovo neće promijeniti adresu e-pošte za dvostruku autentifikaciju (ovo se može promijeniti u postavkama dvostruke autentifikacije)."
   },
   "newEmail": {
     "message": "Nova adresa e-pošte"
@@ -997,6 +1004,9 @@
   },
   "purgedOrganizationVault": {
     "message": "Pročišćen organizacijski trezor."
+  },
+  "vaultAccessedByProvider": {
+    "message": "Trezoru pristupio davatelj."
   },
   "purgeVaultDesc": {
     "message": "Nastavi za brisanje SVIH stavki i mapa u tvom trezoru. Stavke koje pripadaju organizaciji s kojom dijeliš neće biti izbrisane."
@@ -1730,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Tvoj način plaćanja biti će terećen nakon isteka besplatnog probnog perioda od 7 dana i onda ponovno jednom $INTERVAL$. Možeš otkazati u bilo kojem trenutku.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Tvoj način plaćanja biti će terećen nakon isteka besplatnog probnog perioda od 7 dana i onda ponovno jednom $INTERVAL$. Možeš otkazati u bilo kojem trenutku."
   },
   "paymentInformation": {
     "message": "Podaci o plaćanju"
@@ -2148,6 +2152,9 @@
   "policies": {
     "message": "Smjernice"
   },
+  "singleSignOn": {
+    "message": "Jedinstvena prijava (SSO)"
+  },
   "editPolicy": {
     "message": "Uredi smjernice"
   },
@@ -2168,6 +2175,9 @@
   },
   "removeUserConfirmation": {
     "message": "Sigurno želiš ukoniti ovog korisnika?"
+  },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Upozorenje! Ovaj korisnik koristi konektor za ključ kako bi upravljao svojim šifriranjem. Uklanjanjem korisnika iz tvoje organizacije korisnički će račun biti trajno onemogućen. Ovu opciju nije moguće opozvati. Sigurno želiš nastaviti?"
   },
   "externalId": {
     "message": "Vanjski Id"
@@ -2238,11 +2248,17 @@
   "confirmed": {
     "message": "Potvrđeno"
   },
+  "clientOwnerEmail": {
+    "message": "e-pošta vlasnika klijenta"
+  },
   "owner": {
     "message": "Vlasnik"
   },
   "ownerDesc": {
     "message": "Korisnik s najvišim pravima pristupa koji može upravljati svim mogućnostima tvoje organziacije."
+  },
+  "clientOwnerDesc": {
+    "message": "Korisnik bi trebao biti neovisan o davatelju. Ako se davatelja razdvoji od organizacije, ovaj će korisnik zadržati vlasništvo nad organizacijom."
   },
   "admin": {
     "message": "Admin"
@@ -2577,6 +2593,42 @@
       }
     }
   },
+  "createdOrganizationId": {
+    "message": "Organizacija $ID$ stvorena.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "addedOrganizationId": {
+    "message": "Organizacija $ID$ dodana.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "removedOrganizationId": {
+    "message": "Organizacija $ID$ uklonjena.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "accessedClientVault": {
+    "message": "Pristupljeno trezoru organizacije $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
   "device": {
     "message": "Uređaj"
   },
@@ -2606,6 +2658,9 @@
   },
   "resendInvitation": {
     "message": "Ponovno slanje pozivnice"
+  },
+  "resendEmail": {
+    "message": "Ponovno slanje e-pošte"
   },
   "hasBeenReinvited": {
     "message": "$USER$ je ponovno pozvan.",
@@ -2760,10 +2815,6 @@
     "message": "Unesi podatke u nastavku za nadogradnju svog računa na drugi paket. Provjeri imaš li na svom računu aktivno neko sredstvo plaćanja.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Za promjenu paketa, molimo kontaktiraj službu podrške. Provjeri imaš li na svom računu aktivno neko sredstvo plaćanja.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Faktura br. $NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2830,6 +2881,16 @@
   "enterInstallationId": {
     "message": "Unesi id instalacije"
   },
+  "limitSubscriptionDesc": {
+    "message": "Ograničite broj korisnika u pretplati. Kada je broj dosegnut, neće biti moguće pozvati nove korisnike."
+  },
+  "maxSeatLimit": {
+    "message": "Najveći dozvoljeni broj korisnika (opcionalno)",
+    "description": "Upper limit of seats to allow through autoscaling"
+  },
+  "maxSeatCost": {
+    "message": "Najveći dozvoljeni trošak licenci"
+  },
   "addSeats": {
     "message": "Dodaj licence",
     "description": "Seat = User Seat"
@@ -2838,8 +2899,74 @@
     "message": "Ukloni licence",
     "description": "Seat = User Seat"
   },
+  "subscriptionDesc": {
+    "message": "Promjene na pretplati rezultirati će proporcionalnim izmjenama ukupnog zaduženja. Ako novopozvanim korisnikom prekoračiš broj licenci, odmah će biti naplaćeno proporcionalno uvećanje za nove korisnike."
+  },
   "subscriptionUserSeats": {
     "message": "Tvoja pretplata uključuje $COUNT$ korisnika.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "limitSubscription": {
+    "message": "Ograniči pretplatu (opcionalno)"
+  },
+  "subscriptionSeats": {
+    "message": "Broj licenci"
+  },
+  "subscriptionUpdated": {
+    "message": "Preplata ažurirana"
+  },
+  "additionalOptions": {
+    "message": "Dodatne postavke"
+  },
+  "additionalOptionsDesc": {
+    "message": "Za dodatnu pomoć u upravljanju pretplatom, kontaktiraj korisničku podršku."
+  },
+  "subscriptionUserSeatsUnlimitedAutoscale": {
+    "message": "Promjene na pretplati rezultirati će proporcionalnim izmjenama ukupnog zaduženja. Ako novopozvanim korisnikom prekoračiš broj licenci, odmah će biti naplaćeno proporcionalno uvećanje za nove korisnike."
+  },
+  "subscriptionUserSeatsLimitedAutoscale": {
+    "message": "Promjene na pretplati rezultirati će proporcionalnim izmjenama ukupnog zaduženja. Ako novopozvanim korisnikom prekoračiš broj licenci, odmah će biti naplaćeno proporcionalno uvećanje za nove korisnike dok se ne dosegne krajnji broj licenci ($MAX$).",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "Nije moguće pozvati više od $COUNT$ korisnika bez nadogradnje plana.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "Nije moguće pozvati više od $COUNT$ korisnika bez promjene plana. Kontaktiraj podršku za nadogradnju.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Tvoja pretplata dozvoljava najviše $COUNT$ korisnika. Tvoj plan je sponzoriran i naplaćuje se vanjskoj organizaciji.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionMaxReached": {
+    "message": "Promjene na pretplati rezultirati će proporcionalnim izmjenama ukupnog zaduženja. Nećeš moći pozvati više od $COUNT$ novih korisnika bez prethodne promjene broja licenci.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2854,7 +2981,7 @@
     "message": "Licence za ukloniti"
   },
   "seatsAddNote": {
-    "message": "Dodavanje korisničkih licenci rezultirati će povećanjem ukupnog zaduženja i trenutnim terećenjem spremljenog sredstva plaćanja. Iznos će btii umanjen proporcionlano ostatku tekuđeg obračunskog razdoblja. "
+    "message": "Dodavanje korisničkih licenci rezultirati će povećanjem ukupnog zaduženja i trenutnim terećenjem spremljenog sredstva plaćanja. Iznos će biti umanjen proporcionalno ostatku tekućeg obračunskog razdoblja."
   },
   "seatsRemoveNote": {
     "message": "Uklanjanje korisničkih licenci rezultirati će smanjenjem ukupnog zaduženja. Iznos će biti umanjen proporcionalno ostatku tekućeg razdoblja i iskorišten kao umanjenje kod sljedeće naplate."
@@ -3299,10 +3426,6 @@
   "ssoHandOff": {
     "message": "Sada možeš zatvoriti ovu karticu i nastaviti koristiti proširenje."
   },
-  "businessPortal": {
-    "message": "Portal Business",
-    "description": "The web portal used by business organizations for configuring certain features."
-  },
   "includeAllTeamsFeatures": {
     "message": "Sve značajke Team, plus:"
   },
@@ -3323,9 +3446,6 @@
   },
   "linkSso": {
     "message": "Spoji SSO"
-  },
-  "webPoliciesDeprecationWarning": {
-    "message": "Mogućnosti smjernica su premješteni i ova stranica će uskoro postati zastarjela. Kliknite u nastavku za korištenje stranice smjernica na portalu Business."
   },
   "singleOrg": {
     "message": "Isključiva organizacija"
@@ -3715,9 +3835,6 @@
   "permissions": {
     "message": "Dozvole"
   },
-  "accessBusinessPortal": {
-    "message": "Pristup Busines portalu"
-  },
   "accessEventLogs": {
     "message": "Pristup zapisnicima događaja"
   },
@@ -3727,11 +3844,29 @@
   "accessReports": {
     "message": "Pristup izvještajima"
   },
+  "missingPermissions": {
+    "message": "Nedostaju ti potrebna dopuštenja za izvođenje ove radnje."
+  },
   "manageAllCollections": {
     "message": "Upravljanje svim zbirkama"
   },
+  "createNewCollections": {
+    "message": "Stvori novu zbirku"
+  },
+  "editAnyCollection": {
+    "message": "Uredi zbirku"
+  },
+  "deleteAnyCollection": {
+    "message": "Obriši zbirku"
+  },
   "manageAssignedCollections": {
     "message": "Upravljanje dodijeljenim zbirkama"
+  },
+  "editAssignedCollections": {
+    "message": "Uredi dodijeljene zbirke"
+  },
+  "deleteAssignedCollections": {
+    "message": "Obriši dodijeljene zbirke"
   },
   "manageGroups": {
     "message": "Upravljanje grupama"
@@ -3748,11 +3883,20 @@
   "manageResetPassword": {
     "message": "Upravljanje ponovnim postavljanjem lozinke"
   },
-  "disableRequireSsoError": {
-    "message": "Pravilo SSO autentifikacije mora biti isključeno prije deaktivacije ovog pravila."
+  "disableRequiredError": {
+    "message": "Prije onemogućavanja ovog pravila, potrebno je onemogućiti pravilo $POLICYNAME$.",
+    "placeholders": {
+      "policyName": {
+        "content": "$1",
+        "example": "Single Sign-On Authentication"
+      }
+    }
   },
   "personalOwnershipPolicyInEffect": {
     "message": "Pravila organizacije utječu na tvoje mogućnosti vlasništva."
+  },
+  "personalOwnershipPolicyInEffectImports": {
+    "message": "Organizacijsko pravilo onemogućuje uvoz stavki u tvoj osobni trezor."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Onemogući osobno vlasnišvo za organizacijske korisnike"
@@ -3910,6 +4054,24 @@
       }
     }
   },
+  "eventResetSsoLink": {
+    "message": "Poništi SSO vezu za korisnika $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "firstSsoLogin": {
+    "message": "Prva prijava korisnika $ID$ koristeći SSO",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Ponovno postavljanje lozinke"
   },
@@ -3947,13 +4109,13 @@
     "message": "Automatsko učlanjenje"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "Svi korisnci biti će automatski učlanjeni u ponovno postavljanje lozinke čim njihov poziv bude prihvaćen."
+    "message": "Svi korisnici će automatski biti učlanjeni u ponovno postavljanje lozinke čim njihov poziv bude prihvaćen."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
     "message": "Postojeći korisnici organizacije neće biti retroaktivno učlanjeni u ponovno postavljanje lozinke. Morati će se sami učlaniti da bi administratori mogli ponovno postaviti njihove glaven lozinke."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Automatski učlani nove korisnike"
+    "message": "Primoraj nove korisnike da budu automatski učlanjeni"
   },
   "resetPasswordAutoEnrollInviteWarning": {
     "message": "Pravilo ove organizacija automatski će te učlaniti u ponovno postalvjanje lozinke. Učlanjenje će omogućiti administratorima organizacije promjenu tvoje glavne lozinke."
@@ -3988,6 +4150,21 @@
   "removeUsersWarning": {
     "message": "Sigurno želiš ukloniti sljedeće korisnike? Ova radnja može potrajati i nije ga moguće prekinuti ili poništiti."
   },
+  "theme": {
+    "message": "Tema"
+  },
+  "themeDesc": {
+    "message": "Odaberi temu za svoj mrežni trezor."
+  },
+  "themeSystem": {
+    "message": "Koristi temu sustava"
+  },
+  "themeDark": {
+    "message": "Tamna"
+  },
+  "themeLight": {
+    "message": "Svijetla"
+  },
   "confirmSelected": {
     "message": "Odabrano potvrđivanje"
   },
@@ -4017,5 +4194,544 @@
   },
   "resetPasswordManageUsers": {
     "message": "Upravljanje korisnicima mora također biti uključeno s dozvolom za Upravljanje ponovnim postavljanjem lozinke"
+  },
+  "setupProvider": {
+    "message": "Postavke davatelja"
+  },
+  "setupProviderLoginDesc": {
+    "message": "You've been invited to setup a new provider. To continue, you need to log in or create a new Bitwarden account."
+  },
+  "setupProviderDesc": {
+    "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
+  },
+  "providerName": {
+    "message": "Naziv davatelja"
+  },
+  "providerSetup": {
+    "message": "The provider has been set up."
+  },
+  "clients": {
+    "message": "Klijenti"
+  },
+  "providerAdmin": {
+    "message": "Provider Admin"
+  },
+  "providerAdminDesc": {
+    "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
+  },
+  "serviceUser": {
+    "message": "Servisni korisnik"
+  },
+  "serviceUserDesc": {
+    "message": "Servisni korisnik može pristupiti i upravljati svim organizacijama."
+  },
+  "providerInviteUserDesc": {
+    "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
+  },
+  "joinProvider": {
+    "message": "Join Provider"
+  },
+  "joinProviderDesc": {
+    "message": "You've been invited to join the provider listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+  },
+  "providerInviteAcceptFailed": {
+    "message": "Unable to accept invitation. Ask a provider admin to send a new invitation."
+  },
+  "providerInviteAcceptedDesc": {
+    "message": "You can access this provider once an administrator confirms your membership. We'll send you an email when that happens."
+  },
+  "providerUsersNeedConfirmed": {
+    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the provider until they are confirmed."
+  },
+  "provider": {
+    "message": "Davatelj"
+  },
+  "newClientOrganization": {
+    "message": "New Client Organization"
+  },
+  "newClientOrganizationDesc": {
+    "message": "Create a new client organization that will be associated with you as the provider. You will be able to access and manage this organization."
+  },
+  "addExistingOrganization": {
+    "message": "Dodaj postojeću organizaciju"
+  },
+  "myProvider": {
+    "message": "Moj davatelj"
+  },
+  "addOrganizationConfirmation": {
+    "message": "Are you sure you want to add $ORGANIZATION$ as a client to $PROVIDER$?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      },
+      "provider": {
+        "content": "$2",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "organizationJoinedProvider": {
+    "message": "Organizacija uspješno dodana davatelju"
+  },
+  "accessingUsingProvider": {
+    "message": "Accessing organization using provider $PROVIDER$",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "providerIsDisabled": {
+    "message": "Davatelj je onemogućen."
+  },
+  "providerUpdated": {
+    "message": "Davatelj ažuriran"
+  },
+  "yourProviderIs": {
+    "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "detachedOrganization": {
+    "message": "The organization $ORGANIZATION$ has been detached from your provider.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "detachOrganizationConfirmation": {
+    "message": "Are you sure you want to detach this organization? The organization will continue to exist but will no longer be managed by the provider."
+  },
+  "add": {
+    "message": "Dodaj"
+  },
+  "updatedMasterPassword": {
+    "message": "Glavna lozinka ažurirana"
+  },
+  "updateMasterPassword": {
+    "message": "Ažuriraj glavnu lozinku"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Tvoju glavnu lozinku je nedavno promijenio administrator tvoje organizacije. Za pristup trezoru, potrebno je ažurirati glavnu lozinku, što će te odjaviti iz trenutne sesije, te ćeš se morati ponovno prijaviti. Aktivne sesije na drugim uređajima mogu ostati aktivne još sat vremena."
+  },
+  "maximumVaultTimeout": {
+    "message": "Istek trezora"
+  },
+  "maximumVaultTimeoutDesc": {
+    "message": "Najveći dozvoljeni istek trezora za sve korisnike."
+  },
+  "maximumVaultTimeoutLabel": {
+    "message": "Najveći istek trezora"
+  },
+  "invalidMaximumVaultTimeout": {
+    "message": "Najveći istek trezora nije ispravan."
+  },
+  "hours": {
+    "message": "sat(i)"
+  },
+  "minutes": {
+    "message": "min."
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "customVaultTimeout": {
+    "message": "Osobni istek trezora"
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Vrijeme isteka premašuje ograničenje koju je postavila tvoja organizacija."
+  },
+  "disablePersonalVaultExport": {
+    "message": "Onemogući izvoz osobnog trezora"
+  },
+  "disablePersonalVaultExportDesc": {
+    "message": "Onemogućuje korisnike da izvezu svoj osobni trezor."
+  },
+  "vaultExportDisabled": {
+    "message": "Izvoz trezora onemogućen"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Jedno ili više pravila organizacija onemogućuje izvoz osobnog trezora."
+  },
+  "selectType": {
+    "message": "Odaberi vrstu SSO"
+  },
+  "type": {
+    "message": "Vrsta"
+  },
+  "openIdConnectConfig": {
+    "message": "Konfiguracija OpenID connect"
+  },
+  "samlSpConfig": {
+    "message": "Konfiguracija SAML Service Provider"
+  },
+  "samlIdpConfig": {
+    "message": "Konfiguracija SAML Identity Provider"
+  },
+  "callbackPath": {
+    "message": "Callback Path"
+  },
+  "signedOutCallbackPath": {
+    "message": "Signed Out Callback Path"
+  },
+  "authority": {
+    "message": "Authority"
+  },
+  "clientId": {
+    "message": "ID klijenta"
+  },
+  "clientSecret": {
+    "message": "Client Secret"
+  },
+  "metadataAddress": {
+    "message": "Metadata Address"
+  },
+  "oidcRedirectBehavior": {
+    "message": "OIDC Redirect Behavior"
+  },
+  "getClaimsFromUserInfoEndpoint": {
+    "message": "Get Claims From User Info Endpoint"
+  },
+  "additionalScopes": {
+    "message": "Additional/Custom Scopes (comma delimited)"
+  },
+  "additionalUserIdClaimTypes": {
+    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+  },
+  "additionalEmailClaimTypes": {
+    "message": "Additional/Custom Email Claim Types (comma delimited)"
+  },
+  "additionalNameClaimTypes": {
+    "message": "Additional/Custom Name Claim Types (comma delimited)"
+  },
+  "acrValues": {
+    "message": "Requested Authentication Context Class Reference values (acr_values)"
+  },
+  "expectedReturnAcrValue": {
+    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+  },
+  "spEntityId": {
+    "message": "SP Entity ID"
+  },
+  "spMetadataUrl": {
+    "message": "SAML 2.0 Metadata URL"
+  },
+  "spAcsUrl": {
+    "message": "Assertion Consumer Service (ACS) URL"
+  },
+  "spNameIdFormat": {
+    "message": "Name ID Format"
+  },
+  "spOutboundSigningAlgorithm": {
+    "message": "Outbound Signing Algorithm"
+  },
+  "spSigningBehavior": {
+    "message": "Signing Behavior"
+  },
+  "spMinIncomingSigningAlgorithm": {
+    "message": "Minimum Incoming Signing Algorithm"
+  },
+  "spWantAssertionsSigned": {
+    "message": "Want Assertions Signed"
+  },
+  "spValidateCertificates": {
+    "message": "Provjeri certifikate"
+  },
+  "idpEntityId": {
+    "message": "ID entiteta"
+  },
+  "idpBindingType": {
+    "message": "Binding Type"
+  },
+  "idpSingleSignOnServiceUrl": {
+    "message": "Single Sign On Service URL"
+  },
+  "idpSingleLogoutServiceUrl": {
+    "message": "Single Log Out Service URL"
+  },
+  "idpArtifactResolutionServiceUrl": {
+    "message": "Artifact Resolution Service URL"
+  },
+  "idpX509PublicCert": {
+    "message": "X509 javni certifikat"
+  },
+  "idpOutboundSigningAlgorithm": {
+    "message": "Outbound Signing Algorithm"
+  },
+  "idpAllowUnsolicitedAuthnResponse": {
+    "message": "Allow Unsolicited Authentication Response"
+  },
+  "idpDisableOutboundLogoutRequests": {
+    "message": "Disable Outbound Logout Requests"
+  },
+  "idpWantAuthnRequestsSigned": {
+    "message": "Want Authentication Requests Signed"
+  },
+  "ssoSettingsSaved": {
+    "message": "Konfiguracija za jedinstvenu prijavu (SSO) je spremljena."
+  },
+  "sponsoredFamilies": {
+    "message": "Free Bitwarden Families"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "You and your family are eligible for Free Bitwarden Families. Redeem with your personal email to keep your data secure even when you are not at work."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Redeem your Free Bitwarden for Families plan today to keep your data secure even when you are not at work."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Bitwarden plan za obitelji uključuje"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Premium pristup do 6 korisnika"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Dijeljene zbirke za obiteljske tajne"
+  },
+  "badToken": {
+    "message": "The link is no longer valid. Please have the sponsor resend the offer."
+  },
+  "reclaimedFreePlan": {
+    "message": "Reclaimed free plan"
+  },
+  "redeem": {
+    "message": "Redeem"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Select the organization you would like sponsored"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Which Free Families offer would you like to redeem?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Enter your personal email to redeem Bitwarden Families"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "If you leave or are removed from the sponsoring organization, your Families plan will expire at the end of the billing period."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Accept offer for an existing organization or create a new Families organization."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "You've been offered a free Bitwarden Families Plan Organization. To continue, you need to log in to the account that received the offer."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Nije moguće prihvatiti ponudu. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Accept Free Bitwarden Families"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Free Bitwarden Families offer successfully redeemed"
+  },
+  "redeemed": {
+    "message": "Redeemed"
+  },
+  "redeemedAccount": {
+    "message": "Redeemed Account"
+  },
+  "revokeAccount": {
+    "message": "Revoke account $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Free Families Plan"
+  },
+  "redeemNow": {
+    "message": "Redeem Now"
+  },
+  "recipient": {
+    "message": "Recipient"
+  },
+  "removeSponsorship": {
+    "message": "Remove Sponsorship"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "After removing a sponsorship, you will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "sponsorshipCreated": {
+    "message": "Sponsorship Created"
+  },
+  "revoke": {
+    "message": "Opozovi"
+  },
+  "emailSent": {
+    "message": "e-pošta poslana"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "After removing this account, the Families organization owner will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Sponzorstvo uklonjeno"
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "Nije moguće spajanje s konektorom za ključ, pokušaj kasnije."
+  },
+  "keyConnectorUrl": {
+    "message": "URL konektora za ključ"
+  },
+  "sendVerificationCode": {
+    "message": "Slanje verifikacijskog kôda e-poštom"
+  },
+  "sendCode": {
+    "message": "Pošalji kôd"
+  },
+  "codeSent": {
+    "message": "Kôd poslan"
+  },
+  "verificationCode": {
+    "message": "Kôd za provjeru"
+  },
+  "confirmIdentity": {
+    "message": "Potvrdite lozinku za nastavak."
+  },
+  "verificationCodeRequired": {
+    "message": "Potvrdni kôd je obavezan."
+  },
+  "invalidVerificationCode": {
+    "message": "Nevažeći kôd za provjeru"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ koristi jedinstvenu prijavu SSO s vlastitim poslužiteljem. Članovima organizacije glavna lozinka više nije potrebna.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Napusti organizaciju"
+  },
+  "removeMasterPassword": {
+    "message": "Ukloni glavnu lozinku"
+  },
+  "removedMasterPassword": {
+    "message": "Glavna lozinka uklonjena."
+  },
+  "allowSso": {
+    "message": "Dopusti jedinstvenu SSO autentifikaciju"
+  },
+  "allowSsoDesc": {
+    "message": "Once set up, your configuration will be saved and members will be able to authenticate using their Identity Provider credentials."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Omogući",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO autentifikaciju",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "kako bi se svi članovi mogli prijaviti sa SSO.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
+  },
+  "memberDecryptionOption": {
+    "message": "Opcije dešifriranja za članove"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Članovi će moći dešifrirati podatke u trezoru koristeći svoje glavne lozinke."
+  },
+  "keyConnector": {
+    "message": "Konektor za ključ"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt vault data. Contact Bitwarden Support for set up assistance."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
+  },
+  "enabledSso": {
+    "message": "SSO omogućen"
+  },
+  "disabledSso": {
+    "message": "SSO onemogućen"
+  },
+  "enabledKeyConnector": {
+    "message": "Konektor za ključ omogućen"
+  },
+  "disabledKeyConnector": {
+    "message": "Konektor za ključ onemogućen"
+  },
+  "keyConnectorWarning": {
+    "message": "Once members begin using Key Connector, your Organization cannot revert to Master Password decryption. Proceed only if you are comfortable deploying and managing a key server."
+  },
+  "migratedKeyConnector": {
+    "message": "Migrated to Key Connector"
+  },
+  "paymentSponsored": {
+    "message": "Please provide a payment method to associate with the organization. Don't worry, we won't charge you anything unless you select additional features or your sponsorship expires. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "The sponsorship offer has expired. You may delete the organization you created to avoid a charge at the end of your 7 day trial. Otherwise you may close this prompt to keep the organization and assume billing responsibility."
+  },
+  "newFamiliesOrganization": {
+    "message": "Nova obiteljska organizacija"
+  },
+  "acceptOffer": {
+    "message": "Prihvati ponudu"
+  },
+  "sponsoringOrg": {
+    "message": "Organizacija sponzor"
+  },
+  "keyConnectorTest": {
+    "message": "Testiraj"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Uspjeh! Konektor za ključ spojen."
+  },
+  "keyConnectorTestFail": {
+    "message": "Nije moguće spojiti se na konektor za ključ. Provjeri URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "Ponuda za sponzorstvo je istekla."
+  },
+  "freeWithSponsorship": {
+    "message": "BESPLATNO sa sponzorstvom"
   }
 }

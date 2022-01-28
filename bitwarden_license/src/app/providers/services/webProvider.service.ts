@@ -7,7 +7,7 @@ import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { ProviderAddOrganizationRequest } from 'jslib-common/models/request/provider/providerAddOrganizationRequest';
 
 @Injectable()
-export class ProviderService {
+export class WebProviderService {
     constructor(private cryptoService: CryptoService, private syncService: SyncService, private apiService: ApiService) {}
 
     async addOrganizationToProvider(providerId: string, organizationId: string) {

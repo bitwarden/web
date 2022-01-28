@@ -12,7 +12,10 @@ import { AddEditComponent as OrgAddEditComponent } from '../organizations/vault/
 import { AddEditComponent } from '../vault/add-edit.component';
 
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
+
+import { CipherRepromptType } from 'jslib-common/enums/cipherRepromptType';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -25,8 +28,9 @@ export class CipherReportComponent {
     ciphers: CipherView[] = [];
     organization: Organization;
 
-    constructor(private modalService: ModalService, protected userService: UserService,
-        protected messagingService: MessagingService, public requiresPaid: boolean) { }
+    constructor(private modalService: ModalService, protected messagingService: MessagingService,
+        public requiresPaid: boolean, private stateService: StateService,
+        protected passwordRepromptService: PasswordRepromptService) { }
 
     async load() {
         this.loading = true;
@@ -36,6 +40,10 @@ export class CipherReportComponent {
     }
 
     async selectCipher(cipher: CipherView) {
+        if (!await this.repromptCipher(cipher)) {
+            return;
+        }
+
         const type = this.organization != null ? OrgAddEditComponent : AddEditComponent;
 
         const [modal, childComponent] = await this.modalService.openViewRef(type, this.cipherAddEditModalRef, (comp: OrgAddEditComponent | AddEditComponent) => {
@@ -72,7 +80,7 @@ export class CipherReportComponent {
                 return false;
             }
         } else {
-            const accessPremium = await this.userService.canAccessPremium();
+            const accessPremium = await this.stateService.getCanAccessPremium();
             if (this.requiresPaid && !accessPremium) {
                 this.messagingService.send('premiumRequired');
                 this.loading = false;
@@ -84,5 +92,9 @@ export class CipherReportComponent {
 
     protected async setCiphers() {
         this.ciphers = [];
+    }
+
+    protected async repromptCipher(c: CipherView) {
+        return c.reprompt === CipherRepromptType.None || await this.passwordRepromptService.showPasswordPrompt();
     }
 }

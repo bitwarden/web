@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Booleano"
   },
+  "cfTypeLinked": {
+    "message": "Conectado",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Eliminar"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Apellido"
+  },
+  "fullName": {
+    "message": "Nombre completo"
   },
   "address1": {
     "message": "Dirección 1"
@@ -833,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "Las claves de cifrado de cuenta son únicas para cada cuenta de usuario de Bitwarden, por lo que no puede importar una exportación cifrada a una cuenta diferente."
   },
-  "exportMasterPassword": {
-    "message": "Introduce tu contraseña maestra para exportar la información de tu caja fuerte."
-  },
   "export": {
     "message": "Exportar"
   },
@@ -898,6 +902,9 @@
   },
   "changeEmail": {
     "message": "Cambiar correo electrónico"
+  },
+  "changeEmailTwoFactorWarning": {
+    "message": "Proceder cambiará la dirección de correo electrónico de su cuenta. No cambiará la dirección de correo electrónico utilizada para la autenticación de dos factores. Puede cambiar esta dirección de correo electrónico en la configuración de inicio de sesión en dos pasos."
   },
   "newEmail": {
     "message": "Nuevo correo electrónico"
@@ -997,6 +1004,9 @@
   },
   "purgedOrganizationVault": {
     "message": "Caja fuerte de organización purgada."
+  },
+  "vaultAccessedByProvider": {
+    "message": "Caja fuerte a la que accede el proveedor."
   },
   "purgeVaultDesc": {
     "message": "Proceder eliminará todos los elementos y carpetas de tu caja fuerte. Los elementos que pertenezcan a una organización con la que compartes contenido, no serán eliminados."
@@ -1730,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Your plan comes with a free 7 day trial. Your card will not be charged until the trial has ended and on a recurring basis each $INTERVAL$. You may cancel at any time.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Your plan comes with a free 7 day trial. Your card will not be charged until the trial has ended and on a recurring basis each $INTERVAL$. You may cancel at any time."
   },
   "paymentInformation": {
     "message": "Información de pago"
@@ -2148,6 +2152,9 @@
   "policies": {
     "message": "Políticas"
   },
+  "singleSignOn": {
+    "message": "Inicio de sesión único"
+  },
   "editPolicy": {
     "message": "Editar política"
   },
@@ -2168,6 +2175,9 @@
   },
   "removeUserConfirmation": {
     "message": "¿Estás seguro de que deseas eliminar a este usuario?"
+  },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Warning! This user requires Key Connector to manage their encryption. Removing this user from your organization will permanently disable their account. This action cannot be undone. Do you want to proceed?"
   },
   "externalId": {
     "message": "Id externo"
@@ -2238,11 +2248,17 @@
   "confirmed": {
     "message": "Confirmado"
   },
+  "clientOwnerEmail": {
+    "message": "Correo electrónico del propietario del cliente"
+  },
   "owner": {
     "message": "Propietario"
   },
   "ownerDesc": {
     "message": "El usuario de acceso más alto que puede administrar todos los aspectos de su organización."
+  },
+  "clientOwnerDesc": {
+    "message": "Este usuario debe ser independiente del Proveedor. Si el Proveedor está desasociado con la organización, este usuario mantendrá la propiedad de la organización."
   },
   "admin": {
     "message": "Administrador"
@@ -2577,6 +2593,42 @@
       }
     }
   },
+  "createdOrganizationId": {
+    "message": "Organización $ID$ creada.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "addedOrganizationId": {
+    "message": "Organización $ID$ añadida.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "removedOrganizationId": {
+    "message": "Organización $ID$ eliminada.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "accessedClientVault": {
+    "message": "Se ha accedido a la caja fuerte de la organización $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
   "device": {
     "message": "Dispositivo"
   },
@@ -2606,6 +2658,9 @@
   },
   "resendInvitation": {
     "message": "Reenviar invitación"
+  },
+  "resendEmail": {
+    "message": "Resend Email"
   },
   "hasBeenReinvited": {
     "message": "El usuario $USER$ ha sido reinvitado.",
@@ -2760,10 +2815,6 @@
     "message": "Actualiza tu cuenta a otro plan proporcionando la información de abajo. Por favor, asegúrate de que tienes un método de pago activo añadido a la cuenta.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
-  "changeBillingPlanDesc": {
-    "message": "Contacta con atención al cliente si deseas cambiar tu plan. Por favor, asegúrate de tener activo un método de pago en tu cuenta.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
   "invoiceNumber": {
     "message": "Factura $NUMBER$",
     "description": "ex. Invoice #79C66F0-0001",
@@ -2830,6 +2881,16 @@
   "enterInstallationId": {
     "message": "Introduce tu ID de instalación"
   },
+  "limitSubscriptionDesc": {
+    "message": "Establezca un límite de asientos para su suscripción. Una vez alcanzado este límite, no podrá invitar a nuevos usuarios."
+  },
+  "maxSeatLimit": {
+    "message": "Límite máximo de asientos (opcional)",
+    "description": "Upper limit of seats to allow through autoscaling"
+  },
+  "maxSeatCost": {
+    "message": "Coste potencial máximo del asiento"
+  },
   "addSeats": {
     "message": "Añadir puestos",
     "description": "Seat = User Seat"
@@ -2838,8 +2899,74 @@
     "message": "Quitar puestos",
     "description": "Seat = User Seat"
   },
+  "subscriptionDesc": {
+    "message": "Los ajustes a su suscripción provocarán cambios prorrateados en su facturación total. Si los usuarios recién invitados exceden sus asientos de suscripción, recibirá inmediatamente un cargo prorrateado para los usuarios adicionales."
+  },
   "subscriptionUserSeats": {
     "message": "Tu suscripción permite un total de $COUNT$ usuarios.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "limitSubscription": {
+    "message": "Limitar suscripción (opcional)"
+  },
+  "subscriptionSeats": {
+    "message": "Asientos de suscripción"
+  },
+  "subscriptionUpdated": {
+    "message": "Suscripción actualizada"
+  },
+  "additionalOptions": {
+    "message": "Opciones adicionales"
+  },
+  "additionalOptionsDesc": {
+    "message": "Para ayuda adicional en la gestión de tu suscripción, por favor contacta con Atención al Cliente."
+  },
+  "subscriptionUserSeatsUnlimitedAutoscale": {
+    "message": "Los ajustes a su suscripción provocarán cambios prorrateados en su facturación total. Si los usuarios recién invitados exceden sus asientos de suscripción, recibirá inmediatamente un cargo prorrateado para los usuarios adicionales."
+  },
+  "subscriptionUserSeatsLimitedAutoscale": {
+    "message": "Los ajustes a su suscripción provocarán cambios prorrateados en su facturación total. Si los usuarios recién invitados exceden sus asientos de suscripción, recibirás inmediatamente un cargo prorrateado para los usuarios adicionales hasta que alcances tu límite de $MAX$ asientos.",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "No puedes invitar a más de $COUNT$ usuarios sin actualizar tu plan.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "No puede invitar a más de $COUNT$ usuarios sin actualizar su plan. Póngase en contacto con el Servicio de Atención al Cliente para actualizarlo.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Your subscription allows for a total of $COUNT$ users. Your plan is sponsored and billed to an external organization.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionMaxReached": {
+    "message": "Los ajustes de tu suscripción darán como resultado cambios prorrateados en tus facturación total. No puedes invitar a más de $COUNT$ usuarios sin aumentar tus asientos de suscripción.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3299,10 +3426,6 @@
   "ssoHandOff": {
     "message": "Ya puedes cerrar esta pestaña y continuar en la extensión."
   },
-  "businessPortal": {
-    "message": "Portal de negocios",
-    "description": "The web portal used by business organizations for configuring certain features."
-  },
   "includeAllTeamsFeatures": {
     "message": "Todas las características de Equipos y además:"
   },
@@ -3323,9 +3446,6 @@
   },
   "linkSso": {
     "message": "Enlazar SSO"
-  },
-  "webPoliciesDeprecationWarning": {
-    "message": "La configuración de la política ha sido movida y esta página pronto será obsoleta. Por favor, haga clic abajo para utilizar la página de políticas del Portal de Negocios en su lugar."
   },
   "singleOrg": {
     "message": "Organización única"
@@ -3715,9 +3835,6 @@
   "permissions": {
     "message": "Permisos"
   },
-  "accessBusinessPortal": {
-    "message": "Acceso al Portal de Negocios"
-  },
   "accessEventLogs": {
     "message": "Acceder a los registros de eventos"
   },
@@ -3727,11 +3844,29 @@
   "accessReports": {
     "message": "Informes de acceso"
   },
+  "missingPermissions": {
+    "message": "No tiene los permisos necesarios para realizar esta acción."
+  },
   "manageAllCollections": {
     "message": "Administrar todas las colecciones"
   },
+  "createNewCollections": {
+    "message": "Crear nuevas colecciones"
+  },
+  "editAnyCollection": {
+    "message": "Editar cualquier colección"
+  },
+  "deleteAnyCollection": {
+    "message": "Eliminar cualquier colección"
+  },
   "manageAssignedCollections": {
     "message": "Administrar colecciones asignadas"
+  },
+  "editAssignedCollections": {
+    "message": "Editar colecciones asignadas"
+  },
+  "deleteAssignedCollections": {
+    "message": "Eliminar colecciones asignadas"
   },
   "manageGroups": {
     "message": "Administrar grupos"
@@ -3748,11 +3883,20 @@
   "manageResetPassword": {
     "message": "Gestionar restablecimiento de contraseña"
   },
-  "disableRequireSsoError": {
-    "message": "Debe desactivar manualmente la política de autenticación de inicio de sesión único antes de que esta política pueda ser desactivada."
+  "disableRequiredError": {
+    "message": "Debe deshabilitar manualmente la política $POLICYNAME$ antes de que esta política pueda ser deshabilitada.",
+    "placeholders": {
+      "policyName": {
+        "content": "$1",
+        "example": "Single Sign-On Authentication"
+      }
+    }
   },
   "personalOwnershipPolicyInEffect": {
     "message": "Una política de organización está afectando sus opciones de propiedad."
+  },
+  "personalOwnershipPolicyInEffectImports": {
+    "message": "Una política de organización ha desactivado la importación de elementos en su caja fuerte personal."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Desactivar la propiedad personal para los usuarios de la organización"
@@ -3910,6 +4054,24 @@
       }
     }
   },
+  "eventResetSsoLink": {
+    "message": "Restablecer enlace de Inicio de Sesión Único para el usuario $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "firstSsoLogin": {
+    "message": "$ID$ logged in using Sso for the first time",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Restablecer contraseña"
   },
@@ -3988,6 +4150,21 @@
   "removeUsersWarning": {
     "message": "¿Está seguro que desea eliminar los siguientes usuarios? El proceso puede tardar unos segundos en completarse y no puede interrumpirse o cancelarse."
   },
+  "theme": {
+    "message": "Tema"
+  },
+  "themeDesc": {
+    "message": "Elige un tema para tu caja fuerte web."
+  },
+  "themeSystem": {
+    "message": "Usar tema del sistema"
+  },
+  "themeDark": {
+    "message": "Oscuro"
+  },
+  "themeLight": {
+    "message": "Claro"
+  },
   "confirmSelected": {
     "message": "Confirmar Seleccionado"
   },
@@ -4017,5 +4194,544 @@
   },
   "resetPasswordManageUsers": {
     "message": "Administrar usuarios también debe estar habilitado con el permiso de Gestionar Contraseña Restablecer"
+  },
+  "setupProvider": {
+    "message": "Configurador del proveedor"
+  },
+  "setupProviderLoginDesc": {
+    "message": "Ha sido invitado a configurar un nuevo proveedor. Para continuar, debe iniciar sesión o crear una nueva cuenta en Bitwarden."
+  },
+  "setupProviderDesc": {
+    "message": "Por favor, introduzca los siguientes datos para completar la configuración del proveedor. Si tiene alguna duda, le rogamos se ponga en contacto con el servicio de atención al cliente."
+  },
+  "providerName": {
+    "message": "Nombre del proveedor"
+  },
+  "providerSetup": {
+    "message": "El proveedor ha sido configurado."
+  },
+  "clients": {
+    "message": "Clientes"
+  },
+  "providerAdmin": {
+    "message": "Administrador del Proveedor"
+  },
+  "providerAdminDesc": {
+    "message": "El usuario de mayor rango que puede gestionar todos los aspectos de su proveedor, así como acceder y gestionar las organizaciones de los clientes."
+  },
+  "serviceUser": {
+    "message": "Usuario del servicio"
+  },
+  "serviceUserDesc": {
+    "message": "Los usuarios del servicio pueden acceder y gestionar todas las organizaciones de clientes."
+  },
+  "providerInviteUserDesc": {
+    "message": "Invite a un nuevo usuario a su proveedor, introduciendo la dirección de correo electrónico con la que éste se registró en Bitwarden. Si no tiene una cuenta en Bitwarden, se le pedirá que creen una."
+  },
+  "joinProvider": {
+    "message": "Únase al proveedor"
+  },
+  "joinProviderDesc": {
+    "message": "Ha sido invitado a unirte al proveedor que aparece indicado en la parte superior. Para aceptar la invitación, debe iniciar sesión o crear una nueva cuenta de Bitwarden."
+  },
+  "providerInviteAcceptFailed": {
+    "message": "No se puede aceptar la invitación. Pide a un administrador del proveedor que le envíe una nueva invitación."
+  },
+  "providerInviteAcceptedDesc": {
+    "message": "Podrá acceder a este proveedor una vez que un administrador confirme su registro. Le enviaremos un correo electrónico cuando esto suceda."
+  },
+  "providerUsersNeedConfirmed": {
+    "message": "Dispone de usuarios que han aceptado su invitación, pero que aún deben ser confirmados. Los usuarios no tendrán acceso al proveedor hasta que estén confirmados."
+  },
+  "provider": {
+    "message": "Proveedor"
+  },
+  "newClientOrganization": {
+    "message": "Nueva organización del cliente"
+  },
+  "newClientOrganizationDesc": {
+    "message": "Cree una nueva organización de clientes que estará asociada a usted como proveedor. Usted poddrá acceder y gestionar esta organización."
+  },
+  "addExistingOrganization": {
+    "message": "Añadir una organización existente"
+  },
+  "myProvider": {
+    "message": "Mi proveedor"
+  },
+  "addOrganizationConfirmation": {
+    "message": "¿Está seguro que quiere añadir $ORGANIZATION$ como cliente a $PROVIDER$?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      },
+      "provider": {
+        "content": "$2",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "organizationJoinedProvider": {
+    "message": "La organización se ha añadido con éxito al proveedor"
+  },
+  "accessingUsingProvider": {
+    "message": "Acceso a la organización mediante el proveedor $PROVIDER$",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "providerIsDisabled": {
+    "message": "El servicio está desactivado."
+  },
+  "providerUpdated": {
+    "message": "Provider updated"
+  },
+  "yourProviderIs": {
+    "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "detachedOrganization": {
+    "message": "The organization $ORGANIZATION$ has been detached from your provider.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "detachOrganizationConfirmation": {
+    "message": "Are you sure you want to detach this organization? The organization will continue to exist but will no longer be managed by the provider."
+  },
+  "add": {
+    "message": "Add"
+  },
+  "updatedMasterPassword": {
+    "message": "Updated Master Password"
+  },
+  "updateMasterPassword": {
+    "message": "Update Master Password"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+  },
+  "maximumVaultTimeout": {
+    "message": "Vault Timeout"
+  },
+  "maximumVaultTimeoutDesc": {
+    "message": "Configure a maximum vault timeout for all users."
+  },
+  "maximumVaultTimeoutLabel": {
+    "message": "Maximum Vault Timeout"
+  },
+  "invalidMaximumVaultTimeout": {
+    "message": "Invalid Maximum Vault Timeout."
+  },
+  "hours": {
+    "message": "Hours"
+  },
+  "minutes": {
+    "message": "Minutes"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "customVaultTimeout": {
+    "message": "Custom Vault Timeout"
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Your vault timeout exceeds the restriction set by your organization."
+  },
+  "disablePersonalVaultExport": {
+    "message": "Disable Personal Vault Export"
+  },
+  "disablePersonalVaultExportDesc": {
+    "message": "Prohibits users from exporting their private vault data."
+  },
+  "vaultExportDisabled": {
+    "message": "Vault Export Disabled"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "One or more organization policies prevents you from exporting your personal vault."
+  },
+  "selectType": {
+    "message": "Select SSO Type"
+  },
+  "type": {
+    "message": "Type"
+  },
+  "openIdConnectConfig": {
+    "message": "OpenID Connect Configuration"
+  },
+  "samlSpConfig": {
+    "message": "SAML Service Provider Configuration"
+  },
+  "samlIdpConfig": {
+    "message": "SAML Identity Provider Configuration"
+  },
+  "callbackPath": {
+    "message": "Callback Path"
+  },
+  "signedOutCallbackPath": {
+    "message": "Signed Out Callback Path"
+  },
+  "authority": {
+    "message": "Authority"
+  },
+  "clientId": {
+    "message": "Client ID"
+  },
+  "clientSecret": {
+    "message": "Client Secret"
+  },
+  "metadataAddress": {
+    "message": "Metadata Address"
+  },
+  "oidcRedirectBehavior": {
+    "message": "OIDC Redirect Behavior"
+  },
+  "getClaimsFromUserInfoEndpoint": {
+    "message": "Get Claims From User Info Endpoint"
+  },
+  "additionalScopes": {
+    "message": "Additional/Custom Scopes (comma delimited)"
+  },
+  "additionalUserIdClaimTypes": {
+    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+  },
+  "additionalEmailClaimTypes": {
+    "message": "Additional/Custom Email Claim Types (comma delimited)"
+  },
+  "additionalNameClaimTypes": {
+    "message": "Additional/Custom Name Claim Types (comma delimited)"
+  },
+  "acrValues": {
+    "message": "Requested Authentication Context Class Reference values (acr_values)"
+  },
+  "expectedReturnAcrValue": {
+    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+  },
+  "spEntityId": {
+    "message": "SP Entity ID"
+  },
+  "spMetadataUrl": {
+    "message": "SAML 2.0 Metadata URL"
+  },
+  "spAcsUrl": {
+    "message": "Assertion Consumer Service (ACS) URL"
+  },
+  "spNameIdFormat": {
+    "message": "Name ID Format"
+  },
+  "spOutboundSigningAlgorithm": {
+    "message": "Outbound Signing Algorithm"
+  },
+  "spSigningBehavior": {
+    "message": "Signing Behavior"
+  },
+  "spMinIncomingSigningAlgorithm": {
+    "message": "Minimum Incoming Signing Algorithm"
+  },
+  "spWantAssertionsSigned": {
+    "message": "Want Assertions Signed"
+  },
+  "spValidateCertificates": {
+    "message": "Validate Certificates"
+  },
+  "idpEntityId": {
+    "message": "Entity ID"
+  },
+  "idpBindingType": {
+    "message": "Binding Type"
+  },
+  "idpSingleSignOnServiceUrl": {
+    "message": "Single Sign On Service URL"
+  },
+  "idpSingleLogoutServiceUrl": {
+    "message": "Single Log Out Service URL"
+  },
+  "idpArtifactResolutionServiceUrl": {
+    "message": "Artifact Resolution Service URL"
+  },
+  "idpX509PublicCert": {
+    "message": "X509 Public Certificate"
+  },
+  "idpOutboundSigningAlgorithm": {
+    "message": "Outbound Signing Algorithm"
+  },
+  "idpAllowUnsolicitedAuthnResponse": {
+    "message": "Allow Unsolicited Authentication Response"
+  },
+  "idpDisableOutboundLogoutRequests": {
+    "message": "Disable Outbound Logout Requests"
+  },
+  "idpWantAuthnRequestsSigned": {
+    "message": "Want Authentication Requests Signed"
+  },
+  "ssoSettingsSaved": {
+    "message": "Single Sign-On configuration was saved."
+  },
+  "sponsoredFamilies": {
+    "message": "Free Bitwarden Families"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "You and your family are eligible for Free Bitwarden Families. Redeem with your personal email to keep your data secure even when you are not at work."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Redeem your Free Bitwarden for Families plan today to keep your data secure even when you are not at work."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "The Bitwarden for Families plan include"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Premium access for up to 6 users"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Shared collections for Family secrets"
+  },
+  "badToken": {
+    "message": "The link is no longer valid. Please have the sponsor resend the offer."
+  },
+  "reclaimedFreePlan": {
+    "message": "Reclaimed free plan"
+  },
+  "redeem": {
+    "message": "Redeem"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Select the organization you would like sponsored"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Which Free Families offer would you like to redeem?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Enter your personal email to redeem Bitwarden Families"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "If you leave or are removed from the sponsoring organization, your Families plan will expire at the end of the billing period."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Accept offer for an existing organization or create a new Families organization."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "You've been offered a free Bitwarden Families Plan Organization. To continue, you need to log in to the account that received the offer."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Unable to accept offer. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Accept Free Bitwarden Families"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Free Bitwarden Families offer successfully redeemed"
+  },
+  "redeemed": {
+    "message": "Redeemed"
+  },
+  "redeemedAccount": {
+    "message": "Redeemed Account"
+  },
+  "revokeAccount": {
+    "message": "Revoke account $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Free Families Plan"
+  },
+  "redeemNow": {
+    "message": "Redeem Now"
+  },
+  "recipient": {
+    "message": "Recipient"
+  },
+  "removeSponsorship": {
+    "message": "Remove Sponsorship"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "After removing a sponsorship, you will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "sponsorshipCreated": {
+    "message": "Sponsorship Created"
+  },
+  "revoke": {
+    "message": "Revoke"
+  },
+  "emailSent": {
+    "message": "Email Sent"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "After removing this account, the Families organization owner will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Sponsorship Removed"
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "Unable to reach the Key Connector, try again later."
+  },
+  "keyConnectorUrl": {
+    "message": "Key Connector URL"
+  },
+  "sendVerificationCode": {
+    "message": "Send a verification code to your email"
+  },
+  "sendCode": {
+    "message": "Send Code"
+  },
+  "codeSent": {
+    "message": "Code Sent"
+  },
+  "verificationCode": {
+    "message": "Verification Code"
+  },
+  "confirmIdentity": {
+    "message": "Confirm your identity to continue."
+  },
+  "verificationCodeRequired": {
+    "message": "Verification code is required."
+  },
+  "invalidVerificationCode": {
+    "message": "Invalid verification code"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ is using SSO with a self-hosted key server. A master password is no longer required to log in for members of this organization.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Leave Organization"
+  },
+  "removeMasterPassword": {
+    "message": "Remove Master Password"
+  },
+  "removedMasterPassword": {
+    "message": "Master password removed."
+  },
+  "allowSso": {
+    "message": "Allow SSO authentication"
+  },
+  "allowSsoDesc": {
+    "message": "Once set up, your configuration will be saved and members will be able to authenticate using their Identity Provider credentials."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Enable the",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "SSO Authentication policy",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "to require all members to log in with SSO.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
+  },
+  "memberDecryptionOption": {
+    "message": "Member Decryption Options"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Once authenticated, members will decrypt vault data using their Master Passwords."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt vault data. Contact Bitwarden Support for set up assistance."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
+  },
+  "enabledSso": {
+    "message": "Enabled SSO"
+  },
+  "disabledSso": {
+    "message": "Disabled SSO"
+  },
+  "enabledKeyConnector": {
+    "message": "Enabled Key Connector"
+  },
+  "disabledKeyConnector": {
+    "message": "Disabled Key Connector"
+  },
+  "keyConnectorWarning": {
+    "message": "Once members begin using Key Connector, your Organization cannot revert to Master Password decryption. Proceed only if you are comfortable deploying and managing a key server."
+  },
+  "migratedKeyConnector": {
+    "message": "Migrated to Key Connector"
+  },
+  "paymentSponsored": {
+    "message": "Please provide a payment method to associate with the organization. Don't worry, we won't charge you anything unless you select additional features or your sponsorship expires. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "The sponsorship offer has expired. You may delete the organization you created to avoid a charge at the end of your 7 day trial. Otherwise you may close this prompt to keep the organization and assume billing responsibility."
+  },
+  "newFamiliesOrganization": {
+    "message": "New Families Organization"
+  },
+  "acceptOffer": {
+    "message": "Accept Offer"
+  },
+  "sponsoringOrg": {
+    "message": "Sponsoring Organization"
+  },
+  "keyConnectorTest": {
+    "message": "Test"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Success! Key Connector reached."
+  },
+  "keyConnectorTestFail": {
+    "message": "Cannot reach Key Connector. Check URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "The sponsorship offer has expired."
+  },
+  "freeWithSponsorship": {
+    "message": "FREE with sponsorship"
   }
 }

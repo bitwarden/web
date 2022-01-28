@@ -3,12 +3,13 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { KeyConnectorService } from 'jslib-common/abstractions/keyConnector.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { UpdateProfileRequest } from 'jslib-common/models/request/updateProfileRequest';
 
@@ -22,20 +23,28 @@ export class ProfileComponent implements OnInit {
     loading = true;
     profile: ProfileResponse;
     fingerprint: string;
+    hidePasswordHint = false;
 
     formPromise: Promise<any>;
 
-    constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, private userService: UserService,
-        private cryptoService: CryptoService) { }
+    constructor(
+        private apiService: ApiService,
+        private i18nService: I18nService,
+        private platformUtilsService: PlatformUtilsService,
+        private cryptoService: CryptoService,
+        private logService: LogService,
+        private keyConnectorService: KeyConnectorService,
+        private stateService: StateService,
+    ) { }
 
     async ngOnInit() {
         this.profile = await this.apiService.getProfile();
         this.loading = false;
-        const fingerprint = await this.cryptoService.getFingerprint(await this.userService.getUserId());
+        const fingerprint = await this.cryptoService.getFingerprint(await this.stateService.getUserId());
         if (fingerprint != null) {
             this.fingerprint = fingerprint.join('-');
         }
+        this.hidePasswordHint = await this.keyConnectorService.getUsesKeyConnector();
     }
 
     async submit() {
@@ -43,7 +52,9 @@ export class ProfileComponent implements OnInit {
             const request = new UpdateProfileRequest(this.profile.name, this.profile.masterPasswordHint);
             this.formPromise = this.apiService.putProfile(request);
             await this.formPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('accountUpdated'));
-        } catch { }
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('accountUpdated'));
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }

@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', event => {
 
     const hostParam = getQsParam('host');
     const requestParam = getQsParam('request');
+
+    const hostUrl = new URL('https://' + hostParam);
+    if (!hostUrl.hostname.endsWith('.duosecurity.com') && !hostUrl.hostname.endsWith('.duofederal.com')) {
+        return;
+    }
+
     DuoWebSDK.init({
         iframe: 'duo_iframe',
         host: hostParam,
@@ -31,5 +37,8 @@ document.addEventListener('DOMContentLoaded', event => {
 function invokeCSCode(data: string) {
     try {
         (window as any).invokeCSharpAction(data);
-    } catch (err) { }
+    } catch (err) {
+        // tslint:disable-next-line
+        console.log(err);
+    }
 }

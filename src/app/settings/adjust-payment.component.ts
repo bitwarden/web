@@ -6,10 +6,10 @@ import {
     ViewChild,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { PaymentRequest } from 'jslib-common/models/request/paymentRequest';
 
@@ -35,7 +35,7 @@ export class AdjustPaymentComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService) { }
+        private platformUtilsService: PlatformUtilsService, private logService: LogService) { }
 
     async submit() {
         try {
@@ -58,9 +58,11 @@ export class AdjustPaymentComponent {
                 }
             });
             await this.formPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('updatedPaymentMethod'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('updatedPaymentMethod'));
             this.onAdjusted.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     cancel() {

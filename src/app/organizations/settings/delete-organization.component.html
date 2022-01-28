@@ -1,4 +1,4 @@
-<div class="modal fade" tabindex="-1" role="dialog" aria-modal="true" aria-labelledby="deleteOrganizationTitle">
+<div class="modal fade" role="dialog" aria-modal="true" aria-labelledby="deleteOrganizationTitle">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
         <form class="modal-content" #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
             <div class="modal-header">
@@ -8,11 +8,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>{{'deleteOrganizationDesc' | i18n}}</p>
+                <p>{{descriptionKey | i18n}}</p>
                 <app-callout type="warning">{{'deleteOrganizationWarning' | i18n}}</app-callout>
-                <label for="masterPassword">{{'masterPass' | i18n}}</label>
-                <input id="masterPassword" type="password" name="MasterPasswordHash" class="form-control"
-                    [(ngModel)]="masterPassword" required appAutofocus appInputVerbatim>
+                <app-verify-master-password [(ngModel)]="masterPassword" ngDefaultControl name="secret">
+                </app-verify-master-password>
             </div>
             <div class="modal-footer">
                 <button type="submit" class="btn btn-danger btn-submit" [disabled]="form.loading">

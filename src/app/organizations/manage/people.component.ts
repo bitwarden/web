@@ -5,12 +5,12 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 
+import { first } from 'rxjs/operators';
+
 import {
     ActivatedRoute,
     Router,
 } from '@angular/router';
-
-import { ToasterService } from 'angular2-toaster';
 
 import { ValidationService } from 'jslib-angular/services/validation.service';
 
@@ -18,12 +18,12 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { LogService } from 'jslib-common/abstractions/log.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -78,21 +78,43 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
     orgResetPasswordPolicyEnabled = false;
     callingUserType: OrganizationUserType = null;
 
-    constructor(apiService: ApiService, private route: ActivatedRoute,
-        i18nService: I18nService, modalService: ModalService,
-        platformUtilsService: PlatformUtilsService, toasterService: ToasterService,
-        cryptoService: CryptoService, private userService: UserService, private router: Router,
-        storageService: StorageService, searchService: SearchService,
-        validationService: ValidationService, private policyService: PolicyService,
-        logService: LogService, searchPipe: SearchPipe, userNamePipe: UserNamePipe, private syncService: SyncService) {
-            super(apiService, searchService, i18nService, platformUtilsService, toasterService, cryptoService,
-                storageService, validationService, modalService, logService, searchPipe, userNamePipe);
+    constructor(
+        apiService: ApiService,
+        private route: ActivatedRoute,
+        i18nService: I18nService,
+        modalService: ModalService,
+        platformUtilsService: PlatformUtilsService,
+        cryptoService: CryptoService,
+        private router: Router,
+        searchService: SearchService,
+        validationService: ValidationService,
+        private policyService: PolicyService,
+        logService: LogService,
+        searchPipe: SearchPipe,
+        userNamePipe: UserNamePipe,
+        private syncService: SyncService,
+        stateService: StateService,
+        private organizationService: OrganizationService,
+    ) {
+            super(
+                apiService,
+                searchService,
+                i18nService,
+                platformUtilsService,
+                cryptoService,
+                validationService,
+                modalService,
+                logService,
+                searchPipe,
+                userNamePipe,
+                stateService,
+            );
         }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
-            const organization = await this.userService.getOrganization(this.organizationId);
+            const organization = await this.organizationService.get(this.organizationId);
             if (!organization.canManageUsers) {
                 this.router.navigate(['../collections'], { relativeTo: this.route });
                 return;
@@ -120,16 +142,13 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
 
             await this.load();
 
-            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+            this.route.queryParams.pipe(first()).subscribe(async qParams => {
                 this.searchText = qParams.search;
                 if (qParams.viewEvents != null) {
                     const user = this.users.filter(u => u.id === qParams.viewEvents);
                     if (user.length > 0 && user[0].status === OrganizationUserStatusType.Confirmed) {
                         this.events(user[0]);
                     }
-                }
-                if (queryParamsSub != null) {
-                    queryParamsSub.unsubscribe();
                 }
             });
         });
@@ -194,6 +213,7 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
             comp.name = this.userNamePipe.transform(user);
             comp.organizationId = this.organizationId;
             comp.organizationUserId = user != null ? user.id : null;
+            comp.usesKeyConnector = user?.usesKeyConnector;
             comp.onSavedUser.subscribe(() => {
                 modal.close();
                 this.load();
@@ -239,7 +259,7 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
         const filteredUsers = users.filter(u => u.status === OrganizationUserStatusType.Invited);
 
         if (filteredUsers.length <= 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('noSelectedUsersApplicable'));
             return;
         }
@@ -290,6 +310,14 @@ export class PeopleComponent extends BasePeopleComponent<OrganizationUserUserDet
                 this.load();
             });
         });
+    }
+
+    protected deleteWarningMessage(user: OrganizationUserUserDetailsResponse): string {
+        if (user.usesKeyConnector) {
+            return this.i18nService.t('removeUserConfirmationKeyConnector');
+        }
+
+        return super.deleteWarningMessage(user);
     }
 
     private async showBulkStatus(users: OrganizationUserUserDetailsResponse[], filteredUsers: OrganizationUserUserDetailsResponse[],

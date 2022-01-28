@@ -5,10 +5,10 @@ import {
     Output,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 @Component({
     selector: 'app-update-license',
@@ -22,13 +22,13 @@ export class UpdateLicenseComponent {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService) { }
+        private platformUtilsService: PlatformUtilsService, private logService: LogService) { }
 
     async submit() {
         const fileEl = document.getElementById('file') as HTMLInputElement;
         const files = fileEl.files;
         if (files == null || files.length === 0) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('selectFile'));
             return;
         }
@@ -49,9 +49,11 @@ export class UpdateLicenseComponent {
             });
 
             await this.formPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('updatedLicense'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('updatedLicense'));
             this.onUpdated.emit();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     cancel() {

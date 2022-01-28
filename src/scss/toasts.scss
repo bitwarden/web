@@ -1,40 +1,34 @@
 .toast-container {
-    &.toast-top-right {
-        top: 76px;
-    }
-
     .toast-close-button {
         font-size: 18px;
         margin-right: 4px;
     }
 
-    .toast {
+    .ngx-toastr {
         align-items: center;
         background-image: none !important;
         border-radius: $border-radius;
         box-shadow: 0 0 8px rgba(0, 0, 0, 0.35);
         display: flex;
-        opacity: 1 !important;
+        padding: 15px;
+
+        .toast-close-button {
+            position: absolute;
+            right: 5px;
+            top: 0;
+        }
 
         &:hover {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
         }
 
-        &:before {
-            color: #FFFFFF;
+        .icon i::before {
             float: left;
+            font-style: normal;
             font-family: FontAwesome;
             font-size: 25px;
             line-height: 20px;
-            margin: auto 0 auto 15px;
-        }
-
-        .toast-content {
-            padding: 15px;
-        }
-
-        .toaster-icon {
-            display: none;
+            padding-right: 15px;
         }
 
         .toast-message {
@@ -48,7 +42,6 @@
         }
 
         &.toast-danger, &.toast-error {
-            background-image: none !important;
             @include themify($themes) {
                 background-color: themed('danger');
             }
@@ -59,13 +52,12 @@
                 }
             }
 
-            &:before {
+            .icon i::before {
                 content: "\f0e7";
             }
         }
 
         &.toast-warning {
-            background-image: none !important;
             @include themify($themes) {
                 background-color: themed('warning');
             }
@@ -76,13 +68,12 @@
                 }
             }
 
-            &:before {
+            .icon i::before {
                 content: "\f071";
             }
         }
 
         &.toast-info {
-            background-image: none !important;
             @include themify($themes) {
                 background-color: themed('info');
             }
@@ -93,13 +84,12 @@
                 }
             }
 
-            &:before {
+            .icon i:before {
                 content: "\f05a";
             }
         }
 
         &.toast-success {
-            background-image: none !important;
             @include themify($themes) {
                 background-color: themed('success');
             }
@@ -110,7 +100,7 @@
                 }
             }
 
-            &:before {
+            .icon i:before {
                 content: "\f00C";
             }
         }

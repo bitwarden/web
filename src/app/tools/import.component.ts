@@ -4,10 +4,9 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { ImportOption, ImportService } from 'jslib-common/abstractions/import.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
 
@@ -31,9 +30,10 @@ export class ImportComponent implements OnInit {
     protected organizationId: string = null;
     protected successNavigate: any[] = ['vault'];
 
-    constructor(protected i18nService: I18nService, protected toasterService: ToasterService,
+    constructor(protected i18nService: I18nService,
         protected importService: ImportService, protected router: Router,
-        protected platformUtilsService: PlatformUtilsService, protected policyService: PolicyService) { }
+        protected platformUtilsService: PlatformUtilsService, protected policyService: PolicyService,
+        private logService: LogService) { }
 
     async ngOnInit() {
         this.setImportOptions();
@@ -66,7 +66,7 @@ export class ImportComponent implements OnInit {
 
         const importer = this.importService.getImporter(this.format, this.organizationId);
         if (importer === null) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('selectFormat'));
             this.loading = false;
             return;
@@ -75,7 +75,7 @@ export class ImportComponent implements OnInit {
         const fileEl = document.getElementById('file') as HTMLInputElement;
         const files = fileEl.files;
         if ((files == null || files.length === 0) && (this.fileContents == null || this.fileContents === '')) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('selectFile'));
             this.loading = false;
             return;
@@ -88,11 +88,13 @@ export class ImportComponent implements OnInit {
                 if (content != null) {
                     fileContents = content;
                 }
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
         }
 
         if (fileContents == null || fileContents === '') {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('selectFile'));
             this.loading = false;
             return;
@@ -106,9 +108,11 @@ export class ImportComponent implements OnInit {
                 this.loading = false;
                 return;
             }
-            this.toasterService.popAsync('success', null, this.i18nService.t('importSuccess'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('importSuccess'));
             this.router.navigate(this.successNavigate);
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
 
         this.loading = false;
     }

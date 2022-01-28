@@ -4,15 +4,15 @@ import {
     OnInit,
 } from '@angular/core';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 
 import { EventService } from '../../services/event.service';
 
 import { UserNamePipe } from 'jslib-angular/pipes/user-name.pipe';
 
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { EventResponse } from 'jslib-common/models/response/eventResponse';
 import { ListResponse } from 'jslib-common/models/response/listResponse';
 
@@ -41,8 +41,8 @@ export class EntityEventsComponent implements OnInit {
     private orgUsersIdMap = new Map<string, any>();
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private eventService: EventService, private toasterService: ToasterService,
-        private userNamePipe: UserNamePipe) { }
+        private eventService: EventService, private platformUtilsService: PlatformUtilsService,
+        private userNamePipe: UserNamePipe, private logService: LogService) { }
 
     async ngOnInit() {
         const defaultDates = this.eventService.getDefaultDateFilters();
@@ -73,7 +73,7 @@ export class EntityEventsComponent implements OnInit {
         try {
             dates = this.eventService.formatDateFilters(this.start, this.end);
         } catch (e) {
-            this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+            this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                 this.i18nService.t('invalidDateRange'));
             return;
         }
@@ -98,7 +98,9 @@ export class EntityEventsComponent implements OnInit {
                 this.morePromise = promise;
             }
             response = await promise;
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
 
         this.continuationToken = response.continuationToken;
         const events = await Promise.all(response.data.map(async r => {

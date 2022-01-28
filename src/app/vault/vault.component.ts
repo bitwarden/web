@@ -12,6 +12,8 @@ import {
     Router,
 } from '@angular/router';
 
+import { first } from 'rxjs/operators';
+
 import { CipherType } from 'jslib-common/enums/cipherType';
 
 import { CipherView } from 'jslib-common/models/view/cipherView';
@@ -26,15 +28,17 @@ import { FolderAddEditComponent } from './folder-add-edit.component';
 import { GroupingsComponent } from './groupings.component';
 import { ShareComponent } from './share.component';
 
+import { BroadcasterService } from 'jslib-common/abstractions/broadcaster.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { ProviderService } from 'jslib-common/abstractions/provider.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { TokenService } from 'jslib-common/abstractions/token.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
-import { BroadcasterService } from 'jslib-angular/services/broadcaster.service';
 import { ModalService } from 'jslib-angular/services/modal.service';
 
 const BroadcasterSubscriptionId = 'VaultComponent';
@@ -62,17 +66,20 @@ export class VaultComponent implements OnInit, OnDestroy {
     showBrowserOutdated = false;
     showUpdateKey = false;
     showPremiumCallout = false;
+    showRedeemSponsorship = false;
     showProviders = false;
     deleted: boolean = false;
     trashCleanupWarning: string = null;
+
 
     constructor(private syncService: SyncService, private route: ActivatedRoute,
         private router: Router, private changeDetectorRef: ChangeDetectorRef,
         private i18nService: I18nService, private modalService: ModalService,
         private tokenService: TokenService, private cryptoService: CryptoService,
-        private messagingService: MessagingService, private userService: UserService,
-        private platformUtilsService: PlatformUtilsService, private broadcasterService: BroadcasterService,
-        private ngZone: NgZone) { }
+        private messagingService: MessagingService, private platformUtilsService: PlatformUtilsService,
+        private broadcasterService: BroadcasterService, private ngZone: NgZone,
+        private stateService: StateService, private organizationService: OrganizationService,
+        private providerService: ProviderService) { }
 
     async ngOnInit() {
         this.showVerifyEmail = !(await this.tokenService.getEmailVerified());
@@ -81,20 +88,23 @@ export class VaultComponent implements OnInit, OnDestroy {
             this.platformUtilsService.isSelfHost() ? 'trashCleanupWarningSelfHosted' : 'trashCleanupWarning'
         );
 
-        const queryParamsSub = this.route.queryParams.subscribe(async params => {
+        this.route.queryParams.pipe(first()).subscribe(async params => {
             await this.syncService.fullSync(false);
 
-            this.showUpdateKey = !(await this.cryptoService.hasEncKey());
-            const canAccessPremium = await this.userService.canAccessPremium();
+            const canAccessPremium = await this.stateService.getCanAccessPremium();
             this.showPremiumCallout = !this.showVerifyEmail && !canAccessPremium &&
                 !this.platformUtilsService.isSelfHost();
 
-            this.showProviders = (await this.userService.getAllProviders()).length > 0;
+            this.showProviders = (await this.providerService.getAll()).length > 0;
+
+            const allOrgs = await this.organizationService.getAll();
+            this.showRedeemSponsorship = allOrgs.some(o => o.familySponsorshipAvailable) && !allOrgs.some(o => o.familySponsorshipFriendlyName != null);
 
             await Promise.all([
                 this.groupingsComponent.load(),
                 this.organizationsComponent.load(),
             ]);
+            this.showUpdateKey = !(await this.cryptoService.hasEncKey());
 
             if (params == null) {
                 this.groupingsComponent.selectedAll = true;
@@ -139,10 +149,6 @@ export class VaultComponent implements OnInit, OnDestroy {
                     }
                 });
             });
-
-            if (queryParamsSub != null) {
-                queryParamsSub.unsubscribe();
-            }
         });
     }
 
@@ -212,12 +218,12 @@ export class VaultComponent implements OnInit, OnDestroy {
     }
 
     async editCipherAttachments(cipher: CipherView) {
-        const canAccessPremium = await this.userService.canAccessPremium();
+        const canAccessPremium = await this.stateService.getCanAccessPremium();
         if (cipher.organizationId == null && !canAccessPremium) {
             this.messagingService.send('premiumRequired');
             return;
         } else if (cipher.organizationId != null) {
-            const org = await this.userService.getOrganization(cipher.organizationId);
+            const org = await this.organizationService.get(cipher.organizationId);
             if (org != null && (org.maxStorageGb == null || org.maxStorageGb === 0)) {
                 this.messagingService.send('upgradeOrganization', { organizationId: cipher.organizationId });
                 return;

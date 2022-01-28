@@ -166,6 +166,10 @@
   "cfTypeBoolean": {
     "message": "Логічне значення"
   },
+  "cfTypeLinked": {
+    "message": "Пов'язано",
+    "description": "This describes a field that is 'linked' (related) to another field."
+  },
   "remove": {
     "message": "Вилучити"
   },
@@ -310,6 +314,9 @@
   },
   "lastName": {
     "message": "Прізвище"
+  },
+  "fullName": {
+    "message": "Повне ім'я"
   },
   "address1": {
     "message": "Адреса 1"
@@ -833,9 +840,6 @@
   "encExportAccountWarningDesc": {
     "message": "Ключі шифрування унікальні для кожного облікового запису користувача Bitwarden, тому ви не можете імпортувати зашифрований експорт до іншого облікового запису."
   },
-  "exportMasterPassword": {
-    "message": "Введіть головний пароль, щоб експортувати дані сховища."
-  },
   "export": {
     "message": "Експорт"
   },
@@ -898,6 +902,9 @@
   },
   "changeEmail": {
     "message": "Змінити адресу е-пошти"
+  },
+  "changeEmailTwoFactorWarning": {
+    "message": "Продовжуючи, ви зміните адресу електронної пошти вашого облікового запису. Ця дія не змінить адресу електронної пошти, що використовується для двоетапної перевірки. Ви можете змінити цю електронну адресу в налаштуваннях двоетапної перевірки."
   },
   "newEmail": {
     "message": "Нова адреса е-пошти"
@@ -997,6 +1004,9 @@
   },
   "purgedOrganizationVault": {
     "message": "Сховище організації очищено."
+  },
+  "vaultAccessedByProvider": {
+    "message": "Постачальник має доступ до сховища."
   },
   "purgeVaultDesc": {
     "message": "Продовжуйте внизу для видалення всіх записів і тек у вашому сховищі. Записи, що належать до спільної організації не будуть видалені."
@@ -1730,13 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Ваш тарифний план має 7 днів безплатного пробного періоду. З вас не буде стягнуто плату до завершення цього періоду. Оплата стягуватиметься автоматично кожен $INTERVAL$. Ви можете скасувати це в будь-який час.",
-    "placeholders": {
-      "interval": {
-        "content": "$1",
-        "example": "month or year"
-      }
-    }
+    "message": "Ваш тарифний план має 7 днів безплатного пробного періоду. З вас не буде стягнуто плату до завершення цього періоду. Ви можете скасувати це в будь-який час."
   },
   "paymentInformation": {
     "message": "Інформація про оплату"
@@ -2148,6 +2152,9 @@
   "policies": {
     "message": "Політики"
   },
+  "singleSignOn": {
+    "message": "Єдиний вхід"
+  },
   "editPolicy": {
     "message": "Змінити політику"
   },
@@ -2168,6 +2175,9 @@
   },
   "removeUserConfirmation": {
     "message": "Ви справді хочете вилучити цього користувача?"
+  },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Попередження! Цей користувач потребує Key Connector для керування шифруванням. Вилучення цього користувача з вашої організації остаточно вимкне його обліковий запис. Цю дію неможливо скасувати. Ви хочете продовжити?"
   },
   "externalId": {
     "message": "Зовнішній ID"
@@ -2238,11 +2248,17 @@
   "confirmed": {
     "message": "Підтверджено"
   },
+  "clientOwnerEmail": {
+    "message": "Е-пошта власника клієнта"
+  },
   "owner": {
     "message": "Власник"
   },
   "ownerDesc": {
     "message": "Користувач з найвищими привілеями, який може керувати всіма налаштуваннями організації."
+  },
+  "clientOwnerDesc": {
+    "message": "Цей користувач повинен бути незалежним від постачальника. Якщо постачальник не пов'язаний з організацією, цей користувач підтримуватиме право власності організації."
   },
   "admin": {
     "message": "Адміністратор"
@@ -2577,6 +2593,42 @@
       }
     }
   },
+  "createdOrganizationId": {
+    "message": "Створено організацію $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "addedOrganizationId": {
+    "message": "Додано організацію $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "removedOrganizationId": {
+    "message": "Вилучено організацію $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
+  "accessedClientVault": {
+    "message": "Отримано доступ до сховища організації $ID$.",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "Google"
+      }
+    }
+  },
   "device": {
     "message": "Пристрій"
   },
@@ -2606,6 +2658,9 @@
   },
   "resendInvitation": {
     "message": "Повторно надіслати запрошення"
+  },
+  "resendEmail": {
+    "message": "Надіслати лист повторно"
   },
   "hasBeenReinvited": {
     "message": "$USER$ було повторно запрошено.",
@@ -2753,15 +2808,11 @@
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Змінити тарифний план",
+    "message": "Оновити тарифний план",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
     "message": "Перейдіть на передплату вищого рівня, вказавши інформацію внизу. Переконайтеся, що ваш обліковий запис має актуальні дані про спосіб оплати.",
-    "description": "A billing plan/package. For example: families, teams, enterprise, etc."
-  },
-  "changeBillingPlanDesc": {
-    "message": "Зв'яжіться зі службою підтримки клієнтів, якщо ви бажаєте змінити свій тарифний план. Будь ласка, переконайтеся, що у вас є активний спосіб оплати доданий до облікового запису.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
@@ -2830,6 +2881,16 @@
   "enterInstallationId": {
     "message": "Введіть ID вашої інсталяції"
   },
+  "limitSubscriptionDesc": {
+    "message": "Встановіть ліміт місць для вашої передплати. Після досягнення цього ліміту ви не зможете запрошувати нових користувачів."
+  },
+  "maxSeatLimit": {
+    "message": "Максимальний ліміт місць (необов'язково)",
+    "description": "Upper limit of seats to allow through autoscaling"
+  },
+  "maxSeatCost": {
+    "message": "Максимальна потенційна вартість місця"
+  },
   "addSeats": {
     "message": "Додати місця",
     "description": "Seat = User Seat"
@@ -2838,8 +2899,74 @@
     "message": "Вилучити місця",
     "description": "Seat = User Seat"
   },
+  "subscriptionDesc": {
+    "message": "Коригування вашої передплати призведе до відповідних змін у ваших рахунках. Якщо нові запрошені користувачі перевищать обмеження ваших місць, ви відразу отримаєте пропорційний рахунок для оплати за додаткових користувачів."
+  },
   "subscriptionUserSeats": {
     "message": "Ваша передплата дозволяє всього $COUNT$ користувачів.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "limitSubscription": {
+    "message": "Обмеження передплати (Необов'язково)"
+  },
+  "subscriptionSeats": {
+    "message": "Передплачені місця"
+  },
+  "subscriptionUpdated": {
+    "message": "Передплату оновлено"
+  },
+  "additionalOptions": {
+    "message": "Додаткові налаштування"
+  },
+  "additionalOptionsDesc": {
+    "message": "Для отримання додаткової допомоги в керуванні вашою передплатою, будь ласка, зверніться до служби підтримки."
+  },
+  "subscriptionUserSeatsUnlimitedAutoscale": {
+    "message": "Коригування вашої передплати призведе до відповідних змін у ваших рахунках. Якщо нові запрошені користувачі перевищать обмеження ваших місць, ви відразу отримаєте пропорційний рахунок для оплати за додаткових користувачів."
+  },
+  "subscriptionUserSeatsLimitedAutoscale": {
+    "message": "Коригування вашої передплати призведе до відповідних змін у ваших рахунках. Якщо нові запрошені користувачі перевищать обмеження ваших місць, ви відразу отримаєте пропорційний рахунок для оплати за додаткових користувачів, доки не досягнуто вашого обмеження $MAX$ місць.",
+    "placeholders": {
+      "max": {
+        "content": "$1",
+        "example": "50"
+      }
+    }
+  },
+  "subscriptionFreePlan": {
+    "message": "Ви не можете запросити більше $COUNT$ користувачів без переходу на вищий тарифний план.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "2"
+      }
+    }
+  },
+  "subscriptionFamiliesPlan": {
+    "message": "Ви не можете запросити більше $COUNT$ користувачів без оновлення вашого тарифного плану. Будь ласка, зв'яжіться зі службою підтримки для оновлення.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Ваша передплата дозволяє всього $COUNT$ користувачів. Ваш тарифний план спонсорується та оплачується сторонньою організацією.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionMaxReached": {
+    "message": "Коригування вашої передплати призведе до відповідних змін у ваших рахунках. Ви не можете запросити понад $COUNT$ користувачів без збільшення передплачених місць.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3299,10 +3426,6 @@
   "ssoHandOff": {
     "message": "Тепер ви можете закрити цю вкладку і продовжити в розширенні."
   },
-  "businessPortal": {
-    "message": "Бізнес-портал",
-    "description": "The web portal used by business organizations for configuring certain features."
-  },
   "includeAllTeamsFeatures": {
     "message": "Усі функції команд, плюс:"
   },
@@ -3323,9 +3446,6 @@
   },
   "linkSso": {
     "message": "Під'єднати SSO"
-  },
-  "webPoliciesDeprecationWarning": {
-    "message": "Конфігурацію політик було переміщено і ця сторінка невдовзі стане застарілою. Натисніть нижче для використання нової сторінки політик бізнес-порталу."
   },
   "singleOrg": {
     "message": "Єдина організація"
@@ -3715,9 +3835,6 @@
   "permissions": {
     "message": "Дозволи"
   },
-  "accessBusinessPortal": {
-    "message": "Доступ до Бізнес-порталу"
-  },
   "accessEventLogs": {
     "message": "Доступ до журналів подій"
   },
@@ -3727,11 +3844,29 @@
   "accessReports": {
     "message": "Доступ до звітів"
   },
+  "missingPermissions": {
+    "message": "У вас недостатньо повноважень для виконання цієї дії."
+  },
   "manageAllCollections": {
     "message": "Керування всіма збірками"
   },
+  "createNewCollections": {
+    "message": "Створювати нові збірки"
+  },
+  "editAnyCollection": {
+    "message": "Редагувати будь-яку збірку"
+  },
+  "deleteAnyCollection": {
+    "message": "Видаляти будь-яку збірку"
+  },
   "manageAssignedCollections": {
     "message": "Керування призначеними збірками"
+  },
+  "editAssignedCollections": {
+    "message": "Редагувати призначені колекції"
+  },
+  "deleteAssignedCollections": {
+    "message": "Видаляти призначені колекції"
   },
   "manageGroups": {
     "message": "Керування групами"
@@ -3748,11 +3883,20 @@
   "manageResetPassword": {
     "message": "Керувати скиданням пароля"
   },
-  "disableRequireSsoError": {
-    "message": "Для вимкнення цієї політики ви повинні вручну вимкнути політику ідентифікації єдиного входу (SSO)."
+  "disableRequiredError": {
+    "message": "Перш ніж вимкнути цю політику, ви повинні вручну вимкнути політику $POLICYNAME$.",
+    "placeholders": {
+      "policyName": {
+        "content": "$1",
+        "example": "Single Sign-On Authentication"
+      }
+    }
   },
   "personalOwnershipPolicyInEffect": {
     "message": "Політика організації впливає на ваші параметри власності."
+  },
+  "personalOwnershipPolicyInEffectImports": {
+    "message": "Політика організації вимкнула імпортування елементів до вашого особистого сховища."
   },
   "personalOwnershipCheckboxDesc": {
     "message": "Вимкнути особисту власність для користувачів організації"
@@ -3910,6 +4054,24 @@
       }
     }
   },
+  "eventResetSsoLink": {
+    "message": "Скинути SSO-посилання для користувача $ID$",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
+  "firstSsoLogin": {
+    "message": "$ID$ вперше виконує вхід з використанням SSO",
+    "placeholders": {
+      "id": {
+        "content": "$1",
+        "example": "John Smith"
+      }
+    }
+  },
   "resetPassword": {
     "message": "Скинути пароль"
   },
@@ -3947,13 +4109,13 @@
     "message": "Автоматичне розгортання"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "Усі користувачі отримають автоматичне розгортання на скидання пароля одразу після схвалення запрошення."
+    "message": "Усі користувачі отримають автоматичне розгортання на скидання пароля одразу після схвалення запрошення та не зможуть його відкликати."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
     "message": "Вже наявні користувачі організації не отримають активного розгортання на скидання пароля. Їм необхідно буде виконати самостійне розгортання, перш ніж адміністратори зможуть скинути їхній пароль."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Автоматично розгортати нових користувачів"
+    "message": "Вимагати автоматичне розгортання нових користувачів"
   },
   "resetPasswordAutoEnrollInviteWarning": {
     "message": "Ця організація має корпоративну політику, яка автоматично розгортає вас на скидання пароля. Розгортання дозволятиме адміністраторам організації змінювати ваш головний пароль."
@@ -3988,6 +4150,21 @@
   "removeUsersWarning": {
     "message": "Ви дійсно хочете вилучити зазначених користувачів? Цей процес може тривати кілька секунд і його неможливо перервати чи скасувати."
   },
+  "theme": {
+    "message": "Тема"
+  },
+  "themeDesc": {
+    "message": "Оберіть тему для вашого вебсховища."
+  },
+  "themeSystem": {
+    "message": "Використовувати системну тему"
+  },
+  "themeDark": {
+    "message": "Темна"
+  },
+  "themeLight": {
+    "message": "Світла"
+  },
   "confirmSelected": {
     "message": "Підтвердити вибір"
   },
@@ -4017,5 +4194,544 @@
   },
   "resetPasswordManageUsers": {
     "message": "Керування користувачами повинно також бути увімкнено з дозволом Керувати скиданням пароля"
+  },
+  "setupProvider": {
+    "message": "Налаштування постачальника"
+  },
+  "setupProviderLoginDesc": {
+    "message": "Вас запрошено налаштувати нового постачальника. Для продовження вам необхідно увійти чи створити новий обліковий запис Bitwarden."
+  },
+  "setupProviderDesc": {
+    "message": "Будь ласка, введіть наведені нижче подробиці, щоб завершити налаштування постачальника. Зверніться до служби підтримки, якщо у вас виникли будь-які запитання."
+  },
+  "providerName": {
+    "message": "Назва постачальника"
+  },
+  "providerSetup": {
+    "message": "Постачальника було налаштовано."
+  },
+  "clients": {
+    "message": "Клієнти"
+  },
+  "providerAdmin": {
+    "message": "Адміністратор постачальника"
+  },
+  "providerAdminDesc": {
+    "message": "Користувач з найвищими привілеями, який може керувати усіма аспектами вашого постачальника, а також отримувати доступ до керування організаціями клієнтів."
+  },
+  "serviceUser": {
+    "message": "Сервісний користувач"
+  },
+  "serviceUserDesc": {
+    "message": "Сервісні користувачі можуть отримувати доступ та керувати всіма організаціями клієнтів."
+  },
+  "providerInviteUserDesc": {
+    "message": "Запросіть нового користувача до вашого постачальника, ввівши адресу е-пошти його облікового запису Bitwarden. Якщо він ще не має облікового запису, він отримає запит на його створення."
+  },
+  "joinProvider": {
+    "message": "Приєднатися до постачальника"
+  },
+  "joinProviderDesc": {
+    "message": "Вас було запрошено приєднатися до зазначеного вгорі постачальника. Щоб підтвердити запрошення, вам необхідно увійти в обліковий запис Bitwarden, або створити його."
+  },
+  "providerInviteAcceptFailed": {
+    "message": "Не вдалося прийняти запрошення. Попросіть адміністратора постачальника надіслати вам нове."
+  },
+  "providerInviteAcceptedDesc": {
+    "message": "Ви можете отримати доступ до цього постачальника одразу після підтвердження адміністратором. Ми надішлемо вам електронне повідомлення, коли це станеться."
+  },
+  "providerUsersNeedConfirmed": {
+    "message": "У вас є користувачі, які підтвердили ваше запрошення, але все ще мають бути схвалені. Користувачі не матимуть доступу до постачальника доки ви їх не затвердите."
+  },
+  "provider": {
+    "message": "Постачальник"
+  },
+  "newClientOrganization": {
+    "message": "Нова організація клієнта"
+  },
+  "newClientOrganizationDesc": {
+    "message": "Створіть нову організацію клієнта, яка буде пов'язана з вами, як постачальником. Ви зможете отримати доступ та керувати цією організацією."
+  },
+  "addExistingOrganization": {
+    "message": "Додати наявну організацію"
+  },
+  "myProvider": {
+    "message": "Мій постачальник"
+  },
+  "addOrganizationConfirmation": {
+    "message": "Ви дійсно хочете додати $ORGANIZATION$ як клієнт для $PROVIDER$?",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      },
+      "provider": {
+        "content": "$2",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "organizationJoinedProvider": {
+    "message": "Організацію було успішно додано до постачальника"
+  },
+  "accessingUsingProvider": {
+    "message": "Доступ до організації з використанням постачальника $PROVIDER$",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "providerIsDisabled": {
+    "message": "Постачальника вимкнено."
+  },
+  "providerUpdated": {
+    "message": "Постачальника оновлено"
+  },
+  "yourProviderIs": {
+    "message": "Ваш постачальник $PROVIDER$. Він має адміністраторські та платіжні повноваження для вашої організації.",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "My Provider Name"
+      }
+    }
+  },
+  "detachedOrganization": {
+    "message": "Організацію $ORGANIZATION$ було від'єднано від вашого постачальника.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "detachOrganizationConfirmation": {
+    "message": "Ви дійсно хочете від'єднати цю організацію? Організація продовжить існувати, але більше не керуватиметься провайдером."
+  },
+  "add": {
+    "message": "Додати"
+  },
+  "updatedMasterPassword": {
+    "message": "Головний пароль оновлено"
+  },
+  "updateMasterPassword": {
+    "message": "Оновити головний пароль"
+  },
+  "updateMasterPasswordWarning": {
+    "message": "Ваш головний пароль нещодавно був змінений адміністратором організації. Щоб отримати доступ до сховища, ви повинні оновити свій головний пароль зараз. Продовживши, ви вийдете з поточного сеансу, після чого необхідно буде повторно виконати вхід. Сеанси на інших пристроях можуть залишатися активними протягом однієї години."
+  },
+  "maximumVaultTimeout": {
+    "message": "Час очікування сховища"
+  },
+  "maximumVaultTimeoutDesc": {
+    "message": "Налаштувати максимальний час очікування сховища для всіх користувачів."
+  },
+  "maximumVaultTimeoutLabel": {
+    "message": "Максимальний час очікування сховища"
+  },
+  "invalidMaximumVaultTimeout": {
+    "message": "Недійсний максимальний час очікування сховища."
+  },
+  "hours": {
+    "message": "Годин"
+  },
+  "minutes": {
+    "message": "Хвилин"
+  },
+  "vaultTimeoutPolicyInEffect": {
+    "message": "Політики вашої організації впливають на час очікування сховища. Максимальний дозволений час очікування сховища $HOURS$ годин, $MINUTES$ хвилин",
+    "placeholders": {
+      "hours": {
+        "content": "$1",
+        "example": "5"
+      },
+      "minutes": {
+        "content": "$2",
+        "example": "5"
+      }
+    }
+  },
+  "customVaultTimeout": {
+    "message": "Власний час очікування сховища"
+  },
+  "vaultTimeoutToLarge": {
+    "message": "Час очікування сховища перевищує обмеження, встановлене вашою організацією."
+  },
+  "disablePersonalVaultExport": {
+    "message": "Вимкнути експорт особистого сховища"
+  },
+  "disablePersonalVaultExportDesc": {
+    "message": "Забороняє користувачам експортувати їхні особисті дані сховища."
+  },
+  "vaultExportDisabled": {
+    "message": "Експорт сховища вимкнено"
+  },
+  "personalVaultExportPolicyInEffect": {
+    "message": "Одна чи декілька організаційних політик не дозволяють вам експортувати особисте сховище."
+  },
+  "selectType": {
+    "message": "Виберіть тип SSO"
+  },
+  "type": {
+    "message": "Тип"
+  },
+  "openIdConnectConfig": {
+    "message": "Конфігурація з'єднання OpenID"
+  },
+  "samlSpConfig": {
+    "message": "Конфігурація постачальника послуг SAML"
+  },
+  "samlIdpConfig": {
+    "message": "Конфігурація ідентифікації постачальника SAML"
+  },
+  "callbackPath": {
+    "message": "Шлях до зворотного виклику"
+  },
+  "signedOutCallbackPath": {
+    "message": "Вихід зі шляху зворотного виклику"
+  },
+  "authority": {
+    "message": "Установа"
+  },
+  "clientId": {
+    "message": "ID клієнта"
+  },
+  "clientSecret": {
+    "message": "Секретний ключ клієнта"
+  },
+  "metadataAddress": {
+    "message": "Адреса метаданих"
+  },
+  "oidcRedirectBehavior": {
+    "message": "Поведінка переспрямування OIDC"
+  },
+  "getClaimsFromUserInfoEndpoint": {
+    "message": "Отримувати запити від інформації користувача кінцевої точки"
+  },
+  "additionalScopes": {
+    "message": "Додаткові/Власні межі (розділені комами)"
+  },
+  "additionalUserIdClaimTypes": {
+    "message": "Додаткові/Власні типи запитів ID користувача (розділені комами)"
+  },
+  "additionalEmailClaimTypes": {
+    "message": "Додаткові/Власні типи запитів е-пошти (розділені комами)"
+  },
+  "additionalNameClaimTypes": {
+    "message": "Додаткові/Власні типи запитів імені (розділені комами)"
+  },
+  "acrValues": {
+    "message": "Запитані значення посилання класу контексту автентифікації (acr_values)"
+  },
+  "expectedReturnAcrValue": {
+    "message": "Очікувалось значення запиту \"acr\" у відповіді (засвідчення acr)"
+  },
+  "spEntityId": {
+    "message": "ID об'єкта SP"
+  },
+  "spMetadataUrl": {
+    "message": "URL метаданих SAML 2.0"
+  },
+  "spAcsUrl": {
+    "message": "URL-адреса служби підтвердження клієнтів (ACS)"
+  },
+  "spNameIdFormat": {
+    "message": "Формат ID назви"
+  },
+  "spOutboundSigningAlgorithm": {
+    "message": "Алгоритм вихідного підпису"
+  },
+  "spSigningBehavior": {
+    "message": "Поведінка при підписанні"
+  },
+  "spMinIncomingSigningAlgorithm": {
+    "message": "Мінімальний алгоритм вхідного підписання"
+  },
+  "spWantAssertionsSigned": {
+    "message": "Вимагається підпис підтвердження"
+  },
+  "spValidateCertificates": {
+    "message": "Перевірка сертифікатів"
+  },
+  "idpEntityId": {
+    "message": "ID об'єкта"
+  },
+  "idpBindingType": {
+    "message": "Тип пов'язування"
+  },
+  "idpSingleSignOnServiceUrl": {
+    "message": "URL служби єдиного входу"
+  },
+  "idpSingleLogoutServiceUrl": {
+    "message": "URL служби єдиного виходу"
+  },
+  "idpArtifactResolutionServiceUrl": {
+    "message": "URL служби розв'язання артефактів"
+  },
+  "idpX509PublicCert": {
+    "message": "Публічний сертифікат X509"
+  },
+  "idpOutboundSigningAlgorithm": {
+    "message": "Алгоритм вихідного підпису"
+  },
+  "idpAllowUnsolicitedAuthnResponse": {
+    "message": "Дозволити небажану відповідь авторизації"
+  },
+  "idpDisableOutboundLogoutRequests": {
+    "message": "Вимкнути вихідні запити виходу"
+  },
+  "idpWantAuthnRequestsSigned": {
+    "message": "Вимагається підписання запитів на підтвердження"
+  },
+  "ssoSettingsSaved": {
+    "message": "Конфігурацію єдиного входу збережено."
+  },
+  "sponsoredFamilies": {
+    "message": "Bitwarden Families безплатно"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Ви та ваша сім'я маєте право на Bitwarden Families безплатно. Активуйте доступ з особистою електронною адресою, щоб зберігати свої дані захищеними навіть коли ви не на роботі."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Активуйте сьогодні безплатний тарифний план Bitwarden Families, щоб зберігати свої дані захищеними, навіть коли ви не на роботі."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Тариф Bitwarden Families включає"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Преміум-доступ до 6 користувачів"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Спільні збірки для обміну паролями"
+  },
+  "badToken": {
+    "message": "Посилання більше не дійсне. Попросіть спонсора повторно надіслати пропозицію."
+  },
+  "reclaimedFreePlan": {
+    "message": "Безплатний тариф відновлено"
+  },
+  "redeem": {
+    "message": "Активувати"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Оберіть організацію, від якої ви бажаєте бути спонсорованими"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Яку безплатну сімейну пропозицію ви бажаєте активувати?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Введіть особисту електронну адресу для активації Bitwarden Families"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Якщо ви покинете цю організацію, ваш доступ до тарифного плану Bitwarden Families завершиться в кінці оплаченого періоду."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Прийняти пропозицію для наявної організації або створити нову сімейну організацію."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Вам запропоновано безплатний тарифний план Bitwarden Families від організації. Щоб продовжити, вам необхідно увійти в обліковий запис, на який вам прийшла пропозиція."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Не вдалося прийняти пропозицію. Будь ласка, повторно надішліть лист з пропозицією зі свого корпоративного облікового запису та спробуйте знову."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Не вдалося прийняти пропозицію. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Прийняти безплатно Bitwarden Families"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Пропозицію безплатного доступу Bitwarden Families успішно активовано"
+  },
+  "redeemed": {
+    "message": "Активовано"
+  },
+  "redeemedAccount": {
+    "message": "Обліковий запис активовано"
+  },
+  "revokeAccount": {
+    "message": "Відкликати обліковий запис $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Повторно надіслати лист про спонсорування до $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Безплатний сімейний план"
+  },
+  "redeemNow": {
+    "message": "Активувати зараз"
+  },
+  "recipient": {
+    "message": "Отримувач"
+  },
+  "removeSponsorship": {
+    "message": "Вилучити спонсорування"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "Після вилучення спонсорування, ви будете відповідальні за цю передплату та пов'язані рахунки. Ви дійсно хочете продовжити?"
+  },
+  "sponsorshipCreated": {
+    "message": "Спонсорування створено"
+  },
+  "revoke": {
+    "message": "Відкликати"
+  },
+  "emailSent": {
+    "message": "Лист надіслано"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "Після вилучення цього облікового запису, власники сімейної організації будуть відповідальними за цю передплату та пов'язані рахунки. Ви дійсно хочете продовжити?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Спонсорування вилучено"
+  },
+  "ssoKeyConnectorUnavailable": {
+    "message": "Не вдається отримати доступ до Key Connector. Спробуйте знову пізніше."
+  },
+  "keyConnectorUrl": {
+    "message": "URL-адреса Key Connector"
+  },
+  "sendVerificationCode": {
+    "message": "Надіслати код підтвердження е-поштою"
+  },
+  "sendCode": {
+    "message": "Надіслати код"
+  },
+  "codeSent": {
+    "message": "Код надіслано"
+  },
+  "verificationCode": {
+    "message": "Код підтвердження"
+  },
+  "confirmIdentity": {
+    "message": "Підтвердьте свої облікові дані для продовження."
+  },
+  "verificationCodeRequired": {
+    "message": "Потрібний код підтвердження."
+  },
+  "invalidVerificationCode": {
+    "message": "Недійсний код підтвердження"
+  },
+  "convertOrganizationEncryptionDesc": {
+    "message": "$ORGANIZATION$ використовує SSO з власним сервером ключів. Головний пароль для учасників цієї організації більше не вимагається.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "leaveOrganization": {
+    "message": "Покинути організацію"
+  },
+  "removeMasterPassword": {
+    "message": "Вилучити головний пароль"
+  },
+  "removedMasterPassword": {
+    "message": "Головний пароль вилучено."
+  },
+  "allowSso": {
+    "message": "Дозволити авторизацію SSO"
+  },
+  "allowSsoDesc": {
+    "message": "Після налаштування вашу конфігурацію буде збережено та учасники зможуть авторизуватися з використанням облікових даних їхнього постачальника."
+  },
+  "ssoPolicyHelpStart": {
+    "message": "Увімкнути",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpLink": {
+    "message": "Політика авторизації SSO",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpEnd": {
+    "message": "щоб вимагати в усіх учасників виконувати вхід з SSO.",
+    "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
+  },
+  "ssoPolicyHelpKeyConnector": {
+    "message": "Для встановлення розшифрування Key Connector необхідні політики авторизації SSO та єдиної організації."
+  },
+  "memberDecryptionOption": {
+    "message": "Налаштування розшифрування учасників"
+  },
+  "memberDecryptionPassDesc": {
+    "message": "Після авторизації учасники розшифровуватимуть дані сховища з використанням їх головного пароля."
+  },
+  "keyConnector": {
+    "message": "Key Connector"
+  },
+  "memberDecryptionKeyConnectorDesc": {
+    "message": "Під'єднайте вхід з SSO до свого власного сервера ключів розшифрування. Скориставшись цією можливістю, учасникам не потрібен буде головний пароль для розшифрування даних сховища. Для отримання допомоги з налаштуванням зв'яжіться зі службою підтримки Bitwarden."
+  },
+  "keyConnectorPolicyRestriction": {
+    "message": "\"Вхід з SSO та розшифрування Key Connector\" увімкнено. Ця політика застосовується лише для власників та адміністраторів."
+  },
+  "enabledSso": {
+    "message": "SSO увімкнено"
+  },
+  "disabledSso": {
+    "message": "SSO вимкнено"
+  },
+  "enabledKeyConnector": {
+    "message": "Key Connector увімкнено"
+  },
+  "disabledKeyConnector": {
+    "message": "Key Connector вимкнено"
+  },
+  "keyConnectorWarning": {
+    "message": "Як тільки учасники почнуть користуватися Key Connector, ваша організація не зможе повернутися до розшифрування з головним паролем. Продовжуйте тільки якщо ви готові розгортати сервер ключів та керувати ним."
+  },
+  "migratedKeyConnector": {
+    "message": "Виконано перехід на Key Connector"
+  },
+  "paymentSponsored": {
+    "message": "Будь ласка, вкажіть спосіб оплати для організації. Не хвилюйтеся, гроші не списуватимуться доки ви не виберете додаткові функції чи не завершиться термін дії передплати. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "Термін дії спонсорської пропозиції завершився. Ви можете видалити створену організацію, щоб уникнути списання грошей після завершення 7 днів пробного періоду. Або ж ви можете закрити цей запит, щоб зберегти організацію та прийняти відповідальність за сплату рахунків."
+  },
+  "newFamiliesOrganization": {
+    "message": "Нова сімейна організація"
+  },
+  "acceptOffer": {
+    "message": "Прийняти пропозицію"
+  },
+  "sponsoringOrg": {
+    "message": "Організація спонсорування"
+  },
+  "keyConnectorTest": {
+    "message": "Тест"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Успішно! Key Connector під'єднано."
+  },
+  "keyConnectorTestFail": {
+    "message": "Неможливо під'єднатися до Key Connector. Перевірте URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "Термін дії пропозиції спонсорування завершилась."
+  },
+  "freeWithSponsorship": {
+    "message": "БЕЗПЛАТНО зі спонсоруванням"
   }
 }

@@ -5,12 +5,11 @@ import {
     Output,
 } from '@angular/core';
 
-import { Router } from '@angular/router';
-
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+
 import { OrganizationSubscriptionUpdateRequest } from 'jslib-common/models/request/organizationSubscriptionUpdateRequest';
 
 @Component({
@@ -31,7 +30,7 @@ export class AdjustSubscription {
     newMaxSeats: number;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService) { }
+        private platformUtilsService: PlatformUtilsService, private logService: LogService) { }
 
     ngOnInit() {
         this.limitSubscription = this.maxAutoscaleSeats != null;
@@ -47,8 +46,10 @@ export class AdjustSubscription {
 
             await this.formPromise;
 
-            this.toasterService.popAsync('success', null, this.i18nService.t('subscriptionUpdated'));
-        } catch { }
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('subscriptionUpdated'));
+        } catch (e) {
+            this.logService.error(e);
+        }
         this.onAdjusted.emit();
     }
 

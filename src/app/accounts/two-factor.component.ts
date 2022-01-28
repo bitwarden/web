@@ -13,9 +13,9 @@ import { ApiService } from 'jslib-common/abstractions/api.service';
 import { AuthService } from 'jslib-common/abstractions/auth.service';
 import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { StateService } from 'jslib-common/abstractions/state.service';
-import { StorageService } from 'jslib-common/abstractions/storage.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -36,9 +36,9 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
         i18nService: I18nService, apiService: ApiService,
         platformUtilsService: PlatformUtilsService, stateService: StateService,
         environmentService: EnvironmentService, private modalService: ModalService,
-        storageService: StorageService, route: ActivatedRoute) {
+        route: ActivatedRoute, logService: LogService) {
         super(authService, router, i18nService, apiService, platformUtilsService, window, environmentService,
-            stateService, storageService, route);
+            stateService, route, logService);
         this.onSuccessfulLoginNavigate = this.goAfterLogIn;
     }
 
@@ -56,10 +56,10 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
     }
 
     async goAfterLogIn() {
-        const loginRedirect = await this.stateService.get<any>('loginRedirect');
+        const loginRedirect = await this.stateService.getLoginRedirect();
         if (loginRedirect != null) {
             this.router.navigate([loginRedirect.route], { queryParams: loginRedirect.qParams });
-            await this.stateService.remove('loginRedirect');
+            await this.stateService.setLoginRedirect(null);
         } else {
             this.router.navigate([this.successRoute], {
                 queryParams: {

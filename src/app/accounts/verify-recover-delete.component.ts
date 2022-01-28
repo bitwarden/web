@@ -7,10 +7,12 @@ import {
     Router,
 } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
+import { first } from 'rxjs/operators';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
+import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 
 import { VerifyDeleteRecoverRequest } from 'jslib-common/models/request/verifyDeleteRecoverRequest';
 
@@ -26,17 +28,12 @@ export class VerifyRecoverDeleteComponent implements OnInit {
     private token: string;
 
     constructor(private router: Router, private apiService: ApiService,
-        private toasterService: ToasterService, private i18nService: I18nService,
-        private route: ActivatedRoute) {
+        private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
+        private route: ActivatedRoute, private logService: LogService) {
     }
 
     ngOnInit() {
-        let fired = false;
-        this.route.queryParams.subscribe(async qParams => {
-            if (fired) {
-                return;
-            }
-            fired = true;
+        this.route.queryParams.pipe(first()).subscribe(async qParams => {
             if (qParams.userId != null && qParams.token != null && qParams.email != null) {
                 this.userId = qParams.userId;
                 this.token = qParams.token;
@@ -52,9 +49,11 @@ export class VerifyRecoverDeleteComponent implements OnInit {
             const request = new VerifyDeleteRecoverRequest(this.userId, this.token);
             this.formPromise = this.apiService.postAccountRecoverDeleteToken(request);
             await this.formPromise;
-            this.toasterService.popAsync('success', this.i18nService.t('accountDeleted'),
+            this.platformUtilsService.showToast('success', this.i18nService.t('accountDeleted'),
                 this.i18nService.t('accountDeletedDesc'));
             this.router.navigate(['/']);
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 }

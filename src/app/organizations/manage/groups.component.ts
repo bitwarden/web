@@ -9,13 +9,14 @@ import {
     Router,
 } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
+import { first } from 'rxjs/operators';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
+import { OrganizationService } from 'jslib-common/abstractions/organization.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { SearchService } from 'jslib-common/abstractions/search.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -45,26 +46,29 @@ export class GroupsComponent implements OnInit {
 
     private pagedGroupsCount = 0;
 
-    constructor(private apiService: ApiService, private route: ActivatedRoute,
-        private i18nService: I18nService, private modalService: ModalService,
-        private toasterService: ToasterService, private platformUtilsService: PlatformUtilsService,
-        private userService: UserService, private router: Router,
-        private searchService: SearchService) { }
+    constructor(
+        private apiService: ApiService,
+        private route: ActivatedRoute,
+        private i18nService: I18nService,
+        private modalService: ModalService,
+        private platformUtilsService: PlatformUtilsService,
+        private router: Router,
+        private searchService: SearchService,
+        private logService: LogService,
+        private organizationService: OrganizationService,
+    ) { }
 
     async ngOnInit() {
         this.route.parent.parent.params.subscribe(async params => {
             this.organizationId = params.organizationId;
-            const organization = await this.userService.getOrganization(this.organizationId);
+            const organization = await this.organizationService.get(this.organizationId);
             if (organization == null || !organization.useGroups) {
                 this.router.navigate(['/organizations', this.organizationId]);
                 return;
             }
             await this.load();
-            const queryParamsSub = this.route.queryParams.subscribe(async qParams => {
+            this.route.queryParams.pipe(first()).subscribe(async qParams => {
                 this.searchText = qParams.search;
-                if (queryParamsSub != null) {
-                    queryParamsSub.unsubscribe();
-                }
             });
         });
     }
@@ -123,9 +127,11 @@ export class GroupsComponent implements OnInit {
 
         try {
             await this.apiService.deleteGroup(this.organizationId, group.id);
-            this.toasterService.popAsync('success', null, this.i18nService.t('deletedGroupId', group.name));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('deletedGroupId', group.name));
             this.removeGroup(group);
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     async users(group: GroupResponse) {

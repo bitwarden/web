@@ -4,12 +4,11 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { SubscriptionResponse } from 'jslib-common/models/response/subscriptionResponse';
 
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { TokenService } from 'jslib-common/abstractions/token.service';
 
@@ -31,7 +30,7 @@ export class UserSubscriptionComponent implements OnInit {
 
     constructor(private tokenService: TokenService, private apiService: ApiService,
         private platformUtilsService: PlatformUtilsService, private i18nService: I18nService,
-        private toasterService: ToasterService, private router: Router) {
+        private router: Router, private logService: LogService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
@@ -76,9 +75,11 @@ export class UserSubscriptionComponent implements OnInit {
         try {
             this.reinstatePromise = this.apiService.postReinstatePremium();
             await this.reinstatePromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('reinstated'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('reinstated'));
             this.load();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     async cancel() {
@@ -101,9 +102,11 @@ export class UserSubscriptionComponent implements OnInit {
         try {
             this.cancelPromise = this.apiService.postCancelPremium();
             await this.cancelPromise;
-            this.toasterService.popAsync('success', null, this.i18nService.t('canceledSubscription'));
+            this.platformUtilsService.showToast('success', null, this.i18nService.t('canceledSubscription'));
             this.load();
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     downloadLicense() {

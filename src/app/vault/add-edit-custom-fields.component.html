@@ -16,6 +16,7 @@
             <div class="col-7 form-group">
                 <label for="fieldValue{{i}}">{{'value' | i18n}}</label>
                 <div class="d-flex align-items-center">
+                    <!-- Text -->
                     <div class="input-group" *ngIf="f.type === fieldType.Text">
                         <input id="fieldValue{{i}}" class="form-control" type="text" name="Field.Value{{i}}"
                             [(ngModel)]="f.value" appInputVerbatim
@@ -28,6 +29,7 @@
                             </button>
                         </div>
                     </div>
+                    <!-- Hidden -->
                     <div class="input-group" *ngIf="f.type === fieldType.Hidden">
                         <input id="fieldValue{{i}}" type="{{f.showValue ? 'text' : 'password'}}"
                             name="Field.Value{{i}}" [(ngModel)]="f.value"
@@ -49,7 +51,16 @@
                             </button>
                         </div>
                     </div>
+                    <!-- Linked -->
+                    <div class="input-group" *ngIf="f.type === fieldType.Linked">
+                        <select id="fieldValue{{i}}" name="Field.Value{{i}}" class="form-control" [(ngModel)]="f.linkedId"
+                            *ngIf="f.type === fieldType.Linked && cipher.linkedFieldOptions != null"
+                            [disabled]="cipher.isDeleted || viewOnly">
+                            <option *ngFor="let o of linkedFieldOptions" [ngValue]="o.value">{{o.name}}</option>
+                        </select>
+                    </div>
                     <div class="flex-fill">
+                        <!-- Boolean -->
                         <input id="fieldValue{{i}}" name="Field.Value{{i}}" type="checkbox"
                             [(ngModel)]="f.value" *ngIf="f.type === fieldType.Boolean" appTrueFalseValue
                             trueValue="true" falseValue="false" [disabled]="cipher.isDeleted || viewOnly">
@@ -66,6 +77,7 @@
             </div>
         </div>
     </div>
+    <!-- Add new custom field -->
     <a href="#" appStopClick (click)="addField()" class="d-inline-block mb-2"
         *ngIf="!cipher.isDeleted && !viewOnly">
         <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i> {{'newCustomField' | i18n}}
@@ -75,6 +87,9 @@
             <label for="addFieldType" class="sr-only">{{'type' | i18n}}</label>
             <select id="addFieldType" class="form-control" name="AddFieldType" [(ngModel)]="addFieldType">
                 <option *ngFor="let o of addFieldTypeOptions" [ngValue]="o.value">{{o.name}}</option>
+                <option *ngIf="cipher.linkedFieldOptions != null" [ngValue]="addFieldLinkedTypeOption.value">
+                    {{addFieldLinkedTypeOption.name}}
+                </option>
             </select>
         </div>
     </div>

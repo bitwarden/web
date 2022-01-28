@@ -5,15 +5,14 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ToasterService } from 'angular2-toaster';
-
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 import { SyncService } from 'jslib-common/abstractions/sync.service';
 import { TokenService } from 'jslib-common/abstractions/token.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
 
 import { PaymentComponent } from './payment.component';
 import { TaxInfoComponent } from './tax-info.component';
@@ -35,15 +34,15 @@ export class PremiumComponent implements OnInit {
     formPromise: Promise<any>;
 
     constructor(private apiService: ApiService, private i18nService: I18nService,
-        private toasterService: ToasterService, platformUtilsService: PlatformUtilsService,
+        private platformUtilsService: PlatformUtilsService,
         private tokenService: TokenService, private router: Router,
         private messagingService: MessagingService, private syncService: SyncService,
-        private userService: UserService) {
+        private logService: LogService, private stateService: StateService) {
         this.selfHosted = platformUtilsService.isSelfHost();
     }
 
     async ngOnInit() {
-        this.canAccessPremium = await this.userService.canAccessPremium();
+        this.canAccessPremium = await this.stateService.getCanAccessPremium();
         const premium = await this.tokenService.getPremium();
         if (premium) {
             this.router.navigate(['/settings/subscription']);
@@ -57,7 +56,7 @@ export class PremiumComponent implements OnInit {
             const fileEl = document.getElementById('file') as HTMLInputElement;
             files = fileEl.files;
             if (files == null || files.length === 0) {
-                this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                     this.i18nService.t('selectFile'));
                 return;
             }
@@ -66,7 +65,7 @@ export class PremiumComponent implements OnInit {
         try {
             if (this.selfHosted) {
                 if (!this.tokenService.getEmailVerified()) {
-                    this.toasterService.popAsync('error', this.i18nService.t('errorOccurred'),
+                    this.platformUtilsService.showToast('error', this.i18nService.t('errorOccurred'),
                         this.i18nService.t('verifyEmailFirst'));
                     return;
                 }
@@ -97,13 +96,15 @@ export class PremiumComponent implements OnInit {
                 });
             }
             await this.formPromise;
-        } catch { }
+        } catch (e) {
+            this.logService.error(e);
+        }
     }
 
     async finalizePremium() {
         await this.apiService.refreshIdentityToken();
         await this.syncService.fullSync(true);
-        this.toasterService.popAsync('success', null, this.i18nService.t('premiumUpdated'));
+        this.platformUtilsService.showToast('success', null, this.i18nService.t('premiumUpdated'));
         this.messagingService.send('purchasedPremium');
         this.router.navigate(['/settings/subscription']);
     }

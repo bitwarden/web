@@ -4,11 +4,14 @@ import {
     Router,
 } from '@angular/router';
 
+import { first } from 'rxjs/operators';
+
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { AuthService } from 'jslib-common/abstractions/auth.service';
 import { CryptoService } from 'jslib-common/abstractions/crypto.service';
 import { EnvironmentService } from 'jslib-common/abstractions/environment.service';
 import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { LogService } from 'jslib-common/abstractions/log.service';
 import { PasswordGenerationService } from 'jslib-common/abstractions/passwordGeneration.service';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
 import { PolicyService } from 'jslib-common/abstractions/policy.service';
@@ -38,23 +41,23 @@ export class RegisterComponent extends BaseRegisterComponent {
         apiService: ApiService, private route: ActivatedRoute,
         stateService: StateService, platformUtilsService: PlatformUtilsService,
         passwordGenerationService: PasswordGenerationService, private policyService: PolicyService,
-        environmentService: EnvironmentService) {
+        environmentService: EnvironmentService, logService: LogService) {
         super(authService, router, i18nService, cryptoService, apiService, stateService, platformUtilsService,
-            passwordGenerationService, environmentService);
+            passwordGenerationService, environmentService, logService);
     }
 
     async ngOnInit() {
-        const queryParamsSub = this.route.queryParams.subscribe(qParams => {
+        this.route.queryParams.pipe(first()).subscribe(qParams => {
             this.referenceData = new ReferenceEventRequest();
             if (qParams.email != null && qParams.email.indexOf('@') > -1) {
                 this.email = qParams.email;
             }
             if (qParams.premium != null) {
-                this.stateService.save('loginRedirect', { route: '/settings/premium' });
+                this.stateService.setLoginRedirect({ route: '/settings/premium' });
             } else if (qParams.org != null) {
                 this.showCreateOrgMessage = true;
                 this.referenceData.flow = qParams.org;
-                this.stateService.save('loginRedirect',
+                this.stateService.setLoginRedirect(
                     { route: '/settings/create-organization', qParams: { plan: qParams.org } });
             }
             if (qParams.layout != null) {
@@ -65,14 +68,19 @@ export class RegisterComponent extends BaseRegisterComponent {
             } else {
                 this.referenceData.id = ('; ' + document.cookie).split('; reference=').pop().split(';').shift();
             }
+            // Are they coming from an email for sponsoring a families organization
+            if (qParams.sponsorshipToken != null) {
+                // After logging in redirect them to setup the families sponsorship
+                this.stateService.setLoginRedirect({
+                    route: '/setup/families-for-enterprise',
+                    qParams: { token: qParams.sponsorshipToken },
+                });
+            }
             if (this.referenceData.id === '') {
                 this.referenceData.id = null;
             }
-            if (queryParamsSub != null) {
-                queryParamsSub.unsubscribe();
-            }
         });
-        const invite = await this.stateService.get<any>('orgInvitation');
+        const invite = await this.stateService.getOrganizationInvitation();
         if (invite != null) {
             try {
                 const policies = await this.apiService.getPoliciesByToken(invite.organizationId, invite.token,
@@ -81,7 +89,9 @@ export class RegisterComponent extends BaseRegisterComponent {
                     const policiesData = policies.data.map(p => new PolicyData(p));
                     this.policies = policiesData.map(p => new Policy(p));
                 }
-            } catch { }
+            } catch (e) {
+                this.logService.error(e);
+            }
         }
 
         if (this.policies != null) {

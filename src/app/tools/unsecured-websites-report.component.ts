@@ -5,7 +5,8 @@ import {
 
 import { CipherService } from 'jslib-common/abstractions/cipher.service';
 import { MessagingService } from 'jslib-common/abstractions/messaging.service';
-import { UserService } from 'jslib-common/abstractions/user.service';
+import { PasswordRepromptService } from 'jslib-common/abstractions/passwordReprompt.service';
+import { StateService } from 'jslib-common/abstractions/state.service';
 
 import { ModalService } from 'jslib-angular/services/modal.service';
 
@@ -21,8 +22,9 @@ import { CipherReportComponent } from './cipher-report.component';
 })
 export class UnsecuredWebsitesReportComponent extends CipherReportComponent implements OnInit {
     constructor(protected cipherService: CipherService, modalService: ModalService,
-        messagingService: MessagingService, userService: UserService) {
-        super(modalService, userService, messagingService, true);
+        messagingService: MessagingService, stateService: StateService,
+        passwordRepromptService: PasswordRepromptService) {
+        super(modalService, messagingService, true, stateService, passwordRepromptService);
     }
 
     async ngOnInit() {
