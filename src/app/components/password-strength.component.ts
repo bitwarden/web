@@ -7,10 +7,8 @@ import { I18nService } from "jslib-common/abstractions/i18n.service";
   templateUrl: "password-strength.component.html",
 })
 export class PasswordStrengthComponent implements OnChanges {
-  @Input()
-  score?: number;
-  @Input()
-  showText = false;
+  @Input() score?: number;
+  @Input() showText = false;
 
   scoreWidth = 0;
   color = "bg-danger";

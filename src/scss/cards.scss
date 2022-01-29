@@ -29,7 +29,7 @@
 .card-header {
   @include themify($themes) {
     background-color: themed("headerColor");
-    color: themed("headingColor");
+    color: themed("textHeadingColor");
   }
 
   a:hover {
@@ -46,21 +46,21 @@
   @extend .mb-4;
 }
 
-.card ul.fa-ul.card-ul {
+.card ul.bwi-ul.card-ul {
   margin-left: 1.9em;
 
   li {
     word-break: break-all;
   }
 
-  .fa-li {
+  .bwi-li {
     top: 4px;
   }
 
   &.carets {
     margin-left: 1.1em;
 
-    .fa-li {
+    .bwi-li {
       left: -17px;
       width: 1.1em;
     }

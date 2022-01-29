@@ -20,7 +20,7 @@
       </div>
       <div class="modal-body" *ngIf="loading">
         <i
-          class="fa fa-spinner fa-spin text-muted"
+          class="bwi bwi-spinner bwi-spin text-muted"
           title="{{ 'loading' | i18n }}"
           aria-hidden="true"
         ></i>
@@ -91,7 +91,7 @@
                   {{ g.name }}
                   <ng-container *ngIf="g.accessAll">
                     <i
-                      class="fa fa-th text-muted fa-fw"
+                      class="bwi bwi-filter text-muted bwi-fw"
                       title="{{ 'groupAccessAllItems' | i18n }}"
                       aria-hidden="true"
                     ></i>
@@ -126,7 +126,7 @@
           [disabled]="form.loading"
           *ngIf="this.canSave"
         >
-          <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+          <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
           <span>{{ "save" | i18n }}</span>
         </button>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
@@ -144,12 +144,12 @@
             [appApiAction]="deletePromise"
           >
             <i
-              class="fa fa-trash-o fa-lg fa-fw"
+              class="bwi bwi-trash bwi-lg bwi-fw"
               [hidden]="deleteBtn.loading"
               aria-hidden="true"
             ></i>
             <i
-              class="fa fa-spinner fa-spin fa-lg fa-fw"
+              class="bwi bwi-spinner bwi-spin bwi-lg bwi-fw"
               [hidden]="!deleteBtn.loading"
               title="{{ 'loading' | i18n }}"
               aria-hidden="true"
