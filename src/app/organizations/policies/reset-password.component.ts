@@ -24,14 +24,14 @@ export class ResetPasswordPolicy extends BasePolicy {
   templateUrl: "reset-password.component.html",
 })
 export class ResetPasswordPolicyComponent extends BasePolicyComponent {
-  data = this.fb.group({
+  data = this.formBuilder.group({
     autoEnrollEnabled: false,
   });
 
   defaultTypes: { name: string; value: string }[];
   showKeyConnectorInfo: boolean = false;
 
-  constructor(private fb: FormBuilder, private organizationService: OrganizationService) {
+  constructor(private formBuilder: FormBuilder, private organizationService: OrganizationService) {
     super();
   }
 

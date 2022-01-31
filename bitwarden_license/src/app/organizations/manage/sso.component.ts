@@ -34,8 +34,8 @@ export class SsoComponent implements OnInit {
   spMetadataUrl: string;
   spAcsUrl: string;
 
-  enabled = this.fb.control(false);
-  data = this.fb.group({
+  enabled = this.formBuilder.control(false);
+  data = this.formBuilder.group({
     configType: [],
 
     keyConnectorEnabled: [],
@@ -76,7 +76,7 @@ export class SsoComponent implements OnInit {
   });
 
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private apiService: ApiService,
     private platformUtilsService: PlatformUtilsService,

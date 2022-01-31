@@ -25,7 +25,7 @@
     .icon i::before {
       float: left;
       font-style: normal;
-      font-family: FontAwesome;
+      font-family: $icomoon-font-family;
       font-size: 25px;
       line-height: 20px;
       padding-right: 15px;
@@ -51,12 +51,12 @@
       &:before,
       & .toast-close-button {
         @include themify($themes) {
-          color: themed("dangerTextColor") !important;
+          color: themed("textDangerColor") !important;
         }
       }
 
       .icon i::before {
-        content: "\f0e7";
+        content: map_get($icons, "error");
       }
     }
 
@@ -69,12 +69,12 @@
       &:before,
       & .toast-close-button {
         @include themify($themes) {
-          color: themed("warningTextColor") !important;
+          color: themed("textWarningColor") !important;
         }
       }
 
       .icon i::before {
-        content: "\f071";
+        content: map_get($icons, "exclamation-triangle");
       }
     }
 
@@ -87,12 +87,12 @@
       &:before,
       & .toast-close-button {
         @include themify($themes) {
-          color: themed("infoTextColor") !important;
+          color: themed("textInfoColor") !important;
         }
       }
 
       .icon i:before {
-        content: "\f05a";
+        content: map_get($icons, "info-circle");
       }
     }
 
@@ -105,12 +105,12 @@
       &:before,
       & .toast-close-button {
         @include themify($themes) {
-          color: themed("successTextColor") !important;
+          color: themed("textSuccessColor") !important;
         }
       }
 
       .icon i:before {
-        content: "\f00C";
+        content: map_get($icons, "check");
       }
     }
   }

@@ -3164,7 +3164,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Больше не запрашивать верификацию фразы отпечатка",
+    "message": "Никогда не запрашивать проверку отпечатков фраз для приглашенных пользователей (не рекомендуется)",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -3443,6 +3443,9 @@
   },
   "unlinkSso": {
     "message": "Отключить SSO"
+  },
+  "unlinkSsoConfirmation": {
+    "message": "Вы действительно хотите отключить SSO для этой организации?"
   },
   "linkSso": {
     "message": "Подключить SSO"
@@ -4489,52 +4492,52 @@
     "message": "Конфигурация единого входа сохранена."
   },
   "sponsoredFamilies": {
-    "message": "Бесплатные семьи Bitwarden"
+    "message": "Бесплатный план Bitwarden Families"
   },
   "sponsoredFamiliesEligible": {
-    "message": "Вы и ваша семья имеют право на бесплатные семьи Bitwarden. Используйте свой личный адрес электронной почты, чтобы защитить данные даже тогда, когда вы не на работе."
+    "message": "Вам и вашей семье доступен бесплатный план Bitwarden Families. Используйте свой личный адрес электронной почты, чтобы защитить данные даже тогда, когда вы не на работе."
   },
   "sponsoredFamiliesEligibleCard": {
-    "message": "Воспользуйтесь бесплатным планом Bit warden для семей сегодня, чтобы обеспечить безопасность ваших данных, даже когда вы не на работе."
+    "message": "Воспользуйтесь бесплатным планом Bitwarden Families сегодня, чтобы обеспечить безопасность ваших данных, даже когда вы не на работе."
   },
   "sponsoredFamiliesInclude": {
-    "message": "План Bitwarden для Семей включает"
+    "message": "План Bitwarden Families включает"
   },
   "sponsoredFamiliesPremiumAccess": {
     "message": "Премиум-доступ для 6 пользователей"
   },
   "sponsoredFamiliesSharedCollections": {
-    "message": "Общие коллекции для Семейных секретов"
+    "message": "Общие коллекции для семейных секретов"
   },
   "badToken": {
     "message": "Ссылка больше не действительна. Пожалуйста, попросите спонсора повторно отправить предложение."
   },
   "reclaimedFreePlan": {
-    "message": "Reclaimed free plan"
+    "message": "Бесплатный план восстановлен"
   },
   "redeem": {
-    "message": "Redeem"
+    "message": "Активировать"
   },
   "sponsoredFamiliesSelectOffer": {
     "message": "Выберите организацию, которую вы хотите спонсировать"
   },
   "familiesSponsoringOrgSelect": {
-    "message": "Какое бесплатное Семейное предложение вы хотели бы использовать?"
+    "message": "Какое бесплатное предложение Bitwarden Families вы хотели бы использовать?"
   },
   "sponsoredFamiliesEmail": {
-    "message": "Введите свой личный адрес электронной почты, чтобы активировать Семейный Bitwarden"
+    "message": "Введите свой личный адрес электронной почты, чтобы активировать Bitwarden Families"
   },
   "sponsoredFamiliesLeaveCopy": {
-    "message": "Если вы покинете или откажетесь от организации со спонсорским предложением, срок действия вашего семейного плана истечет в конце расчетного периода."
+    "message": "Если вы покинете или будете исключены из спонсорской организации, срок действия вашего плана Bitwarden Families истечет в конце расчетного периода."
   },
   "acceptBitwardenFamiliesHelp": {
-    "message": "Примите предложение существующей организации или создайте новую Семейную организацию."
+    "message": "Примите предложение существующей организации или создайте новую организацию Bitwarden Families."
   },
   "setupSponsoredFamiliesLoginDesc": {
-    "message": "Вам предложили бесплатный Семейный план Bitwarden. Чтобы продолжить, вам необходимо войти в учетную запись, в которую поступило предложение."
+    "message": "Вам предложили бесплатный план Bitwarden Families. Чтобы продолжить, необходимо войти в учетную запись, которая получила предложение."
   },
   "sponsoredFamiliesAcceptFailed": {
-    "message": "Не удается принять предложение. Отправьте письмо с предложением еще раз из своей корпоративной учетной записи и повторите попытку."
+    "message": "Не удается принять предложение. Пожалуйста, повторно отправьте письмо с предложением с вашего корпоративного аккаунта и повторите попытку."
   },
   "sponsoredFamiliesAcceptFailedShort": {
     "message": "Невозможно принять предложение. $DESCRIPTION$",
@@ -4546,19 +4549,19 @@
     }
   },
   "sponsoredFamiliesOffer": {
-    "message": "Принять бесплатный Семейный план Bitwarden"
+    "message": "Принять бесплатный план Bitwarden Families"
   },
   "sponsoredFamiliesOfferRedeemed": {
-    "message": "Бесплатное Семейное предложение Bitwarden успешно активировано"
+    "message": "Бесплатный план Bitwarden Families успешно активирован"
   },
   "redeemed": {
-    "message": "Redeemed"
+    "message": "Активирован"
   },
   "redeemedAccount": {
     "message": "Активированный аккаунт"
   },
   "revokeAccount": {
-    "message": "Отозвать активацию аккаунта $NAME$",
+    "message": "Отозвать аккаунт $NAME$",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4567,7 +4570,7 @@
     }
   },
   "resendEmailLabel": {
-    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "message": "Повторно отправить письмо о спонсировании $NAME$",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4576,22 +4579,22 @@
     }
   },
   "freeFamiliesPlan": {
-    "message": "Бесплатный Семейный план"
+    "message": "Бесплатный план Bitwarden Families"
   },
   "redeemNow": {
-    "message": "Redeem Now"
+    "message": "Активировать сейчас"
   },
   "recipient": {
     "message": "Получатель"
   },
   "removeSponsorship": {
-    "message": "Remove Sponsorship"
+    "message": "Удалить спонсирование"
   },
   "removeSponsorshipConfirmation": {
     "message": "После удаления спонсорства вы будете нести ответственность за эту подписку и связанные с ней счета. Вы уверены что хотите продолжить?"
   },
   "sponsorshipCreated": {
-    "message": "Sponsorship Created"
+    "message": "Спонсирование создано"
   },
   "revoke": {
     "message": "Отозвать"
@@ -4600,7 +4603,7 @@
     "message": "Письмо отправлено"
   },
   "revokeSponsorshipConfirmation": {
-    "message": "После удаления этой учетной записи владелец организации Семейства будет нести ответственность за эту подписку и связанные счета. Вы уверены что хотите продолжить?"
+    "message": "После удаления этой учетной записи владелец организации Bitwarden Families будет нести ответственность за эту подписку и связанные счета. Вы уверены, что хотите продолжить?"
   },
   "removeSponsorshipSuccess": {
     "message": "Спонсорство удалено"
@@ -4711,7 +4714,7 @@
     "message": "Срок действия спонсорского предложения истек. Вы можете удалить созданную вами организацию, чтобы избежать списания средств по истечении 7-дневного пробного периода. В противном случае вы можете закрыть эту подсказку, чтобы сохранить организацию и принять на себя платежные обязательства."
   },
   "newFamiliesOrganization": {
-    "message": "Новая Семейная организация"
+    "message": "Новая организация Bitwarden Families"
   },
   "acceptOffer": {
     "message": "Принять предложение"

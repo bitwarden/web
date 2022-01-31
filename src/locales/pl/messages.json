@@ -1991,7 +1991,7 @@
     }
   },
   "planNameFamilies": {
-    "message": "Rodziny"
+    "message": "Rodzinny"
   },
   "planDescFamilies": {
     "message": "Dla użytku osobistego, aby udostępniać rodzinie i przyjaciołom."
@@ -2009,7 +2009,7 @@
     "message": "Dla firm i innych dużych organizacji."
   },
   "freeForever": {
-    "message": "Bezpłatne na zawsze"
+    "message": "Darmowy na zawsze"
   },
   "includesXUsers": {
     "message": "zawiera $COUNT$ użytkowników",
@@ -2078,7 +2078,7 @@
     "message": "Samodzielnie hostowane środowisko (opcjonalnie)"
   },
   "usersGetPremium": {
-    "message": "Użytkownicy uzyskują dostęp do funkcji Premium"
+    "message": "Użytkownicy uzyskują dostęp do kont Premium"
   },
   "controlAccessWithGroups": {
     "message": "Kontroluj dostęp z użyciem grup użytkowników"
@@ -2177,7 +2177,7 @@
     "message": "Czy na pewno chcesz usunąć tego użytkownika?"
   },
   "removeUserConfirmationKeyConnector": {
-    "message": "Uwaga! Ten użytkownik wymaga połączenia kluczy do zarządzania szyfrowaniem. Usunięcie tego użytkownika z Twojej organizacji spowoduje trwałe wyłączenie jego konta. Tej czynności nie można cofnąć. Czy chcesz kontynuować?"
+    "message": "Ostrzeżenie! Ten użytkownik wymaga serwera Key Connector do zarządzania szyfrowaniem. Usunięcie tego użytkownika z organizacji spowoduje trwałe wyłączenie jego konta. Nie możesz cofnąć tej akcji. Czy chcesz kontynuować?"
   },
   "externalId": {
     "message": "Identyfikator zewnętrzny"
@@ -2660,7 +2660,7 @@
     "message": "Wyślij ponownie zaproszenie"
   },
   "resendEmail": {
-    "message": "Wyślij e-mail ponownie"
+    "message": "Wyślij ponownie wiadomość"
   },
   "hasBeenReinvited": {
     "message": "Użytkownik $USER$ został ponownie zaproszony.",
@@ -3164,7 +3164,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Nie pytaj ponownie o weryfikację unikalnego identyfikatora konta",
+    "message": "Nie pytaj ponownie o weryfikację unikalnego identyfikatora konta dla zaproszonych użytkowników (niezalecane)",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -3443,6 +3443,9 @@
   },
   "unlinkSso": {
     "message": "Odłącz logowanie jednokrotne SSO"
+  },
+  "unlinkSsoConfirmation": {
+    "message": "Czy na pewno chcesz odłączyć logowanie jednokrotne SSO dla tej organizacji?"
   },
   "linkSso": {
     "message": "Połącz logowanie jednokrotne SSO"
@@ -4064,7 +4067,7 @@
     }
   },
   "firstSsoLogin": {
-    "message": "$ID$ zalogował się przy użyciu SSO po raz pierwszy",
+    "message": "Użytkownik $ID$ zalogował się po raz pierwszy przy użyciu logowania jednokrotnego SSO",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4489,55 +4492,55 @@
     "message": "Konfiguracja logowania jednokrotnego została zapisana."
   },
   "sponsoredFamilies": {
-    "message": "Darmowe rodziny Bitwarden"
+    "message": "Darmowy plan rodzinny"
   },
   "sponsoredFamiliesEligible": {
-    "message": "Ty i Twoja rodzina kwalifikujecie się do bezpłatnych rodzin Bitwarden. Otrzymaj dostęp wykorzystując swój osobisty e-mail, aby zabezpieczyć swoje dane nawet wtedy, gdy nie jesteś w pracy."
+    "message": "Ty i Twoja rodzina kwalifikujecie się do darmowego planu rodzinnego. Wykorzystaj swój osobisty adres e-mail, aby zabezpieczyć swoje dane nawet wtedy, gdy nie jesteś w pracy."
   },
   "sponsoredFamiliesEligibleCard": {
-    "message": "Zrealizuj swój darmowy Bitwarden dla Rodzin, aby zapewnić bezpieczeństwo swoich danych nawet wtedy, gdy nie jesteś w pracy."
+    "message": "Zrealizuj swój darmowy plan rodzinny, aby zabezpieczyć swoje dane nawet wtedy, gdy nie jesteś w pracy."
   },
   "sponsoredFamiliesInclude": {
-    "message": "Plan Rodziny Bitwarden zawiera"
+    "message": "Plan rodzinny zawiera"
   },
   "sponsoredFamiliesPremiumAccess": {
-    "message": "Dostęp premium dla maksymalnie 6 użytkowników"
+    "message": "Konto Premium dla maksymalnie 6 użytkowników"
   },
   "sponsoredFamiliesSharedCollections": {
     "message": "Udostępnione kolekcje dla sekretów rodziny"
   },
   "badToken": {
-    "message": "Link nie jest już ważny. Prosimy o ponowne wysłanie oferty przez sponsora."
+    "message": "Link nie jest już ważny. Poproś sponsora o ponowne wysłanie oferty."
   },
   "reclaimedFreePlan": {
-    "message": "Odzyskano bezpłatny plan"
+    "message": "Darmowy plan został odzyskany"
   },
   "redeem": {
-    "message": "Wykup"
+    "message": "Zrealizuj"
   },
   "sponsoredFamiliesSelectOffer": {
-    "message": "Wybierz organizację, którą chcesz za sponsorować"
+    "message": "Wybierz organizację, którą chcesz sponsorować"
   },
   "familiesSponsoringOrgSelect": {
-    "message": "Którą z darmowych ofert rodzinnych chciałbyś użyć?"
+    "message": "Jaką darmową ofertę planu rodzinnego chcesz zrealizować?"
   },
   "sponsoredFamiliesEmail": {
-    "message": "Enter your personal email to redeem Bitwarden Families"
+    "message": "Wpisz osobisty adres e-mail, aby uzyskać plan rodzinny"
   },
   "sponsoredFamiliesLeaveCopy": {
-    "message": "If you leave or are removed from the sponsoring organization, your Families plan will expire at the end of the billing period."
+    "message": "Jeśli opuścisz lub zostaniesz usunięty z organizacji sponsorującej, Twój plan rodzinny wygaśnie z końcem okresu rozliczeniowego."
   },
   "acceptBitwardenFamiliesHelp": {
-    "message": "Accept offer for an existing organization or create a new Families organization."
+    "message": "Zaakceptuj ofertę dla obecnej organizacji lub utwórz nową organizację rodzinną."
   },
   "setupSponsoredFamiliesLoginDesc": {
-    "message": "You've been offered a free Bitwarden Families Plan Organization. To continue, you need to log in to the account that received the offer."
+    "message": "Otrzymałeś ofertę darmowego planu rodzinnego. Aby kontynuować, zaloguj się na konto, które otrzymało ofertę."
   },
   "sponsoredFamiliesAcceptFailed": {
-    "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
+    "message": "Nie można zaakceptować oferty. Wyślij ponownie ofertę z konta i spróbuj ponownie."
   },
   "sponsoredFamiliesAcceptFailedShort": {
-    "message": "Unable to accept offer. $DESCRIPTION$",
+    "message": "Nie można zaakceptować oferty. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -4546,19 +4549,19 @@
     }
   },
   "sponsoredFamiliesOffer": {
-    "message": "Accept Free Bitwarden Families"
+    "message": "Zaakceptuj darmowy plan rodzinny"
   },
   "sponsoredFamiliesOfferRedeemed": {
-    "message": "Free Bitwarden Families offer successfully redeemed"
+    "message": "Oferta rodzinna została zrealizowana"
   },
   "redeemed": {
-    "message": "Wykupione"
+    "message": "Oferta została zrealizowana"
   },
   "redeemedAccount": {
-    "message": "Konto wykupione"
+    "message": "Konto zostało zrealizowane"
   },
   "revokeAccount": {
-    "message": "Revoke account $NAME$",
+    "message": "Unieważnij konto $NAME$",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4567,7 +4570,7 @@
     }
   },
   "resendEmailLabel": {
-    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "message": "Wyślij ponownie wiadomość o sponsoringu do użytkownika $NAME$",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4576,34 +4579,34 @@
     }
   },
   "freeFamiliesPlan": {
-    "message": "Darmowy plan rodzin"
+    "message": "Darmowy plan rodzinny"
   },
   "redeemNow": {
-    "message": "Redeem Now"
+    "message": "Zrealizuj teraz"
   },
   "recipient": {
-    "message": "Recipient"
+    "message": "Odbiorca"
   },
   "removeSponsorship": {
-    "message": "Remove Sponsorship"
+    "message": "Usuń sponsoring"
   },
   "removeSponsorshipConfirmation": {
-    "message": "After removing a sponsorship, you will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+    "message": "Po usunięciu sponsoringu, będziesz odpowiedzialny za subskrypcję i powiązane faktury. Czy na pewno chcesz kontynuować?"
   },
   "sponsorshipCreated": {
-    "message": "Sponsorship Created"
+    "message": "Sponsoring został utworzony"
   },
   "revoke": {
-    "message": "Revoke"
+    "message": "Unieważnij"
   },
   "emailSent": {
     "message": "Wiadomość została wysłana"
   },
   "revokeSponsorshipConfirmation": {
-    "message": "After removing this account, the Families organization owner will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+    "message": "Po usunięciu konta, właściciel organizacji rodzinnej będzie odpowiedzialny za subskrypcję i powiązane faktury. Czy na pewno chcesz kontynuować?"
   },
   "removeSponsorshipSuccess": {
-    "message": "Sponsorship Removed"
+    "message": "Sponsoring został usunięty"
   },
   "ssoKeyConnectorUnavailable": {
     "message": "Nie można nawiązać połączenia z serwerem Key Connector. Spróbuj ponownie później."
@@ -4669,7 +4672,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpKeyConnector": {
-    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
+    "message": "Zasady logowania jednokrotnego SSO i pojedynczej organizacji muszą być włączone, aby skonfigurować serwer Key Connector."
   },
   "memberDecryptionOption": {
     "message": "Opcje odszyfrowania użytkownika"
@@ -4681,7 +4684,7 @@
     "message": "Key Connector"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "Połącz logowanie jednokrotne SSO z odszyfrowaniem za pomocą własnego serwera kluczy. Użytkownicy nie będą musieli używać hasła głównego do odszyfrowania sejfu."
+    "message": "Połącz logowanie jednokrotne SSO z odszyfrowaniem za pomocą własnego serwera kluczy. Użytkownicy nie będą musieli używać hasła głównego do odszyfrowania sejfu. Aby uzyskać pomoc, skontaktuj się z działem obsługi klienta Bitwarden."
   },
   "keyConnectorPolicyRestriction": {
     "message": "Logowanie jednokrotne SSO z odszyfrowaniem za pomocą serwera Key Connector jest włączone. Ta zasada dotyczy tylko właścicieli i administratorów."
@@ -4699,25 +4702,25 @@
     "message": "Serwer Key Connector został wyłączony"
   },
   "keyConnectorWarning": {
-    "message": "Po włączeniu serwera Key Connector, opcje odszyfrowania użytkownika nie mogą zostać zmienione."
+    "message": "Jeśli użytkownicy zaczną używać serwera Key Connector, organizacja nie będzie mogła powrócić do odszyfrowywania za pomocą hasła głównego. Kontynuuj tylko wtedy, kiedy pewnie wdrażasz i zarządzasz serwerem kluczy."
   },
   "migratedKeyConnector": {
     "message": "Przeniesiony do serwera Key Connector"
   },
   "paymentSponsored": {
-    "message": "Please provide a payment method to associate with the organization. Don't worry, we won't charge you anything unless you select additional features or your sponsorship expires. "
+    "message": "Dodaj metodę płatności, aby powiązać ją z organizacją. Opłata zostanie pobrana dopiero po wybraniu dodatkowych funkcji lub wygaśnięciu oferty sponsoringu."
   },
   "orgCreatedSponsorshipInvalid": {
-    "message": "The sponsorship offer has expired. You may delete the organization you created to avoid a charge at the end of your 7 day trial. Otherwise you may close this prompt to keep the organization and assume billing responsibility."
+    "message": "Oferta sponsoringu wygasła. Możesz usunąć utworzoną organizację, aby uniknąć opłaty na koniec 7-dniowego okresu próbnego. Jeśli chcesz zachować organizację i przyjąć odpowiedzialność za rozliczenia, zamknij ten monit."
   },
   "newFamiliesOrganization": {
-    "message": "Nowa organizacja rodzin"
+    "message": "Nowa organizacja rodzinna"
   },
   "acceptOffer": {
     "message": "Zaakceptuj ofertę"
   },
   "sponsoringOrg": {
-    "message": "Organizacja sponsorska"
+    "message": "Organizacja sponsorująca"
   },
   "keyConnectorTest": {
     "message": "Test"
@@ -4729,9 +4732,9 @@
     "message": "Nie można nawiązać połączenia z serwerem Key Connector. Sprawdź adres URL."
   },
   "sponsorshipTokenHasExpired": {
-    "message": "Oferta sponsorowania wygasła."
+    "message": "Oferta sponsoringu wygasła."
   },
   "freeWithSponsorship": {
-    "message": "DARMOWA ze sponsorowaniem"
+    "message": "DARMOWY ze sponsoringiem"
   }
 }

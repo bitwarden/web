@@ -163,7 +163,7 @@
 .btn-submit {
   position: relative;
 
-  .fa-spinner {
+  .bwi-spinner {
     align-items: center;
     bottom: 0;
     display: none;
@@ -176,7 +176,7 @@
 
   &:disabled:not(.manual),
   &.loading {
-    .fa-spinner {
+    .bwi-spinner {
       display: flex;
     }
 
@@ -224,13 +224,13 @@
 .badge-warning {
   @include themify($themes) {
     background-color: themed("warning");
-    color: themed("warningTextColor");
+    color: themed("textWarningColor");
   }
 }
 
 .badge-success {
   @include themify($themes) {
     background-color: themed("success");
-    color: themed("successTextColor");
+    color: themed("textSuccessColor");
   }
 }

@@ -5,6 +5,8 @@ import { BroadcasterMessagingService } from "../../services/broadcasterMessaging
 import { HtmlStorageService } from "../../services/htmlStorage.service";
 import { I18nService } from "../../services/i18n.service";
 import { MemoryStorageService } from "../../services/memoryStorage.service";
+import { PasswordRepromptService } from "../../services/passwordReprompt.service";
+import { StateService } from "../../services/state.service";
 import { WebPlatformUtilsService } from "../../services/webPlatformUtils.service";
 
 import { EventService } from "./event.service";
@@ -41,12 +43,18 @@ import { ImportService as ImportServiceAbstraction } from "jslib-common/abstract
 import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService as MessagingServiceAbstraction } from "jslib-common/abstractions/messaging.service";
 import { NotificationsService as NotificationsServiceAbstraction } from "jslib-common/abstractions/notifications.service";
+import { PasswordRepromptService as PasswordRepromptServiceAbstraction } from "jslib-common/abstractions/passwordReprompt.service";
 import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from "jslib-common/abstractions/platformUtils.service";
 import { StateService as StateServiceAbstraction } from "jslib-common/abstractions/state.service";
+import { StateMigrationService as StateMigrationServiceAbstraction } from "jslib-common/abstractions/stateMigration.service";
 import { StorageService as StorageServiceAbstraction } from "jslib-common/abstractions/storage.service";
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from "jslib-common/abstractions/vaultTimeout.service";
 
 import { ThemeType } from "jslib-common/enums/themeType";
+
+import { AccountFactory } from "jslib-common/models/domain/account";
+
+import { Account } from "../../models/account";
 
 export function initFactory(
   window: Window,
@@ -67,7 +75,7 @@ export function initFactory(
 
     const urls = process.env.URLS as Urls;
     urls.base ??= window.location.origin;
-    environmentService.setUrls(urls, false);
+    environmentService.setUrls(urls);
 
     setTimeout(() => notificationsService.init(), 3000);
 
@@ -126,7 +134,12 @@ export function initFactory(
       deps: ["WINDOW"],
     },
     { provide: StorageServiceAbstraction, useClass: HtmlStorageService },
-    { provide: "SECURE_STORAGE", useClass: MemoryStorageService },
+    {
+      provide: "SECURE_STORAGE",
+      // TODO: platformUtilsService.isDev has a helper for this, but using that service here results in a circular dependency.
+      // We have a tech debt item in the backlog to break up platformUtilsService, but in the meantime simply checking the environement here is less cumbersome.
+      useClass: process.env.NODE_ENV === "development" ? HtmlStorageService : MemoryStorageService,
+    },
     {
       provide: PlatformUtilsServiceAbstraction,
       useFactory: (
@@ -166,6 +179,32 @@ export function initFactory(
         LogService,
         StateServiceAbstraction,
       ],
+    },
+    {
+      provide: StateServiceAbstraction,
+      useFactory: (
+        storageService: StorageServiceAbstraction,
+        secureStorageService: StorageServiceAbstraction,
+        logService: LogService,
+        stateMigrationService: StateMigrationServiceAbstraction
+      ) =>
+        new StateService(
+          storageService,
+          secureStorageService,
+          logService,
+          stateMigrationService,
+          new AccountFactory(Account)
+        ),
+      deps: [
+        StorageServiceAbstraction,
+        "SECURE_STORAGE",
+        LogService,
+        StateMigrationServiceAbstraction,
+      ],
+    },
+    {
+      provide: PasswordRepromptServiceAbstraction,
+      useClass: PasswordRepromptService,
     },
   ],
 })

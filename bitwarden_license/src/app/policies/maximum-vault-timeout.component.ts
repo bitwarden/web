@@ -24,12 +24,12 @@ export class MaximumVaultTimeoutPolicy extends BasePolicy {
   templateUrl: "maximum-vault-timeout.component.html",
 })
 export class MaximumVaultTimeoutPolicyComponent extends BasePolicyComponent {
-  data = this.fb.group({
+  data = this.formBuilder.group({
     hours: [null],
     minutes: [null],
   });
 
-  constructor(private fb: FormBuilder, private i18nService: I18nService) {
+  constructor(private formBuilder: FormBuilder, private i18nService: I18nService) {
     super();
   }
 
