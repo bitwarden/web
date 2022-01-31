@@ -74,8 +74,12 @@ export class OptionsComponent implements OnInit {
     this.disableIcons = await this.stateService.getDisableFavicon();
     this.enableGravatars = await this.stateService.getEnableGravitars();
     this.enableFullWidth = await this.stateService.getEnableFullWidth();
-    this.locale = (await this.stateService.getLocale()) ?? this.startingLocale;
-    this.theme = (await this.stateService.getTheme()) ?? this.startingTheme;
+
+    this.locale = await this.stateService.getLocale();
+    this.startingLocale = this.locale;
+
+    this.theme = await this.stateService.getTheme();
+    this.startingTheme = this.theme;
   }
 
   async submit() {
