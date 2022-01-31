@@ -19,7 +19,7 @@ export class OptionsComponent implements OnInit {
   disableIcons: boolean;
   enableGravatars: boolean;
   enableFullWidth: boolean;
-  theme: string = null;
+  theme: ThemeType;
   locale: string;
   vaultTimeouts: { name: string; value: number }[];
   localeOptions: any[];
@@ -28,7 +28,7 @@ export class OptionsComponent implements OnInit {
   vaultTimeout: FormControl = new FormControl(null);
 
   private startingLocale: string;
-  private startingTheme: string;
+  private startingTheme: ThemeType;
 
   constructor(
     private stateService: StateService,
@@ -74,8 +74,12 @@ export class OptionsComponent implements OnInit {
     this.disableIcons = await this.stateService.getDisableFavicon();
     this.enableGravatars = await this.stateService.getEnableGravitars();
     this.enableFullWidth = await this.stateService.getEnableFullWidth();
-    this.locale = (await this.stateService.getLocale()) ?? this.startingLocale;
-    this.theme = (await this.stateService.getTheme()) ?? this.startingTheme;
+
+    this.locale = await this.stateService.getLocale();
+    this.startingLocale = this.locale;
+
+    this.theme = await this.stateService.getTheme();
+    this.startingTheme = this.theme;
   }
 
   async submit() {
@@ -104,10 +108,7 @@ export class OptionsComponent implements OnInit {
     if (this.locale !== this.startingLocale) {
       window.location.reload();
     } else {
-      this.platformUtilsService.showToast("success", null, [
-        this.i18nService.t("optionsUpdated"),
-        this.i18nService.t("optionsUpdated"),
-      ]);
+      this.platformUtilsService.showToast("success", null, this.i18nService.t("optionsUpdated"));
     }
   }
 

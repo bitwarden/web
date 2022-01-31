@@ -87,7 +87,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
         );
         if (learnMore) {
           this.platformUtilsService.launchUri(
-            "https://help.bitwarden.com/article/attachments/#fixing-old-attachments"
+            "https://bitwarden.com/help/attachments/#add-storage-space"
           );
         }
         this.rotateEncKey = false;
