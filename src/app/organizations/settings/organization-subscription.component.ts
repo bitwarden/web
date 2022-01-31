@@ -12,6 +12,8 @@ import { OrganizationService } from "jslib-common/abstractions/organization.serv
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
 import { PlanType } from "jslib-common/enums/planType";
+import { StateService } from "jslib-common/abstractions/state.service";
+import { ProductType } from "jslib-common/enums/productType";
 
 @Component({
   selector: "app-org-subscription",
@@ -27,6 +29,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
   adjustStorageAdd = true;
   showAdjustStorage = false;
   showUpdateLicense = false;
+  canDownloadLicense = false;
   showDownloadLicense = false;
   showChangePlan = false;
   sub: OrganizationSubscriptionResponse;
@@ -42,6 +45,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     private apiService: ApiService,
     private platformUtilsService: PlatformUtilsService,
     private i18nService: I18nService,
+    private stateService: StateService,
     private messagingService: MessagingService,
     private route: ActivatedRoute,
     private organizationService: OrganizationService,
@@ -66,6 +70,13 @@ export class OrganizationSubscriptionComponent implements OnInit {
     this.loading = true;
     this.userOrg = await this.organizationService.get(this.organizationId);
     this.sub = await this.apiService.getOrganizationSubscription(this.organizationId);
+    
+    const orgs = await this.stateService.getOrganizations();
+    const isAllowedOrgType = Object.values(orgs).some(org => org.planProductType === (ProductType.Enterprise | ProductType.Families));
+    const canDownload = (this.sub.planType !== PlanType.Free && this.subscription == null) ||
+    (this.subscription != null && !this.subscription.cancelled);
+    this.canDownloadLicense = canDownload && isAllowedOrgType;
+
     this.loading = false;
   }
 
@@ -205,13 +216,23 @@ export class OrganizationSubscriptionComponent implements OnInit {
   }
 
   get subscriptionMarkedForCancel() {
+    console.log(`Marked for cancellation: ${this.subscription != null && !this.subscription.cancelled && this.subscription.cancelAtEndDate}`);
+    
     return (
       this.subscription != null && !this.subscription.cancelled && this.subscription.cancelAtEndDate
     );
   }
 
   get subscription() {
-    return this.sub != null ? this.sub.subscription : null;
+    const now = new Date();
+    const fiveDays = now.setDate(now.getDate() + 5);
+    if(this.sub === null) return null;
+    if(this.sub.subscription == null) {
+      this.sub.subscription = ({ cancelled: true, cancelAtEndDate: (fiveDays as any)} as any);
+      this.sub.subscription.items = new Array({sponsoredSubscriptionItem: false} as any);
+    }
+    
+    return this.sub.subscription;
   }
 
   get nextInvoice() {
@@ -255,13 +276,6 @@ export class OrganizationSubscriptionComponent implements OnInit {
 
   get isSponsoredSubscription(): boolean {
     return this.sub.subscription?.items.some((i) => i.sponsoredSubscriptionItem);
-  }
-
-  get canDownloadLicense() {
-    return (
-      (this.sub.planType !== PlanType.Free && this.subscription == null) ||
-      (this.subscription != null && !this.subscription.cancelled)
-    );
   }
 
   get subscriptionDesc() {
