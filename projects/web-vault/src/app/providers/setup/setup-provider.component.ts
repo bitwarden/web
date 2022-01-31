@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 
-import { BaseAcceptComponent } from "src/app/common/base.accept.component";
+import { BaseAcceptComponent } from "@bitwarden/web-vault-internal/app/common/base.accept.component";
 
 @Component({
   selector: "app-setup-provider",

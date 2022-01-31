@@ -13,10 +13,10 @@ import { OrganizationsModule } from "./organizations/organizations.module";
 import { DisablePersonalVaultExportPolicyComponent } from "./policies/disable-personal-vault-export.component";
 import { MaximumVaultTimeoutPolicyComponent } from "./policies/maximum-vault-timeout.component";
 
-import { OssRoutingModule } from "src/app/oss-routing.module";
-import { OssModule } from "src/app/oss.module";
-import { ServicesModule } from "src/app/services/services.module";
-import { WildcardRoutingModule } from "src/app/wildcard-routing.module";
+import { OssRoutingModule } from "@bitwarden/web-vault-internal/app/oss-routing.module";
+import { OssModule } from "@bitwarden/web-vault-internal/app/oss.module";
+import { ServicesModule } from "@bitwarden/web-vault-internal/app/services/services.module";
+import { WildcardRoutingModule } from "@bitwarden/web-vault-internal/app/wildcard-routing.module";
 
 @NgModule({
   imports: [

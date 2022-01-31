@@ -10,7 +10,7 @@ import { EventView } from "jslib-common/models/view/eventView";
 import { EventResponse } from "jslib-common/models/response/eventResponse";
 import { ListResponse } from "jslib-common/models/response/listResponse";
 
-import { EventService } from "src/app/services/event.service";
+import { EventService } from "../services/event.service";
 
 @Directive()
 export abstract class BaseEventsComponent {

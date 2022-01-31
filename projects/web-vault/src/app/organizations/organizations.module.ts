@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { OssModule } from "src/app/oss.module";
+import { OssModule } from "@bitwarden/web-vault-internal/app/oss.module";
 
 import { SsoComponent } from "./manage/sso.component";
 import { OrganizationsRoutingModule } from "./organizations-routing.module";

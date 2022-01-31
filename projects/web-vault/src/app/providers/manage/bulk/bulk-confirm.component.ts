@@ -5,11 +5,12 @@ import { ProviderUserBulkRequest } from "jslib-common/models/request/provider/pr
 
 import { ProviderUserStatusType } from "jslib-common/enums/providerUserStatusType";
 
-import { BulkConfirmComponent as OrganizationBulkConfirmComponent } from "src/app/organizations/manage/bulk/bulk-confirm.component";
-import { BulkUserDetails } from "src/app/organizations/manage/bulk/bulk-status.component";
+import { BulkConfirmComponent as OrganizationBulkConfirmComponent } from "@bitwarden/web-vault-internal/app/organizations/manage/bulk/bulk-confirm.component";
+import { BulkUserDetails } from "@bitwarden/web-vault-internal/app/organizations/manage/bulk/bulk-status.component";
 
 @Component({
-  templateUrl: "../../../../../../../src/app/organizations/manage/bulk/bulk-confirm.component.html",
+  templateUrl:
+    "../../../../../../web-vault-internal/src/app/organizations/manage/bulk/bulk-confirm.component.html",
 })
 export class BulkConfirmComponent extends OrganizationBulkConfirmComponent {
   @Input() providerId: string;

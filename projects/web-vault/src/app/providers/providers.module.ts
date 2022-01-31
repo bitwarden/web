@@ -30,7 +30,7 @@ import { SettingsComponent } from "./settings/settings.component";
 import { SetupProviderComponent } from "./setup/setup-provider.component";
 import { SetupComponent } from "./setup/setup.component";
 
-import { OssModule } from "src/app/oss.module";
+import { OssModule } from "@bitwarden/web-vault-internal/app/oss.module";
 
 @NgModule({
   imports: [CommonModule, FormsModule, OssModule, ProvidersRoutingModule],

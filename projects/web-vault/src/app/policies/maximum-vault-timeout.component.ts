@@ -10,7 +10,7 @@ import { PolicyRequest } from "jslib-common/models/request/policyRequest";
 import {
   BasePolicy,
   BasePolicyComponent,
-} from "src/app/organizations/policies/base-policy.component";
+} from "@bitwarden/web-vault-internal/app/organizations/policies/base-policy.component";
 
 export class MaximumVaultTimeoutPolicy extends BasePolicy {
   name = "maximumVaultTimeout";

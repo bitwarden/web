@@ -1,16 +1,11 @@
 import { Component } from "@angular/core";
-import { FormBuilder } from "@angular/forms";
-
-import { I18nService } from "jslib-common/abstractions/i18n.service";
 
 import { PolicyType } from "jslib-common/enums/policyType";
-
-import { PolicyRequest } from "jslib-common/models/request/policyRequest";
 
 import {
   BasePolicy,
   BasePolicyComponent,
-} from "src/app/organizations/policies/base-policy.component";
+} from "@bitwarden/web-vault-internal/app/organizations/policies/base-policy.component";
 
 export class DisablePersonalVaultExportPolicy extends BasePolicy {
   name = "disablePersonalVaultExport";

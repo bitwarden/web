@@ -7,12 +7,11 @@
       "tldjs": ["jslib/common/src/misc/tldjs.noop"],
       "jslib-common/*": ["jslib/common/src/*"],
       "jslib-angular/*": ["jslib/angular/src/*"],
-      "src/*": ["src/*"]
+      "src/*": ["src/*"],
+      "@bitwarden/web-vault-internal/*": ["projects/web-vault-internal/src/*"]
     }
   },
   "angularCompilerOptions": {
     "preserveWhitespaces": true
-  },
-  "files": ["src/main.ts"],
-  "include": ["src/connectors/*.ts", "src/models/*.ts", "src/services/*.ts"]
+  }
 }

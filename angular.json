@@ -29,17 +29,64 @@
             "polyfills": "projects/web-vault/src/polyfills.ts",
             "tsConfig": "projects/web-vault/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": ["projects/web-vault/src/favicon.ico", "projects/web-vault/src/assets"],
-            "styles": ["projects/web-vault/src/styles.scss", "src/scss/styles.scss"],
-            "scripts": []
+            "assets": [
+              "projects/web-vault/src/assets",
+              { "glob": "favicon.ico", "input": "projects/web-vault-internal/src", "output": "" },
+              { "glob": ".nojekyll", "input": "projects/web-vault-internal/src", "output": "" },
+              { "glob": "manifest.json", "input": "projects/web-vault-internal/src", "output": "" },
+              { "glob": "app-id.json", "input": "projects/web-vault-internal/src", "output": "" },
+              { "glob": "404.html", "input": "projects/web-vault-internal/src", "output": "" },
+              { "glob": "**/*", "input": "projects/web-vault-internal/src/404", "output": "404" },
+              {
+                "glob": "**/*",
+                "input": "projects/web-vault-internal/src/locales",
+                "output": "locales"
+              },
+              {
+                "glob": "**/*",
+                "input": "projects/web-vault-internal/src/images",
+                "output": "images"
+              },
+              { "glob": "qrious.min.js", "input": "node_modules/qrious/dist", "output": "scripts" },
+              {
+                "glob": "dropin.js",
+                "input": "node_modules/braintree-web-drop-in/dist/browser",
+                "output": "scripts"
+              }
+            ],
+            "styles": [
+              "projects/web-vault/src/scss/styles.scss",
+              {
+                "input": "projects/web-vault-internal/src/connectors/captcha.scss",
+                "inject": false
+              },
+              {
+                "input": "projects/web-vault-internal/src/connectors/captcha-mobile.scss",
+                "inject": false
+              },
+              {
+                "input": "projects/web-vault-internal/src/connectors/duo.scss",
+                "inject": false
+              },
+              {
+                "input": "projects/web-vault-internal/src/connectors/sso.scss",
+                "inject": false
+              },
+              {
+                "input": "projects/web-vault-internal/src/connectors/webauthn.scss",
+                "inject": false
+              }
+            ],
+            "resourcesOutputPath": "resources",
+            "scripts": ["projects/web-vault-internal/src/theme.js"]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "7mb",
+                  "maximumError": "8mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -68,6 +115,10 @@
         },
         "serve": {
           "builder": "@angular-builders/custom-webpack:dev-server",
+          "options": {
+            "ssl": true,
+            "proxyConfig": "proxy.config.js"
+          },
           "configurations": {
             "production": {
               "browserTarget": "web-vault:build:production"
@@ -188,6 +239,68 @@
             "assets": ["projects/oss-vault/src/favicon.ico", "projects/oss-vault/src/assets"],
             "styles": ["projects/oss-vault/src/styles.scss"],
             "scripts": []
+          }
+        }
+      }
+    },
+    "web": {
+      "projectType": "library",
+      "root": "projects/web",
+      "sourceRoot": "projects/web/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/web/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/web/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/web/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/web/src/test.ts",
+            "tsConfig": "projects/web/tsconfig.spec.json",
+            "karmaConfig": "projects/web/karma.conf.js"
+          }
+        }
+      }
+    },
+    "webs": {
+      "projectType": "library",
+      "root": "projects/webs",
+      "sourceRoot": "projects/webs/src",
+      "prefix": "bitwarden",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/webs/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/webs/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/webs/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/webs/src/test.ts",
+            "tsConfig": "projects/webs/tsconfig.spec.json",
+            "karmaConfig": "projects/webs/karma.conf.js"
           }
         }
       }

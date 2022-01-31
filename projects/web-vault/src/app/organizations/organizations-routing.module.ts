@@ -5,10 +5,10 @@ import { AuthGuardService } from "jslib-angular/services/auth-guard.service";
 
 import { Permissions } from "jslib-common/enums/permissions";
 
-import { OrganizationLayoutComponent } from "src/app/layouts/organization-layout.component";
-import { ManageComponent } from "src/app/organizations/manage/manage.component";
-import { OrganizationGuardService } from "src/app/services/organization-guard.service";
-import { OrganizationTypeGuardService } from "src/app/services/organization-type-guard.service";
+import { OrganizationLayoutComponent } from "@bitwarden/web-vault-internal/app/layouts/organization-layout.component";
+import { ManageComponent } from "@bitwarden/web-vault-internal/app/organizations/manage/manage.component";
+import { OrganizationGuardService } from "@bitwarden/web-vault-internal/app/services/organization-guard.service";
+import { OrganizationTypeGuardService } from "@bitwarden/web-vault-internal/app/services/organization-type-guard.service";
 
 import { SsoComponent } from "./manage/sso.component";
 

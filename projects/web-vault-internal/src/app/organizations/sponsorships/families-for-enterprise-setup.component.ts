@@ -19,10 +19,10 @@ import { Organization } from "jslib-common/models/domain/organization";
 
 import { OrganizationSponsorshipRedeemRequest } from "jslib-common/models/request/organization/organizationSponsorshipRedeemRequest";
 
-import { DeleteOrganizationComponent } from "src/app/organizations/settings/delete-organization.component";
+import { DeleteOrganizationComponent } from "../settings/delete-organization.component";
 
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-import { OrganizationPlansComponent } from "src/app/settings/organization-plans.component";
+import { OrganizationPlansComponent } from "../../settings/organization-plans.component";
 
 @Component({
   selector: "families-for-enterprise-setup",

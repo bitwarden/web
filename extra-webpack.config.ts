@@ -17,65 +17,50 @@ export default (
 ) => {
   const plugins = [
     new HtmlWebpackPlugin({
-      template: "./src/connectors/duo.html",
+      template: "./projects/web-vault-internal/src/connectors/duo.html",
       filename: "duo-connector.html",
       chunks: ["connectors/duo"],
     }),
     new HtmlWebpackPlugin({
-      template: "./src/connectors/webauthn.html",
+      template: "./projects/web-vault-internal/src/connectors/webauthn.html",
       filename: "webauthn-connector.html",
       chunks: ["connectors/webauthn"],
     }),
     new HtmlWebpackPlugin({
-      template: "./src/connectors/webauthn-mobile.html",
+      template: "./projects/web-vault-internal/src/connectors/webauthn-mobile.html",
       filename: "webauthn-mobile-connector.html",
       chunks: ["connectors/webauthn"],
     }),
     new HtmlWebpackPlugin({
-      template: "./src/connectors/webauthn-fallback.html",
+      template: "./projects/web-vault-internal/src/connectors/webauthn-fallback.html",
       filename: "webauthn-fallback-connector.html",
       chunks: ["connectors/webauthn-fallback"],
     }),
     new HtmlWebpackPlugin({
-      template: "./src/connectors/sso.html",
+      template: "./projects/web-vault-internal/src/connectors/sso.html",
       filename: "sso-connector.html",
       chunks: ["connectors/sso"],
     }),
     new HtmlWebpackPlugin({
-      template: "./src/connectors/captcha.html",
+      template: "./projects/web-vault-internal/src/connectors/captcha.html",
       filename: "captcha-connector.html",
       chunks: ["connectors/captcha"],
     }),
     new HtmlWebpackPlugin({
-      template: "./src/connectors/captcha-mobile.html",
+      template: "./projects/web-vault-internal/src/connectors/captcha-mobile.html",
       filename: "captcha-mobile-connector.html",
       chunks: ["connectors/captcha"],
     }),
     // TODO: Replace with angular cli copy
     new CopyPlugin({
       patterns: [
-        { from: "./src/.nojekyll" },
-        { from: "./src/manifest.json" },
-        { from: "./src/favicon.ico" },
-        { from: "./src/browserconfig.xml" },
-        { from: "./src/app-id.json" },
-        { from: "./src/404.html" },
-        { from: "./src/404", to: "404" },
-        { from: "./src/images", to: "images" },
-        { from: "./src/locales", to: "locales" },
-        { from: "./node_modules/qrious/dist/qrious.min.js", to: "scripts" },
-        { from: "./node_modules/braintree-web-drop-in/dist/browser/dropin.js", to: "scripts" },
         {
-          from: "./src/version.json",
+          from: "./projects/web-vault-internal/src/version.json",
           transform(content, path) {
             return content.toString().replace("process.env.APPLICATION_VERSION", "12");
           },
         },
       ],
-    }),
-    new MiniCssExtractPlugin({
-      filename: "[name].[contenthash].css",
-      chunkFilename: "[id].[contenthash].css",
     }),
     new webpack.EnvironmentPlugin({
       ENV: "development",
@@ -101,11 +86,17 @@ export default (
   };
 
   // TODO: Figure out if we have to cast it to any
-  (config.entry as any)["connectors/webauthn"] = ["./src/connectors/webauthn.ts"];
-  (config.entry as any)["connectors/webauthn-fallback"] = ["./src/connectors/webauthn-fallback.ts"];
-  (config.entry as any)["connectors/duo"] = ["./src/connectors/duo.ts"];
-  (config.entry as any)["connectors/sso"] = ["./src/connectors/sso.ts"];
-  (config.entry as any)["connectors/captcha"] = ["./src/connectors/captcha.ts"];
+  (config.entry as any)["connectors/webauthn"] = [
+    "./projects/web-vault-internal/src/connectors/webauthn.ts",
+  ];
+  (config.entry as any)["connectors/webauthn-fallback"] = [
+    "./projects/web-vault-internal/src/connectors/webauthn-fallback.ts",
+  ];
+  (config.entry as any)["connectors/duo"] = ["./projects/web-vault-internal/src/connectors/duo.ts"];
+  (config.entry as any)["connectors/sso"] = ["./projects/web-vault-internal/src/connectors/sso.ts"];
+  (config.entry as any)["connectors/captcha"] = [
+    "./projects/web-vault-internal/src/connectors/captcha.ts",
+  ];
 
   return config;
 };

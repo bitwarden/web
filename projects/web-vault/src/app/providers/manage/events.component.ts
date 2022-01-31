@@ -12,9 +12,9 @@ import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
 
 import { EventResponse } from "jslib-common/models/response/eventResponse";
 
-import { EventService } from "src/app/services/event.service";
+import { EventService } from "@bitwarden/web-vault-internal/app/services/event.service";
 
-import { BaseEventsComponent } from "src/app/common/base.events.component";
+import { BaseEventsComponent } from "@bitwarden/web-vault-internal/app/common/base.events.component";
 
 @Component({
   selector: "provider-events",
