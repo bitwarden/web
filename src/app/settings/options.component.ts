@@ -104,10 +104,7 @@ export class OptionsComponent implements OnInit {
     if (this.locale !== this.startingLocale) {
       window.location.reload();
     } else {
-      this.platformUtilsService.showToast("success", null, [
-        this.i18nService.t("optionsUpdated"),
-        this.i18nService.t("optionsUpdated"),
-      ]);
+      this.platformUtilsService.showToast("success", null, this.i18nService.t("optionsUpdated"));
     }
   }
 
