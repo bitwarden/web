@@ -72,41 +72,6 @@ const plugins = [
     chunks: ["theme_head", "app/polyfills", "app/vendor", "app/main"],
   }),
   new HtmlWebpackInjector(),
-  new HtmlWebpackPlugin({
-    template: "./src/connectors/duo.html",
-    filename: "duo-connector.html",
-    chunks: ["connectors/duo"],
-  }),
-  new HtmlWebpackPlugin({
-    template: "./src/connectors/webauthn.html",
-    filename: "webauthn-connector.html",
-    chunks: ["connectors/webauthn"],
-  }),
-  new HtmlWebpackPlugin({
-    template: "./src/connectors/webauthn-mobile.html",
-    filename: "webauthn-mobile-connector.html",
-    chunks: ["connectors/webauthn"],
-  }),
-  new HtmlWebpackPlugin({
-    template: "./src/connectors/webauthn-fallback.html",
-    filename: "webauthn-fallback-connector.html",
-    chunks: ["connectors/webauthn-fallback"],
-  }),
-  new HtmlWebpackPlugin({
-    template: "./src/connectors/sso.html",
-    filename: "sso-connector.html",
-    chunks: ["connectors/sso"],
-  }),
-  new HtmlWebpackPlugin({
-    template: "./src/connectors/captcha.html",
-    filename: "captcha-connector.html",
-    chunks: ["connectors/captcha"],
-  }),
-  new HtmlWebpackPlugin({
-    template: "./src/connectors/captcha-mobile.html",
-    filename: "captcha-mobile-connector.html",
-    chunks: ["connectors/captcha"],
-  }),
   new CopyWebpackPlugin({
     patterns: [
       { from: "./src/.nojekyll" },
@@ -209,11 +174,6 @@ const webpackConfig = {
   entry: {
     "app/polyfills": "./src/app/polyfills.ts",
     "app/main": "./src/app/main.ts",
-    "connectors/webauthn": "./src/connectors/webauthn.ts",
-    "connectors/webauthn-fallback": "./src/connectors/webauthn-fallback.ts",
-    "connectors/duo": "./src/connectors/duo.ts",
-    "connectors/sso": "./src/connectors/sso.ts",
-    "connectors/captcha": "./src/connectors/captcha.ts",
     theme_head: "./src/theme.js",
   },
   optimization: {

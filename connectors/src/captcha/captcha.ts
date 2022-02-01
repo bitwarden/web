@@ -1,4 +1,4 @@
-import { b64Decode, getQsParam } from "./common";
+import { b64Decode, getQsParam } from "../common";
 
 declare var hcaptcha: any;
 

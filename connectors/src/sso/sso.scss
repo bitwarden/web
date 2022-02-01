@@ -1,0 +1,82 @@
+@import "../common/styles.scss";
+
+.mt-5,
+.my-5 {
+  margin-top: 3rem !important;
+}
+
+.d-flex {
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+.justify-content-center {
+  -ms-flex-pack: center !important;
+  justify-content: center !important;
+}
+
+.mb-4,
+.my-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+$icomoon-font-family: "bwi-font" !default;
+$icomoon-font-path: "~@bitwarden/jslib-angular/src/scss/bwicons/fonts/" !default;
+
+@font-face {
+  font-family: "#{$icomoon-font-family}";
+  src: url($icomoon-font-path + "bwi-font.svg") format("svg"),
+    url($icomoon-font-path + "bwi-font.ttf") format("truetype"),
+    url($icomoon-font-path + "bwi-font.woff") format("woff"),
+    url($icomoon-font-path + "bwi-font.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+// Base Class
+.bwi {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "#{$icomoon-font-family}" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  display: inline-block;
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bwi-2x {
+  font-size: 2em;
+}
+
+// Spin Animations
+.bwi-spin {
+  animation: bwi-spin 2s infinite linear;
+}
+
+@keyframes bwi-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+// Rotation
+.bwi-rotate-270 {
+  transform: rotate(270deg);
+}
+
+.bwi-spinner:before {
+  content: "\e937";
+}
