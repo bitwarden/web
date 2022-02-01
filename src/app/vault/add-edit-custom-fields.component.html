@@ -11,12 +11,12 @@
           <label for="fieldName{{ i }}">{{ "name" | i18n }}</label>
           <a
             class="ml-auto"
-            href="https://help.bitwarden.com/article/custom-fields/"
+            href="https://bitwarden.com/help/custom-fields/"
             target="_blank"
             rel="noopener"
             appA11yTitle="{{ 'learnMore' | i18n }}"
           >
-            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+            <i class="bwi bwi-question-circle" aria-hidden="true"></i>
           </a>
         </div>
         <input
@@ -50,7 +50,7 @@
                 appA11yTitle="{{ 'copyValue' | i18n }}"
                 (click)="copy(f.value, 'value', 'Field')"
               >
-                <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
               </button>
             </div>
           </div>
@@ -75,9 +75,9 @@
                 [disabled]="!cipher.viewPassword && !f.newField"
               >
                 <i
-                  class="fa fa-lg"
+                  class="bwi bwi-lg"
                   aria-hidden="true"
-                  [ngClass]="{ 'fa-eye': !f.showValue, 'fa-eye-slash': f.showValue }"
+                  [ngClass]="{ 'bwi-eye': !f.showValue, 'bwi-eye-slash': f.showValue }"
                 >
                 </i>
               </button>
@@ -88,7 +88,7 @@
                 (click)="copy(f.value, 'value', f.type === fieldType.Hidden ? 'H_Field' : 'Field')"
                 [disabled]="!cipher.viewPassword && !f.newField"
               >
-                <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
               </button>
             </div>
           </div>
@@ -126,7 +126,7 @@
             appA11yTitle="{{ 'remove' | i18n }}"
             *ngIf="!cipher.isDeleted && !viewOnly"
           >
-            <i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
+            <i class="bwi bwi-minus-circle bwi-lg" aria-hidden="true"></i>
           </button>
           <button
             type="button"
@@ -134,7 +134,7 @@
             appA11yTitle="{{ 'dragToSort' | i18n }}"
             *ngIf="!cipher.isDeleted && !viewOnly"
           >
-            <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
+            <i class="bwi bwi-hamburger bwi-lg" aria-hidden="true"></i>
           </button>
         </div>
       </div>
@@ -148,7 +148,7 @@
     class="d-inline-block mb-2"
     *ngIf="!cipher.isDeleted && !viewOnly"
   >
-    <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i> {{ "newCustomField" | i18n }}
+    <i class="bwi bwi-plus-circle bwi-fw" aria-hidden="true"></i> {{ "newCustomField" | i18n }}
   </a>
   <div class="row" *ngIf="!cipher.isDeleted && !viewOnly">
     <div class="col-5">

@@ -26,9 +26,9 @@
           <tbody>
             <tr *ngFor="let a of cipher.attachments">
               <td class="table-list-icon">
-                <i class="fa fa-fw fa-lg fa-file-o" *ngIf="!a.downloading" aria-hidden="true"></i>
+                <i class="bwi bwi-fw bwi-lg bwi-file" *ngIf="!a.downloading" aria-hidden="true"></i>
                 <i
-                  class="fa fa-spinner fa-lg fa-fw fa-spin"
+                  class="bwi bwi-spinner bwi-lg bwi-fw bwi-spin"
                   *ngIf="a.downloading"
                   aria-hidden="true"
                 ></i>
@@ -38,12 +38,12 @@
                   <a href="#" appStopClick (click)="download(a)">{{ a.fileName }}</a>
                   <div *ngIf="showFixOldAttachments(a)" class="ml-2">
                     <a
-                      href="https://help.bitwarden.com/article/attachments/#fixing-old-attachments"
+                      href="https://bitwarden.com/help/attachments/#fixing-old-attachments"
                       target="_blank"
                       rel="noopener"
                     >
                       <i
-                        class="fa fa-exclamation-triangle text-warning"
+                        class="bwi bwi-exclamation-triangle text-warning"
                         title="{{ 'attachmentFixDesc' | i18n }}"
                         aria-hidden="true"
                       ></i>
@@ -75,12 +75,12 @@
                   [disabled]="deleteBtn.loading"
                 >
                   <i
-                    class="fa fa-trash-o fa-lg fa-fw"
+                    class="bwi bwi-trash bwi-lg bwi-fw"
                     [hidden]="deleteBtn.loading"
                     aria-hidden="true"
                   ></i>
                   <i
-                    class="fa fa-spinner fa-spin fa-lg fa-fw"
+                    class="bwi bwi-spinner bwi-spin bwi-lg bwi-fw"
                     [hidden]="!deleteBtn.loading"
                     title="{{ 'loading' | i18n }}"
                     aria-hidden="true"
@@ -104,7 +104,7 @@
           [disabled]="form.loading"
           *ngIf="!viewOnly"
         >
-          <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+          <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
           <span>{{ "save" | i18n }}</span>
         </button>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">

@@ -3,7 +3,11 @@
 </div>
 
 <ng-container *ngIf="loading">
-  <i class="fa fa-spinner fa-spin text-muted" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+  <i
+    class="bwi bwi-spinner bwi-spin text-muted"
+    title="{{ 'loading' | i18n }}"
+    aria-hidden="true"
+  ></i>
   <span class="sr-only">{{ "loading" | i18n }}</span>
 </ng-container>
 
@@ -67,9 +71,9 @@
           target="_blank"
           rel="noopener"
           appA11yTitle="{{ 'learnMore' | i18n }}"
-          href="https://bitwarden.com/help/article/about-key-connector/"
+          href="https://bitwarden.com/help/about-key-connector/"
         >
-          <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+          <i class="bwi bwi-question-circle" aria-hidden="true"></i>
         </a>
         <small>{{ "memberDecryptionKeyConnectorDesc" | i18n }}</small>
       </label>
@@ -98,7 +102,7 @@
             [disabled]="!enableTestKeyConnector"
           >
             <i
-              class="fa fa-spinner fa-spin"
+              class="bwi bwi-spinner bwi-spin"
               title="{{ 'loading' | i18n }}"
               aria-hidden="true"
               *ngIf="keyConnectorUrl.pending"
@@ -111,11 +115,11 @@
       </div>
       <ng-container *ngIf="keyConnectorUrl.pristine && !keyConnectorUrl.pending">
         <div class="text-danger" *ngIf="keyConnectorUrl.hasError('invalidUrl')" role="alert">
-          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+          <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
           {{ "keyConnectorTestFail" | i18n }}
         </div>
         <div class="text-success" *ngIf="!keyConnectorUrl.hasError('invalidUrl')" role="alert">
-          <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+          <i class="bwi bwi-check-circle" aria-hidden="true"></i>
           {{ "keyConnectorTestSuccess" | i18n }}
         </div>
       </ng-container>
@@ -146,7 +150,7 @@
               appA11yTitle="{{ 'copyValue' | i18n }}"
               (click)="copy(callbackPath)"
             >
-              <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+              <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
             </button>
           </div>
         </div>
@@ -162,7 +166,7 @@
               appA11yTitle="{{ 'copyValue' | i18n }}"
               (click)="copy(signedOutCallbackPath)"
             >
-              <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+              <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
             </button>
           </div>
         </div>
@@ -261,7 +265,7 @@
               appA11yTitle="{{ 'copyValue' | i18n }}"
               (click)="copy(spEntityId)"
             >
-              <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+              <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
             </button>
           </div>
         </div>
@@ -277,7 +281,7 @@
               appA11yTitle="{{ 'launch' | i18n }}"
               (click)="launchUri(spMetadataUrl)"
             >
-              <i class="fa fa-lg fa-external-link" aria-hidden="true"></i>
+              <i class="bwi bwi-lg bwi-external-link" aria-hidden="true"></i>
             </button>
             <button
               type="button"
@@ -285,7 +289,7 @@
               appA11yTitle="{{ 'copyValue' | i18n }}"
               (click)="copy(spMetadataUrl)"
             >
-              <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+              <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
             </button>
           </div>
         </div>
@@ -301,7 +305,7 @@
               appA11yTitle="{{ 'copyValue' | i18n }}"
               (click)="copy(spAcsUrl)"
             >
-              <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+              <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
             </button>
           </div>
         </div>
@@ -482,7 +486,7 @@
   </div>
 
   <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-    <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+    <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
     <span>{{ "save" | i18n }}</span>
   </button>
 </form>

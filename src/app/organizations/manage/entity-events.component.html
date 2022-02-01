@@ -17,7 +17,7 @@
       </div>
       <div class="modal-body" *ngIf="!loaded">
         <i
-          class="fa fa-spinner fa-spin text-muted"
+          class="bwi bwi-spinner bwi-spin text-muted"
           title="{{ 'loading' | i18n }}"
           aria-hidden="true"
         ></i>
@@ -55,8 +55,8 @@
             [disabled]="loaded && refreshBtn.loading"
           >
             <i
-              class="fa fa-refresh fa-fw"
-              [ngClass]="{ 'fa-spin': loaded && refreshBtn.loading }"
+              class="bwi bwi-refresh bwi-fw"
+              [ngClass]="{ 'bwi-spin': loaded && refreshBtn.loading }"
               aria-hidden="true"
             ></i>
             {{ "refresh" | i18n }}
@@ -82,7 +82,7 @@
               <td>{{ e.date | date: "medium" }}</td>
               <td>
                 <i
-                  class="text-muted fa fa-lg {{ e.appIcon }}"
+                  class="text-muted bwi bwi-lg {{ e.appIcon }}"
                   title="{{ e.appName }}, {{ e.ip }}"
                   aria-hidden="true"
                 ></i>
@@ -104,7 +104,7 @@
           [disabled]="loaded && moreBtn.loading"
           *ngIf="continuationToken"
         >
-          <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+          <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
           <span>{{ "loadMore" | i18n }}</span>
         </button>
       </div>

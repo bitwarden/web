@@ -34,7 +34,7 @@
           <app-callout
             type="success"
             title="{{ 'enabled' | i18n }}"
-            icon="fa-check-circle"
+            icon="bwi bwi-check-circle"
             *ngIf="enabled"
           >
             {{ "twoStepLoginProviderEnabled" | i18n }}
@@ -76,7 +76,7 @@
                   (click)="remove(k)"
                   appA11yTitle="{{ 'remove' | i18n }}"
                 >
-                  <i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
+                  <i class="bwi bwi-minus-circle bwi-lg" aria-hidden="true"></i>
                 </button>
               </div>
             </div>
@@ -92,7 +92,11 @@
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-            <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+            <i
+              class="bwi bwi-spinner bwi-spin"
+              title="{{ 'loading' | i18n }}"
+              aria-hidden="true"
+            ></i>
             <span>{{ "save" | i18n }}</span>
           </button>
           <button
@@ -104,7 +108,11 @@
             (click)="disable()"
             *ngIf="enabled"
           >
-            <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+            <i
+              class="bwi bwi-spinner bwi-spin"
+              title="{{ 'loading' | i18n }}"
+              aria-hidden="true"
+            ></i>
             <span>{{ "disableAllKeys" | i18n }}</span>
           </button>
           <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">

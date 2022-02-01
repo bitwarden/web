@@ -23,6 +23,7 @@ import { ContainerService } from "jslib-common/services/container.service";
 import { CryptoService } from "jslib-common/services/crypto.service";
 import { EventService as EventLoggingService } from "jslib-common/services/event.service";
 import { ImportService } from "jslib-common/services/import.service";
+import { StateMigrationService } from "jslib-common/services/stateMigration.service";
 import { VaultTimeoutService } from "jslib-common/services/vaultTimeout.service";
 
 import { ApiService as ApiServiceAbstraction } from "jslib-common/abstractions/api.service";
@@ -51,13 +52,14 @@ import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from "jslib-com
 
 import { ThemeType } from "jslib-common/enums/themeType";
 
-import { AccountFactory } from "jslib-common/models/domain/account";
-
 import { Account } from "../../models/account";
+import { GlobalState } from "../../models/globalState";
+
+import { GlobalStateFactory } from "jslib-common/factories/globalStateFactory";
+import { StateFactory } from "jslib-common/factories/stateFactory";
 
 export function initFactory(
   window: Window,
-  storageService: StorageServiceAbstraction,
   environmentService: EnvironmentServiceAbstraction,
   notificationsService: NotificationsServiceAbstraction,
   vaultTimeoutService: VaultTimeoutService,
@@ -69,12 +71,11 @@ export function initFactory(
   cryptoService: CryptoServiceAbstraction
 ): Function {
   return async () => {
-    await (storageService as HtmlStorageService).init();
     await stateService.init();
 
     const urls = process.env.URLS as Urls;
     urls.base ??= window.location.origin;
-    environmentService.setUrls(urls, false);
+    environmentService.setUrls(urls);
 
     setTimeout(() => notificationsService.init(), 3000);
 
@@ -109,7 +110,6 @@ export function initFactory(
       useFactory: initFactory,
       deps: [
         "WINDOW",
-        StorageServiceAbstraction,
         EnvironmentServiceAbstraction,
         NotificationsServiceAbstraction,
         VaultTimeoutServiceAbstraction,
@@ -180,6 +180,19 @@ export function initFactory(
       ],
     },
     {
+      provide: StateMigrationServiceAbstraction,
+      useFactory: (
+        storageService: StorageServiceAbstraction,
+        secureStorageService: StorageServiceAbstraction
+      ) =>
+        new StateMigrationService(
+          storageService,
+          secureStorageService,
+          new GlobalStateFactory(GlobalState)
+        ),
+      deps: [StorageServiceAbstraction, "SECURE_STORAGE"],
+    },
+    {
       provide: StateServiceAbstraction,
       useFactory: (
         storageService: StorageServiceAbstraction,
@@ -192,7 +205,7 @@ export function initFactory(
           secureStorageService,
           logService,
           stateMigrationService,
-          new AccountFactory(Account)
+          new StateFactory(GlobalState, Account)
         ),
       deps: [
         StorageServiceAbstraction,

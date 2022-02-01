@@ -8,12 +8,16 @@
     *ngIf="firstLoaded"
     [disabled]="loading"
   >
-    <i class="fa fa-refresh fa-fw" [ngClass]="{ 'fa-spin': loading }" aria-hidden="true"></i>
+    <i class="bwi bwi-refresh bwi-fw" [ngClass]="{ 'bwi-spin': loading }" aria-hidden="true"></i>
     {{ "refresh" | i18n }}
   </button>
 </div>
 <ng-container *ngIf="!firstLoaded && loading">
-  <i class="fa fa-spinner fa-spin text-muted" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+  <i
+    class="bwi bwi-spinner bwi-spin text-muted"
+    title="{{ 'loading' | i18n }}"
+    aria-hidden="true"
+  ></i>
   <span class="sr-only">{{ "loading" | i18n }}</span>
 </ng-container>
 <ng-container *ngIf="billing">
@@ -96,21 +100,21 @@
           class="btn btn-outline-primary btn-submit"
           [disabled]="verifyForm.loading"
         >
-          <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+          <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
           <span>{{ "verifyBankAccount" | i18n }}</span>
         </button>
       </form>
     </app-callout>
     <p>
       <i
-        class="fa fa-fw"
+        class="bwi bwi-fw"
         [ngClass]="{
-          'fa-credit-card': paymentSource.type === paymentMethodType.Card,
-          'fa-university': paymentSource.type === paymentMethodType.BankAccount,
-          'fa-money': paymentSource.type === paymentMethodType.Check,
-          'fa-paypal text-primary': paymentSource.type === paymentMethodType.PayPal,
-          'fa-apple text-muted': paymentSource.type === paymentMethodType.AppleInApp,
-          'fa-google text-muted': paymentSource.type === paymentMethodType.GoogleInApp
+          'bwi-credit-card': paymentSource.type === paymentMethodType.Card,
+          'bwi-bank': paymentSource.type === paymentMethodType.BankAccount,
+          'bwi-money': paymentSource.type === paymentMethodType.Check,
+          'bwi-paypal text-primary': paymentSource.type === paymentMethodType.PayPal,
+          'bwi-apple text-muted': paymentSource.type === paymentMethodType.AppleInApp,
+          'bwi-google text-muted': paymentSource.type === paymentMethodType.GoogleInApp
         }"
       ></i>
       <span *ngIf="paymentSourceInApp">{{ "inAppPurchase" | i18n }}</span>
@@ -147,7 +151,7 @@
             class="mr-2"
             appA11yTitle="{{ 'downloadInvoice' | i18n }}"
           >
-            <i class="fa fa-file-pdf-o" aria-hidden="true"></i
+            <i class="bwi bwi-file-pdf" aria-hidden="true"></i
           ></a>
           <a href="{{ i.url }}" target="_blank" rel="noopener" title="{{ 'viewInvoice' | i18n }}">
             {{ "invoiceNumber" | i18n: i.number }}</a
@@ -156,11 +160,11 @@
         <td>{{ i.amount | currency: "$" }}</td>
         <td>
           <span *ngIf="i.paid">
-            <i class="fa fa-check text-success" aria-hidden="true"></i>
+            <i class="bwi bwi-check text-success" aria-hidden="true"></i>
             {{ "paid" | i18n }}
           </span>
           <span *ngIf="!i.paid">
-            <i class="fa fa-exclamation-circle text-muted" aria-hidden="true"></i>
+            <i class="bwi bwi-exclamation-circle text-muted" aria-hidden="true"></i>
             {{ "unpaid" | i18n }}
           </span>
         </td>
@@ -181,16 +185,16 @@
         </td>
         <td>
           <i
-            class="fa fa-fw"
+            class="bwi bwi-fw"
             *ngIf="t.paymentMethodType"
             aria-hidden="true"
             [ngClass]="{
-              'fa-credit-card': t.paymentMethodType === paymentMethodType.Card,
-              'fa-university':
+              'bwi-credit-card': t.paymentMethodType === paymentMethodType.Card,
+              'bwi-bank':
                 t.paymentMethodType === paymentMethodType.BankAccount ||
                 t.paymentMethodType === paymentMethodType.WireTransfer,
-              'fa-bitcoin text-warning': t.paymentMethodType === paymentMethodType.BitPay,
-              'fa-paypal text-primary': t.paymentMethodType === paymentMethodType.PayPal
+              'bwi-bitcoin text-warning': t.paymentMethodType === paymentMethodType.BitPay,
+              'bwi-paypal text-primary': t.paymentMethodType === paymentMethodType.PayPal
             }"
           ></i>
           {{ t.details }}
