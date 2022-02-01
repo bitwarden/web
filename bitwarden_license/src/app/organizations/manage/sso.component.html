@@ -443,7 +443,8 @@
           <option *ngFor="let o of samlSigningAlgorithms" [ngValue]="o">{{ o }}</option>
         </select>
       </div>
-      <div class="form-group">
+      <div class="form-group" [hidden]="true">
+        <!--TODO: Unhide once Unsolicited IdP Response is supported-->
         <div class="form-check">
           <input
             class="form-check-input"
