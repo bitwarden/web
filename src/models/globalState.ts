@@ -4,4 +4,5 @@ import { GlobalState as BaseGlobalState } from "jslib-common/models/domain/globa
 
 export class GlobalState extends BaseGlobalState {
   theme?: ThemeType = ThemeType.Light;
+  rememberEmail: boolean = true;
 }
