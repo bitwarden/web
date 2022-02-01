@@ -20,7 +20,7 @@
         >
           <i
             (click)="sortCiphers('name')"
-            class="sorting-arrow sort-name-arrow fa fa-arrow-down"
+            class="sorting-arrow sort-name-arrow bwi-arrow-down"
             aria-hidden="true"
           ></i
           >{{ "name" | i18n }}
@@ -29,7 +29,7 @@
           <th colspan="2" scope="col" class="show-arrow-on-hover user-select-none">
             <i
               (click)="sortCiphers('name')"
-              class="sorting-arrow sort-name-arrow fa fa-arrow-up"
+              class="sorting-arrow sort-name-arrow bwi-arrow-up"
               aria-hidden="true"
             ></i
             >{{ "name" | i18n }}
@@ -47,13 +47,13 @@
               class="input-group-prepend no-bg"
             >
               <label class="input-group-text bg-transparent border-0" for="sortOptions"
-                ><i class="sorting-arrow fa fa-arrow-down" aria-hidden="true"></i
+                ><i class="sorting-arrow bwi bwi-angle-down" aria-hidden="true"></i
               ></label>
             </div>
             <ng-template #elseBlock2>
               <div (click)="sortCiphers(option.value)" class="input-group-prepend">
                 <label class="input-group-text bg-transparent border-0" for="sortOptions"
-                  ><i class="sorting-arrow fa fa-arrow-up" aria-hidden="true"></i
+                  ><i class="sorting-arrow bwi bwi-chevron-up" aria-hidden="true"></i
                 ></label>
               </div>
             </ng-template>

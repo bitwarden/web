@@ -4,6 +4,7 @@ import { CipherService } from "jslib-common/abstractions/cipher.service";
 import { EventService } from "jslib-common/abstractions/event.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
+import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PasswordRepromptService } from "jslib-common/abstractions/passwordReprompt.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { SearchService } from "jslib-common/abstractions/search.service";
@@ -55,7 +56,8 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     protected totpService: TotpService,
     protected stateService: StateService,
     protected passwordRepromptService: PasswordRepromptService,
-    private logService: LogService
+    private logService: LogService,
+    protected organizationService: OrganizationService
   ) {
     super(searchService);
   }
@@ -88,7 +90,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
   }
 
   async loadOrganizationNames(): Promise<Map<string, string>> {
-    const organizations = await this.userService.getAllOrganizations();
+    const organizations = await this.organizationService.getAll();
     const organizationNames = new Map<string, string>();
 
     organizations.forEach((organization) => {
@@ -111,7 +113,6 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
       this.sortBy = sortBy;
       this.sortedDescending = true;
     }
-  }
 
     if (sortBy === "lastEdited") {
       if (this.sortedDescending) {
@@ -296,7 +297,6 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     } else if (value === cipher.login.totp) {
       value = await this.totpService.getCode(value);
     }
-  }
 
     if (!cipher.viewPassword) {
       return;
