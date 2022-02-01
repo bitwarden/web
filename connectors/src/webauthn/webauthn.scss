@@ -65,13 +65,14 @@ body {
   border-color: #1249ae;
 }
 
-/** MOBILE **/
+/** Mobile **/
 
 .mt-5,
 .my-5 {
   margin-top: 3rem !important;
 }
 
+.justify-content-center,
 .justify-content-md-center {
   justify-content: center !important;
 }
@@ -106,4 +107,91 @@ body {
 .lead {
   font-size: 1.25rem;
   font-weight: normal;
+}
+
+/** Fallback **/
+
+.container {
+  margin: 0 auto;
+  max-width: 980px;
+}
+
+.col-5 {
+  position: relative;
+  width: 100%;
+  padding-right: 10px;
+  padding-left: 10px;
+  flex: 0 0 41.6666666667%;
+  max-width: 41.6666666667%;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+}
+
+.d-block {
+  display: block !important;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+}
+
+.alert {
+  position: relative;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-radius: 0.25rem;
+}
+
+.alert-danger {
+  color: #73271e;
+  background-color: #f8dbd7;
+  border-color: #f5cdc8;
+}
+
+.form-check {
+  position: relative;
+  display: block;
+  padding-left: 1.25rem;
+}
+
+.form-check-input {
+  position: absolute;
+  margin-top: 0.3rem;
+  margin-left: -1.25rem;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.form-check-label {
+  margin-bottom: 0;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top-color: currentcolor;
+  border-top-style: none;
+  border-top-width: 0px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }

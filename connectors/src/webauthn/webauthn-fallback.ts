@@ -85,7 +85,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 });
 
 async function loadLocales(newLocale: string) {
-  const filePath = `locales/${newLocale}/messages.json?cache=${process.env.CACHE_TAG}`;
+  const filePath = `/locales/${newLocale}/messages.json?cache=${process.env.CACHE_TAG}`;
   const localesResult = await fetch(filePath);
   return await localesResult.json();
 }

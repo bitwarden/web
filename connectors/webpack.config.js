@@ -1,12 +1,8 @@
 const path = require("path");
 const webpack = require("webpack");
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackInjector = require("html-webpack-injector");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const TerserPlugin = require("terser-webpack-plugin");
-const pjson = require("../package.json");
 
 const NODE_ENV = process.env.NODE_ENV == null ? "development" : process.env.NODE_ENV;
 
@@ -35,7 +31,7 @@ const moduleRules = [
     test: /.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
     exclude: /loading(|-white).svg/,
     generator: {
-      filename: "fonts/[name][ext]",
+      filename: "fonts/[name].[contenthash][ext]",
     },
     type: "asset/resource",
   },
@@ -43,7 +39,7 @@ const moduleRules = [
     test: /\.(jpe?g|png|gif|svg|webp|avif)$/i,
     exclude: /.*(fontawesome-webfont)\.svg/,
     generator: {
-      filename: "images/[name][ext]",
+      filename: "images/[name].[contenthash][ext]",
     },
     type: "asset/resource",
   },
@@ -64,42 +60,47 @@ const plugins = [
   new HtmlWebpackPlugin({
     template: "./src/duo.html",
     filename: "duo.html",
-    chunks: ["connectors/duo"],
+    chunks: ["duo"],
   }),
   new HtmlWebpackPlugin({
     template: "./src/webauthn.html",
     filename: "webauthn.html",
-    chunks: ["connectors/webauthn"],
+    chunks: ["webauthn"],
   }),
   new HtmlWebpackPlugin({
     template: "./src/webauthn-mobile.html",
     filename: "webauthn-mobile.html",
-    chunks: ["connectors/webauthn"],
+    chunks: ["webauthn"],
   }),
   new HtmlWebpackPlugin({
     template: "./src/webauthn-fallback.html",
     filename: "webauthn-fallback.html",
-    chunks: ["connectors/webauthn-fallback"],
+    chunks: ["webauthn-fallback"],
   }),
   new HtmlWebpackPlugin({
     template: "./src/sso.html",
     filename: "sso.html",
-    chunks: ["connectors/sso"],
+    chunks: ["sso"],
   }),
   new HtmlWebpackPlugin({
     template: "./src/captcha.html",
     filename: "captcha.html",
-    chunks: ["connectors/captcha"],
+    chunks: ["captcha"],
   }),
   new HtmlWebpackPlugin({
     template: "./src/captcha-mobile.html",
     filename: "captcha-mobile.html",
-    chunks: ["connectors/captcha"],
+    chunks: ["captcha"],
   }),
-
   new MiniCssExtractPlugin({
-    filename: "[name].[contenthash].css",
-    chunkFilename: "[id].[contenthash].css",
+    filename: "assets/[name].[contenthash].css",
+    chunkFilename: "assets/[id].[contenthash].css",
+  }),
+  new webpack.EnvironmentPlugin({
+    CACHE_TAG: Math.random().toString(36).substring(7),
+  }),
+  new webpack.ProvidePlugin({
+    process: "process/browser",
   }),
 ];
 
@@ -107,11 +108,11 @@ const webpackConfig = {
   mode: NODE_ENV,
   devtool: "source-map",
   entry: {
-    "connectors/webauthn": "./src/webauthn/webauthn.ts",
-    "connectors/webauthn-fallback": "./src/webauthn/webauthn-fallback.ts",
-    "connectors/duo": "./src/duo/duo.ts",
-    "connectors/sso": "./src/sso/sso.ts",
-    "connectors/captcha": "./src/captcha/captcha.ts",
+    webauthn: "./src/webauthn/webauthn.ts",
+    "webauthn-fallback": "./src/webauthn/webauthn-fallback.ts",
+    duo: "./src/duo/duo.ts",
+    sso: "./src/sso/sso.ts",
+    captcha: "./src/captcha/captcha.ts",
   },
   optimization: {
     splitChunks: {
@@ -125,13 +126,6 @@ const webpackConfig = {
         },
       },
     },
-    minimizer: [
-      new TerserPlugin({
-        terserOptions: {
-          safari10: true,
-        },
-      }),
-    ],
   },
   resolve: {
     extensions: [".ts", ".js"],
@@ -144,8 +138,9 @@ const webpackConfig = {
     },
   },
   output: {
-    filename: "[name].[contenthash].js",
+    filename: "assets/[name].[contenthash].js",
     path: path.resolve(__dirname, "build"),
+    publicPath: "/connectors/",
     clean: true,
   },
   module: { rules: moduleRules },
