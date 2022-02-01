@@ -215,9 +215,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     );
   }
 
-  get subscriptionMarkedForCancel() {
-    console.log(`Marked for cancellation: ${this.subscription != null && !this.subscription.cancelled && this.subscription.cancelAtEndDate}`);
-    
+  get subscriptionMarkedForCancel() {    
     return (
       this.subscription != null && !this.subscription.cancelled && this.subscription.cancelAtEndDate
     );
