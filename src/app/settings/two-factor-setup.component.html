@@ -24,7 +24,7 @@
   {{ "twoStepLoginPolicyUserWarning" | i18n }}
 </app-callout>
 <ul class="list-group list-group-2fa">
-  <li *ngFor="let p of providers" class="list-group-item d-flex align-items-center">
+  <li *ngFor="let p of providers" class="list-group-item d-flex flex-column flex-sm-row align-items-center">
     <div class="logo-2fa d-flex justify-content-center">
       <img [class]="'mfaType' + p.type" [alt]="p.name + ' logo'" />
     </div>
@@ -51,7 +51,7 @@
       </h3>
       {{ p.description }}
     </div>
-    <div class="ml-auto">
+    <div class="ml-0 ml-sm-auto">
       <button
         type="button"
         class="btn btn-outline-secondary btn-sm"

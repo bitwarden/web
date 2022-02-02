@@ -14,7 +14,7 @@
   ngNativeValidate
 >
   <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <div class="form-group">
         <label for="name">{{ "name" | i18n }}</label>
         <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="profile.name" />
@@ -41,7 +41,7 @@
         />
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <div class="mb-3">
         <app-avatar
           data="{{ profile | userName }}"

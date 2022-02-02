@@ -1,5 +1,5 @@
 <div class="row" [formGroup]="datesForm">
-  <div class="col-6 form-group">
+  <div class="col-12 col-md-6 form-group">
     <label for="deletionDate">{{ "deletionDate" | i18n }}</label>
     <ng-template #deletionDateCustom>
       <ng-container [ngSwitch]="browserPath">
@@ -90,7 +90,7 @@
     </div>
     <div class="form-text text-muted small">{{ "deletionDateDesc" | i18n }}</div>
   </div>
-  <div class="col-6 form-group">
+  <div class="col-12 col-md-6 form-group">
     <div class="d-flex">
       <label for="expirationDate">{{ "expirationDate" | i18n }}</label>
       <a

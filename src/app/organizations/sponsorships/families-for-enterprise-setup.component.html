@@ -23,7 +23,7 @@
     <p>
       <span>{{ "acceptBitwardenFamiliesHelp" | i18n }}</span>
     </p>
-    <div class="form-group col-6">
+    <div class="form-group col-12 col-md-6">
       <label for="availableSponsorshipOrg">{{ "sponsoredFamiliesSelectOffer" | i18n }}</label>
       <select
         id="availableSponsorshipOrg"
@@ -40,7 +40,7 @@
     <div *ngIf="showNewOrganization" class="col-12">
       <app-organization-plans></app-organization-plans>
     </div>
-    <div class="form-group col-6" *ngIf="!showNewOrganization">
+    <div class="form-group col-12 col-md-6" *ngIf="!showNewOrganization">
       <button class="btn btn-primary mt-2 btn-submit" [disabled]="form.loading" type="submit">
         <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
         <span>{{ "acceptOffer" | i18n }}</span>

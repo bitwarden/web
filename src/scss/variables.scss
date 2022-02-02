@@ -10,7 +10,7 @@ $warning: #bf7e16;
 $danger: #dd4b39;
 $white: #ffffff;
 
-// Bootstrap Variable Overrides
+$spacer: 1rem;
 
 $theme-colors: (
   "primary-accent": $primary-accent,
@@ -69,11 +69,11 @@ $btn-font-weight: 600;
 $lead-font-weight: normal;
 
 $grid-breakpoints: (
-  xs: 0,
-  sm: 1px,
-  md: 2px,
-  lg: 3px,
-  xl: 4px,
+  xs: 300px,
+  sm: 640px,
+  md: 960px,
+  lg: 1200px,
+  xl: 1600px,
 );
 
 $border-color: $secondary;

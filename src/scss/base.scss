@@ -3,7 +3,7 @@ html {
 }
 
 body {
-  min-width: 1010px;
+  width: auto;
 
   &.layout_frontend {
     @media (prefers-color-scheme: dark) {
@@ -33,9 +33,8 @@ body {
 
 .container {
   margin: 0 auto;
-  max-width: none !important;
   padding: 0;
-  width: 980px;
+  max-width: 1200px;
 }
 
 .page-header,

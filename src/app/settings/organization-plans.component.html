@@ -31,11 +31,11 @@
 >
   <h2 class="mt-5">{{ "generalInformation" | i18n }}</h2>
   <div class="row" *ngIf="createOrganization">
-    <div class="form-group col-6">
+    <div class="form-group col-12 col-md-6">
       <label for="name">{{ "organizationName" | i18n }}</label>
       <input id="name" class="form-control" type="text" name="Name" [(ngModel)]="name" required />
     </div>
-    <div class="form-group col-6">
+    <div class="form-group col-12 col-md-6">
       <label for="billingEmail">{{ "billingEmail" | i18n }}</label>
       <input
         id="billingEmail"
@@ -46,7 +46,7 @@
         required
       />
     </div>
-    <div class="form-group col-6" *ngIf="!!providerId">
+    <div class="form-group col-12 col-md-6" *ngIf="!!providerId">
       <label for="email">{{ "clientOwnerEmail" | i18n }}</label>
       <input
         id="email"
@@ -74,7 +74,7 @@
       }}</label>
     </div>
     <div class="row" *ngIf="ownedBusiness">
-      <div class="form-group col-6">
+      <div class="form-group col-12 col-md-6">
         <label for="businessName">{{ "businessName" | i18n }}</label>
         <input
           id="businessName"
@@ -171,7 +171,7 @@
     <ng-container *ngIf="selectedPlan.hasAdditionalSeatsOption && !selectedPlan.baseSeats">
       <h2 class="mt-5">{{ "users" | i18n }}</h2>
       <div class="row">
-        <div class="col-6">
+        <div class="col-12 col-md-6">
           <label for="additionalSeats">{{ "userSeats" | i18n }}</label>
           <input
             id="additionalSeats"
@@ -190,7 +190,7 @@
     </ng-container>
     <h2 class="mt-5">{{ "addons" | i18n }}</h2>
     <div class="row" *ngIf="selectedPlan.hasAdditionalSeatsOption && selectedPlan.baseSeats">
-      <div class="form-group col-6">
+      <div class="form-group col-12 col-md-6">
         <label for="additionalSeats">{{ "additionalUserSeats" | i18n }}</label>
         <input
           id="additionalSeats"
@@ -209,7 +209,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="form-group col-6">
+      <div class="form-group col-12 col-md-6">
         <label for="additionalStorage">{{ "additionalStorageGb" | i18n }}</label>
         <input
           id="additionalStorage"
@@ -232,7 +232,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="form-group col-6" *ngIf="selectedPlan.hasPremiumAccessOption">
+      <div class="form-group col-12 col-md-6" *ngIf="selectedPlan.hasPremiumAccessOption">
         <div class="form-check">
           <input
             id="premiumAccess"
@@ -351,7 +351,7 @@
           {{ "estimatedTax" | i18n }}: {{ taxCharges | currency: "USD $" }}
         </ng-container>
       </div>
-      <hr class="my-1 col-3 ml-0" />
+      <hr class="my-1 col-12 col-md-4 col-lg-3 ml-0" />
       <p class="text-lg">
         <strong>{{ "total" | i18n }}:</strong> {{ total | currency: "USD $" }}/{{
           selectedPlanInterval | i18n

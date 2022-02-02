@@ -4,7 +4,7 @@
 <p>{{ "breachDesc" | i18n }}</p>
 <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
   <div class="row">
-    <div class="form-group col-6">
+    <div class="form-group col-12 col-md-6">
       <label for="username">{{ "username" | i18n }}</label>
       <input
         id="username"
@@ -45,7 +45,7 @@
               <li *ngFor="let d of a.dataClasses">{{ d }}</li>
             </ul>
           </div>
-          <div class="col-3">
+          <div class="col-12 col-md-4 col-lg-3">
             <dl>
               <dt>{{ "website" | i18n }}</dt>
               <dd>{{ a.domain }}</dd>

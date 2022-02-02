@@ -1,7 +1,7 @@
 <app-callout type="warning">{{ "loggedOutWarning" | i18n }}</app-callout>
 <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate autocomplete="off">
   <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <div class="form-group">
         <label for="kdfMasterPassword">{{ "masterPass" | i18n }}</label>
         <input
@@ -17,7 +17,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <div class="form-group mb-0">
         <label for="kdf">{{ "kdfAlgorithm" | i18n }}</label>
         <a
@@ -34,7 +34,7 @@
         </select>
       </div>
     </div>
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <div class="form-group mb-0">
         <label for="kdfIterations">{{ "kdfIterations" | i18n }}</label>
         <a

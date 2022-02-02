@@ -56,7 +56,7 @@
           </ol>
           <hr />
           <div class="row">
-            <div class="form-group col-6" *ngFor="let k of keys; let i = index">
+            <div class="form-group col-12 col-md-6" *ngFor="let k of keys; let i = index">
               <label for="key{{ i + 1 }}">{{ "yubikeyX" | i18n: i + 1 }}</label>
               <input
                 id="key{{ i + 1 }}"

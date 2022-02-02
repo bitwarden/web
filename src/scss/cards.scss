@@ -12,6 +12,7 @@
       }
     }
   }
+  margin-bottom: 20px;
 }
 
 .card-header,
@@ -43,7 +44,7 @@
 
 .card-body-header {
   font-size: $font-size-lg;
-  @extend .mb-4;
+  @extend .mb-4 !optional;
 }
 
 .card ul.bwi-ul.card-ul {

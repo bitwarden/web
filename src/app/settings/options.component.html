@@ -4,7 +4,7 @@
 <p>{{ "optionsDesc" | i18n }}</p>
 <form (ngSubmit)="submit()" ngNativeValidate>
   <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <app-vault-timeout-input
         [vaultTimeouts]="vaultTimeouts"
         [formControl]="vaultTimeout"
@@ -46,7 +46,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <div class="form-group">
         <div class="d-flex">
           <label for="locale">{{ "language" | i18n }}</label>
@@ -129,7 +129,7 @@
     <small class="form-text text-muted">{{ "enableFullWidthDesc" | i18n }}</small>
   </div>
   <div class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-6">
       <div class="form-group">
         <label for="theme">{{ "theme" | i18n }}</label>
         <select id="theme" name="theme" [(ngModel)]="theme" class="form-control">

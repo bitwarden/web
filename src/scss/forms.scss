@@ -50,20 +50,20 @@ label.form-check-label,
     > span {
       display: block;
       font-weight: normal;
-      @extend .mt-2;
+      @extend .mt-2 !optional;
     }
   }
 }
 
 .form-check-block + .form-check-block {
   &:not(.mt-2) {
-    @extend .mt-3;
+    @extend .mt-3 !optional;
   }
 }
 
 .form-group {
   .form-group-child-check {
-    @extend .ml-4;
+    @extend .ml-4 !optional;
   }
 }
 

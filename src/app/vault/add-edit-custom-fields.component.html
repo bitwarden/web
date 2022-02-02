@@ -6,7 +6,7 @@
       cdkDrag
       *ngFor="let f of cipher.fields; let i = index; trackBy: trackByFunction"
     >
-      <div class="col-5 form-group">
+      <div class="col-12 col-md-5 form-group">
         <div class="d-flex">
           <label for="fieldName{{ i }}">{{ "name" | i18n }}</label>
           <a
@@ -29,7 +29,7 @@
           [disabled]="cipher.isDeleted || viewOnly"
         />
       </div>
-      <div class="col-7 form-group">
+      <div class="col-12 col-md-7 form-group">
         <label for="fieldValue{{ i }}">{{ "value" | i18n }}</label>
         <div class="d-flex align-items-center">
           <!-- Text -->
@@ -151,7 +151,7 @@
     <i class="bwi bwi-plus-circle bwi-fw" aria-hidden="true"></i> {{ "newCustomField" | i18n }}
   </a>
   <div class="row" *ngIf="!cipher.isDeleted && !viewOnly">
-    <div class="col-5">
+    <div class="col-12 col-md-5">
       <label for="addFieldType" class="sr-only">{{ "type" | i18n }}</label>
       <select id="addFieldType" class="form-control" name="AddFieldType" [(ngModel)]="addFieldType">
         <option *ngFor="let o of addFieldTypeOptions" [ngValue]="o.value">{{ o.name }}</option>

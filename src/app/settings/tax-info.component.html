@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-6">
+  <div class="col-12 col-md-6">
     <div class="form-group">
       <label for="addressCountry">{{ "country" | i18n }}</label>
       <select
@@ -265,7 +265,7 @@
       </select>
     </div>
   </div>
-  <div class="col-3">
+  <div class="col-12 col-md-4 col-lg-3">
     <div class="form-group">
       <label for="addressPostalCode">{{ "zipPostalCode" | i18n }}</label>
       <input
@@ -279,7 +279,7 @@
       />
     </div>
   </div>
-  <div class="col-6" *ngIf="organizationId && taxInfo.country !== 'US'">
+  <div class="col-12 col-md-6" *ngIf="organizationId && taxInfo.country !== 'US'">
     <div class="form-group form-check">
       <input
         class="form-check-input"
@@ -293,7 +293,7 @@
   </div>
 </div>
 <div class="row" *ngIf="organizationId && taxInfo.includeTaxId">
-  <div class="col-6">
+  <div class="col-12 col-md-6">
     <div class="form-group">
       <label for="taxId">{{ "taxIdNumber" | i18n }}</label>
       <input id="taxId" class="form-control" type="text" name="taxId" [(ngModel)]="taxInfo.taxId" />
@@ -301,7 +301,7 @@
   </div>
 </div>
 <div class="row" *ngIf="organizationId && taxInfo.includeTaxId">
-  <div class="col-6">
+  <div class="col-12 col-md-6">
     <div class="form-group">
       <label for="addressLine1">{{ "address1" | i18n }}</label>
       <input
@@ -314,7 +314,7 @@
       />
     </div>
   </div>
-  <div class="col-6">
+  <div class="col-12 col-md-6">
     <div class="form-group">
       <label for="addressLine2">{{ "address2" | i18n }}</label>
       <input
@@ -327,7 +327,7 @@
       />
     </div>
   </div>
-  <div class="col-6">
+  <div class="col-12 col-md-6">
     <div class="form-group">
       <label for="addressCity">{{ "cityTown" | i18n }}</label>
       <input
@@ -340,7 +340,7 @@
       />
     </div>
   </div>
-  <div class="col-6">
+  <div class="col-12 col-md-6">
     <div class="form-group">
       <label for="addressState">{{ "stateProvince" | i18n }}</label>
       <input

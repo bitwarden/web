@@ -44,7 +44,7 @@
   </app-callout>
   <ng-container *ngIf="!selfHosted">
     <div class="row">
-      <div class="col-4">
+      <div class="col-12 col-md-4">
         <dl>
           <dt>{{ "billingPlan" | i18n }}</dt>
           <dd>{{ sub.plan.name }}</dd>
@@ -71,7 +71,7 @@
           </ng-container>
         </dl>
       </div>
-      <div class="col-8" *ngIf="subscription">
+      <div class="col-12 col-md-8" *ngIf="subscription">
         <strong class="d-block mb-1">{{ "details" | i18n }}</strong>
         <table class="table">
           <tbody>

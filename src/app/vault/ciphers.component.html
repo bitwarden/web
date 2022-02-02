@@ -1,21 +1,26 @@
 <ng-container *ngIf="isPaging() ? pagedCiphers : ciphers as filteredCiphers">
-  <table
-    class="table table-hover table-list table-ciphers"
+  <div
+    class="row d-flex flex-row flex-wrap"
     *ngIf="filteredCiphers.length"
     infiniteScroll
     [infiniteScrollDistance]="1"
     [infiniteScrollDisabled]="!isPaging()"
     (scrolled)="loadMore()"
   >
-    <tbody>
-      <tr *ngFor="let c of filteredCiphers">
-        <td (click)="checkCipher(c)" class="table-list-checkbox">
+    <div *ngFor="let c of filteredCiphers" class="col-12 col-md-6 vault-item">
+      <div class="row vault-guts">
+        <div (click)="checkCipher(c)" class="table-list-checkbox">
           <input type="checkbox" [(ngModel)]="c.checked" appStopProp />
-        </td>
-        <td (click)="checkCipher(c)" class="table-list-icon">
+        </div>
+
+        <div (click)="checkCipher(c)" class="table-list-icon" style="width: 30px;">
           <app-vault-icon [cipher]="c"></app-vault-icon>
-        </td>
-        <td (click)="checkCipher(c)" class="reduced-lh wrap">
+          <ng-container *ngIf="!organization && c.organizationId">
+            <i class="fa fa-cube" appStopProp title="{{ 'shared' | i18n }}" aria-hidden="true"></i>
+            <span class="sr-only">{{ "shared" | i18n }}</span>
+          </ng-container>
+        </div>
+        <div (click)="checkCipher(c)" class="reduced-lh wrap">
           <a
             href="#"
             appStopClick
@@ -24,18 +29,9 @@
             title="{{ 'editItem' | i18n }}"
             >{{ c.name }}</a
           >
-          <ng-container *ngIf="!organization && c.organizationId">
-            <i
-              class="bwi bwi-collection"
-              appStopProp
-              title="{{ 'shared' | i18n }}"
-              aria-hidden="true"
-            ></i>
-            <span class="sr-only">{{ "shared" | i18n }}</span>
-          </ng-container>
           <ng-container *ngIf="c.hasAttachments">
             <i
-              class="bwi bwi-paperclip"
+              class="bwi bwi-exclamation-triangle text-warning"
               appStopProp
               title="{{ 'attachments' | i18n }}"
               aria-hidden="true"
@@ -43,7 +39,7 @@
             <span class="sr-only">{{ "attachments" | i18n }}</span>
             <ng-container *ngIf="showFixOldAttachments(c)">
               <i
-                class="bwi bwi-exclamation-triangle text-warning"
+                class="fa fa-exclamation-triangle text-warning"
                 appStopProp
                 title="{{ 'attachmentsNeedFix' | i18n }}"
                 aria-hidden="true"
@@ -53,11 +49,11 @@
           </ng-container>
           <br />
           <small appStopProp>{{ c.subTitle }}</small>
-        </td>
-        <td class="table-list-options">
-          <div class="dropdown" appListDropdown>
+        </div>
+        <div class="table-list-options ml-auto">
+          <div class="dropdown" appLisdivropdown>
             <button
-              class="btn btn-outline-secondary dropdown-toggle"
+              class="btn btn-secondary dropdown-toggle"
               type="button"
               id="dropdownMenuButton"
               data-toggle="dropdown"
@@ -65,7 +61,7 @@
               aria-expanded="false"
               appA11yTitle="{{ 'options' | i18n }}"
             >
-              <i class="bwi bwi-cog bwi-lg" aria-hidden="true"></i>
+              <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
               <ng-container *ngIf="c.type === cipherType.Login && !c.isDeleted">
@@ -75,7 +71,7 @@
                   appStopClick
                   (click)="copy(c, c.login.username, 'username', 'Username')"
                 >
-                  <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
+                  <i class="fa fa-fw fa-clone" aria-hidden="true"></i>
                   {{ "copyUsername" | i18n }}
                 </a>
                 <a
@@ -85,7 +81,7 @@
                   (click)="copy(c, c.login.password, 'password', 'Password')"
                   *ngIf="c.viewPassword"
                 >
-                  <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
+                  <i class="fa fa-fw fa-clone" aria-hidden="true"></i>
                   {{ "copyPassword" | i18n }}
                 </a>
                 <a
@@ -95,7 +91,7 @@
                   (click)="copy(c, c.login.totp, 'verificationCodeTotp', 'TOTP')"
                   *ngIf="displayTotpCopyButton(c)"
                 >
-                  <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
+                  <i class="fa fa-fw fa-clone" aria-hidden="true"></i>
                   {{ "copyVerificationCode" | i18n }}
                 </a>
                 <a
@@ -104,6 +100,50 @@
                   appStopClick
                   *ngIf="c.login.canLaunch"
                   (click)="launch(c.login.launchUri)"
+                >
+                  <i class="fa fa-fw fa-share-square-o" aria-hidden="true"></i>
+                  {{ "launch" | i18n }}
+                </a>
+                <a class="dropdown-item" href="#" appStopClick (click)="attachments(c)">
+                  <i class="fa fa-fw fa-paperclip" aria-hidden="true"></i>
+                  {{ "attachments" | i18n }}
+                </a>
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  appStopClick
+                  *ngIf="((!organization && !c.organizationId) || organization) && !c.isDeleted"
+                  (click)="clone(c)"
+                >
+                  <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
+                  {{ "copyUsername" | i18n }}
+                </a>
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  appStopClick
+                  *ngIf="!organization && !c.organizationId && !c.isDeleted"
+                  (click)="share(c)"
+                >
+                  <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
+                  {{ "copyPassword" | i18n }}
+                </a>
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  appStopClick
+                  *ngIf="c.organizationId && !c.isDeleted"
+                  (click)="collections(c)"
+                >
+                  <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
+                  {{ "copyVerificationCode" | i18n }}
+                </a>
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  appStopClick
+                  *ngIf="c.organizationId && accessEvents"
+                  (click)="events(c)"
                 >
                   <i class="bwi bwi-fw bwi-share-square" aria-hidden="true"></i>
                   {{ "launch" | i18n }}
@@ -169,24 +209,24 @@
               </a>
             </div>
           </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="no-items" *ngIf="!filteredCiphers.length">
-    <ng-container *ngIf="!loaded">
-      <i
-        class="bwi bwi-spinner bwi-spin text-muted"
-        title="{{ 'loading' | i18n }}"
-        aria-hidden="true"
-      ></i>
-      <span class="sr-only">{{ "loading" | i18n }}</span>
-    </ng-container>
-    <ng-container *ngIf="loaded">
-      <p>{{ "noItemsInList" | i18n }}</p>
-      <button (click)="addCipher()" class="btn btn-outline-primary" *ngIf="showAddNew">
-        <i class="bwi bwi-plus bwi-fw"></i>{{ "addItem" | i18n }}
-      </button>
-    </ng-container>
+        </div>
+      </div>
+    </div>
+    <div class="no-items" *ngIf="!filteredCiphers.length">
+      <ng-container *ngIf="!loaded">
+        <i
+          class="bwi bwi-spinner bwi-spin text-muted"
+          title="{{ 'loading' | i18n }}"
+          aria-hidden="true"
+        ></i>
+        <span class="sr-only">{{ "loading" | i18n }}</span>
+      </ng-container>
+      <ng-container *ngIf="loaded">
+        <p>{{ "noItemsInList" | i18n }}</p>
+        <button (click)="addCipher()" class="btn btn-outline-primary" *ngIf="showAddNew">
+          <i class="bwi bwi-plus bwi-fw"></i>{{ "addItem" | i18n }}
+        </button>
+      </ng-container>
+    </div>
   </div>
 </ng-container>
