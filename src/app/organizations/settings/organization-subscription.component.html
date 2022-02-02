@@ -182,7 +182,9 @@
     </ng-container>
     <!--Switch to i18n-->
     <h2 class="spaced-header">Self-Hosting</h2>
-    <p class="mb-4">Replace this</p>
+    <p class="mb-4">
+      {{ "selfHostingEnterpriseOrganizationSectionCopy" | i18n }}
+    </p>
     <div class="d-flex">
       <button
         type="button"
@@ -199,7 +201,7 @@
         (click)="manageBillingSync()"
         *ngIf="canManageBillingSync"
       >
-        Setup Billing Sync
+        {{ (hasBillingSyncToken ? "manageBillingSync" : "setUpBillingSync") | i18n }}
       </button>
     </div>
     <h2 class="spaced-header">{{ "additionalOptions" | i18n }}</h2>

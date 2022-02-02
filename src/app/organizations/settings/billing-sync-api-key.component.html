@@ -9,7 +9,7 @@
     >
       <div class="modal-header">
         <h2 class="modal-title" id="billingSyncApiKeyTitle">
-          {{ ( hasBillingToken ? 'generateBillingSyncToken' : 'viewBillingSyncToken' ) | i18n }}
+          {{ ( hasBillingToken ?  'viewBillingSyncToken' : 'generateBillingSyncToken' ) | i18n }}
         </h2>
         <button
           type="button"
@@ -28,9 +28,13 @@
           *ngIf="!clientSecret"
         >
         </app-verify-master-password>
-        <app-callout type="warning" *ngIf="clientSecret && showRotateScreen">
-          Rotate Billing Warning here
-        </app-callout>
+        <ng-container *ngIf="clientSecret && showRotateScreen">
+          <p>{{ 'rotateBillingSyncTokenTitle' | i18n }}</p>
+          <app-callout type="warning">
+            {{ 'rotateBillingSyncTokenWarning' | i18n }}
+          </app-callout>
+        </ng-container>
+        
         <div *ngIf="clientSecret && !showRotateScreen">
           <p>{{ 'copyPasteBillingSync' | i18n }}</p>
           <label for="clientSecret">Billing Sync Key</label>
@@ -60,13 +64,21 @@
           type="submit"
           class="btn btn-primary btn-submit"
           [disabled]="form.loading"
-          *ngIf="!clientSecret"
+          *ngIf="!clientSecret || showRotateScreen"
         >
           <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" *ngIf="form.loading"></i>
-          <span>Thing</span>
+          <span>
+            {{ submitButtonTextKey | i18n }}
+          </span>
         </button>
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
-          {{ "close" | i18n }}
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" *ngIf="!showRotateScreen">
+          {{ 'close' | i18n }}
+        </button>
+        <button type="button" class="btn btn-outline-secondary" *ngIf="showRotateScreen" (click)="cancelRotate()">
+          {{ 'cancel' | i18n }}
+        </button>
+        <button type="button" class="btn btn-outline-secondary" *ngIf="clientSecret && !showRotateScreen" (click)="rotateToken()">
+          {{ 'rotateToken' | i18n }}
         </button>
       </div>
     </form>

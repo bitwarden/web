@@ -12,7 +12,6 @@ import { OrganizationService } from "jslib-common/abstractions/organization.serv
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
 import { PlanType } from "jslib-common/enums/planType";
-import { OrganizationApiKeyInformationResponse } from "jslib-common/models/response/organizationApiKeyInformationResponse";
 import { OrganizationApiKeyType } from "jslib-common/enums/organizationApiKeyType";
 import { ModalService } from "jslib-angular/services/modal.service";
 import { BillingSyncApiKeyComponent } from "./billing-sync-api-key.component";
@@ -39,7 +38,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
   showChangePlan = false;
   sub: OrganizationSubscriptionResponse;
   selfHosted = false;
-  apiKeyInformation: OrganizationApiKeyInformationResponse[];
+  hasBillingSyncToken: boolean;
 
   userOrg: Organization;
 
@@ -76,7 +75,8 @@ export class OrganizationSubscriptionComponent implements OnInit {
     this.loading = true;
     this.userOrg = await this.organizationService.get(this.organizationId);
     this.sub = await this.apiService.getOrganizationSubscription(this.organizationId);
-    this.apiKeyInformation = (await this.apiService.getOrganizationApiKeyInformation(this.organizationId)).data;
+    const apiKeyResponse = await this.apiService.getOrganizationApiKeyInformation(this.organizationId);
+    this.hasBillingSyncToken = apiKeyResponse.data.some(i => i.keyType === OrganizationApiKeyType.BillingSync);
     this.loading = false;
   }
 
@@ -148,13 +148,15 @@ export class OrganizationSubscriptionComponent implements OnInit {
   }
 
   async manageBillingSync() {
-    const hasBillingToken = this.apiKeyInformation.some((i) => i.keyType === OrganizationApiKeyType.BillingSync);
-    await this.modalService.openViewRef(
+    const [ref, _component] = await this.modalService.openViewRef(
       BillingSyncApiKeyComponent,
       this.setupBillingSyncModalRef,
       (comp) => {
         comp.organizationId = this.organizationId;
-        comp.hasBillingToken = hasBillingToken;
+        comp.hasBillingToken = this.hasBillingSyncToken;
+    });
+    ref.onClosed.subscribe(async () => {
+      await this.load();
     });
   }
 
