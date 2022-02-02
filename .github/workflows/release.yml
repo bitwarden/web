@@ -20,7 +20,7 @@ jobs:
     outputs:
       release_version: ${{ steps.version.outputs.package }}
       tag_version: ${{ steps.version.outputs.tag }}
-      branch-name: ${{ steps.branch.outputs.branch-name }}
+      branch_name: ${{ steps.branch.outputs.branch_name }}
     steps:
       - name: Branch check
         run: |
@@ -55,14 +55,14 @@ jobs:
         id: branch
         run: |
           BRANCH_NAME=$(basename ${{ github.ref }})
-          echo "::set-output name=branch-name::$BRANCH_NAME"
+          echo "::set-output name=branch_name::$BRANCH_NAME"
 
   self-host:
     name: Release self-host docker
     runs-on: ubuntu-20.04
     needs: setup
     env:
-      _BRANCH_NAME: ${{ needs.setup.outputs.branch-name }}
+      _BRANCH_NAME: ${{ needs.setup.outputs.branch_name }}
       _RELEASE_VERSION: ${{ needs.setup.outputs.release_version }}
     steps:
       - name: Print environment
@@ -139,7 +139,7 @@ jobs:
         with:
           workflow: build.yml
           workflow_conclusion: success
-          branch: ${{ needs.setup.outputs.branch-name }}
+          branch: ${{ needs.setup.outputs.branch_name }}
           artifacts: web-*-cloud-COMMERCIAL.zip
 
       # This should result in a build directory in the current working directory
@@ -179,7 +179,7 @@ jobs:
         with:
           workflow: build.yml
           workflow_conclusion: success
-          branch: ${{ needs.setup.outputs.branch-name }}
+          branch: ${{ needs.setup.outputs.branch_name }}
           artifacts: "web-*-selfhosted-COMMERCIAL.zip,
             web-*-selfhosted-open-source.zip"
 
