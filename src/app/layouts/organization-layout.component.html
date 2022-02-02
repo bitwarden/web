@@ -13,7 +13,7 @@
           *ngIf="!organization.enabled"
         >
           <div class="card-body py-2">
-            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            <i class="bwi bwi-exclamation-triangle" aria-hidden="true"></i>
             {{ "organizationIsDisabled" | i18n }}
           </div>
         </div>
@@ -22,7 +22,7 @@
           *ngIf="organization.isProviderUser"
         >
           <div class="card-body py-2">
-            <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+            <i class="bwi bwi-exclamation-triangle" aria-hidden="true"></i>
             {{ "accessingUsingProvider" | i18n: organization.providerName }}
           </div>
         </div>
@@ -30,25 +30,25 @@
       <ul class="nav nav-tabs" *ngIf="showMenuBar">
         <li class="nav-item">
           <a class="nav-link" routerLink="vault" routerLinkActive="active">
-            <i class="fa fa-lock" aria-hidden="true"></i>
+            <i class="bwi bwi-lock" aria-hidden="true"></i>
             {{ "vault" | i18n }}
           </a>
         </li>
         <li class="nav-item" *ngIf="showManageTab">
           <a class="nav-link" [routerLink]="manageRoute" routerLinkActive="active">
-            <i class="fa fa-sliders" aria-hidden="true"></i>
+            <i class="bwi bwi-sliders" aria-hidden="true"></i>
             {{ "manage" | i18n }}
           </a>
         </li>
         <li class="nav-item" *ngIf="showToolsTab">
           <a class="nav-link" [routerLink]="toolsRoute" routerLinkActive="active">
-            <i class="fa fa-wrench" aria-hidden="true"></i>
+            <i class="bwi bwi-wrench" aria-hidden="true"></i>
             {{ "tools" | i18n }}
           </a>
         </li>
         <li class="nav-item" *ngIf="organization.isOwner">
           <a class="nav-link" routerLink="settings" routerLinkActive="active">
-            <i class="fa fa-cogs" aria-hidden="true"></i>
+            <i class="bwi bwi-cogs" aria-hidden="true"></i>
             {{ "settings" | i18n }}
           </a>
         </li>

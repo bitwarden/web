@@ -1,6 +1,6 @@
 <div class="card border-warning">
   <div class="card-header bg-warning text-white">
-    <i class="fa fa-envelope-o fa-fw" aria-hidden="true"></i> {{ "verifyEmail" | i18n }}
+    <i class="bwi bwi-envelope bwi-fw" aria-hidden="true"></i> {{ "verifyEmail" | i18n }}
   </div>
   <div class="card-body">
     <p>{{ "verifyEmailDesc" | i18n }}</p>
@@ -12,7 +12,7 @@
       [disabled]="sendBtn.loading"
       (click)="send()"
     >
-      <i class="fa fa-spin fa-spinner" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+      <i class="bwi bwi-spin bwi-spinner" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
       <span>
         {{ "sendEmail" | i18n }}
       </span>

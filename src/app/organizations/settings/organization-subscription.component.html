@@ -3,7 +3,7 @@
     {{ "subscription" | i18n }}
     <small *ngIf="firstLoaded && loading">
       <i
-        class="fa fa-spinner fa-spin text-muted"
+        class="bwi bwi-spinner bwi-spin text-muted"
         title="{{ 'loading' | i18n }}"
         aria-hidden="true"
       ></i>
@@ -12,7 +12,7 @@
   </h1>
 </div>
 <ng-container *ngIf="!firstLoaded && loading">
-  <i class="fa fa-spinner fa-spin text-muted" title="{{ 'loading' | i18n }}"></i>
+  <i class="bwi bwi-spinner bwi-spin text-muted" title="{{ 'loading' | i18n }}"></i>
   <span class="sr-only">{{ "loading" | i18n }}</span>
 </ng-container>
 
@@ -38,7 +38,7 @@
       [appApiAction]="reinstatePromise"
       [disabled]="reinstateBtn.loading"
     >
-      <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+      <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
       <span>{{ "reinstateSubscription" | i18n }}</span>
     </button>
   </app-callout>
@@ -138,7 +138,7 @@
       [disabled]="removeSponsorshipBtn.loading"
       *ngIf="isSponsoredSubscription"
     >
-      <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+      <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
       <span>{{ "removeSponsorship" | i18n }}</span>
     </button>
     <h2 class="spaced-header">{{ "storage" | i18n }}</h2>
@@ -204,7 +204,7 @@
         [disabled]="cancelBtn.loading"
         *ngIf="subscription && !subscription.cancelled && !subscriptionMarkedForCancel"
       >
-        <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+        <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
         <span>{{ "cancelSubscription" | i18n }}</span>
       </button>
     </div>
@@ -224,7 +224,7 @@
       <dd *ngIf="sub.expiration">
         {{ sub.expiration | date: "mediumDate" }}
         <span *ngIf="isExpired" class="text-danger ml-2">
-          <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+          <i class="bwi bwi-exclamation-triangle" aria-hidden="true"></i>
           {{ "licenseIsExpired" | i18n }}
         </span>
       </dd>

@@ -5,6 +5,7 @@ import { BroadcasterMessagingService } from "../../services/broadcasterMessaging
 import { HtmlStorageService } from "../../services/htmlStorage.service";
 import { I18nService } from "../../services/i18n.service";
 import { MemoryStorageService } from "../../services/memoryStorage.service";
+import { PasswordRepromptService } from "../../services/passwordReprompt.service";
 import { StateService } from "../../services/state.service";
 import { WebPlatformUtilsService } from "../../services/webPlatformUtils.service";
 
@@ -23,6 +24,7 @@ import { ContainerService } from "jslib-common/services/container.service";
 import { CryptoService } from "jslib-common/services/crypto.service";
 import { EventService as EventLoggingService } from "jslib-common/services/event.service";
 import { ImportService } from "jslib-common/services/import.service";
+import { StateMigrationService } from "jslib-common/services/stateMigration.service";
 import { VaultTimeoutService } from "jslib-common/services/vaultTimeout.service";
 
 import { ApiService as ApiServiceAbstraction } from "jslib-common/abstractions/api.service";
@@ -42,6 +44,7 @@ import { ImportService as ImportServiceAbstraction } from "jslib-common/abstract
 import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService as MessagingServiceAbstraction } from "jslib-common/abstractions/messaging.service";
 import { NotificationsService as NotificationsServiceAbstraction } from "jslib-common/abstractions/notifications.service";
+import { PasswordRepromptService as PasswordRepromptServiceAbstraction } from "jslib-common/abstractions/passwordReprompt.service";
 import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from "jslib-common/abstractions/platformUtils.service";
 import { StateService as StateServiceAbstraction } from "jslib-common/abstractions/state.service";
 import { StateMigrationService as StateMigrationServiceAbstraction } from "jslib-common/abstractions/stateMigration.service";
@@ -50,9 +53,14 @@ import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from "jslib-com
 
 import { ThemeType } from "jslib-common/enums/themeType";
 
+import { Account } from "../../models/account";
+import { GlobalState } from "../../models/globalState";
+
+import { GlobalStateFactory } from "jslib-common/factories/globalStateFactory";
+import { StateFactory } from "jslib-common/factories/stateFactory";
+
 export function initFactory(
   window: Window,
-  storageService: StorageServiceAbstraction,
   environmentService: EnvironmentServiceAbstraction,
   notificationsService: NotificationsServiceAbstraction,
   vaultTimeoutService: VaultTimeoutService,
@@ -64,12 +72,11 @@ export function initFactory(
   cryptoService: CryptoServiceAbstraction
 ): Function {
   return async () => {
-    await (storageService as HtmlStorageService).init();
     await stateService.init();
 
     const urls = process.env.URLS as Urls;
     urls.base ??= window.location.origin;
-    environmentService.setUrls(urls, false);
+    environmentService.setUrls(urls);
 
     setTimeout(() => notificationsService.init(), 3000);
 
@@ -104,7 +111,6 @@ export function initFactory(
       useFactory: initFactory,
       deps: [
         "WINDOW",
-        StorageServiceAbstraction,
         EnvironmentServiceAbstraction,
         NotificationsServiceAbstraction,
         VaultTimeoutServiceAbstraction,
@@ -175,14 +181,43 @@ export function initFactory(
       ],
     },
     {
+      provide: StateMigrationServiceAbstraction,
+      useFactory: (
+        storageService: StorageServiceAbstraction,
+        secureStorageService: StorageServiceAbstraction
+      ) =>
+        new StateMigrationService(
+          storageService,
+          secureStorageService,
+          new GlobalStateFactory(GlobalState)
+        ),
+      deps: [StorageServiceAbstraction, "SECURE_STORAGE"],
+    },
+    {
       provide: StateServiceAbstraction,
-      useClass: StateService,
+      useFactory: (
+        storageService: StorageServiceAbstraction,
+        secureStorageService: StorageServiceAbstraction,
+        logService: LogService,
+        stateMigrationService: StateMigrationServiceAbstraction
+      ) =>
+        new StateService(
+          storageService,
+          secureStorageService,
+          logService,
+          stateMigrationService,
+          new StateFactory(GlobalState, Account)
+        ),
       deps: [
         StorageServiceAbstraction,
         "SECURE_STORAGE",
         LogService,
         StateMigrationServiceAbstraction,
       ],
+    },
+    {
+      provide: PasswordRepromptServiceAbstraction,
+      useClass: PasswordRepromptService,
     },
   ],
 })

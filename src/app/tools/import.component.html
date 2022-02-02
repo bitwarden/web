@@ -29,18 +29,14 @@
   <app-callout type="info" title="{{ getFormatInstructionTitle() }}" *ngIf="format">
     <ng-container *ngIf="format === 'bitwardencsv' || format === 'bitwardenjson'">
       See detailed instructions on our help site at
-      <a target="_blank" rel="noopener" href="https://help.bitwarden.com/article/export-your-data/">
-        https://help.bitwarden.com/article/export-your-data/</a
+      <a target="_blank" rel="noopener" href="https://bitwarden.com/help/export-your-data/">
+        https://bitwarden.com/help/export-your-data/</a
       >
     </ng-container>
     <ng-container *ngIf="format === 'lastpasscsv'">
       See detailed instructions on our help site at
-      <a
-        target="_blank"
-        rel="noopener"
-        href="https://help.bitwarden.com/article/import-from-lastpass/"
-      >
-        https://help.bitwarden.com/article/import-from-lastpass/</a
+      <a target="_blank" rel="noopener" href="https://bitwarden.com/help/import-from-lastpass/">
+        https://bitwarden.com/help/import-from-lastpass/</a
       >
     </ng-container>
     <ng-container *ngIf="format === 'keepassxcsv'">
@@ -80,8 +76,14 @@
       click "Show me my data" to save the CSV file.
     </ng-container>
     <ng-container *ngIf="format === 'keepercsv'">
-      Log into the Keeper web vault (keepersecurity.com/vault). Navigate to "Backup" (top right) and
-      find the "Export to .csv File" option. Click "Export Now" to save the CSV file.
+      Log into the Keeper web vault (keepersecurity.com/vault). Click on your "account email" (top
+      right) and select "Settings". Go to "Export" and find the "Export to .csv File" option. Click
+      "Export" to save the CSV file.
+    </ng-container>
+    <ng-container *ngIf="format === 'keeperjson'">
+      Log into the Keeper web vault (keepersecurity.com/vault). Click on your "account email" (top
+      right) and select "Settings". Go to "Export" and find the "Export to .json File" option. Click
+      "Export" to save the JSON file.
     </ng-container>
     <ng-container
       *ngIf="format === 'chromecsv' || format === 'operacsv' || format === 'vivaldicsv'"
@@ -90,32 +92,20 @@
         The process is exactly the same as importing from Google Chrome.
       </span>
       See detailed instructions on our help site at
-      <a
-        target="_blank"
-        rel="noopener"
-        href="https://help.bitwarden.com/article/import-from-chrome/"
-      >
-        https://help.bitwarden.com/article/import-from-chrome/</a
+      <a target="_blank" rel="noopener" href="https://bitwarden.com/help/import-from-chrome/">
+        https://bitwarden.com/help/import-from-chrome/</a
       >
     </ng-container>
     <ng-container *ngIf="format === 'firefoxcsv'">
       See detailed instructions on our help site at
-      <a
-        target="_blank"
-        rel="noopener"
-        href="https://bitwarden.com/help/article/import-from-firefox/"
-      >
-        https://bitwarden.com/help/article/import-from-firefox/</a
+      <a target="_blank" rel="noopener" href="https://bitwarden.com/help/import-from-firefox/">
+        https://bitwarden.com/help/import-from-firefox/</a
       >.
     </ng-container>
     <ng-container *ngIf="format === 'safaricsv'">
       See detailed instructions on our help site at
-      <a
-        target="_blank"
-        rel="noopener"
-        href="https://bitwarden.com/help/article/import-from-safari/"
-      >
-        https://bitwarden.com/help/article/import-from-safari/</a
+      <a target="_blank" rel="noopener" href="https://bitwarden.com/help/import-from-safari/">
+        https://bitwarden.com/help/import-from-safari/</a
       >.
     </ng-container>
     <ng-container
@@ -124,12 +114,8 @@
       "
     >
       See detailed instructions on our help site at
-      <a
-        target="_blank"
-        rel="noopener"
-        href="https://help.bitwarden.com/article/import-from-1password/"
-      >
-        https://help.bitwarden.com/article/import-from-1password/</a
+      <a target="_blank" rel="noopener" href="https://bitwarden.com/help/import-from-1password/">
+        https://bitwarden.com/help/import-from-1password/</a
       >.
     </ng-container>
     <ng-container *ngIf="format === 'passworddragonxml'">
@@ -323,7 +309,7 @@
     [disabled]="loading || importBlockedByPolicy"
     [ngClass]="{ manual: importBlockedByPolicy }"
   >
-    <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+    <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
     <span>{{ "importData" | i18n }}</span>
   </button>
 </form>
