@@ -12,7 +12,8 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { PasswordGenerationService } from "jslib-common/abstractions/passwordGeneration.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
-import { StateService } from "jslib-common/abstractions/state.service";
+
+import { StateService } from "../../abstractions/state.service";
 
 import { LoginComponent as BaseLoginComponent } from "jslib-angular/components/login.component";
 
@@ -30,7 +31,6 @@ export class LoginComponent extends BaseLoginComponent {
     router: Router,
     i18nService: I18nService,
     private route: ActivatedRoute,
-    stateService: StateService,
     platformUtilsService: PlatformUtilsService,
     environmentService: EnvironmentService,
     passwordGenerationService: PasswordGenerationService,
@@ -38,7 +38,8 @@ export class LoginComponent extends BaseLoginComponent {
     private apiService: ApiService,
     private policyService: PolicyService,
     logService: LogService,
-    ngZone: NgZone
+    ngZone: NgZone,
+    protected stateService: StateService
   ) {
     super(
       authService,
@@ -78,6 +79,7 @@ export class LoginComponent extends BaseLoginComponent {
         });
       }
       await super.ngOnInit();
+      this.rememberEmail = await this.stateService.getRememberEmail();
     });
 
     const invite = await this.stateService.getOrganizationInvitation();
@@ -114,5 +116,13 @@ export class LoginComponent extends BaseLoginComponent {
     } else {
       this.router.navigate([this.successRoute]);
     }
+  }
+
+  async submit() {
+    await this.stateService.setRememberEmail(this.rememberEmail);
+    if (!this.rememberEmail) {
+      await this.stateService.setRememberedEmail(null);
+    }
+    await super.submit();
   }
 }
