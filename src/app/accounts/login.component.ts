@@ -152,6 +152,7 @@ export class LoginComponent extends BaseLoginComponent {
     }
   }
 
+
   private getPasswordStrengthUserInput() {
     let userInput: string[] = [];
     const atPosition = this.email.indexOf("@");
@@ -166,6 +167,8 @@ export class LoginComponent extends BaseLoginComponent {
     }
     return userInput;
   }
+}
+
 
   async submit() {
     await this.stateService.setRememberEmail(this.rememberEmail);

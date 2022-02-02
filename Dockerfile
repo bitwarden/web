@@ -1,4 +1,4 @@
-FROM bitwarden/server:dev
+FROM bitwarden/server
 
 LABEL com.bitwarden.product="bitwarden"
 
