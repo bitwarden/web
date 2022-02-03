@@ -1,0 +1,46 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "prettier"
+  ],
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off", // TODO: This should be re-enabled
+    "@typescript-eslint/explicit-member-accessibility": [
+      "error",
+      {
+        "accessibility": "no-public"
+      }
+    ],
+    "@typescript-eslint/no-this-alias": [
+      "error",
+      {
+        "allowedNames": ["self"]
+      }
+    ],
+    "no-console": "warn",
+    "import/no-unresolved": "off", // TODO: Look into turning off once each package is an actual package.
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "order": "asc"
+        },
+        "newlines-between": "always",
+        "pathGroups": [
+          {
+            "pattern": "jslib-*/**",
+            "group": "external",
+            "position": "after"
+          }
+        ],
+        "pathGroupsExcludedImportTypes": ["builtin"]
+      }
+    ]
+  }
+}
