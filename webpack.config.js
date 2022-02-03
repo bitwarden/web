@@ -37,7 +37,7 @@ const moduleRules = [
   },
   {
     test: /\.(jpe?g|png|gif|svg|webp|avif)$/i,
-    exclude: /.*(fontawesome-webfont)\.svg/,
+    exclude: /.*(bwi-font)\.svg/,
     generator: {
       filename: "images/[name][ext]",
     },
