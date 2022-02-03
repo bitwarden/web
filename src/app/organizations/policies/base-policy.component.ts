@@ -12,7 +12,6 @@ export abstract class BasePolicy {
   abstract type: PolicyType;
   abstract component: any;
 
-  // eslint-disable-next-line
   display(organization: Organization) {
     return true;
   }
@@ -46,7 +45,6 @@ export abstract class BasePolicyComponent implements OnInit {
     return null;
   }
 
-  // eslint-disable-next-line
   buildRequest(policiesEnabledMap: Map<PolicyType, boolean>) {
     const request = new PolicyRequest();
     request.enabled = this.enabled.value;

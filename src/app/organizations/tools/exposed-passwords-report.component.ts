@@ -54,7 +54,6 @@ export class ExposedPasswordsReportComponent extends BaseExposedPasswordsReportC
     return this.cipherService.getAllFromApiForOrganization(this.organization.id);
   }
 
-  // eslint-disable-next-line
   canManageCipher(c: CipherView): boolean {
     return this.manageableCiphers.some((x) => x.id === c.id);
   }

@@ -162,7 +162,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     return Promise.resolve(process.env.APPLICATION_VERSION || "-");
   }
 
-  // eslint-disable-next-line
   supportsWebAuthn(win: Window): boolean {
     return typeof PublicKeyCredential !== "undefined";
   }
@@ -291,7 +290,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
   }
 
-  // eslint-disable-next-line
   readFromClipboard(options?: any): Promise<string> {
     throw new Error("Cannot read from clipboard on web.");
   }

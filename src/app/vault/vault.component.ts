@@ -339,18 +339,15 @@ export class VaultComponent implements OnInit, OnDestroy {
       this.cipherAddEditModalRef,
       (comp) => {
         comp.cipherId = cipher == null ? null : cipher.id;
-        // eslint-disable-next-line
-        comp.onSavedCipher.subscribe(async (c: CipherView) => {
+        comp.onSavedCipher.subscribe(async () => {
           modal.close();
           await this.ciphersComponent.refresh();
         });
-        // eslint-disable-next-line
-        comp.onDeletedCipher.subscribe(async (c: CipherView) => {
+        comp.onDeletedCipher.subscribe(async () => {
           modal.close();
           await this.ciphersComponent.refresh();
         });
-        // eslint-disable-next-line
-        comp.onRestoredCipher.subscribe(async (c: CipherView) => {
+        comp.onRestoredCipher.subscribe(async () => {
           modal.close();
           await this.ciphersComponent.refresh();
         });

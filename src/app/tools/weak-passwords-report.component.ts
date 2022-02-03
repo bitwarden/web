@@ -105,7 +105,6 @@ export class WeakPasswordsReportComponent extends CipherReportComponent implemen
     return this.cipherService.getAllDecrypted();
   }
 
-  // eslint-disable-next-line
   protected canManageCipher(c: CipherView): boolean {
     // this will only ever be false from the org view;
     return true;

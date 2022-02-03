@@ -126,7 +126,6 @@ export class OrganizationSubscriptionComponent implements OnInit {
     this.showChangePlan = !this.showChangePlan;
   }
 
-  // eslint-disable-next-line
   closeChangePlan(changed: boolean) {
     this.showChangePlan = false;
   }

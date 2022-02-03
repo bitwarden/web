@@ -64,7 +64,6 @@ export class ReusedPasswordsReportComponent extends CipherReportComponent implem
     return this.cipherService.getAllDecrypted();
   }
 
-  // eslint-disable-next-line
   protected canManageCipher(c: CipherView): boolean {
     // this will only ever be false from an organization view
     return true;

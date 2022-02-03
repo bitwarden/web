@@ -21,11 +21,6 @@ config.log(envConfig);
 
 const moduleRules = [
   {
-    test: /\.ts$/,
-    enforce: "pre",
-    loader: "tslint-loader",
-  },
-  {
     test: /\.(html)$/,
     loader: "html-loader",
   },

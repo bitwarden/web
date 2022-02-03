@@ -2,8 +2,7 @@
 
 require("./sso.scss");
 
-// eslint-disable-next-line
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", () => {
   const code = getQsParam("code");
   const state = getQsParam("state");
 
