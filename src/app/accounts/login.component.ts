@@ -152,6 +152,13 @@ export class LoginComponent extends BaseLoginComponent {
     }
   }
 
+  async submit() {
+    await this.stateService.setRememberEmail(this.rememberEmail);
+    if (!this.rememberEmail) {
+      await this.stateService.setRememberedEmail(null);
+    }
+    await super.submit();
+  }
 
   private getPasswordStrengthUserInput() {
     let userInput: string[] = [];
@@ -167,14 +174,5 @@ export class LoginComponent extends BaseLoginComponent {
     }
     return userInput;
   }
-}
 
-
-  async submit() {
-    await this.stateService.setRememberEmail(this.rememberEmail);
-    if (!this.rememberEmail) {
-      await this.stateService.setRememberedEmail(null);
-    }
-    await super.submit();
-  }
 }
