@@ -62,10 +62,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     return ClientType.Web;
   }
 
-  getClientTypeString() {
-    return ClientType[this.getClientType()].toLowerCase();
-  }
-
   isFirefox(): boolean {
     return this.getDevice() === DeviceType.FirefoxBrowser;
   }
