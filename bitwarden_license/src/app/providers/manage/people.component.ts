@@ -153,17 +153,13 @@ export class PeopleComponent
   }
 
   async events(user: ProviderUserUserDetailsResponse) {
-    const [modal] = await this.modalService.openViewRef(
-      EntityEventsComponent,
-      this.eventsModalRef,
-      (comp) => {
-        comp.name = this.userNamePipe.transform(user);
-        comp.providerId = this.providerId;
-        comp.entityId = user.id;
-        comp.showUser = false;
-        comp.entity = "user";
-      }
-    );
+    await this.modalService.openViewRef(EntityEventsComponent, this.eventsModalRef, (comp) => {
+      comp.name = this.userNamePipe.transform(user);
+      comp.providerId = this.providerId;
+      comp.entityId = user.id;
+      comp.showUser = false;
+      comp.entity = "user";
+    });
   }
 
   async bulkRemove() {
@@ -267,13 +263,14 @@ export class PeopleComponent
 
         childComponent.users = users.map((user) => {
           let message = keyedErrors[user.id] ?? successfullMessage;
+          // eslint-disable-next-line
           if (!keyedFilteredUsers.hasOwnProperty(user.id)) {
             message = this.i18nService.t("bulkFilteredMessage");
           }
 
           return {
             user: user,
-            error: keyedErrors.hasOwnProperty(user.id),
+            error: keyedErrors.hasOwnProperty(user.id), // eslint-disable-line
             message: message,
           };
         });

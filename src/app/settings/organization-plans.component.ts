@@ -307,6 +307,7 @@ export class OrganizationPlansComponent implements OnInit {
     return this.policyService.policyAppliesToUser(PolicyType.SingleOrg);
   }
 
+  // eslint-disable-next-line
   private async updateOrganization(orgId: string) {
     const request = new OrganizationUpgradeRequest();
     request.businessName = this.ownedBusiness ? this.businessName : null;

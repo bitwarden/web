@@ -71,6 +71,7 @@ async function start() {
   script.src = src;
   script.async = true;
   script.defer = true;
+  // eslint-disable-next-line
   script.addEventListener("load", (e) => {
     hcaptcha.render("captcha", {
       sitekey: encodeURIComponent(decodedData.siteKey),
@@ -128,6 +129,7 @@ function info(message: string | object) {
 
 async function watchHeight() {
   const imagesDiv = document.body.lastChild as HTMLElement;
+  // eslint-disable-next-line
   while (true) {
     info({
       height:

@@ -2,9 +2,9 @@
 
 import { getQsParam } from "./common";
 
-// tslint:disable-next-line
 require("./duo.scss");
 
+// eslint-disable-next-line
 document.addEventListener("DOMContentLoaded", (event) => {
   const frameElement = document.createElement("iframe");
   frameElement.setAttribute("id", "duo_iframe");
@@ -42,7 +42,7 @@ function invokeCSCode(data: string) {
   try {
     (window as any).invokeCSharpAction(data);
   } catch (err) {
-    // tslint:disable-next-line
+    // eslint-disable-next-line
     console.log(err);
   }
 }

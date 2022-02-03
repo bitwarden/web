@@ -80,7 +80,7 @@ export class TwoFactorAuthenticatorComponent
     this.key = response.key;
     const email = await this.stateService.getEmail();
     window.setTimeout(() => {
-      const qr = new (window as any).QRious({
+      new (window as any).QRious({
         element: document.getElementById("qr"),
         value:
           "otpauth://totp/Bitwarden:" +

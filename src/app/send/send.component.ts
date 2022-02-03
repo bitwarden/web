@@ -85,10 +85,12 @@ export class SendComponent extends BaseSendComponent {
       this.sendAddEditModalRef,
       (comp) => {
         comp.sendId = send == null ? null : send.id;
+        // eslint-disable-next-line
         comp.onSavedSend.subscribe(async (s: SendView) => {
           modal.close();
           await this.load();
         });
+        // eslint-disable-next-line
         comp.onDeletedSend.subscribe(async (s: SendView) => {
           modal.close();
           await this.load();

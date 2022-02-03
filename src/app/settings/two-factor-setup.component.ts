@@ -53,6 +53,7 @@ export class TwoFactorSetupComponent implements OnInit {
     this.canAccessPremium = await this.stateService.getCanAccessPremium();
 
     for (const key in TwoFactorProviders) {
+      // eslint-disable-next-line
       if (!TwoFactorProviders.hasOwnProperty(key)) {
         continue;
       }
@@ -92,7 +93,7 @@ export class TwoFactorSetupComponent implements OnInit {
 
   async manage(type: TwoFactorProviderType) {
     switch (type) {
-      case TwoFactorProviderType.Authenticator:
+      case TwoFactorProviderType.Authenticator: {
         const authComp = await this.openModal(
           this.authenticatorModalRef,
           TwoFactorAuthenticatorComponent
@@ -101,25 +102,29 @@ export class TwoFactorSetupComponent implements OnInit {
           this.updateStatus(enabled, TwoFactorProviderType.Authenticator);
         });
         break;
-      case TwoFactorProviderType.Yubikey:
+      }
+      case TwoFactorProviderType.Yubikey: {
         const yubiComp = await this.openModal(this.yubikeyModalRef, TwoFactorYubiKeyComponent);
         yubiComp.onUpdated.subscribe((enabled: boolean) => {
           this.updateStatus(enabled, TwoFactorProviderType.Yubikey);
         });
         break;
-      case TwoFactorProviderType.Duo:
+      }
+      case TwoFactorProviderType.Duo: {
         const duoComp = await this.openModal(this.duoModalRef, TwoFactorDuoComponent);
         duoComp.onUpdated.subscribe((enabled: boolean) => {
           this.updateStatus(enabled, TwoFactorProviderType.Duo);
         });
         break;
-      case TwoFactorProviderType.Email:
+      }
+      case TwoFactorProviderType.Email: {
         const emailComp = await this.openModal(this.emailModalRef, TwoFactorEmailComponent);
         emailComp.onUpdated.subscribe((enabled: boolean) => {
           this.updateStatus(enabled, TwoFactorProviderType.Email);
         });
         break;
-      case TwoFactorProviderType.WebAuthn:
+      }
+      case TwoFactorProviderType.WebAuthn: {
         const webAuthnComp = await this.openModal(
           this.webAuthnModalRef,
           TwoFactorWebAuthnComponent
@@ -128,6 +133,7 @@ export class TwoFactorSetupComponent implements OnInit {
           this.updateStatus(enabled, TwoFactorProviderType.WebAuthn);
         });
         break;
+      }
       default:
         break;
     }

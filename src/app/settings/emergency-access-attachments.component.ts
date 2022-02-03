@@ -43,6 +43,7 @@ export class EmergencyAccessAttachmentsComponent extends BaseAttachmentsComponen
     // Do nothing since cipher is already decoded
   }
 
+  // eslint-disable-next-line
   protected showFixOldAttachments(attachment: AttachmentView) {
     return false;
   }

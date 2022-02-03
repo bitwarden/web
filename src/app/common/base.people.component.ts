@@ -321,6 +321,7 @@ export abstract class BasePeopleComponent<
     return !searching && this.users && this.users.length > this.pageSize;
   }
 
+  // eslint-disable-next-line
   protected deleteWarningMessage(user: UserType): string {
     return this.i18nService.t("removeUserConfirmation");
   }

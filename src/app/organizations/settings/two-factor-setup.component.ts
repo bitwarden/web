@@ -36,7 +36,7 @@ export class TwoFactorSetupComponent extends BaseTwoFactorSetupComponent {
 
   async manage(type: TwoFactorProviderType) {
     switch (type) {
-      case TwoFactorProviderType.OrganizationDuo:
+      case TwoFactorProviderType.OrganizationDuo: {
         const duoComp = await this.openModal(this.duoModalRef, TwoFactorDuoComponent);
         duoComp.type = TwoFactorProviderType.OrganizationDuo;
         duoComp.organizationId = this.organizationId;
@@ -44,6 +44,7 @@ export class TwoFactorSetupComponent extends BaseTwoFactorSetupComponent {
           this.updateStatus(enabled, TwoFactorProviderType.OrganizationDuo);
         });
         break;
+      }
       default:
         break;
     }

@@ -81,6 +81,7 @@ export class DomainRulesComponent implements OnInit {
     }
   }
 
+  // eslint-disable-next-line
   indexTrackBy(index: number, obj: any): any {
     return index;
   }

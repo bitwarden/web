@@ -111,7 +111,7 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
   }
 
   private readDevice(webAuthnChallenge: ChallengeResponse) {
-    // tslint:disable-next-line
+    // eslint-disable-next-line
     console.log("listening for key...");
     this.resetWebAuthn(true);
 
@@ -126,7 +126,7 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
         });
       })
       .catch((err) => {
-        // tslint:disable-next-line
+        // eslint-disable-next-line
         console.error(err);
         this.resetWebAuthn(false);
         // TODO: Should we display the actual error?

@@ -7,7 +7,6 @@ import { Permissions } from "jslib-common/enums/permissions";
 import { FrontendLayoutComponent } from "src/app/layouts/frontend-layout.component";
 import { ProvidersComponent } from "src/app/providers/providers.component";
 
-import { AddOrganizationComponent } from "./clients/add-organization.component";
 import { ClientsComponent } from "./clients/clients.component";
 import { CreateOrganizationComponent } from "./clients/create-organization.component";
 import { AcceptProviderComponent } from "./manage/accept-provider.component";

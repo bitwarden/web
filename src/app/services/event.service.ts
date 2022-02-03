@@ -308,7 +308,7 @@ export class EventService {
         msg = humanReadableMsg = this.i18nService.t("disabledKeyConnector");
         break;
       // Policies
-      case EventType.Policy_Updated:
+      case EventType.Policy_Updated: {
         msg = this.i18nService.t("modifiedPolicyId", this.formatPolicyId(ev));
 
         const policies = await this.policyService.getAll();
@@ -320,6 +320,7 @@ export class EventService {
 
         humanReadableMsg = this.i18nService.t("modifiedPolicyId", p1);
         break;
+      }
       // Provider users:
       case EventType.ProviderUser_Invited:
         msg = this.i18nService.t("invitedUserId", this.formatProviderUserId(ev));

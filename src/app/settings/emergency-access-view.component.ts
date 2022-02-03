@@ -50,6 +50,7 @@ export class EmergencyAccessViewComponent implements OnInit {
   }
 
   async selectCipher(cipher: CipherView) {
+    // eslint-disable-next-line
     const [_, childComponent] = await this.modalService.openViewRef(
       EmergencyAddEditComponent,
       this.cipherAddEditModalRef,

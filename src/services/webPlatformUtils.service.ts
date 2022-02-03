@@ -162,6 +162,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     return Promise.resolve(process.env.APPLICATION_VERSION || "-");
   }
 
+  // eslint-disable-next-line
   supportsWebAuthn(win: Window): boolean {
     return typeof PublicKeyCredential !== "undefined";
   }
@@ -281,7 +282,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
           this.logService.debug("Copy command unsupported or disabled.");
         }
       } catch (e) {
-        // tslint:disable-next-line
+        // eslint-disable-next-line
         console.warn("Copy to clipboard failed.", e);
       } finally {
         copyEl.removeChild(textarea);
@@ -290,6 +291,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
   }
 
+  // eslint-disable-next-line
   readFromClipboard(options?: any): Promise<string> {
     throw new Error("Cannot read from clipboard on web.");
   }

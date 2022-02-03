@@ -149,6 +149,7 @@ export class TaxInfoComponent {
 
   private hasChanged(): boolean {
     for (const key in this.taxInfo) {
+      // eslint-disable-next-line
       if (this.pristine.hasOwnProperty(key) && this.pristine[key] !== this.taxInfo[key]) {
         return true;
       }

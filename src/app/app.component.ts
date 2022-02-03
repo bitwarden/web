@@ -21,7 +21,6 @@ import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { SearchService } from "jslib-common/abstractions/search.service";
 import { SettingsService } from "jslib-common/abstractions/settings.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-import { StorageService } from "jslib-common/abstractions/storage.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
 import { TokenService } from "jslib-common/abstractions/token.service";
 import { VaultTimeoutService } from "jslib-common/abstractions/vaultTimeout.service";
@@ -116,7 +115,7 @@ export class AppComponent implements OnDestroy, OnInit {
             break;
           case "syncCompleted":
             break;
-          case "upgradeOrganization":
+          case "upgradeOrganization": {
             const upgradeConfirmed = await this.platformUtilsService.showDialog(
               this.i18nService.t("upgradeOrganizationDesc"),
               this.i18nService.t("upgradeOrganization"),
@@ -132,7 +131,8 @@ export class AppComponent implements OnDestroy, OnInit {
               ]);
             }
             break;
-          case "premiumRequired":
+          }
+          case "premiumRequired": {
             const premiumConfirmed = await this.platformUtilsService.showDialog(
               this.i18nService.t("premiumRequiredDesc"),
               this.i18nService.t("premiumRequired"),
@@ -143,7 +143,8 @@ export class AppComponent implements OnDestroy, OnInit {
               this.router.navigate(["settings/premium"]);
             }
             break;
-          case "emailVerificationRequired":
+          }
+          case "emailVerificationRequired": {
             const emailVerificationConfirmed = await this.platformUtilsService.showDialog(
               this.i18nService.t("emailVerificationRequiredDesc"),
               this.i18nService.t("emailVerificationRequired"),
@@ -156,6 +157,7 @@ export class AppComponent implements OnDestroy, OnInit {
               );
             }
             break;
+          }
           case "showToast":
             this.showToast(message);
             break;

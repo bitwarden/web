@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, Injector, NgModule } from "@angular/core";
+import { APP_INITIALIZER, NgModule } from "@angular/core";
 import { ToastrModule } from "ngx-toastr";
 
 import { JslibServicesModule } from "jslib-angular/services/jslib-services.module";
@@ -66,7 +66,7 @@ export function initFactory(
   stateService: StateServiceAbstraction,
   platformUtilsService: PlatformUtilsServiceAbstraction,
   cryptoService: CryptoServiceAbstraction
-): Function {
+): () => void {
   return async () => {
     await stateService.init();
 

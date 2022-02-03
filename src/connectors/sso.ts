@@ -1,8 +1,8 @@
 ﻿import { getQsParam } from "./common";
 
-// tslint:disable-next-line
 require("./sso.scss");
 
+// eslint-disable-next-line
 document.addEventListener("DOMContentLoaded", (event) => {
   const code = getQsParam("code");
   const state = getQsParam("state");

@@ -1,7 +1,6 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
-import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { ProviderService } from "jslib-common/abstractions/provider.service";
 
 @Component({
@@ -9,15 +8,11 @@ import { ProviderService } from "jslib-common/abstractions/provider.service";
   templateUrl: "settings.component.html",
 })
 export class SettingsComponent {
-  constructor(
-    private route: ActivatedRoute,
-    private providerService: ProviderService,
-    private platformUtilsService: PlatformUtilsService
-  ) {}
+  constructor(private route: ActivatedRoute, private providerService: ProviderService) {}
 
   ngOnInit() {
     this.route.parent.params.subscribe(async (params) => {
-      const provider = await this.providerService.get(params.providerId);
+      await this.providerService.get(params.providerId);
     });
   }
 }

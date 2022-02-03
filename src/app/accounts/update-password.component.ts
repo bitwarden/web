@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { first } from "rxjs/operators";
+import { Router } from "@angular/router";
 
 import { UpdatePasswordComponent as BaseUpdatePasswordComponent } from "jslib-angular/components/update-password.component";
 import { ApiService } from "jslib-common/abstractions/api.service";
@@ -12,7 +11,6 @@ import { PasswordGenerationService } from "jslib-common/abstractions/passwordGen
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-import { SyncService } from "jslib-common/abstractions/sync.service";
 import { UserVerificationService } from "jslib-common/abstractions/userVerification.service";
 
 @Component({
