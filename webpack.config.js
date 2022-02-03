@@ -1,15 +1,17 @@
-const path = require("path");
 const fs = require("fs");
-const webpack = require("webpack");
+const path = require("path");
+
+const { AngularWebpackPlugin } = require("@ngtools/webpack");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const HtmlWebpackInjector = require("html-webpack-injector");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
+const HtmlWebpackInjector = require("html-webpack-injector");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const { AngularWebpackPlugin } = require("@ngtools/webpack");
-const pjson = require("./package.json");
+const webpack = require("webpack");
+
 const config = require("./config.js");
+const pjson = require("./package.json");
 
 const ENV = process.env.ENV == null ? "development" : process.env.ENV;
 const NODE_ENV = process.env.NODE_ENV == null ? "development" : process.env.NODE_ENV;

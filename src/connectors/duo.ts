@@ -1,4 +1,5 @@
 ﻿import * as DuoWebSDK from "duo_web_sdk";
+
 import { getQsParam } from "./common";
 
 // tslint:disable-next-line

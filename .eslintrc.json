@@ -1,5 +1,8 @@
 {
   "root": true,
+  "env": {
+    "browser": true
+  },
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
   "extends": [
@@ -37,6 +40,11 @@
             "pattern": "jslib-*/**",
             "group": "external",
             "position": "after"
+          },
+          {
+            "pattern": "src/**/*",
+            "group": "parent",
+            "position": "before"
           }
         ],
         "pathGroupsExcludedImportTypes": ["builtin"]

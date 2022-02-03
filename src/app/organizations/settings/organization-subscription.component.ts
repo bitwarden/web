@@ -1,17 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
-import { Organization } from "jslib-common/models/domain/organization";
-import { OrganizationSubscriptionResponse } from "jslib-common/models/response/organizationSubscriptionResponse";
-
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
 import { PlanType } from "jslib-common/enums/planType";
+import { Organization } from "jslib-common/models/domain/organization";
+import { OrganizationSubscriptionResponse } from "jslib-common/models/response/organizationSubscriptionResponse";
 
 @Component({
   selector: "app-org-subscription",

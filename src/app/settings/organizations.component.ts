@@ -8,15 +8,11 @@ import { OrganizationService } from "jslib-common/abstractions/organization.serv
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
-
+import { PolicyType } from "jslib-common/enums/policyType";
+import { Utils } from "jslib-common/misc/utils";
 import { Organization } from "jslib-common/models/domain/organization";
 import { Policy } from "jslib-common/models/domain/policy";
-
 import { OrganizationUserResetPasswordEnrollmentRequest } from "jslib-common/models/request/organizationUserResetPasswordEnrollmentRequest";
-
-import { Utils } from "jslib-common/misc/utils";
-
-import { PolicyType } from "jslib-common/enums/policyType";
 
 @Component({
   selector: "app-organizations",
@@ -27,7 +23,7 @@ export class OrganizationsComponent implements OnInit {
 
   organizations: Organization[];
   policies: Policy[];
-  loaded: boolean = false;
+  loaded = false;
   actionPromise: Promise<any>;
 
   constructor(

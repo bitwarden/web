@@ -8,12 +8,11 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
+import { Utils } from "jslib-common/misc/utils";
+import { Policy } from "jslib-common/models/domain/policy";
 import { OrganizationUserAcceptRequest } from "jslib-common/models/request/organizationUserAcceptRequest";
 import { OrganizationUserResetPasswordEnrollmentRequest } from "jslib-common/models/request/organizationUserResetPasswordEnrollmentRequest";
 
-import { Utils } from "jslib-common/misc/utils";
-import { Policy } from "jslib-common/models/domain/policy";
 import { BaseAcceptComponent } from "../common/base.accept.component";
 
 @Component({

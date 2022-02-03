@@ -1,19 +1,15 @@
 import { Directive, ViewChild, ViewContainerRef } from "@angular/core";
 
-import { CipherView } from "jslib-common/models/view/cipherView";
-
-import { Organization } from "jslib-common/models/domain/organization";
-
-import { AddEditComponent as OrgAddEditComponent } from "../organizations/vault/add-edit.component";
-import { AddEditComponent } from "../vault/add-edit.component";
-
+import { ModalService } from "jslib-angular/services/modal.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { PasswordRepromptService } from "jslib-common/abstractions/passwordReprompt.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
 import { CipherRepromptType } from "jslib-common/enums/cipherRepromptType";
+import { Organization } from "jslib-common/models/domain/organization";
+import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { ModalService } from "jslib-angular/services/modal.service";
+import { AddEditComponent as OrgAddEditComponent } from "../organizations/vault/add-edit.component";
+import { AddEditComponent } from "../vault/add-edit.component";
 
 @Directive()
 export class CipherReportComponent {

@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
-
 import { Organization } from "jslib-common/models/domain/organization";
 
 @Component({
@@ -11,10 +10,10 @@ import { Organization } from "jslib-common/models/domain/organization";
 })
 export class ManageComponent implements OnInit {
   organization: Organization;
-  accessPolicies: boolean = false;
-  accessGroups: boolean = false;
-  accessEvents: boolean = false;
-  accessSso: boolean = false;
+  accessPolicies = false;
+  accessGroups = false;
+  accessEvents = false;
+  accessSso = false;
 
   constructor(private route: ActivatedRoute, private organizationService: OrganizationService) {}
 

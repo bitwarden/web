@@ -1,18 +1,14 @@
 import { Component, OnInit, Type, ViewChild, ViewContainerRef } from "@angular/core";
 
+import { ModalRef } from "jslib-angular/components/modal/modal.ref";
+import { ModalService } from "jslib-angular/services/modal.service";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
-import { TwoFactorProviders } from "jslib-common/services/auth.service";
-
-import { ModalService } from "jslib-angular/services/modal.service";
-
-import { ModalRef } from "jslib-angular/components/modal/modal.ref";
-
 import { PolicyType } from "jslib-common/enums/policyType";
 import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
+import { TwoFactorProviders } from "jslib-common/services/auth.service";
 
 import { TwoFactorAuthenticatorComponent } from "./two-factor-authenticator.component";
 import { TwoFactorDuoComponent } from "./two-factor-duo.component";

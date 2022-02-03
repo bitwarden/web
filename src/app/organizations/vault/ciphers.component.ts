@@ -10,9 +10,7 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { SearchService } from "jslib-common/abstractions/search.service";
 import { StateService } from "jslib-common/abstractions/state.service";
 import { TotpService } from "jslib-common/abstractions/totp.service";
-
 import { Organization } from "jslib-common/models/domain/organization";
-
 import { CipherView } from "jslib-common/models/view/cipherView";
 
 import { CiphersComponent as BaseCiphersComponent } from "../../vault/ciphers.component";

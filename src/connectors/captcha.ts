@@ -1,6 +1,6 @@
 import { b64Decode, getQsParam } from "./common";
 
-declare var hcaptcha: any;
+declare let hcaptcha: any;
 
 if (window.location.pathname.includes("mobile")) {
   // tslint:disable-next-line

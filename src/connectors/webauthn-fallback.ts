@@ -9,7 +9,7 @@ let webauthnJson: any;
 let parentUrl: string = null;
 let parentOrigin: string = null;
 let sentSuccess = false;
-let locale: string = "en";
+let locale = "en";
 
 let locales: any = {};
 

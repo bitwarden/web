@@ -2,11 +2,9 @@ import { Injectable } from "@angular/core";
 
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
-
 import { DeviceType } from "jslib-common/enums/deviceType";
 import { EventType } from "jslib-common/enums/eventType";
 import { PolicyType } from "jslib-common/enums/policyType";
-
 import { EventResponse } from "jslib-common/models/response/eventResponse";
 
 @Injectable()

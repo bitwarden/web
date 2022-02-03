@@ -1,11 +1,9 @@
+import { StorageOptions } from "jslib-common/models/domain/storageOptions";
 import { StateService as BaseStateService } from "jslib-common/services/state.service";
 
+import { StateService as StateServiceAbstraction } from "../abstractions/state.service";
 import { Account } from "../models/account";
 import { GlobalState } from "../models/globalState";
-
-import { StateService as StateServiceAbstraction } from "../abstractions/state.service";
-
-import { StorageOptions } from "jslib-common/models/domain/storageOptions";
 
 export class StateService
   extends BaseStateService<Account, GlobalState>

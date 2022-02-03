@@ -1,16 +1,15 @@
 import Swal, { SweetAlertIcon } from "sweetalert2";
 
-import { DeviceType } from "jslib-common/enums/deviceType";
-import { ThemeType } from "jslib-common/enums/themeType";
-
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
+import { DeviceType } from "jslib-common/enums/deviceType";
+import { ThemeType } from "jslib-common/enums/themeType";
 
 export class WebPlatformUtilsService implements PlatformUtilsService {
-  identityClientId: string = "web";
+  identityClientId = "web";
 
   private browserCache: DeviceType = null;
   private prefersColorSchemeDark = window.matchMedia("(prefers-color-scheme: dark)");
@@ -191,7 +190,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     confirmText?: string,
     cancelText?: string,
     type?: string,
-    bodyIsHtml: boolean = false
+    bodyIsHtml = false
   ) {
     let iconClasses: string = null;
     if (type != null) {

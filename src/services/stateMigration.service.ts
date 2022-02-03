@@ -1,4 +1,5 @@
 import { StateMigrationService as BaseStateMigrationService } from "jslib-common/services/stateMigration.service";
+
 import { GlobalState } from "../models/globalState";
 
 export class StateMigrationService extends BaseStateMigrationService<GlobalState> {

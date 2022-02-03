@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
+import { SetPasswordComponent as BaseSetPasswordComponent } from "jslib-angular/components/set-password.component";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -10,8 +11,6 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { StateService } from "jslib-common/abstractions/state.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
-
-import { SetPasswordComponent as BaseSetPasswordComponent } from "jslib-angular/components/set-password.component";
 
 @Component({
   selector: "app-set-password",

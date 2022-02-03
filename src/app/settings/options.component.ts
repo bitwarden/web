@@ -6,7 +6,6 @@ import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
 import { VaultTimeoutService } from "jslib-common/abstractions/vaultTimeout.service";
-
 import { ThemeType } from "jslib-common/enums/themeType";
 import { Utils } from "jslib-common/misc/utils";
 
@@ -15,7 +14,7 @@ import { Utils } from "jslib-common/misc/utils";
   templateUrl: "options.component.html",
 })
 export class OptionsComponent implements OnInit {
-  vaultTimeoutAction: string = "lock";
+  vaultTimeoutAction = "lock";
   disableIcons: boolean;
   enableGravatars: boolean;
   enableFullWidth: boolean;
