@@ -191,7 +191,7 @@ export function initFactory(
         new StateMigrationService(
           storageService,
           secureStorageService,
-          new GlobalStateFactory(GlobalState)
+          new StateFactory(GlobalState, Account)
         ),
       deps: [StorageServiceAbstraction, "SECURE_STORAGE"],
     },
