@@ -2,6 +2,7 @@ import Swal, { SweetAlertIcon } from "sweetalert2";
 
 import { DeviceType } from "jslib-common/enums/deviceType";
 import { ThemeType } from "jslib-common/enums/themeType";
+import { ClientType } from "jslib-common/enums/clientType";
 
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
@@ -10,8 +11,6 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { StateService } from "jslib-common/abstractions/state.service";
 
 export class WebPlatformUtilsService implements PlatformUtilsService {
-  identityClientId: string = "web";
-
   private browserCache: DeviceType = null;
   private prefersColorSchemeDark = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -57,6 +56,14 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
   getDeviceString(): string {
     const device = DeviceType[this.getDevice()].toLowerCase();
     return device.replace("browser", "");
+  }
+
+  getClientType() {
+    return ClientType.Web;
+  }
+
+  getClientTypeString() {
+    return ClientType[this.getClientType()].toLowerCase();
   }
 
   isFirefox(): boolean {
