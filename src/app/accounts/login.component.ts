@@ -174,5 +174,4 @@ export class LoginComponent extends BaseLoginComponent {
     }
     return userInput;
   }
-
 }
