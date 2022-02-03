@@ -1,8 +1,8 @@
 import Swal, { SweetAlertIcon } from "sweetalert2";
 
+import { ClientType } from "jslib-common/enums/clientType";
 import { DeviceType } from "jslib-common/enums/deviceType";
 import { ThemeType } from "jslib-common/enums/themeType";
-import { ClientType } from "jslib-common/enums/clientType";
 
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
