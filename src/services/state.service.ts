@@ -8,7 +8,7 @@ import { StateService as StateServiceAbstraction } from "../abstractions/state.s
 import { StorageOptions } from "jslib-common/models/domain/storageOptions";
 
 export class StateService
-  extends BaseStateService<Account, GlobalState>
+  extends BaseStateService<GlobalState, Account>
   implements StateServiceAbstraction
 {
   async addAccount(account: Account) {
