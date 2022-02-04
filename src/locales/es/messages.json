@@ -2660,7 +2660,7 @@
     "message": "Reenviar invitación"
   },
   "resendEmail": {
-    "message": "Resend Email"
+    "message": "Reenviar correo"
   },
   "hasBeenReinvited": {
     "message": "El usuario $USER$ ha sido reinvitado.",
@@ -4290,7 +4290,7 @@
     "message": "El servicio está desactivado."
   },
   "providerUpdated": {
-    "message": "Provider updated"
+    "message": "Proveedor actualizado"
   },
   "yourProviderIs": {
     "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
@@ -4314,16 +4314,19 @@
     "message": "Are you sure you want to detach this organization? The organization will continue to exist but will no longer be managed by the provider."
   },
   "add": {
-    "message": "Add"
+    "message": "Añadir"
   },
   "updatedMasterPassword": {
-    "message": "Updated Master Password"
+    "message": "Contraseña maestra actualizada"
   },
   "updateMasterPassword": {
-    "message": "Update Master Password"
+    "message": "Actualizar contraseña maestra"
   },
   "updateMasterPasswordWarning": {
     "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+  },
+  "masterPasswordInvalidWarning": {
+    "message": "Your Master Password does not meet the policy requirements of this organization. In order to join the organization, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
   },
   "maximumVaultTimeout": {
     "message": "Vault Timeout"
@@ -4338,10 +4341,10 @@
     "message": "Invalid Maximum Vault Timeout."
   },
   "hours": {
-    "message": "Hours"
+    "message": "Horas"
   },
   "minutes": {
-    "message": "Minutes"
+    "message": "Minutos"
   },
   "vaultTimeoutPolicyInEffect": {
     "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
@@ -4363,7 +4366,7 @@
     "message": "Your vault timeout exceeds the restriction set by your organization."
   },
   "disablePersonalVaultExport": {
-    "message": "Disable Personal Vault Export"
+    "message": "Desactivar exportación de bóveda personal"
   },
   "disablePersonalVaultExportDesc": {
     "message": "Prohibits users from exporting their private vault data."
@@ -4378,10 +4381,10 @@
     "message": "Select SSO Type"
   },
   "type": {
-    "message": "Type"
+    "message": "Tipo"
   },
   "openIdConnectConfig": {
-    "message": "OpenID Connect Configuration"
+    "message": "Configuración de OpenID Connect"
   },
   "samlSpConfig": {
     "message": "SAML Service Provider Configuration"
@@ -4396,7 +4399,7 @@
     "message": "Signed Out Callback Path"
   },
   "authority": {
-    "message": "Authority"
+    "message": "Autoridad"
   },
   "clientId": {
     "message": "Client ID"
@@ -4717,13 +4720,13 @@
     "message": "New Families Organization"
   },
   "acceptOffer": {
-    "message": "Accept Offer"
+    "message": "Aceptar oferta"
   },
   "sponsoringOrg": {
-    "message": "Sponsoring Organization"
+    "message": "Organización patrocinadora"
   },
   "keyConnectorTest": {
-    "message": "Test"
+    "message": "Probar"
   },
   "keyConnectorTestSuccess": {
     "message": "Success! Key Connector reached."
@@ -4732,9 +4735,9 @@
     "message": "Cannot reach Key Connector. Check URL."
   },
   "sponsorshipTokenHasExpired": {
-    "message": "The sponsorship offer has expired."
+    "message": "La oferta de patrocinio expiró."
   },
   "freeWithSponsorship": {
-    "message": "FREE with sponsorship"
+    "message": "GRATIS con patrocinio"
   }
 }

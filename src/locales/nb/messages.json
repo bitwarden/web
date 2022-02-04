@@ -3529,21 +3529,21 @@
     "message": "Utløpsdato"
   },
   "expirationDateDesc": {
-    "message": "If set, access to this Send will expire on the specified date and time.",
+    "message": "Hvis satt, vil tilgang til denne Send gå ut på angitt dato og klokkeslett.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
-    "message": "Maximum Access Count"
+    "message": "Maksimal antall tilganger"
   },
   "maxAccessCountDesc": {
-    "message": "If set, users will no longer be able to access this Send once the maximum access count is reached.",
+    "message": "Hvis satt, vil ikke brukere lenger ha tilgang til dette Send når maksimal antall tilgang er nådd.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
-    "message": "Current Access Count"
+    "message": "Antall nåværende tilganger"
   },
   "sendPasswordDesc": {
-    "message": "Optionally require a password for users to access this Send.",
+    "message": "Eventuelt krever et passord for brukere å få tilgang til denne Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNotesDesc": {
@@ -3793,7 +3793,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
-    "message": "Send Options",
+    "message": "Alternativer for sending",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
@@ -3839,28 +3839,28 @@
     "message": "Rettigheter"
   },
   "accessEventLogs": {
-    "message": "Access Event Logs"
+    "message": "Få tilgang til hendelseslogger"
   },
   "accessImportExport": {
-    "message": "Access Import/Export"
+    "message": "Få tilgang til importering/eksportering"
   },
   "accessReports": {
-    "message": "Access Reports"
+    "message": "Få tilgang til rapporter"
   },
   "missingPermissions": {
-    "message": "You lack the necessary permissions to perform this action."
+    "message": "Du mangler de nødvendige tillatelsene for å utføre denne handlingen."
   },
   "manageAllCollections": {
     "message": "Administrer alle samlinger"
   },
   "createNewCollections": {
-    "message": "Create New Collections"
+    "message": "Opprett nye samlinger"
   },
   "editAnyCollection": {
-    "message": "Edit Any Collection"
+    "message": "Rediger enhver samling"
   },
   "deleteAnyCollection": {
-    "message": "Delete Any Collection"
+    "message": "Slett enhver samling"
   },
   "manageAssignedCollections": {
     "message": "Administrer alle tildelte samlinger"
@@ -3884,7 +3884,7 @@
     "message": "Administrer brukere"
   },
   "manageResetPassword": {
-    "message": "Manage Password Reset"
+    "message": "Behandle tilbakestilling av passord"
   },
   "disableRequiredError": {
     "message": "You must manually disable the $POLICYNAME$ policy before this policy can be disabled.",
@@ -3896,7 +3896,7 @@
     }
   },
   "personalOwnershipPolicyInEffect": {
-    "message": "An organization policy is affecting your ownership options."
+    "message": "En bedriftsretningslinje påvirker dine eierskapsinnstillinger."
   },
   "personalOwnershipPolicyInEffectImports": {
     "message": "An organization policy has disabled importing items into your personal vault."
@@ -4004,7 +4004,7 @@
     "message": "For å verifisere din 2FA vennligst klikk knappen nedenfor."
   },
   "webAuthnAuthenticate": {
-    "message": "Authenticate WebAuthn"
+    "message": "Autentiser WebAuthn"
   },
   "webAuthnNotSupported": {
     "message": "WebAuthn støttes ikke i denne nettleseren."
@@ -4025,7 +4025,7 @@
     "message": "Withdraw from Password Reset"
   },
   "enrollPasswordResetSuccess": {
-    "message": "Enrollment success!"
+    "message": "Innrulleringssuksess!"
   },
   "withdrawPasswordResetSuccess": {
     "message": "Withdrawal success!"
@@ -4100,7 +4100,7 @@
     "message": "Enrollment will allow organization administrators to change your master password. Are you sure you want to enroll?"
   },
   "resetPasswordPolicy": {
-    "message": "Master Password Reset"
+    "message": "Tilbakestill hovedpassord"
   },
   "resetPasswordPolicyDescription": {
     "message": "Allow administrators in the organization to reset organization users' master password."
@@ -4290,7 +4290,7 @@
     "message": "Leverandør er deaktivert."
   },
   "providerUpdated": {
-    "message": "Provider updated"
+    "message": "Leverandøren er oppdatert"
   },
   "yourProviderIs": {
     "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
@@ -4314,19 +4314,22 @@
     "message": "Are you sure you want to detach this organization? The organization will continue to exist but will no longer be managed by the provider."
   },
   "add": {
-    "message": "Add"
+    "message": "Legg til"
   },
   "updatedMasterPassword": {
-    "message": "Updated Master Password"
+    "message": "Oppdaterte hovedpassordet"
   },
   "updateMasterPassword": {
-    "message": "Update Master Password"
+    "message": "Oppdater hovedpassord"
   },
   "updateMasterPasswordWarning": {
     "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
   },
+  "masterPasswordInvalidWarning": {
+    "message": "Your Master Password does not meet the policy requirements of this organization. In order to join the organization, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+  },
   "maximumVaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Tidsavbrudd i hvelvet"
   },
   "maximumVaultTimeoutDesc": {
     "message": "Configure a maximum vault timeout for all users."
@@ -4338,13 +4341,13 @@
     "message": "Invalid Maximum Vault Timeout."
   },
   "hours": {
-    "message": "Hours"
+    "message": "Åpningstider"
   },
   "minutes": {
-    "message": "Minutes"
+    "message": "Minutter"
   },
   "vaultTimeoutPolicyInEffect": {
-    "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "message": "Organisasjonens retningslinjer påvirker tidsavbruddet for hvelvet ditt. Maksimalt tillatt tidsavbrudd for hvelv er $HOURS$ time(r) og $MINUTES$ minutt(er)",
     "placeholders": {
       "hours": {
         "content": "$1",
@@ -4369,16 +4372,16 @@
     "message": "Prohibits users from exporting their private vault data."
   },
   "vaultExportDisabled": {
-    "message": "Vault Export Disabled"
+    "message": "Hvelveksportering er skrudd av"
   },
   "personalVaultExportPolicyInEffect": {
-    "message": "One or more organization policies prevents you from exporting your personal vault."
+    "message": "En eller flere regler i organisasjonsoppsettet forhindrer deg i å eksportere ditt personlige hvelv."
   },
   "selectType": {
-    "message": "Select SSO Type"
+    "message": "Velg SSO-type"
   },
   "type": {
-    "message": "Type"
+    "message": "Skriv"
   },
   "openIdConnectConfig": {
     "message": "OpenID Connect Configuration"
@@ -4396,16 +4399,16 @@
     "message": "Signed Out Callback Path"
   },
   "authority": {
-    "message": "Authority"
+    "message": "Autoritet"
   },
   "clientId": {
-    "message": "Client ID"
+    "message": "Klient-ID"
   },
   "clientSecret": {
-    "message": "Client Secret"
+    "message": "Klienthemmelighet"
   },
   "metadataAddress": {
-    "message": "Metadata Address"
+    "message": "Metadataadresse"
   },
   "oidcRedirectBehavior": {
     "message": "OIDC Redirect Behavior"
@@ -4435,13 +4438,13 @@
     "message": "SP Entity ID"
   },
   "spMetadataUrl": {
-    "message": "SAML 2.0 Metadata URL"
+    "message": "'SAML 2.0'-metadata-URL"
   },
   "spAcsUrl": {
     "message": "Assertion Consumer Service (ACS) URL"
   },
   "spNameIdFormat": {
-    "message": "Name ID Format"
+    "message": "Navne-ID-format"
   },
   "spOutboundSigningAlgorithm": {
     "message": "Outbound Signing Algorithm"
@@ -4456,10 +4459,10 @@
     "message": "Want Assertions Signed"
   },
   "spValidateCertificates": {
-    "message": "Validate Certificates"
+    "message": "Valider sertifikater"
   },
   "idpEntityId": {
-    "message": "Entity ID"
+    "message": "Enhets-ID"
   },
   "idpBindingType": {
     "message": "Binding Type"
@@ -4474,7 +4477,7 @@
     "message": "Artifact Resolution Service URL"
   },
   "idpX509PublicCert": {
-    "message": "X509 Public Certificate"
+    "message": "X509 offentlig sertifikat"
   },
   "idpOutboundSigningAlgorithm": {
     "message": "Outbound Signing Algorithm"
@@ -4555,7 +4558,7 @@
     "message": "Free Bitwarden Families offer successfully redeemed"
   },
   "redeemed": {
-    "message": "Redeemed"
+    "message": "Innløst"
   },
   "redeemedAccount": {
     "message": "Redeemed Account"
@@ -4582,10 +4585,10 @@
     "message": "Free Families Plan"
   },
   "redeemNow": {
-    "message": "Redeem Now"
+    "message": "Løs inn nå"
   },
   "recipient": {
-    "message": "Recipient"
+    "message": "Mottaker"
   },
   "removeSponsorship": {
     "message": "Remove Sponsorship"
@@ -4597,10 +4600,10 @@
     "message": "Sponsorship Created"
   },
   "revoke": {
-    "message": "Revoke"
+    "message": "Tilbakekall"
   },
   "emailSent": {
-    "message": "Email Sent"
+    "message": "E-post sendt"
   },
   "revokeSponsorshipConfirmation": {
     "message": "After removing this account, the Families organization owner will be responsible for this subscription and related invoices. Are you sure you want to continue?"
@@ -4615,28 +4618,28 @@
     "message": "Key Connector URL"
   },
   "sendVerificationCode": {
-    "message": "Send a verification code to your email"
+    "message": "Send en bekreftelseskode til E-postadressen din"
   },
   "sendCode": {
-    "message": "Send Code"
+    "message": "Send kode"
   },
   "codeSent": {
-    "message": "Code Sent"
+    "message": "Kode sendt"
   },
   "verificationCode": {
-    "message": "Verification Code"
+    "message": "Verifiseringskode"
   },
   "confirmIdentity": {
-    "message": "Confirm your identity to continue."
+    "message": "Bekreft identiteten din for å fortsette."
   },
   "verificationCodeRequired": {
-    "message": "Verification code is required."
+    "message": "En verifiseringskode er påkrevd."
   },
   "invalidVerificationCode": {
-    "message": "Invalid verification code"
+    "message": "Ugyldig bekreftelseskode"
   },
   "convertOrganizationEncryptionDesc": {
-    "message": "$ORGANIZATION$ is using SSO with a self-hosted key server. A master password is no longer required to log in for members of this organization.",
+    "message": "$ORGANIZATION$ bruker SSO med en selvdrevet nøkkelserver. Et hovedpassord er ikke lenger nødvendig for å logge inn for medlemmer av denne organisasjonen.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4645,22 +4648,22 @@
     }
   },
   "leaveOrganization": {
-    "message": "Leave Organization"
+    "message": "Forlat organisasjonen"
   },
   "removeMasterPassword": {
-    "message": "Remove Master Password"
+    "message": "Fjern hovedpassord"
   },
   "removedMasterPassword": {
-    "message": "Master password removed."
+    "message": "Hovedpassordet er fjernet."
   },
   "allowSso": {
-    "message": "Allow SSO authentication"
+    "message": "Tillat SSO-autentisering"
   },
   "allowSsoDesc": {
     "message": "Once set up, your configuration will be saved and members will be able to authenticate using their Identity Provider credentials."
   },
   "ssoPolicyHelpStart": {
-    "message": "Enable the",
+    "message": "Skru på",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
@@ -4690,10 +4693,10 @@
     "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
   },
   "enabledSso": {
-    "message": "Enabled SSO"
+    "message": "Skrudde på SSO"
   },
   "disabledSso": {
-    "message": "Disabled SSO"
+    "message": "Skrudde av SSO"
   },
   "enabledKeyConnector": {
     "message": "Enabled Key Connector"
@@ -4717,7 +4720,7 @@
     "message": "New Families Organization"
   },
   "acceptOffer": {
-    "message": "Accept Offer"
+    "message": "Aksepter tilbudet"
   },
   "sponsoringOrg": {
     "message": "Sponsoring Organization"
