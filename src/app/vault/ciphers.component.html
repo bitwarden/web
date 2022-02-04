@@ -1,6 +1,6 @@
 <ng-container *ngIf="isPaging() ? pagedCiphers : ciphers as filteredCiphers">
   <div
-    class="row d-flex flex-row flex-wrap"
+    class="row"
     *ngIf="filteredCiphers.length"
     infiniteScroll
     [infiniteScrollDistance]="1"
@@ -9,18 +9,18 @@
   >
     <div *ngFor="let c of filteredCiphers" class="col-12 col-md-6 vault-item">
       <div class="row vault-guts">
-        <div (click)="checkCipher(c)" class="table-list-checkbox">
+        <div (click)="checkCipher(c)" class="item-checkbox">
           <input type="checkbox" [(ngModel)]="c.checked" appStopProp />
         </div>
 
-        <div (click)="checkCipher(c)" class="table-list-icon" style="width: 30px;">
+        <div (click)="checkCipher(c)" class="item-icon" style="width: 30px;">
           <app-vault-icon [cipher]="c"></app-vault-icon>
           <ng-container *ngIf="!organization && c.organizationId">
             <i class="fa fa-cube" appStopProp title="{{ 'shared' | i18n }}" aria-hidden="true"></i>
             <span class="sr-only">{{ "shared" | i18n }}</span>
           </ng-container>
         </div>
-        <div (click)="checkCipher(c)" class="reduced-lh wrap">
+        <div (click)="checkCipher(c)" class="item-name">
           <a
             href="#"
             appStopClick
@@ -39,7 +39,7 @@
             <span class="sr-only">{{ "attachments" | i18n }}</span>
             <ng-container *ngIf="showFixOldAttachments(c)">
               <i
-                class="fa fa-exclamation-triangle text-warning"
+                class="bwi bwi-exclamation-triangle text-warning"
                 appStopProp
                 title="{{ 'attachmentsNeedFix' | i18n }}"
                 aria-hidden="true"
@@ -50,7 +50,7 @@
           <br />
           <small appStopProp>{{ c.subTitle }}</small>
         </div>
-        <div class="table-list-options ml-auto">
+        <div class="item-options ml-auto">
           <div class="dropdown" appLisdivropdown>
             <button
               class="btn btn-secondary dropdown-toggle"
@@ -61,7 +61,7 @@
               aria-expanded="false"
               appA11yTitle="{{ 'options' | i18n }}"
             >
-              <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+              <i class="bwi bwi-cog" aria-hidden="true"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
               <ng-container *ngIf="c.type === cipherType.Login && !c.isDeleted">
@@ -71,7 +71,7 @@
                   appStopClick
                   (click)="copy(c, c.login.username, 'username', 'Username')"
                 >
-                  <i class="fa fa-fw fa-clone" aria-hidden="true"></i>
+                  <i class="bwi bwi-clone" aria-hidden="true"></i>
                   {{ "copyUsername" | i18n }}
                 </a>
                 <a
@@ -81,7 +81,7 @@
                   (click)="copy(c, c.login.password, 'password', 'Password')"
                   *ngIf="c.viewPassword"
                 >
-                  <i class="fa fa-fw fa-clone" aria-hidden="true"></i>
+                  <i class="bwi bwi-clone" aria-hidden="true"></i>
                   {{ "copyPassword" | i18n }}
                 </a>
                 <a
@@ -91,7 +91,7 @@
                   (click)="copy(c, c.login.totp, 'verificationCodeTotp', 'TOTP')"
                   *ngIf="displayTotpCopyButton(c)"
                 >
-                  <i class="fa fa-fw fa-clone" aria-hidden="true"></i>
+                  <i class="bwi bwi-clone" aria-hidden="true"></i>
                   {{ "copyVerificationCode" | i18n }}
                 </a>
                 <a
@@ -101,11 +101,11 @@
                   *ngIf="c.login.canLaunch"
                   (click)="launch(c.login.launchUri)"
                 >
-                  <i class="fa fa-fw fa-share-square-o" aria-hidden="true"></i>
+                  <i class="bwi bwi-share-square" aria-hidden="true"></i>
                   {{ "launch" | i18n }}
                 </a>
                 <a class="dropdown-item" href="#" appStopClick (click)="attachments(c)">
-                  <i class="fa fa-fw fa-paperclip" aria-hidden="true"></i>
+                  <i class="bwi bwi-paperclip" aria-hidden="true"></i>
                   {{ "attachments" | i18n }}
                 </a>
                 <a
