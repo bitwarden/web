@@ -3164,7 +3164,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "請勿再次要求驗證指紋短語",
+    "message": "不再提示驗證已邀請使用者的指紋短語（不推薦）",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -4323,7 +4323,10 @@
     "message": "更新主密碼"
   },
   "updateMasterPasswordWarning": {
-    "message": "您的主密碼最近被您的組織管理者變更過。要存取密碼庫，您必須現在更新主密碼。繼續操作會登出目前的登入階段，要求您重新登入。其他裝置上使用中的登入階段可能持續最長一個小時。"
+    "message": "您的主密碼最近被您的組織管理者變更過。您必須現在更新主密碼才能存取密碼庫。繼續操作會登出您目前的會話，並要求您重新登入。其他裝置上的活動會話可能會持續長達一個小時。"
+  },
+  "masterPasswordInvalidWarning": {
+    "message": "您的主密碼不符合此組織原則的要求。您必須現在更新主密碼才可以才加入此組織。繼續操作會登出您目前的會話，並要求您重新登入。其他裝置上的活動會話可能會持續長達一個小時。"
   },
   "maximumVaultTimeout": {
     "message": "密碼庫逾時時長"
