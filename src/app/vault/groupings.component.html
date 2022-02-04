@@ -30,7 +30,7 @@
       </li>
       <li [ngClass]="{ active: selectedFavorites }" *ngIf="showFavorites">
         <a href="#" appStopClick (click)="selectFavorites()">
-          <i class="bwi bwi-li bwi-fw bwi-star-f"></i>{{ "favorites" | i18n }}
+          <i class="bwi bwi-li bwi-fw bwi-star"></i>{{ "favorites" | i18n }}
         </a>
       </li>
       <li [ngClass]="{ active: selectedTrash }" *ngIf="showTrash">
@@ -92,8 +92,8 @@
                   class="bwi-li bwi"
                   title="{{ 'toggleCollapse' | i18n }}"
                   [ngClass]="{
-                    'bwi-caret-right': isCollapsed(f.node),
-                    'bwi-caret-down': !isCollapsed(f.node)
+                    'bwi-angle-right': isCollapsed(f.node),
+                    'bwi-angle-down': !isCollapsed(f.node)
                   }"
                   (click)="collapse(f.node)"
                 ></i>
@@ -141,8 +141,8 @@
                 class="bwi-li bwi"
                 title="{{ 'toggleCollapse' | i18n }}"
                 [ngClass]="{
-                  'bwi-caret-right': isCollapsed(c.node),
-                  'bwi-caret-down': !isCollapsed(c.node)
+                  'bwi-angle-right': isCollapsed(c.node),
+                  'bwi-angle-down': !isCollapsed(c.node)
                 }"
                 (click)="collapse(c.node)"
               ></i>
