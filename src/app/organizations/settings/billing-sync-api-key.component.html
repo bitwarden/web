@@ -56,6 +56,7 @@
               </button>
             </div>
           </div>
+          <p *ngIf="keyRevisionDate && lastSyncDate">{{ syncText }}</p>
           <p class="mt-4">{{ 'billingSyncCanAccess' | i18n }}</p>
         </div>
       </div>
@@ -68,7 +69,7 @@
         >
           <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" *ngIf="form.loading"></i>
           <span>
-            {{ submitButtonTextKey | i18n }}
+            {{ submitButtonText }}
           </span>
         </button>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" *ngIf="!showRotateScreen">

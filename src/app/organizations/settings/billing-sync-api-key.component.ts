@@ -6,6 +6,7 @@ import { Verification } from 'jslib-common/types/verification';
 import { ApiService } from 'jslib-common/abstractions/api.service';
 import { OrganizationApiKeyType } from 'jslib-common/enums/organizationApiKeyType';
 import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
+import { I18nService } from 'jslib-common/abstractions/i18n.service';
 
 @Component({
   selector: "app-billing-sync-api-key",
@@ -18,12 +19,15 @@ export class BillingSyncApiKeyComponent {
   showRotateScreen: boolean;
   masterPassword: Verification;
   formPromise: Promise<ApiKeyResponse>;
-  clientSecret: string;
+  clientSecret?: string;
+  keyRevisionDate?: Date;
+  lastSyncDate?: Date;
   
   constructor(
     private userVerificationService: UserVerificationService,
     private apiService: ApiService,
-    private platformUtilsService: PlatformUtilsService
+    private platformUtilsService: PlatformUtilsService, 
+    private i18nService: I18nService,
   ) {}
 
   copy() {
@@ -39,8 +43,13 @@ export class BillingSyncApiKeyComponent {
           return this.apiService.postOrganizationRotateApiKey(this.organizationId, request);
         });
       const response = await this.formPromise;
-      this.clientSecret = response.apiKey;
+      await this.load(response);
       this.showRotateScreen = false;
+      this.platformUtilsService.showToast(
+        "success",
+        null,
+        this.i18nService.t('billingSyncApiKeyRotated')
+      );
     } else {
       this.formPromise = this.userVerificationService
         .buildRequest(this.masterPassword, OrganizationApiKeyRequest)
@@ -49,9 +58,16 @@ export class BillingSyncApiKeyComponent {
           return this.apiService.postOrganizationApiKey(this.organizationId, request)
         });
       const response = await this.formPromise;
-      this.clientSecret = response.apiKey;
-      this.hasBillingToken = true;
+      await this.load(response);
     }
+  }
+
+  async load(response: ApiKeyResponse) {
+    this.clientSecret = response.apiKey;
+    this.keyRevisionDate = response.revisionDate;
+    this.hasBillingToken = true;
+    const syncStatus = await this.apiService.getSponsorshipSyncStatus(this.organizationId);
+    this.lastSyncDate = syncStatus.lastSyncDate;
   }
 
   cancelRotate() {
@@ -62,11 +78,30 @@ export class BillingSyncApiKeyComponent {
     this.showRotateScreen = true;
   }
 
-  get submitButtonTextKey(): string {
+  private dayDiff(date1: Date, date2: Date): number {
+    const diffTime = Math.abs(date2.getTime() - date1.getTime());
+    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  }
+
+  get submitButtonText(): string {
     if (this.showRotateScreen) {
-      return 'rotateToken';
+      return this.i18nService.t('rotateToken');
     }
 
-    return this.hasBillingToken ? 'continue' : 'generateToken';
+    return this.i18nService.t(this.hasBillingToken ? 'continue' : 'generateToken');
+  }
+
+  get syncText(): string | undefined {
+    // Precendence:
+    // 1. If last sync date is null, don't show anything
+    // 2. If last sync date is greater than key revision date, show last sync on X
+
+    var now = new Date();
+    if (this.lastSyncDate) {
+      var days = this.dayDiff(this.lastSyncDate, now);
+      
+    }
+    
+    return;
   }
 }
