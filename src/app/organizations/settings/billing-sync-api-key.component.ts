@@ -96,10 +96,13 @@ export class BillingSyncApiKeyComponent {
     // 1. If last sync date is null, don't show anything
     // 2. If last sync date is greater than key revision date, show last sync on X
 
-    var now = new Date();
     if (this.lastSyncDate) {
-      var days = this.dayDiff(this.lastSyncDate, now);
-      
+      if (this.keyRevisionDate > this.lastSyncDate) {
+        return 'awaiting sync with new token';
+      } else {
+        const daysSinceLastSync = this.dayDiff(this.lastSyncDate, new Date());
+        return 'last sync ' + daysSinceLastSync + ' days ago';
+      }
     }
     
     return;
