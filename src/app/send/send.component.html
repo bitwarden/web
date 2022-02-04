@@ -60,7 +60,7 @@
         <div class="ml-auto d-flex">
           <button
             type="button"
-            class="btn btn-outline-primary btn-sm ml-3"
+            class="btn btn-outline-primary btn-sm"
             (click)="addSend()"
             [disabled]="disableSend"
           >
@@ -177,7 +177,7 @@
         </ng-container>
         <ng-container *ngIf="loaded">
           <p>{{ "noSendsInList" | i18n }}</p>
-          <button (click)="addSend()" class="btn btn-outline-primary ml-3" [disabled]="disableSend">
+          <button (click)="addSend()" class="btn btn-outline-primary" [disabled]="disableSend">
             <i class="bwi bwi-plus bwi-fw"></i>{{ "createSend" | i18n }}
           </button>
         </ng-container>
