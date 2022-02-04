@@ -30,6 +30,7 @@ import { SetPasswordComponent } from "./accounts/set-password.component";
 import { SsoComponent } from "./accounts/sso.component";
 import { TwoFactorOptionsComponent } from "./accounts/two-factor-options.component";
 import { TwoFactorComponent } from "./accounts/two-factor.component";
+import { UpdatePasswordComponent } from "./accounts/update-password.component";
 import { UpdateTempPasswordComponent } from "./accounts/update-temp-password.component";
 import { VerifyEmailTokenComponent } from "./accounts/verify-email-token.component";
 import { VerifyRecoverDeleteComponent } from "./accounts/verify-recover-delete.component";
@@ -432,6 +433,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     UpdateKeyComponent,
     UpdateLicenseComponent,
     UpdateTempPasswordComponent,
+    UpdatePasswordComponent,
     UserBillingComponent,
     UserLayoutComponent,
     UserSubscriptionComponent,

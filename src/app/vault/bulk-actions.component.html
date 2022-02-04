@@ -8,7 +8,7 @@
     aria-expanded="false"
     appA11yTitle="{{ 'options' | i18n }}"
   >
-    <i class="fa fa-cog" aria-hidden="true"></i>
+    <i class="bwi bwi-cog" aria-hidden="true"></i>
   </button>
   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="bulkActionsButton">
     <button
@@ -17,7 +17,7 @@
       (click)="bulkMove()"
       *ngIf="!deleted && !organization"
     >
-      <i class="fa fa-fw fa-share" aria-hidden="true"></i>
+      <i class="bwi bwi-fw bwi-folder" aria-hidden="true"></i>
       {{ "moveSelected" | i18n }}
     </button>
     <button
@@ -26,24 +26,24 @@
       (click)="bulkShare()"
       *ngIf="!deleted && !organization"
     >
-      <i class="fa fa-fw fa-arrow-circle-o-right" aria-hidden="true"></i>
+      <i class="bwi bwi-fw bwi-arrow-circle-right" aria-hidden="true"></i>
       {{ "moveSelectedToOrg" | i18n }}
     </button>
     <button class="dropdown-item" (click)="bulkRestore()" *ngIf="deleted && !organization">
-      <i class="fa fa-fw fa-undo" aria-hidden="true"></i>
+      <i class="bwi bwi-fw bwi-undo" aria-hidden="true"></i>
       {{ "restoreSelected" | i18n }}
     </button>
     <button class="dropdown-item text-danger" (click)="bulkDelete()">
-      <i class="fa fa-fw fa-trash-o" aria-hidden="true"></i>
+      <i class="bwi bwi-fw bwi-trash" aria-hidden="true"></i>
       {{ (deleted ? "permanentlyDeleteSelected" : "deleteSelected") | i18n }}
     </button>
     <div class="dropdown-divider"></div>
     <button class="dropdown-item" appStopClick (click)="selectAll(true)">
-      <i class="fa fa-fw fa-check-square-o" aria-hidden="true"></i>
+      <i class="bwi bwi-fw bwi-check-square" aria-hidden="true"></i>
       {{ "selectAll" | i18n }}
     </button>
     <button class="dropdown-item" appStopClick (click)="selectAll(false)">
-      <i class="fa fa-fw fa-minus-square-o" aria-hidden="true"></i>
+      <i class="bwi bwi-fw bwi-minus-square" aria-hidden="true"></i>
       {{ "unselectAll" | i18n }}
     </button>
   </div>

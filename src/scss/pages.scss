@@ -59,7 +59,7 @@ app-org-vault-groupings,
 
     .card-body a {
       @include themify($themes) {
-        color: themed("headingColor");
+        color: themed("textHeadingColor");
         font-weight: themed("linkWeight");
       }
 
@@ -77,8 +77,8 @@ app-org-vault-groupings,
     }
 
     li {
-      > .fa,
-      > div > .fa {
+      > .bwi,
+      > div > .bwi {
         cursor: pointer;
       }
     }
@@ -99,8 +99,8 @@ app-org-vault-groupings,
         }
       }
 
-      > .fa,
-      > div > .fa {
+      > .bwi,
+      > div > .bwi {
         @include themify($themes) {
           color: themed("linkColor");
         }
@@ -173,18 +173,28 @@ app-sponsored-families {
 
 /* Register Layout Page */
 .layout {
-  &.enterprise2 {
+  &.default,
+  &.teams,
+  &.teams1,
+  &.teams2,
+  &.enterprise,
+  &.enterprise1,
+  &.enterprise2,
+  &.cnetcmpgnent,
+  &.cnetcmpgnteams,
+  &.cnetcmpgnind {
     header {
       background: #175ddc;
       color: #ced4da;
+      height: 70px;
 
       &:before {
         background: #175ddc;
         content: "";
-        height: 416px;
+        height: 520px;
         left: 0;
         position: absolute;
-        top: -76px;
+        top: -80px;
         transform: skewY(-3deg);
         width: 100%;
         z-index: -1;
@@ -197,15 +207,22 @@ app-sponsored-families {
       }
     }
 
+    h1 {
+      color: #ffffff;
+      font-size: 3.5rem;
+      margin: 50px 0 0;
+    }
+
     h2 {
       color: #ffffff;
-      font-size: 1.8rem;
-      margin: 100px 0 150px 0;
+      font-size: 2rem;
+      line-height: 1.5;
+      margin: 20px 0 140px;
     }
 
     p {
-      font-size: 1.4rem;
-      margin: 20px 0 40px 0;
+      font-size: 2rem;
+      margin: 10px 0 70px 0;
 
       &:before {
         content: "/";
@@ -226,10 +243,20 @@ app-sponsored-families {
       }
     }
 
+    figure {
+      margin: 0;
+    }
+
     blockquote {
       font-size: 1.4rem;
-      margin: 20px 0 0 0;
-      padding-right: 40px;
+      margin: 20px 0 0;
+    }
+  }
+
+  &.cnetcmpgnind {
+    p {
+      font-size: 1.5rem;
+      margin: 10px 0 50px 0;
     }
   }
 }

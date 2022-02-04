@@ -13,7 +13,7 @@
       />
     </div>
     <a class="btn btn-sm btn-outline-primary ml-3" routerLink="create" *ngIf="manageOrganizations">
-      <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+      <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
       {{ "newClientOrganization" | i18n }}
     </a>
     <button
@@ -21,14 +21,18 @@
       (click)="addExistingOrganization()"
       *ngIf="manageOrganizations && showAddExisting"
     >
-      <i class="fa fa-plus fa-fw" aria-hidden="true"></i>
+      <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
       {{ "addExistingOrganization" | i18n }}
     </button>
   </div>
 </div>
 
 <ng-container *ngIf="loading">
-  <i class="fa fa-spinner fa-spin text-muted" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+  <i
+    class="bwi bwi-spinner bwi-spin text-muted"
+    title="{{ 'loading' | i18n }}"
+    aria-hidden="true"
+  ></i>
   <span class="sr-only">{{ "loading" | i18n }}</span>
 </ng-container>
 
@@ -67,11 +71,11 @@
                 aria-expanded="false"
                 appA11yTitle="{{ 'options' | i18n }}"
               >
-                <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+                <i class="bwi bwi-cog bwi-lg" aria-hidden="true"></i>
               </button>
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item text-danger" href="#" appStopClick (click)="remove(o)">
-                  <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
+                  <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
                   {{ "remove" | i18n }}
                 </a>
               </div>

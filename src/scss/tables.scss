@@ -31,14 +31,14 @@
     }
 
     small,
-    > .fa,
+    > .bwi,
     .icon {
       @include themify($themes) {
         color: themed("textMuted");
       }
     }
 
-    .fa-globe {
+    .bwi-globe {
       @include themify($themes) {
         color: themed("iconColor");
       }

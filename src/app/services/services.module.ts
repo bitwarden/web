@@ -7,6 +7,7 @@ import { I18nService } from "../../services/i18n.service";
 import { MemoryStorageService } from "../../services/memoryStorage.service";
 import { PasswordRepromptService } from "../../services/passwordReprompt.service";
 import { StateService } from "../../services/state.service";
+import { StateMigrationService } from "../../services/stateMigration.service";
 import { WebPlatformUtilsService } from "../../services/webPlatformUtils.service";
 
 import { EventService } from "./event.service";
@@ -45,20 +46,23 @@ import { MessagingService as MessagingServiceAbstraction } from "jslib-common/ab
 import { NotificationsService as NotificationsServiceAbstraction } from "jslib-common/abstractions/notifications.service";
 import { PasswordRepromptService as PasswordRepromptServiceAbstraction } from "jslib-common/abstractions/passwordReprompt.service";
 import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from "jslib-common/abstractions/platformUtils.service";
-import { StateService as StateServiceAbstraction } from "jslib-common/abstractions/state.service";
+import { StateService as BaseStateServiceAbstraction } from "jslib-common/abstractions/state.service";
 import { StateMigrationService as StateMigrationServiceAbstraction } from "jslib-common/abstractions/stateMigration.service";
 import { StorageService as StorageServiceAbstraction } from "jslib-common/abstractions/storage.service";
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from "jslib-common/abstractions/vaultTimeout.service";
 
 import { ThemeType } from "jslib-common/enums/themeType";
 
-import { AccountFactory } from "jslib-common/models/domain/account";
-
 import { Account } from "../../models/account";
+import { GlobalState } from "../../models/globalState";
+
+import { GlobalStateFactory } from "jslib-common/factories/globalStateFactory";
+import { StateFactory } from "jslib-common/factories/stateFactory";
+
+import { StateService as StateServiceAbstraction } from "../../abstractions/state.service";
 
 export function initFactory(
   window: Window,
-  storageService: StorageServiceAbstraction,
   environmentService: EnvironmentServiceAbstraction,
   notificationsService: NotificationsServiceAbstraction,
   vaultTimeoutService: VaultTimeoutService,
@@ -70,12 +74,11 @@ export function initFactory(
   cryptoService: CryptoServiceAbstraction
 ): Function {
   return async () => {
-    await (storageService as HtmlStorageService).init();
     await stateService.init();
 
     const urls = process.env.URLS as Urls;
     urls.base ??= window.location.origin;
-    environmentService.setUrls(urls, false);
+    environmentService.setUrls(urls);
 
     setTimeout(() => notificationsService.init(), 3000);
 
@@ -110,7 +113,6 @@ export function initFactory(
       useFactory: initFactory,
       deps: [
         "WINDOW",
-        StorageServiceAbstraction,
         EnvironmentServiceAbstraction,
         NotificationsServiceAbstraction,
         VaultTimeoutServiceAbstraction,
@@ -181,6 +183,19 @@ export function initFactory(
       ],
     },
     {
+      provide: StateMigrationServiceAbstraction,
+      useFactory: (
+        storageService: StorageServiceAbstraction,
+        secureStorageService: StorageServiceAbstraction
+      ) =>
+        new StateMigrationService(
+          storageService,
+          secureStorageService,
+          new StateFactory(GlobalState, Account)
+        ),
+      deps: [StorageServiceAbstraction, "SECURE_STORAGE"],
+    },
+    {
       provide: StateServiceAbstraction,
       useFactory: (
         storageService: StorageServiceAbstraction,
@@ -193,7 +208,7 @@ export function initFactory(
           secureStorageService,
           logService,
           stateMigrationService,
-          new AccountFactory(Account)
+          new StateFactory(GlobalState, Account)
         ),
       deps: [
         StorageServiceAbstraction,
@@ -201,6 +216,10 @@ export function initFactory(
         LogService,
         StateMigrationServiceAbstraction,
       ],
+    },
+    {
+      provide: BaseStateServiceAbstraction,
+      useExisting: StateServiceAbstraction,
     },
     {
       provide: PasswordRepromptServiceAbstraction,

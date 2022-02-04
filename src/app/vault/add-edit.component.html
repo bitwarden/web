@@ -86,7 +86,7 @@
                     appA11yTitle="{{ 'copyUsername' | i18n }}"
                     (click)="copy(cipher.login.username, 'username', 'Username')"
                   >
-                    <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                    <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
                   </button>
                 </div>
               </div>
@@ -97,17 +97,17 @@
                 <div class="ml-auto d-flex" *ngIf="!cipher.isDeleted && !viewOnly">
                   <a
                     href="#"
-                    class="d-block mr-2 fa-icon-above-input"
+                    class="d-block mr-2 bwi-icon-above-input"
                     appStopClick
                     appA11yTitle="{{ 'generatePassword' | i18n }}"
                     (click)="generatePassword()"
                     *ngIf="cipher.viewPassword"
                   >
-                    <i class="fa fa-lg fa-fw fa-refresh" aria-hidden="true"></i>
+                    <i class="bwi bwi-lg bwi-fw bwi-generate" aria-hidden="true"></i>
                   </a>
                   <a
                     href="#"
-                    class="d-block fa-icon-above-input"
+                    class="d-block bwi-icon-above-input"
                     #checkPasswordBtn
                     appStopClick
                     appA11yTitle="{{ 'checkPassword' | i18n }}"
@@ -115,12 +115,12 @@
                     [appApiAction]="checkPasswordPromise"
                   >
                     <i
-                      class="fa fa-lg fa-fw fa-check-circle"
+                      class="bwi bwi-lg bwi-fw bwi-check-circle"
                       [hidden]="checkPasswordBtn.loading"
                       aria-hidden="true"
                     ></i>
                     <i
-                      class="fa fa-lg fa-fw fa-spinner fa-spin"
+                      class="bwi bwi-lg bwi-fw bwi-spinner bwi-spin"
                       aria-hidden="true"
                       [hidden]="!checkPasswordBtn.loading"
                       title="{{ 'loading' | i18n }}"
@@ -148,9 +148,9 @@
                     [disabled]="!cipher.viewPassword"
                   >
                     <i
-                      class="fa fa-lg"
+                      class="bwi bwi-lg"
                       aria-hidden="true"
-                      [ngClass]="{ 'fa-eye': !showPassword, 'fa-eye-slash': showPassword }"
+                      [ngClass]="{ 'bwi-eye': !showPassword, 'bwi-eye-slash': showPassword }"
                     ></i>
                   </button>
                   <button
@@ -160,7 +160,7 @@
                     (click)="copy(cipher.login.password, 'password', 'Password')"
                     [disabled]="!cipher.viewPassword"
                   >
-                    <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                    <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
                   </button>
                 </div>
               </div>
@@ -237,7 +237,7 @@
                   appA11yTitle="{{ 'copyVerificationCode' | i18n }}"
                   (click)="copy(totpCode, 'verificationCodeTotp', 'TOTP')"
                 >
-                  <i class="fa fa-clone" aria-hidden="true"></i>
+                  <i class="bwi bwi-clone" aria-hidden="true"></i>
                 </button>
               </div>
             </div>
@@ -268,7 +268,7 @@
                       (click)="launch(u)"
                       [disabled]="!u.canLaunch"
                     >
-                      <i class="fa fa-lg fa-share" aria-hidden="true"></i>
+                      <i class="bwi bwi-lg bwi-share-square" aria-hidden="true"></i>
                     </button>
                     <button
                       type="button"
@@ -276,7 +276,7 @@
                       appA11yTitle="{{ 'copyUri' | i18n }}"
                       (click)="copy(u.uri, 'uri', 'URI')"
                     >
-                      <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                      <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
                     </button>
                   </div>
                 </div>
@@ -288,12 +288,12 @@
                   </label>
                   <a
                     class="ml-auto"
-                    href="https://help.bitwarden.com/article/uri-match-detection/"
+                    href="https://bitwarden.com/help/uri-match-detection/"
                     target="_blank"
                     rel="noopener"
                     appA11yTitle="{{ 'learnMore' | i18n }}"
                   >
-                    <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                    <i class="bwi bwi-question-circle" aria-hidden="true"></i>
                   </a>
                 </div>
                 <div class="d-flex">
@@ -316,7 +316,7 @@
                     appA11yTitle="{{ 'remove' | i18n }}"
                     *ngIf="!cipher.isDeleted && !viewOnly"
                   >
-                    <i class="fa fa-minus-circle fa-lg" aria-hidden="true"></i>
+                    <i class="bwi bwi-minus-circle bwi-lg" aria-hidden="true"></i>
                   </button>
                 </div>
               </div>
@@ -329,7 +329,7 @@
             class="d-inline-block mb-3"
             *ngIf="!cipher.isDeleted && !viewOnly"
           >
-            <i class="fa fa-plus-circle fa-fw" aria-hidden="true"></i> {{ "newUri" | i18n }}
+            <i class="bwi bwi-plus-circle bwi-fw" aria-hidden="true"></i> {{ "newUri" | i18n }}
           </a>
         </ng-container>
         <!-- Card -->
@@ -381,9 +381,12 @@
                     (click)="toggleCardNumber()"
                   >
                     <i
-                      class="fa fa-lg"
+                      class="bwi bwi-lg"
                       aria-hidden="true"
-                      [ngClass]="{ 'fa-eye': !showCardNumber, 'fa-eye-slash': showCardNumber }"
+                      [ngClass]="{
+                        'bwi-eye': !showCardNumber,
+                        'bwi-eye-slash': showCardNumber
+                      }"
                     ></i>
                   </button>
                   <button
@@ -392,7 +395,7 @@
                     appA11yTitle="{{ 'copyNumber' | i18n }}"
                     (click)="copy(cipher.card.number, 'number', 'Number')"
                   >
-                    <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                    <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
                   </button>
                 </div>
               </div>
@@ -446,9 +449,9 @@
                     (click)="toggleCardCode()"
                   >
                     <i
-                      class="fa fa-lg"
+                      class="bwi bwi-lg"
                       aria-hidden="true"
-                      [ngClass]="{ 'fa-eye': !showCardCode, 'fa-eye-slash': showCardCode }"
+                      [ngClass]="{ 'bwi-eye': !showCardCode, 'bwi-eye-slash': showCardCode }"
                     ></i>
                   </button>
                   <button
@@ -457,7 +460,7 @@
                     appA11yTitle="{{ 'securityCode' | i18n }}"
                     (click)="copy(cipher.card.code, 'securityCode', 'Security Code')"
                   >
-                    <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                    <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
                   </button>
                 </div>
               </div>
@@ -790,9 +793,9 @@
               target="_blank"
               rel="noopener"
               appA11yTitle="{{ 'learnMore' | i18n }}"
-              href="https://bitwarden.com/help/article/managing-items/#protect-individual-items"
+              href="https://bitwarden.com/help/managing-items/#protect-individual-items"
             >
-              <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+              <i class="bwi bwi-question-circle" aria-hidden="true"></i>
             </a>
           </div>
         </ng-container>
@@ -804,7 +807,7 @@
           [disabled]="form.loading"
           *ngIf="!viewOnly"
         >
-          <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+          <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
           <span>{{ (cipher?.isDeleted ? "restore" : "save") | i18n }}</span>
         </button>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
@@ -819,8 +822,8 @@
             appA11yTitle="{{ (cipher.favorite ? 'unfavorite' : 'favorite') | i18n }}"
           >
             <i
-              class="fa fa-lg"
-              [ngClass]="{ 'fa-star': cipher.favorite, 'fa-star-o': !cipher.favorite }"
+              class="bwi bwi-lg"
+              [ngClass]="{ 'bwi-star-f': cipher.favorite, 'bwi-star': !cipher.favorite }"
               aria-hidden="true"
             ></i>
           </button>
@@ -835,12 +838,12 @@
             [appApiAction]="deletePromise"
           >
             <i
-              class="fa fa-trash-o fa-lg fa-fw"
+              class="bwi bwi-trash bwi-lg bwi-fw"
               [hidden]="deleteBtn.loading"
               aria-hidden="true"
             ></i>
             <i
-              class="fa fa-spinner fa-spin fa-lg fa-fw"
+              class="bwi bwi-spinner bwi-spin bwi-lg bwi-fw"
               [hidden]="!deleteBtn.loading"
               title="{{ 'loading' | i18n }}"
               aria-hidden="true"

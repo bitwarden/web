@@ -9,7 +9,7 @@
     <div class="col-8" *ngIf="hideEmail">
       <app-callout type="warning" title="{{ 'warning' | i18n }}">
         {{ "viewSendHiddenEmailWarning" | i18n }}
-        <a href="https://bitwarden.com/help/article/receive-send/" target="_blank">{{
+        <a href="https://bitwarden.com/help/receive-send/" target="_blank">{{
           "learnMore" | i18n
         }}</a
         >.
@@ -21,7 +21,7 @@
       <div class="card d-block">
         <div class="card-body" *ngIf="loading" class="text-center">
           <i
-            class="fa fa-spinner fa-spin fa-2x text-muted"
+            class="bwi bwi-spinner bwi-spin bwi-2x text-muted"
             title="{{ 'loading' | i18n }}"
             aria-hidden="true"
           ></i>
@@ -50,10 +50,10 @@
               [disabled]="form.loading"
             >
               <span>
-                <i class="fa fa-sign-in" aria-hidden="true"></i> {{ "continue" | i18n }}
+                <i class="bwi bwi-sign-in" aria-hidden="true"></i> {{ "continue" | i18n }}
               </span>
               <i
-                class="fa fa-spinner fa-spin"
+                class="bwi bwi-spinner bwi-spin"
                 title="{{ 'loading' | i18n }}"
                 aria-hidden="true"
               ></i>
@@ -93,14 +93,14 @@
               *ngIf="send.text.hidden"
             >
               <i
-                class="fa fa-lg"
+                class="bwi bwi-lg"
                 aria-hidden="true"
-                [ngClass]="{ 'fa-eye': !showText, 'fa-eye-slash': showText }"
+                [ngClass]="{ 'bwi-eye': !showText, 'bwi-eye-slash': showText }"
               ></i>
               {{ "toggleVisibility" | i18n }}
             </button>
             <button class="btn btn-block btn-link" type="button" (click)="copyText()">
-              <i class="fa fa-copy" aria-hidden="true"></i> {{ "copyValue" | i18n }}
+              <i class="bwi bwi-copy" aria-hidden="true"></i> {{ "copyValue" | i18n }}
             </button>
           </ng-container>
           <!-- File -->
@@ -112,7 +112,7 @@
               (click)="download()"
               *ngIf="!downloading"
             >
-              <i class="fa fa-download" aria-hidden="true"></i>
+              <i class="bwi bwi-download" aria-hidden="true"></i>
               {{ "downloadFile" | i18n }} ({{ send.file.sizeName }})
             </button>
             <button
@@ -122,7 +122,7 @@
               disabled="true"
             >
               <i
-                class="fa fa-spinner fa-spin"
+                class="bwi bwi-spinner bwi-spin"
                 title="{{ 'loading' | i18n }}"
                 aria-hidden="true"
               ></i>

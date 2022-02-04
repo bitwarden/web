@@ -1,44 +1,100 @@
 <div class="layout" [ngClass]="['layout', layout]">
-  <header class="header" *ngIf="layout === 'enterprise2'">
+  <!-- TEAMS 1 Header -->
+  <header
+    class="header"
+    *ngIf="
+      layout === 'default' ||
+      layout === 'teams' ||
+      layout === 'teams1' ||
+      layout === 'teams2' ||
+      layout === 'enterprise' ||
+      layout === 'enterprise1' ||
+      layout === 'enterprise2' ||
+      layout === 'cnetcmpgnent' ||
+      layout === 'cnetcmpgnteams' ||
+      layout === 'cnetcmpgnind'
+    "
+  >
     <div class="container">
       <div class="row">
         <div class="col-7">
           <img
             alt="Bitwarden"
             class="logo mb-2"
-            src="../../images/register-layout/logo-horizontal-white.png"
+            src="../../images/register-layout/logo-horizontal-white.svg"
           />
         </div>
       </div>
     </div>
   </header>
+
   <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" class="container" ngNativeValidate>
     <div class="row">
       <div class="col-7" *ngIf="layout">
         <div class="mt-5">
-          <div *ngIf="layout === 'enterprise2'">
-            <h2>Companies globally trust Bitwarden for password management.</h2>
-            <p>Start your 7-day free trial!</p>
-            <p class="highlight">Quickly deploy your <b>organization</b></p>
-            <p>Use Bitwarden across all platforms</p>
+          <!-- Default Body -->
+          <div
+            *ngIf="
+              layout === 'teams' ||
+              layout === 'enterprise' ||
+              layout === 'enterprise1' ||
+              layout === 'default'
+            "
+          >
+            <h1>The Bitwarden Password Manager</h1>
+            <h2>
+              Trusted by millions of individuals, teams, and organizations worldwide for secure
+              password storage and sharing.
+            </h2>
+            <p>Store logins, secure notes, and more</p>
             <p>Collaborate and share securely</p>
-            <figure>
-              <figcaption>
-                <cite>
-                  <img src="../../images/register-layout/wired-logo.png" alt="Wired" />
-                </cite>
-              </figcaption>
-              <blockquote>
-                "Bitwarden has become a popular choice among open-source software advocates. After
-                using it for a few months, I can see why." - February 2020
-              </blockquote>
-            </figure>
+            <p>Access anywhere on any device</p>
+            <p>Create your account to get started</p>
           </div>
-          <div *ngIf="layout === 'enterprise3'">
-            <p>Enterprise 3 layout</p>
+
+          <!-- Teams & Enterprise Body -->
+          <div *ngIf="layout === 'teams1' || layout === 'teams2' || layout === 'enterprise2'">
+            <h1>
+              Start Your <span *ngIf="layout === 'teams1' || layout === 'teams1'">Teams<br /></span
+              ><span *ngIf="layout === 'enterprise2'">Enterprise</span> Free Trial Now
+            </h1>
+            <h2>
+              Millions of individuals, teams, and organizations worldwide trust Bitwarden for secure
+              password storage and sharing.
+            </h2>
+            <p>Collaborate and share securely</p>
+            <p>Deploy and manage quickly and easily</p>
+            <p>Access anywhere on any device</p>
+            <p>Create your account to get started</p>
           </div>
-          <div *ngIf="layout === 'enterprise4'">
-            <p>Enterprise 4 layout</p>
+
+          <!-- CNET Campaign Teams & Enterprise Body -->
+          <div *ngIf="layout === 'cnetcmpgnteams' || layout === 'cnetcmpgnent'">
+            <h1>
+              Start Your <span *ngIf="layout === 'cnetcmpgnteams'">Teams<br /></span
+              ><span *ngIf="layout === 'cnetcmpgnent'">Enterprise</span> Free Trial Now
+            </h1>
+            <h2>
+              Millions of individuals, teams, and organizations worldwide trust Bitwarden for secure
+              password storage and sharing.
+            </h2>
+            <p>Collaborate and share securely</p>
+            <p>Deploy and manage quickly and easily</p>
+            <p>Access anywhere on any device</p>
+            <p>Create your account to get started</p>
+          </div>
+
+          <!-- CNET Campaign Premium Body -->
+          <div *ngIf="layout === 'cnetcmpgnind'">
+            <h1>Start Your Premium Account Now</h1>
+            <h2>
+              Millions of individuals, teams, and organizations worldwide trust Bitwarden for secure
+              password storage and sharing.
+            </h2>
+            <p>Store logins, secure notes, and more</p>
+            <p>Secure your account with advanced two-step login</p>
+            <p>Access anywhere on any device</p>
+            <p>Create your account to get started</p>
           </div>
         </div>
       </div>
@@ -51,7 +107,7 @@
                 <app-callout
                   title="{{ 'createOrganizationStep1' | i18n }}"
                   type="info"
-                  icon="fa-thumb-tack"
+                  icon="bwi bwi-thumb-tack"
                   *ngIf="showCreateOrgMessage"
                 >
                   {{ "createOrganizationCreatePersonalAccount" | i18n }}
@@ -114,11 +170,11 @@
                         (click)="togglePassword(false)"
                       >
                         <i
-                          class="fa fa-lg"
+                          class="bwi bwi-lg"
                           aria-hidden="true"
                           [ngClass]="{
-                            'fa-eye': !showPassword,
-                            'fa-eye-slash': showPassword
+                            'bwi-eye': !showPassword,
+                            'bwi-eye-slash': showPassword
                           }"
                         ></i>
                       </button>
@@ -146,9 +202,9 @@
                       (click)="togglePassword(true)"
                     >
                       <i
-                        class="fa fa-lg"
+                        class="bwi bwi-lg"
                         aria-hidden="true"
-                        [ngClass]="{ 'fa-eye': !showPassword, 'fa-eye-slash': showPassword }"
+                        [ngClass]="{ 'bwi-eye': !showPassword, 'bwi-eye-slash': showPassword }"
                       ></i>
                     </button>
                   </div>
@@ -197,7 +253,7 @@
                   >
                     <span>{{ "submit" | i18n }}</span>
                     <i
-                      class="fa fa-spinner fa-spin"
+                      class="bwi bwi-spinner bwi-spin"
                       title="{{ 'loading' | i18n }}"
                       aria-hidden="true"
                     ></i>
@@ -210,6 +266,89 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-7 d-flex align-items-center">
+        <div
+          *ngIf="
+            layout === 'cnetcmpgnent' || layout === 'cnetcmpgnteams' || layout === 'cnetcmpgnind'
+          "
+        >
+          <figure>
+            <figcaption>
+              <cite>
+                <img
+                  src="../../images/register-layout/cnet-logo.svg"
+                  class="w-25 d-block mx-auto"
+                  alt="cnet logo"
+                />
+              </cite>
+            </figcaption>
+            <blockquote class="mx-auto text-center px-4">
+              "No more excuses; start using Bitwarden today. The identity you save could be your
+              own. The money definitely will be."
+            </blockquote>
+          </figure>
+        </div>
+
+        <div
+          *ngIf="
+            layout === 'teams' ||
+            layout === 'teams1' ||
+            layout === 'teams2' ||
+            layout === 'enterprise' ||
+            layout === 'enterprise1' ||
+            layout === 'enterprise2' ||
+            layout === 'default'
+          "
+        >
+          <figure>
+            <figcaption>
+              <cite>
+                <img
+                  src="../../images/register-layout/forbes-logo.svg"
+                  class="w-25 d-block mx-auto"
+                  alt="Forbes Logo"
+                />
+              </cite>
+            </figcaption>
+            <blockquote class="mx-auto text-center px-4">
+              “Bitwarden boasts the backing of some of the world's best security experts and an
+              attractive, easy-to-use interface”
+            </blockquote>
+          </figure>
+        </div>
+      </div>
+      <div
+        *ngIf="
+          layout === 'cnetcmpgnent' || layout === 'cnetcmpgnteams' || layout === 'cnetcmpgnind'
+        "
+        class="col-5 d-flex align-items-center justify-content-center"
+      >
+        <img
+          src="../../images/register-layout/usnews-360-badge.svg"
+          class="w-50 d-block"
+          alt="US News 360 Reviews Best Password Manager"
+        />
+      </div>
+      <div
+        *ngIf="
+          layout === 'teams' ||
+          layout === 'teams1' ||
+          layout === 'teams2' ||
+          layout === 'enterprise' ||
+          layout === 'enterprise1' ||
+          layout === 'enterprise2' ||
+          layout === 'default'
+        "
+        class="col-5 d-flex align-items-center justify-content-center"
+      >
+        <img
+          src="../../images/register-layout/usnews-360-badge.svg"
+          class="w-50 d-block"
+          alt="US News 360 Reviews Best Password Manager"
+        />
       </div>
     </div>
   </form>
