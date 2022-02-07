@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, Injector, NgModule } from "@angular/core";
+import { APP_INITIALIZER, NgModule } from "@angular/core";
 import { ToastrModule } from "ngx-toastr";
 
 import { BroadcasterMessagingService } from "../../services/broadcasterMessaging.service";
@@ -20,7 +20,6 @@ import { RouterService } from "./router.service";
 import { JslibServicesModule } from "jslib-angular/services/jslib-services.module";
 import { ModalService as ModalServiceAbstraction } from "jslib-angular/services/modal.service";
 
-import { AuthService } from "jslib-common/services/auth.service";
 import { ContainerService } from "jslib-common/services/container.service";
 import { CryptoService } from "jslib-common/services/crypto.service";
 import { EventService as EventLoggingService } from "jslib-common/services/event.service";
@@ -28,7 +27,6 @@ import { ImportService } from "jslib-common/services/import.service";
 import { VaultTimeoutService } from "jslib-common/services/vaultTimeout.service";
 
 import { ApiService as ApiServiceAbstraction } from "jslib-common/abstractions/api.service";
-import { AuthService as AuthServiceAbstraction } from "jslib-common/abstractions/auth.service";
 import { CipherService as CipherServiceAbstraction } from "jslib-common/abstractions/cipher.service";
 import { CollectionService as CollectionServiceAbstraction } from "jslib-common/abstractions/collection.service";
 import { CryptoService as CryptoServiceAbstraction } from "jslib-common/abstractions/crypto.service";
@@ -49,6 +47,7 @@ import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from "jslib-c
 import { StateService as BaseStateServiceAbstraction } from "jslib-common/abstractions/state.service";
 import { StateMigrationService as StateMigrationServiceAbstraction } from "jslib-common/abstractions/stateMigration.service";
 import { StorageService as StorageServiceAbstraction } from "jslib-common/abstractions/storage.service";
+import { TwoFactorService as TwoFactorServiceAbstraction } from "jslib-common/abstractions/twoFactor.service";
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from "jslib-common/abstractions/vaultTimeout.service";
 
 import { ThemeType } from "jslib-common/enums/themeType";
@@ -68,7 +67,7 @@ export function initFactory(
   vaultTimeoutService: VaultTimeoutService,
   i18nService: I18nService,
   eventLoggingService: EventLoggingService,
-  authService: AuthService,
+  twoFactorService: TwoFactorServiceAbstraction,
   stateService: StateServiceAbstraction,
   platformUtilsService: PlatformUtilsServiceAbstraction,
   cryptoService: CryptoServiceAbstraction
@@ -86,7 +85,7 @@ export function initFactory(
     const locale = await stateService.getLocale();
     await i18nService.init(locale);
     eventLoggingService.init(true);
-    authService.init();
+    twoFactorService.init();
     const htmlEl = window.document.documentElement;
     htmlEl.classList.add("locale_" + i18nService.translationLocale);
 
@@ -118,7 +117,7 @@ export function initFactory(
         VaultTimeoutServiceAbstraction,
         I18nServiceAbstraction,
         EventLoggingServiceAbstraction,
-        AuthServiceAbstraction,
+        TwoFactorServiceAbstraction,
         StateServiceAbstraction,
         PlatformUtilsServiceAbstraction,
         CryptoServiceAbstraction,
