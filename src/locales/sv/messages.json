@@ -316,7 +316,7 @@
     "message": "Efternamn"
   },
   "fullName": {
-    "message": "Full Name"
+    "message": "Fullständigt namn"
   },
   "address1": {
     "message": "Adress 1"
@@ -4325,6 +4325,9 @@
   "updateMasterPasswordWarning": {
     "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
   },
+  "masterPasswordInvalidWarning": {
+    "message": "Your Master Password does not meet the policy requirements of this organization. In order to join the organization, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+  },
   "maximumVaultTimeout": {
     "message": "Vault Timeout"
   },
@@ -4561,7 +4564,7 @@
     "message": "Redeemed Account"
   },
   "revokeAccount": {
-    "message": "Revoke account $NAME$",
+    "message": "Återkalla konto $NAME$",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4615,7 +4618,7 @@
     "message": "Key Connector URL"
   },
   "sendVerificationCode": {
-    "message": "Skicka en verifieringskod till din e-post"
+    "message": "Skicka en verifieringskod till din e-postadress"
   },
   "sendCode": {
     "message": "Skicka kod"
@@ -4624,7 +4627,7 @@
     "message": "Kod har skickats"
   },
   "verificationCode": {
-    "message": "Verification Code"
+    "message": "Verifieringskod"
   },
   "confirmIdentity": {
     "message": "Bekräfta din identitet för att fortsätta."
@@ -4633,7 +4636,7 @@
     "message": "Verification code is required."
   },
   "invalidVerificationCode": {
-    "message": "Invalid verification code"
+    "message": "Ogiltig verifieringskod"
   },
   "convertOrganizationEncryptionDesc": {
     "message": "$ORGANIZATION$ is using SSO with a self-hosted key server. A master password is no longer required to log in for members of this organization.",
