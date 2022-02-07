@@ -4,6 +4,7 @@ module.exports = {
   prefix: "tw-",
   content: ["./src/**/*.{html,ts}", "./jslib/components/src/**/*.{html,ts}"],
   safelist: [],
+  corePlugins: { preflight: false },
   theme: {
     colors: {
       transparent: colors.transparent,
