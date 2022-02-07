@@ -21,7 +21,7 @@ export class BillingSyncApiKeyComponent {
   formPromise: Promise<ApiKeyResponse>;
   clientSecret?: string;
   keyRevisionDate?: Date;
-  lastSyncDate?: Date;
+  lastSyncDate?: Date = null;
   
   constructor(
     private userVerificationService: UserVerificationService,
@@ -96,7 +96,7 @@ export class BillingSyncApiKeyComponent {
     // 1. If last sync date is null, don't show anything
     // 2. If last sync date is greater than key revision date, show last sync on X
 
-    if (this.lastSyncDate) {
+    if (this.lastSyncDate !== null) {
       if (this.keyRevisionDate > this.lastSyncDate) {
         return 'awaiting sync with new token';
       } else {
