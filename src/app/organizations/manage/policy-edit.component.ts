@@ -83,7 +83,7 @@ export class PolicyEditComponent {
     try {
       request = await this.policyComponent.buildRequest(this.policiesEnabledMap);
     } catch (e) {
-      this.platformUtilsService.showToast("error", null, e);
+      this.platformUtilsService.showToast("error", null, e.message);
       return;
     }
 
