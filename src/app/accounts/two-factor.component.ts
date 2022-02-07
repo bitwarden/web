@@ -9,6 +9,7 @@ import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
+import { TwoFactorService } from "jslib-common/abstractions/twoFactor.service";
 
 import { ModalService } from "jslib-angular/services/modal.service";
 
@@ -36,7 +37,8 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
     environmentService: EnvironmentService,
     private modalService: ModalService,
     route: ActivatedRoute,
-    logService: LogService
+    logService: LogService,
+    twoFactorService: TwoFactorService
   ) {
     super(
       authService,
@@ -48,7 +50,8 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
       environmentService,
       stateService,
       route,
-      logService
+      logService,
+      twoFactorService
     );
     this.onSuccessfulLoginNavigate = this.goAfterLogIn;
   }
