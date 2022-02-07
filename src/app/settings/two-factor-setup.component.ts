@@ -5,7 +5,7 @@ import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { StateService } from "jslib-common/abstractions/state.service";
 
-import { TwoFactorProviders } from "jslib-common/services/auth.service";
+import { TwoFactorProviders } from "jslib-common/services/twoFactor.service";
 
 import { ModalService } from "jslib-angular/services/modal.service";
 
