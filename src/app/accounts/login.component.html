@@ -70,21 +70,27 @@
           <hr />
           <div class="d-flex">
             <button
+              class="btn-submit tw-mr-2"
               type="submit"
-              class="btn btn-primary btn-block btn-submit"
+              bit-button
+              block="true"
               [disabled]="form.loading"
             >
-              <span> <i class="bwi bwi-sign-in" aria-hidden="true"></i> {{ "logIn" | i18n }} </span>
+              <span><i class="bwi bwi-sign-in" aria-hidden="true"></i> {{ "logIn" | i18n }}</span>
               <i
                 class="bwi bwi-spinner bwi-spin"
                 title="{{ 'loading' | i18n }}"
                 aria-hidden="true"
               ></i>
             </button>
+
             <a
               routerLink="/register"
               [queryParams]="{ email: email }"
-              class="btn btn-outline-secondary btn-block ml-2 mt-0"
+              bit-button
+              block="true"
+              mode="secondary"
+              buttonType="outline"
             >
               <i class="bwi bwi-pencil-square-o" aria-hidden="true"></i>
               {{ "createAccount" | i18n }}
@@ -95,7 +101,6 @@
               <i class="bwi bwi-bank" aria-hidden="true"></i> {{ "enterpriseSingleSignOn" | i18n }}
             </a>
           </div>
-          <storybook-button>Test</storybook-button>
         </div>
       </div>
     </div>

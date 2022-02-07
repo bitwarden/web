@@ -54,6 +54,16 @@ const moduleRules = [
     ],
   },
   {
+    test: /\.css$/,
+    use: [
+      {
+        loader: MiniCssExtractPlugin.loader,
+      },
+      "css-loader",
+      "postcss-loader",
+    ],
+  },
+  {
     test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
     loader: "@ngtools/webpack",
   },
