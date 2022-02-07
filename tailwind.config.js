@@ -3,18 +3,7 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   prefix: "tw-",
   content: ["./src/**/*.{html,ts}", "./jslib/components/src/**/*.{html,ts}"],
-  safelist: [
-    {
-      pattern: /tw-(border|bg)-(primary|secondary)/,
-    },
-    {
-      pattern: /tw-text-(primary|secondary)-btn-text/,
-    },
-    {
-      pattern: /tw-bg-(primary|secondary)/,
-      variants: ["hover"],
-    },
-  ],
+  safelist: [],
   theme: {
     colors: {
       transparent: colors.transparent,
