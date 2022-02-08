@@ -158,16 +158,16 @@
     "message": "透過拖曳來排序"
   },
   "cfTypeText": {
-    "message": "文字"
+    "message": "文字型"
   },
   "cfTypeHidden": {
-    "message": "隱藏"
+    "message": "隱藏型"
   },
   "cfTypeBoolean": {
     "message": "布林值"
   },
   "cfTypeLinked": {
-    "message": "已連結",
+    "message": "連結型",
     "description": "This describes a field that is 'linked' (related) to another field."
   },
   "remove": {
@@ -2176,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "您確定要移除該使用者？"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "警告！這位使用者需要 Key Connector 管理他們的加密方式。從您的組織中移除這位使用者，會永久停用他們的帳戶。此操作無法撤銷，是否繼續？"
+  },
   "externalId": {
     "message": "外部 ID"
   },
@@ -2656,6 +2659,9 @@
   "resendInvitation": {
     "message": "重新傳送邀請"
   },
+  "resendEmail": {
+    "message": "重寄電子郵件"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ 已被重新邀請。",
     "placeholders": {
@@ -2950,6 +2956,15 @@
       }
     }
   },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "您的訂閱允許總共 $COUNT$ 位使用者。您的方案由外部組織贊助和支付費用。",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
   "subscriptionMaxReached": {
     "message": "對您的訂閱進行調整將導致按比例變更您的帳單總額。在不增加訂閱席位的情況下，您不能邀請超過 $COUNT$ 個使用者。",
     "placeholders": {
@@ -3149,7 +3164,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "請勿再次要求驗證指紋短語",
+    "message": "不再提示驗證已邀請使用者的指紋短語（不推薦）",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -3394,7 +3409,7 @@
     "message": "設定主密碼"
   },
   "ssoCompleteRegistration": {
-    "message": "要完成 SSO 登入，請設定一個主密碼以存取和保護您的密碼庫。"
+    "message": "要完成 SSO 登入配置，請設定一個主密碼以存取和保護您的密碼庫。"
   },
   "identifier": {
     "message": "識別符"
@@ -3428,6 +3443,9 @@
   },
   "unlinkSso": {
     "message": "取消連結 SSO"
+  },
+  "unlinkSsoConfirmation": {
+    "message": "您確定要取消本組織的 SSO 連結嗎？"
   },
   "linkSso": {
     "message": "連結 SSO"
@@ -3511,14 +3529,14 @@
     "message": "逾期日期"
   },
   "expirationDateDesc": {
-    "message": "如果設定了，對此 Send 的存取將在指定的日期和時間后逾期。",
+    "message": "如果設定此選項，對此 Send 的存取將在指定的日期和時間後逾期。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "maxAccessCount": {
     "message": "最大存取次數"
   },
   "maxAccessCountDesc": {
-    "message": "如果設定了，達到最大存取次數后，使用者將無法存取此 Send。",
+    "message": "如果設定此選項，當達到最大存取次數時，使用者將無法再次存取此 Send。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
@@ -3887,7 +3905,7 @@
     "message": "為組織使用者禁用個人擁有權。"
   },
   "textHiddenByDefault": {
-    "message": "存取此 Send 時，預設將隱藏文本",
+    "message": "存取此 Send 時，預設將隱藏文字",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
@@ -4305,7 +4323,10 @@
     "message": "更新主密碼"
   },
   "updateMasterPasswordWarning": {
-    "message": "您的主密碼最近被您的組織管理者變更過。要存取密碼庫，您必須現在更新主密碼。繼續操作會登出目前的登入階段，要求您重新登入。其他裝置上使用中的登入階段可能持續最長一個小時。"
+    "message": "您的主密碼最近被您的組織管理者變更過。您必須現在更新主密碼才能存取密碼庫。繼續操作會登出您目前的會話，並要求您重新登入。其他裝置上的活動會話可能會持續長達一個小時。"
+  },
+  "masterPasswordInvalidWarning": {
+    "message": "您的主密碼不符合此組織原則的要求。您必須現在更新主密碼才可以才加入此組織。繼續操作會登出您目前的會話，並要求您重新登入。其他裝置上的活動會話可能會持續長達一個小時。"
   },
   "maximumVaultTimeout": {
     "message": "密碼庫逾時時長"
@@ -4473,6 +4494,123 @@
   "ssoSettingsSaved": {
     "message": "單一登入配置已儲存。"
   },
+  "sponsoredFamilies": {
+    "message": "免費的 Bitwarden 家庭"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "您與家庭成員可使用免費的 Bitwarden 家庭方案。以即使您不在公司上班，也可以使用您的私人電子郵件來兌換此方案，以保護您的資料安全。"
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "立即兌換您的免費 Bitwarden 家庭方案，以保護您的資料安全，即使您不在公司上班也可以。"
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Bitwarden 家庭方案內容包含"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "最多 6 位使用者的付費方案存取權限"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "用於家庭間共享帳號密碼的集合"
+  },
+  "badToken": {
+    "message": "連結已經失效。請讓贊助人重寄邀請。"
+  },
+  "reclaimedFreePlan": {
+    "message": "已回收免費方案"
+  },
+  "redeem": {
+    "message": "兌換"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "選擇您希望被贊助的組織"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "您想兌換哪一個免費家庭邀請呢？"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "輸入您的私人電子郵件以兌換 Bitwarden 家庭"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "如果您離開或被從該組織中移除，您的家庭方案將在計費周期結束時逾期。"
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "接受現有組織的邀請或創建一個新的家庭組織。"
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "您被邀請加入一個免費的 Bitwarden 家庭方案組織。若要繼續，您需要登入到接受邀請的帳戶。"
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "無法接受邀請。請透過您的企業帳戶重寄邀請電子郵件，然後重試。"
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "無法接受邀請。$DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "接受免費 Bitwarden 家庭"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "免費 Bitwarden 家庭邀請已成功兌換"
+  },
+  "redeemed": {
+    "message": "已兌換"
+  },
+  "redeemedAccount": {
+    "message": "已兌換帳戶"
+  },
+  "revokeAccount": {
+    "message": "撤銷帳戶 $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "重寄贊助郵件到 $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "免費家庭方案"
+  },
+  "redeemNow": {
+    "message": "現在就兌換"
+  },
+  "recipient": {
+    "message": "收件人"
+  },
+  "removeSponsorship": {
+    "message": "移除贊助"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "移除贊助後，您將自己負責此訂閱和相關的賬單。您確定要繼續嗎？"
+  },
+  "sponsorshipCreated": {
+    "message": "贊助已創建"
+  },
+  "revoke": {
+    "message": "撤銷"
+  },
+  "emailSent": {
+    "message": "郵件已寄出"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "移除此帳戶後，家庭組織的所有者將負責此訂閱和相關的賬單。您確定要繼續嗎？"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "贊助已移除"
+  },
   "ssoKeyConnectorUnavailable": {
     "message": "無法連線到 Key Connector。請稍後再試。"
   },
@@ -4486,7 +4624,7 @@
     "message": "傳送驗證碼"
   },
   "codeSent": {
-    "message": "已送出驗證碼"
+    "message": "驗證碼已送出"
   },
   "verificationCode": {
     "message": "驗證碼"
@@ -4567,9 +4705,39 @@
     "message": "已停用 Key Connector"
   },
   "keyConnectorWarning": {
-    "message": "一旦成員開始使用 Key Connector，您的組織將無法復原為主密碼解謎。僅當您願意部署和託管金輪伺服器時再繼續。"
+    "message": "一旦成員開始使用 Key Connector，您的組織將無法復原為使用主密碼解密。僅當您可以輕鬆地部署和管理金輪伺服器時再繼續。"
   },
   "migratedKeyConnector": {
     "message": "已移轉到 Key Connector"
+  },
+  "paymentSponsored": {
+    "message": "請提供一個與此組織關聯的付款方式。別擔心，我們不會向您收取任何費用，除非您選擇進階功能或您的贊助到期。 "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "贊助邀請已逾期，您可以删除您創建的組織，以避免在 7 天試用期結束時收取費用。 您也可以關閉此提示以保留該組織並承擔計費責任。"
+  },
+  "newFamiliesOrganization": {
+    "message": "新的家庭組織"
+  },
+  "acceptOffer": {
+    "message": "接受邀請"
+  },
+  "sponsoringOrg": {
+    "message": "贊助組織"
+  },
+  "keyConnectorTest": {
+    "message": "測試"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "成功！Key Connector 已連接。"
+  },
+  "keyConnectorTestFail": {
+    "message": "無法連接 Key Connector。請檢查 URL。"
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "此贊助邀請已逾期。"
+  },
+  "freeWithSponsorship": {
+    "message": "免費贊助"
   }
 }
