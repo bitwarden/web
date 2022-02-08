@@ -1,0 +1,2 @@
+!function(){const e="light",t=document.documentElement;let l=e;const s=window.localStorage.getItem("global");if(null!=s){const e=JSON.parse(s);null!=e&&null!=e.theme&&(e.theme.indexOf("system")>-1?l=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light":e.theme.indexOf("dark")>-1&&(l="dark")),t.classList.contains("theme_"+l)||(t.classList.remove("theme_light"),t.classList.add("theme_"+l))}}();
+//# sourceMappingURL=theme_head.5f24ba8d7aa944e6f52b.js.map

@@ -2176,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "Vai tiešām noņemt šo lietotāju?"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Uzmanību! Šim lietotājam ir nepieciešams Key Connector, lai pārvaldītu šifrēšanu. Lietotāja noņemšana no apvienības neatgriezeniski atspējos viņa kontu. Šī darbība nevar tikt atdarīta. Vai turpināt?"
+  },
   "externalId": {
     "message": "Ārējais ID"
   },
@@ -2656,6 +2659,9 @@
   "resendInvitation": {
     "message": "Atkārtoti nosūtīt uzaicinājumu"
   },
+  "resendEmail": {
+    "message": "Atkārtoti nosūtīt e-pastu"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ tika atkārtoti uzaicināts.",
     "placeholders": {
@@ -2943,6 +2949,15 @@
   },
   "subscriptionFamiliesPlan": {
     "message": "Nevar uzaicināt vairāk kā $COUNT$ lietotāju(s) bez plāna paaugstināšanas. Lūgums sazināties ar klientu atbalstu, lai to izdarītu.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Abonements pieļauj $COUNT$ lietotāju(s). Plānu ir apmaksāts un norēķinus veic ārēja apvienība.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3428,6 +3443,9 @@
   },
   "unlinkSso": {
     "message": "Atsaistīt SSO"
+  },
+  "unlinkSsoConfirmation": {
+    "message": "Vai tiešām atsaistīt vienoto pieteikšanos šai apvienībai?"
   },
   "linkSso": {
     "message": "Piesaistīt SSO"
@@ -4049,7 +4067,7 @@
     }
   },
   "firstSsoLogin": {
-    "message": "$ID$ logged in using Sso for the first time",
+    "message": "$ID$ pirmo reizi pierakstījās izmantojot vienoto pieteikšanos",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4307,6 +4325,9 @@
   "updateMasterPasswordWarning": {
     "message": "Apvienības pārvaldnieks nesen nomainīja galveno paroli. Lai piekļūtu glabātavai, tā ir jāatjaunina. Turpinot tiks izbeigta pašreizējā sesija un tiks pieprasīta atkārtota pierakstīšanās. Esošās sesijas citās iekārtās var turpināt darboties līdz vienai stundai."
   },
+  "masterPasswordInvalidWarning": {
+    "message": "Galvenā parole neatbilst apvienības nosacījumu prasībām. Lai pievienotos apvienībai, ir nepieciešams atjaunināt galveno paroli. Turpinot notiks izrakstīšanās no pašreizējās sesijas, pieprasot atkal pierakstīties. Esošās sesijas citās iekārtās var turpināt darboties līdz vienai stundai."
+  },
   "maximumVaultTimeout": {
     "message": "Glabātavas noildze"
   },
@@ -4473,6 +4494,123 @@
   "ssoSettingsSaved": {
     "message": "Vienotās pieteikšanās uzstādījumi tika saglabāti."
   },
+  "sponsoredFamilies": {
+    "message": "Bezmaksas Bitwarden ģimenēm"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Tu un Tava ģimene esat atbilstīgi bezmaksas Bitwarden Families. Piesakies ar personīgo e-pasta adresi, lai turētu datus drošībā pat tad, kad neesi darbā!"
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Izmanto savu bezmaksas Bitwarden ģimenēm šodien, lai turētu datus drošībā pat tad, kad neesi darbā."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Bitwarden ģimenēm iekļauj"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Premium piekļuve līdz 6 lietotājiem"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Ģimenes noslēpumu kopīgotie krājumi"
+  },
+  "badToken": {
+    "message": "Saite vairs nav derīga. Lūdz pabalstītāju atkārtoti nosūtīt piedāvājumu!"
+  },
+  "reclaimedFreePlan": {
+    "message": "Mainīts uz bezmaksas plānu"
+  },
+  "redeem": {
+    "message": "Izmantot"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Atlastīt apvienību, kuru atbalstīt"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Kuru bezmaksas ģimeņu piedāvājumu Tu vēlies izmantot?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Ievadīt personīgo e-pasta adresi, lai izmantotu Bitwarden ģimenēm"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Ja Tu pamet vai tiec noņemts no atbalstošās apvienības, Tavs ģimeņu plāns beigsies apmaksas laika posma beigās."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Pieņemt piedāvājumu esošai apvienībai vai izveidot jaunu ģimenes apvienību."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Tev ir piedāvāta bezmaksas Bitwarden ģimenēm apvienība. Lai turpinātu, ir nepieciešams pierakstītites kontā, kas saņēma piedāvājumu."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Nav iespējams pieņemt piedāvājumu. Lūgums pārsūtīt piedāvājuma e-pasta ziņu no uzņēmējdarbības konta un mēģināt vēlreiz."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Nav iespējams apstiprināt piedāvājumu. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Pieņemt bezmaksas Bitwarden ģimenēm"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Bezmaksas Bitwarden ģimenēm piedāvājums veiksmīgi izmantots"
+  },
+  "redeemed": {
+    "message": "Izmantots"
+  },
+  "redeemedAccount": {
+    "message": "Izmantots konts"
+  },
+  "revokeAccount": {
+    "message": "Atsaukt kontu $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Pārsūtīt $NAME$ pabalstītājdarbības e-pasta ziņojumu",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Bezmaksas ģimenes plāns"
+  },
+  "redeemNow": {
+    "message": "Izmantot tagad"
+  },
+  "recipient": {
+    "message": "Saņēmējs"
+  },
+  "removeSponsorship": {
+    "message": "Noņemt pabalstītājdarbību"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "Pēc pabalstītājdarbības noņemšanas Tu būsi atbildīgs par šo abonementu un saistītajiem rēķiniem. Vai tiešām turpināt?"
+  },
+  "sponsorshipCreated": {
+    "message": "Izveidota pabalstītājdarbība"
+  },
+  "revoke": {
+    "message": "Atsaukt"
+  },
+  "emailSent": {
+    "message": "E-pasts nosūtīts"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "Pēc šī konta noņemšanas, ģimenes apvienības īpašnieks būsi atbildīgs par šo abonementu un saistītajiem rēķiniem. Vai tiešām turpināt?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Noņemta pabalstītājdarbība"
+  },
   "ssoKeyConnectorUnavailable": {
     "message": "Nav iespējams sasniegt Key Connector, tāpēc vēlāk jāmēģina atkal."
   },
@@ -4480,19 +4618,19 @@
     "message": "Key Connector URL"
   },
   "sendVerificationCode": {
-    "message": "Send a verification code to your email"
+    "message": "Sūtīt apstiprinājuma kodu uz e-pastu"
   },
   "sendCode": {
-    "message": "Send Code"
+    "message": "Nosūtīt kodu"
   },
   "codeSent": {
-    "message": "Code Sent"
+    "message": "Kods nosūtīts"
   },
   "verificationCode": {
     "message": "Apstiprinājuma kods"
   },
   "confirmIdentity": {
-    "message": "Confirm your identity to continue."
+    "message": "Apstiprināt identitāti, lai turpinātu."
   },
   "verificationCodeRequired": {
     "message": "Ir nepieciešams apstiprinājuma kods."
@@ -4571,5 +4709,35 @@
   },
   "migratedKeyConnector": {
     "message": "Pāriets uz Key Connector"
+  },
+  "paymentSponsored": {
+    "message": "Lūgums norādīt maksājumu veidu, ko piesaistīt apvienībai. Satraukties nevajag, jo iemaksa netiks ieturēta, ja vien netiks izvēlētas papildu iespējas vai kad izbeigsies pabalstītājdarbība. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "Atbalsta piedāvājums ir beidzies. Ir iespējams izdzēst izveidoto apvienību, lai izvairītos no maksas pēc 7 dienu izmēģinājuma laika. Pretējā gadījumā šo uzvedni, lai turpinātu izmantot apvienību un uzņemtos atbildību par norēķiniem."
+  },
+  "newFamiliesOrganization": {
+    "message": "Jauna ģimeņu apvienība"
+  },
+  "acceptOffer": {
+    "message": "Pieņemt piedāvājumu"
+  },
+  "sponsoringOrg": {
+    "message": "Atbalstoša apvienība"
+  },
+  "keyConnectorTest": {
+    "message": "Pārbaude"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Panākums! Key Connector sasniegts."
+  },
+  "keyConnectorTestFail": {
+    "message": "Nav iespējams sasniegt Key Connector. Jāpārbauda URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "Atbalsta piedāvājums ir beidzies."
+  },
+  "freeWithSponsorship": {
+    "message": "Bezmaksas ar pabalstītājdarbību"
   }
 }
