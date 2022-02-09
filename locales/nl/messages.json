@@ -1344,7 +1344,7 @@
     "message": "Volg deze stappen voor het instellen van tweestapsaanmelding met e-mail:"
   },
   "twoFactorEmailEnterEmail": {
-    "message": "Voer de e-mailadres in waar je de verificatiecodes wilt ontvangen"
+    "message": "Voer het e-mailadres in waar je de verificatiecodes op wilt ontvangen"
   },
   "twoFactorEmailEnterCode": {
     "message": "Voer de 6-cijferige verificatiecode uit de e-mail in"
@@ -2176,6 +2176,9 @@
   "removeUserConfirmation": {
     "message": "Weet je zeker dat je deze gebruiker wilt verwijderen?"
   },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Waarschuwing! Deze gebruiker vereist de Key Connector om de versleuteling te beheren. Als je deze gebruiker uit je organisatie verwijdert, wordt zijn account permanent uitgeschakeld. Deze actie kan niet ongedaan worden gemaakt. Wil je doorgaan?"
+  },
   "externalId": {
     "message": "Externe ID"
   },
@@ -2656,6 +2659,9 @@
   "resendInvitation": {
     "message": "Uitnodiging opnieuw versturen"
   },
+  "resendEmail": {
+    "message": "E-mail opnieuw versturen"
+  },
   "hasBeenReinvited": {
     "message": "$USER$ is opnieuw uitgenodigd.",
     "placeholders": {
@@ -2943,6 +2949,15 @@
   },
   "subscriptionFamiliesPlan": {
     "message": "Je kunt niet meer dan $COUNT$ gebruikers uitnodigen zonder je abonnement te upgraden. Neem contact op met Customer Support om te upgraden.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Je abonnement staat $COUNT$ gebruikers toe. Je abonnement wordt gesponsord en gefactureerd aan een externe organisatie.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3428,6 +3443,9 @@
   },
   "unlinkSso": {
     "message": "SSO ontkoppelen"
+  },
+  "unlinkSsoConfirmation": {
+    "message": "Weet je zeker dat je SSO voor deze organisatie wilt ontkoppelen?"
   },
   "linkSso": {
     "message": "SSO koppelen"
@@ -4307,6 +4325,9 @@
   "updateMasterPasswordWarning": {
     "message": "Je hoofdwachtwoord is onlangs veranderd door een beheerder in jouw organisatie. Om toegang te krijgen tot de kluis, moet je deze nu bijwerken. Doorgaan zal je huidige sessie uitloggen, waarna je opnieuw moet inloggen. Actieve sessies op andere apparaten blijven mogelijk nog een uur actief."
   },
+  "masterPasswordInvalidWarning": {
+    "message": "Je hoofdwachtwoord voldoet niet aan het beleid van deze organisatie. Om lid te worden van deze organisatie, moet je nu je hoofdwachtwoord veranderen. Als je doorgaat moet je opnieuw inloggen. Sessies op andere apparaten blijven mogelijk nog een uur actief."
+  },
   "maximumVaultTimeout": {
     "message": "Time-out van de kluis"
   },
@@ -4473,8 +4494,125 @@
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuratie is opgeslagen."
   },
+  "sponsoredFamilies": {
+    "message": "Gratis Bitwarden Families"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Jij en je familie komen in aanmerking voor gratis Bitwarden Families. Verzilver met je persoonlijke e-mail om je gegevens veilig te houden, zelfs als je niet op het werk bent."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Verzilver je gratis Bitwarden Families vandaag om je gegevens veilig te houden, zelfs wanneer je niet aan het werk bent."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Bitwarden Families omvat"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Premium-toegang voor maximaal 6 gebruikers"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Gedeelde collecties voor familiegeheimen"
+  },
+  "badToken": {
+    "message": "De link is niet langer geldig. Zorg ervoor dat de sponsors de uitnodiging opnieuw versturen."
+  },
+  "reclaimedFreePlan": {
+    "message": "Gratis abonnement hergebruikt"
+  },
+  "redeem": {
+    "message": "Verzilveren"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Selecteer de organisatie die je wilt sponsoren"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Welke gratis Families wil je inwisselen?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Voer je persoonlijke e-mailadres in om Bitwarden Families te verzilveren"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Als je vertrekt of verwijderd wordt uit deze organisatie, vervalt je Families-plan aan het einde van de factureringsperiode."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Accepteer aanbod voor een bestaande organisatie of maak een nieuwe Families-organisatie aan."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Je hebt een gratis Bitwarden Families Plan-organisatie aangeboden gekregen. Om door te gaan, moet je inloggen op het account dat de aanbieding heeft ontvangen."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Kan aanbieding niet accepteren. Verstuur de aanbieding opnieuw via je bedrijfsaccount en probeer het opnieuw."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Kan aanbieding niet accepteren. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Gratis Bitwarden Families-organisatieaanbod verzilveren"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Gratis Bitwarden Families-aanbod succesvol verzilverd"
+  },
+  "redeemed": {
+    "message": "Verzilverd"
+  },
+  "redeemedAccount": {
+    "message": "Account verzilverd"
+  },
+  "revokeAccount": {
+    "message": "Account $NAME$ intrekken",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Sponsoring e-mail opnieuw verzenden naar $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Gratis Families Plan"
+  },
+  "redeemNow": {
+    "message": "Nu verzilveren"
+  },
+  "recipient": {
+    "message": "Ontvanger"
+  },
+  "removeSponsorship": {
+    "message": "Sponsoring verwijderen"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "Na het verwijderen van sponsoring ben je verantwoordelijk voor dit abonnement en de bijbehorende facturen. Weet je zeker dat je wilt doorgaan?"
+  },
+  "sponsorshipCreated": {
+    "message": "Sponsoring aangemaakt"
+  },
+  "revoke": {
+    "message": "Intrekken"
+  },
+  "emailSent": {
+    "message": "E-mail verzonden"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "Als je dit account verwijderd is de eigenaar van de Families-organisatie verantwoordelijk voor dit abonnement en de bijbehorende facturen. Weet je zeker dat je wilt doorgaan?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Sponsoring verwijderd"
+  },
   "ssoKeyConnectorUnavailable": {
-    "message": "Kan de sleutelconnector niet bereiken, probeer het later opnieuw."
+    "message": "Kan de Key Connector niet bereiken, probeer het later opnieuw."
   },
   "keyConnectorUrl": {
     "message": "Key Connector URL"
@@ -4571,5 +4709,35 @@
   },
   "migratedKeyConnector": {
     "message": "Gemigreerd naar Key Connector"
+  },
+  "paymentSponsored": {
+    "message": "Geef een betalingsmethode om aan de organisatie te koppelen. Maak je geen zorgen, we brengen niets in rekening tenzij je aanvullende functies kiest of je sponsoring verloopt. "
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "De sponsoring is verlopen. Je kunt de organisatie die je hebt aangemaakt verwijderen om kosten aan het einde van je proefperiode van 7 dagen te voorkomen. Anders kun je deze pop-up sluiten om de organisatie te behouden en factureringsverantwoordelijkheid te nemen."
+  },
+  "newFamiliesOrganization": {
+    "message": "Nieuwe Families-oganisatie"
+  },
+  "acceptOffer": {
+    "message": "Aanbod accepteren"
+  },
+  "sponsoringOrg": {
+    "message": "Sponsoringorganisatie"
+  },
+  "keyConnectorTest": {
+    "message": "Test"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Gelukt! Key Connector bereikt."
+  },
+  "keyConnectorTestFail": {
+    "message": "Kan Key Connector niet bereiken. Controleer de URL."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "De sponsoring is verlopen."
+  },
+  "freeWithSponsorship": {
+    "message": "GRATIS met sponsoring"
   }
 }

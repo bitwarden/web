@@ -904,7 +904,7 @@
     "message": "Vaihda sähköpostiosoite"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Jatko vaihtaa tilisi sähköpostiosoitteen, muttei kaksivaiheiseen tunnistamiseen käytettävää osoitetta. Tämän osoitteen voit vaihtaa kaksivaiheisen tunnistautumisen asetuksista."
+    "message": "Jatkamalla tilisi sähköpostiosoite vaihtuu, muttei kaksivaiheiseen kirjautumiseen käytettävä osoite. Sen voit vaihtaa kaksivaiheisen kirjautumisen asetuksista."
   },
   "newEmail": {
     "message": "Uusi sähköpostiosoite"
@@ -1129,16 +1129,16 @@
     "message": "Oletus"
   },
   "domainRules": {
-    "message": "Verkkotunnusten säännöt"
+    "message": "Verkkotunnusten vastaavuudet"
   },
   "domainRulesDesc": {
     "message": "Jos kirjautumistietosi ovat samat useille verkkotunnuksille, voit merkata sivustot vastaavanlaisiksi. Bitwarden on luonut sinulle valmiiksi joitakin globaaleja verkkotunnuksia."
   },
   "globalEqDomains": {
-    "message": "Globaalit vastaavat verkkotunnukset"
+    "message": "Globaalit verkkotunnusten vastaavuudet"
   },
   "customEqDomains": {
-    "message": "Omat vastaavat verkkotunnukset"
+    "message": "Omat verkkotunnusten vastaavuudet"
   },
   "exclude": {
     "message": "Älä käytä sääntöä"
@@ -1884,7 +1884,7 @@
     "message": "Poistettava tallennustila, Gt"
   },
   "storageAddNote": {
-    "message": "Tallennuskapasiteetin lisäys muuttaa kokonaislaskutustasi ja korotus veloitetaan tilillesi tallennetulta maksutavalta välittömästi. Ensimmäinen veloitus sovitetaan tämänhetkisen laskutusjaksosi jäljellä olevalle ajalle."
+    "message": "Tallennuskapasiteetin lisäys muuttaa kokonaislaskutustasi ja korotus veloitetaan tilillesi tallennetulta maksutavalta välittömästi. Ensimmäinen veloitus sovitetaan nykyisen laskutuskautesi jäljellä olevalle ajalle."
   },
   "storageRemoveNote": {
     "message": "Tallennuskapasiteetin vähennys muuttaa kokonaislaskutustasi ja tämä huomioidaan seuraavan veloituksen yhteydessä."
@@ -1991,7 +1991,7 @@
     }
   },
   "planNameFamilies": {
-    "message": "Perheet"
+    "message": "Perheille"
   },
   "planDescFamilies": {
     "message": "Henkilökohtaiseen käyttöön, jaettavaksi perheen ja ystävien kanssa."
@@ -2123,10 +2123,10 @@
     "message": "Organisaatiosi tilausta on päivitetty."
   },
   "leave": {
-    "message": "Poistu"
+    "message": "Eroa"
   },
   "leaveOrganizationConfirmation": {
-    "message": "Haluatko varmasti poistua tästä organisaatiosta?"
+    "message": "Haluatko varmasti erota organisaatiosta?"
   },
   "leftOrganization": {
     "message": "Olet poistunut organisaatiosta."
@@ -2175,6 +2175,9 @@
   },
   "removeUserConfirmation": {
     "message": "Haluatko varmasti poistaa käyttäjän?"
+  },
+  "removeUserConfirmationKeyConnector": {
+    "message": "Varoitus! Tämä käyttäjä tarvitsee salauksensa hallintaan Key Connectoria. Käyttäjän poistaminen organisaatiostasi poistaa heidän tilinsä käytöstä pysvästi. Toimenpide on pysyvä, eikä sen peruminen ole mahdollista. Haluatko jatkaa?"
   },
   "externalId": {
     "message": "Ulkoinen ID"
@@ -2582,7 +2585,7 @@
     }
   },
   "unlinkedSsoUser": {
-    "message": "Yrityksen kertakirjautuminen (SSO) poistettu käyttäjältä $ID$.",
+    "message": "Kertakirjautumisen (SSO) liitos poistettiin käyttäjältä $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2655,6 +2658,9 @@
   },
   "resendInvitation": {
     "message": "Lähetä kutsu uudelleen"
+  },
+  "resendEmail": {
+    "message": "Lähetä sähköposti uudelleen"
   },
   "hasBeenReinvited": {
     "message": "$USER$ on kutsuttu uudelleen.",
@@ -2738,7 +2744,7 @@
     "message": "Kutsun hyväksyntä ei onnistu. Pyydä organisaation ylläpitäjää lähettämään uusi kutsu."
   },
   "inviteAcceptFailedShort": {
-    "message": "Kutsun hyväksyntä ei onnistunut. $DESCRIPTION$",
+    "message": "Kutsua ei voitu hyväksyä. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -2798,7 +2804,7 @@
     "message": "Yhdysvalloissa olevilta asiakkailta vaaditaan postinumero myyntiverotuksen vaatimusten vuoksi. Muiden maiden asiakkaat voivat halutessaan toimittaa verotunnistenumeron (ALV/GST) ja/tai osoitteen, joka kirjataan laskuihin."
   },
   "billingPlan": {
-    "message": "Tilautyyppi",
+    "message": "Tilaustyyppi",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
@@ -2897,7 +2903,7 @@
     "message": "Tilausmuutokset aiheuttavat muutoksia laskutukseesi. Jos hiljattain kutsuttujen käyttäjien määrä ylittää tilauksesi käyttäjäpaikkojen enimmäismäärän, veloitetaan suhteutettu hinta uusista käyttäjistä välittömästi."
   },
   "subscriptionUserSeats": {
-    "message": "Tilauksesi sallii yhteensä $COUNT$ käyttäjää.",
+    "message": "Tilauksesi kattaa kaikkiaan $COUNT$ käyttäjää.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2950,6 +2956,15 @@
       }
     }
   },
+  "subscriptionSponsoredFamiliesPlan": {
+    "message": "Tilauksesi kattaa kaikkiaan $COUNT$ käyttäjää. Tilauksesi on sponsoroitu ja se laskutetaan ulkoiselta organisaatiolta.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "6"
+      }
+    }
+  },
   "subscriptionMaxReached": {
     "message": "Tilausmuutokset johtavat suhteutettuihin muutoksiin laskutuksessasi. Voit kutsua enintään $COUNT$ käyttäjää kasvattamatta tilauksesi käyttäjäpaikkojen määrää.",
     "placeholders": {
@@ -2966,7 +2981,7 @@
     "message": "Poistettavat käyttäjäpaikat"
   },
   "seatsAddNote": {
-    "message": "Käyttäjäpaikkojen lisäys muuttaa kokonaislaskutustasi ja korotus veloitetaan tilillesi tallennetulta maksutavalta välittömästi. Ensimmäinen veloitus sovitetaan tämänhetkisen laskutusjaksosi jäljellä olevalle ajalle."
+    "message": "Käyttäjäpaikkojen lisäys muuttaa kokonaislaskutustasi ja korotus veloitetaan tilillesi tallennetulta maksutavalta välittömästi. Ensimmäinen veloitus sovitetaan nykyisen laskutuskautesi jäljellä olevalle ajalle."
   },
   "seatsRemoveNote": {
     "message": "Käyttäjäpaikkojen vähennys muuttaa kokonaislaskutustasi ja tämä huomioidaan seuraavan veloituksen yhteydessä."
@@ -3149,7 +3164,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Älä pyydä tunnistelausekkeen vahvistusta uudelleen",
+    "message": "Älä koskaan kehota vahvistamaan kutsuttujen käyttäjien tunnistelausekkeita (ei suositella)",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -3429,6 +3444,9 @@
   "unlinkSso": {
     "message": "Poista kertakirjautumisen (SSO) liitos"
   },
+  "unlinkSsoConfirmation": {
+    "message": "Haluatko varmasti poistaa organisaation kertakirjautumisen (SSO) liitoksen?"
+  },
   "linkSso": {
     "message": "Liitä kertakirjautumiseen (SSO)"
   },
@@ -3678,7 +3696,7 @@
     "message": "Kutsun hyväksyntä ei onnistu. Pyydä käyttäjää lähettämään uusi kutsu."
   },
   "emergencyInviteAcceptFailedShort": {
-    "message": "Kutsun hyväksyntä ei onnistunut. $DESCRIPTION$",
+    "message": "Kutsua ei voitu hyväksyä. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -4307,6 +4325,9 @@
   "updateMasterPasswordWarning": {
     "message": "Organisaatiosi ylläpito on hiljattain vaihtanut pääsalasanasi. Käyttääksesi holvia, on sinun päivitettävä se nyt. Tämä uloskirjaa kaikki nykyiset istunnot pakottaen uudelleenkirjautumisen. Muiden laitteiden aktiiviset istunnot saattavat toimia vielä tunnin ajan."
   },
+  "masterPasswordInvalidWarning": {
+    "message": "Pääsalasanasi ei vastaa organisaation käytäntöä. Liittyäksesi organisaatioon, on sinun päivitettävä se nyt. Tämä uloskirjaa kaikki nykyiset istunnot pakottaen uudelleenkirjautumisen. Muiden laitteiden aktiiviset istunnot saattavat toimia vielä tunnin ajan."
+  },
   "maximumVaultTimeout": {
     "message": "Holvin aikakatkaisu"
   },
@@ -4435,7 +4456,7 @@
     "message": "Pienin sallittu Incoming Signing -algoritmi"
   },
   "spWantAssertionsSigned": {
-    "message": "Vaadi Assertion-lähetysten allekirjoitus"
+    "message": "Vaadi Assertion-lähetykset allekirjoitettuina"
   },
   "spValidateCertificates": {
     "message": "Vahvista varmenteet"
@@ -4468,13 +4489,130 @@
     "message": "Poista Outbound Logout -pyynnöt käytöstä"
   },
   "idpWantAuthnRequestsSigned": {
-    "message": "Vaadi Authentication-pyyntöjen allekirjoitus"
+    "message": "Vaadi Authentication-pyynnöt allekirjoitettuina"
   },
   "ssoSettingsSaved": {
     "message": "Kertakirjautumisen (SSO) määritykset tallennettiin."
   },
+  "sponsoredFamilies": {
+    "message": "Ilmainen Bitwarden Perheille"
+  },
+  "sponsoredFamiliesEligible": {
+    "message": "Sinä ja perheesi olette oikeutettuja ilmaiseen Bitwarden Perheille -tilaukseen. Lunasta tarjous henkilökohtaisella sähköpostillasi suojataksesi tietosi myös töiden ulkopuolella."
+  },
+  "sponsoredFamiliesEligibleCard": {
+    "message": "Lunasta ilmainen Bitwarden Perheille -tilauksesi tänään suojataksesi tietosi myös töiden ulkopuolella."
+  },
+  "sponsoredFamiliesInclude": {
+    "message": "Bitwarden Perheille -tilaus sisältää"
+  },
+  "sponsoredFamiliesPremiumAccess": {
+    "message": "Premium-käyttöoikeuden 6 käyttäjälle"
+  },
+  "sponsoredFamiliesSharedCollections": {
+    "message": "Jaetut kokoelmat perheen salaisuuksille"
+  },
+  "badToken": {
+    "message": "Linkki ei ole enää voimassa. Pyydä sponsoria lähettämään tarjous uudelleen."
+  },
+  "reclaimedFreePlan": {
+    "message": "Lunastettu ilmaistilaus"
+  },
+  "redeem": {
+    "message": "Lunasta"
+  },
+  "sponsoredFamiliesSelectOffer": {
+    "message": "Valitse organisaatio, jota haluat sponsoroida"
+  },
+  "familiesSponsoringOrgSelect": {
+    "message": "Minkä ilmaisen Perheille-tilauksen tarjouksen haluaisit lunastaa?"
+  },
+  "sponsoredFamiliesEmail": {
+    "message": "Syötä henkilökohtainen sähköpostiosoitteesi lunastaaksesi Bitwarden Perheille -tilauksen"
+  },
+  "sponsoredFamiliesLeaveCopy": {
+    "message": "Jos eroat tai sinut erotetaan sponsoroivasta organisaatiosta, päättyy Perheille-tilauksesi kuluvan laskutuskauden lopussa."
+  },
+  "acceptBitwardenFamiliesHelp": {
+    "message": "Hyväksy tarjous olemassa olevalla organisaatiolla tai luo uusi Perheille-organisaatio."
+  },
+  "setupSponsoredFamiliesLoginDesc": {
+    "message": "Sinulle on tarjottu ilmaista Bitwarden Perheille -organisaatiota. Jatkaaksesi sinun on kirjauduttava tarjouksen saaneelle tilille."
+  },
+  "sponsoredFamiliesAcceptFailed": {
+    "message": "Tarjousta ei voida hyväksyä. Lähetä tarjoussähköposti uudestaan yritystililtäsi ja yritä uudelleen."
+  },
+  "sponsoredFamiliesAcceptFailedShort": {
+    "message": "Tarjousta ei voida hyväksyä. $DESCRIPTION$",
+    "placeholders": {
+      "description": {
+        "content": "$1",
+        "example": "You must have at least one existing Families Organization."
+      }
+    }
+  },
+  "sponsoredFamiliesOffer": {
+    "message": "Hyväksy ilmainen Bitwarden Perheille"
+  },
+  "sponsoredFamiliesOfferRedeemed": {
+    "message": "Ilmainen Bitwarden Perheille -tarjous on lunastettu"
+  },
+  "redeemed": {
+    "message": "Lunastettu"
+  },
+  "redeemedAccount": {
+    "message": "Lunastettu tili"
+  },
+  "revokeAccount": {
+    "message": "Irtisano tili $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "resendEmailLabel": {
+    "message": "Lähetä sponsorointisähköposti uudelleen edunsaajalle $NAME$",
+    "placeholders": {
+      "name": {
+        "content": "$1",
+        "example": "My Sponsorship Name"
+      }
+    }
+  },
+  "freeFamiliesPlan": {
+    "message": "Ilmainen Perheille-tilaus"
+  },
+  "redeemNow": {
+    "message": "Lunasta nyt"
+  },
+  "recipient": {
+    "message": "Vastaanottaja"
+  },
+  "removeSponsorship": {
+    "message": "Poista sponsorointi"
+  },
+  "removeSponsorshipConfirmation": {
+    "message": "Sponsoroinnin poiston jälkeen olet vastuussa tilauksesta ja siihen liittyvistä laskuista. Haluatko varmasti jatkaa?"
+  },
+  "sponsorshipCreated": {
+    "message": "Sponsorointi on luotu"
+  },
+  "revoke": {
+    "message": "Irtisano"
+  },
+  "emailSent": {
+    "message": "Sähköposti on lähetetty"
+  },
+  "revokeSponsorshipConfirmation": {
+    "message": "Tämän tilin poiston jälkeen, on Perheille-organisaation omistaja jatkossa vastuussa tilauksesta ja siihen liittyvistä laskuista. Haluatko varmasti jatkaa?"
+  },
+  "removeSponsorshipSuccess": {
+    "message": "Sponsorointi on poistettu"
+  },
   "ssoKeyConnectorUnavailable": {
-    "message": "Key Connector -agenttia ei tavoiteta. Yritä myöhemmin uudelleen."
+    "message": "Key Connectoria ei tavoiteta. Yritä myöhemmin uudelleen."
   },
   "keyConnectorUrl": {
     "message": "Key Connector URL"
@@ -4510,7 +4648,7 @@
     }
   },
   "leaveOrganization": {
-    "message": "Poistu organisaatiosta"
+    "message": "Eroa organisaatiosta"
   },
   "removeMasterPassword": {
     "message": "Poista pääsalasana"
@@ -4537,7 +4675,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpKeyConnector": {
-    "message": "\"SSO-todennus\" ja \"Yksittäinen organisaatio\" -käytännöt vaaditaan, jotta Key Connector -agentilla tapahtuva salauksenpurku voidaan määrittää."
+    "message": "\"SSO-todennus\" ja \"Yksittäinen organisaatio\" -käytännöt vaaditaan Key Connector -salauksenpurun määritykseen."
   },
   "memberDecryptionOption": {
     "message": "Jäsenen salauksenpurkuvalinnat"
@@ -4549,10 +4687,10 @@
     "message": "Key Connector"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "Liitä SSO-kirjautuminen omaan salauksenpurkuavainpalvelimeesi. Tätä valintaa käyttämällä jäsenten ei tarvitse käyttää pääsalasanojaan holvin salauksen purkuun. Ota yhtettä Bitwardenin tukeen saadaksesi apua määritykseen."
+    "message": "Liitä kertakirjautuminen (SSO) omaan salauksenpurkuavainpalvelimeesi. Tätä valintaa käyttämällä jäsenten ei tarvitse käyttää pääsalasanojaan holvin salauksen purkuun. Ota yhtettä Bitwardenin tukeen saadaksesi apua määritykseen."
   },
   "keyConnectorPolicyRestriction": {
-    "message": "\"SSO-kirjautuminen Key Connector -agentin salauksenpurulla\" on käytössä. Käytäntö vaikuttaa vain omistajiin ja ylläpitäjiin."
+    "message": "Kertakirjautuminen (SSO) Key Connector -salauksenpurulla on käytössä. Käytäntö vaikuttaa vain omistajiin ja ylläpitäjiin."
   },
   "enabledSso": {
     "message": "SSO otettiin käyttöön"
@@ -4567,9 +4705,39 @@
     "message": "Key Connector poistettiin käytöstä"
   },
   "keyConnectorWarning": {
-    "message": "Kun käyttäjät alkavat käyttämään Key Connector -agenttia, organisaatiosi ei voi palata takaisin pääsalasanalla tapahtuvaan salauksenpurkuun. Jatka ainoastaan siinä tapauksessa, jos olet valmis määrittämään avainpalvelimen ja myös ylläpitämään sitä."
+    "message": "Kun käyttäjät alkavat käyttämään Key Connectoria, organisaatiosi ei voi palata takaisin pääsalasanalla tapahtuvaan salauksenpurkuun. Jatka ainoastaan siinä tapauksessa, jos olet valmis määrittämään avainpalvelimen ja myös ylläpitämään sitä."
   },
   "migratedKeyConnector": {
-    "message": "Siirretty käyttämään Key Connector -agenttia"
+    "message": "Siirretty käyttämään Key Connectoria"
+  },
+  "paymentSponsored": {
+    "message": "Ilmoita organisaatioon liitettävä maksutapa. Voit olla huoletta, sillä emme veloita sinulta mitään, ellet itse valitse lisäominaisuuksia tai sponsorointisi pääty."
+  },
+  "orgCreatedSponsorshipInvalid": {
+    "message": "Sponsorointitarjous on päättynyt. Voit poistaa luomasi organisaation välttääksesi veloituksen 7- päivän kokeilujaksosi päättyessä. Muussa tapauksessa voit sulkea ilmoituksen, jolloin organisaatio säilyy sinulla ja vastaat jatkossa siihen liittyvistä laskuista."
+  },
+  "newFamiliesOrganization": {
+    "message": "Uusi Perheille-organisaatio"
+  },
+  "acceptOffer": {
+    "message": "Hyväksy tarjous"
+  },
+  "sponsoringOrg": {
+    "message": "Sponsoroiva organisaatio"
+  },
+  "keyConnectorTest": {
+    "message": "Testaa"
+  },
+  "keyConnectorTestSuccess": {
+    "message": "Onnistui! Key Connectori tavoitettiin."
+  },
+  "keyConnectorTestFail": {
+    "message": "Key Connectoria ei tavoiteta. Tarkista URL-osoite."
+  },
+  "sponsorshipTokenHasExpired": {
+    "message": "Sponsorointitarjous on päättynyt."
+  },
+  "freeWithSponsorship": {
+    "message": "ILMAINEN sponsoroinnilla"
   }
 }
