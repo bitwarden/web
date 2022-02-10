@@ -61,8 +61,8 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
 
   // load() is called after the page loads and the first sync has completed.
   // Do not use ngOnInit() for anything that requires sync data.
-  async load() {
-    await super.load();
+  async load(filter: (cipher: CipherView) => boolean = null, deleted: boolean = false) {
+    await super.load(filter, deleted);
     this.userHasPremiumAccess = await this.stateService.getCanAccessPremium();
   }
 
