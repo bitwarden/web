@@ -207,7 +207,8 @@ export function initFactory(
           secureStorageService,
           logService,
           stateMigrationService,
-          new StateFactory(GlobalState, Account)
+          new StateFactory(GlobalState, Account),
+          false
         ),
       deps: [
         StorageServiceAbstraction,
