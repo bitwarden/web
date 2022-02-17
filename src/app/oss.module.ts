@@ -163,6 +163,7 @@ import { ProvidersComponent } from "./providers/providers.component";
 
 import { AvatarComponent } from "jslib-angular/components/avatar.component";
 import { CalloutComponent } from "jslib-angular/components/callout.component";
+import { ExportScopeCalloutComponent } from "jslib-angular/components/export-scope-callout.component";
 import { IconComponent } from "jslib-angular/components/icon.component";
 import { BitwardenToast } from "jslib-angular/components/toastr.component";
 import { VerifyMasterPasswordComponent } from "jslib-angular/components/verify-master-password.component";
@@ -331,6 +332,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     EmergencyAccessViewComponent,
     EmergencyAddEditComponent,
     ExportComponent,
+    ExportScopeCalloutComponent,
     ExposedPasswordsReportComponent,
     FallbackSrcDirective,
     FamiliesForEnterpriseSetupComponent,
