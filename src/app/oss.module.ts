@@ -184,7 +184,6 @@ import { I18nPipe } from "jslib-angular/pipes/i18n.pipe";
 import { SearchCiphersPipe } from "jslib-angular/pipes/search-ciphers.pipe";
 import { SearchPipe } from "jslib-angular/pipes/search.pipe";
 import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
-import { ButtonComponent } from "@bitwarden/components/stories/button.component";
 
 import localeAz from "@angular/common/locales/az";
 import localeBg from "@angular/common/locales/bg";
@@ -457,7 +456,6 @@ registerLocaleData(localeZhTw, "zh-TW");
     AddEditCustomFieldsComponent,
     VerifyMasterPasswordComponent,
     RemovePasswordComponent,
-    ButtonComponent,
   ],
   exports: [
     A11yTitleDirective,
