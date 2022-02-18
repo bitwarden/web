@@ -7,8 +7,8 @@ import { RouterModule } from "@angular/router";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { ToastrModule } from "ngx-toastr";
 
-import { InputTextComponent } from "./components/input-text.component";
 import { InputTextReadOnlyComponent } from "./components/input-text-readonly.component";
+import { InputTextComponent } from "./components/input-text.component";
 import { NestedCheckboxComponent } from "./components/nested-checkbox.component";
 import { PasswordRepromptComponent } from "./components/password-reprompt.component";
 import { PasswordStrengthComponent } from "./components/password-strength.component";
