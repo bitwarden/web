@@ -6,7 +6,7 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
   selector: "app-input-text-readonly",
   templateUrl: "input-text-readonly.component.html",
 })
-export class InputTextReadOnly {
+export class InputTextReadOnlyComponent {
   @Input() controlValue: string;
   @Input() label: string;
   @Input() showCopy: boolean = true;
