@@ -169,89 +169,39 @@
         [label]="'signedOutCallbackPath' | i18n"
         [controlValue]="signedOutCallbackPath"
       ></app-input-text-readonly>
-      <div class="form-group">
-        <label for="authority">
-          {{ "authority" | i18n }}
-          <small class="text-muted form-text d-inline">({{ "required" | i18n }})</small>
-        </label>
-        <input
-          class="form-control"
-          formControlName="authority"
-          id="authority"
-          aria-describedby="authorityDesc"
-          appChangeStripSpaces
-          appA11yInvalid
-        />
-        <small
-          id="authorityDesc"
-          class="error-inline"
-          *ngIf="openIdForm.get('authority').hasError('required')"
-          role="alert"
-        >
-          <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
-          <span class="sr-only">{{ "error" | i18n }}:</span>
-          {{ "fieldRequiredError" | i18n: ("authority" | i18n) }}
-        </small>
-      </div>
-      <div class="form-group">
-        <label for="clientId">
-          {{ "clientId" | i18n }}
-          <small class="text-muted form-text d-inline">({{ "required" | i18n }})</small>
-        </label>
-        <input
-          class="form-control"
-          formControlName="clientId"
-          id="clientId"
-          aria-describedby="clientIdDesc"
-          appA11yInvalid
-        />
-        <small
-          id="clientIdDesc"
-          class="error-inline"
-          *ngIf="openIdForm.get('clientId').hasError('required')"
-          role="alert"
-        >
-          <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
-          <span class="sr-only">{{ "error" | i18n }}:</span>
-          {{ "fieldRequiredError" | i18n: ("clientId" | i18n) }}
-        </small>
-      </div>
-      <div class="form-group">
-        <label for="clientSecret">
-          {{ "clientSecret" | i18n }}
-          <small class="text-muted form-text d-inline">({{ "required" | i18n }})</small>
-        </label>
-        <input
-          class="form-control"
-          formControlName="clientSecret"
-          id="clientSecret"
-          aria-describedby="clientSecretDesc"
-          appA11yInvalid
-        />
-        <small
-          id="clientSecretDesc"
-          class="error-inline"
-          *ngIf="openIdForm.get('clientSecret').hasError('required')"
-          role="alert"
-        >
-          <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
-          <span class="sr-only">{{ "error" | i18n }}:</span>
-          {{ "fieldRequiredError" | i18n: ("clientSecret" | i18n) }}
-        </small>
-      </div>
-      <div class="form-group">
-        <label for="metadataAddress">{{ "metadataAddress" | i18n }}</label>
-        <input
-          class="form-control"
-          formControlName="metadataAddress"
-          id="metadataAddress"
-          aria-describedby="metadataAddressDesc"
-          appChangeStripSpaces
-        />
-        <small id="metadataAddressDesc" class="text-muted form-text">
-          {{ "openIdAuthorityRequired" | i18n }}
-        </small>
-      </div>
+
+      <app-input-text
+        [label]="'authority' | i18n"
+        controlId="authority"
+        [control]="openIdForm.get('authority')"
+        [controlRequired]="true"
+        [stripSpaces]="true"
+      ></app-input-text>
+
+      <app-input-text
+        [label]="'clientId' | i18n"
+        controlId="clientId"
+        [control]="openIdForm.get('clientId')"
+        [controlRequired]="true"
+        [stripSpaces]="true"
+      ></app-input-text>
+
+      <app-input-text
+        [label]="'clientSecret' | i18n"
+        controlId="clientSecret"
+        [control]="openIdForm.get('clientSecret')"
+        [controlRequired]="true"
+        [stripSpaces]="true"
+      ></app-input-text>
+
+      <app-input-text
+        [label]="'metadataAddress' | i18n"
+        controlId="metadataAddress"
+        [control]="openIdForm.get('metadataAddress')"
+        [stripSpaces]="true"
+        [helperText]="'openIdAuthorityRequired' | i18n"
+      ></app-input-text>
+
       <div class="form-group">
         <label for="redirectBehavior">
           {{ "oidcRedirectBehavior" | i18n }}
@@ -293,86 +243,57 @@
           aria-labelledby="customizations-header"
         >
           <i
-            class="fa"
+            class="bwi"
             aria-hidden="true"
             [ngClass]="{
-              'bwi-chevron-down': !showOpenIdCustomizations,
+              'bwi-angle-down': !showOpenIdCustomizations,
               'bwi-chevron-up': showOpenIdCustomizations
             }"
           ></i>
         </button>
       </div>
       <div id="customizations" [hidden]="!showOpenIdCustomizations">
-        <div class="form-group">
-          <label for="additionalScopes">{{ "additionalScopes" | i18n }}</label>
-          <input
-            class="form-control"
-            formControlName="additionalScopes"
-            id="additionalScopes"
-            aria-describedby="additionalScopesDesc"
-          />
-          <small class="form-text text-muted" id="additionalScopesDesc">
-            {{ "separateMultipleWithComma" | i18n }}
-          </small>
-        </div>
-        <div class="form-group">
-          <label for="additionalUserIdClaimTypes">{{ "additionalUserIdClaimTypes" | i18n }}</label>
-          <input
-            class="form-control"
-            formControlName="additionalUserIdClaimTypes"
-            id="additionalUserIdClaimTypes"
-            aria-describedby="additionalUserIdClaimTypesDesc"
-          />
-          <small id="additionalUserIdClaimTypesDesc" class="form-text text-muted">
-            {{ "separateMultipleWithComma" | i18n }}
-          </small>
-        </div>
-        <div class="form-group">
-          <label for="additionalEmailClaimTypes">{{ "additionalEmailClaimTypes" | i18n }}</label>
-          <input
-            class="form-control"
-            formControlName="additionalEmailClaimTypes"
-            id="additionalEmailClaimTypes"
-            aria-describedby="additionalEmailClaimTypesDesc"
-          />
-          <small id="additionalEmailClaimTypesDesc" class="form-text text-muted">
-            {{ "separateMultipleWithComma" | i18n }}
-          </small>
-        </div>
-        <div class="form-group">
-          <label for="additionalNameClaimTypes">{{ "additionalNameClaimTypes" | i18n }}</label>
-          <input
-            class="form-control"
-            formControlName="additionalNameClaimTypes"
-            id="additionalNameClaimTypes"
-            aria-describedby="additionalNameClaimTypesDesc"
-          />
-          <small id="additionalNameClaimTypesDesc" class="form-text text-muted">
-            {{ "separateMultipleWithComma" | i18n }}
-          </small>
-        </div>
-        <div class="form-group">
-          <label for="acrValues">{{ "acrValues" | i18n }}</label>
-          <input
-            class="form-control"
-            formControlName="acrValues"
-            id="acrValues"
-            aria-describedby="acrValuesDesc"
-          />
-          <small id="acrValuesDesc" class="form-text text-muted"> acr_values </small>
-        </div>
-        <div class="form-group">
-          <label for="expectedReturnAcrValue">{{ "expectedReturnAcrValue" | i18n }}</label>
-          <input
-            class="form-control"
-            formControlName="expectedReturnAcrValue"
-            id="expectedReturnAcrValue"
-            aria-describedby="expectedReturnAcrValueDesc"
-          />
-          <small id="expectedReturnAcrValueDesc" class="form-text text-muted">
-            acr_validation
-          </small>
-        </div>
+        <app-input-text
+          [label]="'additionalScopes' | i18n"
+          controlId="additionalScopes"
+          [control]="openIdForm.get('additionalScopes')"
+          [helperText]="'separateMultipleWithComma' | i18n"
+        ></app-input-text>
+
+        <app-input-text
+          [label]="'additionalUserIdClaimTypes' | i18n"
+          controlId="additionalUserIdClaimTypes"
+          [control]="openIdForm.get('additionalUserIdClaimTypes')"
+          [helperText]="'separateMultipleWithComma' | i18n"
+        ></app-input-text>
+
+        <app-input-text
+          [label]="'additionalEmailClaimTypes' | i18n"
+          controlId="additionalEmailClaimTypes"
+          [control]="openIdForm.get('additionalEmailClaimTypes')"
+          [helperText]="'separateMultipleWithComma' | i18n"
+        ></app-input-text>
+
+        <app-input-text
+          [label]="'additionalNameClaimTypes' | i18n"
+          controlId="additionalNameClaimTypes"
+          [control]="openIdForm.get('additionalNameClaimTypes')"
+          [helperText]="'separateMultipleWithComma' | i18n"
+        ></app-input-text>
+
+        <app-input-text
+          [label]="'acrValues' | i18n"
+          controlId="acrValues"
+          [control]="openIdForm.get('acrValues')"
+          helperText="acr_values"
+        ></app-input-text>
+
+        <app-input-text
+          [label]="'expectedReturnAcrValue' | i18n"
+          controlId="expectedReturnAcrValue"
+          [control]="openIdForm.get('expectedReturnAcrValue')"
+          helperText="acr_validation"
+        ></app-input-text>
       </div>
     </div>
   </div>
@@ -465,29 +386,13 @@
     <div class="config-section">
       <h2 class="secondary-header">{{ "samlIdpConfig" | i18n }}</h2>
 
-      <div class="form-group">
-        <label for="idpEntityId">
-          {{ "idpEntityId" | i18n }}
-          <small class="text-muted form-text d-inline">({{ "required" | i18n }})</small>
-        </label>
-        <input
-          class="form-control"
-          formControlName="idpEntityId"
-          id="idpEntityId"
-          appA11yInvalid
-          aria-describedby="idpEntityIdDesc"
-        />
-        <small
-          id="idpEntityIdDesc"
-          class="error-inline"
-          *ngIf="samlForm.get('idpEntityId').hasError('required')"
-          role="alert"
-        >
-          <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
-          <span class="sr-only">{{ "error" | i18n }}:</span>
-          {{ "fieldRequiredError" | i18n: ("idpEntityId" | i18n) }}
-        </small>
-      </div>
+      <app-input-text
+        [label]="'idpEntityId' | i18n"
+        controlId="idpEntityId"
+        [control]="samlForm.get('idpEntityId')"
+        [controlRequired]="true"
+      ></app-input-text>
+
       <div class="form-group">
         <label for="idpBindingType">{{ "idpBindingType" | i18n }}</label>
         <select class="form-control" formControlName="idpBindingType" id="idpBindingType">
@@ -496,28 +401,22 @@
           </option>
         </select>
       </div>
-      <div class="form-group">
-        <label for="idpSingleSignOnServiceUrl">{{ "idpSingleSignOnServiceUrl" | i18n }}</label>
-        <input
-          class="form-control"
-          formControlName="idpSingleSignOnServiceUrl"
-          id="idpSingleSignOnServiceUrl"
-          aria-describedby="idpSingleSignOnServiceUrlDesc"
-          appChangeStripSpaces
-        />
-        <small id="idpSingleSignOnServiceUrlDesc" class="form-text text-muted">
-          {{ "idpSingleSignOnServiceUrlRequired" | i18n }}
-        </small>
-      </div>
-      <div class="form-group">
-        <label for="idpSingleLogoutServiceUrl">{{ "idpSingleLogoutServiceUrl" | i18n }}</label>
-        <input
-          class="form-control"
-          formControlName="idpSingleLogoutServiceUrl"
-          id="idpSingleLogoutServiceUrl"
-          appChangeStripSpaces
-        />
-      </div>
+
+      <app-input-text
+        [label]="'idpSingleSignOnServiceUrl' | i18n"
+        controlId="idpSingleSignOnServiceUrl"
+        [control]="samlForm.get('idpSingleSignOnServiceUrl')"
+        [helperText]="'idpSingleSignOnServiceUrlRequired' | i18n"
+        [stripSpaces]="true"
+      ></app-input-text>
+
+      <app-input-text
+        [label]="'idpSingleLogoutServiceUrl' | i18n"
+        controlId="idpSingleLogoutServiceUrl"
+        [control]="samlForm.get('idpSingleLogoutServiceUrl')"
+        [stripSpaces]="true"
+      ></app-input-text>
+
       <div class="form-group">
         <label for="idpArtifactResolutionServiceUrl">{{
           "idpArtifactResolutionServiceUrl" | i18n
