@@ -4325,6 +4325,9 @@
   "updateMasterPasswordWarning": {
     "message": "Apvienības pārvaldnieks nesen nomainīja galveno paroli. Lai piekļūtu glabātavai, tā ir jāatjaunina. Turpinot tiks izbeigta pašreizējā sesija un tiks pieprasīta atkārtota pierakstīšanās. Esošās sesijas citās iekārtās var turpināt darboties līdz vienai stundai."
   },
+  "masterPasswordInvalidWarning": {
+    "message": "Galvenā parole neatbilst apvienības nosacījumu prasībām. Lai pievienotos apvienībai, ir nepieciešams atjaunināt galveno paroli. Turpinot notiks izrakstīšanās no pašreizējās sesijas, pieprasot atkal pierakstīties. Esošās sesijas citās iekārtās var turpināt darboties līdz vienai stundai."
+  },
   "maximumVaultTimeout": {
     "message": "Glabātavas noildze"
   },
@@ -4492,16 +4495,16 @@
     "message": "Vienotās pieteikšanās uzstādījumi tika saglabāti."
   },
   "sponsoredFamilies": {
-    "message": "Bezmaksas Bitwarden Families"
+    "message": "Bezmaksas Bitwarden ģimenēm"
   },
   "sponsoredFamiliesEligible": {
     "message": "Tu un Tava ģimene esat atbilstīgi bezmaksas Bitwarden Families. Piesakies ar personīgo e-pasta adresi, lai turētu datus drošībā pat tad, kad neesi darbā!"
   },
   "sponsoredFamiliesEligibleCard": {
-    "message": "Redeem your Free Bitwarden for Families plan today to keep your data secure even when you are not at work."
+    "message": "Izmanto savu bezmaksas Bitwarden ģimenēm šodien, lai turētu datus drošībā pat tad, kad neesi darbā."
   },
   "sponsoredFamiliesInclude": {
-    "message": "The Bitwarden for Families plan include"
+    "message": "Bitwarden ģimenēm iekļauj"
   },
   "sponsoredFamiliesPremiumAccess": {
     "message": "Premium piekļuve līdz 6 lietotājiem"
@@ -4513,31 +4516,31 @@
     "message": "Saite vairs nav derīga. Lūdz pabalstītāju atkārtoti nosūtīt piedāvājumu!"
   },
   "reclaimedFreePlan": {
-    "message": "Reclaimed free plan"
+    "message": "Mainīts uz bezmaksas plānu"
   },
   "redeem": {
     "message": "Izmantot"
   },
   "sponsoredFamiliesSelectOffer": {
-    "message": "Select the organization you would like sponsored"
+    "message": "Atlastīt apvienību, kuru atbalstīt"
   },
   "familiesSponsoringOrgSelect": {
     "message": "Kuru bezmaksas ģimeņu piedāvājumu Tu vēlies izmantot?"
   },
   "sponsoredFamiliesEmail": {
-    "message": "Enter your personal email to redeem Bitwarden Families"
+    "message": "Ievadīt personīgo e-pasta adresi, lai izmantotu Bitwarden ģimenēm"
   },
   "sponsoredFamiliesLeaveCopy": {
-    "message": "If you leave or are removed from the sponsoring organization, your Families plan will expire at the end of the billing period."
+    "message": "Ja Tu pamet vai tiec noņemts no atbalstošās apvienības, Tavs ģimeņu plāns beigsies apmaksas laika posma beigās."
   },
   "acceptBitwardenFamiliesHelp": {
-    "message": "Accept offer for an existing organization or create a new Families organization."
+    "message": "Pieņemt piedāvājumu esošai apvienībai vai izveidot jaunu ģimenes apvienību."
   },
   "setupSponsoredFamiliesLoginDesc": {
-    "message": "You've been offered a free Bitwarden Families Plan Organization. To continue, you need to log in to the account that received the offer."
+    "message": "Tev ir piedāvāta bezmaksas Bitwarden ģimenēm apvienība. Lai turpinātu, ir nepieciešams pierakstītites kontā, kas saņēma piedāvājumu."
   },
   "sponsoredFamiliesAcceptFailed": {
-    "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
+    "message": "Nav iespējams pieņemt piedāvājumu. Lūgums pārsūtīt piedāvājuma e-pasta ziņu no uzņēmējdarbības konta un mēģināt vēlreiz."
   },
   "sponsoredFamiliesAcceptFailedShort": {
     "message": "Nav iespējams apstiprināt piedāvājumu. $DESCRIPTION$",
@@ -4549,10 +4552,10 @@
     }
   },
   "sponsoredFamiliesOffer": {
-    "message": "Accept Free Bitwarden Families"
+    "message": "Pieņemt bezmaksas Bitwarden ģimenēm"
   },
   "sponsoredFamiliesOfferRedeemed": {
-    "message": "Free Bitwarden Families offer successfully redeemed"
+    "message": "Bezmaksas Bitwarden ģimenēm piedāvājums veiksmīgi izmantots"
   },
   "redeemed": {
     "message": "Izmantots"
@@ -4570,7 +4573,7 @@
     }
   },
   "resendEmailLabel": {
-    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "message": "Pārsūtīt $NAME$ pabalstītājdarbības e-pasta ziņojumu",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4579,13 +4582,13 @@
     }
   },
   "freeFamiliesPlan": {
-    "message": "Free Families Plan"
+    "message": "Bezmaksas ģimenes plāns"
   },
   "redeemNow": {
-    "message": "Redeem Now"
+    "message": "Izmantot tagad"
   },
   "recipient": {
-    "message": "Recipient"
+    "message": "Saņēmējs"
   },
   "removeSponsorship": {
     "message": "Noņemt pabalstītājdarbību"
@@ -4603,7 +4606,7 @@
     "message": "E-pasts nosūtīts"
   },
   "revokeSponsorshipConfirmation": {
-    "message": "After removing this account, the Families organization owner will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+    "message": "Pēc šī konta noņemšanas, ģimenes apvienības īpašnieks būsi atbildīgs par šo abonementu un saistītajiem rēķiniem. Vai tiešām turpināt?"
   },
   "removeSponsorshipSuccess": {
     "message": "Noņemta pabalstītājdarbība"
@@ -4708,10 +4711,10 @@
     "message": "Pāriets uz Key Connector"
   },
   "paymentSponsored": {
-    "message": "Lūgums norādīt maksājumu veidu, ko piesaistīt apvienībai. Satraukties nevajag, jo iemaksa netiks ieturēta, ja vien netiks izvēlētas papildu iespējas vai izbeidzas pabalstītājdarbība. "
+    "message": "Lūgums norādīt maksājumu veidu, ko piesaistīt apvienībai. Satraukties nevajag, jo iemaksa netiks ieturēta, ja vien netiks izvēlētas papildu iespējas vai kad izbeigsies pabalstītājdarbība. "
   },
   "orgCreatedSponsorshipInvalid": {
-    "message": "The sponsorship offer has expired. You may delete the organization you created to avoid a charge at the end of your 7 day trial. Otherwise you may close this prompt to keep the organization and assume billing responsibility."
+    "message": "Atbalsta piedāvājums ir beidzies. Ir iespējams izdzēst izveidoto apvienību, lai izvairītos no maksas pēc 7 dienu izmēģinājuma laika. Pretējā gadījumā šo uzvedni, lai turpinātu izmantot apvienību un uzņemtos atbildību par norēķiniem."
   },
   "newFamiliesOrganization": {
     "message": "Jauna ģimeņu apvienība"

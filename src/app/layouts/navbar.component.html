@@ -1,12 +1,7 @@
-<nav
-  class="navbar navbar-expand navbar-dark"
-  [ngClass]="{
-    'nav-background-alt': selfHosted
-  }"
->
+<nav class="navbar navbar-expand navbar-dark" [ngClass]="{ 'nav-background-alt': selfHosted }">
   <div class="container">
     <a class="navbar-brand" routerLink="/" appA11yTitle="{{ 'pageTitle' | i18n: 'Bitwarden' }}">
-      <i class="fa fa-shield" aria-hidden="true"></i>
+      <i class="bwi bwi-shield" aria-hidden="true"></i>
     </a>
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav">
@@ -44,7 +39,7 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          <i class="fa fa-user-circle fa-lg" aria-hidden="true"></i>
+          <i class="bwi bwi-user-circle bwi-lg" aria-hidden="true"></i>
         </a>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="nav-profile">
           <div class="dropdown-item-text d-flex align-items-center" *ngIf="name" appStopProp>
@@ -62,11 +57,16 @@
           </div>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#" routerLink="/settings/account">
-            <i class="fa fa-fw fa-user" aria-hidden="true"></i>
+            <i class="bwi bwi-fw bwi-user" aria-hidden="true"></i>
             {{ "myAccount" | i18n }}
           </a>
-          <a class="dropdown-item" href="https://help.bitwarden.com" target="_blank" rel="noopener">
-            <i class="fa fa-fw fa-question-circle" aria-hidden="true"></i>
+          <a
+            class="dropdown-item"
+            href="https://bitwarden.com/help/"
+            target="_blank"
+            rel="noopener"
+          >
+            <i class="bwi bwi-fw bwi-question-circle" aria-hidden="true"></i>
             {{ "getHelp" | i18n }}
           </a>
           <a
@@ -75,16 +75,16 @@
             target="_blank"
             rel="noopener"
           >
-            <i class="fa fa-fw fa-download" aria-hidden="true"></i>
+            <i class="bwi bwi-fw bwi-download" aria-hidden="true"></i>
             {{ "getApps" | i18n }}
           </a>
           <div class="dropdown-divider"></div>
           <button type="button" class="dropdown-item" (click)="lock()">
-            <i class="fa fa-fw fa-lock" aria-hidden="true"></i>
+            <i class="bwi bwi-fw bwi-lock" aria-hidden="true"></i>
             {{ "lockNow" | i18n }}
           </button>
           <button type="button" class="dropdown-item" (click)="logOut()">
-            <i class="fa fa-fw fa-sign-out" aria-hidden="true"></i>
+            <i class="bwi bwi-fw bwi-sign-out" aria-hidden="true"></i>
             {{ "logOut" | i18n }}
           </button>
         </div>

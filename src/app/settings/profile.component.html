@@ -1,5 +1,9 @@
 <div *ngIf="loading">
-  <i class="fa fa-spinner fa-spin text-muted" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+  <i
+    class="bwi bwi-spinner bwi-spin text-muted"
+    title="{{ 'loading' | i18n }}"
+    aria-hidden="true"
+  ></i>
   <span class="sr-only">{{ "loading" | i18n }}</span>
 </div>
 <form
@@ -45,25 +49,26 @@
           dynamic="true"
           size="75"
           fontSize="35"
-        ></app-avatar>
+        >
+        </app-avatar>
       </div>
       <hr />
       <p *ngIf="fingerprint">
         {{ "yourAccountsFingerprint" | i18n }}:
         <a
-          href="https://help.bitwarden.com/article/fingerprint-phrase/"
+          href="https://bitwarden.com/help/fingerprint-phrase/"
           target="_blank"
           rel="noopener"
           appA11yTitle="{{ 'learnMore' | i18n }}"
         >
-          <i class="fa fa-question-circle-o" aria-hidden="true"></i></a
+          <i class="bwi bwi-question-circle" aria-hidden="true"></i></a
         ><br />
         <code>{{ fingerprint }}</code>
       </p>
     </div>
   </div>
   <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-    <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+    <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
     <span>{{ "save" | i18n }}</span>
   </button>
 </form>

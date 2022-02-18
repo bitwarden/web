@@ -1740,7 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Tvoj način plaćanja biti će terećen nakon isteka besplatnog probnog perioda od 7 dana i onda ponovno jednom $INTERVAL$. Možeš otkazati u bilo kojem trenutku."
+    "message": "Vaš plan dolazi s besplatnom probnom verzijom od 7 dana. Vaš način plaćanja neće biti naplaćen dok probno razdoblje ne završi. Možete otkazati u bilo kojem trenutku."
   },
   "paymentInformation": {
     "message": "Podaci o plaćanju"
@@ -3164,7 +3164,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Ne pitaj više za potvrdu jedinstvene fraze",
+    "message": "Ne pitaj više za potvrdu jedinstvene fraze (Nije pozeljno)",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -4325,6 +4325,9 @@
   "updateMasterPasswordWarning": {
     "message": "Tvoju glavnu lozinku je nedavno promijenio administrator tvoje organizacije. Za pristup trezoru, potrebno je ažurirati glavnu lozinku, što će te odjaviti iz trenutne sesije, te ćeš se morati ponovno prijaviti. Aktivne sesije na drugim uređajima mogu ostati aktivne još sat vremena."
   },
+  "masterPasswordInvalidWarning": {
+    "message": "Your Master Password does not meet the policy requirements of this organization. In order to join the organization, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+  },
   "maximumVaultTimeout": {
     "message": "Istek trezora"
   },
@@ -4492,10 +4495,10 @@
     "message": "Konfiguracija za jedinstvenu prijavu (SSO) je spremljena."
   },
   "sponsoredFamilies": {
-    "message": "Free Bitwarden Families"
+    "message": "Besplatan Bitwarden Families"
   },
   "sponsoredFamiliesEligible": {
-    "message": "You and your family are eligible for Free Bitwarden Families. Redeem with your personal email to keep your data secure even when you are not at work."
+    "message": "Vi i vaša obitelj ispunjavate uvjete za besplatne Bitwarden obitelji. Koristite ponudu sa svojom e-poštom kako biste zaštitili svoje podatke čak i kada niste na poslu."
   },
   "sponsoredFamiliesEligibleCard": {
     "message": "Redeem your Free Bitwarden for Families plan today to keep your data secure even when you are not at work."
@@ -4516,7 +4519,7 @@
     "message": "Reclaimed free plan"
   },
   "redeem": {
-    "message": "Redeem"
+    "message": "Upotrijebi kod"
   },
   "sponsoredFamiliesSelectOffer": {
     "message": "Select the organization you would like sponsored"
@@ -4534,10 +4537,10 @@
     "message": "Accept offer for an existing organization or create a new Families organization."
   },
   "setupSponsoredFamiliesLoginDesc": {
-    "message": "You've been offered a free Bitwarden Families Plan Organization. To continue, you need to log in to the account that received the offer."
+    "message": "Ponuđena vam je besplatna organizacija Bitwarden Families Plan. Da biste nastavili, morate se prijaviti na račun koji je primio ponudu."
   },
   "sponsoredFamiliesAcceptFailed": {
-    "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
+    "message": "Nije moguće prihvatiti ponudu. Ponovo pošaljite email ponudu sa svog poslovnog računa i pokušajte ponovno."
   },
   "sponsoredFamiliesAcceptFailedShort": {
     "message": "Nije moguće prihvatiti ponudu. $DESCRIPTION$",
@@ -4549,13 +4552,13 @@
     }
   },
   "sponsoredFamiliesOffer": {
-    "message": "Accept Free Bitwarden Families"
+    "message": "Prihvatite besplatan Bitwarden Families"
   },
   "sponsoredFamiliesOfferRedeemed": {
-    "message": "Free Bitwarden Families offer successfully redeemed"
+    "message": "Besplatna ponuda Bitwarden Families uspješno je iskorištena"
   },
   "redeemed": {
-    "message": "Redeemed"
+    "message": "Kod upotrijebljen"
   },
   "redeemedAccount": {
     "message": "Redeemed Account"
@@ -4579,16 +4582,16 @@
     }
   },
   "freeFamiliesPlan": {
-    "message": "Free Families Plan"
+    "message": "Besplatni obiteljski plan"
   },
   "redeemNow": {
-    "message": "Redeem Now"
+    "message": "Upotrijebi kod sada"
   },
   "recipient": {
-    "message": "Recipient"
+    "message": "Primatelj"
   },
   "removeSponsorship": {
-    "message": "Remove Sponsorship"
+    "message": "Ukloni sponzorstvo"
   },
   "removeSponsorshipConfirmation": {
     "message": "After removing a sponsorship, you will be responsible for this subscription and related invoices. Are you sure you want to continue?"
@@ -4711,7 +4714,7 @@
     "message": "Please provide a payment method to associate with the organization. Don't worry, we won't charge you anything unless you select additional features or your sponsorship expires. "
   },
   "orgCreatedSponsorshipInvalid": {
-    "message": "The sponsorship offer has expired. You may delete the organization you created to avoid a charge at the end of your 7 day trial. Otherwise you may close this prompt to keep the organization and assume billing responsibility."
+    "message": "Ponuda za sponzorstvo je istekla. Možete izbrisati organizaciju koju ste stvorili kako biste izbjegli naplatu na kraju probnog perioda od 7 dana. U suprotnom možete zatvoriti ovaj upit kako biste zadržali organizaciju i preuzeli odgovornost za naplatu."
   },
   "newFamiliesOrganization": {
     "message": "Nova obiteljska organizacija"

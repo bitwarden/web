@@ -22,7 +22,7 @@
         <p>
           {{ "updateEncryptionKeyShortDesc" | i18n }} {{ "updateEncryptionKeyDesc" | i18n }}
           <a
-            href="https://help.bitwarden.com/article/update-encryption-key/"
+            href="https://bitwarden.com/help/account-encryption-key/#rotate-your-encryption-key"
             target="_blank"
             rel="noopener"
             >{{ "learnMore" | i18n }}</a
@@ -43,7 +43,7 @@
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-          <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+          <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
           <span>{{ "updateEncryptionKey" | i18n }}</span>
         </button>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">

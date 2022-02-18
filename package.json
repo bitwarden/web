@@ -1,6 +1,6 @@
 {
-  "name": "bitwarden-web",
-  "version": "2.25.1",
+  "name": "@bitwarden/web-vault",
+  "version": "2.26.1",
   "license": "GPL-3.0",
   "repository": "https://github.com/bitwarden/web",
   "scripts": {
@@ -85,7 +85,6 @@
     "browser-hrtime": "^1.1.8",
     "core-js": "^3.11.0",
     "date-input-polyfill": "^2.14.0",
-    "font-awesome": "4.7.0",
     "jquery": "3.6.0",
     "ngx-infinite-scroll": "^10.0.1",
     "ngx-toastr": "14.1.4",
@@ -101,7 +100,7 @@
     "npm": "~8"
   },
   "lint-staged": {
-    "*": "prettier --ignore-unknown --write",
+    "./!(jslib)**": "prettier --ignore-unknown --write",
     "*.png": "node scripts/optimize.js"
   }
 }

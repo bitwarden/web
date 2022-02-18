@@ -922,7 +922,7 @@
     }
   },
   "loggedOutWarning": {
-    "message": "En continuant vous serez déconnecté de votre session, ce qui nécessitera de vous reconnecter. Les sessions actives sur d'autres équipements peuvent continuer à rester actives pendant encore une heure."
+    "message": "En continuant, vous serez déconnecté de votre session actuelle et vous devrez vous reconnecter. Les sessions actives sur d'autres appareils peuvent rester actives pendant encore une heure."
   },
   "emailChanged": {
     "message": "Adresse e-mail modifiée"
@@ -1740,7 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Votre offre comprend un essai gratuit de 7 jours. Votre mode de paiement ne sera pas facturé avant la fin de la période d'essai. La facturation se fera sur une base récurrente chaque $INTERVAL$. Vous pouvez annuler à tout moment."
+    "message": "Votre offre comprend un essai gratuit de 7 jours. Votre mode de paiement ne sera pas facturé avant la fin de la période d'essai. Vous pouvez annuler à tout moment."
   },
   "paymentInformation": {
     "message": "Informations de paiement"
@@ -2660,7 +2660,7 @@
     "message": "Renvoyer l'invitation"
   },
   "resendEmail": {
-    "message": "Renvoyer le Courriel"
+    "message": "Renvoyer l'email"
   },
   "hasBeenReinvited": {
     "message": "$USER$ a été réinvité.",
@@ -2912,7 +2912,7 @@
     }
   },
   "limitSubscription": {
-    "message": "Limite d'abonnement (facultatif)"
+    "message": "Limiter le nombre de licences (optionnel)"
   },
   "subscriptionSeats": {
     "message": "Licences"
@@ -2924,7 +2924,7 @@
     "message": "Options supplémentaires"
   },
   "additionalOptionsDesc": {
-    "message": "Pour obtenir de l'aide supplémentaire dans la gestion de votre abonnement, veuillez contacter le service client."
+    "message": "Pour obtenir de l'aide supplémentaire dans la gestion de votre abonnement, veuillez contacter le support client."
   },
   "subscriptionUserSeatsUnlimitedAutoscale": {
     "message": "Les ajustements apportés à votre abonnement entraîneront des modifications au prorata de vos totaux de facturation. Si les utilisateurs nouvellement invités dépassent votre nombre de licences, vous recevrez immédiatement des frais au prorata pour les utilisateurs supplémentaires."
@@ -2939,7 +2939,7 @@
     }
   },
   "subscriptionFreePlan": {
-    "message": "Vous ne pouvez pas inviter plus de $COUNT$ utilisateurs sans mettre votre plan à niveau.",
+    "message": "Vous ne pouvez pas inviter plus de $COUNT$ utilisateurs sans mettre votre offre à niveau.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2948,7 +2948,7 @@
     }
   },
   "subscriptionFamiliesPlan": {
-    "message": "Vous ne pouvez pas inviter plus de $COUNT$ utilisateurs sans mettre votre plan à niveau. Veuillez contacter l'assistance clientèle pour mettre à niveau.",
+    "message": "Vous ne pouvez pas inviter plus de $COUNT$ utilisateurs sans mettre votre offre à niveau. Veuillez contacter le support client pour mettre à niveau.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2957,7 +2957,7 @@
     }
   },
   "subscriptionSponsoredFamiliesPlan": {
-    "message": "Votre abonnement permet un total de $COUNT$ utilisateurs. Votre abonnement est parrainé et facturé à une organisation externe.",
+    "message": "Votre offre permet un total de $COUNT$ utilisateurs. Votre abonnement est parrainé et facturé à une organisation externe.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3164,7 +3164,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Ne plus me demander de saisir la phrase d'empreinte",
+    "message": "Ne jamais demander de vérifier la phrase d'empreinte pour les utilisateurs invités (non recommandé)",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -3848,7 +3848,7 @@
     "message": "Accéder aux rapports"
   },
   "missingPermissions": {
-    "message": "Vous n’avez pas les autorisations pour accomplir cette action."
+    "message": "Vous n’avez pas les permissions requises pour accomplir cette action."
   },
   "manageAllCollections": {
     "message": "Gérer toutes les collections"
@@ -4067,7 +4067,7 @@
     }
   },
   "firstSsoLogin": {
-    "message": "$ID$ s'est connecté avec Sso pour la première fois",
+    "message": "$ID$ s'est connecté avec le SSO pour la première fois",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4112,13 +4112,13 @@
     "message": "Inscription automatique"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
-    "message": "Tous les utilisateurs seront automatiquement inscrits à la réinitialisation du mot de passe une fois leur invitation acceptée."
+    "message": "Tous les utilisateurs seront automatiquement inscrits à la réinitialisation du mot de passe une fois leur invitation acceptée et n'auront pas la possibilité de refuser."
   },
   "resetPasswordPolicyAutoEnrollWarning": {
     "message": "Les utilisateurs déjà dans l'organisation ne seront pas inscrits rétroactivement à la réinitialisation du mot de passe. Ils devront s'inscrire personnellement avant que les administrateurs puissent réinitialiser leur mot de passe maître."
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "Inscrire automatiquement les nouveaux utilisateurs"
+    "message": "Exiger que les nouveaux utilisateurs soient inscrits automatiquement"
   },
   "resetPasswordAutoEnrollInviteWarning": {
     "message": "Cette organisation a une politique d'entreprise qui vous inscrira automatiquement à la réinitialisation du mot de passe. L'inscription permettra aux administrateurs de l'organisation de changer votre mot de passe maître."
@@ -4157,10 +4157,10 @@
     "message": "Thème"
   },
   "themeDesc": {
-    "message": "Choisissez un thème pour votre coffre-fort web."
+    "message": "Choisissez un thème pour votre coffre web."
   },
   "themeSystem": {
-    "message": "Utiliser le Thème Système"
+    "message": "Utiliser le thème du système"
   },
   "themeDark": {
     "message": "Sombre"
@@ -4196,19 +4196,19 @@
     "message": "Erreur"
   },
   "resetPasswordManageUsers": {
-    "message": "La Gestion des Utilisateurs doit également être activée avec Gérer la Permission de Réinitialisation du Mot de Passe"
+    "message": "La permission \"Gérer la réinitialisation du mot de passe\" requiert l'activation de la permission \"Gérer les utilisateurs\""
   },
   "setupProvider": {
-    "message": "Configuration du Fournisseur"
+    "message": "Configuration du fournisseur"
   },
   "setupProviderLoginDesc": {
     "message": "Vous avez été invité à configurer un nouveau fournisseur. Pour continuer, vous devez vous connecter ou créer un nouveau compte Bitwarden."
   },
   "setupProviderDesc": {
-    "message": "Veuillez entrer les détails ci-dessous pour finaliser la configuration du fournisseur. Contactez le Service à la Clientèle si vous avez des questions."
+    "message": "Veuillez entrer les détails ci-dessous pour finaliser la configuration du fournisseur. Contactez le support client si vous avez des questions."
   },
   "providerName": {
-    "message": "Nom du Fournisseur"
+    "message": "Nom du fournisseur"
   },
   "providerSetup": {
     "message": "Le fournisseur a été configuré."
@@ -4217,22 +4217,22 @@
     "message": "Clients"
   },
   "providerAdmin": {
-    "message": "Administrateur du Fournisseur"
+    "message": "Administrateur du fournisseur"
   },
   "providerAdminDesc": {
-    "message": "L'utilisateur à l'accès le plus élevé pouvant gérer tous les aspects de votre fournisseur ainsi que l'accès et la gestion des organisations du client."
+    "message": "L'utilisateur à l'accès le plus élevé. Il peut gérer tous les aspects de votre fournisseur ainsi que gérer les organisations clientes et y accéder."
   },
   "serviceUser": {
-    "message": "Utilisateur du Service"
+    "message": "Utilisateur de service"
   },
   "serviceUserDesc": {
-    "message": "Les utilisateurs du service peuvent accéder et gérer toutes les organisations clientes."
+    "message": "Les utilisateurs de service peuvent gérer toutes les organisations clientes et y accéder."
   },
   "providerInviteUserDesc": {
-    "message": "Invitez un nouvel utilisateur à votre fournisseur en entrant l'adresse courriel de son compte Bitwarden ci-dessous. S'ils n'ont pas déjà de compte Bitwarden, ils seront invités à créer un nouveau compte."
+    "message": "Invitez de nouveaux utilisateurs à votre fournisseur en entrant l'adresse e-mail de leur compte Bitwarden ci-dessous. S'ils n’ont pas déjà un compte Bitwarden, il leur sera demandé d'en créer un nouveau."
   },
   "joinProvider": {
-    "message": "Rejoindre le Fournisseur"
+    "message": "Rejoindre le fournisseur"
   },
   "joinProviderDesc": {
     "message": "Vous avez été invité à rejoindre le fournisseur ci-dessus. Pour accepter l'invitation, vous devez vous connecter ou créer un nouveau compte Bitwarden."
@@ -4241,25 +4241,25 @@
     "message": "Impossible d'accepter l'invitation. Demandez à un administrateur du fournisseur d'envoyer une nouvelle invitation."
   },
   "providerInviteAcceptedDesc": {
-    "message": "Vous pouvez accéder ce fournisseur une fois qu'un administrateur aura confirmé votre abonnement. Nous vous enverrons un courriel lorsque cela se produira."
+    "message": "Vous pourrez accéder à ce fournisseur dès qu'un administrateur aura confirmé votre inscription. Nous vous enverrons un e-mail lorsque ce sera fait."
   },
   "providerUsersNeedConfirmed": {
-    "message": "Vous avez des utilisateurs qui ont accepté leur invitation, mais qui doivent quand même être confirmés. Les utilisateurs n'auront pas accès au fournisseur tant qu'ils ne seront pas confirmés."
+    "message": "Il y a des utilisateurs qui ont accepté leur invitation, mais qui doivent encore être confirmés. Les utilisateurs n'auront pas accès au fournisseur tant qu'ils n'auront pas été confirmés."
   },
   "provider": {
     "message": "Fournisseur"
   },
   "newClientOrganization": {
-    "message": "Nouvelle Organisation Cliente"
+    "message": "Nouvelle organisation cliente"
   },
   "newClientOrganizationDesc": {
     "message": "Créez une nouvelle organisation cliente qui sera associée avec vous en tant que fournisseur. Vous pourrez accéder à cette organisation et la gérer."
   },
   "addExistingOrganization": {
-    "message": "Ajouter une Organisation Existante"
+    "message": "Ajouter une organisation existante"
   },
   "myProvider": {
-    "message": "Mon Fournisseur"
+    "message": "Mon fournisseur"
   },
   "addOrganizationConfirmation": {
     "message": "Êtes-vous sûr de vouloir ajouter $ORGANIZATION$ comme cliente de $PROVIDER$?",
@@ -4317,25 +4317,28 @@
     "message": "Ajouter"
   },
   "updatedMasterPassword": {
-    "message": "Mot de Passe Maître mis à jour"
+    "message": "Mot de passe maître mis à jour"
   },
   "updateMasterPassword": {
-    "message": "Mettre à jour le Mot de Passe Maître"
+    "message": "Mettre à jour le mot de passe maître"
   },
   "updateMasterPasswordWarning": {
-    "message": "Votre Mot de Passe Maître a récemment été modifié par un administrateur de votre organisation. Pour accéder au coffre-fort, vous devez mettre à jour votre Mot de Passe Maître maintenant. Continuer vous déconnectera de votre session actuelle, vous obligeant à vous reconnecter. Les sessions actives sur d'autres appareils peuvent rester actives jusqu'à une heure."
+    "message": "Votre mot de passe maître a récemment été modifié par un administrateur de votre organisation. Pour accéder au coffre, vous devez mettre à jour votre mot de passe maître dès maintenant. Cette action va vous déconnecter et vous obligera à vous reconnecter. Les sessions actives sur d'autres appareils peuvent rester actives jusqu'à une heure."
+  },
+  "masterPasswordInvalidWarning": {
+    "message": "Votre mot de passe maître ne répond pas aux exigences des politiques de cette organisation. Afin de rejoindre l'organisation, vous devez mettre à jour votre mot de passe maître maintenant. En continuant, vous serez déconnecté de votre session actuelle et vous devrez vous reconnecter. Les sessions actives sur d'autres appareils peuvent rester actives pendant encore une heure."
   },
   "maximumVaultTimeout": {
-    "message": "Délai D'Expiration du Coffre-fort"
+    "message": "Délai d'expiration du coffre"
   },
   "maximumVaultTimeoutDesc": {
-    "message": "Configurer un délai maximum d'expiration du coffre-fort pour tous les utilisateurs."
+    "message": "Configurer un délai maximum d'expiration du coffre pour tous les utilisateurs."
   },
   "maximumVaultTimeoutLabel": {
-    "message": "Délai Maximum D'Expiration du Coffre-fort"
+    "message": "Délai maximum d'expiration du coffre"
   },
   "invalidMaximumVaultTimeout": {
-    "message": "Délai Maximum D'Expiration du Coffre-fort Invalide."
+    "message": "Délai maximum d'expiration du coffre invalide."
   },
   "hours": {
     "message": "Heures"
@@ -4344,7 +4347,7 @@
     "message": "Minutes"
   },
   "vaultTimeoutPolicyInEffect": {
-    "message": "Les politiques de votre organisation affectent le délai d'expiration de votre coffre-fort. Le délai d'expiration maximal autorisé est de $HOURS$ heure(s) et $MINUTES$ minute(s)",
+    "message": "Les politiques de votre organisation affectent le délai d'expiration de votre coffre. Le délai d'expiration maximal autorisé est de $HOURS$ heure(s) et $MINUTES$ minute(s)",
     "placeholders": {
       "hours": {
         "content": "$1",
@@ -4357,22 +4360,22 @@
     }
   },
   "customVaultTimeout": {
-    "message": "Délai D'Expiration du Coffre-fort Personnalisé"
+    "message": "Délai d'expiration du coffre personnalisé"
   },
   "vaultTimeoutToLarge": {
-    "message": "Le délai d'expiration de votre coffre-fort dépasse la restriction définie par votre organisation."
+    "message": "Le délai d'expiration de votre coffre-fort dépasse les restrictions définies par votre organisation."
   },
   "disablePersonalVaultExport": {
-    "message": "Désactiver l'Exportation du Coffre-fort Personnel"
+    "message": "Désactiver l'export du coffre personnel"
   },
   "disablePersonalVaultExportDesc": {
-    "message": "Empêche les utilisateurs d'exporter les données de leur coffre-fort privé."
+    "message": "Empêche les utilisateurs d'exporter les données de leur coffre privé."
   },
   "vaultExportDisabled": {
-    "message": "Exportation du Coffre -fort Désactivée"
+    "message": "Export du coffre désactivé"
   },
   "personalVaultExportPolicyInEffect": {
-    "message": "Une ou plusieurs politiques d'organisation vous empêchent d'exporter votre coffre-fort personnel."
+    "message": "Une ou plusieurs politiques d'organisation vous empêchent d'exporter votre coffre personnel."
   },
   "selectType": {
     "message": "Sélectionnez le type de SSO"
@@ -4381,163 +4384,163 @@
     "message": "Type"
   },
   "openIdConnectConfig": {
-    "message": "Configuration de Connexion OpenID"
+    "message": "Configuration OpenID Connect"
   },
   "samlSpConfig": {
-    "message": "Configuration du Fournisseur de Services SAML"
+    "message": "Configuration SAML Service Provider"
   },
   "samlIdpConfig": {
-    "message": "Configuration du Fournisseur d'Identités SAML"
+    "message": "Configuration SAML Identity Provider"
   },
   "callbackPath": {
-    "message": "Chemin de Rappel"
+    "message": "URL de callback"
   },
   "signedOutCallbackPath": {
-    "message": "Chemin de Rappel Déconnecté"
+    "message": "URL de callback pour la déconnexion"
   },
   "authority": {
     "message": "Autorité"
   },
   "clientId": {
-    "message": "ID du Client"
+    "message": "Client ID"
   },
   "clientSecret": {
-    "message": "Secret du Client"
+    "message": "Client Secret"
   },
   "metadataAddress": {
-    "message": "Adresse des Métadonnées"
+    "message": "Adresse des métadonnées"
   },
   "oidcRedirectBehavior": {
-    "message": "Comportement de la Redirection OIDC"
+    "message": "Comportement de la redirection OIDC"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Obtenir Les Demandes d'Infomation De l'Utilisateurs Du Terminal"
+    "message": "Récupérer les claims depuis l'endpoint d'informations utilisateur (User Info Endpoint)"
   },
   "additionalScopes": {
-    "message": "Portées Aditionnelles/Personnalisées (séparées par des virgules)"
+    "message": "Scopes supplémentaires/personnalisés (séparés par des virgules)"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Types De Demandes d'ID De l'Utilisateur Aditionnelles/Personnalisées (séparées par des virgules)"
+    "message": "Types de claim supplémentaires/personnalisés pour l'identifiant de l'utilisateur (séparés par des virgules)"
   },
   "additionalEmailClaimTypes": {
-    "message": "Types De Demandes De Courriel De l'Utilisateur Aditionnelles/Personnalisées (séparées par des virgules)"
+    "message": "Types de claim supplémentaires/personnalisés pour l'e-mail (séparé par des virgules)"
   },
   "additionalNameClaimTypes": {
-    "message": "Types De Demandes Du Nom De l'Utilisateur Aditionnelles/Personnalisées (séparées par des virgules)"
+    "message": "Types de claim supplémentaires/personnalisés pour le nom (séparé par des virgules)"
   },
   "acrValues": {
-    "message": "Valeurs De Référence Du Contexte De Classe d'Authentification Demandées (acr_values)"
+    "message": "Valeurs Authentication Context Class Reference demandées (acr_values)"
   },
   "expectedReturnAcrValue": {
-    "message": "Demande De Valeur \"acr\" Attendue Dans La Réponse (validation acr)"
+    "message": "Valeur attendue pour le claim \"acr\" dans la réponse (validation acr)"
   },
   "spEntityId": {
-    "message": "ID de l'Entité SP"
+    "message": "ID de l'entité du Service Provider"
   },
   "spMetadataUrl": {
-    "message": "URL Des Métadonnées SAML 2.0"
+    "message": "SAML 2.0 Metadata URL"
   },
   "spAcsUrl": {
-    "message": "URL d'Assertion Du Service À La Clientèle (ACS)"
+    "message": "Assertion Consumer Service (ACS) URL"
   },
   "spNameIdFormat": {
-    "message": "Format Du Nom ID"
+    "message": "Name ID Format"
   },
   "spOutboundSigningAlgorithm": {
-    "message": "Algorithme De Signature Sortant"
+    "message": "Algorithme de signature sortant"
   },
   "spSigningBehavior": {
-    "message": "Comportement De La Signature"
+    "message": "Comportement de la signature"
   },
   "spMinIncomingSigningAlgorithm": {
-    "message": "Algorithme De Signature Minimal"
+    "message": "Algorithme de signature entrant minimal"
   },
   "spWantAssertionsSigned": {
-    "message": "Voulez-vous Des Assertions Signées"
+    "message": "Exiger des Assertions signées"
   },
   "spValidateCertificates": {
-    "message": "Valider Les Certificats"
+    "message": "Vérifier les certificats"
   },
   "idpEntityId": {
-    "message": "ID de l'Entité"
+    "message": "ID de l'entité"
   },
   "idpBindingType": {
-    "message": "Type De Liaison"
+    "message": "Type de liaison"
   },
   "idpSingleSignOnServiceUrl": {
-    "message": "URL du Service d'Authentification Unique"
+    "message": "URL du service de connexion unique (SSO)"
   },
   "idpSingleLogoutServiceUrl": {
-    "message": "URL du Service De Déconnection Unique"
+    "message": "URL du service de déconnexion unique (SLO)"
   },
   "idpArtifactResolutionServiceUrl": {
-    "message": "URL du Service De Résolution d'Artefact"
+    "message": "URL du service de résolution d'artefact"
   },
   "idpX509PublicCert": {
-    "message": "Certificat Public X509"
+    "message": "Certificat public X.509"
   },
   "idpOutboundSigningAlgorithm": {
-    "message": "Algorithme De Signature Sortant"
+    "message": "Algorithme de signature sortant"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Autoriser la Réponse d'Authentification Non-Sollicitée"
+    "message": "Autoriser les réponses d'authentification non sollicitées"
   },
   "idpDisableOutboundLogoutRequests": {
-    "message": "Désactiver les Demandes De Déconnexion Sortantes"
+    "message": "Désactiver les demandes de déconnexion sortantes"
   },
   "idpWantAuthnRequestsSigned": {
-    "message": "Voulez -vous des Demandes d'Authentification Signées"
+    "message": "Exiger des requêtes d'authentification signées"
   },
   "ssoSettingsSaved": {
-    "message": "La configuration de l'Authentification Unique a été enregistrée."
+    "message": "La configuration SSO a été enregistrée."
   },
   "sponsoredFamilies": {
-    "message": "Bitwarden Familles Gratuit"
+    "message": "Bitwarden Familles gratuit"
   },
   "sponsoredFamiliesEligible": {
-    "message": "Vous et votre famille êtes éligibles pour Bitwarden Familles Gratuit. Réclamez-le avec votre courriel personnel pour garder vos données en sécurité même lorsque vous n'êtes pas au travail."
+    "message": "Vous et votre famille êtes éligibles pour profiter gratuitement de Bitwarden Familles. Utilisez votre adresse e-mail personnelle pour obtenir votre accès et garder vos données en sécurité même lorsque vous n'êtes pas au travail."
   },
   "sponsoredFamiliesEligibleCard": {
-    "message": "Réclamez votre abonnement Bitwarden pour les Familles Gratuit aujourd'hui pour garder vos données en sécurité même lorsque vous n'êtes pas au travail."
+    "message": "Obtenez votre abonnement Bitwarden Familles gratuit aujourd'hui pour garder vos données en sécurité même lorsque vous n'êtes pas au travail."
   },
   "sponsoredFamiliesInclude": {
-    "message": "L'abonnement Bitwarden pour les Familles inclut"
+    "message": "L'abonnement Bitwarden Familles inclut"
   },
   "sponsoredFamiliesPremiumAccess": {
     "message": "Accès premium pour un maximum de 6 utilisateurs"
   },
   "sponsoredFamiliesSharedCollections": {
-    "message": "Collections partagées pour les secrets de Famille"
+    "message": "Collections partagées pour les secrets de la famille"
   },
   "badToken": {
-    "message": "Le lien n'est plus valide. Merci de renvoyer l'offre au parrain."
+    "message": "Le lien n'est plus valide. Merci de demander à votre parrain de renvoyer l'offre."
   },
   "reclaimedFreePlan": {
-    "message": "Abonnement gratuit réclamé"
+    "message": "Abonnement gratuit récupéré"
   },
   "redeem": {
-    "message": "Réclamer"
+    "message": "Obtenir"
   },
   "sponsoredFamiliesSelectOffer": {
     "message": "Sélectionnez l'organisation que vous souhaiteriez voir parrainée"
   },
   "familiesSponsoringOrgSelect": {
-    "message": "Quelle offre de Familles Gratuites aimeriez-vous réclamer?"
+    "message": "Quelle offre Familles gratuite aimeriez-vous obtenir ?"
   },
   "sponsoredFamiliesEmail": {
-    "message": "Entrez votre adresse courriel personnelle pour réclamer Bitwarden Familles"
+    "message": "Entrez votre adresse e-mail personnelle pour obtenir Bitwarden Familles"
   },
   "sponsoredFamiliesLeaveCopy": {
-    "message": "Si vous quittez ou que vous êtes retiré de cette organisation, votre forfait Familles expirera à la fin de la période de facturation."
+    "message": "Si vous quittez ou que vous êtes retiré de l'organisation marraine, votre forfait Familles expirera à la fin de la période de facturation."
   },
   "acceptBitwardenFamiliesHelp": {
-    "message": "Accepter une offre pour une organisation existante ou créer une nouvelle organisation Familles."
+    "message": "Acceptez l'offre pour une organisation existante ou créer une nouvelle organisation Familles."
   },
   "setupSponsoredFamiliesLoginDesc": {
-    "message": "Vous avez reçu une offre gratuite pour une Organisation de l'Abonnement Familles de Bitwarden. Pour continuer, vous devez vous connecter au compte qui a reçu l'offre."
+    "message": "Vous avez reçu un abonnement gratuit pour une organisation Bitwarden Familles. Pour continuer, vous devez vous connecter au compte qui a reçu l'offre."
   },
   "sponsoredFamiliesAcceptFailed": {
-    "message": "Impossible d'accepter l'offre. Veuillez renvoyer le courriel de l'offre de votre compte d'entreprise et réessayer."
+    "message": "Impossible d'accepter l'offre. Veuillez renvoyer l'e-mail de l'offre depuis votre compte professionnel et réessayer."
   },
   "sponsoredFamiliesAcceptFailedShort": {
     "message": "Impossible d'accepter l'offre. $DESCRIPTION$",
@@ -4549,16 +4552,16 @@
     }
   },
   "sponsoredFamiliesOffer": {
-    "message": "Réclamez l'Offre Gratuite de l'Organisation Bitwarden Familles"
+    "message": "Accepter l'offre Bitwarden Familles gratuite"
   },
   "sponsoredFamiliesOfferRedeemed": {
-    "message": "L'offre gratuite de Bitwarden Familles a été réclamée avec succès"
+    "message": "L'offre gratuite de Bitwarden Familles a été récupérée avec succès"
   },
   "redeemed": {
-    "message": "Réclamée"
+    "message": "Obtenue"
   },
   "redeemedAccount": {
-    "message": "Compte Réclamé"
+    "message": "Compte récupéré"
   },
   "revokeAccount": {
     "message": "Révoquer le compte $NAME$",
@@ -4570,7 +4573,7 @@
     }
   },
   "resendEmailLabel": {
-    "message": "Renvoyer le courriel de Parrainage au parrain $NAME$",
+    "message": "Renvoyer l'e-mail d'invitation au parrainage \"$NAME$\"",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4579,34 +4582,34 @@
     }
   },
   "freeFamiliesPlan": {
-    "message": "Abonnement Gratuit à Familles"
+    "message": "Abonnement gratuit à Bitwarden Familles"
   },
   "redeemNow": {
-    "message": "Réclamer Maintenant"
+    "message": "Obtenir maintenant"
   },
   "recipient": {
-    "message": "Bénéficiaire"
+    "message": "Destinataire"
   },
   "removeSponsorship": {
-    "message": "Supprimer le Parrainage"
+    "message": "Supprimer le parrainage"
   },
   "removeSponsorshipConfirmation": {
     "message": "Après avoir supprimé un parrainage, vous serez responsable de cet abonnement et des factures associées. Êtes-vous sûr de vouloir continuer ?"
   },
   "sponsorshipCreated": {
-    "message": "Parrainage Créé"
+    "message": "Parrainage créé"
   },
   "revoke": {
     "message": "Révoquer"
   },
   "emailSent": {
-    "message": "Courriel Envoyé"
+    "message": "E-mail envoyé"
   },
   "revokeSponsorshipConfirmation": {
     "message": "Après avoir supprimé ce compte, le propriétaire de l'organisation Familles sera responsable de cet abonnement et des factures associées. Êtes-vous sûr de vouloir continuer ?"
   },
   "removeSponsorshipSuccess": {
-    "message": "Parrainage Supprimé"
+    "message": "Parrainage supprimé"
   },
   "ssoKeyConnectorUnavailable": {
     "message": "Impossible de contacter Key Connector, réessayez plus tard."
@@ -4624,7 +4627,7 @@
     "message": "Code envoyé"
   },
   "verificationCode": {
-    "message": "Code de Vérification"
+    "message": "Code de vérification"
   },
   "confirmIdentity": {
     "message": "Confirmez votre identité pour continuer."
@@ -4645,10 +4648,10 @@
     }
   },
   "leaveOrganization": {
-    "message": "Quitter l’Organisation"
+    "message": "Quitter l'organisation"
   },
   "removeMasterPassword": {
-    "message": "Supprimer le Mot de Passe Maître"
+    "message": "Supprimer le mot de passe maître"
   },
   "removedMasterPassword": {
     "message": "Mot de passe maître supprimé."
@@ -4657,14 +4660,14 @@
     "message": "Autoriser l'authentification SSO"
   },
   "allowSsoDesc": {
-    "message": "Une fois configuré, votre configuration sera enregistrée et les membres seront en mesure de s'authentifier en utilisant leurs identifiants du Fournisseur d'Identité."
+    "message": "Une fois configuré, votre configuration sera enregistrée et les membres seront en mesure de s'authentifier en utilisant leurs identifiants de l'Identity Provider."
   },
   "ssoPolicyHelpStart": {
     "message": "Activer la",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
-    "message": "Politique SSO",
+    "message": "politique de connexion SSO",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
@@ -4672,67 +4675,67 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpKeyConnector": {
-    "message": "Les politiques d'Authentification SSO et d'Organisation Unique sont requises pour mettre en place le décryptage de Key Connector."
+    "message": "Les politiques \"Authentification SSO\" et \"Organisation Unique\" sont requises pour mettre en place le déchiffrement avec Key Connector."
   },
   "memberDecryptionOption": {
-    "message": "Options de Déchiffrement des Membres"
+    "message": "Options de déchiffrement des membres"
   },
   "memberDecryptionPassDesc": {
-    "message": "Une fois authentifié, les membres déchiffreront les données du coffre en utilisant leurs Mots de Passe Maîtres."
+    "message": "Une fois authentifiés, les membres déchiffreront les données du coffre en utilisant leur mot de passe maître."
   },
   "keyConnector": {
     "message": "Key Connector"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "Connecte l'Authentification SSO à votre serveur de clés de décryptage auto-hébergé. En utilisant cette option, les membres n'auront pas besoin d'utiliser leurs Mots de Passe Maîtres pour déchiffrer les données du coffre."
+    "message": "Connectez l'authentification SSO à votre serveur de clés de déchiffrement auto-hébergé. En utilisant cette option, les membres n'auront pas besoin d'utiliser leur mot de passe maître pour déchiffrer les données du coffre. Contactez le support Bitwarden pour une assistance à la configuration."
   },
   "keyConnectorPolicyRestriction": {
-    "message": "\"Connexion avec SSO et Décryptage de Key Connector\" est activé. Cette politique ne s'appliquera qu'aux Propriétaires et aux Administrateurs."
+    "message": "\"Connexion avec SSO et déchiffrement avec Key Connector\" est activé. Cette politique ne s'appliquera qu'aux propriétaires et aux administrateurs."
   },
   "enabledSso": {
-    "message": "SSO actif"
+    "message": "SSO activé"
   },
   "disabledSso": {
-    "message": "SSO inactif"
+    "message": "SSO désactivé"
   },
   "enabledKeyConnector": {
-    "message": "Key Connector actif"
+    "message": "Key Connector activé"
   },
   "disabledKeyConnector": {
-    "message": "Key Connector inactif"
+    "message": "Key Connector désactivé"
   },
   "keyConnectorWarning": {
-    "message": "Une fois que Key Connector est configuré, les Options de Déchiffrement des Membres ne peuvent pas être modifiées."
+    "message": "Dès que les membres de votre organisation commencent à utiliser Key Connector, votre organisation ne peut pas revenir au déchiffrement avec mot de passe maître. Ne continuez que si vous êtes à l'aise avec le déploiement et la maintenance d'un serveur de clés."
   },
   "migratedKeyConnector": {
-    "message": "Migration vers Key Connector"
+    "message": "Migré vers Key Connector"
   },
   "paymentSponsored": {
-    "message": "Veuillez fournir un moyen de paiement à associer à l'organisation. Ne vous inquiétez pas, nous ne vous facturerons rien à moins que vous sélectionniez des fonctionnalités supplémentaires ou que votre parrainage expire. "
+    "message": "Veuillez fournir un moyen de paiement à associer à l'organisation. Ne vous inquiétez pas, nous ne vous facturerons rien à moins que vous ne sélectionniez des fonctionnalités supplémentaires ou que votre parrainage expire. "
   },
   "orgCreatedSponsorshipInvalid": {
-    "message": "L'offre de parrainage a expiré, vous pouvez supprimer l'organisation que vous avez créée pour éviter d'être chargé à la fin de votre essai de 7 jours. Dans le cas contraire, vous pouvez fermer cette avis pour conserver l'organisation et assumer la responsabilité de la facturation."
+    "message": "L'offre de parrainage a expiré, vous pouvez supprimer l'organisation que vous avez créée pour éviter d'être facturé à la fin de votre essai de 7 jours. Dans le cas contraire, vous pouvez fermer ce message pour conserver l'organisation et assumer la responsabilité de la facturation."
   },
   "newFamiliesOrganization": {
-    "message": "Nouvelle Organisation Familles"
+    "message": "Nouvelle organisation Familles"
   },
   "acceptOffer": {
-    "message": "Accepter l'Offre"
+    "message": "Accepter l'offre"
   },
   "sponsoringOrg": {
-    "message": "Organisation Parrainant"
+    "message": "Organisation marraine"
   },
   "keyConnectorTest": {
     "message": "Test"
   },
   "keyConnectorTestSuccess": {
-    "message": "Succès! Key Connector rejoint."
+    "message": "Succès! Key Connector atteint."
   },
   "keyConnectorTestFail": {
-    "message": "Key Connector ne peut être contacté. Vérifiez l'URL."
+    "message": "Impossible d'atteindre Key Connector. Vérifiez l'URL."
   },
   "sponsorshipTokenHasExpired": {
-    "message": "L'offre de parrainage a expirée."
+    "message": "L'offre de parrainage a expiré."
   },
   "freeWithSponsorship": {
     "message": "GRATUIT avec le parrainage"

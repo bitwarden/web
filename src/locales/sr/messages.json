@@ -589,7 +589,7 @@
     "message": "Get master password hint"
   },
   "emailRequired": {
-    "message": "Email address is required."
+    "message": "Email adresa je neophodna."
   },
   "invalidEmail": {
     "message": "Invalid email address."
@@ -644,7 +644,7 @@
     "message": "Nema stavki u listi."
   },
   "noCollectionsInList": {
-    "message": "There are no collections to list."
+    "message": "Nema stavki u listi."
   },
   "noGroupsInList": {
     "message": "There are no groups to list."
@@ -692,7 +692,7 @@
     }
   },
   "rememberMe": {
-    "message": "Remember me"
+    "message": "Zapamti me"
   },
   "sendVerificationCodeEmailAgain": {
     "message": "Send verification code email again"
@@ -770,7 +770,7 @@
     "message": "Nastavi"
   },
   "organization": {
-    "message": "Organization"
+    "message": "Organizacija"
   },
   "organizations": {
     "message": "Organizacije"
@@ -1126,7 +1126,7 @@
     "message": "Allow the web vault to expand the full width of the browser window."
   },
   "default": {
-    "message": "Default"
+    "message": "Podrazumevano"
   },
   "domainRules": {
     "message": "Domain Rules"
@@ -1193,11 +1193,11 @@
     "message": "Omogućeno"
   },
   "premium": {
-    "message": "Premium",
+    "message": "Premijum",
     "description": "Premium Membership"
   },
   "premiumMembership": {
-    "message": "Premium Membership"
+    "message": "Premium Članstvo"
   },
   "premiumRequired": {
     "message": "Premium Required"
@@ -1248,7 +1248,7 @@
     "message": "Scan this QR code with your authenticator app"
   },
   "key": {
-    "message": "Key"
+    "message": "Ključ"
   },
   "twoStepAuthenticatorEnterCode": {
     "message": "Enter the resulting 6 digit verification code from the app"
@@ -1335,7 +1335,7 @@
     "message": "Integration Key"
   },
   "twoFactorDuoSecretKey": {
-    "message": "Secret Key"
+    "message": "Tajni Ključ"
   },
   "twoFactorDuoApiHostname": {
     "message": "API Hostname"
@@ -1350,7 +1350,7 @@
     "message": "Enter the resulting 6 digit verification code from the email"
   },
   "sendEmail": {
-    "message": "Send Email"
+    "message": "Pošalji email"
   },
   "twoFactorU2fAdd": {
     "message": "Add a FIDO U2F security key to your account"
@@ -1411,7 +1411,7 @@
     "description": "Print 2FA recovery code"
   },
   "reports": {
-    "message": "Reports"
+    "message": "Izveštaji"
   },
   "unsecuredWebsitesReport": {
     "message": "Unsecured Websites Report"
@@ -1587,7 +1587,7 @@
     "message": "Kompromitovani podaci"
   },
   "website": {
-    "message": "Website"
+    "message": "Web stranica"
   },
   "affectedUsers": {
     "message": "Affected Users"
@@ -1602,7 +1602,7 @@
     "message": "An error occurred trying to load the report. Try again"
   },
   "billing": {
-    "message": "Billing"
+    "message": "Naplata"
   },
   "accountCredit": {
     "message": "Account Credit",
@@ -1670,7 +1670,7 @@
     }
   },
   "addons": {
-    "message": "Addons"
+    "message": "Dodaci"
   },
   "premiumAccess": {
     "message": "Premium Access"
@@ -1715,16 +1715,16 @@
     "message": "Summary"
   },
   "total": {
-    "message": "Total"
+    "message": "Ukupno"
   },
   "year": {
-    "message": "year"
+    "message": "godina"
   },
   "month": {
-    "message": "month"
+    "message": "mesec"
   },
   "monthAbbr": {
-    "message": "mo.",
+    "message": "mj.",
     "description": "Short abbreviation for 'month'"
   },
   "paymentChargedAnnually": {
@@ -1828,7 +1828,7 @@
     }
   },
   "paymentMethod": {
-    "message": "Payment Method"
+    "message": "Način plaćanja"
   },
   "noPaymentMethod": {
     "message": "No payment method on file."
@@ -1846,11 +1846,11 @@
     "message": "No invoices."
   },
   "paid": {
-    "message": "Paid",
+    "message": "Plaćeno",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "unpaid": {
-    "message": "Unpaid",
+    "message": "Neplaćeno",
     "description": "Past tense status of an invoice. ex. Paid or unpaid."
   },
   "transactions": {
@@ -1865,7 +1865,7 @@
     "description": "Noun. A charge from a payment method."
   },
   "refundNoun": {
-    "message": "Refund",
+    "message": "Povrat novca",
     "description": "Noun. A refunded payment that was charged."
   },
   "chargesStatement": {
@@ -1950,7 +1950,7 @@
     "message": "Choose Your Plan"
   },
   "users": {
-    "message": "Users"
+    "message": "Korisnici"
   },
   "userSeats": {
     "message": "User Seats"
@@ -3164,7 +3164,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Don't ask to verify fingerprint phrase again",
+    "message": "Never prompt to verify fingerprint phrases for invited users (Not recommended)",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -4324,6 +4324,9 @@
   },
   "updateMasterPasswordWarning": {
     "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+  },
+  "masterPasswordInvalidWarning": {
+    "message": "Your Master Password does not meet the policy requirements of this organization. In order to join the organization, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
   },
   "maximumVaultTimeout": {
     "message": "Vault Timeout"

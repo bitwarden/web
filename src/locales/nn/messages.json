@@ -177,17 +177,17 @@
     "message": "Unassigned"
   },
   "noneFolder": {
-    "message": "No Folder",
+    "message": "Ingen mappe",
     "description": "This is the folder for uncategorized items"
   },
   "addFolder": {
-    "message": "Add Folder"
+    "message": "Legg til mappe"
   },
   "editFolder": {
-    "message": "Edit Folder"
+    "message": "Rediger mappe"
   },
   "baseDomain": {
-    "message": "Base domain"
+    "message": "Grunndomene"
   },
   "host": {
     "message": "Host",
@@ -650,7 +650,7 @@
     "message": "There are no groups to list."
   },
   "noUsersInList": {
-    "message": "There are no users to list."
+    "message": "Det er inga brukarar å lista opp."
   },
   "noEventsInList": {
     "message": "There are no events to list."
@@ -698,7 +698,7 @@
     "message": "Send verification code email again"
   },
   "useAnotherTwoStepMethod": {
-    "message": "Use another two-step login method"
+    "message": "Bruk ein annan tofaktormetode for pålogging"
   },
   "insertYubiKey": {
     "message": "Insert your YubiKey into your computer's USB port, then touch its button."
@@ -728,7 +728,7 @@
     "message": "Authenticator App"
   },
   "authenticatorAppDesc": {
-    "message": "Use an authenticator app (such as Authy or Google Authenticator) to generate time-based verification codes.",
+    "message": "Bruk ein app for autentisering (til dømes Authy eller Google Authenticator) for å generera tidsavgrensa verifiseringskodar.",
     "description": "'Authy' and 'Google Authenticator' are product names and should not be translated."
   },
   "yubiKeyTitle": {
@@ -1153,7 +1153,7 @@
     "message": "New Custom Domain"
   },
   "newCustomDomainDesc": {
-    "message": "Enter a list of domains separated by commas. Only \"base\" domains are allowed. Do not enter subdomains. For example, enter \"google.com\" instead of \"www.google.com\". You can also enter \"androidapp://package.name\" to associate an android app with other website domains."
+    "message": "Legg inn ei liste med domener, skilt med komma. Berre \"grunndomener\" vert godteke. Ikkje skriv inn subdomener (underdomener). Skriv til dømes \"google.com\" i staden for \"www.google.com\". Du kan òg skriva \"androidapp://package.name\" for å knyta ein Android-app mot domener til heimesider."
   },
   "customDomainX": {
     "message": "Custom Domain $INDEX$",
@@ -1513,13 +1513,13 @@
     "message": "No items in your vault have weak passwords."
   },
   "reusedPasswordsReport": {
-    "message": "Reused Passwords Report"
+    "message": "Rapport over passord som er brukt fleire gongar"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "Om ei teneste du nyttar vert avslørt eller kompromittert, vil gjenbruk av passord gjer det enkelt for angriparen å få tilgang til dei andre kontoane du har på nettet. Bruk ulike og unike passord på kontoane og tenestene du har."
   },
   "reusedPasswordsFound": {
-    "message": "Reused Passwords Found"
+    "message": "Gjenbrukte passord blei funne"
   },
   "reusedPasswordsFoundDesc": {
     "message": "We found $COUNT$ passwords that are being reused in your vault. You should change them to a unique value.",
@@ -2111,7 +2111,7 @@
     "message": "Annually"
   },
   "basePrice": {
-    "message": "Base Price"
+    "message": "Grunnpris"
   },
   "organizationCreated": {
     "message": "Organization Created"
@@ -3164,7 +3164,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Don't ask to verify fingerprint phrase again",
+    "message": "Never prompt to verify fingerprint phrases for invited users (Not recommended)",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -4324,6 +4324,9 @@
   },
   "updateMasterPasswordWarning": {
     "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+  },
+  "masterPasswordInvalidWarning": {
+    "message": "Your Master Password does not meet the policy requirements of this organization. In order to join the organization, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
   },
   "maximumVaultTimeout": {
     "message": "Vault Timeout"

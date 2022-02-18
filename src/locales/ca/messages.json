@@ -1106,7 +1106,7 @@
     "message": "Canvia l'idioma utilitzat per la caixa forta web."
   },
   "disableIcons": {
-    "message": "Deshabilita les icones del lloc web"
+    "message": "Inhabilita les icones del lloc web"
   },
   "disableIconsDesc": {
     "message": "Les icones del lloc web proporcionen una imatge que es pot reconèixer al costat de cada element d'inici de sessió a la vostra caixa forta."
@@ -1215,7 +1215,7 @@
     "message": "Administra"
   },
   "disable": {
-    "message": "Deshabilita"
+    "message": "Inhabilita"
   },
   "twoStepLoginProviderEnabled": {
     "message": "Aquest proveïdor d'inici de sessió en dues passes està habilitat al vostre compte."
@@ -1260,7 +1260,7 @@
     "message": "Esteu segur que voleu inhabilitar aquest proveïdor d'inici de sessió en dues passes?"
   },
   "twoStepDisabled": {
-    "message": "El proveïdor d'inici de sessió en dues passes està deshabilitat."
+    "message": "El proveïdor d'inici de sessió en dues passes està inhabilitat."
   },
   "twoFactorYubikeyAdd": {
     "message": "Afegiu una nova YubiKey al vostre compte"
@@ -1326,7 +1326,7 @@
     "message": "S'han actualitzat les YubiKeys"
   },
   "disableAllKeys": {
-    "message": "Deshabilita totes les claus"
+    "message": "Inhabilita totes les claus"
   },
   "twoFactorDuoDesc": {
     "message": "Introduïu la informació de l'aplicació Bitwarden des del vostre tauler d'Administrador de Duo."
@@ -1740,7 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "El vostre pla inclou una prova gratuïta de 7 dies. El mètode de pagament no es cobrarà fins que no s'haja acabat la prova. La facturació es farà de manera recurrent cada $INTERVAL$. Podeu cancel·lar-ho en qualsevol moment."
+    "message": "El vostre pla inclou una prova gratuïta de 7 dies. El mètode de pagament no es cobrarà fins que no s'haja acabat la prova. Podeu cancel·lar-ho en qualsevol moment."
   },
   "paymentInformation": {
     "message": "Informació de pagament"
@@ -2321,7 +2321,7 @@
     "message": "Inici de sessió en dues passes habilitat/actualitzat."
   },
   "disabled2fa": {
-    "message": "S'ha deshabilitat l'inici de sessió en dues passes."
+    "message": "S'ha inhabilitat l'inici de sessió en dues passes."
   },
   "recovered2fa": {
     "message": "S'ha recuperat el compte des de l'inici de sessió en dues passes."
@@ -2660,7 +2660,7 @@
     "message": "Tornar a enviar invitació"
   },
   "resendEmail": {
-    "message": "Tornar a enviar l'email"
+    "message": "Torna a enviar l'email"
   },
   "hasBeenReinvited": {
     "message": "S'ha reconvidat a $USER$.",
@@ -3164,7 +3164,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "No sol·liciteu tornar a comprovar la frase de les empremtes dactilars",
+    "message": "No sol·liciteu tornar a comprovar la frase de les empremtes dactilars (No recomanat)",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -3551,7 +3551,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disabled": {
-    "message": "Deshabilitat"
+    "message": "Inhabilitat"
   },
   "sendLink": {
     "message": "Enllaç Send",
@@ -4287,7 +4287,7 @@
     }
   },
   "providerIsDisabled": {
-    "message": "S'ha deshabilitat el proveïdor."
+    "message": "S'ha inhabilitat el proveïdor."
   },
   "providerUpdated": {
     "message": "S'ha actualitzat el proveïdor"
@@ -4314,7 +4314,7 @@
     "message": "Esteu segur que voleu separar aquesta organització? L'organització continuarà existint, però ja no serà gestionada pel proveïdor."
   },
   "add": {
-    "message": "Afegeix"
+    "message": "Afig"
   },
   "updatedMasterPassword": {
     "message": "Contrasenya mestra actualitzada"
@@ -4324,6 +4324,9 @@
   },
   "updateMasterPasswordWarning": {
     "message": "Un administrador de l'organització ha canviat recentment la contrasenya principal. Per accedir a la caixa forta, heu d'actualitzar-la ara. Si continueu, es tancarà la sessió actual i heu de tornar a iniciar-la. És possible que les sessions obertes en altres dispositius continuen actives fins a una hora."
+  },
+  "masterPasswordInvalidWarning": {
+    "message": "La vostra contrasenya mestra no compleix els requisits de la política d'aquesta organització. Per unir-te a l'organització, has d'actualitzar la teua contrasenya mestra ara. Si continueu, es tancarà la sessió de la vostra sessió actual i us demanarà que torneu a iniciar sessió. Les sessions actives en altres dispositius poden continuar romanent actives fins a una hora."
   },
   "maximumVaultTimeout": {
     "message": "Temps d'espera de la caixa forta"
@@ -4369,7 +4372,7 @@
     "message": "Prohibeix als usuaris exportar les dades de la seua caixa forta privada."
   },
   "vaultExportDisabled": {
-    "message": "L'exportació de la caixa forta està deshabilitada"
+    "message": "L'exportació de la caixa forta està inhabilitada"
   },
   "personalVaultExportPolicyInEffect": {
     "message": "Una o més polítiques d'organització us impedeixen exportar la vostra caixa forta."
@@ -4381,19 +4384,19 @@
     "message": "Tipus"
   },
   "openIdConnectConfig": {
-    "message": "OpenID Connect Configuration"
+    "message": "Configuració OpenID Connect"
   },
   "samlSpConfig": {
-    "message": "SAML Service Provider Configuration"
+    "message": "Configuració del proveïdor de serveis SAML"
   },
   "samlIdpConfig": {
-    "message": "SAML Identity Provider Configuration"
+    "message": "Configuració del proveïdor d'identitats SAML"
   },
   "callbackPath": {
-    "message": "Callback Path"
+    "message": "Camí de retorn de trucada"
   },
   "signedOutCallbackPath": {
-    "message": "Signed Out Callback Path"
+    "message": "Ruta de devolució de trucada tancada"
   },
   "authority": {
     "message": "Autoritat"
@@ -4405,7 +4408,7 @@
     "message": "Client Secret"
   },
   "metadataAddress": {
-    "message": "Metadata Address"
+    "message": "Adreça de metadades"
   },
   "oidcRedirectBehavior": {
     "message": "OIDC Redirect Behavior"
@@ -4417,7 +4420,7 @@
     "message": "Additional/Custom Scopes (comma delimited)"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "Tipus de reclamació d'ID d'usuaris addicionals/personalitzats (delimitats per comes)"
   },
   "additionalEmailClaimTypes": {
     "message": "Tipus de reclamació de correu electrònic addicionals/personalitzats (delimitats per comes)"
@@ -4456,7 +4459,7 @@
     "message": "Voleu les afirmacions signades"
   },
   "spValidateCertificates": {
-    "message": "Validar certificats"
+    "message": "Valida certificats"
   },
   "idpEntityId": {
     "message": "Identificador de l'entitat"
@@ -4483,7 +4486,7 @@
     "message": "Permet la resposta d'autenticació no sol·licitada"
   },
   "idpDisableOutboundLogoutRequests": {
-    "message": "Desactiva les sol·licituds de tancament de sessió d'eixida"
+    "message": "Inhabilita les sol·licituds de tancament de sessió d'eixida"
   },
   "idpWantAuthnRequestsSigned": {
     "message": "Voleu que les sol·licituds d'autenticació estiguen signades"
@@ -4492,22 +4495,22 @@
     "message": "S'ha guardat la configuració de l'inici de sessió únic."
   },
   "sponsoredFamilies": {
-    "message": "Free Bitwarden Families"
+    "message": "Famílies Bitwarden gratuït"
   },
   "sponsoredFamiliesEligible": {
-    "message": "You and your family are eligible for Free Bitwarden Families. Redeem with your personal email to keep your data secure even when you are not at work."
+    "message": "Tu i la teua família sou elegibles per a famílies Bitwarden gratuït. Bescanvia amb el correu electrònic personal per mantenir les dades segures fins i tot quan no esteu a la feina."
   },
   "sponsoredFamiliesEligibleCard": {
-    "message": "Redeem your Free Bitwarden for Families plan today to keep your data secure even when you are not at work."
+    "message": "Bescanvia el teu pla gratuït de Bitwarden per a famílies hui mateix per mantenir les teues dades segures fins i tot quan no estigues a la feina."
   },
   "sponsoredFamiliesInclude": {
-    "message": "The Bitwarden for Families plan include"
+    "message": "El pla Bitwarden per a Families inclou"
   },
   "sponsoredFamiliesPremiumAccess": {
-    "message": "Premium access for up to 6 users"
+    "message": "Accés premium fins a 6 usuaris"
   },
   "sponsoredFamiliesSharedCollections": {
-    "message": "Shared collections for Family secrets"
+    "message": "Col·leccions compartides de Secrets familiars"
   },
   "badToken": {
     "message": "The link is no longer valid. Please have the sponsor resend the offer."
@@ -4516,7 +4519,7 @@
     "message": "Reclaimed free plan"
   },
   "redeem": {
-    "message": "Redeem"
+    "message": "Bescanvia"
   },
   "sponsoredFamiliesSelectOffer": {
     "message": "Select the organization you would like sponsored"
@@ -4549,19 +4552,19 @@
     }
   },
   "sponsoredFamiliesOffer": {
-    "message": "Accept Free Bitwarden Families"
+    "message": "Accepta Famílies Bitwarden gratuït"
   },
   "sponsoredFamiliesOfferRedeemed": {
-    "message": "Free Bitwarden Families offer successfully redeemed"
+    "message": "L'oferta gratuïta de Bitwarden Famílies s'ha bescanviat correctament"
   },
   "redeemed": {
-    "message": "Redeemed"
+    "message": "Bescanviat"
   },
   "redeemedAccount": {
-    "message": "Redeemed Account"
+    "message": "Compte bescanviat"
   },
   "revokeAccount": {
-    "message": "Revoke account $NAME$",
+    "message": "Revoca el compte $NAME$",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4579,16 +4582,16 @@
     }
   },
   "freeFamiliesPlan": {
-    "message": "Free Families Plan"
+    "message": "Pla Famílies Gratuït"
   },
   "redeemNow": {
-    "message": "Redeem Now"
+    "message": "Bescanvia ara"
   },
   "recipient": {
-    "message": "Recipient"
+    "message": "Destinatari"
   },
   "removeSponsorship": {
-    "message": "Remove Sponsorship"
+    "message": "Suprimeix el patrocini"
   },
   "removeSponsorshipConfirmation": {
     "message": "After removing a sponsorship, you will be responsible for this subscription and related invoices. Are you sure you want to continue?"
@@ -4609,13 +4612,13 @@
     "message": "Sponsorship Removed"
   },
   "ssoKeyConnectorUnavailable": {
-    "message": "Unable to reach the Key Connector, try again later."
+    "message": "No es pot arribar al connector de claus, torneu-ho a provar més tard."
   },
   "keyConnectorUrl": {
     "message": "Key Connector URL"
   },
   "sendVerificationCode": {
-    "message": "Send a verification code to your email"
+    "message": "Envia un codi de verificació al correu electrònic"
   },
   "sendCode": {
     "message": "Envia codi"
@@ -4678,7 +4681,7 @@
     "message": "Member Decryption Options"
   },
   "memberDecryptionPassDesc": {
-    "message": "Once authenticated, members will decrypt vault data using their Master Passwords."
+    "message": "Un vegada autenticats, els membres desxifraran les dades de la caixa forta amb les seues contrasenyes mestres."
   },
   "keyConnector": {
     "message": "Key Connector"
@@ -4693,7 +4696,7 @@
     "message": "SSO habilitat"
   },
   "disabledSso": {
-    "message": "SSO deshabilitat"
+    "message": "SSO inhabilitat"
   },
   "enabledKeyConnector": {
     "message": "Enabled Key Connector"
@@ -4714,7 +4717,7 @@
     "message": "The sponsorship offer has expired. You may delete the organization you created to avoid a charge at the end of your 7 day trial. Otherwise you may close this prompt to keep the organization and assume billing responsibility."
   },
   "newFamiliesOrganization": {
-    "message": "New Families Organization"
+    "message": "Nova organització de famílies"
   },
   "acceptOffer": {
     "message": "Accept Offer"
@@ -4732,9 +4735,9 @@
     "message": "Cannot reach Key Connector. Check URL."
   },
   "sponsorshipTokenHasExpired": {
-    "message": "The sponsorship offer has expired."
+    "message": "L'oferta de patrocini ha caducat."
   },
   "freeWithSponsorship": {
-    "message": "FREE with sponsorship"
+    "message": "GRATUÏT amb patrocini"
   }
 }
