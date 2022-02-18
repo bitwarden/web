@@ -203,14 +203,6 @@ export class SsoComponent implements OnInit {
     this.loading = false;
   }
 
-  copy(value: string) {
-    this.platformUtilsService.copyToClipboard(value);
-  }
-
-  launchUri(url: string) {
-    this.platformUtilsService.launchUri(url);
-  }
-
   async submit() {
     this.validateForm(this.ssoConfigForm);
 

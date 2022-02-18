@@ -161,38 +161,14 @@
   >
     <div class="config-section">
       <h2 class="secondary-header">{{ "openIdConnectConfig" | i18n }}</h2>
-      <div class="form-group">
-        <label>{{ "callbackPath" | i18n }}</label>
-        <div class="input-group">
-          <input class="form-control" readonly [value]="callbackPath" />
-          <div class="input-group-append">
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              appA11yTitle="{{ 'copyValue' | i18n }}"
-              (click)="copy(callbackPath)"
-            >
-              <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>{{ "signedOutCallbackPath" | i18n }}</label>
-        <div class="input-group">
-          <input class="form-control" readonly [value]="signedOutCallbackPath" />
-          <div class="input-group-append">
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              appA11yTitle="{{ 'copyValue' | i18n }}"
-              (click)="copy(signedOutCallbackPath)"
-            >
-              <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+      <app-input-text-readonly
+        [label]="'callbackPath' | i18n"
+        [controlValue]="callbackPath"
+      ></app-input-text-readonly>
+      <app-input-text-readonly
+        [label]="'signedOutCallbackPath' | i18n"
+        [controlValue]="signedOutCallbackPath"
+      ></app-input-text-readonly>
       <div class="form-group">
         <label for="authority">
           {{ "authority" | i18n }}
@@ -406,62 +382,19 @@
     <!-- SAML2 SP -->
     <div class="config-section">
       <h2 class="secondary-header">{{ "samlSpConfig" | i18n }}</h2>
-      <div class="form-group">
-        <label>{{ "spEntityId" | i18n }}</label>
-        <div class="input-group">
-          <input class="form-control" readonly [value]="spEntityId" />
-          <div class="input-group-append">
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              appA11yTitle="{{ 'copyValue' | i18n }}"
-              (click)="copy(spEntityId)"
-            >
-              <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>{{ "spMetadataUrl" | i18n }}</label>
-        <div class="input-group">
-          <input class="form-control" readonly [value]="spMetadataUrl" />
-          <div class="input-group-append">
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              appA11yTitle="{{ 'launch' | i18n }}"
-              (click)="launchUri(spMetadataUrl)"
-            >
-              <i class="bwi bwi-lg bwi-external-link" aria-hidden="true"></i>
-            </button>
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              appA11yTitle="{{ 'copyValue' | i18n }}"
-              (click)="copy(spMetadataUrl)"
-            >
-              <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>{{ "spAcsUrl" | i18n }}</label>
-        <div class="input-group">
-          <input class="form-control" readonly [value]="spAcsUrl" />
-          <div class="input-group-append">
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              appA11yTitle="{{ 'copyValue' | i18n }}"
-              (click)="copy(spAcsUrl)"
-            >
-              <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-      </div>
+      <app-input-text-readonly
+        [label]="'spEntityId' | i18n"
+        [controlValue]="spEntityId"
+      ></app-input-text-readonly>
+      <app-input-text-readonly
+        [label]="'spMetadataUrl' | i18n"
+        [controlValue]="spMetadataUrl"
+        [showLaunch]="true"
+      ></app-input-text-readonly>
+      <app-input-text-readonly
+        [label]="'spAcsUrl' | i18n"
+        [controlValue]="spAcsUrl"
+      ></app-input-text-readonly>
       <div class="form-group">
         <label for="spNameIdFormat">{{ "spNameIdFormat" | i18n }}</label>
         <select class="form-control" formControlName="spNameIdFormat" id="spNameIdFormat">
