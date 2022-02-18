@@ -75,7 +75,7 @@
             appA11yTitle="{{ 'learnMore' | i18n }}"
             href="https://bitwarden.com/help/article/about-key-connector/"
           >
-            <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+            <i class="bwi bwi-question-circle" aria-hidden="true"></i>
           </a>
           <small>{{ "memberDecryptionKeyConnectorDesc" | i18n }}</small>
         </label>
@@ -111,7 +111,7 @@
               [disabled]="!enableTestKeyConnector"
             >
               <i
-                class="fa fa-spinner fa-spin"
+                class="bwi bwi-spinner bwi-spin"
                 title="{{ 'loading' | i18n }}"
                 aria-hidden="true"
                 *ngIf="keyConnectorUrl.pending"
@@ -127,13 +127,13 @@
             class="error-inline"
             *ngIf="keyConnectorUrl.hasError('invalidUrl'); else keyConnectorSuccess"
           >
-            <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+            <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
             <span class="sr-only">{{ "error" | i18n }}:</span>
             {{ "keyConnectorTestFail" | i18n }}
           </small>
           <ng-template #keyConnectorSuccess>
             <small class="text-success">
-              <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+              <i class="bwi bwi-check-circle" aria-hidden="true"></i>
               {{ "keyConnectorTestSuccess" | i18n }}
             </small>
           </ng-template>
@@ -212,7 +212,7 @@
           *ngIf="openIdForm.get('authority').hasError('required')"
           role="alert"
         >
-          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+          <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
           <span class="sr-only">{{ "error" | i18n }}:</span>
           {{ "fieldRequiredError" | i18n: ("authority" | i18n) }}
         </small>
@@ -235,7 +235,7 @@
           *ngIf="openIdForm.get('clientId').hasError('required')"
           role="alert"
         >
-          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+          <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
           <span class="sr-only">{{ "error" | i18n }}:</span>
           {{ "fieldRequiredError" | i18n: ("clientId" | i18n) }}
         </small>
@@ -258,7 +258,7 @@
           *ngIf="openIdForm.get('clientSecret').hasError('required')"
           role="alert"
         >
-          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+          <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
           <span class="sr-only">{{ "error" | i18n }}:</span>
           {{ "fieldRequiredError" | i18n: ("clientSecret" | i18n) }}
         </small>
@@ -320,8 +320,8 @@
             class="fa"
             aria-hidden="true"
             [ngClass]="{
-              'fa-chevron-down': !showOpenIdCustomizations,
-              'fa-chevron-up': showOpenIdCustomizations
+              'bwi-chevron-down': !showOpenIdCustomizations,
+              'bwi-chevron-up': showOpenIdCustomizations
             }"
           ></i>
         </button>
@@ -550,7 +550,7 @@
           *ngIf="samlForm.get('idpEntityId').hasError('required')"
           role="alert"
         >
-          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+          <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
           <span class="sr-only">{{ "error" | i18n }}:</span>
           {{ "fieldRequiredError" | i18n: ("idpEntityId" | i18n) }}
         </small>
@@ -606,7 +606,7 @@
             "
             role="alert"
           >
-            <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+            <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
             <span class="sr-only">{{ "error" | i18n }}:</span>
             {{ "idpArtifactResolutionRequired" | i18n }}
           </small>
@@ -636,7 +636,7 @@
           role="alert"
           *ngIf="samlForm.get('idpX509PublicCert').hasError('required')"
         >
-          <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+          <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
           <span class="sr-only">{{ "error" | i18n }}:</span>
           {{ "fieldRequiredError" | i18n: ("idpX509PublicCert" | i18n) }}
         </small>
@@ -703,7 +703,7 @@
     class="error-summary text-danger"
     *ngIf="this.getErrorCount(ssoConfigForm) as errorCount"
   >
-    <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+    <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
     <span class="sr-only">{{ "error" | i18n }}:</span>
     {{
       (errorCount === 1 ? "formErrorSummarySingle" : "formErrorSummaryPlural") | i18n: errorCount
