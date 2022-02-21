@@ -149,10 +149,12 @@
   >
     <div class="config-section">
       <h2 class="secondary-header">{{ "openIdConnectConfig" | i18n }}</h2>
+
       <app-input-text-readonly
         [label]="'callbackPath' | i18n"
         [controlValue]="callbackPath"
       ></app-input-text-readonly>
+
       <app-input-text-readonly
         [label]="'signedOutCallbackPath' | i18n"
         [controlValue]="signedOutCallbackPath"
