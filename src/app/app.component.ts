@@ -211,7 +211,6 @@ export class AppComponent implements OnDestroy, OnInit {
     await Promise.all([
       this.eventService.clearEvents(),
       this.syncService.setLastSync(new Date(0)),
-      this.tokenService.clearToken(),
       this.cryptoService.clearKeys(),
       this.settingsService.clear(userId),
       this.cipherService.clear(userId),

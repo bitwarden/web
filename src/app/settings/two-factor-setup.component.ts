@@ -8,7 +8,7 @@ import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { StateService } from "jslib-common/abstractions/state.service";
 import { PolicyType } from "jslib-common/enums/policyType";
 import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
-import { TwoFactorProviders } from "jslib-common/services/auth.service";
+import { TwoFactorProviders } from "jslib-common/services/twoFactor.service";
 
 import { TwoFactorAuthenticatorComponent } from "./two-factor-authenticator.component";
 import { TwoFactorDuoComponent } from "./two-factor-duo.component";

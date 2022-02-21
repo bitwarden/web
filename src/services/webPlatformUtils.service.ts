@@ -5,12 +5,11 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
+import { ClientType } from "jslib-common/enums/clientType";
 import { DeviceType } from "jslib-common/enums/deviceType";
 import { ThemeType } from "jslib-common/enums/themeType";
 
 export class WebPlatformUtilsService implements PlatformUtilsService {
-  identityClientId = "web";
-
   private browserCache: DeviceType = null;
   private prefersColorSchemeDark = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -56,6 +55,10 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
   getDeviceString(): string {
     const device = DeviceType[this.getDevice()].toLowerCase();
     return device.replace("browser", "");
+  }
+
+  getClientType() {
+    return ClientType.Web;
   }
 
   isFirefox(): boolean {

@@ -313,15 +313,15 @@
       <div class="form-group">
         <label for="spNameIdFormat">{{ "spNameIdFormat" | i18n }}</label>
         <select class="form-control" formControlName="spNameIdFormat" id="spNameIdFormat">
-          <option value="0">Not Configured</option>
-          <option value="1">Unspecified</option>
-          <option value="2">Email Address</option>
-          <option value="3">X.509 Subject Name</option>
-          <option value="4">Windows Domain Qualified Name</option>
-          <option value="5">Kerberos Principal Name</option>
-          <option value="6">Entity Identifier</option>
-          <option value="7">Persistent</option>
-          <option value="8">Transient</option>
+          <option [ngValue]="0">Not Configured</option>
+          <option [ngValue]="1">Unspecified</option>
+          <option [ngValue]="2">Email Address</option>
+          <option [ngValue]="3">X.509 Subject Name</option>
+          <option [ngValue]="4">Windows Domain Qualified Name</option>
+          <option [ngValue]="5">Kerberos Principal Name</option>
+          <option [ngValue]="6">Entity Identifier</option>
+          <option [ngValue]="7">Persistent</option>
+          <option [ngValue]="8">Transient</option>
         </select>
       </div>
       <div class="form-group">
@@ -337,9 +337,9 @@
       <div class="form-group">
         <label for="spSigningBehavior">{{ "spSigningBehavior" | i18n }}</label>
         <select class="form-control" formControlName="spSigningBehavior" id="spSigningBehavior">
-          <option value="0">If IdP Wants Authn Requests Signed</option>
-          <option value="1">Always</option>
-          <option value="3">Never</option>
+          <option [ngValue]="0">If IdP Wants Authn Requests Signed</option>
+          <option [ngValue]="1">Always</option>
+          <option [ngValue]="3">Never</option>
         </select>
       </div>
       <div class="form-group">
@@ -393,9 +393,9 @@
       <div class="form-group">
         <label for="idpBindingType">{{ "idpBindingType" | i18n }}</label>
         <select class="form-control" formControlName="idpBindingType" id="idpBindingType">
-          <option value="1">Redirect</option>
-          <option value="2">HTTP POST</option>
-          <option value="4">Artifact</option>
+          <option [ngValue]="1">Redirect</option>
+          <option [ngValue]="2">HTTP POST</option>
+          <option [ngValue]="4">Artifact</option>
         </select>
       </div>
       <div class="form-group">

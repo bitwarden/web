@@ -252,6 +252,7 @@ const webpackConfig = {
       buffer: false,
       util: require.resolve("util/"),
       assert: false,
+      url: false,
     },
   },
   output: {

@@ -52,12 +52,15 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     super(searchService);
   }
 
-  async ngOnInit() {
-    this.userHasPremiumAccess = await this.stateService.getCanAccessPremium();
-  }
-
   ngOnDestroy() {
     this.selectAll(false);
+  }
+
+  // load() is called after the page loads and the first sync has completed.
+  // Do not use ngOnInit() for anything that requires sync data.
+  async load(filter: (cipher: CipherView) => boolean = null, deleted = false) {
+    await super.load(filter, deleted);
+    this.userHasPremiumAccess = await this.stateService.getCanAccessPremium();
   }
 
   loadMore() {

@@ -8,6 +8,7 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { PolicyType } from "jslib-common/enums/policyType";
+import { ImportType } from "jslib-common/services/import.service";
 
 @Component({
   selector: "app-import",
@@ -16,7 +17,7 @@ import { PolicyType } from "jslib-common/enums/policyType";
 export class ImportComponent implements OnInit {
   featuredImportOptions: ImportOption[];
   importOptions: ImportOption[];
-  format: string = null;
+  format: ImportType = null;
   fileContents: string;
   formPromise: Promise<Error>;
   loading = false;
@@ -36,21 +37,6 @@ export class ImportComponent implements OnInit {
 
   async ngOnInit() {
     this.setImportOptions();
-    this.importOptions.sort((a, b) => {
-      if (a.name == null && b.name != null) {
-        return -1;
-      }
-      if (a.name != null && b.name == null) {
-        return 1;
-      }
-      if (a.name == null && b.name == null) {
-        return 0;
-      }
-
-      return this.i18nService.collator
-        ? this.i18nService.collator.compare(a.name, b.name)
-        : a.name.localeCompare(b.name);
-    });
 
     this.importBlockedByPolicy = await this.policyService.policyAppliesToUser(
       PolicyType.PersonalOwnership
@@ -156,7 +142,21 @@ export class ImportComponent implements OnInit {
       },
       ...this.importService.featuredImportOptions,
     ];
-    this.importOptions = this.importService.regularImportOptions;
+    this.importOptions = [...this.importService.regularImportOptions].sort((a, b) => {
+      if (a.name == null && b.name != null) {
+        return -1;
+      }
+      if (a.name != null && b.name == null) {
+        return 1;
+      }
+      if (a.name == null && b.name == null) {
+        return 0;
+      }
+
+      return this.i18nService.collator
+        ? this.i18nService.collator.compare(a.name, b.name)
+        : a.name.localeCompare(b.name);
+    });
   }
 
   private async error(error: Error) {
