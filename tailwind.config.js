@@ -10,6 +10,7 @@ module.exports = {
       transparent: colors.transparent,
       current: colors.current,
       white: colors.white,
+      gray: colors.gray,
       primary: {
         300: "var(--color-primary-300)",
         500: "var(--color-primary-500)",
