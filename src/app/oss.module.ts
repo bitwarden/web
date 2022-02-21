@@ -12,6 +12,7 @@ import { InputTextComponent } from "./components/input-text.component";
 import { NestedCheckboxComponent } from "./components/nested-checkbox.component";
 import { PasswordRepromptComponent } from "./components/password-reprompt.component";
 import { PasswordStrengthComponent } from "./components/password-strength.component";
+import { SelectComponent } from "./components/select.component";
 
 import { FooterComponent } from "./layouts/footer.component";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
@@ -418,6 +419,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     ReusedPasswordsReportComponent,
     SearchCiphersPipe,
     SearchPipe,
+    SelectComponent,
     SelectCopyDirective,
     SendAddEditComponent,
     SendComponent,
@@ -477,6 +479,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     NavbarComponent,
     OrganizationPlansComponent,
     SearchPipe,
+    SelectComponent,
     StopClickDirective,
     StopPropDirective,
     InputTextComponent,

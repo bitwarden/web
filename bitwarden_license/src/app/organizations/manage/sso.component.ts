@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { AbstractControl, FormBuilder, FormGroup } from "@angular/forms";
+import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 
 import { ApiService } from "jslib-common/abstractions/api.service";
@@ -14,6 +14,8 @@ import { OrganizationSsoRequest } from "jslib-common/models/request/organization
 import { OrganizationSsoResponse } from "jslib-common/models/response/organization/organizationSsoResponse";
 
 import { dirtyRequired, dirtyRequiredIf } from "jslib-angular/validators/dirty.validator";
+
+import { ISelectOptions } from "jslib-angular/interfaces/ISelectOptions";
 
 import {
   OpenIdConnectRedirectBehavior,
@@ -33,7 +35,7 @@ const defaultSigningAlgorithm = "http://www.w3.org/2001/04/xmldsig-more#rsa-sha2
 export class SsoComponent implements OnInit {
   readonly ssoType = SsoType;
 
-  readonly ssoTypeOptions = [
+  readonly ssoTypeOptions: ISelectOptions[] = [
     { name: this.i18nService.t("selectType"), value: SsoType.None, disabled: true },
     { name: "OpenID Connect", value: SsoType.OpenIdConnect },
     { name: "SAML 2.0", value: SsoType.Saml2 },
@@ -46,7 +48,7 @@ export class SsoComponent implements OnInit {
     "http://www.w3.org/2000/09/xmldsig#rsa-sha1",
   ];
 
-  readonly saml2SigningBehaviourOptions = [
+  readonly saml2SigningBehaviourOptions: ISelectOptions[] = [
     {
       name: "If IdP Wants Authn Requests Signed",
       value: Saml2SigningBehavior.IfIdpWantAuthnRequestsSigned,
@@ -54,12 +56,12 @@ export class SsoComponent implements OnInit {
     { name: "Always", value: Saml2SigningBehavior.Always },
     { name: "Never", value: Saml2SigningBehavior.Never },
   ];
-  readonly saml2BindingTypeOptions = [
+  readonly saml2BindingTypeOptions: ISelectOptions[] = [
     { name: "Redirect", value: Saml2BindingType.HttpRedirect },
     { name: "HTTP POST", value: Saml2BindingType.HttpPost },
     { name: "Artifact", value: Saml2BindingType.Artifact },
   ];
-  readonly saml2NameIdFormatOptions = [
+  readonly saml2NameIdFormatOptions: ISelectOptions[] = [
     { name: "Not Configured", value: Saml2NameIdFormat.NotConfigured },
     { name: "Unspecified", value: Saml2NameIdFormat.Unspecified },
     { name: "Email Address", value: Saml2NameIdFormat.EmailAddress },
@@ -71,7 +73,7 @@ export class SsoComponent implements OnInit {
     { name: "Transient", value: Saml2NameIdFormat.Transient },
   ];
 
-  readonly connectRedirectOptions = [
+  readonly connectRedirectOptions: ISelectOptions[] = [
     { name: "Redirect GET", value: OpenIdConnectRedirectBehavior.RedirectGet },
     { name: "Form POST", value: OpenIdConnectRedirectBehavior.FormPost },
   ];
@@ -98,7 +100,7 @@ export class SsoComponent implements OnInit {
       clientId: ["", dirtyRequired],
       clientSecret: ["", dirtyRequired],
       metadataAddress: [],
-      redirectBehavior: [OpenIdConnectRedirectBehavior.RedirectGet],
+      redirectBehavior: [OpenIdConnectRedirectBehavior.RedirectGet, Validators.required],
       getClaimsFromUserInfoEndpoint: [],
       additionalScopes: [],
       additionalUserIdClaimTypes: [],
@@ -286,6 +288,10 @@ export class SsoComponent implements OnInit {
 
   get artifactUrlHasRequiredError() {
     return this.samlForm.get("idpArtifactResolutionServiceUrl").hasError("required");
+  }
+
+  get samlSigningAlgorithmOptions(): ISelectOptions[] {
+    return this.samlSigningAlgorithms.map((algorithm) => ({ name: algorithm, value: algorithm }));
   }
 
   private validateForm(form: FormGroup) {

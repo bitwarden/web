@@ -141,17 +141,13 @@
       </div>
     </ng-container>
 
-    <div class="form-group">
-      <label for="type"
-        >{{ "type" | i18n }}
-        <small class="text-muted form-text d-inline">({{ "required" | i18n }})</small>
-      </label>
-      <select class="form-control" id="type" formControlName="configType">
-        <option *ngFor="let o of ssoTypeOptions" [ngValue]="o.value" disabled="{{ o.disabled }}">
-          {{ o.name }}
-        </option>
-      </select>
-    </div>
+    <app-select
+      controlId="type"
+      [label]="'type' | i18n"
+      [selectOptions]="ssoTypeOptions"
+      formControlName="configType"
+    >
+    </app-select>
   </ng-container>
 
   <!-- OIDC -->
@@ -199,15 +195,14 @@
         formControlName="metadataAddress"
       ></app-input-text>
 
-      <div class="form-group">
-        <label for="redirectBehavior">
-          {{ "oidcRedirectBehavior" | i18n }}
-          <small class="text-muted form-text d-inline">({{ "required" | i18n }})</small>
-        </label>
-        <select class="form-control" formControlName="redirectBehavior" id="redirectBehavior">
-          <option *ngFor="let o of connectRedirectOptions" [ngValue]="o.value">{{ o.name }}</option>
-        </select>
-      </div>
+      <app-select
+        controlId="redirectBehavior"
+        [label]="'oidcRedirectBehavior' | i18n"
+        [selectOptions]="connectRedirectOptions"
+        formControlName="redirectBehavior"
+      >
+      </app-select>
+
       <div class="form-group">
         <div class="form-check">
           <input
@@ -300,57 +295,55 @@
     <!-- SAML2 SP -->
     <div class="config-section">
       <h2 class="secondary-header">{{ "samlSpConfig" | i18n }}</h2>
+
       <app-input-text-readonly
         [label]="'spEntityId' | i18n"
         [controlValue]="spEntityId"
       ></app-input-text-readonly>
+
       <app-input-text-readonly
         [label]="'spMetadataUrl' | i18n"
         [controlValue]="spMetadataUrl"
         [showLaunch]="true"
       ></app-input-text-readonly>
+
       <app-input-text-readonly
         [label]="'spAcsUrl' | i18n"
         [controlValue]="spAcsUrl"
       ></app-input-text-readonly>
-      <div class="form-group">
-        <label for="spNameIdFormat">{{ "spNameIdFormat" | i18n }}</label>
-        <select class="form-control" formControlName="spNameIdFormat" id="spNameIdFormat">
-          <option *ngFor="let o of saml2NameIdFormatOptions" [ngValue]="o.value">
-            {{ o.name }}
-          </option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="spOutboundSigningAlgorithm">{{ "spOutboundSigningAlgorithm" | i18n }}</label>
-        <select
-          class="form-control"
-          formControlName="spOutboundSigningAlgorithm"
-          id="spOutboundSigningAlgorithm"
-        >
-          <option *ngFor="let o of samlSigningAlgorithms" [ngValue]="o">{{ o }}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="spSigningBehavior">{{ "spSigningBehavior" | i18n }}</label>
-        <select class="form-control" formControlName="spSigningBehavior" id="spSigningBehavior">
-          <option *ngFor="let o of saml2SigningBehaviourOptions" [ngValue]="o.value">
-            {{ o.name }}
-          </option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="spMinIncomingSigningAlgorithm">{{
-          "spMinIncomingSigningAlgorithm" | i18n
-        }}</label>
-        <select
-          class="form-control"
-          formControlName="spMinIncomingSigningAlgorithm"
-          id="spMinIncomingSigningAlgorithm"
-        >
-          <option *ngFor="let o of samlSigningAlgorithms" [ngValue]="o">{{ o }}</option>
-        </select>
-      </div>
+
+      <app-select
+        controlId="spNameIdFormat"
+        [label]="'spNameIdFormat' | i18n"
+        [selectOptions]="saml2NameIdFormatOptions"
+        formControlName="spNameIdFormat"
+      >
+      </app-select>
+
+      <app-select
+        controlId="spOutboundSigningAlgorithm"
+        [label]="'spOutboundSigningAlgorithm' | i18n"
+        [selectOptions]="samlSigningAlgorithmOptions"
+        formControlName="spOutboundSigningAlgorithm"
+      >
+      </app-select>
+
+      <app-select
+        controlId="spSigningBehavior"
+        [label]="'spSigningBehavior' | i18n"
+        [selectOptions]="saml2SigningBehaviourOptions"
+        formControlName="spSigningBehavior"
+      >
+      </app-select>
+
+      <app-select
+        controlId="spMinIncomingSigningAlgorithm"
+        [label]="'spMinIncomingSigningAlgorithm' | i18n"
+        [selectOptions]="samlSigningAlgorithmOptions"
+        formControlName="spMinIncomingSigningAlgorithm"
+      >
+      </app-select>
+
       <div class="form-group">
         <div class="form-check">
           <input
@@ -389,14 +382,13 @@
         formControlName="idpEntityId"
       ></app-input-text>
 
-      <div class="form-group">
-        <label for="idpBindingType">{{ "idpBindingType" | i18n }}</label>
-        <select class="form-control" formControlName="idpBindingType" id="idpBindingType">
-          <option *ngFor="let o of saml2BindingTypeOptions" [ngValue]="o.value">
-            {{ o.name }}
-          </option>
-        </select>
-      </div>
+      <app-select
+        controlId="idpBindingType"
+        [label]="'idpBindingType' | i18n"
+        [selectOptions]="saml2BindingTypeOptions"
+        formControlName="idpBindingType"
+      >
+      </app-select>
 
       <app-input-text
         [label]="'idpSingleSignOnServiceUrl' | i18n"
@@ -446,16 +438,15 @@
           {{ "fieldRequiredError" | i18n: ("idpX509PublicCert" | i18n) }}
         </small>
       </div>
-      <div class="form-group">
-        <label for="idpOutboundSigningAlgorithm">{{ "idpOutboundSigningAlgorithm" | i18n }}</label>
-        <select
-          class="form-control"
-          formControlName="idpOutboundSigningAlgorithm"
-          id="idpOutboundSigningAlgorithm"
-        >
-          <option *ngFor="let o of samlSigningAlgorithms" [ngValue]="o">{{ o }}</option>
-        </select>
-      </div>
+
+      <app-select
+        controlId="idpOutboundSigningAlgorithm"
+        [label]="'idpOutboundSigningAlgorithm' | i18n"
+        [selectOptions]="samlSigningAlgorithmOptions"
+        formControlName="idpOutboundSigningAlgorithm"
+      >
+      </app-select>
+
       <div class="form-group" [hidden]="true">
         <!--TODO: Unhide once Unsolicited IdP Response is supported-->
         <div class="form-check">
