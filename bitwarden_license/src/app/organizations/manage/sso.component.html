@@ -28,20 +28,12 @@
 
   <!-- Root form -->
   <ng-container>
-    <div class="form-group">
-      <div class="form-check">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="enabled"
-          aria-describedby="allowSsoDesc"
-          [formControl]="enabled"
-          name="Enabled"
-        />
-        <label class="form-check-label" for="enabled">{{ "allowSso" | i18n }}</label>
-      </div>
-      <small id="allowSsoDesc" class="form-text text-muted">{{ "allowSsoDesc" | i18n }}</small>
-    </div>
+    <app-input-checkbox
+      controlId="enabled"
+      [formControl]="enabled"
+      [label]="'allowSso' | i18n"
+      [helperText]="'allowSsoDesc' | i18n"
+    ></app-input-checkbox>
 
     <div class="form-group">
       <label>{{ "memberDecryptionOption" | i18n }}</label>
@@ -203,19 +195,11 @@
       >
       </app-select>
 
-      <div class="form-group">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="getClaimsFromUserInfoEndpoint"
-            formControlName="getClaimsFromUserInfoEndpoint"
-          />
-          <label class="form-check-label" for="getClaimsFromUserInfoEndpoint">
-            {{ "getClaimsFromUserInfoEndpoint" | i18n }}
-          </label>
-        </div>
-      </div>
+      <app-input-checkbox
+        controlId="getClaimsFromUserInfoEndpoint"
+        formControlName="getClaimsFromUserInfoEndpoint"
+        [label]="'getClaimsFromUserInfoEndpoint' | i18n"
+      ></app-input-checkbox>
 
       <!-- Optional customizations -->
       <div
@@ -344,32 +328,17 @@
       >
       </app-select>
 
-      <div class="form-group">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="spWantAssertionsSigned"
-            formControlName="spWantAssertionsSigned"
-          />
-          <label class="form-check-label" for="spWantAssertionsSigned">
-            {{ "spWantAssertionsSigned" | i18n }}
-          </label>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="spValidateCertificates"
-            formControlName="spValidateCertificates"
-          />
-          <label class="form-check-label" for="spValidateCertificates">
-            {{ "spValidateCertificates" | i18n }}
-          </label>
-        </div>
-      </div>
+      <app-input-checkbox
+        controlId="spWantAssertionsSigned"
+        formControlName="spWantAssertionsSigned"
+        [label]="'spWantAssertionsSigned' | i18n"
+      ></app-input-checkbox>
+
+      <app-input-checkbox
+        controlId="spValidateCertificates"
+        formControlName="spValidateCertificates"
+        [label]="'spValidateCertificates' | i18n"
+      ></app-input-checkbox>
     </div>
 
     <!-- SAML2 IDP -->
@@ -447,46 +416,24 @@
       >
       </app-select>
 
-      <div class="form-group" [hidden]="true">
-        <!--TODO: Unhide once Unsolicited IdP Response is supported-->
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="idpAllowUnsolicitedAuthnResponse"
-            formControlName="idpAllowUnsolicitedAuthnResponse"
-          />
-          <label class="form-check-label" for="idpAllowUnsolicitedAuthnResponse">
-            {{ "idpAllowUnsolicitedAuthnResponse" | i18n }}
-          </label>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="idpAllowOutboundLogoutRequests"
-            formControlName="idpAllowOutboundLogoutRequests"
-          />
-          <label class="form-check-label" for="idpAllowOutboundLogoutRequests">
-            {{ "idpAllowOutboundLogoutRequests" | i18n }}
-          </label>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="idpWantAuthnRequestsSigned"
-            formControlName="idpWantAuthnRequestsSigned"
-          />
-          <label class="form-check-label" for="idpWantAuthnRequestsSigned">
-            {{ "idpSignAuthenticationRequests" | i18n }}
-          </label>
-        </div>
-      </div>
+      <!--TODO: Uncomment once Unsolicited IdP Response is supported-->
+      <!-- <app-input-checkbox
+        controlId="idpAllowUnsolicitedAuthnResponse"
+        formControlName="idpAllowUnsolicitedAuthnResponse"
+        [label]="'idpAllowUnsolicitedAuthnResponse' | i18n"
+      ></app-input-checkbox> -->
+
+      <app-input-checkbox
+        controlId="idpAllowOutboundLogoutRequests"
+        formControlName="idpAllowOutboundLogoutRequests"
+        [label]="'idpAllowOutboundLogoutRequests' | i18n"
+      ></app-input-checkbox>
+
+      <app-input-checkbox
+        controlId="idpWantAuthnRequestsSigned"
+        formControlName="idpWantAuthnRequestsSigned"
+        [label]="'idpSignAuthenticationRequests' | i18n"
+      ></app-input-checkbox>
     </div>
   </div>
 

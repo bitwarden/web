@@ -7,6 +7,7 @@ import { RouterModule } from "@angular/router";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { ToastrModule } from "ngx-toastr";
 
+import { InputCheckboxComponent } from "./components/input-checkbox.component";
 import { InputTextReadOnlyComponent } from "./components/input-text-readonly.component";
 import { InputTextComponent } from "./components/input-text.component";
 import { NestedCheckboxComponent } from "./components/nested-checkbox.component";
@@ -436,6 +437,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     StopPropDirective,
     TaxInfoComponent,
     InputTextComponent,
+    InputCheckboxComponent,
     InputTextReadOnlyComponent,
     ToolsComponent,
     TrueFalseValueDirective,
@@ -482,6 +484,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     SelectComponent,
     StopClickDirective,
     StopPropDirective,
+    InputCheckboxComponent,
     InputTextComponent,
     InputTextReadOnlyComponent,
     UserNamePipe,
