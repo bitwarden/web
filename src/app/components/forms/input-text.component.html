@@ -11,7 +11,7 @@
     [attr.id]="controlId"
     [attr.aria-describedby]="describedById"
     appA11yInvalid
-    (blur)="onBlur()"
+    (blur)="onBlurInternal()"
   />
   <div *ngIf="showDescribedBy" [attr.id]="describedById">
     <small
