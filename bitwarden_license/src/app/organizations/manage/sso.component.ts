@@ -94,9 +94,9 @@ export class SsoComponent implements OnInit {
 
   openIdForm = this.formBuilder.group(
     {
-      authority: ["", dirtyRequired()],
-      clientId: ["", dirtyRequired()],
-      clientSecret: ["", dirtyRequired()],
+      authority: ["", dirtyRequired],
+      clientId: ["", dirtyRequired],
+      clientSecret: ["", dirtyRequired],
       metadataAddress: [],
       redirectBehavior: [OpenIdConnectRedirectBehavior.RedirectGet],
       getClaimsFromUserInfoEndpoint: [],
@@ -121,7 +121,7 @@ export class SsoComponent implements OnInit {
       spWantAssertionsSigned: [],
       spValidateCertificates: [],
 
-      idpEntityId: ["", dirtyRequired()],
+      idpEntityId: ["", dirtyRequired],
       idpBindingType: [Saml2BindingType.HttpRedirect],
       idpSingleSignOnServiceUrl: [],
       idpSingleLogoutServiceUrl: [],
@@ -131,7 +131,7 @@ export class SsoComponent implements OnInit {
           (control) => control.parent?.get("idpBindingType").value === Saml2BindingType.Artifact
         ),
       ],
-      idpX509PublicCert: ["", dirtyRequired()],
+      idpX509PublicCert: ["", dirtyRequired],
       idpOutboundSigningAlgorithm: [defaultSigningAlgorithm],
       idpAllowUnsolicitedAuthnResponse: [],
       idpAllowOutboundLogoutRequests: [true],

@@ -173,7 +173,6 @@
       <app-input-text
         [label]="'authority' | i18n"
         controlId="authority"
-        [controlRequired]="true"
         [stripSpaces]="true"
         formControlName="authority"
       ></app-input-text>
@@ -181,7 +180,6 @@
       <app-input-text
         [label]="'clientId' | i18n"
         controlId="clientId"
-        [controlRequired]="true"
         [stripSpaces]="true"
         formControlName="clientId"
       ></app-input-text>
@@ -189,7 +187,6 @@
       <app-input-text
         [label]="'clientSecret' | i18n"
         controlId="clientSecret"
-        [controlRequired]="true"
         [stripSpaces]="true"
         formControlName="clientSecret"
       ></app-input-text>
@@ -389,7 +386,6 @@
       <app-input-text
         [label]="'idpEntityId' | i18n"
         controlId="idpEntityId"
-        [controlRequired]="true"
         formControlName="idpEntityId"
       ></app-input-text>
 
@@ -417,38 +413,15 @@
         formControlName="idpSingleLogoutServiceUrl"
       ></app-input-text>
 
-      <div class="form-group">
-        <label for="idpArtifactResolutionServiceUrl">{{
-          "idpArtifactResolutionServiceUrl" | i18n
-        }}</label>
-        <input
-          class="form-control"
-          formControlName="idpArtifactResolutionServiceUrl"
-          id="idpArtifactResolutionServiceUrl"
-          appChangeStripSpaces
-          appA11yInvalid
-          aria-describedby="idpArtifactResolutionServiceUrlDesc"
-        />
-        <div id="idpArtifactResolutionServiceUrlDesc">
-          <small
-            class="error-inline"
-            *ngIf="
-              samlForm.get('idpArtifactResolutionServiceUrl').hasError('required');
-              else idpArtifactHelperText
-            "
-            role="alert"
-          >
-            <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
-            <span class="sr-only">{{ "error" | i18n }}:</span>
-            {{ "idpArtifactResolutionRequired" | i18n }}
-          </small>
-          <ng-template #idpArtifactHelperText>
-            <small class="form-text text-muted">
-              {{ "idpArtifactResolutionRequired" | i18n }}
-            </small>
-          </ng-template>
-        </div>
-      </div>
+      <app-input-text
+        [label]="'idpArtifactResolutionServiceUrl' | i18n"
+        controlId="idpArtifactResolutionServiceUrl"
+        [stripSpaces]="true"
+        formControlName="idpArtifactResolutionServiceUrl"
+        [helperText]="'idpArtifactResolutionRequired' | i18n"
+        helperTextSameAsError="required"
+      ></app-input-text>
+
       <div class="form-group">
         <label for="idpX509PublicCert">
           {{ "idpX509PublicCert" | i18n }}

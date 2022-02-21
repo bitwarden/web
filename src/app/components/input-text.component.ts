@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Self } from "@angular/core";
-import { ControlValueAccessor, FormControl, NgControl } from "@angular/forms";
+import { ControlValueAccessor, FormControl, NgControl, Validators } from "@angular/forms";
+import { dirtyRequired } from "jslib-angular/validators/dirty.validator";
 
 @Component({
   selector: "app-input-text[label][controlId]",
@@ -14,10 +15,18 @@ export class InputTextComponent implements ControlValueAccessor, OnInit {
     return this.helperText != null || this.controlDir.control.hasError("required");
   }
 
+  get isRequired() {
+    return (
+      this.controlDir.control.hasValidator(Validators.required) ||
+      this.controlDir.control.hasValidator(dirtyRequired)
+    );
+  }
+
   @Input() label: string;
   @Input() controlId: string;
   @Input() helperText: string;
-  @Input() controlRequired: boolean = false;
+  @Input() helperTextSameAsError: string;
+  @Input() requiredErrorMessage: string;
   @Input() stripSpaces: boolean = false;
 
   internalControl = new FormControl("");
