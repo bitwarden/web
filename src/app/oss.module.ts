@@ -7,13 +7,13 @@ import { RouterModule } from "@angular/router";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { ToastrModule } from "ngx-toastr";
 
-import { InputCheckboxComponent } from "./components/input-checkbox.component";
-import { InputTextReadOnlyComponent } from "./components/input-text-readonly.component";
-import { InputTextComponent } from "./components/input-text.component";
-import { NestedCheckboxComponent } from "./components/nested-checkbox.component";
+import { InputCheckboxComponent } from "./components/forms/input-checkbox.component";
+import { InputTextReadOnlyComponent } from "./components/forms/input-text-readonly.component";
+import { InputTextComponent } from "./components/forms/input-text.component";
+import { NestedCheckboxComponent } from "./components/forms/nested-checkbox.component";
 import { PasswordRepromptComponent } from "./components/password-reprompt.component";
 import { PasswordStrengthComponent } from "./components/password-strength.component";
-import { SelectComponent } from "./components/select.component";
+import { SelectComponent } from "./components/forms/select.component";
 
 import { FooterComponent } from "./layouts/footer.component";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
