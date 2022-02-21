@@ -28,12 +28,14 @@ export abstract class BaseCvaComponent implements ControlValueAccessor, OnInit {
   protected onChange: any;
   protected onTouched: any;
 
+  protected onValueChangesInternal: any = (value: string) => this.onChange(value);
+
   constructor(@Self() public controlDir: NgControl) {
     this.controlDir.valueAccessor = this;
   }
 
   ngOnInit() {
-    this.internalControl.valueChanges.subscribe(this.onValueChangeInternal);
+    this.internalControl.valueChanges.subscribe(this.onValueChangesInternal);
   }
 
   onBlurInternal() {
@@ -61,8 +63,4 @@ export abstract class BaseCvaComponent implements ControlValueAccessor, OnInit {
     }
   }
   // End CVA interfaces
-
-  protected onValueChangeInternal(value: string) {
-    this.onChange(value);
-  }
 }

@@ -1,5 +1,4 @@
 import { Component, Input, OnInit, Self } from "@angular/core";
-import { NgControl } from "@angular/forms";
 
 import { BaseCvaComponent } from "./base-cva.component";
 
@@ -11,6 +10,14 @@ export class InputTextComponent extends BaseCvaComponent implements OnInit {
   @Input() helperTextSameAsError: string;
   @Input() requiredErrorMessage: string;
   @Input() stripSpaces: boolean = false;
+
+  protected onValueChangesInternal: any = (value: string) => {
+    let newValue = value;
+    if (this.transformValue != null) {
+      newValue = this.transformValue(value);
+      this.internalControl.setValue(newValue, { emitEvent: false });
+    }
+  };
 
   transformValue: (value: string) => string = null;
 
@@ -31,7 +38,6 @@ export class InputTextComponent extends BaseCvaComponent implements OnInit {
       newValue = this.transformValue(value);
       this.internalControl.setValue(newValue, { emitEvent: false });
     }
-    super.onValueChangeInternal(newValue);
   }
 
   private doStripSpaces(value: string) {
