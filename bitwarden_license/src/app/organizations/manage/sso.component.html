@@ -173,33 +173,33 @@
       <app-input-text
         [label]="'authority' | i18n"
         controlId="authority"
-        [control]="openIdForm.get('authority')"
         [controlRequired]="true"
         [stripSpaces]="true"
+        formControlName="authority"
       ></app-input-text>
 
       <app-input-text
         [label]="'clientId' | i18n"
         controlId="clientId"
-        [control]="openIdForm.get('clientId')"
         [controlRequired]="true"
         [stripSpaces]="true"
+        formControlName="clientId"
       ></app-input-text>
 
       <app-input-text
         [label]="'clientSecret' | i18n"
         controlId="clientSecret"
-        [control]="openIdForm.get('clientSecret')"
         [controlRequired]="true"
         [stripSpaces]="true"
+        formControlName="clientSecret"
       ></app-input-text>
 
       <app-input-text
         [label]="'metadataAddress' | i18n"
         controlId="metadataAddress"
-        [control]="openIdForm.get('metadataAddress')"
         [stripSpaces]="true"
         [helperText]="'openIdAuthorityRequired' | i18n"
+        formControlName="metadataAddress"
       ></app-input-text>
 
       <div class="form-group">
@@ -256,43 +256,43 @@
         <app-input-text
           [label]="'additionalScopes' | i18n"
           controlId="additionalScopes"
-          [control]="openIdForm.get('additionalScopes')"
           [helperText]="'separateMultipleWithComma' | i18n"
+          formControlName="additionalScopes"
         ></app-input-text>
 
         <app-input-text
           [label]="'additionalUserIdClaimTypes' | i18n"
           controlId="additionalUserIdClaimTypes"
-          [control]="openIdForm.get('additionalUserIdClaimTypes')"
           [helperText]="'separateMultipleWithComma' | i18n"
+          formControlName="additionalUserIdClaimTypes"
         ></app-input-text>
 
         <app-input-text
           [label]="'additionalEmailClaimTypes' | i18n"
           controlId="additionalEmailClaimTypes"
-          [control]="openIdForm.get('additionalEmailClaimTypes')"
           [helperText]="'separateMultipleWithComma' | i18n"
+          formControlName="additionalEmailClaimTypes"
         ></app-input-text>
 
         <app-input-text
           [label]="'additionalNameClaimTypes' | i18n"
           controlId="additionalNameClaimTypes"
-          [control]="openIdForm.get('additionalNameClaimTypes')"
           [helperText]="'separateMultipleWithComma' | i18n"
+          formControlName="additionalNameClaimTypes"
         ></app-input-text>
 
         <app-input-text
           [label]="'acrValues' | i18n"
           controlId="acrValues"
-          [control]="openIdForm.get('acrValues')"
           helperText="acr_values"
+          formControlName="acrValues"
         ></app-input-text>
 
         <app-input-text
           [label]="'expectedReturnAcrValue' | i18n"
           controlId="expectedReturnAcrValue"
-          [control]="openIdForm.get('expectedReturnAcrValue')"
           helperText="acr_validation"
+          formControlName="expectedReturnAcrValue"
         ></app-input-text>
       </div>
     </div>
@@ -389,8 +389,8 @@
       <app-input-text
         [label]="'idpEntityId' | i18n"
         controlId="idpEntityId"
-        [control]="samlForm.get('idpEntityId')"
         [controlRequired]="true"
+        formControlName="idpEntityId"
       ></app-input-text>
 
       <div class="form-group">
@@ -405,16 +405,16 @@
       <app-input-text
         [label]="'idpSingleSignOnServiceUrl' | i18n"
         controlId="idpSingleSignOnServiceUrl"
-        [control]="samlForm.get('idpSingleSignOnServiceUrl')"
         [helperText]="'idpSingleSignOnServiceUrlRequired' | i18n"
         [stripSpaces]="true"
+        formControlName="idpSingleSignOnServiceUrl"
       ></app-input-text>
 
       <app-input-text
         [label]="'idpSingleLogoutServiceUrl' | i18n"
         controlId="idpSingleLogoutServiceUrl"
-        [control]="samlForm.get('idpSingleLogoutServiceUrl')"
         [stripSpaces]="true"
+        formControlName="idpSingleLogoutServiceUrl"
       ></app-input-text>
 
       <div class="form-group">

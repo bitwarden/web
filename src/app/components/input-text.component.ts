@@ -1,33 +1,75 @@
-import { Component, Input, OnDestroy, OnInit } from "@angular/core";
-import { FormControl } from "@angular/forms";
+import { Component, Input, OnInit, Self } from "@angular/core";
+import { ControlValueAccessor, FormControl, NgControl } from "@angular/forms";
 
 @Component({
-  selector: "app-input-text[control][label][controlId]",
+  selector: "app-input-text[label][controlId]",
   templateUrl: "input-text.component.html",
 })
-export class InputTextComponent implements OnInit {
-  @Input() control: FormControl;
+export class InputTextComponent implements ControlValueAccessor, OnInit {
+  get describedById() {
+    return this.showDescribedBy ? this.controlId + "Desc" : null;
+  }
+
+  get showDescribedBy() {
+    return this.helperText != null || this.controlDir.control.hasError("required");
+  }
+
   @Input() label: string;
   @Input() controlId: string;
   @Input() helperText: string;
   @Input() controlRequired: boolean = false;
   @Input() stripSpaces: boolean = false;
 
-  get describedById() {
-    return this.showDescribedBy ? this.controlId + "Desc" : null;
-  }
+  internalControl = new FormControl("");
+  transformValue: (value: string) => string = null;
 
-  get showDescribedBy() {
-    return this.helperText != null || this.control.hasError("required");
+  private onChange: any;
+  private onTouched: any;
+
+  constructor(@Self() public controlDir: NgControl) {
+    this.controlDir.valueAccessor = this;
   }
 
   ngOnInit() {
     if (this.stripSpaces) {
-      this.control.valueChanges.subscribe((value: string) =>
-        this.control.setValue(this.doStripSpaces(value))
-      );
+      this.transformValue = this.doStripSpaces;
+    }
+
+    this.internalControl.valueChanges.subscribe((value: string) => {
+      let newValue = value;
+      if (this.transformValue != null) {
+        newValue = this.transformValue(value);
+        this.internalControl.setValue(newValue, { emitEvent: false });
+      }
+      this.onChange(newValue);
+    });
+  }
+
+  onBlur() {
+    this.onTouched();
+  }
+
+  // CVA interfaces
+  writeValue(value: string) {
+    this.internalControl.setValue(value == null ? "" : value);
+  }
+
+  registerOnChange(fn: any) {
+    this.onChange = fn;
+  }
+
+  registerOnTouched(fn: any) {
+    this.onTouched = fn;
+  }
+
+  setDisabledState(isDisabled: boolean) {
+    if (isDisabled) {
+      this.internalControl.disable();
+    } else {
+      this.internalControl.enable();
     }
   }
+  // End CVA interfaces
 
   private doStripSpaces(value: string) {
     return value.replace(/ /g, "");

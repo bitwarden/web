@@ -6,17 +6,18 @@
     >
   </label>
   <input
+    [formControl]="internalControl"
     class="form-control"
-    [formControl]="control"
     [attr.id]="controlId"
     [attr.aria-describedby]="describedById"
     appA11yInvalid
+    (blur)="onBlur()"
   />
   <div *ngIf="showDescribedBy" [attr.id]="describedById">
     <small *ngIf="helperText != null" class="form-text text-muted">
       {{ helperText }}
     </small>
-    <small class="error-inline" *ngIf="control.hasError('required')" role="alert">
+    <small class="error-inline" *ngIf="controlDir.control.hasError('required')" role="alert">
       <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
       <span class="sr-only">{{ "error" | i18n }}:</span>
       {{ "fieldRequiredError" | i18n: label }}
