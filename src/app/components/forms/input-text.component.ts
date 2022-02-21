@@ -17,6 +17,7 @@ export class InputTextComponent extends BaseCvaComponent implements OnInit {
       newValue = this.transformValue(value);
       this.internalControl.setValue(newValue, { emitEvent: false });
     }
+    this.onChange(newValue);
   };
 
   transformValue: (value: string) => string = null;

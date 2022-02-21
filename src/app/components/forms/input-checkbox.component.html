@@ -6,6 +6,7 @@
       [attr.id]="controlId"
       [attr.aria-describedby]="describedById"
       [formControl]="internalControl"
+      (blur)="onBlurInternal()"
     />
     <label class="form-check-label" [attr.for]="controlId">{{ label }}</label>
   </div>

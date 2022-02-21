@@ -5,7 +5,12 @@
       >({{ "required" | i18n }})</small
     >
   </label>
-  <select class="form-control" [attr.id]="controlId" [formControl]="internalControl">
+  <select
+    class="form-control"
+    [attr.id]="controlId"
+    [formControl]="internalControl"
+    (blur)="onBlurInternal()"
+  >
     <option *ngFor="let o of selectOptions" [ngValue]="o.value" disabled="{{ o.disabled }}">
       {{ o.name }}
     </option>

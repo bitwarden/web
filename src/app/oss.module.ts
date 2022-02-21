@@ -11,9 +11,9 @@ import { InputCheckboxComponent } from "./components/forms/input-checkbox.compon
 import { InputTextReadOnlyComponent } from "./components/forms/input-text-readonly.component";
 import { InputTextComponent } from "./components/forms/input-text.component";
 import { NestedCheckboxComponent } from "./components/forms/nested-checkbox.component";
+import { SelectComponent } from "./components/forms/select.component";
 import { PasswordRepromptComponent } from "./components/password-reprompt.component";
 import { PasswordStrengthComponent } from "./components/password-strength.component";
-import { SelectComponent } from "./components/forms/select.component";
 
 import { FooterComponent } from "./layouts/footer.component";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
