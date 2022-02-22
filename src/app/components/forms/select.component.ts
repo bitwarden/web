@@ -1,6 +1,7 @@
 import { Component, Input } from "@angular/core";
 
-import { ISelectOptions } from "jslib-angular/interfaces/ISelectOptions";
+import { SelectOptions } from "jslib-angular/interfaces/selectOptions";
+
 import { BaseCvaComponent } from "./base-cva.component";
 
 @Component({
@@ -8,5 +9,5 @@ import { BaseCvaComponent } from "./base-cva.component";
   templateUrl: "select.component.html",
 })
 export class SelectComponent extends BaseCvaComponent {
-  @Input() selectOptions: ISelectOptions[];
+  @Input() selectOptions: SelectOptions[];
 }

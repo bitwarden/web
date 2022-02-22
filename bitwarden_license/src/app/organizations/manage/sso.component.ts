@@ -6,6 +6,7 @@ import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+
 import { SsoConfigApi } from "jslib-common/models/api/ssoConfigApi";
 
 import { Organization } from "jslib-common/models/domain/organization";
@@ -15,7 +16,7 @@ import { OrganizationSsoResponse } from "jslib-common/models/response/organizati
 
 import { dirtyRequired, dirtyRequiredIf } from "jslib-angular/validators/dirty.validator";
 
-import { ISelectOptions } from "jslib-angular/interfaces/ISelectOptions";
+import { SelectOptions } from "jslib-angular/interfaces/selectOptions";
 
 import {
   OpenIdConnectRedirectBehavior,
@@ -36,7 +37,7 @@ const defaultSigningAlgorithm = "http://www.w3.org/2001/04/xmldsig-more#rsa-sha2
 export class SsoComponent implements OnInit {
   readonly ssoType = SsoType;
 
-  readonly ssoTypeOptions: ISelectOptions[] = [
+  readonly ssoTypeOptions: SelectOptions[] = [
     { name: this.i18nService.t("selectType"), value: SsoType.None, disabled: true },
     { name: "OpenID Connect", value: SsoType.OpenIdConnect },
     { name: "SAML 2.0", value: SsoType.Saml2 },
@@ -49,7 +50,7 @@ export class SsoComponent implements OnInit {
     "http://www.w3.org/2000/09/xmldsig#rsa-sha1",
   ];
 
-  readonly saml2SigningBehaviourOptions: ISelectOptions[] = [
+  readonly saml2SigningBehaviourOptions: SelectOptions[] = [
     {
       name: "If IdP Wants Authn Requests Signed",
       value: Saml2SigningBehavior.IfIdpWantAuthnRequestsSigned,
@@ -57,12 +58,12 @@ export class SsoComponent implements OnInit {
     { name: "Always", value: Saml2SigningBehavior.Always },
     { name: "Never", value: Saml2SigningBehavior.Never },
   ];
-  readonly saml2BindingTypeOptions: ISelectOptions[] = [
+  readonly saml2BindingTypeOptions: SelectOptions[] = [
     { name: "Redirect", value: Saml2BindingType.HttpRedirect },
     { name: "HTTP POST", value: Saml2BindingType.HttpPost },
     { name: "Artifact", value: Saml2BindingType.Artifact },
   ];
-  readonly saml2NameIdFormatOptions: ISelectOptions[] = [
+  readonly saml2NameIdFormatOptions: SelectOptions[] = [
     { name: "Not Configured", value: Saml2NameIdFormat.NotConfigured },
     { name: "Unspecified", value: Saml2NameIdFormat.Unspecified },
     { name: "Email Address", value: Saml2NameIdFormat.EmailAddress },
@@ -74,7 +75,7 @@ export class SsoComponent implements OnInit {
     { name: "Transient", value: Saml2NameIdFormat.Transient },
   ];
 
-  readonly connectRedirectOptions: ISelectOptions[] = [
+  readonly connectRedirectOptions: SelectOptions[] = [
     { name: "Redirect GET", value: OpenIdConnectRedirectBehavior.RedirectGet },
     { name: "Form POST", value: OpenIdConnectRedirectBehavior.FormPost },
   ];
@@ -282,7 +283,7 @@ export class SsoComponent implements OnInit {
     return this.ssoConfigForm.get("keyConnectorUrl");
   }
 
-  get samlSigningAlgorithmOptions(): ISelectOptions[] {
+  get samlSigningAlgorithmOptions(): SelectOptions[] {
     return this.samlSigningAlgorithms.map((algorithm) => ({ name: algorithm, value: algorithm }));
   }
 
