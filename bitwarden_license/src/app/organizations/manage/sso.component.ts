@@ -25,6 +25,7 @@ import {
   SsoType,
 } from "jslib-common/enums/ssoEnums";
 import { SsoConfigView } from "jslib-common/models/view/ssoConfigView";
+import { Utils } from "jslib-common/misc/utils";
 
 const defaultSigningAlgorithm = "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256";
 
@@ -273,21 +274,12 @@ export class SsoComponent implements OnInit {
   get enableTestKeyConnector() {
     return (
       this.ssoConfigForm.get("keyConnectorEnabled").value &&
-      this.keyConnectorUrl != null &&
-      this.keyConnectorUrl.value !== ""
+      !Utils.isNullOrWhitespace(this.keyConnectorUrl?.value)
     );
   }
 
   get keyConnectorUrl() {
     return this.ssoConfigForm.get("keyConnectorUrl");
-  }
-
-  get x509HasRequiredError() {
-    return this.samlForm.get("idpX509PublicCert").hasError("required");
-  }
-
-  get artifactUrlHasRequiredError() {
-    return this.samlForm.get("idpArtifactResolutionServiceUrl").hasError("required");
   }
 
   get samlSigningAlgorithmOptions(): ISelectOptions[] {
