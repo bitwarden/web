@@ -9,8 +9,6 @@ module.exports = {
     colors: {
       transparent: colors.transparent,
       current: colors.current,
-      white: colors.white,
-      gray: colors.gray,
       primary: {
         300: "var(--color-primary-300)",
         500: "var(--color-primary-500)",
@@ -22,6 +20,8 @@ module.exports = {
         500: "var(--color-secondary-500)",
         700: "var(--color-secondary-700)",
         900: "var(--color-secondary-900)",
+        text: "var(--color-secondary-text)",
+        "text-hover": "var(--color-secondary-text-hover)",
       },
       success: {
         300: "var(--color-success-300)",
@@ -43,7 +43,10 @@ module.exports = {
         500: "var(--color-info-500)",
         700: "var(--color-info-700)",
       },
-
+      outline: {
+        background: "var(--color-outline-background)",
+        border: "var(--color-outline-border)",
+      },
       "text-body": "--color-text-body",
       "text-muted": "--color-text-muted",
       "text-black50": "--color-text-black50",
