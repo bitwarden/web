@@ -305,8 +305,7 @@ export class SsoComponent implements OnInit {
 
   private populateForm(ssoSettings: OrganizationSsoResponse) {
     this.enabled.setValue(ssoSettings.enabled);
-
-    if (ssoSettings.data.configType !== SsoType.None) {
+    if (ssoSettings.data != null) {
       const ssoConfigView = new SsoConfigView(ssoSettings.data);
       this.ssoConfigForm.patchValue(ssoConfigView);
     }
