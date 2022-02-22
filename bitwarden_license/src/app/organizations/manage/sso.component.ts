@@ -24,8 +24,8 @@ import {
   Saml2SigningBehavior,
   SsoType,
 } from "jslib-common/enums/ssoEnums";
-import { SsoConfigView } from "jslib-common/models/view/ssoConfigView";
 import { Utils } from "jslib-common/misc/utils";
+import { SsoConfigView } from "jslib-common/models/view/ssoConfigView";
 
 const defaultSigningAlgorithm = "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256";
 

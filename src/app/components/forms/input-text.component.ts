@@ -11,15 +11,6 @@ export class InputTextComponent extends BaseCvaComponent implements OnInit {
   @Input() requiredErrorMessage: string;
   @Input() stripSpaces: boolean = false;
 
-  protected onValueChangesInternal: any = (value: string) => {
-    let newValue = value;
-    if (this.transformValue != null) {
-      newValue = this.transformValue(value);
-      this.internalControl.setValue(newValue, { emitEvent: false });
-    }
-    this.onChange(newValue);
-  };
-
   transformValue: (value: string) => string = null;
 
   ngOnInit() {
@@ -32,6 +23,15 @@ export class InputTextComponent extends BaseCvaComponent implements OnInit {
   writeValue(value: string) {
     this.internalControl.setValue(value == null ? "" : value);
   }
+
+  protected onValueChangesInternal: any = (value: string) => {
+    let newValue = value;
+    if (this.transformValue != null) {
+      newValue = this.transformValue(value);
+      this.internalControl.setValue(newValue, { emitEvent: false });
+    }
+    this.onChange(newValue);
+  };
 
   protected onValueChangeInternal(value: string) {
     let newValue = value;
