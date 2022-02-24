@@ -224,6 +224,7 @@ jobs:
     env:
       _TAG_VERSION: ${{ needs.setup.outputs.tag_version }}
     needs:
+      - setup
       - release
     steps:
       - name: Checkout repo
