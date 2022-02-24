@@ -1,14 +1,13 @@
 import Swal, { SweetAlertIcon } from "sweetalert2";
 
-import { ClientType } from "jslib-common/enums/clientType";
-import { DeviceType } from "jslib-common/enums/deviceType";
-import { ThemeType } from "jslib-common/enums/themeType";
-
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
+import { ClientType } from "jslib-common/enums/clientType";
+import { DeviceType } from "jslib-common/enums/deviceType";
+import { ThemeType } from "jslib-common/enums/themeType";
 
 export class WebPlatformUtilsService implements PlatformUtilsService {
   private browserCache: DeviceType = null;
@@ -194,7 +193,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     confirmText?: string,
     cancelText?: string,
     type?: string,
-    bodyIsHtml: boolean = false
+    bodyIsHtml = false
   ) {
     let iconClasses: string = null;
     if (type != null) {
@@ -285,7 +284,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
           this.logService.debug("Copy command unsupported or disabled.");
         }
       } catch (e) {
-        // tslint:disable-next-line
+        // eslint-disable-next-line
         console.warn("Copy to clipboard failed.", e);
       } finally {
         copyEl.removeChild(textarea);

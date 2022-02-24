@@ -1,16 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import Swal, { SweetAlertIcon } from "sweetalert2";
 
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { ImportOption, ImportService } from "jslib-common/abstractions/import.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
-
 import { PolicyType } from "jslib-common/enums/policyType";
 import { ImportType } from "jslib-common/services/import.service";
-
-import Swal, { SweetAlertIcon } from "sweetalert2";
 
 @Component({
   selector: "app-import",
@@ -22,8 +20,8 @@ export class ImportComponent implements OnInit {
   format: ImportType = null;
   fileContents: string;
   formPromise: Promise<Error>;
-  loading: boolean = false;
-  importBlockedByPolicy: boolean = false;
+  loading = false;
+  importBlockedByPolicy = false;
 
   protected organizationId: string = null;
   protected successNavigate: any[] = ["vault"];

@@ -2,11 +2,8 @@ import { Component } from "@angular/core";
 
 import { LogService } from "jslib-common/abstractions/log.service";
 import { UserVerificationService } from "jslib-common/abstractions/userVerification.service";
-
 import { SecretVerificationRequest } from "jslib-common/models/request/secretVerificationRequest";
-
 import { ApiKeyResponse } from "jslib-common/models/response/apiKeyResponse";
-
 import { Verification } from "jslib-common/types/verification";
 
 @Component({

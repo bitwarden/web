@@ -8,24 +8,21 @@ import {
   ViewContainerRef,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-
 import { first } from "rxjs/operators";
 
+import { ModalService } from "jslib-angular/services/modal.service";
 import { BroadcasterService } from "jslib-common/abstractions/broadcaster.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
-
-import { ModalService } from "jslib-angular/services/modal.service";
-
+import { CipherType } from "jslib-common/enums/cipherType";
 import { Organization } from "jslib-common/models/domain/organization";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { CipherType } from "jslib-common/enums/cipherType";
-
 import { EntityEventsComponent } from "../manage/entity-events.component";
+
 import { AddEditComponent } from "./add-edit.component";
 import { AttachmentsComponent } from "./attachments.component";
 import { CiphersComponent } from "./ciphers.component";
@@ -53,7 +50,7 @@ export class VaultComponent implements OnInit, OnDestroy {
   organization: Organization;
   collectionId: string = null;
   type: CipherType = null;
-  deleted: boolean = false;
+  deleted = false;
   trashCleanupWarning: string = null;
 
   constructor(
@@ -182,7 +179,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     this.go();
   }
 
-  async filterDeleted(load: boolean = false) {
+  async filterDeleted(load = false) {
     this.ciphersComponent.showAddNew = false;
     this.ciphersComponent.deleted = true;
     this.groupingsComponent.searchPlaceholder = this.i18nService.t("searchTrash");
@@ -266,15 +263,15 @@ export class VaultComponent implements OnInit, OnDestroy {
       (comp) => {
         comp.organization = this.organization;
         comp.cipherId = cipher == null ? null : cipher.id;
-        comp.onSavedCipher.subscribe(async (c: CipherView) => {
+        comp.onSavedCipher.subscribe(async () => {
           modal.close();
           await this.ciphersComponent.refresh();
         });
-        comp.onDeletedCipher.subscribe(async (c: CipherView) => {
+        comp.onDeletedCipher.subscribe(async () => {
           modal.close();
           await this.ciphersComponent.refresh();
         });
-        comp.onRestoredCipher.subscribe(async (c: CipherView) => {
+        comp.onRestoredCipher.subscribe(async () => {
           modal.close();
           await this.ciphersComponent.refresh();
         });

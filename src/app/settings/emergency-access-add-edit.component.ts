@@ -4,7 +4,6 @@ import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
 import { EmergencyAccessType } from "jslib-common/enums/emergencyAccessType";
 import { EmergencyAccessInviteRequest } from "jslib-common/models/request/emergencyAccessInviteRequest";
 import { EmergencyAccessUpdateRequest } from "jslib-common/models/request/emergencyAccessUpdateRequest";
@@ -20,8 +19,8 @@ export class EmergencyAccessAddEditComponent implements OnInit {
   @Output() onDeleted = new EventEmitter();
 
   loading = true;
-  readOnly: boolean = false;
-  editMode: boolean = false;
+  readOnly = false;
+  editMode = false;
   title: string;
   email: string;
   type: EmergencyAccessType = EmergencyAccessType.View;

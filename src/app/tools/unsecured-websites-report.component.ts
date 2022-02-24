@@ -1,14 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 
+import { ModalService } from "jslib-angular/services/modal.service";
 import { CipherService } from "jslib-common/abstractions/cipher.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { PasswordRepromptService } from "jslib-common/abstractions/passwordReprompt.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
-import { ModalService } from "jslib-angular/services/modal.service";
-
 import { CipherType } from "jslib-common/enums/cipherType";
-
 import { CipherView } from "jslib-common/models/view/cipherView";
 
 import { CipherReportComponent } from "./cipher-report.component";

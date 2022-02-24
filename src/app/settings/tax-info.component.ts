@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { OrganizationTaxInfoUpdateRequest } from "jslib-common/models/request/organizationTaxInfoUpdateRequest";
@@ -13,7 +14,7 @@ import { TaxRateResponse } from "jslib-common/models/response/taxRateResponse";
 export class TaxInfoComponent {
   @Output() onCountryChanged = new EventEmitter();
 
-  loading: boolean = true;
+  loading = true;
   organizationId: string;
   taxInfo: any = {
     taxId: null,
@@ -148,6 +149,7 @@ export class TaxInfoComponent {
 
   private hasChanged(): boolean {
     for (const key in this.taxInfo) {
+      // eslint-disable-next-line
       if (this.pristine.hasOwnProperty(key) && this.pristine[key] !== this.taxInfo[key]) {
         return true;
       }

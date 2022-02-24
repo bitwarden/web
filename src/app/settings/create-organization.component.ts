@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-
 import { first } from "rxjs/operators";
 
 import { PlanType } from "jslib-common/enums/planType";

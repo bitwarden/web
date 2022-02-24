@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 
+import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
+import { ModalService } from "jslib-angular/services/modal.service";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -8,25 +10,18 @@ import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
+import { EmergencyAccessStatusType } from "jslib-common/enums/emergencyAccessStatusType";
+import { EmergencyAccessType } from "jslib-common/enums/emergencyAccessType";
+import { Utils } from "jslib-common/misc/utils";
 import { EmergencyAccessConfirmRequest } from "jslib-common/models/request/emergencyAccessConfirmRequest";
-
 import {
   EmergencyAccessGranteeDetailsResponse,
   EmergencyAccessGrantorDetailsResponse,
 } from "jslib-common/models/response/emergencyAccessResponse";
 
-import { EmergencyAccessStatusType } from "jslib-common/enums/emergencyAccessStatusType";
-import { EmergencyAccessType } from "jslib-common/enums/emergencyAccessType";
-import { Utils } from "jslib-common/misc/utils";
-
-import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
-
 import { EmergencyAccessAddEditComponent } from "./emergency-access-add-edit.component";
 import { EmergencyAccessConfirmComponent } from "./emergency-access-confirm.component";
 import { EmergencyAccessTakeoverComponent } from "./emergency-access-takeover.component";
-
-import { ModalService } from "jslib-angular/services/modal.service";
 
 @Component({
   selector: "emergency-access",

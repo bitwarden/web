@@ -28,6 +28,7 @@ export function parseWebauthnJson(jsonString: string) {
   json.challenge = Uint8Array.from(atob(challenge), (c) => c.charCodeAt(0));
 
   json.allowCredentials.forEach((listItem: any) => {
+    // eslint-disable-next-line
     const fixedId = listItem.id.replace(/\_/g, "/").replace(/\-/g, "+");
     listItem.id = Uint8Array.from(atob(fixedId), (c) => c.charCodeAt(0));
   });

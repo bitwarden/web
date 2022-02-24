@@ -3,13 +3,11 @@ import { Component, Input, OnInit } from "@angular/core";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
-
+import { OrganizationUserStatusType } from "jslib-common/enums/organizationUserStatusType";
+import { Utils } from "jslib-common/misc/utils";
 import { OrganizationUserBulkConfirmRequest } from "jslib-common/models/request/organizationUserBulkConfirmRequest";
 import { OrganizationUserBulkRequest } from "jslib-common/models/request/organizationUserBulkRequest";
 
-import { OrganizationUserStatusType } from "jslib-common/enums/organizationUserStatusType";
-
-import { Utils } from "jslib-common/misc/utils";
 import { BulkUserDetails } from "./bulk-status.component";
 
 @Component({
@@ -26,8 +24,8 @@ export class BulkConfirmComponent implements OnInit {
   fingerprints: Map<string, string> = new Map();
   statuses: Map<string, string> = new Map();
 
-  loading: boolean = true;
-  done: boolean = false;
+  loading = true;
+  done = false;
   error: string;
 
   constructor(

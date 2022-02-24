@@ -1,4 +1,5 @@
 import { Component } from "@angular/core";
+
 import { OrganizationUserStatusType } from "jslib-common/enums/organizationUserStatusType";
 import { ProviderUserStatusType } from "jslib-common/enums/providerUserStatusType";
 
@@ -21,5 +22,5 @@ type BulkStatusEntry = {
 })
 export class BulkStatusComponent {
   users: BulkStatusEntry[];
-  loading: boolean = false;
+  loading = false;
 }

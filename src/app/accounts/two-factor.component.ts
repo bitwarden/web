@@ -1,7 +1,8 @@
 import { Component, ViewChild, ViewContainerRef } from "@angular/core";
-
 import { ActivatedRoute, Router } from "@angular/router";
 
+import { TwoFactorComponent as BaseTwoFactorComponent } from "jslib-angular/components/two-factor.component";
+import { ModalService } from "jslib-angular/services/modal.service";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { AuthService } from "jslib-common/abstractions/auth.service";
 import { EnvironmentService } from "jslib-common/abstractions/environment.service";
@@ -10,12 +11,7 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
 import { TwoFactorService } from "jslib-common/abstractions/twoFactor.service";
-
-import { ModalService } from "jslib-angular/services/modal.service";
-
 import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
-
-import { TwoFactorComponent as BaseTwoFactorComponent } from "jslib-angular/components/two-factor.component";
 
 import { TwoFactorOptionsComponent } from "./two-factor-options.component";
 
