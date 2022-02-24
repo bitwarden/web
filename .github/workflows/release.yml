@@ -216,3 +216,18 @@ jobs:
             web-${{ needs.setup.outputs.release_version }}-selfhosted-open-source.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
+
+  dry-run:
+    name: Dry Run Cleanup
+    runs-on: ubuntu-20.04
+    if: ${{ github.event.inputs.release_type == 'Dry Run' }}
+    env:
+      _TAG_VERSION: ${{ needs.setup.outputs.tag_version }}
+    needs:
+      - release
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # 2.4.0
+
+      - name: Remove deploy branch
+        run: git push origin --delete deploy-$_TAG_VERSION
