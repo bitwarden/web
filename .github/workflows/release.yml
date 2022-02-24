@@ -129,7 +129,7 @@ jobs:
       _TAG_VERSION: ${{ needs.setup.outputs.tag_version }}
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # v2.3.4
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # v2.4.0
         with:
           ref: gh-pages
 
@@ -139,7 +139,7 @@ jobs:
           git push -u origin deploy-$_TAG_VERSION
 
       - name: Checkout Repo
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # v2.3.4
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # v2.4.0
 
       - name: Setup git config
         run: |
