@@ -2,13 +2,13 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 
 import { I18nService } from "jslib-common/abstractions/i18n.service";
-import { ImportOption, ImportService } from "jslib-common/abstractions/import.service";
+import { ImportService } from "jslib-common/abstractions/import.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
 
+import { ImportOption, ImportType } from "jslib-common/enums/importOptions";
 import { PolicyType } from "jslib-common/enums/policyType";
-import { ImportType } from "jslib-common/services/import.service";
 
 import Swal, { SweetAlertIcon } from "sweetalert2";
 
