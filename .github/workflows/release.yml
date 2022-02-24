@@ -12,6 +12,7 @@ on:
         options:
           - Initial Release
           - Redeploy
+          - Dry Run
 
 jobs:
   setup:
@@ -23,6 +24,7 @@ jobs:
       branch_name: ${{ steps.branch.outputs.branch_name }}
     steps:
       - name: Branch check
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
         run: |
           if [[ "$GITHUB_REF" != "refs/heads/rc" ]] && [[ "$GITHUB_REF" != "refs/heads/hotfix" ]]; then
             echo "==================================="
@@ -32,7 +34,7 @@ jobs:
           fi
 
       - name: Checkout repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f  # 2.3.4
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # 2.4.0
 
       - name: Check Release Version
         id: version
@@ -64,6 +66,7 @@ jobs:
     env:
       _BRANCH_NAME: ${{ needs.setup.outputs.branch_name }}
       _RELEASE_VERSION: ${{ needs.setup.outputs.release_version }}
+      _RELEASE_OPTION: ${{ github.event.inputs.release_type }}
     steps:
       - name: Print environment
         run: |
@@ -71,6 +74,7 @@ jobs:
           docker --version
           echo "GitHub ref: $GITHUB_REF"
           echo "GitHub event: $GITHUB_EVENT"
+          echo "Github Release Option: $_RELEASE_OPTION"
 
       - name: Setup DCT
         id: setup-dct
@@ -80,20 +84,30 @@ jobs:
           azure-keyvault-name: "bitwarden-prod-kv"
 
       - name: Checkout repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
 
       - name: Pull latest selfhost image
-        run: docker pull bitwarden/web:$_BRANCH_NAME
+        run: |
+          if [[ "${{ github.event.inputs.release_type }}" == "Dry Run" ]]; then
+            docker pull bitwarden/web:latest
+          else
+            docker pull bitwarden/web:$_BRANCH_NAME
+          fi
 
       - name: Tag version and latest
         run: |
-          docker tag bitwarden/web:$_BRANCH_NAME bitwarden/web:$_RELEASE_VERSION
-          docker tag bitwarden/web:$_BRANCH_NAME bitwarden/web:latest
+          if [[ "${{ github.event.inputs.release_type }}" == "Dry Run" ]]; then
+            docker tag bitwarden/web:latest bitwarden/web:dryrun
+          else
+            docker tag bitwarden/web:$_BRANCH_NAME bitwarden/web:$_RELEASE_VERSION
+            docker tag bitwarden/web:$_BRANCH_NAME bitwarden/web:latest
+          fi
 
       - name: List Docker images
         run: docker images
 
       - name: Push version and latest image
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
         env:
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
@@ -115,7 +129,7 @@ jobs:
       _TAG_VERSION: ${{ needs.setup.outputs.tag_version }}
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f  # v2.3.4
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # v2.3.4
         with:
           ref: gh-pages
 
@@ -125,7 +139,7 @@ jobs:
           git push -u origin deploy-$_TAG_VERSION
 
       - name: Checkout Repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f  # v2.3.4
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # v2.3.4
 
       - name: Setup git config
         run: |
@@ -147,7 +161,7 @@ jobs:
         run: unzip web-*-cloud-COMMERCIAL.zip
 
       - name: Deploy GitHub Pages
-        uses: crazy-max/ghaction-github-pages@db4476a01402e1a7ce05f41832040eef16d14925  # v2.5.0
+        uses: crazy-max/ghaction-github-pages@a117e4aa1fb4854d021546d2abdfac95be568a3a  # v2.6.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -155,8 +169,10 @@ jobs:
           build_dir: build
           keep_history: true
           commit_message: "Staging deploy ${{ needs.setup.outputs.release_version }}"
+          dry_run: ${{ github.event.inputs.release_type == 'Dry Run' }}
 
       - name: Create Deploy PR
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
         env:
           PR_BRANCH: deploy-${{ env._TAG_VERSION }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -189,7 +205,8 @@ jobs:
           mv web-*-selfhosted-open-source.zip web-${{ needs.setup.outputs.release_version }}-selfhosted-open-source.zip
 
       - name: Create release
-        uses: ncipollo/release-action@95215a3cb6e6a1908b3c44e00b4fdb15548b1e09
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        uses: ncipollo/release-action@40bb172bd05f266cf9ba4ff965cb61e9ee5f6d01
         with:
           name: "Version ${{ needs.setup.outputs.release_version }}"
           commit: ${{ github.sha }}
