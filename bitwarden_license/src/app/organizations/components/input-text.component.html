@@ -10,7 +10,7 @@
     class="form-control"
     [attr.id]="controlId"
     [attr.aria-describedby]="describedById"
-    appA11yInvalid
+    [attr.aria-invalid]="controlDir.control.invalid"
     (blur)="onBlurInternal()"
   />
   <div *ngIf="showDescribedBy" [attr.id]="describedById">

@@ -8,6 +8,7 @@
   <select
     class="form-control"
     [attr.id]="controlId"
+    [attr.aria-invalid]="controlDir.control.invalid"
     [formControl]="internalControl"
     (blur)="onBlurInternal()"
   >

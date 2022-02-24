@@ -235,9 +235,13 @@ input[type="checkbox"] {
 }
 
 // Theming for invalid form elements - only if we're not using native HTML5 validation
-form:not([ngnativevalidate]):not([ngnativevalidate=""]) .form-control.ng-invalid {
-  @include themify($themes) {
-    border-color: themed("danger");
+form {
+  .form-control.ng-invalid,
+  app-input-text.ng-invalid .form-control,
+  app-select.ng-invalid .form-control {
+    @include themify($themes) {
+      border-color: themed("danger");
+    }
   }
 }
 
