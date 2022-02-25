@@ -16,8 +16,8 @@ export class BulkRemoveComponent {
 
   statuses: Map<string, string> = new Map();
 
-  loading: boolean = false;
-  done: boolean = false;
+  loading = false;
+  done = false;
   error: string;
 
   constructor(protected apiService: ApiService, protected i18nService: I18nService) {}

@@ -6,6 +6,7 @@ import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
 import { EmergencyAccessAcceptRequest } from "jslib-common/models/request/emergencyAccessAcceptRequest";
+
 import { BaseAcceptComponent } from "../common/base.accept.component";
 
 @Component({

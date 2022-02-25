@@ -1,8 +1,11 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-
 import { first } from "rxjs/operators";
 
+import { SearchPipe } from "jslib-angular/pipes/search.pipe";
+import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
+import { ModalService } from "jslib-angular/services/modal.service";
+import { ValidationService } from "jslib-angular/services/validation.service";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -11,26 +14,18 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { ProviderService } from "jslib-common/abstractions/provider.service";
 import { SearchService } from "jslib-common/abstractions/search.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
-import { ModalService } from "jslib-angular/services/modal.service";
-import { ValidationService } from "jslib-angular/services/validation.service";
-
 import { ProviderUserStatusType } from "jslib-common/enums/providerUserStatusType";
 import { ProviderUserType } from "jslib-common/enums/providerUserType";
-
-import { SearchPipe } from "jslib-angular/pipes/search.pipe";
-import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
-
-import { ListResponse } from "jslib-common/models/response/listResponse";
-import { ProviderUserUserDetailsResponse } from "jslib-common/models/response/provider/providerUserResponse";
-
 import { ProviderUserBulkRequest } from "jslib-common/models/request/provider/providerUserBulkRequest";
 import { ProviderUserConfirmRequest } from "jslib-common/models/request/provider/providerUserConfirmRequest";
+import { ListResponse } from "jslib-common/models/response/listResponse";
 import { ProviderUserBulkResponse } from "jslib-common/models/response/provider/providerUserBulkResponse";
+import { ProviderUserUserDetailsResponse } from "jslib-common/models/response/provider/providerUserResponse";
 
 import { BasePeopleComponent } from "src/app/common/base.people.component";
 import { BulkStatusComponent } from "src/app/organizations/manage/bulk/bulk-status.component";
 import { EntityEventsComponent } from "src/app/organizations/manage/entity-events.component";
+
 import { BulkConfirmComponent } from "./bulk/bulk-confirm.component";
 import { BulkRemoveComponent } from "./bulk/bulk-remove.component";
 import { UserAddEditComponent } from "./user-add-edit.component";
@@ -158,17 +153,13 @@ export class PeopleComponent
   }
 
   async events(user: ProviderUserUserDetailsResponse) {
-    const [modal] = await this.modalService.openViewRef(
-      EntityEventsComponent,
-      this.eventsModalRef,
-      (comp) => {
-        comp.name = this.userNamePipe.transform(user);
-        comp.providerId = this.providerId;
-        comp.entityId = user.id;
-        comp.showUser = false;
-        comp.entity = "user";
-      }
-    );
+    await this.modalService.openViewRef(EntityEventsComponent, this.eventsModalRef, (comp) => {
+      comp.name = this.userNamePipe.transform(user);
+      comp.providerId = this.providerId;
+      comp.entityId = user.id;
+      comp.showUser = false;
+      comp.entity = "user";
+    });
   }
 
   async bulkRemove() {
@@ -272,13 +263,14 @@ export class PeopleComponent
 
         childComponent.users = users.map((user) => {
           let message = keyedErrors[user.id] ?? successfullMessage;
+          // eslint-disable-next-line
           if (!keyedFilteredUsers.hasOwnProperty(user.id)) {
             message = this.i18nService.t("bulkFilteredMessage");
           }
 
           return {
             user: user,
-            error: keyedErrors.hasOwnProperty(user.id),
+            error: keyedErrors.hasOwnProperty(user.id), // eslint-disable-line
             message: message,
           };
         });

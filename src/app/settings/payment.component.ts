@@ -1,11 +1,9 @@
 import { Component, Input, OnInit } from "@angular/core";
 
-import { PaymentMethodType } from "jslib-common/enums/paymentMethodType";
-
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
+import { PaymentMethodType } from "jslib-common/enums/paymentMethodType";
 import { ThemeType } from "jslib-common/enums/themeType";
 
 import ThemeVariables from "src/scss/export.module.scss";
@@ -161,7 +159,7 @@ export class PaymentComponent implements OnInit {
           },
           (createErr: any, instance: any) => {
             if (createErr != null) {
-              // tslint:disable-next-line
+              // eslint-disable-next-line
               console.error(createErr);
               return;
             }

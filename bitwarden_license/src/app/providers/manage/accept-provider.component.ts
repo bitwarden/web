@@ -1,14 +1,13 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
-import { BaseAcceptComponent } from "src/app/common/base.accept.component";
-
 import { ApiService } from "jslib-common/abstractions/api.service";
-
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
 import { ProviderUserAcceptRequest } from "jslib-common/models/request/provider/providerUserAcceptRequest";
+
+import { BaseAcceptComponent } from "src/app/common/base.accept.component";
 
 @Component({
   selector: "app-accept-provider",

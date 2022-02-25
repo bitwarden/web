@@ -1,20 +1,16 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-
 import { first } from "rxjs/operators";
 
+import { ModalService } from "jslib-angular/services/modal.service";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { SearchService } from "jslib-common/abstractions/search.service";
-
-import { ModalService } from "jslib-angular/services/modal.service";
-
-import { GroupResponse } from "jslib-common/models/response/groupResponse";
-
 import { Utils } from "jslib-common/misc/utils";
+import { GroupResponse } from "jslib-common/models/response/groupResponse";
 
 import { EntityUsersComponent } from "./entity-users.component";
 import { GroupAddEditComponent } from "./group-add-edit.component";

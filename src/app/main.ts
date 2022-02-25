@@ -5,7 +5,6 @@ import "bootstrap";
 import "jquery";
 import "popper.js";
 
-// tslint:disable-next-line
 require("../scss/styles.scss");
 
 import { AppModule } from "./app.module";

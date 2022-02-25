@@ -1,10 +1,10 @@
 ﻿import * as DuoWebSDK from "duo_web_sdk";
+
 import { getQsParam } from "./common";
 
-// tslint:disable-next-line
 require("./duo.scss");
 
-document.addEventListener("DOMContentLoaded", (event) => {
+document.addEventListener("DOMContentLoaded", () => {
   const frameElement = document.createElement("iframe");
   frameElement.setAttribute("id", "duo_iframe");
   setFrameHeight();
@@ -41,7 +41,7 @@ function invokeCSCode(data: string) {
   try {
     (window as any).invokeCSharpAction(data);
   } catch (err) {
-    // tslint:disable-next-line
+    // eslint-disable-next-line
     console.log(err);
   }
 }

@@ -1,12 +1,9 @@
 import { Directive, Input, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 
-import { Organization } from "jslib-common/models/domain/organization";
-
 import { PolicyType } from "jslib-common/enums/policyType";
-
+import { Organization } from "jslib-common/models/domain/organization";
 import { PolicyRequest } from "jslib-common/models/request/policyRequest";
-
 import { PolicyResponse } from "jslib-common/models/response/policyResponse";
 
 export abstract class BasePolicy {

@@ -5,9 +5,7 @@ import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { UserVerificationService } from "jslib-common/abstractions/userVerification.service";
-
 import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
-
 import { SecretVerificationRequest } from "jslib-common/models/request/secretVerificationRequest";
 import { UpdateTwoFactorWebAuthnDeleteRequest } from "jslib-common/models/request/updateTwoFactorWebAuthnDeleteRequest";
 import { UpdateTwoFactorWebAuthnRequest } from "jslib-common/models/request/updateTwoFactorWebAuthnRequest";
@@ -113,7 +111,7 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
   }
 
   private readDevice(webAuthnChallenge: ChallengeResponse) {
-    // tslint:disable-next-line
+    // eslint-disable-next-line
     console.log("listening for key...");
     this.resetWebAuthn(true);
 
@@ -128,7 +126,7 @@ export class TwoFactorWebAuthnComponent extends TwoFactorBaseComponent {
         });
       })
       .catch((err) => {
-        // tslint:disable-next-line
+        // eslint-disable-next-line
         console.error(err);
         this.resetWebAuthn(false);
         // TODO: Should we display the actual error?

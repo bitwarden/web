@@ -4,11 +4,9 @@ import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
+import { Utils } from "jslib-common/misc/utils";
 import { OrganizationUserUpdateGroupsRequest } from "jslib-common/models/request/organizationUserUpdateGroupsRequest";
 import { GroupResponse } from "jslib-common/models/response/groupResponse";
-
-import { Utils } from "jslib-common/misc/utils";
 
 @Component({
   selector: "app-user-groups",

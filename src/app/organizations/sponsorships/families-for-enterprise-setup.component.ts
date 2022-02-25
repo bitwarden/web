@@ -1,27 +1,21 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-
 import { first } from "rxjs/operators";
 
 import { ModalService } from "jslib-angular/services/modal.service";
 import { ValidationService } from "jslib-angular/services/validation.service";
-
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
-
 import { PlanSponsorshipType } from "jslib-common/enums/planSponsorshipType";
 import { PlanType } from "jslib-common/enums/planType";
 import { ProductType } from "jslib-common/enums/productType";
-
 import { Organization } from "jslib-common/models/domain/organization";
-
 import { OrganizationSponsorshipRedeemRequest } from "jslib-common/models/request/organization/organizationSponsorshipRedeemRequest";
 
 import { DeleteOrganizationComponent } from "src/app/organizations/settings/delete-organization.component";
-
-import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { OrganizationPlansComponent } from "src/app/settings/organization-plans.component";
 
 @Component({
@@ -51,9 +45,9 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
   token: string;
   existingFamilyOrganizations: Organization[];
 
-  showNewOrganization: boolean = false;
+  showNewOrganization = false;
   _organizationPlansComponent: OrganizationPlansComponent;
-  _selectedFamilyOrganizationId: string = "";
+  _selectedFamilyOrganizationId = "";
 
   constructor(
     private router: Router,

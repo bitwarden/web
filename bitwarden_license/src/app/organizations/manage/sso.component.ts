@@ -6,9 +6,7 @@ import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
 import { Organization } from "jslib-common/models/domain/organization";
-
 import { OrganizationSsoRequest } from "jslib-common/models/request/organization/organizationSsoRequest";
 
 @Component({

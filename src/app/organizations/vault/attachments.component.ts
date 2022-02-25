@@ -7,11 +7,9 @@ import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
 import { CipherData } from "jslib-common/models/data/cipherData";
 import { Cipher } from "jslib-common/models/domain/cipher";
 import { Organization } from "jslib-common/models/domain/organization";
-
 import { AttachmentView } from "jslib-common/models/view/attachmentView";
 
 import { AttachmentsComponent as BaseAttachmentsComponent } from "../../vault/attachments.component";

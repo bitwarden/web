@@ -3,14 +3,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
-
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { OrganizationUserStatusType } from "jslib-common/enums/organizationUserStatusType";
 import { OrganizationUserType } from "jslib-common/enums/organizationUserType";
+import { Utils } from "jslib-common/misc/utils";
 import { SelectionReadOnlyRequest } from "jslib-common/models/request/selectionReadOnlyRequest";
 import { OrganizationUserUserDetailsResponse } from "jslib-common/models/response/organizationUserResponse";
-
-import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-import { Utils } from "jslib-common/misc/utils";
 
 @Component({
   selector: "app-entity-users",

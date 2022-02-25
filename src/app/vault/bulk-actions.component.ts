@@ -1,12 +1,10 @@
 import { Component, Input, ViewChild, ViewContainerRef } from "@angular/core";
 
+import { ModalService } from "jslib-angular/services/modal.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { PasswordRepromptService } from "jslib-common/abstractions/passwordReprompt.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { CipherRepromptType } from "jslib-common/enums/cipherRepromptType";
-
-import { ModalService } from "jslib-angular/services/modal.service";
-
 import { Organization } from "jslib-common/models/domain/organization";
 
 import { BulkDeleteComponent } from "./bulk-delete.component";

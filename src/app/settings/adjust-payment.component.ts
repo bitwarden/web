@@ -4,10 +4,8 @@ import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
-import { PaymentRequest } from "jslib-common/models/request/paymentRequest";
-
 import { PaymentMethodType } from "jslib-common/enums/paymentMethodType";
+import { PaymentRequest } from "jslib-common/models/request/paymentRequest";
 
 import { PaymentComponent } from "./payment.component";
 import { TaxInfoComponent } from "./tax-info.component";

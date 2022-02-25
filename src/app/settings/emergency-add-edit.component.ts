@@ -15,7 +15,6 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { StateService } from "jslib-common/abstractions/state.service";
 import { TotpService } from "jslib-common/abstractions/totp.service";
-
 import { Cipher } from "jslib-common/models/domain/cipher";
 
 import { AddEditComponent as BaseAddEditComponent } from "../vault/add-edit.component";

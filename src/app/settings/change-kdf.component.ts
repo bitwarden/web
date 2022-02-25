@@ -7,10 +7,8 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
-import { KdfRequest } from "jslib-common/models/request/kdfRequest";
-
 import { KdfType } from "jslib-common/enums/kdfType";
+import { KdfRequest } from "jslib-common/models/request/kdfRequest";
 
 @Component({
   selector: "app-change-kdf",

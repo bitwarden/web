@@ -4,7 +4,6 @@ import { ApiService } from "jslib-common/abstractions/api.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
 import { Utils } from "jslib-common/misc/utils";
 
 @Component({

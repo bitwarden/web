@@ -4,7 +4,6 @@ import { ApiService } from "jslib-common/abstractions/api.service";
 import { CipherService } from "jslib-common/abstractions/cipher.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
 import { Organization } from "jslib-common/models/domain/organization";
 import { CipherBulkDeleteRequest } from "jslib-common/models/request/cipherBulkDeleteRequest";
 
@@ -14,7 +13,7 @@ import { CipherBulkDeleteRequest } from "jslib-common/models/request/cipherBulkD
 })
 export class BulkDeleteComponent {
   @Input() cipherIds: string[] = [];
-  @Input() permanent: boolean = false;
+  @Input() permanent = false;
   @Input() organization: Organization;
   @Output() onDeleted = new EventEmitter();
 

@@ -6,9 +6,7 @@ import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
-
 import { ProviderUpdateRequest } from "jslib-common/models/request/provider/providerUpdateRequest";
-
 import { ProviderResponse } from "jslib-common/models/response/provider/providerResponse";
 
 @Component({

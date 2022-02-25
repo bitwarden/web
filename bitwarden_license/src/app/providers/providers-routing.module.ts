@@ -4,7 +4,9 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthGuardService } from "jslib-angular/services/auth-guard.service";
 import { Permissions } from "jslib-common/enums/permissions";
 
-import { AddOrganizationComponent } from "./clients/add-organization.component";
+import { FrontendLayoutComponent } from "src/app/layouts/frontend-layout.component";
+import { ProvidersComponent } from "src/app/providers/providers.component";
+
 import { ClientsComponent } from "./clients/clients.component";
 import { CreateOrganizationComponent } from "./clients/create-organization.component";
 import { AcceptProviderComponent } from "./manage/accept-provider.component";
@@ -12,16 +14,12 @@ import { EventsComponent } from "./manage/events.component";
 import { ManageComponent } from "./manage/manage.component";
 import { PeopleComponent } from "./manage/people.component";
 import { ProvidersLayoutComponent } from "./providers-layout.component";
-import { SettingsComponent } from "./settings/settings.component";
-import { SetupProviderComponent } from "./setup/setup-provider.component";
-import { SetupComponent } from "./setup/setup.component";
-
-import { FrontendLayoutComponent } from "src/app/layouts/frontend-layout.component";
-
-import { ProvidersComponent } from "src/app/providers/providers.component";
 import { ProviderGuardService } from "./services/provider-guard.service";
 import { ProviderTypeGuardService } from "./services/provider-type-guard.service";
 import { AccountComponent } from "./settings/account.component";
+import { SettingsComponent } from "./settings/settings.component";
+import { SetupProviderComponent } from "./setup/setup-provider.component";
+import { SetupComponent } from "./setup/setup.component";
 
 const routes: Routes = [
   {

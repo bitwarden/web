@@ -6,10 +6,8 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
 import { UserVerificationService } from "jslib-common/abstractions/userVerification.service";
-
-import { TwoFactorEmailRequest } from "jslib-common/models/request/twoFactorEmailRequest";
-
 import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
+import { TwoFactorEmailRequest } from "jslib-common/models/request/twoFactorEmailRequest";
 import { UpdateTwoFactorEmailRequest } from "jslib-common/models/request/updateTwoFactorEmailRequest";
 import { TwoFactorEmailResponse } from "jslib-common/models/response/twoFactorEmailResponse";
 

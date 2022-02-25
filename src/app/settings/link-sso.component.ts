@@ -1,6 +1,7 @@
 import { AfterContentInit, Component, Input } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
+import { SsoComponent } from "jslib-angular/components/sso.component";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { AuthService } from "jslib-common/abstractions/auth.service";
 import { CryptoFunctionService } from "jslib-common/abstractions/cryptoFunction.service";
@@ -10,9 +11,6 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { PasswordGenerationService } from "jslib-common/abstractions/passwordGeneration.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
-import { SsoComponent } from "jslib-angular/components/sso.component";
-
 import { Organization } from "jslib-common/models/domain/organization";
 
 @Component({
@@ -21,7 +19,7 @@ import { Organization } from "jslib-common/models/domain/organization";
 })
 export class LinkSsoComponent extends SsoComponent implements AfterContentInit {
   @Input() organization: Organization;
-  returnUri: string = "/settings/organizations";
+  returnUri = "/settings/organizations";
 
   constructor(
     platformUtilsService: PlatformUtilsService,

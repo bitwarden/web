@@ -1,8 +1,8 @@
 import { Component, NgZone } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-
 import { first } from "rxjs/operators";
 
+import { LoginComponent as BaseLoginComponent } from "jslib-angular/components/login.component";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { AuthService } from "jslib-common/abstractions/auth.service";
 import { CryptoFunctionService } from "jslib-common/abstractions/cryptoFunction.service";
@@ -12,16 +12,13 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { PasswordGenerationService } from "jslib-common/abstractions/passwordGeneration.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
-
-import { StateService } from "../../abstractions/state.service";
-
-import { LoginComponent as BaseLoginComponent } from "jslib-angular/components/login.component";
-
 import { PolicyData } from "jslib-common/models/data/policyData";
 import { MasterPasswordPolicyOptions } from "jslib-common/models/domain/masterPasswordPolicyOptions";
 import { Policy } from "jslib-common/models/domain/policy";
 import { ListResponse } from "jslib-common/models/response/listResponse";
 import { PolicyResponse } from "jslib-common/models/response/policyResponse";
+
+import { StateService } from "../../abstractions/state.service";
 
 @Component({
   selector: "app-login",

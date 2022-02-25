@@ -1,4 +1,3 @@
-/* tslint:disable */
 import "core-js/stable";
 require("zone.js/dist/zone");
 
@@ -19,4 +18,3 @@ if (process.env.NODE_ENV === "production") {
 require("whatwg-fetch");
 require("webcrypto-shim");
 require("date-input-polyfill");
-/* tslint:enable */

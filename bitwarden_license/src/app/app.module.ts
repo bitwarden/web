@@ -7,16 +7,16 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 import { BitwardenToastModule } from "jslib-angular/components/toastr.component";
 
+import { OssRoutingModule } from "src/app/oss-routing.module";
+import { OssModule } from "src/app/oss.module";
+import { ServicesModule } from "src/app/services/services.module";
+import { WildcardRoutingModule } from "src/app/wildcard-routing.module";
+
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { OrganizationsModule } from "./organizations/organizations.module";
 import { DisablePersonalVaultExportPolicyComponent } from "./policies/disable-personal-vault-export.component";
 import { MaximumVaultTimeoutPolicyComponent } from "./policies/maximum-vault-timeout.component";
-
-import { OssRoutingModule } from "src/app/oss-routing.module";
-import { OssModule } from "src/app/oss.module";
-import { ServicesModule } from "src/app/services/services.module";
-import { WildcardRoutingModule } from "src/app/wildcard-routing.module";
 
 @NgModule({
   imports: [
