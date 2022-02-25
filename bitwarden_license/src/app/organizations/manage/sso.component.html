@@ -395,7 +395,6 @@
         <select class="form-control" formControlName="idpBindingType" id="idpBindingType">
           <option [ngValue]="1">Redirect</option>
           <option [ngValue]="2">HTTP POST</option>
-          <option [ngValue]="4">Artifact</option>
         </select>
       </div>
       <div class="form-group">
@@ -412,16 +411,6 @@
           class="form-control"
           formControlName="idpSingleLogoutServiceUrl"
           id="idpSingleLogoutServiceUrl"
-        />
-      </div>
-      <div class="form-group">
-        <label for="idpArtifactResolutionServiceUrl">{{
-          "idpArtifactResolutionServiceUrl" | i18n
-        }}</label>
-        <input
-          class="form-control"
-          formControlName="idpArtifactResolutionServiceUrl"
-          id="idpArtifactResolutionServiceUrl"
         />
       </div>
       <div class="form-group">

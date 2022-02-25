@@ -65,7 +65,6 @@ export class SsoComponent implements OnInit {
     idpBindingType: [],
     idpSingleSignOnServiceUrl: [],
     idpSingleLogoutServiceUrl: [],
-    idpArtifactResolutionServiceUrl: [],
     idpX509PublicCert: [],
     idpOutboundSigningAlgorithm: [],
     idpAllowUnsolicitedAuthnResponse: [],
