@@ -58,6 +58,7 @@ import { ToastrModule } from "ngx-toastr";
 
 import { AvatarComponent } from "jslib-angular/components/avatar.component";
 import { CalloutComponent } from "jslib-angular/components/callout.component";
+import { ExportScopeCalloutComponent } from "jslib-angular/components/export-scope-callout.component";
 import { IconComponent } from "jslib-angular/components/icon.component";
 import { VerifyMasterPasswordComponent } from "jslib-angular/components/verify-master-password.component";
 import { A11yTitleDirective } from "jslib-angular/directives/a11y-title.directive";
@@ -338,6 +339,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     EmergencyAccessViewComponent,
     EmergencyAddEditComponent,
     ExportComponent,
+    ExportScopeCalloutComponent,
     ExposedPasswordsReportComponent,
     FallbackSrcDirective,
     FamiliesForEnterpriseSetupComponent,
