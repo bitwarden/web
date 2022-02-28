@@ -8,7 +8,7 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 })
 export class FrontendLayoutComponent implements OnInit, OnDestroy {
   version: string;
-  year: string = "2015";
+  year = "2015";
 
   constructor(private platformUtilsService: PlatformUtilsService) {}
 

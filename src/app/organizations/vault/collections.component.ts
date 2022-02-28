@@ -6,7 +6,6 @@ import { CollectionService } from "jslib-common/abstractions/collection.service"
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
 import { CipherData } from "jslib-common/models/data/cipherData";
 import { Cipher } from "jslib-common/models/domain/cipher";
 import { Organization } from "jslib-common/models/domain/organization";

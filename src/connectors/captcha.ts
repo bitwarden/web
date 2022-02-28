@@ -1,12 +1,10 @@
 import { b64Decode, getQsParam } from "./common";
 
-declare var hcaptcha: any;
+declare let hcaptcha: any;
 
 if (window.location.pathname.includes("mobile")) {
-  // tslint:disable-next-line
   require("./captcha-mobile.scss");
 } else {
-  // tslint:disable-next-line
   require("./captcha.scss");
 }
 
@@ -71,7 +69,7 @@ async function start() {
   script.src = src;
   script.async = true;
   script.defer = true;
-  script.addEventListener("load", (e) => {
+  script.addEventListener("load", () => {
     hcaptcha.render("captcha", {
       sitekey: encodeURIComponent(decodedData.siteKey),
       callback: "captchaSuccess",
@@ -128,6 +126,7 @@ function info(message: string | object) {
 
 async function watchHeight() {
   const imagesDiv = document.body.lastChild as HTMLElement;
+  // eslint-disable-next-line
   while (true) {
     info({
       height:

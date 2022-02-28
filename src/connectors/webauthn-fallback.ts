@@ -1,15 +1,13 @@
 import { b64Decode, getQsParam } from "./common";
 import { buildDataString, parseWebauthnJson } from "./common-webauthn";
 
-// tslint:disable-next-line
 require("./webauthn.scss");
 
 let parsed = false;
 let webauthnJson: any;
 let parentUrl: string = null;
-let parentOrigin: string = null;
 let sentSuccess = false;
-let locale: string = "en";
+let locale = "en";
 
 let locales: any = {};
 
@@ -24,7 +22,6 @@ function parseParameters() {
     return;
   } else {
     parentUrl = decodeURIComponent(parentUrl);
-    parentOrigin = new URL(parentUrl).origin;
   }
 
   locale = getQsParam("locale").replace("-", "_");
@@ -66,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   try {
     locales = await loadLocales(locale);
   } catch {
-    // tslint:disable-next-line:no-console
+    // eslint-disable-next-line
     console.error("Failed to load the locale", locale);
     locales = await loadLocales("en");
   }

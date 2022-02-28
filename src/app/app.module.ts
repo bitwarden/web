@@ -1,9 +1,8 @@
-import { InfiniteScrollModule } from "ngx-infinite-scroll";
-
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
 import { BitwardenToastModule } from "jslib-angular/components/toastr.component";
 

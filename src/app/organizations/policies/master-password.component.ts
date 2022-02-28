@@ -3,7 +3,6 @@ import { FormBuilder } from "@angular/forms";
 
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
-
 import { PolicyType } from "jslib-common/enums/policyType";
 
 import { BasePolicy, BasePolicyComponent } from "./base-policy.component";
@@ -30,7 +29,7 @@ export class MasterPasswordPolicyComponent extends BasePolicyComponent {
   });
 
   passwordScores: { name: string; value: number }[];
-  showKeyConnectorInfo: boolean = false;
+  showKeyConnectorInfo = false;
 
   constructor(
     private formBuilder: FormBuilder,

@@ -7,9 +7,7 @@ import { KeyConnectorService } from "jslib-common/abstractions/keyConnector.serv
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
 import { UpdateProfileRequest } from "jslib-common/models/request/updateProfileRequest";
-
 import { ProfileResponse } from "jslib-common/models/response/profileResponse";
 
 @Component({

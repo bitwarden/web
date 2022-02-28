@@ -1,7 +1,6 @@
 import { b64Decode, getQsParam } from "./common";
 import { buildDataString, parseWebauthnJson } from "./common-webauthn";
 
-// tslint:disable-next-line
 require("./webauthn.scss");
 
 const mobileCallbackUri = "bitwarden://webauthn-callback";

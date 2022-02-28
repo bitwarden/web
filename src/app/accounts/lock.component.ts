@@ -1,6 +1,7 @@
 import { Component, NgZone } from "@angular/core";
 import { Router } from "@angular/router";
 
+import { LockComponent as BaseLockComponent } from "jslib-angular/components/lock.component";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { EnvironmentService } from "jslib-common/abstractions/environment.service";
@@ -13,8 +14,6 @@ import { StateService } from "jslib-common/abstractions/state.service";
 import { VaultTimeoutService } from "jslib-common/abstractions/vaultTimeout.service";
 
 import { RouterService } from "../services/router.service";
-
-import { LockComponent as BaseLockComponent } from "jslib-angular/components/lock.component";
 
 @Component({
   selector: "app-lock",

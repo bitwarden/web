@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
-
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { ExportService } from "jslib-common/abstractions/export.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -10,20 +9,18 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { ProviderService } from "jslib-common/abstractions/provider.service";
-
 import { Organization } from "jslib-common/models/domain/organization";
 import { EventResponse } from "jslib-common/models/response/eventResponse";
 
-import { EventService } from "../../services/event.service";
-
 import { BaseEventsComponent } from "../../common/base.events.component";
+import { EventService } from "../../services/event.service";
 
 @Component({
   selector: "app-org-events",
   templateUrl: "events.component.html",
 })
 export class EventsComponent extends BaseEventsComponent implements OnInit {
-  exportFileName: string = "org-events";
+  exportFileName = "org-events";
   organizationId: string;
   organization: Organization;
 

@@ -1,8 +1,6 @@
 import { Component } from "@angular/core";
 
-import { CipherType } from "jslib-common/enums/cipherType";
-import { EventType } from "jslib-common/enums/eventType";
-
+import { AddEditComponent as BaseAddEditComponent } from "jslib-angular/components/add-edit.component";
 import { AuditService } from "jslib-common/abstractions/audit.service";
 import { CipherService } from "jslib-common/abstractions/cipher.service";
 import { CollectionService } from "jslib-common/abstractions/collection.service";
@@ -18,8 +16,8 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { StateService } from "jslib-common/abstractions/state.service";
 import { TotpService } from "jslib-common/abstractions/totp.service";
-
-import { AddEditComponent as BaseAddEditComponent } from "jslib-angular/components/add-edit.component";
+import { CipherType } from "jslib-common/enums/cipherType";
+import { EventType } from "jslib-common/enums/eventType";
 import { LoginUriView } from "jslib-common/models/view/loginUriView";
 
 @Component({

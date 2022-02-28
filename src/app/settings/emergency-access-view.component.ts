@@ -1,12 +1,10 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
+import { ModalService } from "jslib-angular/services/modal.service";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { CipherService } from "jslib-common/abstractions/cipher.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
-
-import { ModalService } from "jslib-angular/services/modal.service";
-
 import { CipherData } from "jslib-common/models/data/cipherData";
 import { Cipher } from "jslib-common/models/domain/cipher";
 import { SymmetricCryptoKey } from "jslib-common/models/domain/symmetricCryptoKey";
@@ -52,6 +50,7 @@ export class EmergencyAccessViewComponent implements OnInit {
   }
 
   async selectCipher(cipher: CipherView) {
+    // eslint-disable-next-line
     const [_, childComponent] = await this.modalService.openViewRef(
       EmergencyAddEditComponent,
       this.cipherAddEditModalRef,

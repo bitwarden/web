@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 
-import { Verification } from "jslib-common/types/verification";
-
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { UserVerificationService } from "jslib-common/abstractions/userVerification.service";
+import { Verification } from "jslib-common/types/verification";
 
 @Component({
   selector: "app-delete-organization",

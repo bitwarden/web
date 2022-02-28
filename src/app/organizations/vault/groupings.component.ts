@@ -5,7 +5,6 @@ import { CollectionService } from "jslib-common/abstractions/collection.service"
 import { FolderService } from "jslib-common/abstractions/folder.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
 import { CollectionData } from "jslib-common/models/data/collectionData";
 import { Collection } from "jslib-common/models/domain/collection";
 import { Organization } from "jslib-common/models/domain/organization";

@@ -5,7 +5,6 @@ import "bootstrap";
 import "jquery";
 import "popper.js";
 
-// tslint:disable-next-line
 require("src/scss/styles.scss");
 // tslint:disable-next-line
 require("src/scss/tailwind.css");

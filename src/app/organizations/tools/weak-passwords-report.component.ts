@@ -1,17 +1,14 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
+import { ModalService } from "jslib-angular/services/modal.service";
 import { CipherService } from "jslib-common/abstractions/cipher.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PasswordGenerationService } from "jslib-common/abstractions/passwordGeneration.service";
 import { PasswordRepromptService } from "jslib-common/abstractions/passwordReprompt.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
-import { ModalService } from "jslib-angular/services/modal.service";
-
 import { Cipher } from "jslib-common/models/domain/cipher";
-
 import { CipherView } from "jslib-common/models/view/cipherView";
 
 import { WeakPasswordsReportComponent as BaseWeakPasswordsReportComponent } from "../../tools/weak-passwords-report.component";

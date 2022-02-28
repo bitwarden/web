@@ -7,7 +7,6 @@ import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
 import { TwoFactorRecoveryRequest } from "jslib-common/models/request/twoFactorRecoveryRequest";
 
 @Component({

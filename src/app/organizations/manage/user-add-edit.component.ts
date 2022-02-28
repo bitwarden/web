@@ -5,7 +5,8 @@ import { CollectionService } from "jslib-common/abstractions/collection.service"
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
+import { OrganizationUserType } from "jslib-common/enums/organizationUserType";
+import { PermissionsApi } from "jslib-common/models/api/permissionsApi";
 import { CollectionData } from "jslib-common/models/data/collectionData";
 import { Collection } from "jslib-common/models/domain/collection";
 import { OrganizationUserInviteRequest } from "jslib-common/models/request/organizationUserInviteRequest";
@@ -13,9 +14,6 @@ import { OrganizationUserUpdateRequest } from "jslib-common/models/request/organ
 import { SelectionReadOnlyRequest } from "jslib-common/models/request/selectionReadOnlyRequest";
 import { CollectionDetailsResponse } from "jslib-common/models/response/collectionResponse";
 import { CollectionView } from "jslib-common/models/view/collectionView";
-
-import { OrganizationUserType } from "jslib-common/enums/organizationUserType";
-import { PermissionsApi } from "jslib-common/models/api/permissionsApi";
 
 @Component({
   selector: "app-user-add-edit",
@@ -25,12 +23,12 @@ export class UserAddEditComponent implements OnInit {
   @Input() name: string;
   @Input() organizationUserId: string;
   @Input() organizationId: string;
-  @Input() usesKeyConnector: boolean = false;
+  @Input() usesKeyConnector = false;
   @Output() onSavedUser = new EventEmitter();
   @Output() onDeletedUser = new EventEmitter();
 
   loading = true;
-  editMode: boolean = false;
+  editMode = false;
   title: string;
   emails: string;
   type: OrganizationUserType = OrganizationUserType.User;
