@@ -36,13 +36,18 @@ module.exports = {
         500: "var(--color-info-500)",
         700: "var(--color-info-700)",
       },
+      background: "var(--color-background)",
+      "background-elevation": "var(--color-background-elevation)",
     },
     textColor: {
       main: "var(--color-text-main)",
       muted: "var(--color-text-muted)",
       contrast: "var(--color-text-contrast)",
+      success: "var(--color-success-500)",
       danger: "var(--color-danger-500)",
-    }
+      warning: "var(--color-warning-500)",
+      info: "var(--color-info-500)",
+    },
   },
   plugins: [],
 };
