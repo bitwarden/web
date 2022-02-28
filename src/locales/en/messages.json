@@ -4742,5 +4742,29 @@
   },
   "sessionTimeout": {
     "message": "Your session has timed out. Please go back and try logging in again."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exporting Personal Vault"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Exporting Organization Vault"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Only the personal vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Only the organization vault associated with $ORGANIZATION$ will be exported. Personal vault items and items from other organizations will not be included.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   }
 }

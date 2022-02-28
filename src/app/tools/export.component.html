@@ -12,6 +12,10 @@
   <app-callout type="error" title="{{ 'vaultExportDisabled' | i18n }}" *ngIf="disabledByPolicy">
     {{ "personalVaultExportPolicyInEffect" | i18n }}
   </app-callout>
+  <app-export-scope-callout
+    [organizationId]="organizationId"
+    *ngIf="!disabledByPolicy"
+  ></app-export-scope-callout>
 
   <div class="row">
     <div class="form-group col-6">
