@@ -2,22 +2,12 @@ import { Component, OnInit } from "@angular/core";
 import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 
+import { SelectOptions } from "jslib-angular/interfaces/selectOptions";
+import { dirtyRequired, dirtyRequiredIf } from "jslib-angular/validators/dirty.validator";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
-import { SsoConfigApi } from "jslib-common/models/api/ssoConfigApi";
-
-import { Organization } from "jslib-common/models/domain/organization";
-
-import { OrganizationSsoRequest } from "jslib-common/models/request/organization/organizationSsoRequest";
-import { OrganizationSsoResponse } from "jslib-common/models/response/organization/organizationSsoResponse";
-
-import { dirtyRequired, dirtyRequiredIf } from "jslib-angular/validators/dirty.validator";
-
-import { SelectOptions } from "jslib-angular/interfaces/selectOptions";
-
 import {
   OpenIdConnectRedirectBehavior,
   Saml2BindingType,
@@ -26,6 +16,10 @@ import {
   SsoType,
 } from "jslib-common/enums/ssoEnums";
 import { Utils } from "jslib-common/misc/utils";
+import { SsoConfigApi } from "jslib-common/models/api/ssoConfigApi";
+import { Organization } from "jslib-common/models/domain/organization";
+import { OrganizationSsoRequest } from "jslib-common/models/request/organization/organizationSsoRequest";
+import { OrganizationSsoResponse } from "jslib-common/models/response/organization/organizationSsoResponse";
 import { SsoConfigView } from "jslib-common/models/view/ssoConfigView";
 
 const defaultSigningAlgorithm = "http://www.w3.org/2001/04/xmldsig-more#rsa-sha256";
@@ -61,7 +55,6 @@ export class SsoComponent implements OnInit {
   readonly saml2BindingTypeOptions: SelectOptions[] = [
     { name: "Redirect", value: Saml2BindingType.HttpRedirect },
     { name: "HTTP POST", value: Saml2BindingType.HttpPost },
-    { name: "Artifact", value: Saml2BindingType.Artifact },
   ];
   readonly saml2NameIdFormatOptions: SelectOptions[] = [
     { name: "Not Configured", value: Saml2NameIdFormat.NotConfigured },
@@ -80,7 +73,7 @@ export class SsoComponent implements OnInit {
     { name: "Form POST", value: OpenIdConnectRedirectBehavior.FormPost },
   ];
 
-  showOpenIdCustomizations: boolean = false;
+  showOpenIdCustomizations = false;
 
   loading = true;
   haveTestedKeyConnector = false;
@@ -129,12 +122,6 @@ export class SsoComponent implements OnInit {
       idpBindingType: [Saml2BindingType.HttpRedirect],
       idpSingleSignOnServiceUrl: [],
       idpSingleLogoutServiceUrl: [],
-      idpArtifactResolutionServiceUrl: [
-        "",
-        dirtyRequiredIf(
-          (control) => control.parent?.get("idpBindingType").value === Saml2BindingType.Artifact
-        ),
-      ],
       idpX509PublicCert: ["", dirtyRequired],
       idpOutboundSigningAlgorithm: [defaultSigningAlgorithm],
       idpAllowUnsolicitedAuthnResponse: [],
@@ -175,10 +162,6 @@ export class SsoComponent implements OnInit {
         this.openIdForm.disable();
         this.samlForm.disable();
       }
-    });
-
-    this.samlForm.get("idpBindingType").valueChanges.subscribe(() => {
-      this.samlForm.get("idpArtifactResolutionServiceUrl").updateValueAndValidity();
     });
 
     this.samlForm

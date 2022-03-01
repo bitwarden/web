@@ -9,24 +9,20 @@ import { OrganizationService } from "jslib-common/abstractions/organization.serv
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
-
-import { PaymentComponent } from "./payment.component";
-import { TaxInfoComponent } from "./tax-info.component";
-
-import { EncString } from "jslib-common/models/domain/encString";
-import { SymmetricCryptoKey } from "jslib-common/models/domain/symmetricCryptoKey";
-
 import { PaymentMethodType } from "jslib-common/enums/paymentMethodType";
 import { PlanType } from "jslib-common/enums/planType";
 import { PolicyType } from "jslib-common/enums/policyType";
 import { ProductType } from "jslib-common/enums/productType";
-
+import { EncString } from "jslib-common/models/domain/encString";
+import { SymmetricCryptoKey } from "jslib-common/models/domain/symmetricCryptoKey";
 import { OrganizationCreateRequest } from "jslib-common/models/request/organizationCreateRequest";
 import { OrganizationKeysRequest } from "jslib-common/models/request/organizationKeysRequest";
 import { OrganizationUpgradeRequest } from "jslib-common/models/request/organizationUpgradeRequest";
 import { ProviderOrganizationCreateRequest } from "jslib-common/models/request/provider/providerOrganizationCreateRequest";
-
 import { PlanResponse } from "jslib-common/models/response/planResponse";
+
+import { PaymentComponent } from "./payment.component";
+import { TaxInfoComponent } from "./tax-info.component";
 
 @Component({
   selector: "app-organization-plans",
@@ -46,19 +42,19 @@ export class OrganizationPlansComponent implements OnInit {
   @Output() onSuccess = new EventEmitter();
   @Output() onCanceled = new EventEmitter();
 
-  loading: boolean = true;
-  selfHosted: boolean = false;
-  ownedBusiness: boolean = false;
-  premiumAccessAddon: boolean = false;
-  additionalStorage: number = 0;
-  additionalSeats: number = 0;
+  loading = true;
+  selfHosted = false;
+  ownedBusiness = false;
+  premiumAccessAddon = false;
+  additionalStorage = 0;
+  additionalSeats = 0;
   name: string;
   billingEmail: string;
   clientOwnerEmail: string;
   businessName: string;
   productTypes = ProductType;
   formPromise: Promise<any>;
-  singleOrgPolicyBlock: boolean = false;
+  singleOrgPolicyBlock = false;
   discount = 0;
 
   plans: PlanResponse[];

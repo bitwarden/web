@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
-
 import { first } from "rxjs/operators";
 
+import { ModalService } from "jslib-angular/services/modal.service";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { CollectionService } from "jslib-common/abstractions/collection.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -10,9 +10,6 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { SearchService } from "jslib-common/abstractions/search.service";
-
-import { ModalService } from "jslib-angular/services/modal.service";
-
 import { CollectionData } from "jslib-common/models/data/collectionData";
 import { Collection } from "jslib-common/models/domain/collection";
 import { Organization } from "jslib-common/models/domain/organization";
@@ -37,7 +34,7 @@ export class CollectionsComponent implements OnInit {
 
   loading = true;
   organization: Organization;
-  canCreate: boolean = false;
+  canCreate = false;
   organizationId: string;
   collections: CollectionView[];
   assignedCollections: CollectionView[];

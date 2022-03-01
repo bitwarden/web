@@ -1,23 +1,18 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-
 import { first } from "rxjs/operators";
 
-import { PolicyType } from "jslib-common/enums/policyType";
-
+import { ModalService } from "jslib-angular/services/modal.service";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
-
-import { ModalService } from "jslib-angular/services/modal.service";
-
-import { PolicyResponse } from "jslib-common/models/response/policyResponse";
-
+import { PolicyType } from "jslib-common/enums/policyType";
 import { Organization } from "jslib-common/models/domain/organization";
-
-import { PolicyEditComponent } from "./policy-edit.component";
+import { PolicyResponse } from "jslib-common/models/response/policyResponse";
 
 import { PolicyListService } from "../../services/policy-list.service";
 import { BasePolicy } from "../policies/base-policy.component";
+
+import { PolicyEditComponent } from "./policy-edit.component";
 
 @Component({
   selector: "app-org-policies",

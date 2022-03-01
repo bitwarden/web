@@ -6,14 +6,12 @@ import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
+import { Utils } from "jslib-common/misc/utils";
 import { EncString } from "jslib-common/models/domain/encString";
 import { SymmetricCryptoKey } from "jslib-common/models/domain/symmetricCryptoKey";
 import { CollectionRequest } from "jslib-common/models/request/collectionRequest";
 import { SelectionReadOnlyRequest } from "jslib-common/models/request/selectionReadOnlyRequest";
 import { GroupResponse } from "jslib-common/models/response/groupResponse";
-
-import { Utils } from "jslib-common/misc/utils";
 
 @Component({
   selector: "app-collection-add-edit",
@@ -28,8 +26,8 @@ export class CollectionAddEditComponent implements OnInit {
   @Output() onDeletedCollection = new EventEmitter();
 
   loading = true;
-  editMode: boolean = false;
-  accessGroups: boolean = false;
+  editMode = false;
+  accessGroups = false;
   title: string;
   name: string;
   externalId: string;

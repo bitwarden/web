@@ -1,9 +1,8 @@
 import { Component } from "@angular/core";
 import { FormBuilder } from "@angular/forms";
+
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
-
 import { PolicyType } from "jslib-common/enums/policyType";
-
 import { Organization } from "jslib-common/models/domain/organization";
 
 import { BasePolicy, BasePolicyComponent } from "./base-policy.component";
@@ -29,7 +28,7 @@ export class ResetPasswordPolicyComponent extends BasePolicyComponent {
   });
 
   defaultTypes: { name: string; value: string }[];
-  showKeyConnectorInfo: boolean = false;
+  showKeyConnectorInfo = false;
 
   constructor(private formBuilder: FormBuilder, private organizationService: OrganizationService) {
     super();

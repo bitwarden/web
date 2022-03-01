@@ -1,12 +1,11 @@
 import { Component, ViewChild, ViewContainerRef } from "@angular/core";
 
+import { PasswordGeneratorComponent as BasePasswordGeneratorComponent } from "jslib-angular/components/password-generator.component";
+import { ModalService } from "jslib-angular/services/modal.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { PasswordGenerationService } from "jslib-common/abstractions/passwordGeneration.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
-import { PasswordGeneratorComponent as BasePasswordGeneratorComponent } from "jslib-angular/components/password-generator.component";
-
-import { ModalService } from "jslib-angular/services/modal.service";
 import { PasswordGeneratorHistoryComponent } from "./password-generator-history.component";
 
 @Component({

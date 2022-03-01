@@ -1,6 +1,5 @@
 import { Directive, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-
 import { first } from "rxjs/operators";
 
 import { I18nService } from "jslib-common/abstractions/i18n.service";

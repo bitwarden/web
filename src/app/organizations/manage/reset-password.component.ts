@@ -7,11 +7,9 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { PasswordGenerationService } from "jslib-common/abstractions/passwordGeneration.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
-
 import { EncString } from "jslib-common/models/domain/encString";
 import { MasterPasswordPolicyOptions } from "jslib-common/models/domain/masterPasswordPolicyOptions";
 import { SymmetricCryptoKey } from "jslib-common/models/domain/symmetricCryptoKey";
-
 import { OrganizationUserResetPasswordRequest } from "jslib-common/models/request/organizationUserResetPasswordRequest";
 
 @Component({
@@ -27,7 +25,7 @@ export class ResetPasswordComponent implements OnInit {
 
   enforcedPolicyOptions: MasterPasswordPolicyOptions;
   newPassword: string = null;
-  showPassword: boolean = false;
+  showPassword = false;
   masterPasswordScore: number;
   formPromise: Promise<any>;
   private newPasswordStrengthTimeout: any;

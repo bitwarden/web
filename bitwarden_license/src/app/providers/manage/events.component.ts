@@ -1,27 +1,24 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 
+import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { ExportService } from "jslib-common/abstractions/export.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { ProviderService } from "jslib-common/abstractions/provider.service";
-
-import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
-
 import { EventResponse } from "jslib-common/models/response/eventResponse";
 
-import { EventService } from "src/app/services/event.service";
-
 import { BaseEventsComponent } from "src/app/common/base.events.component";
+import { EventService } from "src/app/services/event.service";
 
 @Component({
   selector: "provider-events",
   templateUrl: "events.component.html",
 })
 export class EventsComponent extends BaseEventsComponent implements OnInit {
-  exportFileName: string = "provider-events";
+  exportFileName = "provider-events";
   providerId: string;
 
   private providerUsersUserIdMap = new Map<string, any>();

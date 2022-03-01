@@ -9,9 +9,7 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
-
 import { EncString } from "jslib-common/models/domain/encString";
-
 import { CipherWithIdRequest } from "jslib-common/models/request/cipherWithIdRequest";
 import { FolderWithIdRequest } from "jslib-common/models/request/folderWithIdRequest";
 import { UpdateKeyRequest } from "jslib-common/models/request/updateKeyRequest";

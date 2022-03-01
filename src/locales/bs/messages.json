@@ -2969,10 +2969,10 @@
     "message": "Adjustments to your subscription will result in prorated changes to your billing totals. You cannot invite more than $COUNT$ users without increasing your subscription seats.",
     "placeholders": {
       "count": {
-            "content": "$1",
-            "example": "50"
-          }
-        }
+        "content": "$1",
+        "example": "50"
+      }
+    }
   },
   "seatsToAdd": {
     "message": "Seats To Add"
@@ -4329,10 +4329,10 @@
     "message": "Your Master Password does not meet the policy requirements of this organization. In order to join the organization, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
   },
   "maximumVaultTimeout": {
-    "message": "Vault Timeout"  
+    "message": "Vault Timeout"
   },
   "maximumVaultTimeoutDesc": {
-    "message": "Configure a maximum vault timeout for all users."  
+    "message": "Configure a maximum vault timeout for all users."
   },
   "maximumVaultTimeoutLabel": {
     "message": "Maximum Vault Timeout"
@@ -4414,25 +4414,25 @@
     "message": "OIDC Redirect Behavior"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get claims from user info endpoint"
+    "message": "Get Claims From User Info Endpoint"
   },
   "additionalScopes": {
-    "message": "Custom Scopes"
+    "message": "Additional/Custom Scopes (comma delimited)"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Custom User ID Claim Types"
+    "message": "Additional/Custom User ID Claim Types (comma delimited)"
   },
   "additionalEmailClaimTypes": {
-    "message": "Email Claim Types"
+    "message": "Additional/Custom Email Claim Types (comma delimited)"
   },
   "additionalNameClaimTypes": {
-    "message": "Custom Name Claim Types"
+    "message": "Additional/Custom Name Claim Types (comma delimited)"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values"
+    "message": "Requested Authentication Context Class Reference values (acr_values)"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response"
+    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
   },
   "spEntityId": {
     "message": "SP Entity ID"
@@ -4456,10 +4456,10 @@
     "message": "Minimum Incoming Signing Algorithm"
   },
   "spWantAssertionsSigned": {
-    "message": "Expect signed assertions"
+    "message": "Want Assertions Signed"
   },
   "spValidateCertificates": {
-    "message": "Validate certificates"
+    "message": "Validate Certificates"
   },
   "idpEntityId": {
     "message": "Entity ID"
@@ -4483,13 +4483,13 @@
     "message": "Outbound Signing Algorithm"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow unsolicited authentication response"
+    "message": "Allow Unsolicited Authentication Response"
   },
-  "idpAllowOutboundLogoutRequests": {
-    "message": "Allow outbound logout requests"
+  "idpDisableOutboundLogoutRequests": {
+    "message": "Disable Outbound Logout Requests"
   },
-  "idpSignAuthenticationRequests": {
-    "message": "Sign authentication requests"
+  "idpWantAuthnRequestsSigned": {
+    "message": "Want Authentication Requests Signed"
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
@@ -4739,71 +4739,5 @@
   },
   "freeWithSponsorship": {
     "message": "FREE with sponsorship"
-  },
-  "formErrorSummaryPlural": {
-    "message": "$COUNT$ fields above need your attention.",
-    "placeholders": {
-      "count": {
-        "content": "$1",
-        "example": "5"
-      }
-    }
-  },
-  "formErrorSummarySingle": {
-    "message": "1 field above needs your attention."
-  },
-  "fieldRequiredError": {
-    "message": "$FIELDNAME$ is required.",
-    "placeholders": {
-      "fieldname": {
-        "content": "$1",
-        "example": "Full name"
-      }
-    }
-  },
-  "idpArtifactResolutionRequired": {
-    "message": "Required if the Binding Type is \"Artifact\"."
-  },
-  "required": {
-    "message": "required"
-  },
-  "idpSingleSignOnServiceUrlRequired": {
-    "message": "Required if Entity ID is not a URL."
-  },
-  "openIdOptionalCustomizations": {
-    "message": "Optional Customizations"
-  },
-  "openIdAuthorityRequired": {
-    "message": "Required if Authority is not valid."
-  },
-  "separateMultipleWithComma": {
-    "message": "Separate multiple with a comma."
-  },
-  "sessionTimeout": {
-    "message": "Your session has timed out. Please go back and try logging in again."
-  },
-  "exportingPersonalVaultTitle": {
-    "message": "Exporting Personal Vault"
-  },
-  "exportingOrganizationVaultTitle": {
-    "message": "Exporting Organization Vault"
-  },
-  "exportingPersonalVaultDescription": {
-    "message": "Only the personal vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
-    "placeholders": {
-      "email": {
-        "content": "$1",
-        "example": "name@example.com"
-      }
-    }
-  },
-  "exportingOrganizationVaultDescription": {
-    "message": "Only the organization vault associated with $ORGANIZATION$ will be exported. Personal vault items and items from other organizations will not be included.",
-    "placeholders": {
-      "organization": {
-        "content": "$1",
-        "example": "My Org Name"
-      }
-    }
   }
 }

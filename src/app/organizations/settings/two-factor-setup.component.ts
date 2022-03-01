@@ -1,13 +1,11 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
+import { ModalService } from "jslib-angular/services/modal.service";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
-import { ModalService } from "jslib-angular/services/modal.service";
-
 import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
 
 import { TwoFactorDuoComponent } from "../../settings/two-factor-duo.component";
@@ -38,7 +36,7 @@ export class TwoFactorSetupComponent extends BaseTwoFactorSetupComponent {
 
   async manage(type: TwoFactorProviderType) {
     switch (type) {
-      case TwoFactorProviderType.OrganizationDuo:
+      case TwoFactorProviderType.OrganizationDuo: {
         const duoComp = await this.openModal(this.duoModalRef, TwoFactorDuoComponent);
         duoComp.type = TwoFactorProviderType.OrganizationDuo;
         duoComp.organizationId = this.organizationId;
@@ -46,6 +44,7 @@ export class TwoFactorSetupComponent extends BaseTwoFactorSetupComponent {
           this.updateStatus(enabled, TwoFactorProviderType.OrganizationDuo);
         });
         break;
+      }
       default:
         break;
     }

@@ -5,11 +5,9 @@ import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { UserVerificationService } from "jslib-common/abstractions/userVerification.service";
-
+import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
 import { UpdateTwoFactorYubioOtpRequest } from "jslib-common/models/request/updateTwoFactorYubioOtpRequest";
 import { TwoFactorYubiKeyResponse } from "jslib-common/models/response/twoFactorYubiKeyResponse";
-
-import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
 
 import { TwoFactorBaseComponent } from "./two-factor-base.component";
 

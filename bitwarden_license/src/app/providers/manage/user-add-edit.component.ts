@@ -4,12 +4,9 @@ import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
-import { ProviderUserInviteRequest } from "jslib-common/models/request/provider/providerUserInviteRequest";
-
-import { PermissionsApi } from "jslib-common/models/api/permissionsApi";
-
 import { ProviderUserType } from "jslib-common/enums/providerUserType";
+import { PermissionsApi } from "jslib-common/models/api/permissionsApi";
+import { ProviderUserInviteRequest } from "jslib-common/models/request/provider/providerUserInviteRequest";
 import { ProviderUserUpdateRequest } from "jslib-common/models/request/provider/providerUserUpdateRequest";
 
 @Component({
@@ -24,7 +21,7 @@ export class UserAddEditComponent implements OnInit {
   @Output() onDeletedUser = new EventEmitter();
 
   loading = true;
-  editMode: boolean = false;
+  editMode = false;
   title: string;
   emails: string;
   type: ProviderUserType = ProviderUserType.ServiceUser;

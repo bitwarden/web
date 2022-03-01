@@ -1,10 +1,9 @@
 import { Component, EventEmitter, Output } from "@angular/core";
 
+import { GroupingsComponent as BaseGroupingsComponent } from "jslib-angular/components/groupings.component";
 import { CollectionService } from "jslib-common/abstractions/collection.service";
 import { FolderService } from "jslib-common/abstractions/folder.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
-import { GroupingsComponent as BaseGroupingsComponent } from "jslib-angular/components/groupings.component";
 
 @Component({
   selector: "app-vault-groupings",
@@ -13,7 +12,7 @@ import { GroupingsComponent as BaseGroupingsComponent } from "jslib-angular/comp
 export class GroupingsComponent extends BaseGroupingsComponent {
   @Output() onSearchTextChanged = new EventEmitter<string>();
 
-  searchText: string = "";
+  searchText = "";
   searchPlaceholder: string = null;
 
   constructor(

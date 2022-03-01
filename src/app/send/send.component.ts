@@ -1,11 +1,7 @@
 import { Component, NgZone, ViewChild, ViewContainerRef } from "@angular/core";
 
-import { SendView } from "jslib-common/models/view/sendView";
-
 import { SendComponent as BaseSendComponent } from "jslib-angular/components/send/send.component";
-
-import { AddEditComponent } from "./add-edit.component";
-
+import { ModalService } from "jslib-angular/services/modal.service";
 import { BroadcasterService } from "jslib-common/abstractions/broadcaster.service";
 import { EnvironmentService } from "jslib-common/abstractions/environment.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -14,8 +10,9 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { SearchService } from "jslib-common/abstractions/search.service";
 import { SendService } from "jslib-common/abstractions/send.service";
+import { SendView } from "jslib-common/models/view/sendView";
 
-import { ModalService } from "jslib-angular/services/modal.service";
+import { AddEditComponent } from "./add-edit.component";
 
 const BroadcasterSubscriptionId = "SendComponent";
 
@@ -88,11 +85,11 @@ export class SendComponent extends BaseSendComponent {
       this.sendAddEditModalRef,
       (comp) => {
         comp.sendId = send == null ? null : send.id;
-        comp.onSavedSend.subscribe(async (s: SendView) => {
+        comp.onSavedSend.subscribe(async () => {
           modal.close();
           await this.load();
         });
-        comp.onDeletedSend.subscribe(async (s: SendView) => {
+        comp.onDeletedSend.subscribe(async () => {
           modal.close();
           await this.load();
         });

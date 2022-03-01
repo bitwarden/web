@@ -14,9 +14,7 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
 import { PaymentMethodType } from "jslib-common/enums/paymentMethodType";
-
 import { BitPayInvoiceRequest } from "jslib-common/models/request/bitPayInvoiceRequest";
 
 @Component({

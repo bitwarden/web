@@ -1,16 +1,14 @@
 import { Component, Input, OnInit } from "@angular/core";
 
+import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
-
-import { EventService } from "../../services/event.service";
-
-import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
-
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { EventResponse } from "jslib-common/models/response/eventResponse";
 import { ListResponse } from "jslib-common/models/response/listResponse";
+
+import { EventService } from "../../services/event.service";
 
 @Component({
   selector: "app-entity-events",

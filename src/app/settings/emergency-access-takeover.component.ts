@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
+import { ChangePasswordComponent } from "jslib-angular/components/change-password.component";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -9,15 +10,12 @@ import { PasswordGenerationService } from "jslib-common/abstractions/passwordGen
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
 import { KdfType } from "jslib-common/enums/kdfType";
 import { PolicyData } from "jslib-common/models/data/policyData";
 import { Policy } from "jslib-common/models/domain/policy";
 import { SymmetricCryptoKey } from "jslib-common/models/domain/symmetricCryptoKey";
 import { EmergencyAccessPasswordRequest } from "jslib-common/models/request/emergencyAccessPasswordRequest";
 import { PolicyResponse } from "jslib-common/models/response/policyResponse";
-
-import { ChangePasswordComponent } from "jslib-angular/components/change-password.component";
 
 @Component({
   selector: "emergency-access-takeover",

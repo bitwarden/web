@@ -1,15 +1,13 @@
 import { Component, OnInit } from "@angular/core";
 
-import { BillingResponse } from "jslib-common/models/response/billingResponse";
-
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
 import { PaymentMethodType } from "jslib-common/enums/paymentMethodType";
 import { TransactionType } from "jslib-common/enums/transactionType";
 import { VerifyBankRequest } from "jslib-common/models/request/verifyBankRequest";
+import { BillingResponse } from "jslib-common/models/response/billingResponse";
 
 @Component({
   selector: "app-user-billing",

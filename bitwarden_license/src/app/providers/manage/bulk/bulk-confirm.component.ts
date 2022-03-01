@@ -1,9 +1,8 @@
 import { Component, Input } from "@angular/core";
 
+import { ProviderUserStatusType } from "jslib-common/enums/providerUserStatusType";
 import { ProviderUserBulkConfirmRequest } from "jslib-common/models/request/provider/providerUserBulkConfirmRequest";
 import { ProviderUserBulkRequest } from "jslib-common/models/request/provider/providerUserBulkRequest";
-
-import { ProviderUserStatusType } from "jslib-common/enums/providerUserStatusType";
 
 import { BulkConfirmComponent as OrganizationBulkConfirmComponent } from "src/app/organizations/manage/bulk/bulk-confirm.component";
 import { BulkUserDetails } from "src/app/organizations/manage/bulk/bulk-status.component";
