@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { AbstractControl, FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { AbstractControl, FormBuilder, FormGroup } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 
 import { SelectOptions } from "jslib-angular/interfaces/selectOptions";
-import { dirtyRequired, dirtyRequiredIf } from "jslib-angular/validators/dirty.validator";
+import { dirtyRequired } from "jslib-angular/validators/dirty.validator";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
@@ -95,7 +95,7 @@ export class SsoComponent implements OnInit {
       clientId: ["", dirtyRequired],
       clientSecret: ["", dirtyRequired],
       metadataAddress: [],
-      redirectBehavior: [OpenIdConnectRedirectBehavior.RedirectGet, Validators.required],
+      redirectBehavior: [OpenIdConnectRedirectBehavior.RedirectGet, dirtyRequired],
       getClaimsFromUserInfoEndpoint: [],
       additionalScopes: [],
       additionalUserIdClaimTypes: [],

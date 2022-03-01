@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Self } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 
 import { BaseCvaComponent } from "./base-cva.component";
 
