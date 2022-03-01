@@ -2,6 +2,7 @@ import { Component, Input } from "@angular/core";
 
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
+/** For use in the SSO Config Form only - will be deprecated by the Component Library */
 @Component({
   selector: "app-input-text-readonly",
   templateUrl: "input-text-readonly.component.html",
@@ -9,8 +10,8 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 export class InputTextReadOnlyComponent {
   @Input() controlValue: string;
   @Input() label: string;
-  @Input() showCopy: boolean = true;
-  @Input() showLaunch: boolean = false;
+  @Input() showCopy = true;
+  @Input() showLaunch = false;
 
   constructor(private platformUtilsService: PlatformUtilsService) {}
 

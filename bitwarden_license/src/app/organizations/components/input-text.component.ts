@@ -2,6 +2,7 @@ import { Component, Input, OnInit, Self } from "@angular/core";
 
 import { BaseCvaComponent } from "./base-cva.component";
 
+/** For use in the SSO Config Form only - will be deprecated by the Component Library */
 @Component({
   selector: "app-input-text[label][controlId]",
   templateUrl: "input-text.component.html",
@@ -9,7 +10,7 @@ import { BaseCvaComponent } from "./base-cva.component";
 export class InputTextComponent extends BaseCvaComponent implements OnInit {
   @Input() helperTextSameAsError: string;
   @Input() requiredErrorMessage: string;
-  @Input() stripSpaces: boolean = false;
+  @Input() stripSpaces = false;
 
   transformValue: (value: string) => string = null;
 
