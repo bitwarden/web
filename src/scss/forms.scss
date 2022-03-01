@@ -234,8 +234,9 @@ input[type="checkbox"] {
   }
 }
 
-// Theming for invalid form elements - only if we're not using native HTML5 validation
-form {
+// Theming for invalid form elements in the SSO Config Form only
+// Will be deprecated by component-level styling in the Component Library
+app-org-manage-sso form {
   .form-control.ng-invalid,
   app-input-text.ng-invalid .form-control,
   app-select.ng-invalid .form-control {
