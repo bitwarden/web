@@ -47,7 +47,7 @@ async function start() {
 
   let decodedData: any;
   try {
-    decodedData = JSON.parse(b64Decode(data));
+    decodedData = JSON.parse(b64Decode(data, true));
   } catch (e) {
     error("Cannot parse data.");
     return;
