@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import * as JSZip from "jszip";
 import Swal, { SweetAlertIcon } from "sweetalert2";
 
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -181,6 +182,10 @@ export class ImportComponent implements OnInit {
   }
 
   private getFileContents(file: File): Promise<string> {
+    if (this.format === "1password1pux") {
+      return this.extract1PuxContent(file);
+    }
+
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsText(file, "utf-8");
@@ -203,5 +208,21 @@ export class ImportComponent implements OnInit {
         reject();
       };
     });
+  }
+
+  private extract1PuxContent(file: File): Promise<string> {
+    return new JSZip()
+      .loadAsync(file)
+      .then((zip) => {
+        return zip.file("export.data").async("string");
+      })
+      .then(
+        function success(content) {
+          return content;
+        },
+        function error(e) {
+          return "";
+        }
+      );
   }
 }
