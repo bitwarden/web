@@ -14,10 +14,9 @@
 <form
   #form
   (ngSubmit)="submit()"
-  [formGroup]="data"
+  [formGroup]="ssoConfigForm"
   [appApiAction]="formPromise"
   *ngIf="!loading"
-  ngNativeValidate
 >
   <p>
     {{ "ssoPolicyHelpStart" | i18n }}
@@ -27,451 +26,407 @@
     {{ "ssoPolicyHelpKeyConnector" | i18n }}
   </p>
 
-  <div class="form-group">
-    <div class="form-check">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        id="enabled"
-        [formControl]="enabled"
-        name="Enabled"
-      />
-      <label class="form-check-label" for="enabled">{{ "allowSso" | i18n }}</label>
-    </div>
-    <small class="form-text text-muted">{{ "allowSsoDesc" | i18n }}</small>
-  </div>
-
-  <div class="form-group">
-    <label>{{ "memberDecryptionOption" | i18n }}</label>
-    <div class="form-check form-check-block">
-      <input
-        class="form-check-input"
-        type="radio"
-        id="memberDecryptionPass"
-        [value]="false"
-        formControlName="keyConnectorEnabled"
-      />
-      <label class="form-check-label" for="memberDecryptionPass">
-        {{ "masterPass" | i18n }}
-        <small>{{ "memberDecryptionPassDesc" | i18n }}</small>
-      </label>
-    </div>
-    <div class="form-check mt-2 form-check-block">
-      <input
-        class="form-check-input"
-        type="radio"
-        id="memberDecryptionKey"
-        [value]="true"
-        formControlName="keyConnectorEnabled"
-        [attr.disabled]="!organization.useKeyConnector || null"
-      />
-      <label class="form-check-label" for="memberDecryptionKey">
-        {{ "keyConnector" | i18n }}
-        <a
-          target="_blank"
-          rel="noopener"
-          appA11yTitle="{{ 'learnMore' | i18n }}"
-          href="https://bitwarden.com/help/about-key-connector/"
-        >
-          <i class="bwi bwi-question-circle" aria-hidden="true"></i>
-        </a>
-        <small>{{ "memberDecryptionKeyConnectorDesc" | i18n }}</small>
-      </label>
-    </div>
-  </div>
-
-  <ng-container *ngIf="data.value.keyConnectorEnabled">
-    <app-callout type="warning" [useAlertRole]="true">
-      {{ "keyConnectorWarning" | i18n }}
-    </app-callout>
+  <!-- Root form -->
+  <ng-container>
+    <app-input-checkbox
+      controlId="enabled"
+      [formControl]="enabled"
+      [label]="'allowSso' | i18n"
+      [helperText]="'allowSsoDesc' | i18n"
+    ></app-input-checkbox>
 
     <div class="form-group">
-      <label for="keyConnectorUrl">{{ "keyConnectorUrl" | i18n }}</label>
-      <div class="input-group">
+      <label>{{ "memberDecryptionOption" | i18n }}</label>
+      <div class="form-check form-check-block">
         <input
-          class="form-control"
-          formControlName="keyConnectorUrl"
-          id="keyConnectorUrl"
-          required
+          class="form-check-input"
+          type="radio"
+          id="memberDecryptionPass"
+          [value]="false"
+          formControlName="keyConnectorEnabled"
         />
-        <div class="input-group-append">
-          <button
-            type="button"
-            class="btn btn-outline-secondary"
-            (click)="validateKeyConnectorUrl()"
-            [disabled]="!enableTestKeyConnector"
+        <label class="form-check-label" for="memberDecryptionPass">
+          {{ "masterPass" | i18n }}
+          <small>{{ "memberDecryptionPassDesc" | i18n }}</small>
+        </label>
+      </div>
+      <div class="form-check mt-2 form-check-block">
+        <input
+          class="form-check-input"
+          type="radio"
+          id="memberDecryptionKey"
+          [value]="true"
+          formControlName="keyConnectorEnabled"
+          [attr.disabled]="!organization.useKeyConnector || null"
+        />
+        <label class="form-check-label" for="memberDecryptionKey">
+          {{ "keyConnector" | i18n }}
+          <a
+            target="_blank"
+            rel="noopener"
+            appA11yTitle="{{ 'learnMore' | i18n }}"
+            href="https://bitwarden.com/help/about-key-connector/"
           >
-            <i
-              class="bwi bwi-spinner bwi-spin"
-              title="{{ 'loading' | i18n }}"
-              aria-hidden="true"
-              *ngIf="keyConnectorUrl.pending"
-            ></i>
-            <span *ngIf="!keyConnectorUrl.pending">
-              {{ "keyConnectorTest" | i18n }}
-            </span>
-          </button>
+            <i class="bwi bwi-question-circle" aria-hidden="true"></i>
+          </a>
+          <small>{{ "memberDecryptionKeyConnectorDesc" | i18n }}</small>
+        </label>
+      </div>
+    </div>
+
+    <!-- Key Connector -->
+    <ng-container *ngIf="ssoConfigForm.get('keyConnectorEnabled').value">
+      <app-callout type="warning" [useAlertRole]="true">
+        {{ "keyConnectorWarning" | i18n }}
+      </app-callout>
+
+      <div class="form-group">
+        <label for="keyConnectorUrl">
+          {{ "keyConnectorUrl" | i18n }}
+          <small class="text-muted form-text d-inline">({{ "required" | i18n }})</small>
+        </label>
+        <div class="input-group">
+          <input
+            class="form-control"
+            formControlName="keyConnectorUrl"
+            id="keyConnectorUrl"
+            aria-describedby="keyConnectorUrlDesc"
+            (change)="haveTestedKeyConnector = false"
+            appInputStripSpaces
+            appA11yInvalid
+          />
+          <div class="input-group-append">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              (click)="validateKeyConnectorUrl()"
+              [disabled]="!enableTestKeyConnector"
+            >
+              <i
+                class="bwi bwi-spinner bwi-spin"
+                title="{{ 'loading' | i18n }}"
+                aria-hidden="true"
+                *ngIf="keyConnectorUrl.pending"
+              ></i>
+              <span *ngIf="!keyConnectorUrl.pending">
+                {{ "keyConnectorTest" | i18n }}
+              </span>
+            </button>
+          </div>
+        </div>
+        <div *ngIf="haveTestedKeyConnector" id="keyConnectorUrlDesc" aria-live="polite">
+          <small
+            class="error-inline"
+            *ngIf="keyConnectorUrl.hasError('invalidUrl'); else keyConnectorSuccess"
+          >
+            <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
+            <span class="sr-only">{{ "error" | i18n }}:</span>
+            {{ "keyConnectorTestFail" | i18n }}
+          </small>
+          <ng-template #keyConnectorSuccess>
+            <small class="text-success">
+              <i class="bwi bwi-check-circle" aria-hidden="true"></i>
+              {{ "keyConnectorTestSuccess" | i18n }}
+            </small>
+          </ng-template>
         </div>
       </div>
-      <ng-container *ngIf="keyConnectorUrl.pristine && !keyConnectorUrl.pending">
-        <div class="text-danger" *ngIf="keyConnectorUrl.hasError('invalidUrl')" role="alert">
-          <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
-          {{ "keyConnectorTestFail" | i18n }}
-        </div>
-        <div class="text-success" *ngIf="!keyConnectorUrl.hasError('invalidUrl')" role="alert">
-          <i class="bwi bwi-check-circle" aria-hidden="true"></i>
-          {{ "keyConnectorTestSuccess" | i18n }}
-        </div>
-      </ng-container>
-    </div>
+    </ng-container>
+
+    <app-select
+      controlId="type"
+      [label]="'type' | i18n"
+      [selectOptions]="ssoTypeOptions"
+      formControlName="configType"
+    >
+    </app-select>
   </ng-container>
 
-  <div class="form-group">
-    <label for="type">{{ "type" | i18n }}</label>
-    <select class="form-control" id="type" formControlName="configType">
-      <option [ngValue]="0" disabled>{{ "selectType" | i18n }}</option>
-      <option [ngValue]="1">OpenID Connect</option>
-      <option [ngValue]="2">SAML 2.0</option>
-    </select>
-  </div>
-
   <!-- OIDC -->
-  <div *ngIf="data.value.configType == 1">
+  <div
+    *ngIf="ssoConfigForm.get('configType').value === ssoType.OpenIdConnect"
+    [formGroup]="openIdForm"
+  >
     <div class="config-section">
-      <h2>{{ "openIdConnectConfig" | i18n }}</h2>
-      <div class="form-group">
-        <label>{{ "callbackPath" | i18n }}</label>
-        <div class="input-group">
-          <input class="form-control" readonly [value]="callbackPath" />
-          <div class="input-group-append">
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              appA11yTitle="{{ 'copyValue' | i18n }}"
-              (click)="copy(callbackPath)"
-            >
-              <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
+      <h2 class="secondary-header">{{ "openIdConnectConfig" | i18n }}</h2>
+
+      <app-input-text-readonly
+        [label]="'callbackPath' | i18n"
+        [controlValue]="callbackPath"
+      ></app-input-text-readonly>
+
+      <app-input-text-readonly
+        [label]="'signedOutCallbackPath' | i18n"
+        [controlValue]="signedOutCallbackPath"
+      ></app-input-text-readonly>
+
+      <app-input-text
+        [label]="'authority' | i18n"
+        controlId="authority"
+        [stripSpaces]="true"
+        formControlName="authority"
+      ></app-input-text>
+
+      <app-input-text
+        [label]="'clientId' | i18n"
+        controlId="clientId"
+        [stripSpaces]="true"
+        formControlName="clientId"
+      ></app-input-text>
+
+      <app-input-text
+        [label]="'clientSecret' | i18n"
+        controlId="clientSecret"
+        [stripSpaces]="true"
+        formControlName="clientSecret"
+      ></app-input-text>
+
+      <app-input-text
+        [label]="'metadataAddress' | i18n"
+        controlId="metadataAddress"
+        [stripSpaces]="true"
+        [helperText]="'openIdAuthorityRequired' | i18n"
+        formControlName="metadataAddress"
+      ></app-input-text>
+
+      <app-select
+        controlId="redirectBehavior"
+        [label]="'oidcRedirectBehavior' | i18n"
+        [selectOptions]="connectRedirectOptions"
+        formControlName="redirectBehavior"
+      >
+      </app-select>
+
+      <app-input-checkbox
+        controlId="getClaimsFromUserInfoEndpoint"
+        formControlName="getClaimsFromUserInfoEndpoint"
+        [label]="'getClaimsFromUserInfoEndpoint' | i18n"
+      ></app-input-checkbox>
+
+      <!-- Optional customizations -->
+      <div
+        class="section-header d-flex flex-row align-items-center mt-3 mb-3"
+        (click)="toggleOpenIdCustomizations()"
+      >
+        <h3 class="mb-0 mr-2" id="customizations-header">
+          {{ "openIdOptionalCustomizations" | i18n }}
+        </h3>
+        <button
+          class="mb-1 btn btn-link"
+          type="button"
+          appStopClick
+          role="button"
+          aria-controls="customizations"
+          [attr.aria-expanded]="showOpenIdCustomizations"
+          aria-labelledby="customizations-header"
+        >
+          <i
+            class="bwi"
+            aria-hidden="true"
+            [ngClass]="{
+              'bwi-angle-down': !showOpenIdCustomizations,
+              'bwi-chevron-up': showOpenIdCustomizations
+            }"
+          ></i>
+        </button>
       </div>
-      <div class="form-group">
-        <label>{{ "signedOutCallbackPath" | i18n }}</label>
-        <div class="input-group">
-          <input class="form-control" readonly [value]="signedOutCallbackPath" />
-          <div class="input-group-append">
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              appA11yTitle="{{ 'copyValue' | i18n }}"
-              (click)="copy(signedOutCallbackPath)"
-            >
-              <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="authority">{{ "authority" | i18n }}</label>
-        <input class="form-control" formControlName="authority" id="authority" />
-      </div>
-      <div class="form-group">
-        <label for="clientId">{{ "clientId" | i18n }}</label>
-        <input class="form-control" formControlName="clientId" id="clientId" />
-      </div>
-      <div class="form-group">
-        <label for="clientSecret">{{ "clientSecret" | i18n }}</label>
-        <input class="form-control" formControlName="clientSecret" id="clientSecret" />
-      </div>
-      <div class="form-group">
-        <label for="metadataAddress">{{ "metadataAddress" | i18n }}</label>
-        <input class="form-control" formControlName="metadataAddress" id="metadataAddress" />
-      </div>
-      <div class="form-group">
-        <label for="redirectBehavior">{{ "oidcRedirectBehavior" | i18n }}</label>
-        <select class="form-control" formControlName="redirectBehavior" id="redirectBehavior">
-          <option [ngValue]="0">Redirect GET</option>
-          <option [ngValue]="1">Form POST</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="getClaimsFromUserInfoEndpoint"
-            formControlName="getClaimsFromUserInfoEndpoint"
-          />
-          <label class="form-check-label" for="getClaimsFromUserInfoEndpoint">
-            {{ "getClaimsFromUserInfoEndpoint" | i18n }}
-          </label>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="additionalScopes">{{ "additionalScopes" | i18n }}</label>
-        <input class="form-control" formControlName="additionalScopes" id="additionalScopes" />
-      </div>
-      <div class="form-group">
-        <label for="additionalUserIdClaimTypes">{{ "additionalUserIdClaimTypes" | i18n }}</label>
-        <input
-          class="form-control"
+      <div id="customizations" [hidden]="!showOpenIdCustomizations">
+        <app-input-text
+          [label]="'additionalScopes' | i18n"
+          controlId="additionalScopes"
+          [helperText]="'separateMultipleWithComma' | i18n"
+          formControlName="additionalScopes"
+        ></app-input-text>
+
+        <app-input-text
+          [label]="'additionalUserIdClaimTypes' | i18n"
+          controlId="additionalUserIdClaimTypes"
+          [helperText]="'separateMultipleWithComma' | i18n"
           formControlName="additionalUserIdClaimTypes"
-          id="additionalUserIdClaimTypes"
-        />
-      </div>
-      <div class="form-group">
-        <label for="additionalEmailClaimTypes">{{ "additionalEmailClaimTypes" | i18n }}</label>
-        <input
-          class="form-control"
+        ></app-input-text>
+
+        <app-input-text
+          [label]="'additionalEmailClaimTypes' | i18n"
+          controlId="additionalEmailClaimTypes"
+          [helperText]="'separateMultipleWithComma' | i18n"
           formControlName="additionalEmailClaimTypes"
-          id="additionalEmailClaimTypes"
-        />
-      </div>
-      <div class="form-group">
-        <label for="additionalNameClaimTypes">{{ "additionalNameClaimTypes" | i18n }}</label>
-        <input
-          class="form-control"
+        ></app-input-text>
+
+        <app-input-text
+          [label]="'additionalNameClaimTypes' | i18n"
+          controlId="additionalNameClaimTypes"
+          [helperText]="'separateMultipleWithComma' | i18n"
           formControlName="additionalNameClaimTypes"
-          id="additionalNameClaimTypes"
-        />
-      </div>
-      <div class="form-group">
-        <label for="acrValues">{{ "acrValues" | i18n }}</label>
-        <input class="form-control" formControlName="acrValues" id="acrValues" />
-      </div>
-      <div class="form-group">
-        <label for="expectedReturnAcrValue">{{ "expectedReturnAcrValue" | i18n }}</label>
-        <input
-          class="form-control"
+        ></app-input-text>
+
+        <app-input-text
+          [label]="'acrValues' | i18n"
+          controlId="acrValues"
+          helperText="acr_values"
+          formControlName="acrValues"
+        ></app-input-text>
+
+        <app-input-text
+          [label]="'expectedReturnAcrValue' | i18n"
+          controlId="expectedReturnAcrValue"
+          helperText="acr_validation"
           formControlName="expectedReturnAcrValue"
-          id="expectedReturnAcrValue"
-        />
+        ></app-input-text>
       </div>
     </div>
   </div>
 
-  <div *ngIf="data.value.configType == 2">
+  <!-- SAML2 SP -->
+  <div *ngIf="ssoConfigForm.get('configType').value === ssoType.Saml2" [formGroup]="samlForm">
     <!-- SAML2 SP -->
     <div class="config-section">
-      <h2>{{ "samlSpConfig" | i18n }}</h2>
-      <div class="form-group">
-        <label>{{ "spEntityId" | i18n }}</label>
-        <div class="input-group">
-          <input class="form-control" readonly [value]="spEntityId" />
-          <div class="input-group-append">
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              appA11yTitle="{{ 'copyValue' | i18n }}"
-              (click)="copy(spEntityId)"
-            >
-              <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>{{ "spMetadataUrl" | i18n }}</label>
-        <div class="input-group">
-          <input class="form-control" readonly [value]="spMetadataUrl" />
-          <div class="input-group-append">
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              appA11yTitle="{{ 'launch' | i18n }}"
-              (click)="launchUri(spMetadataUrl)"
-            >
-              <i class="bwi bwi-lg bwi-external-link" aria-hidden="true"></i>
-            </button>
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              appA11yTitle="{{ 'copyValue' | i18n }}"
-              (click)="copy(spMetadataUrl)"
-            >
-              <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label>{{ "spAcsUrl" | i18n }}</label>
-        <div class="input-group">
-          <input class="form-control" readonly [value]="spAcsUrl" />
-          <div class="input-group-append">
-            <button
-              type="button"
-              class="btn btn-outline-secondary"
-              appA11yTitle="{{ 'copyValue' | i18n }}"
-              (click)="copy(spAcsUrl)"
-            >
-              <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="spNameIdFormat">{{ "spNameIdFormat" | i18n }}</label>
-        <select class="form-control" formControlName="spNameIdFormat" id="spNameIdFormat">
-          <option [ngValue]="0">Not Configured</option>
-          <option [ngValue]="1">Unspecified</option>
-          <option [ngValue]="2">Email Address</option>
-          <option [ngValue]="3">X.509 Subject Name</option>
-          <option [ngValue]="4">Windows Domain Qualified Name</option>
-          <option [ngValue]="5">Kerberos Principal Name</option>
-          <option [ngValue]="6">Entity Identifier</option>
-          <option [ngValue]="7">Persistent</option>
-          <option [ngValue]="8">Transient</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="spOutboundSigningAlgorithm">{{ "spOutboundSigningAlgorithm" | i18n }}</label>
-        <select
-          class="form-control"
-          formControlName="spOutboundSigningAlgorithm"
-          id="spOutboundSigningAlgorithm"
-        >
-          <option *ngFor="let o of samlSigningAlgorithms" [ngValue]="o">{{ o }}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="spSigningBehavior">{{ "spSigningBehavior" | i18n }}</label>
-        <select class="form-control" formControlName="spSigningBehavior" id="spSigningBehavior">
-          <option [ngValue]="0">If IdP Wants Authn Requests Signed</option>
-          <option [ngValue]="1">Always</option>
-          <option [ngValue]="3">Never</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="spMinIncomingSigningAlgorithm">{{
-          "spMinIncomingSigningAlgorithm" | i18n
-        }}</label>
-        <select
-          class="form-control"
-          formControlName="spMinIncomingSigningAlgorithm"
-          id="spMinIncomingSigningAlgorithm"
-        >
-          <option *ngFor="let o of samlSigningAlgorithms" [ngValue]="o">{{ o }}</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="spWantAssertionsSigned"
-            formControlName="spWantAssertionsSigned"
-          />
-          <label class="form-check-label" for="spWantAssertionsSigned">
-            {{ "spWantAssertionsSigned" | i18n }}
-          </label>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="spValidateCertificates"
-            formControlName="spValidateCertificates"
-          />
-          <label class="form-check-label" for="spValidateCertificates">
-            {{ "spValidateCertificates" | i18n }}
-          </label>
-        </div>
-      </div>
+      <h2 class="secondary-header">{{ "samlSpConfig" | i18n }}</h2>
+
+      <app-input-text-readonly
+        [label]="'spEntityId' | i18n"
+        [controlValue]="spEntityId"
+      ></app-input-text-readonly>
+
+      <app-input-text-readonly
+        [label]="'spMetadataUrl' | i18n"
+        [controlValue]="spMetadataUrl"
+        [showLaunch]="true"
+      ></app-input-text-readonly>
+
+      <app-input-text-readonly
+        [label]="'spAcsUrl' | i18n"
+        [controlValue]="spAcsUrl"
+      ></app-input-text-readonly>
+
+      <app-select
+        controlId="spNameIdFormat"
+        [label]="'spNameIdFormat' | i18n"
+        [selectOptions]="saml2NameIdFormatOptions"
+        formControlName="spNameIdFormat"
+      >
+      </app-select>
+
+      <app-select
+        controlId="spOutboundSigningAlgorithm"
+        [label]="'spOutboundSigningAlgorithm' | i18n"
+        [selectOptions]="samlSigningAlgorithmOptions"
+        formControlName="spOutboundSigningAlgorithm"
+      >
+      </app-select>
+
+      <app-select
+        controlId="spSigningBehavior"
+        [label]="'spSigningBehavior' | i18n"
+        [selectOptions]="saml2SigningBehaviourOptions"
+        formControlName="spSigningBehavior"
+      >
+      </app-select>
+
+      <app-select
+        controlId="spMinIncomingSigningAlgorithm"
+        [label]="'spMinIncomingSigningAlgorithm' | i18n"
+        [selectOptions]="samlSigningAlgorithmOptions"
+        formControlName="spMinIncomingSigningAlgorithm"
+      >
+      </app-select>
+
+      <app-input-checkbox
+        controlId="spWantAssertionsSigned"
+        formControlName="spWantAssertionsSigned"
+        [label]="'spWantAssertionsSigned' | i18n"
+      ></app-input-checkbox>
+
+      <app-input-checkbox
+        controlId="spValidateCertificates"
+        formControlName="spValidateCertificates"
+        [label]="'spValidateCertificates' | i18n"
+      ></app-input-checkbox>
     </div>
 
     <!-- SAML2 IDP -->
     <div class="config-section">
-      <h2>{{ "samlIdpConfig" | i18n }}</h2>
+      <h2 class="secondary-header">{{ "samlIdpConfig" | i18n }}</h2>
+
+      <app-input-text
+        [label]="'idpEntityId' | i18n"
+        controlId="idpEntityId"
+        formControlName="idpEntityId"
+      ></app-input-text>
+
+      <app-select
+        controlId="idpBindingType"
+        [label]="'idpBindingType' | i18n"
+        [selectOptions]="saml2BindingTypeOptions"
+        formControlName="idpBindingType"
+      >
+      </app-select>
+
+      <app-input-text
+        [label]="'idpSingleSignOnServiceUrl' | i18n"
+        controlId="idpSingleSignOnServiceUrl"
+        [helperText]="'idpSingleSignOnServiceUrlRequired' | i18n"
+        [stripSpaces]="true"
+        formControlName="idpSingleSignOnServiceUrl"
+      ></app-input-text>
+
+      <app-input-text
+        [label]="'idpSingleLogoutServiceUrl' | i18n"
+        controlId="idpSingleLogoutServiceUrl"
+        [stripSpaces]="true"
+        formControlName="idpSingleLogoutServiceUrl"
+      ></app-input-text>
 
       <div class="form-group">
-        <label for="idpEntityId">{{ "idpEntityId" | i18n }}</label>
-        <input class="form-control" formControlName="idpEntityId" id="idpEntityId" />
-      </div>
-      <div class="form-group">
-        <label for="idpBindingType">{{ "idpBindingType" | i18n }}</label>
-        <select class="form-control" formControlName="idpBindingType" id="idpBindingType">
-          <option [ngValue]="1">Redirect</option>
-          <option [ngValue]="2">HTTP POST</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="idpSingleSignOnServiceUrl">{{ "idpSingleSignOnServiceUrl" | i18n }}</label>
-        <input
-          class="form-control"
-          formControlName="idpSingleSignOnServiceUrl"
-          id="idpSingleSignOnServiceUrl"
-        />
-      </div>
-      <div class="form-group">
-        <label for="idpSingleLogoutServiceUrl">{{ "idpSingleLogoutServiceUrl" | i18n }}</label>
-        <input
-          class="form-control"
-          formControlName="idpSingleLogoutServiceUrl"
-          id="idpSingleLogoutServiceUrl"
-        />
-      </div>
-      <div class="form-group">
-        <label for="idpX509PublicCert">{{ "idpX509PublicCert" | i18n }}</label>
+        <label for="idpX509PublicCert">
+          {{ "idpX509PublicCert" | i18n }}
+          <small class="text-muted form-text d-inline">({{ "required" | i18n }})</small>
+        </label>
         <textarea
           formControlName="idpX509PublicCert"
           class="form-control form-control-sm text-monospace"
           rows="6"
           id="idpX509PublicCert"
+          appA11yInvalid
+          aria-describedby="idpX509PublicCertDesc"
         ></textarea>
-      </div>
-      <div class="form-group">
-        <label for="idpOutboundSigningAlgorithm">{{ "idpOutboundSigningAlgorithm" | i18n }}</label>
-        <select
-          class="form-control"
-          formControlName="idpOutboundSigningAlgorithm"
-          id="idpOutboundSigningAlgorithm"
+        <small
+          id="idpX509PublicCertDesc"
+          class="error-inline"
+          role="alert"
+          *ngIf="samlForm.get('idpX509PublicCert').hasError('required')"
         >
-          <option *ngFor="let o of samlSigningAlgorithms" [ngValue]="o">{{ o }}</option>
-        </select>
+          <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
+          <span class="sr-only">{{ "error" | i18n }}:</span>
+          {{ "fieldRequiredError" | i18n: ("idpX509PublicCert" | i18n) }}
+        </small>
       </div>
-      <div class="form-group" [hidden]="true">
-        <!--TODO: Unhide once Unsolicited IdP Response is supported-->
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="idpAllowUnsolicitedAuthnResponse"
-            formControlName="idpAllowUnsolicitedAuthnResponse"
-          />
-          <label class="form-check-label" for="idpAllowUnsolicitedAuthnResponse">
-            {{ "idpAllowUnsolicitedAuthnResponse" | i18n }}
-          </label>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="idpDisableOutboundLogoutRequests"
-            formControlName="idpDisableOutboundLogoutRequests"
-          />
-          <label class="form-check-label" for="idpDisableOutboundLogoutRequests">
-            {{ "idpDisableOutboundLogoutRequests" | i18n }}
-          </label>
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-check">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="idpWantAuthnRequestsSigned"
-            formControlName="idpWantAuthnRequestsSigned"
-          />
-          <label class="form-check-label" for="idpWantAuthnRequestsSigned">
-            {{ "idpWantAuthnRequestsSigned" | i18n }}
-          </label>
-        </div>
-      </div>
+
+      <app-select
+        controlId="idpOutboundSigningAlgorithm"
+        [label]="'idpOutboundSigningAlgorithm' | i18n"
+        [selectOptions]="samlSigningAlgorithmOptions"
+        formControlName="idpOutboundSigningAlgorithm"
+      >
+      </app-select>
+
+      <!--TODO: Uncomment once Unsolicited IdP Response is supported-->
+      <!-- <app-input-checkbox
+        controlId="idpAllowUnsolicitedAuthnResponse"
+        formControlName="idpAllowUnsolicitedAuthnResponse"
+        [label]="'idpAllowUnsolicitedAuthnResponse' | i18n"
+      ></app-input-checkbox> -->
+
+      <app-input-checkbox
+        controlId="idpAllowOutboundLogoutRequests"
+        formControlName="idpAllowOutboundLogoutRequests"
+        [label]="'idpAllowOutboundLogoutRequests' | i18n"
+      ></app-input-checkbox>
+
+      <app-input-checkbox
+        controlId="idpWantAuthnRequestsSigned"
+        formControlName="idpWantAuthnRequestsSigned"
+        [label]="'idpSignAuthenticationRequests' | i18n"
+      ></app-input-checkbox>
     </div>
   </div>
 
@@ -479,4 +434,15 @@
     <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
     <span>{{ "save" | i18n }}</span>
   </button>
+  <div
+    id="errorSummary"
+    class="error-summary text-danger"
+    *ngIf="this.getErrorCount(ssoConfigForm) as errorCount"
+  >
+    <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
+    <span class="sr-only">{{ "error" | i18n }}:</span>
+    {{
+      (errorCount === 1 ? "formErrorSummarySingle" : "formErrorSummaryPlural") | i18n: errorCount
+    }}
+  </div>
 </form>

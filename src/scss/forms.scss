@@ -210,6 +210,42 @@ input[type="checkbox"] {
   }
 }
 
+.section-header {
+  h3,
+  .btn.btn-link {
+    @include themify($themes) {
+      color: themed("headingColor");
+    }
+  }
+
+  h3 {
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+}
+
+.error-summary {
+  margin-top: 1rem;
+}
+
+.error-inline {
+  @include themify($themes) {
+    color: themed("danger");
+  }
+}
+
+// Theming for invalid form elements in the SSO Config Form only
+// Will be deprecated by component-level styling in the Component Library
+app-org-manage-sso form {
+  .form-control.ng-invalid,
+  app-input-text.ng-invalid .form-control,
+  app-select.ng-invalid .form-control {
+    @include themify($themes) {
+      border-color: themed("danger");
+    }
+  }
+}
+
 // Browser specific icons overlayed on input fields. e.g. caps lock indicator on password field
 ::-webkit-calendar-picker-indicator,
 input::-webkit-caps-lock-indicator,
