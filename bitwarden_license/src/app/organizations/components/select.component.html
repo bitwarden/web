@@ -1,0 +1,19 @@
+<div class="form-group">
+  <label [attr.for]="controlId">
+    {{ label }}
+    <small *ngIf="isRequired" class="text-muted form-text d-inline"
+      >({{ "required" | i18n }})</small
+    >
+  </label>
+  <select
+    class="form-control"
+    [attr.id]="controlId"
+    [attr.aria-invalid]="controlDir.control.invalid"
+    [formControl]="internalControl"
+    (blur)="onBlurInternal()"
+  >
+    <option *ngFor="let o of selectOptions" [ngValue]="o.value" disabled="{{ o.disabled }}">
+      {{ o.name }}
+    </option>
+  </select>
+</div>

@@ -1,0 +1,33 @@
+<div class="form-group">
+  <label [attr.for]="controlId">
+    {{ label }}
+    <small *ngIf="isRequired" class="text-muted form-text d-inline"
+      >({{ "required" | i18n }})</small
+    >
+  </label>
+  <input
+    [formControl]="internalControl"
+    class="form-control"
+    [attr.id]="controlId"
+    [attr.aria-describedby]="describedById"
+    [attr.aria-invalid]="controlDir.control.invalid"
+    (blur)="onBlurInternal()"
+  />
+  <div *ngIf="showDescribedBy" [attr.id]="describedById">
+    <small
+      *ngIf="helperText != null && !controlDir.control.hasError(helperTextSameAsError)"
+      class="form-text text-muted"
+    >
+      {{ helperText }}
+    </small>
+    <small class="error-inline" *ngIf="controlDir.control.hasError('required')" role="alert">
+      <i class="bwi bwi-exclamation-circle" aria-hidden="true"></i>
+      <span class="sr-only">{{ "error" | i18n }}:</span>
+      {{
+        controlDir.control.hasError(helperTextSameAsError)
+          ? helperText
+          : ("fieldRequiredError" | i18n: label)
+      }}
+    </small>
+  </div>
+</div>
