@@ -190,7 +190,7 @@ const devServer =
           },
         },
         headers: (req) => {
-          if (!req.url.includes("connector.html")) {
+          if (!req.originalUrl.includes("connector.html")) {
             return [
               {
                 key: "Content-Security-Policy",

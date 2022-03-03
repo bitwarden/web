@@ -1,0 +1,26 @@
+<div class="form-group">
+  <label>{{ label }}</label>
+  <div class="input-group">
+    <input class="form-control" readonly [value]="controlValue" />
+    <div class="input-group-append" *ngIf="showLaunch">
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        appA11yTitle="{{ 'launch' | i18n }}"
+        (click)="launchUri(controlValue)"
+      >
+        <i class="bwi bwi-lg bwi-external-link" aria-hidden="true"></i>
+      </button>
+    </div>
+    <div class="input-group-append" *ngIf="showCopy">
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        appA11yTitle="{{ 'copyValue' | i18n }}"
+        (click)="copy(controlValue)"
+      >
+        <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
+      </button>
+    </div>
+  </div>
+</div>
