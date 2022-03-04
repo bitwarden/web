@@ -129,7 +129,7 @@ export class FamiliesForEnterpriseSetupComponent implements OnInit {
           this.deleteModalRef,
           (comp) => {
             comp.organizationId = organizationId;
-            comp.descriptionKey = "orgCreatedSponsorshipInvalid";
+            comp.deleteOrganizationRequestType = "InvalidFamiliesForEnterprise";
             comp.onSuccess.subscribe(() => {
               this.router.navigate(["/"]);
             });
