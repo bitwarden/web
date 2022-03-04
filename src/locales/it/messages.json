@@ -4473,9 +4473,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Single Log Out Service URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
-  },
   "idpX509PublicCert": {
     "message": "Certificato pubblico X509"
   },
@@ -4485,11 +4482,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Consenti risposta di autenticazione non richiesta"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Disabilita le richieste di logout in uscita"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Allow outbound logout requests"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Necessarie richieste di autenticazione firmate"
+  "idpSignAuthenticationRequests": {
+    "message": "Sign authentication requests"
   },
   "ssoSettingsSaved": {
     "message": "La configurazione del Single Sign-On è stata salvata."
@@ -4739,5 +4736,68 @@
   },
   "freeWithSponsorship": {
     "message": "GRATUITO con sponsorizzazione"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ campi richiedono la tua attenzione.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 campo ha bisogno di attenzione."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ è obbligatorio.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "obbligatorio"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Richiesto se l'ID dell'entità non è un URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Personalizzazioni opzionali"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Richiesto se l'autorità non è valida."
+  },
+  "separateMultipleWithComma": {
+    "message": "Elenco separato da virgole."
+  },
+  "sessionTimeout": {
+    "message": "La tua sessione è scaduta. Torna indietro e riprova ad accedere."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Esportazione cassaforte personale"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Esportazione cassaforte dell'organizzazione"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Saranno esportati solo gli oggetti della cassaforte personale associati a $EMAIL$. Gli oggetti della cassaforte dell'organizzazione non saranno inclusi.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Sarà esportata solo la cassaforte dell'organizzazione associata a $ORGANIZATION$. Gli oggetti della cassaforte personale e gli oggetti da altre organizzazioni non saranno inclusi.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   }
 }
