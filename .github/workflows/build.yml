@@ -66,7 +66,7 @@ jobs:
   build-oss-selfhost:
     name: Build OSS zip
     runs-on: ubuntu-20.04
-    needs: 
+    needs:
       - setup
       - lint
     env:
@@ -115,7 +115,7 @@ jobs:
   build-cloud:
     name: Build Cloud zip
     runs-on: ubuntu-20.04
-    needs: 
+    needs:
       - setup
       - lint
     env:
@@ -164,9 +164,9 @@ jobs:
   build-commercial-selfhost:
     name: Build SelfHost Docker image
     runs-on: ubuntu-20.04
-    needs: 
-    - setup
-    - lint
+    needs:
+      - setup
+      - lint
     env:
       _VERSION: ${{ needs.setup.outputs.version }}
     steps:
@@ -272,7 +272,7 @@ jobs:
   build-qa:
     name: Build Docker images for QA environment
     runs-on: ubuntu-20.04
-    needs: 
+    needs:
       - setup
       - lint
     steps:
