@@ -37,6 +37,13 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@a12a3943b4bdde767164f792f33f40b04645d846
 
+      - name: Cache npm
+        id: npm-cache
+        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
+        with:
+          path: "~/.npm"
+          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+
       - name: Install dependencies
         run: npm ci
 
@@ -352,6 +359,7 @@ jobs:
   windows:
     name: Test code on Windows
     runs-on: windows-2019
+    needs: lint
     steps:
       - name: Set up NuGet
         uses: nuget/setup-nuget@04b0c2b8d1b97922f67eca497d7cf0bf17b8ffe1
@@ -384,6 +392,9 @@ jobs:
         env:
           GITHUB_REF: ${{ github.ref }}
           GITHUB_EVENT: ${{ github.event_name }}
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: NPM build
         run: npm run build:bit:cloud
