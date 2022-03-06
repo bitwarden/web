@@ -344,9 +344,6 @@ jobs:
         with:
           nuget-version: "latest"
 
-      - name: Set up MSBuild
-        uses: microsoft/setup-msbuild@c26a08ba26249b81327e26f6ef381897b6a8754d
-
       - name: Cache npm
         id: npm-cache
         uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
@@ -362,7 +359,6 @@ jobs:
       - name: Print environment
         run: |
           nuget help | grep Version
-          msbuild -version
           node --version
           npm --version
           echo "GitHub ref: $GITHUB_REF"
