@@ -140,9 +140,14 @@
       Using the Password Safe desktop application, navigate to "File" &rarr; "Export To" &rarr; "XML
       format..." and save the XML file.
     </ng-container>
+    <ng-container *ngIf="format === 'dashlanecsv'">
+      Log in to Dashlane, click on "My Account" &rarr; "Settings" &rarr; "Export file" and select
+      "Export as a CSV file". This will download a zip archive containing various CSV files. Unzip
+      the archive and import each CSV file individually.
+    </ng-container>
     <ng-container *ngIf="format === 'dashlanejson'">
-      Using the Dashlane desktop application, navigate to "File" &rarr; "Export" &rarr; "Unsecured
-      archive (readable) in JSON format" and save the JSON file.
+      Dashlane no longer supports the JSON format. Only use this if you have an existing JSON for
+      import. Use the CSV importer when creating new exports.
     </ng-container>
     <ng-container *ngIf="format === 'msecurecsv'">
       Using the mSecure desktop application, navigate to "File" &rarr; "Export" &rarr; "CSV File..."
