@@ -59,6 +59,7 @@ jobs:
           BRANCH_NAME=$(basename ${{ github.ref }})
           echo "::set-output name=branch_name::$BRANCH_NAME"
 
+
   self-host:
     name: Release self-host docker
     runs-on: ubuntu-20.04
@@ -76,15 +77,16 @@ jobs:
           echo "GitHub event: $GITHUB_EVENT"
           echo "Github Release Option: $_RELEASE_OPTION"
 
+      - name: Checkout repo
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
+
+      ########## DockerHub ##########
       - name: Setup DCT
         id: setup-dct
         uses: bitwarden/gh-actions/setup-docker-trust@a8c384a05a974c05c48374c818b004be221d43ff
         with:
           azure-creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
           azure-keyvault-name: "bitwarden-prod-kv"
-
-      - name: Checkout repo
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579
 
       - name: Pull latest selfhost image
         run: |
@@ -103,9 +105,6 @@ jobs:
             docker tag bitwarden/web:$_BRANCH_NAME bitwarden/web:latest
           fi
 
-      - name: List Docker images
-        run: docker images
-
       - name: Push version and latest image
         if: ${{ github.event.inputs.release_type != 'Dry Run' }}
         env:
@@ -115,8 +114,42 @@ jobs:
           docker push bitwarden/web:$_RELEASE_VERSION
           docker push bitwarden/web:latest
 
+      - name: Log out of Docker and disable Docker Notary
+        run: |
+          docker logout
+          echo "DOCKER_CONTENT_TRUST=0" >> $GITHUB_ENV
+
+      ########## ACR ##########
+      - name: Login to Azure - QA Subscription
+        uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
+        with:
+          creds: ${{ secrets.AZURE_QA_KV_CREDENTIALS }}
+
+      - name: Login to Azure ACR
+        run: az acr login -n bitwardenqa
+
+      - name: Tag version and latest
+        env:
+          REGISTRY: bitwardenqa.azurecr.io
+        run: |
+          if [[ "${{ github.event.inputs.release_type }}" == "Dry Run" ]]; then
+            docker tag bitwarden/web:latest $REGISTRY/web:dryrun
+          else
+            docker tag bitwarden/web:$_BRANCH_NAME $REGISTRY/web:$_RELEASE_VERSION
+            docker tag bitwarden/web:$_BRANCH_NAME $REGISTRY/web:latest
+          fi
+
+      - name: Push version and latest image
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        env:
+          REGISTRY: bitwardenqa.azurecr.io
+        run: |
+          docker push $REGISTRY/web:$_RELEASE_VERSION
+          docker push $REGISTRY/web:latest
+
       - name: Log out of Docker
         run: docker logout
+
 
   ghpages-deploy:
     name: Deploy Web Vault
@@ -182,6 +215,7 @@ jobs:
             --base gh-pages \
             --head "$PR_BRANCH"
 
+
   release:
     name: Create GitHub Release
     runs-on: ubuntu-20.04
@@ -216,6 +250,7 @@ jobs:
             web-${{ needs.setup.outputs.release_version }}-selfhosted-open-source.zip"
           token: ${{ secrets.GITHUB_TOKEN }}
           draft: true
+
 
   dry-run:
     name: Dry Run Cleanup

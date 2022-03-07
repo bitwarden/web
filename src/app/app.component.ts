@@ -197,8 +197,6 @@ export class AppComponent implements OnDestroy, OnInit {
       new SendOptionsPolicy(),
       new ResetPasswordPolicy(),
     ]);
-
-    this.setFullWidth();
   }
 
   ngOnDestroy() {

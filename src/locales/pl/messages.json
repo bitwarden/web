@@ -4473,9 +4473,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Adres URL wylogowania jednokrotnego"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Adres URL usługi Artifact Resolution Service"
-  },
   "idpX509PublicCert": {
     "message": "Certyfikat publiczny X509"
   },
@@ -4485,11 +4482,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Zezwalaj na niezamówioną odpowiedź uwierzytelniania"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Wyłącz wychodzące żądania wylogowania"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Zezwalaj na wychodzące żądania wylogowania"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Chcę podpisać żądania uwierzytelniania"
+  "idpSignAuthenticationRequests": {
+    "message": "Podpisz żądanie autoryzacji"
   },
   "ssoSettingsSaved": {
     "message": "Konfiguracja logowania jednokrotnego została zapisana."
@@ -4739,5 +4736,68 @@
   },
   "freeWithSponsorship": {
     "message": "DARMOWY ze sponsoringiem"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ pól powyżej wymaga Twojej uwagi.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 pole powyżej wymaga Twojej uwagi."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ jest wymagane.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "wymagane"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Wymagane, jeśli identyfikator podmiotu nie jest adres URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Opcjonalne dostosowania"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Wymagane, jeśli organ jest nieprawidłowy."
+  },
+  "separateMultipleWithComma": {
+    "message": "Oddziel je przecinkami."
+  },
+  "sessionTimeout": {
+    "message": "Twoja sesja wygasła. Zaloguj się ponownie."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Eksportowanie osobistego sejfu"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Eksportowanie sejfu organizacji"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Tylko osobiste elementy sejfu powiązane z adresem $EMAIL$ zostaną wyeksportowane. Elementy sejfu należące do organizacji nie będą uwzględnione.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Tylko sejf organizacji powiązany z organizacją $ORGANIZATION$ zostanie wyeksportowany. Osobiste elementy sejfu i elementy innych organizacji nie będą uwzględnione.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   }
 }

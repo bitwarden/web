@@ -3224,7 +3224,7 @@
     "message": "Установите минимальные требования к надежности мастер-пароля."
   },
   "twoStepLoginPolicyDesc": {
-    "message": "Требовать от пользователей настройки двухэтапной авторизации в их личных аккаунтах."
+    "message": "Требовать от пользователей настройки двухэтапной авторизации в их персональных учетных записях."
   },
   "twoStepLoginPolicyWarning": {
     "message": "Члены организации, у которых в личном аккаунте отключена двухфакторная аутентификация, будут удалены из организации и получат об этом уведомление по email."
@@ -4473,9 +4473,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "URL службы единого выхода"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "URL службы разрешения артефактов"
-  },
   "idpX509PublicCert": {
     "message": "Публичный сертификат X509"
   },
@@ -4485,11 +4482,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Разрешить нежелательный ответ на аутентификацию"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Отключить исходящие запросы на выход"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Разрешить исходящие запросы на завершение сеанса"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Требуется подписать запросы на аутентификацию"
+  "idpSignAuthenticationRequests": {
+    "message": "Подписать запросы аутентификации"
   },
   "ssoSettingsSaved": {
     "message": "Конфигурация единого входа сохранена."
@@ -4739,5 +4736,68 @@
   },
   "freeWithSponsorship": {
     "message": "БЕСПЛАТНО при спонсорской поддержке"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ полей выше требуют вашего внимания.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 поле выше требует вашего внимания."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ обязательно.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "обязательно"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Обязательно, если ID сущности не является URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Дополнительные настройки"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Обязательно, если полномочия не действительны."
+  },
+  "separateMultipleWithComma": {
+    "message": "Разделяйте запятыми."
+  },
+  "sessionTimeout": {
+    "message": "Время вашей сессии истекло. Пожалуйста, вернитесь и попробуйте войти снова."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Экспорт личного хранилища"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Экспорт хранилища организации"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Будут экспортированы только личные элементы хранилища, связанные с $EMAIL$. Элементы хранилища организации включены не будут.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Будет экспортировано только хранилище организации, связанное с $ORGANIZATION$. Личные элементы хранилища и элементы из других организаций включены не будут.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   }
 }

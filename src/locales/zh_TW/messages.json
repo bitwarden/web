@@ -3651,7 +3651,7 @@
     "message": "編輯緊急聯絡人"
   },
   "inviteEmergencyContactDesc": {
-    "message": "透過在下麵輸入 Bitwarden 帳戶的電子郵件地址，以邀請新的緊急聯絡人。如果他們還沒有 Bitwarden 帳戶，系統將提示他們創建一個新的帳戶。"
+    "message": "透過在下面輸入 Bitwarden 帳戶的電子郵件地址，以邀請新的緊急聯絡人。如果他們還沒有 Bitwarden 帳戶，系統將提示他們建立新帳戶。"
   },
   "emergencyAccessRecoveryInitiated": {
     "message": "已發起緊急存取"
@@ -4473,9 +4473,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "單一登出服務 URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "工件解析服務 URL"
-  },
   "idpX509PublicCert": {
     "message": "X509 公共證書"
   },
@@ -4485,11 +4482,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "允許未經請求的認證回應"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "停用傳出的登出請求"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Allow outbound logout requests"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "希望認證請求被簽名"
+  "idpSignAuthenticationRequests": {
+    "message": "Sign authentication requests"
   },
   "ssoSettingsSaved": {
     "message": "單一登入配置已儲存。"
@@ -4739,5 +4736,68 @@
   },
   "freeWithSponsorship": {
     "message": "免費贊助"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ fields above need your attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 field above needs your attention."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ is required.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "required"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Required if Entity ID is not a URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Optional Customizations"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Required if Authority is not valid."
+  },
+  "separateMultipleWithComma": {
+    "message": "Separate multiple with a comma."
+  },
+  "sessionTimeout": {
+    "message": "您的登入階段已逾時，請返回並嘗試重新登入。"
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "匯出個人密碼庫"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "匯出組織密碼庫"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "只會匯出關聯到 $EMAIL$ 的個人密碼庫。組織密碼庫的項目不包含在內。",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "只會匯出關聯到 $ORGANIZATION$ 的組織密碼庫。個人密碼庫和其他組織的項目不包含在內。",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   }
 }

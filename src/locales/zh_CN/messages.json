@@ -4473,9 +4473,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "单点登出服务 URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "工件解析服务 URL"
-  },
   "idpX509PublicCert": {
     "message": "X509 公共证书"
   },
@@ -4485,11 +4482,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "允许未经请求的身份验证响应"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "禁用出站注销请求"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "允许出站注销请求"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "希望验证请求被签名"
+  "idpSignAuthenticationRequests": {
+    "message": "签名身份验证请求"
   },
   "ssoSettingsSaved": {
     "message": "单点登录配置已保存。"
@@ -4739,5 +4736,68 @@
   },
   "freeWithSponsorship": {
     "message": "免费赞助"
+  },
+  "formErrorSummaryPlural": {
+    "message": "上面的 $COUNT$ 个字段需要您注意。",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "上面的 1 个字段需要您注意。"
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ 必填。",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "必填"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "如果实体 ID 不是一个 URL，则必填。"
+  },
+  "openIdOptionalCustomizations": {
+    "message": "可选自定义"
+  },
+  "openIdAuthorityRequired": {
+    "message": "如果授权无效，则必填。"
+  },
+  "separateMultipleWithComma": {
+    "message": "使用逗号分隔。"
+  },
+  "sessionTimeout": {
+    "message": "您的会话已超时。请返回并尝试重新登录。"
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "导出个人密码库"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "导出组织密码库"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "仅会导出与 $EMAIL$ 关联的个人密码库。组织密码库的项目不会导出。",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "仅会导出与 $ORGANIZATION$ 关联的组织密码库。个人或其他组织的密码库项目不会导出。",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   }
 }

@@ -2177,7 +2177,7 @@
     "message": "¿Estás seguro de que deseas eliminar a este usuario?"
   },
   "removeUserConfirmationKeyConnector": {
-    "message": "Warning! This user requires Key Connector to manage their encryption. Removing this user from your organization will permanently disable their account. This action cannot be undone. Do you want to proceed?"
+    "message": "¡Advertencia! Este usuario requiere Conector de Clave para administrar su cifrado. Eliminar a este usuario de tu organización deshabilitará permanentemente su cuenta. Esta acción no se puede deshacer. ¿Quieres continuar?"
   },
   "externalId": {
     "message": "Id externo"
@@ -2957,7 +2957,7 @@
     }
   },
   "subscriptionSponsoredFamiliesPlan": {
-    "message": "Your subscription allows for a total of $COUNT$ users. Your plan is sponsored and billed to an external organization.",
+    "message": "Su suscripción permite un total de $COUNT$ usuarios. Su plan es patrocinado y facturado a una organización externa.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3445,7 +3445,7 @@
     "message": "Desenlazar SSO"
   },
   "unlinkSsoConfirmation": {
-    "message": "Are you sure you want to unlink SSO for this organization?"
+    "message": "¿Está seguro que desea desvincular SSO para esta organización?"
   },
   "linkSso": {
     "message": "Enlazar SSO"
@@ -4067,7 +4067,7 @@
     }
   },
   "firstSsoLogin": {
-    "message": "$ID$ logged in using Sso for the first time",
+    "message": "$ID$ ha iniciado sesión usando SSO por primera vez",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -4293,7 +4293,7 @@
     "message": "Proveedor actualizado"
   },
   "yourProviderIs": {
-    "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
+    "message": "Su proveedor es $PROVIDER$. Ellos tienen privilegios administrativos y de facturación para su organización.",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4302,7 +4302,7 @@
     }
   },
   "detachedOrganization": {
-    "message": "The organization $ORGANIZATION$ has been detached from your provider.",
+    "message": "La organización $ORGANIZATION$ ha sido separada de su proveedor.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4311,7 +4311,7 @@
     }
   },
   "detachOrganizationConfirmation": {
-    "message": "Are you sure you want to detach this organization? The organization will continue to exist but will no longer be managed by the provider."
+    "message": "¿Está seguro que desea separar esta organización? La organización continuará existiendo pero ya no será administrada por el proveedor."
   },
   "add": {
     "message": "Añadir"
@@ -4323,22 +4323,22 @@
     "message": "Actualizar contraseña maestra"
   },
   "updateMasterPasswordWarning": {
-    "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Su contraseña maestra ha sido cambiada recientemente por un administrador de su organización. Para acceder a la bóveda, debe actualizar su contraseña maestra ahora. Proceder le desconectará de su sesión actual, requiriendo que vuelva a iniciar sesión. Las sesiones activas en otros dispositivos pueden seguir estando activas durante hasta una hora."
   },
   "masterPasswordInvalidWarning": {
-    "message": "Your Master Password does not meet the policy requirements of this organization. In order to join the organization, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Su contraseña maestra no cumple con los requisitos de la política de esta organización. Para unirse a la organización, debe actualizar su contraseña maestra ahora. Proceder le desconectará de su sesión actual, requiriendo que vuelva a iniciar sesión. Las sesiones activas en otros dispositivos pueden seguir estando activas durante hasta una hora."
   },
   "maximumVaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Tiempo de espera de la bóveda"
   },
   "maximumVaultTimeoutDesc": {
-    "message": "Configure a maximum vault timeout for all users."
+    "message": "Configurar un de tiempo de espera máximo para la bóveda de todos los usuarios."
   },
   "maximumVaultTimeoutLabel": {
-    "message": "Maximum Vault Timeout"
+    "message": "Tiempo de espera máximo de la bóveda"
   },
   "invalidMaximumVaultTimeout": {
-    "message": "Invalid Maximum Vault Timeout."
+    "message": "Tiempo de espera máximo de la bóveda inválido."
   },
   "hours": {
     "message": "Horas"
@@ -4347,7 +4347,7 @@
     "message": "Minutos"
   },
   "vaultTimeoutPolicyInEffect": {
-    "message": "Your organization policies are affecting your vault timeout. Maximum allowed Vault Timeout is $HOURS$ hour(s) and $MINUTES$ minute(s)",
+    "message": "Las políticas de tu organización están afectando el tiempo de espera de tu bóveda. El máximo permitido de espera es de $HOURS$ hora(s) y de $MINUTES$ minuto(s)",
     "placeholders": {
       "hours": {
         "content": "$1",
@@ -4360,7 +4360,7 @@
     }
   },
   "customVaultTimeout": {
-    "message": "Custom Vault Timeout"
+    "message": "Tiempo de espera personalizado para la bóveda"
   },
   "vaultTimeoutToLarge": {
     "message": "Your vault timeout exceeds the restriction set by your organization."
@@ -4414,25 +4414,25 @@
     "message": "OIDC Redirect Behavior"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "Get claims from user info endpoint"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "Custom Scopes"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "Custom User ID Claim Types"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "Email Claim Types"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "Custom Name Claim Types"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "Requested Authentication Context Class Reference values"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "Expected \"acr\" Claim Value In Response"
   },
   "spEntityId": {
     "message": "SP Entity ID"
@@ -4456,10 +4456,10 @@
     "message": "Minimum Incoming Signing Algorithm"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "Expect signed assertions"
   },
   "spValidateCertificates": {
-    "message": "Validate Certificates"
+    "message": "Validate certificates"
   },
   "idpEntityId": {
     "message": "Entity ID"
@@ -4473,9 +4473,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Single Log Out Service URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
-  },
   "idpX509PublicCert": {
     "message": "X509 Public Certificate"
   },
@@ -4483,13 +4480,13 @@
     "message": "Outbound Signing Algorithm"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "Allow unsolicited authentication response"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Allow outbound logout requests"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+  "idpSignAuthenticationRequests": {
+    "message": "Sign authentication requests"
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
@@ -4540,10 +4537,10 @@
     "message": "You've been offered a free Bitwarden Families Plan Organization. To continue, you need to log in to the account that received the offer."
   },
   "sponsoredFamiliesAcceptFailed": {
-    "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
+    "message": "No se puede aceptar la oferta. Por favor, reenvíe el correo electrónico de la oferta desde su cuenta de empresa e inténtelo de nuevo."
   },
   "sponsoredFamiliesAcceptFailedShort": {
-    "message": "Unable to accept offer. $DESCRIPTION$",
+    "message": "No se puede aceptar la oferta. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -4552,19 +4549,19 @@
     }
   },
   "sponsoredFamiliesOffer": {
-    "message": "Accept Free Bitwarden Families"
+    "message": "Aceptar Familias Bitwarden gratuito"
   },
   "sponsoredFamiliesOfferRedeemed": {
-    "message": "Free Bitwarden Families offer successfully redeemed"
+    "message": "La oferta de Familias Bitwarden gratis ha sido canjeada con éxito"
   },
   "redeemed": {
-    "message": "Redeemed"
+    "message": "Canjeado"
   },
   "redeemedAccount": {
-    "message": "Redeemed Account"
+    "message": "Cuenta canjeada"
   },
   "revokeAccount": {
-    "message": "Revoke account $NAME$",
+    "message": "Revocar cuenta $NAME$",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4573,7 +4570,7 @@
     }
   },
   "resendEmailLabel": {
-    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "message": "Reenviar correo electrónico de patrocinios a $NAME$ apadrinamiento",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4582,64 +4579,64 @@
     }
   },
   "freeFamiliesPlan": {
-    "message": "Free Families Plan"
+    "message": "Plan Familias Gratuito"
   },
   "redeemNow": {
-    "message": "Redeem Now"
+    "message": "Canjear ahora"
   },
   "recipient": {
-    "message": "Recipient"
+    "message": "Destinatario"
   },
   "removeSponsorship": {
-    "message": "Remove Sponsorship"
+    "message": "Eliminar patrocinio"
   },
   "removeSponsorshipConfirmation": {
-    "message": "After removing a sponsorship, you will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+    "message": "Después de eliminar un patrocinio, usted será responsable de esta suscripción y las facturas relacionadas. ¿Está seguro de que desea continuar?"
   },
   "sponsorshipCreated": {
-    "message": "Sponsorship Created"
+    "message": "Patrocinio creado"
   },
   "revoke": {
-    "message": "Revoke"
+    "message": "Revocar"
   },
   "emailSent": {
-    "message": "Email Sent"
+    "message": "Correo electrónico enviado"
   },
   "revokeSponsorshipConfirmation": {
-    "message": "After removing this account, the Families organization owner will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+    "message": "Después de eliminar esta cuenta, el propietario de la organización familiar será responsable de esta suscripción y de las facturas relacionadas. ¿Está seguro de que desea continuar?"
   },
   "removeSponsorshipSuccess": {
-    "message": "Sponsorship Removed"
+    "message": "Patrocinio eliminado"
   },
   "ssoKeyConnectorUnavailable": {
-    "message": "Unable to reach the Key Connector, try again later."
+    "message": "No se puede conectar con el Conector de Claves, inténtelo de nuevo más tarde."
   },
   "keyConnectorUrl": {
-    "message": "Key Connector URL"
+    "message": "URL del Conector de Claves"
   },
   "sendVerificationCode": {
-    "message": "Send a verification code to your email"
+    "message": "Envía un código de verificación a su correo electrónico"
   },
   "sendCode": {
-    "message": "Send Code"
+    "message": "Enviar código"
   },
   "codeSent": {
-    "message": "Code Sent"
+    "message": "Código enviado"
   },
   "verificationCode": {
-    "message": "Verification Code"
+    "message": "Código de verificación"
   },
   "confirmIdentity": {
-    "message": "Confirm your identity to continue."
+    "message": "Confirme su identidad para continuar."
   },
   "verificationCodeRequired": {
-    "message": "Verification code is required."
+    "message": "El código de verificación es requerido."
   },
   "invalidVerificationCode": {
-    "message": "Invalid verification code"
+    "message": "Código de verificación no válido"
   },
   "convertOrganizationEncryptionDesc": {
-    "message": "$ORGANIZATION$ is using SSO with a self-hosted key server. A master password is no longer required to log in for members of this organization.",
+    "message": "$ORGANIZATION$ está usando SSO con un servidor de claves autoalojado. Una contraseña maestra ya no es necesaria para iniciar sesión para los miembros de esta organización.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4648,76 +4645,76 @@
     }
   },
   "leaveOrganization": {
-    "message": "Leave Organization"
+    "message": "Abandonar organización"
   },
   "removeMasterPassword": {
-    "message": "Remove Master Password"
+    "message": "Eliminar contraseña maestra"
   },
   "removedMasterPassword": {
-    "message": "Master password removed."
+    "message": "Contraseña maestra eliminada."
   },
   "allowSso": {
-    "message": "Allow SSO authentication"
+    "message": "Permitir autenticación SSO"
   },
   "allowSsoDesc": {
-    "message": "Once set up, your configuration will be saved and members will be able to authenticate using their Identity Provider credentials."
+    "message": "Una vez configurado, su configuración será guardada y los miembros podrán autenticarse usando sus credenciales de proveedor de identidad."
   },
   "ssoPolicyHelpStart": {
-    "message": "Enable the",
+    "message": "Activar el",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
-    "message": "SSO Authentication policy",
+    "message": "Política de autenticación SSO",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
-    "message": "to require all members to log in with SSO.",
+    "message": "para requerir que todos los miembros inicien sesión con SSO.",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpKeyConnector": {
-    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
+    "message": "Se requieren políticas de autenticación de SSO y de una Única Organización para configurar el descifrado del Conector de Claves."
   },
   "memberDecryptionOption": {
-    "message": "Member Decryption Options"
+    "message": "Opciones de descifrado de miembros"
   },
   "memberDecryptionPassDesc": {
-    "message": "Once authenticated, members will decrypt vault data using their Master Passwords."
+    "message": "Una vez autenticados, los miembros descifrarán los datos de la bóveda usando sus contraseñas maestras."
   },
   "keyConnector": {
-    "message": "Key Connector"
+    "message": "Conector de claves"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt vault data. Contact Bitwarden Support for set up assistance."
+    "message": "Conecte el inicio de sesión con SSO a su servidor de claves de descifrado autoalojado. Usando esta opción, los miembros no necesitarán usar sus contraseñas maestras para descifrar datos de bóveda. Póngase en contacto con el soporte de Bitwarden para asistencia en la configuración."
   },
   "keyConnectorPolicyRestriction": {
-    "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
+    "message": "Está habilitado \"Iniciar sesión con SSO y el descifrado del Conectore de claves\" Esta política sólo se aplicará a propietarios y administradores."
   },
   "enabledSso": {
-    "message": "Enabled SSO"
+    "message": "SSO habilitado"
   },
   "disabledSso": {
-    "message": "Disabled SSO"
+    "message": "SSO desactivado"
   },
   "enabledKeyConnector": {
-    "message": "Enabled Key Connector"
+    "message": "Conector de claves habilitado"
   },
   "disabledKeyConnector": {
-    "message": "Disabled Key Connector"
+    "message": "Conector de claves desactivado"
   },
   "keyConnectorWarning": {
-    "message": "Once members begin using Key Connector, your Organization cannot revert to Master Password decryption. Proceed only if you are comfortable deploying and managing a key server."
+    "message": "Una vez que los miembros comiencen a usar el Conector de claves, su Organización no puede revertir a la descifración de Contraseña Maestra. Proceda sólo si está cómodamente desplegando y gestionando un servidor clave."
   },
   "migratedKeyConnector": {
-    "message": "Migrated to Key Connector"
+    "message": "Migrado al Conector de Clave"
   },
   "paymentSponsored": {
-    "message": "Please provide a payment method to associate with the organization. Don't worry, we won't charge you anything unless you select additional features or your sponsorship expires. "
+    "message": "Por favor, proporcione un método de pago para asociar con la organización. No se preocupe, no le cobraremos nada a menos que elija características adicionales o que su patrocinio expire. "
   },
   "orgCreatedSponsorshipInvalid": {
-    "message": "The sponsorship offer has expired. You may delete the organization you created to avoid a charge at the end of your 7 day trial. Otherwise you may close this prompt to keep the organization and assume billing responsibility."
+    "message": "La oferta de patrocinio ha caducado. Puede eliminar la organización creada para evitar un cargo al final de su prueba de 7 días. De lo contrario, puede cerrar esta petición para mantener la organización y asumir la responsabilidad de facturar."
   },
   "newFamiliesOrganization": {
-    "message": "New Families Organization"
+    "message": "Nueva organización de familias"
   },
   "acceptOffer": {
     "message": "Aceptar oferta"
@@ -4729,15 +4726,78 @@
     "message": "Probar"
   },
   "keyConnectorTestSuccess": {
-    "message": "Success! Key Connector reached."
+    "message": "¡Éxito! Conector de clave alcanzado."
   },
   "keyConnectorTestFail": {
-    "message": "Cannot reach Key Connector. Check URL."
+    "message": "No se puede acceder al conector de clave. Compruebe la URL."
   },
   "sponsorshipTokenHasExpired": {
     "message": "La oferta de patrocinio expiró."
   },
   "freeWithSponsorship": {
     "message": "GRATIS con patrocinio"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ fields above need your attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 field above needs your attention."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ is required.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "required"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Required if Entity ID is not a URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Optional Customizations"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Required if Authority is not valid."
+  },
+  "separateMultipleWithComma": {
+    "message": "Separate multiple with a comma."
+  },
+  "sessionTimeout": {
+    "message": "Su sesión ha expirado. Por favor, vuelva e intente iniciar sesión de nuevo."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exportando bóveda personal"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Exportando bóveda de organización"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Solo se exportarán los elementos de la bóveda personal asociados con $EMAIL$. Los elementos de la bóveda de la organización no se incluirán.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Solo se exportará la bóveda de la organización asociada con $ORGANIZATION$. No se incluirán objetos y elementos personales de otras organizaciones.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   }
 }
