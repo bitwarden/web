@@ -277,6 +277,12 @@ const routes: Routes = [
     ],
   },
   {
+    path: "organizations",
+    component: OrganizationLayoutComponent,
+    canActivate: [AuthGuardService, OrganizationGuardService],
+    pathMatch: "full",
+  },
+  {
     path: "organizations/:organizationId",
     component: OrganizationLayoutComponent,
     canActivate: [AuthGuardService, OrganizationGuardService],
@@ -469,7 +475,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       useHash: true,
       paramsInheritanceStrategy: "always",
-      /*enableTracing: true,*/
+      enableTracing: true,
     }),
   ],
   exports: [RouterModule],
