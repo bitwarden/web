@@ -20,7 +20,6 @@ export class OrganizationPickerComponent implements OnInit {
   activeOrganizationId: string;
   organizations: Organization[] = [];
 
-  collapsed = true;
   loaded = false;
 
   get activeOrganization() {
