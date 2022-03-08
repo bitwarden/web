@@ -6,7 +6,6 @@ import "jquery";
 import "popper.js";
 
 require("../scss/styles.scss");
-// tslint:disable-next-line
 require("../scss/tailwind.css");
 
 import { AppModule } from "./app.module";
