@@ -75,7 +75,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     );
     this.route.parent.params.subscribe(async (params) => {
       this.organization = await this.organizationService.get(params.organizationId);
-      this.groupingsComponent.organization = this.organization;
+      this.groupingsComponent.setOrganization(this.organization);
       this.ciphersComponent.organization = this.organization;
 
       this.route.queryParams.pipe(first()).subscribe(async (qParams) => {
