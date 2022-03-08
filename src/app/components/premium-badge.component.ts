@@ -4,8 +4,11 @@ import { MessagingService } from "jslib-common/abstractions/messaging.service";
 
 @Component({
   selector: "app-premium-badge",
-  template:
-    '<a href="#" appStopClick *appNotPremium class="badge badge-success" (click)="premiumRequired()">{{ "premium" | i18n }}</a>',
+  template: `
+    <a href="#" appStopClick *appNotPremium (click)="premiumRequired()">
+      <bit-badge type="success">{{ "premium" | i18n }}</bit-badge>
+    </a>
+  `,
 })
 export class PremiumBadgeComponent {
   constructor(private messagingService: MessagingService) {}
