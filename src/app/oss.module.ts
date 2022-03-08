@@ -70,11 +70,11 @@ import { BoxRowDirective } from "jslib-angular/directives/box-row.directive";
 import { FallbackSrcDirective } from "jslib-angular/directives/fallback-src.directive";
 import { InputStripSpacesDirective } from "jslib-angular/directives/input-strip-spaces.directive";
 import { InputVerbatimDirective } from "jslib-angular/directives/input-verbatim.directive";
+import { NotPremiumDirective } from "jslib-angular/directives/not-premium.directive";
 import { SelectCopyDirective } from "jslib-angular/directives/select-copy.directive";
 import { StopClickDirective } from "jslib-angular/directives/stop-click.directive";
 import { StopPropDirective } from "jslib-angular/directives/stop-prop.directive";
 import { TrueFalseValueDirective } from "jslib-angular/directives/true-false-value.directive";
-import { UnlessPremiumDirective } from "jslib-angular/directives/unless-premium.directive";
 import { ColorPasswordPipe } from "jslib-angular/pipes/color-password.pipe";
 import { I18nPipe } from "jslib-angular/pipes/i18n.pipe";
 import { SearchCiphersPipe } from "jslib-angular/pipes/search-ciphers.pipe";
@@ -296,8 +296,8 @@ registerLocaleData(localeZhTw, "zh-TW");
     RouterModule,
   ],
   declarations: [
-    A11yTitleDirective,
     A11yInvalidDirective,
+    A11yTitleDirective,
     AcceptEmergencyComponent,
     AcceptOrganizationComponent,
     AccessComponent,
@@ -366,6 +366,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     MasterPasswordPolicyComponent,
     NavbarComponent,
     NestedCheckboxComponent,
+    NotPremiumDirective,
     OptionsComponent,
     OrgAccountComponent,
     OrgAddEditComponent,
@@ -414,6 +415,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     PasswordStrengthComponent,
     PaymentComponent,
     PersonalOwnershipPolicyComponent,
+    PremiumBadgeComponent,
     PremiumComponent,
     ProfileComponent,
     ProvidersComponent,
@@ -458,8 +460,8 @@ registerLocaleData(localeZhTw, "zh-TW");
     UnsecuredWebsitesReportComponent,
     UpdateKeyComponent,
     UpdateLicenseComponent,
-    UpdateTempPasswordComponent,
     UpdatePasswordComponent,
+    UpdateTempPasswordComponent,
     UserBillingComponent,
     UserLayoutComponent,
     UserNamePipe,
@@ -471,8 +473,6 @@ registerLocaleData(localeZhTw, "zh-TW");
     VerifyMasterPasswordComponent,
     VerifyRecoverDeleteComponent,
     WeakPasswordsReportComponent,
-    PremiumBadgeComponent,
-    UnlessPremiumDirective,
   ],
   exports: [
     A11yTitleDirective,
