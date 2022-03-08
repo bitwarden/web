@@ -1,19 +1,62 @@
-<div class="d-flex align-items-center">
-  <app-avatar [data]="organization.name" size="45" [circle]="true"></app-avatar>
-  <div class="org-name ml-3">
-    <span>{{ organization.name }}</span>
-    <small class="text-muted">{{ "organization" | i18n }}</small>
-  </div>
-  <div class="ml-3 card border-danger text-danger bg-transparent" *ngIf="!organization.enabled">
-    <div class="card-body py-2">
-      <i class="bwi bwi-exclamation-triangle" aria-hidden="true"></i>
-      {{ "organizationIsDisabled" | i18n }}
+<ng-container *ngIf="loaded">
+  <div class="dropdown">
+    <button
+      class="dropdown-toggle d-flex align-items-center"
+      type="button"
+      id="pickerButton"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+      (click)="collapsed = !collapsed"
+    >
+      <app-avatar [data]="activeOrganization.name" size="45" [circle]="true"></app-avatar>
+      <div class="org-name ml-3">
+        <span>{{ activeOrganization.name }}</span>
+        <small class="text-muted">{{ "organization" | i18n }}</small>
+      </div>
+      <div
+        class="ml-3 card border-danger text-danger bg-transparent"
+        *ngIf="!activeOrganization.enabled"
+      >
+        <div class="card-body py-2">
+          <i class="bwi bwi-exclamation-triangle" aria-hidden="true"></i>
+          {{ "organizationIsDisabled" | i18n }}
+        </div>
+      </div>
+      <div
+        class="ml-3 card border-info text-info bg-transparent"
+        *ngIf="activeOrganization.isProviderUser"
+      >
+        <div class="card-body py-2">
+          <i class="bwi bwi-exclamation-triangle" aria-hidden="true"></i>
+          {{ "accessingUsingProvider" | i18n: activeOrganization.providerName }}
+        </div>
+      </div>
+      <div>
+        <i
+          class="bwi"
+          aria-hidden="true"
+          [ngClass]="{
+            'bwi-angle-down': !collapsed,
+            'bwi-chevron-up': collapsed
+          }"
+        ></i>
+      </div>
+    </button>
+    <div class="dropdown-menu" aria-labelledby="pickerButton">
+      <a
+        *ngFor="let org of organizations"
+        class="dropdown-item"
+        [routerLink]="['/organizations', org.id]"
+      >
+        <i *ngIf="org.id == activeOrganizationId" class="bwi bwi-check"></i>
+        {{ org.name }}</a
+      >
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" routerLink="/settings/create-organization">
+        <i class="bwi bwi-plus"></i>
+        {{ "newOrganization" | i18n }}</a
+      >
     </div>
   </div>
-  <div class="ml-3 card border-info text-info bg-transparent" *ngIf="organization.isProviderUser">
-    <div class="card-body py-2">
-      <i class="bwi bwi-exclamation-triangle" aria-hidden="true"></i>
-      {{ "accessingUsingProvider" | i18n: organization.providerName }}
-    </div>
-  </div>
-</div>
+</ng-container>
