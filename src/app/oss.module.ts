@@ -160,6 +160,7 @@ import { ProvidersComponent } from "./providers/providers.component";
 import { BreachReportComponent } from "./reports/breach-report.component";
 import { ExposedPasswordsReportComponent } from "./reports/exposed-passwords-report.component";
 import { InactiveTwoFactorReportComponent } from "./reports/inactive-two-factor-report.component";
+import { ReportsComponent } from "./reports/reports.component";
 import { ReusedPasswordsReportComponent } from "./reports/reused-passwords-report.component";
 import { UnsecuredWebsitesReportComponent } from "./reports/unsecured-websites-report.component";
 import { WeakPasswordsReportComponent } from "./reports/weak-passwords-report.component";
@@ -469,6 +470,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     VerifyMasterPasswordComponent,
     VerifyRecoverDeleteComponent,
     WeakPasswordsReportComponent,
+    ReportsComponent,
   ],
   exports: [
     A11yTitleDirective,
