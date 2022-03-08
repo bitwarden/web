@@ -1,9 +1,11 @@
-<div class="card">
-  <div class="card-header">
-    <img [src]="'/images/reports/' + image" />
+<div
+  class="tw-border tw-border-solid tw-border-secondary-300 tw-rounded tw-overflow-hidden tw-h-full"
+>
+  <div class="tw-bg-primary-500 tw-text-center tw-h-28 tw-flex">
+    <img [src]="'/images/reports/' + image" class="tw-m-auto" />
   </div>
-  <div class="card-body">
-    <h3>{{ title }}</h3>
-    <p>{{ description }}</p>
+  <div class="tw-p-5">
+    <h3 class="tw-text-xl font-weight-bold">{{ title }}</h3>
+    <p class="tw-mb-0">{{ description }}</p>
   </div>
 </div>
