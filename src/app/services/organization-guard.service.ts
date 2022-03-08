@@ -18,10 +18,11 @@ export class OrganizationGuardService implements CanActivate {
   async canActivate(route: ActivatedRouteSnapshot) {
     if (route.params.organizationId == null) {
       const allOrgs = await this.organizationService.getAll();
-      if (allOrgs.length < 1) {
+      const adminOrgs = allOrgs.filter((org) => org.isAdmin);
+      if (adminOrgs.length < 1) {
         return this.cancelNavigation();
       }
-      const sortedOrgs = allOrgs.sort(Utils.getSortFunction(this.i18nService, "name"));
+      const sortedOrgs = adminOrgs.sort(Utils.getSortFunction(this.i18nService, "name"));
       this.router.navigate(["/organizations", sortedOrgs[0].id]);
       return false;
     }
@@ -30,6 +31,16 @@ export class OrganizationGuardService implements CanActivate {
     if (org == null) {
       return this.cancelNavigation();
     }
+
+    if (!org.isAdmin) {
+      this.platformUtilsService.showToast(
+        "error",
+        this.i18nService.t("accessDenied"),
+        this.i18nService.t("accessDeniedAdminRequired")
+      );
+      return this.cancelNavigation();
+    }
+
     if (!org.isOwner && !org.enabled) {
       this.platformUtilsService.showToast(
         "error",
