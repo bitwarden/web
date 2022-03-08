@@ -74,6 +74,7 @@ import { SelectCopyDirective } from "jslib-angular/directives/select-copy.direct
 import { StopClickDirective } from "jslib-angular/directives/stop-click.directive";
 import { StopPropDirective } from "jslib-angular/directives/stop-prop.directive";
 import { TrueFalseValueDirective } from "jslib-angular/directives/true-false-value.directive";
+import { UnlessPremiumDirective } from "jslib-angular/directives/unless-premium.directive";
 import { ColorPasswordPipe } from "jslib-angular/pipes/color-password.pipe";
 import { I18nPipe } from "jslib-angular/pipes/i18n.pipe";
 import { SearchCiphersPipe } from "jslib-angular/pipes/search-ciphers.pipe";
@@ -100,6 +101,7 @@ import { VerifyRecoverDeleteComponent } from "./accounts/verify-recover-delete.c
 import { NestedCheckboxComponent } from "./components/nested-checkbox.component";
 import { PasswordRepromptComponent } from "./components/password-reprompt.component";
 import { PasswordStrengthComponent } from "./components/password-strength.component";
+import { PremiumBadgeComponent } from "./components/premium-badge.component";
 import { FooterComponent } from "./layouts/footer.component";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
 import { NavbarComponent } from "./layouts/navbar.component";
@@ -469,6 +471,8 @@ registerLocaleData(localeZhTw, "zh-TW");
     VerifyMasterPasswordComponent,
     VerifyRecoverDeleteComponent,
     WeakPasswordsReportComponent,
+    PremiumBadgeComponent,
+    UnlessPremiumDirective,
   ],
   exports: [
     A11yTitleDirective,
