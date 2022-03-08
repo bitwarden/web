@@ -98,6 +98,7 @@ import { UpdateTempPasswordComponent } from "./accounts/update-temp-password.com
 import { VerifyEmailTokenComponent } from "./accounts/verify-email-token.component";
 import { VerifyRecoverDeleteComponent } from "./accounts/verify-recover-delete.component";
 import { NestedCheckboxComponent } from "./components/nested-checkbox.component";
+import { OrganizationPickerComponent } from "./components/organization-picker.component";
 import { PasswordRepromptComponent } from "./components/password-reprompt.component";
 import { PasswordStrengthComponent } from "./components/password-strength.component";
 import { FooterComponent } from "./layouts/footer.component";
@@ -371,6 +372,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     OrganizationLayoutComponent,
     OrganizationPlansComponent,
     OrganizationsComponent,
+    OrganizationPickerComponent,
     OrganizationSubscriptionComponent,
     OrgAttachmentsComponent,
     OrgBulkConfirmComponent,
