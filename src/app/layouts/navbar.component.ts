@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
   name: string;
   email: string;
   providers: Provider[] = [];
-  adminOrganizations: Organization[] = [];
+  showOrganizations = false;
 
   constructor(
     private messagingService: MessagingService,
@@ -44,8 +44,8 @@ export class NavbarComponent implements OnInit {
     }
     this.providers = await this.providerService.getAll();
 
-    const allOrgs = await this.organizationService.getAll();
-    this.adminOrganizations = allOrgs.filter((org) => org.isAdmin);
+    const orgs = await this.organizationService.getAll();
+    this.showOrganizations = orgs.some((org) => org.canAccessAdminView);
   }
 
   lock() {

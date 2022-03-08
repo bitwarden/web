@@ -49,22 +49,15 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
   }
 
   get showManageTab(): boolean {
-    return (
-      this.organization.canManageUsers ||
-      this.organization.canViewAllCollections ||
-      this.organization.canViewAssignedCollections ||
-      this.organization.canManageGroups ||
-      this.organization.canManagePolicies ||
-      this.organization.canAccessEventLogs
-    );
+    return this.organization.canAccessManageTab;
   }
 
   get showToolsTab(): boolean {
-    return this.organization.canAccessImportExport || this.organization.canAccessReports;
+    return this.organization.canAccessToolsTab;
   }
 
   get showSettingsTab(): boolean {
-    return this.organization.isOwner;
+    return this.organization.canAccessSettingsTab;
   }
 
   get toolsRoute(): string {

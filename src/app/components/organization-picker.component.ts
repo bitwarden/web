@@ -37,7 +37,7 @@ export class OrganizationPickerComponent implements OnInit {
   async load() {
     const orgs = await this.organizationService.getAll();
     this.organizations = orgs
-      .filter((org) => org.isAdmin)
+      .filter((org) => org.canAccessAdminView)
       .sort(Utils.getSortFunction(this.i18nService, "name"));
 
     this.loaded = true;

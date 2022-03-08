@@ -27,7 +27,7 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/settings">{{ "settings" | i18n }}</a>
         </li>
-        <ng-container *ngIf="adminOrganizations.length >= 1">
+        <ng-container *ngIf="showOrganizations">
           <li class="nav-item" routerLinkActive="active">
             <a class="nav-link" routerLink="/organizations">{{ "organizations" | i18n }}</a>
           </li>

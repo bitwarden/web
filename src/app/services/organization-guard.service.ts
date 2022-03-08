@@ -32,11 +32,11 @@ export class OrganizationGuardService implements CanActivate {
       return this.cancelNavigation();
     }
 
-    if (!org.isAdmin) {
+    if (!org.canAccessAdminView) {
       this.platformUtilsService.showToast(
         "error",
         this.i18nService.t("accessDenied"),
-        this.i18nService.t("accessDeniedAdminRequired")
+        this.i18nService.t("accessDeniedOrganizations")
       );
       return this.cancelNavigation();
     }
