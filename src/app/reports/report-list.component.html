@@ -2,6 +2,36 @@
   <h1>{{ "reports" | i18n }}</h1>
 </div>
 
+<app-report-card
+  title="{{ 'exposedPasswordsReport' | i18n }}"
+  description="{{ 'exposedPasswordsReportDesc' | i18n }}"
+></app-report-card>
+
+<app-report-card
+  title="{{ 'reusedPasswordsReport' | i18n }}"
+  description="{{ 'reusedPasswordsReportDesc' | i18n }}"
+></app-report-card>
+
+<app-report-card
+  title="{{ 'weakPasswordsReport' | i18n }}"
+  description="{{ 'weakPasswordsReportDesc' | i18n }}"
+></app-report-card>
+
+<app-report-card
+  title="{{ 'unsecuredWebsitesReport' | i18n }}"
+  description="{{ 'unsecuredWebsitesReportDesc' | i18n }}"
+></app-report-card>
+
+<app-report-card
+  title="{{ 'inactive2faReport' | i18n }}"
+  description="{{ 'inactive2faReportDesc' | i18n }}"
+></app-report-card>
+
+<app-report-card
+  title="{{ 'dataBreachReport' | i18n }}"
+  description="{{ 'dataBreachReportDesc' | i18n }}"
+></app-report-card>
+
 <div class="list-group list-group-flush">
   <a routerLink="exposed-passwords-report" class="list-group-item" routerLinkActive="active">
     {{ "exposedPasswordsReport" | i18n }}

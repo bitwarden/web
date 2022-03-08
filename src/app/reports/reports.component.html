@@ -1,8 +1,12 @@
 <div class="container page-content">
   <router-outlet></router-outlet>
 
-  <a href="#" class="btn btn-outline-secondary" *ngIf="!homepage">
-    <i class="bwi bwi-angle-left" aria-hidden="true"></i>
-    {{ "backToReports" | i18n }}
-  </a>
+  <div class="row mt-4">
+    <div class="col">
+      <a routerLink="./" class="btn btn-outline-secondary" *ngIf="!homepage">
+        <i class="bwi bwi-angle-left" aria-hidden="true"></i>
+        {{ "backToReports" | i18n }}
+      </a>
+    </div>
+  </div>
 </div>

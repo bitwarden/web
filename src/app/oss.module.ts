@@ -160,6 +160,7 @@ import { ProvidersComponent } from "./providers/providers.component";
 import { BreachReportComponent } from "./reports/breach-report.component";
 import { ExposedPasswordsReportComponent } from "./reports/exposed-passwords-report.component";
 import { InactiveTwoFactorReportComponent } from "./reports/inactive-two-factor-report.component";
+import { ReportCardComponent } from "./reports/report-card.component";
 import { ReportListComponent } from "./reports/report-list.component";
 import { ReportsComponent } from "./reports/reports.component";
 import { ReusedPasswordsReportComponent } from "./reports/reused-passwords-report.component";
@@ -296,8 +297,8 @@ registerLocaleData(localeZhTw, "zh-TW");
     RouterModule,
   ],
   declarations: [
-    A11yTitleDirective,
     A11yInvalidDirective,
+    A11yTitleDirective,
     AcceptEmergencyComponent,
     AcceptOrganizationComponent,
     AccessComponent,
@@ -422,6 +423,9 @@ registerLocaleData(localeZhTw, "zh-TW");
     RecoverTwoFactorComponent,
     RegisterComponent,
     RemovePasswordComponent,
+    ReportCardComponent,
+    ReportListComponent,
+    ReportsComponent,
     RequireSsoPolicyComponent,
     ResetPasswordPolicyComponent,
     ReusedPasswordsReportComponent,
@@ -458,8 +462,8 @@ registerLocaleData(localeZhTw, "zh-TW");
     UnsecuredWebsitesReportComponent,
     UpdateKeyComponent,
     UpdateLicenseComponent,
-    UpdateTempPasswordComponent,
     UpdatePasswordComponent,
+    UpdateTempPasswordComponent,
     UserBillingComponent,
     UserLayoutComponent,
     UserNamePipe,
@@ -471,12 +475,10 @@ registerLocaleData(localeZhTw, "zh-TW");
     VerifyMasterPasswordComponent,
     VerifyRecoverDeleteComponent,
     WeakPasswordsReportComponent,
-    ReportsComponent,
-    ReportListComponent,
   ],
   exports: [
-    A11yTitleDirective,
     A11yInvalidDirective,
+    A11yTitleDirective,
     ApiActionDirective,
     AvatarComponent,
     CalloutComponent,
