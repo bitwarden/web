@@ -6,6 +6,7 @@ import { AuthGuardService } from "jslib-angular/services/auth-guard.service";
 import { BreachReportComponent } from "./breach-report.component";
 import { ExposedPasswordsReportComponent } from "./exposed-passwords-report.component";
 import { InactiveTwoFactorReportComponent } from "./inactive-two-factor-report.component";
+import { ReportListComponent } from "./report-list.component";
 import { ReportsComponent } from "./reports.component";
 import { ReusedPasswordsReportComponent } from "./reused-passwords-report.component";
 import { UnsecuredWebsitesReportComponent } from "./unsecured-websites-report.component";
@@ -17,7 +18,7 @@ const routes: Routes = [
     component: ReportsComponent,
     canActivate: [AuthGuardService],
     children: [
-      { path: "", pathMatch: "full", redirectTo: "breach-report" },
+      { path: "", pathMatch: "full", component: ReportListComponent, data: { homepage: true } },
       {
         path: "breach-report",
         component: BreachReportComponent,

@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h1>{{ "reports" | i18n }}</h1>
+</div>
+
+<div class="list-group list-group-flush">
+  <a routerLink="exposed-passwords-report" class="list-group-item" routerLinkActive="active">
+    {{ "exposedPasswordsReport" | i18n }}
+  </a>
+  <a routerLink="reused-passwords-report" class="list-group-item" routerLinkActive="active">
+    {{ "reusedPasswordsReport" | i18n }}
+  </a>
+  <a routerLink="weak-passwords-report" class="list-group-item" routerLinkActive="active">
+    {{ "weakPasswordsReport" | i18n }}
+  </a>
+  <a routerLink="unsecured-websites-report" class="list-group-item" routerLinkActive="active">
+    {{ "unsecuredWebsitesReport" | i18n }}
+  </a>
+  <a routerLink="inactive-two-factor-report" class="list-group-item" routerLinkActive="active">
+    {{ "inactive2faReport" | i18n }}
+  </a>
+  <a routerLink="breach-report" class="list-group-item d-flex" routerLinkActive="active">
+    {{ "dataBreachReport" | i18n }}
+    <div class="ml-auto">
+      <span class="badge badge-success">
+        {{ "free" | i18n | uppercase }}
+      </span>
+    </div>
+  </a>
+</div>
