@@ -46,6 +46,12 @@ import { ToolsComponent as OrgToolsComponent } from "./organizations/tools/tools
 import { UnsecuredWebsitesReportComponent as OrgUnsecuredWebsitesReportComponent } from "./organizations/tools/unsecured-websites-report.component";
 import { WeakPasswordsReportComponent as OrgWeakPasswordsReportComponent } from "./organizations/tools/weak-passwords-report.component";
 import { VaultComponent as OrgVaultComponent } from "./organizations/vault/vault.component";
+import { BreachReportComponent } from "./reports/breach-report.component";
+import { ExposedPasswordsReportComponent } from "./reports/exposed-passwords-report.component";
+import { InactiveTwoFactorReportComponent } from "./reports/inactive-two-factor-report.component";
+import { ReusedPasswordsReportComponent } from "./reports/reused-passwords-report.component";
+import { UnsecuredWebsitesReportComponent } from "./reports/unsecured-websites-report.component";
+import { WeakPasswordsReportComponent } from "./reports/weak-passwords-report.component";
 import { AccessComponent } from "./send/access.component";
 import { SendComponent } from "./send/send.component";
 import { OrganizationGuardService } from "./services/organization-guard.service";
@@ -63,16 +69,10 @@ import { SponsoredFamiliesComponent } from "./settings/sponsored-families.compon
 import { TwoFactorSetupComponent } from "./settings/two-factor-setup.component";
 import { UserBillingComponent } from "./settings/user-billing.component";
 import { UserSubscriptionComponent } from "./settings/user-subscription.component";
-import { BreachReportComponent } from "./tools/breach-report.component";
 import { ExportComponent } from "./tools/export.component";
-import { ExposedPasswordsReportComponent } from "./tools/exposed-passwords-report.component";
 import { ImportComponent } from "./tools/import.component";
-import { InactiveTwoFactorReportComponent } from "./tools/inactive-two-factor-report.component";
 import { PasswordGeneratorComponent } from "./tools/password-generator.component";
-import { ReusedPasswordsReportComponent } from "./tools/reused-passwords-report.component";
 import { ToolsComponent } from "./tools/tools.component";
-import { UnsecuredWebsitesReportComponent } from "./tools/unsecured-websites-report.component";
-import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.component";
 import { VaultComponent } from "./vault/vault.component";
 
 const routes: Routes = [

@@ -10,7 +10,7 @@ import { CipherType } from "jslib-common/enums/cipherType";
 import { Utils } from "jslib-common/misc/utils";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { CipherReportComponent } from "./cipher-report.component";
+import { CipherReportComponent } from "../reports/cipher-report.component";
 
 @Component({
   selector: "app-inactive-two-factor-report",
