@@ -73,7 +73,7 @@ export class VaultComponent implements OnInit, OnDestroy {
         ? "trashCleanupWarningSelfHosted"
         : "trashCleanupWarning"
     );
-    this.route.parent.params.pipe(first()).subscribe(async (params) => {
+    this.route.parent.params.subscribe(async (params) => {
       this.organization = await this.organizationService.get(params.organizationId);
       this.groupingsComponent.organization = this.organization;
       this.ciphersComponent.organization = this.organization;
