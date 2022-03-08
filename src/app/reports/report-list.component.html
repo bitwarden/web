@@ -4,10 +4,11 @@
 
 <div class="row">
   <div class="col-4" *ngFor="let report of reports">
-    <a routerLink="exposed-passwords-report">
+    <a [routerLink]="['./', report.route]">
       <app-report-card
         title="{{ report.title | i18n }}"
         description="{{ report.description | i18n }}"
+        [image]="report.image"
       ></app-report-card>
     </a>
   </div>
