@@ -48,10 +48,6 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
     this.organization = await this.organizationService.get(this.organizationId);
   }
 
-  get showMenuBar() {
-    return this.showManageTab || this.showToolsTab || this.organization.isOwner;
-  }
-
   get showManageTab(): boolean {
     return (
       this.organization.canManageUsers ||
@@ -65,6 +61,10 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
 
   get showToolsTab(): boolean {
     return this.organization.canAccessImportExport || this.organization.canAccessReports;
+  }
+
+  get showSettingsTab(): boolean {
+    return this.organization.isOwner;
   }
 
   get toolsRoute(): string {

@@ -3,7 +3,7 @@
   <div class="container d-flex">
     <div class="d-flex flex-column">
       <app-organization-picker class="my-auto pl-1"></app-organization-picker>
-      <ul class="nav nav-tabs" *ngIf="showMenuBar">
+      <ul class="nav nav-tabs">
         <li class="nav-item">
           <a class="nav-link" routerLink="vault" routerLinkActive="active">
             <i class="bwi bwi-lock" aria-hidden="true"></i>
@@ -22,7 +22,7 @@
             {{ "tools" | i18n }}
           </a>
         </li>
-        <li class="nav-item" *ngIf="organization.isOwner">
+        <li class="nav-item" *ngIf="showSettingsTab">
           <a class="nav-link" routerLink="settings" routerLinkActive="active">
             <i class="bwi bwi-cogs" aria-hidden="true"></i>
             {{ "settings" | i18n }}
