@@ -1,7 +1,7 @@
 <ng-container *ngIf="loaded">
   <div class="dropdown">
     <button
-      class="dropdown-toggle d-flex align-items-center"
+      class="dropdown-toggle d-flex align-items-center btn disable-caret"
       type="button"
       id="pickerButton"
       data-toggle="dropdown"
@@ -31,7 +31,7 @@
           {{ "accessingUsingProvider" | i18n: activeOrganization.providerName }}
         </div>
       </div>
-      <div>
+      <div class="ml-3">
         <i class="bwi bwi-angle-down" aria-hidden="true"></i>
       </div>
     </button>
@@ -41,12 +41,15 @@
         class="dropdown-item"
         [routerLink]="['/organizations', org.id]"
       >
-        <i *ngIf="org.id == activeOrganizationId" class="bwi bwi-check"></i>
-        {{ org.name }}</a
-      >
+        <i
+          class="bwi bwi-check mr-2"
+          [ngClass]="org.id === activeOrganizationId ? 'visible' : 'invisible'"
+        ></i>
+        {{ org.name }}
+      </a>
       <div class="dropdown-divider"></div>
       <a class="dropdown-item" routerLink="/settings/create-organization">
-        <i class="bwi bwi-plus"></i>
+        <i class="bwi bwi-plus mr-2"></i>
         {{ "newOrganization" | i18n }}</a
       >
     </div>

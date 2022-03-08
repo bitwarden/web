@@ -104,6 +104,7 @@
 
   .org-name {
     line-height: 1;
+    text-align: left;
     span {
       display: block;
       font-size: $font-size-lg;
@@ -112,4 +113,8 @@
       }
     }
   }
+}
+
+.dropdown-toggle.disable-caret::after {
+  border: none;
 }
