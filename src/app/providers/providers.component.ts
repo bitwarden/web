@@ -10,8 +10,6 @@ import { Provider } from "jslib-common/models/domain/provider";
   templateUrl: "providers.component.html",
 })
 export class ProvidersComponent implements OnInit {
-  @Input() vault = false;
-
   providers: Provider[];
   loaded = false;
   actionPromise: Promise<any>;

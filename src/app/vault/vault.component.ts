@@ -17,14 +17,12 @@ import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-import { ProviderService } from "jslib-common/abstractions/provider.service";
 import { StateService } from "jslib-common/abstractions/state.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
 import { TokenService } from "jslib-common/abstractions/token.service";
 import { CipherType } from "jslib-common/enums/cipherType";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { OrganizationsComponent } from "../settings/organizations.component";
 import { UpdateKeyComponent } from "../settings/update-key.component";
 
 import { AddEditComponent } from "./add-edit.component";
@@ -44,8 +42,6 @@ const BroadcasterSubscriptionId = "VaultComponent";
 export class VaultComponent implements OnInit, OnDestroy {
   @ViewChild(GroupingsComponent, { static: true }) groupingsComponent: GroupingsComponent;
   @ViewChild(CiphersComponent, { static: true }) ciphersComponent: CiphersComponent;
-  @ViewChild(OrganizationsComponent, { static: true })
-  organizationsComponent: OrganizationsComponent;
   @ViewChild("attachments", { read: ViewContainerRef, static: true })
   attachmentsModalRef: ViewContainerRef;
   @ViewChild("folderAddEdit", { read: ViewContainerRef, static: true })
@@ -66,7 +62,6 @@ export class VaultComponent implements OnInit, OnDestroy {
   showBrowserOutdated = false;
   showUpdateKey = false;
   showPremiumCallout = false;
-  showProviders = false;
   deleted = false;
   trashCleanupWarning: string = null;
 
@@ -84,8 +79,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     private broadcasterService: BroadcasterService,
     private ngZone: NgZone,
     private stateService: StateService,
-    private organizationService: OrganizationService,
-    private providerService: ProviderService
+    private organizationService: OrganizationService
   ) {}
 
   async ngOnInit() {
@@ -104,9 +98,7 @@ export class VaultComponent implements OnInit, OnDestroy {
       this.showPremiumCallout =
         !this.showVerifyEmail && !canAccessPremium && !this.platformUtilsService.isSelfHost();
 
-      this.showProviders = (await this.providerService.getAll()).length > 0;
-
-      await Promise.all([this.groupingsComponent.load(), this.organizationsComponent.load()]);
+      await this.groupingsComponent.load();
       this.showUpdateKey = !(await this.cryptoService.hasEncKey());
 
       if (params == null) {
@@ -143,7 +135,6 @@ export class VaultComponent implements OnInit, OnDestroy {
               if (message.successfully) {
                 await Promise.all([
                   this.groupingsComponent.load(),
-                  this.organizationsComponent.load(),
                   this.ciphersComponent.load(this.ciphersComponent.filter),
                 ]);
                 this.changeDetectorRef.detectChanges();

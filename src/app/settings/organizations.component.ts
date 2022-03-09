@@ -19,8 +19,6 @@ import { OrganizationUserResetPasswordEnrollmentRequest } from "jslib-common/mod
   templateUrl: "organizations.component.html",
 })
 export class OrganizationsComponent implements OnInit {
-  @Input() vault = false;
-
   organizations: Organization[];
   policies: Policy[];
   loaded = false;
@@ -38,10 +36,8 @@ export class OrganizationsComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    if (!this.vault) {
-      await this.syncService.fullSync(true);
-      await this.load();
-    }
+    await this.syncService.fullSync(true);
+    await this.load();
   }
 
   async load() {

@@ -1,32 +1,4 @@
-<ng-container *ngIf="vault">
-  <p *ngIf="!loaded" class="text-muted">
-    <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
-    <span class="sr-only">{{ "loading" | i18n }}</span>
-  </p>
-  <ng-container *ngIf="loaded">
-    <ul class="bwi-ul card-ul carets" *ngIf="organizations && organizations.length">
-      <li *ngFor="let o of organizations">
-        <a [routerLink]="['/organizations', o.id]" class="text-body">
-          <i class="bwi bwi-li bwi-caret-right" aria-hidden="true"></i> {{ o.name }}
-          <ng-container *ngIf="!o.enabled">
-            <i
-              class="bwi bwi-exclamation-triangle text-danger"
-              title="{{ 'organizationIsDisabled' | i18n }}"
-              aria-hidden="true"
-            ></i>
-            <span class="sr-only">{{ "organizationIsDisabled" | i18n }}</span>
-          </ng-container>
-        </a>
-      </li>
-    </ul>
-    <p *ngIf="!organizations || !organizations.length">{{ "noOrganizationsList" | i18n }}</p>
-  </ng-container>
-  <a href="#" routerLink="/settings/create-organization" class="btn btn-block btn-outline-primary">
-    <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
-    {{ "newOrganization" | i18n }}
-  </a>
-</ng-container>
-<ng-container *ngIf="!vault">
+<ng-container>
   <div class="page-header d-flex">
     <h1>
       {{ "organizations" | i18n }}
