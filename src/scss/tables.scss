@@ -74,13 +74,6 @@
     text-align: right;
   }
 
-  tr:not(:hover) td.table-list-options {
-    > .dropdown:not(.show) button:not(:focus):not(:active),
-    > button:not(:focus):not(:active) {
-      @extend .sr-only;
-    }
-  }
-
   td.table-list-icon {
     max-width: 45px;
     text-align: center;

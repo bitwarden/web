@@ -55,9 +55,9 @@
           <small appStopProp>{{ c.subTitle }}</small>
         </td>
         <td class="table-list-options">
-          <div class="dropdown" appListDropdown>
+          <div class="dropdown">
             <button
-              class="btn btn-outline-secondary dropdown-toggle"
+              class="btn dropdown-toggle disable-caret"
               type="button"
               id="dropdownMenuButton"
               data-toggle="dropdown"
@@ -65,7 +65,7 @@
               aria-expanded="false"
               appA11yTitle="{{ 'options' | i18n }}"
             >
-              <i class="bwi bwi-cog bwi-lg" aria-hidden="true"></i>
+              <i class="bwi bwi-ellipsis-v bwi-lg" aria-hidden="true"></i>
             </button>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
               <ng-container *ngIf="c.type === cipherType.Login && !c.isDeleted">
