@@ -71,7 +71,7 @@
       <!--Listing Table-->
       <table class="table table-hover table-list" *ngIf="filteredSends && filteredSends.length">
         <tbody>
-          <tr *ngFor="let s of filteredSends">
+          <tr *ngFor="let s of filteredSends; index as i">
             <td class="table-list-icon">
               <div class="icon" aria-hidden="true">
                 <i class="bwi bwi-fw bwi-lg bwi-file" *ngIf="s.type == sendType.File"></i>
@@ -129,39 +129,26 @@
               <small appStopProp>{{ s.deletionDate | date: "medium" }}</small>
             </td>
             <td class="table-list-options">
-              <div class="dropdown" appListDropdown>
-                <button
-                  class="btn btn-outline-secondary dropdown-toggle"
-                  type="button"
-                  id="dropdownMenuButton"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  appA11yTitle="{{ 'options' | i18n }}"
+              <app-table-row-options [rowIndex]="i">
+                <a class="dropdown-item" href="#" appStopClick (click)="copy(s)">
+                  <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
+                  {{ "copySendLink" | i18n }}
+                </a>
+                <a
+                  class="dropdown-item"
+                  href="#"
+                  appStopClick
+                  (click)="removePassword(s)"
+                  *ngIf="s.password && !disableSend"
                 >
-                  <i class="bwi bwi-cog bwi-lg" aria-hidden="true"></i>
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#" appStopClick (click)="copy(s)">
-                    <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
-                    {{ "copySendLink" | i18n }}
-                  </a>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    appStopClick
-                    (click)="removePassword(s)"
-                    *ngIf="s.password && !disableSend"
-                  >
-                    <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
-                    {{ "removePassword" | i18n }}
-                  </a>
-                  <a class="dropdown-item text-danger" href="#" appStopClick (click)="delete(s)">
-                    <i class="bwi bwi-fw bwi-trash" aria-hidden="true"></i>
-                    {{ "delete" | i18n }}
-                  </a>
-                </div>
-              </div>
+                  <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
+                  {{ "removePassword" | i18n }}
+                </a>
+                <a class="dropdown-item text-danger" href="#" appStopClick (click)="delete(s)">
+                  <i class="bwi bwi-fw bwi-trash" aria-hidden="true"></i>
+                  {{ "delete" | i18n }}
+                </a>
+              </app-table-row-options>
             </td>
           </tr>
         </tbody>

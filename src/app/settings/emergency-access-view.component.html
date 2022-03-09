@@ -5,7 +5,7 @@
   <ng-container *ngIf="ciphers.length">
     <table class="table table-hover table-list table-ciphers">
       <tbody>
-        <tr *ngFor="let c of ciphers">
+        <tr *ngFor="let c of ciphers; index as i">
           <td class="table-list-icon">
             <app-vault-icon [cipher]="c"></app-vault-icon>
           </td>
@@ -35,25 +35,12 @@
             <small>{{ c.subTitle }}</small>
           </td>
           <td class="table-list-options">
-            <div class="dropdown" appListDropdown *ngIf="c.hasAttachments">
-              <button
-                class="btn btn-outline-secondary dropdown-toggle"
-                type="button"
-                id="dropdownMenuButton"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-                appA11yTitle="{{ 'options' | i18n }}"
-              >
-                <i class="bwi bwi-cog bwi-lg" aria-hidden="true"></i>
-              </button>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                <a class="dropdown-item" href="#" appStopClick (click)="viewAttachments(c)">
-                  <i class="bwi bwi-fw bwi-paperclip" aria-hidden="true"></i>
-                  {{ "attachments" | i18n }}
-                </a>
-              </div>
-            </div>
+            <app-table-row-options [rowIndex]="i" *ngIf="c.hasAttachments">
+              <a class="dropdown-item" href="#" appStopClick (click)="viewAttachments(c)">
+                <i class="bwi bwi-fw bwi-paperclip" aria-hidden="true"></i>
+                {{ "attachments" | i18n }}
+              </a>
+            </app-table-row-options>
           </td>
         </tr>
       </tbody>

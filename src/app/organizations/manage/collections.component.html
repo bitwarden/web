@@ -48,45 +48,33 @@
     (scrolled)="loadMore()"
   >
     <tbody>
-      <tr *ngFor="let c of searchedCollections">
+      <tr *ngFor="let c of searchedCollections; index as i">
         <td>
           <a href="#" appStopClick (click)="edit(c)">{{ c.name }}</a>
         </td>
         <td class="table-list-options">
-          <div class="dropdown" appListDropdown *ngIf="this.canEdit(c) || this.canDelete(c)">
-            <button
-              class="btn btn-outline-secondary dropdown-toggle"
-              type="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              appA11yTitle="{{ 'options' | i18n }}"
+          <app-table-row-options [rowIndex]="i">
+            <a
+              class="dropdown-item"
+              href="#"
+              appStopClick
+              *ngIf="this.canEdit(c)"
+              (click)="users(c)"
             >
-              <i class="bwi bwi-cog bwi-lg" aria-hidden="true"></i>
-            </button>
-            <div class="dropdown-menu dropdown-menu-right">
-              <a
-                class="dropdown-item"
-                href="#"
-                appStopClick
-                *ngIf="this.canEdit(c)"
-                (click)="users(c)"
-              >
-                <i class="bwi bwi-fw bwi-users" aria-hidden="true"></i>
-                {{ "users" | i18n }}
-              </a>
-              <a
-                class="dropdown-item text-danger"
-                href="#"
-                appStopClick
-                *ngIf="this.canDelete(c)"
-                (click)="delete(c)"
-              >
-                <i class="bwi bwi-fw bwi-trash" aria-hidden="true"></i>
-                {{ "delete" | i18n }}
-              </a>
-            </div>
-          </div>
+              <i class="bwi bwi-fw bwi-users" aria-hidden="true"></i>
+              {{ "users" | i18n }}
+            </a>
+            <a
+              class="dropdown-item text-danger"
+              href="#"
+              appStopClick
+              *ngIf="this.canDelete(c)"
+              (click)="delete(c)"
+            >
+              <i class="bwi bwi-fw bwi-trash" aria-hidden="true"></i>
+              {{ "delete" | i18n }}
+            </a>
+          </app-table-row-options>
         </td>
       </tr>
     </tbody>
