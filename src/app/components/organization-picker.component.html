@@ -1,4 +1,4 @@
-<ng-container *ngIf="loaded">
+<div *ngIf="loaded" class="d-flex">
   <div class="dropdown">
     <button
       class="dropdown-toggle d-flex align-items-center btn disable-caret p-0 border-0"
@@ -12,24 +12,6 @@
       <div class="org-name ml-3">
         <span>{{ activeOrganization.name }}</span>
         <small class="text-muted">{{ "organization" | i18n }}</small>
-      </div>
-      <div
-        class="ml-3 card border-danger text-danger bg-transparent"
-        *ngIf="!activeOrganization.enabled"
-      >
-        <div class="card-body py-2">
-          <i class="bwi bwi-exclamation-triangle" aria-hidden="true"></i>
-          {{ "organizationIsDisabled" | i18n }}
-        </div>
-      </div>
-      <div
-        class="ml-3 card border-info text-info bg-transparent"
-        *ngIf="activeOrganization.isProviderUser"
-      >
-        <div class="card-body py-2">
-          <i class="bwi bwi-exclamation-triangle" aria-hidden="true"></i>
-          {{ "accessingUsingProvider" | i18n: activeOrganization.providerName }}
-        </div>
       </div>
       <div class="ml-3">
         <i class="bwi bwi-angle-down" aria-hidden="true"></i>
@@ -54,4 +36,24 @@
       >
     </div>
   </div>
-</ng-container>
+  <div>
+    <div
+      class="ml-3 card border-danger text-danger bg-transparent"
+      *ngIf="!activeOrganization.enabled"
+    >
+      <div class="card-body py-2">
+        <i class="bwi bwi-exclamation-triangle" aria-hidden="true"></i>
+        {{ "organizationIsDisabled" | i18n }}
+      </div>
+    </div>
+    <div
+      class="ml-3 card border-info text-info bg-transparent"
+      *ngIf="activeOrganization.isProviderUser"
+    >
+      <div class="card-body py-2">
+        <i class="bwi bwi-exclamation-triangle" aria-hidden="true"></i>
+        {{ "accessingUsingProvider" | i18n: activeOrganization.providerName }}
+      </div>
+    </div>
+  </div>
+</div>
