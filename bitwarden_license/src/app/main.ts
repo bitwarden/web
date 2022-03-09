@@ -6,6 +6,7 @@ import "jquery";
 import "popper.js";
 
 require("src/scss/styles.scss");
+require("src/scss/tailwind.css");
 
 import { AppModule } from "./app.module";
 
