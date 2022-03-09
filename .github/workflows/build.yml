@@ -193,7 +193,7 @@ jobs:
           echo "GitHub event: $GITHUB_EVENT"
 
       - name: Setup DCT
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix-rc'
         id: setup-dct
         uses: bitwarden/gh-actions/setup-docker-trust@a8c384a05a974c05c48374c818b004be221d43ff
         with:
@@ -237,11 +237,11 @@ jobs:
         run: docker tag bitwarden/web bitwarden/web:dev
 
       - name: Tag hotfix branch
-        if: github.ref == 'refs/heads/hotfix'
-        run: docker tag bitwarden/web bitwarden/web:hotfix
+        if: github.ref == 'refs/heads/hotfix-rc'
+        run: docker tag bitwarden/web bitwarden/web:hotfix-rc
 
       - name: List Docker images
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix-rc'
         run: docker images
 
       - name: Push rc image
@@ -259,14 +259,14 @@ jobs:
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
 
       - name: Push hotfix image
-        if: github.ref == 'refs/heads/hotfix'
-        run: docker push bitwarden/web:hotfix
+        if: github.ref == 'refs/heads/hotfix-rc'
+        run: docker push bitwarden/web:hotfix-rc
         env:
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
 
       - name: Log out of Docker
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix-rc'
         run: docker logout
 
   build-qa:
