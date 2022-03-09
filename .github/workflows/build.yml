@@ -14,6 +14,7 @@ on:
     paths-ignore:
       - '.github/workflows/**'
 
+
 jobs:
   cloc:
     name: CLOC
@@ -29,6 +30,7 @@ jobs:
 
       - name: Print lines of code
         run: cloc --include-lang TypeScript,JavaScript,HTML,Sass,CSS --vcs git
+
 
   lint:
     name: Lint
@@ -50,6 +52,7 @@ jobs:
       - name: Run linter
         run: npm run lint
 
+
   setup:
     name: Setup
     runs-on: ubuntu-20.04
@@ -62,6 +65,7 @@ jobs:
       - name: Get GitHub sha as version
         id: version
         run: echo "::set-output name=value::${GITHUB_SHA:0:7}"
+
 
   build-oss-selfhost:
     name: Build OSS zip
@@ -112,6 +116,7 @@ jobs:
           path: ./web-${{ env._VERSION }}-selfhosted-open-source.zip
           if-no-files-found: error
 
+
   build-cloud:
     name: Build Cloud zip
     runs-on: ubuntu-20.04
@@ -160,6 +165,7 @@ jobs:
           name: web-${{ env._VERSION }}-cloud-COMMERCIAL.zip
           path: ./web-${{ env._VERSION }}-cloud-COMMERCIAL.zip
           if-no-files-found: error
+
 
   build-commercial-selfhost:
     name: Build SelfHost Docker image
@@ -267,7 +273,33 @@ jobs:
 
       - name: Log out of Docker
         if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix'
+        run: |
+          docker logout
+          echo "DOCKER_CONTENT_TRUST=0" >> $GITHUB_ENV
+
+      - name: Login to Azure - QA Subscription
+        uses: Azure/login@77f1b2e3fb80c0e8645114159d17008b8a2e475a
+        with:
+          creds: ${{ secrets.AZURE_QA_KV_CREDENTIALS }}
+
+      - name: Login to Azure ACR
+        run: az acr login -n bitwardenqa
+
+      - name: Tag and Push RC to Azure ACR QA registry
+        env:
+          REGISTRY: bitwardenqa.azurecr.io
+        run: |
+          IMAGE_TAG=$(echo "${GITHUB_REF:11}" | sed "s#/#-#g")  # slash safe branch name
+          if [[ "$IMAGE_TAG" == "master" ]]; then
+            IMAGE_TAG=dev
+          fi
+          docker tag bitwarden/web \
+            $REGISTRY/web-sh:$IMAGE_TAG
+          docker push $REGISTRY/web-sh:$IMAGE_TAG
+
+      - name: Log out of Docker
         run: docker logout
+
 
   build-qa:
     name: Build Docker images for QA environment
@@ -364,6 +396,7 @@ jobs:
       - name: Log out of Docker
         run: docker logout
 
+
   windows:
     name: Test code on Windows
     runs-on: windows-2019
@@ -405,6 +438,7 @@ jobs:
       - name: NPM build
         run: npm run build:bit:cloud
 
+
   crowdin-push:
     name: Crowdin Push
     if: github.ref == 'refs/heads/master'
@@ -442,6 +476,7 @@ jobs:
           crowdin_branch_name: master
           upload_sources: true
           upload_translations: false
+
 
   check-failures:
     name: Check for failures

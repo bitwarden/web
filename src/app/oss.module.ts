@@ -53,6 +53,7 @@ import localeZhTw from "@angular/common/locales/zh-Hant";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
+import { BadgeModule } from "@bitwarden/components";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { ToastrModule } from "ngx-toastr";
 
@@ -70,6 +71,7 @@ import { BoxRowDirective } from "jslib-angular/directives/box-row.directive";
 import { FallbackSrcDirective } from "jslib-angular/directives/fallback-src.directive";
 import { InputStripSpacesDirective } from "jslib-angular/directives/input-strip-spaces.directive";
 import { InputVerbatimDirective } from "jslib-angular/directives/input-verbatim.directive";
+import { NotPremiumDirective } from "jslib-angular/directives/not-premium.directive";
 import { SelectCopyDirective } from "jslib-angular/directives/select-copy.directive";
 import { StopClickDirective } from "jslib-angular/directives/stop-click.directive";
 import { StopPropDirective } from "jslib-angular/directives/stop-prop.directive";
@@ -100,6 +102,7 @@ import { VerifyRecoverDeleteComponent } from "./accounts/verify-recover-delete.c
 import { NestedCheckboxComponent } from "./components/nested-checkbox.component";
 import { PasswordRepromptComponent } from "./components/password-reprompt.component";
 import { PasswordStrengthComponent } from "./components/password-strength.component";
+import { PremiumBadgeComponent } from "./components/premium-badge.component";
 import { FooterComponent } from "./layouts/footer.component";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
 import { NavbarComponent } from "./layouts/navbar.component";
@@ -295,6 +298,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     ToastrModule,
     ReactiveFormsModule,
     RouterModule,
+    BadgeModule,
   ],
   declarations: [
     A11yInvalidDirective,
@@ -367,6 +371,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     MasterPasswordPolicyComponent,
     NavbarComponent,
     NestedCheckboxComponent,
+    NotPremiumDirective,
     OptionsComponent,
     OrgAccountComponent,
     OrgAddEditComponent,
@@ -415,6 +420,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     PasswordStrengthComponent,
     PaymentComponent,
     PersonalOwnershipPolicyComponent,
+    PremiumBadgeComponent,
     PremiumComponent,
     ProfileComponent,
     ProvidersComponent,

@@ -39,15 +39,7 @@
           ></i>
           <span class="sr-only">{{ "enabled" | i18n }}</span>
         </ng-container>
-        <a
-          href="#"
-          appStopClick
-          class="badge badge-primary"
-          *ngIf="!canAccessPremium && p.premium"
-          (click)="premiumRequired()"
-        >
-          {{ "premium" | i18n }}
-        </a>
+        <app-premium-badge *ngIf="p.premium"></app-premium-badge>
       </h3>
       {{ p.description }}
     </div>
