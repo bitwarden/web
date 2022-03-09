@@ -1,0 +1,19 @@
+<div class="dropdown">
+  <button
+    class="btn dropdown-toggle disable-caret"
+    type="button"
+    id="dropdownMenuButton-{{ rowIndex }}"
+    data-toggle="dropdown"
+    aria-haspopup="true"
+    aria-expanded="false"
+    appA11yTitle="{{ 'options' | i18n }}"
+  >
+    <i class="bwi bwi-ellipsis-v bwi-lg" aria-hidden="true"></i>
+  </button>
+  <div
+    class="dropdown-menu dropdown-menu-right"
+    attr.aria-labelledby="dropdownMenuButton-{{ rowIndex }}"
+  >
+    <ng-content></ng-content>
+  </div>
+</div>

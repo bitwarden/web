@@ -103,6 +103,7 @@ import { NestedCheckboxComponent } from "./components/nested-checkbox.component"
 import { PasswordRepromptComponent } from "./components/password-reprompt.component";
 import { PasswordStrengthComponent } from "./components/password-strength.component";
 import { PremiumBadgeComponent } from "./components/premium-badge.component";
+import { TableRowOptionsComponent } from "./components/table-row-options.component";
 import { FooterComponent } from "./layouts/footer.component";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
 import { NavbarComponent } from "./layouts/navbar.component";
@@ -445,6 +446,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     SsoComponent,
     StopClickDirective,
     StopPropDirective,
+    TableRowOptionsComponent,
     TaxInfoComponent,
     ToolsComponent,
     TrueFalseValueDirective,
