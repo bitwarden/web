@@ -8,7 +8,7 @@ import { StateService } from "jslib-common/abstractions/state.service";
 import { CipherType } from "jslib-common/enums/cipherType";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { CipherReportComponent } from "../reports/cipher-report.component";
+import { CipherReportComponent } from "./cipher-report.component";
 
 @Component({
   selector: "app-unsecured-websites-report",
