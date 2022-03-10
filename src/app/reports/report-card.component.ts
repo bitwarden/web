@@ -7,5 +7,5 @@ import { Component, Input } from "@angular/core";
 export class ReportCardComponent {
   @Input() title: string;
   @Input() description: string;
-  @Input() image: string;
+  @Input() premium: boolean;
 }

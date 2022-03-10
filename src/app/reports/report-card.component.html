@@ -1,11 +1,23 @@
 <div
-  class="tw-border tw-border-solid tw-border-secondary-300 tw-rounded tw-overflow-hidden tw-h-full"
+  class="tw-border tw-border-solid tw-border-secondary-300 tw-rounded tw-overflow-hidden tw-h-full tw-w-72"
 >
-  <div class="tw-bg-primary-500 tw-text-center tw-h-28 tw-flex">
-    <img [src]="'/images/reports/' + image" class="tw-m-auto" />
+  <div
+    class="tw-text-center tw-h-28 tw-flex tw-relative"
+    [ngClass]="{
+      'tw-bg-background-elevation2 tw-text-primary-300': !premium,
+      'tw-bg-secondary-500 tw-text-secondary-300': premium
+    }"
+  >
+    <app-premium-badge
+      class="tw-absolute tw-left-2 tw-top-2 tw-leading-none"
+      [condition]="premium"
+    ></app-premium-badge>
+    <div class="tw-m-auto">
+      <ng-content selector="icon"></ng-content>
+    </div>
   </div>
   <div class="tw-p-5">
-    <h3 class="tw-text-xl font-weight-bold">{{ title }}</h3>
+    <h3 class="tw-text-xl tw-font-bold tw-mb-4">{{ title }}</h3>
     <p class="tw-mb-0">{{ description }}</p>
   </div>
 </div>

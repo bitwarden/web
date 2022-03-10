@@ -2,14 +2,18 @@
   <h1>{{ "reports" | i18n }}</h1>
 </div>
 
-<div class="tw-grid tw-grid-cols-3 tw-gap-4">
+<p>{{ "reportsDesc" | i18n }}</p>
+
+<div class="tw-inline-grid tw-grid-cols-3 tw-gap-4">
   <div *ngFor="let report of reports">
     <a [routerLink]="['./', report.route]" class="hover:tw-no-underline !tw-text-main">
       <app-report-card
         title="{{ report.title | i18n }}"
         description="{{ report.description | i18n }}"
-        [image]="report.image"
-      ></app-report-card>
+        [premium]="report.premium"
+      >
+        <div #icon [innerHtml]="report.icon"></div>
+      </app-report-card>
     </a>
   </div>
 </div>
