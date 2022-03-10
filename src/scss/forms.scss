@@ -139,11 +139,6 @@ input[type="checkbox"] {
     color: themed("dropdownTextColor");
   }
 
-  &.text-danger {
-    @include themify($themes) {
-      color: themed("danger") !important;
-    }
-  }
   &:hover {
     @include themify($themes) {
       background-color: themed("dropdownHover");
@@ -155,6 +150,18 @@ input[type="checkbox"] {
 }
 
 .dropdown-menu {
+  .text-danger > .dropdown-item {
+    @include themify($themes) {
+      color: themed("danger") !important;
+    }
+  }
+
+  .text-success > .dropdown-item {
+    @include themify($themes) {
+      color: themed("success") !important;
+    }
+  }
+
   button {
     cursor: pointer;
   }

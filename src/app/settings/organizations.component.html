@@ -94,41 +94,37 @@
             </ng-container>
           </td>
           <td class="table-list-options">
-            <app-table-row-options [rowIndex]="i">
-              <button
+            <app-table-row-option-menu [rowIndex]="i">
+              <app-table-row-option
                 *ngIf="allowEnrollmentChanges(o) && !o.resetPasswordEnrolled"
-                class="dropdown-item"
-                (click)="toggleResetPasswordEnrollment(o)"
+                bwIcon="bwi-key"
+                (onClick)="toggleResetPasswordEnrollment(o)"
               >
-                <i class="bwi bwi-fw bwi-key" aria-hidden="true"></i>
                 {{ "enrollPasswordReset" | i18n }}
-              </button>
-              <button
+              </app-table-row-option>
+              <app-table-row-option
                 *ngIf="allowEnrollmentChanges(o) && o.resetPasswordEnrolled"
-                class="dropdown-item"
-                (click)="toggleResetPasswordEnrollment(o)"
+                bwIcon="bwi-undo"
+                (onClick)="toggleResetPasswordEnrollment(o)"
               >
-                <i class="bwi bwi-fw bwi-undo" aria-hidden="true"></i>
                 {{ "withdrawPasswordReset" | i18n }}
-              </button>
+              </app-table-row-option>
               <ng-container *ngIf="o.useSso && o.identifier">
-                <button
+                <app-table-row-option
                   *ngIf="o.ssoBound; else linkSso"
-                  class="dropdown-item"
-                  (click)="unlinkSso(o)"
+                  bwIcon="bwi-chain-broken"
+                  (onClick)="unlinkSso(o)"
                 >
-                  <i class="bwi bwi-fw bwi-chain-broken" aria-hidden="true"></i>
                   {{ "unlinkSso" | i18n }}
-                </button>
+                </app-table-row-option>
                 <ng-template #linkSso>
                   <app-link-sso [organization]="o"> </app-link-sso>
                 </ng-template>
               </ng-container>
-              <button class="dropdown-item text-danger" (click)="leave(o)">
-                <i class="bwi bwi-fw bwi-sign-out" aria-hidden="true"></i>
+              <app-table-row-option bwIcon="bwi-sign-out" class="text-danger" (onClick)="leave(o)">
                 {{ "leave" | i18n }}
-              </button>
-            </app-table-row-options>
+              </app-table-row-option>
+            </app-table-row-option-menu>
           </td>
         </tr>
       </tbody>

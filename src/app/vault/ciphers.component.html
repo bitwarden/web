@@ -55,85 +55,74 @@
           <small appStopProp>{{ c.subTitle }}</small>
         </td>
         <td class="table-list-options">
-          <app-table-row-options [rowIndex]="i">
+          <app-table-row-option-menu [rowIndex]="i">
             <ng-container *ngIf="c.type === cipherType.Login && !c.isDeleted">
-              <button
-                class="dropdown-item"
-                (click)="copy(c, c.login.username, 'username', 'Username')"
+              <app-table-row-option
+                bwIcon="bwi-clone"
+                (onClick)="copy(c, c.login.username, 'username', 'Username')"
               >
-                <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
                 {{ "copyUsername" | i18n }}
-              </button>
-              <button
-                class="dropdown-item"
-                (click)="copy(c, c.login.password, 'password', 'Password')"
+              </app-table-row-option>
+              <app-table-row-option
+                bwIcon="bwi-clone"
+                (onClick)="copy(c, c.login.password, 'password', 'Password')"
                 *ngIf="c.viewPassword"
               >
-                <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
                 {{ "copyPassword" | i18n }}
-              </button>
-              <button
-                class="dropdown-item"
-                (click)="copy(c, c.login.totp, 'verificationCodeTotp', 'TOTP')"
+              </app-table-row-option>
+              <app-table-row-option
+                bwIcon="bwi-clone"
+                (onClick)="copy(c, c.login.totp, 'verificationCodeTotp', 'TOTP')"
                 *ngIf="displayTotpCopyButton(c)"
               >
-                <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
                 {{ "copyVerificationCode" | i18n }}
-              </button>
-              <button
-                class="dropdown-item"
+              </app-table-row-option>
+              <app-table-row-option
+                bwIcon="bwi-share-square"
                 *ngIf="c.login.canLaunch"
-                (click)="launch(c.login.launchUri)"
+                (onClick)="launch(c.login.launchUri)"
               >
-                <i class="bwi bwi-fw bwi-share-square" aria-hidden="true"></i>
                 {{ "launch" | i18n }}
-              </button>
+              </app-table-row-option>
             </ng-container>
-            <button class="dropdown-item" (click)="attachments(c)">
-              <i class="bwi bwi-fw bwi-paperclip" aria-hidden="true"></i>
+            <app-table-row-option (onClick)="attachments(c)" bwIcon="bwi-paperclip">
               {{ "attachments" | i18n }}
-            </button>
-            <button
-              class="dropdown-item"
+            </app-table-row-option>
+            <app-table-row-option
+              bwIcon="bwi-files"
               *ngIf="((!organization && !c.organizationId) || organization) && !c.isDeleted"
-              (click)="clone(c)"
+              (onClick)="clone(c)"
             >
-              <i class="bwi bwi-fw bwi-files" aria-hidden="true"></i>
               {{ "clone" | i18n }}
-            </button>
-            <button
-              class="dropdown-item"
+            </app-table-row-option>
+            <app-table-row-option
+              bwIcon="bwi-arrow-circle-right"
               *ngIf="!organization && !c.organizationId && !c.isDeleted"
-              (click)="share(c)"
+              (onClick)="share(c)"
             >
-              <i class="bwi bwi-fw bwi-arrow-circle-right" aria-hidden="true"></i>
               {{ "moveToOrganization" | i18n }}
-            </button>
-            <button
-              class="dropdown-item"
+            </app-table-row-option>
+            <app-table-row-option
+              bwIcon="bwi-collection"
               *ngIf="c.organizationId && !c.isDeleted"
-              (click)="collections(c)"
+              (onClick)="collections(c)"
             >
-              <i class="bwi bwi-fw bwi-collection" aria-hidden="true"></i>
               {{ "collections" | i18n }}
-            </button>
-            <button
-              class="dropdown-item"
+            </app-table-row-option>
+            <app-table-row-option
+              bwIcon="bwi-file-text"
               *ngIf="c.organizationId && accessEvents"
-              (click)="events(c)"
+              (onClick)="events(c)"
             >
-              <i class="bwi bwi-fw bwi-file-text" aria-hidden="true"></i>
               {{ "eventLogs" | i18n }}
-            </button>
-            <button class="dropdown-item" (click)="restore(c)" *ngIf="c.isDeleted">
-              <i class="bwi bwi-fw bwi-undo" aria-hidden="true"></i>
+            </app-table-row-option>
+            <app-table-row-option bwIcon="bwi-undo" (onClick)="restore(c)" *ngIf="c.isDeleted">
               {{ "restore" | i18n }}
-            </button>
-            <button class="dropdown-item text-danger" (click)="delete(c)">
-              <i class="bwi bwi-fw bwi-trash" aria-hidden="true"></i>
+            </app-table-row-option>
+            <app-table-row-option bwIcon="bwi-trash" class="text-danger" (onClick)="delete(c)">
               {{ (c.isDeleted ? "permanentlyDelete" : "delete") | i18n }}
-            </button>
-          </app-table-row-options>
+            </app-table-row-option>
+          </app-table-row-option-menu>
         </td>
       </tr>
     </tbody>

@@ -46,16 +46,14 @@
           <a href="#" appStopClick (click)="edit(g)">{{ g.name }}</a>
         </td>
         <td class="table-list-options">
-          <app-table-row-options [rowIndex]="i">
-            <button class="dropdown-item" (click)="users(g)">
-              <i class="bwi bwi-fw bwi-users" aria-hidden="true"></i>
+          <app-table-row-option-menu [rowIndex]="i">
+            <app-table-row-option bwIcon="bwi-users" (onClick)="users(g)">
               {{ "users" | i18n }}
-            </button>
-            <button class="dropdown-item text-danger" (click)="delete(g)">
-              <i class="bwi bwi-fw bwi-trash" aria-hidden="true"></i>
+            </app-table-row-option>
+            <app-table-row-option class="text-danger" bwIcon="bwi-trash" (click)="delete(g)">
               {{ "delete" | i18n }}
-            </button>
-          </app-table-row-options>
+            </app-table-row-option>
+          </app-table-row-option-menu>
         </td>
       </tr>
     </tbody>

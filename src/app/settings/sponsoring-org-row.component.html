@@ -3,7 +3,7 @@
 </td>
 <td>{{ sponsoringOrg.name }}</td>
 <td class="table-action-right">
-  <app-table-row-options [rowIndex]="sponsoringOrg.id">
+  <app-table-row-option-menu [rowIndex]="sponsoringOrg.id">
     <button
       #resendEmailBtn
       [appApiAction]="resendEmailPromise"
@@ -26,5 +26,5 @@
       <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
       <span>{{ "remove" | i18n }}</span>
     </button>
-  </app-table-row-options>
+  </app-table-row-option-menu>
 </td>

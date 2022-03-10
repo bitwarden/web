@@ -161,40 +161,36 @@
             <span *ngIf="u.type === userType.Custom">{{ "custom" | i18n }}</span>
           </td>
           <td class="table-list-options">
-            <app-table-row-options [rowIndex]="i">
-              <button
-                class="dropdown-item"
-                (click)="reinvite(u)"
+            <app-table-row-option-menu [rowIndex]="i">
+              <app-table-row-option
+                bwIcon="bwi-envelope"
+                (onClick)="reinvite(u)"
                 *ngIf="u.status === userStatusType.Invited"
               >
-                <i class="bwi bwi-fw bwi-envelope" aria-hidden="true"></i>
                 {{ "resendInvitation" | i18n }}
-              </button>
-              <button
-                class="dropdown-item text-success"
-                (click)="confirm(u)"
+              </app-table-row-option>
+              <app-table-row-option
+                class="text-success"
+                bwIcon="bwi-check"
+                (onClick)="confirm(u)"
                 *ngIf="u.status === userStatusType.Accepted"
               >
-                <i class="bwi bwi-fw bwi-check" aria-hidden="true"></i>
                 {{ "confirm" | i18n }}
-              </button>
-              <button class="dropdown-item" (click)="groups(u)" *ngIf="accessGroups">
-                <i class="bwi bwi-fw bwi-sitemap" aria-hidden="true"></i>
+              </app-table-row-option>
+              <app-table-row-option bwIcon="bwi-sitemap" (onClick)="groups(u)" *ngIf="accessGroups">
                 {{ "groups" | i18n }}
-              </button>
-              <button
-                class="dropdown-item"
-                (click)="events(u)"
+              </app-table-row-option>
+              <app-table-row-option
+                bwIcon="bwi-file-text"
+                (onClick)="events(u)"
                 *ngIf="accessEvents && u.status === userStatusType.Confirmed"
               >
-                <i class="bwi bwi-fw bwi-file-text" aria-hidden="true"></i>
                 {{ "eventLogs" | i18n }}
-              </button>
-              <button class="dropdown-item text-danger" (click)="remove(u)">
-                <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
+              </app-table-row-option>
+              <app-table-row-option class="text-danger" bwIcon="bwi-close" (onClick)="remove(u)">
                 {{ "remove" | i18n }}
-              </button>
-            </app-table-row-options>
+              </app-table-row-option>
+            </app-table-row-option-menu>
           </td>
         </tr>
       </tbody>

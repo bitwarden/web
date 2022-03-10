@@ -129,24 +129,21 @@
               <small appStopProp>{{ s.deletionDate | date: "medium" }}</small>
             </td>
             <td class="table-list-options">
-              <app-table-row-options [rowIndex]="i">
-                <button class="dropdown-item" (click)="copy(s)">
-                  <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
+              <app-table-row-option-menu [rowIndex]="i">
+                <app-table-row-option bwIcon="bwi-clone" (onClick)="copy(s)">
                   {{ "copySendLink" | i18n }}
-                </button>
-                <button
-                  class="dropdown-item"
-                  (click)="removePassword(s)"
+                </app-table-row-option>
+                <app-table-row-option
+                  bwIcon="bwi-close"
+                  (onClick)="removePassword(s)"
                   *ngIf="s.password && !disableSend"
                 >
-                  <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
                   {{ "removePassword" | i18n }}
-                </button>
-                <button class="dropdown-item text-danger" (click)="delete(s)">
-                  <i class="bwi bwi-fw bwi-trash" aria-hidden="true"></i>
+                </app-table-row-option>
+                <app-table-row-option class="text-danger" bwIcon="bwi-trash" (onClick)="delete(s)">
                   {{ "delete" | i18n }}
-                </button>
-              </app-table-row-options>
+                </app-table-row-option>
+              </app-table-row-option-menu>
             </td>
           </tr>
         </tbody>

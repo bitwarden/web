@@ -59,20 +59,25 @@
       <tr *ngFor="let d of global; index as i">
         <td [ngClass]="{ 'table-list-strike': d.excluded }">{{ d.domains }}</td>
         <td class="table-list-options">
-          <app-table-row-options [rowIndex]="i">
-            <button class="dropdown-item" (click)="toggleExcluded(d)" *ngIf="!d.excluded">
-              <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
+          <app-table-row-option-menu [rowIndex]="i">
+            <app-table-row-option
+              bwIcon="bwi-close"
+              (onClick)="toggleExcluded(d)"
+              *ngIf="!d.excluded"
+            >
               {{ "exclude" | i18n }}
-            </button>
-            <button class="dropdown-item" (click)="toggleExcluded(d)" *ngIf="d.excluded">
-              <i class="bwi bwi-fw bwi-plus" aria-hidden="true"></i>
+            </app-table-row-option>
+            <app-table-row-option
+              bwIcon="bwi-plus"
+              (onClick)="toggleExcluded(d)"
+              *ngIf="d.excluded"
+            >
               {{ "include" | i18n }}
-            </button>
-            <button class="dropdown-item" (click)="customize(d)">
-              <i class="bwi bwi-fw bwi-cut" aria-hidden="true"></i>
+            </app-table-row-option>
+            <app-table-row-option bwIcon="bwi-cut" (onClick)="customize(d)">
               {{ "customize" | i18n }}
-            </button>
-          </app-table-row-options>
+            </app-table-row-option>
+          </app-table-row-option-menu>
         </td>
       </tr>
     </tbody>

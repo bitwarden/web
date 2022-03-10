@@ -74,47 +74,45 @@
         <small class="text-muted d-block" *ngIf="c.name">{{ c.name }}</small>
       </td>
       <td class="table-list-options">
-        <app-table-row-options rowIndex="trustedContact{{ i }}">
-          <button
-            class="dropdown-item"
-            (click)="reinvite(c)"
+        <app-table-row-option-menu rowIndex="trustedContact{{ i }}">
+          <app-table-row-option
+            bwIcon="bwi-envelope"
+            (onClick)="reinvite(c)"
             *ngIf="c.status === emergencyAccessStatusType.Invited"
           >
-            <i class="bwi bwi-fw bwi-envelope" aria-hidden="true"></i>
             {{ "resendInvitation" | i18n }}
-          </button>
-          <button
-            class="dropdown-item text-success"
-            (click)="confirm(c)"
+          </app-table-row-option>
+          <app-table-row-option
+            class="text-success"
+            bwIcon="bwi-check"
+            (onClick)="confirm(c)"
             *ngIf="c.status === emergencyAccessStatusType.Accepted"
           >
-            <i class="bwi bwi-fw bwi-check" aria-hidden="true"></i>
             {{ "confirm" | i18n }}
-          </button>
-          <button
-            class="dropdown-item text-success"
-            (click)="approve(c)"
+          </app-table-row-option>
+          <app-table-row-option
+            class="text-success"
+            bwIcon="bwi-check"
+            (onClick)="approve(c)"
             *ngIf="c.status === emergencyAccessStatusType.RecoveryInitiated"
           >
-            <i class="bwi bwi-fw bwi-check" aria-hidden="true"></i>
             {{ "approve" | i18n }}
-          </button>
-          <button
-            class="dropdown-item text-warning"
-            (click)="reject(c)"
+          </app-table-row-option>
+          <app-table-row-option
+            class="text-warning"
+            bwIcon="bwi-close"
+            (onClick)="reject(c)"
             *ngIf="
               c.status === emergencyAccessStatusType.RecoveryInitiated ||
               c.status === emergencyAccessStatusType.RecoveryApproved
             "
           >
-            <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
             {{ "reject" | i18n }}
-          </button>
-          <button class="dropdown-item text-danger" (click)="remove(c)">
-            <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
+          </app-table-row-option>
+          <app-table-row-option class="text-danger" bwIcon="bwi-close" (onClick)="remove(c)">
             {{ "remove" | i18n }}
-          </button>
-        </app-table-row-options>
+          </app-table-row-option>
+        </app-table-row-option-menu>
       </td>
     </tr>
   </tbody>
@@ -170,42 +168,38 @@
         <small class="text-muted d-block" *ngIf="c.name">{{ c.name }}</small>
       </td>
       <td class="table-list-options">
-        <app-table-row-options rowIndex="grantedContact{{ i }}">
-          <button
-            class="dropdown-item"
-            (click)="requestAccess(c)"
+        <app-table-row-option-menu rowIndex="grantedContact{{ i }}">
+          <app-table-row-option
+            bwIcon="bwi-envelope"
+            (onClick)="requestAccess(c)"
             *ngIf="c.status === emergencyAccessStatusType.Confirmed"
           >
-            <i class="bwi bwi-fw bwi-envelope" aria-hidden="true"></i>
             {{ "requestAccess" | i18n }}
-          </button>
-          <button
-            class="dropdown-item"
-            (click)="takeover(c)"
+          </app-table-row-option>
+          <app-table-row-option
+            bwIcon="bwi-key"
+            (onClick)="takeover(c)"
             *ngIf="
               c.status === emergencyAccessStatusType.RecoveryApproved &&
               c.type === emergencyAccessType.Takeover
             "
           >
-            <i class="bwi bwi-fw bwi-key" aria-hidden="true"></i>
             {{ "takeover" | i18n }}
-          </button>
-          <button
-            class="dropdown-item"
+          </app-table-row-option>
+          <app-table-row-option
+            bwIcon="bwi-eye"
             [routerLink]="c.id"
             *ngIf="
               c.status === emergencyAccessStatusType.RecoveryApproved &&
               c.type === emergencyAccessType.View
             "
           >
-            <i class="bwi bwi-fw bwi-eye" aria-hidden="true"></i>
             {{ "view" | i18n }}
-          </button>
-          <button class="dropdown-item text-danger" (click)="remove(c)">
-            <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
+          </app-table-row-option>
+          <app-table-row-option class="text-danger" bwIcon="bwi-close" (onClick)="remove(c)">
             {{ "remove" | i18n }}
-          </button>
-        </app-table-row-options>
+          </app-table-row-option>
+        </app-table-row-option-menu>
       </td>
     </tr>
   </tbody>
