@@ -6,19 +6,29 @@ import { StateService } from "jslib-common/abstractions/state.service";
 @Component({
   selector: "app-premium-badge",
   template: `
-    <a *ngIf="condition" href="#" appStopClick (click)="premiumRequired()">
-      <bit-badge type="success">{{ "premium" | i18n }}</bit-badge>
-    </a>
+    <button
+      bit-badge
+      badgeType="success"
+      class=""
+      *ngIf="condition"
+      href="#"
+      appStopClick
+      (click)="premiumRequired()"
+      [attr.tabIndex]="tabindex"
+    >
+      {{ "premium" | i18n }}
+    </button>
   `,
 })
 export class PremiumBadgeComponent implements OnInit {
   // Optional condition defaults to premium
   @Input() condition: boolean;
+  @Input() tabindex?: number = null;
 
   constructor(private stateService: StateService, private messagingService: MessagingService) {}
 
   async ngOnInit() {
-    this.condition ??= await this.stateService.getCanAccessPremium();
+    this.condition ??= !(await this.stateService.getCanAccessPremium());
   }
 
   premiumRequired() {

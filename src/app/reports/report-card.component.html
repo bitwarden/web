@@ -1,11 +1,11 @@
 <a
-  class="tw-border tw-border-solid tw-border-secondary-300 tw-rounded tw-overflow-hidden tw-h-full tw-w-72 tw-block !tw-text-main hover:tw-no-underline"
+  class="tw-border tw-border-solid tw-border-secondary-300 tw-rounded tw-overflow-hidden tw-h-full tw-w-72 tw-block !tw-text-main hover:tw-no-underline hover:tw-scale-105 tw-transition-all focus:tw-outline-none focus:tw-ring focus:tw-ring-offset-2 focus:tw-ring-primary-700"
   [routerLink]="route"
   (click)="click()"
 >
   <div class="tw-relative">
     <div
-      class="tw-text-center tw-h-28 tw-flex tw-bg-background-elevation2 tw-text-primary-300"
+      class="tw-text-center tw-h-28 tw-flex tw-bg-background-alt2 tw-text-primary-300"
       [ngClass]="{ 'tw-grayscale': premium }"
     >
       <div class="tw-m-auto" [innerHtml]="icon"></div>
@@ -17,6 +17,7 @@
     <app-premium-badge
       class="tw-absolute tw-left-2 tw-top-2 tw-leading-none"
       [condition]="premium"
+      tabindex="-1"
     ></app-premium-badge>
   </div>
 </a>
