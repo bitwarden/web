@@ -103,7 +103,8 @@ import { NestedCheckboxComponent } from "./components/nested-checkbox.component"
 import { PasswordRepromptComponent } from "./components/password-reprompt.component";
 import { PasswordStrengthComponent } from "./components/password-strength.component";
 import { PremiumBadgeComponent } from "./components/premium-badge.component";
-import { TableRowOptionsComponent } from "./components/table-row-options.component";
+import { TableRowOptionMenuComponent } from "./components/table-row-option-menu.component";
+import { TableRowOptionComponent } from "./components/table-row-option.component";
 import { FooterComponent } from "./layouts/footer.component";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
 import { NavbarComponent } from "./layouts/navbar.component";
@@ -446,7 +447,8 @@ registerLocaleData(localeZhTw, "zh-TW");
     SsoComponent,
     StopClickDirective,
     StopPropDirective,
-    TableRowOptionsComponent,
+    TableRowOptionMenuComponent,
+    TableRowOptionComponent,
     TaxInfoComponent,
     ToolsComponent,
     TrueFalseValueDirective,
@@ -494,6 +496,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     StopPropDirective,
     TableRowOptionsComponent,
     UserNamePipe,
+    TableRowOptionMenuComponent,
   ],
   providers: [DatePipe, SearchPipe, UserNamePipe],
   bootstrap: [],
