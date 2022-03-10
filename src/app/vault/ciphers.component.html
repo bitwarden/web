@@ -57,98 +57,82 @@
         <td class="table-list-options">
           <app-table-row-options [rowIndex]="i">
             <ng-container *ngIf="c.type === cipherType.Login && !c.isDeleted">
-              <a
+              <button
                 class="dropdown-item"
-                href="#"
-                appStopClick
                 (click)="copy(c, c.login.username, 'username', 'Username')"
               >
                 <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
                 {{ "copyUsername" | i18n }}
-              </a>
-              <a
+              </button>
+              <button
                 class="dropdown-item"
-                href="#"
-                appStopClick
                 (click)="copy(c, c.login.password, 'password', 'Password')"
                 *ngIf="c.viewPassword"
               >
                 <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
                 {{ "copyPassword" | i18n }}
-              </a>
-              <a
+              </button>
+              <button
                 class="dropdown-item"
-                href="#"
-                appStopClick
                 (click)="copy(c, c.login.totp, 'verificationCodeTotp', 'TOTP')"
                 *ngIf="displayTotpCopyButton(c)"
               >
                 <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
                 {{ "copyVerificationCode" | i18n }}
-              </a>
-              <a
+              </button>
+              <button
                 class="dropdown-item"
-                href="#"
-                appStopClick
                 *ngIf="c.login.canLaunch"
                 (click)="launch(c.login.launchUri)"
               >
                 <i class="bwi bwi-fw bwi-share-square" aria-hidden="true"></i>
                 {{ "launch" | i18n }}
-              </a>
+              </button>
             </ng-container>
-            <a class="dropdown-item" href="#" appStopClick (click)="attachments(c)">
+            <button class="dropdown-item" (click)="attachments(c)">
               <i class="bwi bwi-fw bwi-paperclip" aria-hidden="true"></i>
               {{ "attachments" | i18n }}
-            </a>
-            <a
+            </button>
+            <button
               class="dropdown-item"
-              href="#"
-              appStopClick
               *ngIf="((!organization && !c.organizationId) || organization) && !c.isDeleted"
               (click)="clone(c)"
             >
               <i class="bwi bwi-fw bwi-files" aria-hidden="true"></i>
               {{ "clone" | i18n }}
-            </a>
-            <a
+            </button>
+            <button
               class="dropdown-item"
-              href="#"
-              appStopClick
               *ngIf="!organization && !c.organizationId && !c.isDeleted"
               (click)="share(c)"
             >
               <i class="bwi bwi-fw bwi-arrow-circle-right" aria-hidden="true"></i>
               {{ "moveToOrganization" | i18n }}
-            </a>
-            <a
+            </button>
+            <button
               class="dropdown-item"
-              href="#"
-              appStopClick
               *ngIf="c.organizationId && !c.isDeleted"
               (click)="collections(c)"
             >
               <i class="bwi bwi-fw bwi-collection" aria-hidden="true"></i>
               {{ "collections" | i18n }}
-            </a>
-            <a
+            </button>
+            <button
               class="dropdown-item"
-              href="#"
-              appStopClick
               *ngIf="c.organizationId && accessEvents"
               (click)="events(c)"
             >
               <i class="bwi bwi-fw bwi-file-text" aria-hidden="true"></i>
               {{ "eventLogs" | i18n }}
-            </a>
-            <a class="dropdown-item" href="#" appStopClick (click)="restore(c)" *ngIf="c.isDeleted">
+            </button>
+            <button class="dropdown-item" (click)="restore(c)" *ngIf="c.isDeleted">
               <i class="bwi bwi-fw bwi-undo" aria-hidden="true"></i>
               {{ "restore" | i18n }}
-            </a>
-            <a class="dropdown-item text-danger" href="#" appStopClick (click)="delete(c)">
+            </button>
+            <button class="dropdown-item text-danger" (click)="delete(c)">
               <i class="bwi bwi-fw bwi-trash" aria-hidden="true"></i>
               {{ (c.isDeleted ? "permanentlyDelete" : "delete") | i18n }}
-            </a>
+            </button>
           </app-table-row-options>
         </td>
       </tr>

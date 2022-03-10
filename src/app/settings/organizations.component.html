@@ -95,45 +95,39 @@
           </td>
           <td class="table-list-options">
             <app-table-row-options [rowIndex]="i">
-              <a
+              <button
                 *ngIf="allowEnrollmentChanges(o) && !o.resetPasswordEnrolled"
                 class="dropdown-item"
-                href="#"
-                appStopClick
                 (click)="toggleResetPasswordEnrollment(o)"
               >
                 <i class="bwi bwi-fw bwi-key" aria-hidden="true"></i>
                 {{ "enrollPasswordReset" | i18n }}
-              </a>
-              <a
+              </button>
+              <button
                 *ngIf="allowEnrollmentChanges(o) && o.resetPasswordEnrolled"
                 class="dropdown-item"
-                href="#"
-                appStopClick
                 (click)="toggleResetPasswordEnrollment(o)"
               >
                 <i class="bwi bwi-fw bwi-undo" aria-hidden="true"></i>
                 {{ "withdrawPasswordReset" | i18n }}
-              </a>
+              </button>
               <ng-container *ngIf="o.useSso && o.identifier">
-                <a
+                <button
                   *ngIf="o.ssoBound; else linkSso"
                   class="dropdown-item"
-                  href="#"
-                  appStopClick
                   (click)="unlinkSso(o)"
                 >
                   <i class="bwi bwi-fw bwi-chain-broken" aria-hidden="true"></i>
                   {{ "unlinkSso" | i18n }}
-                </a>
+                </button>
                 <ng-template #linkSso>
                   <app-link-sso [organization]="o"> </app-link-sso>
                 </ng-template>
               </ng-container>
-              <a class="dropdown-item text-danger" href="#" appStopClick (click)="leave(o)">
+              <button class="dropdown-item text-danger" (click)="leave(o)">
                 <i class="bwi bwi-fw bwi-sign-out" aria-hidden="true"></i>
                 {{ "leave" | i18n }}
-              </a>
+              </button>
             </app-table-row-options>
           </td>
         </tr>

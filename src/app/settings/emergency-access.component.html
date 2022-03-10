@@ -75,40 +75,32 @@
       </td>
       <td class="table-list-options">
         <app-table-row-options rowIndex="trustedContact{{ i }}">
-          <a
+          <button
             class="dropdown-item"
-            href="#"
-            appStopClick
             (click)="reinvite(c)"
             *ngIf="c.status === emergencyAccessStatusType.Invited"
           >
             <i class="bwi bwi-fw bwi-envelope" aria-hidden="true"></i>
             {{ "resendInvitation" | i18n }}
-          </a>
-          <a
+          </button>
+          <button
             class="dropdown-item text-success"
-            href="#"
-            appStopClick
             (click)="confirm(c)"
             *ngIf="c.status === emergencyAccessStatusType.Accepted"
           >
             <i class="bwi bwi-fw bwi-check" aria-hidden="true"></i>
             {{ "confirm" | i18n }}
-          </a>
-          <a
+          </button>
+          <button
             class="dropdown-item text-success"
-            href="#"
-            appStopClick
             (click)="approve(c)"
             *ngIf="c.status === emergencyAccessStatusType.RecoveryInitiated"
           >
             <i class="bwi bwi-fw bwi-check" aria-hidden="true"></i>
             {{ "approve" | i18n }}
-          </a>
-          <a
+          </button>
+          <button
             class="dropdown-item text-warning"
-            href="#"
-            appStopClick
             (click)="reject(c)"
             *ngIf="
               c.status === emergencyAccessStatusType.RecoveryInitiated ||
@@ -117,11 +109,11 @@
           >
             <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
             {{ "reject" | i18n }}
-          </a>
-          <a class="dropdown-item text-danger" href="#" appStopClick (click)="remove(c)">
+          </button>
+          <button class="dropdown-item text-danger" (click)="remove(c)">
             <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
             {{ "remove" | i18n }}
-          </a>
+          </button>
         </app-table-row-options>
       </td>
     </tr>
@@ -179,20 +171,16 @@
       </td>
       <td class="table-list-options">
         <app-table-row-options rowIndex="grantedContact{{ i }}">
-          <a
+          <button
             class="dropdown-item"
-            href="#"
-            appStopClick
             (click)="requestAccess(c)"
             *ngIf="c.status === emergencyAccessStatusType.Confirmed"
           >
             <i class="bwi bwi-fw bwi-envelope" aria-hidden="true"></i>
             {{ "requestAccess" | i18n }}
-          </a>
-          <a
+          </button>
+          <button
             class="dropdown-item"
-            href="#"
-            appStopClick
             (click)="takeover(c)"
             *ngIf="
               c.status === emergencyAccessStatusType.RecoveryApproved &&
@@ -201,8 +189,8 @@
           >
             <i class="bwi bwi-fw bwi-key" aria-hidden="true"></i>
             {{ "takeover" | i18n }}
-          </a>
-          <a
+          </button>
+          <button
             class="dropdown-item"
             [routerLink]="c.id"
             *ngIf="
@@ -212,11 +200,11 @@
           >
             <i class="bwi bwi-fw bwi-eye" aria-hidden="true"></i>
             {{ "view" | i18n }}
-          </a>
-          <a class="dropdown-item text-danger" href="#" appStopClick (click)="remove(c)">
+          </button>
+          <button class="dropdown-item text-danger" (click)="remove(c)">
             <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
             {{ "remove" | i18n }}
-          </a>
+          </button>
         </app-table-row-options>
       </td>
     </tr>

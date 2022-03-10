@@ -36,10 +36,10 @@
           </td>
           <td class="table-list-options">
             <app-table-row-options [rowIndex]="i" *ngIf="c.hasAttachments">
-              <a class="dropdown-item" href="#" appStopClick (click)="viewAttachments(c)">
+              <button class="dropdown-item" (click)="viewAttachments(c)">
                 <i class="bwi bwi-fw bwi-paperclip" aria-hidden="true"></i>
                 {{ "attachments" | i18n }}
-              </a>
+              </button>
             </app-table-row-options>
           </td>
         </tr>
