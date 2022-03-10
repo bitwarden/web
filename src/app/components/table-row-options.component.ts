@@ -5,5 +5,5 @@ import { Component, Input } from "@angular/core";
   templateUrl: "table-row-options.component.html",
 })
 export class TableRowOptionsComponent {
-  @Input() rowIndex = 0;
+  @Input() rowSuffix = 0;
 }

@@ -55,7 +55,7 @@
           <small appStopProp>{{ c.subTitle }}</small>
         </td>
         <td class="table-list-options">
-          <app-table-row-options [rowIndex]="i">
+          <app-table-row-options [rowSuffix]="i">
             <ng-container *ngIf="c.type === cipherType.Login && !c.isDeleted">
               <a
                 class="dropdown-item"

@@ -35,7 +35,7 @@
             <small>{{ c.subTitle }}</small>
           </td>
           <td class="table-list-options">
-            <app-table-row-options [rowIndex]="i" *ngIf="c.hasAttachments">
+            <app-table-row-options [rowSuffix]="i" *ngIf="c.hasAttachments">
               <a class="dropdown-item" href="#" appStopClick (click)="viewAttachments(c)">
                 <i class="bwi bwi-fw bwi-paperclip" aria-hidden="true"></i>
                 {{ "attachments" | i18n }}

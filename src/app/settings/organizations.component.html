@@ -94,7 +94,7 @@
             </ng-container>
           </td>
           <td class="table-list-options">
-            <app-table-row-options [rowIndex]="i">
+            <app-table-row-options [rowSuffix]="i">
               <a
                 *ngIf="allowEnrollmentChanges(o) && !o.resetPasswordEnrolled"
                 class="dropdown-item"

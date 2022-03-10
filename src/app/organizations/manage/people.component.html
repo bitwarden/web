@@ -171,7 +171,7 @@
             <span *ngIf="u.type === userType.Custom">{{ "custom" | i18n }}</span>
           </td>
           <td class="table-list-options">
-            <app-table-row-options [rowIndex]="i">
+            <app-table-row-options [rowSuffix]="i">
               <a
                 class="dropdown-item"
                 href="#"

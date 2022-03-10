@@ -129,7 +129,7 @@
               <small appStopProp>{{ s.deletionDate | date: "medium" }}</small>
             </td>
             <td class="table-list-options">
-              <app-table-row-options [rowIndex]="i">
+              <app-table-row-options [rowSuffix]="i">
                 <a class="dropdown-item" href="#" appStopClick (click)="copy(s)">
                   <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
                   {{ "copySendLink" | i18n }}
