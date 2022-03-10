@@ -2,7 +2,7 @@
   <button
     class="btn dropdown-toggle disable-caret"
     type="button"
-    id="dropdownMenuButton-{{ rowSuffix }}"
+    id="dropdownMenuButton-{{ rowIndex }}"
     data-toggle="dropdown"
     aria-haspopup="true"
     aria-expanded="false"
@@ -12,7 +12,7 @@
   </button>
   <div
     class="dropdown-menu dropdown-menu-right"
-    attr.aria-labelledby="dropdownMenuButton-{{ rowSuffix }}"
+    attr.aria-labelledby="dropdownMenuButton-{{ rowIndex }}"
   >
     <ng-content></ng-content>
   </div>

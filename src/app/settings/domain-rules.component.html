@@ -59,7 +59,7 @@
       <tr *ngFor="let d of global; index as i">
         <td [ngClass]="{ 'table-list-strike': d.excluded }">{{ d.domains }}</td>
         <td class="table-list-options">
-          <app-table-row-options [rowSuffix]="i">
+          <app-table-row-options [rowIndex]="i">
             <a
               class="dropdown-item"
               href="#"

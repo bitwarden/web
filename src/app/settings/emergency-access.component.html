@@ -74,7 +74,7 @@
         <small class="text-muted d-block" *ngIf="c.name">{{ c.name }}</small>
       </td>
       <td class="table-list-options">
-        <app-table-row-options rowSuffix="tc{{ i }}">
+        <app-table-row-options [rowIndex]="i">
           <a
             class="dropdown-item"
             href="#"
@@ -178,7 +178,7 @@
         <small class="text-muted d-block" *ngIf="c.name">{{ c.name }}</small>
       </td>
       <td class="table-list-options">
-        <app-table-row-options rowSuffix="gc{{ i }}">
+        <app-table-row-options [rowIndex]="i">
           <a
             class="dropdown-item"
             href="#"
