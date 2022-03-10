@@ -74,7 +74,7 @@
         <small class="text-muted d-block" *ngIf="c.name">{{ c.name }}</small>
       </td>
       <td class="table-list-options">
-        <app-table-row-options [rowIndex]="i">
+        <app-table-row-options rowIndex="trustedContact{{ i }}">
           <a
             class="dropdown-item"
             href="#"
@@ -178,7 +178,7 @@
         <small class="text-muted d-block" *ngIf="c.name">{{ c.name }}</small>
       </td>
       <td class="table-list-options">
-        <app-table-row-options [rowIndex]="i">
+        <app-table-row-options rowIndex="grantedContact{{ i }}">
           <a
             class="dropdown-item"
             href="#"
