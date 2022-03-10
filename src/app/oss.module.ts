@@ -492,6 +492,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     SearchPipe,
     StopClickDirective,
     StopPropDirective,
+    TableRowOptionsComponent,
     UserNamePipe,
   ],
   providers: [DatePipe, SearchPipe, UserNamePipe],
