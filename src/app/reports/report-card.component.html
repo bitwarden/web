@@ -1,23 +1,22 @@
-<div
-  class="tw-border tw-border-solid tw-border-secondary-300 tw-rounded tw-overflow-hidden tw-h-full tw-w-72"
+<a
+  class="tw-border tw-border-solid tw-border-secondary-300 tw-rounded tw-overflow-hidden tw-h-full tw-w-72 tw-block !tw-text-main hover:tw-no-underline"
+  [routerLink]="route"
+  (click)="click()"
 >
-  <div
-    class="tw-text-center tw-h-28 tw-flex tw-relative"
-    [ngClass]="{
-      'tw-bg-background-elevation2 tw-text-primary-300': !premium,
-      'tw-bg-secondary-500 tw-text-secondary-300': premium
-    }"
-  >
+  <div class="tw-relative">
+    <div
+      class="tw-text-center tw-h-28 tw-flex tw-bg-background-elevation2 tw-text-primary-300"
+      [ngClass]="{ 'tw-grayscale': premium }"
+    >
+      <div class="tw-m-auto" [innerHtml]="icon"></div>
+    </div>
+    <div class="tw-p-5" [ngClass]="{ 'tw-grayscale': report.requiresPremium }">
+      <h3 class="tw-text-xl tw-font-bold tw-mb-4">{{ report.title | i18n }}</h3>
+      <p class="tw-mb-0">{{ report.description | i18n }}</p>
+    </div>
     <app-premium-badge
       class="tw-absolute tw-left-2 tw-top-2 tw-leading-none"
       [condition]="premium"
     ></app-premium-badge>
-    <div class="tw-m-auto">
-      <ng-content selector="icon"></ng-content>
-    </div>
   </div>
-  <div class="tw-p-5">
-    <h3 class="tw-text-xl tw-font-bold tw-mb-4">{{ title }}</h3>
-    <p class="tw-mb-0">{{ description }}</p>
-  </div>
-</div>
+</a>

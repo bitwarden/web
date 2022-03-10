@@ -6,14 +6,6 @@
 
 <div class="tw-inline-grid tw-grid-cols-3 tw-gap-4">
   <div *ngFor="let report of reports">
-    <a [routerLink]="['./', report.route]" class="hover:tw-no-underline !tw-text-main">
-      <app-report-card
-        title="{{ report.title | i18n }}"
-        description="{{ report.description | i18n }}"
-        [premium]="report.premium"
-      >
-        <div #icon [innerHtml]="report.icon"></div>
-      </app-report-card>
-    </a>
+    <app-report-card [type]="report"></app-report-card>
   </div>
 </div>
