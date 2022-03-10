@@ -9,9 +9,7 @@ import { StateService } from "jslib-common/abstractions/state.service";
     <button
       bit-badge
       badgeType="success"
-      class=""
       *ngIf="condition"
-      href="#"
       appStopClick
       (click)="premiumRequired()"
       [attr.tabIndex]="tabindex"
