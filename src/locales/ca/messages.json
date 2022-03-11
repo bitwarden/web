@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Nota segura"
   },
+  "typeLoginPlural": {
+    "message": "Inicis de sessió"
+  },
+  "typeCardPlural": {
+    "message": "Targetes"
+  },
+  "typeIdentityPlural": {
+    "message": "Identitats"
+  },
+  "typeSecureNotePlural": {
+    "message": "Notes segures"
+  },
   "folders": {
     "message": "Carpetes"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Suprimeix l'organització"
   },
-  "deleteOrganizationDesc": {
-    "message": "Procediu a eliminar aquesta organització i totes les dades associades. Els comptes d'usuari individuals es mantindran, encara que ja no hi estaran associats. "
+  "deletingOrganizationContentWarning": {
+    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "La supressió de l'organització és permanent. No es pot desfer."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "S'ha suprimit l'organització"
@@ -4759,7 +4786,7 @@
     }
   },
   "required": {
-    "message": "required"
+    "message": "requerit"
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "Required if Entity ID is not a URL."

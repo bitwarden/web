@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "メモ"
   },
+  "typeLoginPlural": {
+    "message": "ログイン"
+  },
+  "typeCardPlural": {
+    "message": "カード"
+  },
+  "typeIdentityPlural": {
+    "message": "ID"
+  },
+  "typeSecureNotePlural": {
+    "message": "セキュアメモ"
+  },
   "folders": {
     "message": "フォルダー"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "組織の削除"
   },
-  "deleteOrganizationDesc": {
-    "message": "続行するとこの組織と関連するすべてのデータが削除されます。組織と関連がなくなっても個々のユーザーアカウントは維持されます。"
+  "deletingOrganizationContentWarning": {
+    "message": "$ORGANIZATION$ と関連するすべてのデータの削除を確認するためにマスターパスワードを入力してください。 $ORGANIZATION$ の保管庫データは下記を含みます:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "組織を恒久的に削除します。元に戻すことはできません。"
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "削除後もユーザーアカウントはアクティブになりますが、この組織に関連付けられなくなります。"
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "$ORGANIZATION$ を削除すると元に戻せません。",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "組織が削除されました。"

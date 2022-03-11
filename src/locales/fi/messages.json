@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Salattu muistio"
   },
+  "typeLoginPlural": {
+    "message": "Kirjautumistiedot"
+  },
+  "typeCardPlural": {
+    "message": "Kortit"
+  },
+  "typeIdentityPlural": {
+    "message": "Henkilöllisyydet"
+  },
+  "typeSecureNotePlural": {
+    "message": "Salatut muistiot"
+  },
   "folders": {
     "message": "Kansiot"
   },
@@ -1212,7 +1224,7 @@
     "message": "Premium-toiminnot ovat jo käytettävissäsi, johtuen organisaatiosta, jonka jäsen olet."
   },
   "manage": {
-    "message": "Hallinnointi"
+    "message": "Hallinnoi"
   },
   "disable": {
     "message": "Poista käytöstä"
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Poista organisaatio"
   },
-  "deleteOrganizationDesc": {
-    "message": "Jatka alla poistaaksesi organisaation ja kaikki siihen liittyvät tiedot. Yksittäiset käyttäjätilit säilyvät, mutta ne eivät ole enää kytköksissä tähän organisaatioon."
+  "deletingOrganizationContentWarning": {
+    "message": "Vahvista organisaation $ORGANIZATION$ ja kaikkien sen kohteiden poisto syöttämällä pääsalasanasi. Holvin sisältämiä organisaation $ORGANIZATION$ tietoja ovat:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Organisaation poisto on pysyvä toimenpide, eikä sen peruminen ole mahdollista."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Käyttäjätilit pysyvät poiston jälkeen toiminnassa, mutta niiden kytkös tähän organisaatioon poistuu."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Organisaation $ORGANIZATION$ poisto on pysyvää, eikä sitä ole mahdollista perua.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organisaatio poistettu"

@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Nota segura"
   },
+  "typeLoginPlural": {
+    "message": "Inicios de sesión"
+  },
+  "typeCardPlural": {
+    "message": "Tarjetas"
+  },
+  "typeIdentityPlural": {
+    "message": "Identidades"
+  },
+  "typeSecureNotePlural": {
+    "message": "Notas seguras"
+  },
   "folders": {
     "message": "Carpetas"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Eliminar organización"
   },
-  "deleteOrganizationDesc": {
-    "message": "Continúa el proceso para eliminar esta organización y todos los datos asociados a ella. Las cuentas de usuario individuales se mantendrán, aunque no estarán asociadas con la organización a partir de ahora."
+  "deletingOrganizationContentWarning": {
+    "message": "Introduzca la contraseña maestra para confirmar la eliminación de $ORGANIZATION$ y todos los datos asociados. Los datos de la bóveda de $ORGANIZATION$ incluyen:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Eliminar la organización es permanente. No se puede deshacer."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Las cuentas de usuario permanecerán activas después de la eliminación, pero ya no estarán asociadas a esta organización."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "La eliminación de $ORGANIZATION$ es permanente y irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organización eliminada"

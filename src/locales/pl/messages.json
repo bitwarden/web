@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Bezpieczna notatka"
   },
+  "typeLoginPlural": {
+    "message": "Dane logowania"
+  },
+  "typeCardPlural": {
+    "message": "Karty"
+  },
+  "typeIdentityPlural": {
+    "message": "Tożsamości"
+  },
+  "typeSecureNotePlural": {
+    "message": "Bezpieczne notatki"
+  },
   "folders": {
     "message": "Foldery"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Usuń organizację"
   },
-  "deleteOrganizationDesc": {
-    "message": "Kontynuuj poniżej, aby usunąć tę organizację i wszystkie powiązane z nią dane. Indywidualne konta użytkowników pozostaną, ale nie będą one już połączone za tą organizacją. "
+  "deletingOrganizationContentWarning": {
+    "message": "Wprowadź hasło główne, aby potwierdzić usunięcie $ORGANIZATION$ i wszystkich powiązanych danych. Dane sejfu w $ORGANIZATION$ obejmują:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Usunięcie organizacji jest nieodwracalne. Ta czynność nie może zostać cofnięta."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Konta użytkowników pozostaną aktywne po usunięciu, ale nie będą już powiązane z tą organizacją."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Usuwanie organizacji $ORGANIZATION$ jest trwałe i nieodwracalne.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organizacja została usunięta"
@@ -4750,7 +4777,7 @@
     "message": "1 pole powyżej wymaga Twojej uwagi."
   },
   "fieldRequiredError": {
-    "message": "$FIELDNAME$ jest wymagane.",
+    "message": "Pole $FIELDNAME$ jest wymagane.",
     "placeholders": {
       "fieldname": {
         "content": "$1",

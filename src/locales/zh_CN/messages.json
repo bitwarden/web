@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "安全笔记"
   },
+  "typeLoginPlural": {
+    "message": "登录"
+  },
+  "typeCardPlural": {
+    "message": "支付卡"
+  },
+  "typeIdentityPlural": {
+    "message": "身份"
+  },
+  "typeSecureNotePlural": {
+    "message": "安全笔记"
+  },
   "folders": {
     "message": "文件夹"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "删除组织"
   },
-  "deleteOrganizationDesc": {
-    "message": "接下来将删除该组织和所有相关数据。个人用户帐户将保留，但不再与该组织关联。 "
+  "deletingOrganizationContentWarning": {
+    "message": "请输入主密码以确认删除 $ORGANIZATION$ 及关联的所有数据。$ORGANIZATION$ 中的密码库数据包括：",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "删除组织是永久的，不能被撤消。"
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "删除后用户账户仍可用，但不再与此组织关联。"
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "删除 $ORGANIZATION$ 是永久操作，不可撤销！",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "组织已删除"

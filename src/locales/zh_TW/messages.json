@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "安全筆記"
   },
+  "typeLoginPlural": {
+    "message": "登入"
+  },
+  "typeCardPlural": {
+    "message": "支付卡"
+  },
+  "typeIdentityPlural": {
+    "message": "身分"
+  },
+  "typeSecureNotePlural": {
+    "message": "安全筆記"
+  },
   "folders": {
     "message": "資料夾"
   },
@@ -520,7 +532,7 @@
     "message": "已登出"
   },
   "loginExpired": {
-    "message": "您的登入會話已逾期。"
+    "message": "您的登入工作階段已逾期。"
   },
   "logOutConfirmation": {
     "message": "您確定要登出嗎？"
@@ -922,7 +934,7 @@
     }
   },
   "loggedOutWarning": {
-    "message": "接下來會登出目前會話，並要求您重新登入。其他裝置上的活動會話最多會保持一個小時。"
+    "message": "接下來會登出目前工作階段，並要求您重新登入帳戶。其他裝置上的工作階段最多會保持一個小時。"
   },
   "emailChanged": {
     "message": "電子郵件已變更"
@@ -988,16 +1000,16 @@
     "message": "小心，這些動作無法復原！"
   },
   "deauthorizeSessions": {
-    "message": "取消會話授權"
+    "message": "取消工作階段授權"
   },
   "deauthorizeSessionsDesc": {
-    "message": "您是否擔心自己的帳戶在其他裝置上登入？請遵照以下步驟取消對之前使用過的所有計算機和裝置的授權。如果您以前使用過公共計算機或不小心曾將密碼儲存在不屬於您的裝置上，則建議執行此安全步驟，此操作還將清除所有以前記住的兩步驟登入會話。"
+    "message": "您是否擔心自己的帳戶在其他裝置上保持登入？請遵照以下步驟取消對之前使用過的所有電腦和裝置的授權。若您以前使用過公用電腦或不小心曾將密碼儲存在不屬於您的裝置上，則建議執行此安全步驟，此操作還將清除所有以前記住的兩步驟登入工作階段。"
   },
   "deauthorizeSessionsWarning": {
-    "message": "接下來會登出目前的會話，并要求您重新登入。若您有設定兩步驟登入，也需重新認證。其他裝置上的活動會話最多可能會保持一個小時。"
+    "message": "接下來會登出目前的工作階段，並要求您重新登入。若您有設定兩步驟登入，也需重新認證。其他裝置上的活動工作階段最多會保持一個小時。"
   },
   "sessionsDeauthorized": {
-    "message": "所有會話已取消授權"
+    "message": "已取消所有工作階段授權"
   },
   "purgeVault": {
     "message": "清空密碼庫"
@@ -1492,16 +1504,16 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "弱強度密碼報告"
+    "message": "弱式密碼報告"
   },
   "weakPasswordsReportDesc": {
-    "message": "弱密碼可以輕易的被駭客和用於破解密碼的自動化工具猜中。Bitwarden 密碼生成器可以幫助您創建強密碼。"
+    "message": "弱式密碼很容易被駭客用破解密碼的自動化工具猜中。Bitwarden 密碼產生器可以幫助您建立強式密碼。"
   },
   "weakPasswordsFound": {
-    "message": "發現弱密碼"
+    "message": "發現弱式密碼"
   },
   "weakPasswordsFoundDesc": {
-    "message": "我們在您的密碼庫中發現了 $COUNT$ 個使用弱密碼的項目。您應該將它們變更為更強的密碼。",
+    "message": "我們在您的密碼庫中發現了 $COUNT$ 個使用弱式密碼的項目。您應該將它們變更為更強的密碼。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1510,7 +1522,7 @@
     }
   },
   "noWeakPasswords": {
-    "message": "您的密碼庫中沒有項目具有弱密碼。"
+    "message": "您的密碼庫中沒有項目具有弱式密碼。"
   },
   "reusedPasswordsReport": {
     "message": "重複使用密碼報告"
@@ -1923,7 +1935,7 @@
     "message": "要升級您的帳戶為進階版會員，您需要上傳有效的授權檔案。"
   },
   "uploadLicenseFileOrg": {
-    "message": "要創建基於內部託管的組織，您需要上傳有效的授權檔案。"
+    "message": "要建立基於內部託管的組織，您需要上傳有效的授權檔案。"
   },
   "accountEmailMustBeVerified": {
     "message": "必須驗證您帳戶的電子郵件位址。"
@@ -2216,7 +2228,7 @@
     "message": "邀請使用者"
   },
   "inviteUserDesc": {
-    "message": "在下面輸入 Bitwarden 賬戶的電子郵件位址，以邀請新使用者加入您的組織。如果他們沒有 Bitwarden 賬戶，將提示他們創建一個。"
+    "message": "在下方輸入 Bitwarden 帳戶的電子郵件位址，以邀請新使用者加入您的組織。若他們沒有 Bitwarden 帳戶，系統將提示他們建立新帳戶。"
   },
   "inviteMultipleEmailDesc": {
     "message": "透過使用逗號分隔的電子郵件位址，您可以一次性邀請 $COUNT$ 位使用者。",
@@ -2594,7 +2606,7 @@
     }
   },
   "createdOrganizationId": {
-    "message": "已創建組織 $ID$。",
+    "message": "已建立組織 $ID$。",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2732,7 +2744,7 @@
     "message": "加入組織"
   },
   "joinOrganizationDesc": {
-    "message": "您已被邀請加入上面的組織。要接受邀請，您需要登錄或創建新的 Bitwarden 帳戶。"
+    "message": "您已被邀請加入以上組織。若想接受邀請，您需要登入或建立新的 Bitwarden 帳戶。"
   },
   "inviteAccepted": {
     "message": "邀請已接受"
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "刪除組織"
   },
-  "deleteOrganizationDesc": {
-    "message": "接下來將刪除此組織和所有關聯的數據。個人使用者帳戶將保留，但它們不再與此組織關聯。 "
+  "deletingOrganizationContentWarning": {
+    "message": "輸入主密碼以確認刪除 $ORGANIZATION$ 及與之關聯的所有資料。$ORGANIZATION$ 中的密碼庫資料包含：",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "刪除組織是永久性的。這無法撤銷。"
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "刪除後，使用者帳號仍會維持可用狀態，但將斷開與本組織的關聯。"
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "刪除 $ORGANIZATION$ 是永久且不可逆的。",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "組織已刪除"
@@ -3032,10 +3059,10 @@
     "message": "免費組織不提供此功能。切換到付費方案以解鎖更多功能。"
   },
   "createOrganizationStep1": {
-    "message": "創建組織：步驟 1"
+    "message": "建立組織：步驟 1"
   },
   "createOrganizationCreatePersonalAccount": {
-    "message": "在創建組織之前，首先需要創建一個免費的個人帳戶。"
+    "message": "在建立組織之前，首先需要建立一個免費的個人帳戶。"
   },
   "refunded": {
     "message": "已退款"
@@ -3190,7 +3217,7 @@
     "message": "您的 API 金鑰是另一種身分認證機制，請嚴格保密。"
   },
   "oauth2ClientCredentials": {
-    "message": "OAuth 2.0 客戶端證書",
+    "message": "OAuth 2.0 用戶端憑證",
     "description": "'OAuth 2.0' is a programming protocol. It should probably not be translated."
   },
   "viewApiKey": {
@@ -3487,7 +3514,7 @@
     "message": "文字"
   },
   "createSend": {
-    "message": "創建新的 Send",
+    "message": "建立新的 Send",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editSend": {
@@ -3495,7 +3522,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "createdSend": {
-    "message": "Send 已創建",
+    "message": "Send 已建立",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "editedSend": {
@@ -3690,7 +3717,7 @@
     "message": "已邀請使用者。"
   },
   "acceptEmergencyAccess": {
-    "message": "您已被邀請成為上述使用者的緊急聯絡人。要接受邀請，您需要登入或創建新的 Bitwarden 帳戶。"
+    "message": "您已被邀請成為上述使用者的緊急聯絡人。要接受邀請，您需要登入或建立新的 Bitwarden 帳戶。"
   },
   "emergencyInviteAcceptFailed": {
     "message": "無法接受邀請。請向使用者請求傳送一個新的邀請。"
@@ -3778,7 +3805,7 @@
     "message": "停用 Send"
   },
   "disableSendPolicyDesc": {
-    "message": "不允許使用者創建或編輯 Bitwarden Send。但允許刪除現有的 Send。",
+    "message": "不允許使用者建立或編輯 Bitwarden Send。但允許刪除現有的 Send。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
@@ -3797,21 +3824,21 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
-    "message": "設定用於創建和編輯 Send 的選項。",
+    "message": "設定用於建立和編輯 Send 的選項。",
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
     "message": "可以管理組織原則的組織使用者豁免此原則的執行。"
   },
   "disableHideEmail": {
-    "message": "不允許使用者在創建或編輯 Send 時隱藏他們的電子郵件位址。",
+    "message": "不允許使用者在建立或編輯 Send 時隱藏他們的電子郵件位址。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
     "message": "以下組織原則當前正起作用："
   },
   "sendDisableHideEmailInEffect": {
-    "message": "使用者在創建或編輯 Send 時不允許隱藏他們的電子郵件位址。",
+    "message": "使用者在建立或編輯 Send 時不允許隱藏他們的電子郵件位址。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -3854,7 +3881,7 @@
     "message": "管理所有集合。"
   },
   "createNewCollections": {
-    "message": "創建新的集合"
+    "message": "建立新的集合"
   },
   "editAnyCollection": {
     "message": "編輯任何集合"
@@ -3982,7 +4009,7 @@
     }
   },
   "viewSendHiddenEmailWarning": {
-    "message": "創建此 Send 的 Bitwarden 使用者已選擇隱藏他們的電子郵件位址。在使用或下載此連結的內容之前，應確保您信任此連結的來源。",
+    "message": "建立此 Send 的 Bitwarden 使用者已選擇隱藏他們的電子郵件位址。在使用或下載此連結的內容之前，應確保您信任此連結的來源。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "expirationDateIsInvalid": {
@@ -4079,7 +4106,7 @@
     "message": "重設密碼"
   },
   "resetPasswordLoggedOutWarning": {
-    "message": "接下來會將 $NAME$ 登出目前的會話，並要求他們重新登入。其他裝置上的活動會話最多會保持一個小時。",
+    "message": "接下來會將 $NAME$ 登出目前的工作階段，並要求他們重新登入帳戶。其他裝置上的活動工作階段最多會保持一個小時。",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4202,7 +4229,7 @@
     "message": "提供商設定"
   },
   "setupProviderLoginDesc": {
-    "message": "您被邀請設定一個新的提供商。要繼續，您需要登入或創建一個新的 Bitwarden 帳戶。"
+    "message": "您被邀請設定一個新的提供者。若想繼續，您需要登入或建立一個新的 Bitwarden 帳戶。"
   },
   "setupProviderDesc": {
     "message": "請在下面輸入詳細資訊以完成提供商設定。如果您有任何問題，請聯絡客戶支援。"
@@ -4229,13 +4256,13 @@
     "message": "服務使用者可以存取和管理所有客戶組織。"
   },
   "providerInviteUserDesc": {
-    "message": "通過在下面輸入他們的 Bitwarden 帳戶電子郵件位址，來邀請新的使用者加入您的提供商。如果他們還沒有 Bitwarden 帳戶，將提示他們創建新帳戶。"
+    "message": "透過在下方輸入他們的 Bitwarden 帳戶電子郵件位址，來邀請新的使用者加入您的提供者。如果他們還沒有 Bitwarden 帳戶，將提示他們建立新帳戶。"
   },
   "joinProvider": {
     "message": "加入提供商"
   },
   "joinProviderDesc": {
-    "message": "您已被邀請加入上面列出的提供商。要接受邀請，您需要登入或創建新的 Bitwarden 帳戶。"
+    "message": "您已被邀請加入上面列出的提供者。若想接受邀請，您需要登入或建立新的 Bitwarden 帳戶。"
   },
   "providerInviteAcceptFailed": {
     "message": "無法接受邀請。請要求提供商管理員發送一個新的邀請。"
@@ -4253,7 +4280,7 @@
     "message": "新建客戶組織"
   },
   "newClientOrganizationDesc": {
-    "message": "創建一個新的客戶組織，該組織將作為提供商與您關聯。您將能够存取和管理此組織。"
+    "message": "建立一個新的客戶組織，該組織將作為提供者與您關聯。您將能夠存取和管理此組織。"
   },
   "addExistingOrganization": {
     "message": "添加現有的組織"
@@ -4323,10 +4350,10 @@
     "message": "更新主密碼"
   },
   "updateMasterPasswordWarning": {
-    "message": "您的主密碼最近被您的組織管理者變更過。您必須現在更新主密碼才能存取密碼庫。繼續操作會登出您目前的會話，並要求您重新登入。其他裝置上的活動會話可能會持續長達一個小時。"
+    "message": "您的主密碼最近被您的組織管理者變更過。您必須現在更新主密碼才能存取密碼庫。繼續操作會登出您目前的工作階段，並要求您重新登入帳戶。其他裝置上的活動工作階段最多會保持一個小時。"
   },
   "masterPasswordInvalidWarning": {
-    "message": "您的主密碼不符合此組織原則的要求。您必須現在更新主密碼才可以才加入此組織。繼續操作會登出您目前的會話，並要求您重新登入。其他裝置上的活動會話可能會持續長達一個小時。"
+    "message": "您的主密碼不符合此組織原則的要求。您必須現在更新主密碼才可以才加入此組織。繼續操作會登出您目前的工作階段，並要求您重新登入帳戶。其他裝置上的活動工作階段最多會保持一個小時。"
   },
   "maximumVaultTimeout": {
     "message": "密碼庫逾時時長"
@@ -4417,22 +4444,22 @@
     "message": "從使用者資訊端點獲取聲明"
   },
   "additionalScopes": {
-    "message": "附加/自訂範圍（逗號分隔）"
+    "message": "自訂範圍"
   },
   "additionalUserIdClaimTypes": {
-    "message": "附加/自訂使用者 ID 聲明類型（逗號分隔）"
+    "message": "自訂使用者 ID 聲明類型"
   },
   "additionalEmailClaimTypes": {
-    "message": "附加/自訂電子郵件聲明類型（逗號分隔）"
+    "message": "電子郵件聲明類型"
   },
   "additionalNameClaimTypes": {
-    "message": "附加/自訂名稱聲明類型（逗號分隔）"
+    "message": "自訂名稱聲明類型"
   },
   "acrValues": {
-    "message": "請求的認證上下文類引用值（acr_value）"
+    "message": "請求的認證上下文類引用值"
   },
   "expectedReturnAcrValue": {
-    "message": "回應中預期的「acr」索賠值（acr 驗證）"
+    "message": "回應中預期的「acr」聲明值"
   },
   "spEntityId": {
     "message": "SP 實體 ID"
@@ -4459,7 +4486,7 @@
     "message": "希望宣告被簽名"
   },
   "spValidateCertificates": {
-    "message": "驗證證書"
+    "message": "驗證憑證"
   },
   "idpEntityId": {
     "message": "實體 ID"
@@ -4474,7 +4501,7 @@
     "message": "單一登出服務 URL"
   },
   "idpX509PublicCert": {
-    "message": "X509 公共證書"
+    "message": "X509 公開憑證"
   },
   "idpOutboundSigningAlgorithm": {
     "message": "傳出的簽名演算法"
@@ -4531,7 +4558,7 @@
     "message": "如果您離開或被從該組織中移除，您的家庭方案將在計費周期結束時逾期。"
   },
   "acceptBitwardenFamiliesHelp": {
-    "message": "接受現有組織的邀請或創建一個新的家庭組織。"
+    "message": "接受現有組織的邀請或建立一個新的家庭組織。"
   },
   "setupSponsoredFamiliesLoginDesc": {
     "message": "您被邀請加入一個免費的 Bitwarden 家庭方案組織。若要繼續，您需要登入到接受邀請的帳戶。"
@@ -4594,7 +4621,7 @@
     "message": "移除贊助後，您將自己負責此訂閱和相關的賬單。您確定要繼續嗎？"
   },
   "sponsorshipCreated": {
-    "message": "贊助已創建"
+    "message": "贊助已建立"
   },
   "revoke": {
     "message": "撤銷"
@@ -4711,7 +4738,7 @@
     "message": "請提供一個與此組織關聯的付款方式。別擔心，我們不會向您收取任何費用，除非您選擇進階功能或您的贊助到期。 "
   },
   "orgCreatedSponsorshipInvalid": {
-    "message": "贊助邀請已逾期，您可以删除您創建的組織，以避免在 7 天試用期結束時收取費用。 您也可以關閉此提示以保留該組織並承擔計費責任。"
+    "message": "贊助邀請已逾期，您可以上傳您建立的組織，以避免在 7 天試用期結束時被收取費用。 您也可以關閉此提示以保留該組織並承擔計費責任。"
   },
   "newFamiliesOrganization": {
     "message": "新的家庭組織"
@@ -4759,7 +4786,7 @@
     }
   },
   "required": {
-    "message": "required"
+    "message": "必填"
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "Required if Entity ID is not a URL."

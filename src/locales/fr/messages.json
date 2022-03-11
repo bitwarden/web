@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Note sécurisée"
   },
+  "typeLoginPlural": {
+    "message": "Identifiants"
+  },
+  "typeCardPlural": {
+    "message": "Cartes"
+  },
+  "typeIdentityPlural": {
+    "message": "Identités"
+  },
+  "typeSecureNotePlural": {
+    "message": "Notes sécurisées"
+  },
   "folders": {
     "message": "Dossiers"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Supprimer l'organisation"
   },
-  "deleteOrganizationDesc": {
-    "message": "Poursuivez ci-dessous pour supprimer cette organisation ainsi que toutes les données associées. Les comptes des utilisateurs individuels ne seront pas supprimés, mais ils ne seront plus associés à cette organisation. "
+  "deletingOrganizationContentWarning": {
+    "message": "Entrez le mot de passe maître pour confirmer la suppression de $ORGANIZATION$ et de toutes les données associées. Les données du coffre dans $ORGANIZATION$ inclut:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "La suppression d'une organisation est définitive. Cette action ne peut pas être annulée."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Les comptes utilisateur resteront actifs après la suppression, mais ne seront plus associés à cette organisation."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "La suppression de $ORGANIZATION$ est permanente et irréversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organisation supprimée"
@@ -4417,22 +4444,22 @@
     "message": "Récupérer les claims depuis l'endpoint d'informations utilisateur (User Info Endpoint)"
   },
   "additionalScopes": {
-    "message": "Scopes supplémentaires/personnalisés (séparés par des virgules)"
+    "message": "Scopes personnalisés"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Types de claim supplémentaires/personnalisés pour l'identifiant de l'utilisateur (séparés par des virgules)"
+    "message": "Types de claim personnalisés pour l'identifiant de l'utilisateur"
   },
   "additionalEmailClaimTypes": {
-    "message": "Types de claim supplémentaires/personnalisés pour l'e-mail (séparé par des virgules)"
+    "message": "Types de claim pour l'e-mail"
   },
   "additionalNameClaimTypes": {
-    "message": "Types de claim supplémentaires/personnalisés pour le nom (séparé par des virgules)"
+    "message": "Types de claim personnalisés pour le nom"
   },
   "acrValues": {
-    "message": "Valeurs Authentication Context Class Reference demandées (acr_values)"
+    "message": "Valeurs Authentication Context Class Reference demandées"
   },
   "expectedReturnAcrValue": {
-    "message": "Valeur attendue pour le claim \"acr\" dans la réponse (validation acr)"
+    "message": "Valeur attendue pour le claim \"acr\" dans la réponse"
   },
   "spEntityId": {
     "message": "ID de l'entité du Service Provider"
@@ -4456,7 +4483,7 @@
     "message": "Algorithme de signature entrant minimal"
   },
   "spWantAssertionsSigned": {
-    "message": "Exiger des Assertions signées"
+    "message": "Exiger des assertions signées"
   },
   "spValidateCertificates": {
     "message": "Vérifier les certificats"
@@ -4483,10 +4510,10 @@
     "message": "Autoriser les réponses d'authentification non sollicitées"
   },
   "idpAllowOutboundLogoutRequests": {
-    "message": "Allow outbound logout requests"
+    "message": "Autoriser les demandes de déconnexion sortantes"
   },
   "idpSignAuthenticationRequests": {
-    "message": "Sign authentication requests"
+    "message": "Signer les demandes d'authentification"
   },
   "ssoSettingsSaved": {
     "message": "La configuration SSO a été enregistrée."
@@ -4738,7 +4765,7 @@
     "message": "GRATUIT avec le parrainage"
   },
   "formErrorSummaryPlural": {
-    "message": "$COUNT$ fields above need your attention.",
+    "message": "$COUNT$ champs ci-dessus nécessitent votre attention.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -4747,10 +4774,10 @@
     }
   },
   "formErrorSummarySingle": {
-    "message": "1 field above needs your attention."
+    "message": "1 champ ci-dessus nécessite votre attention."
   },
   "fieldRequiredError": {
-    "message": "$FIELDNAME$ is required.",
+    "message": "$FIELDNAME$ est requis.",
     "placeholders": {
       "fieldname": {
         "content": "$1",
@@ -4759,16 +4786,16 @@
     }
   },
   "required": {
-    "message": "required"
+    "message": "requis"
   },
   "idpSingleSignOnServiceUrlRequired": {
-    "message": "Required if Entity ID is not a URL."
+    "message": "Requis si l'ID d'Entité n'est pas une URL."
   },
   "openIdOptionalCustomizations": {
-    "message": "Optional Customizations"
+    "message": "Personnalisations Optionnelles"
   },
   "openIdAuthorityRequired": {
-    "message": "Required if Authority is not valid."
+    "message": "Requis si l'Autorité n'est pas valide."
   },
   "separateMultipleWithComma": {
     "message": "Séparer avec des virgules."
