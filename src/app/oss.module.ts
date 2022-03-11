@@ -184,10 +184,10 @@ import { EmergencyAccessViewComponent } from "./settings/emergency-access-view.c
 import { EmergencyAccessComponent } from "./settings/emergency-access.component";
 import { EmergencyAddEditComponent } from "./settings/emergency-add-edit.component";
 import { LinkSsoComponent } from "./settings/link-sso.component";
-import { OptionsComponent } from "./settings/options.component";
 import { OrganizationPlansComponent } from "./settings/organization-plans.component";
 import { OrganizationsComponent } from "./settings/organizations.component";
 import { PaymentComponent } from "./settings/payment.component";
+import { PreferencesComponent } from "./settings/preferences.component";
 import { PremiumComponent } from "./settings/premium.component";
 import { ProfileComponent } from "./settings/profile.component";
 import { PurgeVaultComponent } from "./settings/purge-vault.component";
@@ -369,7 +369,6 @@ registerLocaleData(localeZhTw, "zh-TW");
     NavbarComponent,
     NestedCheckboxComponent,
     NotPremiumDirective,
-    OptionsComponent,
     OrgAccountComponent,
     OrgAddEditComponent,
     OrganizationBillingComponent,
@@ -417,6 +416,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     PasswordStrengthComponent,
     PaymentComponent,
     PersonalOwnershipPolicyComponent,
+    PreferencesComponent,
     PremiumBadgeComponent,
     PremiumComponent,
     ProfileComponent,
