@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Nota sicura"
   },
+  "typeLoginPlural": {
+    "message": "Login"
+  },
+  "typeCardPlural": {
+    "message": "Carte"
+  },
+  "typeIdentityPlural": {
+    "message": "Identità"
+  },
+  "typeSecureNotePlural": {
+    "message": "Note sicure"
+  },
   "folders": {
     "message": "Cartelle"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Elimina organizzazione"
   },
-  "deleteOrganizationDesc": {
-    "message": "Procedi sotto per eliminare questa organizzazione e tutti i dati associati. I singoli account utente rimarranno, anche se non saranno più associati a questa organizzazione. "
+  "deletingOrganizationContentWarning": {
+    "message": "Digita la password principale per confermare l'eliminazione di $ORGANIZATION$ e di tutti i dati associati. I dati della cassaforte in $ORGANIZATION$ includono:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "L'eliminazione dell'organizzazione è permanente. Non può essere annullata."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Gli account utente rimarranno attivi dopo l'eliminazione, ma non saranno più associati a questa organizzazione."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "L'eliminazione di $ORGANIZATION$ è definitiva e irreversibile.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organizzazione eliminata"
@@ -4483,10 +4510,10 @@
     "message": "Consenti risposta di autenticazione non richiesta"
   },
   "idpAllowOutboundLogoutRequests": {
-    "message": "Allow outbound logout requests"
+    "message": "Permetti richieste di disconnessione in uscita"
   },
   "idpSignAuthenticationRequests": {
-    "message": "Sign authentication requests"
+    "message": "Firma le richieste di autenticazione"
   },
   "ssoSettingsSaved": {
     "message": "La configurazione del Single Sign-On è stata salvata."
@@ -4762,7 +4789,7 @@
     "message": "obbligatorio"
   },
   "idpSingleSignOnServiceUrlRequired": {
-    "message": "Richiesto se l'ID dell'entità non è un URL."
+    "message": "Richiesto se l'Entity ID non è un URL."
   },
   "openIdOptionalCustomizations": {
     "message": "Personalizzazioni opzionali"

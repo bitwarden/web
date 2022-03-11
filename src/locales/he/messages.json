@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "פתק מאובטח"
   },
+  "typeLoginPlural": {
+    "message": "Logins"
+  },
+  "typeCardPlural": {
+    "message": "Cards"
+  },
+  "typeIdentityPlural": {
+    "message": "Identities"
+  },
+  "typeSecureNotePlural": {
+    "message": "Secure Notes"
+  },
   "folders": {
     "message": "תיקיות"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "מחק ארגון"
   },
-  "deleteOrganizationDesc": {
-    "message": "המשך כאן כדי למחוק את הארגון הזה ואת כל המידע המשויך. משתמשים פרטיים ישארו, אך הם לא יהיו משוייכים לארגון זה יותר."
+  "deletingOrganizationContentWarning": {
+    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "מחיקת ארגון היא סופית. לא ניתן לבטל פעולה זו."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "הארגון נמחק"

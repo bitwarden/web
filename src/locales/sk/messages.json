@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Zabezpečená poznámka"
   },
+  "typeLoginPlural": {
+    "message": "Prihlásenia"
+  },
+  "typeCardPlural": {
+    "message": "Karty"
+  },
+  "typeIdentityPlural": {
+    "message": "Identity"
+  },
+  "typeSecureNotePlural": {
+    "message": "Zabezpečené poznámky"
+  },
   "folders": {
     "message": "Priečinky"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Odstrániť organizáciu"
   },
-  "deleteOrganizationDesc": {
-    "message": "Pokračujte nižšie ak chcete odstrániť túto organizáciu a všetky súvisiace dáta. Individuálni používatelia budu zachovaní, ale už nebudú súčasťou tejto organizácie. "
+  "deletingOrganizationContentWarning": {
+    "message": "Zadaním hlavného hesla potvrďte odstránenie položky $ORGANIZATION$ a všetkých súvisiacich údajov. Údaje trezora v položke $ORGANIZATION$ zahŕňajú:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Odstránenie organizácie je trvalé. Operáciu nie je možné vrátiť späť."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Používateľské účty zostanú aktívne aj po odstránení, ale už nebudú spojené s touto organizáciou."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Odstránenie $ORGANIZATION$ je trvalé a nezvratné.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organizácia odstránená"

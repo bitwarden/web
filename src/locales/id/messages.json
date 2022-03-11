@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Catatan Aman"
   },
+  "typeLoginPlural": {
+    "message": "Masuk"
+  },
+  "typeCardPlural": {
+    "message": "Kartu"
+  },
+  "typeIdentityPlural": {
+    "message": "Identitas"
+  },
+  "typeSecureNotePlural": {
+    "message": "Catatan Aman"
+  },
   "folders": {
     "message": "Folder"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Hapus Organisasi"
   },
-  "deleteOrganizationDesc": {
-    "message": "Lanjutkan di bawah untuk menghapus organisasi ini dan semua data terkait. Akun pengguna individual akan tetap ada, meskipun mereka tidak akan dikaitkan lagi dengan organisasi ini. "
+  "deletingOrganizationContentWarning": {
+    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Menghapus organisasi bersifat permanen. Itu tidak bisa dibatalkan."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organisasi Dihapus"
@@ -2918,7 +2945,7 @@
     "message": "Kouta Langganan"
   },
   "subscriptionUpdated": {
-    "message": "Subscription updated"
+    "message": "Langganan diperbarui"
   },
   "additionalOptions": {
     "message": "Opsi Tambahan"
@@ -4600,7 +4627,7 @@
     "message": "Revoke"
   },
   "emailSent": {
-    "message": "Email Sent"
+    "message": "Email Terkirim"
   },
   "revokeSponsorshipConfirmation": {
     "message": "After removing this account, the Families organization owner will be responsible for this subscription and related invoices. Are you sure you want to continue?"
@@ -4618,22 +4645,22 @@
     "message": "Send a verification code to your email"
   },
   "sendCode": {
-    "message": "Send Code"
+    "message": "Kirim Kode"
   },
   "codeSent": {
-    "message": "Code Sent"
+    "message": "Kode Terkirim"
   },
   "verificationCode": {
-    "message": "Verification Code"
+    "message": "Kode Verifikasi"
   },
   "confirmIdentity": {
-    "message": "Confirm your identity to continue."
+    "message": "Konfirmasi identitas Anda untuk melanjutkan."
   },
   "verificationCodeRequired": {
-    "message": "Verification code is required."
+    "message": "Kode verifikasi diperlukan."
   },
   "invalidVerificationCode": {
-    "message": "Invalid verification code"
+    "message": "Kode verifikasi tidak valid"
   },
   "convertOrganizationEncryptionDesc": {
     "message": "$ORGANIZATION$ is using SSO with a self-hosted key server. A master password is no longer required to log in for members of this organization.",
@@ -4645,7 +4672,7 @@
     }
   },
   "leaveOrganization": {
-    "message": "Leave Organization"
+    "message": "Tinggalkan Organisasi"
   },
   "removeMasterPassword": {
     "message": "Remove Master Password"
@@ -4654,21 +4681,21 @@
     "message": "Master password removed."
   },
   "allowSso": {
-    "message": "Allow SSO authentication"
+    "message": "Izinkan autentikasi SSO"
   },
   "allowSsoDesc": {
     "message": "Once set up, your configuration will be saved and members will be able to authenticate using their Identity Provider credentials."
   },
   "ssoPolicyHelpStart": {
-    "message": "Enable the",
+    "message": "Aktifkan",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
-    "message": "SSO Authentication policy",
+    "message": "kebijakan Otentikasi SSO",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
-    "message": "to require all members to log in with SSO.",
+    "message": "untuk mewajibkan semua anggota masuk dengan SSO.",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpKeyConnector": {
@@ -4690,10 +4717,10 @@
     "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
   },
   "enabledSso": {
-    "message": "Enabled SSO"
+    "message": "Aktifkan SSO"
   },
   "disabledSso": {
-    "message": "Disabled SSO"
+    "message": "Matikan SSO"
   },
   "enabledKeyConnector": {
     "message": "Enabled Key Connector"
@@ -4750,7 +4777,7 @@
     "message": "1 field above needs your attention."
   },
   "fieldRequiredError": {
-    "message": "$FIELDNAME$ is required.",
+    "message": "$FIELDNAME$ diperlukan.",
     "placeholders": {
       "fieldname": {
         "content": "$1",
@@ -4759,13 +4786,13 @@
     }
   },
   "required": {
-    "message": "required"
+    "message": "diperlukan"
   },
   "idpSingleSignOnServiceUrlRequired": {
     "message": "Required if Entity ID is not a URL."
   },
   "openIdOptionalCustomizations": {
-    "message": "Optional Customizations"
+    "message": "Kustomisasi Opsional"
   },
   "openIdAuthorityRequired": {
     "message": "Required if Authority is not valid."

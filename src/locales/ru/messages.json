@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Защищенная заметка"
   },
+  "typeLoginPlural": {
+    "message": "Логины"
+  },
+  "typeCardPlural": {
+    "message": "Карты"
+  },
+  "typeIdentityPlural": {
+    "message": "Личная информация"
+  },
+  "typeSecureNotePlural": {
+    "message": "Защищенные заметки"
+  },
   "folders": {
     "message": "Папки"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Удалить организацию"
   },
-  "deleteOrganizationDesc": {
-    "message": "Выполните следующие действия, чтобы удалить эту организацию и все связанные с ней данные. Индивидуальные аккаунты пользователей останутся, но они больше не будут связаны с этой организацией. "
+  "deletingOrganizationContentWarning": {
+    "message": "Введите мастер-пароль для подтверждения удаления $ORGANIZATION$ и всех связанных с ней данных. Данные хранилища в $ORGANIZATION$ включают:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Удаление организации необратимо. Это действие будет нельзя отменить."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Учетные записи пользователей останутся активными после удаления, но больше не будут связаны с этой организацией."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Удаление $ORGANIZATION$ окончательно и необратимо.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Организация удалена"

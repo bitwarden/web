@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "보안 메모"
   },
+  "typeLoginPlural": {
+    "message": "Logins"
+  },
+  "typeCardPlural": {
+    "message": "Cards"
+  },
+  "typeIdentityPlural": {
+    "message": "Identities"
+  },
+  "typeSecureNotePlural": {
+    "message": "Secure Notes"
+  },
   "folders": {
     "message": "폴더"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "조직 삭제"
   },
-  "deleteOrganizationDesc": {
-    "message": "조직과 연관된 모든 데이터를 삭제하려면 다음 단계로 나아가십시오. 개인 사용자 계정은 유지되지만 더 이상 조직에 연결되지 않습니다. "
+  "deletingOrganizationContentWarning": {
+    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "조직 삭제는 영구적이며 되돌릴 수 없습니다."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "조직 삭제됨"

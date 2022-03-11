@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Droša piezīme"
   },
+  "typeLoginPlural": {
+    "message": "Pierakstīšanās vienumi"
+  },
+  "typeCardPlural": {
+    "message": "Kartes"
+  },
+  "typeIdentityPlural": {
+    "message": "Identitātes"
+  },
+  "typeSecureNotePlural": {
+    "message": "Drošās piezīmes"
+  },
   "folders": {
     "message": "Mapes"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Izdzēst apvienību"
   },
-  "deleteOrganizationDesc": {
-    "message": "Turpiniet zemāk lai izdzēstu organizāciju un visus ar to saistītos datus. Individuāli lietotāju konti paliks, bet tie vairs nebūs saistīti ar šo organizāciju. "
+  "deletingOrganizationContentWarning": {
+    "message": "Ir jāievada galvenā parole, lai apstiprinātu $ORGANIZATION$ un saistīto datu dzēšanu. $ORGANIZATION$ glabātavas dati iekļauj:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Apvienības dzēšana ir paliekoša. To nevar atsaukt."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Pēc dzēšanas lietotāju konti joprojām darbosies, bet tie vairs nebūs saistīti ar šo apvienību."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "$ORGANIZATION$ dzēšana ir paliekoša un neatgriezeniska.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Apvienība izdzēsta"
@@ -4483,10 +4510,10 @@
     "message": "Atļaut nelūgtas autentifikācijas atbildi"
   },
   "idpAllowOutboundLogoutRequests": {
-    "message": "Allow outbound logout requests"
+    "message": "Atļaut izejošos izrakstīšanās pieprasījumus"
   },
   "idpSignAuthenticationRequests": {
-    "message": "Sign authentication requests"
+    "message": "Parakstīt autentifikācijas pieprasījumus"
   },
   "ssoSettingsSaved": {
     "message": "Vienotās pieteikšanās uzstādījumi tika saglabāti."
@@ -4738,7 +4765,7 @@
     "message": "Bezmaksas ar pabalstītājdarbību"
   },
   "formErrorSummaryPlural": {
-    "message": "$COUNT$ fields above need your attention.",
+    "message": "$COUNT$ augstāk esošajiem laukiem ir jāpievērš uzmanība.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -4747,10 +4774,10 @@
     }
   },
   "formErrorSummarySingle": {
-    "message": "1 field above needs your attention."
+    "message": "1 augstāk esošajam laukam jāpievērš uzmanība."
   },
   "fieldRequiredError": {
-    "message": "$FIELDNAME$ is required.",
+    "message": "$FIELDNAME$ ir nepieciešams.",
     "placeholders": {
       "fieldname": {
         "content": "$1",
@@ -4759,19 +4786,19 @@
     }
   },
   "required": {
-    "message": "required"
+    "message": "nepieciešams"
   },
   "idpSingleSignOnServiceUrlRequired": {
-    "message": "Required if Entity ID is not a URL."
+    "message": "Nepieciešams, ja vienības Id nav URL."
   },
   "openIdOptionalCustomizations": {
-    "message": "Optional Customizations"
+    "message": "Papildu pielāgojumi"
   },
   "openIdAuthorityRequired": {
-    "message": "Required if Authority is not valid."
+    "message": "Nepieciešams, ja autoritāte ir nederīga."
   },
   "separateMultipleWithComma": {
-    "message": "Separate multiple with a comma."
+    "message": "Vairākus atdalīt ar komatu."
   },
   "sessionTimeout": {
     "message": "Sesijai iestājās noildze. Lūgums mēģināt pierakstīties vēlreiz."

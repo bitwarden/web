@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Захищена нотатка"
   },
+  "typeLoginPlural": {
+    "message": "Logins"
+  },
+  "typeCardPlural": {
+    "message": "Cards"
+  },
+  "typeIdentityPlural": {
+    "message": "Identities"
+  },
+  "typeSecureNotePlural": {
+    "message": "Secure Notes"
+  },
   "folders": {
     "message": "Теки"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Видалити організацію"
   },
-  "deleteOrganizationDesc": {
-    "message": "Продовжуйте внизу, щоб видалити цю організацію і всі пов'язані дані. Індивідуальні облікові записи користувачів залишаться без змін, однак, вони більше не будуть пов'язані з цією організацією. "
+  "deletingOrganizationContentWarning": {
+    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Видалення організації є незворотною дією. Її неможливо скасувати."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Організацію видалено"
