@@ -51,6 +51,7 @@ import { SendComponent } from "./send/send.component";
 import { OrganizationGuardService } from "./services/organization-guard.service";
 import { OrganizationTypeGuardService } from "./services/organization-type-guard.service";
 import { AccountComponent } from "./settings/account.component";
+import { ChangePasswordComponent } from "./settings/change-password.component";
 import { CreateOrganizationComponent } from "./settings/create-organization.component";
 import { DomainRulesComponent } from "./settings/domain-rules.component";
 import { EmergencyAccessViewComponent } from "./settings/emergency-access-view.component";
@@ -58,6 +59,8 @@ import { EmergencyAccessComponent } from "./settings/emergency-access.component"
 import { OrganizationsComponent } from "./settings/organizations.component";
 import { PreferencesComponent } from "./settings/preferences.component";
 import { PremiumComponent } from "./settings/premium.component";
+import { SecurityKeysComponent } from "./settings/security-keys.component";
+import { SecurityComponent } from "./settings/security.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { SponsoredFamiliesComponent } from "./settings/sponsored-families.component";
 import { TwoFactorSetupComponent } from "./settings/two-factor-setup.component";
@@ -184,14 +187,32 @@ const routes: Routes = [
             data: { titleId: "preferences" },
           },
           {
+            path: "security",
+            component: SecurityComponent,
+            data: { titleId: "security" },
+            children: [
+              { path: "", pathMatch: "full", redirectTo: "change-password" },
+              {
+                path: "change-password",
+                component: ChangePasswordComponent,
+                data: { titleId: "masterPassword" },
+              },
+              {
+                path: "two-factor",
+                component: TwoFactorSetupComponent,
+                data: { titleId: "twoStepLogin" },
+              },
+              {
+                path: "security-keys",
+                component: SecurityKeysComponent,
+                data: { titleId: "keys" },
+              },
+            ],
+          },
+          {
             path: "domain-rules",
             component: DomainRulesComponent,
             data: { titleId: "domainRules" },
-          },
-          {
-            path: "two-factor",
-            component: TwoFactorSetupComponent,
-            data: { titleId: "twoStepLogin" },
           },
           { path: "premium", component: PremiumComponent, data: { titleId: "goPremium" } },
           { path: "billing", component: UserBillingComponent, data: { titleId: "billing" } },

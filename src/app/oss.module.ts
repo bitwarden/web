@@ -191,6 +191,8 @@ import { PreferencesComponent } from "./settings/preferences.component";
 import { PremiumComponent } from "./settings/premium.component";
 import { ProfileComponent } from "./settings/profile.component";
 import { PurgeVaultComponent } from "./settings/purge-vault.component";
+import { SecurityKeysComponent } from "./settings/security-keys.component";
+import { SecurityComponent } from "./settings/security.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { SponsoredFamiliesComponent } from "./settings/sponsored-families.component";
 import { SponsoringOrgRowComponent } from "./settings/sponsoring-org-row.component";
@@ -431,6 +433,8 @@ registerLocaleData(localeZhTw, "zh-TW");
     ReusedPasswordsReportComponent,
     SearchCiphersPipe,
     SearchPipe,
+    SecurityComponent,
+    SecurityKeysComponent,
     SelectCopyDirective,
     SendAddEditComponent,
     SendComponent,
