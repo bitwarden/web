@@ -12,6 +12,6 @@ export class SecurityComponent {
   constructor(private keyConnectorService: KeyConnectorService) {}
 
   async ngOnInit() {
-    this.showChangePassword = await this.keyConnectorService.getUsesKeyConnector();
+    this.showChangePassword = !(await this.keyConnectorService.getUsesKeyConnector());
   }
 }

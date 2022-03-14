@@ -53,7 +53,7 @@ import localeZhTw from "@angular/common/locales/zh-Hant";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { BadgeModule } from "@bitwarden/components";
+import { BadgeModule, ButtonModule } from "@bitwarden/components";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { ToastrModule } from "ngx-toastr";
 
@@ -298,6 +298,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     ReactiveFormsModule,
     RouterModule,
     BadgeModule,
+    ButtonModule,
   ],
   declarations: [
     A11yInvalidDirective,

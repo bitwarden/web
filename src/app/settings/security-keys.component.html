@@ -8,10 +8,10 @@
 <p>
   {{ "userApiKeyDesc" | i18n }}
 </p>
-<button type="button" class="btn btn-outline-secondary" (click)="viewUserApiKey()">
+<button bit-button buttonType="secondary" (click)="viewUserApiKey()">
   {{ "viewApiKey" | i18n }}
 </button>
-<button type="button" class="btn btn-outline-secondary" (click)="rotateUserApiKey()">
+<button bit-button buttonType="secondary" (click)="rotateUserApiKey()">
   {{ "rotateApiKey" | i18n }}
 </button>
 <ng-template #viewUserApiKeyTemplate></ng-template>

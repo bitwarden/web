@@ -5,7 +5,7 @@
 <p *ngIf="organizationId">{{ "twoStepLoginOrganizationDesc" | i18n }}</p>
 <app-callout type="warning" *ngIf="!organizationId">
   <p>{{ "twoStepLoginRecoveryWarning" | i18n }}</p>
-  <button type="button" class="btn btn-outline-secondary" (click)="recoveryCode()">
+  <button bit-button buttonType="secondary" (click)="recoveryCode()">
     {{ "viewRecoveryCode" | i18n }}
   </button>
 </app-callout>
@@ -44,6 +44,7 @@
       {{ p.description }}
     </div>
     <div class="ml-auto">
+      <!--TODO Update Component Library with size element-->
       <button
         type="button"
         class="btn btn-outline-secondary btn-sm"
