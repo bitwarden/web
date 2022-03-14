@@ -55,8 +55,8 @@ import { CreateOrganizationComponent } from "./settings/create-organization.comp
 import { DomainRulesComponent } from "./settings/domain-rules.component";
 import { EmergencyAccessViewComponent } from "./settings/emergency-access-view.component";
 import { EmergencyAccessComponent } from "./settings/emergency-access.component";
-import { OptionsComponent } from "./settings/options.component";
 import { OrganizationsComponent } from "./settings/organizations.component";
+import { PreferencesComponent } from "./settings/preferences.component";
 import { PremiumComponent } from "./settings/premium.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { SponsoredFamiliesComponent } from "./settings/sponsored-families.component";
@@ -172,7 +172,11 @@ const routes: Routes = [
         children: [
           { path: "", pathMatch: "full", redirectTo: "account" },
           { path: "account", component: AccountComponent, data: { titleId: "myAccount" } },
-          { path: "options", component: OptionsComponent, data: { titleId: "options" } },
+          {
+            path: "preferences",
+            component: PreferencesComponent,
+            data: { titleId: "preferences" },
+          },
           {
             path: "domain-rules",
             component: DomainRulesComponent,
