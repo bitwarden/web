@@ -4473,9 +4473,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Vienotās izrakstīšanās pakalpojuma URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artefaktu atrisināšanas pakalpojuma URL"
-  },
   "idpX509PublicCert": {
     "message": "X509 publiskais sertifikāts"
   },
@@ -4485,11 +4482,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Atļaut nelūgtas autentifikācijas atbildi"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Atspējot izejošos izrakstīšanās pieprasījumus"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Allow outbound logout requests"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Grib parakstītus autentifikācijas pieprasījumus"
+  "idpSignAuthenticationRequests": {
+    "message": "Sign authentication requests"
   },
   "ssoSettingsSaved": {
     "message": "Vienotās pieteikšanās uzstādījumi tika saglabāti."
@@ -4739,5 +4736,68 @@
   },
   "freeWithSponsorship": {
     "message": "Bezmaksas ar pabalstītājdarbību"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ fields above need your attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 field above needs your attention."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ is required.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "required"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Required if Entity ID is not a URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Optional Customizations"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Required if Authority is not valid."
+  },
+  "separateMultipleWithComma": {
+    "message": "Separate multiple with a comma."
+  },
+  "sessionTimeout": {
+    "message": "Sesijai iestājās noildze. Lūgums mēģināt pierakstīties vēlreiz."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Izdod personīgo glabātavu"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Izdod apvienības glabātavu"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Tiks izdoti tikai personīgie glabātavas vienumi, kas ir saistīti ar $EMAIL$. Apvienības glabātavas vienumi netiks iekļauti.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Tiks izdota tikai apvienības glabātava, kas ir saistīta ar $ORGANIZATION$. Personīgie glabātavas vienumi un vienumi no citām apvienībām netiks iekļauti.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   }
 }

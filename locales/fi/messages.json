@@ -4417,22 +4417,22 @@
     "message": "Hanki Claim-arvot käyttäjätietojen päätepisteestä"
   },
   "additionalScopes": {
-    "message": "Muut/mukautetut Scopes-arvot (pilkulla eroteltuna)"
+    "message": "Mukautetut Scopes-arvot"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Muut/mukautetut User ID Claim Types -arvot (pilkulla eroteltuna)"
+    "message": "Mukautetut käyttäjätunnuksen Claim-tyypit"
   },
   "additionalEmailClaimTypes": {
-    "message": "Muut/mukautetut Email Claim Types -arvot (pilkulla eroteltuna)"
+    "message": "Sähköpostin Claim-tyypit"
   },
   "additionalNameClaimTypes": {
-    "message": "Muut/mukautetut Name Claim Types -arvot (pilkulla eroteltuna)"
+    "message": "Mukautetut nimen Claim-tyypit"
   },
   "acrValues": {
-    "message": "Pyydetyt Authentication Context Class Reference -arvot (acr_values)"
+    "message": "Pyydetyt Authentication Context Class -viitearvot"
   },
   "expectedReturnAcrValue": {
-    "message": "Odotettu \"acr\" Claim-arvo vastauksessa (acr validation)"
+    "message": "Odotettu \"acr\" Claim-arvo vastauksessa"
   },
   "spEntityId": {
     "message": "SP Entity ID"
@@ -4456,7 +4456,7 @@
     "message": "Pienin sallittu Incoming Signing -algoritmi"
   },
   "spWantAssertionsSigned": {
-    "message": "Vaadi Assertion-lähetykset allekirjoitettuina"
+    "message": "Odota Assertion-lähetysten allekirjoitusta"
   },
   "spValidateCertificates": {
     "message": "Vahvista varmenteet"
@@ -4473,9 +4473,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Single Log Out Service URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
-  },
   "idpX509PublicCert": {
     "message": "Julkinen X509 -varmenne"
   },
@@ -4485,11 +4482,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Salli Unsolicited-todennusvastaus"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Poista Outbound Logout -pyynnöt käytöstä"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Salli lähtevät uloskirjautumispyynnöt"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Vaadi Authentication-pyynnöt allekirjoitettuina"
+  "idpSignAuthenticationRequests": {
+    "message": "Allekirjoita todennuspyynnöt"
   },
   "ssoSettingsSaved": {
     "message": "Kertakirjautumisen (SSO) määritykset tallennettiin."
@@ -4739,5 +4736,68 @@
   },
   "freeWithSponsorship": {
     "message": "ILMAINEN sponsoroinnilla"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ yllä olevaa kenttää vaatii huomiotasi.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 yllä oleva kenttä vaatii huomiotasi."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ on pakollinen.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "pakollinen"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Vaaditaan, jos Entity ID ei ole kelvollinen URL-osoite."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Valinnaiset mukautukset"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Vaaditaan jos viranomainen ei ole kelvollinen."
+  },
+  "separateMultipleWithComma": {
+    "message": "Erota useita pilkuilla."
+  },
+  "sessionTimeout": {
+    "message": "Istuntosi on aikakatkaistu. Palaa takaisin ja yritä kirjautua uudelleen."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Henkilökohtaisen holvin vienti"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Organisaation holvin vienti"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Vain tunnukseen $EMAIL$ liitetyt henkilökohtaiset holvin kohteet viedään. Organisaation kohteet eivät sisälly tähän.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Vain organisaatioon $ORGANIZATION$ liitetyt holvin kohteet viedään. Henkilökohtaiset ja muiden organisaatioiden kohteet eivät sisälly tähän.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   }
 }

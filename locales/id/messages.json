@@ -2612,7 +2612,7 @@
     }
   },
   "removedOrganizationId": {
-    "message": "Removed organization $ID$.",
+    "message": "Organisasi yang dihapus $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2912,10 +2912,10 @@
     }
   },
   "limitSubscription": {
-    "message": "Limit Subscription (Optional)"
+    "message": "Batasi Langganan (Opsional)"
   },
   "subscriptionSeats": {
-    "message": "Subscription Seats"
+    "message": "Kouta Langganan"
   },
   "subscriptionUpdated": {
     "message": "Subscription updated"
@@ -4262,7 +4262,7 @@
     "message": "Provider Saya"
   },
   "addOrganizationConfirmation": {
-    "message": "Are you sure you want to add $ORGANIZATION$ as a client to $PROVIDER$?",
+    "message": "Anda yakin ingin menambahkan $ORGANIZATION$ sebagai klien $PROVIDER$?",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4329,16 +4329,16 @@
     "message": "Your Master Password does not meet the policy requirements of this organization. In order to join the organization, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
   },
   "maximumVaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Batas Waktu Brankas"
   },
   "maximumVaultTimeoutDesc": {
     "message": "Configure a maximum vault timeout for all users."
   },
   "maximumVaultTimeoutLabel": {
-    "message": "Maximum Vault Timeout"
+    "message": "Batas waktu Maksimal Brankas"
   },
   "invalidMaximumVaultTimeout": {
-    "message": "Invalid Maximum Vault Timeout."
+    "message": "Batas waktu Maksimal Brankas tidak valid."
   },
   "hours": {
     "message": "Jam"
@@ -4372,13 +4372,13 @@
     "message": "Prohibits users from exporting their private vault data."
   },
   "vaultExportDisabled": {
-    "message": "Vault Export Disabled"
+    "message": "Ekspor Brankas Dinonaktifkan"
   },
   "personalVaultExportPolicyInEffect": {
     "message": "One or more organization policies prevents you from exporting your personal vault."
   },
   "selectType": {
-    "message": "Select SSO Type"
+    "message": "Pilih Tipe SSO"
   },
   "type": {
     "message": "Tipe"
@@ -4414,31 +4414,31 @@
     "message": "OIDC Redirect Behavior"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "Get claims from user info endpoint"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "Custom Scopes"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "Custom User ID Claim Types"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "Email Claim Types"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "Custom Name Claim Types"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "Requested Authentication Context Class Reference values"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "Expected \"acr\" Claim Value In Response"
   },
   "spEntityId": {
-    "message": "SP Entity ID"
+    "message": "ID Entitas SP"
   },
   "spMetadataUrl": {
-    "message": "SAML 2.0 Metadata URL"
+    "message": "Metadata URL SAML 2.0"
   },
   "spAcsUrl": {
     "message": "Assertion Consumer Service (ACS) URL"
@@ -4456,16 +4456,16 @@
     "message": "Minimum Incoming Signing Algorithm"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "Expect signed assertions"
   },
   "spValidateCertificates": {
-    "message": "Validate Certificates"
+    "message": "Validate certificates"
   },
   "idpEntityId": {
-    "message": "Entity ID"
+    "message": "ID Entitas"
   },
   "idpBindingType": {
-    "message": "Binding Type"
+    "message": "Tipe Binding"
   },
   "idpSingleSignOnServiceUrl": {
     "message": "Single Sign On Service URL"
@@ -4473,23 +4473,20 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Single Log Out Service URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
-  },
   "idpX509PublicCert": {
-    "message": "X509 Public Certificate"
+    "message": "Sertifikat Publik X509"
   },
   "idpOutboundSigningAlgorithm": {
     "message": "Outbound Signing Algorithm"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "Allow unsolicited authentication response"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Allow outbound logout requests"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+  "idpSignAuthenticationRequests": {
+    "message": "Sign authentication requests"
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
@@ -4739,5 +4736,68 @@
   },
   "freeWithSponsorship": {
     "message": "FREE with sponsorship"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ fields above need your attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 field above needs your attention."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ is required.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "required"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Required if Entity ID is not a URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Optional Customizations"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Required if Authority is not valid."
+  },
+  "separateMultipleWithComma": {
+    "message": "Separate multiple with a comma."
+  },
+  "sessionTimeout": {
+    "message": "Your session has timed out. Please go back and try logging in again."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exporting Personal Vault"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Exporting Organization Vault"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Only the personal vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Only the organization vault associated with $ORGANIZATION$ will be exported. Personal vault items and items from other organizations will not be included.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   }
 }

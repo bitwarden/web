@@ -432,7 +432,7 @@
     "message": "Lägg till ny bilaga"
   },
   "deletedAttachment": {
-    "message": "Deleted attachment"
+    "message": "Raderade bilaga"
   },
   "deleteAttachmentConfirmation": {
     "message": "Är du säker på att du vill radera denna bilaga?"
@@ -904,7 +904,7 @@
     "message": "Ändra e-postadress"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Proceeding will change your account email address. It will not change the email address used for two-factor authentication. You can change this email address in the Two-Step Login settings."
+    "message": "Fortsätter du så kommer din e-postadress att ändras för ditt konto. Det kommer inte att ändra e-postadressen som används för tvåfaktorsautentisering. Du kan ändra denna e-postadress i inställningarna för tvåstegsverifiering."
   },
   "newEmail": {
     "message": "Ny e-postadress"
@@ -2249,7 +2249,7 @@
     "message": "Bekräftad"
   },
   "clientOwnerEmail": {
-    "message": "Client Owner Email"
+    "message": "E-post för klientägare"
   },
   "owner": {
     "message": "Ägare"
@@ -2594,7 +2594,7 @@
     }
   },
   "createdOrganizationId": {
-    "message": "Created organization $ID$.",
+    "message": "Skapade organisation $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2603,7 +2603,7 @@
     }
   },
   "addedOrganizationId": {
-    "message": "Added organization $ID$.",
+    "message": "Skapade organisation $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2612,7 +2612,7 @@
     }
   },
   "removedOrganizationId": {
-    "message": "Removed organization $ID$.",
+    "message": "Tog bort organisation $ID$.",
     "placeholders": {
       "id": {
         "content": "$1",
@@ -2660,7 +2660,7 @@
     "message": "Skicka inbjudan igen"
   },
   "resendEmail": {
-    "message": "Resend Email"
+    "message": "Skicka e-postmeddelande igen"
   },
   "hasBeenReinvited": {
     "message": "$USER$ har bjudits in igen.",
@@ -2876,7 +2876,7 @@
     "message": "Företag"
   },
   "bankAccountTypeIndividual": {
-    "message": "Individual (Personal)"
+    "message": "Individuell (personlig)"
   },
   "enterInstallationId": {
     "message": "Ange ditt installations-id"
@@ -3536,7 +3536,7 @@
     "message": "Maximalt antal åtkomster"
   },
   "maxAccessCountDesc": {
-    "message": "Om angivet kommer användare inte längre komma åt denna försändelse när det maximala antalet åtkomster har uppnåtts.",
+    "message": "If set, users will no longer be able to access this Send once the maximum access count is reached.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "currentAccessCount": {
@@ -3598,18 +3598,18 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendProtectedPasswordDontKnow": {
-    "message": "Vet du inte lösenordet? Fråga avsändaren om lösenordet som behövs för att komma åt denna försändelse.",
+    "message": "Don't know the password? Ask the Sender for the password needed to access this Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendHiddenByDefault": {
-    "message": "Denna försändelse är dold som standard. Du kan växla dess synlighet med knappen nedan.",
+    "message": "This send is hidden by default. You can toggle its visibility using the button below.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "downloadFile": {
     "message": "Ladda ner fil"
   },
   "sendAccessUnavailable": {
-    "message": "Försändelsen du försöker komma åt finns inte eller är inte längre tillgänglig.",
+    "message": "The Send you are trying to access does not exist or is no longer available.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "missingSendFile": {
@@ -3778,7 +3778,7 @@
     "message": "Inaktivera Send"
   },
   "disableSendPolicyDesc": {
-    "message": "Låt inte användare skapa eller redigera en Bitwarden Send. Det är fortfarande tillåtet att radera en befintlig sändning.",
+    "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
@@ -3789,7 +3789,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "På grund av en företagspolicy kan du bara radera befintliga försändelser.",
+    "message": "Due to an enterprise policy, you are only able to delete an existing Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
@@ -3848,16 +3848,16 @@
     "message": "Åtkomst till rapporter"
   },
   "missingPermissions": {
-    "message": "You lack the necessary permissions to perform this action."
+    "message": "Du har inte tillstånd att utföra den här åtgärden."
   },
   "manageAllCollections": {
     "message": "Hantera alla samlingar"
   },
   "createNewCollections": {
-    "message": "Create New Collections"
+    "message": "Skapa ny samling"
   },
   "editAnyCollection": {
-    "message": "Edit Any Collection"
+    "message": "Ändra samling"
   },
   "deleteAnyCollection": {
     "message": "Delete Any Collection"
@@ -3866,7 +3866,7 @@
     "message": "Hantera tilldelade samlingar"
   },
   "editAssignedCollections": {
-    "message": "Edit Assigned Collections"
+    "message": "Redigera tilldelade samlingar"
   },
   "deleteAssignedCollections": {
     "message": "Delete Assigned Collections"
@@ -3905,11 +3905,11 @@
     "message": "Inaktivera personligt ägarskap för organisationens användare"
   },
   "textHiddenByDefault": {
-    "message": "Dölj texten som standard när försändelsen öppnas",
+    "message": "When accessing the Send, hide the text by default",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendNameDesc": {
-    "message": "Ett användarvänligt namn för att beskriva denna försändelse.",
+    "message": "A friendly name to describe this Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendTextDesc": {
@@ -3919,7 +3919,7 @@
     "message": "Filen du vill skicka."
   },
   "copySendLinkOnSave": {
-    "message": "Kopiera länken för att dela den här försändelsen när den har sparats."
+    "message": "Copy the link to share this Send to my clipboard upon save."
   },
   "sendLinkLabel": {
     "message": "Send link",
@@ -4414,25 +4414,25 @@
     "message": "OIDC Redirect Behavior"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "Get claims from user info endpoint"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "Custom Scopes"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "Custom User ID Claim Types"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "Email Claim Types"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "Custom Name Claim Types"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "Requested Authentication Context Class Reference values"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "Expected \"acr\" Claim Value In Response"
   },
   "spEntityId": {
     "message": "SP Entity ID"
@@ -4456,10 +4456,10 @@
     "message": "Minimum Incoming Signing Algorithm"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "Expect signed assertions"
   },
   "spValidateCertificates": {
-    "message": "Validate Certificates"
+    "message": "Validate certificates"
   },
   "idpEntityId": {
     "message": "Entity ID"
@@ -4473,9 +4473,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Single Log Out Service URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
-  },
   "idpX509PublicCert": {
     "message": "X509 Public Certificate"
   },
@@ -4483,13 +4480,13 @@
     "message": "Outbound Signing Algorithm"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "Allow unsolicited authentication response"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Allow outbound logout requests"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+  "idpSignAuthenticationRequests": {
+    "message": "Sign authentication requests"
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
@@ -4739,5 +4736,68 @@
   },
   "freeWithSponsorship": {
     "message": "FREE with sponsorship"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ fields above need your attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 field above needs your attention."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ is required.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "required"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Required if Entity ID is not a URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Optional Customizations"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Required if Authority is not valid."
+  },
+  "separateMultipleWithComma": {
+    "message": "Separate multiple with a comma."
+  },
+  "sessionTimeout": {
+    "message": "Your session has timed out. Please go back and try logging in again."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exporting Personal Vault"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Exporting Organization Vault"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Only the personal vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Only the organization vault associated with $ORGANIZATION$ will be exported. Personal vault items and items from other organizations will not be included.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   }
 }

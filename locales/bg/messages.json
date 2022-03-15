@@ -4341,10 +4341,10 @@
     "message": "Неправилно максимално време за достъп."
   },
   "hours": {
-    "message": "Hours"
+    "message": "Часа"
   },
   "minutes": {
-    "message": "Minutes"
+    "message": "Минути"
   },
   "vaultTimeoutPolicyInEffect": {
     "message": "Настройките на организацията Ви влияят върху времето за достъп до трезора Ви. Максималното разрешено време за достъп е $HOURS$ час(а) и $MINUTES$ минути",
@@ -4414,25 +4414,25 @@
     "message": "OIDC Redirect Behavior"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "Get claims from user info endpoint"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "Custom Scopes"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "Custom User ID Claim Types"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "Email Claim Types"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "Custom Name Claim Types"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "Requested Authentication Context Class Reference values"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "Expected \"acr\" Claim Value In Response"
   },
   "spEntityId": {
     "message": "SP Entity ID"
@@ -4456,7 +4456,7 @@
     "message": "Minimum Incoming Signing Algorithm"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "Expect signed assertions"
   },
   "spValidateCertificates": {
     "message": "Проверка на сертификатите"
@@ -4473,9 +4473,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Адрес на услугата за еднократно отписване"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
-  },
   "idpX509PublicCert": {
     "message": "Публичен сертификат X509"
   },
@@ -4485,11 +4482,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Разрешаване на непоискан отговор при удостоверяване"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Забраняване на изходящи заявки за отписване"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Разрешаване на изходящите заявки за отписване"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Искане на подписани заявки за удостоверяване"
+  "idpSignAuthenticationRequests": {
+    "message": "Подписване на заявките за удостоверяване"
   },
   "ssoSettingsSaved": {
     "message": "Настройката на еднократната идентификация е запазена."
@@ -4739,5 +4736,68 @@
   },
   "freeWithSponsorship": {
     "message": "БЕЗПЛАТНО чрез спонсориране"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ полета по-горе се нуждаят от вниманието Ви.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 поле по-горе се нуждае от вниманието Ви."
+  },
+  "fieldRequiredError": {
+    "message": "Полето „$FIELDNAME$“ е задължително.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "задължително"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Required if Entity ID is not a URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Незадължителни персонализации"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Required if Authority is not valid."
+  },
+  "separateMultipleWithComma": {
+    "message": "Separate multiple with a comma."
+  },
+  "sessionTimeout": {
+    "message": "Сесията Ви изтече. Моля, върнете се назад и се опитайте да влезете отново."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Изнасяне на личния трезор"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Изнасяне на трезора на организацията"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Ще бъдат изнесени само записите от личния трезор свързан с $EMAIL$. Записите в трезора на организацията няма да бъдат включени.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Ще бъдат изнесени само записите от трезора свързан с $ORGANIZATION$. Записите в личния трезор и тези в други организации няма да бъдат включени.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   }
 }
