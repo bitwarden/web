@@ -159,15 +159,6 @@ const plugins = [
   }),
 ];
 
-if (NODE_ENV === "production") {
-  plugins.unshift(
-    new webpack.DefinePlugin({
-      ngDevMode: false,
-      ngI18nClosureMode: false,
-    })
-  );
-}
-
 // ref: https://webpack.js.org/configuration/dev-server/#devserver
 let certSuffix = fs.existsSync("dev-server.local.pem") ? ".local" : ".shared";
 const devServer =
@@ -259,6 +250,13 @@ const webpackConfig = {
       new TerserPlugin({
         terserOptions: {
           safari10: true,
+          // Replicate Angular CLI behaviour
+          compress: {
+            global_defs: {
+              ngDevMode: false,
+              ngI18nClosureMode: false,
+            },
+          },
         },
       }),
     ],
