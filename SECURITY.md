@@ -5,7 +5,7 @@ If you believe you've found a potential security issue, please submit a report t
 # Disclosure Policy
 
 - Let us know as soon as possible upon discovery of a potential security issue, and we'll make every effort to quickly resolve the issue.
-- Provide us a reasonable amount of time to resolve the issue before any disclosure to the public or a third-party. We may publicly disclose the issue before resolving it, if appropriate. 
+- Provide us a reasonable amount of time to resolve the issue before any disclosure to the public or a third-party. We may publicly disclose the issue before resolving it, if appropriate.
 - Make a good faith effort to avoid privacy violations, destruction of data, and interruption or degradation of our service. Only interact with accounts you own or with explicit permission of the account holder.
 - If you would like to encrypt your report, please use the PGP key with long ID `0xDE6887086F892325FEC04CC0D847525B6931381F` (available in the public keyserver pool).
 
