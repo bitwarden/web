@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -11,26 +11,15 @@ import { Organization } from "jslib-common/models/domain/organization";
   templateUrl: "organization-picker.component.html",
 })
 export class OrganizationPickerComponent implements OnInit {
-  constructor(
-    private organizationService: OrganizationService,
-    private i18nService: I18nService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private organizationService: OrganizationService, private i18nService: I18nService) {}
 
-  activeOrganizationId: string;
+  @Input() activeOrganization: Organization = null;
   organizations: Organization[] = [];
 
   loaded = false;
 
-  get activeOrganization() {
-    return this.organizations.find((org) => org.id == this.activeOrganizationId);
-  }
-
   async ngOnInit() {
-    this.route.params.subscribe(async (params: any) => {
-      this.activeOrganizationId = params.organizationId;
-      await this.load();
-    });
+    await this.load();
   }
 
   async load() {
