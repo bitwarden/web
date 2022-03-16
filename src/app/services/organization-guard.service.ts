@@ -16,28 +16,17 @@ export class OrganizationGuardService implements CanActivate {
   ) {}
 
   async canActivate(route: ActivatedRouteSnapshot) {
-    if (route.params.organizationId == null) {
-      const allOrgs = await this.organizationService.getAll();
-      const adminOrgs = allOrgs.filter((org) => org.isAdmin);
-      if (adminOrgs.length < 1) {
-        return this.cancelNavigation();
-      }
-      const sortedOrgs = adminOrgs.sort(Utils.getSortFunction(this.i18nService, "name"));
-      this.router.navigate(["/organizations", sortedOrgs[0].id]);
-      return false;
+    const organizationId = route.params.organizationId;
+    if (organizationId != null) {
+      return this.canActivateOrganization(organizationId);
+    } else {
+      return this.canActivateAnyOrganization();
     }
+  }
 
-    const org = await this.organizationService.get(route.params.organizationId);
+  private async canActivateOrganization(organizationId: string) {
+    const org = await this.organizationService.get(organizationId);
     if (org == null) {
-      return this.cancelNavigation();
-    }
-
-    if (!org.canAccessAdminView) {
-      this.platformUtilsService.showToast(
-        "error",
-        this.i18nService.t("accessDenied"),
-        this.i18nService.t("accessDeniedOrganizations")
-      );
       return this.cancelNavigation();
     }
 
@@ -50,6 +39,28 @@ export class OrganizationGuardService implements CanActivate {
       return this.cancelNavigation();
     }
 
+    if (!org.canAccessAdminView) {
+      this.platformUtilsService.showToast(
+        "error",
+        this.i18nService.t("accessDenied"),
+        this.i18nService.t("accessDeniedOrganization")
+      );
+      return this.cancelNavigation();
+    }
+    return true;
+  }
+
+  private async canActivateAnyOrganization() {
+    const allOrgs = await this.organizationService.getAll();
+    const adminOrgs = allOrgs.filter((org) => org.canAccessAdminView);
+    if (adminOrgs.length < 1) {
+      this.platformUtilsService.showToast(
+        "error",
+        this.i18nService.t("accessDenied"),
+        this.i18nService.t("accessDeniedAnyOrganization")
+      );
+      return this.cancelNavigation();
+    }
     return true;
   }
 

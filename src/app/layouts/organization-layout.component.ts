@@ -1,8 +1,10 @@
 import { Component, NgZone, OnDestroy, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 
 import { BroadcasterService } from "jslib-common/abstractions/broadcaster.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
+import { Utils } from "jslib-common/misc/utils";
 import { Organization } from "jslib-common/models/domain/organization";
 
 const BroadcasterSubscriptionId = "OrganizationLayoutComponent";
@@ -20,7 +22,9 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private organizationService: OrganizationService,
     private broadcasterService: BroadcasterService,
-    private ngZone: NgZone
+    private ngZone: NgZone,
+    private i18nService: I18nService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -45,7 +49,15 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
   }
 
   async load() {
-    this.organization = await this.organizationService.get(this.organizationId);
+    if (this.organizationId != null) {
+      this.organization = await this.organizationService.get(this.organizationId);
+    } else {
+      const orgs = await this.organizationService.getAll();
+      const allowedOrgs = orgs
+        .filter((org) => org.isAdmin)
+        .sort(Utils.getSortFunction(this.i18nService, "name"));
+      this.router.navigate(["organizations", allowedOrgs[0].id]);
+    }
   }
 
   get showManageTab(): boolean {
