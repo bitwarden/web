@@ -1740,7 +1740,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Az előfizetési terv 7 napos ingyenes próbaidőszakot tartalmaz. A választott fizetési mód nem kerül ráterhelésre a próbaidőszak végéig. Az számlázás alapja $INTERVAL$ időszak. Ez bármikor lemondható."
+    "message": "A csomagod 7 napos ingyenes próbaidőszakot tartalmaz. A fizetési módját az időszak végéig nem terheljük. A csomag bármikor lemondható."
   },
   "paymentInformation": {
     "message": "Fizetési információ"
@@ -3164,7 +3164,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Ne kérje ismét az ujjlenyomat kifejezés ellenőrzését",
+    "message": "Soha ne kérje a meghívottak ujjlenyomat kifejezésének ellenőrzését (nem ajánlott)",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -4473,9 +4473,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Egyszeri kijelentkezés szolgáltatás webcíme"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact feloldási szolgáltatás webcím"
-  },
   "idpX509PublicCert": {
     "message": "X509 Nyilvános tanúsítvány"
   },
@@ -4485,11 +4482,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Kéretlen hitelesítési válasz engedélyezése"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Kimenő kijelentkezési kérések letiltása"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Allow outbound logout requests"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Szeretnénk aláírni a hitelesítési kérelmeket"
+  "idpSignAuthenticationRequests": {
+    "message": "Sign authentication requests"
   },
   "ssoSettingsSaved": {
     "message": "Az egyszeri bejelentkezés konfigurációja mentésre került."
@@ -4513,7 +4510,7 @@
     "message": "Megosztott gyűjtemények a családi titkoknak"
   },
   "badToken": {
-    "message": "The link is no longer valid. Please have the sponsor resend the offer."
+    "message": "A link már nem érvényes. Kérje szponzorától az ajánlat újraküldését."
   },
   "reclaimedFreePlan": {
     "message": "Visszaállás díjmentes csomagra"
@@ -4525,7 +4522,7 @@
     "message": "Válasszuk ki a szponzorálni kívánt szervezetet."
   },
   "familiesSponsoringOrgSelect": {
-    "message": "Which Free Families offer would you like to redeem?"
+    "message": "Melyik ingyenes családi ajánlatot szeretné beváltani?"
   },
   "sponsoredFamiliesEmail": {
     "message": "A Bitwarden családok beváltásához adjuk meg a személyes email címünket."
@@ -4552,7 +4549,7 @@
     }
   },
   "sponsoredFamiliesOffer": {
-    "message": "Váltsuk be az ingyenes Bitwarden családi szervezet ajánlatot"
+    "message": "Az ingyenes Bitwarden Családi csomag elfogadása"
   },
   "sponsoredFamiliesOfferRedeemed": {
     "message": "Az ingyenes Bitwarden családi szervezet ajánlat beváltásra került."
@@ -4597,7 +4594,7 @@
     "message": "A szponzorálás eltávolítása után felelősséget vállalunk az előfizetésért és a kapcsolódó számlákért. Biztosan folytatjuk?"
   },
   "sponsorshipCreated": {
-    "message": "A szponzoráció létrejött."
+    "message": "A szponzoráció létrejött"
   },
   "revoke": {
     "message": "Visszavonás"
@@ -4667,7 +4664,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
-    "message": "SSO szabályzat",
+    "message": "SSO hitelesítési szabályzat",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
@@ -4687,7 +4684,7 @@
     "message": "Kulcskapcsoló"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "Csatlakoztassuk az egyszeri bejelentkezést a által tárolt visszafejtési kulcsszerverhez. Ezzel a lehetőséggel a tagoknak nem kell használniuk fő jelszavukat a tároló adatainak visszafejtéséhez."
+    "message": "SSO bejelentkezés bekapcsolása a saját üzemeltetésű kulcskiszolgálón. Ezzel az opcióval a tagoknak nem kell használniuk a mesterjelszavukat az adatok visszafejtéséhez. Segítségért keresse a Bitwarden ügyfélszolgálatot."
   },
   "keyConnectorPolicyRestriction": {
     "message": "A „Bejelentkezés SSO szolgáltatással és a kulcskapcsoló visszafejtésével” engedélyezve van. Ez a szabály csak a tulajdonosokra és a rendszergazdákra vonatkozik."
@@ -4705,7 +4702,7 @@
     "message": "Kikapcsolt kulcskapcsoló"
   },
   "keyConnectorWarning": {
-    "message": "A kulcskapcsoló beállítása után a tagok visszafejtési beállításai nem módosíthatók."
+    "message": "A kulcskiszolgáló beállítása után a szervezet nem térhet vissza a mesterjelszó használatához. Csak akkor folytassa, ha jól ismeri ennek telepítését és kezelését."
   },
   "migratedKeyConnector": {
     "message": "Áttérve kulcskapcsolóra"
@@ -4738,6 +4735,69 @@
     "message": "A szponzorálási ajánlat lejárt."
   },
   "freeWithSponsorship": {
-    "message": "FREE with sponsorship"
+    "message": "INGYENES a szponzorációval"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ fields above need your attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 field above needs your attention."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ is required.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "required"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Required if Entity ID is not a URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Optional Customizations"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Required if Authority is not valid."
+  },
+  "separateMultipleWithComma": {
+    "message": "Separate multiple with a comma."
+  },
+  "sessionTimeout": {
+    "message": "A munkamenet lejárt. Lépjünk vissza és próbáljunk újra bejelentkezni."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Személyes széf exportálása"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Szervezeti széf exportálása"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Csak $EMAIL$ email címmel társított személyes széf elemek kerülnek exportálásra. Ebbe nem kerülnek be a szervezeti széf elemek.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Csak$ORGANIZATION$ névvel társított szervezeti széf elemek kerülnek exportálásra. Ebbe nem kerülnek be a személyes és más szervezeti széf elemek.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   }
 }

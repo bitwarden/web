@@ -4326,7 +4326,7 @@
     "message": "Un administrador de l'organització ha canviat recentment la contrasenya principal. Per accedir a la caixa forta, heu d'actualitzar-la ara. Si continueu, es tancarà la sessió actual i heu de tornar a iniciar-la. És possible que les sessions obertes en altres dispositius continuen actives fins a una hora."
   },
   "masterPasswordInvalidWarning": {
-    "message": "Your Master Password does not meet the policy requirements of this organization. In order to join the organization, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "La vostra contrasenya mestra no compleix els requisits de la política d'aquesta organització. Per unir-te a l'organització, has d'actualitzar la teua contrasenya mestra ara. Si continueu, es tancarà la sessió de la vostra sessió actual i us demanarà que torneu a iniciar sessió. Les sessions actives en altres dispositius poden continuar romanent actives fins a una hora."
   },
   "maximumVaultTimeout": {
     "message": "Temps d'espera de la caixa forta"
@@ -4396,7 +4396,7 @@
     "message": "Camí de retorn de trucada"
   },
   "signedOutCallbackPath": {
-    "message": "Signed Out Callback Path"
+    "message": "Ruta de devolució de trucada tancada"
   },
   "authority": {
     "message": "Autoritat"
@@ -4408,16 +4408,16 @@
     "message": "Client Secret"
   },
   "metadataAddress": {
-    "message": "Metadata Address"
+    "message": "Adreça de metadades"
   },
   "oidcRedirectBehavior": {
-    "message": "OIDC Redirect Behavior"
+    "message": "Comportament de redirecció OIDC"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "Obteniu reclamacions del punt final d'informació d'usuari"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "Àmbits addicionals/personalitzats (delimitat per comes)"
   },
   "additionalUserIdClaimTypes": {
     "message": "Tipus de reclamació d'ID d'usuaris addicionals/personalitzats (delimitats per comes)"
@@ -4473,9 +4473,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "URL del servei de tancament de sessió únic"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "URL del servei de resolució d'artefactes"
-  },
   "idpX509PublicCert": {
     "message": "Certificat públic X509"
   },
@@ -4485,11 +4482,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Permet la resposta d'autenticació no sol·licitada"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Inhabilita les sol·licituds de tancament de sessió d'eixida"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Allow outbound logout requests"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Voleu que les sol·licituds d'autenticació estiguen signades"
+  "idpSignAuthenticationRequests": {
+    "message": "Sign authentication requests"
   },
   "ssoSettingsSaved": {
     "message": "S'ha guardat la configuració de l'inici de sessió únic."
@@ -4513,22 +4510,22 @@
     "message": "Col·leccions compartides de Secrets familiars"
   },
   "badToken": {
-    "message": "The link is no longer valid. Please have the sponsor resend the offer."
+    "message": "L'enllaç ja no és vàlid. Fes que el patrocinador torne a enviar l'oferta."
   },
   "reclaimedFreePlan": {
-    "message": "Reclaimed free plan"
+    "message": "Pla gratuït recuperat"
   },
   "redeem": {
     "message": "Bescanvia"
   },
   "sponsoredFamiliesSelectOffer": {
-    "message": "Select the organization you would like sponsored"
+    "message": "Seleccioneu l'organització que voleu patrocinar"
   },
   "familiesSponsoringOrgSelect": {
-    "message": "Which Free Families offer would you like to redeem?"
+    "message": "Quina oferta de Famílies gratuïtes t'agradaria bescanviar?"
   },
   "sponsoredFamiliesEmail": {
-    "message": "Enter your personal email to redeem Bitwarden Families"
+    "message": "Introduïu el vostre correu electrònic personal per bescanviar Bitwarden Families"
   },
   "sponsoredFamiliesLeaveCopy": {
     "message": "If you leave or are removed from the sponsoring organization, your Families plan will expire at the end of the billing period."
@@ -4591,7 +4588,7 @@
     "message": "Destinatari"
   },
   "removeSponsorship": {
-    "message": "Remove Sponsorship"
+    "message": "Suprimeix el patrocini"
   },
   "removeSponsorshipConfirmation": {
     "message": "After removing a sponsorship, you will be responsible for this subscription and related invoices. Are you sure you want to continue?"
@@ -4735,9 +4732,72 @@
     "message": "Cannot reach Key Connector. Check URL."
   },
   "sponsorshipTokenHasExpired": {
-    "message": "The sponsorship offer has expired."
+    "message": "L'oferta de patrocini ha caducat."
   },
   "freeWithSponsorship": {
     "message": "GRATUÏT amb patrocini"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ fields above need your attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 field above needs your attention."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ is required.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "required"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Required if Entity ID is not a URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Optional Customizations"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Required if Authority is not valid."
+  },
+  "separateMultipleWithComma": {
+    "message": "Separate multiple with a comma."
+  },
+  "sessionTimeout": {
+    "message": "Your session has timed out. Please go back and try logging in again."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exporting Personal Vault"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Exporting Organization Vault"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Only the personal vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Only the organization vault associated with $ORGANIZATION$ will be exported. Personal vault items and items from other organizations will not be included.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   }
 }

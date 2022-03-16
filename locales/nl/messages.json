@@ -4473,9 +4473,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Single Log Out Service URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
-  },
   "idpX509PublicCert": {
     "message": "X509 Public Certificate"
   },
@@ -4485,11 +4482,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Unsolicited Authentication Response toestaan"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Outbound Logout Requests uitschakelen"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Allow outbound logout requests"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+  "idpSignAuthenticationRequests": {
+    "message": "Sign authentication requests"
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuratie is opgeslagen."
@@ -4739,5 +4736,68 @@
   },
   "freeWithSponsorship": {
     "message": "GRATIS met sponsoring"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ velden hierboven vereisen je aandacht.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 veld hierboven vereist je aandacht."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ is vereist.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "vereist"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Required if Entity ID is not a URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Optionele aanpassingen"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Required if Authority is not valid."
+  },
+  "separateMultipleWithComma": {
+    "message": "Separate multiple with a comma."
+  },
+  "sessionTimeout": {
+    "message": "Je sessie is verlopen. Ga terug en probeer opnieuw in te loggen."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Persoonlijke kluis exporteren"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Organisatiekluis exporteren"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Exporteert alleen de persoonlijke kluis-items gerelateerd aan $EMAIL$. Geen kluis-items van de organisatie.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Exporteert alleen de organisatiekluis van $ORGANIZATION$. Geen persoonlijke kluis-items of items van andere organisaties.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   }
 }

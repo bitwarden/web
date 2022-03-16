@@ -4473,9 +4473,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Single Log-Out Service-URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artefaktauflösungsservice-URL"
-  },
   "idpX509PublicCert": {
     "message": "Öffentliches X509-Zertifikat"
   },
@@ -4485,11 +4482,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Erlaube unaufgeforderte Authentifizierungsantwort"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Ausgehende Abmeldeanfragen deaktivieren"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Ausgehende Abmeldeanfragen erlauben"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Möchte Authentifizierungsanfragen signieren"
+  "idpSignAuthenticationRequests": {
+    "message": "Signiere Authentifizierungsanfragen"
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On Konfiguration wurde gespeichert."
@@ -4739,5 +4736,68 @@
   },
   "freeWithSponsorship": {
     "message": "KOSTENLOS mit Förderung"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ Felder oben müssen beachtet werden.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 Feld oben muss beachtet werden."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ ist erforderlich.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "erforderlich"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Erforderlich, wenn die Entitäts-ID keine URL ist."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Optionale Anpassungen"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Erforderlich, wenn die Zertifizierungsstelle nicht gültig ist."
+  },
+  "separateMultipleWithComma": {
+    "message": "Mehrere mit einem Komma trennen."
+  },
+  "sessionTimeout": {
+    "message": "Deine Sitzung ist abgelaufen. Bitte gehe zurück und versuche dich erneut einzuloggen."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Persönlichen Tresor exportieren"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Tresor der Organisation exportieren"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Nur die persönlichen Tresoreinträge, die mit $EMAIL$ verbunden sind, werden exportiert. Tresoreinträge der Organisation werden nicht berücksichtigt.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Nur der mit $ORGANIZATION$ verbundene Tresor der Organisation wird exportiert. Persönliche Tresoreinträge und Einträge anderer Organisationen werden nicht berücksichtigt.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   }
 }
