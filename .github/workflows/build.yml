@@ -77,16 +77,11 @@ jobs:
       _VERSION: ${{ needs.setup.outputs.version }}
     steps:
       - name: Set up Node
-        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
+        uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a  # v3.0.0
         with:
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
           node-version: "16"
-
-      - name: Cache npm
-        id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
-        with:
-          path: "~/.npm"
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
         run: |
@@ -127,16 +122,11 @@ jobs:
       _VERSION: ${{ needs.setup.outputs.version }}
     steps:
       - name: Set up Node
-        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
+        uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a  # v3.0.0
         with:
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
           node-version: "16"
-
-      - name: Cache npm
-        id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
-        with:
-          path: "~/.npm"
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
         run: |
@@ -177,16 +167,11 @@ jobs:
       _VERSION: ${{ needs.setup.outputs.version }}
     steps:
       - name: Set up Node
-        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
+        uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a  # v3.0.0
         with:
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
           node-version: "16"
-
-      - name: Cache npm
-        id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
-        with:
-          path: "~/.npm"
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
         run: |
@@ -309,16 +294,11 @@ jobs:
       - lint
     steps:
       - name: Set up Node
-        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
+        uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a  # v3.0.0
         with:
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
           node-version: "16"
-
-      - name: Cache npm
-        id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
-        with:
-          path: "~/.npm"
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
 
       - name: Print environment
         run: |
@@ -406,16 +386,11 @@ jobs:
         with:
           nuget-version: "latest"
 
-      - name: Cache npm
-        id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
-        with:
-          path: "~/.npm"
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-
       - name: Set up Node
-        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
+        uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a  # v3.0.0
         with:
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
           node-version: "16"
 
       - name: Print environment
