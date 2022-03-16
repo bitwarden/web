@@ -73,12 +73,12 @@ export class VaultComponent implements OnInit, OnDestroy {
         ? "trashCleanupWarningSelfHosted"
         : "trashCleanupWarning"
     );
-    this.route.parent.params.subscribe(async (params: any) => {
+    this.route.parent.params.pipe(first()).subscribe(async (params) => {
       this.organization = await this.organizationService.get(params.organizationId);
-      this.groupingsComponent.setOrganization(this.organization);
+      this.groupingsComponent.organization = this.organization;
       this.ciphersComponent.organization = this.organization;
 
-      this.route.queryParams.pipe(first()).subscribe(async (qParams: any) => {
+      this.route.queryParams.pipe(first()).subscribe(async (qParams) => {
         this.ciphersComponent.searchText = this.groupingsComponent.searchText = qParams.search;
         if (!this.organization.canViewAllCollections) {
           await this.syncService.fullSync(false);
