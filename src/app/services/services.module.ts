@@ -48,8 +48,8 @@ import { WebPlatformUtilsService } from "../../services/webPlatformUtils.service
 
 import { EventService } from "./event.service";
 import { ModalService } from "./modal.service";
-import { OrganizationRedirectGuardService } from "./organization-guard.service";
-import { OrganizationPermissionsGuardService } from "./organization-type-guard.service";
+import { OrganizationPermissionsGuardService } from "./organization-permissions-guard.service";
+import { OrganizationRedirectGuardService } from "./organization-redirect-guard.service";
 import { PolicyListService } from "./policy-list.service";
 import { RouterService } from "./router.service";
 

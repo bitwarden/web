@@ -48,8 +48,8 @@ import { WeakPasswordsReportComponent as OrgWeakPasswordsReportComponent } from 
 import { VaultComponent as OrgVaultComponent } from "./organizations/vault/vault.component";
 import { AccessComponent } from "./send/access.component";
 import { SendComponent } from "./send/send.component";
-import { OrganizationRedirectGuardService } from "./services/organization-guard.service";
-import { OrganizationPermissionsGuardService } from "./services/organization-type-guard.service";
+import { OrganizationPermissionsGuardService } from "./services/organization-permissions-guard.service";
+import { OrganizationRedirectGuardService } from "./services/organization-redirect-guard.service";
 import { AccountComponent } from "./settings/account.component";
 import { CreateOrganizationComponent } from "./settings/create-organization.component";
 import { DomainRulesComponent } from "./settings/domain-rules.component";
