@@ -2,7 +2,10 @@
 <div class="org-nav" *ngIf="organization">
   <div class="container d-flex">
     <div class="d-flex flex-column">
-      <app-organization-picker class="my-auto pl-1"></app-organization-picker>
+      <app-organization-picker
+        class="my-auto pl-1"
+        [activeOrganization]="organization"
+      ></app-organization-picker>
       <ul class="nav nav-tabs" *ngIf="showMenuBar">
         <li class="nav-item">
           <a class="nav-link" routerLink="vault" routerLinkActive="active">

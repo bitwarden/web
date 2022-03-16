@@ -1,4 +1,4 @@
-<div *ngIf="loaded" class="d-flex">
+<div *ngIf="loaded && activeOrganization != null" class="d-flex">
   <div class="dropdown">
     <button
       class="dropdown-toggle d-flex align-items-center btn disable-caret p-0 border-0"
@@ -25,7 +25,7 @@
       >
         <i
           class="bwi bwi-check mr-2"
-          [ngClass]="org.id === activeOrganizationId ? 'visible' : 'invisible'"
+          [ngClass]="org.id === activeOrganization.id ? 'visible' : 'invisible'"
         ></i>
         {{ org.name }}
       </a>
