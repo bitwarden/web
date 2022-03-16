@@ -7,6 +7,8 @@ import { OrganizationService } from "jslib-common/abstractions/organization.serv
 import { Utils } from "jslib-common/misc/utils";
 import { Organization } from "jslib-common/models/domain/organization";
 
+import { organizationRoutePermissions } from "../oss-routing.module";
+
 const BroadcasterSubscriptionId = "OrganizationLayoutComponent";
 
 @Component({
@@ -61,15 +63,15 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
   }
 
   get showManageTab(): boolean {
-    return this.organization.canAccessManageTab;
+    return this.organization.hasAnyPermission(organizationRoutePermissions.manage);
   }
 
   get showToolsTab(): boolean {
-    return this.organization.canAccessToolsTab;
+    return this.organization.hasAnyPermission(organizationRoutePermissions.tools);
   }
 
   get showSettingsTab(): boolean {
-    return this.organization.canAccessSettingsTab;
+    return this.organization.hasAnyPermission(organizationRoutePermissions.settings);
   }
 
   get toolsRoute(): string {

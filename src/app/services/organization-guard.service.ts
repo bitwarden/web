@@ -4,7 +4,8 @@ import { ActivatedRouteSnapshot, CanActivate, Router } from "@angular/router";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-import { Utils } from "jslib-common/misc/utils";
+
+import { organizationRoutePermissions } from "../oss-routing.module";
 
 @Injectable()
 export class OrganizationGuardService implements CanActivate {
@@ -39,7 +40,7 @@ export class OrganizationGuardService implements CanActivate {
       return this.cancelNavigation();
     }
 
-    if (!org.canAccessAdminView) {
+    if (!org.hasAnyPermission(organizationRoutePermissions.all())) {
       this.platformUtilsService.showToast(
         "error",
         this.i18nService.t("accessDenied"),
@@ -52,7 +53,9 @@ export class OrganizationGuardService implements CanActivate {
 
   private async canActivateAnyOrganization() {
     const allOrgs = await this.organizationService.getAll();
-    const adminOrgs = allOrgs.filter((org) => org.canAccessAdminView);
+    const adminOrgs = allOrgs.filter((org) =>
+      org.hasAnyPermission(organizationRoutePermissions.all())
+    );
     if (adminOrgs.length < 1) {
       this.platformUtilsService.showToast(
         "error",

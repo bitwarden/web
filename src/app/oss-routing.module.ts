@@ -75,6 +75,28 @@ import { UnsecuredWebsitesReportComponent } from "./tools/unsecured-websites-rep
 import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.component";
 import { VaultComponent } from "./vault/vault.component";
 
+export const organizationRoutePermissions = {
+  manage: [
+    Permissions.CreateNewCollections,
+    Permissions.EditAnyCollection,
+    Permissions.DeleteAnyCollection,
+    Permissions.EditAssignedCollections,
+    Permissions.DeleteAssignedCollections,
+    Permissions.AccessEventLogs,
+    Permissions.ManageGroups,
+    Permissions.ManageUsers,
+    Permissions.ManagePolicies,
+  ],
+  tools: [Permissions.AccessImportExport, Permissions.AccessReports],
+  settings: [Permissions.ManageOrganization],
+  all: () =>
+    [].concat(
+      organizationRoutePermissions.manage,
+      organizationRoutePermissions.tools,
+      organizationRoutePermissions.settings
+    ),
+};
+
 const routes: Routes = [
   {
     path: "",
@@ -284,12 +306,18 @@ const routes: Routes = [
     path: "organizations",
     component: OrganizationLayoutComponent,
     canActivate: [AuthGuardService, OrganizationGuardService],
+    data: {
+      permissions: organizationRoutePermissions.all(),
+    },
     pathMatch: "full",
   },
   {
     path: "organizations/:organizationId",
     component: OrganizationLayoutComponent,
     canActivate: [AuthGuardService, OrganizationGuardService],
+    data: {
+      permissions: organizationRoutePermissions.all(),
+    },
     children: [
       { path: "", pathMatch: "full", redirectTo: "vault" },
       { path: "vault", component: OrgVaultComponent, data: { titleId: "vault" } },
@@ -297,7 +325,7 @@ const routes: Routes = [
         path: "tools",
         component: OrgToolsComponent,
         canActivate: [OrganizationTypeGuardService],
-        data: { permissions: [Permissions.AccessImportExport, Permissions.AccessReports] },
+        data: { permissions: organizationRoutePermissions.tools },
         children: [
           {
             path: "",
@@ -374,17 +402,7 @@ const routes: Routes = [
         component: OrgManageComponent,
         canActivate: [OrganizationTypeGuardService],
         data: {
-          permissions: [
-            Permissions.CreateNewCollections,
-            Permissions.EditAnyCollection,
-            Permissions.DeleteAnyCollection,
-            Permissions.EditAssignedCollections,
-            Permissions.DeleteAssignedCollections,
-            Permissions.AccessEventLogs,
-            Permissions.ManageGroups,
-            Permissions.ManageUsers,
-            Permissions.ManagePolicies,
-          ],
+          permissions: organizationRoutePermissions.manage,
         },
         children: [
           {
@@ -449,7 +467,7 @@ const routes: Routes = [
         path: "settings",
         component: OrgSettingsComponent,
         canActivate: [OrganizationTypeGuardService],
-        data: { permissions: [Permissions.ManageOrganization] },
+        data: { permissions: organizationRoutePermissions.settings },
         children: [
           { path: "", pathMatch: "full", redirectTo: "account" },
           { path: "account", component: OrgAccountComponent, data: { titleId: "myOrganization" } },
