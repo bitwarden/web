@@ -64,7 +64,10 @@ export class GroupingsComponent extends BaseGroupingsComponent {
   }
 
   setOrganization(organization: Organization) {
+    const changingOrganization = this.organization != null;
     this.organization = organization;
-    this.selectAll();
+    if (changingOrganization) {
+      this.selectAll();
+    }
   }
 }
