@@ -4,11 +4,11 @@ import { ActivatedRouteSnapshot, CanActivate, Router } from "@angular/router";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
-import { organizationRoutePermissions } from "../oss-routing.module";
+import { Permissions } from "jslib-common/enums/permissions";
+import { Utils } from "jslib-common/misc/utils";
 
 @Injectable()
-export class OrganizationGuardService implements CanActivate {
+export class OrganizationRedirectGuardService implements CanActivate {
   constructor(
     private router: Router,
     private platformUtilsService: PlatformUtilsService,
@@ -17,58 +17,20 @@ export class OrganizationGuardService implements CanActivate {
   ) {}
 
   async canActivate(route: ActivatedRouteSnapshot) {
-    const organizationId = route.params.organizationId;
-    if (organizationId != null) {
-      return this.canActivateOrganization(organizationId);
-    } else {
-      return this.canActivateAnyOrganization();
-    }
-  }
-
-  private async canActivateOrganization(organizationId: string) {
-    const org = await this.organizationService.get(organizationId);
-    if (org == null) {
-      return this.cancelNavigation();
-    }
-
-    if (!org.isOwner && !org.enabled) {
-      this.platformUtilsService.showToast(
-        "error",
-        null,
-        this.i18nService.t("organizationIsDisabled")
-      );
-      return this.cancelNavigation();
-    }
-
-    if (!org.hasAnyPermission(organizationRoutePermissions.all())) {
-      this.platformUtilsService.showToast(
-        "error",
-        this.i18nService.t("accessDenied"),
-        this.i18nService.t("accessDeniedOrganization")
-      );
-      return this.cancelNavigation();
-    }
-    return true;
-  }
-
-  private async canActivateAnyOrganization() {
     const orgs = await this.organizationService.getAll();
-    const canNavigate = orgs.some((org) =>
-      org.hasAnyPermission(organizationRoutePermissions.all())
-    );
-    if (!canNavigate) {
-      this.platformUtilsService.showToast(
-        "error",
-        this.i18nService.t("accessDenied"),
-        this.i18nService.t("accessDeniedAnyOrganization")
-      );
-      return this.cancelNavigation();
-    }
-    return true;
-  }
+    const permissions = route.data == null ? null : (route.data.permissions as Permissions[]);
 
-  private cancelNavigation() {
-    this.router.navigate(["/"]);
+    const allowedOrgs = orgs
+      .filter((org) => org.hasAnyPermission(permissions))
+      .sort(Utils.getSortFunction(this.i18nService, "name"));
+
+    if (allowedOrgs.length < 1) {
+      this.platformUtilsService.showToast("error", null, this.i18nService.t("accessDenied"));
+      this.router.navigate(["/"]);
+      return false;
+    }
+
+    this.router.navigate(["organizations", allowedOrgs[0].id]);
     return false;
   }
 }

@@ -48,8 +48,8 @@ import { WebPlatformUtilsService } from "../../services/webPlatformUtils.service
 
 import { EventService } from "./event.service";
 import { ModalService } from "./modal.service";
-import { OrganizationGuardService } from "./organization-guard.service";
-import { OrganizationTypeGuardService } from "./organization-type-guard.service";
+import { OrganizationRedirectGuardService } from "./organization-guard.service";
+import { OrganizationPermissionsGuardService } from "./organization-type-guard.service";
 import { PolicyListService } from "./policy-list.service";
 import { RouterService } from "./router.service";
 
@@ -117,8 +117,8 @@ export function initFactory(
       ],
       multi: true,
     },
-    OrganizationGuardService,
-    OrganizationTypeGuardService,
+    OrganizationRedirectGuardService,
+    OrganizationPermissionsGuardService,
     RouterService,
     EventService,
     PolicyListService,

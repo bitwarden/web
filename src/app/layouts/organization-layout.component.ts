@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { BroadcasterService } from "jslib-common/abstractions/broadcaster.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
-import { Utils } from "jslib-common/misc/utils";
 import { Organization } from "jslib-common/models/domain/organization";
 
 import { organizationRoutePermissions } from "../oss-routing.module";
@@ -31,7 +30,7 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     document.body.classList.remove("layout_frontend");
-    this.route.params.subscribe(async (params) => {
+    this.route.params.subscribe(async (params: any) => {
       this.organizationId = params.organizationId;
       await this.load();
     });
@@ -51,15 +50,7 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
   }
 
   async load() {
-    if (this.organizationId != null) {
-      this.organization = await this.organizationService.get(this.organizationId);
-    } else {
-      const orgs = await this.organizationService.getAll();
-      const allowedOrgs = orgs
-        .filter((org) => org.hasAnyPermission(organizationRoutePermissions.all()))
-        .sort(Utils.getSortFunction(this.i18nService, "name"));
-      this.router.navigate(["organizations", allowedOrgs[0].id]);
-    }
+    this.organization = await this.organizationService.get(this.organizationId);
   }
 
   get showManageTab(): boolean {
