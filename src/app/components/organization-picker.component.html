@@ -1,41 +1,24 @@
-<div *ngIf="loaded && activeOrganization != null" class="d-flex">
-  <div class="dropdown">
-    <button
-      class="dropdown-toggle d-flex align-items-center btn disable-caret p-0 border-0"
-      type="button"
-      id="pickerButton"
-      data-toggle="dropdown"
-      aria-haspopup="true"
-      aria-expanded="false"
-    >
-      <app-avatar [data]="activeOrganization.name" size="45" [circle]="true"></app-avatar>
-      <div class="org-name ml-3">
-        <span>{{ activeOrganization.name }}</span>
-        <small class="text-muted">{{ "organization" | i18n }}</small>
-      </div>
-      <div class="ml-3">
-        <i class="bwi bwi-angle-down" aria-hidden="true"></i>
-      </div>
-    </button>
-    <div class="dropdown-menu" aria-labelledby="pickerButton">
-      <a
-        *ngFor="let org of organizations"
-        class="dropdown-item"
-        [routerLink]="['/organizations', org.id]"
-      >
-        <i
-          class="bwi bwi-check mr-2"
-          [ngClass]="org.id === activeOrganization.id ? 'visible' : 'invisible'"
-        ></i>
-        {{ org.name }}
-      </a>
-      <div class="dropdown-divider"></div>
-      <a class="dropdown-item" routerLink="/settings/create-organization">
-        <i class="bwi bwi-plus mr-2"></i>
-        {{ "newOrganization" | i18n }}</a
-      >
+<div *ngIf="loaded && activeOrganization != null" class="d-flex bwc-dropdown">
+  <button
+    class="d-flex align-items-center btn disable-caret p-0 border-0"
+    type="button"
+    id="pickerButton"
+    (click)="toggle()"
+    cdkOverlayOrigin
+    #openOverlay="cdkOverlayOrigin"
+    aria-haspopup="menu"
+    aria-controls="cdk-overlay-container"
+    [attr.aria-expanded]="isOpen"
+  >
+    <app-avatar [data]="activeOrganization.name" size="45" [circle]="true"></app-avatar>
+    <div class="org-name ml-3">
+      <span>{{ activeOrganization.name }}</span>
+      <small class="text-muted">{{ "organization" | i18n }}</small>
     </div>
-  </div>
+    <div class="ml-3">
+      <i class="bwi bwi-angle-down" aria-hidden="true"></i>
+    </div>
+  </button>
   <div>
     <div
       class="ml-3 card border-danger text-danger bg-transparent"
@@ -56,4 +39,42 @@
       </div>
     </div>
   </div>
+
+  <ng-template
+    cdkConnectedOverlay
+    [cdkConnectedOverlayOrigin]="openOverlay"
+    [cdkConnectedOverlayHasBackdrop]="true"
+    [cdkConnectedOverlayBackdropClass]="'cdk-overlay-transparent-backdrop'"
+    (backdropClick)="close()"
+    (detach)="close()"
+    [cdkConnectedOverlayOpen]="isOpen"
+    [cdkConnectedOverlayPositions]="overlayPosition"
+    cdkConnectedOverlayMinWidth="250px"
+  >
+    <div
+      class="bwc-dropdown-container"
+      [@transformPanel]="'open'"
+      cdkTrapFocus
+      cdkTrapFocusAutoCapture
+      role="dialog"
+      aria-modal="true"
+    >
+      <a
+        class="bwc-dropdown-item"
+        *ngFor="let org of organizations"
+        [routerLink]="['/organizations', org.id]"
+      >
+        <i
+          class="bwi bwi-check mr-2"
+          [ngClass]="org.id === activeOrganization.id ? 'visible' : 'invisible'"
+        ></i>
+        {{ org.name }}
+      </a>
+      <!-- <div class="dropdown-divider"></div> -->
+      <a class="bwc-dropdown-item" routerLink="/settings/create-organization">
+        <i class="bwi bwi-plus mr-2"></i>
+        {{ "newOrganization" | i18n }}</a
+      >
+    </div>
+  </ng-template>
 </div>
