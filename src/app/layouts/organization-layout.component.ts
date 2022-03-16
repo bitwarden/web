@@ -56,7 +56,7 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
     } else {
       const orgs = await this.organizationService.getAll();
       const allowedOrgs = orgs
-        .filter((org) => org.isAdmin)
+        .filter((org) => org.hasAnyPermission(organizationRoutePermissions.all()))
         .sort(Utils.getSortFunction(this.i18nService, "name"));
       this.router.navigate(["organizations", allowedOrgs[0].id]);
     }

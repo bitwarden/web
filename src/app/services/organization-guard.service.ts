@@ -40,7 +40,7 @@ export class OrganizationGuardService implements CanActivate {
       return this.cancelNavigation();
     }
 
-    if (!org.canAccessAdminView) {
+    if (!org.hasAnyPermission(organizationRoutePermissions.all())) {
       this.platformUtilsService.showToast(
         "error",
         this.i18nService.t("accessDenied"),
@@ -53,7 +53,9 @@ export class OrganizationGuardService implements CanActivate {
 
   private async canActivateAnyOrganization() {
     const allOrgs = await this.organizationService.getAll();
-    const adminOrgs = allOrgs.filter((org) => org.canAccessAdminView);
+    const adminOrgs = allOrgs.filter((org) =>
+      org.hasAnyPermission(organizationRoutePermissions.all())
+    );
     if (adminOrgs.length < 1) {
       this.platformUtilsService.showToast(
         "error",
