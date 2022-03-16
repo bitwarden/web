@@ -1,4 +1,5 @@
 import { DragDropModule } from "@angular/cdk/drag-drop";
+import { OverlayModule } from "@angular/cdk/overlay";
 import { DatePipe, registerLocaleData, CommonModule } from "@angular/common";
 import localeAf from "@angular/common/locales/af";
 import localeAz from "@angular/common/locales/az";
@@ -297,6 +298,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     ReactiveFormsModule,
     RouterModule,
     BadgeModule,
+    OverlayModule,
   ],
   declarations: [
     A11yInvalidDirective,
