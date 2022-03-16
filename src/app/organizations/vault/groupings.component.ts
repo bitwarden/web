@@ -62,4 +62,12 @@ export class GroupingsComponent extends BaseGroupingsComponent {
   isCollapsed(grouping: CollectionView) {
     return super.isCollapsed(grouping, "org_");
   }
+
+  setOrganization(organization: Organization) {
+    const changingOrganization = this.organization != null;
+    this.organization = organization;
+    if (changingOrganization) {
+      this.selectAll();
+    }
+  }
 }
