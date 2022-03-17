@@ -74,6 +74,27 @@
     height: 100%;
   }
 
+  .org-name {
+    line-height: 1;
+    span {
+      display: block;
+      font-size: $font-size-lg;
+      @include themify($themes) {
+        color: themed("textHeadingColor");
+      }
+    }
+  }
+}
+
+.tabbed-nav {
+  @include themify($themes) {
+    border-bottom: 1px solid themed("borderColor");
+    color: themed("textColor");
+  }
+}
+
+.org-nav,
+.tabbed-nav {
   .nav-tabs {
     border-bottom: none;
 
@@ -90,6 +111,7 @@
         padding-top: calc(#{$nav-link-padding-y} - 2px);
         @include themify($themes) {
           border-top: 3px solid themed("primary");
+          border-bottom: 1px solid themed("backgroundColor");
           color: themed("linkColor");
         }
       }
@@ -98,17 +120,6 @@
         @include themify($themes) {
           color: themed("inputDisabledColor");
         }
-      }
-    }
-  }
-
-  .org-name {
-    line-height: 1;
-    span {
-      display: block;
-      font-size: $font-size-lg;
-      @include themify($themes) {
-        color: themed("textHeadingColor");
       }
     }
   }

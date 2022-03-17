@@ -39,7 +39,8 @@ body {
 }
 
 .page-header,
-.secondary-header {
+.secondary-header,
+.tabbed-header {
   margin-bottom: 0.5rem;
   padding-bottom: 0.6rem;
   @include themify($themes) {
@@ -62,6 +63,11 @@ body {
 .secondary-header,
 .spaced-header {
   margin-top: 4rem;
+}
+
+.tabbed-header {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 img.logo {
