@@ -27,8 +27,7 @@ export class OrganizationPermissionsGuardService implements CanActivate {
         null,
         this.i18nService.t("organizationIsDisabled")
       );
-      this.router.navigate(["/"]);
-      return false;
+      return this.cancelNavigation();
     }
 
     const permissions = route.data == null ? null : (route.data.permissions as Permissions[]);
