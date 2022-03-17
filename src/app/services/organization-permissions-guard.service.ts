@@ -21,6 +21,16 @@ export class OrganizationPermissionsGuardService implements CanActivate {
       return this.cancelNavigation();
     }
 
+    if (!org.isOwner && !org.enabled) {
+      this.platformUtilsService.showToast(
+        "error",
+        null,
+        this.i18nService.t("organizationIsDisabled")
+      );
+      this.router.navigate(["/"]);
+      return false;
+    }
+
     const permissions = route.data == null ? null : (route.data.permissions as Permissions[]);
     if (!org.hasAnyPermission(permissions)) {
       this.platformUtilsService.showToast("error", null, this.i18nService.t("accessDenied"));
@@ -32,7 +42,7 @@ export class OrganizationPermissionsGuardService implements CanActivate {
   }
 
   private cancelNavigation() {
-    this.router.navigate(["vault"]);
+    this.router.navigate(["/"]);
     return false;
   }
 }
