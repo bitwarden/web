@@ -76,6 +76,9 @@ jobs:
     env:
       _VERSION: ${{ needs.setup.outputs.version }}
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+
       - name: Set up Node
         uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a  # v3.0.0
         with:
@@ -92,9 +95,6 @@ jobs:
           docker --version
           echo "GitHub ref: $GITHUB_REF"
           echo "GitHub event: $GITHUB_EVENT"
-
-      - name: Checkout repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
       - name: Install dependencies
         run: npm ci
@@ -121,6 +121,9 @@ jobs:
     env:
       _VERSION: ${{ needs.setup.outputs.version }}
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+
       - name: Set up Node
         uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a  # v3.0.0
         with:
@@ -137,9 +140,6 @@ jobs:
           docker --version
           echo "GitHub ref: $GITHUB_REF"
           echo "GitHub event: $GITHUB_EVENT"
-
-      - name: Checkout repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
       - name: Install dependencies
         run: npm ci
@@ -166,6 +166,9 @@ jobs:
     env:
       _VERSION: ${{ needs.setup.outputs.version }}
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+
       - name: Set up Node
         uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a  # v3.0.0
         with:
@@ -190,9 +193,6 @@ jobs:
         with:
           azure-creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
           azure-keyvault-name: "bitwarden-prod-kv"
-
-      - name: Checkout repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
       - name: Install dependencies
         run: npm ci
@@ -293,6 +293,9 @@ jobs:
       - setup
       - lint
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+
       - name: Set up Node
         uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a  # v3.0.0
         with:
@@ -317,9 +320,6 @@ jobs:
 
       - name: Log into container registry
         run: az acr login -n bitwardenqa
-
-      - name: Checkout repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
       - name: Install dependencies
         run: npm ci
@@ -381,6 +381,9 @@ jobs:
     name: Test code on Windows
     runs-on: windows-2019
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+
       - name: Set up NuGet
         uses: nuget/setup-nuget@04b0c2b8d1b97922f67eca497d7cf0bf17b8ffe1
         with:
@@ -403,9 +406,6 @@ jobs:
         env:
           GITHUB_REF: ${{ github.ref }}
           GITHUB_EVENT: ${{ github.event_name }}
-
-      - name: Checkout repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
       - name: Install dependencies
         run: npm ci
