@@ -634,7 +634,7 @@
     "message": "解鎖"
   },
   "loggedInAsEmailOn": {
-    "message": "已在 $HOSTNAME$ 以 $EMAIL$ 身份登入。",
+    "message": "已在 $HOSTNAME$ 上以 $EMAIL$ 身份登入。",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -1776,7 +1776,7 @@
     "message": "待取消"
   },
   "subscriptionPendingCanceled": {
-    "message": "訂閱在當期計費周期结束前已標記為取消。"
+    "message": "此訂閱在當期計費周期结束前已標記為取消。"
   },
   "reinstateSubscription": {
     "message": "重新開始訂閱"
@@ -4510,10 +4510,10 @@
     "message": "允許未經請求的認證回應"
   },
   "idpAllowOutboundLogoutRequests": {
-    "message": "Allow outbound logout requests"
+    "message": "允許出站註銷請求"
   },
   "idpSignAuthenticationRequests": {
-    "message": "Sign authentication requests"
+    "message": "簽名身份驗證請求"
   },
   "ssoSettingsSaved": {
     "message": "單一登入配置已儲存。"
@@ -4765,7 +4765,7 @@
     "message": "免費贊助"
   },
   "formErrorSummaryPlural": {
-    "message": "$COUNT$ fields above need your attention.",
+    "message": "上面的 $COUNT$ 個欄位需要您注意。",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -4774,10 +4774,10 @@
     }
   },
   "formErrorSummarySingle": {
-    "message": "1 field above needs your attention."
+    "message": "上面的 1 個欄位需要您注意。"
   },
   "fieldRequiredError": {
-    "message": "$FIELDNAME$ is required.",
+    "message": "$FIELDNAME$ 必填。",
     "placeholders": {
       "fieldname": {
         "content": "$1",
@@ -4789,16 +4789,16 @@
     "message": "必填"
   },
   "idpSingleSignOnServiceUrlRequired": {
-    "message": "Required if Entity ID is not a URL."
+    "message": "如果 Entity ID 非 URL，則必填。"
   },
   "openIdOptionalCustomizations": {
-    "message": "Optional Customizations"
+    "message": "選用定制"
   },
   "openIdAuthorityRequired": {
-    "message": "Required if Authority is not valid."
+    "message": "如果授權不可用，則必填。"
   },
   "separateMultipleWithComma": {
-    "message": "Separate multiple with a comma."
+    "message": "使用逗號分隔。"
   },
   "sessionTimeout": {
     "message": "您的登入階段已逾時，請返回並嘗試重新登入。"
