@@ -4,9 +4,9 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthGuardService } from "jslib-angular/services/auth-guard.service";
 import { Permissions } from "jslib-common/enums/permissions";
 
-import { OrganizationLayoutComponent } from "src/app/layouts/organization-layout.component";
+import { OrganizationLayoutComponent } from "src/app/organizations/layouts/organization-layout.component";
 import { ManageComponent } from "src/app/organizations/manage/manage.component";
-import { OrganizationPermissionsGuardService } from "src/app/services/organization-permissions-guard.service";
+import { OrganizationPermissionsGuardService } from "src/app/organizations/services/organization-permissions-guard.service";
 
 import { SsoComponent } from "./manage/sso.component";
 

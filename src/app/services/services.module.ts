@@ -45,11 +45,11 @@ import { PasswordRepromptService } from "../../services/passwordReprompt.service
 import { StateService } from "../../services/state.service";
 import { StateMigrationService } from "../../services/stateMigration.service";
 import { WebPlatformUtilsService } from "../../services/webPlatformUtils.service";
+import { OrganizationPermissionsGuardService } from "../organizations/services/organization-permissions-guard.service";
+import { OrganizationRedirectGuardService } from "../organizations/services/organization-redirect-guard.service";
 
 import { EventService } from "./event.service";
 import { ModalService } from "./modal.service";
-import { OrganizationPermissionsGuardService } from "./organization-permissions-guard.service";
-import { OrganizationRedirectGuardService } from "./organization-redirect-guard.service";
 import { PolicyListService } from "./policy-list.service";
 import { RouterService } from "./router.service";
 

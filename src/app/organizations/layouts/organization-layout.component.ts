@@ -6,7 +6,7 @@ import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { Organization } from "jslib-common/models/domain/organization";
 
-import { organizationRoutePermissions } from "../oss-routing.module";
+import { organizationRoutePermissions } from "../organization-routing.module";
 
 const BroadcasterSubscriptionId = "OrganizationLayoutComponent";
 

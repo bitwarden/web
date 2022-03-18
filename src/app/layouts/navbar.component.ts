@@ -8,7 +8,7 @@ import { SyncService } from "jslib-common/abstractions/sync.service";
 import { TokenService } from "jslib-common/abstractions/token.service";
 import { Provider } from "jslib-common/models/domain/provider";
 
-import { organizationRoutePermissions } from "../oss-routing.module";
+import { organizationRoutePermissions } from "../organizations/organization-routing.module";
 
 @Component({
   selector: "app-navbar",
