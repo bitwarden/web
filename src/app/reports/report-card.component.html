@@ -14,10 +14,8 @@
       <h3 class="tw-text-xl tw-font-bold tw-mb-4">{{ report.title | i18n }}</h3>
       <p class="tw-mb-0">{{ report.description | i18n }}</p>
     </div>
-    <app-premium-badge
-      class="tw-absolute tw-left-2 tw-top-2 tw-leading-none"
-      [condition]="premium"
-      tabindex="-1"
-    ></app-premium-badge>
+    <span bit-badge badgeType="success" class="tw-absolute tw-left-2 tw-top-2 tw-leading-none">{{
+      "premium" | i18n
+    }}</span>
   </div>
 </a>
