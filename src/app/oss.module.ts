@@ -53,7 +53,7 @@ import localeZhTw from "@angular/common/locales/zh-Hant";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
-import { BadgeModule, ButtonModule } from "@bitwarden/components";
+import { BadgeModule, ButtonModule, CalloutModule } from "@bitwarden/components";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { ToastrModule } from "ngx-toastr";
 
@@ -200,6 +200,8 @@ import { PreferencesComponent } from "./settings/preferences.component";
 import { PremiumComponent } from "./settings/premium.component";
 import { ProfileComponent } from "./settings/profile.component";
 import { PurgeVaultComponent } from "./settings/purge-vault.component";
+import { SecurityKeysComponent } from "./settings/security-keys.component";
+import { SecurityComponent } from "./settings/security.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { SponsoredFamiliesComponent } from "./settings/sponsored-families.component";
 import { SponsoringOrgRowComponent } from "./settings/sponsoring-org-row.component";
@@ -300,6 +302,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     RouterModule,
     BadgeModule,
     ButtonModule,
+    CalloutModule,
   ],
   declarations: [
     A11yInvalidDirective,
@@ -438,6 +441,8 @@ registerLocaleData(localeZhTw, "zh-TW");
     ReusedPasswordsReportComponent,
     SearchCiphersPipe,
     SearchPipe,
+    SecurityComponent,
+    SecurityKeysComponent,
     SelectCopyDirective,
     SendAddEditComponent,
     SendComponent,
