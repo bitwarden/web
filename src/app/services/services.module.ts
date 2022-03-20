@@ -46,7 +46,7 @@ import { StateService } from "../../services/state.service";
 import { StateMigrationService } from "../../services/stateMigration.service";
 import { WebPlatformUtilsService } from "../../services/webPlatformUtils.service";
 import { OrganizationPermissionsGuardService } from "../organizations/services/organization-permissions-guard.service";
-import { RedirectToOrgAdminGuardService } from "../organizations/services/organization-redirect-guard.service";
+import { RedirectToOrgAdminGuardService } from "../organizations/services/redirect-to-org-admin-guard.service";
 
 import { EventService } from "./event.service";
 import { ModalService } from "./modal.service";

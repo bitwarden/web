@@ -12,7 +12,7 @@ import { ManageComponent } from "./manage/manage.component";
 import { PeopleComponent } from "./manage/people.component";
 import { PoliciesComponent } from "./manage/policies.component";
 import { OrganizationPermissionsGuardService } from "./services/organization-permissions-guard.service";
-import { RedirectToOrgAdminGuardService } from "./services/organization-redirect-guard.service";
+import { RedirectToOrgAdminGuardService } from "./services/redirect-to-org-admin-guard.service";
 import { AccountComponent } from "./settings/account.component";
 import { OrganizationBillingComponent } from "./settings/organization-billing.component";
 import { OrganizationSubscriptionComponent } from "./settings/organization-subscription.component";
