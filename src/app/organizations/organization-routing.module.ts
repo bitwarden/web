@@ -26,7 +26,7 @@ import { ReusedPasswordsReportComponent as OrgReusedPasswordsReportComponent } f
 import { ToolsComponent as OrgToolsComponent } from "./tools/tools.component";
 import { UnsecuredWebsitesReportComponent as OrgUnsecuredWebsitesReportComponent } from "./tools/unsecured-websites-report.component";
 import { WeakPasswordsReportComponent as OrgWeakPasswordsReportComponent } from "./tools/weak-passwords-report.component";
-import { VaultComponent as OrgVaultComponent } from "./vault/vault.component";
+import { VaultComponent } from "./vault/vault.component";
 
 export const organizationRoutePermissions = {
   manage: [
@@ -68,7 +68,7 @@ const routes: Routes = [
     },
     children: [
       { path: "", pathMatch: "full", redirectTo: "vault" },
-      { path: "vault", component: OrgVaultComponent, data: { titleId: "vault" } },
+      { path: "vault", component: VaultComponent, data: { titleId: "vault" } },
       {
         path: "tools",
         component: OrgToolsComponent,
