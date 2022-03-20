@@ -7,9 +7,8 @@ import { OrganizationService } from "jslib-common/abstractions/organization.serv
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { Permissions } from "jslib-common/enums/permissions";
 
-
 @Injectable()
-export class OrganizationPermissionsGuardService extends BaseGuardService implements CanActivate {
+export class PermissionsGuardService extends BaseGuardService implements CanActivate {
   constructor(
     protected router: Router,
     private organizationService: OrganizationService,

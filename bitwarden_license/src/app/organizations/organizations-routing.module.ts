@@ -6,7 +6,7 @@ import { Permissions } from "jslib-common/enums/permissions";
 
 import { OrganizationLayoutComponent } from "src/app/organizations/layouts/organization-layout.component";
 import { ManageComponent } from "src/app/organizations/manage/manage.component";
-import { OrganizationPermissionsGuardService } from "src/app/organizations/services/organization-permissions-guard.service";
+import { PermissionsGuardService } from "src/app/organizations/services/permissions-guard.service";
 
 import { SsoComponent } from "./manage/sso.component";
 
@@ -14,12 +14,12 @@ const routes: Routes = [
   {
     path: "organizations/:organizationId",
     component: OrganizationLayoutComponent,
-    canActivate: [AuthGuardService, OrganizationPermissionsGuardService],
+    canActivate: [AuthGuardService, PermissionsGuardService],
     children: [
       {
         path: "manage",
         component: ManageComponent,
-        canActivate: [OrganizationPermissionsGuardService],
+        canActivate: [PermissionsGuardService],
         data: {
           permissions: [
             Permissions.CreateNewCollections,

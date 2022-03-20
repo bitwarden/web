@@ -13,7 +13,7 @@ import { Utils } from "jslib-common/misc/utils";
  * if they do not have permissions to access admin view for any organization.
  */
 @Injectable()
-export class RedirectToOrgAdminGuardService extends BaseGuardService implements CanActivate {
+export class RedirectToAdminGuardService extends BaseGuardService implements CanActivate {
   constructor(
     protected router: Router,
     private platformUtilsService: PlatformUtilsService,
