@@ -8,9 +8,12 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { Permissions } from "jslib-common/enums/permissions";
 import { Utils } from "jslib-common/misc/utils";
 
-
+/**
+ * Redirects the user to the admin view of the first organization they have access to, or cancels navigation
+ * if they do not have permissions to access admin view for any organization.
+ */
 @Injectable()
-export class OrganizationRedirectGuardService extends BaseGuardService implements CanActivate {
+export class RedirectToOrgAdminGuardService extends BaseGuardService implements CanActivate {
   constructor(
     protected router: Router,
     private platformUtilsService: PlatformUtilsService,

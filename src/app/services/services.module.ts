@@ -46,7 +46,7 @@ import { StateService } from "../../services/state.service";
 import { StateMigrationService } from "../../services/stateMigration.service";
 import { WebPlatformUtilsService } from "../../services/webPlatformUtils.service";
 import { OrganizationPermissionsGuardService } from "../organizations/services/organization-permissions-guard.service";
-import { OrganizationRedirectGuardService } from "../organizations/services/organization-redirect-guard.service";
+import { RedirectToOrgAdminGuardService } from "../organizations/services/organization-redirect-guard.service";
 
 import { EventService } from "./event.service";
 import { ModalService } from "./modal.service";
@@ -117,7 +117,7 @@ export function initFactory(
       ],
       multi: true,
     },
-    OrganizationRedirectGuardService,
+    RedirectToOrgAdminGuardService,
     OrganizationPermissionsGuardService,
     RouterService,
     EventService,

@@ -12,7 +12,7 @@ import { ManageComponent } from "./manage/manage.component";
 import { PeopleComponent } from "./manage/people.component";
 import { PoliciesComponent } from "./manage/policies.component";
 import { OrganizationPermissionsGuardService } from "./services/organization-permissions-guard.service";
-import { OrganizationRedirectGuardService } from "./services/organization-redirect-guard.service";
+import { RedirectToOrgAdminGuardService } from "./services/organization-redirect-guard.service";
 import { AccountComponent } from "./settings/account.component";
 import { OrganizationBillingComponent } from "./settings/organization-billing.component";
 import { OrganizationSubscriptionComponent } from "./settings/organization-subscription.component";
@@ -53,7 +53,7 @@ export const organizationRoutePermissions = {
 const routes: Routes = [
   {
     path: "",
-    canActivate: [AuthGuardService, OrganizationRedirectGuardService],
+    canActivate: [AuthGuardService, RedirectToOrgAdminGuardService],
     data: {
       permissions: organizationRoutePermissions.all(),
     },
