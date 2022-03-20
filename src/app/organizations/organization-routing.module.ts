@@ -5,27 +5,27 @@ import { AuthGuardService } from "jslib-angular/services/auth-guard.service";
 import { Permissions } from "jslib-common/enums/permissions";
 
 import { OrganizationLayoutComponent } from "./layouts/organization-layout.component";
-import { CollectionsComponent as OrgManageCollectionsComponent } from "./manage/collections.component";
-import { EventsComponent as OrgEventsComponent } from "./manage/events.component";
-import { GroupsComponent as OrgGroupsComponent } from "./manage/groups.component";
-import { ManageComponent as OrgManageComponent } from "./manage/manage.component";
-import { PeopleComponent as OrgPeopleComponent } from "./manage/people.component";
-import { PoliciesComponent as OrgPoliciesComponent } from "./manage/policies.component";
+import { CollectionsComponent } from "./manage/collections.component";
+import { EventsComponent } from "./manage/events.component";
+import { GroupsComponent } from "./manage/groups.component";
+import { ManageComponent } from "./manage/manage.component";
+import { PeopleComponent } from "./manage/people.component";
+import { PoliciesComponent } from "./manage/policies.component";
 import { OrganizationPermissionsGuardService } from "./services/organization-permissions-guard.service";
 import { OrganizationRedirectGuardService } from "./services/organization-redirect-guard.service";
-import { AccountComponent as OrgAccountComponent } from "./settings/account.component";
+import { AccountComponent } from "./settings/account.component";
 import { OrganizationBillingComponent } from "./settings/organization-billing.component";
 import { OrganizationSubscriptionComponent } from "./settings/organization-subscription.component";
-import { SettingsComponent as OrgSettingsComponent } from "./settings/settings.component";
-import { TwoFactorSetupComponent as OrgTwoFactorSetupComponent } from "./settings/two-factor-setup.component";
-import { ExportComponent as OrgExportComponent } from "./tools/export.component";
-import { ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent } from "./tools/exposed-passwords-report.component";
-import { ImportComponent as OrgImportComponent } from "./tools/import.component";
-import { InactiveTwoFactorReportComponent as OrgInactiveTwoFactorReportComponent } from "./tools/inactive-two-factor-report.component";
-import { ReusedPasswordsReportComponent as OrgReusedPasswordsReportComponent } from "./tools/reused-passwords-report.component";
-import { ToolsComponent as OrgToolsComponent } from "./tools/tools.component";
-import { UnsecuredWebsitesReportComponent as OrgUnsecuredWebsitesReportComponent } from "./tools/unsecured-websites-report.component";
-import { WeakPasswordsReportComponent as OrgWeakPasswordsReportComponent } from "./tools/weak-passwords-report.component";
+import { SettingsComponent } from "./settings/settings.component";
+import { TwoFactorSetupComponent } from "./settings/two-factor-setup.component";
+import { ExportComponent } from "./tools/export.component";
+import { ExposedPasswordsReportComponent } from "./tools/exposed-passwords-report.component";
+import { ImportComponent } from "./tools/import.component";
+import { InactiveTwoFactorReportComponent } from "./tools/inactive-two-factor-report.component";
+import { ReusedPasswordsReportComponent } from "./tools/reused-passwords-report.component";
+import { ToolsComponent } from "./tools/tools.component";
+import { UnsecuredWebsitesReportComponent } from "./tools/unsecured-websites-report.component";
+import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.component";
 import { VaultComponent } from "./vault/vault.component";
 
 export const organizationRoutePermissions = {
@@ -71,7 +71,7 @@ const routes: Routes = [
       { path: "vault", component: VaultComponent, data: { titleId: "vault" } },
       {
         path: "tools",
-        component: OrgToolsComponent,
+        component: ToolsComponent,
         canActivate: [OrganizationPermissionsGuardService],
         data: { permissions: organizationRoutePermissions.tools },
         children: [
@@ -82,7 +82,7 @@ const routes: Routes = [
           },
           {
             path: "import",
-            component: OrgImportComponent,
+            component: ImportComponent,
             canActivate: [OrganizationPermissionsGuardService],
             data: {
               titleId: "importData",
@@ -91,7 +91,7 @@ const routes: Routes = [
           },
           {
             path: "export",
-            component: OrgExportComponent,
+            component: ExportComponent,
             canActivate: [OrganizationPermissionsGuardService],
             data: {
               titleId: "exportVault",
@@ -100,7 +100,7 @@ const routes: Routes = [
           },
           {
             path: "exposed-passwords-report",
-            component: OrgExposedPasswordsReportComponent,
+            component: ExposedPasswordsReportComponent,
             canActivate: [OrganizationPermissionsGuardService],
             data: {
               titleId: "exposedPasswordsReport",
@@ -109,7 +109,7 @@ const routes: Routes = [
           },
           {
             path: "inactive-two-factor-report",
-            component: OrgInactiveTwoFactorReportComponent,
+            component: InactiveTwoFactorReportComponent,
             canActivate: [OrganizationPermissionsGuardService],
             data: {
               titleId: "inactive2faReport",
@@ -118,7 +118,7 @@ const routes: Routes = [
           },
           {
             path: "reused-passwords-report",
-            component: OrgReusedPasswordsReportComponent,
+            component: ReusedPasswordsReportComponent,
             canActivate: [OrganizationPermissionsGuardService],
             data: {
               titleId: "reusedPasswordsReport",
@@ -127,7 +127,7 @@ const routes: Routes = [
           },
           {
             path: "unsecured-websites-report",
-            component: OrgUnsecuredWebsitesReportComponent,
+            component: UnsecuredWebsitesReportComponent,
             canActivate: [OrganizationPermissionsGuardService],
             data: {
               titleId: "unsecuredWebsitesReport",
@@ -136,7 +136,7 @@ const routes: Routes = [
           },
           {
             path: "weak-passwords-report",
-            component: OrgWeakPasswordsReportComponent,
+            component: WeakPasswordsReportComponent,
             canActivate: [OrganizationPermissionsGuardService],
             data: {
               titleId: "weakPasswordsReport",
@@ -147,7 +147,7 @@ const routes: Routes = [
       },
       {
         path: "manage",
-        component: OrgManageComponent,
+        component: ManageComponent,
         canActivate: [OrganizationPermissionsGuardService],
         data: {
           permissions: organizationRoutePermissions.manage,
@@ -160,7 +160,7 @@ const routes: Routes = [
           },
           {
             path: "collections",
-            component: OrgManageCollectionsComponent,
+            component: CollectionsComponent,
             canActivate: [OrganizationPermissionsGuardService],
             data: {
               titleId: "collections",
@@ -175,7 +175,7 @@ const routes: Routes = [
           },
           {
             path: "events",
-            component: OrgEventsComponent,
+            component: EventsComponent,
             canActivate: [OrganizationPermissionsGuardService],
             data: {
               titleId: "eventLogs",
@@ -184,7 +184,7 @@ const routes: Routes = [
           },
           {
             path: "groups",
-            component: OrgGroupsComponent,
+            component: GroupsComponent,
             canActivate: [OrganizationPermissionsGuardService],
             data: {
               titleId: "groups",
@@ -193,7 +193,7 @@ const routes: Routes = [
           },
           {
             path: "people",
-            component: OrgPeopleComponent,
+            component: PeopleComponent,
             canActivate: [OrganizationPermissionsGuardService],
             data: {
               titleId: "people",
@@ -202,7 +202,7 @@ const routes: Routes = [
           },
           {
             path: "policies",
-            component: OrgPoliciesComponent,
+            component: PoliciesComponent,
             canActivate: [OrganizationPermissionsGuardService],
             data: {
               titleId: "policies",
@@ -213,15 +213,15 @@ const routes: Routes = [
       },
       {
         path: "settings",
-        component: OrgSettingsComponent,
+        component: SettingsComponent,
         canActivate: [OrganizationPermissionsGuardService],
         data: { permissions: organizationRoutePermissions.settings },
         children: [
           { path: "", pathMatch: "full", redirectTo: "account" },
-          { path: "account", component: OrgAccountComponent, data: { titleId: "myOrganization" } },
+          { path: "account", component: AccountComponent, data: { titleId: "myOrganization" } },
           {
             path: "two-factor",
-            component: OrgTwoFactorSetupComponent,
+            component: TwoFactorSetupComponent,
             data: { titleId: "twoStepLogin" },
           },
           {
