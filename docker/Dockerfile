@@ -20,6 +20,8 @@ RUN npm run dist:oss:selfhost
 FROM bitwarden/server:latest
 
 LABEL com.bitwarden.product="bitwarden"
+LABEL com.bitwarden.project="web"
+ENV ASPNETCORE_ENVIRONMENT=Production
 ENV ASPNETCORE_URLS http://+:5000
 EXPOSE 5000
 
