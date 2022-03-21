@@ -2,7 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
-import { OssModule } from "src/app/oss.module";
+import { JslibModule } from "jslib-angular/jslib.module";
 
 import { InputCheckboxComponent } from "./components/input-checkbox.component";
 import { InputTextReadOnlyComponent } from "./components/input-text-readonly.component";
@@ -14,7 +14,13 @@ import { OrganizationsRoutingModule } from "./organizations-routing.module";
 // Form components are for use in the SSO Configuration Form only and should not be exported for use elsewhere.
 // They will be deprecated by the Component Library.
 @NgModule({
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, OssModule, OrganizationsRoutingModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    JslibModule,
+    OrganizationsRoutingModule,
+  ],
   declarations: [
     InputCheckboxComponent,
     InputTextComponent,

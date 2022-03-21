@@ -56,29 +56,7 @@ import { RouterModule } from "@angular/router";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { ToastrModule } from "ngx-toastr";
 
-import { AvatarComponent } from "jslib-angular/components/avatar.component";
-import { CalloutComponent } from "jslib-angular/components/callout.component";
-import { ExportScopeCalloutComponent } from "jslib-angular/components/export-scope-callout.component";
-import { IconComponent } from "jslib-angular/components/icon.component";
-import { VerifyMasterPasswordComponent } from "jslib-angular/components/verify-master-password.component";
-import { A11yInvalidDirective } from "jslib-angular/directives/a11y-invalid.directive";
-import { A11yTitleDirective } from "jslib-angular/directives/a11y-title.directive";
-import { ApiActionDirective } from "jslib-angular/directives/api-action.directive";
-import { AutofocusDirective } from "jslib-angular/directives/autofocus.directive";
-import { BlurClickDirective } from "jslib-angular/directives/blur-click.directive";
-import { BoxRowDirective } from "jslib-angular/directives/box-row.directive";
-import { FallbackSrcDirective } from "jslib-angular/directives/fallback-src.directive";
-import { InputStripSpacesDirective } from "jslib-angular/directives/input-strip-spaces.directive";
-import { InputVerbatimDirective } from "jslib-angular/directives/input-verbatim.directive";
-import { SelectCopyDirective } from "jslib-angular/directives/select-copy.directive";
-import { StopClickDirective } from "jslib-angular/directives/stop-click.directive";
-import { StopPropDirective } from "jslib-angular/directives/stop-prop.directive";
-import { TrueFalseValueDirective } from "jslib-angular/directives/true-false-value.directive";
-import { ColorPasswordPipe } from "jslib-angular/pipes/color-password.pipe";
-import { I18nPipe } from "jslib-angular/pipes/i18n.pipe";
-import { SearchCiphersPipe } from "jslib-angular/pipes/search-ciphers.pipe";
-import { SearchPipe } from "jslib-angular/pipes/search.pipe";
-import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
+import { JslibModule } from "jslib-angular/jslib.module";
 
 import { AcceptEmergencyComponent } from "./accounts/accept-emergency.component";
 import { AcceptOrganizationComponent } from "./accounts/accept-organization.component";
@@ -232,6 +210,7 @@ import { GroupingsComponent } from "./vault/groupings.component";
 import { ShareComponent } from "./vault/share.component";
 import { VaultComponent } from "./vault/vault.component";
 
+
 registerLocaleData(localeAf, "af");
 registerLocaleData(localeAz, "az");
 registerLocaleData(localeBe, "be");
@@ -286,16 +265,15 @@ registerLocaleData(localeZhTw, "zh-TW");
 @NgModule({
   imports: [
     CommonModule,
+    DragDropModule,
     FormsModule,
     InfiniteScrollModule,
-    DragDropModule,
-    ToastrModule,
+    JslibModule,
     ReactiveFormsModule,
     RouterModule,
+    ToastrModule,
   ],
   declarations: [
-    A11yTitleDirective,
-    A11yInvalidDirective,
     AcceptEmergencyComponent,
     AcceptOrganizationComponent,
     AccessComponent,
@@ -307,27 +285,20 @@ registerLocaleData(localeZhTw, "zh-TW");
     AdjustPaymentComponent,
     AdjustStorageComponent,
     AdjustSubscription,
-    ApiActionDirective,
     ApiKeyComponent,
     AttachmentsComponent,
-    AutofocusDirective,
-    AvatarComponent,
-    BlurClickDirective,
-    BoxRowDirective,
     BreachReportComponent,
     BulkActionsComponent,
     BulkDeleteComponent,
     BulkMoveComponent,
     BulkRestoreComponent,
     BulkShareComponent,
-    CalloutComponent,
     ChangeEmailComponent,
     ChangeKdfComponent,
     ChangePasswordComponent,
     ChangePlanComponent,
     CiphersComponent,
     CollectionsComponent,
-    ColorPasswordPipe,
     CreateOrganizationComponent,
     DeauthorizeSessionsComponent,
     DeleteAccountComponent,
@@ -343,21 +314,15 @@ registerLocaleData(localeZhTw, "zh-TW");
     EmergencyAccessViewComponent,
     EmergencyAddEditComponent,
     ExportComponent,
-    ExportScopeCalloutComponent,
     ExposedPasswordsReportComponent,
-    FallbackSrcDirective,
     FamiliesForEnterpriseSetupComponent,
     FolderAddEditComponent,
     FooterComponent,
     FrontendLayoutComponent,
     GroupingsComponent,
     HintComponent,
-    I18nPipe,
-    IconComponent,
     ImportComponent,
     InactiveTwoFactorReportComponent,
-    InputStripSpacesDirective,
-    InputVerbatimDirective,
     LinkSsoComponent,
     LockComponent,
     LoginComponent,
@@ -423,9 +388,6 @@ registerLocaleData(localeZhTw, "zh-TW");
     RequireSsoPolicyComponent,
     ResetPasswordPolicyComponent,
     ReusedPasswordsReportComponent,
-    SearchCiphersPipe,
-    SearchPipe,
-    SelectCopyDirective,
     SendAddEditComponent,
     SendComponent,
     SendEffluxDatesComponent,
@@ -437,11 +399,8 @@ registerLocaleData(localeZhTw, "zh-TW");
     SponsoredFamiliesComponent,
     SponsoringOrgRowComponent,
     SsoComponent,
-    StopClickDirective,
-    StopPropDirective,
     TaxInfoComponent,
     ToolsComponent,
-    TrueFalseValueDirective,
     TwoFactorAuthenticationPolicyComponent,
     TwoFactorAuthenticatorComponent,
     TwoFactorComponent,
@@ -456,37 +415,20 @@ registerLocaleData(localeZhTw, "zh-TW");
     UnsecuredWebsitesReportComponent,
     UpdateKeyComponent,
     UpdateLicenseComponent,
-    UpdateTempPasswordComponent,
     UpdatePasswordComponent,
+    UpdateTempPasswordComponent,
     UserBillingComponent,
     UserLayoutComponent,
-    UserNamePipe,
     UserSubscriptionComponent,
     VaultComponent,
     VaultTimeoutInputComponent,
     VerifyEmailComponent,
     VerifyEmailTokenComponent,
-    VerifyMasterPasswordComponent,
     VerifyRecoverDeleteComponent,
     WeakPasswordsReportComponent,
   ],
-  exports: [
-    A11yTitleDirective,
-    A11yInvalidDirective,
-    ApiActionDirective,
-    AvatarComponent,
-    CalloutComponent,
-    FooterComponent,
-    I18nPipe,
-    InputStripSpacesDirective,
-    NavbarComponent,
-    OrganizationPlansComponent,
-    SearchPipe,
-    StopClickDirective,
-    StopPropDirective,
-    UserNamePipe,
-  ],
-  providers: [DatePipe, SearchPipe, UserNamePipe],
+  exports: [FooterComponent, NavbarComponent, OrganizationPlansComponent],
+  providers: [DatePipe],
   bootstrap: [],
 })
 export class OssModule {}
