@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router } from "@angular/router";
 
-import { BaseGuardService } from "jslib-angular/services/base-guard.service";
+import { BaseGuard } from "jslib-angular/guards/base.guard";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { Permissions } from "jslib-common/enums/permissions";
 
 @Injectable()
-export class PermissionsGuardService extends BaseGuardService implements CanActivate {
+export class PermissionsGuardService extends BaseGuard implements CanActivate {
   constructor(
     protected router: Router,
     private organizationService: OrganizationService,

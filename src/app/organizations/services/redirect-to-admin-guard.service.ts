@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router } from "@angular/router";
 
-import { BaseGuardService } from "jslib-angular/services/base-guard.service";
+import { BaseGuard } from "jslib-angular/guards/base.guard";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
@@ -14,7 +14,7 @@ import { NavigationPermissionsService } from "./navigation-permissions.service";
  * if they do not have permissions to access admin view for any organization.
  */
 @Injectable()
-export class RedirectToAdminGuardService extends BaseGuardService implements CanActivate {
+export class RedirectToAdminGuardService extends BaseGuard implements CanActivate {
   constructor(
     protected router: Router,
     private platformUtilsService: PlatformUtilsService,
