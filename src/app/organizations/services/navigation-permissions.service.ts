@@ -1,5 +1,3 @@
-import { Injectable } from "@angular/core";
-
 import { Permissions } from "jslib-common/enums/permissions";
 import { Organization } from "jslib-common/models/domain/organization";
 
