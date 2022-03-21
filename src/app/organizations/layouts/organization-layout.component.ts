@@ -6,7 +6,7 @@ import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { Organization } from "jslib-common/models/domain/organization";
 
-import { NavigationPermissionsService } from "../services/permissions.service";
+import { NavigationPermissionsService } from "../services/navigation-permissions.service";
 
 const BroadcasterSubscriptionId = "OrganizationLayoutComponent";
 

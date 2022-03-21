@@ -8,7 +8,7 @@ import { SyncService } from "jslib-common/abstractions/sync.service";
 import { TokenService } from "jslib-common/abstractions/token.service";
 import { Provider } from "jslib-common/models/domain/provider";
 
-import { NavigationPermissionsService as OrgPermissionsService } from "../organizations/services/permissions.service";
+import { NavigationPermissionsService as OrgPermissionsService } from "../organizations/services/navigation-permissions.service";
 
 @Component({
   selector: "app-navbar",

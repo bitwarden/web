@@ -7,7 +7,7 @@ import { OrganizationService } from "jslib-common/abstractions/organization.serv
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { Utils } from "jslib-common/misc/utils";
 
-import { NavigationPermissionsService } from "./permissions.service";
+import { NavigationPermissionsService } from "./navigation-permissions.service";
 
 /**
  * Redirects the user to the admin view of the first organization they have access to, or cancels navigation
