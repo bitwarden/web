@@ -46,6 +46,7 @@ import { StateService } from "../../services/state.service";
 import { StateMigrationService } from "../../services/stateMigration.service";
 import { WebPlatformUtilsService } from "../../services/webPlatformUtils.service";
 import { PermissionsGuardService as OrgPermissionsGuardService } from "../organizations/services/permissions-guard.service";
+import { PermissionsService as OrgPermissionsService } from "../organizations/services/permissions.service";
 import { RedirectToAdminGuardService as OrgRedirectToAdminGuardService } from "../organizations/services/redirect-to-admin-guard.service";
 
 import { EventService } from "./event.service";
@@ -100,6 +101,7 @@ export function initFactory(
   imports: [ToastrModule, JslibServicesModule],
   declarations: [],
   providers: [
+    OrgPermissionsService,
     {
       provide: APP_INITIALIZER,
       useFactory: initFactory,

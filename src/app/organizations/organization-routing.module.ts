@@ -12,6 +12,7 @@ import { ManageComponent } from "./manage/manage.component";
 import { PeopleComponent } from "./manage/people.component";
 import { PoliciesComponent } from "./manage/policies.component";
 import { PermissionsGuardService } from "./services/permissions-guard.service";
+import { PermissionsService } from "./services/permissions.service";
 import { RedirectToAdminGuardService } from "./services/redirect-to-admin-guard.service";
 import { AccountComponent } from "./settings/account.component";
 import { OrganizationBillingComponent } from "./settings/organization-billing.component";
@@ -28,35 +29,10 @@ import { UnsecuredWebsitesReportComponent } from "./tools/unsecured-websites-rep
 import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.component";
 import { VaultComponent } from "./vault/vault.component";
 
-export const organizationRoutePermissions = {
-  manage: [
-    Permissions.CreateNewCollections,
-    Permissions.EditAnyCollection,
-    Permissions.DeleteAnyCollection,
-    Permissions.EditAssignedCollections,
-    Permissions.DeleteAssignedCollections,
-    Permissions.AccessEventLogs,
-    Permissions.ManageGroups,
-    Permissions.ManageUsers,
-    Permissions.ManagePolicies,
-  ],
-  tools: [Permissions.AccessImportExport, Permissions.AccessReports],
-  settings: [Permissions.ManageOrganization],
-  all: () =>
-    [].concat(
-      organizationRoutePermissions.manage,
-      organizationRoutePermissions.tools,
-      organizationRoutePermissions.settings
-    ),
-};
-
 const routes: Routes = [
   {
     path: "",
     canActivate: [AuthGuardService, RedirectToAdminGuardService],
-    data: {
-      permissions: organizationRoutePermissions.all(),
-    },
     pathMatch: "full",
   },
   {
@@ -64,7 +40,7 @@ const routes: Routes = [
     component: OrganizationLayoutComponent,
     canActivate: [AuthGuardService, PermissionsGuardService],
     data: {
-      permissions: organizationRoutePermissions.all(),
+      permissions: PermissionsService.getPermissions("admin"),
     },
     children: [
       { path: "", pathMatch: "full", redirectTo: "vault" },
@@ -73,7 +49,7 @@ const routes: Routes = [
         path: "tools",
         component: ToolsComponent,
         canActivate: [PermissionsGuardService],
-        data: { permissions: organizationRoutePermissions.tools },
+        data: { permissions: PermissionsService.getPermissions("tools") },
         children: [
           {
             path: "",
@@ -150,7 +126,7 @@ const routes: Routes = [
         component: ManageComponent,
         canActivate: [PermissionsGuardService],
         data: {
-          permissions: organizationRoutePermissions.manage,
+          permissions: PermissionsService.getPermissions("manage"),
         },
         children: [
           {
@@ -215,7 +191,7 @@ const routes: Routes = [
         path: "settings",
         component: SettingsComponent,
         canActivate: [PermissionsGuardService],
-        data: { permissions: organizationRoutePermissions.settings },
+        data: { permissions: PermissionsService.getPermissions("settings") },
         children: [
           { path: "", pathMatch: "full", redirectTo: "account" },
           { path: "account", component: AccountComponent, data: { titleId: "myOrganization" } },

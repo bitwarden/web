@@ -8,7 +8,7 @@ import { SyncService } from "jslib-common/abstractions/sync.service";
 import { TokenService } from "jslib-common/abstractions/token.service";
 import { Provider } from "jslib-common/models/domain/provider";
 
-import { organizationRoutePermissions } from "../organizations/organization-routing.module";
+import { PermissionsService as OrgPermissionsService } from "../organizations/services/permissions.service";
 
 @Component({
   selector: "app-navbar",
@@ -46,9 +46,7 @@ export class NavbarComponent implements OnInit {
     this.providers = await this.providerService.getAll();
 
     const orgs = await this.organizationService.getAll();
-    this.showOrganizations = orgs.some((org) =>
-      org.hasAnyPermission(organizationRoutePermissions.all())
-    );
+    this.showOrganizations = orgs.some((org) => OrgPermissionsService.canAccessAdmin(org));
   }
 
   lock() {
