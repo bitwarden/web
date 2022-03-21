@@ -45,9 +45,9 @@ import { PasswordRepromptService } from "../../services/passwordReprompt.service
 import { StateService } from "../../services/state.service";
 import { StateMigrationService } from "../../services/stateMigration.service";
 import { WebPlatformUtilsService } from "../../services/webPlatformUtils.service";
+import { PermissionsGuard as OrgPermissionsGuard } from "../organizations/guards/permissions.guard";
 import { NavigationPermissionsService as OrgPermissionsService } from "../organizations/services/navigation-permissions.service";
-import { PermissionsGuardService as OrgPermissionsGuardService } from "../organizations/services/permissions-guard.service";
-import { RedirectToAdminGuardService as OrgRedirectToAdminGuardService } from "../organizations/services/redirect-to-admin-guard.service";
+import { RedirectToAdminGuard as OrgRedirectToAdminGuard } from "../organizations/services/redirect-to-admin.guard";
 
 import { EventService } from "./event.service";
 import { ModalService } from "./modal.service";
@@ -119,8 +119,8 @@ export function initFactory(
       ],
       multi: true,
     },
-    OrgRedirectToAdminGuardService,
-    OrgPermissionsGuardService,
+    OrgRedirectToAdminGuard,
+    OrgPermissionsGuard,
     RouterService,
     EventService,
     PolicyListService,

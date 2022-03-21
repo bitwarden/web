@@ -9,13 +9,13 @@ import { ProvidersComponent } from "src/app/providers/providers.component";
 
 import { ClientsComponent } from "./clients/clients.component";
 import { CreateOrganizationComponent } from "./clients/create-organization.component";
+import { PermissionsGuard } from "./guards/provider-type.guard";
+import { ProviderGuard } from "./guards/provider.guard";
 import { AcceptProviderComponent } from "./manage/accept-provider.component";
 import { EventsComponent } from "./manage/events.component";
 import { ManageComponent } from "./manage/manage.component";
 import { PeopleComponent } from "./manage/people.component";
 import { ProvidersLayoutComponent } from "./providers-layout.component";
-import { ProviderGuardService } from "./services/provider-guard.service";
-import { ProviderTypeGuardService } from "./services/provider-type-guard.service";
 import { AccountComponent } from "./settings/account.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { SetupProviderComponent } from "./setup/setup-provider.component";
@@ -54,7 +54,7 @@ const routes: Routes = [
       {
         path: ":providerId",
         component: ProvidersLayoutComponent,
-        canActivate: [ProviderGuardService],
+        canActivate: [ProviderGuard],
         children: [
           { path: "", pathMatch: "full", redirectTo: "clients" },
           { path: "clients/create", component: CreateOrganizationComponent },
@@ -71,7 +71,7 @@ const routes: Routes = [
               {
                 path: "people",
                 component: PeopleComponent,
-                canActivate: [ProviderTypeGuardService],
+                canActivate: [PermissionsGuard],
                 data: {
                   titleId: "people",
                   permissions: [Permissions.ManageUsers],
@@ -80,7 +80,7 @@ const routes: Routes = [
               {
                 path: "events",
                 component: EventsComponent,
-                canActivate: [ProviderTypeGuardService],
+                canActivate: [PermissionsGuard],
                 data: {
                   titleId: "eventLogs",
                   permissions: [Permissions.AccessEventLogs],
@@ -100,7 +100,7 @@ const routes: Routes = [
               {
                 path: "account",
                 component: AccountComponent,
-                canActivate: [ProviderTypeGuardService],
+                canActivate: [PermissionsGuard],
                 data: {
                   titleId: "myProvider",
                   permissions: [Permissions.ManageProvider],

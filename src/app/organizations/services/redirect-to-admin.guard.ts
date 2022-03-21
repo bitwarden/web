@@ -14,7 +14,7 @@ import { NavigationPermissionsService } from "./navigation-permissions.service";
  * if they do not have permissions to access admin view for any organization.
  */
 @Injectable()
-export class RedirectToAdminGuardService extends BaseGuard implements CanActivate {
+export class RedirectToAdminGuard extends BaseGuard implements CanActivate {
   constructor(
     protected router: Router,
     private platformUtilsService: PlatformUtilsService,

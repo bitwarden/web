@@ -4,9 +4,9 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "jslib-angular/guards/auth.guard";
 import { Permissions } from "jslib-common/enums/permissions";
 
+import { PermissionsGuard } from "src/app/organizations/guards/permissions.guard";
 import { OrganizationLayoutComponent } from "src/app/organizations/layouts/organization-layout.component";
 import { ManageComponent } from "src/app/organizations/manage/manage.component";
-import { PermissionsGuardService } from "src/app/organizations/services/permissions-guard.service";
 
 import { SsoComponent } from "./manage/sso.component";
 
@@ -14,12 +14,12 @@ const routes: Routes = [
   {
     path: "organizations/:organizationId",
     component: OrganizationLayoutComponent,
-    canActivate: [AuthGuard, PermissionsGuardService],
+    canActivate: [AuthGuard, PermissionsGuard],
     children: [
       {
         path: "manage",
         component: ManageComponent,
-        canActivate: [PermissionsGuardService],
+        canActivate: [PermissionsGuard],
         data: {
           permissions: [
             Permissions.CreateNewCollections,

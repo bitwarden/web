@@ -8,7 +8,7 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { Permissions } from "jslib-common/enums/permissions";
 
 @Injectable()
-export class PermissionsGuardService extends BaseGuard implements CanActivate {
+export class PermissionsGuard extends BaseGuard implements CanActivate {
   constructor(
     protected router: Router,
     private organizationService: OrganizationService,
