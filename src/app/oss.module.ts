@@ -210,7 +210,6 @@ import { GroupingsComponent } from "./vault/groupings.component";
 import { ShareComponent } from "./vault/share.component";
 import { VaultComponent } from "./vault/vault.component";
 
-
 registerLocaleData(localeAf, "af");
 registerLocaleData(localeAz, "az");
 registerLocaleData(localeBe, "be");
