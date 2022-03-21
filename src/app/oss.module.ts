@@ -57,7 +57,6 @@ import { BadgeModule, ButtonModule, CalloutModule } from "@bitwarden/components"
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { ToastrModule } from "ngx-toastr";
 
-import { NotPremiumDirective } from "jslib-angular/directives/not-premium.directive";
 import { JslibModule } from "jslib-angular/jslib.module";
 
 import { AcceptEmergencyComponent } from "./accounts/accept-emergency.component";
@@ -336,7 +335,6 @@ registerLocaleData(localeZhTw, "zh-TW");
     MasterPasswordPolicyComponent,
     NavbarComponent,
     NestedCheckboxComponent,
-    NotPremiumDirective,
     OrgAccountComponent,
     OrgAddEditComponent,
     OrganizationBillingComponent,

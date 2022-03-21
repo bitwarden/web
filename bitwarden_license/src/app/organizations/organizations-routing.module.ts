@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { AuthGuardService } from "jslib-angular/services/auth-guard.service";
+import { AuthGuard } from "jslib-angular/guards/auth.guard";
 import { Permissions } from "jslib-common/enums/permissions";
 
 import { OrganizationLayoutComponent } from "src/app/layouts/organization-layout.component";
@@ -15,7 +15,7 @@ const routes: Routes = [
   {
     path: "organizations/:organizationId",
     component: OrganizationLayoutComponent,
-    canActivate: [AuthGuardService, OrganizationGuardService],
+    canActivate: [AuthGuard, OrganizationGuardService],
     children: [
       {
         path: "manage",
