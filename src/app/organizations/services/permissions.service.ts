@@ -19,7 +19,7 @@ const permissions = {
   settings: [Permissions.ManageOrganization],
 };
 
-export class PermissionsService {
+export class NavigationPermissionsService {
   static getPermissions(route: keyof typeof permissions | "admin") {
     if (route === "admin") {
       return Object.values(permissions).reduce((previous, current) => previous.concat(current), []);
@@ -37,14 +37,14 @@ export class PermissionsService {
   }
 
   static canAccessTools(organization: Organization): boolean {
-    return organization.hasAnyPermission(PermissionsService.getPermissions("tools"));
+    return organization.hasAnyPermission(NavigationPermissionsService.getPermissions("tools"));
   }
 
   static canAccessSettings(organization: Organization): boolean {
-    return organization.hasAnyPermission(PermissionsService.getPermissions("settings"));
+    return organization.hasAnyPermission(NavigationPermissionsService.getPermissions("settings"));
   }
 
   static canAccessManage(organization: Organization): boolean {
-    return organization.hasAnyPermission(PermissionsService.getPermissions("manage"));
+    return organization.hasAnyPermission(NavigationPermissionsService.getPermissions("manage"));
   }
 }

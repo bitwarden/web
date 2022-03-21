@@ -6,7 +6,7 @@ import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { Organization } from "jslib-common/models/domain/organization";
 
-import { PermissionsService } from "../services/permissions.service";
+import { NavigationPermissionsService } from "../services/permissions.service";
 
 const BroadcasterSubscriptionId = "OrganizationLayoutComponent";
 
@@ -54,15 +54,15 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
   }
 
   get showManageTab(): boolean {
-    return PermissionsService.canAccessManage(this.organization);
+    return NavigationPermissionsService.canAccessManage(this.organization);
   }
 
   get showToolsTab(): boolean {
-    return PermissionsService.canAccessTools(this.organization);
+    return NavigationPermissionsService.canAccessTools(this.organization);
   }
 
   get showSettingsTab(): boolean {
-    return PermissionsService.canAccessSettings(this.organization);
+    return NavigationPermissionsService.canAccessSettings(this.organization);
   }
 
   get toolsRoute(): string {

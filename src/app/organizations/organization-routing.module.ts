@@ -12,7 +12,7 @@ import { ManageComponent } from "./manage/manage.component";
 import { PeopleComponent } from "./manage/people.component";
 import { PoliciesComponent } from "./manage/policies.component";
 import { PermissionsGuardService } from "./services/permissions-guard.service";
-import { PermissionsService } from "./services/permissions.service";
+import { NavigationPermissionsService } from "./services/permissions.service";
 import { RedirectToAdminGuardService } from "./services/redirect-to-admin-guard.service";
 import { AccountComponent } from "./settings/account.component";
 import { OrganizationBillingComponent } from "./settings/organization-billing.component";
@@ -40,7 +40,7 @@ const routes: Routes = [
     component: OrganizationLayoutComponent,
     canActivate: [AuthGuardService, PermissionsGuardService],
     data: {
-      permissions: PermissionsService.getPermissions("admin"),
+      permissions: NavigationPermissionsService.getPermissions("admin"),
     },
     children: [
       { path: "", pathMatch: "full", redirectTo: "vault" },
@@ -49,7 +49,7 @@ const routes: Routes = [
         path: "tools",
         component: ToolsComponent,
         canActivate: [PermissionsGuardService],
-        data: { permissions: PermissionsService.getPermissions("tools") },
+        data: { permissions: NavigationPermissionsService.getPermissions("tools") },
         children: [
           {
             path: "",
@@ -126,7 +126,7 @@ const routes: Routes = [
         component: ManageComponent,
         canActivate: [PermissionsGuardService],
         data: {
-          permissions: PermissionsService.getPermissions("manage"),
+          permissions: NavigationPermissionsService.getPermissions("manage"),
         },
         children: [
           {
@@ -191,7 +191,7 @@ const routes: Routes = [
         path: "settings",
         component: SettingsComponent,
         canActivate: [PermissionsGuardService],
-        data: { permissions: PermissionsService.getPermissions("settings") },
+        data: { permissions: NavigationPermissionsService.getPermissions("settings") },
         children: [
           { path: "", pathMatch: "full", redirectTo: "account" },
           { path: "account", component: AccountComponent, data: { titleId: "myOrganization" } },

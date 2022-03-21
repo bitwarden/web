@@ -7,7 +7,7 @@ import { OrganizationService } from "jslib-common/abstractions/organization.serv
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { Utils } from "jslib-common/misc/utils";
 
-import { PermissionsService } from "./permissions.service";
+import { NavigationPermissionsService } from "./permissions.service";
 
 /**
  * Redirects the user to the admin view of the first organization they have access to, or cancels navigation
@@ -28,7 +28,7 @@ export class RedirectToAdminGuardService extends BaseGuardService implements Can
     const orgs = await this.organizationService.getAll();
 
     const allowedOrgs = orgs
-      .filter((org) => PermissionsService.canAccessAdmin(org))
+      .filter((org) => NavigationPermissionsService.canAccessAdmin(org))
       .sort(Utils.getSortFunction(this.i18nService, "name"));
 
     if (allowedOrgs.length < 1) {
