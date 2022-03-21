@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Turvaline märkus"
   },
+  "typeLoginPlural": {
+    "message": "Kontod"
+  },
+  "typeCardPlural": {
+    "message": "Kaardid"
+  },
+  "typeIdentityPlural": {
+    "message": "Identiteedid"
+  },
+  "typeSecureNotePlural": {
+    "message": "Turvalised märkmed"
+  },
   "folders": {
     "message": "Kaustad"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Kustuta organisatsioon"
   },
-  "deleteOrganizationDesc": {
-    "message": "Jätkamaks organisatsiooni ja sellega seonduvate andmete kustutamist, liigu alla. Individuaalsed kasutajakontod säilitatakse, aga nad ei kuulu enam sellesse organisatsiooni. "
+  "deletingOrganizationContentWarning": {
+    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Organisatsiooni kustutamine on ühekordne tegevus. Seda ei saa tagasi võtta."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organisatsioon on kustutatud"
@@ -4329,7 +4356,7 @@
     "message": "Your Master Password does not meet the policy requirements of this organization. In order to join the organization, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
   },
   "maximumVaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Hoidla ajalõpp"
   },
   "maximumVaultTimeoutDesc": {
     "message": "Configure a maximum vault timeout for all users."

@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Sikker notis"
   },
+  "typeLoginPlural": {
+    "message": "Logins"
+  },
+  "typeCardPlural": {
+    "message": "Cards"
+  },
+  "typeIdentityPlural": {
+    "message": "Identities"
+  },
+  "typeSecureNotePlural": {
+    "message": "Secure Notes"
+  },
   "folders": {
     "message": "Mapper"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Slett organisasjonen"
   },
-  "deleteOrganizationDesc": {
-    "message": "Fortsett nedenfor for å slette denne organisasjonen og alle dens tilknyttede data. Individuelle brukerkontoer vil forbli igjen, skjønt de vil ikke være tilknyttet denne organisasjonen lenger. "
+  "deletingOrganizationContentWarning": {
+    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Å slette organisasjonen er permanent. Det kan ikke bli angret på."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organisasjonen ble slettet"

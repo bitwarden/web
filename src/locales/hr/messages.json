@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Sigurna bilješka"
   },
+  "typeLoginPlural": {
+    "message": "Logins"
+  },
+  "typeCardPlural": {
+    "message": "Cards"
+  },
+  "typeIdentityPlural": {
+    "message": "Identities"
+  },
+  "typeSecureNotePlural": {
+    "message": "Secure Notes"
+  },
   "folders": {
     "message": "Mape"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Izbriši organizaciju"
   },
-  "deleteOrganizationDesc": {
-    "message": "Nastavite dalje za brisanje ove organizacije i svih povezanih podataka. Pojedinačni korisnički računi će ostati, no više neće biti povezani s ovom organizacijom. "
+  "deletingOrganizationContentWarning": {
+    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Brisanje organizacije je TRAJNO i NEPOVRATNO i naknadno je nije moguće vratiti."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organizacija izbrisana"

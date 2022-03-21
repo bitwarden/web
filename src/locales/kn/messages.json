@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "ಸುರಕ್ಷಿತ ಟಿಪ್ಪಣಿ"
   },
+  "typeLoginPlural": {
+    "message": "Logins"
+  },
+  "typeCardPlural": {
+    "message": "Cards"
+  },
+  "typeIdentityPlural": {
+    "message": "Identities"
+  },
+  "typeSecureNotePlural": {
+    "message": "Secure Notes"
+  },
   "folders": {
     "message": "ಫೋಲ್ಡರ್‌ಗಳು"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "ಸಂಸ್ಥೆಯನ್ನು ಅಳಿಸಿ"
   },
-  "deleteOrganizationDesc": {
-    "message": "ಈ ಸಂಸ್ಥೆ ಮತ್ತು ಎಲ್ಲಾ ಸಂಬಂಧಿತ ಡೇಟಾವನ್ನು ಅಳಿಸಲು ಕೆಳಗೆ ಮುಂದುವರಿಯಿರಿ. ವೈಯಕ್ತಿಕ ಬಳಕೆದಾರರ ಖಾತೆಗಳು ಉಳಿಯುತ್ತವೆ, ಆದರೂ ಅವುಗಳು ಈ ಸಂಸ್ಥೆಗೆ ಸಂಬಂಧ ಹೊಂದಿಲ್ಲ. "
+  "deletingOrganizationContentWarning": {
+    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "ಸಂಸ್ಥೆಯನ್ನು ಅಳಿಸುವುದು ಶಾಶ್ವತವಾಗಿದೆ. ಅದನ್ನು ರದ್ದುಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "ಸಂಸ್ಥೆ ಅಳಿಸಲಾಗಿದೆ"

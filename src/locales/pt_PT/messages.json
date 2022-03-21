@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Nota segura"
   },
+  "typeLoginPlural": {
+    "message": "Logins"
+  },
+  "typeCardPlural": {
+    "message": "Cards"
+  },
+  "typeIdentityPlural": {
+    "message": "Identities"
+  },
+  "typeSecureNotePlural": {
+    "message": "Secure Notes"
+  },
   "folders": {
     "message": "Pastas"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Eliminar organização"
   },
-  "deleteOrganizationDesc": {
-    "message": "Proceda abaixo para eliminar esta organização e todos os dados associados. Contas de utilizadores individuais serão mantidas, embora já não estarão associadas a esta organização. "
+  "deletingOrganizationContentWarning": {
+    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "A eliminação da organização é permanente. Não pode ser desfeita."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organização eliminada"
