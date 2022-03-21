@@ -5,11 +5,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
-import { BitwardenToastModule } from "jslib-angular/components/toastr.component";
 import { JslibModule } from "jslib-angular/jslib.module";
 
 import { OssRoutingModule } from "src/app/oss-routing.module";
-import { OssModule } from "src/app/oss.module";
 import { ServicesModule } from "src/app/services/services.module";
 import { WildcardRoutingModule } from "src/app/wildcard-routing.module";
 
@@ -22,11 +20,6 @@ import { MaximumVaultTimeoutPolicyComponent } from "./policies/maximum-vault-tim
 @NgModule({
   imports: [
     AppRoutingModule,
-    BitwardenToastModule.forRoot({
-      maxOpened: 5,
-      autoDismiss: true,
-      closeButton: true,
-    }),
     BrowserAnimationsModule,
     DragDropModule,
     FormsModule,
