@@ -4,8 +4,6 @@ import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
-import { BitwardenToastModule } from "jslib-angular/components/toastr.component";
-
 import { AppComponent } from "./app.component";
 import { OssRoutingModule } from "./oss-routing.module";
 import { OssModule } from "./oss.module";
@@ -18,11 +16,6 @@ import { WildcardRoutingModule } from "./wildcard-routing.module";
     BrowserAnimationsModule,
     FormsModule,
     ServicesModule,
-    BitwardenToastModule.forRoot({
-      maxOpened: 5,
-      autoDismiss: true,
-      closeButton: true,
-    }),
     InfiniteScrollModule,
     DragDropModule,
     OssRoutingModule,

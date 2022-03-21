@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Защитена бележка"
   },
+  "typeLoginPlural": {
+    "message": "Записи"
+  },
+  "typeCardPlural": {
+    "message": "Карти"
+  },
+  "typeIdentityPlural": {
+    "message": "Самоличности"
+  },
+  "typeSecureNotePlural": {
+    "message": "Защитени бележки"
+  },
   "folders": {
     "message": "Папки"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Изтриване на организация"
   },
-  "deleteOrganizationDesc": {
-    "message": "Продължете с действието отдолу и организацията и нейните данни ще бъдат изтрити. Абонаментите на отделните хора ще останат, но те няма да бъдат свързани с тази организация. "
+  "deletingOrganizationContentWarning": {
+    "message": "Въведете главната парола, за да потвърдите изтриването на $ORGANIZATION$ и всички свързани данни. Данните в трезора на $ORGANIZATION$ включват:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Изтриването на организация е окончателно и напълно необратимо действие."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Потребителите ще продължат да съществуват и след изтриването, но вече няма да бъдат свързани с тази организация."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Изтриването на $ORGANIZATION$ е окончателно и необратимо.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Организацията е изтрита"

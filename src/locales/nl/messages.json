@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Veilige notitie"
   },
+  "typeLoginPlural": {
+    "message": "Logins"
+  },
+  "typeCardPlural": {
+    "message": "Kaarten"
+  },
+  "typeIdentityPlural": {
+    "message": "Identiteiten"
+  },
+  "typeSecureNotePlural": {
+    "message": "Beveiligde notities"
+  },
   "folders": {
     "message": "Mappen"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Organisatie verwijderen"
   },
-  "deleteOrganizationDesc": {
-    "message": "Ga hieronder verder om deze organisatie en alle bijbehorende gegevens te verwijderen. De individuele gebruikersaccounts blijven bestaan maar ze zullen niet meer gekoppeld zijn aan deze organisatie."
+  "deletingOrganizationContentWarning": {
+    "message": "Voer het hoofdwachtwoord in om de verwijdering van $ORGANIZATION$ en alle bijbehorende gegevens te bevestigen. De kluisgegevens in $ORGANIZATION$ bevatten:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Verwijdering van de organisatie is definitief. Je kunt dit niet ongedaan maken."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Gebruikersaccounts blijven actief na het verwijderen maar worden niet langer gekoppeld aan deze organisatie."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Het verwijderen van $ORGANIZATION$ is permanent en onomkeerbaar.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organisatie verwijderd"
@@ -4483,10 +4510,10 @@
     "message": "Unsolicited Authentication Response toestaan"
   },
   "idpAllowOutboundLogoutRequests": {
-    "message": "Allow outbound logout requests"
+    "message": "Uitgaande uitlog aanvragen toestaan"
   },
   "idpSignAuthenticationRequests": {
-    "message": "Sign authentication requests"
+    "message": "Onderteken authenticatie aanvragen"
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuratie is opgeslagen."
@@ -4762,16 +4789,16 @@
     "message": "vereist"
   },
   "idpSingleSignOnServiceUrlRequired": {
-    "message": "Required if Entity ID is not a URL."
+    "message": "Vereist als Entiteit ID geen URL is."
   },
   "openIdOptionalCustomizations": {
     "message": "Optionele aanpassingen"
   },
   "openIdAuthorityRequired": {
-    "message": "Required if Authority is not valid."
+    "message": "Vereist als Autoriteit niet geldig is."
   },
   "separateMultipleWithComma": {
-    "message": "Separate multiple with a comma."
+    "message": "Scheid meerdere met kommas."
   },
   "sessionTimeout": {
     "message": "Je sessie is verlopen. Ga terug en probeer opnieuw in te loggen."

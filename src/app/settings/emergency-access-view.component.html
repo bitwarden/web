@@ -13,7 +13,7 @@
             <a href="#" appStopClick (click)="selectCipher(c)" title="{{ 'editItem' | i18n }}">{{
               c.name
             }}</a>
-            <ng-container *ngIf="!organization && c.organizationId">
+            <ng-container *ngIf="c.organizationId">
               <i
                 class="bwi bwi-collection"
                 appStopProp
