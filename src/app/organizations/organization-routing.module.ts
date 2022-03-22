@@ -13,7 +13,6 @@ import { ManageComponent } from "./manage/manage.component";
 import { PeopleComponent } from "./manage/people.component";
 import { PoliciesComponent } from "./manage/policies.component";
 import { NavigationPermissionsService } from "./services/navigation-permissions.service";
-import { RedirectToAdminGuard } from "./services/redirect-to-admin.guard";
 import { AccountComponent } from "./settings/account.component";
 import { OrganizationBillingComponent } from "./settings/organization-billing.component";
 import { OrganizationSubscriptionComponent } from "./settings/organization-subscription.component";
@@ -30,11 +29,6 @@ import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.comp
 import { VaultComponent } from "./vault/vault.component";
 
 const routes: Routes = [
-  {
-    path: "",
-    canActivate: [AuthGuard, RedirectToAdminGuard],
-    pathMatch: "full",
-  },
   {
     path: ":organizationId",
     component: OrganizationLayoutComponent,

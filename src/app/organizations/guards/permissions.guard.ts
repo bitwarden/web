@@ -33,8 +33,8 @@ export class PermissionsGuard extends BaseGuard implements CanActivate {
       return this.redirect();
     }
 
-    const permissions = route.data == null ? null : (route.data.permissions as Permissions[]);
-    if (!org.hasAnyPermission(permissions)) {
+    const permissions = route.data == null ? [] : (route.data.permissions as Permissions[]);
+    if (permissions != null && !org.hasAnyPermission(permissions)) {
       this.platformUtilsService.showToast("error", null, this.i18nService.t("accessDenied"));
       return this.redirect();
     }
