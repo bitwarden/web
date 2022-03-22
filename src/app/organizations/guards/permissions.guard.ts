@@ -10,7 +10,7 @@ import { Permissions } from "jslib-common/enums/permissions";
 @Injectable()
 export class PermissionsGuard extends BaseGuard implements CanActivate {
   constructor(
-    protected router: Router,
+    router: Router,
     private organizationService: OrganizationService,
     private platformUtilsService: PlatformUtilsService,
     private i18nService: I18nService
