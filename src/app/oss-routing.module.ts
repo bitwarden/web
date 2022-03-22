@@ -23,6 +23,7 @@ import { VerifyEmailTokenComponent } from "./accounts/verify-email-token.compone
 import { VerifyRecoverDeleteComponent } from "./accounts/verify-recover-delete.component";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
 import { UserLayoutComponent } from "./layouts/user-layout.component";
+import { OrganizationLayoutComponent } from "./organizations/layouts/organization-layout.component";
 import { FamiliesForEnterpriseSetupComponent } from "./organizations/sponsorships/families-for-enterprise-setup.component";
 import { AccessComponent } from "./send/access.component";
 import { SendComponent } from "./send/send.component";
@@ -254,11 +255,10 @@ const routes: Routes = [
       },
       { path: "setup/families-for-enterprise", component: FamiliesForEnterpriseSetupComponent },
       {
-        path: "organizations",
-        loadChildren: () =>
-          import("./organizations/organization-routing.module").then(
-            (m) => m.OrganizationsRoutingModule
-          ),
+        path: "organizations/:organizationId",
+        component: OrganizationLayoutComponent,
+        loadChildren: async () =>
+          (await import("./organizations/organization-routing.module")).OrganizationsRoutingModule,
       },
     ],
   },
@@ -269,7 +269,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       useHash: true,
       paramsInheritanceStrategy: "always",
-      // enableTracing: true,
+      enableTracing: true,
     }),
   ],
   exports: [RouterModule],
