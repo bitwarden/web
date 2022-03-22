@@ -15,10 +15,8 @@ const pjson = require("./package.json");
 
 const ENV = process.env.ENV == null ? "development" : process.env.ENV;
 const NODE_ENV = process.env.NODE_ENV == null ? "development" : process.env.NODE_ENV;
-const SELF_HOSTED = ENV === "selfhosted" || process.env.SELF_HOSTED === "true";
 
 const envConfig = config.load(ENV);
-envConfig.dev = SELF_HOSTED ? envConfig.dev.selfHosted : envConfig.dev.cloud;
 config.log(envConfig);
 
 const moduleRules = [
@@ -144,7 +142,6 @@ const plugins = [
   new webpack.EnvironmentPlugin({
     ENV: ENV,
     NODE_ENV: NODE_ENV === "production" ? "production" : "development",
-    SELF_HOSTED: SELF_HOSTED,
     APPLICATION_VERSION: pjson.version,
     CACHE_TAG: Math.random().toString(36).substring(7),
     URLS: envConfig["urls"] ?? {},
@@ -215,7 +212,6 @@ const devServer =
         },
         hot: false,
         allowedHosts: envConfig.dev?.allowedHosts ?? "auto",
-        port: envConfig.dev?.port ?? 8080,
         client: {
           overlay: {
             errors: true,
