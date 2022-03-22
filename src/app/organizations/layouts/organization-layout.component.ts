@@ -1,8 +1,7 @@
 import { Component, NgZone, OnDestroy, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 
 import { BroadcasterService } from "jslib-common/abstractions/broadcaster.service";
-import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { Organization } from "jslib-common/models/domain/organization";
 
@@ -23,9 +22,7 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private organizationService: OrganizationService,
     private broadcasterService: BroadcasterService,
-    private ngZone: NgZone,
-    private i18nService: I18nService,
-    private router: Router
+    private ngZone: NgZone
   ) {}
 
   ngOnInit() {
