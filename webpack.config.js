@@ -250,6 +250,13 @@ const webpackConfig = {
       new TerserPlugin({
         terserOptions: {
           safari10: true,
+          // Replicate Angular CLI behaviour
+          compress: {
+            global_defs: {
+              ngDevMode: false,
+              ngI18nClosureMode: false,
+            },
+          },
         },
       }),
     ],
