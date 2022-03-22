@@ -16,7 +16,7 @@ import { NavigationPermissionsService } from "./navigation-permissions.service";
 @Injectable()
 export class RedirectToAdminGuard extends BaseGuard implements CanActivate {
   constructor(
-    protected router: Router,
+    router: Router,
     private platformUtilsService: PlatformUtilsService,
     private i18nService: I18nService,
     private organizationService: OrganizationService
