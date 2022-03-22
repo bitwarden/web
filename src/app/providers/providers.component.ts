@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { ProviderService } from "jslib-common/abstractions/provider.service";
@@ -10,8 +10,6 @@ import { Provider } from "jslib-common/models/domain/provider";
   templateUrl: "providers.component.html",
 })
 export class ProvidersComponent implements OnInit {
-  @Input() vault = false;
-
   providers: Provider[];
   loaded = false;
   actionPromise: Promise<any>;

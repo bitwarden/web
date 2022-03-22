@@ -97,40 +97,6 @@
           </a>
         </div>
       </div>
-      <div class="card mb-4">
-        <div class="card-header d-flex">
-          {{ "organizations" | i18n }}
-          <a
-            class="ml-auto"
-            href="https://bitwarden.com/help/about-organizations/"
-            target="_blank"
-            rel="noopener"
-            appA11yTitle="{{ 'learnMore' | i18n }}"
-          >
-            <i class="bwi bwi-question-circle" aria-hidden="true"></i>
-          </a>
-        </div>
-        <div class="card-body">
-          <app-organizations [vault]="true"></app-organizations>
-        </div>
-      </div>
-      <div class="card mt-4" *ngIf="showProviders">
-        <div class="card-header d-flex">
-          {{ "providers" | i18n }}
-          <a
-            class="ml-auto"
-            href="https://bitwarden.com/help/providers/"
-            target="_blank"
-            rel="noopener"
-            appA11yTitle="{{ 'learnMore' | i18n }}"
-          >
-            <i class="bwi bwi-question-circle" aria-hidden="true"></i>
-          </a>
-        </div>
-        <div class="card-body">
-          <app-providers vault="true"></app-providers>
-        </div>
-      </div>
     </div>
   </div>
 </div>
