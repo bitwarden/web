@@ -7,6 +7,7 @@ import { Permissions } from "jslib-common/enums/permissions";
 import { PermissionsGuard } from "src/app/organizations/guards/permissions.guard";
 import { OrganizationLayoutComponent } from "src/app/organizations/layouts/organization-layout.component";
 import { ManageComponent } from "src/app/organizations/manage/manage.component";
+import { NavigationPermissionsService } from "src/app/organizations/services/navigation-permissions.service";
 
 import { SsoComponent } from "./manage/sso.component";
 
@@ -22,16 +23,7 @@ const routes: Routes = [
         canActivate: [PermissionsGuard],
         data: {
           permissions: [
-            Permissions.CreateNewCollections,
-            Permissions.EditAnyCollection,
-            Permissions.DeleteAnyCollection,
-            Permissions.EditAssignedCollections,
-            Permissions.DeleteAssignedCollections,
-            Permissions.AccessEventLogs,
-            Permissions.ManageGroups,
-            Permissions.ManageUsers,
-            Permissions.ManagePolicies,
-            Permissions.ManageSso,
+            NavigationPermissionsService.getPermissions("manage").concat(Permissions.ManageSso),
           ],
         },
         children: [
