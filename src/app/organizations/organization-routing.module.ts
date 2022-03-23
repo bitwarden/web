@@ -29,180 +29,182 @@ import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.comp
 import { VaultComponent } from "./vault/vault.component";
 
 const routes: Routes = [
-  { path: "", pathMatch: "full", redirectTo: "vault" },
   {
-    path: "vault",
-    component: VaultComponent,
-    canActivate: [PermissionsGuard],
+    path: ":organizationId",
+    component: OrganizationLayoutComponent,
+    canActivate: [AuthGuard, PermissionsGuard],
     data: {
-      titleId: "vault",
       permissions: NavigationPermissionsService.getPermissions("admin"),
     },
-  },
-  {
-    path: "tools",
-    component: ToolsComponent,
-    canActivate: [PermissionsGuard],
-    data: { permissions: NavigationPermissionsService.getPermissions("tools") },
     children: [
+      { path: "", pathMatch: "full", redirectTo: "vault" },
+      { path: "vault", component: VaultComponent, data: { titleId: "vault" } },
       {
-        path: "",
-        pathMatch: "full",
-        redirectTo: "import",
+        path: "tools",
+        component: ToolsComponent,
+        canActivate: [PermissionsGuard],
+        data: { permissions: NavigationPermissionsService.getPermissions("tools") },
+        children: [
+          {
+            path: "",
+            pathMatch: "full",
+            redirectTo: "import",
+          },
+          {
+            path: "import",
+            component: ImportComponent,
+            canActivate: [PermissionsGuard],
+            data: {
+              titleId: "importData",
+              permissions: [Permissions.AccessImportExport],
+            },
+          },
+          {
+            path: "export",
+            component: ExportComponent,
+            canActivate: [PermissionsGuard],
+            data: {
+              titleId: "exportVault",
+              permissions: [Permissions.AccessImportExport],
+            },
+          },
+          {
+            path: "exposed-passwords-report",
+            component: ExposedPasswordsReportComponent,
+            canActivate: [PermissionsGuard],
+            data: {
+              titleId: "exposedPasswordsReport",
+              permissions: [Permissions.AccessReports],
+            },
+          },
+          {
+            path: "inactive-two-factor-report",
+            component: InactiveTwoFactorReportComponent,
+            canActivate: [PermissionsGuard],
+            data: {
+              titleId: "inactive2faReport",
+              permissions: [Permissions.AccessReports],
+            },
+          },
+          {
+            path: "reused-passwords-report",
+            component: ReusedPasswordsReportComponent,
+            canActivate: [PermissionsGuard],
+            data: {
+              titleId: "reusedPasswordsReport",
+              permissions: [Permissions.AccessReports],
+            },
+          },
+          {
+            path: "unsecured-websites-report",
+            component: UnsecuredWebsitesReportComponent,
+            canActivate: [PermissionsGuard],
+            data: {
+              titleId: "unsecuredWebsitesReport",
+              permissions: [Permissions.AccessReports],
+            },
+          },
+          {
+            path: "weak-passwords-report",
+            component: WeakPasswordsReportComponent,
+            canActivate: [PermissionsGuard],
+            data: {
+              titleId: "weakPasswordsReport",
+              permissions: [Permissions.AccessReports],
+            },
+          },
+        ],
       },
       {
-        path: "import",
-        component: ImportComponent,
+        path: "manage",
+        component: ManageComponent,
         canActivate: [PermissionsGuard],
         data: {
-          titleId: "importData",
-          permissions: [Permissions.AccessImportExport],
+          permissions: NavigationPermissionsService.getPermissions("manage"),
         },
+        children: [
+          {
+            path: "",
+            pathMatch: "full",
+            redirectTo: "people",
+          },
+          {
+            path: "collections",
+            component: CollectionsComponent,
+            canActivate: [PermissionsGuard],
+            data: {
+              titleId: "collections",
+              permissions: [
+                Permissions.CreateNewCollections,
+                Permissions.EditAnyCollection,
+                Permissions.DeleteAnyCollection,
+                Permissions.EditAssignedCollections,
+                Permissions.DeleteAssignedCollections,
+              ],
+            },
+          },
+          {
+            path: "events",
+            component: EventsComponent,
+            canActivate: [PermissionsGuard],
+            data: {
+              titleId: "eventLogs",
+              permissions: [Permissions.AccessEventLogs],
+            },
+          },
+          {
+            path: "groups",
+            component: GroupsComponent,
+            canActivate: [PermissionsGuard],
+            data: {
+              titleId: "groups",
+              permissions: [Permissions.ManageGroups],
+            },
+          },
+          {
+            path: "people",
+            component: PeopleComponent,
+            canActivate: [PermissionsGuard],
+            data: {
+              titleId: "people",
+              permissions: [Permissions.ManageUsers, Permissions.ManageUsersPassword],
+            },
+          },
+          {
+            path: "policies",
+            component: PoliciesComponent,
+            canActivate: [PermissionsGuard],
+            data: {
+              titleId: "policies",
+              permissions: [Permissions.ManagePolicies],
+            },
+          },
+        ],
       },
       {
-        path: "export",
-        component: ExportComponent,
+        path: "settings",
+        component: SettingsComponent,
         canActivate: [PermissionsGuard],
-        data: {
-          titleId: "exportVault",
-          permissions: [Permissions.AccessImportExport],
-        },
-      },
-      {
-        path: "exposed-passwords-report",
-        component: ExposedPasswordsReportComponent,
-        canActivate: [PermissionsGuard],
-        data: {
-          titleId: "exposedPasswordsReport",
-          permissions: [Permissions.AccessReports],
-        },
-      },
-      {
-        path: "inactive-two-factor-report",
-        component: InactiveTwoFactorReportComponent,
-        canActivate: [PermissionsGuard],
-        data: {
-          titleId: "inactive2faReport",
-          permissions: [Permissions.AccessReports],
-        },
-      },
-      {
-        path: "reused-passwords-report",
-        component: ReusedPasswordsReportComponent,
-        canActivate: [PermissionsGuard],
-        data: {
-          titleId: "reusedPasswordsReport",
-          permissions: [Permissions.AccessReports],
-        },
-      },
-      {
-        path: "unsecured-websites-report",
-        component: UnsecuredWebsitesReportComponent,
-        canActivate: [PermissionsGuard],
-        data: {
-          titleId: "unsecuredWebsitesReport",
-          permissions: [Permissions.AccessReports],
-        },
-      },
-      {
-        path: "weak-passwords-report",
-        component: WeakPasswordsReportComponent,
-        canActivate: [PermissionsGuard],
-        data: {
-          titleId: "weakPasswordsReport",
-          permissions: [Permissions.AccessReports],
-        },
-      },
-    ],
-  },
-  {
-    path: "manage",
-    component: ManageComponent,
-    canActivate: [PermissionsGuard],
-    data: {
-      permissions: NavigationPermissionsService.getPermissions("manage"),
-    },
-    children: [
-      {
-        path: "",
-        pathMatch: "full",
-        redirectTo: "people",
-      },
-      {
-        path: "collections",
-        component: CollectionsComponent,
-        canActivate: [PermissionsGuard],
-        data: {
-          titleId: "collections",
-          permissions: [
-            Permissions.CreateNewCollections,
-            Permissions.EditAnyCollection,
-            Permissions.DeleteAnyCollection,
-            Permissions.EditAssignedCollections,
-            Permissions.DeleteAssignedCollections,
-          ],
-        },
-      },
-      {
-        path: "events",
-        component: EventsComponent,
-        canActivate: [PermissionsGuard],
-        data: {
-          titleId: "eventLogs",
-          permissions: [Permissions.AccessEventLogs],
-        },
-      },
-      {
-        path: "groups",
-        component: GroupsComponent,
-        canActivate: [PermissionsGuard],
-        data: {
-          titleId: "groups",
-          permissions: [Permissions.ManageGroups],
-        },
-      },
-      {
-        path: "people",
-        component: PeopleComponent,
-        canActivate: [PermissionsGuard],
-        data: {
-          titleId: "people",
-          permissions: [Permissions.ManageUsers, Permissions.ManageUsersPassword],
-        },
-      },
-      {
-        path: "policies",
-        component: PoliciesComponent,
-        canActivate: [PermissionsGuard],
-        data: {
-          titleId: "policies",
-          permissions: [Permissions.ManagePolicies],
-        },
-      },
-    ],
-  },
-  {
-    path: "settings",
-    component: SettingsComponent,
-    canActivate: [PermissionsGuard],
-    data: { permissions: NavigationPermissionsService.getPermissions("settings") },
-    children: [
-      { path: "", pathMatch: "full", redirectTo: "account" },
-      { path: "account", component: AccountComponent, data: { titleId: "myOrganization" } },
-      {
-        path: "two-factor",
-        component: TwoFactorSetupComponent,
-        data: { titleId: "twoStepLogin" },
-      },
-      {
-        path: "billing",
-        component: OrganizationBillingComponent,
-        data: { titleId: "billing" },
-      },
-      {
-        path: "subscription",
-        component: OrganizationSubscriptionComponent,
-        data: { titleId: "subscription" },
+        data: { permissions: NavigationPermissionsService.getPermissions("settings") },
+        children: [
+          { path: "", pathMatch: "full", redirectTo: "account" },
+          { path: "account", component: AccountComponent, data: { titleId: "myOrganization" } },
+          {
+            path: "two-factor",
+            component: TwoFactorSetupComponent,
+            data: { titleId: "twoStepLogin" },
+          },
+          {
+            path: "billing",
+            component: OrganizationBillingComponent,
+            data: { titleId: "billing" },
+          },
+          {
+            path: "subscription",
+            component: OrganizationSubscriptionComponent,
+            data: { titleId: "subscription" },
+          },
+        ],
       },
     ],
   },
