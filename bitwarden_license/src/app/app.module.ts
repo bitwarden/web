@@ -19,17 +19,17 @@ import { MaximumVaultTimeoutPolicyComponent } from "./policies/maximum-vault-tim
 
 @NgModule({
   imports: [
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    DragDropModule,
-    FormsModule,
-    InfiniteScrollModule,
     JslibModule,
-    OrganizationsModule,
-    OssRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
     ReactiveFormsModule,
-    RouterModule,
     ServicesModule,
+    InfiniteScrollModule,
+    DragDropModule,
+    AppRoutingModule,
+    OssRoutingModule,
+    OrganizationsModule, // Must be after OssRoutingModule for competing routes to resolve properly
+    RouterModule,
     WildcardRoutingModule, // Needs to be last to catch all non-existing routes
   ],
   declarations: [
