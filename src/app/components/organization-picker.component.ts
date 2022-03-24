@@ -3,11 +3,12 @@ import { ConnectedPosition } from "@angular/cdk/overlay";
 import { Component, Input, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
-
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { Utils } from "jslib-common/misc/utils";
 import { Organization } from "jslib-common/models/domain/organization";
+
+import { NavigationPermissionsService } from "../organizations/services/navigation-permissions.service";
 
 @Component({
   selector: "app-organization-picker",
@@ -57,8 +58,7 @@ export class OrganizationPickerComponent implements OnInit {
   async load() {
     const orgs = await this.organizationService.getAll();
     this.organizations = orgs
-      .filter((org) => org.isAdmin) // TODO: use new org.hasAnyPermissions method in related PR
-      // TODO: handle disabled orgs (only owner can access)
+      .filter((org) => NavigationPermissionsService.canAccessAdmin(org))
       .sort(Utils.getSortFunction(this.i18nService, "name"));
 
     this.loaded = true;
