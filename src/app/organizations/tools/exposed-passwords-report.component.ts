@@ -11,11 +11,11 @@ import { StateService } from "jslib-common/abstractions/state.service";
 import { Cipher } from "jslib-common/models/domain/cipher";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { ExposedPasswordsReportComponent as BaseExposedPasswordsReportComponent } from "../../tools/exposed-passwords-report.component";
+import { ExposedPasswordsReportComponent as BaseExposedPasswordsReportComponent } from "../../reports/exposed-passwords-report.component";
 
 @Component({
   selector: "app-exposed-passwords-report",
-  templateUrl: "../../tools/exposed-passwords-report.component.html",
+  templateUrl: "../../reports/exposed-passwords-report.component.html",
 })
 export class ExposedPasswordsReportComponent extends BaseExposedPasswordsReportComponent {
   manageableCiphers: Cipher[];

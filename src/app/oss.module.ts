@@ -137,6 +137,15 @@ import { CollectionsComponent as OrgCollectionsComponent } from "./organizations
 import { GroupingsComponent as OrgGroupingsComponent } from "./organizations/vault/groupings.component";
 import { VaultComponent as OrgVaultComponent } from "./organizations/vault/vault.component";
 import { ProvidersComponent } from "./providers/providers.component";
+import { BreachReportComponent } from "./reports/breach-report.component";
+import { ExposedPasswordsReportComponent } from "./reports/exposed-passwords-report.component";
+import { InactiveTwoFactorReportComponent } from "./reports/inactive-two-factor-report.component";
+import { ReportCardComponent } from "./reports/report-card.component";
+import { ReportListComponent } from "./reports/report-list.component";
+import { ReportsComponent } from "./reports/reports.component";
+import { ReusedPasswordsReportComponent } from "./reports/reused-passwords-report.component";
+import { UnsecuredWebsitesReportComponent } from "./reports/unsecured-websites-report.component";
+import { WeakPasswordsReportComponent } from "./reports/weak-passwords-report.component";
 import { AccessComponent } from "./send/access.component";
 import { AddEditComponent as SendAddEditComponent } from "./send/add-edit.component";
 import { EffluxDatesComponent as SendEffluxDatesComponent } from "./send/efflux-dates.component";
@@ -188,17 +197,11 @@ import { UserBillingComponent } from "./settings/user-billing.component";
 import { UserSubscriptionComponent } from "./settings/user-subscription.component";
 import { VaultTimeoutInputComponent } from "./settings/vault-timeout-input.component";
 import { VerifyEmailComponent } from "./settings/verify-email.component";
-import { BreachReportComponent } from "./tools/breach-report.component";
 import { ExportComponent } from "./tools/export.component";
-import { ExposedPasswordsReportComponent } from "./tools/exposed-passwords-report.component";
 import { ImportComponent } from "./tools/import.component";
-import { InactiveTwoFactorReportComponent } from "./tools/inactive-two-factor-report.component";
 import { PasswordGeneratorHistoryComponent } from "./tools/password-generator-history.component";
 import { PasswordGeneratorComponent } from "./tools/password-generator.component";
-import { ReusedPasswordsReportComponent } from "./tools/reused-passwords-report.component";
 import { ToolsComponent } from "./tools/tools.component";
-import { UnsecuredWebsitesReportComponent } from "./tools/unsecured-websites-report.component";
-import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.component";
 import { AddEditCustomFieldsComponent } from "./vault/add-edit-custom-fields.component";
 import { AddEditComponent } from "./vault/add-edit.component";
 import { AttachmentsComponent } from "./vault/attachments.component";
@@ -392,6 +395,9 @@ registerLocaleData(localeZhTw, "zh-TW");
     RecoverTwoFactorComponent,
     RegisterComponent,
     RemovePasswordComponent,
+    ReportCardComponent,
+    ReportListComponent,
+    ReportsComponent,
     RequireSsoPolicyComponent,
     ResetPasswordPolicyComponent,
     ReusedPasswordsReportComponent,

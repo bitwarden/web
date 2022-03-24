@@ -10,11 +10,11 @@ import { PasswordRepromptService } from "jslib-common/abstractions/passwordRepro
 import { StateService } from "jslib-common/abstractions/state.service";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { InactiveTwoFactorReportComponent as BaseInactiveTwoFactorReportComponent } from "../../tools/inactive-two-factor-report.component";
+import { InactiveTwoFactorReportComponent as BaseInactiveTwoFactorReportComponent } from "../../reports/inactive-two-factor-report.component";
 
 @Component({
   selector: "app-inactive-two-factor-report",
-  templateUrl: "../../tools/inactive-two-factor-report.component.html",
+  templateUrl: "../../reports/inactive-two-factor-report.component.html",
 })
 export class InactiveTwoFactorReportComponent extends BaseInactiveTwoFactorReportComponent {
   constructor(

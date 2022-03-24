@@ -5,9 +5,9 @@ import { MessagingService } from "jslib-common/abstractions/messaging.service";
 @Component({
   selector: "app-premium-badge",
   template: `
-    <a href="#" appStopClick *appNotPremium (click)="premiumRequired()">
-      <bit-badge type="success">{{ "premium" | i18n }}</bit-badge>
-    </a>
+    <button *appNotPremium bit-badge badgeType="success" (click)="premiumRequired()">
+      {{ "premium" | i18n }}
+    </button>
   `,
 })
 export class PremiumBadgeComponent {
