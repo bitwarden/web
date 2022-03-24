@@ -85,10 +85,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     return this.getDevice() === DeviceType.SafariBrowser;
   }
 
-  isIE(): boolean {
-    return this.getDevice() === DeviceType.IEBrowser;
-  }
-
   isMacAppStore(): boolean {
     return false;
   }
@@ -139,26 +135,23 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         blobOptions.type = type;
       }
     }
-    if (blobOptions != null && !this.isIE()) {
+    if (blobOptions != null) {
       blob = new Blob([blobData], blobOptions);
     } else {
       blob = new Blob([blobData]);
     }
-    if (navigator.msSaveOrOpenBlob) {
-      navigator.msSaveBlob(blob, fileName);
-    } else {
-      const a = win.document.createElement("a");
-      if (doDownload) {
-        a.download = fileName;
-      } else if (!this.isSafari()) {
-        a.target = "_blank";
-      }
-      a.href = URL.createObjectURL(blob);
-      a.style.position = "fixed";
-      win.document.body.appendChild(a);
-      a.click();
-      win.document.body.removeChild(a);
+
+    const a = win.document.createElement("a");
+    if (doDownload) {
+      a.download = fileName;
+    } else if (!this.isSafari()) {
+      a.target = "_blank";
     }
+    a.href = URL.createObjectURL(blob);
+    a.style.position = "fixed";
+    win.document.body.appendChild(a);
+    a.click();
+    win.document.body.removeChild(a);
   }
 
   getApplicationVersion(): Promise<string> {
