@@ -211,6 +211,7 @@ const devServer =
           }
         },
         hot: false,
+        port: envConfig.dev?.port ?? 8080,
         allowedHosts: envConfig.dev?.allowedHosts ?? "auto",
         client: {
           overlay: {
