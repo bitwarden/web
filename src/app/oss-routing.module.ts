@@ -4,7 +4,6 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "jslib-angular/guards/auth.guard";
 import { LockGuard } from "jslib-angular/guards/lock.guard";
 import { UnauthGuard } from "jslib-angular/guards/unauth.guard";
-import { Permissions } from "jslib-common/enums/permissions";
 
 import { AcceptEmergencyComponent } from "./accounts/accept-emergency.component";
 import { AcceptOrganizationComponent } from "./accounts/accept-organization.component";
@@ -23,33 +22,10 @@ import { UpdateTempPasswordComponent } from "./accounts/update-temp-password.com
 import { VerifyEmailTokenComponent } from "./accounts/verify-email-token.component";
 import { VerifyRecoverDeleteComponent } from "./accounts/verify-recover-delete.component";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
-import { OrganizationLayoutComponent } from "./layouts/organization-layout.component";
 import { UserLayoutComponent } from "./layouts/user-layout.component";
-import { CollectionsComponent as OrgManageCollectionsComponent } from "./organizations/manage/collections.component";
-import { EventsComponent as OrgEventsComponent } from "./organizations/manage/events.component";
-import { GroupsComponent as OrgGroupsComponent } from "./organizations/manage/groups.component";
-import { ManageComponent as OrgManageComponent } from "./organizations/manage/manage.component";
-import { PeopleComponent as OrgPeopleComponent } from "./organizations/manage/people.component";
-import { PoliciesComponent as OrgPoliciesComponent } from "./organizations/manage/policies.component";
-import { AccountComponent as OrgAccountComponent } from "./organizations/settings/account.component";
-import { OrganizationBillingComponent } from "./organizations/settings/organization-billing.component";
-import { OrganizationSubscriptionComponent } from "./organizations/settings/organization-subscription.component";
-import { SettingsComponent as OrgSettingsComponent } from "./organizations/settings/settings.component";
-import { TwoFactorSetupComponent as OrgTwoFactorSetupComponent } from "./organizations/settings/two-factor-setup.component";
 import { FamiliesForEnterpriseSetupComponent } from "./organizations/sponsorships/families-for-enterprise-setup.component";
-import { ExportComponent as OrgExportComponent } from "./organizations/tools/export.component";
-import { ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent } from "./organizations/tools/exposed-passwords-report.component";
-import { ImportComponent as OrgImportComponent } from "./organizations/tools/import.component";
-import { InactiveTwoFactorReportComponent as OrgInactiveTwoFactorReportComponent } from "./organizations/tools/inactive-two-factor-report.component";
-import { ReusedPasswordsReportComponent as OrgReusedPasswordsReportComponent } from "./organizations/tools/reused-passwords-report.component";
-import { ToolsComponent as OrgToolsComponent } from "./organizations/tools/tools.component";
-import { UnsecuredWebsitesReportComponent as OrgUnsecuredWebsitesReportComponent } from "./organizations/tools/unsecured-websites-report.component";
-import { WeakPasswordsReportComponent as OrgWeakPasswordsReportComponent } from "./organizations/tools/weak-passwords-report.component";
-import { VaultComponent as OrgVaultComponent } from "./organizations/vault/vault.component";
 import { AccessComponent } from "./send/access.component";
 import { SendComponent } from "./send/send.component";
-import { OrganizationGuardService } from "./services/organization-guard.service";
-import { OrganizationTypeGuardService } from "./services/organization-type-guard.service";
 import { AccountComponent } from "./settings/account.component";
 import { CreateOrganizationComponent } from "./settings/create-organization.component";
 import { DomainRulesComponent } from "./settings/domain-rules.component";
@@ -245,191 +221,12 @@ const routes: Routes = [
         loadChildren: async () => (await import("./reports/reports.module")).ReportsModule,
       },
       { path: "setup/families-for-enterprise", component: FamiliesForEnterpriseSetupComponent },
-    ],
-  },
-  {
-    path: "organizations/:organizationId",
-    component: OrganizationLayoutComponent,
-    canActivate: [AuthGuard, OrganizationGuardService],
-    children: [
-      { path: "", pathMatch: "full", redirectTo: "vault" },
-      { path: "vault", component: OrgVaultComponent, data: { titleId: "vault" } },
       {
-        path: "tools",
-        component: OrgToolsComponent,
-        canActivate: [OrganizationTypeGuardService],
-        data: { permissions: [Permissions.AccessImportExport, Permissions.AccessReports] },
-        children: [
-          {
-            path: "",
-            pathMatch: "full",
-            redirectTo: "import",
-          },
-          {
-            path: "import",
-            component: OrgImportComponent,
-            canActivate: [OrganizationTypeGuardService],
-            data: {
-              titleId: "importData",
-              permissions: [Permissions.AccessImportExport],
-            },
-          },
-          {
-            path: "export",
-            component: OrgExportComponent,
-            canActivate: [OrganizationTypeGuardService],
-            data: {
-              titleId: "exportVault",
-              permissions: [Permissions.AccessImportExport],
-            },
-          },
-          {
-            path: "exposed-passwords-report",
-            component: OrgExposedPasswordsReportComponent,
-            canActivate: [OrganizationTypeGuardService],
-            data: {
-              titleId: "exposedPasswordsReport",
-              permissions: [Permissions.AccessReports],
-            },
-          },
-          {
-            path: "inactive-two-factor-report",
-            component: OrgInactiveTwoFactorReportComponent,
-            canActivate: [OrganizationTypeGuardService],
-            data: {
-              titleId: "inactive2faReport",
-              permissions: [Permissions.AccessReports],
-            },
-          },
-          {
-            path: "reused-passwords-report",
-            component: OrgReusedPasswordsReportComponent,
-            canActivate: [OrganizationTypeGuardService],
-            data: {
-              titleId: "reusedPasswordsReport",
-              permissions: [Permissions.AccessReports],
-            },
-          },
-          {
-            path: "unsecured-websites-report",
-            component: OrgUnsecuredWebsitesReportComponent,
-            canActivate: [OrganizationTypeGuardService],
-            data: {
-              titleId: "unsecuredWebsitesReport",
-              permissions: [Permissions.AccessReports],
-            },
-          },
-          {
-            path: "weak-passwords-report",
-            component: OrgWeakPasswordsReportComponent,
-            canActivate: [OrganizationTypeGuardService],
-            data: {
-              titleId: "weakPasswordsReport",
-              permissions: [Permissions.AccessReports],
-            },
-          },
-        ],
-      },
-      {
-        path: "manage",
-        component: OrgManageComponent,
-        canActivate: [OrganizationTypeGuardService],
-        data: {
-          permissions: [
-            Permissions.CreateNewCollections,
-            Permissions.EditAnyCollection,
-            Permissions.DeleteAnyCollection,
-            Permissions.EditAssignedCollections,
-            Permissions.DeleteAssignedCollections,
-            Permissions.AccessEventLogs,
-            Permissions.ManageGroups,
-            Permissions.ManageUsers,
-            Permissions.ManagePolicies,
-          ],
-        },
-        children: [
-          {
-            path: "",
-            pathMatch: "full",
-            redirectTo: "people",
-          },
-          {
-            path: "collections",
-            component: OrgManageCollectionsComponent,
-            canActivate: [OrganizationTypeGuardService],
-            data: {
-              titleId: "collections",
-              permissions: [
-                Permissions.CreateNewCollections,
-                Permissions.EditAnyCollection,
-                Permissions.DeleteAnyCollection,
-                Permissions.EditAssignedCollections,
-                Permissions.DeleteAssignedCollections,
-              ],
-            },
-          },
-          {
-            path: "events",
-            component: OrgEventsComponent,
-            canActivate: [OrganizationTypeGuardService],
-            data: {
-              titleId: "eventLogs",
-              permissions: [Permissions.AccessEventLogs],
-            },
-          },
-          {
-            path: "groups",
-            component: OrgGroupsComponent,
-            canActivate: [OrganizationTypeGuardService],
-            data: {
-              titleId: "groups",
-              permissions: [Permissions.ManageGroups],
-            },
-          },
-          {
-            path: "people",
-            component: OrgPeopleComponent,
-            canActivate: [OrganizationTypeGuardService],
-            data: {
-              titleId: "people",
-              permissions: [Permissions.ManageUsers, Permissions.ManageUsersPassword],
-            },
-          },
-          {
-            path: "policies",
-            component: OrgPoliciesComponent,
-            canActivate: [OrganizationTypeGuardService],
-            data: {
-              titleId: "policies",
-              permissions: [Permissions.ManagePolicies],
-            },
-          },
-        ],
-      },
-      {
-        path: "settings",
-        component: OrgSettingsComponent,
-        canActivate: [OrganizationTypeGuardService],
-        data: { permissions: [Permissions.ManageOrganization] },
-        children: [
-          { path: "", pathMatch: "full", redirectTo: "account" },
-          { path: "account", component: OrgAccountComponent, data: { titleId: "myOrganization" } },
-          {
-            path: "two-factor",
-            component: OrgTwoFactorSetupComponent,
-            data: { titleId: "twoStepLogin" },
-          },
-          {
-            path: "billing",
-            component: OrganizationBillingComponent,
-            data: { titleId: "billing" },
-          },
-          {
-            path: "subscription",
-            component: OrganizationSubscriptionComponent,
-            data: { titleId: "subscription" },
-          },
-        ],
+        path: "organizations",
+        loadChildren: () =>
+          import("./organizations/organization-routing.module").then(
+            (m) => m.OrganizationsRoutingModule
+          ),
       },
     ],
   },
@@ -440,7 +237,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       useHash: true,
       paramsInheritanceStrategy: "always",
-      /*enableTracing: true,*/
+      // enableTracing: true,
     }),
   ],
   exports: [RouterModule],

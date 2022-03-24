@@ -4,10 +4,10 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "jslib-angular/guards/auth.guard";
 import { Permissions } from "jslib-common/enums/permissions";
 
-import { OrganizationLayoutComponent } from "src/app/layouts/organization-layout.component";
+import { PermissionsGuard } from "src/app/organizations/guards/permissions.guard";
+import { OrganizationLayoutComponent } from "src/app/organizations/layouts/organization-layout.component";
 import { ManageComponent } from "src/app/organizations/manage/manage.component";
-import { OrganizationGuardService } from "src/app/services/organization-guard.service";
-import { OrganizationTypeGuardService } from "src/app/services/organization-type-guard.service";
+import { NavigationPermissionsService } from "src/app/organizations/services/navigation-permissions.service";
 
 import { SsoComponent } from "./manage/sso.component";
 
@@ -15,24 +15,15 @@ const routes: Routes = [
   {
     path: "organizations/:organizationId",
     component: OrganizationLayoutComponent,
-    canActivate: [AuthGuard, OrganizationGuardService],
+    canActivate: [AuthGuard, PermissionsGuard],
     children: [
       {
         path: "manage",
         component: ManageComponent,
-        canActivate: [OrganizationTypeGuardService],
+        canActivate: [PermissionsGuard],
         data: {
           permissions: [
-            Permissions.CreateNewCollections,
-            Permissions.EditAnyCollection,
-            Permissions.DeleteAnyCollection,
-            Permissions.EditAssignedCollections,
-            Permissions.DeleteAssignedCollections,
-            Permissions.AccessEventLogs,
-            Permissions.ManageGroups,
-            Permissions.ManageUsers,
-            Permissions.ManagePolicies,
-            Permissions.ManageSso,
+            NavigationPermissionsService.getPermissions("manage").concat(Permissions.ManageSso),
           ],
         },
         children: [
