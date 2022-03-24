@@ -63,16 +63,10 @@ import { SponsoredFamiliesComponent } from "./settings/sponsored-families.compon
 import { TwoFactorSetupComponent } from "./settings/two-factor-setup.component";
 import { UserBillingComponent } from "./settings/user-billing.component";
 import { UserSubscriptionComponent } from "./settings/user-subscription.component";
-import { BreachReportComponent } from "./tools/breach-report.component";
 import { ExportComponent } from "./tools/export.component";
-import { ExposedPasswordsReportComponent } from "./tools/exposed-passwords-report.component";
 import { ImportComponent } from "./tools/import.component";
-import { InactiveTwoFactorReportComponent } from "./tools/inactive-two-factor-report.component";
 import { PasswordGeneratorComponent } from "./tools/password-generator.component";
-import { ReusedPasswordsReportComponent } from "./tools/reused-passwords-report.component";
 import { ToolsComponent } from "./tools/tools.component";
-import { UnsecuredWebsitesReportComponent } from "./tools/unsecured-websites-report.component";
-import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.component";
 import { VaultComponent } from "./vault/vault.component";
 
 const routes: Routes = [
@@ -241,37 +235,11 @@ const routes: Routes = [
             component: PasswordGeneratorComponent,
             data: { titleId: "passwordGenerator" },
           },
-          {
-            path: "breach-report",
-            component: BreachReportComponent,
-            data: { titleId: "dataBreachReport" },
-          },
-          {
-            path: "reused-passwords-report",
-            component: ReusedPasswordsReportComponent,
-            data: { titleId: "reusedPasswordsReport" },
-          },
-          {
-            path: "unsecured-websites-report",
-            component: UnsecuredWebsitesReportComponent,
-            data: { titleId: "unsecuredWebsitesReport" },
-          },
-          {
-            path: "weak-passwords-report",
-            component: WeakPasswordsReportComponent,
-            data: { titleId: "weakPasswordsReport" },
-          },
-          {
-            path: "exposed-passwords-report",
-            component: ExposedPasswordsReportComponent,
-            data: { titleId: "exposedPasswordsReport" },
-          },
-          {
-            path: "inactive-two-factor-report",
-            component: InactiveTwoFactorReportComponent,
-            data: { titleId: "inactive2faReport" },
-          },
         ],
+      },
+      {
+        path: "reports",
+        loadChildren: async () => (await import("./reports/reports.module")).ReportsModule,
       },
       { path: "setup/families-for-enterprise", component: FamiliesForEnterpriseSetupComponent },
     ],
