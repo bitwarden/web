@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Notă protejată"
   },
+  "typeLoginPlural": {
+    "message": "Conectări"
+  },
+  "typeCardPlural": {
+    "message": "Carduri"
+  },
+  "typeIdentityPlural": {
+    "message": "Identități"
+  },
+  "typeSecureNotePlural": {
+    "message": "Note protejate"
+  },
   "folders": {
     "message": "Dosare"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Ștergere organizație"
   },
-  "deleteOrganizationDesc": {
-    "message": "Continuați în modul indicat mai jos pentru a șterge această organizație și toate datele asociate. Conturile de utilizator individuale vor rămâne, deși nu vor mai fi asociate cu această organizație. "
+  "deletingOrganizationContentWarning": {
+    "message": "Introduceți parola principală pentru a confirma ștergerea $ORGANIZATION$ și a tuturor datelor asociate. Datele de seif din $ORGANIZATION$ includ:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Ștergerea organizației este definitivă. Nu poate fi anulată."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Conturile de utilizator vor rămâne active după ștergere, dar nu vor mai fi asociate cu această organizație."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Ștergerea $ORGANIZATION$ este permanentă și ireversibilă.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organizația a fost ștearsă"
@@ -4414,25 +4441,25 @@
     "message": "Comportament de redirecționare OIDC"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Obținere de revendicări din informații utilizator de punct final"
+    "message": "Obținere de claims de la punctul final de info utilizator"
   },
   "additionalScopes": {
-    "message": "Domenii de aplicare suplimentare/personalizate (delimitate prin virgule)"
+    "message": "Scopes personalizate"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Tipuri de revendicări ID utilizator suplimentare/personalizate (delimitate prin virgule)"
+    "message": "Tipuri de claim personalizate de ID utilizator"
   },
   "additionalEmailClaimTypes": {
-    "message": "Tipuri de revendicări E-mail suplimentare/personalizate (delimitate prin virgule)"
+    "message": "Tipuri de Claim e-mail"
   },
   "additionalNameClaimTypes": {
-    "message": "Tipuri de revendicări Nume suplimentare/personalizate (delimitate prin virgule)"
+    "message": "Tipuri de Claim cu nume personalizate"
   },
   "acrValues": {
-    "message": "Valorile de referință ale clasei de context de autentificare solicitate (acr_values)"
+    "message": "Valorile de referință ale clasei de context de autentificare solicitate"
   },
   "expectedReturnAcrValue": {
-    "message": "Valoarea preconizată a revendicării „acr” în răspuns (validare acr)"
+    "message": "Valoarea Claim „acr” care trebuie așteptată în răspuns"
   },
   "spEntityId": {
     "message": "ID-ul Entității SP"
@@ -4456,10 +4483,10 @@
     "message": "Algoritmul minim de semnare de intrare"
   },
   "spWantAssertionsSigned": {
-    "message": "Vreau aserțiunile semnate"
+    "message": "Se așteaptă afirmații semnate"
   },
   "spValidateCertificates": {
-    "message": "Validați certificatele"
+    "message": "Validare certificate"
   },
   "idpEntityId": {
     "message": "ID-ul Entității"
@@ -4480,13 +4507,13 @@
     "message": "Algoritm de semnare de ieșire"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Permiteți răspunsul de autentificare nesolicitat"
+    "message": "Se permite răspunsul nesolicitat de autentificare"
   },
   "idpAllowOutboundLogoutRequests": {
-    "message": "Allow outbound logout requests"
+    "message": "Se permit cererile de deconectare de ieșire"
   },
   "idpSignAuthenticationRequests": {
-    "message": "Sign authentication requests"
+    "message": "Semnare a solicitărilor de autentificare"
   },
   "ssoSettingsSaved": {
     "message": "Configurația de conectare unică a fost salvată."
@@ -4738,7 +4765,7 @@
     "message": "GRATUIT cu sponsorizare"
   },
   "formErrorSummaryPlural": {
-    "message": "$COUNT$ fields above need your attention.",
+    "message": "$COUNT$ câmpuri de mai sus necesită atenția dvs.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -4747,10 +4774,10 @@
     }
   },
   "formErrorSummarySingle": {
-    "message": "1 field above needs your attention."
+    "message": "1 câmp de mai sus necesită atenția dvs."
   },
   "fieldRequiredError": {
-    "message": "$FIELDNAME$ is required.",
+    "message": "$FIELDNAME$ este obligatoriu.",
     "placeholders": {
       "fieldname": {
         "content": "$1",
@@ -4759,19 +4786,19 @@
     }
   },
   "required": {
-    "message": "required"
+    "message": "necesar"
   },
   "idpSingleSignOnServiceUrlRequired": {
-    "message": "Required if Entity ID is not a URL."
+    "message": "Necesar dacă ID-ul de entitate nu este un URL."
   },
   "openIdOptionalCustomizations": {
-    "message": "Optional Customizations"
+    "message": "Personalizări opționale"
   },
   "openIdAuthorityRequired": {
-    "message": "Required if Authority is not valid."
+    "message": "Necesar dacă Autoritatea nu este validă."
   },
   "separateMultipleWithComma": {
-    "message": "Separate multiple with a comma."
+    "message": "Separați mai multe prin virgulă."
   },
   "sessionTimeout": {
     "message": "Sesiunea dvs. a expirat. Vă rugăm reveniți și încercați să vă autentificați din nou."

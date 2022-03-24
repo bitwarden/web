@@ -1,9 +1,9 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { AuthGuardService } from "jslib-angular/services/auth-guard.service";
-import { LockGuardService } from "jslib-angular/services/lock-guard.service";
-import { UnauthGuardService } from "jslib-angular/services/unauth-guard.service";
+import { AuthGuard } from "jslib-angular/guards/auth.guard";
+import { LockGuard } from "jslib-angular/guards/lock.guard";
+import { UnauthGuard } from "jslib-angular/guards/unauth.guard";
 import { Permissions } from "jslib-common/enums/permissions";
 
 import { AcceptEmergencyComponent } from "./accounts/accept-emergency.component";
@@ -74,18 +74,18 @@ const routes: Routes = [
     path: "",
     component: FrontendLayoutComponent,
     children: [
-      { path: "", pathMatch: "full", component: LoginComponent, canActivate: [UnauthGuardService] },
-      { path: "2fa", component: TwoFactorComponent, canActivate: [UnauthGuardService] },
+      { path: "", pathMatch: "full", component: LoginComponent, canActivate: [UnauthGuard] },
+      { path: "2fa", component: TwoFactorComponent, canActivate: [UnauthGuard] },
       {
         path: "register",
         component: RegisterComponent,
-        canActivate: [UnauthGuardService],
+        canActivate: [UnauthGuard],
         data: { titleId: "createAccount" },
       },
       {
         path: "sso",
         component: SsoComponent,
-        canActivate: [UnauthGuardService],
+        canActivate: [UnauthGuard],
         data: { titleId: "enterpriseSingleSignOn" },
       },
       {
@@ -96,13 +96,13 @@ const routes: Routes = [
       {
         path: "hint",
         component: HintComponent,
-        canActivate: [UnauthGuardService],
+        canActivate: [UnauthGuard],
         data: { titleId: "passwordHint" },
       },
       {
         path: "lock",
         component: LockComponent,
-        canActivate: [LockGuardService],
+        canActivate: [LockGuard],
       },
       { path: "verify-email", component: VerifyEmailTokenComponent },
       {
@@ -119,19 +119,19 @@ const routes: Routes = [
       {
         path: "recover-2fa",
         component: RecoverTwoFactorComponent,
-        canActivate: [UnauthGuardService],
+        canActivate: [UnauthGuard],
         data: { titleId: "recoverAccountTwoStep" },
       },
       {
         path: "recover-delete",
         component: RecoverDeleteComponent,
-        canActivate: [UnauthGuardService],
+        canActivate: [UnauthGuard],
         data: { titleId: "deleteAccount" },
       },
       {
         path: "verify-recover-delete",
         component: VerifyRecoverDeleteComponent,
-        canActivate: [UnauthGuardService],
+        canActivate: [UnauthGuard],
         data: { titleId: "deleteAccount" },
       },
       {
@@ -142,19 +142,19 @@ const routes: Routes = [
       {
         path: "update-temp-password",
         component: UpdateTempPasswordComponent,
-        canActivate: [AuthGuardService],
+        canActivate: [AuthGuard],
         data: { titleId: "updateTempPassword" },
       },
       {
         path: "update-password",
         component: UpdatePasswordComponent,
-        canActivate: [AuthGuardService],
+        canActivate: [AuthGuard],
         data: { titleId: "updatePassword" },
       },
       {
         path: "remove-password",
         component: RemovePasswordComponent,
-        canActivate: [AuthGuardService],
+        canActivate: [AuthGuard],
         data: { titleId: "removeMasterPassword" },
       },
     ],
@@ -162,7 +162,7 @@ const routes: Routes = [
   {
     path: "",
     component: UserLayoutComponent,
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuard],
     children: [
       { path: "vault", component: VaultComponent, data: { titleId: "myVault" } },
       { path: "sends", component: SendComponent, data: { title: "Send" } },
@@ -228,7 +228,7 @@ const routes: Routes = [
       {
         path: "tools",
         component: ToolsComponent,
-        canActivate: [AuthGuardService],
+        canActivate: [AuthGuard],
         children: [
           { path: "", pathMatch: "full", redirectTo: "generator" },
           { path: "import", component: ImportComponent, data: { titleId: "importData" } },
@@ -250,7 +250,7 @@ const routes: Routes = [
   {
     path: "organizations/:organizationId",
     component: OrganizationLayoutComponent,
-    canActivate: [AuthGuardService, OrganizationGuardService],
+    canActivate: [AuthGuard, OrganizationGuardService],
     children: [
       { path: "", pathMatch: "full", redirectTo: "vault" },
       { path: "vault", component: OrgVaultComponent, data: { titleId: "vault" } },

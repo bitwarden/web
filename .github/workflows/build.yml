@@ -76,17 +76,15 @@ jobs:
     env:
       _VERSION: ${{ needs.setup.outputs.version }}
     steps:
-      - name: Set up Node
-        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
-        with:
-          node-version: "16"
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
-      - name: Cache npm
-        id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
+      - name: Set up Node
+        uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a  # v3.0.0
         with:
-          path: "~/.npm"
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+          node-version: "16"
 
       - name: Print environment
         run: |
@@ -97,9 +95,6 @@ jobs:
           docker --version
           echo "GitHub ref: $GITHUB_REF"
           echo "GitHub event: $GITHUB_EVENT"
-
-      - name: Checkout repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
       - name: Install dependencies
         run: npm ci
@@ -126,17 +121,15 @@ jobs:
     env:
       _VERSION: ${{ needs.setup.outputs.version }}
     steps:
-      - name: Set up Node
-        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
-        with:
-          node-version: "16"
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
-      - name: Cache npm
-        id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
+      - name: Set up Node
+        uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a  # v3.0.0
         with:
-          path: "~/.npm"
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+          node-version: "16"
 
       - name: Print environment
         run: |
@@ -147,9 +140,6 @@ jobs:
           docker --version
           echo "GitHub ref: $GITHUB_REF"
           echo "GitHub event: $GITHUB_EVENT"
-
-      - name: Checkout repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
       - name: Install dependencies
         run: npm ci
@@ -176,17 +166,15 @@ jobs:
     env:
       _VERSION: ${{ needs.setup.outputs.version }}
     steps:
-      - name: Set up Node
-        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
-        with:
-          node-version: "16"
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
-      - name: Cache npm
-        id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
+      - name: Set up Node
+        uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a  # v3.0.0
         with:
-          path: "~/.npm"
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+          node-version: "16"
 
       - name: Print environment
         run: |
@@ -199,15 +187,12 @@ jobs:
           echo "GitHub event: $GITHUB_EVENT"
 
       - name: Setup DCT
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix-rc'
         id: setup-dct
         uses: bitwarden/gh-actions/setup-docker-trust@a8c384a05a974c05c48374c818b004be221d43ff
         with:
           azure-creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
           azure-keyvault-name: "bitwarden-prod-kv"
-
-      - name: Checkout repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
       - name: Install dependencies
         run: npm ci
@@ -243,11 +228,11 @@ jobs:
         run: docker tag bitwarden/web bitwarden/web:dev
 
       - name: Tag hotfix branch
-        if: github.ref == 'refs/heads/hotfix'
-        run: docker tag bitwarden/web bitwarden/web:hotfix
+        if: github.ref == 'refs/heads/hotfix-rc'
+        run: docker tag bitwarden/web bitwarden/web:hotfix-rc
 
       - name: List Docker images
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix-rc'
         run: docker images
 
       - name: Push rc image
@@ -265,14 +250,14 @@ jobs:
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
 
       - name: Push hotfix image
-        if: github.ref == 'refs/heads/hotfix'
-        run: docker push bitwarden/web:hotfix
+        if: github.ref == 'refs/heads/hotfix-rc'
+        run: docker push bitwarden/web:hotfix-rc
         env:
           DOCKER_CONTENT_TRUST: 1
           DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
 
       - name: Log out of Docker
-        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix'
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/rc' || github.ref == 'refs/heads/hotfix-rc'
         run: |
           docker logout
           echo "DOCKER_CONTENT_TRUST=0" >> $GITHUB_ENV
@@ -308,17 +293,15 @@ jobs:
       - setup
       - lint
     steps:
-      - name: Set up Node
-        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
-        with:
-          node-version: "16"
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
-      - name: Cache npm
-        id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
+      - name: Set up Node
+        uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a  # v3.0.0
         with:
-          path: "~/.npm"
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+          node-version: "16"
 
       - name: Print environment
         run: |
@@ -337,9 +320,6 @@ jobs:
 
       - name: Log into container registry
         run: az acr login -n bitwardenqa
-
-      - name: Checkout repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
       - name: Install dependencies
         run: npm ci
@@ -401,21 +381,19 @@ jobs:
     name: Test code on Windows
     runs-on: windows-2019
     steps:
+      - name: Checkout repo
+        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
+
       - name: Set up NuGet
         uses: nuget/setup-nuget@04b0c2b8d1b97922f67eca497d7cf0bf17b8ffe1
         with:
           nuget-version: "latest"
 
-      - name: Cache npm
-        id: npm-cache
-        uses: actions/cache@c64c572235d810460d0d6876e9c705ad5002b353  # v2.1.6
-        with:
-          path: "~/.npm"
-          key: ${{ runner.os }}-npm-${{ hashFiles('**/package-lock.json') }}
-
       - name: Set up Node
-        uses: actions/setup-node@46071b5c7a2e0c34e49c3cb8a0e792e86e18d5ea
+        uses: actions/setup-node@9ced9a43a244f3ac94f13bfd896db8c8f30da67a  # v3.0.0
         with:
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
           node-version: "16"
 
       - name: Print environment
@@ -428,9 +406,6 @@ jobs:
         env:
           GITHUB_REF: ${{ github.ref }}
           GITHUB_EVENT: ${{ github.event_name }}
-
-      - name: Checkout repo
-        uses: actions/checkout@5a4ac9002d0be2fb38bd78e4b4dbde5606d7042f
 
       - name: Install dependencies
         run: npm ci

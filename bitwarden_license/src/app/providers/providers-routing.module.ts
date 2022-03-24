@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { AuthGuardService } from "jslib-angular/services/auth-guard.service";
+import { AuthGuard } from "jslib-angular/guards/auth.guard";
 import { Permissions } from "jslib-common/enums/permissions";
 
 import { FrontendLayoutComponent } from "src/app/layouts/frontend-layout.component";
@@ -24,7 +24,7 @@ import { SetupComponent } from "./setup/setup.component";
 const routes: Routes = [
   {
     path: "",
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuard],
     component: ProvidersComponent,
   },
   {
@@ -45,7 +45,7 @@ const routes: Routes = [
   },
   {
     path: "",
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuard],
     children: [
       {
         path: "setup",

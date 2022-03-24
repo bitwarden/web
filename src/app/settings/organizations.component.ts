@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
@@ -19,8 +19,6 @@ import { OrganizationUserResetPasswordEnrollmentRequest } from "jslib-common/mod
   templateUrl: "organizations.component.html",
 })
 export class OrganizationsComponent implements OnInit {
-  @Input() vault = false;
-
   organizations: Organization[];
   policies: Policy[];
   loaded = false;
@@ -38,10 +36,8 @@ export class OrganizationsComponent implements OnInit {
   ) {}
 
   async ngOnInit() {
-    if (!this.vault) {
-      await this.syncService.fullSync(true);
-      await this.load();
-    }
+    await this.syncService.fullSync(true);
+    await this.load();
   }
 
   async load() {
