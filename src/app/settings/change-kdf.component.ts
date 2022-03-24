@@ -7,7 +7,7 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-import { DEFAULT_KDF_ITERATIONS, KdfType } from "jslib-common/enums/kdfType";
+import { KdfType } from "jslib-common/enums/kdfType";
 import { KdfRequest } from "jslib-common/models/request/kdfRequest";
 
 @Component({
@@ -20,7 +20,6 @@ export class ChangeKdfComponent implements OnInit {
   kdf = KdfType.PBKDF2_SHA256;
   kdfOptions: any[] = [];
   formPromise: Promise<any>;
-  recommendedKdfIterations = DEFAULT_KDF_ITERATIONS;
 
   constructor(
     private apiService: ApiService,
