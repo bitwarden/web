@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
-import { AuthGuardService } from "jslib-angular/services/auth-guard.service";
+import { AuthGuard } from "jslib-angular/guards/auth.guard";
 
 import { BreachReportComponent } from "./breach-report.component";
 import { ExposedPasswordsReportComponent } from "./exposed-passwords-report.component";
@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: "",
     component: ReportsComponent,
-    canActivate: [AuthGuardService],
+    canActivate: [AuthGuard],
     children: [
       { path: "", pathMatch: "full", component: ReportListComponent, data: { homepage: true } },
       {
