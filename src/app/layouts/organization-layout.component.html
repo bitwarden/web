@@ -1,3 +1,4 @@
+<app-navbar></app-navbar>
 <div class="org-nav" *ngIf="organization">
   <div class="container d-flex">
     <div class="d-flex flex-column">
@@ -26,7 +27,7 @@
           </div>
         </div>
       </div>
-      <ul class="nav nav-tabs">
+      <ul class="nav nav-tabs" *ngIf="showMenuBar">
         <li class="nav-item">
           <a class="nav-link" routerLink="vault" routerLinkActive="active">
             <i class="bwi bwi-lock" aria-hidden="true"></i>
@@ -45,7 +46,7 @@
             {{ "tools" | i18n }}
           </a>
         </li>
-        <li class="nav-item" *ngIf="showSettingsTab">
+        <li class="nav-item" *ngIf="organization.isOwner">
           <a class="nav-link" routerLink="settings" routerLinkActive="active">
             <i class="bwi bwi-cogs" aria-hidden="true"></i>
             {{ "settings" | i18n }}
@@ -56,3 +57,4 @@
   </div>
 </div>
 <router-outlet></router-outlet>
+<app-footer></app-footer>

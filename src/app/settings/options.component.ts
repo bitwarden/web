@@ -10,10 +10,10 @@ import { ThemeType } from "jslib-common/enums/themeType";
 import { Utils } from "jslib-common/misc/utils";
 
 @Component({
-  selector: "app-preferences",
-  templateUrl: "preferences.component.html",
+  selector: "app-options",
+  templateUrl: "options.component.html",
 })
-export class PreferencesComponent implements OnInit {
+export class OptionsComponent implements OnInit {
   vaultTimeoutAction = "lock";
   disableIcons: boolean;
   enableGravatars: boolean;
@@ -107,11 +107,7 @@ export class PreferencesComponent implements OnInit {
     if (this.locale !== this.startingLocale) {
       window.location.reload();
     } else {
-      this.platformUtilsService.showToast(
-        "success",
-        null,
-        this.i18nService.t("preferencesUpdated")
-      );
+      this.platformUtilsService.showToast("success", null, this.i18nService.t("optionsUpdated"));
     }
   }
 

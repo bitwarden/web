@@ -187,10 +187,15 @@
                   title="{{ 'verificationCodeTotp' | i18n }}"
                   class="ml-2"
                 />
-                <app-premium-badge
-                  *ngIf="!organization && !cipher.organizationId"
-                  class="ml-3"
-                ></app-premium-badge>
+                <a
+                  href="#"
+                  appStopClick
+                  class="badge badge-primary ml-3"
+                  (click)="premiumRequired()"
+                  *ngIf="!organization && !cipher.organizationId && !canAccessPremium"
+                >
+                  {{ "premium" | i18n }}
+                </a>
                 <a
                   href="#"
                   appStopClick

@@ -1,5 +1,4 @@
 import { Component } from "@angular/core";
-import { Router } from "@angular/router";
 
 import { ChangePasswordComponent as BaseChangePasswordComponent } from "jslib-angular/components/change-password.component";
 import { ApiService } from "jslib-common/abstractions/api.service";
@@ -7,7 +6,6 @@ import { CipherService } from "jslib-common/abstractions/cipher.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { FolderService } from "jslib-common/abstractions/folder.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
-import { KeyConnectorService } from "jslib-common/abstractions/keyConnector.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PasswordGenerationService } from "jslib-common/abstractions/passwordGeneration.service";
@@ -49,9 +47,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
     private syncService: SyncService,
     private apiService: ApiService,
     private sendService: SendService,
-    private organizationService: OrganizationService,
-    private keyConnectorService: KeyConnectorService,
-    private router: Router
+    private organizationService: OrganizationService
   ) {
     super(
       i18nService,
@@ -62,12 +58,6 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
       policyService,
       stateService
     );
-  }
-
-  async ngOnInit() {
-    if (await this.keyConnectorService.getUsesKeyConnector()) {
-      this.router.navigate(["/settings/security/two-factor"]);
-    }
   }
 
   async rotateEncKeyClicked() {

@@ -5,8 +5,6 @@ import { BroadcasterService } from "jslib-common/abstractions/broadcaster.servic
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { Organization } from "jslib-common/models/domain/organization";
 
-import { NavigationPermissionsService } from "../services/navigation-permissions.service";
-
 const BroadcasterSubscriptionId = "OrganizationLayoutComponent";
 
 @Component({
@@ -27,7 +25,7 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     document.body.classList.remove("layout_frontend");
-    this.route.params.subscribe(async (params: any) => {
+    this.route.params.subscribe(async (params) => {
       this.organizationId = params.organizationId;
       await this.load();
     });
@@ -50,16 +48,23 @@ export class OrganizationLayoutComponent implements OnInit, OnDestroy {
     this.organization = await this.organizationService.get(this.organizationId);
   }
 
+  get showMenuBar() {
+    return this.showManageTab || this.showToolsTab || this.organization.isOwner;
+  }
+
   get showManageTab(): boolean {
-    return NavigationPermissionsService.canAccessManage(this.organization);
+    return (
+      this.organization.canManageUsers ||
+      this.organization.canViewAllCollections ||
+      this.organization.canViewAssignedCollections ||
+      this.organization.canManageGroups ||
+      this.organization.canManagePolicies ||
+      this.organization.canAccessEventLogs
+    );
   }
 
   get showToolsTab(): boolean {
-    return NavigationPermissionsService.canAccessTools(this.organization);
-  }
-
-  get showSettingsTab(): boolean {
-    return NavigationPermissionsService.canAccessSettings(this.organization);
+    return this.organization.canAccessImportExport || this.organization.canAccessReports;
   }
 
   get toolsRoute(): string {

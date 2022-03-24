@@ -10,8 +10,6 @@ import { OssModule } from "src/app/oss.module";
 import { AddOrganizationComponent } from "./clients/add-organization.component";
 import { ClientsComponent } from "./clients/clients.component";
 import { CreateOrganizationComponent } from "./clients/create-organization.component";
-import { PermissionsGuard } from "./guards/provider-type.guard";
-import { ProviderGuard } from "./guards/provider.guard";
 import { AcceptProviderComponent } from "./manage/accept-provider.component";
 import { BulkConfirmComponent } from "./manage/bulk/bulk-confirm.component";
 import { BulkRemoveComponent } from "./manage/bulk/bulk-remove.component";
@@ -21,6 +19,8 @@ import { PeopleComponent } from "./manage/people.component";
 import { UserAddEditComponent } from "./manage/user-add-edit.component";
 import { ProvidersLayoutComponent } from "./providers-layout.component";
 import { ProvidersRoutingModule } from "./providers-routing.module";
+import { ProviderGuardService } from "./services/provider-guard.service";
+import { ProviderTypeGuardService } from "./services/provider-type-guard.service";
 import { WebProviderService } from "./services/webProvider.service";
 import { AccountComponent } from "./settings/account.component";
 import { SettingsComponent } from "./settings/settings.component";
@@ -46,7 +46,7 @@ import { SetupComponent } from "./setup/setup.component";
     SetupProviderComponent,
     UserAddEditComponent,
   ],
-  providers: [WebProviderService, ProviderGuard, PermissionsGuard],
+  providers: [WebProviderService, ProviderGuardService, ProviderTypeGuardService],
 })
 export class ProvidersModule {
   constructor(modalService: ModalService, componentFactoryResolver: ComponentFactoryResolver) {

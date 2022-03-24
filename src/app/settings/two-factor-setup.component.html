@@ -1,14 +1,14 @@
-<div class="tabbed-header">
+<div class="page-header">
   <h1>{{ "twoStepLogin" | i18n }}</h1>
 </div>
 <p *ngIf="!organizationId">{{ "twoStepLoginDesc" | i18n }}</p>
 <p *ngIf="organizationId">{{ "twoStepLoginOrganizationDesc" | i18n }}</p>
-<bit-callout type="warning" *ngIf="!organizationId">
+<app-callout type="warning" *ngIf="!organizationId">
   <p>{{ "twoStepLoginRecoveryWarning" | i18n }}</p>
-  <button bit-button buttonType="secondary" (click)="recoveryCode()">
+  <button type="button" class="btn btn-outline-secondary" (click)="recoveryCode()">
     {{ "viewRecoveryCode" | i18n }}
   </button>
-</bit-callout>
+</app-callout>
 <h2 [ngClass]="{ 'mt-5': !organizationId }">
   {{ "providers" | i18n }}
   <small *ngIf="loading">
@@ -20,9 +20,9 @@
     <span class="sr-only">{{ "loading" | i18n }}</span>
   </small>
 </h2>
-<bit-callout type="warning" *ngIf="showPolicyWarning">
+<app-callout type="warning" *ngIf="showPolicyWarning">
   {{ "twoStepLoginPolicyUserWarning" | i18n }}
-</bit-callout>
+</app-callout>
 <ul class="list-group list-group-2fa">
   <li *ngFor="let p of providers" class="list-group-item d-flex align-items-center">
     <div class="logo-2fa d-flex justify-content-center">
@@ -39,14 +39,22 @@
           ></i>
           <span class="sr-only">{{ "enabled" | i18n }}</span>
         </ng-container>
-        <app-premium-badge *ngIf="p.premium"></app-premium-badge>
+        <a
+          href="#"
+          appStopClick
+          class="badge badge-primary"
+          *ngIf="!canAccessPremium && p.premium"
+          (click)="premiumRequired()"
+        >
+          {{ "premium" | i18n }}
+        </a>
       </h3>
       {{ p.description }}
     </div>
     <div class="ml-auto">
       <button
-        bit-button
-        buttonType="secondary"
+        type="button"
+        class="btn btn-outline-secondary btn-sm"
         [disabled]="!canAccessPremium && p.premium"
         (click)="manage(p.type)"
       >

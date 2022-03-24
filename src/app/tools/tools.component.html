@@ -19,7 +19,15 @@
         <div class="card-header d-flex">
           {{ "reports" | i18n }}
           <div class="ml-auto">
-            <app-premium-badge></app-premium-badge>
+            <a
+              href="#"
+              appStopClick
+              class="badge badge-primary"
+              *ngIf="!canAccessPremium"
+              (click)="premiumRequired()"
+            >
+              {{ "premium" | i18n }}
+            </a>
           </div>
         </div>
         <div class="list-group list-group-flush">

@@ -1,42 +1,33 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router } from "@angular/router";
 
-import { BaseGuard } from "jslib-angular/guards/base.guard";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-import { Permissions } from "jslib-common/enums/permissions";
 
 @Injectable()
-export class PermissionsGuard extends BaseGuard implements CanActivate {
+export class OrganizationGuardService implements CanActivate {
   constructor(
-    router: Router,
-    private organizationService: OrganizationService,
+    private router: Router,
     private platformUtilsService: PlatformUtilsService,
-    private i18nService: I18nService
-  ) {
-    super(router);
-  }
+    private i18nService: I18nService,
+    private organizationService: OrganizationService
+  ) {}
 
   async canActivate(route: ActivatedRouteSnapshot) {
     const org = await this.organizationService.get(route.params.organizationId);
     if (org == null) {
-      return this.redirect();
+      this.router.navigate(["/"]);
+      return false;
     }
-
     if (!org.isOwner && !org.enabled) {
       this.platformUtilsService.showToast(
         "error",
         null,
         this.i18nService.t("organizationIsDisabled")
       );
-      return this.redirect();
-    }
-
-    const permissions = route.data == null ? [] : (route.data.permissions as Permissions[]);
-    if (permissions != null && !org.hasAnyPermission(permissions)) {
-      this.platformUtilsService.showToast("error", null, this.i18nService.t("accessDenied"));
-      return this.redirect();
+      this.router.navigate(["/"]);
+      return false;
     }
 
     return true;
