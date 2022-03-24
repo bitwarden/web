@@ -53,6 +53,7 @@ import localeZhTw from "@angular/common/locales/zh-Hant";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
+import { BadgeModule, ButtonModule, CalloutModule } from "@bitwarden/components";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { ToastrModule } from "ngx-toastr";
 
@@ -78,11 +79,12 @@ import { VerifyRecoverDeleteComponent } from "./accounts/verify-recover-delete.c
 import { NestedCheckboxComponent } from "./components/nested-checkbox.component";
 import { PasswordRepromptComponent } from "./components/password-reprompt.component";
 import { PasswordStrengthComponent } from "./components/password-strength.component";
+import { PremiumBadgeComponent } from "./components/premium-badge.component";
 import { FooterComponent } from "./layouts/footer.component";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
 import { NavbarComponent } from "./layouts/navbar.component";
-import { OrganizationLayoutComponent } from "./layouts/organization-layout.component";
 import { UserLayoutComponent } from "./layouts/user-layout.component";
+import { OrganizationLayoutComponent } from "./organizations/layouts/organization-layout.component";
 import { BulkConfirmComponent as OrgBulkConfirmComponent } from "./organizations/manage/bulk/bulk-confirm.component";
 import { BulkRemoveComponent as OrgBulkRemoveComponent } from "./organizations/manage/bulk/bulk-remove.component";
 import { BulkStatusComponent as OrgBulkStatusComponent } from "./organizations/manage/bulk/bulk-status.component";
@@ -159,13 +161,15 @@ import { EmergencyAccessViewComponent } from "./settings/emergency-access-view.c
 import { EmergencyAccessComponent } from "./settings/emergency-access.component";
 import { EmergencyAddEditComponent } from "./settings/emergency-add-edit.component";
 import { LinkSsoComponent } from "./settings/link-sso.component";
-import { OptionsComponent } from "./settings/options.component";
 import { OrganizationPlansComponent } from "./settings/organization-plans.component";
 import { OrganizationsComponent } from "./settings/organizations.component";
 import { PaymentComponent } from "./settings/payment.component";
+import { PreferencesComponent } from "./settings/preferences.component";
 import { PremiumComponent } from "./settings/premium.component";
 import { ProfileComponent } from "./settings/profile.component";
 import { PurgeVaultComponent } from "./settings/purge-vault.component";
+import { SecurityKeysComponent } from "./settings/security-keys.component";
+import { SecurityComponent } from "./settings/security.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { SponsoredFamiliesComponent } from "./settings/sponsored-families.component";
 import { SponsoringOrgRowComponent } from "./settings/sponsoring-org-row.component";
@@ -270,6 +274,9 @@ registerLocaleData(localeZhTw, "zh-TW");
     JslibModule,
     ReactiveFormsModule,
     RouterModule,
+    BadgeModule,
+    ButtonModule,
+    CalloutModule,
     ToastrModule,
   ],
   declarations: [
@@ -328,7 +335,6 @@ registerLocaleData(localeZhTw, "zh-TW");
     MasterPasswordPolicyComponent,
     NavbarComponent,
     NestedCheckboxComponent,
-    OptionsComponent,
     OrgAccountComponent,
     OrgAddEditComponent,
     OrganizationBillingComponent,
@@ -376,6 +382,8 @@ registerLocaleData(localeZhTw, "zh-TW");
     PasswordStrengthComponent,
     PaymentComponent,
     PersonalOwnershipPolicyComponent,
+    PreferencesComponent,
+    PremiumBadgeComponent,
     PremiumComponent,
     ProfileComponent,
     ProvidersComponent,
@@ -387,6 +395,8 @@ registerLocaleData(localeZhTw, "zh-TW");
     RequireSsoPolicyComponent,
     ResetPasswordPolicyComponent,
     ReusedPasswordsReportComponent,
+    SecurityComponent,
+    SecurityKeysComponent,
     SendAddEditComponent,
     SendComponent,
     SendEffluxDatesComponent,

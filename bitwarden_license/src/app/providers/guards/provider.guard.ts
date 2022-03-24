@@ -6,7 +6,7 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { ProviderService } from "jslib-common/abstractions/provider.service";
 
 @Injectable()
-export class ProviderGuardService implements CanActivate {
+export class ProviderGuard implements CanActivate {
   constructor(
     private router: Router,
     private platformUtilsService: PlatformUtilsService,

@@ -15,15 +15,7 @@
 <div class="page-header d-flex">
   <h2>
     {{ "trustedEmergencyContacts" | i18n }}
-    <a
-      href="#"
-      appStopClick
-      class="badge badge-primary"
-      *ngIf="!canAccessPremium"
-      (click)="premiumRequired()"
-    >
-      {{ "premium" | i18n }}
-    </a>
+    <app-premium-badge></app-premium-badge>
   </h2>
   <div class="ml-auto d-flex">
     <button
