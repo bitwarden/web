@@ -5,7 +5,7 @@ import { ProviderService } from "jslib-common/abstractions/provider.service";
 import { Permissions } from "jslib-common/enums/permissions";
 
 @Injectable()
-export class ProviderTypeGuardService implements CanActivate {
+export class PermissionsGuard implements CanActivate {
   constructor(private providerService: ProviderService, private router: Router) {}
 
   async canActivate(route: ActivatedRouteSnapshot) {

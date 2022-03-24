@@ -300,6 +300,18 @@
   "typeSecureNote": {
     "message": "Sekura Noto"
   },
+  "typeLoginPlural": {
+    "message": "Logins"
+  },
+  "typeCardPlural": {
+    "message": "Cards"
+  },
+  "typeIdentityPlural": {
+    "message": "Identities"
+  },
+  "typeSecureNotePlural": {
+    "message": "Secure Notes"
+  },
   "folders": {
     "message": "Dosierujoj"
   },
@@ -2782,11 +2794,26 @@
   "deleteOrganization": {
     "message": "Forigi Organizon"
   },
-  "deleteOrganizationDesc": {
-    "message": "Sekvu sube por forigi ĉi tiun organizon kaj ĉiujn rilatajn datumojn. Individuaj kontoj de uzanto restos, kvankam ili ne plu estos asociitaj al ĉi tiu organizo."
+  "deletingOrganizationContentWarning": {
+    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Forigi la organizon estas konstanta. Ĝi ne povas esti malfarita."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organizo Forigita"

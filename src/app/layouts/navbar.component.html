@@ -24,6 +24,14 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/tools">{{ "tools" | i18n }}</a>
         </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" routerLink="/reports">{{ "reports" | i18n }}</a>
+        </li>
+        <li *ngIf="organizations.length >= 1" class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/organizations', organizations[0].id]">{{
+            "organizations" | i18n
+          }}</a>
+        </li>
       </ul>
     </div>
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
