@@ -1,5 +1,8 @@
+import { Injectable } from "@angular/core";
+
 import { BasePolicy } from "../organizations/policies/base-policy.component";
 
+@Injectable()
 export class PolicyListService {
   private policies: BasePolicy[] = [];
 

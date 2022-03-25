@@ -136,43 +136,13 @@ export function initFactory(
     },
     {
       provide: PlatformUtilsServiceAbstraction,
-      useFactory: (
-        i18nService: I18nServiceAbstraction,
-        messagingService: MessagingServiceAbstraction,
-        logService: LogService,
-        stateService: StateServiceAbstraction
-      ) => new WebPlatformUtilsService(i18nService, messagingService, logService, stateService),
-      deps: [
-        I18nServiceAbstraction,
-        MessagingServiceAbstraction,
-        LogService,
-        StateServiceAbstraction,
-      ],
+      useClass: WebPlatformUtilsService,
     },
     { provide: MessagingServiceAbstraction, useClass: BroadcasterMessagingService },
     { provide: ModalServiceAbstraction, useClass: ModalService },
     {
       provide: ImportServiceAbstraction,
       useClass: ImportService,
-      deps: [
-        CipherServiceAbstraction,
-        FolderServiceAbstraction,
-        ApiServiceAbstraction,
-        I18nServiceAbstraction,
-        CollectionServiceAbstraction,
-        PlatformUtilsServiceAbstraction,
-        CryptoServiceAbstraction,
-      ],
-    },
-    {
-      provide: CryptoServiceAbstraction,
-      useClass: CryptoService,
-      deps: [
-        CryptoFunctionServiceAbstraction,
-        PlatformUtilsServiceAbstraction,
-        LogService,
-        StateServiceAbstraction,
-      ],
     },
     {
       provide: StateMigrationServiceAbstraction,
