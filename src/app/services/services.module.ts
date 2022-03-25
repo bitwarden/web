@@ -1,21 +1,17 @@
-import { APP_INITIALIZER, NgModule } from "@angular/core";
+import { APP_INITIALIZER, InjectionToken, NgModule } from "@angular/core";
 import { ToastrModule } from "ngx-toastr";
 
 import { JslibServicesModule } from "jslib-angular/services/jslib-services.module";
 import { ModalService as ModalServiceAbstraction } from "jslib-angular/services/modal.service";
-import { ApiService as ApiServiceAbstraction } from "jslib-common/abstractions/api.service";
-import { CipherService as CipherServiceAbstraction } from "jslib-common/abstractions/cipher.service";
-import { CollectionService as CollectionServiceAbstraction } from "jslib-common/abstractions/collection.service";
 import { CryptoService as CryptoServiceAbstraction } from "jslib-common/abstractions/crypto.service";
-import { CryptoFunctionService as CryptoFunctionServiceAbstraction } from "jslib-common/abstractions/cryptoFunction.service";
 import {
   EnvironmentService as EnvironmentServiceAbstraction,
   Urls,
 } from "jslib-common/abstractions/environment.service";
 import { EventService as EventLoggingServiceAbstraction } from "jslib-common/abstractions/event.service";
-import { FolderService as FolderServiceAbstraction } from "jslib-common/abstractions/folder.service";
 import { I18nService as I18nServiceAbstraction } from "jslib-common/abstractions/i18n.service";
 import { ImportService as ImportServiceAbstraction } from "jslib-common/abstractions/import.service";
+import { STATE_FACTORY, STATE_SERVICE_USE_CACHE } from "jslib-common/abstractions/injectionTokens";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService as MessagingServiceAbstraction } from "jslib-common/abstractions/messaging.service";
 import { NotificationsService as NotificationsServiceAbstraction } from "jslib-common/abstractions/notifications.service";
@@ -29,7 +25,6 @@ import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from "jslib-com
 import { ThemeType } from "jslib-common/enums/themeType";
 import { StateFactory } from "jslib-common/factories/stateFactory";
 import { ContainerService } from "jslib-common/services/container.service";
-import { CryptoService } from "jslib-common/services/crypto.service";
 import { EventService as EventLoggingService } from "jslib-common/services/event.service";
 import { ImportService } from "jslib-common/services/import.service";
 import { VaultTimeoutService } from "jslib-common/services/vaultTimeout.service";
@@ -158,27 +153,16 @@ export function initFactory(
       deps: [StorageServiceAbstraction, "SECURE_STORAGE"],
     },
     {
+      provide: STATE_SERVICE_USE_CACHE,
+      useValue: false,
+    },
+    {
+      provide: STATE_FACTORY,
+      useFactory: () => new StateFactory(GlobalState, Account),
+    },
+    {
       provide: StateServiceAbstraction,
-      useFactory: (
-        storageService: StorageServiceAbstraction,
-        secureStorageService: StorageServiceAbstraction,
-        logService: LogService,
-        stateMigrationService: StateMigrationServiceAbstraction
-      ) =>
-        new StateService(
-          storageService,
-          secureStorageService,
-          logService,
-          stateMigrationService,
-          new StateFactory(GlobalState, Account),
-          false
-        ),
-      deps: [
-        StorageServiceAbstraction,
-        "SECURE_STORAGE",
-        LogService,
-        StateMigrationServiceAbstraction,
-      ],
+      useClass: StateService,
     },
     {
       provide: BaseStateServiceAbstraction,
