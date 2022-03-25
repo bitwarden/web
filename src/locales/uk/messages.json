@@ -301,16 +301,16 @@
     "message": "Захищена нотатка"
   },
   "typeLoginPlural": {
-    "message": "Logins"
+    "message": "Записи"
   },
   "typeCardPlural": {
-    "message": "Cards"
+    "message": "Картки"
   },
   "typeIdentityPlural": {
-    "message": "Identities"
+    "message": "Особисті дані"
   },
   "typeSecureNotePlural": {
-    "message": "Secure Notes"
+    "message": "Захищені нотатки"
   },
   "folders": {
     "message": "Теки"
@@ -2795,7 +2795,7 @@
     "message": "Видалити організацію"
   },
   "deletingOrganizationContentWarning": {
-    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "message": "Введіть головний пароль для підтвердження видалення $ORGANIZATION$ та всіх пов'язаних даних. Дані сховища в $ORGANIZATION$ включають:",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -2804,10 +2804,10 @@
     }
   },
   "deletingOrganizationActiveUserAccountsWarning": {
-    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+    "message": "Облікові записи користувачів залишатимуться активними після видалення, але більше не будуть пов'язані з цією організацією."
   },
   "deletingOrganizationIsPermanentWarning": {
-    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "message": "Видалення $ORGANIZATION$ є остаточним і незворотнім.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4510,10 +4510,10 @@
     "message": "Дозволити небажану відповідь авторизації"
   },
   "idpAllowOutboundLogoutRequests": {
-    "message": "Allow outbound logout requests"
+    "message": "Дозволити вихідні запити для виходу"
   },
   "idpSignAuthenticationRequests": {
-    "message": "Sign authentication requests"
+    "message": "Підписувати запити авторизації"
   },
   "ssoSettingsSaved": {
     "message": "Конфігурацію єдиного входу збережено."
@@ -4765,7 +4765,7 @@
     "message": "БЕЗПЛАТНО зі спонсоруванням"
   },
   "formErrorSummaryPlural": {
-    "message": "$COUNT$ fields above need your attention.",
+    "message": "$COUNT$ зазначених вище полів потребують вашої уваги.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -4774,10 +4774,10 @@
     }
   },
   "formErrorSummarySingle": {
-    "message": "1 field above needs your attention."
+    "message": "1 зазначене вище поле потребує вашої уваги."
   },
   "fieldRequiredError": {
-    "message": "$FIELDNAME$ is required.",
+    "message": "$FIELDNAME$ є обов'язковим.",
     "placeholders": {
       "fieldname": {
         "content": "$1",
@@ -4786,31 +4786,31 @@
     }
   },
   "required": {
-    "message": "required"
+    "message": "обов’язково"
   },
   "idpSingleSignOnServiceUrlRequired": {
-    "message": "Required if Entity ID is not a URL."
+    "message": "Обов'язково, якщо ID елемента не є URL."
   },
   "openIdOptionalCustomizations": {
-    "message": "Optional Customizations"
+    "message": "Додаткові налаштування"
   },
   "openIdAuthorityRequired": {
-    "message": "Required if Authority is not valid."
+    "message": "Обов'язково, якщо установа недійсна."
   },
   "separateMultipleWithComma": {
-    "message": "Separate multiple with a comma."
+    "message": "Декілька значень розділених комою."
   },
   "sessionTimeout": {
-    "message": "Your session has timed out. Please go back and try logging in again."
+    "message": "Час вашого сеансу завершився. Поверніться назад і спробуйте увійти знову."
   },
   "exportingPersonalVaultTitle": {
-    "message": "Exporting Personal Vault"
+    "message": "Експортування особистого сховища"
   },
   "exportingOrganizationVaultTitle": {
-    "message": "Exporting Organization Vault"
+    "message": "Експортування сховища організації"
   },
   "exportingPersonalVaultDescription": {
-    "message": "Only the personal vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
+    "message": "Будуть експортовані лише записи особистого сховища, пов'язані з $EMAIL$. Записи сховища організації не буде включено.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -4819,7 +4819,7 @@
     }
   },
   "exportingOrganizationVaultDescription": {
-    "message": "Only the organization vault associated with $ORGANIZATION$ will be exported. Personal vault items and items from other organizations will not be included.",
+    "message": "Будуть експортовані лише записи сховища організації, пов'язані з $ORGANIZATION$. Записи особистого сховища та записи з інших організацій не буде включено.",
     "placeholders": {
       "organization": {
         "content": "$1",
