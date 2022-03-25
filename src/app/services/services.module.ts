@@ -11,7 +11,11 @@ import {
 import { EventService as EventLoggingServiceAbstraction } from "jslib-common/abstractions/event.service";
 import { I18nService as I18nServiceAbstraction } from "jslib-common/abstractions/i18n.service";
 import { ImportService as ImportServiceAbstraction } from "jslib-common/abstractions/import.service";
-import { STATE_FACTORY, STATE_SERVICE_USE_CACHE } from "jslib-common/abstractions/injectionTokens";
+import {
+  STATE_FACTORY,
+  STATE_SERVICE_USE_CACHE,
+  SECURE_STORAGE,
+} from "jslib-common/abstractions/injectionTokens";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService as MessagingServiceAbstraction } from "jslib-common/abstractions/messaging.service";
 import { NotificationsService as NotificationsServiceAbstraction } from "jslib-common/abstractions/notifications.service";
@@ -124,7 +128,7 @@ export function initFactory(
     },
     { provide: StorageServiceAbstraction, useClass: HtmlStorageService },
     {
-      provide: "SECURE_STORAGE",
+      provide: SECURE_STORAGE,
       // TODO: platformUtilsService.isDev has a helper for this, but using that service here results in a circular dependency.
       // We have a tech debt item in the backlog to break up platformUtilsService, but in the meantime simply checking the environement here is less cumbersome.
       useClass: process.env.NODE_ENV === "development" ? HtmlStorageService : MemoryStorageService,
@@ -141,16 +145,7 @@ export function initFactory(
     },
     {
       provide: StateMigrationServiceAbstraction,
-      useFactory: (
-        storageService: StorageServiceAbstraction,
-        secureStorageService: StorageServiceAbstraction
-      ) =>
-        new StateMigrationService(
-          storageService,
-          secureStorageService,
-          new StateFactory(GlobalState, Account)
-        ),
-      deps: [StorageServiceAbstraction, "SECURE_STORAGE"],
+      useClass: StateMigrationService,
     },
     {
       provide: STATE_SERVICE_USE_CACHE,
