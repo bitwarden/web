@@ -15,6 +15,7 @@ import {
   STATE_FACTORY,
   STATE_SERVICE_USE_CACHE,
   SECURE_STORAGE,
+  WINDOW_TOKEN,
 } from "jslib-common/abstractions/injectionTokens";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService as MessagingServiceAbstraction } from "jslib-common/abstractions/messaging.service";
@@ -103,7 +104,7 @@ export function initFactory(
       provide: APP_INITIALIZER,
       useFactory: initFactory,
       deps: [
-        "WINDOW",
+        WINDOW_TOKEN,
         EnvironmentServiceAbstraction,
         NotificationsServiceAbstraction,
         VaultTimeoutServiceAbstraction,
@@ -124,7 +125,7 @@ export function initFactory(
     {
       provide: I18nServiceAbstraction,
       useFactory: (window: Window) => new I18nService(window.navigator.language, "locales"),
-      deps: ["WINDOW"],
+      deps: [WINDOW_TOKEN],
     },
     { provide: StorageServiceAbstraction, useClass: HtmlStorageService },
     {
