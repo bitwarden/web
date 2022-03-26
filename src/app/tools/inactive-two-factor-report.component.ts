@@ -63,11 +63,17 @@ export class InactiveTwoFactorReportComponent extends CipherReportComponent impl
           if (u.uri != null && u.uri !== "") {
             const uri = u.uri.replace("www.", "");
             const domain = Utils.getDomain(uri);
-            if (domain != null && this.services.has(domain)) {
-              if (this.services.get(domain) != null) {
-                docs.set(c.id, this.services.get(domain));
+            const labels = domain.split(".");
+            for (let j = labels.length; j > 1; j--) {
+              const d = labels.join(".");
+              if (d != "" && this.services.has(d)) {
+                if (this.services.get(d) != null) {
+                  docs.set(c.id, this.services.get(d));
+                }
+                inactive2faCiphers.push(c);
+                break;
               }
-              inactive2faCiphers.push(c);
+              labels.shift();
             }
           }
         }
