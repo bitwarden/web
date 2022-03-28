@@ -427,7 +427,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     WeakPasswordsReportComponent,
   ],
   exports: [FooterComponent, NavbarComponent, OrganizationPlansComponent],
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [],
 })
 export class OssModule {}

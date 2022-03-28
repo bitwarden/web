@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, InjectionToken, NgModule } from "@angular/core";
+import { APP_INITIALIZER, NgModule } from "@angular/core";
 import { ToastrModule } from "ngx-toastr";
 
 import { JslibServicesModule } from "jslib-angular/services/jslib-services.module";
@@ -11,13 +11,6 @@ import {
 import { EventService as EventLoggingServiceAbstraction } from "jslib-common/abstractions/event.service";
 import { I18nService as I18nServiceAbstraction } from "jslib-common/abstractions/i18n.service";
 import { ImportService as ImportServiceAbstraction } from "jslib-common/abstractions/import.service";
-import {
-  STATE_FACTORY,
-  STATE_SERVICE_USE_CACHE,
-  SECURE_STORAGE,
-  WINDOW_TOKEN,
-} from "jslib-common/abstractions/injectionTokens";
-import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService as MessagingServiceAbstraction } from "jslib-common/abstractions/messaging.service";
 import { NotificationsService as NotificationsServiceAbstraction } from "jslib-common/abstractions/notifications.service";
 import { PasswordRepromptService as PasswordRepromptServiceAbstraction } from "jslib-common/abstractions/passwordReprompt.service";
@@ -29,6 +22,12 @@ import { TwoFactorService as TwoFactorServiceAbstraction } from "jslib-common/ab
 import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from "jslib-common/abstractions/vaultTimeout.service";
 import { ThemeType } from "jslib-common/enums/themeType";
 import { StateFactory } from "jslib-common/factories/stateFactory";
+import {
+  STATE_FACTORY,
+  STATE_SERVICE_USE_CACHE,
+  SECURE_STORAGE,
+  WINDOW_TOKEN,
+} from "jslib-common/misc/injectionTokens";
 import { ContainerService } from "jslib-common/services/container.service";
 import { EventService as EventLoggingService } from "jslib-common/services/event.service";
 import { ImportService } from "jslib-common/services/import.service";
