@@ -1,3 +1,4 @@
+import { DatePipe } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
@@ -233,7 +234,7 @@ const routes: Routes = [
           {
             path: "generator",
             component: PasswordGeneratorComponent,
-            data: { titleId: "passwordGenerator" },
+            data: { titleId: "generator" },
           },
         ],
       },
@@ -441,5 +442,6 @@ const routes: Routes = [
     }),
   ],
   exports: [RouterModule],
+  providers: [DatePipe],
 })
 export class OssRoutingModule {}
