@@ -53,6 +53,7 @@ import localeZhTw from "@angular/common/locales/zh-Hant";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
+import { BadgeModule, ButtonModule } from "@bitwarden/components";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { ToastrModule } from "ngx-toastr";
 
@@ -78,6 +79,7 @@ import { VerifyRecoverDeleteComponent } from "./accounts/verify-recover-delete.c
 import { NestedCheckboxComponent } from "./components/nested-checkbox.component";
 import { PasswordRepromptComponent } from "./components/password-reprompt.component";
 import { PasswordStrengthComponent } from "./components/password-strength.component";
+import { PremiumBadgeComponent } from "./components/premium-badge.component";
 import { FooterComponent } from "./layouts/footer.component";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
 import { NavbarComponent } from "./layouts/navbar.component";
@@ -274,8 +276,11 @@ registerLocaleData(localeZhTw, "zh-TW");
     ReactiveFormsModule,
     RouterModule,
     ToastrModule,
+    BadgeModule,
+    ButtonModule,
   ],
   declarations: [
+    PremiumBadgeComponent,
     AcceptEmergencyComponent,
     AcceptOrganizationComponent,
     AccessComponent,
