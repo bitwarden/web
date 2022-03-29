@@ -57,6 +57,7 @@ import { BadgeModule, ButtonModule } from "@bitwarden/components";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { ToastrModule } from "ngx-toastr";
 
+import { VerifyMasterPasswordComponent } from "jslib-angular/components/verify-master-password.component";
 import { JslibModule } from "jslib-angular/jslib.module";
 
 import { AcceptEmergencyComponent } from "./accounts/accept-emergency.component";
@@ -434,6 +435,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     VaultTimeoutInputComponent,
     VerifyEmailComponent,
     VerifyEmailTokenComponent,
+    VerifyMasterPasswordComponent,
     VerifyRecoverDeleteComponent,
     WeakPasswordsReportComponent,
   ],
