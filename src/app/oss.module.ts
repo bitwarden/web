@@ -56,8 +56,8 @@ import { RouterModule } from "@angular/router";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { ToastrModule } from "ngx-toastr";
 
-import { JslibModule } from "jslib-angular/jslib.module";
 import { VerifyMasterPasswordComponent } from "jslib-angular/components/verify-master-password.component";
+import { JslibModule } from "jslib-angular/jslib.module";
 
 import { AcceptEmergencyComponent } from "./accounts/accept-emergency.component";
 import { AcceptOrganizationComponent } from "./accounts/accept-organization.component";
