@@ -1,4 +1,3 @@
-import { DatePipe } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
@@ -474,6 +473,5 @@ const routes: Routes = [
     }),
   ],
   exports: [RouterModule],
-  providers: [DatePipe],
 })
 export class OssRoutingModule {}
