@@ -240,7 +240,7 @@ const routes: Routes = [
           {
             path: "generator",
             component: PasswordGeneratorComponent,
-            data: { titleId: "passwordGenerator" },
+            data: { titleId: "generator" },
           },
           {
             path: "breach-report",
