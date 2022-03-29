@@ -10,11 +10,11 @@ import { StateService } from "jslib-common/abstractions/state.service";
 import { Cipher } from "jslib-common/models/domain/cipher";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { ReusedPasswordsReportComponent as BaseReusedPasswordsReportComponent } from "../../tools/reused-passwords-report.component";
+import { ReusedPasswordsReportComponent as BaseReusedPasswordsReportComponent } from "../../reports/reused-passwords-report.component";
 
 @Component({
   selector: "app-reused-passwords-report",
-  templateUrl: "../../tools/reused-passwords-report.component.html",
+  templateUrl: "../../reports/reused-passwords-report.component.html",
 })
 export class ReusedPasswordsReportComponent extends BaseReusedPasswordsReportComponent {
   manageableCiphers: Cipher[];

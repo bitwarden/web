@@ -9,7 +9,7 @@
     >
       <div class="modal-header">
         <h2 class="modal-title" id="userAddEditTitle">
-          <span class="badge badge-primary" *ngIf="readOnly">{{ "premium" | i18n }}</span>
+          <app-premium-badge *ngIf="readOnly"></app-premium-badge>
           {{ title }}
           <small class="text-muted" *ngIf="name">{{ name }}</small>
         </h2>
