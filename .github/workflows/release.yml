@@ -137,6 +137,9 @@ jobs:
           else
             docker tag bitwarden/web:$_BRANCH_NAME $REGISTRY/web:$_RELEASE_VERSION
             docker tag bitwarden/web:$_BRANCH_NAME $REGISTRY/web:latest
+
+            docker tag bitwarden/web:$_BRANCH_NAME $REGISTRY/web-sh:$_RELEASE_VERSION
+            docker tag bitwarden/web:$_BRANCH_NAME $REGISTRY/web-sh:latest
           fi
 
       - name: Push version and latest image
@@ -146,6 +149,9 @@ jobs:
         run: |
           docker push $REGISTRY/web:$_RELEASE_VERSION
           docker push $REGISTRY/web:latest
+
+          docker push $REGISTRY/web-sh:$_RELEASE_VERSION
+          docker push $REGISTRY/web-sh:latest
 
       - name: Log out of Docker
         run: docker logout
