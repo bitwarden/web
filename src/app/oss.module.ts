@@ -172,6 +172,7 @@ import { EmergencyAddEditComponent } from "./settings/emergency-add-edit.compone
 import { LinkSsoComponent } from "./settings/link-sso.component";
 import { OrganizationPlansComponent } from "./settings/organization-plans.component";
 import { OrganizationsComponent } from "./settings/organizations.component";
+import { PaymentMethodComponent } from "./settings/payment-method.component";
 import { PaymentComponent } from "./settings/payment.component";
 import { PreferencesComponent } from "./settings/preferences.component";
 import { PremiumComponent } from "./settings/premium.component";
@@ -182,6 +183,7 @@ import { SecurityComponent } from "./settings/security.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { SponsoredFamiliesComponent } from "./settings/sponsored-families.component";
 import { SponsoringOrgRowComponent } from "./settings/sponsoring-org-row.component";
+import { SubscriptionComponent } from "./settings/subscription.component";
 import { TaxInfoComponent } from "./settings/tax-info.component";
 import { TwoFactorAuthenticatorComponent } from "./settings/two-factor-authenticator.component";
 import { TwoFactorDuoComponent } from "./settings/two-factor-duo.component";
@@ -384,6 +386,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     PasswordRepromptComponent,
     PasswordStrengthComponent,
     PaymentComponent,
+    PaymentMethodComponent,
     PersonalOwnershipPolicyComponent,
     PreferencesComponent,
     PremiumBadgeComponent,
@@ -414,6 +417,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     SponsoredFamiliesComponent,
     SponsoringOrgRowComponent,
     SsoComponent,
+    SubscriptionComponent,
     TaxInfoComponent,
     ToolsComponent,
     TwoFactorAuthenticationPolicyComponent,

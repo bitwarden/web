@@ -49,7 +49,7 @@ export class UserSubscriptionComponent implements OnInit {
       this.loading = true;
       this.sub = await this.apiService.getUserSubscription();
     } else {
-      this.router.navigate(["/settings/premium"]);
+      this.router.navigate(["/settings/subscription/premium"]);
       return;
     }
 
@@ -209,5 +209,9 @@ export class UserSubscriptionComponent implements OnInit {
 
   get usingInAppPurchase() {
     return this.sub != null ? this.sub.usingInAppPurchase : false;
+  }
+
+  get title(): string {
+    return this.i18nService.t(this.selfHosted ? "subscription" : "premiumMembership");
   }
 }

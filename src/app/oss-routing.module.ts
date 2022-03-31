@@ -33,12 +33,8 @@ import { EmergencyAccessViewComponent } from "./settings/emergency-access-view.c
 import { EmergencyAccessComponent } from "./settings/emergency-access.component";
 import { OrganizationsComponent } from "./settings/organizations.component";
 import { PreferencesComponent } from "./settings/preferences.component";
-import { PremiumComponent } from "./settings/premium.component";
-import { SecurityComponent } from "./settings/security.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { SponsoredFamiliesComponent } from "./settings/sponsored-families.component";
-import { UserBillingComponent } from "./settings/user-billing.component";
-import { UserSubscriptionComponent } from "./settings/user-subscription.component";
 import { ExportComponent } from "./tools/export.component";
 import { ImportComponent } from "./tools/import.component";
 import { PasswordGeneratorComponent } from "./tools/password-generator.component";
@@ -162,12 +158,10 @@ const routes: Routes = [
             component: DomainRulesComponent,
             data: { titleId: "domainRules" },
           },
-          { path: "premium", component: PremiumComponent, data: { titleId: "goPremium" } },
-          { path: "billing", component: UserBillingComponent, data: { titleId: "billing" } },
           {
             path: "subscription",
-            component: UserSubscriptionComponent,
-            data: { titleId: "premiumMembership" },
+            loadChildren: async () =>
+              (await import("./settings/subscription.module")).SubscriptionModule,
           },
           {
             path: "organizations",

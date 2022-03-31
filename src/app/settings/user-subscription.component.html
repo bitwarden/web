@@ -1,6 +1,11 @@
-<div class="page-header">
+<div
+  [ngClass]="{
+    'page-header': selfHosted,
+    'tabbed-header': !selfHosted
+  }"
+>
   <h1>
-    {{ "premiumMembership" | i18n }}
+    {{ title }}
     <small *ngIf="firstLoaded && loading">
       <i
         class="bwi bwi-spinner bwi-spin text-muted"
@@ -20,23 +25,25 @@
   <span class="sr-only">{{ "loading" | i18n }}</span>
 </ng-container>
 <ng-container *ngIf="sub">
-  <app-callout
+  <bit-callout
     type="warning"
     title="{{ 'canceled' | i18n }}"
     *ngIf="subscription && subscription.cancelled"
   >
-    {{ "subscriptionCanceled" | i18n }}</app-callout
+    {{ "subscriptionCanceled" | i18n }}</bit-callout
   >
-  <app-callout
+  <bit-callout
     type="warning"
     title="{{ 'pendingCancellation' | i18n }}"
     *ngIf="subscriptionMarkedForCancel"
   >
     <p>{{ "subscriptionPendingCanceled" | i18n }}</p>
     <button
+      bit-button
+      buttonType="secondary"
       #reinstateBtn
       type="button"
-      class="btn btn-outline-secondary btn-submit"
+      class="btn-submit"
       (click)="reinstate()"
       [appApiAction]="reinstatePromise"
       [disabled]="reinstateBtn.loading"
@@ -44,7 +51,7 @@
       <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
       <span>{{ "reinstateSubscription" | i18n }}</span>
     </button>
-  </app-callout>
+  </bit-callout>
   <dl *ngIf="selfHosted">
     <dt>{{ "expiration" | i18n }}</dt>
     <dd *ngIf="sub.expiration">{{ sub.expiration | date: "mediumDate" }}</dd>
@@ -56,7 +63,7 @@
         <dt>{{ "status" | i18n }}</dt>
         <dd>
           <span class="text-capitalize">{{ (subscription && subscription.status) || "-" }}</span>
-          <span class="badge badge-warning" *ngIf="subscriptionMarkedForCancel">{{
+          <span bit-badge badgeType="warning" *ngIf="subscriptionMarkedForCancel">{{
             "pendingCancellation" | i18n
           }}</span>
         </dd>

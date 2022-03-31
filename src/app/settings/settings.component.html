@@ -20,25 +20,9 @@
             routerLink="subscription"
             class="list-group-item"
             routerLinkActive="active"
-            *ngIf="premium"
+            *ngIf="!hideSubscription"
           >
-            {{ "premiumMembership" | i18n }}
-          </a>
-          <a
-            routerLink="premium"
-            class="list-group-item"
-            routerLinkActive="active"
-            *ngIf="!premium"
-          >
-            {{ "goPremium" | i18n }}
-          </a>
-          <a
-            routerLink="billing"
-            class="list-group-item"
-            routerLinkActive="active"
-            *ngIf="!selfHosted"
-          >
-            {{ "billing" | i18n }}
+            {{ "subscription" | i18n }}
           </a>
           <a routerLink="domain-rules" class="list-group-item" routerLinkActive="active">
             {{ "domainRules" | i18n }}

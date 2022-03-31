@@ -47,7 +47,7 @@ export class PremiumComponent implements OnInit {
     this.canAccessPremium = await this.stateService.getCanAccessPremium();
     const premium = await this.tokenService.getPremium();
     if (premium) {
-      this.router.navigate(["/settings/subscription"]);
+      this.router.navigate(["/settings/subscription/user-subscription"]);
       return;
     }
   }
