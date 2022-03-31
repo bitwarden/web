@@ -1,7 +1,7 @@
 import { Component, ViewChild, ViewContainerRef } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
-import { PasswordGeneratorComponent as BasePasswordGeneratorComponent } from "jslib-angular/components/password-generator.component";
+import { GeneratorComponent as BaseGeneratorComponent } from "jslib-angular/components/generator.component";
 import { ModalService } from "jslib-angular/services/modal.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { PasswordGenerationService } from "jslib-common/abstractions/passwordGeneration.service";
@@ -12,10 +12,10 @@ import { UsernameGenerationService } from "jslib-common/abstractions/usernameGen
 import { PasswordGeneratorHistoryComponent } from "./password-generator-history.component";
 
 @Component({
-  selector: "app-password-generator",
-  templateUrl: "password-generator.component.html",
+  selector: "app-generator",
+  templateUrl: "generator.component.html",
 })
-export class PasswordGeneratorComponent extends BasePasswordGeneratorComponent {
+export class GeneratorComponent extends BaseGeneratorComponent {
   @ViewChild("historyTemplate", { read: ViewContainerRef, static: true })
   historyModalRef: ViewContainerRef;
 

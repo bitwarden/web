@@ -64,8 +64,8 @@ import { TwoFactorSetupComponent } from "./settings/two-factor-setup.component";
 import { UserBillingComponent } from "./settings/user-billing.component";
 import { UserSubscriptionComponent } from "./settings/user-subscription.component";
 import { ExportComponent } from "./tools/export.component";
+import { GeneratorComponent } from "./tools/generator.component";
 import { ImportComponent } from "./tools/import.component";
-import { PasswordGeneratorComponent } from "./tools/password-generator.component";
 import { ToolsComponent } from "./tools/tools.component";
 import { VaultComponent } from "./vault/vault.component";
 
@@ -232,7 +232,7 @@ const routes: Routes = [
           { path: "export", component: ExportComponent, data: { titleId: "exportVault" } },
           {
             path: "generator",
-            component: PasswordGeneratorComponent,
+            component: GeneratorComponent,
             data: { titleId: "generator" },
           },
         ],
