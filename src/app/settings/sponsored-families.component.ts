@@ -84,8 +84,4 @@ export class SponsoredFamiliesComponent implements OnInit {
   get anyOrgsAvailable(): boolean {
     return this.availableSponsorshipOrgs.length > 0;
   }
-
-  get moreThanOneOrgAvailable(): boolean {
-    return this.availableSponsorshipOrgs.length > 1;
-  }
 }

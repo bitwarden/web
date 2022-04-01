@@ -289,7 +289,10 @@ export class OrganizationSubscriptionComponent implements OnInit {
   }
 
   get canManageBillingSync() {
-    return !this.selfHosted;
+    return !this.selfHosted && (this.sub.planType === PlanType.EnterpriseAnnually
+      || this.sub.planType === PlanType.EnterpriseMonthly
+      || this.sub.planType === PlanType.EnterpriseAnnually2019
+      || this.sub.planType === PlanType.EnterpriseMonthly2019);
   }
 
   get subscriptionDesc() {

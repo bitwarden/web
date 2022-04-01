@@ -98,10 +98,9 @@ export class BillingSyncApiKeyComponent {
 
     if (this.lastSyncDate !== null) {
       if (this.keyRevisionDate > this.lastSyncDate) {
-        return 'awaiting sync with new token';
+        return 'Awaiting sync with new token';
       } else {
-        const daysSinceLastSync = this.dayDiff(this.lastSyncDate, new Date());
-        return 'last sync ' + daysSinceLastSync + ' days ago';
+        
       }
     }
     

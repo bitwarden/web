@@ -23,7 +23,7 @@
     ngNativeValidate
     *ngIf="anyOrgsAvailable"
   >
-    <div *ngIf="moreThanOneOrgAvailable" class="form-group col-7">
+    <div class="form-group col-7">
       <label for="availableSponsorshipOrg">{{ "familiesSponsoringOrgSelect" | i18n }}</label>
       <select
         id="availableSponsorshipOrg"
@@ -59,12 +59,13 @@
           <tr>
             <th>{{ "recipient" | i18n }}</th>
             <th>{{ "sponsoringOrg" | i18n }}</th>
+            <th>{{ "status" | i18n }}</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
           <ng-container *ngFor="let o of activeSponsorshipOrgs">
-            <tr sponsoring-org-row [sponsoringOrg]="o" (sponsorshipRemoved)="load(true)"></tr>
+            <tr sponsoring-org-row [sponsoringOrg]="o" [isSelfHosted]="platformUtilsService.isSelfHost" (sponsorshipRemoved)="load(true)"></tr>
           </ng-container>
         </tbody>
       </table>

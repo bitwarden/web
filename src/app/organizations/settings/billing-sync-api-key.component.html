@@ -56,6 +56,12 @@
               </button>
             </div>
           </div>
+          <div class="small text-muted mt-2">
+            <div *ngIf="keyRevisionDate">
+              <b class="font-weight-semibold">{{ "dateUpdated" | i18n }}:</b>
+              {{ keyRevisionDate | date: 'medium' }}
+            </div>
+          </div>
           <p *ngIf="keyRevisionDate && lastSyncDate">{{ syncText }}</p>
           <p class="mt-4">{{ 'billingSyncCanAccess' | i18n }}</p>
         </div>
