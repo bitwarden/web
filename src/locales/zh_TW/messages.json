@@ -187,7 +187,12 @@
     "message": "編輯資料夾"
   },
   "baseDomain": {
-    "message": "基底網域"
+    "message": "基底網域",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "網域名稱",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "主機",
@@ -628,7 +633,7 @@
     "message": "電子郵件地址"
   },
   "yourVaultIsLocked": {
-    "message": "密碼庫已鎖定。驗證主密碼以繼續。"
+    "message": "密碼庫已鎖定。請驗證主密碼以繼續。"
   },
   "unlock": {
     "message": "解鎖"
@@ -695,7 +700,7 @@
     }
   },
   "verificationCodeEmailSent": {
-    "message": "驗證碼已傳送至 $EMAIL$。",
+    "message": "已傳送驗證電子郵件至 $EMAIL$。",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -776,7 +781,7 @@
     "message": "電子郵件"
   },
   "emailDesc": {
-    "message": "驗證碼將使用電子郵件傳送給您。"
+    "message": "使用電子郵件傳送驗證碼給您。"
   },
   "continue": {
     "message": "繼續"
@@ -925,7 +930,7 @@
     "message": "代碼"
   },
   "changeEmailDesc": {
-    "message": "我們已寄送電子郵件至 $EMAIL$。請檢查您的電子郵件以取得驗證碼，並在下方輸入驗證碼以完成電子郵件地址的變更。",
+    "message": "我們已傳送電子郵件至 $EMAIL$。請檢查您的電子郵件信箱以取得驗證碼，並在下方輸入驗證碼以完成電子郵件地址的變更。",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -1075,7 +1080,7 @@
     }
   },
   "importFormatError": {
-    "message": "資料格式不正確。請檢查您匯入的檔案後再重試一次。"
+    "message": "資料格式不正確。請檢查您匯入的檔案後再試一次。"
   },
   "importNothingError": {
     "message": "沒有匯入任何內容。"
@@ -1090,7 +1095,7 @@
     "message": "選擇要匯入的檔案"
   },
   "orCopyPasteFileContents": {
-    "message": "或複製/黏貼上要匯入的檔案內容"
+    "message": "或複製/貼上要匯入的檔案內容"
   },
   "instructionsFor": {
     "message": "$NAME$ 教學",
@@ -1404,7 +1409,7 @@
     "message": "點選下方的「儲存」按鈕，以啟用此安全金鑰用於兩步驟登入。"
   },
   "twoFactorU2fProblemReadingTryAgain": {
-    "message": "讀取安全金鑰時發生問題。請重試。"
+    "message": "讀取安全金鑰時發生問題。請再試一次。"
   },
   "twoFactorWebAuthnWarning": {
     "message": "由於平台限制，無法於所有 Bitwarden 應用程式中使用 WebAuthn。請設定另一套兩步驟登入方式，以確保在 WebAuthn 無法使用時還能存取您的帳戶。支援的平台有："
@@ -1425,11 +1430,14 @@
   "reports": {
     "message": "報告"
   },
+  "reportsDesc": {
+    "message": "點選下方的報告，識別並消除您的線上帳戶中的安全漏洞。"
+  },
   "unsecuredWebsitesReport": {
-    "message": "回報不安全的網站"
+    "message": "不安全的網站"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "使用 http:// 配置的網站有安全風險。若網站允許，您應一律使用 https:// 配置以加密連線方式來存取此網站。"
+    "message": "以 http:// 開頭的 URL 沒有使用最佳的加密方式。將這些帳戶的登入 URI 更改為 https:// 以更安全地瀏覽。"
   },
   "unsecuredWebsitesFound": {
     "message": "發現不安全的網站"
@@ -1447,10 +1455,10 @@
     "message": "您的密碼庫中沒有使用不安全 URI 的項目。"
   },
   "inactive2faReport": {
-    "message": "無效 2FA 報告"
+    "message": "非使用中兩步驟登入"
   },
   "inactive2faReportDesc": {
-    "message": "雙因素驗證（2FA）是保護您帳號安全的重要安全性設定。若網站提供雙因素驗證，您應一律啟用它。"
+    "message": "兩步驟登入為您的帳戶添加了一層保護。使用 Bitwarden 驗證器或使用其他方法為這些帳戶啟用兩步驟登入。"
   },
   "inactive2faFound": {
     "message": "發現未啟用 2FA 的登入資料"
@@ -1471,10 +1479,10 @@
     "message": "說明"
   },
   "exposedPasswordsReport": {
-    "message": "公開密碼報告"
+    "message": "已公開的密碼"
   },
   "exposedPasswordsReportDesc": {
-    "message": "公開密碼是在已知資料外洩事件中發現的密碼，這些資料已由駭客公開發佈或在暗網上販售。"
+    "message": "資料外洩中暴露的密碼很容易成為攻擊者的目標。更改這些密碼以防止潛在的入侵。"
   },
   "exposedPasswordsFound": {
     "message": "發現公開密碼"
@@ -1504,10 +1512,10 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "弱式密碼報告"
+    "message": "弱式密碼"
   },
   "weakPasswordsReportDesc": {
-    "message": "弱式密碼很容易被駭客用破解密碼的自動化工具猜中。Bitwarden 密碼產生器可以幫助您建立強式密碼。"
+    "message": "弱密碼很容易被攻擊者猜到。使用密碼產生器將這些密碼更改為強密碼。"
   },
   "weakPasswordsFound": {
     "message": "發現弱式密碼"
@@ -1525,10 +1533,10 @@
     "message": "您的密碼庫中沒有項目具有弱式密碼。"
   },
   "reusedPasswordsReport": {
-    "message": "重複使用密碼報告"
+    "message": "重複使用密碼"
   },
   "reusedPasswordsReportDesc": {
-    "message": "如果您使用的服務有密碼外洩的情況，在其他地方重複使用相同的密碼可以讓駭客很輕易地存取您更多的線上帳戶。您應該為每個帳戶或服務使用不同的密碼。"
+    "message": "重複使用密碼使攻擊者更容易侵入多個帳戶。更改這些密碼，使每個密碼都是唯一的。"
   },
   "reusedPasswordsFound": {
     "message": "發現重複使用的密碼"
@@ -1555,10 +1563,10 @@
     }
   },
   "dataBreachReport": {
-    "message": "資料外洩報告"
+    "message": "資料外洩"
   },
   "breachDesc": {
-    "message": "「外洩」是指駭客非法存取網站資料然後公開發佈的事件。檢視已遭外洩的資料類型（電子郵件地址、密碼、信用卡等）並採取適當的措施，例如變更密碼。"
+    "message": "外洩的帳戶可能會暴露您的個人信息。透過啟用 2FA 或創建更強的密碼來保護被外洩的帳戶。"
   },
   "breachCheckUsernameEmail": {
     "message": "請檢查您使用的使用者名稱或電子郵件地址。"
@@ -1611,7 +1619,7 @@
     "message": "外洩回報於"
   },
   "reportError": {
-    "message": "嘗試載入報告時發生錯誤。請重試。"
+    "message": "嘗試載入報告時發生錯誤。請再試一次。"
   },
   "billing": {
     "message": "計費"
@@ -1782,7 +1790,7 @@
     "message": "重新開始訂閱"
   },
   "reinstateConfirmation": {
-    "message": "您是否要移除待處理的取消請求，重新開始您的訂閱？"
+    "message": "您是否要移除待處理的取消要求，重新開始您的訂閱？"
   },
   "reinstated": {
     "message": "已重新開始訂閱。"
@@ -2186,7 +2194,7 @@
     "message": "您確定要刪除這個群組？"
   },
   "removeUserConfirmation": {
-    "message": "您確定要移除該使用者？"
+    "message": "您確定要移除此使用者？"
   },
   "removeUserConfirmationKeyConnector": {
     "message": "警告！這位使用者需要 Key Connector 管理他們的加密方式。從您的組織中移除這位使用者，會永久停用他們的帳戶。此操作無法復原，是否繼續？"
@@ -3086,10 +3094,10 @@
     "message": "篩選器"
   },
   "vaultTimeout": {
-    "message": "密碼庫逾時時長"
+    "message": "密碼庫逾時時間"
   },
   "vaultTimeoutDesc": {
-    "message": "選擇密碼庫多久之後逾時並執行選取的動作。"
+    "message": "選擇密碼庫多久之後才會逾時並執行選取動作。"
   },
   "oneMinute": {
     "message": "1 分鐘"
@@ -3260,7 +3268,7 @@
     "message": "您是組織成員，而組織要求您的使用者帳戶啟用兩步驟登入。如果停用所有兩步驟登入方式，您將被自動從這些組織移除。"
   },
   "passwordGeneratorPolicyDesc": {
-    "message": "設定密碼產生器組態的最低要求。"
+    "message": "設定密碼產生器設定的最低要求。"
   },
   "passwordGeneratorPolicyInEffect": {
     "message": "一個或多個組織原則正影響密碼產生器設定。"
@@ -3412,7 +3420,7 @@
     }
   },
   "vaultTimeoutLogOutConfirmation": {
-    "message": "選擇登出將會在密碼庫逾時後移除對密碼庫的所有存取權限，並且重新驗證時需要連線網路。確定要使用此設定嗎？"
+    "message": "選擇登出將會在密碼庫逾時後移除對密碼庫的所有存取權限，若要重新驗證則需連線網路。確定要使用此設定嗎？"
   },
   "vaultTimeoutLogOutConfirmationTitle": {
     "message": "逾時動作確認"
@@ -3595,7 +3603,7 @@
     "message": "已移除密碼"
   },
   "removePasswordConfirmation": {
-    "message": "您確定要移除密碼嗎？"
+    "message": "您確定要移除此密碼嗎？"
   },
   "hideEmail": {
     "message": "對收件人隱藏我的電子郵件地址。"
@@ -3651,16 +3659,16 @@
     "message": "緊急存取"
   },
   "emergencyAccessDesc": {
-    "message": "為受信任的聯絡人授予和管理緊急存取權限。在緊急情况下，受信任的聯絡人可以請求獲取查看或接管您的帳戶的權限。請訪問我們的幫助頁面，以獲取有關零知識共享工作原理的更多資訊和詳情。"
+    "message": "授予和管理可信任連絡人的緊急存取權限。當遇到緊急情况時，可信任連絡人可以要求存取檢視或接管您帳戶的權限。瀏覽說明頁面以取得有關零知識共用的工作原理和更多詳細資訊。"
   },
   "emergencyAccessOwnerWarning": {
-    "message": "您是一個或多個組織的擁有者。如果您授予緊急聯繫人接管存取權限，那麼他們在接管後將能夠以擁有者的身份使用您的所有權限。"
+    "message": "您是一個或多個組織的擁有者。如果您授予緊急聯絡人接管存取權限，那麼他們在接管後將能夠以組織擁有者的身分使用您的所有權限。"
   },
   "trustedEmergencyContacts": {
     "message": "信任的緊急聯絡人"
   },
   "noTrustedContacts": {
-    "message": "您尚未添加任何緊急聯絡人，請邀請一個受信任的聯絡人以開始。"
+    "message": "您尚未新增任何緊急聯絡人，請邀請一位可信任的聯絡人以開始。"
   },
   "addEmergencyContact": {
     "message": "新增緊急聯絡人"
@@ -3678,7 +3686,7 @@
     "message": "編輯緊急聯絡人"
   },
   "inviteEmergencyContactDesc": {
-    "message": "透過在下面輸入 Bitwarden 帳戶的電子郵件地址，以邀請新的緊急聯絡人。若他們還沒有 Bitwarden 帳戶，系統將提示他們建立新帳戶。"
+    "message": "透過在下方輸入他們的 Bitwarden 帳戶的電子郵件地址，來邀請新的緊急聯絡人。若他們還沒有 Bitwarden 帳戶，系統將提示他們建立新帳戶。"
   },
   "emergencyAccessRecoveryInitiated": {
     "message": "已啟動緊急存取"
@@ -3738,7 +3746,7 @@
     "message": "要求存取權限"
   },
   "requestAccessConfirmation": {
-    "message": "您確定要請求緊急存取嗎？在 $WAITTIME$ 天之後或用戶手動批准請求時，將為您提供存取權限。",
+    "message": "您確定要申請緊急存取嗎？在 $WAITTIME$ 天之後或使用者手動批准要求時您將取得存取權限。",
     "placeholders": {
       "waittime": {
         "content": "$1",
@@ -3747,7 +3755,7 @@
     }
   },
   "requestSent": {
-    "message": "來自 $USER$ 的緊急存取請求。如果可以繼續，我們將透過電子郵件通知您。",
+    "message": "來自 $USER$ 的緊急存取要求。我們將透過電子郵件通知您何時可以繼續。",
     "placeholders": {
       "user": {
         "content": "$1",
@@ -3793,7 +3801,7 @@
     "message": "個人擁有權"
   },
   "personalOwnershipPolicyDesc": {
-    "message": "要求用戶透過移除個人擁有權選項將密碼庫項目儲存到組織。"
+    "message": "透過移除個人擁有權選項要求使用者將密碼庫項目儲存至組織。"
   },
   "personalOwnershipExemption": {
     "message": "組織擁有者與管理員不受此原則的執行影響。"
@@ -3816,7 +3824,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendDisabledWarning": {
-    "message": "由於某個企業原則，您只能刪除已有的 Send。",
+    "message": "由於企業原則限制，您只能刪除現有的 Send。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptions": {
@@ -3860,7 +3868,7 @@
     "message": "自訂"
   },
   "customDesc": {
-    "message": "允許更精細地控制使用者的權限以進行進階配置。"
+    "message": "進階設定允許更精細地控制使用者權限。"
   },
   "permissions": {
     "message": "權限"
@@ -3926,10 +3934,10 @@
     "message": "組織原則正在影響您的擁有權選項。"
   },
   "personalOwnershipPolicyInEffectImports": {
-    "message": "某個組織原則已停用將項目匯入到您的個人密碼庫。"
+    "message": "組織原則已禁止您將項目匯入至您的個人密碼庫。"
   },
   "personalOwnershipCheckboxDesc": {
-    "message": "為組織使用者禁用個人擁有權。"
+    "message": "停用組織使用者的個人擁有權。"
   },
   "textHiddenByDefault": {
     "message": "存取此 Send 時，將預設隱藏文字",
@@ -3957,7 +3965,7 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineProductDesc": {
-    "message": "Bitwarden Send可以輕鬆安全地向其他人傳輸敏感的臨時資訊。",
+    "message": "Bitwarden Send 可以輕鬆、安全地向其他人傳輸敏感的暫存資訊。",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendAccessTaglineLearnMore": {
@@ -4133,7 +4141,7 @@
     "message": "允許組織管理者重設組織使用者的主密碼。"
   },
   "resetPasswordPolicyWarning": {
-    "message": "組織使用者需要先自行註冊或將被自動註冊後管理者才能重新設定他們的主密碼。"
+    "message": "組織使用者需要先自行註冊或被自動註冊後，管理者才能重設他們的主密碼。"
   },
   "resetPasswordPolicyAutoEnroll": {
     "message": "自動註冊"
@@ -4145,7 +4153,7 @@
     "message": "已經在組織中的使用者將不會被註冊密碼重設。他們需要先自行註冊後管理者才能重設他們的主密碼。"
   },
   "resetPasswordPolicyAutoEnrollCheckbox": {
-    "message": "要求自動註冊新使用者"
+    "message": "要求為新使用者啟用自動註冊"
   },
   "resetPasswordAutoEnrollInviteWarning": {
     "message": "此組織有一個可以為您自動註冊密碼重設的企業原則。註冊後將允許組織管理員變更您的主密碼。"
@@ -4356,16 +4364,16 @@
     "message": "您的主密碼不符合此組織原則的要求。您必須現在更新主密碼才可以加入此組織。繼續操作會登出您目前的工作階段，並要求您重新登入帳戶。其他裝置上的活動工作階段最多會保持一個小時。"
   },
   "maximumVaultTimeout": {
-    "message": "密碼庫逾時時長"
+    "message": "密碼庫逾時時間"
   },
   "maximumVaultTimeoutDesc": {
-    "message": "為所有使用者設定最大密碼庫逾時時長。"
+    "message": "為所有使用者設定最大密碼庫逾時時間。"
   },
   "maximumVaultTimeoutLabel": {
-    "message": "最大密碼庫逾時時長"
+    "message": "最大密碼庫逾時時間"
   },
   "invalidMaximumVaultTimeout": {
-    "message": "無效的最大密碼庫逾時時長。"
+    "message": "無效的最大密碼庫逾時時間。"
   },
   "hours": {
     "message": "小時"
@@ -4374,7 +4382,7 @@
     "message": "分鐘"
   },
   "vaultTimeoutPolicyInEffect": {
-    "message": "您的組織策略正在影響您的密碼庫逾時時長。密碼庫逾時時長最多可以設定到 {0} 小時 {1} 分鐘。",
+    "message": "您的組織原則正在影響您的密碼庫逾時時間。密碼庫逾時時間最多可以設定到 $HOURS$ 小時 $MINUTES$ 分鐘。",
     "placeholders": {
       "hours": {
         "content": "$1",
@@ -4387,10 +4395,10 @@
     }
   },
   "customVaultTimeout": {
-    "message": "自訂密碼庫逾時時長"
+    "message": "自訂密碼庫逾時時間"
   },
   "vaultTimeoutToLarge": {
-    "message": "您的密碼庫逾時時長超過組織限制。"
+    "message": "您的密碼庫逾時時間超過組織設定的限制。"
   },
   "disablePersonalVaultExport": {
     "message": "停用個人密碼庫匯出"
@@ -4402,7 +4410,7 @@
     "message": "已停用密碼庫匯出"
   },
   "personalVaultExportPolicyInEffect": {
-    "message": "一或多個組織策略禁止您匯出個人密碼庫。"
+    "message": "一個或多個組織原則禁止您匯出個人密碼庫。"
   },
   "selectType": {
     "message": "選擇 SSO 類型"
@@ -4561,10 +4569,10 @@
     "message": "接受現有組織的邀請或建立一個新的家庭組織。"
   },
   "setupSponsoredFamiliesLoginDesc": {
-    "message": "您被邀請加入一個免費的 Bitwarden 家庭方案組織。若要繼續，您需要登入到接受邀請的帳戶。"
+    "message": "您已被邀請加入一個免費的 Bitwarden 家庭方案組織。若要繼續，您必須登入至接受邀請的帳戶。"
   },
   "sponsoredFamiliesAcceptFailed": {
-    "message": "無法接受邀請。請透過您的企業帳戶重寄邀請電子郵件，然後重試。"
+    "message": "無法接受邀請。請透過您的企業帳戶重新傳送邀請郵件，然後再試一次。"
   },
   "sponsoredFamiliesAcceptFailedShort": {
     "message": "無法接受邀請。$DESCRIPTION$",
@@ -4642,13 +4650,13 @@
     "message": "Key Connector URL"
   },
   "sendVerificationCode": {
-    "message": "傳送驗證碼至您的電子郵件"
+    "message": "傳送驗證碼至您的電子郵件信箱"
   },
   "sendCode": {
     "message": "傳送驗證碼"
   },
   "codeSent": {
-    "message": "已送出驗證碼"
+    "message": "驗證碼已傳送"
   },
   "verificationCode": {
     "message": "驗證碼"
@@ -4699,7 +4707,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpKeyConnector": {
-    "message": "SSO 驗證及單一組織原則需要先設定 Key Connector 解密方式後才能使用。"
+    "message": "SSO 驗證及單一組織原則需要先設定 Key Connector 解密方式後才能啟用。"
   },
   "memberDecryptionOption": {
     "message": "成員解密選項"
@@ -4729,7 +4737,7 @@
     "message": "已停用 Key Connector"
   },
   "keyConnectorWarning": {
-    "message": "一旦成員開始使用 Key Connector，您的組織將無法復原為使用主密碼解密。僅當您可以輕鬆地部署和管理金輪伺服器時再繼續。"
+    "message": "一旦成員開始使用 Key Connector，您的組織將無法還原為使用主密碼解密。請於您可以輕鬆地部署和管理金鑰伺服器時再繼續。"
   },
   "migratedKeyConnector": {
     "message": "已移轉至 Key Connector"
@@ -4738,7 +4746,7 @@
     "message": "請提供一個與此組織關聯的付款方式。別擔心，我們不會向您收取任何費用，除非您選擇進階功能或您的贊助到期。 "
   },
   "orgCreatedSponsorshipInvalid": {
-    "message": "贊助邀請已逾期，您可以上傳您建立的組織，以避免在 7 天試用期結束時被收取費用。 您也可以關閉此提示以保留該組織並承擔計費責任。"
+    "message": "贊助邀請已逾期，您可以刪除您建立的組織，以避免在 7 天試用期結束後被收取費用。 您也可以關閉此提示以保留該組織並承擔計費責任。"
   },
   "newFamiliesOrganization": {
     "message": "新的家庭組織"
@@ -4826,5 +4834,47 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "返回報告"
+  },
+  "generator": {
+    "message": "產生器"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "您想要產生什麼？"
+  },
+  "passwordType": {
+    "message": "密碼類型"
+  },
+  "regenerateUsername": {
+    "message": "重新產生使用者名稱"
+  },
+  "generateUsername": {
+    "message": "產生使用者名稱"
+  },
+  "usernameType": {
+    "message": "使用者名稱類型"
+  },
+  "plusAddressedEmail": {
+    "message": "加號地址電子郵件"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "使用您的電子郵件提供者的子地址功能。"
+  },
+  "catchallEmail": {
+    "message": "Catch-all 電子郵件"
+  },
+  "catchallEmailDesc": {
+    "message": "使用您的網域設定的 Catch-all 收件匣。"
+  },
+  "random": {
+    "message": "隨機"
+  },
+  "randomWord": {
+    "message": "隨機單字"
+  },
+  "service": {
+    "message": "服務"
   }
 }

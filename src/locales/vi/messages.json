@@ -187,7 +187,12 @@
     "message": "Chỉnh sửa thư mục"
   },
   "baseDomain": {
-    "message": "Tên miền cơ sở"
+    "message": "Tên miền cơ sở",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Máy chủ",
@@ -1425,11 +1430,14 @@
   "reports": {
     "message": "Báo cáo"
   },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
+  },
   "unsecuredWebsitesReport": {
     "message": "Báo cáo trang web không an toàn"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:// scheme can be dangerous. If the website allows, you should always access it using the https:// scheme so that your connection is encrypted."
+    "message": "URLs that start with http:// don’t use the best available encryption. Change the Login URIs for these accounts to https:// for safer browsing."
   },
   "unsecuredWebsitesFound": {
     "message": "Tìm thấy trang web không an toàn"
@@ -1447,7 +1455,7 @@
     "message": "No items in your vault have unsecured URIs."
   },
   "inactive2faReport": {
-    "message": "Inactive 2FA Report"
+    "message": "Inactive Two-step Login"
   },
   "inactive2faReportDesc": {
     "message": "Xác thực 2 bước là một bước quan trọng để bảo vệ tài khoản của bạn khỏi hacker. Nếu trang web cho phép, bạn nên kích hoạt xác thực 2 bước."
@@ -1528,7 +1536,7 @@
     "message": "Báo cáo mật khẩu tái sử dụng"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "Reusing passwords makes it easier for attackers to break into multiple accounts. Change these passwords so that each is unique."
   },
   "reusedPasswordsFound": {
     "message": "Phát hiện mật khẩu tái sử dụng"
@@ -1558,7 +1566,7 @@
     "message": "Báo cáo dữ liệu bị rò rĩ"
   },
   "breachDesc": {
-    "message": "A \"breach\" is an incident where a site's data has been illegally accessed by hackers and then released publicly. Review the types of data that were compromised (email addresses, passwords, credit cards etc.) and take appropriate action, such as changing passwords."
+    "message": "Breached accounts can expose your personal information. Secure breached accounts by enabling 2FA or creating a stronger password."
   },
   "breachCheckUsernameEmail": {
     "message": "Check any usernames or email addresses that you use."
@@ -4826,5 +4834,47 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Regenerate Username"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }

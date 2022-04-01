@@ -187,7 +187,12 @@
     "message": "Urеdi fasciklu"
   },
   "baseDomain": {
-    "message": "Osnovni domen"
+    "message": "Osnovni domen",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Host",
@@ -1425,11 +1430,14 @@
   "reports": {
     "message": "Izveštaji"
   },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
+  },
   "unsecuredWebsitesReport": {
-    "message": "Unsecured Websites Report"
+    "message": "Unsecure Websites"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Using unsecured websites with the http:// scheme can be dangerous. If the website allows, you should always access it using the https:// scheme so that your connection is encrypted."
+    "message": "URLs that start with http:// don’t use the best available encryption. Change the Login URIs for these accounts to https:// for safer browsing."
   },
   "unsecuredWebsitesFound": {
     "message": "Unsecured Websites Found"
@@ -1447,10 +1455,10 @@
     "message": "No items in your vault have unsecured URIs."
   },
   "inactive2faReport": {
-    "message": "Inactive 2FA Report"
+    "message": "Inactive Two-step Login"
   },
   "inactive2faReportDesc": {
-    "message": "Two-factor authentication (2FA) is an important security setting that helps secure your accounts. If the website offers it, you should always enable two-factor authentication."
+    "message": "Two-step Login adds a layer of protection to your accounts. Turn on Two-Step Login using Bitwarden Authenticator for these accounts or use an alternative method."
   },
   "inactive2faFound": {
     "message": "Logins Without 2FA Found"
@@ -1471,10 +1479,10 @@
     "message": "Uputstvo"
   },
   "exposedPasswordsReport": {
-    "message": "Exposed Passwords Report"
+    "message": "Exposed Passwords"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Exposed passwords are passwords that have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
+    "message": "Passwords exposed in a data breach are easy targets for attackers. Change these passwords to prevent potential break-ins."
   },
   "exposedPasswordsFound": {
     "message": "Exposed Passwords Found"
@@ -1504,10 +1512,10 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Weak Passwords Report"
+    "message": "Weak Passwords"
   },
   "weakPasswordsReportDesc": {
-    "message": "Weak passwords can easily be guessed by hackers and automated tools that are used to crack passwords. The Bitwarden password generator can help you create strong passwords."
+    "message": "Weak passwords can be easily guessed by attackers. Change these passwords to strong ones using the Password Generator."
   },
   "weakPasswordsFound": {
     "message": "Weak Passwords Found"
@@ -1525,10 +1533,10 @@
     "message": "No items in your vault have weak passwords."
   },
   "reusedPasswordsReport": {
-    "message": "Reused Passwords Report"
+    "message": "Reused Passwords"
   },
   "reusedPasswordsReportDesc": {
-    "message": "If a service that you use is compromised, reusing the same password elsewhere can allow hackers to easily gain access to more of your online accounts. You should use a unique password for every account or service."
+    "message": "Reusing passwords makes it easier for attackers to break into multiple accounts. Change these passwords so that each is unique."
   },
   "reusedPasswordsFound": {
     "message": "Reused Passwords Found"
@@ -1555,10 +1563,10 @@
     }
   },
   "dataBreachReport": {
-    "message": "Data Breach Report"
+    "message": "Data Breach"
   },
   "breachDesc": {
-    "message": "A \"breach\" is an incident where a site's data has been illegally accessed by hackers and then released publicly. Review the types of data that were compromised (email addresses, passwords, credit cards etc.) and take appropriate action, such as changing passwords."
+    "message": "Breached accounts can expose your personal information. Secure breached accounts by enabling 2FA or creating a stronger password."
   },
   "breachCheckUsernameEmail": {
     "message": "Check any usernames or email addresses that you use."
@@ -4826,5 +4834,47 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Regenerate Username"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }

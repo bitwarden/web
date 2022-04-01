@@ -187,7 +187,12 @@
     "message": "Muokkaa kansiota"
   },
   "baseDomain": {
-    "message": "Pääverkkotunnus"
+    "message": "Pääverkkotunnus",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Verkkotunnus",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Isäntä",
@@ -1425,11 +1430,14 @@
   "reports": {
     "message": "Raportit"
   },
+  "reportsDesc": {
+    "message": "Tunnista ja paikkaa verkkopalvelutunnustesi tietoturva-aukkoja painamalla alla olevia raportteja."
+  },
   "unsecuredWebsitesReport": {
     "message": "Suojaamattomat sivustot"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Sivustojen käyttö suojaamattoman \"http://\" -protokollan välityksellä voi olla vaarallista. Jos sivusto sitä tukee, tulisi sitä aina käyttää \"https://\" -protokollan välityksellä, jolloin yhteytesi on salattu."
+    "message": "Osoitteet, jotka alkavat http://, eivät hyödynnä parasta mahdollista salausta. Vaihda tällaiset kirjatumisosoitteet https://-muotoisiksi turvallisempaa selausta varten."
   },
   "unsecuredWebsitesFound": {
     "message": "Suojaamattomia verkkosivustoja löytyi"
@@ -1450,7 +1458,7 @@
     "message": "Tunnusten 2FA-tila"
   },
   "inactive2faReportDesc": {
-    "message": "Kaksivaiheinen kirjautuminen (2FA) on tärkeä suojausasetus, joka auttaa käyttäjätiliesi suojauksessa. Jos sivusto tarjoaa mahdollisuuden kaksivaiheisen kirjautmisen käyttöön, sinun tulisi aina ottaa se käyttöön."
+    "message": "Kaksivaiheinen kirjautuminen (2FA) lisää tileillesi yhden suojaustason. Voit käyttää kaksivaiheiseen kirjautumiseen Bitwarden-todentajaa tai vaihtoehtoisia menetelmiä."
   },
   "inactive2faFound": {
     "message": "Tunnuksia ilman kaksivaiheista kirjautumista löytyi"
@@ -1474,7 +1482,7 @@
     "message": "Paljastuneet salasanat"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Paljastuneet salasanat ovat salasanoja, jotka on paljastettu julkaistujen tietovuotojen yhteydessä tai joita murtautujat ovat myyneet pimeässä verkossa (dark web)."
+    "message": "Tietovuodoissa paljastuneet salasanat ovat helppoja kohteita hyökkääjille. Vaihda nämä salasanat estääksesi mahdolliset murrot."
   },
   "exposedPasswordsFound": {
     "message": "Paljastuneita salasanoja löytyi"
@@ -1507,7 +1515,7 @@
     "message": "Heikot salasanat"
   },
   "weakPasswordsReportDesc": {
-    "message": "Heikot salasanat ovat murtautujien ja automaattisten salasanojen murtotyökalujen helposti arvattavissa. Bitwardenin salasanageneraattori auttaa sinua luomaan vahvoja salasanoja."
+    "message": "Heikot salasanat ovat hyökkääjien helposti arvattavissa. Bitwardenin salasanageneraattorin avulla voit luoda vahvoja salasanoja."
   },
   "weakPasswordsFound": {
     "message": "Heikkoja salasanoja löytyi"
@@ -1528,7 +1536,7 @@
     "message": "Toistuvat salasanat"
   },
   "reusedPasswordsReportDesc": {
-    "message": "Jos käyttämäsi palvelu on vaarantunut, saman salasanan toistuva käyttö muualla voi mahdollistaa murtautujien pääsyn myös muille käyttäjätileillesi. Jokaiselle tilille ja palvelulle tulisi käyttää yksilöllisiä salasanoja."
+    "message": "Samojen salasanojen toistuva käyttö helpottaa hakkereiden pääsyä useille käyttäjätileille. Vaihda kaikki nämä salasanat yksilöllisiksi."
   },
   "reusedPasswordsFound": {
     "message": "Toistuvia salasanoja löytyi"
@@ -1558,7 +1566,7 @@
     "message": "Tietovuodot"
   },
   "breachDesc": {
-    "message": "\"Tietovuoto\" tai \"tietomurto\" on tilanne, jossa murtautujat (hakkerit) ovat laittomasti päässeet käsiksi sivuston suojattuihin tietoihin ja julkaisseet ne tämän jälkeen julkisesti. Tarkista vaarantuneet tiedot (sähköpostiosoitteet, salasanat, maksukortit jne.) ja tee asianmukaiset toimet, kuten salasanan vaihdot."
+    "message": "Murretut tilit saattavat paljastaa henkilötietosi. Suojaa tilit kaksivaiheisella todennuksella tai vahvemmilla salasanoilla."
   },
   "breachCheckUsernameEmail": {
     "message": "Tarkista kaikki käyttämäsi käyttäjätunnukset tai sähköpostiosoitteet."
@@ -2330,13 +2338,13 @@
     "message": "Tilin salasana vaihdettu."
   },
   "enabledUpdated2fa": {
-    "message": "Kaksivaiheinen kirjautuminen otettu käyttöön/päivitetty."
+    "message": "Kaksivaiheinen kirjautuminen otettiin käyttöön/päivitettiin."
   },
   "disabled2fa": {
-    "message": "Kaksivaiheinen kirjautuminen poistettu käytöstä."
+    "message": "Kaksivaiheinen kirjautuminen poistettiin käytöstä."
   },
   "recovered2fa": {
-    "message": "Tili vapautettu kaksivaiheisesta kirjautumisesta."
+    "message": "Tili vapautettiin kaksivaiheisesta kirjautumisesta."
   },
   "failedLogin": {
     "message": "Sisäänkirjautumisyritys epäonnistui väärän salasanan vuoksi."
@@ -2795,7 +2803,7 @@
     "message": "Poista organisaatio"
   },
   "deletingOrganizationContentWarning": {
-    "message": "Vahvista organisaation $ORGANIZATION$ ja kaikkien sen kohteiden poisto syöttämällä pääsalasanasi. Holvin sisältämiä organisaation $ORGANIZATION$ tietoja ovat:",
+    "message": "Vahvista organisaation $ORGANIZATION$ ja kaikkien sen kohteiden poisto syöttämällä pääsalasanasi. Organisaation $ORGANIZATION$ tiedot holvissa:",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4826,5 +4834,47 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Palaa raportteihin"
+  },
+  "generator": {
+    "message": "Generaattori"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Mitä haluat luoda?"
+  },
+  "passwordType": {
+    "message": "Salasanan tyyppi"
+  },
+  "regenerateUsername": {
+    "message": "Luo uusi käyttäjätunnus"
+  },
+  "generateUsername": {
+    "message": "Luo käyttäjätunnus"
+  },
+  "usernameType": {
+    "message": "Käyttäjätunnuksen tyyppi"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus-osoitteinen sähköposti"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Käytä sähköpostipalvelusi aliosoiteominaisuuksia."
+  },
+  "catchallEmail": {
+    "message": "Catch-all-sähköpostiosoite"
+  },
+  "catchallEmailDesc": {
+    "message": "Käytä verkkotunnuksellesi määritettyä catch-all-postilaatikkoa."
+  },
+  "random": {
+    "message": "Satunnainen"
+  },
+  "randomWord": {
+    "message": "Satunnainen sana"
+  },
+  "service": {
+    "message": "Palvelu"
   }
 }
