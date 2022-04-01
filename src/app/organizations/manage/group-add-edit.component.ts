@@ -5,7 +5,6 @@ import { CollectionService } from "jslib-common/abstractions/collection.service"
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
 import { CollectionData } from "jslib-common/models/data/collectionData";
 import { Collection } from "jslib-common/models/domain/collection";
 import { GroupRequest } from "jslib-common/models/request/groupRequest";
@@ -24,7 +23,7 @@ export class GroupAddEditComponent implements OnInit {
   @Output() onDeletedGroup = new EventEmitter();
 
   loading = true;
-  editMode: boolean = false;
+  editMode = false;
   title: string;
   name: string;
   externalId: string;

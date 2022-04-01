@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
 import { AuthGuardService } from "jslib-angular/services/auth-guard.service";
-
 import { Permissions } from "jslib-common/enums/permissions";
 
 import { OrganizationLayoutComponent } from "src/app/layouts/organization-layout.component";

@@ -31,7 +31,7 @@
       >
         <div class="modal-body">
           <ng-container *ngIf="enabled">
-            <app-callout type="success" title="{{ 'enabled' | i18n }}" icon="fa-check-circle">
+            <app-callout type="success" title="{{ 'enabled' | i18n }}" icon="bwi bwi-check-circle">
               {{ "twoStepLoginProviderEnabled" | i18n }}
             </app-callout>
             <strong>{{ "email" | i18n }}:</strong> {{ email }}
@@ -64,7 +64,7 @@
                 [disabled]="sendBtn.loading"
               >
                 <i
-                  class="fa fa-spinner fa-spin"
+                  class="bwi bwi-spinner bwi-spin"
                   title="{{ 'loading' | i18n }}"
                   aria-hidden="true"
                 ></i>
@@ -90,7 +90,11 @@
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-            <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+            <i
+              class="bwi bwi-spinner bwi-spin"
+              title="{{ 'loading' | i18n }}"
+              aria-hidden="true"
+            ></i>
             <span *ngIf="!enabled">{{ "enable" | i18n }}</span>
             <span *ngIf="enabled">{{ "disable" | i18n }}</span>
           </button>

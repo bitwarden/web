@@ -1,27 +1,13 @@
 import { Injectable } from "@angular/core";
 
 import { StorageService } from "jslib-common/abstractions/storage.service";
-
 import { HtmlStorageLocation } from "jslib-common/enums/htmlStorageLocation";
-
-import { GlobalState } from "jslib-common/models/domain/globalState";
-import { State } from "jslib-common/models/domain/state";
 import { StorageOptions } from "jslib-common/models/domain/storageOptions";
 
 @Injectable()
 export class HtmlStorageService implements StorageService {
   get defaultOptions(): StorageOptions {
     return { htmlStorageLocation: HtmlStorageLocation.Session };
-  }
-
-  async init() {
-    const state =
-      (await this.get<State>("state", { htmlStorageLocation: HtmlStorageLocation.Local })) ??
-      new State();
-    state.globals = state.globals ?? new GlobalState();
-    state.globals.vaultTimeout = state.globals.vaultTimeout ?? 15;
-    state.globals.vaultTimeoutAction = state.globals.vaultTimeoutAction ?? "lock";
-    await this.save("state", state, { htmlStorageLocation: HtmlStorageLocation.Local });
   }
 
   get<T>(key: string, options: StorageOptions = this.defaultOptions): Promise<T> {

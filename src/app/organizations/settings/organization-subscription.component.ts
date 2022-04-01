@@ -1,19 +1,18 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
-import { Organization } from "jslib-common/models/domain/organization";
-import { OrganizationSubscriptionResponse } from "jslib-common/models/response/organizationSubscriptionResponse";
-
+import { ModalService } from "jslib-angular/services/modal.service";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
-import { PlanType } from "jslib-common/enums/planType";
 import { OrganizationApiKeyType } from "jslib-common/enums/organizationApiKeyType";
-import { ModalService } from "jslib-angular/services/modal.service";
+import { PlanType } from "jslib-common/enums/planType";
+import { Organization } from "jslib-common/models/domain/organization";
+import { OrganizationSubscriptionResponse } from "jslib-common/models/response/organizationSubscriptionResponse";
+
 import { BillingSyncApiKeyComponent } from "./billing-sync-api-key.component";
 
 @Component({
@@ -21,9 +20,8 @@ import { BillingSyncApiKeyComponent } from "./billing-sync-api-key.component";
   templateUrl: "organization-subscription.component.html",
 })
 export class OrganizationSubscriptionComponent implements OnInit {
-  @ViewChild("setupBillingSyncTemplate", { read: ViewContainerRef, static: true})
+  @ViewChild("setupBillingSyncTemplate", { read: ViewContainerRef, static: true })
   setupBillingSyncModalRef: ViewContainerRef;
-
 
   loading = false;
   firstLoaded = false;
@@ -75,8 +73,12 @@ export class OrganizationSubscriptionComponent implements OnInit {
     this.loading = true;
     this.userOrg = await this.organizationService.get(this.organizationId);
     this.sub = await this.apiService.getOrganizationSubscription(this.organizationId);
-    const apiKeyResponse = await this.apiService.getOrganizationApiKeyInformation(this.organizationId);
-    this.hasBillingSyncToken = apiKeyResponse.data.some(i => i.keyType === OrganizationApiKeyType.BillingSync);
+    const apiKeyResponse = await this.apiService.getOrganizationApiKeyInformation(
+      this.organizationId
+    );
+    this.hasBillingSyncToken = apiKeyResponse.data.some(
+      (i) => i.keyType === OrganizationApiKeyType.BillingSync
+    );
     this.loading = false;
   }
 
@@ -148,13 +150,14 @@ export class OrganizationSubscriptionComponent implements OnInit {
   }
 
   async manageBillingSync() {
-    const [ref, _component] = await this.modalService.openViewRef(
+    const [ref, _] = await this.modalService.openViewRef(
       BillingSyncApiKeyComponent,
       this.setupBillingSyncModalRef,
       (comp) => {
         comp.organizationId = this.organizationId;
         comp.hasBillingToken = this.hasBillingSyncToken;
-    });
+      }
+    );
     ref.onClosed.subscribe(async () => {
       await this.load();
     });
@@ -289,10 +292,13 @@ export class OrganizationSubscriptionComponent implements OnInit {
   }
 
   get canManageBillingSync() {
-    return !this.selfHosted && (this.sub.planType === PlanType.EnterpriseAnnually
-      || this.sub.planType === PlanType.EnterpriseMonthly
-      || this.sub.planType === PlanType.EnterpriseAnnually2019
-      || this.sub.planType === PlanType.EnterpriseMonthly2019);
+    return (
+      !this.selfHosted &&
+      (this.sub.planType === PlanType.EnterpriseAnnually ||
+        this.sub.planType === PlanType.EnterpriseMonthly ||
+        this.sub.planType === PlanType.EnterpriseAnnually2019 ||
+        this.sub.planType === PlanType.EnterpriseMonthly2019)
+    );
   }
 
   get subscriptionDesc() {

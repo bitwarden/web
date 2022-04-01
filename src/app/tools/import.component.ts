@@ -1,15 +1,15 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import * as JSZip from "jszip";
+import Swal, { SweetAlertIcon } from "sweetalert2";
 
 import { I18nService } from "jslib-common/abstractions/i18n.service";
-import { ImportOption, ImportService } from "jslib-common/abstractions/import.service";
+import { ImportService } from "jslib-common/abstractions/import.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
-
+import { ImportOption, ImportType } from "jslib-common/enums/importOptions";
 import { PolicyType } from "jslib-common/enums/policyType";
-
-import Swal, { SweetAlertIcon } from "sweetalert2";
 
 @Component({
   selector: "app-import",
@@ -18,11 +18,11 @@ import Swal, { SweetAlertIcon } from "sweetalert2";
 export class ImportComponent implements OnInit {
   featuredImportOptions: ImportOption[];
   importOptions: ImportOption[];
-  format: string = null;
+  format: ImportType = null;
   fileContents: string;
   formPromise: Promise<Error>;
-  loading: boolean = false;
-  importBlockedByPolicy: boolean = false;
+  loading = false;
+  importBlockedByPolicy = false;
 
   protected organizationId: string = null;
   protected successNavigate: any[] = ["vault"];
@@ -38,21 +38,6 @@ export class ImportComponent implements OnInit {
 
   async ngOnInit() {
     this.setImportOptions();
-    this.importOptions.sort((a, b) => {
-      if (a.name == null && b.name != null) {
-        return -1;
-      }
-      if (a.name != null && b.name == null) {
-        return 1;
-      }
-      if (a.name == null && b.name == null) {
-        return 0;
-      }
-
-      return this.i18nService.collator
-        ? this.i18nService.collator.compare(a.name, b.name)
-        : a.name.localeCompare(b.name);
-    });
 
     this.importBlockedByPolicy = await this.policyService.policyAppliesToUser(
       PolicyType.PersonalOwnership
@@ -158,7 +143,21 @@ export class ImportComponent implements OnInit {
       },
       ...this.importService.featuredImportOptions,
     ];
-    this.importOptions = this.importService.regularImportOptions;
+    this.importOptions = [...this.importService.regularImportOptions].sort((a, b) => {
+      if (a.name == null && b.name != null) {
+        return -1;
+      }
+      if (a.name != null && b.name == null) {
+        return 1;
+      }
+      if (a.name == null && b.name == null) {
+        return 0;
+      }
+
+      return this.i18nService.collator
+        ? this.i18nService.collator.compare(a.name, b.name)
+        : a.name.localeCompare(b.name);
+    });
   }
 
   private async error(error: Error) {
@@ -166,7 +165,7 @@ export class ImportComponent implements OnInit {
       heightAuto: false,
       buttonsStyling: false,
       icon: "error" as SweetAlertIcon,
-      iconHtml: `<i class="swal-custom-icon fa fa-bolt text-danger"></i>`,
+      iconHtml: `<i class="swal-custom-icon bwi bwi-error text-danger"></i>`,
       input: "textarea",
       inputValue: error.message,
       inputAttributes: {
@@ -183,6 +182,10 @@ export class ImportComponent implements OnInit {
   }
 
   private getFileContents(file: File): Promise<string> {
+    if (this.format === "1password1pux") {
+      return this.extract1PuxContent(file);
+    }
+
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
       reader.readAsText(file, "utf-8");
@@ -205,5 +208,21 @@ export class ImportComponent implements OnInit {
         reject();
       };
     });
+  }
+
+  private extract1PuxContent(file: File): Promise<string> {
+    return new JSZip()
+      .loadAsync(file)
+      .then((zip) => {
+        return zip.file("export.data").async("string");
+      })
+      .then(
+        function success(content) {
+          return content;
+        },
+        function error(e) {
+          return "";
+        }
+      );
   }
 }

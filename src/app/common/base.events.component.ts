@@ -4,11 +4,9 @@ import { ExportService } from "jslib-common/abstractions/export.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
-import { EventView } from "jslib-common/models/view/eventView";
-
 import { EventResponse } from "jslib-common/models/response/eventResponse";
 import { ListResponse } from "jslib-common/models/response/listResponse";
+import { EventView } from "jslib-common/models/view/eventView";
 
 import { EventService } from "src/app/services/event.service";
 
@@ -19,7 +17,7 @@ export abstract class BaseEventsComponent {
   events: EventView[];
   start: string;
   end: string;
-  dirtyDates: boolean = true;
+  dirtyDates = true;
   continuationToken: string;
   refreshPromise: Promise<any>;
   exportPromise: Promise<any>;
@@ -110,13 +108,7 @@ export abstract class BaseEventsComponent {
     endDate: string,
     continuationToken: string
   ): Promise<ListResponse<EventResponse>>;
-  protected abstract getUserName(
-    r: EventResponse,
-    userId: string
-  ): {
-    name: string;
-    email: string;
-  };
+  protected abstract getUserName(r: EventResponse, userId: string): { name: string; email: string };
 
   protected async loadAndParseEvents(
     startDate: string,
@@ -144,10 +136,7 @@ export abstract class BaseEventsComponent {
         });
       })
     );
-    return {
-      continuationToken: response.continuationToken,
-      events: events,
-    };
+    return { continuationToken: response.continuationToken, events: events };
   }
 
   protected parseDates() {
@@ -181,13 +170,6 @@ export abstract class BaseEventsComponent {
 
     const data = await this.exportService.getEventExport(events);
     const fileName = this.exportService.getFileName(this.exportFileName, "csv");
-    this.platformUtilsService.saveFile(
-      window,
-      data,
-      {
-        type: "text/plain",
-      },
-      fileName
-    );
+    this.platformUtilsService.saveFile(window, data, { type: "text/plain" }, fileName);
   }
 }

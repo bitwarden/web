@@ -24,14 +24,14 @@ label:not(.form-check-label):not(.btn),
 label.bold {
   font-weight: 600;
   @include themify($themes) {
-    color: themed("headingColor");
+    color: themed("textHeadingColor");
   }
 }
 
 label.form-check-label,
 .form-control-file {
   @include themify($themes) {
-    color: themed("headingColor");
+    color: themed("textHeadingColor");
   }
 }
 
@@ -78,6 +78,10 @@ label.form-check-label,
     background-color: themed("inputBackgroundColor");
     border-color: themed("inputBorderColor");
     color: themed("inputTextColor");
+
+    option {
+      background-color: themed("backgroundColor");
+    }
   }
 
   &:disabled,
@@ -203,6 +207,42 @@ input[type="checkbox"] {
     border-color: themed("borderColor");
     border-left: 3px solid themed("borderPrimaryColor");
     color: themed("listItemActive");
+  }
+}
+
+.section-header {
+  h3,
+  .btn.btn-link {
+    @include themify($themes) {
+      color: themed("headingColor");
+    }
+  }
+
+  h3 {
+    font-weight: normal;
+    text-transform: uppercase;
+  }
+}
+
+.error-summary {
+  margin-top: 1rem;
+}
+
+.error-inline {
+  @include themify($themes) {
+    color: themed("danger");
+  }
+}
+
+// Theming for invalid form elements in the SSO Config Form only
+// Will be deprecated by component-level styling in the Component Library
+app-org-manage-sso form {
+  .form-control.ng-invalid,
+  app-input-text.ng-invalid .form-control,
+  app-select.ng-invalid .form-control {
+    @include themify($themes) {
+      border-color: themed("danger");
+    }
   }
 }
 

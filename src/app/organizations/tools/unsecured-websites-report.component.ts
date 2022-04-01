@@ -1,21 +1,19 @@
 import { Component } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
+import { ModalService } from "jslib-angular/services/modal.service";
 import { CipherService } from "jslib-common/abstractions/cipher.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PasswordRepromptService } from "jslib-common/abstractions/passwordReprompt.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
-import { ModalService } from "jslib-angular/services/modal.service";
-
-import { UnsecuredWebsitesReportComponent as BaseUnsecuredWebsitesReportComponent } from "../../tools/unsecured-websites-report.component";
-
 import { CipherView } from "jslib-common/models/view/cipherView";
+
+import { UnsecuredWebsitesReportComponent as BaseUnsecuredWebsitesReportComponent } from "../../reports/unsecured-websites-report.component";
 
 @Component({
   selector: "app-unsecured-websites-report",
-  templateUrl: "../../tools/unsecured-websites-report.component.html",
+  templateUrl: "../../reports/unsecured-websites-report.component.html",
 })
 export class UnsecuredWebsitesReportComponent extends BaseUnsecuredWebsitesReportComponent {
   constructor(

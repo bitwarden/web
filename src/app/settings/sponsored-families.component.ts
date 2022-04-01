@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core";
+
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
-
 import { PlanSponsorshipType } from "jslib-common/enums/planSponsorshipType";
 import { Organization } from "jslib-common/models/domain/organization";
 
@@ -17,8 +17,8 @@ export class SponsoredFamiliesComponent implements OnInit {
 
   availableSponsorshipOrgs: Organization[] = [];
   activeSponsorshipOrgs: Organization[] = [];
-  selectedSponsorshipOrgId: string = "";
-  sponsorshipEmail: string = "";
+  selectedSponsorshipOrgId = "";
+  sponsorshipEmail = "";
 
   // Conditional display properties
   formPromise: Promise<any>;
@@ -49,7 +49,7 @@ export class SponsoredFamiliesComponent implements OnInit {
     await this.load(true);
   }
 
-  async load(forceReload: boolean = false) {
+  async load(forceReload = false) {
     if (this.loading) {
       return;
     }

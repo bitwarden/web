@@ -13,7 +13,7 @@
   {{ "providers" | i18n }}
   <small *ngIf="loading">
     <i
-      class="fa fa-spinner fa-spin fa-fw text-muted"
+      class="bwi bwi-spinner bwi-spin bwi-fw text-muted"
       title="{{ 'loading' | i18n }}"
       aria-hidden="true"
     ></i>
@@ -33,21 +33,13 @@
         {{ p.name }}
         <ng-container *ngIf="p.enabled">
           <i
-            class="fa fa-check text-success fa-fw"
+            class="bwi bwi-check text-success bwi-fw"
             title="{{ 'enabled' | i18n }}"
             aria-hidden="true"
           ></i>
           <span class="sr-only">{{ "enabled" | i18n }}</span>
         </ng-container>
-        <a
-          href="#"
-          appStopClick
-          class="badge badge-primary"
-          *ngIf="!canAccessPremium && p.premium"
-          (click)="premiumRequired()"
-        >
-          {{ "premium" | i18n }}
-        </a>
+        <app-premium-badge *ngIf="p.premium"></app-premium-badge>
       </h3>
       {{ p.description }}
     </div>

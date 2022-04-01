@@ -187,7 +187,12 @@
     "message": "Mappa szerkesztése"
   },
   "baseDomain": {
-    "message": "Alap domain"
+    "message": "Alap domain",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Kiszolgáló",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Biztonságos jegyzet"
+  },
+  "typeLoginPlural": {
+    "message": "Bejelentkezések"
+  },
+  "typeCardPlural": {
+    "message": "Kártyák"
+  },
+  "typeIdentityPlural": {
+    "message": "Azonosságok"
+  },
+  "typeSecureNotePlural": {
+    "message": "Biztonságos jegyzetek"
   },
   "folders": {
     "message": "Mappák"
@@ -1413,6 +1430,9 @@
   "reports": {
     "message": "Jelentések"
   },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
+  },
   "unsecuredWebsitesReport": {
     "message": "Nem-biztonságos webhelyek jelentés"
   },
@@ -1740,7 +1760,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Az előfizetési terv 7 napos ingyenes próbaidőszakot tartalmaz. A választott fizetési mód nem kerül ráterhelésre a próbaidőszak végéig. Az számlázás alapja $INTERVAL$ időszak. Ez bármikor lemondható."
+    "message": "A csomagod 7 napos ingyenes próbaidőszakot tartalmaz. A fizetési módját az időszak végéig nem terheljük. A csomag bármikor lemondható."
   },
   "paymentInformation": {
     "message": "Fizetési információ"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Szervezet törlése"
   },
-  "deleteOrganizationDesc": {
-    "message": "Az alábbiak szerint törölhető a szervezet és az összes kapcsolódó adat. Az egyedi felhasználói fiókok megmaradnak, bár nem maradnak társítva ehhez a szervezethez."
+  "deletingOrganizationContentWarning": {
+    "message": "Adjuk meg a mesterjelszót $ORGANIZATION$ és az összes társított adat törlésének megerősítéséhez. $ORGANIZATION$ széfadatainak tartalma:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "A szervezet végleges törlése folyamatban van. A művelet nem vonható vissza."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "A felhasználói fiókok aktívak maradnak a törlés után, de a továbbiakben nincsenek társítva ehhez a szervezethez."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "$ORGANIZATION$ törlése végleges és nincs visszaállítási lehetőség.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "A szervezet törlésre került."
@@ -3156,7 +3191,7 @@
     "message": "A széfben régi mellékletek vannak, amelyeket javítani kell a fiók titkosító kulcsának fordítása előtt."
   },
   "yourAccountsFingerprint": {
-    "message": "Fók ujjlenyomat kifejezés",
+    "message": "Fók ujjnyomat kifejezés",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "fingerprintEnsureIntegrityVerify": {
@@ -3164,7 +3199,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Ne kérje ismét az ujjlenyomat kifejezés ellenőrzését",
+    "message": "Soha ne kérje a meghívottak ujjlenyomat kifejezésének ellenőrzését (nem ajánlott)",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -4325,6 +4360,9 @@
   "updateMasterPasswordWarning": {
     "message": "A mesterjelszót nemrégiben megváltoztatta a szervezet rendszergazdája. A tároló eléréséhez most frissíteni kell a mesterjelszót. A folytatás kijelentkeztet az aktuális munkamenetből és újra be kell jelentkezni. A más eszközökön végzett aktív munkamenetek akár egy órán keresztül is aktívak maradhatnak."
   },
+  "masterPasswordInvalidWarning": {
+    "message": "A mesterjelszó nem felel meg a szervezet rendszabályainak. A szervezet eléréséhez most frissíteni kell a mesterjelszót. Továbblépéskor kijelentkezés történik a jelenlegi munkamenetből és újra be kell jelentkezni. Ha van aktív munkamenet más eszközön, az még legfeljebb egy óráig aktív maradhat."
+  },
   "maximumVaultTimeout": {
     "message": "Széf időkifutás"
   },
@@ -4470,9 +4508,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Egyszeri kijelentkezés szolgáltatás webcíme"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact feloldási szolgáltatás webcím"
-  },
   "idpX509PublicCert": {
     "message": "X509 Nyilvános tanúsítvány"
   },
@@ -4482,11 +4517,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Kéretlen hitelesítési válasz engedélyezése"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Kimenő kijelentkezési kérések letiltása"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Kimenü kijelentkezési kérések engedélyezése"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Szeretnénk aláírni a hitelesítési kérelmeket"
+  "idpSignAuthenticationRequests": {
+    "message": "Hitelesítési kérések aláírása"
   },
   "ssoSettingsSaved": {
     "message": "Az egyszeri bejelentkezés konfigurációja mentésre került."
@@ -4510,7 +4545,7 @@
     "message": "Megosztott gyűjtemények a családi titkoknak"
   },
   "badToken": {
-    "message": "The link is no longer valid. Please have the sponsor resend the offer."
+    "message": "A link már nem érvényes. Kérje szponzorától az ajánlat újraküldését."
   },
   "reclaimedFreePlan": {
     "message": "Visszaállás díjmentes csomagra"
@@ -4522,7 +4557,7 @@
     "message": "Válasszuk ki a szponzorálni kívánt szervezetet."
   },
   "familiesSponsoringOrgSelect": {
-    "message": "Which Free Families offer would you like to redeem?"
+    "message": "Melyik ingyenes családi ajánlatot szeretné beváltani?"
   },
   "sponsoredFamiliesEmail": {
     "message": "A Bitwarden családok beváltásához adjuk meg a személyes email címünket."
@@ -4549,7 +4584,7 @@
     }
   },
   "sponsoredFamiliesOffer": {
-    "message": "Váltsuk be az ingyenes Bitwarden családi szervezet ajánlatot"
+    "message": "Az ingyenes Bitwarden Családi csomag elfogadása"
   },
   "sponsoredFamiliesOfferRedeemed": {
     "message": "Az ingyenes Bitwarden családi szervezet ajánlat beváltásra került."
@@ -4594,7 +4629,7 @@
     "message": "A szponzorálás eltávolítása után felelősséget vállalunk az előfizetésért és a kapcsolódó számlákért. Biztosan folytatjuk?"
   },
   "sponsorshipCreated": {
-    "message": "A szponzoráció létrejött."
+    "message": "A szponzoráció létrejött"
   },
   "revoke": {
     "message": "Visszavonás"
@@ -4664,7 +4699,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpLink": {
-    "message": "SSO szabályzat",
+    "message": "SSO hitelesítési szabályzat",
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpEnd": {
@@ -4684,7 +4719,7 @@
     "message": "Kulcskapcsoló"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "Csatlakoztassuk az egyszeri bejelentkezést a által tárolt visszafejtési kulcsszerverhez. Ezzel a lehetőséggel a tagoknak nem kell használniuk fő jelszavukat a tároló adatainak visszafejtéséhez."
+    "message": "SSO bejelentkezés bekapcsolása a saját üzemeltetésű kulcskiszolgálón. Ezzel az opcióval a tagoknak nem kell használniuk a mesterjelszavukat az adatok visszafejtéséhez. Segítségért keresse a Bitwarden ügyfélszolgálatot."
   },
   "keyConnectorPolicyRestriction": {
     "message": "A „Bejelentkezés SSO szolgáltatással és a kulcskapcsoló visszafejtésével” engedélyezve van. Ez a szabály csak a tulajdonosokra és a rendszergazdákra vonatkozik."
@@ -4702,7 +4737,7 @@
     "message": "Kikapcsolt kulcskapcsoló"
   },
   "keyConnectorWarning": {
-    "message": "A kulcskapcsoló beállítása után a tagok visszafejtési beállításai nem módosíthatók."
+    "message": "A kulcskiszolgáló beállítása után a szervezet nem térhet vissza a mesterjelszó használatához. Csak akkor folytassa, ha jól ismeri ennek telepítését és kezelését."
   },
   "migratedKeyConnector": {
     "message": "Áttérve kulcskapcsolóra"
@@ -4735,6 +4770,111 @@
     "message": "A szponzorálási ajánlat lejárt."
   },
   "freeWithSponsorship": {
-    "message": "FREE with sponsorship"
+    "message": "INGYENES a szponzorációval"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ mező fentebb figyelmet érdemel.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 mező fentebb figyelmet érdemel."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ szükséges.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "kötelező"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Szükséges ha az entitás azonosító nem webcím."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Opcionális testreszabások"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Szükséges, ha a hitelesítés nem érvényes."
+  },
+  "separateMultipleWithComma": {
+    "message": "Több érték esetén elválasztás vesszővel."
+  },
+  "sessionTimeout": {
+    "message": "A munkamenet lejárt. Lépjünk vissza és próbáljunk újra bejelentkezni."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Személyes széf exportálása"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Szervezeti széf exportálása"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Csak $EMAIL$ email címmel társított személyes széf elemek kerülnek exportálásra. Ebbe nem kerülnek be a szervezeti széf elemek.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Csak$ORGANIZATION$ névvel társított szervezeti széf elemek kerülnek exportálásra. Ebbe nem kerülnek be a személyes és más szervezeti széf elemek.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Regenerate Username"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }

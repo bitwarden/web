@@ -1,17 +1,15 @@
 import Swal, { SweetAlertIcon } from "sweetalert2";
 
-import { DeviceType } from "jslib-common/enums/deviceType";
-import { ThemeType } from "jslib-common/enums/themeType";
-
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
+import { ClientType } from "jslib-common/enums/clientType";
+import { DeviceType } from "jslib-common/enums/deviceType";
+import { ThemeType } from "jslib-common/enums/themeType";
 
 export class WebPlatformUtilsService implements PlatformUtilsService {
-  identityClientId: string = "web";
-
   private browserCache: DeviceType = null;
   private prefersColorSchemeDark = window.matchMedia("(prefers-color-scheme: dark)");
 
@@ -59,6 +57,10 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     return device.replace("browser", "");
   }
 
+  getClientType() {
+    return ClientType.Web;
+  }
+
   isFirefox(): boolean {
     return this.getDevice() === DeviceType.FirefoxBrowser;
   }
@@ -81,10 +83,6 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
 
   isSafari(): boolean {
     return this.getDevice() === DeviceType.SafariBrowser;
-  }
-
-  isIE(): boolean {
-    return this.getDevice() === DeviceType.IEBrowser;
   }
 
   isMacAppStore(): boolean {
@@ -137,26 +135,23 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
         blobOptions.type = type;
       }
     }
-    if (blobOptions != null && !this.isIE()) {
+    if (blobOptions != null) {
       blob = new Blob([blobData], blobOptions);
     } else {
       blob = new Blob([blobData]);
     }
-    if (navigator.msSaveOrOpenBlob) {
-      navigator.msSaveBlob(blob, fileName);
-    } else {
-      const a = win.document.createElement("a");
-      if (doDownload) {
-        a.download = fileName;
-      } else if (!this.isSafari()) {
-        a.target = "_blank";
-      }
-      a.href = URL.createObjectURL(blob);
-      a.style.position = "fixed";
-      win.document.body.appendChild(a);
-      a.click();
-      win.document.body.removeChild(a);
+
+    const a = win.document.createElement("a");
+    if (doDownload) {
+      a.download = fileName;
+    } else if (!this.isSafari()) {
+      a.target = "_blank";
     }
+    a.href = URL.createObjectURL(blob);
+    a.style.position = "fixed";
+    win.document.body.appendChild(a);
+    a.click();
+    win.document.body.removeChild(a);
   }
 
   getApplicationVersion(): Promise<string> {
@@ -191,23 +186,23 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     confirmText?: string,
     cancelText?: string,
     type?: string,
-    bodyIsHtml: boolean = false
+    bodyIsHtml = false
   ) {
     let iconClasses: string = null;
     if (type != null) {
       // If you add custom types to this part, the type to SweetAlertIcon cast below needs to be changed.
       switch (type) {
         case "success":
-          iconClasses = "fa-check text-success";
+          iconClasses = "bwi-check text-success";
           break;
         case "warning":
-          iconClasses = "fa-warning text-warning";
+          iconClasses = "bwi-exclamation-triangle text-warning";
           break;
         case "error":
-          iconClasses = "fa-bolt text-danger";
+          iconClasses = "bwi-error text-danger";
           break;
         case "info":
-          iconClasses = "fa-info-circle text-info";
+          iconClasses = "bwi-info-circle text-info";
           break;
         default:
           break;
@@ -220,7 +215,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
     }
 
     const iconHtmlStr =
-      iconClasses != null ? `<i class="swal-custom-icon fa ${iconClasses}"></i>` : undefined;
+      iconClasses != null ? `<i class="swal-custom-icon bwi ${iconClasses}"></i>` : undefined;
     const confirmed = await Swal.fire({
       heightAuto: false,
       buttonsStyling: false,
@@ -282,7 +277,7 @@ export class WebPlatformUtilsService implements PlatformUtilsService {
           this.logService.debug("Copy command unsupported or disabled.");
         }
       } catch (e) {
-        // tslint:disable-next-line
+        // eslint-disable-next-line
         console.warn("Copy to clipboard failed.", e);
       } finally {
         copyEl.removeChild(textarea);

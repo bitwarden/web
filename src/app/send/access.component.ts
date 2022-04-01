@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-
 import { ActivatedRoute } from "@angular/router";
 
 import { ApiService } from "jslib-common/abstractions/api.service";
@@ -7,19 +6,15 @@ import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { CryptoFunctionService } from "jslib-common/abstractions/cryptoFunction.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
+import { SEND_KDF_ITERATIONS } from "jslib-common/enums/kdfType";
+import { SendType } from "jslib-common/enums/sendType";
 import { Utils } from "jslib-common/misc/utils";
-
 import { SendAccess } from "jslib-common/models/domain/sendAccess";
 import { SymmetricCryptoKey } from "jslib-common/models/domain/symmetricCryptoKey";
-
-import { SendAccessView } from "jslib-common/models/view/sendAccessView";
-
-import { SendType } from "jslib-common/enums/sendType";
 import { SendAccessRequest } from "jslib-common/models/request/sendAccessRequest";
 import { ErrorResponse } from "jslib-common/models/response/errorResponse";
-
 import { SendAccessResponse } from "jslib-common/models/response/sendAccessResponse";
+import { SendAccessView } from "jslib-common/models/view/sendAccessView";
 
 @Component({
   selector: "app-send-access",
@@ -146,7 +141,7 @@ export class AccessComponent implements OnInit {
         this.password,
         keyArray,
         "sha256",
-        100000
+        SEND_KDF_ITERATIONS
       );
       this.accessRequest.password = Utils.fromBufferToB64(passwordHash);
     }

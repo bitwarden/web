@@ -1,15 +1,15 @@
 import { formatDate } from "@angular/common";
 import { Component, EventEmitter, Input, Output, OnInit } from "@angular/core";
+
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-
 import { Organization } from "jslib-common/models/domain/organization";
 
 /*
-* 
-*/
+ *
+ */
 
 @Component({
   selector: "[sponsoring-org-row]",
@@ -17,11 +17,11 @@ import { Organization } from "jslib-common/models/domain/organization";
 })
 export class SponsoringOrgRowComponent implements OnInit {
   @Input() sponsoringOrg: Organization = null;
-  @Input() isSelfHosted: boolean = false;
+  @Input() isSelfHosted = false;
 
   @Output() sponsorshipRemoved = new EventEmitter();
 
-  statusMessage: string = "loading";
+  statusMessage = "loading";
 
   revokeSponsorshipPromise: Promise<any>;
   resendEmailPromise: Promise<any>;
@@ -35,20 +35,30 @@ export class SponsoringOrgRowComponent implements OnInit {
 
   ngOnInit(): void {
     /*
-    * Possible Statuses:
-    * Requested (self-hosted only)
-    * Sent
-    * Active
-    * RequestRevoke
-    * RevokeWhenExpired
-    */
+     * Possible Statuses:
+     * Requested (self-hosted only)
+     * Sent
+     * Active
+     * RequestRevoke
+     * RevokeWhenExpired
+     */
 
-    if (this.sponsoringOrg.familySponsorshipToDelete && this.sponsoringOrg.familySponsorshipValidUntil) {
+    if (
+      this.sponsoringOrg.familySponsorshipToDelete &&
+      this.sponsoringOrg.familySponsorshipValidUntil
+    ) {
       // They want to delete but there is a valid until date which means there is an active sponsorship
       // TODO: Display valid until date
-      this.statusMessage = this.i18nService.t("revokeWhenExpired", formatDate(this.sponsoringOrg.familySponsorshipValidUntil, 'mediumDate', this.i18nService.locale));
+      this.statusMessage = this.i18nService.t(
+        "revokeWhenExpired",
+        formatDate(
+          this.sponsoringOrg.familySponsorshipValidUntil,
+          "mediumDate",
+          this.i18nService.locale
+        )
+      );
     } else if (this.sponsoringOrg.familySponsorshipToDelete) {
-      // They want to delete and we don't have a valid until date so we can 
+      // They want to delete and we don't have a valid until date so we can
       // this should only happen on a self-hosted install
       this.statusMessage = this.i18nService.t("requestRevoke");
     } else if (this.sponsoringOrg.familySponsorshipValidUntil) {

@@ -16,6 +16,7 @@ export class SetupProviderComponent extends BaseAcceptComponent {
     this.router.navigate(["/providers/setup"], { queryParams: qParams });
   }
 
-  // tslint:disable-next-line
-  async unauthedHandler(qParams: any) {}
+  async unauthedHandler(qParams: any) {
+    // Empty
+  }
 }

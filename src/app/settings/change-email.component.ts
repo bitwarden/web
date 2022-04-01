@@ -7,11 +7,9 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
+import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
 import { EmailRequest } from "jslib-common/models/request/emailRequest";
 import { EmailTokenRequest } from "jslib-common/models/request/emailTokenRequest";
-
-import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
 
 @Component({
   selector: "app-change-email",

@@ -6,6 +6,7 @@
       "tldjs": ["jslib/common/src/misc/tldjs.noop"],
       "jslib-common/*": ["jslib/common/src/*"],
       "jslib-angular/*": ["jslib/angular/src/*"],
+      "@bitwarden/components": ["jslib/components/src"],
       "src/*": ["src/*"]
     }
   },
@@ -13,5 +14,10 @@
     "preserveWhitespaces": true
   },
   "files": ["src/app/polyfills.ts", "src/app/main.ts", "bitwarden_license/src/app/main.ts"],
-  "include": ["src/connectors/*.ts", "src/models/*.ts", "src/services/*.ts"]
+  "include": [
+    "src/connectors/*.ts",
+    "src/models/*.ts",
+    "src/services/*.ts",
+    "src/abstractions/*.ts"
+  ]
 }

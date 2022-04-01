@@ -167,7 +167,7 @@
     "message": "真偽値"
   },
   "cfTypeLinked": {
-    "message": "Linked",
+    "message": "リンク済",
     "description": "This describes a field that is 'linked' (related) to another field."
   },
   "remove": {
@@ -187,7 +187,12 @@
     "message": "フォルダーを編集"
   },
   "baseDomain": {
-    "message": "ベースドメイン"
+    "message": "ベースドメイン",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "ドメイン名",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "ホスト",
@@ -300,6 +305,18 @@
   "typeSecureNote": {
     "message": "メモ"
   },
+  "typeLoginPlural": {
+    "message": "ログイン"
+  },
+  "typeCardPlural": {
+    "message": "カード"
+  },
+  "typeIdentityPlural": {
+    "message": "ID"
+  },
+  "typeSecureNotePlural": {
+    "message": "セキュアメモ"
+  },
   "folders": {
     "message": "フォルダー"
   },
@@ -316,7 +333,7 @@
     "message": "姓"
   },
   "fullName": {
-    "message": "Full Name"
+    "message": "フルネーム"
   },
   "address1": {
     "message": "住所 1"
@@ -758,7 +775,7 @@
     "message": "アカウントにアクセスするには、WebAuthn 対応のセキュリティキーを使用してください。"
   },
   "webAuthnMigrated": {
-    "message": "(Migrated from FIDO)"
+    "message": "(FIDOから統合)"
   },
   "emailTitle": {
     "message": "メールアドレス"
@@ -904,7 +921,7 @@
     "message": "メールアドレスを変更"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Proceeding will change your account email address. It will not change the email address used for two-factor authentication. You can change this email address in the Two-Step Login settings."
+    "message": "続行するとアカウントのメールアドレスが変更されます。2段階認証に使用されるメールアドレスは変更されません。必要に応じて2段階認証の設定で変更できます。"
   },
   "newEmail": {
     "message": "新しいメールアドレス"
@@ -1006,7 +1023,7 @@
     "message": "組織の保管庫を削除"
   },
   "vaultAccessedByProvider": {
-    "message": "Vault accessed by provider."
+    "message": "保管庫がプロバイダーからアクセスされました。"
   },
   "purgeVaultDesc": {
     "message": "続行すると保管庫内のすべてのアイテムとフォルダーが削除されます。組織と共有しているアイテムは削除されません。"
@@ -1395,7 +1412,7 @@
     "message": "セキュリティキーの読み取り中に問題が発生しました。もう一度やり直して下さい。"
   },
   "twoFactorWebAuthnWarning": {
-    "message": "Due to platform limitations, WebAuthn cannot be used on all Bitwarden applications. You should enable another two-step login provider so that you can access your account when WebAuthn cannot be used. Supported platforms:"
+    "message": "プラットフォームの制限により、WebAuthnはBitwardenの全てのアプリケーションで使用できるわけではありません。WebAuthnが使用できない場合に備えて、他の二段階認証プロバイダを有効化しておくことをおすすめします。サポートされているプラットフォーム:"
   },
   "twoFactorWebAuthnSupportWeb": {
     "message": "Web vault and browser extensions on a desktop/laptop with a WebAuthn enabled browser (Chrome, Opera, Vivaldi, or Firefox with FIDO U2F enabled)."
@@ -1412,6 +1429,9 @@
   },
   "reports": {
     "message": "レポート"
+  },
+  "reportsDesc": {
+    "message": "以下のレポートをクリックして、オンラインアカウントのセキュリティギャップを特定して修正してください。"
   },
   "unsecuredWebsitesReport": {
     "message": "非セキュアウェブサイト調査"
@@ -1462,7 +1482,7 @@
     "message": "流出パスワード調査"
   },
   "exposedPasswordsReportDesc": {
-    "message": "流出したパスワードとは、クラッカーによりダークウェブ上で公開または販売された既知の流出データに掲載されているパスワードのことです。"
+    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
   },
   "exposedPasswordsFound": {
     "message": "流出したパスワードが見つかりました"
@@ -2153,7 +2173,7 @@
     "message": "方針"
   },
   "singleSignOn": {
-    "message": "Single Sign-On"
+    "message": "シングルサインオン(SSO)"
   },
   "editPolicy": {
     "message": "方針を編集"
@@ -2249,7 +2269,7 @@
     "message": "確認済み"
   },
   "clientOwnerEmail": {
-    "message": "Client Owner Email"
+    "message": "クライアントの管理者のメールアドレス"
   },
   "owner": {
     "message": "オーナー"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "組織の削除"
   },
-  "deleteOrganizationDesc": {
-    "message": "続行するとこの組織と関連するすべてのデータが削除されます。組織と関連がなくなっても個々のユーザーアカウントは維持されます。"
+  "deletingOrganizationContentWarning": {
+    "message": "$ORGANIZATION$ と関連するすべてのデータの削除を確認するためにマスターパスワードを入力してください。 $ORGANIZATION$ の保管庫データは下記を含みます:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "組織を恒久的に削除します。元に戻すことはできません。"
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "削除後もユーザーアカウントはアクティブになりますが、この組織に関連付けられなくなります。"
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "$ORGANIZATION$ を削除すると元に戻せません。",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "組織が削除されました。"
@@ -4325,6 +4360,9 @@
   "updateMasterPasswordWarning": {
     "message": "Your Master Password was recently changed by an administrator in your organization. In order to access the vault, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
   },
+  "masterPasswordInvalidWarning": {
+    "message": "あなたのマスターパスワードは、この組織のポリシー要件を満たしていません。組織に参加するには、マスターパスワードを更新してください。 続行すると現在のセッションからログアウトするため、再ログインが必要です。 他のデバイスでのアクティブなセッションは、最大1時間アクティブになり続けることができます。"
+  },
   "maximumVaultTimeout": {
     "message": "Vault Timeout"
   },
@@ -4411,25 +4449,25 @@
     "message": "OIDC Redirect Behavior"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "Get claims from user info endpoint"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "Custom Scopes"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "Custom User ID Claim Types"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "Email Claim Types"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "Custom Name Claim Types"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "Requested Authentication Context Class Reference values"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "Expected \"acr\" Claim Value In Response"
   },
   "spEntityId": {
     "message": "SP Entity ID"
@@ -4453,10 +4491,10 @@
     "message": "Minimum Incoming Signing Algorithm"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "Expect signed assertions"
   },
   "spValidateCertificates": {
-    "message": "Validate Certificates"
+    "message": "Validate certificates"
   },
   "idpEntityId": {
     "message": "Entity ID"
@@ -4470,9 +4508,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Single Log Out Service URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
-  },
   "idpX509PublicCert": {
     "message": "X509 Public Certificate"
   },
@@ -4480,13 +4515,13 @@
     "message": "Outbound Signing Algorithm"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "Allow unsolicited authentication response"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "アウトバウンドログアウト要求を許可する"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+  "idpSignAuthenticationRequests": {
+    "message": "認証リクエストに署名する"
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
@@ -4736,5 +4771,110 @@
   },
   "freeWithSponsorship": {
     "message": "FREE with sponsorship"
+  },
+  "formErrorSummaryPlural": {
+    "message": "上記の $COUNT$ フィールドは注意が必要です。",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "上記の 1 フィールドは注意が必要です。"
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ は必須です。",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "必須"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "エンティティ ID が URL でない場合は必須です。"
+  },
+  "openIdOptionalCustomizations": {
+    "message": "オプションのカスタマイズ"
+  },
+  "openIdAuthorityRequired": {
+    "message": "権限が無効な場合は必須です。"
+  },
+  "separateMultipleWithComma": {
+    "message": "コンマで複数を区切ります。"
+  },
+  "sessionTimeout": {
+    "message": "セッションがタイムアウトしました。もう一度ログインしてください。"
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "個人保管庫のエクスポート"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "組織保管庫のエクスポート"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "$EMAIL$ に関連付けられた個人用保管庫アイテムのみがエクスポートされます。組織用保管庫アイテムは含まれません。",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "$ORGANIZATION$ に関連付けられた組織保管庫のアイテムのみがエクスポートされます。他の組織や個人保管庫のアイテムは含まれません。",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "backToReports": {
+    "message": "レポートに戻る"
+  },
+  "generator": {
+    "message": "ジェネレーター"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "何を生成しますか？"
+  },
+  "passwordType": {
+    "message": "パスワードの種類"
+  },
+  "regenerateUsername": {
+    "message": "ユーザー名を再生成"
+  },
+  "generateUsername": {
+    "message": "ユーザー名を生成"
+  },
+  "usernameType": {
+    "message": "ユーザー名の種類"
+  },
+  "plusAddressedEmail": {
+    "message": "プラス付きのメールアドレス"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "メールプロバイダのエイリアス機能を使用します。"
+  },
+  "catchallEmail": {
+    "message": "キャッチオールメール"
+  },
+  "catchallEmailDesc": {
+    "message": "ドメインに設定されたキャッチオール受信トレイを使用します。"
+  },
+  "random": {
+    "message": "ランダム"
+  },
+  "randomWord": {
+    "message": "ランダムな単語"
+  },
+  "service": {
+    "message": "サービス"
   }
 }

@@ -8,23 +8,9 @@ import {
   ViewContainerRef,
 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-
 import { first } from "rxjs/operators";
 
-import { CipherType } from "jslib-common/enums/cipherType";
-
-import { CipherView } from "jslib-common/models/view/cipherView";
-
-import { OrganizationsComponent } from "../settings/organizations.component";
-import { UpdateKeyComponent } from "../settings/update-key.component";
-import { AddEditComponent } from "./add-edit.component";
-import { AttachmentsComponent } from "./attachments.component";
-import { CiphersComponent } from "./ciphers.component";
-import { CollectionsComponent } from "./collections.component";
-import { FolderAddEditComponent } from "./folder-add-edit.component";
-import { GroupingsComponent } from "./groupings.component";
-import { ShareComponent } from "./share.component";
-
+import { ModalService } from "jslib-angular/services/modal.service";
 import { BroadcasterService } from "jslib-common/abstractions/broadcaster.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -35,8 +21,19 @@ import { ProviderService } from "jslib-common/abstractions/provider.service";
 import { StateService } from "jslib-common/abstractions/state.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
 import { TokenService } from "jslib-common/abstractions/token.service";
+import { CipherType } from "jslib-common/enums/cipherType";
+import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { ModalService } from "jslib-angular/services/modal.service";
+import { OrganizationsComponent } from "../settings/organizations.component";
+import { UpdateKeyComponent } from "../settings/update-key.component";
+
+import { AddEditComponent } from "./add-edit.component";
+import { AttachmentsComponent } from "./attachments.component";
+import { CiphersComponent } from "./ciphers.component";
+import { CollectionsComponent } from "./collections.component";
+import { FolderAddEditComponent } from "./folder-add-edit.component";
+import { GroupingsComponent } from "./groupings.component";
+import { ShareComponent } from "./share.component";
 
 const BroadcasterSubscriptionId = "VaultComponent";
 
@@ -61,7 +58,7 @@ export class VaultComponent implements OnInit, OnDestroy {
   @ViewChild("updateKeyTemplate", { read: ViewContainerRef, static: true })
   updateKeyModalRef: ViewContainerRef;
 
-  favorites: boolean = false;
+  favorites = false;
   type: CipherType = null;
   folderId: string = null;
   collectionId: string = null;
@@ -69,9 +66,8 @@ export class VaultComponent implements OnInit, OnDestroy {
   showBrowserOutdated = false;
   showUpdateKey = false;
   showPremiumCallout = false;
-  showRedeemSponsorship = false;
   showProviders = false;
-  deleted: boolean = false;
+  deleted = false;
   trashCleanupWarning: string = null;
 
   constructor(
@@ -109,11 +105,6 @@ export class VaultComponent implements OnInit, OnDestroy {
         !this.showVerifyEmail && !canAccessPremium && !this.platformUtilsService.isSelfHost();
 
       this.showProviders = (await this.providerService.getAll()).length > 0;
-
-      const allOrgs = await this.organizationService.getAll();
-      this.showRedeemSponsorship =
-        allOrgs.some((o) => o.familySponsorshipAvailable) &&
-        !allOrgs.some((o) => o.familySponsorshipFriendlyName != null);
 
       await Promise.all([this.groupingsComponent.load(), this.organizationsComponent.load()]);
       this.showUpdateKey = !(await this.cryptoService.hasEncKey());
@@ -348,15 +339,15 @@ export class VaultComponent implements OnInit, OnDestroy {
       this.cipherAddEditModalRef,
       (comp) => {
         comp.cipherId = cipher == null ? null : cipher.id;
-        comp.onSavedCipher.subscribe(async (c: CipherView) => {
+        comp.onSavedCipher.subscribe(async () => {
           modal.close();
           await this.ciphersComponent.refresh();
         });
-        comp.onDeletedCipher.subscribe(async (c: CipherView) => {
+        comp.onDeletedCipher.subscribe(async () => {
           modal.close();
           await this.ciphersComponent.refresh();
         });
-        comp.onRestoredCipher.subscribe(async (c: CipherView) => {
+        comp.onRestoredCipher.subscribe(async () => {
           modal.close();
           await this.ciphersComponent.refresh();
         });

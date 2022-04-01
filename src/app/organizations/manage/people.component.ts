@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
-
+import { ActivatedRoute, Router } from "@angular/router";
 import { first } from "rxjs/operators";
 
-import { ActivatedRoute, Router } from "@angular/router";
-
+import { SearchPipe } from "jslib-angular/pipes/search.pipe";
+import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
+import { ModalService } from "jslib-angular/services/modal.service";
 import { ValidationService } from "jslib-angular/services/validation.service";
-
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -16,25 +16,18 @@ import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { SearchService } from "jslib-common/abstractions/search.service";
 import { StateService } from "jslib-common/abstractions/state.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
-
-import { ModalService } from "jslib-angular/services/modal.service";
-
+import { OrganizationUserStatusType } from "jslib-common/enums/organizationUserStatusType";
+import { OrganizationUserType } from "jslib-common/enums/organizationUserType";
+import { PolicyType } from "jslib-common/enums/policyType";
 import { OrganizationKeysRequest } from "jslib-common/models/request/organizationKeysRequest";
 import { OrganizationUserBulkRequest } from "jslib-common/models/request/organizationUserBulkRequest";
 import { OrganizationUserConfirmRequest } from "jslib-common/models/request/organizationUserConfirmRequest";
-
 import { ListResponse } from "jslib-common/models/response/listResponse";
 import { OrganizationUserBulkResponse } from "jslib-common/models/response/organizationUserBulkResponse";
 import { OrganizationUserUserDetailsResponse } from "jslib-common/models/response/organizationUserResponse";
 
-import { OrganizationUserStatusType } from "jslib-common/enums/organizationUserStatusType";
-import { OrganizationUserType } from "jslib-common/enums/organizationUserType";
-import { PolicyType } from "jslib-common/enums/policyType";
-
-import { SearchPipe } from "jslib-angular/pipes/search.pipe";
-import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
-
 import { BasePeopleComponent } from "../../common/base.people.component";
+
 import { BulkConfirmComponent } from "./bulk/bulk-confirm.component";
 import { BulkRemoveComponent } from "./bulk/bulk-remove.component";
 import { BulkStatusComponent } from "./bulk/bulk-status.component";
@@ -334,17 +327,13 @@ export class PeopleComponent
   }
 
   async events(user: OrganizationUserUserDetailsResponse) {
-    const [modal] = await this.modalService.openViewRef(
-      EntityEventsComponent,
-      this.eventsModalRef,
-      (comp) => {
-        comp.name = this.userNamePipe.transform(user);
-        comp.organizationId = this.organizationId;
-        comp.entityId = user.id;
-        comp.showUser = false;
-        comp.entity = "user";
-      }
-    );
+    await this.modalService.openViewRef(EntityEventsComponent, this.eventsModalRef, (comp) => {
+      comp.name = this.userNamePipe.transform(user);
+      comp.organizationId = this.organizationId;
+      comp.entityId = user.id;
+      comp.showUser = false;
+      comp.entity = "user";
+    });
   }
 
   async resetPassword(user: OrganizationUserUserDetailsResponse) {
@@ -406,13 +395,14 @@ export class PeopleComponent
 
         childComponent.users = users.map((user) => {
           let message = keyedErrors[user.id] ?? successfullMessage;
+          // eslint-disable-next-line
           if (!keyedFilteredUsers.hasOwnProperty(user.id)) {
             message = this.i18nService.t("bulkFilteredMessage");
           }
 
           return {
             user: user,
-            error: keyedErrors.hasOwnProperty(user.id),
+            error: keyedErrors.hasOwnProperty(user.id), // eslint-disable-line
             message: message,
           };
         });

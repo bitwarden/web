@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 
+import { ChangePasswordComponent as BaseChangePasswordComponent } from "jslib-angular/components/change-password.component";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { CipherService } from "jslib-common/abstractions/cipher.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
@@ -13,15 +14,10 @@ import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { SendService } from "jslib-common/abstractions/send.service";
 import { StateService } from "jslib-common/abstractions/state.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
-
-import { ChangePasswordComponent as BaseChangePasswordComponent } from "jslib-angular/components/change-password.component";
-
 import { EmergencyAccessStatusType } from "jslib-common/enums/emergencyAccessStatusType";
 import { Utils } from "jslib-common/misc/utils";
-
 import { EncString } from "jslib-common/models/domain/encString";
 import { SymmetricCryptoKey } from "jslib-common/models/domain/symmetricCryptoKey";
-
 import { CipherWithIdRequest } from "jslib-common/models/request/cipherWithIdRequest";
 import { EmergencyAccessUpdateRequest } from "jslib-common/models/request/emergencyAccessUpdateRequest";
 import { FolderWithIdRequest } from "jslib-common/models/request/folderWithIdRequest";
@@ -87,7 +83,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
         );
         if (learnMore) {
           this.platformUtilsService.launchUri(
-            "https://help.bitwarden.com/article/attachments/#fixing-old-attachments"
+            "https://bitwarden.com/help/attachments/#add-storage-space"
           );
         }
         this.rotateEncKey = false;

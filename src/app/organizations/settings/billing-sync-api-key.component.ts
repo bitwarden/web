@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
-import { ApiKeyResponse } from 'jslib-common/models/response/apiKeyResponse';
-import { OrganizationApiKeyRequest } from 'jslib-common/models/request/organizationApiKeyRequest';
-import { UserVerificationService } from 'jslib-common/abstractions/userVerification.service';
-import { Verification } from 'jslib-common/types/verification';
-import { ApiService } from 'jslib-common/abstractions/api.service';
-import { OrganizationApiKeyType } from 'jslib-common/enums/organizationApiKeyType';
-import { PlatformUtilsService } from 'jslib-common/abstractions/platformUtils.service';
-import { I18nService } from 'jslib-common/abstractions/i18n.service';
+import { Component } from "@angular/core";
+
+import { ApiService } from "jslib-common/abstractions/api.service";
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { UserVerificationService } from "jslib-common/abstractions/userVerification.service";
+import { OrganizationApiKeyType } from "jslib-common/enums/organizationApiKeyType";
+import { OrganizationApiKeyRequest } from "jslib-common/models/request/organizationApiKeyRequest";
+import { ApiKeyResponse } from "jslib-common/models/response/apiKeyResponse";
+import { Verification } from "jslib-common/types/verification";
 
 @Component({
   selector: "app-billing-sync-api-key",
@@ -22,12 +23,12 @@ export class BillingSyncApiKeyComponent {
   clientSecret?: string;
   keyRevisionDate?: Date;
   lastSyncDate?: Date = null;
-  
+
   constructor(
     private userVerificationService: UserVerificationService,
     private apiService: ApiService,
-    private platformUtilsService: PlatformUtilsService, 
-    private i18nService: I18nService,
+    private platformUtilsService: PlatformUtilsService,
+    private i18nService: I18nService
   ) {}
 
   copy() {
@@ -48,14 +49,14 @@ export class BillingSyncApiKeyComponent {
       this.platformUtilsService.showToast(
         "success",
         null,
-        this.i18nService.t('billingSyncApiKeyRotated')
+        this.i18nService.t("billingSyncApiKeyRotated")
       );
     } else {
       this.formPromise = this.userVerificationService
         .buildRequest(this.masterPassword, OrganizationApiKeyRequest)
         .then((request) => {
           request.type = OrganizationApiKeyType.BillingSync;
-          return this.apiService.postOrganizationApiKey(this.organizationId, request)
+          return this.apiService.postOrganizationApiKey(this.organizationId, request);
         });
       const response = await this.formPromise;
       await this.load(response);
@@ -85,10 +86,10 @@ export class BillingSyncApiKeyComponent {
 
   get submitButtonText(): string {
     if (this.showRotateScreen) {
-      return this.i18nService.t('rotateToken');
+      return this.i18nService.t("rotateToken");
     }
 
-    return this.i18nService.t(this.hasBillingToken ? 'continue' : 'generateToken');
+    return this.i18nService.t(this.hasBillingToken ? "continue" : "generateToken");
   }
 
   get syncText(): string | undefined {
@@ -98,12 +99,10 @@ export class BillingSyncApiKeyComponent {
 
     if (this.lastSyncDate !== null) {
       if (this.keyRevisionDate > this.lastSyncDate) {
-        return 'Awaiting sync with new token';
-      } else {
-        
+        return "Awaiting sync with new token";
       }
     }
-    
+
     return;
   }
 }

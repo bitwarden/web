@@ -44,9 +44,9 @@
                 (click)="togglePassword()"
               >
                 <i
-                  class="fa fa-lg"
+                  class="bwi bwi-lg"
                   aria-hidden="true"
-                  [ngClass]="{ 'fa-eye': !showPassword, 'fa-eye-slash': showPassword }"
+                  [ngClass]="{ 'bwi-eye': !showPassword, 'bwi-eye-slash': showPassword }"
                 ></i>
               </button>
             </div>
@@ -74,9 +74,9 @@
               class="btn btn-primary btn-block btn-submit"
               [disabled]="form.loading"
             >
-              <span> <i class="fa fa-sign-in" aria-hidden="true"></i> {{ "logIn" | i18n }} </span>
+              <span> <i class="bwi bwi-sign-in" aria-hidden="true"></i> {{ "logIn" | i18n }} </span>
               <i
-                class="fa fa-spinner fa-spin"
+                class="bwi bwi-spinner bwi-spin"
                 title="{{ 'loading' | i18n }}"
                 aria-hidden="true"
               ></i>
@@ -86,12 +86,13 @@
               [queryParams]="{ email: email }"
               class="btn btn-outline-secondary btn-block ml-2 mt-0"
             >
-              <i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{ "createAccount" | i18n }}
+              <i class="bwi bwi-pencil-square" aria-hidden="true"></i>
+              {{ "createAccount" | i18n }}
             </a>
           </div>
           <div class="d-flex">
             <a routerLink="/sso" class="btn btn-outline-secondary btn-block mt-2">
-              <i class="fa fa-bank" aria-hidden="true"></i> {{ "enterpriseSingleSignOn" | i18n }}
+              <i class="bwi bwi-bank" aria-hidden="true"></i> {{ "enterpriseSingleSignOn" | i18n }}
             </a>
           </div>
         </div>

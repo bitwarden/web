@@ -20,7 +20,7 @@
       </div>
       <div class="modal-body" *ngIf="loading">
         <i
-          class="fa fa-spinner fa-spin text-muted"
+          class="bwi bwi-spinner bwi-spin text-muted"
           title="{{ 'loading' | i18n }}"
           aria-hidden="true"
         ></i>
@@ -56,9 +56,9 @@
               target="_blank"
               rel="noopener"
               appA11yTitle="{{ 'learnMore' | i18n }}"
-              href="https://bitwarden.com/help/article/user-types-access-control/#access-control"
+              href="https://bitwarden.com/help/user-types-access-control/#access-control"
             >
-              <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+              <i class="bwi bwi-question-circle" aria-hidden="true"></i>
             </a>
           </div>
           <div class="ml-auto" *ngIf="access === 'selected' && collections && collections.length">
@@ -150,7 +150,7 @@
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
-          <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+          <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
           <span>{{ "save" | i18n }}</span>
         </button>
         <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
@@ -168,12 +168,12 @@
             [appApiAction]="deletePromise"
           >
             <i
-              class="fa fa-trash-o fa-lg fa-fw"
+              class="bwi bwi-trash bwi-lg bwi-fw"
               [hidden]="deleteBtn.loading"
               aria-hidden="true"
             ></i>
             <i
-              class="fa fa-spinner fa-spin fa-lg fa-fw"
+              class="bwi bwi-spinner bwi-spin bwi-lg bwi-fw"
               [hidden]="!deleteBtn.loading"
               aria-hidden="true"
               title="{{ 'loading' | i18n }}"

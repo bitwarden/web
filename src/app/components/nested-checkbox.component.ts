@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
+
 import { Utils } from "jslib-common/misc/utils";
 
 @Component({
@@ -6,18 +7,10 @@ import { Utils } from "jslib-common/misc/utils";
   templateUrl: "nested-checkbox.component.html",
 })
 export class NestedCheckboxComponent {
-  @Input()
-  parentId: string;
-  @Input()
-  checkboxes: {
-    id: string;
-    get: () => boolean;
-    set: (v: boolean) => void;
-  }[];
-  @Output()
-  onSavedUser = new EventEmitter();
-  @Output()
-  onDeletedUser = new EventEmitter();
+  @Input() parentId: string;
+  @Input() checkboxes: { id: string; get: () => boolean; set: (v: boolean) => void }[];
+  @Output() onSavedUser = new EventEmitter();
+  @Output() onDeletedUser = new EventEmitter();
 
   get parentIndeterminate() {
     return !this.parentChecked && this.checkboxes.some((c) => c.get());

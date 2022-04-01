@@ -3,7 +3,7 @@
 </div>
 <p>
   {{ "emergencyAccessDesc" | i18n }}
-  <a href="https://bitwarden.com/help/article/emergency-access/" target="_blank" rel="noopener">
+  <a href="https://bitwarden.com/help/emergency-access/" target="_blank" rel="noopener">
     {{ "learnMore" | i18n }}.
   </a>
 </p>
@@ -15,15 +15,7 @@
 <div class="page-header d-flex">
   <h2>
     {{ "trustedEmergencyContacts" | i18n }}
-    <a
-      href="#"
-      appStopClick
-      class="badge badge-primary"
-      *ngIf="!canAccessPremium"
-      (click)="premiumRequired()"
-    >
-      {{ "premium" | i18n }}
-    </a>
+    <app-premium-badge></app-premium-badge>
   </h2>
   <div class="ml-auto d-flex">
     <button
@@ -32,7 +24,7 @@
       (click)="invite()"
       [disabled]="!canAccessPremium"
     >
-      <i aria-hidden="true" class="fa fa-plus fa-fw"></i>
+      <i aria-hidden="true" class="bwi bwi-plus bwi-fw"></i>
       {{ "addEmergencyContact" | i18n }}
     </button>
   </div>
@@ -48,7 +40,8 @@
           size="25"
           [circle]="true"
           [fontSize]="14"
-        ></app-avatar>
+        >
+        </app-avatar>
       </td>
       <td>
         <a href="#" appStopClick (click)="edit(c)">{{ c.email }}</a>
@@ -90,7 +83,7 @@
             aria-expanded="false"
             appA11yTitle="{{ 'options' | i18n }}"
           >
-            <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+            <i class="bwi bwi-cog bwi-lg" aria-hidden="true"></i>
           </button>
           <div class="dropdown-menu dropdown-menu-right">
             <a
@@ -100,7 +93,7 @@
               (click)="reinvite(c)"
               *ngIf="c.status === emergencyAccessStatusType.Invited"
             >
-              <i class="fa fa-fw fa-envelope-o" aria-hidden="true"></i>
+              <i class="bwi bwi-fw bwi-envelope" aria-hidden="true"></i>
               {{ "resendInvitation" | i18n }}
             </a>
             <a
@@ -110,7 +103,7 @@
               (click)="confirm(c)"
               *ngIf="c.status === emergencyAccessStatusType.Accepted"
             >
-              <i class="fa fa-fw fa-check" aria-hidden="true"></i>
+              <i class="bwi bwi-fw bwi-check" aria-hidden="true"></i>
               {{ "confirm" | i18n }}
             </a>
             <a
@@ -120,7 +113,7 @@
               (click)="approve(c)"
               *ngIf="c.status === emergencyAccessStatusType.RecoveryInitiated"
             >
-              <i class="fa fa-fw fa-check" aria-hidden="true"></i>
+              <i class="bwi bwi-fw bwi-check" aria-hidden="true"></i>
               {{ "approve" | i18n }}
             </a>
             <a
@@ -133,11 +126,11 @@
                 c.status === emergencyAccessStatusType.RecoveryApproved
               "
             >
-              <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
+              <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
               {{ "reject" | i18n }}
             </a>
             <a class="dropdown-item text-danger" href="#" appStopClick (click)="remove(c)">
-              <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
+              <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
               {{ "remove" | i18n }}
             </a>
           </div>
@@ -163,7 +156,8 @@
           size="25"
           [circle]="true"
           [fontSize]="14"
-        ></app-avatar>
+        >
+        </app-avatar>
       </td>
       <td>
         <span>{{ c.email }}</span>
@@ -205,7 +199,7 @@
             aria-expanded="false"
             appA11yTitle="{{ 'options' | i18n }}"
           >
-            <i class="fa fa-cog fa-lg" aria-hidden="true"></i>
+            <i class="bwi bwi-cog bwi-lg" aria-hidden="true"></i>
           </button>
           <div class="dropdown-menu dropdown-menu-right">
             <a
@@ -215,7 +209,7 @@
               (click)="requestAccess(c)"
               *ngIf="c.status === emergencyAccessStatusType.Confirmed"
             >
-              <i class="fa fa-fw fa-envelope-o" aria-hidden="true"></i>
+              <i class="bwi bwi-fw bwi-envelope" aria-hidden="true"></i>
               {{ "requestAccess" | i18n }}
             </a>
             <a
@@ -228,7 +222,7 @@
                 c.type === emergencyAccessType.Takeover
               "
             >
-              <i class="fa fa-fw fa-key" aria-hidden="true"></i>
+              <i class="bwi bwi-fw bwi-key" aria-hidden="true"></i>
               {{ "takeover" | i18n }}
             </a>
             <a
@@ -239,11 +233,11 @@
                 c.type === emergencyAccessType.View
               "
             >
-              <i class="fa fa-fw fa-eye" aria-hidden="true"></i>
+              <i class="bwi bwi-fw bwi-eye" aria-hidden="true"></i>
               {{ "view" | i18n }}
             </a>
             <a class="dropdown-item text-danger" href="#" appStopClick (click)="remove(c)">
-              <i class="fa fa-fw fa-remove" aria-hidden="true"></i>
+              <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
               {{ "remove" | i18n }}
             </a>
           </div>

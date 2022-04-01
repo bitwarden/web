@@ -1,21 +1,15 @@
 import { CommonModule } from "@angular/common";
-import { ComponentFactoryResolver } from "@angular/core";
-import { NgModule } from "@angular/core";
+import { ComponentFactoryResolver, NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 
+import { JslibModule } from "jslib-angular/jslib.module";
 import { ModalService } from "jslib-angular/services/modal.service";
 
-import { ProviderGuardService } from "./services/provider-guard.service";
-import { ProviderTypeGuardService } from "./services/provider-type-guard.service";
-import { WebProviderService } from "./services/webProvider.service";
-
-import { ProvidersLayoutComponent } from "./providers-layout.component";
-import { ProvidersRoutingModule } from "./providers-routing.module";
+import { OssModule } from "src/app/oss.module";
 
 import { AddOrganizationComponent } from "./clients/add-organization.component";
 import { ClientsComponent } from "./clients/clients.component";
 import { CreateOrganizationComponent } from "./clients/create-organization.component";
-
 import { AcceptProviderComponent } from "./manage/accept-provider.component";
 import { BulkConfirmComponent } from "./manage/bulk/bulk-confirm.component";
 import { BulkRemoveComponent } from "./manage/bulk/bulk-remove.component";
@@ -23,17 +17,18 @@ import { EventsComponent } from "./manage/events.component";
 import { ManageComponent } from "./manage/manage.component";
 import { PeopleComponent } from "./manage/people.component";
 import { UserAddEditComponent } from "./manage/user-add-edit.component";
-
+import { ProvidersLayoutComponent } from "./providers-layout.component";
+import { ProvidersRoutingModule } from "./providers-routing.module";
+import { ProviderGuardService } from "./services/provider-guard.service";
+import { ProviderTypeGuardService } from "./services/provider-type-guard.service";
+import { WebProviderService } from "./services/webProvider.service";
 import { AccountComponent } from "./settings/account.component";
 import { SettingsComponent } from "./settings/settings.component";
-
 import { SetupProviderComponent } from "./setup/setup-provider.component";
 import { SetupComponent } from "./setup/setup.component";
 
-import { OssModule } from "src/app/oss.module";
-
 @NgModule({
-  imports: [CommonModule, FormsModule, OssModule, ProvidersRoutingModule],
+  imports: [CommonModule, FormsModule, OssModule, JslibModule, ProvidersRoutingModule],
   declarations: [
     AcceptProviderComponent,
     AccountComponent,

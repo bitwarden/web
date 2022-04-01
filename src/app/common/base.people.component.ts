@@ -1,5 +1,9 @@
 import { Directive, ViewChild, ViewContainerRef } from "@angular/core";
 
+import { SearchPipe } from "jslib-angular/pipes/search.pipe";
+import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
+import { ModalService } from "jslib-angular/services/modal.service";
+import { ValidationService } from "jslib-angular/services/validation.service";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -7,23 +11,14 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { SearchService } from "jslib-common/abstractions/search.service";
 import { StateService } from "jslib-common/abstractions/state.service";
-
-import { ModalService } from "jslib-angular/services/modal.service";
-import { ValidationService } from "jslib-angular/services/validation.service";
-
-import { SearchPipe } from "jslib-angular/pipes/search.pipe";
-import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
-
 import { OrganizationUserStatusType } from "jslib-common/enums/organizationUserStatusType";
 import { OrganizationUserType } from "jslib-common/enums/organizationUserType";
 import { ProviderUserStatusType } from "jslib-common/enums/providerUserStatusType";
 import { ProviderUserType } from "jslib-common/enums/providerUserType";
-
+import { Utils } from "jslib-common/misc/utils";
 import { ListResponse } from "jslib-common/models/response/listResponse";
 import { OrganizationUserUserDetailsResponse } from "jslib-common/models/response/organizationUserResponse";
 import { ProviderUserUserDetailsResponse } from "jslib-common/models/response/provider/providerUserResponse";
-
-import { Utils } from "jslib-common/misc/utils";
 
 import { UserConfirmComponent } from "../organizations/manage/user-confirm.component";
 
@@ -35,10 +30,7 @@ const MaxCheckedCount = 500;
 export abstract class BasePeopleComponent<
   UserType extends ProviderUserUserDetailsResponse | OrganizationUserUserDetailsResponse
 > {
-  @ViewChild("confirmTemplate", {
-    read: ViewContainerRef,
-    static: true,
-  })
+  @ViewChild("confirmTemplate", { read: ViewContainerRef, static: true })
   confirmModalRef: ViewContainerRef;
 
   get allCount() {

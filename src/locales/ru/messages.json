@@ -187,7 +187,12 @@
     "message": "Изменить папку"
   },
   "baseDomain": {
-    "message": "Основной домен"
+    "message": "Основной домен",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Доменное имя",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Хост",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Защищенная заметка"
+  },
+  "typeLoginPlural": {
+    "message": "Логины"
+  },
+  "typeCardPlural": {
+    "message": "Карты"
+  },
+  "typeIdentityPlural": {
+    "message": "Личная информация"
+  },
+  "typeSecureNotePlural": {
+    "message": "Защищенные заметки"
   },
   "folders": {
     "message": "Папки"
@@ -1413,6 +1430,9 @@
   "reports": {
     "message": "Отчеты"
   },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
+  },
   "unsecuredWebsitesReport": {
     "message": "Отчет о незащищенных сайтах"
   },
@@ -1543,10 +1563,10 @@
     }
   },
   "dataBreachReport": {
-    "message": "Отчет об утечке данных"
+    "message": "Отчет о данных утечек"
   },
   "breachDesc": {
-    "message": "Утечка - это инцидент, при котором данные сайта стали незаконно доступны хакерам и впоследствии опубликованы. Проверьте типы данных, которые были скомпрометированы (адреса email, пароли, кредитные карты и т. д.) и примите соответствующие меры, такие как изменение паролей."
+    "message": "Утечка - это когда данные сайта стали незаконно доступны хакерам и впоследствии опубликованы. Проверьте типы данных, которые были скомпрометированы (адреса email, пароли, кредитные карты и т.д.), и примите соответствующие меры, например измените пароли."
   },
   "breachCheckUsernameEmail": {
     "message": "Проверьте имена пользователей или адреса email, которые вы используете."
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Удалить организацию"
   },
-  "deleteOrganizationDesc": {
-    "message": "Выполните следующие действия, чтобы удалить эту организацию и все связанные с ней данные. Индивидуальные аккаунты пользователей останутся, но они больше не будут связаны с этой организацией. "
+  "deletingOrganizationContentWarning": {
+    "message": "Введите мастер-пароль для подтверждения удаления $ORGANIZATION$ и всех связанных с ней данных. Данные хранилища в $ORGANIZATION$ включают:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Удаление организации необратимо. Это действие будет нельзя отменить."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Учетные записи пользователей останутся активными после удаления, но больше не будут связаны с этой организацией."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Удаление $ORGANIZATION$ окончательно и необратимо.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Организация удалена"
@@ -3164,7 +3199,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Больше не запрашивать верификацию фразы отпечатка",
+    "message": "Никогда не запрашивать верификацию фразы отпечатка для приглашенных пользователей (не рекомендуется)",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -3224,7 +3259,7 @@
     "message": "Установите минимальные требования к надежности мастер-пароля."
   },
   "twoStepLoginPolicyDesc": {
-    "message": "Требовать от пользователей настройки двухэтапной авторизации в их личных аккаунтах."
+    "message": "Требовать от пользователей настройки двухэтапной авторизации в их персональных учетных записях."
   },
   "twoStepLoginPolicyWarning": {
     "message": "Члены организации, у которых в личном аккаунте отключена двухфакторная аутентификация, будут удалены из организации и получат об этом уведомление по email."
@@ -4325,6 +4360,9 @@
   "updateMasterPasswordWarning": {
     "message": "Мастер-пароль недавно был изменен администратором вашей организации. Чтобы получить доступ к хранилищу, вы должны обновить мастер-пароль сейчас. В результате текущая сессия будет завершена, потребуется повторный вход. Активные сессии на других устройствах могут оставаться активными в течение одного часа."
   },
+  "masterPasswordInvalidWarning": {
+    "message": "Мастер-пароль не соответствует требованиям политики этой организации. Чтобы присоединиться к организации, нужно обновить мастер-пароль. Текущая сессия будет завершена и потребуется повторный вход. Сессии на других устройствах могут оставаться активными в течение часа."
+  },
   "maximumVaultTimeout": {
     "message": "Тайм-аут хранилища"
   },
@@ -4470,9 +4508,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "URL службы единого выхода"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "URL службы разрешения артефактов"
-  },
   "idpX509PublicCert": {
     "message": "Публичный сертификат X509"
   },
@@ -4482,11 +4517,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Разрешить нежелательный ответ на аутентификацию"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Отключить исходящие запросы на выход"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Разрешить исходящие запросы на завершение сеанса"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Требуется подписать запросы на аутентификацию"
+  "idpSignAuthenticationRequests": {
+    "message": "Подписать запросы аутентификации"
   },
   "ssoSettingsSaved": {
     "message": "Конфигурация единого входа сохранена."
@@ -4736,5 +4771,110 @@
   },
   "freeWithSponsorship": {
     "message": "БЕСПЛАТНО при спонсорской поддержке"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ полей выше требуют вашего внимания.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 поле выше требует вашего внимания."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ обязательно.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "обязательно"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Обязательно, если ID сущности не является URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Дополнительные настройки"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Обязательно, если полномочия не действительны."
+  },
+  "separateMultipleWithComma": {
+    "message": "Разделяйте запятыми."
+  },
+  "sessionTimeout": {
+    "message": "Время вашей сессии истекло. Пожалуйста, вернитесь и попробуйте войти снова."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Экспорт личного хранилища"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Экспорт хранилища организации"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Будут экспортированы только личные элементы хранилища, связанные с $EMAIL$. Элементы хранилища организации включены не будут.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Будет экспортировано только хранилище организации, связанное с $ORGANIZATION$. Личные элементы хранилища и элементы из других организаций включены не будут.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "backToReports": {
+    "message": "Вернуться к отчетам"
+  },
+  "generator": {
+    "message": "Генератор"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Что вы хотите сгенерировать?"
+  },
+  "passwordType": {
+    "message": "Тип пароля"
+  },
+  "regenerateUsername": {
+    "message": "Восстановить имя пользователя"
+  },
+  "generateUsername": {
+    "message": "Создать имя пользователя"
+  },
+  "usernameType": {
+    "message": "Тип имени пользователя"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Универсальная электронная почта"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Случайно"
+  },
+  "randomWord": {
+    "message": "Случайное слово"
+  },
+  "service": {
+    "message": "Service"
   }
 }

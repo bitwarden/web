@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from "@angular/core";
 
+import { CiphersComponent as BaseCiphersComponent } from "jslib-angular/components/ciphers.component";
 import { CipherService } from "jslib-common/abstractions/cipher.service";
 import { EventService } from "jslib-common/abstractions/event.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -9,13 +10,9 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { SearchService } from "jslib-common/abstractions/search.service";
 import { StateService } from "jslib-common/abstractions/state.service";
 import { TotpService } from "jslib-common/abstractions/totp.service";
-
-import { CiphersComponent as BaseCiphersComponent } from "jslib-angular/components/ciphers.component";
-
 import { CipherRepromptType } from "jslib-common/enums/cipherRepromptType";
 import { CipherType } from "jslib-common/enums/cipherType";
 import { EventType } from "jslib-common/enums/eventType";
-
 import { CipherView } from "jslib-common/models/view/cipherView";
 
 const MaxCheckedCount = 500;
@@ -55,12 +52,15 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     super(searchService);
   }
 
-  async ngOnInit() {
-    this.userHasPremiumAccess = await this.stateService.getCanAccessPremium();
-  }
-
   ngOnDestroy() {
     this.selectAll(false);
+  }
+
+  // load() is called after the page loads and the first sync has completed.
+  // Do not use ngOnInit() for anything that requires sync data.
+  async load(filter: (cipher: CipherView) => boolean = null, deleted = false) {
+    await super.load(filter, deleted);
+    this.userHasPremiumAccess = await this.stateService.getCanAccessPremium();
   }
 
   loadMore() {

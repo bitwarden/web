@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router } from "@angular/router";
 
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
-
 import { Permissions } from "jslib-common/enums/permissions";
 
 @Injectable()

@@ -5,10 +5,8 @@ import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { UserVerificationService } from "jslib-common/abstractions/userVerification.service";
-
 import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
 import { VerificationType } from "jslib-common/enums/verificationType";
-
 import { SecretVerificationRequest } from "jslib-common/models/request/secretVerificationRequest";
 import { TwoFactorProviderRequest } from "jslib-common/models/request/twoFactorProviderRequest";
 
