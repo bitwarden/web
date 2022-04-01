@@ -232,7 +232,18 @@
 </ng-container>
 <ng-container *ngIf="type === 'username'">
   <div class="form-group">
-    <label class="d-block">{{ "usernameType" | i18n }}</label>
+    <div class="d-block">
+      <label>{{ "usernameType" | i18n }}</label>
+      <a
+        class="ml-auto"
+        href="https://bitwarden.com/help/generator/#username-types"
+        target="_blank"
+        rel="noopener"
+        appA11yTitle="{{ 'learnMore' | i18n }}"
+      >
+        <i class="bwi bwi-question-circle" aria-hidden="true"></i>
+      </a>
+    </div>
     <div class="form-check" *ngFor="let o of usernameTypeOptions">
       <input
         class="form-check-input"
