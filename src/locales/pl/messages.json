@@ -187,7 +187,12 @@
     "message": "Edytuj folder"
   },
   "baseDomain": {
-    "message": "Domena podstawowa"
+    "message": "Domena podstawowa",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Nazwa domeny",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Host",
@@ -1425,11 +1430,14 @@
   "reports": {
     "message": "Raporty"
   },
+  "reportsDesc": {
+    "message": "Zidentyfikuj i napraw luki bezpieczeństwa na swoich kontach online, klikając raporty poniżej."
+  },
   "unsecuredWebsitesReport": {
     "message": "Raport niezabezpieczonych stron"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Korzystanie z niezabezpieczonych stron (protokół HTTP) może być niebezpieczne. Jeśli strona na to pozwala, zawsze powinieneś używać protokołu HTTPS, aby Twoje połączenie było szyfrowane."
+    "message": "Używanie niezabezpieczonych stron (protokół HTTP) może być niebezpieczne. Jeśli strona na to pozwala, zawsze powinieneś używać protokołu HTTPS, aby Twoje połączenie było szyfrowane."
   },
   "unsecuredWebsitesFound": {
     "message": "Znaleźliśmy niezabezpieczone strony"
@@ -1528,7 +1536,7 @@
     "message": "Raport identycznych haseł"
   },
   "reusedPasswordsReportDesc": {
-    "message": "Jeśli korzystasz z tego samego hasła w różnych miejscach, to w przypadku jego ujawnienia w jednej usłudze, hakerzy mogą uzyskać dostęp do wielu Twoich kont. Używaj unikalnych haseł dla każdego z kont lub usług."
+    "message": "Jeśli używasz tego samego hasła w różnych miejscach, to w przypadku jego ujawnienia w jednej usłudze, hakerzy mogą uzyskać dostęp do wielu Twoich kont. Powinieneś używać unikalnych haseł dla każdego z kont lub usług."
   },
   "reusedPasswordsFound": {
     "message": "Znaleźliśmy identyczne hasła"
@@ -4826,5 +4834,47 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Wróć do raportów"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Co chcesz wygenerować?"
+  },
+  "passwordType": {
+    "message": "Typ hasła"
+  },
+  "regenerateUsername": {
+    "message": "Wygeneruj ponownie nazwę użytkownika"
+  },
+  "generateUsername": {
+    "message": "Wygeneruj nazwę użytkownika"
+  },
+  "usernameType": {
+    "message": "Typ nazwy użytkownika"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Adres catch-all"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Losowo"
+  },
+  "randomWord": {
+    "message": "Losowe słowo"
+  },
+  "service": {
+    "message": "Usługa"
   }
 }
