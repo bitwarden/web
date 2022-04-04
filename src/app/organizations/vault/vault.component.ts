@@ -126,6 +126,12 @@ export class VaultComponent implements OnInit, OnDestroy {
             this.viewEvents(cipher[0]);
           }
         }
+
+        this.route.queryParams.subscribe(async (params) => {
+          if (params.cipherId) {
+            this.editCipherId(params.cipherId);
+          }
+        });
       });
     });
   }
@@ -257,12 +263,16 @@ export class VaultComponent implements OnInit, OnDestroy {
   }
 
   async editCipher(cipher: CipherView) {
+    return this.editCipherId(cipher?.id);
+  }
+
+  async editCipherId(cipherId: string) {
     const [modal, childComponent] = await this.modalService.openViewRef(
       AddEditComponent,
       this.cipherAddEditModalRef,
       (comp) => {
         comp.organization = this.organization;
-        comp.cipherId = cipher == null ? null : cipher.id;
+        comp.cipherId = cipherId;
         comp.onSavedCipher.subscribe(async () => {
           modal.close();
           await this.ciphersComponent.refresh();
@@ -277,6 +287,11 @@ export class VaultComponent implements OnInit, OnDestroy {
         });
       }
     );
+
+    modal.onClosedPromise().then(() => {
+      this.route.params;
+      this.router.navigate([], { queryParams: { cipherId: null }, queryParamsHandling: "merge" });
+    });
 
     return childComponent;
   }
@@ -321,6 +336,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: queryParams,
+      queryParamsHandling: "merge",
       replaceUrl: true,
     });
   }
