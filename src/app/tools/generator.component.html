@@ -261,23 +261,70 @@
       </label>
     </div>
   </div>
-  <div class="form-group" *ngIf="usernameOptions.type === 'forwarded'">
-    <div class="form-check form-check-inline" *ngFor="let o of forwardOptions">
-      <input
-        class="form-check-input"
-        type="radio"
-        [(ngModel)]="usernameOptions.forwardedService"
-        name="ForwardType_{{ o.value }}"
-        id="forwardtype_{{ o.value }}"
-        [value]="o.value"
-        (change)="saveUsernameOptions()"
-        [checked]="usernameOptions.forwardedService === o.value"
-      />
-      <label class="form-check-label" for="forwardtype_{{ o.value }}">
-        {{ o.name }}
-      </label>
+  <ng-container *ngIf="usernameOptions.type === 'forwarded'">
+    <div class="form-group">
+      <label class="d-block">{{ "service" | i18n }}</label>
+      <div class="form-check form-check-inline" *ngFor="let o of forwardOptions">
+        <input
+          class="form-check-input"
+          type="radio"
+          [(ngModel)]="usernameOptions.forwardedService"
+          name="ForwardType_{{ o.value }}"
+          id="forwardtype_{{ o.value }}"
+          [value]="o.value"
+          (change)="saveUsernameOptions()"
+          [checked]="usernameOptions.forwardedService === o.value"
+        />
+        <label class="form-check-label" for="forwardtype_{{ o.value }}">
+          {{ o.name }}
+        </label>
+      </div>
     </div>
-  </div>
+    <div class="row" *ngIf="usernameOptions.forwardedService === 'simplelogin'">
+      <div class="form-group col-4">
+        <label for="simplelogin-apikey">{{ "apiKey" | i18n }}</label>
+        <input
+          id="simplelogin-apikey"
+          class="form-control"
+          type="password"
+          [(ngModel)]="usernameOptions.forwardedSimpleLoginApiKey"
+          (blur)="saveUsernameOptions()"
+        />
+      </div>
+      <div class="form-group col-4">
+        <label for="simplelogin-hostname">{{ "hostname" | i18n }}</label>
+        <input
+          id="simplelogin-hostname"
+          class="form-control"
+          type="text"
+          [(ngModel)]="usernameOptions.forwardedSimpleLoginHostname"
+          (blur)="saveUsernameOptions()"
+        />
+      </div>
+    </div>
+    <div class="row" *ngIf="usernameOptions.forwardedService === 'anonaddy'">
+      <div class="form-group col-4">
+        <label for="simplelogin-apikey">{{ "apiAccessToken" | i18n }}</label>
+        <input
+          id="simplelogin-apikey"
+          class="form-control"
+          type="password"
+          [(ngModel)]="usernameOptions.forwardedAnonAddyApiToken"
+          (blur)="saveUsernameOptions()"
+        />
+      </div>
+      <div class="form-group col-4">
+        <label for="anonaddy-domain">{{ "domainName" | i18n }}</label>
+        <input
+          id="anonaddy-domain"
+          class="form-control"
+          type="text"
+          [(ngModel)]="usernameOptions.forwardedAnonAddyDomain"
+          (blur)="saveUsernameOptions()"
+        />
+      </div>
+    </div>
+  </ng-container>
   <div class="row" *ngIf="usernameOptions.type === 'subaddress'">
     <div class="form-group col-4">
       <label for="subaddress-email">{{ "emailAddress" | i18n }}</label>
@@ -329,9 +376,15 @@
       </div>
     </div>
   </ng-container>
-  <div>
-    <button type="button" class="btn btn-primary" (click)="regenerate()">
-      {{ "regenerateUsername" | i18n }}
+  <div #form [appApiAction]="usernameGeneratingPromise">
+    <button
+      type="button"
+      class="btn btn-submit btn-primary"
+      (click)="regenerate()"
+      [disabled]="form.loading"
+    >
+      <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+      <span>{{ "regenerateUsername" | i18n }}</span>
     </button>
     <button type="button" class="btn btn-outline-secondary" (click)="copy()">
       {{ "copyUsername" | i18n }}

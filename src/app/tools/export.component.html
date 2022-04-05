@@ -31,13 +31,12 @@
       </app-verify-master-password>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary" [disabled]="form.loading || exportForm.disabled">
-    <i
-      class="bwi bwi-spinner bwi-spin"
-      title="{{ 'loading' | i18n }}"
-      aria-hidden="true"
-      *ngIf="form.loading"
-    ></i>
-    <span *ngIf="!form.loading">{{ "exportVault" | i18n }}</span>
+  <button
+    type="submit"
+    class="btn btn-primary btn-submit"
+    [disabled]="form.loading || exportForm.disabled"
+  >
+    <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+    <span>{{ "exportVault" | i18n }}</span>
   </button>
 </form>
