@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 
+import { ModalService } from "jslib-angular/services/modal.service";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -14,12 +15,18 @@ import { Organization } from "jslib-common/models/domain/organization";
 import { Policy } from "jslib-common/models/domain/policy";
 import { OrganizationUserResetPasswordEnrollmentRequest } from "jslib-common/models/request/organizationUserResetPasswordEnrollmentRequest";
 
+
+
+import { MasterPasswordEnrollmentComponent } from "./master-password-enrollment.component";
+
 @Component({
   selector: "app-organizations",
   templateUrl: "organizations.component.html",
 })
 export class OrganizationsComponent implements OnInit {
   @Input() vault = false;
+  @ViewChild("confirmMasterPassword", { read: ViewContainerRef, static: true })
+  confirmMasterPasswordModalRef: ViewContainerRef;
 
   organizations: Organization[];
   policies: Policy[];
@@ -34,7 +41,8 @@ export class OrganizationsComponent implements OnInit {
     private syncService: SyncService,
     private cryptoService: CryptoService,
     private policyService: PolicyService,
-    private logService: LogService
+    private logService: LogService,
+    private modalService: ModalService
   ) {}
 
   async ngOnInit() {
@@ -157,11 +165,14 @@ export class OrganizationsComponent implements OnInit {
           // Create request and execute enrollment
           const request = new OrganizationUserResetPasswordEnrollmentRequest();
           request.resetPasswordKey = keyString;
-          return this.apiService.putOrganizationUserResetPasswordEnrollment(
+          request.masterPasswordHash = await this.getMasterPassword();
+          const res = this.apiService.putOrganizationUserResetPasswordEnrollment(
             org.id,
             org.userId,
             request
           );
+
+          return res;
         })
         .then(() => {
           return this.syncService.fullSync(true);
@@ -170,6 +181,7 @@ export class OrganizationsComponent implements OnInit {
       // Withdrawal
       const request = new OrganizationUserResetPasswordEnrollmentRequest();
       request.resetPasswordKey = keyString;
+      request.masterPasswordHash = await this.getMasterPassword();
       this.actionPromise = this.apiService
         .putOrganizationUserResetPasswordEnrollment(org.id, org.userId, request)
         .then(() => {
@@ -184,5 +196,24 @@ export class OrganizationsComponent implements OnInit {
     } catch (e) {
       this.logService.error(e);
     }
+  }
+
+  private async getMasterPassword(): Promise<string> {
+    let passwordHash = null;
+
+    const [modal] = await this.modalService.openViewRef(
+      MasterPasswordEnrollmentComponent,
+      this.confirmMasterPasswordModalRef,
+      (comp) => {
+        comp.passwordEnrollmentTitle = "passwordResetEnrollment";
+        comp.passwordEnrollmentDescription = "passwordResetEnrollmentDescription";
+        comp.requestBuilt.subscribe((val) => {
+          modal.close();
+          passwordHash = val.masterPasswordHash;
+        });
+      }
+    );
+
+    return passwordHash;
   }
 }

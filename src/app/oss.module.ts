@@ -171,6 +171,7 @@ import { EmergencyAccessViewComponent } from "./settings/emergency-access-view.c
 import { EmergencyAccessComponent } from "./settings/emergency-access.component";
 import { EmergencyAddEditComponent } from "./settings/emergency-add-edit.component";
 import { LinkSsoComponent } from "./settings/link-sso.component";
+import { MasterPasswordEnrollmentComponent } from "./settings/master-password-enrollment.component";
 import { OptionsComponent } from "./settings/options.component";
 import { OrganizationPlansComponent } from "./settings/organization-plans.component";
 import { OrganizationsComponent } from "./settings/organizations.component";
@@ -335,6 +336,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     LockComponent,
     LoginComponent,
     MasterPasswordPolicyComponent,
+    MasterPasswordEnrollmentComponent,
     NavbarComponent,
     NestedCheckboxComponent,
     OptionsComponent,
