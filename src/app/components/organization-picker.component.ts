@@ -1,7 +1,4 @@
-import { animate, state, style, transition, trigger } from "@angular/animations";
-import { ConnectedPosition } from "@angular/cdk/overlay";
 import { Component, Input, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
 
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
@@ -13,26 +10,6 @@ import { NavigationPermissionsService } from "../organizations/services/navigati
 @Component({
   selector: "app-organization-picker",
   templateUrl: "organization-picker.component.html",
-  animations: [
-    trigger("transformPanel", [
-      state(
-        "void",
-        style({
-          opacity: 0,
-        })
-      ),
-      transition(
-        "void => open",
-        animate(
-          "100ms linear",
-          style({
-            opacity: 1,
-          })
-        )
-      ),
-      transition("* => void", animate("100ms linear", style({ opacity: 0 }))),
-    ]),
-  ],
 })
 export class OrganizationPickerComponent implements OnInit {
   constructor(private organizationService: OrganizationService, private i18nService: I18nService) {}
@@ -41,15 +18,6 @@ export class OrganizationPickerComponent implements OnInit {
   organizations: Organization[] = [];
 
   loaded = false;
-  isOpen = false;
-  overlayPosition: ConnectedPosition[] = [
-    {
-      originX: "end",
-      originY: "bottom",
-      overlayX: "end",
-      overlayY: "top",
-    },
-  ];
 
   async ngOnInit() {
     await this.load();
@@ -62,13 +30,5 @@ export class OrganizationPickerComponent implements OnInit {
       .sort(Utils.getSortFunction(this.i18nService, "name"));
 
     this.loaded = true;
-  }
-
-  toggle() {
-    this.isOpen = !this.isOpen;
-  }
-
-  close() {
-    this.isOpen = false;
   }
 }
