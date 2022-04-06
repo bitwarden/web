@@ -7,10 +7,6 @@ import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { Organization } from "jslib-common/models/domain/organization";
 
-/*
- *
- */
-
 @Component({
   selector: "[sponsoring-org-row]",
   templateUrl: "sponsoring-org-row.component.html",
@@ -48,7 +44,6 @@ export class SponsoringOrgRowComponent implements OnInit {
       this.sponsoringOrg.familySponsorshipValidUntil
     ) {
       // They want to delete but there is a valid until date which means there is an active sponsorship
-      // TODO: Display valid until date
       this.statusMessage = this.i18nService.t(
         "revokeWhenExpired",
         formatDate(

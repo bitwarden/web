@@ -20,6 +20,7 @@
     #form
     (ngSubmit)="submit()"
     [appApiAction]="formPromise"
+    [formGroup]="sponsorshipForm"
     ngNativeValidate
     *ngIf="anyOrgsAvailable"
   >
@@ -28,11 +29,11 @@
       <select
         id="availableSponsorshipOrg"
         name="Available Sponsorship Organization"
-        [(ngModel)]="selectedSponsorshipOrgId"
+        formControlName="selectedSponsorshipOrgId"
         class="form-control"
         required
       >
-        <option value="">-- {{ "select" | i18n }} --</option>
+        <option disabled="true" value="">-- {{ "select" | i18n }} --</option>
         <option *ngFor="let o of availableSponsorshipOrgs" [ngValue]="o.id">{{ o.name }}</option>
       </select>
     </div>
@@ -42,7 +43,7 @@
         id="accountEmail"
         class="form-control"
         inputmode="email"
-        [(ngModel)]="sponsorshipEmail"
+        formControlName="sponsorshipEmail"
         name="sponsorshipEmail"
         required
       />
@@ -68,7 +69,7 @@
             <tr
               sponsoring-org-row
               [sponsoringOrg]="o"
-              [isSelfHosted]="platformUtilsService.isSelfHost"
+              [isSelfHosted]="isSelfHosted"
               (sponsorshipRemoved)="load(true)"
             ></tr>
           </ng-container>

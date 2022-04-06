@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -23,13 +24,21 @@ export class SponsoredFamiliesComponent implements OnInit {
   // Conditional display properties
   formPromise: Promise<any>;
 
+  sponsorshipForm: FormGroup;
+
   constructor(
     private apiService: ApiService,
     private i18nService: I18nService,
     private platformUtilsService: PlatformUtilsService,
     private syncService: SyncService,
-    private organizationService: OrganizationService
-  ) {}
+    private organizationService: OrganizationService,
+    private formBuilder: FormBuilder
+  ) {
+    this.sponsorshipForm = this.formBuilder.group({
+      selectedSponsorshipOrgId: ["", Validators.required],
+      sponsorshipEmail: ["", Validators.required],
+    });
+  }
 
   async ngOnInit() {
     await this.load();
@@ -83,5 +92,9 @@ export class SponsoredFamiliesComponent implements OnInit {
 
   get anyOrgsAvailable(): boolean {
     return this.availableSponsorshipOrgs.length > 0;
+  }
+
+  get isSelfHosted(): boolean {
+    return this.platformUtilsService.isSelfHost();
   }
 }
