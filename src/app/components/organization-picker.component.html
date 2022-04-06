@@ -36,30 +36,17 @@
   </div>
 
   <bit-menu #orgPickerMenu>
-    <div
-      class="bwc-dropdown-container"
-      [@transformPanel]="'open'"
-      cdkTrapFocus
-      cdkTrapFocusAutoCapture
-      role="dialog"
-      aria-modal="true"
+    <a bit-menu-item *ngFor="let org of organizations" [routerLink]="['/organizations', org.id]">
+      <i
+        class="bwi bwi-check mr-2"
+        [ngClass]="org.id === activeOrganization.id ? 'visible' : 'invisible'"
+      ></i>
+      {{ org.name }}
+    </a>
+    <!-- <div class="dropdown-divider"></div> -->
+    <a bit-menu-item routerLink="/settings/create-organization">
+      <i class="bwi bwi-plus mr-2"></i>
+      {{ "newOrganization" | i18n }}</a
     >
-      <a
-        class="bwc-dropdown-item"
-        *ngFor="let org of organizations"
-        [routerLink]="['/organizations', org.id]"
-      >
-        <i
-          class="bwi bwi-check mr-2"
-          [ngClass]="org.id === activeOrganization.id ? 'visible' : 'invisible'"
-        ></i>
-        {{ org.name }}
-      </a>
-      <!-- <div class="dropdown-divider"></div> -->
-      <a class="bwc-dropdown-item" routerLink="/settings/create-organization">
-        <i class="bwi bwi-plus mr-2"></i>
-        {{ "newOrganization" | i18n }}</a
-      >
-    </div>
   </bit-menu>
 </div>
