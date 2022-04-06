@@ -51,8 +51,6 @@ export class OrganizationBillingComponent implements OnInit {
     this.loading = true;
     if (this.organizationId != null) {
       this.billing = await this.apiService.getOrganizationBilling(this.organizationId);
-    } else {
-      this.billing = await this.apiService.getUserBilling();
     }
     this.loading = false;
   }
