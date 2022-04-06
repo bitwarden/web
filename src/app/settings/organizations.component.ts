@@ -15,8 +15,6 @@ import { Organization } from "jslib-common/models/domain/organization";
 import { Policy } from "jslib-common/models/domain/policy";
 import { OrganizationUserResetPasswordEnrollmentRequest } from "jslib-common/models/request/organizationUserResetPasswordEnrollmentRequest";
 
-
-
 import { MasterPasswordEnrollmentComponent } from "./master-password-enrollment.component";
 
 @Component({
@@ -199,21 +197,21 @@ export class OrganizationsComponent implements OnInit {
   }
 
   private async getMasterPassword(): Promise<string> {
-    let passwordHash = null;
-
-    const [modal] = await this.modalService.openViewRef(
-      MasterPasswordEnrollmentComponent,
-      this.confirmMasterPasswordModalRef,
-      (comp) => {
-        comp.passwordEnrollmentTitle = "passwordResetEnrollment";
-        comp.passwordEnrollmentDescription = "passwordResetEnrollmentDescription";
-        comp.requestBuilt.subscribe((val) => {
-          modal.close();
-          passwordHash = val.masterPasswordHash;
-        });
-      }
-    );
-
-    return passwordHash;
+    return new Promise((resolve, reject) => {
+      (async () => {
+        const [modal] = await this.modalService.openViewRef(
+          MasterPasswordEnrollmentComponent,
+          this.confirmMasterPasswordModalRef,
+          (comp) => {
+            comp.passwordEnrollmentTitle = "passwordResetEnrollment";
+            comp.passwordEnrollmentDescription = "passwordResetEnrollmentDescription";
+            comp.requestBuilt.subscribe((val) => {
+              modal.close();
+              resolve(val.masterPasswordHash);
+            });
+          }
+        );
+      })();
+    });
   }
 }
