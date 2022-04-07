@@ -62,7 +62,7 @@ RUN mkdir -p /etc/bitwarden/web
 COPY docker/confd/app-id.toml /etc/confd/conf.d/
 COPY docker/confd/app-id.conf.tmpl /etc/confd/templates/
 
-RUN wget -O /usr/local/bin/confd https://github.com/kelseyhightower/confd/releases/download/v0.16.0/confd-0.16.0-linux-amd64
+ADD https://github.com/kelseyhightower/confd/releases/download/v0.16.0/confd-0.16.0-linux-amd64 /usr/local/bin/confd
 RUN chmod +x /usr/local/bin/confd
 
 # Copy Web server from dotnet-build stage
