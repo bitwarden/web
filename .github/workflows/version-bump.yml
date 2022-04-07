@@ -38,6 +38,12 @@ jobs:
           version: ${{ github.event.inputs.version_number }}
           file_path: "./package-lock.json"
 
+      - name: Bump Version - csproj
+        uses: bitwarden/gh-actions/version-bump@03ad9a873c39cdc95dd8d77dbbda67f84db43945
+        with:
+          version: ${{ github.event.inputs.version_number }}
+          file_path: "./dotnet-src/Web/Web.csproj"
+
       - name: Commit files
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
