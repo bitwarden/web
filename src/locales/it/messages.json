@@ -187,7 +187,12 @@
     "message": "Modifica cartella"
   },
   "baseDomain": {
-    "message": "Dominio di base"
+    "message": "Dominio di base",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Nome dominio",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Host",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Nota sicura"
+  },
+  "typeLoginPlural": {
+    "message": "Login"
+  },
+  "typeCardPlural": {
+    "message": "Carte"
+  },
+  "typeIdentityPlural": {
+    "message": "Identità"
+  },
+  "typeSecureNotePlural": {
+    "message": "Note sicure"
   },
   "folders": {
     "message": "Cartelle"
@@ -1412,6 +1429,9 @@
   },
   "reports": {
     "message": "Resoconti"
+  },
+  "reportsDesc": {
+    "message": "Identifica e chiudi i problemi di sicurezza dei tuoi account online cliccando sui report in basso."
   },
   "unsecuredWebsitesReport": {
     "message": "Resoconto sui siti web non protetti"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Elimina organizzazione"
   },
-  "deleteOrganizationDesc": {
-    "message": "Procedi sotto per eliminare questa organizzazione e tutti i dati associati. I singoli account utente rimarranno, anche se non saranno più associati a questa organizzazione. "
+  "deletingOrganizationContentWarning": {
+    "message": "Digita la password principale per confermare l'eliminazione di $ORGANIZATION$ e di tutti i dati associati. I dati della cassaforte in $ORGANIZATION$ includono:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "L'eliminazione dell'organizzazione è permanente. Non può essere annullata."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Gli account utente rimarranno attivi dopo l'eliminazione, ma non saranno più associati a questa organizzazione."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "L'eliminazione di $ORGANIZATION$ è definitiva e irreversibile.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organizzazione eliminata"
@@ -4473,9 +4508,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Single Log Out Service URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
-  },
   "idpX509PublicCert": {
     "message": "Certificato pubblico X509"
   },
@@ -4485,11 +4517,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Consenti risposta di autenticazione non richiesta"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Disabilita le richieste di logout in uscita"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Permetti richieste di disconnessione in uscita"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Necessarie richieste di autenticazione firmate"
+  "idpSignAuthenticationRequests": {
+    "message": "Firma le richieste di autenticazione"
   },
   "ssoSettingsSaved": {
     "message": "La configurazione del Single Sign-On è stata salvata."
@@ -4739,5 +4771,110 @@
   },
   "freeWithSponsorship": {
     "message": "GRATUITO con sponsorizzazione"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ campi richiedono la tua attenzione.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 campo ha bisogno di attenzione."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ è obbligatorio.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "obbligatorio"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Richiesto se l'Entity ID non è un URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Personalizzazioni opzionali"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Richiesto se l'autorità non è valida."
+  },
+  "separateMultipleWithComma": {
+    "message": "Elenco separato da virgole."
+  },
+  "sessionTimeout": {
+    "message": "La tua sessione è scaduta. Torna indietro e riprova ad accedere."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Esportazione cassaforte personale"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Esportazione cassaforte dell'organizzazione"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Saranno esportati solo gli oggetti della cassaforte personale associati a $EMAIL$. Gli oggetti della cassaforte dell'organizzazione non saranno inclusi.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Sarà esportata solo la cassaforte dell'organizzazione associata a $ORGANIZATION$. Gli oggetti della cassaforte personale e gli oggetti da altre organizzazioni non saranno inclusi.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "backToReports": {
+    "message": "Torna ai report"
+  },
+  "generator": {
+    "message": "Generatore"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Cosa vorresti generare?"
+  },
+  "passwordType": {
+    "message": "Tipo di password"
+  },
+  "regenerateUsername": {
+    "message": "Rigenera nome utente"
+  },
+  "generateUsername": {
+    "message": "Genera nome utente"
+  },
+  "usernameType": {
+    "message": "Tipo di nome utente"
+  },
+  "plusAddressedEmail": {
+    "message": "Indirizzo email alternativo"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Usa le funzionalità di sub-indirizzamento del tuo fornitore di posta elettronica."
+  },
+  "catchallEmail": {
+    "message": "Email catch-all"
+  },
+  "catchallEmailDesc": {
+    "message": "Usa la casella di posta catch-all di dominio."
+  },
+  "random": {
+    "message": "Casuale"
+  },
+  "randomWord": {
+    "message": "Parola casuale"
+  },
+  "service": {
+    "message": "Servizio"
   }
 }

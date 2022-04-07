@@ -6,6 +6,7 @@
       (ngSubmit)="submit()"
       [appApiAction]="formPromise"
       ngNativeValidate
+      *ngIf="loaded"
     >
       <div class="modal-header">
         <h2 class="modal-title" id="deleteOrganizationTitle">{{ "deleteOrganization" | i18n }}</h2>
@@ -19,8 +20,30 @@
         </button>
       </div>
       <div class="modal-body">
-        <p>{{ descriptionKey | i18n }}</p>
-        <app-callout type="warning">{{ "deleteOrganizationWarning" | i18n }}</app-callout>
+        <app-callout type="warning">{{
+          "deletingOrganizationIsPermanentWarning" | i18n: organizationName
+        }}</app-callout>
+        <p id="organizationDeleteDescription">
+          <ng-container
+            *ngIf="
+              deleteOrganizationRequestType === 'InvalidFamiliesForEnterprise';
+              else regularDelete
+            "
+          >
+            {{ "orgCreatedSponsorshipInvalid" | i18n }}
+          </ng-container>
+          <ng-template #regularDelete>
+            <ng-container *ngIf="organizationContentSummary.totalItemCount > 0">
+              {{ "deletingOrganizationContentWarning" | i18n: organizationName }}
+              <ul>
+                <li *ngFor="let type of organizationContentSummary.itemCountByType">
+                  {{ type.count }} {{ type.localizationKey | i18n }}
+                </li>
+              </ul>
+              {{ "deletingOrganizationActiveUserAccountsWarning" | i18n }}
+            </ng-container>
+          </ng-template>
+        </p>
         <app-verify-master-password [(ngModel)]="masterPassword" ngDefaultControl name="secret">
         </app-verify-master-password>
       </div>

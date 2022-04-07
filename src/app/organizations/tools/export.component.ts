@@ -44,10 +44,10 @@ export class ExportComponent extends BaseExportComponent {
   }
 
   async ngOnInit() {
-    await super.ngOnInit();
     this.route.parent.parent.params.subscribe(async (params) => {
       this.organizationId = params.organizationId;
     });
+    await super.ngOnInit();
   }
 
   async checkExportDisabled() {

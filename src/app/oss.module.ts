@@ -1,7 +1,11 @@
 import { DragDropModule } from "@angular/cdk/drag-drop";
 import { DatePipe, registerLocaleData, CommonModule } from "@angular/common";
+import localeAf from "@angular/common/locales/af";
 import localeAz from "@angular/common/locales/az";
+import localeBe from "@angular/common/locales/be";
 import localeBg from "@angular/common/locales/bg";
+import localeBn from "@angular/common/locales/bn";
+import localeBs from "@angular/common/locales/bs";
 import localeCa from "@angular/common/locales/ca";
 import localeCs from "@angular/common/locales/cs";
 import localeDa from "@angular/common/locales/da";
@@ -13,57 +17,48 @@ import localeEo from "@angular/common/locales/eo";
 import localeEs from "@angular/common/locales/es";
 import localeEt from "@angular/common/locales/et";
 import localeFi from "@angular/common/locales/fi";
+import localeFil from "@angular/common/locales/fil";
 import localeFr from "@angular/common/locales/fr";
 import localeHe from "@angular/common/locales/he";
+import localeHi from "@angular/common/locales/hi";
 import localeHr from "@angular/common/locales/hr";
 import localeHu from "@angular/common/locales/hu";
 import localeId from "@angular/common/locales/id";
 import localeIt from "@angular/common/locales/it";
 import localeJa from "@angular/common/locales/ja";
+import localeKa from "@angular/common/locales/ka";
+import localeKm from "@angular/common/locales/km";
 import localeKn from "@angular/common/locales/kn";
 import localeKo from "@angular/common/locales/ko";
 import localeLv from "@angular/common/locales/lv";
 import localeMl from "@angular/common/locales/ml";
 import localeNb from "@angular/common/locales/nb";
 import localeNl from "@angular/common/locales/nl";
+import localeNn from "@angular/common/locales/nn";
 import localePl from "@angular/common/locales/pl";
 import localePtBr from "@angular/common/locales/pt";
 import localePtPt from "@angular/common/locales/pt-PT";
 import localeRo from "@angular/common/locales/ro";
 import localeRu from "@angular/common/locales/ru";
+import localeSi from "@angular/common/locales/si";
 import localeSk from "@angular/common/locales/sk";
+import localeSl from "@angular/common/locales/sl";
 import localeSr from "@angular/common/locales/sr";
 import localeSv from "@angular/common/locales/sv";
 import localeTr from "@angular/common/locales/tr";
 import localeUk from "@angular/common/locales/uk";
+import localeVi from "@angular/common/locales/vi";
 import localeZhCn from "@angular/common/locales/zh-Hans";
 import localeZhTw from "@angular/common/locales/zh-Hant";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule } from "@angular/router";
+import { BadgeModule, ButtonModule } from "@bitwarden/components";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { ToastrModule } from "ngx-toastr";
 
-import { AvatarComponent } from "jslib-angular/components/avatar.component";
-import { CalloutComponent } from "jslib-angular/components/callout.component";
-import { IconComponent } from "jslib-angular/components/icon.component";
 import { VerifyMasterPasswordComponent } from "jslib-angular/components/verify-master-password.component";
-import { A11yTitleDirective } from "jslib-angular/directives/a11y-title.directive";
-import { ApiActionDirective } from "jslib-angular/directives/api-action.directive";
-import { AutofocusDirective } from "jslib-angular/directives/autofocus.directive";
-import { BlurClickDirective } from "jslib-angular/directives/blur-click.directive";
-import { BoxRowDirective } from "jslib-angular/directives/box-row.directive";
-import { FallbackSrcDirective } from "jslib-angular/directives/fallback-src.directive";
-import { InputVerbatimDirective } from "jslib-angular/directives/input-verbatim.directive";
-import { SelectCopyDirective } from "jslib-angular/directives/select-copy.directive";
-import { StopClickDirective } from "jslib-angular/directives/stop-click.directive";
-import { StopPropDirective } from "jslib-angular/directives/stop-prop.directive";
-import { TrueFalseValueDirective } from "jslib-angular/directives/true-false-value.directive";
-import { ColorPasswordPipe } from "jslib-angular/pipes/color-password.pipe";
-import { I18nPipe } from "jslib-angular/pipes/i18n.pipe";
-import { SearchCiphersPipe } from "jslib-angular/pipes/search-ciphers.pipe";
-import { SearchPipe } from "jslib-angular/pipes/search.pipe";
-import { UserNamePipe } from "jslib-angular/pipes/user-name.pipe";
+import { JslibModule } from "jslib-angular/jslib.module";
 
 import { AcceptEmergencyComponent } from "./accounts/accept-emergency.component";
 import { AcceptOrganizationComponent } from "./accounts/accept-organization.component";
@@ -85,6 +80,7 @@ import { VerifyRecoverDeleteComponent } from "./accounts/verify-recover-delete.c
 import { NestedCheckboxComponent } from "./components/nested-checkbox.component";
 import { PasswordRepromptComponent } from "./components/password-reprompt.component";
 import { PasswordStrengthComponent } from "./components/password-strength.component";
+import { PremiumBadgeComponent } from "./components/premium-badge.component";
 import { FooterComponent } from "./layouts/footer.component";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
 import { NavbarComponent } from "./layouts/navbar.component";
@@ -142,6 +138,15 @@ import { CollectionsComponent as OrgCollectionsComponent } from "./organizations
 import { GroupingsComponent as OrgGroupingsComponent } from "./organizations/vault/groupings.component";
 import { VaultComponent as OrgVaultComponent } from "./organizations/vault/vault.component";
 import { ProvidersComponent } from "./providers/providers.component";
+import { BreachReportComponent } from "./reports/breach-report.component";
+import { ExposedPasswordsReportComponent } from "./reports/exposed-passwords-report.component";
+import { InactiveTwoFactorReportComponent } from "./reports/inactive-two-factor-report.component";
+import { ReportCardComponent } from "./reports/report-card.component";
+import { ReportListComponent } from "./reports/report-list.component";
+import { ReportsComponent } from "./reports/reports.component";
+import { ReusedPasswordsReportComponent } from "./reports/reused-passwords-report.component";
+import { UnsecuredWebsitesReportComponent } from "./reports/unsecured-websites-report.component";
+import { WeakPasswordsReportComponent } from "./reports/weak-passwords-report.component";
 import { AccessComponent } from "./send/access.component";
 import { AddEditComponent as SendAddEditComponent } from "./send/add-edit.component";
 import { EffluxDatesComponent as SendEffluxDatesComponent } from "./send/efflux-dates.component";
@@ -191,17 +196,11 @@ import { UserBillingComponent } from "./settings/user-billing.component";
 import { UserSubscriptionComponent } from "./settings/user-subscription.component";
 import { VaultTimeoutInputComponent } from "./settings/vault-timeout-input.component";
 import { VerifyEmailComponent } from "./settings/verify-email.component";
-import { BreachReportComponent } from "./tools/breach-report.component";
 import { ExportComponent } from "./tools/export.component";
-import { ExposedPasswordsReportComponent } from "./tools/exposed-passwords-report.component";
+import { GeneratorComponent } from "./tools/generator.component";
 import { ImportComponent } from "./tools/import.component";
-import { InactiveTwoFactorReportComponent } from "./tools/inactive-two-factor-report.component";
 import { PasswordGeneratorHistoryComponent } from "./tools/password-generator-history.component";
-import { PasswordGeneratorComponent } from "./tools/password-generator.component";
-import { ReusedPasswordsReportComponent } from "./tools/reused-passwords-report.component";
 import { ToolsComponent } from "./tools/tools.component";
-import { UnsecuredWebsitesReportComponent } from "./tools/unsecured-websites-report.component";
-import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.component";
 import { AddEditCustomFieldsComponent } from "./vault/add-edit-custom-fields.component";
 import { AddEditComponent } from "./vault/add-edit.component";
 import { AttachmentsComponent } from "./vault/attachments.component";
@@ -217,8 +216,12 @@ import { GroupingsComponent } from "./vault/groupings.component";
 import { ShareComponent } from "./vault/share.component";
 import { VaultComponent } from "./vault/vault.component";
 
+registerLocaleData(localeAf, "af");
 registerLocaleData(localeAz, "az");
+registerLocaleData(localeBe, "be");
 registerLocaleData(localeBg, "bg");
+registerLocaleData(localeBn, "bn");
+registerLocaleData(localeBs, "bs");
 registerLocaleData(localeCa, "ca");
 registerLocaleData(localeCs, "cs");
 registerLocaleData(localeDa, "da");
@@ -226,84 +229,89 @@ registerLocaleData(localeDe, "de");
 registerLocaleData(localeEl, "el");
 registerLocaleData(localeEnGb, "en-GB");
 registerLocaleData(localeEnIn, "en-IN");
+registerLocaleData(localeEo, "eo");
 registerLocaleData(localeEs, "es");
 registerLocaleData(localeEt, "et");
-registerLocaleData(localeEo, "eo");
 registerLocaleData(localeFi, "fi");
+registerLocaleData(localeFil, "fil");
 registerLocaleData(localeFr, "fr");
 registerLocaleData(localeHe, "he");
+registerLocaleData(localeHi, "hi");
 registerLocaleData(localeHr, "hr");
 registerLocaleData(localeHu, "hu");
 registerLocaleData(localeId, "id");
 registerLocaleData(localeIt, "it");
 registerLocaleData(localeJa, "ja");
+registerLocaleData(localeKa, "ka");
+registerLocaleData(localeKm, "km");
 registerLocaleData(localeKn, "kn");
 registerLocaleData(localeKo, "ko");
 registerLocaleData(localeLv, "lv");
 registerLocaleData(localeMl, "ml");
 registerLocaleData(localeNb, "nb");
 registerLocaleData(localeNl, "nl");
+registerLocaleData(localeNn, "nn");
 registerLocaleData(localePl, "pl");
 registerLocaleData(localePtBr, "pt-BR");
 registerLocaleData(localePtPt, "pt-PT");
 registerLocaleData(localeRo, "ro");
 registerLocaleData(localeRu, "ru");
+registerLocaleData(localeSi, "si");
 registerLocaleData(localeSk, "sk");
+registerLocaleData(localeSl, "sl");
 registerLocaleData(localeSr, "sr");
 registerLocaleData(localeSv, "sv");
 registerLocaleData(localeTr, "tr");
 registerLocaleData(localeUk, "uk");
+registerLocaleData(localeVi, "vi");
 registerLocaleData(localeZhCn, "zh-CN");
 registerLocaleData(localeZhTw, "zh-TW");
 
 @NgModule({
   imports: [
     CommonModule,
+    DragDropModule,
     FormsModule,
     InfiniteScrollModule,
-    DragDropModule,
-    ToastrModule,
+    JslibModule,
     ReactiveFormsModule,
     RouterModule,
+    ToastrModule,
+    BadgeModule,
+    ButtonModule,
   ],
   declarations: [
-    A11yTitleDirective,
+    PremiumBadgeComponent,
     AcceptEmergencyComponent,
-    AccessComponent,
     AcceptOrganizationComponent,
+    AccessComponent,
     AccountComponent,
-    SetPasswordComponent,
     AddCreditComponent,
     AddEditComponent,
     AddEditCustomFieldsComponent,
+    AddEditCustomFieldsComponent,
     AdjustPaymentComponent,
-    AdjustSubscription,
     AdjustStorageComponent,
-    ApiActionDirective,
+    AdjustSubscription,
     ApiKeyComponent,
     AttachmentsComponent,
-    AutofocusDirective,
-    AvatarComponent,
-    BlurClickDirective,
-    BoxRowDirective,
     BreachReportComponent,
     BulkActionsComponent,
     BulkDeleteComponent,
     BulkMoveComponent,
     BulkRestoreComponent,
     BulkShareComponent,
-    CalloutComponent,
     ChangeEmailComponent,
     ChangeKdfComponent,
     ChangePasswordComponent,
     ChangePlanComponent,
     CiphersComponent,
     CollectionsComponent,
-    ColorPasswordPipe,
     CreateOrganizationComponent,
     DeauthorizeSessionsComponent,
     DeleteAccountComponent,
     DeleteOrganizationComponent,
+    DisableSendPolicyComponent,
     DomainRulesComponent,
     DownloadLicenseComponent,
     EmergencyAccessAddEditComponent,
@@ -315,33 +323,32 @@ registerLocaleData(localeZhTw, "zh-TW");
     EmergencyAddEditComponent,
     ExportComponent,
     ExposedPasswordsReportComponent,
-    FallbackSrcDirective,
     FamiliesForEnterpriseSetupComponent,
     FolderAddEditComponent,
     FooterComponent,
     FrontendLayoutComponent,
     GroupingsComponent,
     HintComponent,
-    I18nPipe,
-    IconComponent,
     ImportComponent,
     InactiveTwoFactorReportComponent,
-    InputVerbatimDirective,
     LinkSsoComponent,
     LockComponent,
     LoginComponent,
+    MasterPasswordPolicyComponent,
     NavbarComponent,
     NestedCheckboxComponent,
     OptionsComponent,
     OrgAccountComponent,
     OrgAddEditComponent,
     OrganizationBillingComponent,
+    OrganizationLayoutComponent,
     OrganizationPlansComponent,
+    OrganizationsComponent,
     OrganizationSubscriptionComponent,
     OrgAttachmentsComponent,
-    OrgBulkStatusComponent,
     OrgBulkConfirmComponent,
     OrgBulkRemoveComponent,
+    OrgBulkStatusComponent,
     OrgCiphersComponent,
     OrgCollectionAddEditComponent,
     OrgCollectionsComponent,
@@ -350,57 +357,62 @@ registerLocaleData(localeZhTw, "zh-TW");
     OrgEventsComponent,
     OrgExportComponent,
     OrgExposedPasswordsReportComponent,
-    OrgImportComponent,
-    OrgInactiveTwoFactorReportComponent,
     OrgGroupAddEditComponent,
     OrgGroupingsComponent,
     OrgGroupsComponent,
+    OrgImportComponent,
+    OrgInactiveTwoFactorReportComponent,
     OrgManageCollectionsComponent,
     OrgManageComponent,
     OrgPeopleComponent,
-    OrgPolicyEditComponent,
     OrgPoliciesComponent,
+    OrgPolicyEditComponent,
     OrgResetPasswordComponent,
     OrgReusedPasswordsReportComponent,
     OrgSettingComponent,
     OrgToolsComponent,
     OrgTwoFactorSetupComponent,
+    OrgUnsecuredWebsitesReportComponent,
     OrgUserAddEditComponent,
     OrgUserConfirmComponent,
     OrgUserGroupsComponent,
-    OrganizationsComponent,
-    OrganizationLayoutComponent,
-    OrgUnsecuredWebsitesReportComponent,
     OrgVaultComponent,
     OrgWeakPasswordsReportComponent,
-    PasswordGeneratorComponent,
+    GeneratorComponent,
     PasswordGeneratorHistoryComponent,
-    PasswordStrengthComponent,
+    PasswordGeneratorPolicyComponent,
     PasswordRepromptComponent,
+    PasswordStrengthComponent,
     PaymentComponent,
+    PersonalOwnershipPolicyComponent,
     PremiumComponent,
     ProfileComponent,
+    ProvidersComponent,
     PurgeVaultComponent,
     RecoverDeleteComponent,
     RecoverTwoFactorComponent,
     RegisterComponent,
+    RemovePasswordComponent,
+    ReportCardComponent,
+    ReportListComponent,
+    ReportsComponent,
+    RequireSsoPolicyComponent,
+    ResetPasswordPolicyComponent,
     ReusedPasswordsReportComponent,
-    SearchCiphersPipe,
-    SearchPipe,
-    SelectCopyDirective,
     SendAddEditComponent,
-    SendEffluxDatesComponent,
     SendComponent,
+    SendEffluxDatesComponent,
+    SendOptionsPolicyComponent,
+    SetPasswordComponent,
     SettingsComponent,
     ShareComponent,
+    SingleOrgPolicyComponent,
     SponsoredFamiliesComponent,
     SponsoringOrgRowComponent,
     SsoComponent,
-    StopClickDirective,
-    StopPropDirective,
     TaxInfoComponent,
     ToolsComponent,
-    TrueFalseValueDirective,
+    TwoFactorAuthenticationPolicyComponent,
     TwoFactorAuthenticatorComponent,
     TwoFactorComponent,
     TwoFactorDuoComponent,
@@ -414,47 +426,21 @@ registerLocaleData(localeZhTw, "zh-TW");
     UnsecuredWebsitesReportComponent,
     UpdateKeyComponent,
     UpdateLicenseComponent,
-    UpdateTempPasswordComponent,
     UpdatePasswordComponent,
+    UpdateTempPasswordComponent,
     UserBillingComponent,
     UserLayoutComponent,
     UserSubscriptionComponent,
-    UserNamePipe,
     VaultComponent,
+    VaultTimeoutInputComponent,
     VerifyEmailComponent,
     VerifyEmailTokenComponent,
+    VerifyMasterPasswordComponent,
     VerifyRecoverDeleteComponent,
     WeakPasswordsReportComponent,
-    ProvidersComponent,
-    TwoFactorAuthenticationPolicyComponent,
-    MasterPasswordPolicyComponent,
-    SingleOrgPolicyComponent,
-    PasswordGeneratorPolicyComponent,
-    RequireSsoPolicyComponent,
-    PersonalOwnershipPolicyComponent,
-    DisableSendPolicyComponent,
-    SendOptionsPolicyComponent,
-    ResetPasswordPolicyComponent,
-    VaultTimeoutInputComponent,
-    AddEditCustomFieldsComponent,
-    VerifyMasterPasswordComponent,
-    RemovePasswordComponent,
   ],
-  exports: [
-    A11yTitleDirective,
-    AvatarComponent,
-    CalloutComponent,
-    ApiActionDirective,
-    StopClickDirective,
-    StopPropDirective,
-    I18nPipe,
-    SearchPipe,
-    UserNamePipe,
-    NavbarComponent,
-    FooterComponent,
-    OrganizationPlansComponent,
-  ],
-  providers: [DatePipe, SearchPipe, UserNamePipe],
+  exports: [FooterComponent, NavbarComponent, OrganizationPlansComponent],
+  providers: [DatePipe],
   bootstrap: [],
 })
 export class OssModule {}

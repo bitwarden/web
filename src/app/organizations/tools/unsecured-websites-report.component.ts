@@ -9,11 +9,11 @@ import { PasswordRepromptService } from "jslib-common/abstractions/passwordRepro
 import { StateService } from "jslib-common/abstractions/state.service";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { UnsecuredWebsitesReportComponent as BaseUnsecuredWebsitesReportComponent } from "../../tools/unsecured-websites-report.component";
+import { UnsecuredWebsitesReportComponent as BaseUnsecuredWebsitesReportComponent } from "../../reports/unsecured-websites-report.component";
 
 @Component({
   selector: "app-unsecured-websites-report",
-  templateUrl: "../../tools/unsecured-websites-report.component.html",
+  templateUrl: "../../reports/unsecured-websites-report.component.html",
 })
 export class UnsecuredWebsitesReportComponent extends BaseUnsecuredWebsitesReportComponent {
   constructor(

@@ -9,6 +9,7 @@ import { CryptoFunctionService } from "jslib-common/abstractions/cryptoFunction.
 import { EnvironmentService } from "jslib-common/abstractions/environment.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
+import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { PasswordGenerationService } from "jslib-common/abstractions/passwordGeneration.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
@@ -42,7 +43,8 @@ export class LoginComponent extends BaseLoginComponent {
     private policyService: PolicyService,
     logService: LogService,
     ngZone: NgZone,
-    protected stateService: StateService
+    protected stateService: StateService,
+    private messagingService: MessagingService
   ) {
     super(
       authService,
@@ -56,6 +58,9 @@ export class LoginComponent extends BaseLoginComponent {
       logService,
       ngZone
     );
+    this.onSuccessfulLogin = async () => {
+      this.messagingService.send("setFullWidth");
+    };
     this.onSuccessfulLoginNavigate = this.goAfterLogIn;
   }
 

@@ -187,7 +187,12 @@
     "message": "Redigér mappe"
   },
   "baseDomain": {
-    "message": "Grund-domæne"
+    "message": "Grund-domæne",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domænenavn",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Vært",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Sikret notat"
+  },
+  "typeLoginPlural": {
+    "message": "Logins"
+  },
+  "typeCardPlural": {
+    "message": "Kort"
+  },
+  "typeIdentityPlural": {
+    "message": "Identiteter"
+  },
+  "typeSecureNotePlural": {
+    "message": "Sikre notater"
   },
   "folders": {
     "message": "Mapper"
@@ -1413,6 +1430,9 @@
   "reports": {
     "message": "Rapporter"
   },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
+  },
   "unsecuredWebsitesReport": {
     "message": "Rapport over ikke-sikrede hjemmesider"
   },
@@ -1462,7 +1482,7 @@
     "message": "Rapport over afslørede adgangskoder"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Afslørede adgangskoder er adgangskoder, der er blevet afsløret i kendte datalæk og er blevet offentliggjort eller solgt på det mørke web af hackere."
+    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
   },
   "exposedPasswordsFound": {
     "message": "Afslørede adgangskoder fundet"
@@ -1546,7 +1566,7 @@
     "message": "Datalæk rapport"
   },
   "breachDesc": {
-    "message": "Et \"læk\" er en hændelse, hvor et websteds data er blevet ulovligt tilgået til af hackere og derefter offentliggjort. Gennemgå de typer af data, der blev kompromitteret (e-mailadresser, adgangskoder, kreditkort osv.) og træf passende foranstaltninger, som f.eks. ændring af adgangskoder."
+    "message": "Et \"læk\" er en hændelse, hvor et websteds data er blevet ulovligt tilgået til af hackere og derefter offentliggjort. Gennemgå de typer af data, der blev kompromitteret (emailadresser, adgangskoder, kreditkort osv.) og træf passende foranstaltninger, som f.eks. ændring af adgangskoder."
   },
   "breachCheckUsernameEmail": {
     "message": "Kontroller eventuelle brugernavne eller e-mailadresser, som du bruger."
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Slet organisation"
   },
-  "deleteOrganizationDesc": {
-    "message": "Fortsæt nedenfor for at slette denne organisation og alle tilknyttede data. Individuelle brugerkonti forbliver, selv om de ikke længere vil være tilknyttet denne organisation."
+  "deletingOrganizationContentWarning": {
+    "message": "Angiv hovedadgangskoden for at bekræfte sletning af $ORGANIZATION$ og alle tilknyttede data. Boks-data i $ORGANIZATION$ inkluderer:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Sletning af organisationen er permanent. Det kan ikke fortrydes."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Brugerkonti forbliver aktive efter sletning, men vil ikke længere være tilknyttet denne organisation."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Sletning af $ORGANIZATION$ er permanent og uigenkaldelig.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organisation slettet"
@@ -4414,25 +4449,25 @@
     "message": "OIDC-omdirigeringsadfærd"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Hent claims fra brugerinfoslutpunkt"
+    "message": "Hent claims fra endpoint for brugeroplysninger"
   },
   "additionalScopes": {
-    "message": "Yderligere/tilpassede Scopes (kommasepareret)"
+    "message": "Brugerdefinerede omfang"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Yderligere/tilpassede bruger-ID-claimtyper (kommasepareret)"
+    "message": "Tilpassede bruger-id claim-typer"
   },
   "additionalEmailClaimTypes": {
-    "message": "Yderligere/tilpassede e-mail-claimtyper (kommasepareret)"
+    "message": "E-mail claim-typer"
   },
   "additionalNameClaimTypes": {
-    "message": "Yderligere/tilpassede navne-claimtyper (kommasepareret)"
+    "message": "Tilpassede navne-claimtyper"
   },
   "acrValues": {
-    "message": "Anmodet godkendelseskontekst klassereferenceværdier (acr_værdier)"
+    "message": "Anmodet godkendelseskontekst klassereferenceværdier"
   },
   "expectedReturnAcrValue": {
-    "message": "Forventet \"acr\"-claimværdi som svar (acr-validering)"
+    "message": "Forventet \"acr\"-claimværdi i svar"
   },
   "spEntityId": {
     "message": "SP Enheds-ID"
@@ -4456,7 +4491,7 @@
     "message": "Minimum indgående signeringsalgoritme"
   },
   "spWantAssertionsSigned": {
-    "message": "Ønsker assertions signeret"
+    "message": "Forvent signerede assertions"
   },
   "spValidateCertificates": {
     "message": "Validér certifikater"
@@ -4473,9 +4508,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Single Log Out-tjeneste URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
-  },
   "idpX509PublicCert": {
     "message": "X509 offentligt certifikat"
   },
@@ -4485,11 +4517,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Tillad uopfordret godkendelsessvar"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Deaktivér udgående udlogningsanmodninger"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Tillad udgående logout-anmodninger"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Ønsker godkendelsesanmodninger signeret"
+  "idpSignAuthenticationRequests": {
+    "message": "Signér godkendelsesanmodninger"
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On opsætning blev gemt."
@@ -4739,5 +4771,110 @@
   },
   "freeWithSponsorship": {
     "message": "GRATIS med sponsorat"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ felter ovenfor kræver din opmærksomhed.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 felt ovenfor kræver din opmærksomhed."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ er påkrævet.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "krævet"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Krævet, hvis enheds-id ikke er en URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Valgfrie tilpasninger"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Påkrævet, hvis autoriteten ikke er gyldig."
+  },
+  "separateMultipleWithComma": {
+    "message": "Adskil flere med et komma."
+  },
+  "sessionTimeout": {
+    "message": "Din session er udløbet. Gå tilbage og prøv at logge ind igen."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Eksporterer personlig boks"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Eksporterer organisationsboks"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Kun de personlige bokselementer tilknyttet $EMAIL$ eksporteres. Organisationsbokseelementer medtages ikke.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Kun organisationsboksen tilknyttet $ORGANIZATION$ eksporteres. Personlige bokseelementer, samt elementer fra andre organisationer, medtages ikke.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Hvad vil du generere?"
+  },
+  "passwordType": {
+    "message": "Adgangskodetype"
+  },
+  "regenerateUsername": {
+    "message": "Regenerér brugernavn"
+  },
+  "generateUsername": {
+    "message": "Generér brugernavn"
+  },
+  "usernameType": {
+    "message": "Brugernavnstype"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus adresseret e-mail"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Brug e-mailudbyderens underadresseringsmuligheder."
+  },
+  "catchallEmail": {
+    "message": "Fang-alle e-mail"
+  },
+  "catchallEmailDesc": {
+    "message": "Brug den for domænet opsatte Fang-alle indbakke."
+  },
+  "random": {
+    "message": "Tilfældig"
+  },
+  "randomWord": {
+    "message": "Tilfældigt ord"
+  },
+  "service": {
+    "message": "Tjeneste"
   }
 }

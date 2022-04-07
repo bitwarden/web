@@ -187,7 +187,12 @@
     "message": "Ordner bearbeiten"
   },
   "baseDomain": {
-    "message": "Basisdomäne"
+    "message": "Basisdomäne",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain-Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Host",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Sichere Notiz"
+  },
+  "typeLoginPlural": {
+    "message": "Zugangsdaten"
+  },
+  "typeCardPlural": {
+    "message": "Karten"
+  },
+  "typeIdentityPlural": {
+    "message": "Identitäten"
+  },
+  "typeSecureNotePlural": {
+    "message": "Sichere Notizen"
   },
   "folders": {
     "message": "Ordner"
@@ -1412,6 +1429,9 @@
   },
   "reports": {
     "message": "Berichte"
+  },
+  "reportsDesc": {
+    "message": "Ermittel und schließe Sicherheitslücken in deinen Online-Konten, indem du auf die Berichte unten klickst."
   },
   "unsecuredWebsitesReport": {
     "message": "Bericht über ungesicherte Websites"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Organisation löschen"
   },
-  "deleteOrganizationDesc": {
-    "message": "Fahren Sie fort, um diese Organisation und alle ihre zugehörigen Daten zu löschen. Einzelne Benutzerkonten bleiben erhalten, obwohl sie nicht länger mit dieser Organisation verbunden sein werden. "
+  "deletingOrganizationContentWarning": {
+    "message": "Gebe das Master-Passwort ein, um das Löschen von $ORGANIZATION$ und allen zugehörigen Daten zu bestätigen. Die Tresordaten in $ORGANIZATION$ beinhalten:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Das Löschen dieser Organisation ist unwiderruflich."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Die Benutzerkonten bleiben nach dem Löschen aktiv, sind aber nicht mehr mit dieser Organisation verknüpft."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Das Löschen von $ORGANIZATION$ ist dauerhaft und unwiderruflich.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Die Organisation wurde gelöscht"
@@ -4473,9 +4508,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Single Log-Out Service-URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artefaktauflösungsservice-URL"
-  },
   "idpX509PublicCert": {
     "message": "Öffentliches X509-Zertifikat"
   },
@@ -4485,11 +4517,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Erlaube unaufgeforderte Authentifizierungsantwort"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Ausgehende Abmeldeanfragen deaktivieren"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Ausgehende Abmeldeanfragen erlauben"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Möchte Authentifizierungsanfragen signieren"
+  "idpSignAuthenticationRequests": {
+    "message": "Signiere Authentifizierungsanfragen"
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On Konfiguration wurde gespeichert."
@@ -4739,5 +4771,110 @@
   },
   "freeWithSponsorship": {
     "message": "KOSTENLOS mit Förderung"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ Felder oben müssen beachtet werden.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 Feld oben muss beachtet werden."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ ist erforderlich.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "erforderlich"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Erforderlich, wenn die Entitäts-ID keine URL ist."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Optionale Anpassungen"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Erforderlich, wenn die Zertifizierungsstelle nicht gültig ist."
+  },
+  "separateMultipleWithComma": {
+    "message": "Mehrere mit einem Komma trennen."
+  },
+  "sessionTimeout": {
+    "message": "Deine Sitzung ist abgelaufen. Bitte gehe zurück und versuche dich erneut einzuloggen."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Persönlichen Tresor exportieren"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Tresor der Organisation exportieren"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Nur die persönlichen Tresoreinträge, die mit $EMAIL$ verbunden sind, werden exportiert. Tresoreinträge der Organisation werden nicht berücksichtigt.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Nur der mit $ORGANIZATION$ verbundene Tresor der Organisation wird exportiert. Persönliche Tresoreinträge und Einträge anderer Organisationen werden nicht berücksichtigt.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "backToReports": {
+    "message": "Zurück zu den Berichten"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Was möchten Sie generieren?"
+  },
+  "passwordType": {
+    "message": "Passworttyp"
+  },
+  "regenerateUsername": {
+    "message": "Benutzername neu generieren"
+  },
+  "generateUsername": {
+    "message": "Benutzernamen generieren"
+  },
+  "usernameType": {
+    "message": "Benutzernamentyp"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all-E-Mail-Adresse"
+  },
+  "catchallEmailDesc": {
+    "message": "Verwenden Sie den konfigurierten Catch-All-Posteingang Ihrer Domain."
+  },
+  "random": {
+    "message": "Zufällig"
+  },
+  "randomWord": {
+    "message": "Zufälliges Wort"
+  },
+  "service": {
+    "message": "Dienst"
   }
 }

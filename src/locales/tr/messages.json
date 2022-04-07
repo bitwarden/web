@@ -187,7 +187,12 @@
     "message": "Klasörü düzenle"
   },
   "baseDomain": {
-    "message": "Ana alan adı"
+    "message": "Ana alan adı",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Alan adı",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Sunucu",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Güvenli not"
+  },
+  "typeLoginPlural": {
+    "message": "Hesaplar"
+  },
+  "typeCardPlural": {
+    "message": "Kartlar"
+  },
+  "typeIdentityPlural": {
+    "message": "Kimlikler"
+  },
+  "typeSecureNotePlural": {
+    "message": "Güvenli Notlar"
   },
   "folders": {
     "message": "Klasörler"
@@ -904,7 +921,7 @@
     "message": "E-postayı değiştir"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Devam etmek hesabınızın e-posta adresini değiştirecek. 2 adımlı doğrulama için kullandığınız e-posta adresiniz değiştirmeyecek. Onu 2 adımlı doğrulama ayarlarından değiştirebilirsiniz."
+    "message": "Devam ederseniz hesabınızın e-posta adresi değişecek. İki aşamalı doğrulama için kullandığınız e-posta adresiniz değişmeyecek. Onu iki aşamalı doğrulama ayarlarından değiştirebilirsiniz."
   },
   "newEmail": {
     "message": "Yeni e-posta"
@@ -1006,7 +1023,7 @@
     "message": "Kuruluş kasası silindi."
   },
   "vaultAccessedByProvider": {
-    "message": "Sağlayıcı tarafından erişilen kasa."
+    "message": "Sağlayıcı, kasaya erişti."
   },
   "purgeVaultDesc": {
     "message": "Kasanızdaki tüm kayıtları ve klasörleri silmek için aşağıdan devam edin. Kuruluşa ait kayıtlar silinmeyecektir."
@@ -1413,6 +1430,9 @@
   "reports": {
     "message": "Raporlar"
   },
+  "reportsDesc": {
+    "message": "Aşağıdaki raporlara tıklayarak çevrimiçi hesaplarınızdaki güvenlik açıklarını görün ve kapatın."
+  },
   "unsecuredWebsitesReport": {
     "message": "Güvensiz Web Siteler Raporu"
   },
@@ -1435,7 +1455,7 @@
     "message": "Kasanızda güvenli olmayan URI'ye sahip hiç kayıt yok."
   },
   "inactive2faReport": {
-    "message": "2FA raporu pasif"
+    "message": "Pasif 2FA Raporu"
   },
   "inactive2faReportDesc": {
     "message": "İki aşamalı kimlik doğrulama (2FA), hesaplarınızı güvenceye almanızı sağlayan önemli bir güvenlik ayarıdır. İki aşamalı kimlik doğrulamayı destekleyen sitelerde bu ayarı her zaman etkinleştirmenizi öneririz."
@@ -1468,7 +1488,7 @@
     "message": "Açığa Çıkmış Parolalar Bulundu"
   },
   "exposedPasswordsFoundDesc": {
-    "message": "Kasanızda, bilinen veri ihlallerine maruz kalmış şifreleri olan $COUNT$ öge bulundu. Yeni bir şifre kullanmaları için onları değiştirmelisiniz.",
+    "message": "Kasanızda, bilinen veri ihlallerine maruz kalmış parolalara sahip $COUNT$ kayıt bulundu. Bu parolaları değiştirmelisiniz.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1477,7 +1497,7 @@
     }
   },
   "noExposedPasswords": {
-    "message": "Kasanızdaki hiçbir ögenin bilinen veri ihlallerine maruz kalmış şifreleri yoktur."
+    "message": "Kasanızdaki hiçbir kaydın parolası bilinen veri ihlallerinde ele geçirilmemiş."
   },
   "checkExposedPasswords": {
     "message": "Açığa Çıkmış Parolaları Kontrol Et"
@@ -1501,7 +1521,7 @@
     "message": "Zayıf parolalar pulundu"
   },
   "weakPasswordsFoundDesc": {
-    "message": "Kasanızda güçlü olmayan parolalara sahip $COUNT$ öge bulduk. Daha güçlü şifreler kullanmaları için bunları güncellemelisiniz.",
+    "message": "Kasanızda zayıf parolalara sahip $COUNT$ kayıt bulduk. Bunları güncelleyip daha güçlü parolalar kullanmalısınız.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1516,13 +1536,13 @@
     "message": "Yeniden Kullanılmış Parolalar Raporu"
   },
   "reusedPasswordsReportDesc": {
-    "message": "Kullandığınız bir servisin güvenliği ihlal edilirse, aynı parolayı başka bir yerde tekrar kullanmak bilgisayar korsanlarının çevrimiçi hesaplarınızın daha fazlasına kolayca erişmesine izin verebilir. Her hesap veya hizmet için benzersiz bir parola kullanmalısınız."
+    "message": "Kullandığınız bir servis ele geçirilirse, aynı parolayı başka yerlerde kullanmanız hacker'ların diğer hesaplarınıza da kolayca erişmesine olanak tanıyabilir. bu yüzden her hesap ve hizmet için farklı bir parola kullanmalısınız."
   },
   "reusedPasswordsFound": {
     "message": "Yeniden kullanılmış parolalar bulundu"
   },
   "reusedPasswordsFoundDesc": {
-    "message": "Kasanızda tekrar kullanılmakta olan $COUNT$ tane parola bulduk. Onları benzersiz bir değerle değiştirmelisiniz.",
+    "message": "Kasanızda tekrar kullanılmakta olan $COUNT$ parola bulduk. Onları benzersiz parolalarla değiştirmelisiniz.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -1546,7 +1566,7 @@
     "message": "Veri İhlali Raporu"
   },
   "breachDesc": {
-    "message": "\"İhlal\", bir sitenin verilerine bilgisayar korsanları tarafından yasa dışı bir şekilde erişildiği ve daha sonra herkese açık olarak yayınlandığı bir olaydır. Ele geçirilen veri türlerini (e-posta adresleri, parolalar, kredi kartları vb.) inceleyin ve parolaları değiştirmek gibi uygun işlemleri yapın."
+    "message": "Hacker'ların bir sitenin verilerine yasadışı bir şekilde erişip bunları herkese açık bir şekilde yayımlamalarına \"ihlal\" denir. Ele geçirilen veri türlerini (e-posta adresleri, parolalar, kredi kartları vb.) inceleyin ve gerekli önlemleri alın (örn. parolaları değiştirin)."
   },
   "breachCheckUsernameEmail": {
     "message": "Kullandığınız kullanıcı adlarını ve e-posta adreslerini kontrol edin."
@@ -1581,10 +1601,10 @@
     }
   },
   "breachFound": {
-    "message": "İhlal Edilmiş Hesaplar Bulundu"
+    "message": "Ele geçirilmiş hesaplar bulundu"
   },
   "compromisedData": {
-    "message": "Ele geçirilmiş veriler"
+    "message": "Ele geçirilen veriler"
   },
   "website": {
     "message": "Web sitesi"
@@ -1593,10 +1613,10 @@
     "message": "Etkilenen kullanıcılar"
   },
   "breachOccurred": {
-    "message": "İhlal oluştu"
+    "message": "İhlal tarihi"
   },
   "breachReported": {
-    "message": "İhlal bildirildi"
+    "message": "Bildirilme tarihi"
   },
   "reportError": {
     "message": "Rapor yüklenmeye çalışılırken bir hata oluştu. Tekrar deneyin"
@@ -1621,13 +1641,13 @@
     "description": "Dollar amount, or quantity."
   },
   "creditDelayed": {
-    "message": "Ödeme tamamlandıktan sonra eklenen kredi hesabınızda görünecektir. Bazı ödeme yöntemleri gecikmelidir ve diğerlerine göre daha uzun sürebilir."
+    "message": "Ödeme tamamlandıktan sonra eklenen kredi hesabınızda görünecektir. Bazı ödeme yöntemlerinin işlenmesi diğerlerine göre daha uzun sürebilir."
   },
   "makeSureEnoughCredit": {
-    "message": "Lütfen hesabınızda bu satın alım için yeterli kredi olduğundan emin olun. Hesabınızda yeterli kredi yoksa, fark için dosyadaki varsayılan ödeme yönteminiz kullanılır. Hesabınıza, Faturalandırma sayfasından kredi ekleyebilirsiniz."
+    "message": "Please make sure that your account has enough credit available for this purchase. If your account does not have enough credit available, your default payment method on file will be used for the difference. You can add credit to your account from the Billing page."
   },
   "creditAppliedDesc": {
-    "message": "Hesabınızın kredisi, satın almalarda kullanılabilir. Kullanılabilir herhangi bir kredi, bu hesap için oluşturulan faturalara otomatik olarak uygulanacaktır."
+    "message": "Hesabınızdaki krediyi satın alımlarda kullanabilirsiniz. Mevcut krediniz bu hesap için oluşturulan faturalardan otomatik olarak düşülecektir."
   },
   "goPremium": {
     "message": "Premium'a geçin",
@@ -1661,7 +1681,7 @@
     "message": "Ve ileride duyuracağımız tüm premium özellikler. Daha fazlası yakında!"
   },
   "premiumPrice": {
-    "message": "Bunların hepsi sadece yılda $PRICE$!",
+    "message": "Bunların hepsi yıllık sadece $PRICE$!",
     "placeholders": {
       "price": {
         "content": "$1",
@@ -1695,7 +1715,7 @@
     "message": "# ilave GB"
   },
   "additionalStorageIntervalDesc": {
-    "message": "Planınızda $SIZE$ şifreli dosya depolama alanı bulunmaktadır. GB/$INTERVAL$ başına $PRICE$ karşılığında ilave depolama alanı ekleyebilirsiniz.",
+    "message": "Paketinizde $SIZE$ şifrelenmiş dosya depolama alanı bulunuyor. GB/$INTERVAL$ başına $PRICE$ fiyatla ilave depolama alanı ekleyebilirsiniz.",
     "placeholders": {
       "size": {
         "content": "$1",
@@ -1728,10 +1748,10 @@
     "description": "Short abbreviation for 'month'"
   },
   "paymentChargedAnnually": {
-    "message": "Ödeme yönteminiz hemen şimdi ve ardından her yıl düzenli olarak ücretlendirilecektir. İstediğiniz zaman iptal edebilirsiniz."
+    "message": "Ödeme yönteminizden hemen şimdi ve ardından her yıl düzenli ödeme alınacaktır. İstediğiniz zaman aboneliğinizi iptal edebilirsiniz."
   },
   "paymentCharged": {
-    "message": "Ödeme yönteminiz hemen şimdi ve ardından her $INTERVAL$ düzenli olarak ücretlendirilecektir. İstediğiniz zaman iptal edebilirsiniz.",
+    "message": "Ödeme yönteminizden hemen şimdi ve ardından her $INTERVAL$ düzenli ödeme alınacaktır. İstediğiniz zaman aboneliğinizi iptal edebilirsiniz.",
     "placeholders": {
       "interval": {
         "content": "$1",
@@ -1740,7 +1760,7 @@
     }
   },
   "paymentChargedWithTrial": {
-    "message": "Planınız 7 günlük ücretsiz deneme ile birlikte gelmektedir. Deneme sona erene kadar ödeme yönteminiz ücretlendirilmeyecektir. Faturalandırma, her $INTERVAL$ bir düzenli olarak gerçekleştirilecektir. İstediğiniz zaman iptal edebilirsiniz."
+    "message": "Paketiniz 7 günlük ücretsiz deneme süresiyle geliyor. Deneme süresi bitene kadar sizden ücret alınmayacak. İstediğiniz zaman aboneliğinizi iptal edebilirsiniz."
   },
   "paymentInformation": {
     "message": "Ödeme Bilgileri"
@@ -1884,10 +1904,10 @@
     "message": "Depolamadan çıkarılacak GB miktarı"
   },
   "storageAddNote": {
-    "message": "Depolama alanı eklemek, fatura toplamınızda ayarlamalar yapmanıza ve ödeme yönteminizi derhal borçlandırmanıza neden olur. İlk masraf, mevcut faturalandırma döngüsünün kalanı için geçerli olacaktır."
+    "message": "Adding storage will result in adjustments to your billing totals and immediately charge your payment method on file. The first charge will be prorated for the remainder of the current billing cycle."
   },
   "storageRemoveNote": {
-    "message": "Depolamayı kaldırmak, bir sonraki fatura ücretinize kredi olarak kanıtlanacak olan fatura toplamlarınızda ayarlamalar yapmanıza neden olur."
+    "message": "Removing storage will result in adjustments to your billing totals that will be prorated as credits toward your next billing charge."
   },
   "adjustedStorage": {
     "message": "$AMOUNT$ GB depolama alanı ayarlandı.",
@@ -1923,13 +1943,13 @@
     "message": "Hesabınızı premium üyeliğe yükseltmek için geçerli bir lisans dosyası yüklemelisiniz."
   },
   "uploadLicenseFileOrg": {
-    "message": "Şirket içi barındırılan bir organizasyon oluşturmak için geçerli olan bir lisans dosyası yüklemeniz gerekir."
+    "message": "Şirket içinde barındırılan bir kuruluş oluşturmak için geçerli bir lisans dosyası yüklemeniz gerekir."
   },
   "accountEmailMustBeVerified": {
     "message": "Hesabınızın e-posta adresi doğrulanmalıdır."
   },
   "newOrganizationDesc": {
-    "message": "Organizasyonlar, kasanızın bölümlerini başkalarıyla paylaşmanıza; aile, küçük ekip veya büyük şirket gibi belirli bir alandaki ilgili kullanıcıları yönetmenize olanak tanır."
+    "message": "Kuruluşlar, kasanızın belli kısımları başkalarıyla paylaşmanıza ve aile, küçük ekip veya büyük şirket gibi kuruluşların kullanıcılarını yönetmenize olanak tanır."
   },
   "generalInformation": {
     "message": "Genel bilgiler"
@@ -1962,7 +1982,7 @@
     "message": "Kullanıcı sayısı"
   },
   "userSeatsAdditionalDesc": {
-    "message": "Planınız $BASE_SEATS$ kullanıcı ile gelir. Kullanıcı/ay başına $SEAT_PRICE$ kullanıcı daha ekleyebilirsiniz.",
+    "message": "Abonelik paketiniz $BASE_SEATS$ kullanıcıya izin veriyor. İsterseniz kullanıcı başına aylık $SEAT_PRICE$ fiyatla daha fazla kullanıcı ekleyebilirsiniz.",
     "placeholders": {
       "base_seats": {
         "content": "$1",
@@ -2051,7 +2071,7 @@
     }
   },
   "addShareLimitedUsers": {
-    "message": "$COUNT$ kullanıcıya kadar ekleyin ve paylaşın",
+    "message": "$COUNT$ kullanıcı ekleyin ve paylaşın",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2060,7 +2080,7 @@
     }
   },
   "addShareUnlimitedUsers": {
-    "message": "Sonsuz sayıda kullanıcı ekleyin ve paylaşın"
+    "message": "Sınırsız kullanıcı ekleyin ve paylaşın"
   },
   "createUnlimitedCollections": {
     "message": "Sınırsız koleksiyon oluşturma"
@@ -2270,7 +2290,7 @@
     "message": "Kullanıcı"
   },
   "userDesc": {
-    "message": "Kuruluşunuzda atanmış alanlara erişimi olan normal bir kullanıcı."
+    "message": "Kuruluşunuzda atanmış koleksiyonlara erişimi olan normal bir kullanıcı."
   },
   "manager": {
     "message": "Yönetici"
@@ -2771,7 +2791,7 @@
     "message": "Hesabınızı kurtarmak ve silmek için e-posta adresinizi yazın."
   },
   "deleteRecoverEmailSent": {
-    "message": "Eğer bir hesabınız varsa size daha fazla talimat içeren bir e-posta gönderdik."
+    "message": "Hesabınız varsa gerekli talimatları içeren bir mesajı e-posta adresinize gönderdik."
   },
   "deleteRecoverConfirmDesc": {
     "message": "Bitwarden hesabınızı silme talebinde bulundunuz. Onaylamak için aşağıdaki düğmeye tıklayın."
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Kuruluşu sil"
   },
-  "deleteOrganizationDesc": {
-    "message": "Bu kuruluşu ve ilişkili tüm verileri silmek için aşağıdan devam edin. Kullanıcı hesapları kalacak fakat bu kuruluşla ilişkileri kesilecektir. "
+  "deletingOrganizationContentWarning": {
+    "message": "$ORGANIZATION$ kuruluşunu ve tüm verilerini silmeyi onaylamak için ana parolayı girin. $ORGANIZATION$ kasa verileri şunları içerir:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Kuruluşu silmek kalıcıdır. Bu işlem geri alınamaz."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Silme işleminin ardından kullanıcı hesapları aktif kalacaktır ama artık bu kuruluşa bağlı olmayacaklardır."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "$ORGANIZATION$ kuruluşunu silme işlemi kalıcıdır ve geri alınamaz.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Kuruluş silindi"
@@ -2801,18 +2836,18 @@
     "message": "Vergi bilgileri"
   },
   "taxInformationDesc": {
-    "message": "ABD'deki müşteriler için satış vergisi gereksinimlerini karşılamak adına Posta Kodu gereklidir. Diğer ülkeler için isteğe bağlı olarak, faturalarınızda görünmesi için, bir vergi numarası ve/veya adres ekleyebilirsiniz."
+    "message": "ABD'deki müşteriler için satış vergisi gereksinimlerini karşılamak adına posta kodu gereklidir. Diğer ülkeler için isteğe bağlı olarak, faturalarınızda görünecek bir vergi numarası ve/veya adres ekleyebilirsiniz."
   },
   "billingPlan": {
-    "message": "Plan",
+    "message": "Paket",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlan": {
-    "message": "Planı yükselt",
+    "message": "Paketi yükselt",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "changeBillingPlanUpgrade": {
-    "message": "Aşağıdaki bilgileri sağlayarak hesabınızı başka bir plana yükseltin. Lütfen hesaba aktif bir ödeme yöntemi eklediğinizden emin olun.",
+    "message": "Aşağıdaki bilgileri sağlayarak hesabınızı başka bir pakete yükseltin. Lütfen hesaba aktif bir ödeme yöntemi eklediğinizden emin olun.",
     "description": "A billing plan/package. For example: families, teams, enterprise, etc."
   },
   "invoiceNumber": {
@@ -2882,14 +2917,14 @@
     "message": "Yükleme numarasını girin"
   },
   "limitSubscriptionDesc": {
-    "message": "Aboneliğiniz için bir kullanıcı limiti belirleyin. Bu sınıra ulaşıldığında, yeni kullanıcıları davet edemezsiniz."
+    "message": "Aboneliğiniz için kullanıcı sayısı sınırını belirleyin. Bu sınıra ulaşıldıktan sonra yeni kullanıcı davet edemezsiniz."
   },
   "maxSeatLimit": {
-    "message": "Maksimum Kullanıcı Limiti (isteğe bağlı)",
+    "message": "Maksimum kullanıcı sayısı (isteğe bağlı)",
     "description": "Upper limit of seats to allow through autoscaling"
   },
   "maxSeatCost": {
-    "message": "Max potential seat cost"
+    "message": "Maksimum potansiyel kullanıcı maliyeti"
   },
   "addSeats": {
     "message": "Kullanıcı ekle",
@@ -2900,7 +2935,7 @@
     "description": "Seat = User Seat"
   },
   "subscriptionDesc": {
-    "message": "Aboneliğinizde yapılan ayarlamalar, fatura toplamlarınızda orantılı değişikliklere neden olacaktır. Yeni davet edilen kullanıcılar abonelik kullanıcı sayınızı aşarsa, ek kullanıcılar için anlık orantılı bir ücretlendirme görürsünüz."
+    "message": "Aboneliğinizde yapacağınız değişiklikler toplam faturanızın değişmesine yol açacaktır. Yeni davet edilen kullanıcıların sayısı abonelik paketinizdeki kullanıcı sayınızı aşarsa ek kullanıcılar için derhal ödeme alınır."
   },
   "subscriptionUserSeats": {
     "message": "Aboneliğiniz toplam $COUNT$ kullanıcıya izin veriyor.",
@@ -2912,10 +2947,10 @@
     }
   },
   "limitSubscription": {
-    "message": "Üyeliği Sınırlandır (İsteğe Bağlı)"
+    "message": "Aboneliği sınırlandır (isteğe bağlı)"
   },
   "subscriptionSeats": {
-    "message": "Abone Kullanıcısı"
+    "message": "Abonelik kullanıcı sayısı"
   },
   "subscriptionUpdated": {
     "message": "Abonelik güncellendi"
@@ -2927,10 +2962,10 @@
     "message": "For additional help in managing your subscription, please contact Customer Support."
   },
   "subscriptionUserSeatsUnlimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users."
+    "message": "Aboneliğinizde yapacağınız değişiklikler toplam faturanızın değişmesine yol açacaktır. Yeni davet edilen kullanıcıların sayısı abonelik paketinizdeki kullanıcı sayınızı aşarsa ek kullanıcılar için derhal ödeme alınır."
   },
   "subscriptionUserSeatsLimitedAutoscale": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. If newly invited users exceed your subscription seats, you will immediately receive a prorated charge for the additional users until your $MAX$ seat limit is reached.",
+    "message": "Aboneliğinizde yapacağınız değişiklikler toplam faturanızın değişmesine yol açacaktır. Yeni davet edilen kullanıcıların sayısı abonelik paketinizdeki kullanıcı sayınızı aşarsa $MAX$ kullanıcı sınırınıza ulaşana dek ek kullanıcılar için ödeme alınır.",
     "placeholders": {
       "max": {
         "content": "$1",
@@ -2939,7 +2974,7 @@
     }
   },
   "subscriptionFreePlan": {
-    "message": "Planınızı yükseltmeden $COUNT$ kullanıcıdan fazlasını davet edemezsiniz.",
+    "message": "Paketinizi yükseltmeden $COUNT$ kullanıcıdan fazlasını davet edemezsiniz.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2948,7 +2983,7 @@
     }
   },
   "subscriptionFamiliesPlan": {
-    "message": "You cannot invite more than $COUNT$ users without upgrading your plan. Please contact Customer Support to upgrade.",
+    "message": "Paketinizi yükseltmeden en fazla $COUNT$ kullanıcı davet edebilirsiniz. Yükseltme yapmak için lütfen müşteri hizmetleri ile iletişime geçin.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2957,7 +2992,7 @@
     }
   },
   "subscriptionSponsoredFamiliesPlan": {
-    "message": "Your subscription allows for a total of $COUNT$ users. Your plan is sponsored and billed to an external organization.",
+    "message": "Paketiniz toplam $COUNT$ kullanıcıya izin veriyor. Paketinizin ücretini başka bir kuruluş ödüyor.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2966,7 +3001,7 @@
     }
   },
   "subscriptionMaxReached": {
-    "message": "Adjustments to your subscription will result in prorated changes to your billing totals. You cannot invite more than $COUNT$ users without increasing your subscription seats.",
+    "message": "Aboneliğinizde yapacağınız değişiklikler toplam faturanızın değişmesine yol açacaktır. Aboneliğinizin kullanıcı sayısını artırmadan en fazla $COUNT$ kullanıcı davet edebilirsiniz.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -2975,19 +3010,19 @@
     }
   },
   "seatsToAdd": {
-    "message": "Seats To Add"
+    "message": "Eklenecek kullanıcı sayısı"
   },
   "seatsToRemove": {
-    "message": "Seats To Remove"
+    "message": "Kaldırılacak kullanıcı sayısı"
   },
   "seatsAddNote": {
-    "message": "Kullanıcı yerleri eklemek, fatura toplamınızda değişikliklere ve ödeme yönteminizin derhal ücretlendirilmesine neden olacaktır. İlk ücretlendirme, mevcut faturalandırma döngüsünün kalanı için geçerli olacaktır."
+    "message": "Kullanıcı sayısını artırdığınızda toplam faturanızın değişecek ve kayıtlı ödeme yönteminiz aracılığıyla derhal ödeme alınacaktır. İlk ödemeniz mevcut fatura süresinin kalanı için geçerli olacaktır."
   },
   "seatsRemoveNote": {
-    "message": "Kullanıcı yerlerinin kaldırılması, bir sonraki fatura ücretlendirmenize kredi olarak yansıyacak fatura toplamlarınızda değişikliklere neden olacaktır."
+    "message": "Kullanıcı sayısını azalttığınızda toplam faturanız azalacak ve aradaki fark bir sonraki faturanıza kredi olarak yansıtılacaktır."
   },
   "adjustedSeats": {
-    "message": "$AMOUNT$ kullanıcı yeri güncellendi.",
+    "message": "$AMOUNT$ kullanıcı sayısı güncellendi.",
     "placeholders": {
       "amount": {
         "content": "$1",
@@ -3008,7 +3043,7 @@
     "message": "Şu anda eski bir şifreleme modeli kullanıyorsunuz."
   },
   "updateEncryptionKeyDesc": {
-    "message": "Daha iyi güvenlik ve daha yeni özelliklere erişim sağlayan daha büyük şifreleme anahtarlarına geçtik. Şifreleme anahtarınızı güncellemek hızlı ve kolaydır. Sadece ana şifrenizi aşağıya yazın. Bu güncelleme sonunda zorunlu hale gelecektir."
+    "message": "Daha yüksek güvenlik ve daha yeni özelliklere erişim sağlayan daha büyük şifreleme anahtarlarına geçtik. Şifreleme anahtarınızı kolayca güncelleyebilirsiniz. Ana parolanızı aşağıya yazmanız yeterli. Bu güncelleme bir süre sonra zorunlu hale gelecektir."
   },
   "updateEncryptionKeyWarning": {
     "message": "After updating your encryption key, you are required to log out and back in to all Bitwarden applications that you are currently using (such as the mobile app or browser extensions). Failure to log out and back in (which downloads your new encryption key) may result in data corruption. We will attempt to log you out automatically, however, it may be delayed."
@@ -3029,7 +3064,7 @@
     "message": "Kuruluşu yükselt"
   },
   "upgradeOrganizationDesc": {
-    "message": "Bu özellik ücretsiz kuruluşlar için mevcut değil. Daha fazla özellik için ücretli plana geçin."
+    "message": "Bu özellik ücretsiz kuruluşlar için mevcut değil. Daha fazla özellik için ücretli pakete geçin."
   },
   "createOrganizationStep1": {
     "message": "Kuruluş oluşturma: 1. adım"
@@ -3178,10 +3213,10 @@
     "message": "API anahtarınız, Bitwarden API'sinde kimlik doğrulama için kullanılabilir."
   },
   "apiKeyRotateDesc": {
-    "message": "API anahtarını döndürmek önceki anahtarı geçersiz kılacaktır. Geçerli anahtarın artık güvenli olmadığına inanıyorsanız API anahtarınızı döndürebilirsiniz."
+    "message": "API anahtarının güncellenmesi önceki anahtarı geçersiz kılacaktır. Geçerli anahtarın artık güvenli olmadığını düşünüyorsanız API anahtarınızı güncelleyebilirsiniz."
   },
   "apiKeyWarning": {
-    "message": "API anahtarınız organizasyona tam erişime sahiptir. Gizli tutulmalıdır."
+    "message": "API anahtarınız kuruluşa tam erişime sahiptir ve gizli tutulmalıdır."
   },
   "userApiKeyDesc": {
     "message": "API anahtarınız, Bitwarden CLI'de kimlik doğrulaması için kullanılabilir."
@@ -3296,7 +3331,7 @@
     "message": "Kilitli bir kasaya tekrar erişebilmek için ana parolanızı tekrar girmeniz gerekir."
   },
   "vaultTimeoutActionLogOutDesc": {
-    "message": "Çıkış yapılmış bir kasaya tekrardan erişmek için yeniden kimlik doğrulaması gerekir."
+    "message": "Çıkış yapılmış bir kasaya yeniden erişmek için kimliğinizi doğrulamanız gerekir."
   },
   "lock": {
     "message": "Kilitle",
@@ -3328,7 +3363,7 @@
     "message": "Kayıtlar kalıcı olarak silindi"
   },
   "permanentlyDeleteSelectedItemsDesc": {
-    "message": "Silinmesi için $COUNT$ öge seçtiniz. Bu ögelerin tamamını kalıcı şekilde silmek istediğinizden emin misiniz?",
+    "message": "Kalıcı olarak silinmek üzere $COUNT$ kayıt seçtiniz. Bu kayıtların hepsini kalıcı olarak silmek istediğinizden emin misiniz?",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -3400,7 +3435,7 @@
     "message": "KDV bilgisi ekle (tercihe bağlı)"
   },
   "taxIdNumber": {
-    "message": "KDV Vergi Kimlik Numarası"
+    "message": "KDV/vergi kimlik numarası"
   },
   "taxInfoUpdated": {
     "message": "Vergi bilgileriniz güncellendi."
@@ -3427,7 +3462,7 @@
     "message": "Şimdi bu sekmeyi kapatıp uzantı üzerinden devam edebilirsiniz."
   },
   "includeAllTeamsFeatures": {
-    "message": "Tüm Takımlar özellikleri, artı:"
+    "message": "Ekip paketi özelliklerinin yanı sıra:"
   },
   "includeSsoAuthentication": {
     "message": "SAML2.0 ve OpenID Connect ile SSO doğrulaması"
@@ -3624,7 +3659,7 @@
     "message": "Acil durum erişimi"
   },
   "emergencyAccessDesc": {
-    "message": "Güvenilen kişiler için acil erişim izni ver ve yönet. Güvenilen kişiler acil bir durumda hesabınızı görmek veya devralmak için talepte bulunabilirler. Sıfır bilgi ispatı ile paylaşımının nasıl çalıştığı ile ilgili detaylar için yardım sayfamızı ziyaret edin."
+    "message": "Güvenilen kişiler için acil erişim izni verin ve izinleri yönetin. Güvenilen kişiler acil bir durumda hesabınızı görmek veya devralmak için talepte bulunabilirler. Sıfır bilgi ispatı ile paylaşımının nasıl çalıştığını öğrenmek için yardım sayfamıza bakabilirsiniz."
   },
   "emergencyAccessOwnerWarning": {
     "message": "Bir veya daha fazla kuruluşun sahibisiniz. Acil durum kişisine devralma yetkisi verirseniz devralma işleminden sonra bu kişi sahip olduğunuz tüm hakları kullanabilir."
@@ -3651,7 +3686,7 @@
     "message": "Acil durum kişisini düzenle"
   },
   "inviteEmergencyContactDesc": {
-    "message": "Aşağıya Bitwarden hesabının email adresini girerek yeni bir acil durum kişisini davet edebilirsiniz. Eğer halihazırda bir Bitwarden hesapları yoksa, yeni bir hesap oluşturmaları istenecektir."
+    "message": "Aşağıya Bitwarden hesabının e-posta adresini girerek yeni bir acil durum kişisi davet edebilirsiniz. Bu kişinin mevcut bir Bitwarden hesabı yoksa yeni bir hesap açması istenecektir."
   },
   "emergencyAccessRecoveryInitiated": {
     "message": "Acil durum erişimi başlatıldı"
@@ -3824,7 +3859,7 @@
     }
   },
   "planPrice": {
-    "message": "Plan fiyatı"
+    "message": "Paket fiyatı"
   },
   "estimatedTax": {
     "message": "Tahmini vergi"
@@ -4106,10 +4141,10 @@
     "message": "Kuruluş yöneticilerinin kuruluş kullanıcılarının ana parolalarını sıfırlamasına izin ver."
   },
   "resetPasswordPolicyWarning": {
-    "message": "Yöneticiler ana parolalarını sıfırlayabilmeden önce kuruluştaki kullanıcıların kendileri katılmaları veya otomatik eklenmeleri gerekir."
+    "message": "Yöneticilerin kullanıcıların ana parolalarını sıfırlayabilmesi önce kuruluştaki kullanıcıların kendileri katılmaları veya otomatik eklenmeleri gerekir."
   },
   "resetPasswordPolicyAutoEnroll": {
-    "message": "Otomatik Eklenme"
+    "message": "Otomatik eklenme"
   },
   "resetPasswordPolicyAutoEnrollDescription": {
     "message": "Davetiyeleri kabul edildiğinde tüm kullanıcılar otomatik olarak parola sıfırlamaya eklenecek."
@@ -4235,16 +4270,16 @@
     "message": "Sağlayıcıya katıl"
   },
   "joinProviderDesc": {
-    "message": "You've been invited to join the provider listed above. To accept the invitation, you need to log in or create a new Bitwarden account."
+    "message": "Yukarıdaki sağlayıcıya katılmaya davet edildiniz. Daveti kabul etmek için giriş yapmanız veya yeni bir Bitwarden hesabı açmanız gerekiyor."
   },
   "providerInviteAcceptFailed": {
-    "message": "Unable to accept invitation. Ask a provider admin to send a new invitation."
+    "message": "Davet kabul edilemedi. Sağlayıcı yöneticisinden yeni bir davet göndermesini isteyin."
   },
   "providerInviteAcceptedDesc": {
-    "message": "You can access this provider once an administrator confirms your membership. We'll send you an email when that happens."
+    "message": "Yöneticiler üyeliğinizi onayladıktan sonra sağlayıcıya erişebilirsiniz. Üyeliğiniz onaylandığında size e-posta göndereceğiz."
   },
   "providerUsersNeedConfirmed": {
-    "message": "You have users that have accepted their invitation, but still need to be confirmed. Users will not have access to the provider until they are confirmed."
+    "message": "Davetlerinizi kabul eden ancak hâlâ onaylanması gereken kullanıcılarınız var. Kullanıcılar onaylanana kadar sağlayıcıya erişemez."
   },
   "provider": {
     "message": "Sağlayıcı"
@@ -4293,7 +4328,7 @@
     "message": "Sağlayıcı güncellendi"
   },
   "yourProviderIs": {
-    "message": "Your provider is $PROVIDER$. They have administrative and billing privileges for your organization.",
+    "message": "Sağlayıcınız: $PROVIDER$. Kuruluşunuzun yönetim ve ödeme yetkileri sağlayıcınıza aittir.",
     "placeholders": {
       "provider": {
         "content": "$1",
@@ -4302,7 +4337,7 @@
     }
   },
   "detachedOrganization": {
-    "message": "The organization $ORGANIZATION$ has been detached from your provider.",
+    "message": "$ORGANIZATION$ kuruluşu sağlayıcınızdan ayrıldı.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4366,16 +4401,16 @@
     "message": "Kasa zaman aşımınız, kuruluşunuz tarafından belirlenen kısıtlamaları aşıyor."
   },
   "disablePersonalVaultExport": {
-    "message": "Disable Personal Vault Export"
+    "message": "Kişisel kasayı dışa aktarmayı devre dışı bırak"
   },
   "disablePersonalVaultExportDesc": {
-    "message": "Prohibits users from exporting their private vault data."
+    "message": "Kullanıcıların kişisel kasa verilerini dışa aktarmasını yasaklar."
   },
   "vaultExportDisabled": {
-    "message": "Vault Export Disabled"
+    "message": "Kasayı dışa aktarma devre dışı"
   },
   "personalVaultExportPolicyInEffect": {
-    "message": "One or more organization policies prevents you from exporting your personal vault."
+    "message": "Bir veya daha fazla kuruluş ilkesi, kişisel kasanızı dışa aktarmanızı engelliyor."
   },
   "selectType": {
     "message": "SSO türünü seçin"
@@ -4393,13 +4428,13 @@
     "message": "SAML Kimlik Sağlayıcı Yapılandırması"
   },
   "callbackPath": {
-    "message": "Callback Path"
+    "message": "Callback yolu"
   },
   "signedOutCallbackPath": {
-    "message": "Signed Out Callback Path"
+    "message": "Signed out callback yolu"
   },
   "authority": {
-    "message": "Authority"
+    "message": "Otorite"
   },
   "clientId": {
     "message": "Müşteri kimliği"
@@ -4414,49 +4449,49 @@
     "message": "OIDC yönlendirme davranışı"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "Get claims from user info endpoint"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "Custom Scopes"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "Custom User ID Claim Types"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "Email Claim Types"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "Custom Name Claim Types"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "Requested Authentication Context Class Reference values"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "Expected \"acr\" Claim Value In Response"
   },
   "spEntityId": {
-    "message": "SP Entity ID"
+    "message": "SP varlık kimliği"
   },
   "spMetadataUrl": {
-    "message": "SAML 2.0 Metadata URL"
+    "message": "SAML 2.0 metadata URL'si"
   },
   "spAcsUrl": {
-    "message": "Assertion Consumer Service (ACS) URL"
+    "message": "Assertion consumer service (ACS) URL'si"
   },
   "spNameIdFormat": {
-    "message": "Name ID Format"
+    "message": "İsim kimliği biçimi"
   },
   "spOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "Çıkış imza algoritması"
   },
   "spSigningBehavior": {
-    "message": "Signing Behavior"
+    "message": "İmza davranışı"
   },
   "spMinIncomingSigningAlgorithm": {
-    "message": "Minimum Incoming Signing Algorithm"
+    "message": "Minimum gelen imza algoritması"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "Expect signed assertions"
   },
   "spValidateCertificates": {
     "message": "Sertifikaları doğrula"
@@ -4468,13 +4503,10 @@
     "message": "Bağlama türü"
   },
   "idpSingleSignOnServiceUrl": {
-    "message": "Single Sign On Service URL"
+    "message": "Tek oturum açma (SSO) servis URL'si"
   },
   "idpSingleLogoutServiceUrl": {
-    "message": "Single Log Out Service URL"
-  },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
+    "message": "Tek çıkış (SLO) servis URL'si"
   },
   "idpX509PublicCert": {
     "message": "X509 Public Certificate"
@@ -4483,31 +4515,31 @@
     "message": "Outbound Signing Algorithm"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "Allow unsolicited authentication response"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Allow outbound logout requests"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+  "idpSignAuthenticationRequests": {
+    "message": "Sign authentication requests"
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
   },
   "sponsoredFamilies": {
-    "message": "Free Bitwarden Families"
+    "message": "Ücretsiz Bitwarden Aile"
   },
   "sponsoredFamiliesEligible": {
     "message": "You and your family are eligible for Free Bitwarden Families. Redeem with your personal email to keep your data secure even when you are not at work."
   },
   "sponsoredFamiliesEligibleCard": {
-    "message": "Redeem your Free Bitwarden for Families plan today to keep your data secure even when you are not at work."
+    "message": "Verilerinizi evde de güvenle depolamak için Ücretsiz Bitwarden Aile paketinizi hemen kullanmaya başlayın."
   },
   "sponsoredFamiliesInclude": {
-    "message": "The Bitwarden for Families plan include"
+    "message": "Bitwarden Aile paketinin özellikleri"
   },
   "sponsoredFamiliesPremiumAccess": {
-    "message": "Premium access for up to 6 users"
+    "message": "6 kullanıcı için premium erişim"
   },
   "sponsoredFamiliesSharedCollections": {
     "message": "Shared collections for Family secrets"
@@ -4516,7 +4548,7 @@
     "message": "The link is no longer valid. Please have the sponsor resend the offer."
   },
   "reclaimedFreePlan": {
-    "message": "Reclaimed free plan"
+    "message": "Ücretsiz paket kullanıldı"
   },
   "redeem": {
     "message": "Kullan"
@@ -4531,13 +4563,13 @@
     "message": "Enter your personal email to redeem Bitwarden Families"
   },
   "sponsoredFamiliesLeaveCopy": {
-    "message": "If you leave or are removed from the sponsoring organization, your Families plan will expire at the end of the billing period."
+    "message": "Sponsor kuruluştan ayrılır veya çıkarılırsanız Aile paketiniz ödeme döneminin sonunda sonra erecektir."
   },
   "acceptBitwardenFamiliesHelp": {
     "message": "Accept offer for an existing organization or create a new Families organization."
   },
   "setupSponsoredFamiliesLoginDesc": {
-    "message": "You've been offered a free Bitwarden Families Plan Organization. To continue, you need to log in to the account that received the offer."
+    "message": "Ücretsiz Bitwarden Aile Paketi Kuruluşuna davet edildiniz. Devam etmek için bu teklifi alan hesaba giriş yapmanız gerekiyor."
   },
   "sponsoredFamiliesAcceptFailed": {
     "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
@@ -4552,7 +4584,7 @@
     }
   },
   "sponsoredFamiliesOffer": {
-    "message": "Accept Free Bitwarden Families"
+    "message": "Ücretsiz Bitwarden Aile'yi kabul et"
   },
   "sponsoredFamiliesOfferRedeemed": {
     "message": "Free Bitwarden Families offer successfully redeemed"
@@ -4564,7 +4596,7 @@
     "message": "Redeemed Account"
   },
   "revokeAccount": {
-    "message": "Revoke account $NAME$",
+    "message": "$NAME$ hesabını iptal et",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4582,7 +4614,7 @@
     }
   },
   "freeFamiliesPlan": {
-    "message": "Free Families Plan"
+    "message": "Ücretsiz Aile Paketi"
   },
   "redeemNow": {
     "message": "Şimdi kullan"
@@ -4600,7 +4632,7 @@
     "message": "Sponsorluk oluştur"
   },
   "revoke": {
-    "message": "Revoke"
+    "message": "İptal et"
   },
   "emailSent": {
     "message": "E-posta gönderildi"
@@ -4723,7 +4755,7 @@
     "message": "Teklifi kabul et"
   },
   "sponsoringOrg": {
-    "message": "Sponsor Organizasyon"
+    "message": "Sponsor kuruluş"
   },
   "keyConnectorTest": {
     "message": "Test"
@@ -4732,12 +4764,117 @@
     "message": "Başarılı! Key Connector'a ulaşıldı."
   },
   "keyConnectorTestFail": {
-    "message": "Key Connector 'e ulaşılamadı. URL 'i kontrol edin."
+    "message": "Key Connector'e ulaşılamadı. URL 'i kontrol edin."
   },
   "sponsorshipTokenHasExpired": {
     "message": "Sponsorluk teklifinin süresi doldu."
   },
   "freeWithSponsorship": {
     "message": "FREE with sponsorship"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ fields above need your attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 field above needs your attention."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ zorunludur.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "zorunlu"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Required if Entity ID is not a URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Optional Customizations"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Required if Authority is not valid."
+  },
+  "separateMultipleWithComma": {
+    "message": "Separate multiple with a comma."
+  },
+  "sessionTimeout": {
+    "message": "Oturumunuzun süresi doldu. Lütfen geri dönüp yeniden giriş yapın."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exporting Personal Vault"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Exporting Organization Vault"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Only the personal vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Only the organization vault associated with $ORGANIZATION$ will be exported. Personal vault items and items from other organizations will not be included.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "backToReports": {
+    "message": "Raporlara geri dön"
+  },
+  "generator": {
+    "message": "Oluşturucu"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Ne oluşturmak istersiniz?"
+  },
+  "passwordType": {
+    "message": "Parola türü"
+  },
+  "regenerateUsername": {
+    "message": "Kullanıcı adını yeniden oluştur"
+  },
+  "generateUsername": {
+    "message": "Kullanıcı adı oluştur"
+  },
+  "usernameType": {
+    "message": "Kullanıcı adı türü"
+  },
+  "plusAddressedEmail": {
+    "message": "Artı adresli e-posta"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "E-posta sağlayıcınızın alt adres özelliklerini kullanın."
+  },
+  "catchallEmail": {
+    "message": "Catch-all e-posta"
+  },
+  "catchallEmailDesc": {
+    "message": "Alan adınızın tüm iletileri yakalamaya ayarlanmış adresini kullanın."
+  },
+  "random": {
+    "message": "Rastgele"
+  },
+  "randomWord": {
+    "message": "Rastgele kelime"
+  },
+  "service": {
+    "message": "Servis"
   }
 }

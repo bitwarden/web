@@ -51,6 +51,16 @@ const moduleRules = [
     ],
   },
   {
+    test: /\.css$/,
+    use: [
+      {
+        loader: MiniCssExtractPlugin.loader,
+      },
+      "css-loader",
+      "postcss-loader",
+    ],
+  },
+  {
     test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
     loader: "@ngtools/webpack",
   },
@@ -190,17 +200,18 @@ const devServer =
           },
         },
         headers: (req) => {
-          if (!req.url.includes("connector.html")) {
+          if (!req.originalUrl.includes("connector.html")) {
             return [
               {
                 key: "Content-Security-Policy",
                 value:
-                  "default-src 'self'; script-src 'self' 'sha256-ryoU+5+IUZTuUyTElqkrQGBJXr1brEv6r2CA62WUw8w=' https://js.stripe.com https://js.braintreegateway.com https://www.paypalobjects.com; style-src 'self' https://assets.braintreegateway.com https://*.paypal.com 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' 'sha256-JVRXyYPueLWdwGwY9m/7u4QlZ1xeQdqUj2t8OVIzZE4='; img-src 'self' data: https://icons.bitwarden.net https://*.paypal.com https://www.paypalobjects.com https://q.stripe.com https://haveibeenpwned.com https://www.gravatar.com; child-src 'self' https://js.stripe.com https://assets.braintreegateway.com https://*.paypal.com https://*.duosecurity.com; frame-src 'self' https://js.stripe.com https://assets.braintreegateway.com https://*.paypal.com https://*.duosecurity.com; connect-src 'self' wss://notifications.bitwarden.com https://notifications.bitwarden.com https://cdn.bitwarden.net https://api.pwnedpasswords.com https://2fa.directory/api/v2/totp.json https://2fa.directory/api/v3/totp.json https://api.stripe.com https://www.paypal.com https://api.braintreegateway.com https://client-analytics.braintreegateway.com https://*.braintree-api.com https://bitwardenxx5keu3w.blob.core.windows.net; object-src 'self' blob:;",
+                  "default-src 'self'; script-src 'self' 'sha256-ryoU+5+IUZTuUyTElqkrQGBJXr1brEv6r2CA62WUw8w=' https://js.stripe.com https://js.braintreegateway.com https://www.paypalobjects.com; style-src 'self' https://assets.braintreegateway.com https://*.paypal.com 'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' 'sha256-JVRXyYPueLWdwGwY9m/7u4QlZ1xeQdqUj2t8OVIzZE4='; img-src 'self' data: https://icons.bitwarden.net https://*.paypal.com https://www.paypalobjects.com https://q.stripe.com https://haveibeenpwned.com https://www.gravatar.com; child-src 'self' https://js.stripe.com https://assets.braintreegateway.com https://*.paypal.com https://*.duosecurity.com; frame-src 'self' https://js.stripe.com https://assets.braintreegateway.com https://*.paypal.com https://*.duosecurity.com; connect-src 'self' wss://notifications.bitwarden.com https://notifications.bitwarden.com https://cdn.bitwarden.net https://api.pwnedpasswords.com https://2fa.directory/api/v3/totp.json https://api.stripe.com https://www.paypal.com https://api.braintreegateway.com https://client-analytics.braintreegateway.com https://*.braintree-api.com https://*.blob.core.windows.net; object-src 'self' blob:;",
               },
             ];
           }
         },
         hot: false,
+        port: envConfig.dev?.port ?? 8080,
         allowedHosts: envConfig.dev?.allowedHosts ?? "auto",
         client: {
           overlay: {
@@ -240,6 +251,13 @@ const webpackConfig = {
       new TerserPlugin({
         terserOptions: {
           safari10: true,
+          // Replicate Angular CLI behaviour
+          compress: {
+            global_defs: {
+              ngDevMode: false,
+              ngI18nClosureMode: false,
+            },
+          },
         },
       }),
     ],

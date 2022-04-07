@@ -41,7 +41,7 @@
     "message": "Nové heslo"
   },
   "passphrase": {
-    "message": "Heslo"
+    "message": "Prístupová fráza"
   },
   "notes": {
     "message": "Poznámky"
@@ -187,7 +187,12 @@
     "message": "Upraviť priečinok"
   },
   "baseDomain": {
-    "message": "Základná doména"
+    "message": "Základná doména",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Názov domény",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Hostiteľ",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Zabezpečená poznámka"
+  },
+  "typeLoginPlural": {
+    "message": "Prihlásenia"
+  },
+  "typeCardPlural": {
+    "message": "Karty"
+  },
+  "typeIdentityPlural": {
+    "message": "Identity"
+  },
+  "typeSecureNotePlural": {
+    "message": "Zabezpečené poznámky"
   },
   "folders": {
     "message": "Priečinky"
@@ -1412,6 +1429,9 @@
   },
   "reports": {
     "message": "Reporty"
+  },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
   },
   "unsecuredWebsitesReport": {
     "message": "Správa o nezabezpečených stránkach"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Odstrániť organizáciu"
   },
-  "deleteOrganizationDesc": {
-    "message": "Pokračujte nižšie ak chcete odstrániť túto organizáciu a všetky súvisiace dáta. Individuálni používatelia budu zachovaní, ale už nebudú súčasťou tejto organizácie. "
+  "deletingOrganizationContentWarning": {
+    "message": "Zadaním hlavného hesla potvrďte odstránenie položky $ORGANIZATION$ a všetkých súvisiacich údajov. Údaje trezora v položke $ORGANIZATION$ zahŕňajú:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Odstránenie organizácie je trvalé. Operáciu nie je možné vrátiť späť."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Používateľské účty zostanú aktívne aj po odstránení, ale už nebudú spojené s touto organizáciou."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Odstránenie $ORGANIZATION$ je trvalé a nezvratné.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organizácia odstránená"
@@ -4417,22 +4452,22 @@
     "message": "Získanie žiadostí z koncového bodu informácií o používateľovi"
   },
   "additionalScopes": {
-    "message": "Ďalšie/vlastné rozsahy (oddelené čiarkou)"
+    "message": "Vlastné rozsahy"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "Custom User ID Claim Types"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "Email Claim Types"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "Custom Name Claim Types"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "Requested Authentication Context Class Reference values"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "Expected \"acr\" Claim Value In Response"
   },
   "spEntityId": {
     "message": "ID subjektu SP"
@@ -4456,7 +4491,7 @@
     "message": "Minimum Incoming Signing Algorithm"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "Expect signed assertions"
   },
   "spValidateCertificates": {
     "message": "Overiť certifikáty"
@@ -4473,9 +4508,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Single Log Out Service URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
-  },
   "idpX509PublicCert": {
     "message": "Verejný certifikát X509"
   },
@@ -4483,13 +4515,13 @@
     "message": "Outbound Signing Algorithm"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "Allow unsolicited authentication response"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Allow outbound logout requests"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+  "idpSignAuthenticationRequests": {
+    "message": "Sign authentication requests"
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
@@ -4739,5 +4771,110 @@
   },
   "freeWithSponsorship": {
     "message": "FREE with sponsorship"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ fields above need your attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 field above needs your attention."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ is required.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "required"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Required if Entity ID is not a URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Optional Customizations"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Required if Authority is not valid."
+  },
+  "separateMultipleWithComma": {
+    "message": "Separate multiple with a comma."
+  },
+  "sessionTimeout": {
+    "message": "Vaša relácia vypršala. Vráťte sa späť a skúste sa prihlásiť znova."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exportovanie osobného trezora"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Exportovanie trezora organizácie"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Exportované budú iba položy osobného trezora spojené s $EMAIL$. Položky trezora organizácie nebudú zahrnuté.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Exportované budú iba položky trezora organizácie spojené s $ORGANIZATION$. Položky osobného trezora a položky z iných organizácií nebudú zahrnuté.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generátor"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Čo by ste chceli vygenerovať?"
+  },
+  "passwordType": {
+    "message": "Typ hesla"
+  },
+  "regenerateUsername": {
+    "message": "Vygenerovať nové používateľské meno"
+  },
+  "generateUsername": {
+    "message": "Vygenerovať používateľské meno"
+  },
+  "usernameType": {
+    "message": "Typ používateľského mena"
+  },
+  "plusAddressedEmail": {
+    "message": "E-mail s plusovým aliasom"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Použiť možnosti subadresovania svojho poskytovateľa e-mailu."
+  },
+  "catchallEmail": {
+    "message": "Catch-all e-mail"
+  },
+  "catchallEmailDesc": {
+    "message": "Použiť doručenú poštu typu catch-all nastavenú na doméne."
+  },
+  "random": {
+    "message": "Náhodné"
+  },
+  "randomWord": {
+    "message": "Náhodné slovo"
+  },
+  "service": {
+    "message": "Služba"
   }
 }

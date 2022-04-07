@@ -187,7 +187,12 @@
     "message": "Редагувати теку"
   },
   "baseDomain": {
-    "message": "Основний домен"
+    "message": "Основний домен",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Вузол",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Захищена нотатка"
+  },
+  "typeLoginPlural": {
+    "message": "Записи"
+  },
+  "typeCardPlural": {
+    "message": "Картки"
+  },
+  "typeIdentityPlural": {
+    "message": "Особисті дані"
+  },
+  "typeSecureNotePlural": {
+    "message": "Захищені нотатки"
   },
   "folders": {
     "message": "Теки"
@@ -1413,6 +1430,9 @@
   "reports": {
     "message": "Звіти"
   },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
+  },
   "unsecuredWebsitesReport": {
     "message": "Звіт про незахищені вебсайти"
   },
@@ -1462,7 +1482,7 @@
     "message": "Звіт викритих паролів"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Викритими називаються паролі, які було знайдено у відомих витоках даних, що публікуються в загальнодоступних місцях або продаються на чорному ринку в інтернеті хакерами."
+    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
   },
   "exposedPasswordsFound": {
     "message": "Знайдено викриті паролі"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Видалити організацію"
   },
-  "deleteOrganizationDesc": {
-    "message": "Продовжуйте внизу, щоб видалити цю організацію і всі пов'язані дані. Індивідуальні облікові записи користувачів залишаться без змін, однак, вони більше не будуть пов'язані з цією організацією. "
+  "deletingOrganizationContentWarning": {
+    "message": "Введіть головний пароль для підтвердження видалення $ORGANIZATION$ та всіх пов'язаних даних. Дані сховища в $ORGANIZATION$ включають:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Видалення організації є незворотною дією. Її неможливо скасувати."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Облікові записи користувачів залишатимуться активними після видалення, але більше не будуть пов'язані з цією організацією."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Видалення $ORGANIZATION$ є остаточним і незворотнім.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Організацію видалено"
@@ -4417,22 +4452,22 @@
     "message": "Отримувати запити від інформації користувача кінцевої точки"
   },
   "additionalScopes": {
-    "message": "Додаткові/Власні межі (розділені комами)"
+    "message": "Власні області"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Додаткові/Власні типи запитів ID користувача (розділені комами)"
+    "message": "Власні типи запитів ID користувача"
   },
   "additionalEmailClaimTypes": {
-    "message": "Додаткові/Власні типи запитів е-пошти (розділені комами)"
+    "message": "Типи запитів е-пошти"
   },
   "additionalNameClaimTypes": {
-    "message": "Додаткові/Власні типи запитів імені (розділені комами)"
+    "message": "Типи запитів власного імені"
   },
   "acrValues": {
-    "message": "Запитані значення посилання класу контексту автентифікації (acr_values)"
+    "message": "Запитані значення посилання класу контексту автентифікації"
   },
   "expectedReturnAcrValue": {
-    "message": "Очікувалось значення запиту \"acr\" у відповіді (засвідчення acr)"
+    "message": "Очікувалось значення запиту \"acr\" у відповіді"
   },
   "spEntityId": {
     "message": "ID об'єкта SP"
@@ -4456,7 +4491,7 @@
     "message": "Мінімальний алгоритм вхідного підписання"
   },
   "spWantAssertionsSigned": {
-    "message": "Вимагається підпис підтвердження"
+    "message": "Очікується підпис підтвердження"
   },
   "spValidateCertificates": {
     "message": "Перевірка сертифікатів"
@@ -4473,9 +4508,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "URL служби єдиного виходу"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "URL служби розв'язання артефактів"
-  },
   "idpX509PublicCert": {
     "message": "Публічний сертифікат X509"
   },
@@ -4485,11 +4517,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Дозволити небажану відповідь авторизації"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Вимкнути вихідні запити виходу"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Дозволити вихідні запити для виходу"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Вимагається підписання запитів на підтвердження"
+  "idpSignAuthenticationRequests": {
+    "message": "Підписувати запити авторизації"
   },
   "ssoSettingsSaved": {
     "message": "Конфігурацію єдиного входу збережено."
@@ -4739,5 +4771,110 @@
   },
   "freeWithSponsorship": {
     "message": "БЕЗПЛАТНО зі спонсоруванням"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ зазначених вище полів потребують вашої уваги.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 зазначене вище поле потребує вашої уваги."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ є обов'язковим.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "обов’язково"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Обов'язково, якщо ID елемента не є URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Додаткові налаштування"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Обов'язково, якщо установа недійсна."
+  },
+  "separateMultipleWithComma": {
+    "message": "Декілька значень розділених комою."
+  },
+  "sessionTimeout": {
+    "message": "Час вашого сеансу завершився. Поверніться назад і спробуйте увійти знову."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Експортування особистого сховища"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Експортування сховища організації"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Будуть експортовані лише записи особистого сховища, пов'язані з $EMAIL$. Записи сховища організації не буде включено.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Будуть експортовані лише записи сховища організації, пов'язані з $ORGANIZATION$. Записи особистого сховища та записи з інших організацій не буде включено.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Regenerate Username"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }

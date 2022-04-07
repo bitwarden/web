@@ -187,7 +187,12 @@
     "message": "Rediger mappen"
   },
   "baseDomain": {
-    "message": "Grunndomene"
+    "message": "Grunndomene",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domene",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Vert",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Sikker notis"
+  },
+  "typeLoginPlural": {
+    "message": "Innlogginger"
+  },
+  "typeCardPlural": {
+    "message": "Kort"
+  },
+  "typeIdentityPlural": {
+    "message": "Identiteter"
+  },
+  "typeSecureNotePlural": {
+    "message": "Sikre notater"
   },
   "folders": {
     "message": "Mapper"
@@ -659,7 +676,7 @@
     "message": "Ny organisasjon"
   },
   "noOrganizationsList": {
-    "message": "Du tilhører ikke noen organisasjoner. Organisasjoner gjør det mulig for deg å sikkert dele objekter med andre brukere."
+    "message": "Du tilhører ikke noen organisasjoner. Organisasjoner gjør det mulig for deg å trygt dele objekter med andre brukere."
   },
   "versionNumber": {
     "message": "Versjon $VERSION_NUMBER$",
@@ -832,10 +849,10 @@
     "message": "Bekreft eksport av hvelvet"
   },
   "exportWarningDesc": {
-    "message": "Eksporten inneholder dine hvelvdataer i et ukryptert format. Du burde ikke lagre eller sende den eksporterte filen over usikre tjenester (f.eks. E-post). Slett det umiddelbart etter at du er ferdig med å bruke dem."
+    "message": "Eksporten inneholder dine hvelvdata i ukryptert format. Du bør ikke lagre eller sende den eksporterte filen over usikre tjenester (som e-post). Slett filen umiddelbart etter at du er ferdig med å bruke den."
   },
   "encExportKeyWarningDesc": {
-    "message": "Denne eksporten krypterer dataene dine ved hjelp av kontoen din sin krypteringsnøkkel. Hvis du noen gang endrer krypteringsnøkkelen til kontoen din, bør du eksportere dataene igjen, ettersom du da ikke vil kunne dekryptere denne eksportfilen."
+    "message": "Denne eksporteringen krypterer dataene dine ved hjelp av din kontos krypteringsnøkkel. Hvis du noen gang endrer krypteringsnøkkelen til kontoen din, bør du eksportere dataene igjen, ettersom du da ikke vil kunne dekryptere denne eksportfilen."
   },
   "encExportAccountWarningDesc": {
     "message": "Kontokrypteringsnøkler er unike for hver Bitwarden sin brukerkonto, og du kan ikke importere en kryptert eksport til en annen konto."
@@ -856,20 +873,20 @@
     "message": "Passordgenerator"
   },
   "minComplexityScore": {
-    "message": "Minimumspoengsum for kompleksistet"
+    "message": "Minimum kompleksitetscore"
   },
   "minNumbers": {
-    "message": "Minst antall numre"
+    "message": "Minste antall sifre"
   },
   "minSpecial": {
-    "message": "Minst antall spesialtegn",
+    "message": "Minste antall spesialtegn",
     "description": "Minimum Special Characters"
   },
   "ambiguous": {
-    "message": "Unngå tegn som kan forveksles"
+    "message": "Unngå tvetydige tegn"
   },
   "regeneratePassword": {
-    "message": "Omgenerer et passord"
+    "message": "Regenerer passord"
   },
   "length": {
     "message": "Lengde"
@@ -878,14 +895,14 @@
     "message": "Antall ord"
   },
   "wordSeparator": {
-    "message": "Ordadskiller"
+    "message": "Orddeler"
   },
   "capitalize": {
     "message": "Stor forbokstav",
     "description": "Make the first letter of a work uppercase."
   },
   "includeNumber": {
-    "message": "Inkluder nummer"
+    "message": "Inkluder siffer"
   },
   "passwordHistory": {
     "message": "Passordhistorikk"
@@ -898,16 +915,16 @@
     "description": "To clear something out. example: To clear browser history."
   },
   "accountUpdated": {
-    "message": "Kontoen er oppdatert"
+    "message": "Konto oppdatert"
   },
   "changeEmail": {
     "message": "Endre e-postadresse"
   },
   "changeEmailTwoFactorWarning": {
-    "message": "Å fortsette vil endre din kontos e-post adresse. Det vil ikke endre e-postadressen som brukes ved 2-trinnsinnlogging. Du kan endre denne e-postadressen i 2-trinns innloggingsinnstillinger."
+    "message": "Om du fortsetter vil du endre e-postadressen til kontoen din. Det vil ikke endre e-postadressen som brukes ved to-faktorinnlogging. Du kan endre denne e-postadressen i to-trinns innloggingsinnstillinger."
   },
   "newEmail": {
-    "message": "Ny E-postadresse"
+    "message": "Ny e-postadresse"
   },
   "code": {
     "message": "Kode"
@@ -925,13 +942,13 @@
     "message": "Å fortsette vil logge deg ut av din nåværende økt, og krever at du logger deg på igjen. Aktive økter på andre enheter kan forbli aktive i opptil en time."
   },
   "emailChanged": {
-    "message": "E-postadressen er endret"
+    "message": "E-postadressen endret"
   },
   "logBackIn": {
     "message": "Vennligst logg på igjen."
   },
   "logBackInOthersToo": {
-    "message": "Vennligst logg inn på nytt. Dersom du bruker andre Bitwarden-apper og -programmer, logg av og på på dem også."
+    "message": "Vennligst logg inn på nytt. Dersom du bruker andre Bitwarden-applikasjoner logg av og på på dem også."
   },
   "changeMasterPassword": {
     "message": "Endre hovedpassordet"
@@ -955,7 +972,7 @@
     "message": "KDF-algoritme"
   },
   "kdfIterations": {
-    "message": "KDF-gjentakelser"
+    "message": "KDF-iterasjoner"
   },
   "kdfIterationsDesc": {
     "message": "Flere KDF-gjentakelser kan hjelpe til med å beskytte superpassordet fra å bli tvunget inn i av en angriper. Vi anbefaler en verdi på $VALUE$ eller mer.",
@@ -979,7 +996,7 @@
     "message": "Endre KDF"
   },
   "encKeySettingsChanged": {
-    "message": "Krypteringsnøkkelinnstillingene har blitt endret"
+    "message": "Krypteringsnøkkelinnstillingene endret"
   },
   "dangerZone": {
     "message": "Faresone"
@@ -991,19 +1008,19 @@
     "message": "Fjern autorisering av økter"
   },
   "deauthorizeSessionsDesc": {
-    "message": "Er du bekymret for at kontoen din er pålogget på en annen enhet? Fortsett nedenfor for å fjerne autoriseringen til alle datamaskiner eller enheter som du tidligere har brukt. Dette sikkerhetstrinnet er anbefalt dersom du tidligere har brukt en offentlig PC eller lagret passordet ditt ved et uhell på en enhet som ikke er din. Dette trinnet vil også fjerne alle tidligere huskede 2-trinnsinnloggingsøkter."
+    "message": "Er du bekymret for at kontoen din er pålogget på en annen enhet? Fortsett nedenfor for å fjerne autoriseringen til alle datamaskiner eller enheter som du tidligere har brukt. Dette sikkerhetstrinnet er anbefalt dersom du tidligere har brukt en offentlig datamaskin eller lagret passordet ditt ved et uhell på en enhet som ikke er din. Dette vil også fjerne alle tidligere huskede 2-trinnsinnloggingsøkter."
   },
   "deauthorizeSessionsWarning": {
     "message": "Å fortsette vil også logge deg av din nåværende økt, og gjør at du vil måtte logge på igjen. Du vil også bli bedt om 2-trinnsinnlogging igjen, dersom det er aktivert. Aktive økter på andre enheter kan kanskje forbli aktive i opptil en time."
   },
   "sessionsDeauthorized": {
-    "message": "Alle økter har mistet autoriseringen"
+    "message": "Fjernet autoriseringen fra alle økter"
   },
   "purgeVault": {
     "message": "Tøm hvelvet"
   },
   "purgedOrganizationVault": {
-    "message": "Tømte organisasjonens hvelv."
+    "message": "Organisasjonens hvelv tømt."
   },
   "vaultAccessedByProvider": {
     "message": "Hvelv tilgjengelig av leverandør."
@@ -1413,6 +1430,9 @@
   "reports": {
     "message": "Rapporter"
   },
+  "reportsDesc": {
+    "message": "Identifiser og løs sikkerhetsavvik i kontoene dine på nettet ved å klikke på rapportene nedenfor."
+  },
   "unsecuredWebsitesReport": {
     "message": "Rapport om usikrede nettsteder"
   },
@@ -1546,7 +1566,7 @@
     "message": "Databruddrapporter"
   },
   "breachDesc": {
-    "message": "Et \"databrudd\" er en hendelse hvor hackere har fått tilgang til et nettsteds dataer på ulovlig vis og så sluppet dem ut i offentlighet. Gå gjennom datatypene som ble kompromittert (E-postadresser, passord, bankkort, osv.) og ta handling deretter, slik som å endre passord."
+    "message": "Kontoer som har blitt avslørt kan lekke personlig informasjon. Gjør kontoene tryggere ved å aktivere 2FA eller ved å lage et sterkere passord."
   },
   "breachCheckUsernameEmail": {
     "message": "Sjekk noen av brukernavnene eller E-postadressene som du bruker."
@@ -1673,7 +1693,7 @@
     "message": "Utvidelser"
   },
   "premiumAccess": {
-    "message": "Premium tilgang"
+    "message": "Premium-tilgang"
   },
   "premiumAccessDesc": {
     "message": "Du kan gi Premium-tilgang til alle brukere i din organisasjon for $PRICE$ /$INTERVAL$.",
@@ -2705,7 +2725,7 @@
     "message": "Bekreft din kontos E-postadresse for å få tilgang til alle egenskapene."
   },
   "verifyEmailFirst": {
-    "message": "Din kontos E-postadresse må først bli verifisert."
+    "message": "E-postadressen til kontoen din må verifiseres først."
   },
   "checkInboxForVerification": {
     "message": "Se etter i din E-postkontos innboks for en verifiseringslenke."
@@ -2717,10 +2737,10 @@
     "message": "Klarte ikke å bekrefte E-postadressen din. Prøv å sende en ny bekreftelses-E-post."
   },
   "emailVerificationRequired": {
-    "message": "E-postbekreftelse kreves"
+    "message": "Bekreftelse av e-post nødvendig"
   },
   "emailVerificationRequiredDesc": {
-    "message": "Du må bekrefte e-posten din for å bruke denne funksjonen."
+    "message": "Du må bekrefte e-postadressen din for å bruke denne funksjonen."
   },
   "updateBrowser": {
     "message": "Oppdater nettleseren"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Slett organisasjonen"
   },
-  "deleteOrganizationDesc": {
-    "message": "Fortsett nedenfor for å slette denne organisasjonen og alle dens tilknyttede data. Individuelle brukerkontoer vil forbli igjen, skjønt de vil ikke være tilknyttet denne organisasjonen lenger. "
+  "deletingOrganizationContentWarning": {
+    "message": "Skriv inn hovedpassordet for å bekrefte sletting av $ORGANIZATION$ og alle tilknyttede data. Data i hvelvet i $ORGANIZATION$ inkluderer:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Å slette organisasjonen er permanent. Det kan ikke bli angret på."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Brukerkontoer vil forbli aktive etter sletting, men vil ikke lenger knyttes til denne organisasjonen."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Sletting av $ORGANIZATION$ er permanent og kan ikke angres.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organisasjonen ble slettet"
@@ -3617,14 +3652,14 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "noSendsInList": {
-    "message": "There are no Sends to list.",
+    "message": "Det er ingen Sends å vise.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "emergencyAccess": {
     "message": "Nødtilgang"
   },
   "emergencyAccessDesc": {
-    "message": "Grant and manage emergency access for trusted contacts. Trusted contacts may request access to either View or Takeover your account in case of an emergency. Visit our help page for more information and details into how zero knowledge sharing works."
+    "message": "Gi og behandle nødstilgang for betrodde kontakter. Pålitelige kontakter kan be om tilgang til enten vis eller overta kontoen din i tilfelle en nødssituasjon. Besøk vår hjelpeside for mer informasjon og detaljer om hvordan null-kunnskapsdeling fungerer."
   },
   "emergencyAccessOwnerWarning": {
     "message": "Du er en eier av en eller flere organisasjoner. Hvis du gir deg tilgang til en nødkontakt, vil de kunne bruke alle dine rettigheter som eier etter at du har gått over."
@@ -3772,17 +3807,17 @@
     "message": "Organisasjonens eiere og administratorer er unntatt fra denne policyens håndheving."
   },
   "personalOwnershipSubmitError": {
-    "message": "Due to an enterprise policy, you are restricted from saving items to your personal vault. Change the Ownership option to an organization and choose from available Collections."
+    "message": "På grunn av en virksomhetsregel er du begrenset fra å lagre gjenstander til ditt personlige hvelv. Endre eierskapet til en organisasjon og velg blant tilgjengelige samlinger."
   },
   "disableSend": {
     "message": "Deaktiver Send"
   },
   "disableSendPolicyDesc": {
-    "message": "Do not allow users to create or edit a Bitwarden Send. Deleting an existing Send is still allowed.",
+    "message": "Ikke tillat brukere å opprette eller redigere en Bitwarden Send. Å slette en eksisterende Send er fortsatt tillatt.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "disableSendExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Organisasjonsbrukere som kan håndtere organisasjonens regler, er unntatt fra håndheving av denne reglen."
   },
   "sendDisabled": {
     "message": "Send deaktivert",
@@ -3797,21 +3832,21 @@
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyDesc": {
-    "message": "Set options for creating and editing Sends.",
+    "message": "Angi alternativer for oppretting og redigering av Sends.",
     "description": "'Sends' is a plural noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsExemption": {
-    "message": "Organization users that can manage the organization's policies are exempt from this policy's enforcement."
+    "message": "Organisasjonsbrukere som kan håndtere organisasjonens regler, er unntatt fra håndheving av denne reglen."
   },
   "disableHideEmail": {
-    "message": "Do not allow users to hide their email address from recipients when creating or editing a Send.",
+    "message": "Ikke tillat brukere å skjule sin e-postadresse fra mottakere når de oppretter eller redigerer en Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "sendOptionsPolicyInEffect": {
-    "message": "The following organization policies are currently in effect:"
+    "message": "Følgende organisasjonspolicyer er for tiden i virkning:"
   },
   "sendDisableHideEmailInEffect": {
-    "message": "Users are not allowed to hide their email address from recipients when creating or editing a Send.",
+    "message": "Brukere kan ikke skjule sin e-postadresse fra mottakere når de oppretter eller redigerer en Send.",
     "description": "'Send' is a noun and the name of a feature called 'Bitwarden Send'. It should not be translated."
   },
   "modifiedPolicyId": {
@@ -4414,28 +4449,28 @@
     "message": "OIDC omdirigerer oppførsel"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "Hent claims fra endpoint for brukeropplysninger"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "Egendefinerte Scopes"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "Egendefinerte bruker-ID Claim-typer"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "E-post Claim-typer"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "Egendefinerte navne claim-typer"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "Bedt om verdier for Authentication Context Class Reference"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "Forventet \"acr\"-claimverdi i svar"
   },
   "spEntityId": {
-    "message": "SP Entity ID"
+    "message": "SP Enhets-ID"
   },
   "spMetadataUrl": {
     "message": "'SAML 2.0'-metadata-URL"
@@ -4447,16 +4482,16 @@
     "message": "Navne-ID-format"
   },
   "spOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "Utgående signeringsalgoritme"
   },
   "spSigningBehavior": {
-    "message": "Signing Behavior"
+    "message": "Signeringsatferd"
   },
   "spMinIncomingSigningAlgorithm": {
-    "message": "Minimum Incoming Signing Algorithm"
+    "message": "Minimum innkommende signeringsalgoritme"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "Forvent signerte assertions"
   },
   "spValidateCertificates": {
     "message": "Valider sertifikater"
@@ -4465,52 +4500,49 @@
     "message": "Enhets-ID"
   },
   "idpBindingType": {
-    "message": "Binding Type"
+    "message": "Bindingstype"
   },
   "idpSingleSignOnServiceUrl": {
-    "message": "Single Sign On Service URL"
+    "message": "Single Sign-On tjeneste URL"
   },
   "idpSingleLogoutServiceUrl": {
-    "message": "Single Log Out Service URL"
-  },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
+    "message": "Single Log Out-tjeneste URL"
   },
   "idpX509PublicCert": {
     "message": "X509 offentlig sertifikat"
   },
   "idpOutboundSigningAlgorithm": {
-    "message": "Outbound Signing Algorithm"
+    "message": "Utgående signeringsalgoritme"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "Tillat uoppfordret godkjennelsessvar"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Tillat utgående utloggingsforespørsler"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+  "idpSignAuthenticationRequests": {
+    "message": "Signér autentiseringsforespørseler"
   },
   "ssoSettingsSaved": {
-    "message": "Single Sign-On configuration was saved."
+    "message": "Single Sign-On konfigurasjon ble lagret."
   },
   "sponsoredFamilies": {
-    "message": "Free Bitwarden Families"
+    "message": "Gratis Bitwarden Familier"
   },
   "sponsoredFamiliesEligible": {
-    "message": "You and your family are eligible for Free Bitwarden Families. Redeem with your personal email to keep your data secure even when you are not at work."
+    "message": "Du og din familie er kvalifisert for Free Bitwarden Familier. Løs inn med din personlige e-post for å holde dataene dine sikre, selv om du ikke er på jobb."
   },
   "sponsoredFamiliesEligibleCard": {
-    "message": "Redeem your Free Bitwarden for Families plan today to keep your data secure even when you are not at work."
+    "message": "Løs inn din Free Bitwarden for Familier-abonnement i dag for å holde dataene sikre, selv om du ikke er på jobb."
   },
   "sponsoredFamiliesInclude": {
-    "message": "The Bitwarden for Families plan include"
+    "message": "Bitwarden for familier-abonnementet inkluderer"
   },
   "sponsoredFamiliesPremiumAccess": {
-    "message": "Premium access for up to 6 users"
+    "message": "Premiumtilgang for opptil 6 brukere"
   },
   "sponsoredFamiliesSharedCollections": {
-    "message": "Shared collections for Family secrets"
+    "message": "Delte samlinger til familie-hemmeligheter"
   },
   "badToken": {
     "message": "Lenken er ikke lenger gyldig. Vennligst ha sponsor på nytt tilbudet."
@@ -4540,10 +4572,10 @@
     "message": "Du har blitt tilbudt en gratis Bitwarden Familier Planlegg-organisasjon. For å fortsette må du logge inn på kontoen som mottok tilbudet."
   },
   "sponsoredFamiliesAcceptFailed": {
-    "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
+    "message": "Tilbudet kan ikke godtas. Vennligst send tilbuds-e-posten fra din virksomhetskonto, og forsøk igen."
   },
   "sponsoredFamiliesAcceptFailedShort": {
-    "message": "Unable to accept offer. $DESCRIPTION$",
+    "message": "Kan ikke godta tilbudet. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -4552,19 +4584,19 @@
     }
   },
   "sponsoredFamiliesOffer": {
-    "message": "Accept Free Bitwarden Families"
+    "message": "Aksepter gratis Bitwarden Familier"
   },
   "sponsoredFamiliesOfferRedeemed": {
-    "message": "Free Bitwarden Families offer successfully redeemed"
+    "message": "Gratis Bitwarden Familier-tilbud er innløst"
   },
   "redeemed": {
     "message": "Innløst"
   },
   "redeemedAccount": {
-    "message": "Redeemed Account"
+    "message": "Konto innløst"
   },
   "revokeAccount": {
-    "message": "Revoke account $NAME$",
+    "message": "Opphev konto $NAME$",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4573,7 +4605,7 @@
     }
   },
   "resendEmailLabel": {
-    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "message": "Send sponsorat-e-post til $NAME$ sponsorat på nytt",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4582,7 +4614,7 @@
     }
   },
   "freeFamiliesPlan": {
-    "message": "Free Families Plan"
+    "message": "Gratis Familier-abonnement"
   },
   "redeemNow": {
     "message": "Løs inn nå"
@@ -4591,13 +4623,13 @@
     "message": "Mottaker"
   },
   "removeSponsorship": {
-    "message": "Remove Sponsorship"
+    "message": "Fjern sponsorat"
   },
   "removeSponsorshipConfirmation": {
-    "message": "After removing a sponsorship, you will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+    "message": "Etter å ha fjernet en sponsor, vil du være ansvarlig for dette abonnementet og relaterte fakturaer. Er du sikker på at du vil fortsette?"
   },
   "sponsorshipCreated": {
-    "message": "Sponsorship Created"
+    "message": "Sponsor fjernet"
   },
   "revoke": {
     "message": "Tilbakekall"
@@ -4606,7 +4638,7 @@
     "message": "E-post sendt"
   },
   "revokeSponsorshipConfirmation": {
-    "message": "After removing this account, the Families organization owner will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+    "message": "Etter at kontoen er fjernet, vil Familier-organisasjonens eier bli ansvarlig for dette abonnementet og relaterede fakturaer. Er du sikker på at du vil fortsette?"
   },
   "removeSponsorshipSuccess": {
     "message": "Sponsor fjernet"
@@ -4690,7 +4722,7 @@
     "message": "Koble innlogging med SSO til din selvbetjente dekrypteringsnøkkelserver. Bruk av dette valget vil ikke medlemmer trenge å bruke Master Passwords for å dekryptere hvelvdataene. Kontakt Bitwarden Support for å lage hjelp."
   },
   "keyConnectorPolicyRestriction": {
-    "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
+    "message": "\"Logg inn med SSO og Key Connector Decryption\" er aktivert. Denne policyen gjelder bare for eiere og administratorer."
   },
   "enabledSso": {
     "message": "Skrudde på SSO"
@@ -4699,45 +4731,150 @@
     "message": "Skrudde av SSO"
   },
   "enabledKeyConnector": {
-    "message": "Enabled Key Connector"
+    "message": "Key Connector aktivert"
   },
   "disabledKeyConnector": {
-    "message": "Disabled Key Connector"
+    "message": "Key Connector deaktivert"
   },
   "keyConnectorWarning": {
-    "message": "Once members begin using Key Connector, your Organization cannot revert to Master Password decryption. Proceed only if you are comfortable deploying and managing a key server."
+    "message": "Når medlemmer begynner å bruke Key Connector, kan ikke organisasjonen din gå tilbake til hovedpassord-dekryptering. Fortsett kun dersom du er fortrolig med å implementere og administrere en nøkkelserver."
   },
   "migratedKeyConnector": {
-    "message": "Migrated to Key Connector"
+    "message": "Migrert til Key Connector"
   },
   "paymentSponsored": {
-    "message": "Please provide a payment method to associate with the organization. Don't worry, we won't charge you anything unless you select additional features or your sponsorship expires. "
+    "message": "Angi en betalingsmetode som skal knyttes til organisationen. Ta det med ro, vi vil ikke belaste deg med mindre du velger ytterligere funksjoner, eller at ditt sponsorat går ut. "
   },
   "orgCreatedSponsorshipInvalid": {
-    "message": "The sponsorship offer has expired. You may delete the organization you created to avoid a charge at the end of your 7 day trial. Otherwise you may close this prompt to keep the organization and assume billing responsibility."
+    "message": "Sponsortilbuddet er utgått. Du kan slette organisasjonen du har opprettet for at unngå belastning ved utgangen av din 7-dagers prøveperiode. Ellers kan du lukke denne meldingen for å beholde organisasjonen og påta deg faktureringsansvaret."
   },
   "newFamiliesOrganization": {
-    "message": "New Families Organization"
+    "message": "Ny Familier-organisation"
   },
   "acceptOffer": {
     "message": "Aksepter tilbudet"
   },
   "sponsoringOrg": {
-    "message": "Sponsoring Organization"
+    "message": "Sponsende organisasjon"
   },
   "keyConnectorTest": {
     "message": "Test"
   },
   "keyConnectorTestSuccess": {
-    "message": "Success! Key Connector reached."
+    "message": "Suksess! Key Connector nådd."
   },
   "keyConnectorTestFail": {
-    "message": "Cannot reach Key Connector. Check URL."
+    "message": "Kan ikke nå Key Connector. Sjekk URL."
   },
   "sponsorshipTokenHasExpired": {
-    "message": "The sponsorship offer has expired."
+    "message": "Sponsoratet er utgått."
   },
   "freeWithSponsorship": {
-    "message": "FREE with sponsorship"
+    "message": "GRATIS med sponsorat"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ felt trenger din oppmerksomhet.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 felt ovenfor trenger din oppmerksomhet."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ er obligatorisk.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "obligatorisk"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Kreves hvis enhets-ID ikke er en URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Valgfrie tilpasninger"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Required if Authority is not valid."
+  },
+  "separateMultipleWithComma": {
+    "message": "Avskill flere med komma."
+  },
+  "sessionTimeout": {
+    "message": "Økten ble tidsavbrutt. Vennligst gå tilbake og prøv å logge inn på nytt."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Eksporterer personlig hvelv"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Eksporterer organisasjonshvelv"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Bare de personlige hvelvets gjenstandene som er knyttet til $EMAIL$ vil bli eksportert. Organisasjonshvelvets gjenstander vil ikke bli inkludert.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Bare organisasjonens hvelv knyttet til $ORGANIZATION$ vil bli eksportert. Personlige hvelvelementer og gjenstander fra andre organisasjoner vil ikke bli inkludert.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "backToReports": {
+    "message": "Tilbake til rapporter"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Hva vil du generere?"
+  },
+  "passwordType": {
+    "message": "Passordtype"
+  },
+  "regenerateUsername": {
+    "message": "Regenerer Brukernavn"
+  },
+  "generateUsername": {
+    "message": "Generer brukernavn"
+  },
+  "usernameType": {
+    "message": "Brukernavntype"
+  },
+  "plusAddressedEmail": {
+    "message": "Pluss-adressert e-post"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Bruk e-posttilbyderens sub-adresseringsmuligheter."
+  },
+  "catchallEmail": {
+    "message": "Catch-all e-post"
+  },
+  "catchallEmailDesc": {
+    "message": "Bruk domenets konfigurerte catch-all innboks."
+  },
+  "random": {
+    "message": "Vilkårlig"
+  },
+  "randomWord": {
+    "message": "Vilkårlig ord"
+  },
+  "service": {
+    "message": "Tjeneste"
   }
 }

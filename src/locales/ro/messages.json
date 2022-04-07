@@ -187,7 +187,12 @@
     "message": "Editare dosar"
   },
   "baseDomain": {
-    "message": "Domeniu de bază"
+    "message": "Domeniu de bază",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Nume de domeniu",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Gazdă",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Notă protejată"
+  },
+  "typeLoginPlural": {
+    "message": "Conectări"
+  },
+  "typeCardPlural": {
+    "message": "Carduri"
+  },
+  "typeIdentityPlural": {
+    "message": "Identități"
+  },
+  "typeSecureNotePlural": {
+    "message": "Note protejate"
   },
   "folders": {
     "message": "Dosare"
@@ -1413,11 +1430,14 @@
   "reports": {
     "message": "Rapoarte"
   },
+  "reportsDesc": {
+    "message": "Identificați și eliminați lacunele de securitate din conturile dvs. online făcând clic pe rapoartele de mai jos."
+  },
   "unsecuredWebsitesReport": {
-    "message": "Raport de saituri nesecurizate"
+    "message": "Site-uri web nesigure"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Utilizarea saiturilor nesecurizate cu schema http:// poate fi periculoasă. Dacă saitul permite, ar trebui să îl accesați întotdeauna utilizând schema https://, astfel încât conexiunea dvs. să fie criptată."
+    "message": "URL-urile care încep cu http:// nu utilizează cea mai bună criptare disponibilă. Schimbați URI-urile de conectare pentru aceste conturi cu https:// pentru o navigare mai sigură."
   },
   "unsecuredWebsitesFound": {
     "message": "S-au găsit saituri web nesecurizate"
@@ -1435,10 +1455,10 @@
     "message": "Niciun articol din seiful dvs. nu are URI-uri nesecurizate."
   },
   "inactive2faReport": {
-    "message": "Raport 2FA inactiv"
+    "message": "Autentificare în doi pași inactivă"
   },
   "inactive2faReportDesc": {
-    "message": "Autentificarea cu doi factori (2FA) este o setare importantă de securitate care vă ajută să vă securizați conturile. Dacă saitul îl oferă, ar trebui să activați întotdeauna autentificarea cu doi factori."
+    "message": "Autentificarea în doi pași adaugă un nivel de protecție pentru conturile d-voastră. Activați Autentificarea în doi pași utilizând Autentificatorul Bitwarden pentru aceste conturi sau utilizați o metodă alternativă."
   },
   "inactive2faFound": {
     "message": "S-au găsit conectări fără 2FA"
@@ -1459,10 +1479,10 @@
     "message": "Instrucțiuni"
   },
   "exposedPasswordsReport": {
-    "message": "Raport de parole dezvăluite"
+    "message": "Parolele expuse"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Parolele dezvăluite sunt parole care au fost descoperite în scurgeri cunoscute de date care au fost lansate public sau vândute pe dark web de către hackeri."
+    "message": "Parolele expuse în cazul unei încălcări a securității datelor sunt ținte ușoare pentru atacatori. Schimbați aceste parole pentru a preveni eventualele intruziuni."
   },
   "exposedPasswordsFound": {
     "message": "S-au găsit parole dezvăluite"
@@ -1492,10 +1512,10 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Raport de parole slabe"
+    "message": "Parole slabe"
   },
   "weakPasswordsReportDesc": {
-    "message": "Parolele slabe pot fi ușor ghicite de hackeri și de instrumente automate folosite la spargerea parolelor. Generatorul de parole Bitwarden vă poate ajuta la crearea unor parole puternice."
+    "message": "Parolele slabe pot fi ușor ghicite de atacatori. Schimbați aceste parole cu unele puternice folosind Generatorul de parole."
   },
   "weakPasswordsFound": {
     "message": "S-au găsit parole slabe"
@@ -1513,10 +1533,10 @@
     "message": "Niciun articol din seiful dvs. nu are parole slabe."
   },
   "reusedPasswordsReport": {
-    "message": "Raport de parole refolosite"
+    "message": "Parole refolosite"
   },
   "reusedPasswordsReportDesc": {
-    "message": "Dacă unul din serviciile folosite este compromis, folosind aceeași parolă în altă parte poate permite hackerilor să aibă acces ușor la mai multe conturi online. Trebuie să folosiți parole unice pentru fiecare cont sau servici."
+    "message": "Reutilizarea parolelor facilitează accesul atacatorilor la mai multe conturi. Schimbați aceste parole astfel încât fiecare să fie unică."
   },
   "reusedPasswordsFound": {
     "message": "S-au găsit parole refolosite"
@@ -1543,10 +1563,10 @@
     }
   },
   "dataBreachReport": {
-    "message": "Raport de scurgere de date"
+    "message": "Breșă de date"
   },
   "breachDesc": {
-    "message": "O \"scurgere\" este un incident unde datele unui sait au fost accesate ilegal de hackeri apoi dezvăluite public. Verificați tipul de date compromise (e-mail, parole, carduri de credit etc.) și luați măsura adecvată, cum ar fi schimbarea parolelor."
+    "message": "Conturile care au fost piratate vă pot expune informațiile personale. Protejați conturile compromise prin activarea 2FA sau prin crearea unei parole mai puternice."
   },
   "breachCheckUsernameEmail": {
     "message": "Verificați orice nume de utilizator sau adresă e-mail pe care o folosiți."
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Ștergere organizație"
   },
-  "deleteOrganizationDesc": {
-    "message": "Continuați în modul indicat mai jos pentru a șterge această organizație și toate datele asociate. Conturile de utilizator individuale vor rămâne, deși nu vor mai fi asociate cu această organizație. "
+  "deletingOrganizationContentWarning": {
+    "message": "Introduceți parola principală pentru a confirma ștergerea $ORGANIZATION$ și a tuturor datelor asociate. Datele de seif din $ORGANIZATION$ includ:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Ștergerea organizației este definitivă. Nu poate fi anulată."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Conturile de utilizator vor rămâne active după ștergere, dar nu vor mai fi asociate cu această organizație."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Ștergerea $ORGANIZATION$ este permanentă și ireversibilă.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organizația a fost ștearsă"
@@ -4414,25 +4449,25 @@
     "message": "Comportament de redirecționare OIDC"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Obținere de revendicări din informații utilizator de punct final"
+    "message": "Obținere de claims de la punctul final de info utilizator"
   },
   "additionalScopes": {
-    "message": "Domenii de aplicare suplimentare/personalizate (delimitate prin virgule)"
+    "message": "Scopes personalizate"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Tipuri de revendicări ID utilizator suplimentare/personalizate (delimitate prin virgule)"
+    "message": "Tipuri de claim personalizate de ID utilizator"
   },
   "additionalEmailClaimTypes": {
-    "message": "Tipuri de revendicări E-mail suplimentare/personalizate (delimitate prin virgule)"
+    "message": "Tipuri de Claim e-mail"
   },
   "additionalNameClaimTypes": {
-    "message": "Tipuri de revendicări Nume suplimentare/personalizate (delimitate prin virgule)"
+    "message": "Tipuri de Claim cu nume personalizate"
   },
   "acrValues": {
-    "message": "Valorile de referință ale clasei de context de autentificare solicitate (acr_values)"
+    "message": "Valorile de referință ale clasei de context de autentificare solicitate"
   },
   "expectedReturnAcrValue": {
-    "message": "Valoarea preconizată a revendicării „acr” în răspuns (validare acr)"
+    "message": "Valoarea Claim „acr” care trebuie așteptată în răspuns"
   },
   "spEntityId": {
     "message": "ID-ul Entității SP"
@@ -4456,10 +4491,10 @@
     "message": "Algoritmul minim de semnare de intrare"
   },
   "spWantAssertionsSigned": {
-    "message": "Vreau aserțiunile semnate"
+    "message": "Se așteaptă afirmații semnate"
   },
   "spValidateCertificates": {
-    "message": "Validați certificatele"
+    "message": "Validare certificate"
   },
   "idpEntityId": {
     "message": "ID-ul Entității"
@@ -4473,9 +4508,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Serviciului de Deconectare Unică URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
-  },
   "idpX509PublicCert": {
     "message": "Certificat public X509"
   },
@@ -4483,13 +4515,13 @@
     "message": "Algoritm de semnare de ieșire"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Permiteți răspunsul de autentificare nesolicitat"
+    "message": "Se permite răspunsul nesolicitat de autentificare"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Dezactivare solicitări de deconectare de ieșire"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Se permit cererile de deconectare de ieșire"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Vreau solicitările de autentificare semnate"
+  "idpSignAuthenticationRequests": {
+    "message": "Semnare a solicitărilor de autentificare"
   },
   "ssoSettingsSaved": {
     "message": "Configurația de conectare unică a fost salvată."
@@ -4739,5 +4771,110 @@
   },
   "freeWithSponsorship": {
     "message": "GRATUIT cu sponsorizare"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ câmpuri de mai sus necesită atenția dvs.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 câmp de mai sus necesită atenția dvs."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ este obligatoriu.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "necesar"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Necesar dacă ID-ul de entitate nu este un URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Personalizări opționale"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Necesar dacă Autoritatea nu este validă."
+  },
+  "separateMultipleWithComma": {
+    "message": "Separați mai multe prin virgulă."
+  },
+  "sessionTimeout": {
+    "message": "Sesiunea dvs. a expirat. Vă rugăm reveniți și încercați să vă autentificați din nou."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exportarea seifului personal"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Exportarea seifului organizației"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Numai elementele personale din seif asociate cu $EMAIL$ vor fi exportate. Elementele seifului organizației nu vor fi incluse.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Numai seiful organizației asociat cu $ORGANIZATION$ va fi exportat. Elementele seifului personal și elementele din alte organizații nu vor fi incluse.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "backToReports": {
+    "message": "Înapoi la rapoarte"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Ce doriți să generați?"
+  },
+  "passwordType": {
+    "message": "Tip de parolă"
+  },
+  "regenerateUsername": {
+    "message": "Regenerare nume de utilizator"
+  },
+  "generateUsername": {
+    "message": "Generare nume de utilizator"
+  },
+  "usernameType": {
+    "message": "Tip de nume de utilizator"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus e-mail adresat"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Utilizați capacitățile de subadresare ale furnizorului dvs. de e-mail."
+  },
+  "catchallEmail": {
+    "message": "E-mail Catch-all"
+  },
+  "catchallEmailDesc": {
+    "message": "Utilizați inbox-ul catch-all configurat pentru domeniul dvs."
+  },
+  "random": {
+    "message": "Aleatoriu"
+  },
+  "randomWord": {
+    "message": "Cuvânt aleatoriu"
+  },
+  "service": {
+    "message": "Serviciu"
   }
 }

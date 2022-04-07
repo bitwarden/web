@@ -187,7 +187,12 @@
     "message": "Editar Pasta"
   },
   "baseDomain": {
-    "message": "Domínio de base"
+    "message": "Domínio de base",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Servidor",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Nota Segura"
+  },
+  "typeLoginPlural": {
+    "message": "Logins"
+  },
+  "typeCardPlural": {
+    "message": "Cartões"
+  },
+  "typeIdentityPlural": {
+    "message": "Identidades"
+  },
+  "typeSecureNotePlural": {
+    "message": "Notas Seguras"
   },
   "folders": {
     "message": "Pastas"
@@ -1413,6 +1430,9 @@
   "reports": {
     "message": "Relatórios"
   },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
+  },
   "unsecuredWebsitesReport": {
     "message": "Relatório de Sites Inseguros"
   },
@@ -1546,7 +1566,7 @@
     "message": "Relatório de Violação de Dados"
   },
   "breachDesc": {
-    "message": "Uma \"violação\" é um incidente em que os dados de um site foram acessados ilegalmente por hackers e liberados publicamente. Revise os tipos de dados que foram comprometidos (endereços de e-mail, senhas, cartões de crédito etc.) e tome as medidas adequadas, como a alteração de senhas."
+    "message": "Uma \"brecha\" é um incidente em que os dados de um site foram acessados ilegalmente por hackers e liberados publicamente. Revise os tipos de dados que foram comprometidos (endereços de e-mail, senhas, cartões de crédito etc.) e tome as medidas adequadas, como a alteração de senhas."
   },
   "breachCheckUsernameEmail": {
     "message": "Verifique qualquer nome de usuário ou endereço de e-mail que você usa."
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Excluir Organização"
   },
-  "deleteOrganizationDesc": {
-    "message": "Continue abaixo para excluir esta organização e todos os dados associados. As contas de usuários individuais permanecerão, embora elas não serão mais associadas a essa organização. "
+  "deletingOrganizationContentWarning": {
+    "message": "Digite a senha mestra para confirmar a exclusão de $ORGANIZATION$ e todos os dados associados. Os dados do cofre no $ORGANIZATION$ incluem:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "A exclusão da organização é permanente. Não pode ser desfeita."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "As contas de usuários permanecerão ativas após a exclusão, mas não estarão mais associadas a essa organização."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "A exclusão de $ORGANIZATION$ é permanente e irreversível.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organização Excluida"
@@ -4326,7 +4361,7 @@
     "message": "Sua Senha Mestra foi alterada recentemente por um administrador em sua organização. Para acessar o cofre, você deve atualizar sua Senha Mestra agora. Prosseguir irá desconectá-lo da sessão atual, exigindo que você faça login novamente. As sessões ativas em outros dispositivos podem continuar ativas por até uma hora."
   },
   "masterPasswordInvalidWarning": {
-    "message": "Your Master Password does not meet the policy requirements of this organization. In order to join the organization, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Sua Senha Mestra foi alterada recentemente por um administrador de sua organização. Para acessar o cofre, você precisa atualizar sua Senha Mestra agora. O processo desconectará você da sessão atual, exigindo que você inicie a sessão novamente. Sessões ativas em outros dispositivos podem continuar ativas por até uma hora."
   },
   "maximumVaultTimeout": {
     "message": "Tempo Limite do Cofre"
@@ -4473,9 +4508,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "URL de Serviço de Desconexão Único"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "URL de Serviço de Resolução de Artefato"
-  },
   "idpX509PublicCert": {
     "message": "Certificado Público X509"
   },
@@ -4485,11 +4517,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Permitir Retorno de Autenticação Não Solicitada"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Desativar Solicitações de Desconexão de Saída"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Allow outbound logout requests"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Precisa de Pedidos de Autenticação Assinados"
+  "idpSignAuthenticationRequests": {
+    "message": "Sign authentication requests"
   },
   "ssoSettingsSaved": {
     "message": "Configuração de logon único foi salva."
@@ -4739,5 +4771,110 @@
   },
   "freeWithSponsorship": {
     "message": "GRÁTIS com patrocínio"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ fields above need your attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 field above needs your attention."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ is required.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "required"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Required if Entity ID is not a URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Optional Customizations"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Required if Authority is not valid."
+  },
+  "separateMultipleWithComma": {
+    "message": "Separate multiple with a comma."
+  },
+  "sessionTimeout": {
+    "message": "Your session has timed out. Please go back and try logging in again."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exporting Personal Vault"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Exporting Organization Vault"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Only the personal vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Only the organization vault associated with $ORGANIZATION$ will be exported. Personal vault items and items from other organizations will not be included.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Regenerate Username"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }

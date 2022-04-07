@@ -5,10 +5,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 
-import { BitwardenToastModule } from "jslib-angular/components/toastr.component";
+import { JslibModule } from "jslib-angular/jslib.module";
 
 import { OssRoutingModule } from "src/app/oss-routing.module";
-import { OssModule } from "src/app/oss.module";
 import { ServicesModule } from "src/app/services/services.module";
 import { WildcardRoutingModule } from "src/app/wildcard-routing.module";
 
@@ -20,28 +19,23 @@ import { MaximumVaultTimeoutPolicyComponent } from "./policies/maximum-vault-tim
 
 @NgModule({
   imports: [
-    OssModule,
+    JslibModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
     ServicesModule,
-    BitwardenToastModule.forRoot({
-      maxOpened: 5,
-      autoDismiss: true,
-      closeButton: true,
-    }),
     InfiniteScrollModule,
     DragDropModule,
     AppRoutingModule,
     OssRoutingModule,
-    OrganizationsModule,
+    OrganizationsModule, // Must be after OssRoutingModule for competing routes to resolve properly
     RouterModule,
     WildcardRoutingModule, // Needs to be last to catch all non-existing routes
   ],
   declarations: [
     AppComponent,
-    MaximumVaultTimeoutPolicyComponent,
     DisablePersonalVaultExportPolicyComponent,
+    MaximumVaultTimeoutPolicyComponent,
   ],
   bootstrap: [AppComponent],
 })

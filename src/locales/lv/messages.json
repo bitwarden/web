@@ -187,7 +187,12 @@
     "message": "Labot mapi"
   },
   "baseDomain": {
-    "message": "Pamata domēns"
+    "message": "Pamata domēns",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Saimniekdators",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Droša piezīme"
+  },
+  "typeLoginPlural": {
+    "message": "Pierakstīšanās vienumi"
+  },
+  "typeCardPlural": {
+    "message": "Kartes"
+  },
+  "typeIdentityPlural": {
+    "message": "Identitātes"
+  },
+  "typeSecureNotePlural": {
+    "message": "Drošās piezīmes"
   },
   "folders": {
     "message": "Mapes"
@@ -1412,6 +1429,9 @@
   },
   "reports": {
     "message": "Pārskati"
+  },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
   },
   "unsecuredWebsitesReport": {
     "message": "Nedrošu tīmekļa vietņu pārskats"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Izdzēst apvienību"
   },
-  "deleteOrganizationDesc": {
-    "message": "Turpiniet zemāk lai izdzēstu organizāciju un visus ar to saistītos datus. Individuāli lietotāju konti paliks, bet tie vairs nebūs saistīti ar šo organizāciju. "
+  "deletingOrganizationContentWarning": {
+    "message": "Ir jāievada galvenā parole, lai apstiprinātu $ORGANIZATION$ un saistīto datu dzēšanu. $ORGANIZATION$ glabātavas dati iekļauj:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Apvienības dzēšana ir paliekoša. To nevar atsaukt."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Pēc dzēšanas lietotāju konti joprojām darbosies, bet tie vairs nebūs saistīti ar šo apvienību."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "$ORGANIZATION$ dzēšana ir paliekoša un neatgriezeniska.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Apvienība izdzēsta"
@@ -4473,9 +4508,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Vienotās izrakstīšanās pakalpojuma URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artefaktu atrisināšanas pakalpojuma URL"
-  },
   "idpX509PublicCert": {
     "message": "X509 publiskais sertifikāts"
   },
@@ -4485,11 +4517,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Atļaut nelūgtas autentifikācijas atbildi"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Atspējot izejošos izrakstīšanās pieprasījumus"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Atļaut izejošos izrakstīšanās pieprasījumus"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Grib parakstītus autentifikācijas pieprasījumus"
+  "idpSignAuthenticationRequests": {
+    "message": "Parakstīt autentifikācijas pieprasījumus"
   },
   "ssoSettingsSaved": {
     "message": "Vienotās pieteikšanās uzstādījumi tika saglabāti."
@@ -4739,5 +4771,110 @@
   },
   "freeWithSponsorship": {
     "message": "Bezmaksas ar pabalstītājdarbību"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ augstāk esošajiem laukiem ir jāpievērš uzmanība.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 augstāk esošajam laukam jāpievērš uzmanība."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ ir nepieciešams.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "nepieciešams"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Nepieciešams, ja vienības Id nav URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Papildu pielāgojumi"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Nepieciešams, ja autoritāte ir nederīga."
+  },
+  "separateMultipleWithComma": {
+    "message": "Vairākus atdalīt ar komatu."
+  },
+  "sessionTimeout": {
+    "message": "Sesijai iestājās noildze. Lūgums mēģināt pierakstīties vēlreiz."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Izdod personīgo glabātavu"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Izdod apvienības glabātavu"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Tiks izdoti tikai personīgie glabātavas vienumi, kas ir saistīti ar $EMAIL$. Apvienības glabātavas vienumi netiks iekļauti.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Tiks izdota tikai apvienības glabātava, kas ir saistīta ar $ORGANIZATION$. Personīgie glabātavas vienumi un vienumi no citām apvienībām netiks iekļauti.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Regenerate Username"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }

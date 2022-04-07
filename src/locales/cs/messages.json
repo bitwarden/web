@@ -187,7 +187,12 @@
     "message": "Upravit složku"
   },
   "baseDomain": {
-    "message": "Základní doména"
+    "message": "Základní doména",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Host",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Poznámka"
+  },
+  "typeLoginPlural": {
+    "message": "Přihlašovací údaje"
+  },
+  "typeCardPlural": {
+    "message": "Karty"
+  },
+  "typeIdentityPlural": {
+    "message": "Identity"
+  },
+  "typeSecureNotePlural": {
+    "message": "Zabezpečené poznámky"
   },
   "folders": {
     "message": "Složky"
@@ -1413,6 +1430,9 @@
   "reports": {
     "message": "Hlášení"
   },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
+  },
   "unsecuredWebsitesReport": {
     "message": "Hlášení o nezabezpečených webech"
   },
@@ -2153,7 +2173,7 @@
     "message": "Zásady"
   },
   "singleSignOn": {
-    "message": "Single Sign-On"
+    "message": "Jednotné přihlášení"
   },
   "editPolicy": {
     "message": "Upravit zásadu"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Smazat organizaci"
   },
-  "deleteOrganizationDesc": {
-    "message": "Pokračujte níže pro smazání této organizace a všech souvisejících dat. Jednotlivé uživatelské účty zůstanou zachovány, i když již nebudou přidruženy k této organizaci."
+  "deletingOrganizationContentWarning": {
+    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Smazání organizace je trvalé. Tuto akci nelze vrátit zpět."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organizace byla smazána."
@@ -3857,10 +3892,10 @@
     "message": "Create New Collections"
   },
   "editAnyCollection": {
-    "message": "Edit Any Collection"
+    "message": "Upravit jakoukoliv kolekci"
   },
   "deleteAnyCollection": {
-    "message": "Delete Any Collection"
+    "message": "Odstranit jakoukoliv kolekci"
   },
   "manageAssignedCollections": {
     "message": "Spravovat přiřazené kolekce"
@@ -3869,7 +3904,7 @@
     "message": "Edit Assigned Collections"
   },
   "deleteAssignedCollections": {
-    "message": "Delete Assigned Collections"
+    "message": "Spravovat přiřazené kolekce"
   },
   "manageGroups": {
     "message": "Spravovat skupiny"
@@ -4157,7 +4192,7 @@
     "message": "Motiv"
   },
   "themeDesc": {
-    "message": "Choose a theme for your web vault."
+    "message": "Vyberte si šablonu pro váš webový trezor."
   },
   "themeSystem": {
     "message": "Použít systémový motiv"
@@ -4202,31 +4237,31 @@
     "message": "Nastavení poskytovatele"
   },
   "setupProviderLoginDesc": {
-    "message": "You've been invited to setup a new provider. To continue, you need to log in or create a new Bitwarden account."
+    "message": "Byli jste pozváni k nastavení nového poskytovatele. Chcete-li pokračovat, musíte se přihlásit nebo vytvořit nový Bitwarden účet."
   },
   "setupProviderDesc": {
-    "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
+    "message": "Pro dokončení nastavení poskytovatele, zadejte prosím níže uvedené údaje. Pokud máte nějaké dotazy, kontaktujte zákaznickou podporu."
   },
   "providerName": {
     "message": "Jméno poskytovatele"
   },
   "providerSetup": {
-    "message": "The provider has been set up."
+    "message": "Poskytovatel byl vytvořen."
   },
   "clients": {
-    "message": "Clients"
+    "message": "Klienti"
   },
   "providerAdmin": {
-    "message": "Provider Admin"
+    "message": "Administrátor poskytovatele"
   },
   "providerAdminDesc": {
-    "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
+    "message": "Uživatel s nejvyšším oprávněním, který může spravovat všechny aspekty vašeho poskytovatele a také přístup a správu klientských organizací."
   },
   "serviceUser": {
-    "message": "Service User"
+    "message": "Servisní uživatel"
   },
   "serviceUserDesc": {
-    "message": "Service users can access and manage all client organizations."
+    "message": "Servisní uživatelé mohou přistupovat ke všem klientským organizacím a spravovat je."
   },
   "providerInviteUserDesc": {
     "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
@@ -4414,25 +4449,25 @@
     "message": "OIDC Redirect Behavior"
   },
   "getClaimsFromUserInfoEndpoint": {
-    "message": "Get Claims From User Info Endpoint"
+    "message": "Get claims from user info endpoint"
   },
   "additionalScopes": {
-    "message": "Additional/Custom Scopes (comma delimited)"
+    "message": "Custom Scopes"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Additional/Custom User ID Claim Types (comma delimited)"
+    "message": "Custom User ID Claim Types"
   },
   "additionalEmailClaimTypes": {
-    "message": "Additional/Custom Email Claim Types (comma delimited)"
+    "message": "Email Claim Types"
   },
   "additionalNameClaimTypes": {
-    "message": "Additional/Custom Name Claim Types (comma delimited)"
+    "message": "Custom Name Claim Types"
   },
   "acrValues": {
-    "message": "Requested Authentication Context Class Reference values (acr_values)"
+    "message": "Requested Authentication Context Class Reference values"
   },
   "expectedReturnAcrValue": {
-    "message": "Expected \"acr\" Claim Value In Response (acr validation)"
+    "message": "Expected \"acr\" Claim Value In Response"
   },
   "spEntityId": {
     "message": "SP Entity ID"
@@ -4444,7 +4479,7 @@
     "message": "Assertion Consumer Service (ACS) URL"
   },
   "spNameIdFormat": {
-    "message": "Name ID Format"
+    "message": "Formát jména ID"
   },
   "spOutboundSigningAlgorithm": {
     "message": "Outbound Signing Algorithm"
@@ -4456,13 +4491,13 @@
     "message": "Minimum Incoming Signing Algorithm"
   },
   "spWantAssertionsSigned": {
-    "message": "Want Assertions Signed"
+    "message": "Expect signed assertions"
   },
   "spValidateCertificates": {
-    "message": "Validate Certificates"
+    "message": "Validate certificates"
   },
   "idpEntityId": {
-    "message": "Entity ID"
+    "message": "ID subjektu"
   },
   "idpBindingType": {
     "message": "Binding Type"
@@ -4473,9 +4508,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Single Log Out Service URL"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Artifact Resolution Service URL"
-  },
   "idpX509PublicCert": {
     "message": "X509 Public Certificate"
   },
@@ -4483,13 +4515,13 @@
     "message": "Outbound Signing Algorithm"
   },
   "idpAllowUnsolicitedAuthnResponse": {
-    "message": "Allow Unsolicited Authentication Response"
+    "message": "Allow unsolicited authentication response"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Disable Outbound Logout Requests"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Allow outbound logout requests"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Want Authentication Requests Signed"
+  "idpSignAuthenticationRequests": {
+    "message": "Sign authentication requests"
   },
   "ssoSettingsSaved": {
     "message": "Single Sign-On configuration was saved."
@@ -4739,5 +4771,110 @@
   },
   "freeWithSponsorship": {
     "message": "FREE with sponsorship"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ fields above need your attention.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 field above needs your attention."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ is required.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "required"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Required if Entity ID is not a URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Optional Customizations"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Required if Authority is not valid."
+  },
+  "separateMultipleWithComma": {
+    "message": "Separate multiple with a comma."
+  },
+  "sessionTimeout": {
+    "message": "Your session has timed out. Please go back and try logging in again."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Exporting Personal Vault"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Exporting Organization Vault"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Only the personal vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Only the organization vault associated with $ORGANIZATION$ will be exported. Personal vault items and items from other organizations will not be included.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Regenerate Username"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }

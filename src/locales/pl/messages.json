@@ -187,7 +187,12 @@
     "message": "Edytuj folder"
   },
   "baseDomain": {
-    "message": "Domena podstawowa"
+    "message": "Domena podstawowa",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Nazwa domeny",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Host",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Bezpieczna notatka"
+  },
+  "typeLoginPlural": {
+    "message": "Dane logowania"
+  },
+  "typeCardPlural": {
+    "message": "Karty"
+  },
+  "typeIdentityPlural": {
+    "message": "Tożsamości"
+  },
+  "typeSecureNotePlural": {
+    "message": "Bezpieczne notatki"
   },
   "folders": {
     "message": "Foldery"
@@ -1413,11 +1430,14 @@
   "reports": {
     "message": "Raporty"
   },
+  "reportsDesc": {
+    "message": "Zidentyfikuj i napraw luki bezpieczeństwa na swoich kontach online, klikając raporty poniżej."
+  },
   "unsecuredWebsitesReport": {
     "message": "Raport niezabezpieczonych stron"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Korzystanie z niezabezpieczonych stron (protokół HTTP) może być niebezpieczne. Jeśli strona na to pozwala, zawsze powinieneś używać protokołu HTTPS, aby Twoje połączenie było szyfrowane."
+    "message": "Używanie niezabezpieczonych stron (protokół HTTP) może być niebezpieczne. Jeśli strona na to pozwala, zawsze powinieneś używać protokołu HTTPS, aby Twoje połączenie było szyfrowane."
   },
   "unsecuredWebsitesFound": {
     "message": "Znaleźliśmy niezabezpieczone strony"
@@ -1516,7 +1536,7 @@
     "message": "Raport identycznych haseł"
   },
   "reusedPasswordsReportDesc": {
-    "message": "Jeśli korzystasz z tego samego hasła w różnych miejscach, to w przypadku jego ujawnienia w jednej usłudze, hakerzy mogą uzyskać dostęp do wielu Twoich kont. Używaj unikalnych haseł dla każdego z kont lub usług."
+    "message": "Jeśli używasz tego samego hasła w różnych miejscach, to w przypadku jego ujawnienia w jednej usłudze, hakerzy mogą uzyskać dostęp do wielu Twoich kont. Powinieneś używać unikalnych haseł dla każdego z kont lub usług."
   },
   "reusedPasswordsFound": {
     "message": "Znaleźliśmy identyczne hasła"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Usuń organizację"
   },
-  "deleteOrganizationDesc": {
-    "message": "Kontynuuj poniżej, aby usunąć tę organizację i wszystkie powiązane z nią dane. Indywidualne konta użytkowników pozostaną, ale nie będą one już połączone za tą organizacją. "
+  "deletingOrganizationContentWarning": {
+    "message": "Wprowadź hasło główne, aby potwierdzić usunięcie $ORGANIZATION$ i wszystkich powiązanych danych. Dane sejfu w $ORGANIZATION$ obejmują:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Usunięcie organizacji jest nieodwracalne. Ta czynność nie może zostać cofnięta."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Konta użytkowników pozostaną aktywne po usunięciu, ale nie będą już powiązane z tą organizacją."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Usuwanie organizacji $ORGANIZATION$ jest trwałe i nieodwracalne.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organizacja została usunięta"
@@ -4473,9 +4508,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "Adres URL wylogowania jednokrotnego"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "Adres URL usługi Artifact Resolution Service"
-  },
   "idpX509PublicCert": {
     "message": "Certyfikat publiczny X509"
   },
@@ -4485,11 +4517,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Zezwalaj na niezamówioną odpowiedź uwierzytelniania"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Wyłącz wychodzące żądania wylogowania"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Zezwalaj na wychodzące żądania wylogowania"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Chcę podpisać żądania uwierzytelniania"
+  "idpSignAuthenticationRequests": {
+    "message": "Podpisz żądanie autoryzacji"
   },
   "ssoSettingsSaved": {
     "message": "Konfiguracja logowania jednokrotnego została zapisana."
@@ -4739,5 +4771,110 @@
   },
   "freeWithSponsorship": {
     "message": "DARMOWY ze sponsoringiem"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ pól powyżej wymaga Twojej uwagi.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 pole powyżej wymaga Twojej uwagi."
+  },
+  "fieldRequiredError": {
+    "message": "Pole $FIELDNAME$ jest wymagane.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "wymagane"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Wymagane, jeśli identyfikator podmiotu nie jest adres URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Opcjonalne dostosowania"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Wymagane, jeśli organ jest nieprawidłowy."
+  },
+  "separateMultipleWithComma": {
+    "message": "Oddziel je przecinkami."
+  },
+  "sessionTimeout": {
+    "message": "Twoja sesja wygasła. Zaloguj się ponownie."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "Eksportowanie osobistego sejfu"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "Eksportowanie sejfu organizacji"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Tylko osobiste elementy sejfu powiązane z adresem $EMAIL$ zostaną wyeksportowane. Elementy sejfu należące do organizacji nie będą uwzględnione.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Tylko sejf organizacji powiązany z organizacją $ORGANIZATION$ zostanie wyeksportowany. Osobiste elementy sejfu i elementy innych organizacji nie będą uwzględnione.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "backToReports": {
+    "message": "Wróć do raportów"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Co chcesz wygenerować?"
+  },
+  "passwordType": {
+    "message": "Typ hasła"
+  },
+  "regenerateUsername": {
+    "message": "Wygeneruj ponownie nazwę użytkownika"
+  },
+  "generateUsername": {
+    "message": "Wygeneruj nazwę użytkownika"
+  },
+  "usernameType": {
+    "message": "Typ nazwy użytkownika"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Adres catch-all"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Losowo"
+  },
+  "randomWord": {
+    "message": "Losowe słowo"
+  },
+  "service": {
+    "message": "Usługa"
   }
 }

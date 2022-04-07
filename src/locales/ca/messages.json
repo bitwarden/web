@@ -187,7 +187,12 @@
     "message": "Edita la carpeta"
   },
   "baseDomain": {
-    "message": "Domini base"
+    "message": "Domini base",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Amfitrió",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Nota segura"
+  },
+  "typeLoginPlural": {
+    "message": "Inicis de sessió"
+  },
+  "typeCardPlural": {
+    "message": "Targetes"
+  },
+  "typeIdentityPlural": {
+    "message": "Identitats"
+  },
+  "typeSecureNotePlural": {
+    "message": "Notes segures"
   },
   "folders": {
     "message": "Carpetes"
@@ -1412,6 +1429,9 @@
   },
   "reports": {
     "message": "Informes"
+  },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
   },
   "unsecuredWebsitesReport": {
     "message": "Informe de llocs web no segurs"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Suprimeix l'organització"
   },
-  "deleteOrganizationDesc": {
-    "message": "Procediu a eliminar aquesta organització i totes les dades associades. Els comptes d'usuari individuals es mantindran, encara que ja no hi estaran associats. "
+  "deletingOrganizationContentWarning": {
+    "message": "Introduïu la contrasenya mestra per confirmar la supressió de $ORGANIZATION$ i totes les dades associades. Les dades de la caixa forta a $ORGANIZATION$ inclouen:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "La supressió de l'organització és permanent. No es pot desfer."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Els comptes d'usuari romandran actius després de la supressió, però ja no estaran associats a aquesta organització."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "La supressió de $ORGANIZATION$ és permanent i irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "S'ha suprimit l'organització"
@@ -4417,22 +4452,22 @@
     "message": "Obteniu reclamacions del punt final d'informació d'usuari"
   },
   "additionalScopes": {
-    "message": "Àmbits addicionals/personalitzats (delimitat per comes)"
+    "message": "Àmbits personalitzats"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Tipus de reclamació d'ID d'usuaris addicionals/personalitzats (delimitats per comes)"
+    "message": "Tipus de reclamació d'ID d'usuaris personalitzats"
   },
   "additionalEmailClaimTypes": {
-    "message": "Tipus de reclamació de correu electrònic addicionals/personalitzats (delimitats per comes)"
+    "message": "Tipus de reclamació de correu electrònic"
   },
   "additionalNameClaimTypes": {
-    "message": "Tipus de reclamació de noms addicionals/personalitzats (delimitats per comes)"
+    "message": "Tipus de reclamació de noms personalitzats"
   },
   "acrValues": {
-    "message": "Valors de referència de classe de context d'autenticació sol·licitats (acr_values)"
+    "message": "Valors de referència de classe de context d'autenticació sol·licitats"
   },
   "expectedReturnAcrValue": {
-    "message": "Valor esperat de la reclamació \"acr\" en resposta (validació d'acr)"
+    "message": "Valor esperat de la reclamació \"acr\" en resposta"
   },
   "spEntityId": {
     "message": "ID de l'entitat SP"
@@ -4456,7 +4491,7 @@
     "message": "Algoritme de signatura entrant mínim"
   },
   "spWantAssertionsSigned": {
-    "message": "Voleu les afirmacions signades"
+    "message": "Espereu les afirmacions signades"
   },
   "spValidateCertificates": {
     "message": "Valida certificats"
@@ -4473,9 +4508,6 @@
   "idpSingleLogoutServiceUrl": {
     "message": "URL del servei de tancament de sessió únic"
   },
-  "idpArtifactResolutionServiceUrl": {
-    "message": "URL del servei de resolució d'artefactes"
-  },
   "idpX509PublicCert": {
     "message": "Certificat públic X509"
   },
@@ -4485,11 +4517,11 @@
   "idpAllowUnsolicitedAuthnResponse": {
     "message": "Permet la resposta d'autenticació no sol·licitada"
   },
-  "idpDisableOutboundLogoutRequests": {
-    "message": "Inhabilita les sol·licituds de tancament de sessió d'eixida"
+  "idpAllowOutboundLogoutRequests": {
+    "message": "Permet sol·licituds de tancament de sessió"
   },
-  "idpWantAuthnRequestsSigned": {
-    "message": "Voleu que les sol·licituds d'autenticació estiguen signades"
+  "idpSignAuthenticationRequests": {
+    "message": "Signa sol·licituds d'autenticació"
   },
   "ssoSettingsSaved": {
     "message": "S'ha guardat la configuració de l'inici de sessió únic."
@@ -4531,19 +4563,19 @@
     "message": "Introduïu el vostre correu electrònic personal per bescanviar Bitwarden Families"
   },
   "sponsoredFamiliesLeaveCopy": {
-    "message": "If you leave or are removed from the sponsoring organization, your Families plan will expire at the end of the billing period."
+    "message": "Si deixeu l'organització patrocinadora o us elimineu, el vostre pla Families caducarà al final del període de facturació."
   },
   "acceptBitwardenFamiliesHelp": {
-    "message": "Accept offer for an existing organization or create a new Families organization."
+    "message": "Accepteu l'oferta d'una organització existent o creeu una nova organització de Famílies."
   },
   "setupSponsoredFamiliesLoginDesc": {
-    "message": "You've been offered a free Bitwarden Families Plan Organization. To continue, you need to log in to the account that received the offer."
+    "message": "Us han oferit una organització gratuïta del pla de famílies de Bitwarden. Per continuar, heu d'iniciar sessió al compte que ha rebut l'oferta."
   },
   "sponsoredFamiliesAcceptFailed": {
-    "message": "Unable to accept offer. Please resend the offer email from your enterprise account and try again."
+    "message": "No es pot acceptar l'oferta. Torneu a enviar el correu electrònic de l'oferta des del vostre compte d'empresa i torneu-ho a provar."
   },
   "sponsoredFamiliesAcceptFailedShort": {
-    "message": "Unable to accept offer. $DESCRIPTION$",
+    "message": "No es pot acceptar l'oferta. $DESCRIPTION$",
     "placeholders": {
       "description": {
         "content": "$1",
@@ -4573,7 +4605,7 @@
     }
   },
   "resendEmailLabel": {
-    "message": "Resend Sponsorship email to $NAME$ sponsorship",
+    "message": "Torna a enviar el correu electrònic de patrocini al patrocinador $NAME$",
     "placeholders": {
       "name": {
         "content": "$1",
@@ -4594,10 +4626,10 @@
     "message": "Suprimeix el patrocini"
   },
   "removeSponsorshipConfirmation": {
-    "message": "After removing a sponsorship, you will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+    "message": "Després de suprimir un patrocini, seràs responsable d'aquesta subscripció i de les factures relacionades. Esteu segur que voleu continuar?"
   },
   "sponsorshipCreated": {
-    "message": "Sponsorship Created"
+    "message": "S'ha creat un patrocini"
   },
   "revoke": {
     "message": "Revoca"
@@ -4606,16 +4638,16 @@
     "message": "Correu electrònic enviat"
   },
   "revokeSponsorshipConfirmation": {
-    "message": "After removing this account, the Families organization owner will be responsible for this subscription and related invoices. Are you sure you want to continue?"
+    "message": "Després de suprimir aquest compte, el propietari de l'organització Families serà responsable d'aquesta subscripció i de les factures relacionades. Esteu segur que voleu continuar?"
   },
   "removeSponsorshipSuccess": {
-    "message": "Sponsorship Removed"
+    "message": "S'ha suprimit el patrocini"
   },
   "ssoKeyConnectorUnavailable": {
     "message": "No es pot arribar al connector de claus, torneu-ho a provar més tard."
   },
   "keyConnectorUrl": {
-    "message": "Key Connector URL"
+    "message": "URL del connector de claus"
   },
   "sendVerificationCode": {
     "message": "Envia un codi de verificació al correu electrònic"
@@ -4675,22 +4707,22 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpKeyConnector": {
-    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
+    "message": "Les polítiques d'autenticació SSO i d'organització única són necessàries per configurar el desxifrat del connector de claus."
   },
   "memberDecryptionOption": {
-    "message": "Member Decryption Options"
+    "message": "Opcions de desxifrat de membres"
   },
   "memberDecryptionPassDesc": {
     "message": "Un vegada autenticats, els membres desxifraran les dades de la caixa forta amb les seues contrasenyes mestres."
   },
   "keyConnector": {
-    "message": "Key Connector"
+    "message": "Connector de claus"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt vault data. Contact Bitwarden Support for set up assistance."
+    "message": "Connecteu l'inici de sessió amb SSO al vostre servidor de claus de desxifrat autoallotjat. Amb aquesta opció, els membres no hauran d'utilitzar les seues contrasenyes mestres per desxifrar les dades de la caixa forta. Poseu-vos en contacte amb l'assistència de Bitwarden per obtenir ajuda per a la configuració."
   },
   "keyConnectorPolicyRestriction": {
-    "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
+    "message": "\"Inici de sessió amb SSO i desxifrat del connector de claus\" està habilitat. Aquesta política només s'aplicarà als propietaris i administradors."
   },
   "enabledSso": {
     "message": "SSO habilitat"
@@ -4699,45 +4731,150 @@
     "message": "SSO inhabilitat"
   },
   "enabledKeyConnector": {
-    "message": "Enabled Key Connector"
+    "message": "Connector de claus habilitat"
   },
   "disabledKeyConnector": {
-    "message": "Disabled Key Connector"
+    "message": "Connector de claus inhabilitat"
   },
   "keyConnectorWarning": {
-    "message": "Once members begin using Key Connector, your Organization cannot revert to Master Password decryption. Proceed only if you are comfortable deploying and managing a key server."
+    "message": "Una vegada els membres comencen a utilitzarel connector de claus, la vostra organització no pot tornar al desxifrat de la contrasenya mestra. Continueu només si us sentiu còmode implementant i gestionant un servidor de claus."
   },
   "migratedKeyConnector": {
-    "message": "Migrated to Key Connector"
+    "message": "S'ha migrat al connector claus"
   },
   "paymentSponsored": {
-    "message": "Please provide a payment method to associate with the organization. Don't worry, we won't charge you anything unless you select additional features or your sponsorship expires. "
+    "message": "Proporcioneu una forma de pagament per associar-vos amb l'organització. No us preocupeu, no us cobrarem res tret que seleccioneu característiques addicionals o el vostre patrocini caduque. "
   },
   "orgCreatedSponsorshipInvalid": {
-    "message": "The sponsorship offer has expired. You may delete the organization you created to avoid a charge at the end of your 7 day trial. Otherwise you may close this prompt to keep the organization and assume billing responsibility."
+    "message": "L'oferta de patrocini ha caducat. Podeu suprimir l'organització que heu creat per evitar un càrrec al final de la vostra prova de 7 dies. En cas contrari, podeu tancar aquest missatge per mantenir l'organització i assumir la responsabilitat de la facturació."
   },
   "newFamiliesOrganization": {
     "message": "Nova organització de famílies"
   },
   "acceptOffer": {
-    "message": "Accept Offer"
+    "message": "Accepta l'oferta"
   },
   "sponsoringOrg": {
-    "message": "Sponsoring Organization"
+    "message": "Organització patrocinadora"
   },
   "keyConnectorTest": {
     "message": "Prova"
   },
   "keyConnectorTestSuccess": {
-    "message": "Success! Key Connector reached."
+    "message": "Correcte! S'ha arribat al connector clau."
   },
   "keyConnectorTestFail": {
-    "message": "Cannot reach Key Connector. Check URL."
+    "message": "No es pot arribar al connector de claus. Comproveu l'URL."
   },
   "sponsorshipTokenHasExpired": {
     "message": "L'oferta de patrocini ha caducat."
   },
   "freeWithSponsorship": {
     "message": "GRATUÏT amb patrocini"
+  },
+  "formErrorSummaryPlural": {
+    "message": "$COUNT$ camps de dalt necessiten la vostra atenció.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "5"
+      }
+    }
+  },
+  "formErrorSummarySingle": {
+    "message": "1 camp de dalt necessita la vostra atenció."
+  },
+  "fieldRequiredError": {
+    "message": "$FIELDNAME$ és obligatori.",
+    "placeholders": {
+      "fieldname": {
+        "content": "$1",
+        "example": "Full name"
+      }
+    }
+  },
+  "required": {
+    "message": "requerit"
+  },
+  "idpSingleSignOnServiceUrlRequired": {
+    "message": "Requerit si l'identificador d'entitat no és un URL."
+  },
+  "openIdOptionalCustomizations": {
+    "message": "Personalització opcional"
+  },
+  "openIdAuthorityRequired": {
+    "message": "Requerit si l'autoritat no és vàlida."
+  },
+  "separateMultipleWithComma": {
+    "message": "Separa múltiples amb una coma."
+  },
+  "sessionTimeout": {
+    "message": "La sessió ha expirat. Torneu arrere i proveu d'iniciar sessió de nou."
+  },
+  "exportingPersonalVaultTitle": {
+    "message": "S'està exportant la caixa forta personal"
+  },
+  "exportingOrganizationVaultTitle": {
+    "message": "S'està exportant la caixa forta de l’organització"
+  },
+  "exportingPersonalVaultDescription": {
+    "message": "Només s'exportaran els elements personals de la caixa forta associats a $EMAIL$. Els elements de la caixa forta de l'organització no s'inclouran.",
+    "placeholders": {
+      "email": {
+        "content": "$1",
+        "example": "name@example.com"
+      }
+    }
+  },
+  "exportingOrganizationVaultDescription": {
+    "message": "Només s'exportaran els elements personals de la caixa forta associats a $ORGANIZATION$. Els elements de la caixa forta personal no s'inclouran.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Regenerate Username"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }
