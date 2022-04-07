@@ -5,7 +5,12 @@
     id="pickerButton"
     [bitMenuTriggerFor]="orgPickerMenu"
   >
-    <app-avatar [data]="activeOrganization.name" size="45" [circle]="true"></app-avatar>
+    <app-avatar
+      [data]="activeOrganization.name"
+      size="45"
+      [circle]="true"
+      [dynamic]="true"
+    ></app-avatar>
     <div class="org-name tw-ml-3">
       <span>{{ activeOrganization.name }}</span>
       <small class="tw-text-muted">{{ "organization" | i18n }}</small>
