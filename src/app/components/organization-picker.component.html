@@ -3,6 +3,7 @@
     class="tw-flex tw-items-center tw-bg-background-alt tw-border-none"
     type="button"
     id="pickerButton"
+    [appA11yTitle]="'organizationPicker' | i18n"
     [bitMenuTriggerFor]="orgPickerMenu"
   >
     <app-avatar
@@ -41,18 +42,20 @@
   </div>
 
   <bit-menu #orgPickerMenu>
-    <ul role="menu" class="tw-p-0 tw-m-0">
-      <li *ngFor="let org of organizations" class="tw-list-none">
+    <ul role="menu" aria-labelledby="pickerButton" class="tw-p-0 tw-m-0">
+      <li *ngFor="let org of organizations" class="tw-list-none" role="none">
         <a bit-menu-item [routerLink]="['/organizations', org.id]">
           <i
             class="bwi bwi-check mr-2"
             [ngClass]="org.id === activeOrganization.id ? 'visible' : 'invisible'"
-          ></i>
+          >
+            <span class="tw-sr-only">{{ "currentOrganization" | i18n }}</span>
+          </i>
           {{ org.name }}
         </a>
       </li>
       <bit-menu-divider></bit-menu-divider>
-      <li class="tw-list-none">
+      <li class="tw-list-none" role="none">
         <a bit-menu-item routerLink="/settings/create-organization">
           <i class="bwi bwi-plus mr-2"></i>
           {{ "newOrganization" | i18n }}</a
