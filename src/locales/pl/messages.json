@@ -1434,7 +1434,7 @@
     "message": "Zidentyfikuj i napraw luki bezpieczeństwa na swoich kontach online, klikając raporty poniżej."
   },
   "unsecuredWebsitesReport": {
-    "message": "Raport niezabezpieczonych stron"
+    "message": "Niezabezpieczone witryny"
   },
   "unsecuredWebsitesReportDesc": {
     "message": "Używanie niezabezpieczonych stron (protokół HTTP) może być niebezpieczne. Jeśli strona na to pozwala, zawsze powinieneś używać protokołu HTTPS, aby Twoje połączenie było szyfrowane."
@@ -1479,7 +1479,7 @@
     "message": "Instrukcje"
   },
   "exposedPasswordsReport": {
-    "message": "Raport ujawnionych haseł"
+    "message": "Ujawnione hasła"
   },
   "exposedPasswordsReportDesc": {
     "message": "Ujawnione hasła to hasła odkryte w znanych wyciekach danych, które zostały publicznie wydane lub sprzedane w sieci przez hakerów."
@@ -1512,7 +1512,7 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Raport słabych haseł"
+    "message": "Słabe hasła"
   },
   "weakPasswordsReportDesc": {
     "message": "Słabe hasła mogą być łatwo odgadnięte przez hakerów i zautomatyzowane narzędzia używane do łamania haseł. Generator haseł Bitwarden tworzy silne hasła."
@@ -3616,7 +3616,8 @@
     "message": "Wszystkie wysyłki"
   },
   "maxAccessCountReached": {
-    "message": "Maksymalna liczba dostępów została osiągnięta"
+    "message": "Maksymalna liczba dostępów została osiągnięta",
+    "description": "This text will be displayed after a Send has been accessed the maximum amount of times."
   },
   "pendingDeletion": {
     "message": "Oczekiwanie na usunięcie"
@@ -4836,7 +4837,7 @@
     }
   },
   "backToReports": {
-    "message": "Wróć do raportów"
+    "message": "Powrót do raportów"
   },
   "generator": {
     "message": "Generator"
@@ -4845,7 +4846,7 @@
     "message": "Co chcesz wygenerować?"
   },
   "passwordType": {
-    "message": "Typ hasła"
+    "message": "Rodzaj hasła"
   },
   "regenerateUsername": {
     "message": "Wygeneruj ponownie nazwę użytkownika"
@@ -4854,19 +4855,20 @@
     "message": "Wygeneruj nazwę użytkownika"
   },
   "usernameType": {
-    "message": "Typ nazwy użytkownika"
+    "message": "Rodzaj nazwy użytkownika"
   },
   "plusAddressedEmail": {
-    "message": "Plus Addressed Email"
+    "message": "Adres e-mail z plusem",
+    "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
   },
   "plusAddressedEmailDesc": {
-    "message": "Use your email provider's sub-addressing capabilities."
+    "message": "Użyj możliwości dodawania aliasów u swojego dostawcy poczty e-mail."
   },
   "catchallEmail": {
     "message": "Adres catch-all"
   },
   "catchallEmailDesc": {
-    "message": "Use your domain's configured catch-all inbox."
+    "message": "Użyj skonfigurowanej skrzynki catch-all w swojej domenie."
   },
   "random": {
     "message": "Losowo"
