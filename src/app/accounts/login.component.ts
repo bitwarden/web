@@ -20,6 +20,7 @@ import { ListResponse } from "jslib-common/models/response/listResponse";
 import { PolicyResponse } from "jslib-common/models/response/policyResponse";
 
 import { StateService } from "../../abstractions/state.service";
+import { RouterService } from "../services/router.service";
 
 @Component({
   selector: "app-login",
@@ -44,7 +45,8 @@ export class LoginComponent extends BaseLoginComponent {
     logService: LogService,
     ngZone: NgZone,
     protected stateService: StateService,
-    private messagingService: MessagingService
+    private messagingService: MessagingService,
+    private routerService: RouterService
   ) {
     super(
       authService,
@@ -149,6 +151,8 @@ export class LoginComponent extends BaseLoginComponent {
     if (loginRedirect != null) {
       this.router.navigate([loginRedirect.route], { queryParams: loginRedirect.qParams });
       await this.stateService.setLoginRedirect(null);
+    } else if (await this.routerService.getPreviousUrl()) {
+      this.router.navigateByUrl(this.routerService.getPreviousUrl());
     } else {
       this.router.navigate([this.successRoute]);
     }

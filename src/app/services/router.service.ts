@@ -18,14 +18,18 @@ export class RouterService {
     this.currentUrl = this.router.url;
     router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        this.previousUrl = this.currentUrl;
         this.currentUrl = event.url;
 
         let title = i18nService.t("pageTitle", "Bitwarden");
         let titleId: string = null;
         let rawTitle: string = null;
         let child = this.activatedRoute.firstChild;
+        let updateUrl = true;
         while (child != null) {
+          if (child.snapshot.data.doNotSaveUrl) {
+            updateUrl = false;
+          }
+
           if (child.firstChild != null) {
             child = child.firstChild;
           } else if (child.snapshot.data != null && child.snapshot.data.title != null) {
@@ -48,6 +52,9 @@ export class RouterService {
           }
         }
         this.titleService.setTitle(title);
+        if (updateUrl) {
+          this.setPreviousUrl(this.currentUrl);
+        }
       }
     });
   }

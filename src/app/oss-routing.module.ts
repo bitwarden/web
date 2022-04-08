@@ -73,6 +73,9 @@ const routes: Routes = [
   {
     path: "",
     component: FrontendLayoutComponent,
+    data: {
+      doNotSaveUrl: true,
+    },
     children: [
       { path: "", pathMatch: "full", component: LoginComponent, canActivate: [UnauthGuardService] },
       { path: "2fa", component: TwoFactorComponent, canActivate: [UnauthGuardService] },
