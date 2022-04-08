@@ -72,21 +72,20 @@ export class LoginComponent extends BaseLoginComponent {
         this.email = qParams.email;
       }
       if (qParams.premium != null) {
-        this.stateService.setLoginRedirect({ route: "/settings/premium" });
+        this.routerService.setPreviousUrl("/settings/premium");
       } else if (qParams.org != null) {
-        this.stateService.setLoginRedirect({
-          route: "/settings/create-organization",
-          qParams: { plan: qParams.org },
+        const route = this.router.createUrlTree(["settings/create-organization"], {
+          queryParams: { plan: qParams.org },
         });
+        this.routerService.setPreviousUrl(route.toString());
       }
 
       // Are they coming from an email for sponsoring a families organization
       if (qParams.sponsorshipToken != null) {
-        // After logging in redirect them to setup the families sponsorship
-        this.stateService.setLoginRedirect({
-          route: "/setup/families-for-enterprise",
-          qParams: { token: qParams.sponsorshipToken },
+        const route = this.router.createUrlTree(["setup/families-for-enterprise"], {
+          queryParams: { plan: qParams.sponsorshipToken },
         });
+        this.routerService.setPreviousUrl(route.toString());
       }
       await super.ngOnInit();
       this.rememberEmail = await this.stateService.getRememberEmail();
@@ -147,12 +146,9 @@ export class LoginComponent extends BaseLoginComponent {
       }
     }
 
-    const loginRedirect = await this.stateService.getLoginRedirect();
-    if (loginRedirect != null) {
-      this.router.navigate([loginRedirect.route], { queryParams: loginRedirect.qParams });
-      await this.stateService.setLoginRedirect(null);
-    } else if (await this.routerService.getPreviousUrl()) {
-      this.router.navigateByUrl(this.routerService.getPreviousUrl());
+    const previousUrl = this.routerService.getPreviousUrl();
+    if (previousUrl) {
+      this.router.navigateByUrl(previousUrl);
     } else {
       this.router.navigate([this.successRoute]);
     }

@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Title } from "@angular/platform-browser";
 import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
+import { filter } from "rxjs";
 
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 
@@ -16,34 +17,21 @@ export class RouterService {
     i18nService: I18nService
   ) {
     this.currentUrl = this.router.url;
-    router.events.subscribe((event) => {
-      if (event instanceof NavigationEnd) {
+
+    router.events
+      .pipe(filter((e) => e instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
         this.currentUrl = event.url;
 
         let title = i18nService.t("pageTitle", "Bitwarden");
-        let titleId: string = null;
-        let rawTitle: string = null;
         let child = this.activatedRoute.firstChild;
-        let updateUrl = true;
-        while (child != null) {
-          if (child.snapshot.data.doNotSaveUrl) {
-            updateUrl = false;
-          }
-
-          if (child.firstChild != null) {
-            child = child.firstChild;
-          } else if (child.snapshot.data != null && child.snapshot.data.title != null) {
-            rawTitle = child.snapshot.data.title;
-            break;
-          } else if (child.snapshot.data != null && child.snapshot.data.titleId != null) {
-            titleId = child.snapshot.data.titleId;
-            break;
-          } else {
-            titleId = null;
-            rawTitle = null;
-            break;
-          }
+        while (child.firstChild) {
+          child = child.firstChild;
         }
+
+        const titleId: string = child?.snapshot?.data?.titleId;
+        const rawTitle: string = child?.snapshot?.data?.title;
+        const updateUrl = !child?.snapshot?.data?.doNotSaveUrl ?? true;
 
         if (titleId != null || rawTitle != null) {
           const newTitle = rawTitle != null ? rawTitle : i18nService.t(titleId);
@@ -55,8 +43,7 @@ export class RouterService {
         if (updateUrl) {
           this.setPreviousUrl(this.currentUrl);
         }
-      }
-    });
+      });
   }
 
   getPreviousUrl() {

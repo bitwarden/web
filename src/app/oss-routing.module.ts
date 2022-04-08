@@ -73,9 +73,7 @@ const routes: Routes = [
   {
     path: "",
     component: FrontendLayoutComponent,
-    data: {
-      doNotSaveUrl: true,
-    },
+    data: { doNotSaveUrl: true },
     children: [
       { path: "", pathMatch: "full", component: LoginComponent, canActivate: [UnauthGuardService] },
       { path: "2fa", component: TwoFactorComponent, canActivate: [UnauthGuardService] },
@@ -111,12 +109,12 @@ const routes: Routes = [
       {
         path: "accept-organization",
         component: AcceptOrganizationComponent,
-        data: { titleId: "joinOrganization" },
+        data: { titleId: "joinOrganization", doNotSaveUrl: false },
       },
       {
         path: "accept-emergency",
         component: AcceptEmergencyComponent,
-        data: { titleId: "acceptEmergency" },
+        data: { titleId: "acceptEmergency", doNotSaveUrl: false },
       },
       { path: "recover", pathMatch: "full", redirectTo: "recover-2fa" },
       {

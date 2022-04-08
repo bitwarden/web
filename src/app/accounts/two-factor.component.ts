@@ -13,6 +13,8 @@ import { StateService } from "jslib-common/abstractions/state.service";
 import { TwoFactorService } from "jslib-common/abstractions/twoFactor.service";
 import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
 
+import { RouterService } from "../services/router.service";
+
 import { TwoFactorOptionsComponent } from "./two-factor-options.component";
 
 @Component({
@@ -34,7 +36,8 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
     private modalService: ModalService,
     route: ActivatedRoute,
     logService: LogService,
-    twoFactorService: TwoFactorService
+    twoFactorService: TwoFactorService,
+    private routerService: RouterService
   ) {
     super(
       authService,
@@ -70,10 +73,9 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
   }
 
   async goAfterLogIn() {
-    const loginRedirect = await this.stateService.getLoginRedirect();
-    if (loginRedirect != null) {
-      this.router.navigate([loginRedirect.route], { queryParams: loginRedirect.qParams });
-      await this.stateService.setLoginRedirect(null);
+    const previousUrl = this.routerService.getPreviousUrl();
+    if (previousUrl) {
+      this.router.navigateByUrl(previousUrl);
     } else {
       this.router.navigate([this.successRoute], {
         queryParams: {

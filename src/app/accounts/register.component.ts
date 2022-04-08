@@ -18,6 +18,8 @@ import { MasterPasswordPolicyOptions } from "jslib-common/models/domain/masterPa
 import { Policy } from "jslib-common/models/domain/policy";
 import { ReferenceEventRequest } from "jslib-common/models/request/referenceEventRequest";
 
+import { RouterService } from "../services/router.service";
+
 @Component({
   selector: "app-register",
   templateUrl: "register.component.html",
@@ -41,7 +43,8 @@ export class RegisterComponent extends BaseRegisterComponent {
     passwordGenerationService: PasswordGenerationService,
     private policyService: PolicyService,
     environmentService: EnvironmentService,
-    logService: LogService
+    logService: LogService,
+    private routerService: RouterService
   ) {
     super(
       authService,
@@ -64,14 +67,14 @@ export class RegisterComponent extends BaseRegisterComponent {
         this.email = qParams.email;
       }
       if (qParams.premium != null) {
-        this.stateService.setLoginRedirect({ route: "/settings/premium" });
+        this.routerService.setPreviousUrl("/settings/premium");
       } else if (qParams.org != null) {
         this.showCreateOrgMessage = true;
         this.referenceData.flow = qParams.org;
-        this.stateService.setLoginRedirect({
-          route: "/settings/create-organization",
-          qParams: { plan: qParams.org },
+        const route = this.router.createUrlTree(["settings/create-organization"], {
+          queryParams: { plan: qParams.org },
         });
+        this.routerService.setPreviousUrl(route.toString());
       }
       if (qParams.layout != null) {
         this.layout = this.referenceData.layout = qParams.layout;
@@ -88,10 +91,10 @@ export class RegisterComponent extends BaseRegisterComponent {
       // Are they coming from an email for sponsoring a families organization
       if (qParams.sponsorshipToken != null) {
         // After logging in redirect them to setup the families sponsorship
-        this.stateService.setLoginRedirect({
-          route: "/setup/families-for-enterprise",
-          qParams: { token: qParams.sponsorshipToken },
+        const route = this.router.createUrlTree(["setup/families-for-enterprise"], {
+          queryParams: { plan: qParams.sponsorshipToken },
         });
+        this.routerService.setPreviousUrl(route.toString());
       }
       if (this.referenceData.id === "") {
         this.referenceData.id = null;
