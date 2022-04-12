@@ -150,7 +150,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
   }
 
   async manageBillingSync() {
-    const [ref, _] = await this.modalService.openViewRef(
+    const [ref] = await this.modalService.openViewRef(
       BillingSyncApiKeyComponent,
       this.setupBillingSyncModalRef,
       (comp) => {

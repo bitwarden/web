@@ -77,18 +77,17 @@ export class SponsoredFamiliesComponent implements OnInit {
   }
 
   async submit() {
-    console.log(this.sponsorshipForm);
-    // this.formPromise = this.apiService.postCreateSponsorship(this.selectedSponsorshipOrgId, {
-    //   sponsoredEmail: this.sponsorshipEmail,
-    //   planSponsorshipType: PlanSponsorshipType.FamiliesForEnterprise,
-    //   friendlyName: this.sponsorshipEmail,
-    // });
+    this.formPromise = this.apiService.postCreateSponsorship(this.selectedSponsorshipOrgId, {
+      sponsoredEmail: this.sponsorshipEmail,
+      planSponsorshipType: PlanSponsorshipType.FamiliesForEnterprise,
+      friendlyName: this.sponsorshipEmail,
+    });
 
-    // await this.formPromise;
-    // this.platformUtilsService.showToast("success", null, this.i18nService.t("sponsorshipCreated"));
-    // this.formPromise = null;
-    // this.resetForm();
-    // await this.load(true);
+    await this.formPromise;
+    this.platformUtilsService.showToast("success", null, this.i18nService.t("sponsorshipCreated"));
+    this.formPromise = null;
+    this.resetForm();
+    await this.load(true);
   }
 
   async load(forceReload = false) {
