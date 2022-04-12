@@ -1,13 +1,32 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import {
+  AsyncValidatorFn,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+} from "@angular/forms";
 
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { StateService } from "jslib-common/abstractions/state.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
 import { PlanSponsorshipType } from "jslib-common/enums/planSponsorshipType";
 import { Organization } from "jslib-common/models/domain/organization";
+
+function notCurrentUserEmailValidator(stateService: StateService): AsyncValidatorFn {
+  return async (control): Promise<ValidationErrors | null> => {
+    const currentUserEmail = await stateService.getEmail();
+
+    if (control.value.toLowerCase() === currentUserEmail.toLowerCase()) {
+      return {
+        cannotSponsorSelf: true,
+      };
+    }
+  };
+}
 
 @Component({
   selector: "app-sponsored-families",
@@ -32,11 +51,24 @@ export class SponsoredFamiliesComponent implements OnInit {
     private platformUtilsService: PlatformUtilsService,
     private syncService: SyncService,
     private organizationService: OrganizationService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private stateService: StateService
   ) {
     this.sponsorshipForm = this.formBuilder.group({
-      selectedSponsorshipOrgId: ["", Validators.required],
-      sponsorshipEmail: ["", Validators.required],
+      selectedSponsorshipOrgId: [
+        "",
+        {
+          validators: [Validators.required],
+        },
+      ],
+      sponsorshipEmail: [
+        "",
+        {
+          validators: [Validators.email],
+          asyncValidators: [notCurrentUserEmailValidator(this.stateService)],
+          updateOn: "blur",
+        },
+      ],
     });
   }
 
@@ -45,17 +77,18 @@ export class SponsoredFamiliesComponent implements OnInit {
   }
 
   async submit() {
-    this.formPromise = this.apiService.postCreateSponsorship(this.selectedSponsorshipOrgId, {
-      sponsoredEmail: this.sponsorshipEmail,
-      planSponsorshipType: PlanSponsorshipType.FamiliesForEnterprise,
-      friendlyName: this.sponsorshipEmail,
-    });
+    console.log(this.sponsorshipForm);
+    // this.formPromise = this.apiService.postCreateSponsorship(this.selectedSponsorshipOrgId, {
+    //   sponsoredEmail: this.sponsorshipEmail,
+    //   planSponsorshipType: PlanSponsorshipType.FamiliesForEnterprise,
+    //   friendlyName: this.sponsorshipEmail,
+    // });
 
-    await this.formPromise;
-    this.platformUtilsService.showToast("success", null, this.i18nService.t("sponsorshipCreated"));
-    this.formPromise = null;
-    this.resetForm();
-    await this.load(true);
+    // await this.formPromise;
+    // this.platformUtilsService.showToast("success", null, this.i18nService.t("sponsorshipCreated"));
+    // this.formPromise = null;
+    // this.resetForm();
+    // await this.load(true);
   }
 
   async load(forceReload = false) {
@@ -79,6 +112,10 @@ export class SponsoredFamiliesComponent implements OnInit {
       this.selectedSponsorshipOrgId = this.availableSponsorshipOrgs[0].id;
     }
     this.loading = false;
+  }
+
+  get sponsorshipEmailControl() {
+    return this.sponsorshipForm.controls["sponsorshipEmail"];
   }
 
   private async resetForm() {

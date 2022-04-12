@@ -38,16 +38,37 @@
       </select>
     </div>
     <div class="form-group col-7">
-      <label for="accountEmail">{{ "sponsoredFamiliesEmail" | i18n }}:</label>
+      <label for="sponsorshipEmail">{{ "sponsoredFamiliesEmail" | i18n }}:</label>
       <input
-        id="accountEmail"
+        id="sponsorshipEmail"
         class="form-control"
         inputmode="email"
         formControlName="sponsorshipEmail"
         name="sponsorshipEmail"
         required
+        [attr.aria-invalid]="sponsorshipEmailControl.invalid"
       />
-      <button class="btn btn-primary btn-submit mt-4" type="submit" [disabled]="form.loading">
+      <small
+        aria-errormessage="sponsorshipEmail"
+        *ngIf="sponsorshipEmailControl.errors?.cannotSponsorSelf"
+        class="error-inline"
+        role="alert"
+      >
+        <i class="bwi bwi-error" aria-hidden="true"></i>
+        {{ "cannotSponsorSelf" | i18n }}
+      </small>
+      <small
+        aria-errormessage="sponsorshipEmail"
+        *ngIf="sponsorshipEmailControl.errors?.email"
+        class="error-inline"
+        role="alert"
+      >
+        <i class="bwi bwi-error" aria-hidden="true"></i>
+        {{ "invalidEmail" | i18n }}
+      </small>
+    </div>
+    <div class="form-group col-7">
+      <button class="btn btn-primary btn-submit mt-2" type="submit" [disabled]="form.loading">
         <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
         <span>{{ "redeem" | i18n }}</span>
       </button>
