@@ -42,7 +42,7 @@
   </div>
 
   <bit-menu #orgPickerMenu>
-    <ul role="menu" aria-labelledby="pickerButton" class="tw-p-0 tw-m-0">
+    <ul aria-labelledby="pickerButton" class="tw-p-0 tw-m-0">
       <li *ngFor="let org of organizations" class="tw-list-none tw-flex tw-flex-col" role="none">
         <a bit-menu-item [routerLink]="['/organizations', org.id]">
           <i
