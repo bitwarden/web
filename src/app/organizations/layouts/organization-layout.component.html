@@ -1,10 +1,10 @@
 <div class="org-nav" *ngIf="organization">
   <div class="container d-flex">
     <div class="d-flex flex-column">
-      <app-organization-picker
+      <app-organization-switcher
         class="my-auto pl-1"
         [activeOrganization]="organization"
-      ></app-organization-picker>
+      ></app-organization-switcher>
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a class="nav-link" routerLink="vault" routerLinkActive="active">

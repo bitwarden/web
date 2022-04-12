@@ -8,10 +8,10 @@ import { Organization } from "jslib-common/models/domain/organization";
 import { NavigationPermissionsService } from "../organizations/services/navigation-permissions.service";
 
 @Component({
-  selector: "app-organization-picker",
-  templateUrl: "organization-picker.component.html",
+  selector: "app-organization-switcher",
+  templateUrl: "organization-switcher.component.html",
 })
-export class OrganizationPickerComponent implements OnInit {
+export class OrganizationSwitcherComponent implements OnInit {
   constructor(private organizationService: OrganizationService, private i18nService: I18nService) {}
 
   @Input() activeOrganization: Organization = null;
