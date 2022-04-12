@@ -9,7 +9,7 @@
     >
       <div class="modal-header">
         <h2 class="modal-title" id="billingSyncApiKeyTitle">
-          {{ ( hasBillingToken ?  'viewBillingSyncToken' : 'generateBillingSyncToken' ) | i18n }}
+          {{ (hasBillingToken ? "viewBillingSyncToken" : "generateBillingSyncToken") | i18n }}
         </h2>
         <button
           type="button"
@@ -29,22 +29,24 @@
         >
         </app-verify-master-password>
         <ng-container *ngIf="clientSecret && showRotateScreen">
-          <p>{{ 'rotateBillingSyncTokenTitle' | i18n }}</p>
+          <p>{{ "rotateBillingSyncTokenTitle" | i18n }}</p>
           <app-callout type="warning">
-            {{ 'rotateBillingSyncTokenWarning' | i18n }}
+            {{ "rotateBillingSyncTokenWarning" | i18n }}
           </app-callout>
         </ng-container>
-        
+
         <div *ngIf="clientSecret && !showRotateScreen">
-          <p>{{ 'copyPasteBillingSync' | i18n }}</p>
+          <p>{{ "copyPasteBillingSync" | i18n }}</p>
           <label for="clientSecret">Billing Sync Key</label>
           <div class="input-group">
-            <input id="clientSecret"
+            <input
+              id="clientSecret"
               class="form-control text-monospace"
               type="text"
               [(ngModel)]="clientSecret"
               name="clientSecret"
-              disabled />
+              disabled
+            />
             <div class="input-group-append">
               <button
                 type="button"
@@ -59,11 +61,11 @@
           <div class="small text-muted mt-2">
             <div *ngIf="keyRevisionDate">
               <b class="font-weight-semibold">{{ "dateUpdated" | i18n }}:</b>
-              {{ keyRevisionDate | date: 'medium' }}
+              {{ keyRevisionDate | date: "medium" }}
             </div>
           </div>
           <p *ngIf="keyRevisionDate && lastSyncDate">{{ syncText }}</p>
-          <p class="mt-4">{{ 'billingSyncCanAccess' | i18n }}</p>
+          <p class="mt-4">{{ "billingSyncCanAccess" | i18n }}</p>
         </div>
       </div>
       <div class="modal-footer">
@@ -78,14 +80,29 @@
             {{ submitButtonText }}
           </span>
         </button>
-        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal" *ngIf="!showRotateScreen">
-          {{ 'close' | i18n }}
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          data-dismiss="modal"
+          *ngIf="!showRotateScreen"
+        >
+          {{ "close" | i18n }}
         </button>
-        <button type="button" class="btn btn-outline-secondary" *ngIf="showRotateScreen" (click)="cancelRotate()">
-          {{ 'cancel' | i18n }}
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          *ngIf="showRotateScreen"
+          (click)="cancelRotate()"
+        >
+          {{ "cancel" | i18n }}
         </button>
-        <button type="button" class="btn btn-outline-secondary" *ngIf="clientSecret && !showRotateScreen" (click)="rotateToken()">
-          {{ 'rotateToken' | i18n }}
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          *ngIf="clientSecret && !showRotateScreen"
+          (click)="rotateToken()"
+        >
+          {{ "rotateToken" | i18n }}
         </button>
       </div>
     </form>
