@@ -35,12 +35,13 @@
       </ul>
     </div>
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
-      <li class="nav-item dropdown">
+      <li>
         <button
           [bitMenuTriggerFor]="accountMenu"
-          class="tw-border-0 tw-bg-transparent tw-text-contrast"
+          class="tw-border-0 tw-bg-transparent tw-text-contrast tw-opacity-70 hover:tw-opacity-90"
         >
           <i class="bwi bwi-user-circle bwi-lg" aria-hidden="true"></i>
+          <i class="bwi bwi-caret-down bwi-sm" aria-hidden="true"></i>
         </button>
         <bit-menu class="dropdown-menu" #accountMenu>
           <div class="tw-max-w-[300px] tw-min-w-[200px]">
