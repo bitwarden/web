@@ -9,6 +9,7 @@ import { JslibModule } from "jslib-angular/jslib.module";
 
 import { OssRoutingModule } from "src/app/oss-routing.module";
 import { ServicesModule } from "src/app/services/services.module";
+import { VaultFilterModule } from "src/app/vault/vault-filter/vault-filter.module";
 import { WildcardRoutingModule } from "src/app/wildcard-routing.module";
 
 import { AppRoutingModule } from "./app-routing.module";
@@ -20,6 +21,7 @@ import { MaximumVaultTimeoutPolicyComponent } from "./policies/maximum-vault-tim
 @NgModule({
   imports: [
     JslibModule,
+    VaultFilterModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,

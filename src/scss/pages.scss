@@ -260,3 +260,45 @@ app-sponsored-families {
     }
   }
 }
+
+.collapsable-row {
+  display: flex;
+  padding-top: 15px;
+  i {
+    margin-top: 3px;
+  }
+  .filter-title {
+    padding-left: 5px;
+  }
+  &.active {
+    @include themify($themes) {
+      color: themed("primary");
+    }
+  }
+}
+
+.vault-filter-option {
+  padding-bottom: 3px;
+  &.active {
+    @include themify($themes) {
+      color: themed("primary");
+      font-weight: bold;
+    }
+  }
+  button.org-options {
+    background: none;
+    border: none;
+  }
+}
+
+.org-filter-heading {
+  @include themify($themes) {
+    color: themed("textColor");
+  }
+  &.active {
+    @include themify($themes) {
+      color: themed("primary");
+      font-weight: bold;
+    }
+  }
+}

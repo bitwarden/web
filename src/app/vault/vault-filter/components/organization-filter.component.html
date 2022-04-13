@@ -1,0 +1,175 @@
+<ng-container *ngIf="!hide">
+  <ng-container [ngSwitch]="displayMode">
+    <ng-container *ngSwitchCase="'noOrganizations'">
+      <div class="vault-filter-option active">
+        <span>
+          <i class="bwi bwi-fw bwi-user" aria-hidden="true"></i>
+          &nbsp;{{ "myVault" | i18n }}
+        </span>
+      </div>
+      <a
+        href="#"
+        routerLink="/settings/create-organization"
+        class="text-muted ml-auto"
+        appStopClick
+        appA11yTitle="{{ 'addOrganization' | i18n }}"
+      >
+        <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
+        <span>{{ "newOrganization" | i18n }}</span>
+      </a>
+    </ng-container>
+    <ng-container *ngSwitchCase="'personalOwnershipPolicy'">
+      <div class="collapsable-row" [ngClass]="{ active: !hasActiveFilter }">
+        <i
+          class="bwi bwi-fw"
+          title="{{ 'toggleCollapse' | i18n }}"
+          aria-hidden="true"
+          [ngClass]="{
+            'bwi-angle-right': isCollapsed,
+            'bwi-angle-down': !isCollapsed
+          }"
+          (click)="toggleCollapse()"
+          appStopProp
+        ></i>
+        <a href="#" (click)="clearFilter()">
+          <span class="org-filter-heading" [ngClass]="{ active: !hasActiveFilter }"
+            >&nbsp;{{ organizationGrouping.name | i18n }}</span
+          >
+        </a>
+        <a
+          href="#"
+          routerLink="/settings/create-organization"
+          class="text-muted ml-auto"
+          appStopClick
+          appA11yTitle="{{ 'addOrganization' | i18n }}"
+        >
+          <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
+        </a>
+      </div>
+      <ul *ngIf="!isCollapsed" class="bwi-ul card-ul">
+        <li
+          class="vault-filter-option"
+          *ngFor="let organization of organizations"
+          [ngClass]="{ active: organization.id === activeFilter.selectedOrganizationId }"
+        >
+          <div class="d-flex">
+            <a href="#" appStopClick appBlurClick (click)="applyOrganizationFilter(organization)">
+              <i class="bwi bwi-fw bwi-business" aria-hidden="true"></i>
+              &nbsp;{{ organization.name }}
+            </a>
+            <!-- TODO: Remove once jslib is updated and has new menu component -->
+            <a
+              href="#"
+              class="text-muted ml-auto show-active"
+              appStopClick
+              appA11yTitle="{{ 'addFolder' | i18n }}"
+              href="#"
+              id="nav-profile"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <div class="dropdown-menu dropdown-menu-left" aria-labelledby="nav-profile">
+                <app-organization-options [organization]="organization"></app-organization-options>
+              </div>
+              <i class="bwi bwi-ellipsis-v bwi-fw" aria-hidden="true" *ngIf="organization.id"></i>
+            </a>
+
+            <!-- Using new dropdow menu component from component library -->
+            <!-- <button [bitMenuTriggerFor]="orgMenu" class="text-muted ml-auto show-active">
+              <i class="bwi bwi-ellipsis-v" aria-hidden="true"></i>
+            </button>
+            <bit-menu class="dropdown-menu" #orgMenu>
+              <app-organization-options [organization]="organization"></app-organization-options>
+            </bit-menu> -->
+          </div>
+        </li>
+      </ul>
+    </ng-container>
+    <ng-container *ngSwitchCase="'singleOrganizationAndPersonalOwnershipPolicies'">
+      <ul class="bwi-ul card-ul">
+        <li class="vault-filter-option active">
+          <a href="#">
+            <i class="bwi bwi-fw bwi-business" aria-hidden="true"></i>
+            &nbsp;{{ organizations[0].name }}
+          </a>
+        </li>
+      </ul>
+    </ng-container>
+    <ng-container *ngSwitchCase="'organizationMember'">
+      <div class="collapsable-row" [ngClass]="{ active: !hasActiveFilter }">
+        <i
+          class="bwi bwi-fw"
+          title="{{ 'toggleCollapse' | i18n }}"
+          aria-hidden="true"
+          [ngClass]="{
+            'bwi-angle-right': isCollapsed,
+            'bwi-angle-down': !isCollapsed
+          }"
+          (click)="toggleCollapse()"
+          appStopProp
+        ></i>
+        <a href="#" (click)="clearFilter()">
+          <span class="org-filter-heading" [ngClass]="{ active: !hasActiveFilter }"
+            >&nbsp;{{ organizationGrouping.name | i18n }}</span
+          >
+        </a>
+        <a
+          href="#"
+          routerLink="/settings/create-organization"
+          class="text-muted ml-auto"
+          appStopClick
+          appA11yTitle="{{ 'addOrganization' | i18n }}"
+        >
+          <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
+        </a>
+      </div>
+      <ul *ngIf="!isCollapsed" class="bwi-ul card-ul no-margin">
+        <li class="vault-filter-option" [ngClass]="{ active: activeFilter.myVaultOnly }">
+          <a href="#" (click)="applyMyVaultFilter()">
+            <i class="bwi bwi-fw bwi-user" aria-hidden="true"></i>
+            &nbsp;{{ "myVault" | i18n }}
+          </a>
+        </li>
+        <li
+          class="vault-filter-option"
+          *ngFor="let organization of organizations"
+          [ngClass]="{ active: organization.id === activeFilter.selectedOrganizationId }"
+        >
+          <div class="d-flex">
+            <a href="#" appStopClick appBlurClick (click)="applyOrganizationFilter(organization)">
+              <i class="bwi bwi-fw bwi-business" aria-hidden="true"></i>
+              &nbsp;{{ organization.name }}
+            </a>
+            <!-- TODO: Remove once jslib is updated and has new menu component -->
+            <a
+              href="#"
+              class="text-muted ml-auto show-active"
+              appStopClick
+              appA11yTitle="{{ 'addFolder' | i18n }}"
+              href="#"
+              id="nav-profile"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              <div class="dropdown-menu dropdown-menu-left" aria-labelledby="nav-profile">
+                <app-organization-options [organization]="organization"></app-organization-options>
+              </div>
+              <i class="bwi bwi-ellipsis-v bwi-fw" aria-hidden="true" *ngIf="organization.id"></i>
+            </a>
+
+            <!-- Using new dropdow menu component from component library -->
+            <!-- <button [bitMenuTriggerFor]="orgMenu" class="org-options ml-auto show-active">
+              <i class="bwi bwi-ellipsis-v" aria-hidden="true"></i>
+            </button>
+            <bit-menu class="dropdown-menu" #orgMenu>
+              <app-organization-options [organization]="organization"></app-organization-options>
+            </bit-menu> -->
+          </div>
+        </li>
+      </ul>
+    </ng-container>
+  </ng-container>
+  <hr />
+</ng-container>
