@@ -1,18 +1,20 @@
 <div class="container page-content">
   <div class="row">
     <div class="col-3">
-      <app-vault-groupings
-        (onAllClicked)="clearGroupingFilters()"
-        (onFavoritesClicked)="filterFavorites()"
-        (onCipherTypeClicked)="filterCipherType($event)"
-        (onFolderClicked)="filterFolder($event.id)"
-        (onAddFolder)="addFolder()"
-        (onEditFolder)="editFolder($event.id)"
-        (onCollectionClicked)="filterCollection($event.id)"
-        (onSearchTextChanged)="filterSearchText($event)"
-        (onTrashClicked)="filterDeleted()"
-      >
-      </app-vault-groupings>
+      <div class="groupings">
+        <div class="content">
+          <div class="inner-content">
+            <app-vault-filter
+              #vaultFilter
+              [activeFilter]="activeFilter"
+              (onFilterChange)="applyVaultFilter($event)"
+              (onAddFolder)="addFolder()"
+              (onEditFolder)="editFolder($event.id)"
+              (onSearchTextChanged)="filterSearchText($event)"
+            ></app-vault-filter>
+          </div>
+        </div>
+      </div>
     </div>
     <div [ngClass]="{ 'col-6': isShowingCards, 'col-9': !isShowingCards }">
       <div class="page-header d-flex">

@@ -135,7 +135,7 @@ import { AddEditComponent as OrgAddEditComponent } from "./organizations/vault/a
 import { AttachmentsComponent as OrgAttachmentsComponent } from "./organizations/vault/attachments.component";
 import { CiphersComponent as OrgCiphersComponent } from "./organizations/vault/ciphers.component";
 import { CollectionsComponent as OrgCollectionsComponent } from "./organizations/vault/collections.component";
-import { GroupingsComponent as OrgGroupingsComponent } from "./organizations/vault/groupings.component";
+import { VaultFilterComponent as OrgGroupingsComponent } from "./organizations/vault/vault-filter/vault-filter.component";
 import { VaultComponent as OrgVaultComponent } from "./organizations/vault/vault.component";
 import { ProvidersComponent } from "./providers/providers.component";
 import { BreachReportComponent } from "./reports/breach-report.component";
@@ -214,8 +214,8 @@ import { BulkShareComponent } from "./vault/bulk-share.component";
 import { CiphersComponent } from "./vault/ciphers.component";
 import { CollectionsComponent } from "./vault/collections.component";
 import { FolderAddEditComponent } from "./vault/folder-add-edit.component";
-import { GroupingsComponent } from "./vault/groupings.component";
 import { ShareComponent } from "./vault/share.component";
+import { VaultFilterModule } from "./vault/vault-filter/vault-filter.module";
 import { VaultComponent } from "./vault/vault.component";
 
 registerLocaleData(localeAf, "af");
@@ -275,6 +275,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     DragDropModule,
     FormsModule,
     InfiniteScrollModule,
+    VaultFilterModule,
     JslibModule,
     ReactiveFormsModule,
     RouterModule,
@@ -331,7 +332,6 @@ registerLocaleData(localeZhTw, "zh-TW");
     FolderAddEditComponent,
     FooterComponent,
     FrontendLayoutComponent,
-    GroupingsComponent,
     HintComponent,
     ImportComponent,
     InactiveTwoFactorReportComponent,
