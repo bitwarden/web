@@ -14,7 +14,7 @@
       >
       </app-vault-groupings>
     </div>
-    <div class="col-6">
+    <div [ngClass]="{ 'col-6': isShowingCards, 'col-9': !isShowingCards }">
       <div class="page-header d-flex">
         <h1>
           {{ "vaultItems" | i18n }}
