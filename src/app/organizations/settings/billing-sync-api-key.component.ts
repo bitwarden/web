@@ -68,7 +68,7 @@ export class BillingSyncApiKeyComponent {
     this.keyRevisionDate = response.revisionDate;
     this.hasBillingToken = true;
     const syncStatus = await this.apiService.getSponsorshipSyncStatus(this.organizationId);
-    this.lastSyncDate = new Date("2022-04-14T19:41:26.000Z");
+    this.lastSyncDate = syncStatus.lastSyncDate;
   }
 
   cancelRotate() {

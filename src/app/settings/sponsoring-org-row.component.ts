@@ -31,12 +31,12 @@ export class SponsoringOrgRowComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.setStatus(this.isSelfHosted,
-    //   this.sponsoringOrg.familySponsorshipToDelete,
-    //   this.sponsoringOrg.familySponsorshipValidUntil,
-    //   this.sponsoringOrg.familySponsorshipLastSyncDate);
-
-    this.setStatus(false, false, null, null);
+    this.setStatus(
+      this.isSelfHosted,
+      this.sponsoringOrg.familySponsorshipToDelete,
+      this.sponsoringOrg.familySponsorshipValidUntil,
+      this.sponsoringOrg.familySponsorshipLastSyncDate
+    );
   }
 
   async revokeSponsorship() {
@@ -104,7 +104,7 @@ export class SponsoringOrgRowComponent implements OnInit {
     } else if (toDelete) {
       // They want to delete and we don't have a valid until date so we can
       // this should only happen on a self-hosted install
-      this.statusMessage = this.i18nService.t("requestRevoke");
+      this.statusMessage = this.i18nService.t("requestRemoved");
       this.statusClass = "text-danger";
     } else if (validUntil) {
       // They don't want to delete and they have a valid until date

@@ -37,8 +37,6 @@ export class SponsoredFamiliesComponent implements OnInit {
 
   availableSponsorshipOrgs: Organization[] = [];
   activeSponsorshipOrgs: Organization[] = [];
-  selectedSponsorshipOrgId = "";
-  sponsorshipEmail = "";
 
   // Conditional display properties
   formPromise: Promise<any>;
@@ -77,11 +75,14 @@ export class SponsoredFamiliesComponent implements OnInit {
   }
 
   async submit() {
-    this.formPromise = this.apiService.postCreateSponsorship(this.selectedSponsorshipOrgId, {
-      sponsoredEmail: this.sponsorshipEmail,
-      planSponsorshipType: PlanSponsorshipType.FamiliesForEnterprise,
-      friendlyName: this.sponsorshipEmail,
-    });
+    this.formPromise = this.apiService.postCreateSponsorship(
+      this.sponsorshipForm.value.selectedSponsorshipOrgId,
+      {
+        sponsoredEmail: this.sponsorshipForm.value.sponsorshipEmail,
+        planSponsorshipType: PlanSponsorshipType.FamiliesForEnterprise,
+        friendlyName: this.sponsorshipForm.value.sponsorshipEmail,
+      }
+    );
 
     await this.formPromise;
     this.platformUtilsService.showToast("success", null, this.i18nService.t("sponsorshipCreated"));
@@ -108,7 +109,9 @@ export class SponsoredFamiliesComponent implements OnInit {
     );
 
     if (this.availableSponsorshipOrgs.length === 1) {
-      this.selectedSponsorshipOrgId = this.availableSponsorshipOrgs[0].id;
+      this.sponsorshipForm.patchValue({
+        selectedSponsorshipOrgId: this.availableSponsorshipOrgs[0].id,
+      });
     }
     this.loading = false;
   }
@@ -118,8 +121,7 @@ export class SponsoredFamiliesComponent implements OnInit {
   }
 
   private async resetForm() {
-    this.sponsorshipEmail = "";
-    this.selectedSponsorshipOrgId = "";
+    this.sponsorshipForm.reset();
   }
 
   get anyActiveSponsorships(): boolean {
