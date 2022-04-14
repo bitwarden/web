@@ -54,18 +54,21 @@
                 (click)="copy()"
                 [appA11yTitle]="'copy' | i18n"
               >
-                <i class="fa fa-lg fa-clone" aria-hidden="true"></i>
+                <i class="bwi bwi-lg bwi-clone" aria-hidden="true"></i>
               </button>
             </div>
           </div>
-          <div class="small text-muted mt-2">
-            <div *ngIf="keyRevisionDate">
-              <b class="font-weight-semibold">{{ "dateUpdated" | i18n }}:</b>
-              {{ keyRevisionDate | date: "medium" }}
-            </div>
+          <div class="small text-muted mt-2" *ngIf="showLastSyncText">
+            <b class="font-weight-semibold">{{ "lastSync" | i18n }}:</b>
+            {{ lastSyncDate | date: "medium" }}
           </div>
-          <p *ngIf="keyRevisionDate && lastSyncDate">{{ syncText }}</p>
-          <p class="mt-4">{{ "billingSyncCanAccess" | i18n }}</p>
+          <div class="small text-danger mt-2" *ngIf="showAwaitingSyncText">
+            <i class="bwi bwi-error"></i>
+            {{
+              (daysBetween === 1 ? "awaitingSyncSingular" : "awaitingSyncPlural")
+                | i18n: daysBetween
+            }}
+          </div>
         </div>
       </div>
       <div class="modal-footer">
@@ -75,7 +78,11 @@
           [disabled]="form.loading"
           *ngIf="!clientSecret || showRotateScreen"
         >
-          <i class="fa fa-spinner fa-spin" title="{{ 'loading' | i18n }}" *ngIf="form.loading"></i>
+          <i
+            class="bwi bwi-spinner bwi-spin"
+            title="{{ 'loading' | i18n }}"
+            *ngIf="form.loading"
+          ></i>
           <span>
             {{ submitButtonText }}
           </span>

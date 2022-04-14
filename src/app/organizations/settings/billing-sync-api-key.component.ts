@@ -68,7 +68,7 @@ export class BillingSyncApiKeyComponent {
     this.keyRevisionDate = response.revisionDate;
     this.hasBillingToken = true;
     const syncStatus = await this.apiService.getSponsorshipSyncStatus(this.organizationId);
-    this.lastSyncDate = syncStatus.lastSyncDate;
+    this.lastSyncDate = new Date("2022-04-14T19:41:26.000Z");
   }
 
   cancelRotate() {
@@ -81,7 +81,7 @@ export class BillingSyncApiKeyComponent {
 
   private dayDiff(date1: Date, date2: Date): number {
     const diffTime = Math.abs(date2.getTime() - date1.getTime());
-    return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+    return Math.round(diffTime / (1000 * 60 * 60 * 24));
   }
 
   get submitButtonText(): string {
@@ -92,17 +92,17 @@ export class BillingSyncApiKeyComponent {
     return this.i18nService.t(this.hasBillingToken ? "continue" : "generateToken");
   }
 
-  get syncText(): string | undefined {
-    // Precendence:
-    // 1. If last sync date is null, don't show anything
-    // 2. If last sync date is greater than key revision date, show last sync on X
+  get showLastSyncText(): boolean {
+    // If the keyRevisionDate is later than the lastSyncDate we need to show
+    // a warning that they need to put the billing sync key in their self hosted install
+    return this.lastSyncDate && this.lastSyncDate > this.keyRevisionDate;
+  }
 
-    if (this.lastSyncDate !== null) {
-      if (this.keyRevisionDate > this.lastSyncDate) {
-        return "Awaiting sync with new token";
-      }
-    }
+  get showAwaitingSyncText(): boolean {
+    return this.lastSyncDate && this.lastSyncDate <= this.keyRevisionDate;
+  }
 
-    return;
+  get daysBetween(): number {
+    return this.dayDiff(this.keyRevisionDate, new Date());
   }
 }

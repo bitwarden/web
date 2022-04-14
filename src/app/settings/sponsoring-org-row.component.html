@@ -3,7 +3,7 @@
 </td>
 <td>{{ sponsoringOrg.name }}</td>
 <td>
-  <span>{{ statusMessage }}</span>
+  <span [ngClass]="statusClass">{{ statusMessage }}</span>
 </td>
 <td class="table-action-right">
   <div class="dropdown" appListDropdown>
