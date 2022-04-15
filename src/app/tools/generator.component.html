@@ -264,7 +264,7 @@
   <ng-container *ngIf="usernameOptions.type === 'forwarded'">
     <div class="form-group">
       <label class="d-block">{{ "service" | i18n }}</label>
-      <div class="form-check form-check-inline" *ngFor="let o of forwardOptions">
+      <div class="form-check" *ngFor="let o of forwardOptions">
         <input
           class="form-check-input"
           type="radio"
@@ -304,9 +304,9 @@
     </div>
     <div class="row" *ngIf="usernameOptions.forwardedService === 'anonaddy'">
       <div class="form-group col-4">
-        <label for="simplelogin-apikey">{{ "apiAccessToken" | i18n }}</label>
+        <label for="anonaddy-apikey">{{ "apiAccessToken" | i18n }}</label>
         <input
-          id="simplelogin-apikey"
+          id="anonaddy-apikey"
           class="form-control"
           type="password"
           [(ngModel)]="usernameOptions.forwardedAnonAddyApiToken"
@@ -320,6 +320,18 @@
           class="form-control"
           type="text"
           [(ngModel)]="usernameOptions.forwardedAnonAddyDomain"
+          (blur)="saveUsernameOptions()"
+        />
+      </div>
+    </div>
+    <div class="row" *ngIf="usernameOptions.forwardedService === 'firefoxrelay'">
+      <div class="form-group col-4">
+        <label for="firefox-apikey">{{ "apiAccessToken" | i18n }}</label>
+        <input
+          id="firefox-apikey"
+          class="form-control"
+          type="password"
+          [(ngModel)]="usernameOptions.forwardedFirefoxApiToken"
           (blur)="saveUsernameOptions()"
         />
       </div>
