@@ -4808,6 +4808,18 @@
   "billingSyncApiKeyRotated": {
     "message": "Token rotated."
   },
+  "billingSync": {
+    "message": "Billing Sync"
+  },
+  "billingSyncDesc": {
+    "message": "Billing Sync provides Free Families plans for members and advanced billing capabilities by linking your self-hosted Bitwarden to the Bitwarden cloud server."
+  },
+  "billingSyncKeyDesc": {
+    "message": "A Billing Sync Token from your cloud organization's subscription settings is required to complete this form."
+  },
+  "billingSyncKey": {
+    "message": "Billing Sync Token"
+  },
   "active": {
     "message": "Active"
   },
@@ -4943,9 +4955,6 @@
       }
     }
   },
-  "lastSync": {
-    "message": "Last Sync"
-  },
   "awaitingSyncSingular": {
     "message": "Token rotated $DAYS$ day ago. Update the billing sync token in your self-hosted organization settings.",
     "placeholders": {
@@ -4963,5 +4972,9 @@
         "example": "1"
       }
     }
+  },
+  "lastSync": {
+    "message": "Last Sync",
+    "Description": "Used as a prefix to indicate the last time a sync occured. Example \"Last sync 1968-11-16 00:00:00\""
   }
 }
