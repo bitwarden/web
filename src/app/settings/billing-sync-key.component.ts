@@ -31,11 +31,18 @@ export class BillingSyncKeyComponent {
         true,
         new BillingSyncConfigRequest(this.billingSyncKey)
       );
-      this.formPromise = this.apiService.upsertOrganizationConnection(
-        request,
-        BillingSyncConfigApi,
-        this.existingConnectionId
-      );
+      if (this.existingConnectionId == null) {
+        this.formPromise = this.apiService.createOrganizationConnection(
+          request,
+          BillingSyncConfigApi
+        );
+      } else {
+        this.formPromise = this.apiService.updateOrganizationConnection(
+          request,
+          BillingSyncConfigApi,
+          this.existingConnectionId
+        );
+      }
       const response = (await this
         .formPromise) as OrganizationConnectionResponse<BillingSyncConfigApi>;
       this.existingConnectionId = response?.id;
