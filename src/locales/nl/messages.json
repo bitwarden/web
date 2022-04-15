@@ -187,7 +187,12 @@
     "message": "Map bewerken"
   },
   "baseDomain": {
-    "message": "Basisdomein"
+    "message": "Basisdomein",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domeinnaam",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Hostnaam",
@@ -1425,6 +1430,9 @@
   "reports": {
     "message": "Rapportages"
   },
+  "reportsDesc": {
+    "message": "Identificeer en sluit beveiligingsgaten in je online accounts door op onderstaande rapporten te klikken."
+  },
   "unsecuredWebsitesReport": {
     "message": "Niet-beveiligde websites"
   },
@@ -1447,7 +1455,7 @@
     "message": "Geen items in je kluis met onbeveiligde URIs."
   },
   "inactive2faReport": {
-    "message": "Niet-geactiveerde 2FA"
+    "message": "Tweestapsaanmelding"
   },
   "inactive2faReportDesc": {
     "message": "Tweestapsaanmelding (2FA) is een belangrijke instelling die bijdraagt aan de beveiliging van je accounts. Als de website het ondersteunt, zou je altijd tweestapsaanmelding moeten gebruiken."
@@ -3608,7 +3616,8 @@
     "message": "Alle Sends"
   },
   "maxAccessCountReached": {
-    "message": "Maximum aantal keren benaderd"
+    "message": "Maximum aantal keren benaderd",
+    "description": "This text will be displayed after a Send has been accessed the maximum amount of times."
   },
   "pendingDeletion": {
     "message": "Wordt verwijderd"
@@ -4826,5 +4835,48 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Terug naar rapporten"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Wat wil je genereren?"
+  },
+  "passwordType": {
+    "message": "Type wachtwoord"
+  },
+  "regenerateUsername": {
+    "message": "Gebruikersnaam opnieuw genereren"
+  },
+  "generateUsername": {
+    "message": "Gebruikersnaam genereren"
+  },
+  "usernameType": {
+    "message": "Type gebruikersnaam"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email",
+    "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all e-mail"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Willekeurig"
+  },
+  "randomWord": {
+    "message": "Willekeurig woord"
+  },
+  "service": {
+    "message": "Dienst"
   }
 }

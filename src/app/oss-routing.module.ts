@@ -34,14 +34,13 @@ import { EmergencyAccessComponent } from "./settings/emergency-access.component"
 import { OrganizationsComponent } from "./settings/organizations.component";
 import { PreferencesComponent } from "./settings/preferences.component";
 import { PremiumComponent } from "./settings/premium.component";
-import { SecurityComponent } from "./settings/security.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { SponsoredFamiliesComponent } from "./settings/sponsored-families.component";
 import { UserBillingComponent } from "./settings/user-billing.component";
 import { UserSubscriptionComponent } from "./settings/user-subscription.component";
 import { ExportComponent } from "./tools/export.component";
+import { GeneratorComponent } from "./tools/generator.component";
 import { ImportComponent } from "./tools/import.component";
-import { PasswordGeneratorComponent } from "./tools/password-generator.component";
 import { ToolsComponent } from "./tools/tools.component";
 import { VaultComponent } from "./vault/vault.component";
 
@@ -211,8 +210,8 @@ const routes: Routes = [
           { path: "export", component: ExportComponent, data: { titleId: "exportVault" } },
           {
             path: "generator",
-            component: PasswordGeneratorComponent,
-            data: { titleId: "passwordGenerator" },
+            component: GeneratorComponent,
+            data: { titleId: "generator" },
           },
         ],
       },
