@@ -1,7 +1,13 @@
 import { APP_INITIALIZER, NgModule } from "@angular/core";
 import { ToastrModule } from "ngx-toastr";
 
-import { JslibServicesModule } from "jslib-angular/services/jslib-services.module";
+import {
+  JslibServicesModule,
+  WINDOW,
+  SECURE_STORAGE,
+  STATE_FACTORY,
+  STATE_SERVICE_USE_CACHE,
+} from "jslib-angular/services/jslib-services.module";
 import { ModalService as ModalServiceAbstraction } from "jslib-angular/services/modal.service";
 import { ApiService as ApiServiceAbstraction } from "jslib-common/abstractions/api.service";
 import { CipherService as CipherServiceAbstraction } from "jslib-common/abstractions/cipher.service";
@@ -104,7 +110,7 @@ export function initFactory(
       provide: APP_INITIALIZER,
       useFactory: initFactory,
       deps: [
-        "WINDOW",
+        WINDOW,
         EnvironmentServiceAbstraction,
         NotificationsServiceAbstraction,
         VaultTimeoutServiceAbstraction,
@@ -117,6 +123,14 @@ export function initFactory(
       ],
       multi: true,
     },
+    {
+      provide: STATE_FACTORY,
+      useValue: new StateFactory(GlobalState, Account),
+    },
+    {
+      provide: STATE_SERVICE_USE_CACHE,
+      useValue: false,
+    },
     OrganizationGuardService,
     OrganizationTypeGuardService,
     RouterService,
@@ -125,23 +139,18 @@ export function initFactory(
     {
       provide: I18nServiceAbstraction,
       useFactory: (window: Window) => new I18nService(window.navigator.language, "locales"),
-      deps: ["WINDOW"],
+      deps: [WINDOW],
     },
     { provide: StorageServiceAbstraction, useClass: HtmlStorageService },
     {
-      provide: "SECURE_STORAGE",
+      provide: SECURE_STORAGE,
       // TODO: platformUtilsService.isDev has a helper for this, but using that service here results in a circular dependency.
       // We have a tech debt item in the backlog to break up platformUtilsService, but in the meantime simply checking the environement here is less cumbersome.
       useClass: process.env.NODE_ENV === "development" ? HtmlStorageService : MemoryStorageService,
     },
     {
       provide: PlatformUtilsServiceAbstraction,
-      useFactory: (
-        i18nService: I18nServiceAbstraction,
-        messagingService: MessagingServiceAbstraction,
-        logService: LogService,
-        stateService: StateServiceAbstraction
-      ) => new WebPlatformUtilsService(i18nService, messagingService, logService, stateService),
+      useClass: WebPlatformUtilsService,
       deps: [
         I18nServiceAbstraction,
         MessagingServiceAbstraction,
@@ -172,42 +181,6 @@ export function initFactory(
         PlatformUtilsServiceAbstraction,
         LogService,
         StateServiceAbstraction,
-      ],
-    },
-    {
-      provide: StateMigrationServiceAbstraction,
-      useFactory: (
-        storageService: StorageServiceAbstraction,
-        secureStorageService: StorageServiceAbstraction
-      ) =>
-        new StateMigrationService(
-          storageService,
-          secureStorageService,
-          new StateFactory(GlobalState, Account)
-        ),
-      deps: [StorageServiceAbstraction, "SECURE_STORAGE"],
-    },
-    {
-      provide: StateServiceAbstraction,
-      useFactory: (
-        storageService: StorageServiceAbstraction,
-        secureStorageService: StorageServiceAbstraction,
-        logService: LogService,
-        stateMigrationService: StateMigrationServiceAbstraction
-      ) =>
-        new StateService(
-          storageService,
-          secureStorageService,
-          logService,
-          stateMigrationService,
-          new StateFactory(GlobalState, Account),
-          false
-        ),
-      deps: [
-        StorageServiceAbstraction,
-        "SECURE_STORAGE",
-        LogService,
-        StateMigrationServiceAbstraction,
       ],
     },
     {
