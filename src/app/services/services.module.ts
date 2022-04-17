@@ -16,7 +16,6 @@ import { CryptoService as CryptoServiceAbstraction } from "jslib-common/abstract
 import { FolderService as FolderServiceAbstraction } from "jslib-common/abstractions/folder.service";
 import { I18nService as I18nServiceAbstraction } from "jslib-common/abstractions/i18n.service";
 import { ImportService as ImportServiceAbstraction } from "jslib-common/abstractions/import.service";
-import { LogService } from "jslib-common/abstractions/log.service";
 import { MessagingService as MessagingServiceAbstraction } from "jslib-common/abstractions/messaging.service";
 import { PasswordRepromptService as PasswordRepromptServiceAbstraction } from "jslib-common/abstractions/passwordReprompt.service";
 import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from "jslib-common/abstractions/platformUtils.service";
@@ -85,12 +84,6 @@ import { RouterService } from "./router.service";
     {
       provide: PlatformUtilsServiceAbstraction,
       useClass: WebPlatformUtilsService,
-      deps: [
-        I18nServiceAbstraction,
-        MessagingServiceAbstraction,
-        LogService,
-        StateServiceAbstraction,
-      ],
     },
     { provide: MessagingServiceAbstraction, useClass: BroadcasterMessagingService },
     { provide: ModalServiceAbstraction, useClass: ModalService },
@@ -110,19 +103,10 @@ import { RouterService } from "./router.service";
     {
       provide: StateMigrationServiceAbstraction,
       useClass: StateMigrationService,
-      deps: [StorageServiceAbstraction, SECURE_STORAGE, STATE_FACTORY],
     },
     {
       provide: StateServiceAbstraction,
       useClass: StateService,
-      deps: [
-        StorageServiceAbstraction,
-        SECURE_STORAGE,
-        LogService,
-        StateMigrationServiceAbstraction,
-        STATE_FACTORY,
-        STATE_SERVICE_USE_CACHE,
-      ],
     },
     {
       provide: BaseStateServiceAbstraction,

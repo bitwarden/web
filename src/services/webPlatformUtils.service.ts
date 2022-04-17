@@ -1,3 +1,4 @@
+import { Injectable } from "@angular/core";
 import Swal, { SweetAlertIcon } from "sweetalert2";
 
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -9,6 +10,7 @@ import { ClientType } from "jslib-common/enums/clientType";
 import { DeviceType } from "jslib-common/enums/deviceType";
 import { ThemeType } from "jslib-common/enums/themeType";
 
+@Injectable()
 export class WebPlatformUtilsService implements PlatformUtilsService {
   private browserCache: DeviceType = null;
   private prefersColorSchemeDark = window.matchMedia("(prefers-color-scheme: dark)");
