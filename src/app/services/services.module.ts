@@ -50,6 +50,11 @@ import { RouterService } from "./router.service";
   declarations: [],
   providers: [
     InitService,
+    OrganizationGuardService,
+    OrganizationTypeGuardService,
+    RouterService,
+    EventService,
+    PolicyListService,
     {
       provide: APP_INITIALIZER,
       useFactory: (initService: InitService) => initService.init(),
@@ -64,11 +69,6 @@ import { RouterService } from "./router.service";
       provide: STATE_SERVICE_USE_CACHE,
       useValue: false,
     },
-    OrganizationGuardService,
-    OrganizationTypeGuardService,
-    RouterService,
-    EventService,
-    PolicyListService,
     {
       provide: I18nServiceAbstraction,
       useFactory: (window: Window) => new I18nService(window.navigator.language, "locales"),
