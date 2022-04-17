@@ -44,8 +44,8 @@
             </ng-container>
           </ng-template>
         </p>
-        <app-verify-master-password [(ngModel)]="masterPassword" ngDefaultControl name="secret">
-        </app-verify-master-password>
+        <app-user-verification [(ngModel)]="masterPassword" ngDefaultControl name="secret">
+        </app-user-verification>
       </div>
       <div class="modal-footer">
         <button type="submit" class="btn btn-danger btn-submit" [disabled]="form.loading">
