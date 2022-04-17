@@ -184,6 +184,23 @@ export function initFactory(
       ],
     },
     {
+      provide: StateMigrationServiceAbstraction,
+      useClass: StateMigrationService,
+      deps: [StorageServiceAbstraction, SECURE_STORAGE, STATE_FACTORY],
+    },
+    {
+      provide: StateServiceAbstraction,
+      useClass: StateService,
+      deps: [
+        StorageServiceAbstraction,
+        SECURE_STORAGE,
+        LogService,
+        StateMigrationServiceAbstraction,
+        STATE_FACTORY,
+        STATE_SERVICE_USE_CACHE,
+      ],
+    },
+    {
       provide: BaseStateServiceAbstraction,
       useExisting: StateServiceAbstraction,
     },
