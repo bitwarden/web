@@ -1,36 +1,38 @@
 import { Inject, Injectable } from "@angular/core";
 
 import { WINDOW } from "jslib-angular/services/jslib-services.module";
-import { CryptoService } from "jslib-common/abstractions/crypto.service";
-import { EnvironmentService, Urls } from "jslib-common/abstractions/environment.service";
-import { EventService as EventLoggingService } from "jslib-common/abstractions/event.service";
-import { I18nService } from "jslib-common/abstractions/i18n.service";
-import { NotificationsService } from "jslib-common/abstractions/notifications.service";
-import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
-import { StateService } from "jslib-common/abstractions/state.service";
-import { TwoFactorService } from "jslib-common/abstractions/twoFactor.service";
-import { VaultTimeoutService } from "jslib-common/abstractions/vaultTimeout.service";
+import { CryptoService as CryptoServiceAbstraction } from "jslib-common/abstractions/crypto.service";
+import {
+  EnvironmentService as EnvironmentServiceAbstraction,
+  Urls,
+} from "jslib-common/abstractions/environment.service";
+import { EventService as EventLoggingServiceAbstraction } from "jslib-common/abstractions/event.service";
+import { I18nService as I18nServiceAbstraction } from "jslib-common/abstractions/i18n.service";
+import { NotificationsService as NotificationsServiceAbstraction } from "jslib-common/abstractions/notifications.service";
+import { PlatformUtilsService as PlatformUtilsServiceAbstraction } from "jslib-common/abstractions/platformUtils.service";
+import { StateService as StateServiceAbstraction } from "jslib-common/abstractions/state.service";
+import { TwoFactorService as TwoFactorServiceAbstraction } from "jslib-common/abstractions/twoFactor.service";
+import { VaultTimeoutService as VaultTimeoutServiceAbstraction } from "jslib-common/abstractions/vaultTimeout.service";
 import { ThemeType } from "jslib-common/enums/themeType";
 import { ContainerService } from "jslib-common/services/container.service";
-import { EventService as EventLoggingServiceImplementation } from "jslib-common/services/event.service";
-import { VaultTimeoutService as VaultTimeoutServiceImplementation } from "jslib-common/services/vaultTimeout.service";
+import { EventService as EventLoggingService } from "jslib-common/services/event.service";
+import { VaultTimeoutService as VaultTimeoutService } from "jslib-common/services/vaultTimeout.service";
 
-import { I18nService as I18nServiceImplementation } from "../../services/i18n.service";
-
+import { I18nService as I18nService } from "../../services/i18n.service";
 
 @Injectable()
 export class InitService {
   constructor(
     @Inject(WINDOW) private win: Window,
-    private environmentService: EnvironmentService,
-    private notificationsService: NotificationsService,
-    private vaultTimeoutService: VaultTimeoutService,
-    private i18nService: I18nService,
-    private eventLoggingService: EventLoggingService,
-    private twoFactorService: TwoFactorService,
-    private stateService: StateService,
-    private platformUtilsService: PlatformUtilsService,
-    private cryptoService: CryptoService
+    private environmentService: EnvironmentServiceAbstraction,
+    private notificationsService: NotificationsServiceAbstraction,
+    private vaultTimeoutService: VaultTimeoutServiceAbstraction,
+    private i18nService: I18nServiceAbstraction,
+    private eventLoggingService: EventLoggingServiceAbstraction,
+    private twoFactorService: TwoFactorServiceAbstraction,
+    private stateService: StateServiceAbstraction,
+    private platformUtilsService: PlatformUtilsServiceAbstraction,
+    private cryptoService: CryptoServiceAbstraction
   ) {}
 
   init() {
@@ -43,10 +45,10 @@ export class InitService {
 
       setTimeout(() => this.notificationsService.init(), 3000);
 
-      (this.vaultTimeoutService as VaultTimeoutServiceImplementation).init(true);
+      (this.vaultTimeoutService as VaultTimeoutService).init(true);
       const locale = await this.stateService.getLocale();
-      await (this.i18nService as I18nServiceImplementation).init(locale);
-      (this.eventLoggingService as EventLoggingServiceImplementation).init(true);
+      await (this.i18nService as I18nService).init(locale);
+      (this.eventLoggingService as EventLoggingService).init(true);
       this.twoFactorService.init();
       const htmlEl = this.win.document.documentElement;
       htmlEl.classList.add("locale_" + this.i18nService.translationLocale);
