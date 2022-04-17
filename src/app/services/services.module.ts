@@ -13,7 +13,6 @@ import { ApiService as ApiServiceAbstraction } from "jslib-common/abstractions/a
 import { CipherService as CipherServiceAbstraction } from "jslib-common/abstractions/cipher.service";
 import { CollectionService as CollectionServiceAbstraction } from "jslib-common/abstractions/collection.service";
 import { CryptoService as CryptoServiceAbstraction } from "jslib-common/abstractions/crypto.service";
-import { CryptoFunctionService as CryptoFunctionServiceAbstraction } from "jslib-common/abstractions/cryptoFunction.service";
 import { FolderService as FolderServiceAbstraction } from "jslib-common/abstractions/folder.service";
 import { I18nService as I18nServiceAbstraction } from "jslib-common/abstractions/i18n.service";
 import { ImportService as ImportServiceAbstraction } from "jslib-common/abstractions/import.service";
@@ -25,7 +24,6 @@ import { StateService as BaseStateServiceAbstraction } from "jslib-common/abstra
 import { StateMigrationService as StateMigrationServiceAbstraction } from "jslib-common/abstractions/stateMigration.service";
 import { StorageService as StorageServiceAbstraction } from "jslib-common/abstractions/storage.service";
 import { StateFactory } from "jslib-common/factories/stateFactory";
-import { CryptoService } from "jslib-common/services/crypto.service";
 import { ImportService } from "jslib-common/services/import.service";
 
 import { StateService as StateServiceAbstraction } from "../../abstractions/state.service";
@@ -47,7 +45,6 @@ import { OrganizationGuardService } from "./organization-guard.service";
 import { OrganizationTypeGuardService } from "./organization-type-guard.service";
 import { PolicyListService } from "./policy-list.service";
 import { RouterService } from "./router.service";
-
 
 @NgModule({
   imports: [ToastrModule, JslibServicesModule],
@@ -108,16 +105,6 @@ import { RouterService } from "./router.service";
         CollectionServiceAbstraction,
         PlatformUtilsServiceAbstraction,
         CryptoServiceAbstraction,
-      ],
-    },
-    {
-      provide: CryptoServiceAbstraction,
-      useClass: CryptoService,
-      deps: [
-        CryptoFunctionServiceAbstraction,
-        PlatformUtilsServiceAbstraction,
-        LogService,
-        StateServiceAbstraction,
       ],
     },
     {
