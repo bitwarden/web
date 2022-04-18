@@ -187,7 +187,12 @@
     "message": "Labot mapi"
   },
   "baseDomain": {
-    "message": "Pamata domēns"
+    "message": "Pamata domēns",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domēna vārds",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Saimniekdators",
@@ -1424,6 +1429,9 @@
   },
   "reports": {
     "message": "Pārskati"
+  },
+  "reportsDesc": {
+    "message": "Noteikt un novērst drošības nepilnības tiešsaistes kontos klikšķinot uz zemāk esošajām atskaitēm."
   },
   "unsecuredWebsitesReport": {
     "message": "Nedrošu tīmekļa vietņu pārskats"
@@ -3608,7 +3616,8 @@
     "message": "Visi \"Send\""
   },
   "maxAccessCountReached": {
-    "message": "Sasniegts lielākais pieļaujamais piekļuvju skaits"
+    "message": "Sasniegts lielākais pieļaujamais piekļuvju skaits",
+    "description": "This text will be displayed after a Send has been accessed the maximum amount of times."
   },
   "pendingDeletion": {
     "message": "Gaida dzēšanu"
@@ -4826,5 +4835,48 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Atgriezties pie atskaitēm"
+  },
+  "generator": {
+    "message": "Veidotājs"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Ko ir nepieciešams izveidot?"
+  },
+  "passwordType": {
+    "message": "Paroles veids"
+  },
+  "regenerateUsername": {
+    "message": "Pārizveidot lietotājvārdu"
+  },
+  "generateUsername": {
+    "message": "Izveidot lietotājvārdu"
+  },
+  "usernameType": {
+    "message": "Lietotājvārda veids"
+  },
+  "plusAddressedEmail": {
+    "message": "E-pasta adrese ar plusu",
+    "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Izmantot e-pasta pakalpojuma nodrošinātāja apakšadresēšanas spējas."
+  },
+  "catchallEmail": {
+    "message": "Visu tveroša e-pasta adrese"
+  },
+  "catchallEmailDesc": {
+    "message": "Izmantot uzstādīto domēna visu tverošo iesūtni."
+  },
+  "random": {
+    "message": "Nejauši"
+  },
+  "randomWord": {
+    "message": "Nejaušs vārds"
+  },
+  "service": {
+    "message": "Pakalpojums"
   }
 }

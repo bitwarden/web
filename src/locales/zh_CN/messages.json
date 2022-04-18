@@ -187,7 +187,12 @@
     "message": "编辑文件夹"
   },
   "baseDomain": {
-    "message": "基础域"
+    "message": "基础域",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "域名",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "主机",
@@ -1425,11 +1430,14 @@
   "reports": {
     "message": "报告"
   },
+  "reportsDesc": {
+    "message": "点击下面的报告，识别并消除您的在线账户中的安全漏洞。"
+  },
   "unsecuredWebsitesReport": {
-    "message": "不安全网站报告"
+    "message": "不安全的网站报告"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "使用带 http:// 的不安全网站是很危险的。如果网站允许，您应始终使用带 https:// 的加密连接来访问它们。"
+    "message": "以 http:// 开头的 URL 没有使用最好的加密方式。将这些账户的登录 URI 更改为 https://，以便更安全地浏览。"
   },
   "unsecuredWebsitesFound": {
     "message": "发现不安全的网站"
@@ -1447,10 +1455,10 @@
     "message": "没有在你的密码库中发现带不安全 URI 的项目。"
   },
   "inactive2faReport": {
-    "message": "未激活 2FA 报告"
+    "message": "未激活的两步登录"
   },
   "inactive2faReportDesc": {
-    "message": "双重身份验证（2FA）是保护您账户安全的一个重要安全设置。如果网站提供双重身份验证，您应该始终启用它。"
+    "message": "两步登录为您的账户增加了一层保护。使用 Bitwarden 验证器或其他方式为这些账户开启两步登录。"
   },
   "inactive2faFound": {
     "message": "发现未使用双重身份验证的登录"
@@ -1471,10 +1479,10 @@
     "message": "说明"
   },
   "exposedPasswordsReport": {
-    "message": "公开密码报告"
+    "message": "已泄露密码报告"
   },
   "exposedPasswordsReportDesc": {
-    "message": "已泄露密码是在已知的数据泄露中被发现的密码，这些数据已由黑客公开发布或在暗网上销售。"
+    "message": "在数据泄露事件中暴露的密码很容易成为攻击者的目标。更改这些密码以防止潜在的入侵。"
   },
   "exposedPasswordsFound": {
     "message": "发现公开密码"
@@ -1507,7 +1515,7 @@
     "message": "弱密码报告"
   },
   "weakPasswordsReportDesc": {
-    "message": "弱密码很容易被黑客和用于破解密码的自动化工具猜中。Bitwarden 密码生成器可以帮助您创建强密码。"
+    "message": "弱的密码很容易被攻击者猜到。使用密码生成器将这些密码改为强密码。"
   },
   "weakPasswordsFound": {
     "message": "找到弱密码"
@@ -1525,10 +1533,10 @@
     "message": "没有在密码库中发现弱密码。"
   },
   "reusedPasswordsReport": {
-    "message": "重复使用密码报告"
+    "message": "重复使用的密码"
   },
   "reusedPasswordsReportDesc": {
-    "message": "如果您使用的服务被盗，在其他地方重复使用相同的密码可以让黑客轻松访问您的更多在线账户。您应该对每个账户或服务使用不同的密码。"
+    "message": "重复使用的密码使攻击者更容易侵入多个账户。更改这些密码以使每个密码都是唯一的。"
   },
   "reusedPasswordsFound": {
     "message": "发现重复使用的密码"
@@ -1555,10 +1563,10 @@
     }
   },
   "dataBreachReport": {
-    "message": "数据泄露报告"
+    "message": "数据泄露"
   },
   "breachDesc": {
-    "message": "“泄漏”是指黑客非法访问网站数据然后公开发布的事件。查看已泄露的数据类型（电子邮件地址、密码、信用卡等）并采取适当的措施，例如更改密码。"
+    "message": "泄露的账户可能会暴露您的个人信息。通过启用 2FA 或创建更强大的密码来保护被泄露的账户。"
   },
   "breachCheckUsernameEmail": {
     "message": "检查您使用的任何用户名或电子邮件地址。"
@@ -3608,7 +3616,8 @@
     "message": "所有 Send"
   },
   "maxAccessCountReached": {
-    "message": "已达最大访问次数"
+    "message": "已达最大访问次数",
+    "description": "This text will be displayed after a Send has been accessed the maximum amount of times."
   },
   "pendingDeletion": {
     "message": "等待删除"
@@ -4826,5 +4835,48 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "返回到报告"
+  },
+  "generator": {
+    "message": "生成器"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "您想要生成什么？"
+  },
+  "passwordType": {
+    "message": "密码类型"
+  },
+  "regenerateUsername": {
+    "message": "重新生成用户名"
+  },
+  "generateUsername": {
+    "message": "生成用户名"
+  },
+  "usernameType": {
+    "message": "用户名类型"
+  },
+  "plusAddressedEmail": {
+    "message": "附加地址电子邮件",
+    "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "使用您的电子邮件提供商的子地址功能。"
+  },
+  "catchallEmail": {
+    "message": "Catch-all 电子邮件"
+  },
+  "catchallEmailDesc": {
+    "message": "使用您的域名配置的 Catch-all 收件箱。"
+  },
+  "random": {
+    "message": "随机"
+  },
+  "randomWord": {
+    "message": "随机单词"
+  },
+  "service": {
+    "message": "服务"
   }
 }

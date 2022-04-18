@@ -187,7 +187,12 @@
     "message": "Επεξεργασία Φακέλου"
   },
   "baseDomain": {
-    "message": "Βασικός τομέας"
+    "message": "Βασικός τομέας",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Όνομα τομέα",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Διακομιστής",
@@ -301,16 +306,16 @@
     "message": "Ασφαλής Σημείωση"
   },
   "typeLoginPlural": {
-    "message": "Logins"
+    "message": "Συνδέσεις"
   },
   "typeCardPlural": {
-    "message": "Cards"
+    "message": "Κάρτες"
   },
   "typeIdentityPlural": {
-    "message": "Identities"
+    "message": "Ταυτότητες"
   },
   "typeSecureNotePlural": {
-    "message": "Secure Notes"
+    "message": "Ασφαλείς Σημειώσεις"
   },
   "folders": {
     "message": "Φάκελοι"
@@ -1424,6 +1429,9 @@
   },
   "reports": {
     "message": "Αναφορές"
+  },
+  "reportsDesc": {
+    "message": "Προσδιορίστε και κλείστε τα κενά ασφαλείας στους online λογαριασμούς σας κάνοντας κλικ στις παρακάτω αναφορές."
   },
   "unsecuredWebsitesReport": {
     "message": "Αναφορά Μη-Ασφαλών Ιστοσελίδων"
@@ -2795,7 +2803,7 @@
     "message": "Διαγραφή Οργανισμού"
   },
   "deletingOrganizationContentWarning": {
-    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "message": "Εισάγετε τον κύριο κωδικό πρόσβασης για να επιβεβαιώσετε τη διαγραφή του $ORGANIZATION$ και όλων των σχετικών δεδομένων. Τα δεδομένα vault στο $ORGANIZATION$ περιλαμβάνουν:",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -2804,10 +2812,10 @@
     }
   },
   "deletingOrganizationActiveUserAccountsWarning": {
-    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+    "message": "Οι λογαριασμοί χρήστη θα παραμείνουν ενεργοί μετά τη διαγραφή αλλά δεν θα συσχετίζονται πλέον με αυτόν τον οργανισμό."
   },
   "deletingOrganizationIsPermanentWarning": {
-    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "message": "Η διαγραφή του $ORGANIZATION$ είναι μόνιμη και μη αναστρέψιμη.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -3608,7 +3616,8 @@
     "message": "Όλα τα Sends"
   },
   "maxAccessCountReached": {
-    "message": "Φτάσατε στον μέγιστο αριθμό πρόσβασης"
+    "message": "Φτάσατε στον μέγιστο αριθμό πρόσβασης",
+    "description": "This text will be displayed after a Send has been accessed the maximum amount of times."
   },
   "pendingDeletion": {
     "message": "Εκκρεμεί διαγραφή"
@@ -4444,16 +4453,16 @@
     "message": "Λήψη Αιτημάτων Από Το Τελικό Σημείο Πληροφοριών Χρήστη"
   },
   "additionalScopes": {
-    "message": "Πρόσθετα/Προσαρμοσμένα Πεδία (οριοθετημένα με κόμμα)"
+    "message": "Προσαρμοσμένα Πεδία"
   },
   "additionalUserIdClaimTypes": {
-    "message": "Πρόσθετα/Προσαρμοσμένοι Τύποι Ιδιότητας Χρήστη (οριοθετημένοι με κόμμα)"
+    "message": "Προσαρμοσμένοι Τύποι Ιδιότητας Χρήστη"
   },
   "additionalEmailClaimTypes": {
-    "message": "Πρόσθετα/Προσαρμοσμένοι Τύποι Διεκδίκησης Email (οριοθετημένοι με κόμμα)"
+    "message": "Προσαρμοσμένοι Τύποι Διεκδίκησης Email"
   },
   "additionalNameClaimTypes": {
-    "message": "Πρόσθετο/Προσαρμοσμένος Τύπος Διεκδίκησης Ονόματος (οριοθετημένος με κόμμα)"
+    "message": "Προσαρμοσμένος Τύπος Διεκδίκησης Ονόματος"
   },
   "acrValues": {
     "message": "Ζητούμενες τιμές αναφοράς κατηγορίας πλαισίου ελέγχου ταυτότητας (acr_values)"
@@ -4483,7 +4492,7 @@
     "message": "Ελάχιστος Εισερχόμενος Αλγόριθμος Υπογραφής"
   },
   "spWantAssertionsSigned": {
-    "message": "Υπεγράφη Επιβεβαιώσεις"
+    "message": "Αναμονή υπογεγραμμένων ισχυρισμών"
   },
   "spValidateCertificates": {
     "message": "Επικύρωση Πιστοποιητικών"
@@ -4510,10 +4519,10 @@
     "message": "Να Επιτρέπεται Μη Αιτούμενη Απόκριση Ταυτοποίησης"
   },
   "idpAllowOutboundLogoutRequests": {
-    "message": "Allow outbound logout requests"
+    "message": "Να επιτρέπονται αιτήματα εξερχόμενης αποσύνδεσης"
   },
   "idpSignAuthenticationRequests": {
-    "message": "Sign authentication requests"
+    "message": "Υπογραφή αιτήσεων ταυτοποίησης"
   },
   "ssoSettingsSaved": {
     "message": "Οι ρυθμίσεις για απλή σύνδεση αποθηκεύτηκαν."
@@ -4765,7 +4774,7 @@
     "message": "ΔΩΡΕΑΝ με χορηγία"
   },
   "formErrorSummaryPlural": {
-    "message": "$COUNT$ fields above need your attention.",
+    "message": "$COUNT$ πεδία παραπάνω χρειάζονται την προσοχή σας.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -4774,10 +4783,10 @@
     }
   },
   "formErrorSummarySingle": {
-    "message": "1 field above needs your attention."
+    "message": "1 πεδίο παραπάνω χρειάζεται την προσοχή σας."
   },
   "fieldRequiredError": {
-    "message": "$FIELDNAME$ is required.",
+    "message": "$FIELDNAME$ απαιτείται.",
     "placeholders": {
       "fieldname": {
         "content": "$1",
@@ -4786,31 +4795,31 @@
     }
   },
   "required": {
-    "message": "required"
+    "message": "απαιτείται"
   },
   "idpSingleSignOnServiceUrlRequired": {
-    "message": "Required if Entity ID is not a URL."
+    "message": "Απαιτείται εάν το ID οντότητας δεν είναι URL."
   },
   "openIdOptionalCustomizations": {
-    "message": "Optional Customizations"
+    "message": "Προαιρετικές Προσαρμογές"
   },
   "openIdAuthorityRequired": {
-    "message": "Required if Authority is not valid."
+    "message": "Απαιτείται εάν η Αρχή δεν είναι έγκυρη."
   },
   "separateMultipleWithComma": {
-    "message": "Separate multiple with a comma."
+    "message": "Διαχωρίστε το πολλαπλάσιο με κόμμα."
   },
   "sessionTimeout": {
     "message": "Έχει λήξει το χρονικό όριο. Παρακαλώ επιστρέψτε και προσπαθήστε να συνδεθείτε ξανά."
   },
   "exportingPersonalVaultTitle": {
-    "message": "Exporting Personal Vault"
+    "message": "Εξαγωγή Προσωπικού Vault"
   },
   "exportingOrganizationVaultTitle": {
-    "message": "Exporting Organization Vault"
+    "message": "Εξαγωγή Vault Οργανισμού"
   },
   "exportingPersonalVaultDescription": {
-    "message": "Only the personal vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
+    "message": "Θα εξαχθούν μόνο τα προσωπικά αντικείμενα Vault που σχετίζονται με το $EMAIL$. Τα αντικείμενα Vault οργανισμού δεν θα συμπεριληφθούν.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -4819,12 +4828,55 @@
     }
   },
   "exportingOrganizationVaultDescription": {
-    "message": "Only the organization vault associated with $ORGANIZATION$ will be exported. Personal vault items and items from other organizations will not be included.",
+    "message": "Μόνο το vault οργανισμού που σχετίζεται με το $ORGANIZATION$ θα εξαχθεί. Προσωπικά αντικείμενα και αντικείμενα από άλλους οργανισμούς δεν θα συμπεριληφθούν.",
     "placeholders": {
       "organization": {
         "content": "$1",
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Επιστροφή στις Αναφορές"
+  },
+  "generator": {
+    "message": "Γεννήτρια"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Τι θα θέλατε να δημιουργήσετε;"
+  },
+  "passwordType": {
+    "message": "Τύπος Κωδικού"
+  },
+  "regenerateUsername": {
+    "message": "Επαναδημιουργία Ονόματος Χρήστη"
+  },
+  "generateUsername": {
+    "message": "Δημιουργία Ονόματος Χρήστη"
+  },
+  "usernameType": {
+    "message": "Τύπος Ονόματος Χρήστη"
+  },
+  "plusAddressedEmail": {
+    "message": "Συν Διεύθυνση Email",
+    "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Χρησιμοποιήστε τις δυνατότητες δευτερεύουσας διεύθυνσης του παρόχου email σας."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Χρησιμοποιήστε τα διαμορφωμένα εισερχόμενα catch-all του domain σας."
+  },
+  "random": {
+    "message": "Τυχαίο"
+  },
+  "randomWord": {
+    "message": "Τυχαία Λέξη"
+  },
+  "service": {
+    "message": "Υπηρεσία"
   }
 }

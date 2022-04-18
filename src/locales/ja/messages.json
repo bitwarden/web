@@ -187,7 +187,12 @@
     "message": "フォルダーを編集"
   },
   "baseDomain": {
-    "message": "ベースドメイン"
+    "message": "ベースドメイン",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "ドメイン名",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "ホスト",
@@ -1425,6 +1430,9 @@
   "reports": {
     "message": "レポート"
   },
+  "reportsDesc": {
+    "message": "以下のレポートをクリックして、オンラインアカウントのセキュリティギャップを特定して修正してください。"
+  },
   "unsecuredWebsitesReport": {
     "message": "非セキュアウェブサイト調査"
   },
@@ -1474,7 +1482,7 @@
     "message": "流出パスワード調査"
   },
   "exposedPasswordsReportDesc": {
-    "message": "流出したパスワードとは、クラッカーによりダークウェブ上で公開または販売された既知の流出データに掲載されているパスワードのことです。"
+    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
   },
   "exposedPasswordsFound": {
     "message": "流出したパスワードが見つかりました"
@@ -3608,7 +3616,8 @@
     "message": "すべての Send"
   },
   "maxAccessCountReached": {
-    "message": "最大アクセス数に達しました"
+    "message": "最大アクセス数に達しました",
+    "description": "This text will be displayed after a Send has been accessed the maximum amount of times."
   },
   "pendingDeletion": {
     "message": "保留中の削除"
@@ -4826,5 +4835,48 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "レポートに戻る"
+  },
+  "generator": {
+    "message": "ジェネレーター"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "何を生成しますか？"
+  },
+  "passwordType": {
+    "message": "パスワードの種類"
+  },
+  "regenerateUsername": {
+    "message": "ユーザー名を再生成"
+  },
+  "generateUsername": {
+    "message": "ユーザー名を生成"
+  },
+  "usernameType": {
+    "message": "ユーザー名の種類"
+  },
+  "plusAddressedEmail": {
+    "message": "プラス付きのメールアドレス",
+    "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "メールプロバイダのエイリアス機能を使用します。"
+  },
+  "catchallEmail": {
+    "message": "キャッチオールメール"
+  },
+  "catchallEmailDesc": {
+    "message": "ドメインに設定されたキャッチオール受信トレイを使用します。"
+  },
+  "random": {
+    "message": "ランダム"
+  },
+  "randomWord": {
+    "message": "ランダムな単語"
+  },
+  "service": {
+    "message": "サービス"
   }
 }
