@@ -187,7 +187,12 @@
     "message": "Upravit složku"
   },
   "baseDomain": {
-    "message": "Základní doména"
+    "message": "Základní doména",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Host",
@@ -301,16 +306,16 @@
     "message": "Poznámka"
   },
   "typeLoginPlural": {
-    "message": "Logins"
+    "message": "Přihlašovací údaje"
   },
   "typeCardPlural": {
-    "message": "Cards"
+    "message": "Karty"
   },
   "typeIdentityPlural": {
-    "message": "Identities"
+    "message": "Identity"
   },
   "typeSecureNotePlural": {
-    "message": "Secure Notes"
+    "message": "Zabezpečené poznámky"
   },
   "folders": {
     "message": "Složky"
@@ -1425,6 +1430,9 @@
   "reports": {
     "message": "Hlášení"
   },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
+  },
   "unsecuredWebsitesReport": {
     "message": "Hlášení o nezabezpečených webech"
   },
@@ -2165,7 +2173,7 @@
     "message": "Zásady"
   },
   "singleSignOn": {
-    "message": "Single Sign-On"
+    "message": "Jednotné přihlášení"
   },
   "editPolicy": {
     "message": "Upravit zásadu"
@@ -3608,7 +3616,8 @@
     "message": "Všechny Sends"
   },
   "maxAccessCountReached": {
-    "message": "Dosažen maximální počet přístupů"
+    "message": "Dosažen maximální počet přístupů",
+    "description": "This text will be displayed after a Send has been accessed the maximum amount of times."
   },
   "pendingDeletion": {
     "message": "Čeká na smazání"
@@ -3884,10 +3893,10 @@
     "message": "Create New Collections"
   },
   "editAnyCollection": {
-    "message": "Edit Any Collection"
+    "message": "Upravit jakoukoliv kolekci"
   },
   "deleteAnyCollection": {
-    "message": "Delete Any Collection"
+    "message": "Odstranit jakoukoliv kolekci"
   },
   "manageAssignedCollections": {
     "message": "Spravovat přiřazené kolekce"
@@ -3896,7 +3905,7 @@
     "message": "Edit Assigned Collections"
   },
   "deleteAssignedCollections": {
-    "message": "Delete Assigned Collections"
+    "message": "Spravovat přiřazené kolekce"
   },
   "manageGroups": {
     "message": "Spravovat skupiny"
@@ -4184,7 +4193,7 @@
     "message": "Motiv"
   },
   "themeDesc": {
-    "message": "Choose a theme for your web vault."
+    "message": "Vyberte si šablonu pro váš webový trezor."
   },
   "themeSystem": {
     "message": "Použít systémový motiv"
@@ -4229,31 +4238,31 @@
     "message": "Nastavení poskytovatele"
   },
   "setupProviderLoginDesc": {
-    "message": "You've been invited to setup a new provider. To continue, you need to log in or create a new Bitwarden account."
+    "message": "Byli jste pozváni k nastavení nového poskytovatele. Chcete-li pokračovat, musíte se přihlásit nebo vytvořit nový Bitwarden účet."
   },
   "setupProviderDesc": {
-    "message": "Please enter the details below to complete the provider setup. Contact Customer Support if you have any questions."
+    "message": "Pro dokončení nastavení poskytovatele, zadejte prosím níže uvedené údaje. Pokud máte nějaké dotazy, kontaktujte zákaznickou podporu."
   },
   "providerName": {
     "message": "Jméno poskytovatele"
   },
   "providerSetup": {
-    "message": "The provider has been set up."
+    "message": "Poskytovatel byl vytvořen."
   },
   "clients": {
-    "message": "Clients"
+    "message": "Klienti"
   },
   "providerAdmin": {
-    "message": "Provider Admin"
+    "message": "Administrátor poskytovatele"
   },
   "providerAdminDesc": {
-    "message": "The highest access user that can manage all aspects of your provider as well as access and manage client organizations."
+    "message": "Uživatel s nejvyšším oprávněním, který může spravovat všechny aspekty vašeho poskytovatele a také přístup a správu klientských organizací."
   },
   "serviceUser": {
-    "message": "Service User"
+    "message": "Servisní uživatel"
   },
   "serviceUserDesc": {
-    "message": "Service users can access and manage all client organizations."
+    "message": "Servisní uživatelé mohou přistupovat ke všem klientským organizacím a spravovat je."
   },
   "providerInviteUserDesc": {
     "message": "Invite a new user to your provider by entering their Bitwarden account email address below. If they do not have a Bitwarden account already, they will be prompted to create a new account."
@@ -4471,7 +4480,7 @@
     "message": "Assertion Consumer Service (ACS) URL"
   },
   "spNameIdFormat": {
-    "message": "Name ID Format"
+    "message": "Formát jména ID"
   },
   "spOutboundSigningAlgorithm": {
     "message": "Outbound Signing Algorithm"
@@ -4489,7 +4498,7 @@
     "message": "Validate certificates"
   },
   "idpEntityId": {
-    "message": "Entity ID"
+    "message": "ID subjektu"
   },
   "idpBindingType": {
     "message": "Binding Type"
@@ -4826,5 +4835,48 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Regenerate Username"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email",
+    "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }

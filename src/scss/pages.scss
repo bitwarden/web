@@ -1,4 +1,4 @@
-.password-wrapper {
+.generated-wrapper {
   min-width: 0;
   white-space: pre-wrap;
   word-break: break-all;
@@ -109,12 +109,12 @@ app-org-vault-groupings,
   }
 }
 
-app-password-generator {
+app-generator {
   #lengthRange {
     width: 100%;
   }
 
-  .card-password {
+  .card-generated {
     .card-body {
       @include themify($themes) {
         background: themed("foregroundColor");

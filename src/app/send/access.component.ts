@@ -6,6 +6,7 @@ import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { CryptoFunctionService } from "jslib-common/abstractions/cryptoFunction.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { SEND_KDF_ITERATIONS } from "jslib-common/enums/kdfType";
 import { SendType } from "jslib-common/enums/sendType";
 import { Utils } from "jslib-common/misc/utils";
 import { SendAccess } from "jslib-common/models/domain/sendAccess";
@@ -140,7 +141,7 @@ export class AccessComponent implements OnInit {
         this.password,
         keyArray,
         "sha256",
-        100000
+        SEND_KDF_ITERATIONS
       );
       this.accessRequest.password = Utils.fromBufferToB64(passwordHash);
     }
