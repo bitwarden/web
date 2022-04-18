@@ -187,7 +187,12 @@
     "message": "Redigér mappe"
   },
   "baseDomain": {
-    "message": "Grund-domæne"
+    "message": "Grund-domæne",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domænenavn",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Vært",
@@ -1425,6 +1430,9 @@
   "reports": {
     "message": "Rapporter"
   },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
+  },
   "unsecuredWebsitesReport": {
     "message": "Rapport over ikke-sikrede hjemmesider"
   },
@@ -1474,7 +1482,7 @@
     "message": "Rapport over afslørede adgangskoder"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Afslørede adgangskoder er adgangskoder, der er blevet afsløret i kendte datalæk og er blevet offentliggjort eller solgt på det mørke web af hackere."
+    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
   },
   "exposedPasswordsFound": {
     "message": "Afslørede adgangskoder fundet"
@@ -1558,7 +1566,7 @@
     "message": "Datalæk rapport"
   },
   "breachDesc": {
-    "message": "Et \"læk\" er en hændelse, hvor et websteds data er blevet ulovligt tilgået til af hackere og derefter offentliggjort. Gennemgå de typer af data, der blev kompromitteret (e-mailadresser, adgangskoder, kreditkort osv.) og træf passende foranstaltninger, som f.eks. ændring af adgangskoder."
+    "message": "Et \"læk\" er en hændelse, hvor et websteds data er blevet ulovligt tilgået til af hackere og derefter offentliggjort. Gennemgå de typer af data, der blev kompromitteret (emailadresser, adgangskoder, kreditkort osv.) og træf passende foranstaltninger, som f.eks. ændring af adgangskoder."
   },
   "breachCheckUsernameEmail": {
     "message": "Kontroller eventuelle brugernavne eller e-mailadresser, som du bruger."
@@ -3608,7 +3616,8 @@
     "message": "Alle Send"
   },
   "maxAccessCountReached": {
-    "message": "Maks. adgangsantal nået"
+    "message": "Maks. adgangsantal nået",
+    "description": "This text will be displayed after a Send has been accessed the maximum amount of times."
   },
   "pendingDeletion": {
     "message": "Afventer sletning"
@@ -4826,5 +4835,48 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Hvad vil du generere?"
+  },
+  "passwordType": {
+    "message": "Adgangskodetype"
+  },
+  "regenerateUsername": {
+    "message": "Regenerér brugernavn"
+  },
+  "generateUsername": {
+    "message": "Generér brugernavn"
+  },
+  "usernameType": {
+    "message": "Brugernavnstype"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus adresseret e-mail",
+    "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Brug e-mailudbyderens underadresseringsmuligheder."
+  },
+  "catchallEmail": {
+    "message": "Fang-alle e-mail"
+  },
+  "catchallEmailDesc": {
+    "message": "Brug den for domænet opsatte Fang-alle indbakke."
+  },
+  "random": {
+    "message": "Tilfældig"
+  },
+  "randomWord": {
+    "message": "Tilfældigt ord"
+  },
+  "service": {
+    "message": "Tjeneste"
   }
 }

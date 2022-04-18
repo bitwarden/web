@@ -187,7 +187,12 @@
     "message": "Editar Pasta"
   },
   "baseDomain": {
-    "message": "Domínio de base"
+    "message": "Domínio de base",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Servidor",
@@ -304,13 +309,13 @@
     "message": "Logins"
   },
   "typeCardPlural": {
-    "message": "Cards"
+    "message": "Cartões"
   },
   "typeIdentityPlural": {
-    "message": "Identities"
+    "message": "Identidades"
   },
   "typeSecureNotePlural": {
-    "message": "Secure Notes"
+    "message": "Notas Seguras"
   },
   "folders": {
     "message": "Pastas"
@@ -1425,6 +1430,9 @@
   "reports": {
     "message": "Relatórios"
   },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
+  },
   "unsecuredWebsitesReport": {
     "message": "Relatório de Sites Inseguros"
   },
@@ -1558,7 +1566,7 @@
     "message": "Relatório de Violação de Dados"
   },
   "breachDesc": {
-    "message": "Uma \"violação\" é um incidente em que os dados de um site foram acessados ilegalmente por hackers e liberados publicamente. Revise os tipos de dados que foram comprometidos (endereços de e-mail, senhas, cartões de crédito etc.) e tome as medidas adequadas, como a alteração de senhas."
+    "message": "Uma \"brecha\" é um incidente em que os dados de um site foram acessados ilegalmente por hackers e liberados publicamente. Revise os tipos de dados que foram comprometidos (endereços de e-mail, senhas, cartões de crédito etc.) e tome as medidas adequadas, como a alteração de senhas."
   },
   "breachCheckUsernameEmail": {
     "message": "Verifique qualquer nome de usuário ou endereço de e-mail que você usa."
@@ -2795,7 +2803,7 @@
     "message": "Excluir Organização"
   },
   "deletingOrganizationContentWarning": {
-    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "message": "Digite a senha mestra para confirmar a exclusão de $ORGANIZATION$ e todos os dados associados. Os dados do cofre no $ORGANIZATION$ incluem:",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -2804,10 +2812,10 @@
     }
   },
   "deletingOrganizationActiveUserAccountsWarning": {
-    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+    "message": "As contas de usuários permanecerão ativas após a exclusão, mas não estarão mais associadas a essa organização."
   },
   "deletingOrganizationIsPermanentWarning": {
-    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "message": "A exclusão de $ORGANIZATION$ é permanente e irreversível.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -3608,7 +3616,8 @@
     "message": "Todos os Sends"
   },
   "maxAccessCountReached": {
-    "message": "Número máximo de acessos atingido"
+    "message": "Número máximo de acessos atingido",
+    "description": "This text will be displayed after a Send has been accessed the maximum amount of times."
   },
   "pendingDeletion": {
     "message": "Exclusão pendente"
@@ -4353,7 +4362,7 @@
     "message": "Sua Senha Mestra foi alterada recentemente por um administrador em sua organização. Para acessar o cofre, você deve atualizar sua Senha Mestra agora. Prosseguir irá desconectá-lo da sessão atual, exigindo que você faça login novamente. As sessões ativas em outros dispositivos podem continuar ativas por até uma hora."
   },
   "masterPasswordInvalidWarning": {
-    "message": "Your Master Password does not meet the policy requirements of this organization. In order to join the organization, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Sua Senha Mestra foi alterada recentemente por um administrador de sua organização. Para acessar o cofre, você precisa atualizar sua Senha Mestra agora. O processo desconectará você da sessão atual, exigindo que você inicie a sessão novamente. Sessões ativas em outros dispositivos podem continuar ativas por até uma hora."
   },
   "maximumVaultTimeout": {
     "message": "Tempo Limite do Cofre"
@@ -4513,7 +4522,7 @@
     "message": "Allow outbound logout requests"
   },
   "idpSignAuthenticationRequests": {
-    "message": "Sign authentication requests"
+    "message": "Assinar pedidos de autenticação"
   },
   "ssoSettingsSaved": {
     "message": "Configuração de logon único foi salva."
@@ -4826,5 +4835,48 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Recriar Usuário"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email",
+    "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }

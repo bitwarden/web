@@ -187,7 +187,12 @@
     "message": "Edita la carpeta"
   },
   "baseDomain": {
-    "message": "Domini base"
+    "message": "Domini base",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Nom del domini",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Amfitrió",
@@ -1425,6 +1430,9 @@
   "reports": {
     "message": "Informes"
   },
+  "reportsDesc": {
+    "message": "Identifiqueu i tanqueu els forats de seguretat dels comptes en línia fent clic en els informes següents."
+  },
   "unsecuredWebsitesReport": {
     "message": "Informe de llocs web no segurs"
   },
@@ -1555,10 +1563,10 @@
     }
   },
   "dataBreachReport": {
-    "message": "Informe de filtració de dades"
+    "message": "Filtració de dades"
   },
   "breachDesc": {
-    "message": "Un \"filtració\" és un incident on les dades dels llocs han estat accessades il·legalment pels pirates informàtics i, posteriorment, es mostren públicament. Reviseu els tipus de dades que han quedat compromeses (adreces de correu electrònic, contrasenyes, targetes de crèdit, etc.) i preneu les mesures adequades, com ara canviar les contrasenyes."
+    "message": "Els comptes filtrats poden exposar la vostra informació personal. Assegureu els comptes filtrats activant la autenticació de dos factors (2FA) o creant contrasenyes més fortes."
   },
   "breachCheckUsernameEmail": {
     "message": "Comproveu qualsevol nom d'usuari o adreça electrònica que utilitzeu."
@@ -3608,7 +3616,8 @@
     "message": "Tots els Send"
   },
   "maxAccessCountReached": {
-    "message": "S'ha assolit el recompte màxim d'accesos"
+    "message": "S'ha assolit el recompte màxim d'accesos",
+    "description": "This text will be displayed after a Send has been accessed the maximum amount of times."
   },
   "pendingDeletion": {
     "message": "Pendent de supressió"
@@ -4826,5 +4835,48 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Torna als informes"
+  },
+  "generator": {
+    "message": "Generador"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Què voleu generar?"
+  },
+  "passwordType": {
+    "message": "Tipus de contrasenya"
+  },
+  "regenerateUsername": {
+    "message": "Regenera el nom d'usuari"
+  },
+  "generateUsername": {
+    "message": "Genera un nom d'usuari"
+  },
+  "usernameType": {
+    "message": "Tipus de nom d'usuari"
+  },
+  "plusAddressedEmail": {
+    "message": "Adreça amb sufix",
+    "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Aleatori"
+  },
+  "randomWord": {
+    "message": "Paraula aleatòria"
+  },
+  "service": {
+    "message": "Servei"
   }
 }
