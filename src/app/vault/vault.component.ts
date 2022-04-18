@@ -146,6 +146,15 @@ export class VaultComponent implements OnInit, OnDestroy {
     });
   }
 
+  get isShowingCards() {
+    return (
+      this.showBrowserOutdated ||
+      this.showPremiumCallout ||
+      this.showUpdateKey ||
+      this.showVerifyEmail
+    );
+  }
+
   ngOnDestroy() {
     this.broadcasterService.unsubscribe(BroadcasterSubscriptionId);
   }

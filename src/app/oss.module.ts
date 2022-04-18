@@ -57,6 +57,7 @@ import { BadgeModule, ButtonModule, CalloutModule, MenuModule } from "@bitwarden
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { ToastrModule } from "ngx-toastr";
 
+import { VerifyMasterPasswordComponent } from "jslib-angular/components/verify-master-password.component";
 import { JslibModule } from "jslib-angular/jslib.module";
 
 import { AcceptEmergencyComponent } from "./accounts/accept-emergency.component";
@@ -199,9 +200,9 @@ import { UserSubscriptionComponent } from "./settings/user-subscription.componen
 import { VaultTimeoutInputComponent } from "./settings/vault-timeout-input.component";
 import { VerifyEmailComponent } from "./settings/verify-email.component";
 import { ExportComponent } from "./tools/export.component";
+import { GeneratorComponent } from "./tools/generator.component";
 import { ImportComponent } from "./tools/import.component";
 import { PasswordGeneratorHistoryComponent } from "./tools/password-generator-history.component";
-import { PasswordGeneratorComponent } from "./tools/password-generator.component";
 import { ToolsComponent } from "./tools/tools.component";
 import { AddEditCustomFieldsComponent } from "./vault/add-edit-custom-fields.component";
 import { AddEditComponent } from "./vault/add-edit.component";
@@ -285,6 +286,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     MenuModule,
   ],
   declarations: [
+    PremiumBadgeComponent,
     AcceptEmergencyComponent,
     AcceptOrganizationComponent,
     AccessComponent,
@@ -381,7 +383,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     OrgUserGroupsComponent,
     OrgVaultComponent,
     OrgWeakPasswordsReportComponent,
-    PasswordGeneratorComponent,
+    GeneratorComponent,
     PasswordGeneratorHistoryComponent,
     PasswordGeneratorPolicyComponent,
     PasswordRepromptComponent,
@@ -442,6 +444,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     VaultTimeoutInputComponent,
     VerifyEmailComponent,
     VerifyEmailTokenComponent,
+    VerifyMasterPasswordComponent,
     VerifyRecoverDeleteComponent,
     WeakPasswordsReportComponent,
   ],

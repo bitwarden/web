@@ -187,7 +187,12 @@
     "message": "Edytuj folder"
   },
   "baseDomain": {
-    "message": "Domena podstawowa"
+    "message": "Domena podstawowa",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Nazwa domeny",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Host",
@@ -1425,11 +1430,14 @@
   "reports": {
     "message": "Raporty"
   },
+  "reportsDesc": {
+    "message": "Zidentyfikuj i napraw luki bezpieczeństwa na swoich kontach online, klikając raporty poniżej."
+  },
   "unsecuredWebsitesReport": {
-    "message": "Raport niezabezpieczonych stron"
+    "message": "Niezabezpieczone witryny"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Korzystanie z niezabezpieczonych stron (protokół HTTP) może być niebezpieczne. Jeśli strona na to pozwala, zawsze powinieneś używać protokołu HTTPS, aby Twoje połączenie było szyfrowane."
+    "message": "Używanie niezabezpieczonych stron (protokół HTTP) może być niebezpieczne. Jeśli strona na to pozwala, zawsze powinieneś używać protokołu HTTPS, aby Twoje połączenie było szyfrowane."
   },
   "unsecuredWebsitesFound": {
     "message": "Znaleźliśmy niezabezpieczone strony"
@@ -1471,7 +1479,7 @@
     "message": "Instrukcje"
   },
   "exposedPasswordsReport": {
-    "message": "Raport ujawnionych haseł"
+    "message": "Ujawnione hasła"
   },
   "exposedPasswordsReportDesc": {
     "message": "Ujawnione hasła to hasła odkryte w znanych wyciekach danych, które zostały publicznie wydane lub sprzedane w sieci przez hakerów."
@@ -1504,7 +1512,7 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Raport słabych haseł"
+    "message": "Słabe hasła"
   },
   "weakPasswordsReportDesc": {
     "message": "Słabe hasła mogą być łatwo odgadnięte przez hakerów i zautomatyzowane narzędzia używane do łamania haseł. Generator haseł Bitwarden tworzy silne hasła."
@@ -1528,7 +1536,7 @@
     "message": "Raport identycznych haseł"
   },
   "reusedPasswordsReportDesc": {
-    "message": "Jeśli korzystasz z tego samego hasła w różnych miejscach, to w przypadku jego ujawnienia w jednej usłudze, hakerzy mogą uzyskać dostęp do wielu Twoich kont. Używaj unikalnych haseł dla każdego z kont lub usług."
+    "message": "Jeśli używasz tego samego hasła w różnych miejscach, to w przypadku jego ujawnienia w jednej usłudze, hakerzy mogą uzyskać dostęp do wielu Twoich kont. Powinieneś używać unikalnych haseł dla każdego z kont lub usług."
   },
   "reusedPasswordsFound": {
     "message": "Znaleźliśmy identyczne hasła"
@@ -3608,7 +3616,8 @@
     "message": "Wszystkie wysyłki"
   },
   "maxAccessCountReached": {
-    "message": "Maksymalna liczba dostępów została osiągnięta"
+    "message": "Maksymalna liczba dostępów została osiągnięta",
+    "description": "This text will be displayed after a Send has been accessed the maximum amount of times."
   },
   "pendingDeletion": {
     "message": "Oczekiwanie na usunięcie"
@@ -4826,5 +4835,48 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Powrót do raportów"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Co chcesz wygenerować?"
+  },
+  "passwordType": {
+    "message": "Rodzaj hasła"
+  },
+  "regenerateUsername": {
+    "message": "Wygeneruj ponownie nazwę użytkownika"
+  },
+  "generateUsername": {
+    "message": "Wygeneruj nazwę użytkownika"
+  },
+  "usernameType": {
+    "message": "Rodzaj nazwy użytkownika"
+  },
+  "plusAddressedEmail": {
+    "message": "Adres e-mail z plusem",
+    "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Użyj możliwości dodawania aliasów u swojego dostawcy poczty e-mail."
+  },
+  "catchallEmail": {
+    "message": "Adres catch-all"
+  },
+  "catchallEmailDesc": {
+    "message": "Użyj skonfigurowanej skrzynki catch-all w swojej domenie."
+  },
+  "random": {
+    "message": "Losowo"
+  },
+  "randomWord": {
+    "message": "Losowe słowo"
+  },
+  "service": {
+    "message": "Usługa"
   }
 }

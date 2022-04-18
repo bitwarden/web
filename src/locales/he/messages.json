@@ -167,7 +167,7 @@
     "message": "אמת או שקר"
   },
   "cfTypeLinked": {
-    "message": "Linked",
+    "message": "מקושר",
     "description": "This describes a field that is 'linked' (related) to another field."
   },
   "remove": {
@@ -187,7 +187,12 @@
     "message": "ערוך תיקייה"
   },
   "baseDomain": {
-    "message": "שם בסיס הדומיין"
+    "message": "שם בסיס הדומיין",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "שם דומיין",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "מארח",
@@ -301,16 +306,16 @@
     "message": "פתק מאובטח"
   },
   "typeLoginPlural": {
-    "message": "Logins"
+    "message": "התחברויות"
   },
   "typeCardPlural": {
-    "message": "Cards"
+    "message": "כרטיסים"
   },
   "typeIdentityPlural": {
-    "message": "Identities"
+    "message": "זהויות"
   },
   "typeSecureNotePlural": {
-    "message": "Secure Notes"
+    "message": "פתקים מאובטחים"
   },
   "folders": {
     "message": "תיקיות"
@@ -328,7 +333,7 @@
     "message": "שם משפחה"
   },
   "fullName": {
-    "message": "Full Name"
+    "message": "שם מלא"
   },
   "address1": {
     "message": "כתובת 1"
@@ -367,7 +372,7 @@
     "message": "ערוך פריט"
   },
   "viewItem": {
-    "message": "View Item"
+    "message": "הצג פריט"
   },
   "ex": {
     "message": "לדוגמא",
@@ -380,7 +385,7 @@
     "message": "שתף"
   },
   "moveToOrganization": {
-    "message": "Move to Organization"
+    "message": "העברה לארגון"
   },
   "valueCopied": {
     "message": "השדה $VALUE$ הועתק לזיכרון",
@@ -423,7 +428,7 @@
     "message": "כספת"
   },
   "moveSelectedToOrg": {
-    "message": "Move Selected to Organization"
+    "message": "העבר בחירה לארגון"
   },
   "deleteSelected": {
     "message": "מחק בחירה"
@@ -471,7 +476,7 @@
     "message": "פריט שנערך"
   },
   "movedItemToOrg": {
-    "message": "$ITEMNAME$ moved to $ORGNAME$",
+    "message": "$ITEMNAME$ הועבר ל־$ORGNAME$",
     "placeholders": {
       "itemname": {
         "content": "$1",
@@ -484,7 +489,7 @@
     }
   },
   "movedItemsToOrg": {
-    "message": "Selected items moved to $ORGNAME$",
+    "message": "פריטים נבחרים הועברו ל־$ORGNAME$",
     "placeholders": {
       "orgname": {
         "content": "$1",
@@ -1424,6 +1429,9 @@
   },
   "reports": {
     "message": "דוחות"
+  },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
   },
   "unsecuredWebsitesReport": {
     "message": "דוח אתרים לא מאובטחים"
@@ -2672,7 +2680,7 @@
     "message": "שלח הזמנה מחדש"
   },
   "resendEmail": {
-    "message": "Resend Email"
+    "message": "שלח מייל בשנית"
   },
   "hasBeenReinvited": {
     "message": "$USER$ הוזמן מחדש.",
@@ -2729,10 +2737,10 @@
     "message": "לא ניתן לאמת את האימייל שלך. נסה לשלוח מייל אימות חדש."
   },
   "emailVerificationRequired": {
-    "message": "Email Verification Required"
+    "message": "יש לאמת את כתובת האימייל"
   },
   "emailVerificationRequiredDesc": {
-    "message": "You must verify your email to use this feature."
+    "message": "נדרש אישור אימות בדוא\"ל כדי לאפשר שימוש בתכונה זו."
   },
   "updateBrowser": {
     "message": "עדכן דפדפן"
@@ -3608,13 +3616,14 @@
     "message": "כל הSendים"
   },
   "maxAccessCountReached": {
-    "message": "Max access count reached"
+    "message": "Max access count reached",
+    "description": "This text will be displayed after a Send has been accessed the maximum amount of times."
   },
   "pendingDeletion": {
-    "message": "Pending deletion"
+    "message": "ממתין להסרה"
   },
   "expired": {
-    "message": "Expired"
+    "message": "פג תוקף"
   },
   "searchSends": {
     "message": "חיפוש Send",
@@ -4826,5 +4835,48 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Regenerate Username"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email",
+    "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }
