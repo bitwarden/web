@@ -49,6 +49,12 @@ jobs:
       - name: TEST STEP
         run: ls -alh
 
+      - name: TEST STEP JSLIB
+        run: ls -alh jslib
+
+      - name: TEST STEP MODULES
+        run: ls -alh .git/modules
+
       - name: Install dependencies
         run: npm ci
 
