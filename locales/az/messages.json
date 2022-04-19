@@ -187,7 +187,12 @@
     "message": "Qovluğa düzəliş et"
   },
   "baseDomain": {
-    "message": "Baza domeni"
+    "message": "Baza domeni",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Host",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Təhlükəsizlik qeydi"
+  },
+  "typeLoginPlural": {
+    "message": "Girişlər"
+  },
+  "typeCardPlural": {
+    "message": "Kartlar"
+  },
+  "typeIdentityPlural": {
+    "message": "Kimliklər"
+  },
+  "typeSecureNotePlural": {
+    "message": "Təhlükəsizlik qeydləri"
   },
   "folders": {
     "message": "Qovluqlar"
@@ -1412,6 +1429,9 @@
   },
   "reports": {
     "message": "Hesabatlar"
+  },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
   },
   "unsecuredWebsitesReport": {
     "message": "Təhlükəli veb sayt hesabatları"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Təşkilatı sil"
   },
-  "deleteOrganizationDesc": {
-    "message": "Bu təşkilatı və əlaqəli bütün verilənlərini silmək üçün aşağıda davam edin. Fərdi istifadəçi hesabları qalacaq, ancaq bu təşkilat ilə əlaqəsi kəsiləcək. "
+  "deletingOrganizationContentWarning": {
+    "message": "$ORGANIZATION$ təşkilatının və bütün əlaqəli verilənlərinin silinməsini təsdiqləmək üçün ana parolu daxil edin. $ORGANIZATION$ anbar verilənləri bunları ehtiva edir:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Təşkilatı silmək birdəfəlik prosesdir. Bu əməliyyatın geri dönüşü yoxdur."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Silmə prosesindən sonra istifadəçi hesabları aktiv qalacaq, ancaq bu təşkilatla əlaqəli olmayacaq."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "$ORGANIZATION$ təşkilatının silinməsi daimi və geri qaytarıla bilməyən prosesdir.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Təşkilat silindi"
@@ -4326,7 +4361,7 @@
     "message": "Ana parolunuz təzəlikcə təşkilatınızdakı bir administrator tərəfindən dəyişdirildi. Anbara müraciət üçün Ana parolunuzu indi yeniləməlisiniz. Davam etsəniz, hazırkı seansdan çıxış etmiş və təkrar giriş etməli olacaqsınız. Digər cihazlardakı aktiv seanslar bir saata qədər aktiv qalmağa davam edə bilər."
   },
   "masterPasswordInvalidWarning": {
-    "message": "Your Master Password does not meet the policy requirements of this organization. In order to join the organization, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
+    "message": "Ana parolunuz bu təşkilatın siyasət tələblərinə cavab vermir. Təşkilata qoşulmaq üçün Ana parolunuzu indi yeniləməlisiniz. Davam etsəniz, hazırkı seansdan çıxış etmiş və təkrar giriş etməli olacaqsınız. Digər cihazlardakı aktiv seanslar bir saata qədər aktiv qalmağa davam edə bilər."
   },
   "maximumVaultTimeout": {
     "message": "Anbara müraciət bitəcək"
@@ -4465,7 +4500,7 @@
     "message": "Varlıq kimliyi"
   },
   "idpBindingType": {
-    "message": "Binding Type"
+    "message": "Bağlanma növü"
   },
   "idpSingleSignOnServiceUrl": {
     "message": "Tək daxil olma xidmətinin URL-si"
@@ -4483,7 +4518,7 @@
     "message": "İstənilməyən kimlik təsdiqləmə cavabına icazə ver"
   },
   "idpAllowOutboundLogoutRequests": {
-    "message": "Allow outbound logout requests"
+    "message": "Gedən çıxış tələblərinə icazə ver"
   },
   "idpSignAuthenticationRequests": {
     "message": "Sign authentication requests"
@@ -4799,5 +4834,47 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Regenerate Username"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }

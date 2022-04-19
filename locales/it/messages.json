@@ -187,7 +187,12 @@
     "message": "Modifica cartella"
   },
   "baseDomain": {
-    "message": "Dominio di base"
+    "message": "Dominio di base",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Nome dominio",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Host",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Nota sicura"
+  },
+  "typeLoginPlural": {
+    "message": "Login"
+  },
+  "typeCardPlural": {
+    "message": "Carte"
+  },
+  "typeIdentityPlural": {
+    "message": "Identità"
+  },
+  "typeSecureNotePlural": {
+    "message": "Note sicure"
   },
   "folders": {
     "message": "Cartelle"
@@ -1412,6 +1429,9 @@
   },
   "reports": {
     "message": "Resoconti"
+  },
+  "reportsDesc": {
+    "message": "Identifica e chiudi i problemi di sicurezza dei tuoi account online cliccando sui report in basso."
   },
   "unsecuredWebsitesReport": {
     "message": "Resoconto sui siti web non protetti"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Elimina organizzazione"
   },
-  "deleteOrganizationDesc": {
-    "message": "Procedi sotto per eliminare questa organizzazione e tutti i dati associati. I singoli account utente rimarranno, anche se non saranno più associati a questa organizzazione. "
+  "deletingOrganizationContentWarning": {
+    "message": "Digita la password principale per confermare l'eliminazione di $ORGANIZATION$ e di tutti i dati associati. I dati della cassaforte in $ORGANIZATION$ includono:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "L'eliminazione dell'organizzazione è permanente. Non può essere annullata."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Gli account utente rimarranno attivi dopo l'eliminazione, ma non saranno più associati a questa organizzazione."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "L'eliminazione di $ORGANIZATION$ è definitiva e irreversibile.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organizzazione eliminata"
@@ -4483,10 +4518,10 @@
     "message": "Consenti risposta di autenticazione non richiesta"
   },
   "idpAllowOutboundLogoutRequests": {
-    "message": "Allow outbound logout requests"
+    "message": "Permetti richieste di disconnessione in uscita"
   },
   "idpSignAuthenticationRequests": {
-    "message": "Sign authentication requests"
+    "message": "Firma le richieste di autenticazione"
   },
   "ssoSettingsSaved": {
     "message": "La configurazione del Single Sign-On è stata salvata."
@@ -4762,7 +4797,7 @@
     "message": "obbligatorio"
   },
   "idpSingleSignOnServiceUrlRequired": {
-    "message": "Richiesto se l'ID dell'entità non è un URL."
+    "message": "Richiesto se l'Entity ID non è un URL."
   },
   "openIdOptionalCustomizations": {
     "message": "Personalizzazioni opzionali"
@@ -4799,5 +4834,47 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Torna ai report"
+  },
+  "generator": {
+    "message": "Generatore"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Cosa vorresti generare?"
+  },
+  "passwordType": {
+    "message": "Tipo di password"
+  },
+  "regenerateUsername": {
+    "message": "Rigenera nome utente"
+  },
+  "generateUsername": {
+    "message": "Genera nome utente"
+  },
+  "usernameType": {
+    "message": "Tipo di nome utente"
+  },
+  "plusAddressedEmail": {
+    "message": "Indirizzo email alternativo"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Usa le funzionalità di sub-indirizzamento del tuo fornitore di posta elettronica."
+  },
+  "catchallEmail": {
+    "message": "Email catch-all"
+  },
+  "catchallEmailDesc": {
+    "message": "Usa la casella di posta catch-all di dominio."
+  },
+  "random": {
+    "message": "Casuale"
+  },
+  "randomWord": {
+    "message": "Parola casuale"
+  },
+  "service": {
+    "message": "Servizio"
   }
 }

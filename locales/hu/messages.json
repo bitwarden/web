@@ -187,7 +187,12 @@
     "message": "Mappa szerkesztése"
   },
   "baseDomain": {
-    "message": "Alap domain"
+    "message": "Alap domain",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Kiszolgáló",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Biztonságos jegyzet"
+  },
+  "typeLoginPlural": {
+    "message": "Bejelentkezések"
+  },
+  "typeCardPlural": {
+    "message": "Kártyák"
+  },
+  "typeIdentityPlural": {
+    "message": "Azonosságok"
+  },
+  "typeSecureNotePlural": {
+    "message": "Biztonságos jegyzetek"
   },
   "folders": {
     "message": "Mappák"
@@ -1412,6 +1429,9 @@
   },
   "reports": {
     "message": "Jelentések"
+  },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
   },
   "unsecuredWebsitesReport": {
     "message": "Nem-biztonságos webhelyek jelentés"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Szervezet törlése"
   },
-  "deleteOrganizationDesc": {
-    "message": "Az alábbiak szerint törölhető a szervezet és az összes kapcsolódó adat. Az egyedi felhasználói fiókok megmaradnak, bár nem maradnak társítva ehhez a szervezethez."
+  "deletingOrganizationContentWarning": {
+    "message": "Adjuk meg a mesterjelszót $ORGANIZATION$ és az összes társított adat törlésének megerősítéséhez. $ORGANIZATION$ széfadatainak tartalma:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "A szervezet végleges törlése folyamatban van. A művelet nem vonható vissza."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "A felhasználói fiókok aktívak maradnak a törlés után, de a továbbiakben nincsenek társítva ehhez a szervezethez."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "$ORGANIZATION$ törlése végleges és nincs visszaállítási lehetőség.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "A szervezet törlésre került."
@@ -4483,10 +4518,10 @@
     "message": "Kéretlen hitelesítési válasz engedélyezése"
   },
   "idpAllowOutboundLogoutRequests": {
-    "message": "Allow outbound logout requests"
+    "message": "Kimenü kijelentkezési kérések engedélyezése"
   },
   "idpSignAuthenticationRequests": {
-    "message": "Sign authentication requests"
+    "message": "Hitelesítési kérések aláírása"
   },
   "ssoSettingsSaved": {
     "message": "Az egyszeri bejelentkezés konfigurációja mentésre került."
@@ -4738,7 +4773,7 @@
     "message": "INGYENES a szponzorációval"
   },
   "formErrorSummaryPlural": {
-    "message": "$COUNT$ fields above need your attention.",
+    "message": "$COUNT$ mező fentebb figyelmet érdemel.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -4747,10 +4782,10 @@
     }
   },
   "formErrorSummarySingle": {
-    "message": "1 field above needs your attention."
+    "message": "1 mező fentebb figyelmet érdemel."
   },
   "fieldRequiredError": {
-    "message": "$FIELDNAME$ is required.",
+    "message": "$FIELDNAME$ szükséges.",
     "placeholders": {
       "fieldname": {
         "content": "$1",
@@ -4759,19 +4794,19 @@
     }
   },
   "required": {
-    "message": "required"
+    "message": "kötelező"
   },
   "idpSingleSignOnServiceUrlRequired": {
-    "message": "Required if Entity ID is not a URL."
+    "message": "Szükséges ha az entitás azonosító nem webcím."
   },
   "openIdOptionalCustomizations": {
-    "message": "Optional Customizations"
+    "message": "Opcionális testreszabások"
   },
   "openIdAuthorityRequired": {
-    "message": "Required if Authority is not valid."
+    "message": "Szükséges, ha a hitelesítés nem érvényes."
   },
   "separateMultipleWithComma": {
-    "message": "Separate multiple with a comma."
+    "message": "Több érték esetén elválasztás vesszővel."
   },
   "sessionTimeout": {
     "message": "A munkamenet lejárt. Lépjünk vissza és próbáljunk újra bejelentkezni."
@@ -4799,5 +4834,47 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Regenerate Username"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }

@@ -187,7 +187,12 @@
     "message": "Muuda kausta"
   },
   "baseDomain": {
-    "message": "Baasdomeen"
+    "message": "Baasdomeen",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Host",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Turvaline märkus"
+  },
+  "typeLoginPlural": {
+    "message": "Kontod"
+  },
+  "typeCardPlural": {
+    "message": "Kaardid"
+  },
+  "typeIdentityPlural": {
+    "message": "Identiteedid"
+  },
+  "typeSecureNotePlural": {
+    "message": "Turvalised märkmed"
   },
   "folders": {
     "message": "Kaustad"
@@ -1412,6 +1429,9 @@
   },
   "reports": {
     "message": "Raportid"
+  },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
   },
   "unsecuredWebsitesReport": {
     "message": "Ebaturvalise veebilehtede raport"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Kustuta organisatsioon"
   },
-  "deleteOrganizationDesc": {
-    "message": "Jätkamaks organisatsiooni ja sellega seonduvate andmete kustutamist, liigu alla. Individuaalsed kasutajakontod säilitatakse, aga nad ei kuulu enam sellesse organisatsiooni. "
+  "deletingOrganizationContentWarning": {
+    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Organisatsiooni kustutamine on ühekordne tegevus. Seda ei saa tagasi võtta."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organisatsioon on kustutatud"
@@ -4329,7 +4364,7 @@
     "message": "Your Master Password does not meet the policy requirements of this organization. In order to join the organization, you must update your Master Password now. Proceeding will log you out of your current session, requiring you to log back in. Active sessions on other devices may continue to remain active for up to one hour."
   },
   "maximumVaultTimeout": {
-    "message": "Vault Timeout"
+    "message": "Hoidla ajalõpp"
   },
   "maximumVaultTimeoutDesc": {
     "message": "Configure a maximum vault timeout for all users."
@@ -4799,5 +4834,47 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Regenerate Username"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }
