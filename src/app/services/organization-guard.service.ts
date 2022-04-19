@@ -24,7 +24,7 @@ export class OrganizationGuardService implements CanActivate {
 
     const org = await this.organizationService.get(route.params.organizationId);
     if (org == null) {
-      this.router.navigate(["/"]);
+      this.router.navigate(["/vault"]);
       return false;
     }
     if (!org.isOwner && !org.enabled) {
@@ -33,7 +33,7 @@ export class OrganizationGuardService implements CanActivate {
         null,
         this.i18nService.t("organizationIsDisabled")
       );
-      this.router.navigate(["/"]);
+      this.router.navigate(["/vault"]);
       return false;
     }
 
