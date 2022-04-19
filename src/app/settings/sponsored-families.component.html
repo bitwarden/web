@@ -50,7 +50,7 @@
       />
       <small
         aria-errormessage="sponsorshipEmail"
-        *ngIf="sponsorshipEmailControl.errors?.cannotSponsorSelf"
+        *ngIf="sponsorshipEmailControl.errors?.notAllowedValue"
         class="error-inline"
         role="alert"
       >

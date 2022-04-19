@@ -1,12 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import {
-  AsyncValidatorFn,
-  FormBuilder,
-  FormGroup,
-  ValidationErrors,
-  Validators,
-} from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
+import { notAllowedValueAsync } from "jslib-angular/validators/notAllowedValueAsync.validator";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
@@ -15,18 +10,6 @@ import { StateService } from "jslib-common/abstractions/state.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
 import { PlanSponsorshipType } from "jslib-common/enums/planSponsorshipType";
 import { Organization } from "jslib-common/models/domain/organization";
-
-function notCurrentUserEmailValidator(stateService: StateService): AsyncValidatorFn {
-  return async (control): Promise<ValidationErrors | null> => {
-    const currentUserEmail = await stateService.getEmail();
-
-    if (control.value.toLowerCase() === currentUserEmail.toLowerCase()) {
-      return {
-        cannotSponsorSelf: true,
-      };
-    }
-  };
-}
 
 @Component({
   selector: "app-sponsored-families",
@@ -63,7 +46,9 @@ export class SponsoredFamiliesComponent implements OnInit {
         "",
         {
           validators: [Validators.email],
-          asyncValidators: [notCurrentUserEmailValidator(this.stateService)],
+          asyncValidators: [
+            notAllowedValueAsync(async () => await this.stateService.getEmail(), true),
+          ],
           updateOn: "blur",
         },
       ],
