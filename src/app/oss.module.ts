@@ -85,6 +85,7 @@ import { FooterComponent } from "./layouts/footer.component";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
 import { NavbarComponent } from "./layouts/navbar.component";
 import { UserLayoutComponent } from "./layouts/user-layout.component";
+import { VaultFilterModule } from "./modules/vault-filter/vault-filter.module";
 import { OrganizationLayoutComponent } from "./organizations/layouts/organization-layout.component";
 import { BulkConfirmComponent as OrgBulkConfirmComponent } from "./organizations/manage/bulk/bulk-confirm.component";
 import { BulkRemoveComponent as OrgBulkRemoveComponent } from "./organizations/manage/bulk/bulk-remove.component";
@@ -215,7 +216,6 @@ import { CiphersComponent } from "./vault/ciphers.component";
 import { CollectionsComponent } from "./vault/collections.component";
 import { FolderAddEditComponent } from "./vault/folder-add-edit.component";
 import { ShareComponent } from "./vault/share.component";
-import { VaultFilterModule } from "./vault/vault-filter/vault-filter.module";
 import { VaultComponent } from "./vault/vault.component";
 
 registerLocaleData(localeAf, "af");
