@@ -91,7 +91,12 @@ export class AppComponent implements OnDestroy, OnInit {
       this.ngZone.run(async () => {
         switch (message.command) {
           case "loggedIn":
+            this.notificationsService.updateConnection(false);
+            break;
           case "loggedOut":
+            this.routerService.setPreviousUrl(null);
+            this.notificationsService.updateConnection(false);
+            break;
           case "unlocked":
             this.notificationsService.updateConnection(false);
             break;

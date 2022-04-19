@@ -148,6 +148,10 @@ export class VaultComponent implements OnInit, OnDestroy {
               this.i18nService.t("errorOccurred"),
               this.i18nService.t("unknownCipher")
             );
+            this.router.navigate([], {
+              queryParams: { cipherId: null },
+              queryParamsHandling: "merge",
+            });
           }
         }
       });
