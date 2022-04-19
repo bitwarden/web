@@ -30,7 +30,6 @@ import { AttachmentsComponent } from "./attachments.component";
 import { CiphersComponent } from "./ciphers.component";
 import { CollectionsComponent } from "./collections.component";
 
-
 const BroadcasterSubscriptionId = "OrgVaultComponent";
 
 @Component({

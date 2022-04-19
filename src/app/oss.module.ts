@@ -136,7 +136,6 @@ import { AddEditComponent as OrgAddEditComponent } from "./organizations/vault/a
 import { AttachmentsComponent as OrgAttachmentsComponent } from "./organizations/vault/attachments.component";
 import { CiphersComponent as OrgCiphersComponent } from "./organizations/vault/ciphers.component";
 import { CollectionsComponent as OrgCollectionsComponent } from "./organizations/vault/collections.component";
-import { VaultFilterComponent as OrgGroupingsComponent } from "./organizations/vault/vault-filter/vault-filter.component";
 import { VaultComponent as OrgVaultComponent } from "./organizations/vault/vault.component";
 import { ProvidersComponent } from "./providers/providers.component";
 import { BreachReportComponent } from "./reports/breach-report.component";
@@ -361,7 +360,6 @@ registerLocaleData(localeZhTw, "zh-TW");
     OrgExportComponent,
     OrgExposedPasswordsReportComponent,
     OrgGroupAddEditComponent,
-    OrgGroupingsComponent,
     OrgGroupsComponent,
     OrgImportComponent,
     OrgInactiveTwoFactorReportComponent,
