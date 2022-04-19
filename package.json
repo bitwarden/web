@@ -4,7 +4,7 @@
   "license": "GPL-3.0",
   "repository": "https://github.com/bitwarden/web",
   "scripts": {
-    "sub:init": "git submodule update --init --recursive --force --depth=1",
+    "sub:init": "git -c protocol.version=2 submodule update --init --force --depth=1 --recursive",
     "sub:update": "git submodule update --remote",
     "sub:pull": "git submodule foreach git pull origin master",
     "preinstall": "npm run sub:init",
