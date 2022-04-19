@@ -54,7 +54,6 @@ import { OrganizationTypeGuardService } from "./organization-type-guard.service"
 import { PolicyListService } from "./policy-list.service";
 import { RouterService } from "./router.service";
 
-
 export function initFactory(
   window: Window,
   environmentService: EnvironmentServiceAbstraction,
