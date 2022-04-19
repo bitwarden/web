@@ -24,6 +24,7 @@ import { TokenService } from "jslib-common/abstractions/token.service";
 import { CipherType } from "jslib-common/enums/cipherType";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
+import { VaultFilterComponent } from "../modules/vault-filter/vault-filter.component";
 import { UpdateKeyComponent } from "../settings/update-key.component";
 
 import { AddEditComponent } from "./add-edit.component";
@@ -32,7 +33,6 @@ import { CiphersComponent } from "./ciphers.component";
 import { CollectionsComponent } from "./collections.component";
 import { FolderAddEditComponent } from "./folder-add-edit.component";
 import { ShareComponent } from "./share.component";
-import { VaultFilterComponent } from "./vault-filter/vault-filter.component";
 
 const BroadcasterSubscriptionId = "VaultComponent";
 
