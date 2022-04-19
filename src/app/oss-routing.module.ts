@@ -22,6 +22,7 @@ import { UpdatePasswordComponent } from "./accounts/update-password.component";
 import { UpdateTempPasswordComponent } from "./accounts/update-temp-password.component";
 import { VerifyEmailTokenComponent } from "./accounts/verify-email-token.component";
 import { VerifyRecoverDeleteComponent } from "./accounts/verify-recover-delete.component";
+import { HomeGuard } from "./guards/home.guard";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
 import { OrganizationLayoutComponent } from "./layouts/organization-layout.component";
 import { UserLayoutComponent } from "./layouts/user-layout.component";
@@ -75,7 +76,13 @@ const routes: Routes = [
     component: FrontendLayoutComponent,
     data: { doNotSaveUrl: true },
     children: [
-      { path: "", pathMatch: "full", component: LoginComponent, canActivate: [UnauthGuardService] },
+      {
+        path: "",
+        pathMatch: "full",
+        children: [], // Children lets us have an empty component.
+        canActivate: [HomeGuard], // Redirects either to vault, login or lock page.
+      },
+      { path: "login", component: LoginComponent, canActivate: [UnauthGuardService] },
       { path: "2fa", component: TwoFactorComponent, canActivate: [UnauthGuardService] },
       {
         path: "register",
