@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 import { VaultFilterComponent as BaseVaultFilterComponent } from "jslib-angular/modules/vault-filter/vault-filter.component";
 import { VaultFilterService } from "jslib-angular/modules/vault-filter/vault-filter.service";
+import { Organization } from "jslib-common/models/domain/organization";
 
 @Component({
   selector: "app-vault-filter",
@@ -16,6 +17,8 @@ export class VaultFilterComponent extends BaseVaultFilterComponent {
 
   searchPlaceholder: string;
   searchText = "";
+
+  organization: Organization;
 
   constructor(vaultFilterService: VaultFilterService) {
     super(vaultFilterService);

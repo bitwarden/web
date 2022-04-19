@@ -22,13 +22,14 @@ import { CipherType } from "jslib-common/enums/cipherType";
 import { Organization } from "jslib-common/models/domain/organization";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
+import { VaultFilterComponent } from "../../modules/vault-filter/vault-filter.component";
 import { EntityEventsComponent } from "../manage/entity-events.component";
 
 import { AddEditComponent } from "./add-edit.component";
 import { AttachmentsComponent } from "./attachments.component";
 import { CiphersComponent } from "./ciphers.component";
 import { CollectionsComponent } from "./collections.component";
-import { VaultFilterComponent } from "./vault-filter/vault-filter.component";
+
 
 const BroadcasterSubscriptionId = "OrgVaultComponent";
 
