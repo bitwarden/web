@@ -114,9 +114,6 @@ export class SponsoringOrgRowComponent implements OnInit {
     } else if (selfHosted && lastSyncDate) {
       // We are on a self-hosted install and it has been synced but we have not gotten
       // a valid until date so we can't know if they are actively sponsoring someone
-
-      // QUESTION: This has the same status as the cloud version, do we want to show something
-      // different and show next sync time?
       this.statusMessage = this.i18nService.t("sent");
       this.statusClass = "text-success";
     } else if (!selfHosted) {
