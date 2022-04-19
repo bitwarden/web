@@ -27,6 +27,8 @@ export class UserBillingComponent implements OnInit {
 
   verifyBankPromise: Promise<any>;
 
+  providerName: string;
+
   constructor(
     protected apiService: ApiService,
     protected i18nService: I18nService,
@@ -145,5 +147,9 @@ export class UserBillingComponent implements OnInit {
 
   get transactions() {
     return this.billing != null ? this.billing.transactions : null;
+  }
+
+  get managedByProvider() {
+    return this.providerName != null;
   }
 }
