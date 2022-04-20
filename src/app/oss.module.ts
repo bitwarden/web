@@ -115,6 +115,7 @@ import { SingleOrgPolicyComponent } from "./organizations/policies/single-org.co
 import { TwoFactorAuthenticationPolicyComponent } from "./organizations/policies/two-factor-authentication.component";
 import { AccountComponent as OrgAccountComponent } from "./organizations/settings/account.component";
 import { AdjustSubscription } from "./organizations/settings/adjust-subscription.component";
+import { BillingSyncApiKeyComponent } from "./organizations/settings/billing-sync-api-key.component";
 import { ChangePlanComponent } from "./organizations/settings/change-plan.component";
 import { DeleteOrganizationComponent } from "./organizations/settings/delete-organization.component";
 import { DownloadLicenseComponent } from "./organizations/settings/download-license.component";
@@ -295,6 +296,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     AdjustSubscription,
     ApiKeyComponent,
     AttachmentsComponent,
+    BillingSyncApiKeyComponent,
     BreachReportComponent,
     BulkActionsComponent,
     BulkDeleteComponent,

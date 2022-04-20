@@ -180,10 +180,10 @@
         ></app-adjust-storage>
       </div>
     </ng-container>
-
-    <h2 class="spaced-header">{{ "additionalOptions" | i18n }}</h2>
+    <!--Switch to i18n-->
+    <h2 class="spaced-header">Self-Hosting</h2>
     <p class="mb-4">
-      {{ "additionalOptionsDesc" | i18n }}
+      {{ "selfHostingEnterpriseOrganizationSectionCopy" | i18n }}
     </p>
     <div class="d-flex">
       <button
@@ -195,6 +195,20 @@
       >
         {{ "downloadLicense" | i18n }}
       </button>
+      <button
+        type="button"
+        class="btn btn-outline-secondary ml-1"
+        (click)="manageBillingSync()"
+        *ngIf="canManageBillingSync"
+      >
+        {{ (hasBillingSyncToken ? "manageBillingSync" : "setUpBillingSync") | i18n }}
+      </button>
+    </div>
+    <h2 class="spaced-header">{{ "additionalOptions" | i18n }}</h2>
+    <p class="mb-4">
+      {{ "additionalOptionsDesc" | i18n }}
+    </p>
+    <div class="d-flex">
       <button
         #cancelBtn
         type="button"
@@ -263,3 +277,4 @@
     </div>
   </ng-container>
 </ng-container>
+<ng-template #setupBillingSyncTemplate></ng-template>
