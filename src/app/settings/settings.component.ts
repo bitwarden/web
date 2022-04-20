@@ -6,7 +6,7 @@ import { OrganizationService } from "jslib-common/abstractions/organization.serv
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { TokenService } from "jslib-common/abstractions/token.service";
 
-import { StateService } from "src/abstractions/state.service";
+import { StateService } from "../../abstractions/state.service";
 
 const BroadcasterSubscriptionId = "SettingsComponent";
 
