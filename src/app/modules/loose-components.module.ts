@@ -77,7 +77,6 @@ import { AddEditComponent as OrgAddEditComponent } from "../organizations/vault/
 import { AttachmentsComponent as OrgAttachmentsComponent } from "../organizations/vault/attachments.component";
 import { CiphersComponent as OrgCiphersComponent } from "../organizations/vault/ciphers.component";
 import { CollectionsComponent as OrgCollectionsComponent } from "../organizations/vault/collections.component";
-import { VaultComponent as OrgVaultComponent } from "../organizations/vault/vault.component";
 import { ProvidersComponent } from "../providers/providers.component";
 import { BreachReportComponent } from "../reports/breach-report.component";
 import { ExposedPasswordsReportComponent } from "../reports/exposed-passwords-report.component";
@@ -156,7 +155,6 @@ import { CiphersComponent } from "../vault/ciphers.component";
 import { CollectionsComponent } from "../vault/collections.component";
 import { FolderAddEditComponent } from "../vault/folder-add-edit.component";
 import { ShareComponent } from "../vault/share.component";
-import { VaultComponent } from "../vault/vault.component";
 
 import { SharedModule } from "./shared.module";
 import { VaultFilterModule } from "./vault-filter/vault-filter.module";
@@ -258,7 +256,6 @@ import { VaultFilterModule } from "./vault-filter/vault-filter.module";
     OrgUserAddEditComponent,
     OrgUserConfirmComponent,
     OrgUserGroupsComponent,
-    OrgVaultComponent,
     OrgWeakPasswordsReportComponent,
     GeneratorComponent,
     PasswordGeneratorHistoryComponent,
@@ -317,7 +314,6 @@ import { VaultFilterModule } from "./vault-filter/vault-filter.module";
     UserBillingComponent,
     UserLayoutComponent,
     UserSubscriptionComponent,
-    VaultComponent,
     VaultTimeoutInputComponent,
     VerifyEmailComponent,
     VerifyEmailTokenComponent,
@@ -418,7 +414,6 @@ import { VaultFilterModule } from "./vault-filter/vault-filter.module";
     OrgUserAddEditComponent,
     OrgUserConfirmComponent,
     OrgUserGroupsComponent,
-    OrgVaultComponent,
     OrgWeakPasswordsReportComponent,
     GeneratorComponent,
     PasswordGeneratorHistoryComponent,

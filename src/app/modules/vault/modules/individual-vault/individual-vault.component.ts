@@ -24,23 +24,23 @@ import { TokenService } from "jslib-common/abstractions/token.service";
 import { CipherType } from "jslib-common/enums/cipherType";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { VaultFilterComponent } from "../modules/vault-filter/vault-filter.component";
-import { UpdateKeyComponent } from "../settings/update-key.component";
-
-import { AddEditComponent } from "./add-edit.component";
-import { AttachmentsComponent } from "./attachments.component";
-import { CiphersComponent } from "./ciphers.component";
-import { CollectionsComponent } from "./collections.component";
-import { FolderAddEditComponent } from "./folder-add-edit.component";
-import { ShareComponent } from "./share.component";
+import { UpdateKeyComponent } from "../../../../settings/update-key.component";
+import { AddEditComponent } from "../../../../vault/add-edit.component";
+import { AttachmentsComponent } from "../../../../vault/attachments.component";
+import { CiphersComponent } from "../../../../vault/ciphers.component";
+import { CollectionsComponent } from "../../../../vault/collections.component";
+import { FolderAddEditComponent } from "../../../../vault/folder-add-edit.component";
+import { ShareComponent } from "../../../../vault/share.component";
+import { VaultFilterComponent } from "../../../vault-filter/vault-filter.component";
+import { VaultService } from "../../vault.service";
 
 const BroadcasterSubscriptionId = "VaultComponent";
 
 @Component({
   selector: "app-vault",
-  templateUrl: "vault.component.html",
+  templateUrl: "individual-vault.component.html",
 })
-export class VaultComponent implements OnInit, OnDestroy {
+export class IndividualVaultComponent implements OnInit, OnDestroy {
   @ViewChild("vaultFilter", { static: true }) filterComponent: VaultFilterComponent;
   @ViewChild(CiphersComponent, { static: true }) ciphersComponent: CiphersComponent;
   @ViewChild("attachments", { read: ViewContainerRef, static: true })
@@ -83,7 +83,8 @@ export class VaultComponent implements OnInit, OnDestroy {
     private broadcasterService: BroadcasterService,
     private ngZone: NgZone,
     private stateService: StateService,
-    private organizationService: OrganizationService
+    private organizationService: OrganizationService,
+    private vaultService: VaultService
   ) {}
 
   async ngOnInit() {
@@ -152,7 +153,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     this.ciphersComponent.showAddNew = vaultFilter.status !== "trash";
     this.activeFilter = vaultFilter;
     await this.ciphersComponent.reload(this.buildFilter(), vaultFilter.status === "trash");
-    this.filterComponent.searchPlaceholder = this.calculateSearchBarLocalizationString(
+    this.filterComponent.searchPlaceholder = this.vaultService.calculateSearchBarLocalizationString(
       this.activeFilter
     );
     this.go();
@@ -344,32 +345,6 @@ export class VaultComponent implements OnInit, OnDestroy {
 
   async updateKey() {
     await this.modalService.openViewRef(UpdateKeyComponent, this.updateKeyModalRef);
-  }
-
-  private calculateSearchBarLocalizationString(vaultFilter: VaultFilter): string {
-    if (vaultFilter.status === "favorites") {
-      return "searchFavorites";
-    }
-    if (vaultFilter.status === "trash") {
-      return "searchTrash";
-    }
-    if (vaultFilter.cipherType != null) {
-      return "searchType";
-    }
-    if (vaultFilter.selectedFolderId != null && vaultFilter.selectedFolderId != "none") {
-      return "searchFolder";
-    }
-    if (vaultFilter.selectedCollectionId != null) {
-      return "searchCollection";
-    }
-    if (vaultFilter.selectedOrganizationId != null) {
-      return "searchOrganization";
-    }
-    if (vaultFilter.myVaultOnly) {
-      return "searchMyVault";
-    }
-
-    return "searchVault";
   }
 
   private go(queryParams: any = null) {

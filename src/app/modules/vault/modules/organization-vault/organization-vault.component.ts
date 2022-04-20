@@ -22,21 +22,21 @@ import { CipherType } from "jslib-common/enums/cipherType";
 import { Organization } from "jslib-common/models/domain/organization";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { VaultFilterComponent } from "../../modules/vault-filter/vault-filter.component";
-import { EntityEventsComponent } from "../manage/entity-events.component";
-
-import { AddEditComponent } from "./add-edit.component";
-import { AttachmentsComponent } from "./attachments.component";
-import { CiphersComponent } from "./ciphers.component";
-import { CollectionsComponent } from "./collections.component";
+import { EntityEventsComponent } from "../../../../organizations/manage/entity-events.component";
+import { AddEditComponent } from "../../../../organizations/vault/add-edit.component";
+import { AttachmentsComponent } from "../../../../organizations/vault/attachments.component";
+import { CiphersComponent } from "../../../../organizations/vault/ciphers.component";
+import { CollectionsComponent } from "../../../../organizations/vault/collections.component";
+import { VaultFilterComponent } from "../../../vault-filter/vault-filter.component";
+import { VaultService } from "../../vault.service";
 
 const BroadcasterSubscriptionId = "OrgVaultComponent";
 
 @Component({
   selector: "app-org-vault",
-  templateUrl: "vault.component.html",
+  templateUrl: "organization-vault.component.html",
 })
-export class VaultComponent implements OnInit, OnDestroy {
+export class OrganizationVaultComponent implements OnInit, OnDestroy {
   @ViewChild("vaultFilter", { static: true }) vaultFilterComponent: VaultFilterComponent;
   @ViewChild(CiphersComponent, { static: true }) ciphersComponent: CiphersComponent;
   @ViewChild("attachments", { read: ViewContainerRef, static: true })
@@ -66,7 +66,8 @@ export class VaultComponent implements OnInit, OnDestroy {
     private messagingService: MessagingService,
     private broadcasterService: BroadcasterService,
     private ngZone: NgZone,
-    private platformUtilsService: PlatformUtilsService
+    private platformUtilsService: PlatformUtilsService,
+    private vaultService: VaultService
   ) {}
 
   ngOnInit() {
@@ -127,6 +128,8 @@ export class VaultComponent implements OnInit, OnDestroy {
     this.ciphersComponent.showAddNew = vaultFilter.status !== "trash";
     this.activeFilter = vaultFilter;
     await this.ciphersComponent.reload(this.buildFilter(), vaultFilter.status === "trash");
+    this.vaultFilterComponent.searchPlaceholder =
+      this.vaultService.calculateSearchBarLocalizationString(this.activeFilter);
     this.go();
     this.go();
   }

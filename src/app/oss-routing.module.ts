@@ -42,7 +42,6 @@ import { ExportComponent } from "./tools/export.component";
 import { GeneratorComponent } from "./tools/generator.component";
 import { ImportComponent } from "./tools/import.component";
 import { ToolsComponent } from "./tools/tools.component";
-import { VaultComponent } from "./vault/vault.component";
 
 const routes: Routes = [
   {
@@ -139,7 +138,12 @@ const routes: Routes = [
     component: UserLayoutComponent,
     canActivate: [AuthGuard],
     children: [
-      { path: "vault", component: VaultComponent, data: { titleId: "vaults" } },
+      {
+        path: "vault",
+        loadChildren: async () =>
+          (await import("./modules/vault/modules/individual-vault/individual-vault.module"))
+            .IndividualVaultModule,
+      },
       { path: "sends", component: SendComponent, data: { title: "Send" } },
       {
         path: "settings",
