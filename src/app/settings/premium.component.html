@@ -1,11 +1,8 @@
-<div
-  [ngClass]="{
-    'page-header': selfHosted,
-    'tabbed-header': !selfHosted
-  }"
->
-  <h1 *ngIf="selfHosted">{{ "subscription" | i18n }}</h1>
-  <h1 *ngIf="!selfHosted">{{ "goPremium" | i18n }}</h1>
+<div *ngIf="selfHosted" class="page-header">
+  <h1>{{ "subscription" | i18n }}</h1>
+</div>
+<div *ngIf="!selfHosted" class="tabbed-header">
+  <h1>{{ "goPremium" | i18n }}</h1>
 </div>
 <bit-callout
   type="info"
