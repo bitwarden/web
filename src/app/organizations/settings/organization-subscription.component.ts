@@ -57,7 +57,6 @@ export class OrganizationSubscriptionComponent implements OnInit {
   billingSyncKeyRef: [ModalRef, BillingSyncKeyComponent];
 
   constructor(
-    private modalService: ModalService,
     private apiService: ApiService,
     private platformUtilsService: PlatformUtilsService,
     private i18nService: I18nService,
