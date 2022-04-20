@@ -187,7 +187,12 @@
     "message": "Editar pasta"
   },
   "baseDomain": {
-    "message": "Domínio base"
+    "message": "Domínio base",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Servidor",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Nota segura"
+  },
+  "typeLoginPlural": {
+    "message": "Logins"
+  },
+  "typeCardPlural": {
+    "message": "Cards"
+  },
+  "typeIdentityPlural": {
+    "message": "Identities"
+  },
+  "typeSecureNotePlural": {
+    "message": "Secure Notes"
   },
   "folders": {
     "message": "Pastas"
@@ -1413,6 +1430,9 @@
   "reports": {
     "message": "Relatórios"
   },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
+  },
   "unsecuredWebsitesReport": {
     "message": "Relatório de websites inseguros"
   },
@@ -1462,7 +1482,7 @@
     "message": "Relatório de palavras-passe expostas"
   },
   "exposedPasswordsReportDesc": {
-    "message": "As palavras-passe expostas são palavras-passe que foram descobertas em brechas de dados conhecidas que foram lançadas publicamente ou vendidas na dark web por hackers."
+    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
   },
   "exposedPasswordsFound": {
     "message": "Palavras-passe expostas encontradas"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Eliminar organização"
   },
-  "deleteOrganizationDesc": {
-    "message": "Proceda abaixo para eliminar esta organização e todos os dados associados. Contas de utilizadores individuais serão mantidas, embora já não estarão associadas a esta organização. "
+  "deletingOrganizationContentWarning": {
+    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "A eliminação da organização é permanente. Não pode ser desfeita."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organização eliminada"
@@ -4799,5 +4834,47 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Regenerate Username"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }

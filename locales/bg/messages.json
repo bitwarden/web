@@ -187,7 +187,12 @@
     "message": "Редактиране на папка"
   },
   "baseDomain": {
-    "message": "Основен домейн"
+    "message": "Основен домейн",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Име на домейн",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Сървър",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Защитена бележка"
+  },
+  "typeLoginPlural": {
+    "message": "Записи"
+  },
+  "typeCardPlural": {
+    "message": "Карти"
+  },
+  "typeIdentityPlural": {
+    "message": "Самоличности"
+  },
+  "typeSecureNotePlural": {
+    "message": "Защитени бележки"
   },
   "folders": {
     "message": "Папки"
@@ -1412,6 +1429,9 @@
   },
   "reports": {
     "message": "Доклади"
+  },
+  "reportsDesc": {
+    "message": "Открийте и отстранете проблемите със защитата на профилите си като щракнете върху докладите по-долу."
   },
   "unsecuredWebsitesReport": {
     "message": "Доклад за сайтове без защита"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Изтриване на организация"
   },
-  "deleteOrganizationDesc": {
-    "message": "Продължете с действието отдолу и организацията и нейните данни ще бъдат изтрити. Абонаментите на отделните хора ще останат, но те няма да бъдат свързани с тази организация. "
+  "deletingOrganizationContentWarning": {
+    "message": "Въведете главната парола, за да потвърдите изтриването на $ORGANIZATION$ и всички свързани данни. Данните в трезора на $ORGANIZATION$ включват:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Изтриването на организация е окончателно и напълно необратимо действие."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Потребителите ще продължат да съществуват и след изтриването, но вече няма да бъдат свързани с тази организация."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Изтриването на $ORGANIZATION$ е окончателно и необратимо.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Организацията е изтрита"
@@ -4799,5 +4834,47 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Обратно към докладите"
+  },
+  "generator": {
+    "message": "Генератор"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Какво бихте искали да генерирате?"
+  },
+  "passwordType": {
+    "message": "Тип парола"
+  },
+  "regenerateUsername": {
+    "message": "Повторно генериране на потр. име"
+  },
+  "generateUsername": {
+    "message": "Генериране на потр. име"
+  },
+  "usernameType": {
+    "message": "Тип потребителско име"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Използвайте възможностите за под-адресиране на е-поща на своя доставчик."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Произволно"
+  },
+  "randomWord": {
+    "message": "Произволна дума"
+  },
+  "service": {
+    "message": "Услуга"
   }
 }

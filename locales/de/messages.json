@@ -187,7 +187,12 @@
     "message": "Ordner bearbeiten"
   },
   "baseDomain": {
-    "message": "Basisdomäne"
+    "message": "Basisdomäne",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain-Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Host",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Sichere Notiz"
+  },
+  "typeLoginPlural": {
+    "message": "Zugangsdaten"
+  },
+  "typeCardPlural": {
+    "message": "Karten"
+  },
+  "typeIdentityPlural": {
+    "message": "Identitäten"
+  },
+  "typeSecureNotePlural": {
+    "message": "Sichere Notizen"
   },
   "folders": {
     "message": "Ordner"
@@ -1412,6 +1429,9 @@
   },
   "reports": {
     "message": "Berichte"
+  },
+  "reportsDesc": {
+    "message": "Ermittel und schließe Sicherheitslücken in deinen Online-Konten, indem du auf die Berichte unten klickst."
   },
   "unsecuredWebsitesReport": {
     "message": "Bericht über ungesicherte Websites"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Organisation löschen"
   },
-  "deleteOrganizationDesc": {
-    "message": "Fahren Sie fort, um diese Organisation und alle ihre zugehörigen Daten zu löschen. Einzelne Benutzerkonten bleiben erhalten, obwohl sie nicht länger mit dieser Organisation verbunden sein werden. "
+  "deletingOrganizationContentWarning": {
+    "message": "Gebe das Master-Passwort ein, um das Löschen von $ORGANIZATION$ und allen zugehörigen Daten zu bestätigen. Die Tresordaten in $ORGANIZATION$ beinhalten:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Das Löschen dieser Organisation ist unwiderruflich."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "Die Benutzerkonten bleiben nach dem Löschen aktiv, sind aber nicht mehr mit dieser Organisation verknüpft."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Das Löschen von $ORGANIZATION$ ist dauerhaft und unwiderruflich.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Die Organisation wurde gelöscht"
@@ -4799,5 +4834,47 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Zurück zu den Berichten"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "Was möchten Sie generieren?"
+  },
+  "passwordType": {
+    "message": "Passworttyp"
+  },
+  "regenerateUsername": {
+    "message": "Benutzername neu generieren"
+  },
+  "generateUsername": {
+    "message": "Benutzernamen generieren"
+  },
+  "usernameType": {
+    "message": "Benutzernamentyp"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all-E-Mail-Adresse"
+  },
+  "catchallEmailDesc": {
+    "message": "Verwenden Sie den konfigurierten Catch-All-Posteingang Ihrer Domain."
+  },
+  "random": {
+    "message": "Zufällig"
+  },
+  "randomWord": {
+    "message": "Zufälliges Wort"
+  },
+  "service": {
+    "message": "Dienst"
   }
 }

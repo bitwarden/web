@@ -187,7 +187,12 @@
     "message": "Redigera mapp"
   },
   "baseDomain": {
-    "message": "Basdomän"
+    "message": "Basdomän",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Värd",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Säker anteckning"
+  },
+  "typeLoginPlural": {
+    "message": "Inloggningar"
+  },
+  "typeCardPlural": {
+    "message": "Kort"
+  },
+  "typeIdentityPlural": {
+    "message": "Identiteter"
+  },
+  "typeSecureNotePlural": {
+    "message": "Säkra anteckningar"
   },
   "folders": {
     "message": "Mappar"
@@ -1412,6 +1429,9 @@
   },
   "reports": {
     "message": "Rapporter"
+  },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
   },
   "unsecuredWebsitesReport": {
     "message": "Rapport om osäkra webbplatser"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Radera organisation"
   },
-  "deleteOrganizationDesc": {
-    "message": "Fortsätt nedan för att radera denna organisation och all tillhörande data. Enskilda användarkonton kommer finnas kvar, men de kommer inte längre tillhöra denna organisation. "
+  "deletingOrganizationContentWarning": {
+    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Att radera organisationen är permanent. Det går inte att ångra."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organisationen raderades"
@@ -3164,7 +3199,7 @@
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "dontAskFingerprintAgain": {
-    "message": "Fråga inte om verifiering av fingeravtrycksfrasen igen",
+    "message": "Never prompt to verify fingerprint phrases for invited users (Not recommended)",
     "description": "A 'fingerprint phrase' is a unique word phrase (similar to a passphrase) that a user can use to authenticate their public key with another user, for the purposes of sharing."
   },
   "free": {
@@ -4214,7 +4249,7 @@
     "message": "The provider has been set up."
   },
   "clients": {
-    "message": "Clients"
+    "message": "Klienter"
   },
   "providerAdmin": {
     "message": "Provider Admin"
@@ -4381,7 +4416,7 @@
     "message": "Select SSO Type"
   },
   "type": {
-    "message": "Type"
+    "message": "Typ"
   },
   "openIdConnectConfig": {
     "message": "OpenID Connect Configuration"
@@ -4799,5 +4834,47 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Regenerate Username"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }

@@ -187,7 +187,12 @@
     "message": "Uredi mapu"
   },
   "baseDomain": {
-    "message": "Primarna domena"
+    "message": "Primarna domena",
+    "description": "Domain name. Ex. website.com"
+  },
+  "domainName": {
+    "message": "Domain Name",
+    "description": "Domain name. Ex. website.com"
   },
   "host": {
     "message": "Host",
@@ -299,6 +304,18 @@
   },
   "typeSecureNote": {
     "message": "Sigurna bilješka"
+  },
+  "typeLoginPlural": {
+    "message": "Logins"
+  },
+  "typeCardPlural": {
+    "message": "Cards"
+  },
+  "typeIdentityPlural": {
+    "message": "Identities"
+  },
+  "typeSecureNotePlural": {
+    "message": "Secure Notes"
   },
   "folders": {
     "message": "Mape"
@@ -1412,6 +1429,9 @@
   },
   "reports": {
     "message": "Izvještaji"
+  },
+  "reportsDesc": {
+    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
   },
   "unsecuredWebsitesReport": {
     "message": "Izvještaj neosiguranih web mjesta"
@@ -2782,11 +2802,26 @@
   "deleteOrganization": {
     "message": "Izbriši organizaciju"
   },
-  "deleteOrganizationDesc": {
-    "message": "Nastavite dalje za brisanje ove organizacije i svih povezanih podataka. Pojedinačni korisnički računi će ostati, no više neće biti povezani s ovom organizacijom. "
+  "deletingOrganizationContentWarning": {
+    "message": "Enter the master password to confirm deletion of $ORGANIZATION$ and all associated data. Vault data in $ORGANIZATION$ includes:",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
-  "deleteOrganizationWarning": {
-    "message": "Brisanje organizacije je TRAJNO i NEPOVRATNO i naknadno je nije moguće vratiti."
+  "deletingOrganizationActiveUserAccountsWarning": {
+    "message": "User accounts will remain active after deletion but will no longer be associated to this organization."
+  },
+  "deletingOrganizationIsPermanentWarning": {
+    "message": "Deleting $ORGANIZATION$ is permanent and irreversible.",
+    "placeholders": {
+      "organization": {
+        "content": "$1",
+        "example": "My Org Name"
+      }
+    }
   },
   "organizationDeleted": {
     "message": "Organizacija izbrisana"
@@ -4799,5 +4834,47 @@
         "example": "My Org Name"
       }
     }
+  },
+  "backToReports": {
+    "message": "Back to Reports"
+  },
+  "generator": {
+    "message": "Generator"
+  },
+  "whatWouldYouLikeToGenerate": {
+    "message": "What would you like to generate?"
+  },
+  "passwordType": {
+    "message": "Password Type"
+  },
+  "regenerateUsername": {
+    "message": "Regenerate Username"
+  },
+  "generateUsername": {
+    "message": "Generate Username"
+  },
+  "usernameType": {
+    "message": "Username Type"
+  },
+  "plusAddressedEmail": {
+    "message": "Plus Addressed Email"
+  },
+  "plusAddressedEmailDesc": {
+    "message": "Use your email provider's sub-addressing capabilities."
+  },
+  "catchallEmail": {
+    "message": "Catch-all Email"
+  },
+  "catchallEmailDesc": {
+    "message": "Use your domain's configured catch-all inbox."
+  },
+  "random": {
+    "message": "Random"
+  },
+  "randomWord": {
+    "message": "Random Word"
+  },
+  "service": {
+    "message": "Service"
   }
 }
