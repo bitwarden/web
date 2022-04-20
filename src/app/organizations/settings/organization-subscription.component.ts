@@ -17,8 +17,9 @@ import { Organization } from "jslib-common/models/domain/organization";
 import { OrganizationConnectionResponse } from "jslib-common/models/response/organizationConnectionResponse";
 import { OrganizationSubscriptionResponse } from "jslib-common/models/response/organizationSubscriptionResponse";
 
-import { BillingSyncApiKeyComponent } from "./billing-sync-api-key.component";
 import { BillingSyncKeyComponent } from "src/app/settings/billing-sync-key.component";
+
+import { BillingSyncApiKeyComponent } from "./billing-sync-api-key.component";
 
 @Component({
   selector: "app-org-subscription",
