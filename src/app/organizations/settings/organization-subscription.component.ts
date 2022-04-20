@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ViewContainerRef } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 
+import { ModalRef } from "jslib-angular/components/modal/modal.ref";
 import { ModalService } from "jslib-angular/services/modal.service";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -9,9 +10,14 @@ import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { OrganizationApiKeyType } from "jslib-common/enums/organizationApiKeyType";
+import { OrganizationConnectionType } from "jslib-common/enums/organizationConnectionType";
 import { PlanType } from "jslib-common/enums/planType";
+import { BillingSyncConfigApi } from "jslib-common/models/api/billingSyncConfigApi";
 import { Organization } from "jslib-common/models/domain/organization";
+import { OrganizationConnectionResponse } from "jslib-common/models/response/organizationConnectionResponse";
 import { OrganizationSubscriptionResponse } from "jslib-common/models/response/organizationSubscriptionResponse";
+
+import { BillingSyncKeyComponent } from "src/app/settings/billing-sync-key.component";
 
 import { BillingSyncApiKeyComponent } from "./billing-sync-api-key.component";
 
@@ -32,6 +38,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
   adjustStorageAdd = true;
   showAdjustStorage = false;
   showUpdateLicense = false;
+  showBillingSyncKey = false;
   showDownloadLicense = false;
   showChangePlan = false;
   sub: OrganizationSubscriptionResponse;
@@ -39,10 +46,15 @@ export class OrganizationSubscriptionComponent implements OnInit {
   hasBillingSyncToken: boolean;
 
   userOrg: Organization;
+  existingBillingSyncConnection: OrganizationConnectionResponse<BillingSyncConfigApi>;
 
   removeSponsorshipPromise: Promise<any>;
   cancelPromise: Promise<any>;
   reinstatePromise: Promise<any>;
+
+  @ViewChild("rotateBillingSyncKeyTemplate", { read: ViewContainerRef, static: true })
+  billingSyncKeyViewContainerRef: ViewContainerRef;
+  billingSyncKeyRef: [ModalRef, BillingSyncKeyComponent];
 
   constructor(
     private apiService: ApiService,
@@ -79,6 +91,19 @@ export class OrganizationSubscriptionComponent implements OnInit {
     this.hasBillingSyncToken = apiKeyResponse.data.some(
       (i) => i.keyType === OrganizationApiKeyType.BillingSync
     );
+
+    if (this.selfHosted) {
+      this.showBillingSyncKey = await this.apiService.getCloudCommunicationsEnabled();
+    }
+
+    if (this.showBillingSyncKey) {
+      this.existingBillingSyncConnection = await this.apiService.getOrganizationConnection(
+        this.organizationId,
+        OrganizationConnectionType.CloudBillingSync,
+        BillingSyncConfigApi
+      );
+    }
+
     this.loading = false;
   }
 
@@ -225,6 +250,24 @@ export class OrganizationSubscriptionComponent implements OnInit {
     }
   }
 
+  async manageBillingSyncSelfHosted() {
+    this.billingSyncKeyRef = await this.modalService.openViewRef(
+      BillingSyncKeyComponent,
+      this.billingSyncKeyViewContainerRef,
+      (comp) => {
+        comp.entityId = this.organizationId;
+        comp.existingConnectionId = this.existingBillingSyncConnection?.id;
+        comp.billingSyncKey = this.existingBillingSyncConnection?.config?.billingSyncKey;
+        comp.setParentConnection = (
+          connection: OrganizationConnectionResponse<BillingSyncConfigApi>
+        ) => {
+          this.existingBillingSyncConnection = connection;
+          this.billingSyncKeyRef[0].close();
+        };
+      }
+    );
+  }
+
   get isExpired() {
     return (
       this.sub != null && this.sub.expiration != null && new Date(this.sub.expiration) < new Date()
@@ -327,5 +370,9 @@ export class OrganizationSubscriptionComponent implements OnInit {
 
   get showChangePlanButton() {
     return this.subscription == null && this.sub.planType === PlanType.Free && !this.showChangePlan;
+  }
+
+  get billingSyncSetUp() {
+    return this.existingBillingSyncConnection?.id != null;
   }
 }

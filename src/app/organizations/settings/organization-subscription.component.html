@@ -275,6 +275,31 @@
         ></app-update-license>
       </div>
     </div>
+    <div *ngIf="showBillingSyncKey">
+      <h2 class="mt-5">
+        {{ "billingSync" | i18n }}
+      </h2>
+      <p>
+        {{ "billingSyncDesc" | i18n }}
+      </p>
+      <button
+        type="button"
+        class="btn btn-outline-secondary"
+        (click)="manageBillingSyncSelfHosted()"
+      >
+        {{ "manageBillingSync" | i18n }}
+      </button>
+      <small class="form-text text-muted" *ngIf="billingSyncSetUp">
+        {{ "lastSync" | i18n }}:
+        <span *ngIf="userOrg.familySponsorshipLastSyncDate != null">
+          {{ userOrg.familySponsorshipLastSyncDate | date: "medium" }}
+        </span>
+        <span *ngIf="userOrg.familySponsorshipLastSyncDate == null">
+          {{ "never" | i18n | lowercase }}
+        </span>
+      </small>
+    </div>
   </ng-container>
 </ng-container>
 <ng-template #setupBillingSyncTemplate></ng-template>
+<ng-template #rotateBillingSyncKeyTemplate></ng-template>
