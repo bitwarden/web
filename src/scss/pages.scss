@@ -288,6 +288,15 @@ app-sponsored-families {
   button.org-options {
     background: none;
     border: none;
+    padding: 0;
+
+    &:hover,
+    &:focus {
+      @include themify($themes) {
+        color: themed("iconHover") !important;
+        box-shadow: none;
+      }
+    }
   }
 }
 

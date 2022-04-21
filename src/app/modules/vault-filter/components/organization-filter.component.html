@@ -57,31 +57,16 @@
               <i class="bwi bwi-fw bwi-business" aria-hidden="true"></i>
               &nbsp;{{ organization.name }}
             </a>
-            <!-- TODO: Remove once jslib is updated and has new menu component -->
-            <a
-              href="#"
-              class="text-muted ml-auto show-active"
-              appStopClick
-              appA11yTitle="{{ 'addFolder' | i18n }}"
-              href="#"
-              id="nav-profile"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
+            <button
+              bit-button
+              [bitMenuTriggerFor]="orgMenu"
+              class="org-options ml-auto show-active"
             >
-              <div class="dropdown-menu dropdown-menu-left" aria-labelledby="nav-profile">
-                <app-organization-options [organization]="organization"></app-organization-options>
-              </div>
-              <i class="bwi bwi-ellipsis-v bwi-fw" aria-hidden="true" *ngIf="organization.id"></i>
-            </a>
-
-            <!-- Using new dropdow menu component from component library -->
-            <!-- <button [bitMenuTriggerFor]="orgMenu" class="text-muted ml-auto show-active">
               <i class="bwi bwi-ellipsis-v" aria-hidden="true"></i>
             </button>
             <bit-menu class="dropdown-menu" #orgMenu>
               <app-organization-options [organization]="organization"></app-organization-options>
-            </bit-menu> -->
+            </bit-menu>
           </div>
         </li>
       </ul>
@@ -141,31 +126,16 @@
               <i class="bwi bwi-fw bwi-business" aria-hidden="true"></i>
               &nbsp;{{ organization.name }}
             </a>
-            <!-- TODO: Remove once jslib is updated and has new menu component -->
-            <a
-              href="#"
-              class="text-muted ml-auto show-active"
-              appStopClick
-              appA11yTitle="{{ 'addFolder' | i18n }}"
-              href="#"
-              id="nav-profile"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
+            <button
+              bit-button
+              [bitMenuTriggerFor]="orgMenu"
+              class="org-options ml-auto show-active"
             >
-              <div class="dropdown-menu dropdown-menu-left" aria-labelledby="nav-profile">
-                <app-organization-options [organization]="organization"></app-organization-options>
-              </div>
-              <i class="bwi bwi-ellipsis-v bwi-fw" aria-hidden="true" *ngIf="organization.id"></i>
-            </a>
-
-            <!-- Using new dropdow menu component from component library -->
-            <!-- <button [bitMenuTriggerFor]="orgMenu" class="org-options ml-auto show-active">
               <i class="bwi bwi-ellipsis-v" aria-hidden="true"></i>
             </button>
             <bit-menu class="dropdown-menu" #orgMenu>
               <app-organization-options [organization]="organization"></app-organization-options>
-            </bit-menu> -->
+            </bit-menu>
           </div>
         </li>
       </ul>
