@@ -11,30 +11,6 @@
     }
   }
 
-  .dropdown-menu {
-    max-width: 300px;
-    min-width: 200px;
-
-    .dropdown-item-text {
-      line-height: 1.3;
-      @include themify($themes) {
-        color: themed("dropdownTextColor");
-      }
-
-      span,
-      small {
-        display: block;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        &.text-muted {
-          @include themify($themes) {
-            color: themed("dropdownTextMuted") !important;
-          }
-        }
-      }
-    }
-  }
   .nav-item {
     > .nav-link {
       @include themify($themes) {
