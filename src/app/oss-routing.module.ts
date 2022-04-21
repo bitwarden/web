@@ -37,6 +37,7 @@ import { OrganizationBillingComponent } from "./organizations/settings/organizat
 import { OrganizationSubscriptionComponent } from "./organizations/settings/organization-subscription.component";
 import { SettingsComponent as OrgSettingsComponent } from "./organizations/settings/settings.component";
 import { TwoFactorSetupComponent as OrgTwoFactorSetupComponent } from "./organizations/settings/two-factor-setup.component";
+import { AcceptFamilySponsorshipComponent } from "./organizations/sponsorships/accept-family-sponsorship.component";
 import { FamiliesForEnterpriseSetupComponent } from "./organizations/sponsorships/families-for-enterprise-setup.component";
 import { ExportComponent as OrgExportComponent } from "./organizations/tools/export.component";
 import { ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent } from "./organizations/tools/exposed-passwords-report.component";
@@ -122,6 +123,11 @@ const routes: Routes = [
         path: "accept-emergency",
         component: AcceptEmergencyComponent,
         data: { titleId: "acceptEmergency", doNotSaveUrl: false },
+      },
+      {
+        path: "accept-families-for-enterprise",
+        component: AcceptFamilySponsorshipComponent,
+        data: { titleId: "acceptFamilySponsorship", doNotSaveUrl: false },
       },
       { path: "recover", pathMatch: "full", redirectTo: "recover-2fa" },
       {

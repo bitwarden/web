@@ -122,6 +122,7 @@ import { OrganizationBillingComponent } from "./organizations/settings/organizat
 import { OrganizationSubscriptionComponent } from "./organizations/settings/organization-subscription.component";
 import { SettingsComponent as OrgSettingComponent } from "./organizations/settings/settings.component";
 import { TwoFactorSetupComponent as OrgTwoFactorSetupComponent } from "./organizations/settings/two-factor-setup.component";
+import { AcceptFamilySponsorshipComponent } from "./organizations/sponsorships/accept-family-sponsorship.component";
 import { FamiliesForEnterpriseSetupComponent } from "./organizations/sponsorships/families-for-enterprise-setup.component";
 import { ExportComponent as OrgExportComponent } from "./organizations/tools/export.component";
 import { ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent } from "./organizations/tools/exposed-passwords-report.component";
@@ -283,6 +284,7 @@ registerLocaleData(localeZhTw, "zh-TW");
   declarations: [
     PremiumBadgeComponent,
     AcceptEmergencyComponent,
+    AcceptFamilySponsorshipComponent,
     AcceptOrganizationComponent,
     AccessComponent,
     AccountComponent,
