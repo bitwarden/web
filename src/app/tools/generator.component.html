@@ -20,7 +20,7 @@
     ></div>
   </div>
 </div>
-<div class="form-group">
+<div class="form-group" role="radiogroup">
   <label class="d-block">{{ "whatWouldYouLikeToGenerate" | i18n }}</label>
   <div class="form-check form-check-inline" *ngFor="let o of typeOptions">
     <input
@@ -39,7 +39,7 @@
   </div>
 </div>
 <ng-container *ngIf="type === 'password'">
-  <div class="form-group">
+  <div class="form-group" role="radiogroup">
     <label class="d-block">{{ "passwordType" | i18n }}</label>
     <div class="form-check form-check-inline" *ngFor="let o of passTypeOptions">
       <input
@@ -231,7 +231,7 @@
   </div>
 </ng-container>
 <ng-container *ngIf="type === 'username'">
-  <div class="form-group">
+  <div class="form-group" role="radiogroup">
     <div class="d-block">
       <label>{{ "usernameType" | i18n }}</label>
       <a
@@ -261,7 +261,7 @@
       </label>
     </div>
   </div>
-  <div class="form-group" *ngIf="usernameOptions.type === 'forwarded'">
+  <div class="form-group" role="radiogroup" *ngIf="usernameOptions.type === 'forwarded'">
     <div class="form-check form-check-inline" *ngFor="let o of forwardOptions">
       <input
         class="form-check-input"
