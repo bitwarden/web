@@ -10,9 +10,9 @@ import { BillingHistoryResponse } from "jslib-common/models/response/billingHist
 
 @Component({
   selector: "app-user-billing",
-  templateUrl: "user-billing.component.html",
+  templateUrl: "user-billing-history.component.html",
 })
-export class UserBillingComponent implements OnInit {
+export class UserBillingHistoryComponent implements OnInit {
   loading = false;
   firstLoaded = false;
   billing: BillingHistoryResponse;

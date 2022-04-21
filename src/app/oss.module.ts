@@ -196,7 +196,7 @@ import { TwoFactorWebAuthnComponent } from "./settings/two-factor-webauthn.compo
 import { TwoFactorYubiKeyComponent } from "./settings/two-factor-yubikey.component";
 import { UpdateKeyComponent } from "./settings/update-key.component";
 import { UpdateLicenseComponent } from "./settings/update-license.component";
-import { UserBillingComponent } from "./settings/user-billing.component";
+import { UserBillingHistoryComponent } from "./settings/user-billing-history.component";
 import { UserSubscriptionComponent } from "./settings/user-subscription.component";
 import { VaultTimeoutInputComponent } from "./settings/vault-timeout-input.component";
 import { VerifyEmailComponent } from "./settings/verify-email.component";
@@ -440,7 +440,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     UpdateLicenseComponent,
     UpdatePasswordComponent,
     UpdateTempPasswordComponent,
-    UserBillingComponent,
+    UserBillingHistoryComponent,
     UserLayoutComponent,
     UserSubscriptionComponent,
     VaultComponent,

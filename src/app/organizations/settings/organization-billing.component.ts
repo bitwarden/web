@@ -6,13 +6,13 @@ import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 
-import { UserBillingComponent } from "../../settings/user-billing.component";
+import { UserBillingHistoryComponent } from "../../settings/user-billing-history.component";
 
 @Component({
   selector: "app-org-billing",
-  templateUrl: "../../settings/user-billing.component.html",
+  templateUrl: "../../settings/user-billing-history.component.html",
 })
-export class OrganizationBillingComponent extends UserBillingComponent implements OnInit {
+export class OrganizationBillingComponent extends UserBillingHistoryComponent implements OnInit {
   constructor(
     apiService: ApiService,
     i18nService: I18nService,
