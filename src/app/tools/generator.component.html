@@ -20,8 +20,8 @@
     ></div>
   </div>
 </div>
-<div class="form-group" role="radiogroup">
-  <label class="d-block">{{ "whatWouldYouLikeToGenerate" | i18n }}</label>
+<div class="form-group" role="radiogroup" aria-labelledby="typeHeading">
+  <label id="typeHeading" class="d-block">{{ "whatWouldYouLikeToGenerate" | i18n }}</label>
   <div class="form-check form-check-inline" *ngFor="let o of typeOptions">
     <input
       class="form-check-input"
@@ -39,8 +39,8 @@
   </div>
 </div>
 <ng-container *ngIf="type === 'password'">
-  <div class="form-group" role="radiogroup">
-    <label class="d-block">{{ "passwordType" | i18n }}</label>
+  <div aria-labelledby="passwordTypeHeading" class="form-group" role="radiogroup">
+    <label id="passwordTypeHeading" class="d-block">{{ "passwordType" | i18n }}</label>
     <div class="form-check form-check-inline" *ngFor="let o of passTypeOptions">
       <input
         class="form-check-input"
@@ -231,9 +231,9 @@
   </div>
 </ng-container>
 <ng-container *ngIf="type === 'username'">
-  <div class="form-group" role="radiogroup">
+  <div aria-labelledby="usernameTypeHeading" class="form-group" role="radiogroup">
     <div class="d-block">
-      <label>{{ "usernameType" | i18n }}</label>
+      <label id="usernameTypeHeading">{{ "usernameType" | i18n }}</label>
       <a
         class="ml-auto"
         href="https://bitwarden.com/help/generator/#username-types"
