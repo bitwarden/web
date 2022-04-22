@@ -104,6 +104,7 @@ import { RouterService } from "./router.service";
     {
       provide: StateMigrationServiceAbstraction,
       useClass: StateMigrationService,
+      deps: [StorageServiceAbstraction, SECURE_STORAGE, STATE_FACTORY],
     },
     {
       provide: StateServiceAbstraction,
