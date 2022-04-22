@@ -1,3 +1,7 @@
+> **Repository Reorganization in Progress**
+>
+> New pull requests created during this transition period may not get addressed —if needed, please create a new PR after reorganization is complete.
+
 <p align="center">
     <img src="https://raw.githubusercontent.com/bitwarden/brand/master/screenshots/web-vault-macbook.png" alt="" width="600" height="358" />
 </p>
