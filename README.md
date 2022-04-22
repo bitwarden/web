@@ -1,6 +1,8 @@
 > **Repository Reorganization in Progress**
 >
-> New pull requests created during this transition period may not get addressed —if needed, please create a new PR after reorganization is complete.
+> We are currently migrating some projects over to a mono repository. For existing PR's we will be providing documentation on how to move/migrate them. To minimize the overhead we are actively reviewing open PRs. If possible please ensure any pending comments are resolved as soon as possible.
+>
+> New pull requests created during this transition period may not get addressed —if needed, please create a new PR after the reorganization is complete.
 
 <p align="center">
     <img src="https://raw.githubusercontent.com/bitwarden/brand/master/screenshots/web-vault-macbook.png" alt="" width="600" height="358" />
