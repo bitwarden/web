@@ -161,6 +161,7 @@
           (change)="savePasswordOptions()"
           [(ngModel)]="passwordOptions.uppercase"
           [disabled]="enforcedPasswordPolicyOptions?.useUppercase"
+          attr.aria-label="{{ 'uppercase' | i18n }}"
         />
         <label for="uppercase" class="form-check-label">A-Z</label>
       </div>
@@ -172,6 +173,7 @@
           (change)="savePasswordOptions()"
           [(ngModel)]="passwordOptions.lowercase"
           [disabled]="enforcedPasswordPolicyOptions?.useLowercase"
+          attr.aria-label="{{ 'lowercase' | i18n }}"
         />
         <label for="lowercase" class="form-check-label">a-z</label>
       </div>
@@ -183,6 +185,7 @@
           (change)="savePasswordOptions()"
           [(ngModel)]="passwordOptions.number"
           [disabled]="enforcedPasswordPolicyOptions?.useNumbers"
+          attr.aria-label="{{ 'numbers' | i18n }}"
         />
         <label for="numbers" class="form-check-label">0-9</label>
       </div>
@@ -194,6 +197,7 @@
           (change)="savePasswordOptions()"
           [(ngModel)]="passwordOptions.special"
           [disabled]="enforcedPasswordPolicyOptions?.useSpecial"
+          attr.aria-label="{{ 'specialCharacters' | i18n }}"
         />
         <label for="special" class="form-check-label">!@#$%^&amp;*</label>
       </div>
