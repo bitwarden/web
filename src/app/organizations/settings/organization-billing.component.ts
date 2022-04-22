@@ -28,6 +28,8 @@ export class OrganizationBillingComponent implements OnInit {
 
   verifyBankPromise: Promise<any>;
 
+  // TODO - Make sure to properly split out the billing/invoice and payment method/account during org admin refresh
+
   constructor(
     private apiService: ApiService,
     private i18nService: I18nService,
