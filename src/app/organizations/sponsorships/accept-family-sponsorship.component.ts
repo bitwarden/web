@@ -18,7 +18,7 @@ export class AcceptFamilySponsorshipComponent extends BaseAcceptComponent {
 
   async unauthedHandler(qParams: any) {
     if (!qParams.register) {
-      this.router.navigate(["/"], { queryParams: { email: qParams.email } });
+      this.router.navigate(["/login"], { queryParams: { email: qParams.email } });
     } else {
       this.router.navigate(["/register"], { queryParams: { email: qParams.email } });
     }

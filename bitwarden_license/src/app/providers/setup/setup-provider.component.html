@@ -20,7 +20,11 @@
           <p>{{ "setupProviderLoginDesc" | i18n }}</p>
           <hr />
           <div class="d-flex">
-            <a routerLink="/" [queryParams]="{ email: email }" class="btn btn-primary btn-block">
+            <a
+              routerLink="/login"
+              [queryParams]="{ email: email }"
+              class="btn btn-primary btn-block"
+            >
               {{ "logIn" | i18n }}
             </a>
           </div>

@@ -101,7 +101,7 @@ export class AppComponent implements OnDestroy, OnInit {
             this.notificationsService.updateConnection(false);
             break;
           case "authBlocked":
-            window.setTimeout(() => this.routerService.setPreviousUrl(message.url), 500);
+            this.routerService.setPreviousUrl(message.url);
             this.router.navigate(["/"]);
             break;
           case "logout":
@@ -115,7 +115,7 @@ export class AppComponent implements OnDestroy, OnInit {
             this.router.navigate(["lock"]);
             break;
           case "lockedUrl":
-            window.setTimeout(() => this.routerService.setPreviousUrl(message.url), 500);
+            this.routerService.setPreviousUrl(message.url);
             break;
           case "syncStarted":
             break;
