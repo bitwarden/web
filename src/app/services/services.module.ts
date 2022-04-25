@@ -6,7 +6,7 @@ import {
   WINDOW,
   SECURE_STORAGE,
   STATE_FACTORY,
-  USE_DISK_CACHE,
+  STATE_SERVICE_USE_CACHE,
 } from "jslib-angular/services/jslib-services.module";
 import { ModalService as ModalServiceAbstraction } from "jslib-angular/services/modal.service";
 import { ApiService as ApiServiceAbstraction } from "jslib-common/abstractions/api.service";
@@ -68,7 +68,7 @@ import { RouterService } from "./router.service";
       useValue: new StateFactory(GlobalState, Account),
     },
     {
-      provide: USE_DISK_CACHE,
+      provide: STATE_SERVICE_USE_CACHE,
       useValue: false,
     },
     {
@@ -116,7 +116,7 @@ import { RouterService } from "./router.service";
         LogService,
         StateMigrationServiceAbstraction,
         STATE_FACTORY,
-        USE_DISK_CACHE,
+        STATE_SERVICE_USE_CACHE,
       ],
     },
     {
