@@ -18,6 +18,10 @@
 
 <ng-container *ngIf="firstLoaded && !userOrg.canManageBilling">
   <div class="tw-flex tw-flex-col tw-items-center -middle tw-text-info">
+    <img
+      class="tw-content-[url('/src/images/billing-hidden-light.png')] dark:tw-content-[url('/src/images/billing-hidden-dark.png')]"
+      aria-hidden="true"
+    />
     <p class="tw-font-bold">{{ "billingManagedByProvider" | i18n: this.userOrg.providerName }}</p>
     <p>{{ "billingContactProviderForAssistance" | i18n }}</p>
   </div>
