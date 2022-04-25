@@ -17,8 +17,8 @@
       }
     }
     if (!htmlEl.classList.contains("theme_" + theme)) {
-      htmlEl.classList.remove("theme_" + defaultTheme);
-      htmlEl.classList.add("theme_" + theme);
+      htmlEl.classList.remove("theme_" + defaultTheme, "tw-" + defaultTheme);
+      htmlEl.classList.add("theme_" + theme, "tw-" + theme);
     }
   }
 })();
