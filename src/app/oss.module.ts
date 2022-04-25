@@ -172,7 +172,6 @@ import { EmergencyAccessComponent } from "./settings/emergency-access.component"
 import { EmergencyAddEditComponent } from "./settings/emergency-add-edit.component";
 import { LinkSsoComponent } from "./settings/link-sso.component";
 import { OrganizationPlansComponent } from "./settings/organization-plans.component";
-import { OrganizationsComponent } from "./settings/organizations.component";
 import { PaymentComponent } from "./settings/payment.component";
 import { PreferencesComponent } from "./settings/preferences.component";
 import { PremiumComponent } from "./settings/premium.component";
@@ -346,7 +345,6 @@ registerLocaleData(localeZhTw, "zh-TW");
     OrganizationBillingComponent,
     OrganizationLayoutComponent,
     OrganizationPlansComponent,
-    OrganizationsComponent,
     OrganizationSubscriptionComponent,
     OrgAttachmentsComponent,
     OrgBulkConfirmComponent,

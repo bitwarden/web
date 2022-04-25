@@ -31,7 +31,6 @@ import { CreateOrganizationComponent } from "./settings/create-organization.comp
 import { DomainRulesComponent } from "./settings/domain-rules.component";
 import { EmergencyAccessViewComponent } from "./settings/emergency-access-view.component";
 import { EmergencyAccessComponent } from "./settings/emergency-access.component";
-import { OrganizationsComponent } from "./settings/organizations.component";
 import { PreferencesComponent } from "./settings/preferences.component";
 import { PremiumComponent } from "./settings/premium.component";
 import { SettingsComponent } from "./settings/settings.component";
@@ -167,11 +166,6 @@ const routes: Routes = [
             path: "subscription",
             component: UserSubscriptionComponent,
             data: { titleId: "premiumMembership" },
-          },
-          {
-            path: "organizations",
-            component: OrganizationsComponent,
-            data: { titleId: "organizations" },
           },
           {
             path: "create-organization",
