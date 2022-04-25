@@ -16,6 +16,13 @@
   <span class="sr-only">{{ "loading" | i18n }}</span>
 </ng-container>
 
+<ng-container *ngIf="firstLoaded && !userOrg.canManageBilling">
+  <div class="tw-flex tw-flex-col tw-items-center -middle tw-text-info">
+    <p class="tw-font-bold">{{ "billingManagedByProvider" | i18n: this.userOrg.providerName }}</p>
+    <p>{{ "billingContactProviderForAssistance" | i18n }}</p>
+  </div>
+</ng-container>
+
 <ng-container *ngIf="sub">
   <app-callout
     type="warning"

@@ -10,7 +10,7 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 })
 export class SettingsComponent {
   access2fa = false;
-  selfHosted: boolean;
+  showBilling: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,8 +20,8 @@ export class SettingsComponent {
 
   ngOnInit() {
     this.route.parent.params.subscribe(async (params) => {
-      this.selfHosted = await this.platformUtilsService.isSelfHost();
       const organization = await this.organizationService.get(params.organizationId);
+      this.showBilling = !this.platformUtilsService.isSelfHost() && organization.canManageBilling;
       this.access2fa = organization.use2fa;
     });
   }
