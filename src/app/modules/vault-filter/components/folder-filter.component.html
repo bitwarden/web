@@ -1,64 +1,77 @@
 <ng-container *ngIf="!hide && !activeFilter.selectedOrganizationId">
-  <div class="collapsable-row">
-    <i
-      class="bwi bwi-fw"
-      title="{{ 'toggleCollapse' | i18n }}"
-      aria-hidden="true"
-      [ngClass]="{
-        'bwi-angle-right': isCollapsed(foldersGrouping),
-        'bwi-angle-down': !isCollapsed(foldersGrouping)
-      }"
+  <div class="filter-heading">
+    <button
+      class="toggle-button"
       (click)="toggleCollapse(foldersGrouping)"
-      appStopProp
-    ></i>
+      [attr.aria-expanded]="!isCollapsed(foldersGrouping)"
+      aria-controls="folder-filters"
+      title="{{ 'toggleCollapse' | i18n }}"
+    >
+      <i
+        class="bwi bwi-fw"
+        aria-hidden="true"
+        [ngClass]="{
+          'bwi-angle-right': isCollapsed(foldersGrouping),
+          'bwi-angle-down': !isCollapsed(foldersGrouping)
+        }"
+      ></i>
+    </button>
     <h3 class="filter-title">
       {{ "folders" | i18n }}
     </h3>
-    <a
-      href="#"
-      class="text-muted ml-auto"
-      appStopClick
+    <button
+      class="text-muted ml-auto add-button"
       (click)="addFolder()"
       appA11yTitle="{{ 'addFolder' | i18n }}"
     >
       <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
-    </a>
+    </button>
   </div>
-  <ul *ngIf="!isCollapsed(foldersGrouping)" class="bwi-ul card-ul">
+  <ul id="folder-filters" *ngIf="!isCollapsed(foldersGrouping)" class="filter-options">
     <ng-template #recursiveFolders let-folders>
       <li
         *ngFor="let f of folders"
         [ngClass]="{
           active: f.node.id === activeFilter.selectedFolderId && activeFilter.selectedFolder
         }"
+        class="filter-option"
       >
-        <div class="d-flex">
-          <i
+        <span class="filter-buttons">
+          <button
             *ngIf="f.children.length"
-            class="bwi-li bwi"
             title="{{ 'toggleCollapse' | i18n }}"
-            [ngClass]="{
-              'bwi-angle-right': isCollapsed(f.node),
-              'bwi-angle-down': !isCollapsed(f.node)
-            }"
-            (click)="collapse(f.node)"
-          ></i>
-          <a href="#" class="text-break" appStopClick (click)="applyFilter(f.node)">
-            <i *ngIf="f.children.length === 0" class="bwi bwi-li bwi-folder" aria-hidden="true"></i
+            (click)="toggleCollapse(f.node)"
+            [attr.aria-expanded]="!isCollapsed(f.node)"
+            [attr.aria-controls]="f.node.name + '_children'"
+            class="toggle-button"
+          >
+            <i
+              class="bwi bwi-fw"
+              [ngClass]="{
+                'bwi-angle-right': isCollapsed(f.node),
+                'bwi-angle-down': !isCollapsed(f.node)
+              }"
+              aria-hidden="true"
+            ></i>
+          </button>
+          <button class="filter-button" (click)="applyFilter(f.node)">
+            <i *ngIf="f.children.length === 0" class="bwi bwi-fw bwi-folder" aria-hidden="true"></i
             >{{ f.node.name }}
-          </a>
-          <a
-            href="#"
-            class="text-muted ml-auto show-active"
-            appStopClick
+          </button>
+          <button
+            class="edit-button"
             (click)="editFolder(f.node)"
             appA11yTitle="{{ 'editFolder' | i18n }}"
             *ngIf="f.node.id"
           >
             <i class="bwi bwi-pencil bwi-fw" aria-hidden="true"></i>
-          </a>
-        </div>
-        <ul class="bwi-ul" *ngIf="f.children.length && !isCollapsed(f.node)">
+          </button>
+        </span>
+        <ul
+          [id]="f.node.name + '_children'"
+          class="nested-filter-options"
+          *ngIf="f.children.length && !isCollapsed(f.node)"
+        >
           <ng-container *ngTemplateOutlet="recursiveFolders; context: { $implicit: f.children }">
           </ng-container>
         </ul>

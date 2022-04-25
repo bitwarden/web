@@ -26,48 +26,57 @@
         autocomplete="off"
         appAutofocus
       />
-      <app-organization-filter
-        *ngIf="showOrgFilter"
-        class="filter"
-        [hide]="hideOrganizations"
-        [activeFilter]="activeFilter"
-        [collapsedFilterNodes]="collapsedFilterNodes"
-        [organizations]="organizations"
-        [activePersonalOwnershipPolicy]="activePersonalOwnershipPolicy"
-        [activeSingleOrganizationPolicy]="activeSingleOrganizationPolicy"
-        (onNodeCollapseStateChange)="toggleFilterNodeCollapseState($event)"
-        (onFilterChange)="applyFilter($event)"
-      ></app-organization-filter>
-      <app-status-filter
-        [hideFavorites]="!showFavorites"
-        [hideTrash]="hideTrash"
-        [activeFilter]="activeFilter"
-        (onFilterChange)="applyFilter($event)"
-      ></app-status-filter>
-      <app-type-filter
-        [activeFilter]="activeFilter"
-        [collapsedFilterNodes]="collapsedFilterNodes"
-        (onNodeCollapseStateChange)="toggleFilterNodeCollapseState($event)"
-        (onFilterChange)="applyFilter($event)"
-      ></app-type-filter>
-      <app-folder-filter
-        [hide]="!showFolders"
-        [activeFilter]="activeFilter"
-        [collapsedFilterNodes]="collapsedFilterNodes"
-        [folderNodes]="folders"
-        (onNodeCollapseStateChange)="toggleFilterNodeCollapseState($event)"
-        (onFilterChange)="applyFilter($event)"
-        (onAddFolder)="addFolder()"
-        (onEditFolder)="editFolder($event)"
-      ></app-folder-filter>
-      <app-collection-filter
-        [hide]="hideCollections"
-        [activeFilter]="activeFilter"
-        [collapsedFilterNodes]="collapsedFilterNodes"
-        [collectionNodes]="collections"
-        (onNodeCollapseStateChange)="toggleFilterNodeCollapseState($event)"
-        (onFilterChange)="applyFilter($event)"
-      ></app-collection-filter>
+      <div class="filter">
+        <app-organization-filter
+          *ngIf="showOrgFilter"
+          [hide]="hideOrganizations"
+          [activeFilter]="activeFilter"
+          [collapsedFilterNodes]="collapsedFilterNodes"
+          [organizations]="organizations"
+          [activePersonalOwnershipPolicy]="activePersonalOwnershipPolicy"
+          [activeSingleOrganizationPolicy]="activeSingleOrganizationPolicy"
+          (onNodeCollapseStateChange)="toggleFilterNodeCollapseState($event)"
+          (onFilterChange)="applyFilter($event)"
+        ></app-organization-filter>
+      </div>
+      <div class="filter">
+        <app-status-filter
+          [hideFavorites]="!showFavorites"
+          [hideTrash]="hideTrash"
+          [activeFilter]="activeFilter"
+          (onFilterChange)="applyFilter($event)"
+        ></app-status-filter>
+      </div>
+      <div class="filter">
+        <app-type-filter
+          [activeFilter]="activeFilter"
+          [collapsedFilterNodes]="collapsedFilterNodes"
+          (onNodeCollapseStateChange)="toggleFilterNodeCollapseState($event)"
+          (onFilterChange)="applyFilter($event)"
+        ></app-type-filter>
+      </div>
+      <div class="filter">
+        <app-folder-filter
+          [hide]="!showFolders"
+          [activeFilter]="activeFilter"
+          [collapsedFilterNodes]="collapsedFilterNodes"
+          [folderNodes]="folders"
+          (onNodeCollapseStateChange)="toggleFilterNodeCollapseState($event)"
+          (onFilterChange)="applyFilter($event)"
+          (onAddFolder)="addFolder()"
+          (onEditFolder)="editFolder($event)"
+        ></app-folder-filter>
+      </div>
+      <div class="filter">
+        <app-collection-filter
+          [hide]="hideCollections"
+          [activeFilter]="activeFilter"
+          [collapsedFilterNodes]="collapsedFilterNodes"
+          [collectionNodes]="collections"
+          (onNodeCollapseStateChange)="toggleFilterNodeCollapseState($event)"
+          (onFilterChange)="applyFilter($event)"
+        ></app-collection-filter>
+      </div>
     </div>
   </div>
 </div>

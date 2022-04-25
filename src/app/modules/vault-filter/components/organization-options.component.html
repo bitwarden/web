@@ -1,41 +1,35 @@
 <div class="tw-max-w-[300px] tw-min-w-[200px] tw-flex tw-flex-col">
-  <a
+  <button
     *ngIf="allowEnrollmentChanges(organization) && !organization.resetPasswordEnrolled"
     class="dropdown-item"
-    href="#"
-    appStopClick
     (click)="toggleResetPasswordEnrollment(organization)"
   >
     <i class="bwi bwi-fw bwi-key" aria-hidden="true"></i>
     {{ "enrollPasswordReset" | i18n }}
-  </a>
-  <a
+  </button>
+  <button
     *ngIf="allowEnrollmentChanges(organization) && organization.resetPasswordEnrolled"
     class="dropdown-item"
-    href="#"
-    appStopClick
     (click)="toggleResetPasswordEnrollment(organization)"
   >
     <i class="bwi bwi-fw bwi-undo" aria-hidden="true"></i>
     {{ "withdrawPasswordReset" | i18n }}
-  </a>
+  </button>
   <ng-container *ngIf="organization.useSso && organization.identifier">
-    <a
+    <button
       *ngIf="organization.ssoBound; else linkSso"
       class="dropdown-item"
-      href="#"
-      appStopClick
       (click)="unlinkSso(organization)"
     >
       <i class="bwi bwi-fw bwi-chain-broken" aria-hidden="true"></i>
       {{ "unlinkSso" | i18n }}
-    </a>
+    </button>
     <ng-template #linkSso>
       <app-link-sso [organization]="organization"> </app-link-sso>
     </ng-template>
   </ng-container>
-  <a class="dropdown-item text-danger" href="#" appStopClick (click)="leave(organization)">
+  <button class="dropdown-item text-danger" (click)="leave(organization)">
     <i class="bwi bwi-fw bwi-sign-out" aria-hidden="true"></i>
     {{ "leave" | i18n }}
-  </a>
+  </button>
 </div>

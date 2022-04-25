@@ -1,0 +1,203 @@
+.filter {
+  padding-bottom: 10px;
+}
+
+.filter-heading {
+  display: flex;
+  text-transform: uppercase;
+  align-items: center;
+
+  * {
+    @include themify($themes) {
+      color: themed("headingColor");
+    }
+    font-size: $font-size-base;
+  }
+
+  a.create-organization-link {
+    &:hover {
+      @include themify($themes) {
+        color: themed("iconHover") !important;
+      }
+    }
+  }
+
+  button {
+    @extend .no-btn;
+  }
+
+  h3,
+  button.filter-button {
+    text-transform: uppercase;
+    text-transform: uppercase;
+    margin: 0;
+    @include themify($themes) {
+      color: themed("textMuted");
+    }
+  }
+
+  button.filter-button {
+    &:hover,
+    &:focus,
+    &.active {
+      @include themify($themes) {
+        color: themed("linkColor") !important;
+      }
+    }
+    &.active {
+      font-weight: bold;
+    }
+  }
+
+  button.toggle-button {
+    &:hover,
+    &:focus {
+      @include themify($themes) {
+        color: themed("iconHover") !important;
+      }
+    }
+  }
+}
+
+.filter-options {
+  padding: 0;
+  list-style: none;
+  margin: 0 0 15px 0;
+  .nested-filter-options {
+    list-style: none;
+    margin-bottom: 0px;
+    padding-left: 0.85em;
+  }
+}
+
+.filter-option {
+  @include themify($themes) {
+    color: themed("textColor");
+  }
+
+  &.active {
+    > .filter-buttons {
+      .filter-button {
+        @include themify($themes) {
+          color: themed("linkColor") !important;
+        }
+        font-weight: bold;
+      }
+
+      .edit-button {
+        visibility: visible;
+      }
+    }
+  }
+}
+
+.filter-buttons {
+  display: flex;
+  align-items: center;
+
+  button {
+    @extend .no-btn;
+  }
+
+  .toggle-button {
+    &:hover,
+    &:focus {
+      @include themify($themes) {
+        color: themed("iconHover") !important;
+      }
+    }
+  }
+
+  .filter-button {
+    &:hover,
+    &:focus,
+    &:active {
+      @include themify($themes) {
+        color: themed("linkColor") !important;
+      }
+    }
+  }
+
+  .edit-button {
+    visibility: hidden;
+    margin-left: auto;
+
+    @include themify($themes) {
+      color: themed("headingButtonColor");
+    }
+
+    &:hover,
+    &:focus {
+      @include themify($themes) {
+        color: themed("iconHover") !important;
+      }
+    }
+  }
+}
+
+.groupings {
+  .card {
+    #search {
+      margin-bottom: 1rem;
+      @include themify($themes) {
+        background-color: themed("inputBackgroundColor");
+        border-color: themed("inputBorderColor");
+        color: themed("inputTextColor");
+      }
+
+      &::placeholder {
+        @include themify($themes) {
+          color: themed("inputPlaceholderColor");
+        }
+      }
+    }
+
+    h3 {
+      font-weight: normal;
+      text-transform: uppercase;
+      @include themify($themes) {
+        color: themed("textMuted");
+      }
+    }
+
+    ul:last-child {
+      margin-bottom: 0;
+    }
+
+    .card-body a {
+      @include themify($themes) {
+        color: themed("textHeadingColor");
+        font-weight: themed("linkWeight");
+      }
+
+      &:hover {
+        &.text-muted {
+        }
+      }
+    }
+    .show-active {
+      display: none;
+    }
+    li.active {
+      > .show-active,
+      > div .show-active {
+        display: inline;
+      }
+    }
+    li.active {
+      > button:first-of-type,
+      > div button:first-of-type {
+        @include themify($themes) {
+          color: themed("linkColor");
+        }
+      }
+
+      > .bwi,
+      > div > .bwi {
+        @include themify($themes) {
+          color: themed("linkColor");
+        }
+      }
+    }
+  }
+}
