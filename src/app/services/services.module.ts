@@ -37,6 +37,7 @@ import { PasswordRepromptService } from "../../services/passwordReprompt.service
 import { StateService } from "../../services/state.service";
 import { StateMigrationService } from "../../services/stateMigration.service";
 import { WebPlatformUtilsService } from "../../services/webPlatformUtils.service";
+import { HomeGuard } from "../guards/home.guard";
 
 import { EventService } from "./event.service";
 import { InitService } from "./init.service";
@@ -126,6 +127,7 @@ import { RouterService } from "./router.service";
       provide: PasswordRepromptServiceAbstraction,
       useClass: PasswordRepromptService,
     },
+    HomeGuard,
   ],
 })
 export class ServicesModule {}
