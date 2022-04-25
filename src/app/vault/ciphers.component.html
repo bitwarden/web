@@ -17,10 +17,10 @@
         </td>
         <td (click)="checkCipher(c)" class="reduced-lh wrap">
           <a
-            href="#"
-            appStopClick
             appStopProp
-            (click)="selectCipher(c)"
+            [routerLink]="[]"
+            [queryParams]="{ cipherId: c.id }"
+            queryParamsHandling="merge"
             title="{{ 'editItem' | i18n }}"
             >{{ c.name }}</a
           >
