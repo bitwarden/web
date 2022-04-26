@@ -20,13 +20,13 @@
       </div>
       <div class="modal-body">
         <p>{{ apiKeyDescription | i18n }}</p>
-        <app-verify-master-password
+        <app-user-verification
           [(ngModel)]="masterPassword"
           ngDefaultControl
           name="secret"
           *ngIf="!clientSecret"
         >
-        </app-verify-master-password>
+        </app-user-verification>
 
         <app-callout type="warning" *ngIf="clientSecret">{{ apiKeyWarning | i18n }}</app-callout>
         <app-callout

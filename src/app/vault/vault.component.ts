@@ -12,6 +12,7 @@ import { first } from "rxjs/operators";
 
 import { ModalService } from "jslib-angular/services/modal.service";
 import { BroadcasterService } from "jslib-common/abstractions/broadcaster.service";
+import { CipherService } from "jslib-common/abstractions/cipher.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
@@ -85,7 +86,8 @@ export class VaultComponent implements OnInit, OnDestroy {
     private ngZone: NgZone,
     private stateService: StateService,
     private organizationService: OrganizationService,
-    private providerService: ProviderService
+    private providerService: ProviderService,
+    private cipherService: CipherService
   ) {}
 
   async ngOnInit() {
@@ -135,6 +137,24 @@ export class VaultComponent implements OnInit, OnDestroy {
           await this.ciphersComponent.reload();
         }
       }
+
+      this.route.queryParams.subscribe(async (params) => {
+        if (params.cipherId) {
+          if ((await this.cipherService.get(params.cipherId)) != null) {
+            this.editCipherId(params.cipherId);
+          } else {
+            this.platformUtilsService.showToast(
+              "error",
+              this.i18nService.t("errorOccurred"),
+              this.i18nService.t("unknownCipher")
+            );
+            this.router.navigate([], {
+              queryParams: { cipherId: null },
+              queryParamsHandling: "merge",
+            });
+          }
+        }
+      });
 
       this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
         this.ngZone.run(async () => {
@@ -334,11 +354,15 @@ export class VaultComponent implements OnInit, OnDestroy {
   }
 
   async editCipher(cipher: CipherView) {
+    return this.editCipherId(cipher?.id);
+  }
+
+  async editCipherId(id: string) {
     const [modal, childComponent] = await this.modalService.openViewRef(
       AddEditComponent,
       this.cipherAddEditModalRef,
       (comp) => {
-        comp.cipherId = cipher == null ? null : cipher.id;
+        comp.cipherId = id;
         comp.onSavedCipher.subscribe(async () => {
           modal.close();
           await this.ciphersComponent.refresh();
@@ -353,6 +377,11 @@ export class VaultComponent implements OnInit, OnDestroy {
         });
       }
     );
+
+    modal.onClosedPromise().then(() => {
+      this.route.params;
+      this.router.navigate([], { queryParams: { cipherId: null }, queryParamsHandling: "merge" });
+    });
 
     return childComponent;
   }
@@ -388,6 +417,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: queryParams,
+      queryParamsHandling: "merge",
       replaceUrl: true,
     });
   }

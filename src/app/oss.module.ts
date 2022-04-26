@@ -57,7 +57,7 @@ import { BadgeModule, ButtonModule } from "@bitwarden/components";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { ToastrModule } from "ngx-toastr";
 
-import { VerifyMasterPasswordComponent } from "jslib-angular/components/verify-master-password.component";
+import { UserVerificationComponent } from "jslib-angular/components/user-verification.component";
 import { JslibModule } from "jslib-angular/jslib.module";
 
 import { AcceptEmergencyComponent } from "./accounts/accept-emergency.component";
@@ -123,6 +123,7 @@ import { OrganizationSubscriptionComponent } from "./organizations/settings/orga
 import { SettingsComponent as OrgSettingComponent } from "./organizations/settings/settings.component";
 import { SubscriptionHiddenComponent } from "./organizations/settings/subscription-hidden.component";
 import { TwoFactorSetupComponent as OrgTwoFactorSetupComponent } from "./organizations/settings/two-factor-setup.component";
+import { AcceptFamilySponsorshipComponent } from "./organizations/sponsorships/accept-family-sponsorship.component";
 import { FamiliesForEnterpriseSetupComponent } from "./organizations/sponsorships/families-for-enterprise-setup.component";
 import { ExportComponent as OrgExportComponent } from "./organizations/tools/export.component";
 import { ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent } from "./organizations/tools/exposed-passwords-report.component";
@@ -284,6 +285,7 @@ registerLocaleData(localeZhTw, "zh-TW");
   declarations: [
     PremiumBadgeComponent,
     AcceptEmergencyComponent,
+    AcceptFamilySponsorshipComponent,
     AcceptOrganizationComponent,
     AccessComponent,
     AccountComponent,
@@ -433,11 +435,11 @@ registerLocaleData(localeZhTw, "zh-TW");
     UserBillingComponent,
     UserLayoutComponent,
     UserSubscriptionComponent,
+    UserVerificationComponent,
     VaultComponent,
     VaultTimeoutInputComponent,
     VerifyEmailComponent,
     VerifyEmailTokenComponent,
-    VerifyMasterPasswordComponent,
     VerifyRecoverDeleteComponent,
     WeakPasswordsReportComponent,
   ],
