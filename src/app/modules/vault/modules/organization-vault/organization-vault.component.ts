@@ -131,7 +131,6 @@ export class OrganizationVaultComponent implements OnInit, OnDestroy {
     this.vaultFilterComponent.searchPlaceholder =
       this.vaultService.calculateSearchBarLocalizationString(this.activeFilter);
     this.go();
-    this.go();
   }
 
   private buildFilter(): (cipher: CipherView) => boolean {
