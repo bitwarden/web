@@ -86,13 +86,8 @@ export function initFactory(
     platformUtilsService.onDefaultSystemThemeChange(async (sysTheme) => {
       const bwTheme = await stateService.getTheme();
       if (bwTheme === ThemeType.System) {
-        htmlEl.classList.remove(
-          "theme_" + ThemeType.Light,
-          "theme_" + ThemeType.Dark,
-          "tw-" + ThemeType.Light,
-          "tw-" + ThemeType.Dark
-        );
-        htmlEl.classList.add("theme_" + sysTheme, "tw-" + sysTheme);
+        htmlEl.classList.remove("theme_" + ThemeType.Light, "theme_" + ThemeType.Dark);
+        htmlEl.classList.add("theme_" + sysTheme);
       }
     });
 
