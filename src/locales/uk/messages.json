@@ -191,7 +191,7 @@
     "description": "Domain name. Ex. website.com"
   },
   "domainName": {
-    "message": "Domain Name",
+    "message": "Ім'я домену",
     "description": "Domain name. Ex. website.com"
   },
   "host": {
@@ -1431,13 +1431,13 @@
     "message": "Звіти"
   },
   "reportsDesc": {
-    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
+    "message": "Визначте і закрийте прогалини в безпеці у ваших облікових записах, натиснувши на звіти нижче."
   },
   "unsecuredWebsitesReport": {
-    "message": "Звіт про незахищені вебсайти"
+    "message": "Незахищені вебсайти"
   },
   "unsecuredWebsitesReportDesc": {
-    "message": "Використання незахищених вебсайтів з протоколом http:// може бути небезпечним. Якщо вебсайт дозволяє, вам слід завжди використовувати його з протоколом https://, щоб ваше з'єднання було зашифрованим."
+    "message": "URL-адреси, що починаються з http:// не мають надійного шифрування. Змініть URL-адреси цих облікових записів на https:// для використання безпечного з'єднання."
   },
   "unsecuredWebsitesFound": {
     "message": "Знайдено незахищені вебсайти"
@@ -1455,10 +1455,10 @@
     "message": "У вашому сховищі немає записів з незахищеними URL-адресами."
   },
   "inactive2faReport": {
-    "message": "Звіт про неактивну двоетапну перевірку"
+    "message": "Неактивна двоетапна перевірка"
   },
   "inactive2faReportDesc": {
-    "message": "Двоетапна перевірка (2FA) - це важливе налаштування безпеки, що дозволяє захистити ваші облікові дані. Ви повинні завжди використовувати її на вебсайтах, де вона пропонується."
+    "message": "Двоетапна перевірка надає додатковий рівень захисту для ваших облікових записів. Увімкніть двоетапнуперевірку з використанням вбудованих засобів Bitwarden для цих облікових записів, або скористайтеся альтернативним способом."
   },
   "inactive2faFound": {
     "message": "Знайдено записи без двоетапної перевірки"
@@ -1479,10 +1479,10 @@
     "message": "Інструкції"
   },
   "exposedPasswordsReport": {
-    "message": "Звіт викритих паролів"
+    "message": "Викриті паролі"
   },
   "exposedPasswordsReportDesc": {
-    "message": "Exposed passwords are passwords have been uncovered in known data breaches that were released publicly or sold on the dark web by hackers."
+    "message": "Паролі, викриті у витоках даних, є легкою мішенню для зловмисників. Змініть ці паролі для запобігання потенційних ризиків."
   },
   "exposedPasswordsFound": {
     "message": "Знайдено викриті паролі"
@@ -1512,10 +1512,10 @@
     }
   },
   "weakPasswordsReport": {
-    "message": "Звіт про ненадійні паролі"
+    "message": "Ненадійні паролі"
   },
   "weakPasswordsReportDesc": {
-    "message": "Ненадійні паролі можуть легко бути вгадані хакерами і автоматизованими засобами злому паролів. Генератор паролів Bitwarden може допомогти вам створити надійні паролі."
+    "message": "Ненадійні паролі можуть легко бути вгадані зловмисниками. Замініть ці паролі на надійні за допомогою генератора паролів."
   },
   "weakPasswordsFound": {
     "message": "Знайдено ненадійні паролі"
@@ -1533,10 +1533,10 @@
     "message": "У вашому сховищі немає ненадійних паролів."
   },
   "reusedPasswordsReport": {
-    "message": "Звіт повторюваних паролів"
+    "message": "Повторювані паролі"
   },
   "reusedPasswordsReportDesc": {
-    "message": "Якщо використовуваний вами сервіс було скомпрометовано, повторне використання однакового пароля в інших місцях може дозволити хакерам легко отримати доступ до інших ваших облікових записів. Вам слід використовувати унікальний пароль для кожного сервісу чи облікового запису."
+    "message": "Повторне використання паролів дає змогу легко отримати доступ до багатьох облікових записів. Замініть ці паролі, щоб кожен з них був унікальним."
   },
   "reusedPasswordsFound": {
     "message": "Знайдено повторювані паролі"
@@ -1563,10 +1563,10 @@
     }
   },
   "dataBreachReport": {
-    "message": "Звіт про витік даних"
+    "message": "Витік даних"
   },
   "breachDesc": {
-    "message": "Витік даних - це подія, під час якої зловмисниками було отримано неавторизований доступ до даних вебсайтів та оприлюднено їх. Перегляньте тип даних, які було скомпрометовано (адреси електронної пошти, паролі, кредитні картки та інше) і виконайте необхідні дії, наприклад, змініть паролі."
+    "message": "Викриті облікові дані можуть розкрити вашу особисту інформацію. Захистіть викриті облікові записи, увімкнувши двоктапну перевірку чи створивши надійніший пароль."
   },
   "breachCheckUsernameEmail": {
     "message": "Перевірте будь-які використовувані вами імена користувачів чи адреси електронної пошти."
@@ -3616,7 +3616,8 @@
     "message": "Усі відправлення"
   },
   "maxAccessCountReached": {
-    "message": "Досягнуто максимальну кількість доступів"
+    "message": "Досягнуто максимальну кількість доступів",
+    "description": "This text will be displayed after a Send has been accessed the maximum amount of times."
   },
   "pendingDeletion": {
     "message": "Очікується видалення"
@@ -4836,45 +4837,46 @@
     }
   },
   "backToReports": {
-    "message": "Back to Reports"
+    "message": "Повернутися до звітів"
   },
   "generator": {
-    "message": "Generator"
+    "message": "Генератор"
   },
   "whatWouldYouLikeToGenerate": {
-    "message": "What would you like to generate?"
+    "message": "Що ви бажаєте згенерувати?"
   },
   "passwordType": {
-    "message": "Password Type"
+    "message": "Тип пароля"
   },
   "regenerateUsername": {
-    "message": "Regenerate Username"
+    "message": "Повторно генерувати ім'я користувача"
   },
   "generateUsername": {
-    "message": "Generate Username"
+    "message": "Генерувати ім'я користувача"
   },
   "usernameType": {
-    "message": "Username Type"
+    "message": "Тип імені користувача"
   },
   "plusAddressedEmail": {
-    "message": "Plus Addressed Email"
+    "message": "Плюс адреса електронної пошти",
+    "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
   },
   "plusAddressedEmailDesc": {
-    "message": "Use your email provider's sub-addressing capabilities."
+    "message": "Використовуйте розширені можливості адрес вашого постачальника електронної пошти."
   },
   "catchallEmail": {
-    "message": "Catch-all Email"
+    "message": "Адреса е-пошти Catch-all"
   },
   "catchallEmailDesc": {
-    "message": "Use your domain's configured catch-all inbox."
+    "message": "Використовуйте свою скриньку вхідних Catch-All власного домену."
   },
   "random": {
-    "message": "Random"
+    "message": "Випадково"
   },
   "randomWord": {
-    "message": "Random Word"
+    "message": "Випадкове слово"
   },
   "service": {
-    "message": "Service"
+    "message": "Послуга"
   }
 }
