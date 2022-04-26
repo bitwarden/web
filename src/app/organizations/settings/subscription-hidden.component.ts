@@ -3,10 +3,6 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { ThemeType } from "jslib-common/enums/themeType";
 
-interface Colors {
-  shapeColor: string;
-  lineColor: string;
-}
 @Component({
   selector: "app-subscription-hidden",
   templateUrl: "./subscription-hidden.svg",
