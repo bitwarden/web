@@ -121,6 +121,7 @@ import { DownloadLicenseComponent } from "./organizations/settings/download-lice
 import { OrganizationBillingComponent } from "./organizations/settings/organization-billing.component";
 import { OrganizationSubscriptionComponent } from "./organizations/settings/organization-subscription.component";
 import { SettingsComponent as OrgSettingComponent } from "./organizations/settings/settings.component";
+import { SubscriptionHiddenComponent } from "./organizations/settings/subscription-hidden.component";
 import { TwoFactorSetupComponent as OrgTwoFactorSetupComponent } from "./organizations/settings/two-factor-setup.component";
 import { FamiliesForEnterpriseSetupComponent } from "./organizations/sponsorships/families-for-enterprise-setup.component";
 import { ExportComponent as OrgExportComponent } from "./organizations/tools/export.component";
@@ -410,6 +411,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     SponsoredFamiliesComponent,
     SponsoringOrgRowComponent,
     SsoComponent,
+    SubscriptionHiddenComponent,
     TaxInfoComponent,
     ToolsComponent,
     TwoFactorAuthenticationPolicyComponent,
