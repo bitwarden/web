@@ -158,7 +158,7 @@ jobs:
 
 
   ghpages-deploy:
-    name: Deploy Web Vault
+    name: Deploy Web Vault to GitHub Pages
     runs-on: ubuntu-20.04
     needs:
       - setup
@@ -172,10 +172,10 @@ jobs:
         with:
           ref: gh-pages
 
-      - name: Create deploy branch
+      - name: Create gh-pages-deploy branch
         run: |
-          git switch -c deploy-$_TAG_VERSION
-          git push -u origin deploy-$_TAG_VERSION
+          git switch -c gh-pages-deploy-$_TAG_VERSION
+          git push -u origin gh-pages-deploy-$_TAG_VERSION
 
       - name: Checkout Repo
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # v2.4.0
@@ -204,21 +204,86 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          target_branch: deploy-${{ needs.setup.outputs.tag_version }}
+          target_branch: gh-pages-deploy-${{ needs.setup.outputs.tag_version }}
           build_dir: build
           keep_history: true
           commit_message: "Staging deploy ${{ needs.setup.outputs.release_version }}"
           dry_run: ${{ github.event.inputs.release_type == 'Dry Run' }}
 
-      - name: Create Deploy PR
+      - name: Create GitHub Pages Deploy PR
         if: ${{ github.event.inputs.release_type != 'Dry Run' }}
         env:
-          PR_BRANCH: deploy-${{ env._TAG_VERSION }}
+          PR_BRANCH: gh-pages-deploy-${{ env._TAG_VERSION }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh pr create --title "Deploy $_RELEASE_VERSION" \
+          gh pr create --title "Deploy $_RELEASE_VERSION to GitHub Pages" \
             --body "Deploying $_RELEASE_VERSION" \
             --base gh-pages \
+            --head "$PR_BRANCH"
+
+
+  cfpages-deploy:
+    name: Deploy Web Vault to CloudFlare Pages branch
+    runs-on: ubuntu-20.04
+    needs:
+      - setup
+      - self-host
+    env:
+      _RELEASE_VERSION: ${{ needs.setup.outputs.release_version }}
+      _TAG_VERSION: ${{ needs.setup.outputs.tag_version }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # v2.4.0
+        with:
+          ref: deploy
+
+      - name: Create cf-pages-deploy branch
+        run: |
+          git switch -c cf-pages-deploy-$_TAG_VERSION
+          git push -u origin cf-pages-deploy-$_TAG_VERSION
+
+      - name: Checkout Repo
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # v2.4.0
+
+      - name: Setup git config
+        run: |
+          git config user.name = "GitHub Action Bot"
+          git config user.email = "<>"
+          git config --global url."https://github.com/".insteadOf ssh://git@github.com/
+          git config --global url."https://".insteadOf ssh://
+
+      - name: Download latest cloud asset
+        uses: bitwarden/gh-actions/download-artifacts@c1fa8e09871a860862d6bbe36184b06d2c7e35a8
+        with:
+          workflow: build.yml
+          workflow_conclusion: success
+          branch: ${{ needs.setup.outputs.branch_name }}
+          artifacts: web-*-cloud-COMMERCIAL.zip
+
+      # This should result in a build directory in the current working directory
+      - name: Unzip build asset
+        run: unzip web-*-cloud-COMMERCIAL.zip
+
+      - name: Deploy CloudFlare Pages
+        uses: crazy-max/ghaction-github-pages@a117e4aa1fb4854d021546d2abdfac95be568a3a  # v2.6.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          target_branch: cf-pages-deploy-${{ needs.setup.outputs.tag_version }}
+          build_dir: build
+          keep_history: true
+          commit_message: "Staging deploy ${{ needs.setup.outputs.release_version }}"
+          dry_run: ${{ github.event.inputs.release_type == 'Dry Run' }}
+
+      - name: Create CloudFlare Pages Deploy PR
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        env:
+          PR_BRANCH: cf-pages-deploy-${{ env._TAG_VERSION }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create --title "Deploy $_RELEASE_VERSION to CloudFlare Pages" \
+            --body "Deploying $_RELEASE_VERSION" \
+            --base deploy \
             --head "$PR_BRANCH"
 
 
@@ -229,6 +294,7 @@ jobs:
       - setup
       - self-host
       - ghpages-deploy
+      - cfpages-deploy
     steps:
       - name: Download latest build artifacts
         uses: bitwarden/gh-actions/download-artifacts@23433be15ed6fd046ce12b6889c5184a8d9c8783
@@ -271,5 +337,8 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # 2.4.0
 
-      - name: Remove deploy branch
-        run: git push origin --delete deploy-$_TAG_VERSION
+      - name: Remove gh-pages-deploy branch
+        run: git push origin --delete gh-pages-deploy-$_TAG_VERSION
+
+      - name: Remove cf-pages-deploy branch
+        run: git push origin --delete cf-pages-deploy-$_TAG_VERSION
