@@ -83,7 +83,7 @@ export class LoginComponent extends BaseLoginComponent {
       // Are they coming from an email for sponsoring a families organization
       if (qParams.sponsorshipToken != null) {
         const route = this.router.createUrlTree(["setup/families-for-enterprise"], {
-          queryParams: { plan: qParams.sponsorshipToken },
+          queryParams: { token: qParams.sponsorshipToken },
         });
         this.routerService.setPreviousUrl(route.toString());
       }
