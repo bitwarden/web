@@ -47,6 +47,8 @@ import { OrganizationTypeGuardService } from "./organization-type-guard.service"
 import { PolicyListService } from "./policy-list.service";
 import { RouterService } from "./router.service";
 
+const localesDirectory = "locales";
+
 @NgModule({
   imports: [ToastrModule, JslibServicesModule],
   declarations: [],
@@ -73,7 +75,7 @@ import { RouterService } from "./router.service";
     },
     {
       provide: I18nServiceAbstraction,
-      useFactory: (window: Window) => new I18nService(window.navigator.language, "locales"),
+      useFactory: (window: Window) => new I18nService(window.navigator.language, localesDirectory),
       deps: [WINDOW],
     },
     { provide: StorageServiceAbstraction, useClass: HtmlStorageService },
