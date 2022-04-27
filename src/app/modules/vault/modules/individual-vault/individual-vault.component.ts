@@ -159,6 +159,16 @@ export class IndividualVaultComponent implements OnInit, OnDestroy {
     this.go();
   }
 
+  async applyOrganizationFilter(orgId: string) {
+    if (orgId == null) {
+      this.activeFilter.resetOrganization();
+      this.activeFilter.myVaultOnly = true;
+    } else {
+      this.activeFilter.selectedOrganizationId = orgId;
+    }
+    await this.applyVaultFilter(this.activeFilter);
+  }
+
   filterSearchText(searchText: string) {
     this.ciphersComponent.searchText = searchText;
     this.ciphersComponent.search(200);
