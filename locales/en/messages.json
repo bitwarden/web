@@ -891,6 +891,18 @@
   "length": {
     "message": "Length"
   },
+  "uppercase": {
+    "message": "Uppercase (A-Z)"
+  },
+  "lowercase": {
+    "message": "Lowercase (a-z)"
+  },
+  "numbers": {
+    "message": "Numbers (0-9)"
+  },
+  "specialCharacters": {
+    "message": "Special Characters (!@#$%^&*)"
+  }, 
   "numWords": {
     "message": "Number of Words"
   },
@@ -3616,7 +3628,8 @@
     "message": "All Sends"
   },
   "maxAccessCountReached": {
-    "message": "Max access count reached"
+    "message": "Max access count reached",
+    "description": "This text will be displayed after a Send has been accessed the maximum amount of times."
   },
   "pendingDeletion": {
     "message": "Pending deletion"
@@ -4857,7 +4870,8 @@
     "message": "Username Type"
   },
   "plusAddressedEmail": {
-    "message": "Plus Addressed Email"
+    "message": "Plus Addressed Email",
+    "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
   },
   "plusAddressedEmailDesc": {
     "message": "Use your email provider's sub-addressing capabilities."
@@ -4876,5 +4890,8 @@
   },
   "service": {
     "message": "Service"
+  },
+  "unknownCipher": {
+    "message": "Unknown Item, you may need to login with another account to access this item."
   }
 }
