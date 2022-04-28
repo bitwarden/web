@@ -20,14 +20,14 @@
     ></div>
   </div>
 </div>
-<div class="form-group">
-  <label class="d-block">{{ "whatWouldYouLikeToGenerate" | i18n }}</label>
+<div class="form-group" role="radiogroup" aria-labelledby="typeHeading">
+  <label id="typeHeading" class="d-block">{{ "whatWouldYouLikeToGenerate" | i18n }}</label>
   <div class="form-check form-check-inline" *ngFor="let o of typeOptions">
     <input
       class="form-check-input"
       type="radio"
       [(ngModel)]="type"
-      name="Type_{{ o.value }}"
+      name="Type"
       id="type_{{ o.value }}"
       [value]="o.value"
       (change)="typeChanged()"
@@ -39,14 +39,14 @@
   </div>
 </div>
 <ng-container *ngIf="type === 'password'">
-  <div class="form-group">
-    <label class="d-block">{{ "passwordType" | i18n }}</label>
+  <div aria-labelledby="passwordTypeHeading" class="form-group" role="radiogroup">
+    <label id="passwordTypeHeading" class="d-block">{{ "passwordType" | i18n }}</label>
     <div class="form-check form-check-inline" *ngFor="let o of passTypeOptions">
       <input
         class="form-check-input"
         type="radio"
         [(ngModel)]="passwordOptions.type"
-        name="PasswordType_{{ o.value }}"
+        name="PasswordType"
         id="passwordType_{{ o.value }}"
         [value]="o.value"
         (change)="savePasswordOptions()"
@@ -161,6 +161,7 @@
           (change)="savePasswordOptions()"
           [(ngModel)]="passwordOptions.uppercase"
           [disabled]="enforcedPasswordPolicyOptions?.useUppercase"
+          attr.aria-label="{{ 'uppercase' | i18n }}"
         />
         <label for="uppercase" class="form-check-label">A-Z</label>
       </div>
@@ -172,6 +173,7 @@
           (change)="savePasswordOptions()"
           [(ngModel)]="passwordOptions.lowercase"
           [disabled]="enforcedPasswordPolicyOptions?.useLowercase"
+          attr.aria-label="{{ 'lowercase' | i18n }}"
         />
         <label for="lowercase" class="form-check-label">a-z</label>
       </div>
@@ -183,6 +185,7 @@
           (change)="savePasswordOptions()"
           [(ngModel)]="passwordOptions.number"
           [disabled]="enforcedPasswordPolicyOptions?.useNumbers"
+          attr.aria-label="{{ 'numbers' | i18n }}"
         />
         <label for="numbers" class="form-check-label">0-9</label>
       </div>
@@ -194,6 +197,7 @@
           (change)="savePasswordOptions()"
           [(ngModel)]="passwordOptions.special"
           [disabled]="enforcedPasswordPolicyOptions?.useSpecial"
+          attr.aria-label="{{ 'specialCharacters' | i18n }}"
         />
         <label for="special" class="form-check-label">!@#$%^&amp;*</label>
       </div>
@@ -231,9 +235,9 @@
   </div>
 </ng-container>
 <ng-container *ngIf="type === 'username'">
-  <div class="form-group">
+  <div aria-labelledby="usernameTypeHeading" class="form-group" role="radiogroup">
     <div class="d-block">
-      <label>{{ "usernameType" | i18n }}</label>
+      <label id="usernameTypeHeading">{{ "usernameType" | i18n }}</label>
       <a
         class="ml-auto"
         href="https://bitwarden.com/help/generator/#username-types"
@@ -249,7 +253,7 @@
         class="form-check-input"
         type="radio"
         [(ngModel)]="usernameOptions.type"
-        name="UsernameType_{{ o.value }}"
+        name="UsernameType"
         id="usernameType_{{ o.value }}"
         [value]="o.value"
         (change)="saveUsernameOptions()"
@@ -269,7 +273,7 @@
           class="form-check-input"
           type="radio"
           [(ngModel)]="usernameOptions.forwardedService"
-          name="ForwardType_{{ o.value }}"
+          name="ForwardType"
           id="forwardtype_{{ o.value }}"
           [value]="o.value"
           (change)="saveUsernameOptions()"
