@@ -24,7 +24,8 @@ jobs:
       branch_name: ${{ steps.branch.outputs.branch_name }}
     steps:
       - name: Branch check
-        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        if: false
+        #if: ${{ github.event.inputs.release_type != 'Dry Run' }}
         run: |
           if [[ "$GITHUB_REF" != "refs/heads/rc" ]] && [[ "$GITHUB_REF" != "refs/heads/hotfix-rc" ]]; then
             echo "==================================="
@@ -61,6 +62,7 @@ jobs:
 
 
   self-host:
+    if: false
     name: Release self-host docker
     runs-on: ubuntu-20.04
     needs: setup
@@ -158,6 +160,7 @@ jobs:
 
 
   ghpages-deploy:
+    if: false
     name: Deploy Web Vault to GitHub Pages
     runs-on: ubuntu-20.04
     needs:
@@ -227,30 +230,13 @@ jobs:
     runs-on: ubuntu-20.04
     needs:
       - setup
-      - self-host
+      #- self-host
     env:
       _RELEASE_VERSION: ${{ needs.setup.outputs.release_version }}
       _TAG_VERSION: ${{ needs.setup.outputs.tag_version }}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # v2.4.0
-        with:
-          ref: deploy
-
-      - name: Create cf-pages-deploy branch
-        run: |
-          git switch -c cf-pages-deploy-$_TAG_VERSION
-          git push -u origin cf-pages-deploy-$_TAG_VERSION
-
-      - name: Checkout Repo
-        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # v2.4.0
-
-      - name: Setup git config
-        run: |
-          git config user.name = "GitHub Action Bot"
-          git config user.email = "<>"
-          git config --global url."https://github.com/".insteadOf ssh://git@github.com/
-          git config --global url."https://".insteadOf ssh://
 
       - name: Download latest cloud asset
         uses: bitwarden/gh-actions/download-artifacts@c1fa8e09871a860862d6bbe36184b06d2c7e35a8
@@ -264,19 +250,55 @@ jobs:
       - name: Unzip build asset
         run: unzip web-*-cloud-COMMERCIAL.zip
 
-      - name: Deploy CloudFlare Pages
-        uses: crazy-max/ghaction-github-pages@a117e4aa1fb4854d021546d2abdfac95be568a3a  # v2.6.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Deploy CloudFlare Pages
+      #   uses: crazy-max/ghaction-github-pages@a117e4aa1fb4854d021546d2abdfac95be568a3a  # v2.6.0
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #   with:
+      #     target_branch: cf-pages-deploy-${{ needs.setup.outputs.tag_version }}
+      #     build_dir: build
+      #     keep_history: true
+      #     commit_message: "Staging deploy ${{ needs.setup.outputs.release_version }}"
+      #     dry_run: ${{ github.event.inputs.release_type == 'Dry Run' }}
+
+      - name: Checkout Repo
+        uses: actions/checkout@ec3a7ce113134d7a93b817d10a8272cb61118579  # v2.4.0
         with:
-          target_branch: cf-pages-deploy-${{ needs.setup.outputs.tag_version }}
-          build_dir: build
-          keep_history: true
-          commit_message: "Staging deploy ${{ needs.setup.outputs.release_version }}"
-          dry_run: ${{ github.event.inputs.release_type == 'Dry Run' }}
+          ref: deploy
+          path: deployment
+
+      - name: Setup git config
+        run: |
+          git config user.name = "GitHub Action Bot"
+          git config user.email = "<>"
+          git config --global url."https://github.com/".insteadOf ssh://git@github.com/
+          git config --global url."https://".insteadOf ssh://
+
+      - name: TEST STEP
+        run: ls -alh
+        working-directory: deployment
+
+      - name: Deploy CloudFlare Pages
+        run: |
+          rm -rf ./*
+          cp -R ../build/* .
+        working-directory: deployment
+
+      - name: TEST STEP
+        run: ls -alh
+        working-directory: deployment
+
+      - name: Create cf-pages-deploy branch
+        run: |
+          git switch -c cf-pages-deploy-$_TAG_VERSION
+          git add .
+          git commit -m "Staging deploy ${{ needs.setup.outputs.release_version }}"
+          git push -u origin cf-pages-deploy-$_TAG_VERSION
+        working-directory: deployment    
 
       - name: Create CloudFlare Pages Deploy PR
-        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        #if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        if: false
         env:
           PR_BRANCH: cf-pages-deploy-${{ env._TAG_VERSION }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -288,6 +310,7 @@ jobs:
 
 
   release:
+    if: false
     name: Create GitHub Release
     runs-on: ubuntu-20.04
     needs:
