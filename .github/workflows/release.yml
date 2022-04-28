@@ -45,11 +45,11 @@ jobs:
             curl -sL https://api.github.com/repos/$GITHUB_REPOSITORY/releases/latest | jq -r ".tag_name"
           )
 
-          if [ "v$version" == "$previous_release_tag_version" ] && \
-          [ "${{ github.event.inputs.release_type }}" == "Initial Release" ]; then
-            echo "[!] Already released v$version. Please bump version to continue"
-            exit 1
-          fi
+          # if [ "v$version" == "$previous_release_tag_version" ] && \
+          # [ "${{ github.event.inputs.release_type }}" == "Initial Release" ]; then
+          #   echo "[!] Already released v$version. Please bump version to continue"
+          #   exit 1
+          # fi
 
           echo "::set-output name=package::$version"
           echo "::set-output name=tag::v$version"
