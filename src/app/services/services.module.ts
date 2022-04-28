@@ -8,6 +8,7 @@ import {
   STATE_FACTORY,
   STATE_SERVICE_USE_CACHE,
   LOCALES_DIRECTORY,
+  SYSTEM_LANGUAGE,
 } from "jslib-angular/services/jslib-services.module";
 import { ModalService as ModalServiceAbstraction } from "jslib-angular/services/modal.service";
 import { ApiService as ApiServiceAbstraction } from "jslib-common/abstractions/api.service";
@@ -74,9 +75,8 @@ import { RouterService } from "./router.service";
     },
     {
       provide: I18nServiceAbstraction,
-      useFactory: (window: Window, localesDirectory: string) =>
-        new I18nService(window.navigator.language, localesDirectory),
-      deps: [WINDOW, LOCALES_DIRECTORY],
+      useClass: I18nService,
+      deps: [SYSTEM_LANGUAGE, LOCALES_DIRECTORY],
     },
     { provide: StorageServiceAbstraction, useClass: HtmlStorageService },
     {
