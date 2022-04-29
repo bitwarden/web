@@ -56,7 +56,7 @@ export class OrganizationNameBadgeComponent implements OnInit {
     return L > 0.179 ? "black !important" : "white !important";
   }
 
-  emitonOrganizationClicked() {
+  emitOnOrganizationClicked() {
     this.onOrganizationClicked.emit();
   }
 }
