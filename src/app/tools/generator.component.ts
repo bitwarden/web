@@ -28,7 +28,6 @@ export class GeneratorComponent extends BaseGeneratorComponent {
     i18nService: I18nService,
     logService: LogService,
     route: ActivatedRoute,
-    logService: LogService,
     private modalService: ModalService
   ) {
     super(
