@@ -38,8 +38,8 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
     route: ActivatedRoute,
     logService: LogService,
     twoFactorService: TwoFactorService,
-    private routerService: RouterService,
-    appIdService: AppIdService
+    appIdService: AppIdService,
+    private routerService: RouterService
   ) {
     super(
       authService,
