@@ -3,7 +3,6 @@ import { ToastrModule } from "ngx-toastr";
 
 import {
   JslibServicesModule,
-  WINDOW,
   SECURE_STORAGE,
   STATE_FACTORY,
   STATE_SERVICE_USE_CACHE,
