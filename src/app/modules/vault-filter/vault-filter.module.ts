@@ -18,6 +18,7 @@ import { OrganizationOptionsComponent } from "./components/organization-options.
 import { StatusFilterComponent } from "./components/status-filter.component";
 import { TypeFilterComponent } from "./components/type-filter.component";
 import { GetOrgNameFromIdPipe } from "./pipes/get-organization-name.pipe";
+
 import { VaultFilterComponent } from "./vault-filter.component";
 
 @NgModule({
