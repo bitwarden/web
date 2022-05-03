@@ -13,12 +13,9 @@ import { SharedModule } from "../shared.module";
 import { CollectionFilterComponent } from "./components/collection-filter.component";
 import { FolderFilterComponent } from "./components/folder-filter.component";
 import { OrganizationFilterComponent } from "./components/organization-filter.component";
-import { OrganizationNameBadgeComponent } from "./components/organization-name-badge.component";
 import { OrganizationOptionsComponent } from "./components/organization-options.component";
 import { StatusFilterComponent } from "./components/status-filter.component";
 import { TypeFilterComponent } from "./components/type-filter.component";
-import { GetOrgNameFromIdPipe } from "./pipes/get-organization-name.pipe";
-
 import { VaultFilterComponent } from "./vault-filter.component";
 
 @NgModule({
@@ -31,10 +28,8 @@ import { VaultFilterComponent } from "./vault-filter.component";
     OrganizationOptionsComponent,
     StatusFilterComponent,
     TypeFilterComponent,
-    GetOrgNameFromIdPipe,
-    OrganizationNameBadgeComponent,
   ],
-  exports: [VaultFilterComponent, GetOrgNameFromIdPipe, OrganizationNameBadgeComponent],
+  exports: [VaultFilterComponent],
   providers: [
     {
       provide: VaultFilterService,

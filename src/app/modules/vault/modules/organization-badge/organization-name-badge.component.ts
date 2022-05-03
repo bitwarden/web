@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
+import { I18nService } from "jslib-common/abstractions/i18n.service";
+
 @Component({
   selector: "app-org-badge",
   templateUrl: "organization-name-badge.component.html",
@@ -12,7 +14,12 @@ export class OrganizationNameBadgeComponent implements OnInit {
 
   textColor: string;
 
+  constructor(private i18nService: I18nService) {}
+
   ngOnInit(): void {
+    if (this.organizationName == null || this.organizationName === "") {
+      this.organizationName = this.i18nService.t("me");
+    }
     const upperData = this.organizationName.toUpperCase();
     if (this.color == null) {
       this.color = this.stringToColor(upperData);

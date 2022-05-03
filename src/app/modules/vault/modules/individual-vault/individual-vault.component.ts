@@ -168,7 +168,7 @@ export class IndividualVaultComponent implements OnInit, OnDestroy {
     }
     await this.applyVaultFilter(this.activeFilter);
   }
-  
+
   filterSearchText(searchText: string) {
     this.ciphersComponent.searchText = searchText;
     this.ciphersComponent.search(200);
