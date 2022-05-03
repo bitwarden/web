@@ -1,0 +1,341 @@
+---
+name: Build CLI
+
+on:
+  push:
+    branches-ignore:
+      - 'l10n_master'
+    paths:
+      - 'apps/cli'
+  workflow_dispatch: {}
+
+defaults:
+  run:
+    working-directory: apps/cli
+
+jobs:
+  cloc:
+    name: CLOC
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
+
+      - name: Set up cloc
+        run: |
+          sudo apt update
+          sudo apt -y install cloc
+      - name: Print lines of code
+        run: cloc --include-lang TypeScript,JavaScript --vcs git
+
+
+  setup:
+    name: Setup
+    runs-on: ubuntu-20.04
+    outputs:
+      package_version: ${{ steps.retrieve-version.outputs.package_version }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
+
+      - name: Get Package Version
+        id: retrieve-version
+        run: |
+          PKG_VERSION=$(jq -r .version package.json)
+          echo "::set-output name=package_version::$PKG_VERSION"
+
+
+  cli:
+    name: Build CLI
+    runs-on: windows-2019
+    needs:
+      - setup
+    env:
+      _PACKAGE_VERSION: ${{ needs.setup.outputs.package_version }}
+      _WIN_PKG_FETCH_VERSION: 16.14.2
+      _WIN_PKG_VERSION: 3.3
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
+
+      - name: Setup Windows builder
+        run: |
+          choco install checksum --no-progress
+          choco install reshack --no-progress
+      - name: Set up Node
+        uses: actions/setup-node@56337c425554a6be30cdef71bf441f15be286854  # v3.1.1
+        with:
+          cache: 'npm'
+          cache-dependency-path: 'apps/cli/package-lock.json'
+          node-version: '16'
+
+      - name: Get pkg-fetch
+        shell: pwsh
+        run: |
+          cd $HOME
+          $fetchedUrl = "https://github.com/vercel/pkg-fetch/releases/download/v$env:_WIN_PKG_VERSION/node-v$env:_WIN_PKG_FETCH_VERSION-win-x64"
+          New-Item -ItemType directory -Path .\.pkg-cache
+          New-Item -ItemType directory -Path .\.pkg-cache\v$env:_WIN_PKG_VERSION
+          Invoke-RestMethod -Uri $fetchedUrl `
+            -OutFile ".\.pkg-cache\v$env:_WIN_PKG_VERSION\fetched-v$env:_WIN_PKG_FETCH_VERSION-win-x64"
+      - name: Setup Version Info
+        shell: pwsh
+        run: |
+          $major,$minor,$patch = $env:_PACKAGE_VERSION.split('.')
+          $versionInfo = @"
+          1 VERSIONINFO
+          FILEVERSION $major,$minor,$patch,0
+          PRODUCTVERSION $major,$minor,$patch,0
+          FILEOS 0x40004
+          FILETYPE 0x1
+          {
+          BLOCK "StringFileInfo"
+          {
+            BLOCK "040904b0"
+            {
+              VALUE "CompanyName", "Bitwarden Inc."
+              VALUE "ProductName", "Bitwarden"
+              VALUE "FileDescription", "Bitwarden CLI"
+              VALUE "FileVersion", "$env:_PACKAGE_VERSION"
+              VALUE "ProductVersion", "$env:_PACKAGE_VERSION"
+              VALUE "OriginalFilename", "bw.exe"
+              VALUE "InternalName", "bw"
+              VALUE "LegalCopyright", "Copyright Bitwarden Inc."
+            }
+          }
+          BLOCK "VarFileInfo"
+          {
+            VALUE "Translation", 0x0409 0x04B0
+          }
+          }
+          "@
+          $versionInfo | Out-File ./version-info.rc
+      # https://github.com/vercel/pkg-fetch/issues/188
+      - name: Resource Hacker
+        shell: cmd
+        run: |
+          set PATH=%PATH%;C:\Program Files (x86)\Resource Hacker
+          set WIN_PKG=C:\Users\runneradmin\.pkg-cache\v%_WIN_PKG_VERSION%\fetched-v%_WIN_PKG_FETCH_VERSION%-win-x64
+          set WIN_PKG_BUILT=C:\Users\runneradmin\.pkg-cache\v%_WIN_PKG_VERSION%\built-v%_WIN_PKG_FETCH_VERSION%-win-x64
+          copy %WIN_PKG% %WIN_PKG_BUILT%
+          ResourceHacker -open %WIN_PKG_BUILT% -save %WIN_PKG_BUILT% -action delete -mask ICONGROUP,1,
+          ResourceHacker -open version-info.rc -save version-info.res -action compile
+          ResourceHacker -open %WIN_PKG_BUILT% -save %WIN_PKG_BUILT% -action addoverwrite -resource version-info.res
+      - name: Setup sub-module
+        run: npm run sub:init
+
+      - name: Install
+        run: npm ci
+
+      - name: Run tests
+        run: npm run test
+
+      - name: Build & Package
+        run: npm run dist
+
+      - name: Package Chocolatey
+        shell: pwsh
+        run: |
+          Copy-Item -Path stores/chocolatey -Destination dist/chocolatey -Recurse
+          Copy-Item dist/windows/bw.exe -Destination dist/chocolatey/tools
+          Copy-Item LICENSE.txt -Destination dist/chocolatey/tools
+          choco pack dist/chocolatey/bitwarden-cli.nuspec --version ${{ env._PACKAGE_VERSION }} --out dist/chocolatey
+      - name: Zip
+        shell: cmd
+        run: |
+          7z a ./dist/bw-windows-%_PACKAGE_VERSION%.zip ./dist/windows/bw.exe
+          7z a ./dist/bw-macos-%_PACKAGE_VERSION%.zip ./dist/macos/bw
+          7z a ./dist/bw-linux-%_PACKAGE_VERSION%.zip ./dist/linux/bw
+      - name: Version Test
+        run: |
+          dir ./dist/
+          Expand-Archive -Path "./dist/bw-windows-${env:_PACKAGE_VERSION}.zip" -DestinationPath "./test/windows"
+          $testVersion = Invoke-Expression '& ./test/windows/bw.exe -v'
+          echo "version: $env:_PACKAGE_VERSION"
+          echo "testVersion: $testVersion"
+          if($testVersion -ne $env:_PACKAGE_VERSION) {
+            Throw "Version test failed."
+          }
+      - name: Create checksums
+        run: |
+          checksum -f="./dist/bw-windows-${env:_PACKAGE_VERSION}.zip" `
+            -t sha256 | Out-File -Encoding ASCII ./dist/bw-windows-sha256-${env:_PACKAGE_VERSION}.txt
+          checksum -f="./dist/bw-macos-${env:_PACKAGE_VERSION}.zip" `
+            -t sha256 | Out-File -Encoding ASCII ./dist/bw-macos-sha256-${env:_PACKAGE_VERSION}.txt
+          checksum -f="./dist/bw-linux-${env:_PACKAGE_VERSION}.zip" `
+            -t sha256 | Out-File -Encoding ASCII ./dist/bw-linux-sha256-${env:_PACKAGE_VERSION}.txt
+      - name: Upload windows zip asset
+        uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
+        with:
+          name: bw-windows-${{ env._PACKAGE_VERSION }}.zip
+          path: ./dist/bw-windows-${{ env._PACKAGE_VERSION }}.zip
+          if-no-files-found: error
+
+      - name: Upload windows checksum asset
+        uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
+        with:
+          name: bw-windows-sha256-${{ env._PACKAGE_VERSION }}.txt
+          path: ./dist/bw-windows-sha256-${{ env._PACKAGE_VERSION }}.txt
+          if-no-files-found: error
+
+      - name: Upload macos zip asset
+        uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
+        with:
+          name: bw-macos-${{ env._PACKAGE_VERSION }}.zip
+          path: ./dist/bw-macos-${{ env._PACKAGE_VERSION }}.zip
+          if-no-files-found: error
+
+      - name: Upload macos checksum asset
+        uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
+        with:
+          name: bw-macos-sha256-${{ env._PACKAGE_VERSION }}.txt
+          path: ./dist/bw-macos-sha256-${{ env._PACKAGE_VERSION }}.txt
+          if-no-files-found: error
+
+      - name: Upload linux zip asset
+        uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
+        with:
+          name: bw-linux-${{ env._PACKAGE_VERSION }}.zip
+          path: ./dist/bw-linux-${{ env._PACKAGE_VERSION }}.zip
+          if-no-files-found: error
+
+      - name: Upload linux checksum asset
+        uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
+        with:
+          name: bw-linux-sha256-${{ env._PACKAGE_VERSION }}.txt
+          path: ./dist/bw-linux-sha256-${{ env._PACKAGE_VERSION }}.txt
+          if-no-files-found: error
+
+      - name: Upload Chocolatey asset
+        uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
+        with:
+          name: bitwarden-cli.${{ env._PACKAGE_VERSION }}.nupkg
+          path: ./dist/chocolatey/bitwarden-cli.${{ env._PACKAGE_VERSION }}.nupkg
+          if-no-files-found: error
+
+      - name: Upload NPM Build Directory asset
+        uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
+        with:
+          name: bitwarden-cli-${{ env._PACKAGE_VERSION }}-npm-build.zip
+          path: ./build
+          if-no-files-found: error
+
+  snap:
+    name: Build Snap
+    runs-on: ubuntu-20.04
+    needs: [setup, cli]
+    env:
+      _PACKAGE_VERSION: ${{ needs.setup.outputs.package_version }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
+
+      - name: Print environment
+        run: |
+          whoami
+          echo "GitHub ref: $GITHUB_REF"
+          echo "GitHub event: $GITHUB_EVENT"
+          echo "BW Package Version: $_PACKAGE_VERSION"
+      - name: Get bw linux cli
+        uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741
+        with:
+          name: bw-linux-${{ env._PACKAGE_VERSION }}.zip
+          path: ./dist/snap
+
+      - name: Setup Snap Package
+        run: |
+          cp -r stores/snap/* -t dist/snap
+          sed -i s/__version__/${{ env._PACKAGE_VERSION }}/g dist/snap/snapcraft.yaml
+          cd dist/snap
+          ls -alth
+      - name: Build snap
+        uses: snapcore/action-build@ea14cdeb353272f75977040488ca191880509a8c  # v1.1.0
+        with:
+          path: dist/snap
+
+      - name: Create checksum
+        run: |
+          cd dist/snap
+          ls -alth
+          sha256sum bw_${{ env._PACKAGE_VERSION }}_amd64.snap \
+            | awk '{split($0, a); print a[1]}' > bw-snap-sha256-${{ env._PACKAGE_VERSION }}.txt
+      - name: Install Snap
+        run: sudo snap install dist/snap/bw*.snap --dangerous
+
+      - name: Test Snap
+        shell: pwsh
+        run: |
+          $testVersion = Invoke-Expression '& bw -v'
+          if($testVersion -ne $env:_PACKAGE_VERSION) {
+            Throw "Version test failed."
+          }
+        env:
+          BITWARDENCLI_APPDATA_DIR: "/home/runner/snap/bw/x1/.config/Bitwarden CLI"
+
+      - name: Cleanup Test & Update Snap for Publish
+        shell: pwsh
+        run: sudo snap remove bw
+
+      - name: Upload snap asset
+        uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
+        with:
+          name: bw_${{ env._PACKAGE_VERSION }}_amd64.snap
+          path: ./dist/snap/bw_${{ env._PACKAGE_VERSION }}_amd64.snap
+          if-no-files-found: error
+
+      - name: Upload snap checksum asset
+        uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
+        with:
+          name: bw-snap-sha256-${{ env._PACKAGE_VERSION }}.txt
+          path: ./dist/snap/bw-snap-sha256-${{ env._PACKAGE_VERSION }}.txt
+          if-no-files-found: error
+
+
+  check-failures:
+    name: Check for failures
+    if: always()
+    runs-on: ubuntu-20.04
+    needs:
+      - cloc
+      - setup
+      - cli
+      - snap
+    steps:
+      - name: Check if any job failed
+        if: ${{ (github.ref == 'refs/heads/master') || (github.ref == 'refs/heads/rc') }}
+        env:
+          CLOC_STATUS: ${{ needs.cloc.result }}
+          SETUP_STATUS: ${{ needs.setup.result }}
+          CLI_STATUS: ${{ needs.cli.result }}
+          SNAP_STATUS: ${{ needs.snap.result }}
+        run: |
+          if [ "$CLOC_STATUS" = "failure" ]; then
+              exit 1
+          elif [ "$SETUP_STATUS" = "failure" ]; then
+              exit 1
+          elif [ "$CLI_STATUS" = "failure" ]; then
+              exit 1
+          elif [ "$SNAP_STATUS" = "failure" ]; then
+              exit 1
+          fi
+      - name: Login to Azure - Prod Subscription
+        uses: Azure/login@ec3c14589bd3e9312b3cc8c41e6860e258df9010  # v1.1
+        if: failure()
+        with:
+          creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
+
+      - name: Retrieve secrets
+        id: retrieve-secrets
+        uses: Azure/get-keyvault-secrets@b5c723b9ac7870c022b8c35befe620b7009b336f
+        if: failure()
+        with:
+          keyvault: "bitwarden-prod-kv"
+          secrets: "devops-alerts-slack-webhook-url"
+
+      - name: Notify Slack on failure
+        uses: act10ns/slack@da3191ebe2e67f49b46880b4633f5591a96d1d33
+        if: failure()
+        env:
+          SLACK_WEBHOOK_URL: ${{ steps.retrieve-secrets.outputs.devops-alerts-slack-webhook-url }}
+        with:
+          status: ${{ job.status }}
