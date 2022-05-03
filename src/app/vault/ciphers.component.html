@@ -45,7 +45,7 @@
           <br />
           <small appStopProp>{{ c.subTitle }}</small>
         </td>
-        <td *ngIf="organizations.length > 0 && !organization" class="org-name-badge">
+        <td *ngIf="organizations.length > 0 && !organization" class="tw-w-28">
           <app-org-badge
             organizationName="{{ c.organizationId | orgNameFromId: organizations }}"
             [color]="!c.organizationId ? '#175ddc' : null"
