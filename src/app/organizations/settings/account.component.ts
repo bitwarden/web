@@ -1,4 +1,5 @@
 import { Component, ViewChild, ViewContainerRef } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 
 import { ModalService } from "jslib-angular/services/modal.service";
@@ -42,7 +43,15 @@ export class AccountComponent {
 
   private organizationId: string;
 
+  formData = this.formBuilder.group({
+    name: ["", [Validators.required]],
+    billingEmail: ["", [Validators.required, Validators.email]],
+    businessName: [],
+    identifier: [],
+  });
+
   constructor(
+    private formBuilder: FormBuilder,
     private modalService: ModalService,
     private apiService: ApiService,
     private i18nService: I18nService,
@@ -56,11 +65,25 @@ export class AccountComponent {
 
   async ngOnInit() {
     this.selfHosted = this.platformUtilsService.isSelfHost();
+
+    if (this.selfHosted) {
+      this.formData.disable();
+    } else {
+      this.formData.enable();
+    }
+
     this.route.parent.parent.params.subscribe(async (params) => {
       this.organizationId = params.organizationId;
       try {
         this.org = await this.apiService.getOrganization(this.organizationId);
         this.canUseApi = this.org.useApi;
+
+        this.formData.setValue({
+          name: this.org.name,
+          billingEmail: this.org.billingEmail,
+          businessName: this.org.businessName,
+          identifier: this.org.identifier,
+        });
       } catch (e) {
         this.logService.error(e);
       }
@@ -71,10 +94,10 @@ export class AccountComponent {
   async submit() {
     try {
       const request = new OrganizationUpdateRequest();
-      request.name = this.org.name;
-      request.businessName = this.org.businessName;
-      request.billingEmail = this.org.billingEmail;
-      request.identifier = this.org.identifier;
+      request.name = this.formData.get("name").value;
+      request.businessName = this.formData.get("businessName").value;
+      request.billingEmail = this.formData.get("billingEmail").value;
+      request.identifier = this.formData.get("identifier").value;
 
       // Backfill pub/priv key if necessary
       if (!this.org.hasPublicAndPrivateKeys) {
