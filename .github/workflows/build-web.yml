@@ -450,7 +450,6 @@ jobs:
         if: ${{ (github.ref == 'refs/heads/master') || (github.ref == 'refs/heads/rc') }}
         env:
           CLOC_STATUS: ${{ needs.cloc.result }}
-          LINT_STATUS: ${{ needs.lint.result }}
           SETUP_STATUS: ${{ needs.setup.result }}
           BUILD_OSS_SELFHOST_STATUS: ${{ needs.build-oss-selfhost.result }}
           BUILD_CLOUD_STATUS: ${{ needs.build-cloud.result }}
@@ -460,8 +459,6 @@ jobs:
           WINDOWS_STATUS: ${{ needs.windows.result }}
         run: |
           if [ "$CLOC_STATUS" = "failure" ]; then
-              exit 1
-          elif [ "$LINT_STATUS" = "failure" ]; then
               exit 1
           elif [ "$SETUP_STATUS" = "failure" ]; then
               exit 1
