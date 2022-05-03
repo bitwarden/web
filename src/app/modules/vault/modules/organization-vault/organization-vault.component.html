@@ -1,17 +1,21 @@
 <div class="container page-content">
   <div class="row">
     <div class="col-3">
-      <app-org-vault-groupings
-        [showFolders]="false"
-        [showFavorites]="false"
-        [showTrash]="true"
-        (onAllClicked)="clearGroupingFilters()"
-        (onCipherTypeClicked)="filterCipherType($event)"
-        (onCollectionClicked)="filterCollection($event.id)"
-        (onSearchTextChanged)="filterSearchText($event)"
-        (onTrashClicked)="filterDeleted()"
-      >
-      </app-org-vault-groupings>
+      <div class="groupings">
+        <div class="content">
+          <div class="inner-content">
+            <app-vault-filter
+              #vaultFilter
+              [showFolders]="false"
+              [showFavorites]="false"
+              [activeFilter]="activeFilter"
+              [showOrgFilter]="false"
+              (onFilterChange)="applyVaultFilter($event)"
+              (onSearchTextChanged)="filterSearchText($event)"
+            ></app-vault-filter>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="col-9">
       <div class="page-header d-flex">
