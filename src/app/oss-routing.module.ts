@@ -180,7 +180,7 @@ const routes: Routes = [
           {
             path: "subscription",
             loadChildren: async () =>
-              (await import("./settings/subscription.module")).SubscriptionModule,
+              (await import("./settings/subscription-routing.module")).SubscriptionRoutingModule,
           },
           {
             path: "organizations",
