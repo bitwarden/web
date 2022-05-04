@@ -19,26 +19,48 @@
             autocomplete="off"
             appAutofocus
           />
-          <ul class="bwi-ul card-ul">
-            <li [ngClass]="{ active: selectedAll }">
-              <a href="#" appStopClick (click)="selectAll()">
-                <i class="bwi bwi-li bwi-fw bwi-filter"></i>{{ "allSends" | i18n }}
-              </a>
-            </li>
-          </ul>
-          <h3>{{ "types" | i18n }}</h3>
-          <ul class="bwi-ul card-ul">
-            <li [ngClass]="{ active: selectedType === sendType.Text }">
-              <a href="#" appStopClick (click)="selectType(sendType.Text)">
-                <i class="bwi bwi-li bwi-fw bwi-file-text"></i>{{ "sendTypeText" | i18n }}
-              </a>
-            </li>
-            <li [ngClass]="{ active: selectedType === sendType.File }">
-              <a href="#" appStopClick (click)="selectType(sendType.File)">
-                <i class="bwi bwi-li bwi-fw bwi-file"></i>{{ "sendTypeFile" | i18n }}
-              </a>
-            </li>
-          </ul>
+          <div class="filter">
+            <ul class="filter-options">
+              <li class="filter-option" [ngClass]="{ active: selectedAll }">
+                <span class="filter-buttons">
+                  <button bit-button class="filter-button" appStopClick (click)="selectAll()">
+                    <i class="bwi bwi-fw bwi-filter"></i>{{ "allSends" | i18n }}
+                  </button>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div class="filter">
+            <div class="filter-heading">
+              <h3>{{ "types" | i18n }}</h3>
+            </div>
+            <ul class="filter-options">
+              <li class="filter-option" [ngClass]="{ active: selectedType === sendType.Text }">
+                <span class="filter-buttons">
+                  <button
+                    bit-button
+                    class="filter-button"
+                    appStopClick
+                    (click)="selectType(sendType.Text)"
+                  >
+                    <i class="bwi bwi-fw bwi-file-text"></i>{{ "sendTypeText" | i18n }}
+                  </button>
+                </span>
+              </li>
+              <li class="filter-option" [ngClass]="{ active: selectedType === sendType.File }">
+                <span class="filter-buttons">
+                  <button
+                    bit-button
+                    class="filter-button"
+                    appStopClick
+                    (click)="selectType(sendType.File)"
+                  >
+                    <i class="bwi bwi-fw bwi-file"></i>{{ "sendTypeFile" | i18n }}
+                  </button>
+                </span>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

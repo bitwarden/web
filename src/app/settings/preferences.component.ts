@@ -74,7 +74,7 @@ export class PreferencesComponent implements OnInit {
     this.enableGravatars = await this.stateService.getEnableGravitars();
     this.enableFullWidth = await this.stateService.getEnableFullWidth();
 
-    this.locale = await this.stateService.getLocale();
+    this.locale = (await this.stateService.getLocale()) ?? null;
     this.startingLocale = this.locale;
 
     this.theme = await this.stateService.getTheme();

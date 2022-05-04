@@ -58,7 +58,7 @@ export class LockComponent extends BaseLockComponent {
       if (previousUrl !== "/" && previousUrl.indexOf("lock") === -1) {
         this.successRoute = previousUrl;
       }
-      this.router.navigate([this.successRoute]);
+      this.router.navigateByUrl(this.successRoute);
     };
   }
 }

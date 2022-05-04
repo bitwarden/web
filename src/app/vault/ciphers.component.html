@@ -17,22 +17,13 @@
         </td>
         <td (click)="checkCipher(c)" class="reduced-lh wrap">
           <a
-            href="#"
-            appStopClick
             appStopProp
-            (click)="selectCipher(c)"
+            [routerLink]="[]"
+            [queryParams]="{ cipherId: c.id }"
+            queryParamsHandling="merge"
             title="{{ 'editItem' | i18n }}"
             >{{ c.name }}</a
           >
-          <ng-container *ngIf="!organization && c.organizationId">
-            <i
-              class="bwi bwi-collection"
-              appStopProp
-              title="{{ 'shared' | i18n }}"
-              aria-hidden="true"
-            ></i>
-            <span class="sr-only">{{ "shared" | i18n }}</span>
-          </ng-container>
           <ng-container *ngIf="c.hasAttachments">
             <i
               class="bwi bwi-paperclip"
@@ -53,6 +44,13 @@
           </ng-container>
           <br />
           <small appStopProp>{{ c.subTitle }}</small>
+        </td>
+        <td *ngIf="organizations.length > 0 && !organization" class="tw-w-28">
+          <app-org-badge
+            organizationName="{{ c.organizationId | orgNameFromId: organizations }}"
+            [color]="!c.organizationId ? '#175ddc' : null"
+            (onOrganizationClicked)="onOrganizationClicked(c.organizationId)"
+          ></app-org-badge>
         </td>
         <td class="table-list-options">
           <div class="dropdown" appListDropdown>
