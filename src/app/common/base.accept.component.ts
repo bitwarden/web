@@ -30,7 +30,6 @@ export abstract class BaseAcceptComponent implements OnInit {
 
   ngOnInit() {
     this.route.queryParams.pipe(first()).subscribe(async (qParams) => {
-      await this.stateService.setLoginRedirect(null);
       let error = this.requiredParameters.some((e) => qParams?.[e] == null || qParams[e] === "");
       let errorMessage: string = null;
       if (!error) {
@@ -44,11 +43,6 @@ export abstract class BaseAcceptComponent implements OnInit {
             errorMessage = e.message;
           }
         } else {
-          await this.stateService.setLoginRedirect({
-            route: this.getRedirectRoute(),
-            qParams: qParams,
-          });
-
           this.email = qParams.email;
           await this.unauthedHandler(qParams);
         }
@@ -65,11 +59,5 @@ export abstract class BaseAcceptComponent implements OnInit {
 
       this.loading = false;
     });
-  }
-
-  getRedirectRoute() {
-    const urlTree = this.router.parseUrl(this.router.url);
-    urlTree.queryParams = {};
-    return urlTree.toString();
   }
 }

@@ -27,17 +27,16 @@
   </div>
   <div class="row">
     <div class="form-group col-6">
-      <app-verify-master-password ngDefaultControl formControlName="secret" name="secret">
-      </app-verify-master-password>
+      <app-user-verification ngDefaultControl formControlName="secret" name="secret">
+      </app-user-verification>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary" [disabled]="form.loading || exportForm.disabled">
-    <i
-      class="bwi bwi-spinner bwi-spin"
-      title="{{ 'loading' | i18n }}"
-      aria-hidden="true"
-      *ngIf="form.loading"
-    ></i>
-    <span *ngIf="!form.loading">{{ "exportVault" | i18n }}</span>
+  <button
+    type="submit"
+    class="btn btn-primary btn-submit"
+    [disabled]="form.loading || exportForm.disabled"
+  >
+    <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+    <span>{{ "exportVault" | i18n }}</span>
   </button>
 </form>

@@ -47,7 +47,9 @@ export class UserBillingComponent implements OnInit {
     if (this.organizationId != null) {
       this.billing = await this.apiService.getOrganizationBilling(this.organizationId);
     } else {
-      this.billing = await this.apiService.getUserBilling();
+      // let history = await this.apiService.getUserBillingHistory();
+      // let payment = await this.apiService.getUserBillingPayment();
+      this.billing = new BillingResponse(null);
     }
     this.loading = false;
   }
