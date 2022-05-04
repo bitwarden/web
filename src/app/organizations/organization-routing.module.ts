@@ -40,8 +40,11 @@ const routes: Routes = [
       {
         path: "vault",
         loadChildren: async () =>
-          (await import("../modules/vault/modules/organization-vault/organization-vault.module"))
-            .OrganizationVaultModule,
+          (
+            await import(
+              "../modules/vault/modules/organization-vault/organization-vault-routing.module"
+            )
+          ).OrganizationVaultRoutingModule,
       },
       {
         path: "tools",
