@@ -10,6 +10,7 @@ import {
 import { ActivatedRoute, Router } from "@angular/router";
 import { first } from "rxjs/operators";
 
+import { VaultFilter } from "jslib-angular/modules/vault-filter/models/vault-filter.model";
 import { ModalService } from "jslib-angular/services/modal.service";
 import { BroadcasterService } from "jslib-common/abstractions/broadcaster.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -21,22 +22,22 @@ import { CipherType } from "jslib-common/enums/cipherType";
 import { Organization } from "jslib-common/models/domain/organization";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { EntityEventsComponent } from "../manage/entity-events.component";
-
-import { AddEditComponent } from "./add-edit.component";
-import { AttachmentsComponent } from "./attachments.component";
-import { CiphersComponent } from "./ciphers.component";
-import { CollectionsComponent } from "./collections.component";
-import { GroupingsComponent } from "./groupings.component";
+import { EntityEventsComponent } from "../../../../organizations/manage/entity-events.component";
+import { AddEditComponent } from "../../../../organizations/vault/add-edit.component";
+import { AttachmentsComponent } from "../../../../organizations/vault/attachments.component";
+import { CiphersComponent } from "../../../../organizations/vault/ciphers.component";
+import { CollectionsComponent } from "../../../../organizations/vault/collections.component";
+import { VaultFilterComponent } from "../../../vault-filter/vault-filter.component";
+import { VaultService } from "../../vault.service";
 
 const BroadcasterSubscriptionId = "OrgVaultComponent";
 
 @Component({
   selector: "app-org-vault",
-  templateUrl: "vault.component.html",
+  templateUrl: "organization-vault.component.html",
 })
-export class VaultComponent implements OnInit, OnDestroy {
-  @ViewChild(GroupingsComponent, { static: true }) groupingsComponent: GroupingsComponent;
+export class OrganizationVaultComponent implements OnInit, OnDestroy {
+  @ViewChild("vaultFilter", { static: true }) vaultFilterComponent: VaultFilterComponent;
   @ViewChild(CiphersComponent, { static: true }) ciphersComponent: CiphersComponent;
   @ViewChild("attachments", { read: ViewContainerRef, static: true })
   attachmentsModalRef: ViewContainerRef;
@@ -52,6 +53,7 @@ export class VaultComponent implements OnInit, OnDestroy {
   type: CipherType = null;
   deleted = false;
   trashCleanupWarning: string = null;
+  activeFilter: VaultFilter = new VaultFilter();
 
   constructor(
     private route: ActivatedRoute,
@@ -64,7 +66,8 @@ export class VaultComponent implements OnInit, OnDestroy {
     private messagingService: MessagingService,
     private broadcasterService: BroadcasterService,
     private ngZone: NgZone,
-    private platformUtilsService: PlatformUtilsService
+    private platformUtilsService: PlatformUtilsService,
+    private vaultService: VaultService
   ) {}
 
   ngOnInit() {
@@ -75,11 +78,11 @@ export class VaultComponent implements OnInit, OnDestroy {
     );
     this.route.parent.params.pipe(first()).subscribe(async (params) => {
       this.organization = await this.organizationService.get(params.organizationId);
-      this.groupingsComponent.organization = this.organization;
+      this.vaultFilterComponent.organization = this.organization;
       this.ciphersComponent.organization = this.organization;
 
       this.route.queryParams.pipe(first()).subscribe(async (qParams) => {
-        this.ciphersComponent.searchText = this.groupingsComponent.searchText = qParams.search;
+        // this.ciphersComponent.searchText = this.vaultFilterComponent.search = qParams.search;
         if (!this.organization.canViewAllCollections) {
           await this.syncService.fullSync(false);
           this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
@@ -88,7 +91,11 @@ export class VaultComponent implements OnInit, OnDestroy {
                 case "syncCompleted":
                   if (message.successfully) {
                     await Promise.all([
-                      this.groupingsComponent.load(),
+                      this.vaultFilterComponent.reloadCollectionsAndFolders(
+                        new VaultFilter({
+                          selectedOrganizationId: this.organization.id,
+                        } as Partial<VaultFilter>)
+                      ),
                       this.ciphersComponent.refresh(),
                     ]);
                     this.changeDetectorRef.detectChanges();
@@ -98,27 +105,10 @@ export class VaultComponent implements OnInit, OnDestroy {
             });
           });
         }
-        await this.groupingsComponent.load();
-
-        if (qParams == null) {
-          this.groupingsComponent.selectedAll = true;
-          await this.ciphersComponent.reload();
-        } else {
-          if (qParams.deleted) {
-            this.groupingsComponent.selectedTrash = true;
-            await this.filterDeleted(true);
-          } else if (qParams.type) {
-            const t = parseInt(qParams.type, null);
-            this.groupingsComponent.selectedType = t;
-            await this.filterCipherType(t, true);
-          } else if (qParams.collectionId) {
-            this.groupingsComponent.selectedCollectionId = qParams.collectionId;
-            await this.filterCollection(qParams.collectionId, true);
-          } else {
-            this.groupingsComponent.selectedAll = true;
-            await this.ciphersComponent.reload();
-          }
-        }
+        await this.vaultFilterComponent.reloadCollectionsAndFolders(
+          new VaultFilter({ selectedOrganizationId: this.organization.id } as Partial<VaultFilter>)
+        );
+        await this.ciphersComponent.reload();
 
         if (qParams.viewEvents != null) {
           const cipher = this.ciphersComponent.ciphers.filter((c) => c.id === qParams.viewEvents);
@@ -134,63 +124,47 @@ export class VaultComponent implements OnInit, OnDestroy {
     this.broadcasterService.unsubscribe(BroadcasterSubscriptionId);
   }
 
-  async clearGroupingFilters() {
-    this.ciphersComponent.showAddNew = true;
-    this.ciphersComponent.deleted = false;
-    this.groupingsComponent.searchPlaceholder = this.i18nService.t("searchVault");
-    await this.ciphersComponent.applyFilter();
-    this.clearFilters();
+  async applyVaultFilter(vaultFilter: VaultFilter) {
+    this.ciphersComponent.showAddNew = vaultFilter.status !== "trash";
+    this.activeFilter = vaultFilter;
+    await this.ciphersComponent.reload(this.buildFilter(), vaultFilter.status === "trash");
+    this.vaultFilterComponent.searchPlaceholder =
+      this.vaultService.calculateSearchBarLocalizationString(this.activeFilter);
     this.go();
   }
 
-  async filterCipherType(type: CipherType, load = false) {
-    this.ciphersComponent.showAddNew = true;
-    this.ciphersComponent.deleted = false;
-    this.groupingsComponent.searchPlaceholder = this.i18nService.t("searchType");
-    const filter = (c: CipherView) => c.type === type;
-    if (load) {
-      await this.ciphersComponent.reload(filter);
-    } else {
-      await this.ciphersComponent.applyFilter(filter);
-    }
-    this.clearFilters();
-    this.type = type;
-    this.go();
-  }
-
-  async filterCollection(collectionId: string, load = false) {
-    this.ciphersComponent.showAddNew = true;
-    this.ciphersComponent.deleted = false;
-    this.groupingsComponent.searchPlaceholder = this.i18nService.t("searchCollection");
-    const filter = (c: CipherView) => {
-      if (collectionId === "unassigned") {
-        return c.collectionIds == null || c.collectionIds.length === 0;
-      } else {
-        return c.collectionIds != null && c.collectionIds.indexOf(collectionId) > -1;
+  private buildFilter(): (cipher: CipherView) => boolean {
+    return (cipher) => {
+      let cipherPassesFilter = true;
+      if (this.activeFilter.status === "favorites" && cipherPassesFilter) {
+        cipherPassesFilter = cipher.favorite;
       }
+      if (this.activeFilter.status === "trash" && cipherPassesFilter) {
+        cipherPassesFilter = cipher.isDeleted;
+      }
+      if (this.activeFilter.cipherType != null && cipherPassesFilter) {
+        cipherPassesFilter = cipher.type === this.activeFilter.cipherType;
+      }
+      if (
+        this.activeFilter.selectedFolderId != null &&
+        this.activeFilter.selectedFolderId != "none" &&
+        cipherPassesFilter
+      ) {
+        cipherPassesFilter = cipher.folderId === this.activeFilter.selectedFolderId;
+      }
+      if (this.activeFilter.selectedCollectionId != null && cipherPassesFilter) {
+        cipherPassesFilter =
+          cipher.collectionIds != null &&
+          cipher.collectionIds.indexOf(this.activeFilter.selectedCollectionId) > -1;
+      }
+      if (this.activeFilter.selectedOrganizationId != null && cipherPassesFilter) {
+        cipherPassesFilter = cipher.organizationId === this.activeFilter.selectedOrganizationId;
+      }
+      if (this.activeFilter.myVaultOnly && cipherPassesFilter) {
+        cipherPassesFilter = cipher.organizationId === null;
+      }
+      return cipherPassesFilter;
     };
-    if (load) {
-      await this.ciphersComponent.reload(filter);
-    } else {
-      await this.ciphersComponent.applyFilter(filter);
-    }
-    this.clearFilters();
-    this.collectionId = collectionId;
-    this.go();
-  }
-
-  async filterDeleted(load = false) {
-    this.ciphersComponent.showAddNew = false;
-    this.ciphersComponent.deleted = true;
-    this.groupingsComponent.searchPlaceholder = this.i18nService.t("searchTrash");
-    if (load) {
-      await this.ciphersComponent.reload(null, true);
-    } else {
-      await this.ciphersComponent.applyFilter(null);
-    }
-    this.clearFilters();
-    this.deleted = true;
-    this.go();
   }
 
   filterSearchText(searchText: string) {
@@ -232,7 +206,9 @@ export class VaultComponent implements OnInit, OnDestroy {
       (comp) => {
         if (this.organization.canEditAnyCollection) {
           comp.collectionIds = cipher.collectionIds;
-          comp.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
+          comp.collections = this.vaultFilterComponent.collections.fullList.filter(
+            (c) => !c.readOnly
+          );
         }
         comp.organization = this.organization;
         comp.cipherId = cipher.id;
@@ -249,7 +225,9 @@ export class VaultComponent implements OnInit, OnDestroy {
     component.organizationId = this.organization.id;
     component.type = this.type;
     if (this.organization.canEditAnyCollection) {
-      component.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
+      component.collections = this.vaultFilterComponent.collections.fullList.filter(
+        (c) => !c.readOnly
+      );
     }
     if (this.collectionId != null) {
       component.collectionIds = [this.collectionId];
@@ -286,7 +264,9 @@ export class VaultComponent implements OnInit, OnDestroy {
     component.cloneMode = true;
     component.organizationId = this.organization.id;
     if (this.organization.canEditAnyCollection) {
-      component.collections = this.groupingsComponent.collections.filter((c) => !c.readOnly);
+      component.collections = this.vaultFilterComponent.collections.fullList.filter(
+        (c) => !c.readOnly
+      );
     }
     // Regardless of Admin state, the collection Ids need to passed manually as they are not assigned value
     // in the add-edit componenet
