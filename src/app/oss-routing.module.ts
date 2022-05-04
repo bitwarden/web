@@ -172,7 +172,8 @@ const routes: Routes = [
           },
           {
             path: "security",
-            loadChildren: async () => (await import("./settings/security.module")).SecurityModule,
+            loadChildren: async () =>
+              (await import("./settings/security-routing.module")).SecurityRoutingModule,
           },
           {
             path: "domain-rules",
@@ -235,7 +236,8 @@ const routes: Routes = [
       },
       {
         path: "reports",
-        loadChildren: async () => (await import("./reports/reports.module")).ReportsModule,
+        loadChildren: async () =>
+          (await import("./reports/reports-routing.module")).ReportsRoutingModule,
       },
       { path: "setup/families-for-enterprise", component: FamiliesForEnterpriseSetupComponent },
       {
