@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { TwoFactorComponent as BaseTwoFactorComponent } from "jslib-angular/components/two-factor.component";
 import { ModalService } from "jslib-angular/services/modal.service";
 import { ApiService } from "jslib-common/abstractions/api.service";
+import { AppIdService } from "jslib-common/abstractions/appId.service";
 import { AuthService } from "jslib-common/abstractions/auth.service";
 import { EnvironmentService } from "jslib-common/abstractions/environment.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -12,6 +13,8 @@ import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.se
 import { StateService } from "jslib-common/abstractions/state.service";
 import { TwoFactorService } from "jslib-common/abstractions/twoFactor.service";
 import { TwoFactorProviderType } from "jslib-common/enums/twoFactorProviderType";
+
+import { RouterService } from "../services/router.service";
 
 import { TwoFactorOptionsComponent } from "./two-factor-options.component";
 
@@ -34,7 +37,9 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
     private modalService: ModalService,
     route: ActivatedRoute,
     logService: LogService,
-    twoFactorService: TwoFactorService
+    twoFactorService: TwoFactorService,
+    appIdService: AppIdService,
+    private routerService: RouterService
   ) {
     super(
       authService,
@@ -47,7 +52,8 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
       stateService,
       route,
       logService,
-      twoFactorService
+      twoFactorService,
+      appIdService
     );
     this.onSuccessfulLoginNavigate = this.goAfterLogIn;
   }
@@ -70,10 +76,9 @@ export class TwoFactorComponent extends BaseTwoFactorComponent {
   }
 
   async goAfterLogIn() {
-    const loginRedirect = await this.stateService.getLoginRedirect();
-    if (loginRedirect != null) {
-      this.router.navigate([loginRedirect.route], { queryParams: loginRedirect.qParams });
-      await this.stateService.setLoginRedirect(null);
+    const previousUrl = this.routerService.getPreviousUrl();
+    if (previousUrl) {
+      this.router.navigateByUrl(previousUrl);
     } else {
       this.router.navigate([this.successRoute], {
         queryParams: {

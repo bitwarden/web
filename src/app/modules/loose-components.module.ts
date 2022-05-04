@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 
-import { VerifyMasterPasswordComponent } from "jslib-angular/components/verify-master-password.component";
+import { UserVerificationComponent } from "jslib-angular/components/user-verification.component";
 
 import { AcceptEmergencyComponent } from "../accounts/accept-emergency.component";
 import { AcceptOrganizationComponent } from "../accounts/accept-organization.component";
@@ -316,10 +316,10 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     UserBillingComponent,
     UserLayoutComponent,
     UserSubscriptionComponent,
+    UserVerificationComponent,
     VaultTimeoutInputComponent,
     VerifyEmailComponent,
     VerifyEmailTokenComponent,
-    VerifyMasterPasswordComponent,
     VerifyRecoverDeleteComponent,
     WeakPasswordsReportComponent,
   ],
@@ -474,10 +474,10 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     UserBillingComponent,
     UserLayoutComponent,
     UserSubscriptionComponent,
+    UserVerificationComponent,
     VaultTimeoutInputComponent,
     VerifyEmailComponent,
     VerifyEmailTokenComponent,
-    VerifyMasterPasswordComponent,
     VerifyRecoverDeleteComponent,
     WeakPasswordsReportComponent,
   ],

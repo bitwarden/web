@@ -9,6 +9,7 @@ import { InfiniteScrollModule } from "ngx-infinite-scroll";
 import { JslibModule } from "jslib-angular/jslib.module";
 
 import { OssRoutingModule } from "src/app/oss-routing.module";
+import { OssModule } from "src/app/oss.module";
 import { ServicesModule } from "src/app/services/services.module";
 import { WildcardRoutingModule } from "src/app/wildcard-routing.module";
 
@@ -21,6 +22,7 @@ import { MaximumVaultTimeoutPolicyComponent } from "./policies/maximum-vault-tim
 @NgModule({
   imports: [
     OverlayModule,
+    OssModule,
     JslibModule,
     BrowserAnimationsModule,
     FormsModule,

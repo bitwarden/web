@@ -21,8 +21,10 @@ import { UpdatePasswordComponent } from "./accounts/update-password.component";
 import { UpdateTempPasswordComponent } from "./accounts/update-temp-password.component";
 import { VerifyEmailTokenComponent } from "./accounts/verify-email-token.component";
 import { VerifyRecoverDeleteComponent } from "./accounts/verify-recover-delete.component";
+import { HomeGuard } from "./guards/home.guard";
 import { FrontendLayoutComponent } from "./layouts/frontend-layout.component";
 import { UserLayoutComponent } from "./layouts/user-layout.component";
+import { AcceptFamilySponsorshipComponent } from "./organizations/sponsorships/accept-family-sponsorship.component";
 import { FamiliesForEnterpriseSetupComponent } from "./organizations/sponsorships/families-for-enterprise-setup.component";
 import { AccessComponent } from "./send/access.component";
 import { SendComponent } from "./send/send.component";
@@ -47,8 +49,15 @@ const routes: Routes = [
   {
     path: "",
     component: FrontendLayoutComponent,
+    data: { doNotSaveUrl: true },
     children: [
-      { path: "", pathMatch: "full", component: LoginComponent, canActivate: [UnauthGuard] },
+      {
+        path: "",
+        pathMatch: "full",
+        children: [], // Children lets us have an empty component.
+        canActivate: [HomeGuard], // Redirects either to vault, login or lock page.
+      },
+      { path: "login", component: LoginComponent, canActivate: [UnauthGuard] },
       { path: "2fa", component: TwoFactorComponent, canActivate: [UnauthGuard] },
       {
         path: "register",
@@ -82,12 +91,17 @@ const routes: Routes = [
       {
         path: "accept-organization",
         component: AcceptOrganizationComponent,
-        data: { titleId: "joinOrganization" },
+        data: { titleId: "joinOrganization", doNotSaveUrl: false },
       },
       {
         path: "accept-emergency",
         component: AcceptEmergencyComponent,
-        data: { titleId: "acceptEmergency" },
+        data: { titleId: "acceptEmergency", doNotSaveUrl: false },
+      },
+      {
+        path: "accept-families-for-enterprise",
+        component: AcceptFamilySponsorshipComponent,
+        data: { titleId: "acceptFamilySponsorship", doNotSaveUrl: false },
       },
       { path: "recover", pathMatch: "full", redirectTo: "recover-2fa" },
       {
@@ -158,7 +172,8 @@ const routes: Routes = [
           },
           {
             path: "security",
-            loadChildren: async () => (await import("./settings/security.module")).SecurityModule,
+            loadChildren: async () =>
+              (await import("./settings/security-routing.module")).SecurityRoutingModule,
           },
           {
             path: "domain-rules",
@@ -221,7 +236,8 @@ const routes: Routes = [
       },
       {
         path: "reports",
-        loadChildren: async () => (await import("./reports/reports.module")).ReportsModule,
+        loadChildren: async () =>
+          (await import("./reports/reports-routing.module")).ReportsRoutingModule,
       },
       { path: "setup/families-for-enterprise", component: FamiliesForEnterpriseSetupComponent },
       {
