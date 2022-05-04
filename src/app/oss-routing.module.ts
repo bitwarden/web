@@ -155,8 +155,8 @@ const routes: Routes = [
       {
         path: "vault",
         loadChildren: async () =>
-          (await import("./modules/vault/modules/individual-vault/individual-vault-routing.module"))
-            .IndividualVaultRoutingModule,
+          (await import("./modules/vault/modules/individual-vault/individual-vault.module"))
+            .IndividualVaultModule,
       },
       { path: "sends", component: SendComponent, data: { title: "Send" } },
       {
