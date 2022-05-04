@@ -20,14 +20,14 @@
     ></div>
   </div>
 </div>
-<div class="form-group">
-  <label class="d-block">{{ "whatWouldYouLikeToGenerate" | i18n }}</label>
+<div class="form-group" role="radiogroup" aria-labelledby="typeHeading">
+  <label id="typeHeading" class="d-block">{{ "whatWouldYouLikeToGenerate" | i18n }}</label>
   <div class="form-check form-check-inline" *ngFor="let o of typeOptions">
     <input
       class="form-check-input"
       type="radio"
       [(ngModel)]="type"
-      name="Type_{{ o.value }}"
+      name="Type"
       id="type_{{ o.value }}"
       [value]="o.value"
       (change)="typeChanged()"
@@ -39,14 +39,14 @@
   </div>
 </div>
 <ng-container *ngIf="type === 'password'">
-  <div class="form-group">
-    <label class="d-block">{{ "passwordType" | i18n }}</label>
+  <div aria-labelledby="passwordTypeHeading" class="form-group" role="radiogroup">
+    <label id="passwordTypeHeading" class="d-block">{{ "passwordType" | i18n }}</label>
     <div class="form-check form-check-inline" *ngFor="let o of passTypeOptions">
       <input
         class="form-check-input"
         type="radio"
         [(ngModel)]="passwordOptions.type"
-        name="PasswordType_{{ o.value }}"
+        name="PasswordType"
         id="passwordType_{{ o.value }}"
         [value]="o.value"
         (change)="savePasswordOptions()"
@@ -161,6 +161,7 @@
           (change)="savePasswordOptions()"
           [(ngModel)]="passwordOptions.uppercase"
           [disabled]="enforcedPasswordPolicyOptions?.useUppercase"
+          attr.aria-label="{{ 'uppercase' | i18n }}"
         />
         <label for="uppercase" class="form-check-label">A-Z</label>
       </div>
@@ -172,6 +173,7 @@
           (change)="savePasswordOptions()"
           [(ngModel)]="passwordOptions.lowercase"
           [disabled]="enforcedPasswordPolicyOptions?.useLowercase"
+          attr.aria-label="{{ 'lowercase' | i18n }}"
         />
         <label for="lowercase" class="form-check-label">a-z</label>
       </div>
@@ -183,6 +185,7 @@
           (change)="savePasswordOptions()"
           [(ngModel)]="passwordOptions.number"
           [disabled]="enforcedPasswordPolicyOptions?.useNumbers"
+          attr.aria-label="{{ 'numbers' | i18n }}"
         />
         <label for="numbers" class="form-check-label">0-9</label>
       </div>
@@ -194,6 +197,7 @@
           (change)="savePasswordOptions()"
           [(ngModel)]="passwordOptions.special"
           [disabled]="enforcedPasswordPolicyOptions?.useSpecial"
+          attr.aria-label="{{ 'specialCharacters' | i18n }}"
         />
         <label for="special" class="form-check-label">!@#$%^&amp;*</label>
       </div>
@@ -231,9 +235,9 @@
   </div>
 </ng-container>
 <ng-container *ngIf="type === 'username'">
-  <div class="form-group">
+  <div aria-labelledby="usernameTypeHeading" class="form-group" role="radiogroup">
     <div class="d-block">
-      <label>{{ "usernameType" | i18n }}</label>
+      <label id="usernameTypeHeading">{{ "usernameType" | i18n }}</label>
       <a
         class="ml-auto"
         href="https://bitwarden.com/help/generator/#username-types"
@@ -249,7 +253,7 @@
         class="form-check-input"
         type="radio"
         [(ngModel)]="usernameOptions.type"
-        name="UsernameType_{{ o.value }}"
+        name="UsernameType"
         id="usernameType_{{ o.value }}"
         [value]="o.value"
         (change)="saveUsernameOptions()"
@@ -261,23 +265,82 @@
       </label>
     </div>
   </div>
-  <div class="form-group" *ngIf="usernameOptions.type === 'forwarded'">
-    <div class="form-check form-check-inline" *ngFor="let o of forwardOptions">
-      <input
-        class="form-check-input"
-        type="radio"
-        [(ngModel)]="usernameOptions.forwardedService"
-        name="ForwardType_{{ o.value }}"
-        id="forwardtype_{{ o.value }}"
-        [value]="o.value"
-        (change)="saveUsernameOptions()"
-        [checked]="usernameOptions.forwardedService === o.value"
-      />
-      <label class="form-check-label" for="forwardtype_{{ o.value }}">
-        {{ o.name }}
-      </label>
+  <ng-container *ngIf="usernameOptions.type === 'forwarded'">
+    <div class="form-group">
+      <label class="d-block">{{ "service" | i18n }}</label>
+      <div class="form-check" *ngFor="let o of forwardOptions">
+        <input
+          class="form-check-input"
+          type="radio"
+          [(ngModel)]="usernameOptions.forwardedService"
+          name="ForwardType"
+          id="forwardtype_{{ o.value }}"
+          [value]="o.value"
+          (change)="saveUsernameOptions()"
+          [checked]="usernameOptions.forwardedService === o.value"
+        />
+        <label class="form-check-label" for="forwardtype_{{ o.value }}">
+          {{ o.name }}
+        </label>
+      </div>
     </div>
-  </div>
+    <div class="row" *ngIf="usernameOptions.forwardedService === 'simplelogin'">
+      <div class="form-group col-4">
+        <label for="simplelogin-apikey">{{ "apiKey" | i18n }}</label>
+        <input
+          id="simplelogin-apikey"
+          class="form-control"
+          type="password"
+          [(ngModel)]="usernameOptions.forwardedSimpleLoginApiKey"
+          (blur)="saveUsernameOptions()"
+        />
+      </div>
+      <div class="form-group col-4">
+        <label for="simplelogin-hostname">{{ "hostname" | i18n }}</label>
+        <input
+          id="simplelogin-hostname"
+          class="form-control"
+          type="text"
+          [(ngModel)]="usernameOptions.forwardedSimpleLoginHostname"
+          (blur)="saveUsernameOptions()"
+        />
+      </div>
+    </div>
+    <div class="row" *ngIf="usernameOptions.forwardedService === 'anonaddy'">
+      <div class="form-group col-4">
+        <label for="anonaddy-apikey">{{ "apiAccessToken" | i18n }}</label>
+        <input
+          id="anonaddy-apikey"
+          class="form-control"
+          type="password"
+          [(ngModel)]="usernameOptions.forwardedAnonAddyApiToken"
+          (blur)="saveUsernameOptions()"
+        />
+      </div>
+      <div class="form-group col-4">
+        <label for="anonaddy-domain">{{ "domainName" | i18n }}</label>
+        <input
+          id="anonaddy-domain"
+          class="form-control"
+          type="text"
+          [(ngModel)]="usernameOptions.forwardedAnonAddyDomain"
+          (blur)="saveUsernameOptions()"
+        />
+      </div>
+    </div>
+    <div class="row" *ngIf="usernameOptions.forwardedService === 'firefoxrelay'">
+      <div class="form-group col-4">
+        <label for="firefox-apikey">{{ "apiAccessToken" | i18n }}</label>
+        <input
+          id="firefox-apikey"
+          class="form-control"
+          type="password"
+          [(ngModel)]="usernameOptions.forwardedFirefoxApiToken"
+          (blur)="saveUsernameOptions()"
+        />
+      </div>
+    </div>
+  </ng-container>
   <div class="row" *ngIf="usernameOptions.type === 'subaddress'">
     <div class="form-group col-4">
       <label for="subaddress-email">{{ "emailAddress" | i18n }}</label>
@@ -329,9 +392,15 @@
       </div>
     </div>
   </ng-container>
-  <div>
-    <button type="button" class="btn btn-primary" (click)="regenerate()">
-      {{ "regenerateUsername" | i18n }}
+  <div #form [appApiAction]="usernameGeneratingPromise">
+    <button
+      type="button"
+      class="btn btn-submit btn-primary"
+      (click)="regenerate()"
+      [disabled]="form.loading"
+    >
+      <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
+      <span>{{ "regenerateUsername" | i18n }}</span>
     </button>
     <button type="button" class="btn btn-outline-secondary" (click)="copy()">
       {{ "copyUsername" | i18n }}

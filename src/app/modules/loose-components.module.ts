@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 
-import { VerifyMasterPasswordComponent } from "jslib-angular/components/verify-master-password.component";
+import { UserVerificationComponent } from "jslib-angular/components/user-verification.component";
 
 import { AcceptEmergencyComponent } from "../accounts/accept-emergency.component";
 import { AcceptOrganizationComponent } from "../accounts/accept-organization.component";
@@ -158,13 +158,15 @@ import { CollectionsComponent } from "../vault/collections.component";
 import { FolderAddEditComponent } from "../vault/folder-add-edit.component";
 import { ShareComponent } from "../vault/share.component";
 
+import { PipesModule } from "./pipes/pipes.module";
 import { SharedModule } from "./shared.module";
 import { VaultFilterModule } from "./vault-filter/vault-filter.module";
+import { OrganizationBadgeModule } from "./vault/modules/organization-badge/organization-badge.module";
 
 // Please do not add to this list of declarations - we should refactor these into modules when doing so makes sense until there are none left.
 // If you are building new functionality, please create or extend a feature module instead.
 @NgModule({
-  imports: [SharedModule, VaultFilterModule],
+  imports: [SharedModule, VaultFilterModule, OrganizationBadgeModule, PipesModule],
   declarations: [
     PremiumBadgeComponent,
     AcceptEmergencyComponent,
@@ -318,10 +320,10 @@ import { VaultFilterModule } from "./vault-filter/vault-filter.module";
     UserBillingHistoryComponent,
     UserLayoutComponent,
     UserSubscriptionComponent,
+    UserVerificationComponent,
     VaultTimeoutInputComponent,
     VerifyEmailComponent,
     VerifyEmailTokenComponent,
-    VerifyMasterPasswordComponent,
     VerifyRecoverDeleteComponent,
     WeakPasswordsReportComponent,
   ],
@@ -478,10 +480,10 @@ import { VaultFilterModule } from "./vault-filter/vault-filter.module";
     UserBillingHistoryComponent,
     UserLayoutComponent,
     UserSubscriptionComponent,
+    UserVerificationComponent,
     VaultTimeoutInputComponent,
     VerifyEmailComponent,
     VerifyEmailTokenComponent,
-    VerifyMasterPasswordComponent,
     VerifyRecoverDeleteComponent,
     WeakPasswordsReportComponent,
   ],
