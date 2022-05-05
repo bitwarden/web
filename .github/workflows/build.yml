@@ -218,7 +218,7 @@ jobs:
         run: |
           echo -e "\nBuilding Docker image"
           docker --version
-          docker build -t bitwarden/web .
+          docker build -t bitwarden/web -f docker/Dockerfile .
 
       - name: Tag rc branch
         if: github.ref == 'refs/heads/rc'
@@ -340,7 +340,7 @@ jobs:
 
           echo -e "\nBuilding Docker image"
           docker --version
-          docker build -t bitwardenqa.azurecr.io/web .
+          docker build -t bitwardenqa.azurecr.io/web -f docker/Dockerfile-QA .
 
       - name: Get image tag
         id: image-tag
