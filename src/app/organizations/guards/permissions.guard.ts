@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, CanActivate, Router } from "@angular/router";
 
-import { BaseGuard } from "jslib-angular/guards/base.guard";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
@@ -9,16 +8,14 @@ import { SyncService } from "jslib-common/abstractions/sync.service";
 import { Permissions } from "jslib-common/enums/permissions";
 
 @Injectable()
-export class PermissionsGuard extends BaseGuard implements CanActivate {
+export class PermissionsGuard implements CanActivate {
   constructor(
-    router: Router,
+    private router: Router,
     private organizationService: OrganizationService,
     private platformUtilsService: PlatformUtilsService,
     private i18nService: I18nService,
     private syncService: SyncService
-  ) {
-    super(router);
-  }
+  ) {}
 
   async canActivate(route: ActivatedRouteSnapshot) {
     // TODO: We need to fix this issue once and for all.
