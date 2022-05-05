@@ -1,0 +1,350 @@
+---
+name: Release Web
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'Release Options'
+        required: true
+        default: 'Initial Release'
+        type: choice
+        options:
+          - Initial Release
+          - Redeploy
+          - Dry Run
+
+defaults:
+  run:
+    working-directory: apps/web
+
+jobs:
+  setup:
+    name: Setup
+    runs-on: ubuntu-20.04
+    outputs:
+      release_version: ${{ steps.version.outputs.package }}
+      tag_version: ${{ steps.version.outputs.tag }}
+      branch_name: ${{ steps.branch.outputs.branch_name }}
+    steps:
+      - name: Branch check
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        run: |
+          if [[ "$GITHUB_REF" != "refs/heads/rc" ]] && [[ "$GITHUB_REF" != "refs/heads/hotfix-rc/*" ]]; then
+            echo "==================================="
+            echo "[!] Can only release from the 'rc' or 'hotfix-rc/*' branches"
+            echo "==================================="
+            exit 1
+          fi
+
+      - name: Checkout repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
+
+      - name: Check Release Version
+        id: version
+        run: |
+          version=$( jq -r ".version" package.json)
+          previous_release_tag_version=$(
+            curl -sL https://api.github.com/repos/$GITHUB_REPOSITORY/releases/latest | jq -r ".tag_name"
+          )
+
+          if [ "v$version" == "$previous_release_tag_version" ] && \
+          [ "${{ github.event.inputs.release_type }}" == "Initial Release" ]; then
+            echo "[!] Already released v$version. Please bump version to continue"
+            exit 1
+          fi
+
+          echo "::set-output name=package::$version"
+          echo "::set-output name=tag::v$version"
+
+      - name: Get branch name
+        id: branch
+        run: |
+          BRANCH_NAME=$(basename ${{ github.ref }})
+          echo "::set-output name=branch_name::$BRANCH_NAME"
+
+
+  self-host:
+    name: Release self-host docker
+    runs-on: ubuntu-20.04
+    needs: setup
+    env:
+      _BRANCH_NAME: ${{ needs.setup.outputs.branch_name }}
+      _RELEASE_VERSION: ${{ needs.setup.outputs.release_version }}
+      _RELEASE_OPTION: ${{ github.event.inputs.release_type }}
+    steps:
+      - name: Print environment
+        run: |
+          whoami
+          docker --version
+          echo "GitHub ref: $GITHUB_REF"
+          echo "GitHub event: $GITHUB_EVENT"
+          echo "Github Release Option: $_RELEASE_OPTION"
+
+      - name: Checkout repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
+
+      ########## DockerHub ##########
+      - name: Setup DCT
+        id: setup-dct
+        uses: bitwarden/gh-actions/setup-docker-trust@a8c384a05a974c05c48374c818b004be221d43ff
+        with:
+          azure-creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
+          azure-keyvault-name: "bitwarden-prod-kv"
+
+      - name: Pull latest selfhost image
+        run: |
+          if [[ "${{ github.event.inputs.release_type }}" == "Dry Run" ]]; then
+            docker pull bitwarden/web:latest
+          else
+            docker pull bitwarden/web:$_BRANCH_NAME
+          fi
+
+      - name: Tag version and latest
+        run: |
+          if [[ "${{ github.event.inputs.release_type }}" == "Dry Run" ]]; then
+            docker tag bitwarden/web:latest bitwarden/web:dryrun
+          else
+            docker tag bitwarden/web:$_BRANCH_NAME bitwarden/web:$_RELEASE_VERSION
+            docker tag bitwarden/web:$_BRANCH_NAME bitwarden/web:latest
+          fi
+
+      - name: Push version and latest image
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        env:
+          DOCKER_CONTENT_TRUST: 1
+          DOCKER_CONTENT_TRUST_REPOSITORY_PASSPHRASE: ${{ steps.setup-dct.outputs.dct-delegate-repo-passphrase }}
+        run: |
+          docker push bitwarden/web:$_RELEASE_VERSION
+          docker push bitwarden/web:latest
+
+      - name: Log out of Docker and disable Docker Notary
+        run: |
+          docker logout
+          echo "DOCKER_CONTENT_TRUST=0" >> $GITHUB_ENV
+
+      ########## ACR ##########
+      - name: Login to Azure - QA Subscription
+        uses: Azure/login@ec3c14589bd3e9312b3cc8c41e6860e258df9010  # v1.1
+        with:
+          creds: ${{ secrets.AZURE_QA_KV_CREDENTIALS }}
+
+      - name: Login to Azure ACR
+        run: az acr login -n bitwardenqa
+
+      - name: Tag version and latest
+        env:
+          REGISTRY: bitwardenqa.azurecr.io
+        run: |
+          if [[ "${{ github.event.inputs.release_type }}" == "Dry Run" ]]; then
+            docker tag bitwarden/web:latest $REGISTRY/web:dryrun
+          else
+            docker tag bitwarden/web:$_BRANCH_NAME $REGISTRY/web:$_RELEASE_VERSION
+            docker tag bitwarden/web:$_BRANCH_NAME $REGISTRY/web:latest
+
+            docker tag bitwarden/web:$_BRANCH_NAME $REGISTRY/web-sh:$_RELEASE_VERSION
+            docker tag bitwarden/web:$_BRANCH_NAME $REGISTRY/web-sh:latest
+          fi
+
+      - name: Push version and latest image
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        env:
+          REGISTRY: bitwardenqa.azurecr.io
+        run: |
+          docker push $REGISTRY/web:$_RELEASE_VERSION
+          docker push $REGISTRY/web:latest
+
+          docker push $REGISTRY/web-sh:$_RELEASE_VERSION
+          docker push $REGISTRY/web-sh:latest
+
+      - name: Log out of Docker
+        run: docker logout
+
+
+  ghpages-deploy:
+    name: Deploy Web Vault to GitHub Pages
+    runs-on: ubuntu-20.04
+    needs:
+      - setup
+      - self-host
+    env:
+      _RELEASE_VERSION: ${{ needs.setup.outputs.release_version }}
+      _TAG_VERSION: ${{ needs.setup.outputs.tag_version }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2  # v2.4.0
+        with:
+          ref: gh-pages
+
+      - name: Create gh-pages-deploy branch
+        run: |
+          git switch -c gh-pages-deploy-$_TAG_VERSION
+          git push -u origin gh-pages-deploy-$_TAG_VERSION
+
+      - name: Checkout Repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2  # v2.4.0
+
+      - name: Setup git config
+        run: |
+          git config user.name = "GitHub Action Bot"
+          git config user.email = "<>"
+          git config --global url."https://github.com/".insteadOf ssh://git@github.com/
+          git config --global url."https://".insteadOf ssh://
+
+      - name: Download latest cloud asset
+        uses: bitwarden/gh-actions/download-artifacts@c1fa8e09871a860862d6bbe36184b06d2c7e35a8
+        with:
+          workflow: build-web.yml
+          path: apps/web
+          workflow_conclusion: success
+          branch: ${{ needs.setup.outputs.branch_name }}
+          artifacts: web-*-cloud-COMMERCIAL.zip
+
+      # This should result in a build directory in the current working directory
+      - name: Unzip build asset
+        run: unzip web-*-cloud-COMMERCIAL.zip
+
+      - name: Deploy GitHub Pages
+        uses: crazy-max/ghaction-github-pages@a117e4aa1fb4854d021546d2abdfac95be568a3a  # v2.6.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          target_branch: gh-pages-deploy-${{ needs.setup.outputs.tag_version }}
+          build_dir: build
+          keep_history: true
+          commit_message: "Staging deploy ${{ needs.setup.outputs.release_version }}"
+          dry_run: ${{ github.event.inputs.release_type == 'Dry Run' }}
+
+      - name: Create GitHub Pages Deploy PR
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        env:
+          PR_BRANCH: gh-pages-deploy-${{ env._TAG_VERSION }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create --title "Deploy $_RELEASE_VERSION to GitHub Pages" \
+            --body "Deploying $_RELEASE_VERSION" \
+            --base gh-pages \
+            --head "$PR_BRANCH"
+
+
+  cfpages-deploy:
+    name: Deploy Web Vault to CloudFlare Pages branch
+    runs-on: ubuntu-20.04
+    needs:
+      - setup
+      - self-host
+    env:
+      _RELEASE_VERSION: ${{ needs.setup.outputs.release_version }}
+      _TAG_VERSION: ${{ needs.setup.outputs.tag_version }}
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2  # v2.4.0
+
+      - name: Download latest cloud asset
+        uses: bitwarden/gh-actions/download-artifacts@c1fa8e09871a860862d6bbe36184b06d2c7e35a8
+        with:
+          workflow: build-web.yml
+          path: apps/web
+          workflow_conclusion: success
+          branch: ${{ needs.setup.outputs.branch_name }}
+          artifacts: web-*-cloud-COMMERCIAL.zip
+
+      # This should result in a build directory in the current working directory
+      - name: Unzip build asset
+        run: unzip web-*-cloud-COMMERCIAL.zip
+
+      - name: Checkout Repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2  # v2.4.0
+        with:
+          ref: deploy
+          path: deployment
+
+      - name: Setup git config
+        run: |
+          git config --global user.name = "GitHub Action Bot"
+          git config --global user.email = "<>"
+          git config --global url."https://github.com/".insteadOf ssh://git@github.com/
+          git config --global url."https://".insteadOf ssh://
+
+      - name: Deploy CloudFlare Pages
+        run: |
+          rm -rf ./*
+          cp -R ../build/* .
+        working-directory: deployment
+
+      - name: Create cf-pages-deploy branch
+        run: |
+          git switch -c cf-pages-deploy-$_TAG_VERSION
+          git add .
+          git commit -m "Staging deploy ${{ needs.setup.outputs.release_version }}"
+          git push -u origin cf-pages-deploy-$_TAG_VERSION
+        working-directory: deployment
+
+      - name: Create CloudFlare Pages Deploy PR
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        env:
+          PR_BRANCH: cf-pages-deploy-${{ env._TAG_VERSION }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh pr create --title "Deploy $_RELEASE_VERSION to CloudFlare Pages" \
+            --body "Deploying $_RELEASE_VERSION" \
+            --base deploy \
+            --head "$PR_BRANCH"
+
+
+  release:
+    name: Create GitHub Release
+    runs-on: ubuntu-20.04
+    needs:
+      - setup
+      - self-host
+      - ghpages-deploy
+      - cfpages-deploy
+    steps:
+      - name: Download latest build artifacts
+        uses: bitwarden/gh-actions/download-artifacts@c1fa8e09871a860862d6bbe36184b06d2c7e35a8
+        with:
+          workflow: build-web.yml
+          path: apps/web
+          workflow_conclusion: success
+          branch: ${{ needs.setup.outputs.branch_name }}
+          artifacts: "web-*-selfhosted-COMMERCIAL.zip,
+            web-*-selfhosted-open-source.zip"
+
+      - name: Rename assets
+        run: |
+          mv web-*-selfhosted-COMMERCIAL.zip web-${{ needs.setup.outputs.release_version }}-selfhosted-COMMERCIAL.zip
+          mv web-*-selfhosted-open-source.zip web-${{ needs.setup.outputs.release_version }}-selfhosted-open-source.zip
+
+      - name: Create release
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        uses: ncipollo/release-action@58ae73b360456532aafd58ee170c045abbeaee37  # v1.10.0
+        with:
+          name: "Version ${{ needs.setup.outputs.release_version }}"
+          commit: ${{ github.sha }}
+          tag: "${{ needs.setup.outputs.tag_version }}"
+          body: "<insert release notes here>"
+          artifacts: "web-${{ needs.setup.outputs.release_version }}-selfhosted-COMMERCIAL.zip,
+            web-${{ needs.setup.outputs.release_version }}-selfhosted-open-source.zip"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true
+
+
+  dry-run:
+    name: Dry Run Cleanup
+    runs-on: ubuntu-20.04
+    if: ${{ github.event.inputs.release_type == 'Dry Run' }}
+    env:
+      _TAG_VERSION: ${{ needs.setup.outputs.tag_version }}
+    needs:
+      - setup
+      - release
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
+
+      - name: Remove gh-pages-deploy branch
+        run: git push origin --delete gh-pages-deploy-$_TAG_VERSION
+
+      - name: Remove cf-pages-deploy branch
+        run: git push origin --delete cf-pages-deploy-$_TAG_VERSION

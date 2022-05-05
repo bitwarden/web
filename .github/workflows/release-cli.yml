@@ -1,0 +1,211 @@
+---
+name: Release CLI
+
+on:
+  workflow_dispatch:
+    inputs:
+      release_type:
+        description: 'Release Options'
+        required: true
+        default: 'Initial Release'
+        type: choice
+        options:
+          - Initial Release
+          - Redeploy
+          - Dry Run
+
+defaults:
+  run:
+    working-directory: apps/cli
+
+jobs:
+  setup:
+    name: Setup
+    runs-on: ubuntu-20.04
+    outputs:
+      package_version: ${{ steps.retrieve-version.outputs.package_version }}
+      branch-name: ${{ steps.branch.outputs.branch-name }}
+    steps:
+      - name: Branch check
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        run: |
+          if [[ "$GITHUB_REF" != "refs/heads/rc" ]] && [[ "$GITHUB_REF" != "refs/heads/hotfix-rc/*" ]]; then
+            echo "==================================="
+            echo "[!] Can only release from the 'rc' or 'hotfix-rc/*' branches"
+            echo "==================================="
+            exit 1
+          fi
+
+      - name: Checkout repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
+
+      - name: Retrieve CLI release version
+        id: retrieve-version
+        run: |
+          PKG_VERSION=$(jq -r .version package.json)
+          echo "::set-output name=package_version::$PKG_VERSION"
+
+      - name: Check to make sure CLI release version has been bumped
+        if: ${{ github.event.inputs.release_type == 'Initial Release' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          latest_ver=$(
+            curl -sL https://api.github.com/repos/$GITHUB_REPOSITORY/releases | jq -r 'first(.[] | select(.tag_name | startswith("cli"))).tag_name'
+          )
+          latest_ver=${latest_ver:1}
+          echo "Latest version: $latest_ver"
+          ver=${{ steps.retrieve-version.outputs.package_version }}
+          echo "Version: $ver"
+          if [ "$latest_ver" = "$ver" ]; then
+            echo "Version has not been bumped!"
+            exit 1
+          fi
+        shell: bash
+
+      - name: Get branch name
+        id: branch
+        run: |
+          BRANCH_NAME=$(basename ${{ github.ref }})
+          echo "::set-output name=branch-name::$BRANCH_NAME"
+
+      - name: Download all artifacts
+        uses: bitwarden/gh-actions/download-artifacts@c1fa8e09871a860862d6bbe36184b06d2c7e35a8
+        with:
+          workflow: build-ci.yml
+          path: apps/cli
+          workflow_conclusion: success
+          branch: ${{ steps.branch.outputs.branch-name }}
+
+      - name: Create release
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        uses: ncipollo/release-action@58ae73b360456532aafd58ee170c045abbeaee37  # v1.10.0
+        env:
+          PKG_VERSION: ${{ steps.retrieve-version.outputs.package_version }}
+        with:
+          artifacts: "bw-windows-${{ env.PKG_VERSION }}.zip,
+                      bw-windows-sha256-${{ env.PKG_VERSION }}.txt,
+                      bw-macos-${{ env.PKG_VERSION }}.zip,
+                      bw-macos-sha256-${{ env.PKG_VERSION }}.txt,
+                      bw-linux-${{ env.PKG_VERSION }}.zip,
+                      bw-linux-sha256-${{ env.PKG_VERSION }}.txt,
+                      bitwarden-cli.${{ env.PKG_VERSION }}.nupkg,
+                      bw_${{ env.PKG_VERSION }}_amd64.snap,
+                      bw-snap-sha256-${{ env.PKG_VERSION }}.txt"
+          commit: ${{ github.sha }}
+          tag: v${{ env.PKG_VERSION }}
+          name: Version ${{ env.PKG_VERSION }}
+          body: "<insert release notes here>"
+          token: ${{ secrets.GITHUB_TOKEN }}
+          draft: true
+
+
+  snap:
+    name: Deploy Snap
+    runs-on: ubuntu-20.04
+    needs: setup
+    env:
+      _PKG_VERSION: ${{ needs.setup.outputs.package_version }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
+
+      - name: Login to Azure
+        uses: Azure/login@ec3c14589bd3e9312b3cc8c41e6860e258df9010  # v1.1
+        with:
+          creds: ${{ secrets.AZURE_PROD_KV_CREDENTIALS }}
+
+      - name: Retrieve secrets
+        id: retrieve-secrets
+        uses: Azure/get-keyvault-secrets@b5c723b9ac7870c022b8c35befe620b7009b336f
+        with:
+          keyvault: "bitwarden-prod-kv"
+          secrets: "snapcraft-store-token"
+
+      - name: Install Snap
+        uses: samuelmeuli/action-snapcraft@10d7d0a84d9d86098b19f872257df314b0bd8e2d  # v1.2.0
+        with:
+          snapcraft_token: ${{ steps.retrieve-secrets.outputs.snapcraft-store-token }}
+
+      - name: Download artifacts
+        uses: bitwarden/gh-actions/download-artifacts@c1fa8e09871a860862d6bbe36184b06d2c7e35a8
+        with:
+          workflow: build-cli.yml
+          path: apps/cli
+          workflow_conclusion: success
+          branch: ${{ needs.setup.outputs.branch-name }}
+          artifacts: bw_${{ env._PKG_VERSION }}_amd64.snap
+
+      - name: Publish Snap & logout
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        run: |
+          snapcraft push bw_${{ env._PKG_VERSION }}_amd64.snap --release stable
+          snapcraft logout
+
+
+  choco:
+    name: Deploy Choco
+    runs-on: windows-2019
+    needs: setup
+    env:
+      _PKG_VERSION: ${{ needs.setup.outputs.package_version }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
+
+      - name: Setup Chocolatey
+        run: choco apikey --key $env:CHOCO_API_KEY --source https://push.chocolatey.org/
+        env:
+          CHOCO_API_KEY: ${{ secrets.CHOCO_API_KEY }}
+
+      - name: Make dist dir
+        shell: pwsh
+        run: New-Item -ItemType directory -Path ./dist
+
+      - name: Download artifacts
+        uses: bitwarden/gh-actions/download-artifacts@c1fa8e09871a860862d6bbe36184b06d2c7e35a8
+        with:
+          workflow: build-cli.yml
+          path: apps/cli
+          workflow_conclusion: success
+          branch: ${{ needs.setup.outputs.branch-name }}
+          artifacts: bitwarden-cli.${{ env._PKG_VERSION }}.nupkg
+
+      - name: Push to Chocolatey
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        shell: pwsh
+        run: |
+          cd dist
+          choco push
+
+
+  npm:
+    name: Publish NPM
+    runs-on: ubuntu-20.04
+    needs: setup
+    env:
+      _PKG_VERSION: ${{ needs.setup.outputs.package_version }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
+
+      - name: Download artifacts
+        uses: bitwarden/gh-actions/download-artifacts@c1fa8e09871a860862d6bbe36184b06d2c7e35a8
+        with:
+          workflow: build-cli.yml
+          path: apps/cli
+          workflow_conclusion: success
+          branch: ${{ needs.setup.outputs.branch-name }}
+          artifacts: bitwarden-cli-${{ env._PKG_VERSION }}-npm-build.zip
+
+      - name: Setup NPM
+        run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > .npmrc
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Install Husky
+        run: npm install -g husky
+
+      - name: Publish NPM
+        if: ${{ github.event.inputs.release_type != 'Dry Run' }}
+        run: npm publish --access public

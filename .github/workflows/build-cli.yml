@@ -25,6 +25,7 @@ jobs:
         run: |
           sudo apt update
           sudo apt -y install cloc
+
       - name: Print lines of code
         run: cloc --include-lang TypeScript,JavaScript --vcs git
 
@@ -62,11 +63,12 @@ jobs:
         run: |
           choco install checksum --no-progress
           choco install reshack --no-progress
+
       - name: Set up Node
         uses: actions/setup-node@56337c425554a6be30cdef71bf441f15be286854  # v3.1.1
         with:
           cache: 'npm'
-          cache-dependency-path: 'apps/cli/package-lock.json'
+          cache-dependency-path: 'apps/cli/**/package-lock.json'
           node-version: '16'
 
       - name: Get pkg-fetch
@@ -78,6 +80,7 @@ jobs:
           New-Item -ItemType directory -Path .\.pkg-cache\v$env:_WIN_PKG_VERSION
           Invoke-RestMethod -Uri $fetchedUrl `
             -OutFile ".\.pkg-cache\v$env:_WIN_PKG_VERSION\fetched-v$env:_WIN_PKG_FETCH_VERSION-win-x64"
+
       - name: Setup Version Info
         shell: pwsh
         run: |
@@ -111,6 +114,7 @@ jobs:
           "@
           $versionInfo | Out-File ./version-info.rc
       # https://github.com/vercel/pkg-fetch/issues/188
+
       - name: Resource Hacker
         shell: cmd
         run: |
@@ -121,6 +125,7 @@ jobs:
           ResourceHacker -open %WIN_PKG_BUILT% -save %WIN_PKG_BUILT% -action delete -mask ICONGROUP,1,
           ResourceHacker -open version-info.rc -save version-info.res -action compile
           ResourceHacker -open %WIN_PKG_BUILT% -save %WIN_PKG_BUILT% -action addoverwrite -resource version-info.res
+
       - name: Setup sub-module
         run: npm run sub:init
 
@@ -140,12 +145,14 @@ jobs:
           Copy-Item dist/windows/bw.exe -Destination dist/chocolatey/tools
           Copy-Item LICENSE.txt -Destination dist/chocolatey/tools
           choco pack dist/chocolatey/bitwarden-cli.nuspec --version ${{ env._PACKAGE_VERSION }} --out dist/chocolatey
+
       - name: Zip
         shell: cmd
         run: |
           7z a ./dist/bw-windows-%_PACKAGE_VERSION%.zip ./dist/windows/bw.exe
           7z a ./dist/bw-macos-%_PACKAGE_VERSION%.zip ./dist/macos/bw
           7z a ./dist/bw-linux-%_PACKAGE_VERSION%.zip ./dist/linux/bw
+
       - name: Version Test
         run: |
           dir ./dist/
@@ -156,6 +163,7 @@ jobs:
           if($testVersion -ne $env:_PACKAGE_VERSION) {
             Throw "Version test failed."
           }
+
       - name: Create checksums
         run: |
           checksum -f="./dist/bw-windows-${env:_PACKAGE_VERSION}.zip" `
@@ -164,60 +172,61 @@ jobs:
             -t sha256 | Out-File -Encoding ASCII ./dist/bw-macos-sha256-${env:_PACKAGE_VERSION}.txt
           checksum -f="./dist/bw-linux-${env:_PACKAGE_VERSION}.zip" `
             -t sha256 | Out-File -Encoding ASCII ./dist/bw-linux-sha256-${env:_PACKAGE_VERSION}.txt
+
       - name: Upload windows zip asset
         uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
         with:
           name: bw-windows-${{ env._PACKAGE_VERSION }}.zip
-          path: ./dist/bw-windows-${{ env._PACKAGE_VERSION }}.zip
+          path: apps/cli/dist/bw-windows-${{ env._PACKAGE_VERSION }}.zip
           if-no-files-found: error
 
       - name: Upload windows checksum asset
         uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
         with:
           name: bw-windows-sha256-${{ env._PACKAGE_VERSION }}.txt
-          path: ./dist/bw-windows-sha256-${{ env._PACKAGE_VERSION }}.txt
+          path: apps/cli/dist/bw-windows-sha256-${{ env._PACKAGE_VERSION }}.txt
           if-no-files-found: error
 
       - name: Upload macos zip asset
         uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
         with:
           name: bw-macos-${{ env._PACKAGE_VERSION }}.zip
-          path: ./dist/bw-macos-${{ env._PACKAGE_VERSION }}.zip
+          path: apps/cli/dist/bw-macos-${{ env._PACKAGE_VERSION }}.zip
           if-no-files-found: error
 
       - name: Upload macos checksum asset
         uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
         with:
           name: bw-macos-sha256-${{ env._PACKAGE_VERSION }}.txt
-          path: ./dist/bw-macos-sha256-${{ env._PACKAGE_VERSION }}.txt
+          path: apps/cli/dist/bw-macos-sha256-${{ env._PACKAGE_VERSION }}.txt
           if-no-files-found: error
 
       - name: Upload linux zip asset
         uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
         with:
           name: bw-linux-${{ env._PACKAGE_VERSION }}.zip
-          path: ./dist/bw-linux-${{ env._PACKAGE_VERSION }}.zip
+          path: apps/cli/dist/bw-linux-${{ env._PACKAGE_VERSION }}.zip
           if-no-files-found: error
 
       - name: Upload linux checksum asset
         uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
         with:
           name: bw-linux-sha256-${{ env._PACKAGE_VERSION }}.txt
-          path: ./dist/bw-linux-sha256-${{ env._PACKAGE_VERSION }}.txt
+          path: apps/cli/dist/bw-linux-sha256-${{ env._PACKAGE_VERSION }}.txt
           if-no-files-found: error
 
       - name: Upload Chocolatey asset
         uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
         with:
           name: bitwarden-cli.${{ env._PACKAGE_VERSION }}.nupkg
-          path: ./dist/chocolatey/bitwarden-cli.${{ env._PACKAGE_VERSION }}.nupkg
+          path: apps/cli/dist/chocolatey/bitwarden-cli.${{ env._PACKAGE_VERSION }}.nupkg
           if-no-files-found: error
 
       - name: Upload NPM Build Directory asset
         uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
         with:
           name: bitwarden-cli-${{ env._PACKAGE_VERSION }}-npm-build.zip
-          path: ./build
+          path: apps/cli/build
           if-no-files-found: error
 
   snap:
@@ -236,11 +245,12 @@ jobs:
           echo "GitHub ref: $GITHUB_REF"
           echo "GitHub event: $GITHUB_EVENT"
           echo "BW Package Version: $_PACKAGE_VERSION"
+
       - name: Get bw linux cli
         uses: actions/download-artifact@fb598a63ae348fa914e94cd0ff38f362e927b741
         with:
           name: bw-linux-${{ env._PACKAGE_VERSION }}.zip
-          path: ./dist/snap
+          path: apps/cli/dist/snap
 
       - name: Setup Snap Package
         run: |
@@ -248,10 +258,11 @@ jobs:
           sed -i s/__version__/${{ env._PACKAGE_VERSION }}/g dist/snap/snapcraft.yaml
           cd dist/snap
           ls -alth
+
       - name: Build snap
         uses: snapcore/action-build@ea14cdeb353272f75977040488ca191880509a8c  # v1.1.0
         with:
-          path: dist/snap
+          path: apps/cli/dist/snap
 
       - name: Create checksum
         run: |
@@ -259,6 +270,7 @@ jobs:
           ls -alth
           sha256sum bw_${{ env._PACKAGE_VERSION }}_amd64.snap \
             | awk '{split($0, a); print a[1]}' > bw-snap-sha256-${{ env._PACKAGE_VERSION }}.txt
+
       - name: Install Snap
         run: sudo snap install dist/snap/bw*.snap --dangerous
 
@@ -280,14 +292,14 @@ jobs:
         uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
         with:
           name: bw_${{ env._PACKAGE_VERSION }}_amd64.snap
-          path: ./dist/snap/bw_${{ env._PACKAGE_VERSION }}_amd64.snap
+          path: apps/cli/dist/snap/bw_${{ env._PACKAGE_VERSION }}_amd64.snap
           if-no-files-found: error
 
       - name: Upload snap checksum asset
         uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535
         with:
           name: bw-snap-sha256-${{ env._PACKAGE_VERSION }}.txt
-          path: ./dist/snap/bw-snap-sha256-${{ env._PACKAGE_VERSION }}.txt
+          path: apps/cli/dist/snap/bw-snap-sha256-${{ env._PACKAGE_VERSION }}.txt
           if-no-files-found: error
 
 
@@ -318,6 +330,7 @@ jobs:
           elif [ "$SNAP_STATUS" = "failure" ]; then
               exit 1
           fi
+
       - name: Login to Azure - Prod Subscription
         uses: Azure/login@ec3c14589bd3e9312b3cc8c41e6860e258df9010  # v1.1
         if: failure()

@@ -1,0 +1,69 @@
+---
+name: Web QA Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_extension:
+        description: "Image tag extension"
+        required: false
+
+env:
+  _QA_CLUSTER_RESOURCE_GROUP: "bw-env-qa"
+  _QA_CLUSTER_NAME: "bw-aks-qa"
+  _QA_K8S_NAMESPACE: "bw-qa"
+  _QA_K8S_APP_NAME: "bw-web"
+
+jobs:
+  deploy:
+    name: Deploy QA Web
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b  # v3.0.2
+
+      - name: Setup
+        run: export PATH=$PATH:~/work/web/web
+
+      - name: Login to Azure
+        uses: Azure/login@ec3c14589bd3e9312b3cc8c41e6860e258df9010  # v1.1
+        with:
+          creds: ${{ secrets.AZURE_QA_KV_CREDENTIALS }}
+
+      - name: Retrieve secrets
+        id: retrieve-secrets
+        uses: Azure/get-keyvault-secrets@b5c723b9ac7870c022b8c35befe620b7009b336f  # v1
+        with:
+          keyvault: "bitwarden-qa-kv"
+          secrets: "qa-aks-kubectl-credentials"
+
+      - name: Login with qa-aks-kubectl-credentials SP
+        uses: Azure/login@ec3c14589bd3e9312b3cc8c41e6860e258df9010  # v1.1
+        with:
+          creds: ${{ env.qa-aks-kubectl-credentials }}
+
+      - name: Setup AKS access
+        run: |
+          echo "---az install---"
+          az aks install-cli --install-location ./kubectl --kubelogin-install-location ./kubelogin
+          echo "---az get-creds---"
+          az aks get-credentials -n $_QA_CLUSTER_NAME -g $_QA_CLUSTER_RESOURCE_GROUP
+
+      - name: Get image tag
+        id: image_tag
+        run: |
+          IMAGE_TAG=$(echo "${GITHUB_REF:11}" | sed "s#/#-#g")
+          TAG_EXTENSION=${{ github.event.inputs.image_extension }}
+
+          if [[ $TAG_EXTENSION ]]; then
+            IMAGE_TAG=$IMAGE_TAG-$TAG_EXTENSION
+          fi
+          echo "::set-output name=value::$IMAGE_TAG"
+
+      - name: Deploy Web image
+        env:
+          IMAGE_TAG: ${{ steps.image_tag.outputs.value }}
+        run: |
+          kubectl set image -n $_QA_K8S_NAMESPACE deployment/web web=bitwardenqa.azurecr.io/web:$IMAGE_TAG --record
+          kubectl rollout restart -n $_QA_K8S_NAMESPACE deployment/web
+          kubectl rollout status deployment/web -n $_QA_K8S_NAMESPACE

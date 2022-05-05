@@ -13,10 +13,8 @@ on:
         custom_tag_extension:
           description: "Custom image tag extension"
           required: false
-
 defaults:
   run:
-    shell: bash
     working-directory: apps/web
 
 jobs:
@@ -65,7 +63,7 @@ jobs:
         uses: actions/setup-node@56337c425554a6be30cdef71bf441f15be286854  # v3.1.1
         with:
           cache: 'npm'
-          cache-dependency-path: 'apps/web/package-lock.json'
+          cache-dependency-path: 'apps/web/**/package-lock.json'
           node-version: "16"
 
       - name: Print environment
@@ -90,7 +88,7 @@ jobs:
         uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535  # v3.0.0
         with:
           name: web-${{ env._VERSION }}-selfhosted-open-source.zip
-          path: ./web-${{ env._VERSION }}-selfhosted-open-source.zip
+          path: apps/web/web-${{ env._VERSION }}-selfhosted-open-source.zip
           if-no-files-found: error
 
 
@@ -109,7 +107,7 @@ jobs:
         uses: actions/setup-node@56337c425554a6be30cdef71bf441f15be286854  # v3.1.1
         with:
           cache: 'npm'
-          cache-dependency-path: 'apps/web/package-lock.json'
+          cache-dependency-path: 'apps/web/**/package-lock.json'
           node-version: "16"
 
       - name: Print environment
@@ -134,7 +132,7 @@ jobs:
         uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535  # v3.0.0
         with:
           name: web-${{ env._VERSION }}-cloud-COMMERCIAL.zip
-          path: ./web-${{ env._VERSION }}-cloud-COMMERCIAL.zip
+          path: apps/web/web-${{ env._VERSION }}-cloud-COMMERCIAL.zip
           if-no-files-found: error
 
 
@@ -153,7 +151,7 @@ jobs:
         uses: actions/setup-node@56337c425554a6be30cdef71bf441f15be286854  # v3.1.1
         with:
           cache: 'npm'
-          cache-dependency-path: 'apps/web/package-lock.json'
+          cache-dependency-path: 'apps/web/**/package-lock.json'
           node-version: "16"
 
       - name: Print environment
@@ -190,7 +188,7 @@ jobs:
         uses: actions/upload-artifact@6673cd052c4cd6fcf4b4e6e60ea986c889389535  # v3.0.0
         with:
           name: web-${{ env._VERSION }}-selfhosted-COMMERCIAL.zip
-          path: ./web-${{ env._VERSION }}-selfhosted-COMMERCIAL.zip
+          path: apps/web/web-${{ env._VERSION }}-selfhosted-COMMERCIAL.zip
           if-no-files-found: error
 
       - name: Build Docker image
@@ -279,7 +277,7 @@ jobs:
         uses: actions/setup-node@56337c425554a6be30cdef71bf441f15be286854  # v3.1.1
         with:
           cache: 'npm'
-          cache-dependency-path: 'apps/web/package-lock.json'
+          cache-dependency-path: 'apps/web/**/package-lock.json'
           node-version: "16"
 
       - name: Print environment
@@ -372,7 +370,7 @@ jobs:
         uses: actions/setup-node@56337c425554a6be30cdef71bf441f15be286854  # v3.1.1
         with:
           cache: 'npm'
-          cache-dependency-path: 'apps/web/package-lock.json'
+          cache-dependency-path: 'apps/web/**/package-lock.json'
           node-version: "16"
 
       - name: Print environment
