@@ -12,12 +12,14 @@
       [circle]="true"
       [dynamic]="true"
     ></app-avatar>
-    <div class="org-name tw-ml-3">
-      <span
-        >{{ activeOrganization.name }}
-        <i class="bwi bwi-angle-down tw-text-main tw-ml-2" aria-hidden="true"></i>
-      </span>
-      <small class="tw-text-muted">{{ "organization" | i18n }}</small>
+    <div class="tw-flex">
+      <div class="org-name tw-ml-3">
+        <span>{{ activeOrganization.name }}</span>
+        <small class="tw-text-muted">{{ "organization" | i18n }}</small>
+      </div>
+      <div class="tw-ml-3">
+        <i class="bwi bwi-angle-down tw-text-main" aria-hidden="true"></i>
+      </div>
     </div>
   </button>
   <div>
