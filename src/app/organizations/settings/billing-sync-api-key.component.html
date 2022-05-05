@@ -21,13 +21,13 @@
         </button>
       </div>
       <div class="modal-body">
-        <app-verify-master-password
+        <app-user-verification
           [(ngModel)]="masterPassword"
           ngDefaultControl
           name="secret"
           *ngIf="!clientSecret"
         >
-        </app-verify-master-password>
+        </app-user-verification>
         <ng-container *ngIf="clientSecret && showRotateScreen">
           <p>{{ "rotateBillingSyncTokenTitle" | i18n }}</p>
           <app-callout type="warning">
