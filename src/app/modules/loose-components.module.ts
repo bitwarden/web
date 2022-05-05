@@ -113,7 +113,6 @@ import { EmergencyAccessComponent } from "../settings/emergency-access.component
 import { EmergencyAddEditComponent } from "../settings/emergency-add-edit.component";
 import { LinkSsoComponent } from "../settings/link-sso.component";
 import { OrganizationPlansComponent } from "../settings/organization-plans.component";
-import { OrganizationsComponent } from "../settings/organizations.component";
 import { PaymentComponent } from "../settings/payment.component";
 import { PreferencesComponent } from "../settings/preferences.component";
 import { PremiumComponent } from "../settings/premium.component";
@@ -228,7 +227,6 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     OrganizationBillingComponent,
     OrganizationLayoutComponent,
     OrganizationPlansComponent,
-    OrganizationsComponent,
     OrganizationSubscriptionComponent,
     OrgAttachmentsComponent,
     OrgBulkConfirmComponent,
@@ -387,7 +385,6 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     OrganizationBillingComponent,
     OrganizationLayoutComponent,
     OrganizationPlansComponent,
-    OrganizationsComponent,
     OrganizationSubscriptionComponent,
     OrgAttachmentsComponent,
     OrgBulkConfirmComponent,
