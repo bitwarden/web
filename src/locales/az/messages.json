@@ -191,7 +191,7 @@
     "description": "Domain name. Ex. website.com"
   },
   "domainName": {
-    "message": "Domain Name",
+    "message": "Domen adı",
     "description": "Domain name. Ex. website.com"
   },
   "host": {
@@ -1431,7 +1431,7 @@
     "message": "Hesabatlar"
   },
   "reportsDesc": {
-    "message": "Identify and close security gaps in your online accounts by clicking the reports below."
+    "message": "Aşağıdakı hesabatlara klikləyərək onlayn hesablarınızdakı güvənlik boşluqlarına baxın və onları bağlayın."
   },
   "unsecuredWebsitesReport": {
     "message": "Təhlükəli veb sayt hesabatları"
@@ -3616,7 +3616,8 @@
     "message": "Bütün \"Send\"lər"
   },
   "maxAccessCountReached": {
-    "message": "Maksimal müraciət sayına çatıldı"
+    "message": "Maksimal müraciət sayına çatıldı",
+    "description": "This text will be displayed after a Send has been accessed the maximum amount of times."
   },
   "pendingDeletion": {
     "message": "Silinməsi gözlənilir"
@@ -4521,7 +4522,7 @@
     "message": "Gedən çıxış tələblərinə icazə ver"
   },
   "idpSignAuthenticationRequests": {
-    "message": "Sign authentication requests"
+    "message": "Kimlik təsdiqləmə tələblərini imzala"
   },
   "ssoSettingsSaved": {
     "message": "Tək daxil olma konfiqurasiyası saxlanıldı."
@@ -4707,7 +4708,7 @@
     "description": "This will be used as part of a larger sentence, broken up to include links. The full sentence will read 'Enable the SSO Authentication policy to require all members to log in with SSO.'"
   },
   "ssoPolicyHelpKeyConnector": {
-    "message": "SSO Authentication and Single Organization policies are required to set up Key Connector decryption."
+    "message": "Açar Bağlayıcı şifrə açmanı quraşdırmaq üçün SSO Kimlik Təsdiqləmə və Tək Təşkilat siyasətləri tələb olunur."
   },
   "memberDecryptionOption": {
     "message": "Üzv şifrə açma seçimləri"
@@ -4719,10 +4720,10 @@
     "message": "Açar Bağlayıcı"
   },
   "memberDecryptionKeyConnectorDesc": {
-    "message": "Connect Login with SSO to your self-hosted decryption key server. Using this option, members won’t need to use their Master Passwords to decrypt vault data. Contact Bitwarden Support for set up assistance."
+    "message": "SSO ilə Giriş etməni, öz-özünə sahiblik edən şifrə açma açar serverinizə bağlayın. Bu seçimi istifadə edərək, üzvlərin anbar verilənlərinin şifrəsini açmaq üçün Ana Parollarını istifadə etməsinə ehtiyac qalmayacaq. Quraşdırma üzrə kömək üçün Bitwarden Dəstək ilə əlaqə saxlayın."
   },
   "keyConnectorPolicyRestriction": {
-    "message": "\"Login with SSO and Key Connector Decryption\" is enabled. This policy will only apply to Owners and Admins."
+    "message": "\"SSO və Açar Bağlayıcı Şifrə Açma ilə Giriş\" fəaldır. Bu siyasət yalnız Sahiblər və Adminlər üçün etibarlıdır."
   },
   "enabledSso": {
     "message": "SSO fəaldır"
@@ -4773,7 +4774,7 @@
     "message": "ÖDƏNİŞSİZ sponsorluq"
   },
   "formErrorSummaryPlural": {
-    "message": "$COUNT$ fields above need your attention.",
+    "message": "Yuxarıdakı $COUNT$ sahənin diqqətinizə ehtiyacı var.",
     "placeholders": {
       "count": {
         "content": "$1",
@@ -4782,10 +4783,10 @@
     }
   },
   "formErrorSummarySingle": {
-    "message": "1 field above needs your attention."
+    "message": "Yuxarıdakı 1 sahənin diqqətinizə ehtiyacı var."
   },
   "fieldRequiredError": {
-    "message": "$FIELDNAME$ is required.",
+    "message": "$FIELDNAME$ tələb olunur.",
     "placeholders": {
       "fieldname": {
         "content": "$1",
@@ -4794,31 +4795,31 @@
     }
   },
   "required": {
-    "message": "required"
+    "message": "tələb olunur"
   },
   "idpSingleSignOnServiceUrlRequired": {
-    "message": "Required if Entity ID is not a URL."
+    "message": "Varlıq Kimliyi bir URL deyilsə tələb olunur."
   },
   "openIdOptionalCustomizations": {
-    "message": "Optional Customizations"
+    "message": "İxtiyari Özəlləşdirmələr"
   },
   "openIdAuthorityRequired": {
-    "message": "Required if Authority is not valid."
+    "message": "Səlahiyyət etibarlı deyilsə tələb olunur."
   },
   "separateMultipleWithComma": {
-    "message": "Separate multiple with a comma."
+    "message": "Vergüllə ayırın."
   },
   "sessionTimeout": {
-    "message": "Your session has timed out. Please go back and try logging in again."
+    "message": "Seansınızın vaxtı bitdi. Zəhmət olmasa geri qayıdıb yenidən giriş etməyə cəhd edin."
   },
   "exportingPersonalVaultTitle": {
-    "message": "Exporting Personal Vault"
+    "message": "Şəxsi anbarın ixracı"
   },
   "exportingOrganizationVaultTitle": {
-    "message": "Exporting Organization Vault"
+    "message": "Təşkilat anbarının ixracı"
   },
   "exportingPersonalVaultDescription": {
-    "message": "Only the personal vault items associated with $EMAIL$ will be exported. Organization vault items will not be included.",
+    "message": "Yalnız $EMAIL$ ilə əlaqəli şəxsi anbar elementləri ixrac ediləcək. Təşkilat anbar elementləri daxil edilmir.",
     "placeholders": {
       "email": {
         "content": "$1",
@@ -4827,7 +4828,7 @@
     }
   },
   "exportingOrganizationVaultDescription": {
-    "message": "Only the organization vault associated with $ORGANIZATION$ will be exported. Personal vault items and items from other organizations will not be included.",
+    "message": "Yalnız $ORGANIZATION$ ilə əlaqəli təşkilat anbar elementləri ixrac ediləcək. Şəxsi anbar elementləri və digər təşkilatlardan olan elementlər daxil edilmir.",
     "placeholders": {
       "organization": {
         "content": "$1",
@@ -4836,45 +4837,46 @@
     }
   },
   "backToReports": {
-    "message": "Back to Reports"
+    "message": "Hesabatlara qayıt"
   },
   "generator": {
-    "message": "Generator"
+    "message": "Yaradıcı"
   },
   "whatWouldYouLikeToGenerate": {
-    "message": "What would you like to generate?"
+    "message": "Nə yaratmaq istəyirsiniz?"
   },
   "passwordType": {
-    "message": "Password Type"
+    "message": "Parol növü"
   },
   "regenerateUsername": {
-    "message": "Regenerate Username"
+    "message": "İstifadəçi adını yenidən yarat"
   },
   "generateUsername": {
-    "message": "Generate Username"
+    "message": "İstifadəçi adı yarat"
   },
   "usernameType": {
-    "message": "Username Type"
+    "message": "İstifadəçi adı növü"
   },
   "plusAddressedEmail": {
-    "message": "Plus Addressed Email"
+    "message": "Plyus ünvanlı e-poçt",
+    "description": "Username generator option that appends a random sub-address to the username. For example: address+subaddress@email.com"
   },
   "plusAddressedEmailDesc": {
-    "message": "Use your email provider's sub-addressing capabilities."
+    "message": "E-poçt təchizatçınızın alt ünvan özəlliklərini istifadə et."
   },
   "catchallEmail": {
-    "message": "Catch-all Email"
+    "message": "Catch-all E-poçt"
   },
   "catchallEmailDesc": {
-    "message": "Use your domain's configured catch-all inbox."
+    "message": "Domeninizin konfiqurasiya edilmiş hamısını yaxalama gələn qutusunu istifadə edin."
   },
   "random": {
-    "message": "Random"
+    "message": "Təsadüfi"
   },
   "randomWord": {
-    "message": "Random Word"
+    "message": "Təsadüfi söz"
   },
   "service": {
-    "message": "Service"
+    "message": "Xidmət"
   }
 }
