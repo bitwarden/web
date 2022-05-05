@@ -26,8 +26,8 @@ export class GeneratorComponent extends BaseGeneratorComponent {
     stateService: StateService,
     platformUtilsService: PlatformUtilsService,
     i18nService: I18nService,
-    route: ActivatedRoute,
     logService: LogService,
+    route: ActivatedRoute,
     private modalService: ModalService
   ) {
     super(
@@ -39,6 +39,11 @@ export class GeneratorComponent extends BaseGeneratorComponent {
       logService,
       route,
       window
+    );
+    // Cannot use Firefox Relay on the web vault yet due to CORS issues with Firefox Relay API
+    this.forwardOptions.splice(
+      this.forwardOptions.findIndex((o) => o.value === "firefoxrelay"),
+      1
     );
   }
 
