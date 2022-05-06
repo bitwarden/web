@@ -43,9 +43,6 @@ body {
 .tabbed-header {
   margin-bottom: 0.5rem;
   padding-bottom: 0.6rem;
-  @include themify($themes) {
-    border-bottom: 1px solid themed("separator");
-  }
 
   &:not(.text-danger) {
     h1,
@@ -60,15 +57,20 @@ body {
   }
 }
 
+.page-header,
+.secondary-header {
+  @include themify($themes) {
+    border-bottom: 1px solid themed("separator");
+  }
+}
+
 .secondary-header,
 .spaced-header {
   margin-top: 4rem;
 }
 
 .tabbed-header {
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  border-bottom: none;
+  margin-top: 1.5rem;
 }
 
 img.logo {

@@ -40,6 +40,7 @@
     <p>{{ "subscriptionPendingCanceled" | i18n }}</p>
     <button
       bit-button
+      type="button"
       buttonType="secondary"
       #reinstateBtn
       class="btn-submit"
@@ -95,7 +96,7 @@
   </div>
   <ng-container *ngIf="selfHosted">
     <div>
-      <button bit-button buttonType="secondary" (click)="updateLicense()">
+      <button type="button" bit-button buttonType="secondary" (click)="updateLicense()">
         {{ "updateLicense" | i18n }}
       </button>
       <a
@@ -131,6 +132,7 @@
     <div class="d-flex">
       <button
         bit-button
+        type="button"
         buttonType="secondary"
         (click)="downloadLicense()"
         *ngIf="!subscription || !subscription.cancelled"
@@ -140,6 +142,7 @@
       <button
         bit-button
         #cancelBtn
+        type="button"
         buttonType="danger"
         class="btn-submit tw-ml-auto"
         (click)="cancel()"
@@ -168,10 +171,16 @@
     <ng-container *ngIf="subscription && !subscription.cancelled && !subscriptionMarkedForCancel">
       <div class="mt-3">
         <div class="d-flex" *ngIf="!showAdjustStorage">
-          <button bit-button buttonType="secondary" (click)="adjustStorage(true)">
+          <button bit-button type="button" buttonType="secondary" (click)="adjustStorage(true)">
             {{ "addStorage" | i18n }}
           </button>
-          <button bit-button buttonType="secondary" class="tw-ml-1" (click)="adjustStorage(false)">
+          <button
+            bit-button
+            type="button"
+            buttonType="secondary"
+            class="tw-ml-1"
+            (click)="adjustStorage(false)"
+          >
             {{ "removeStorage" | i18n }}
           </button>
         </div>
