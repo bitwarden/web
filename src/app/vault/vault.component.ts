@@ -17,6 +17,7 @@ import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
+import { PasswordRepromptService } from "jslib-common/abstractions/passwordReprompt.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { ProviderService } from "jslib-common/abstractions/provider.service";
 import { StateService } from "jslib-common/abstractions/state.service";
@@ -87,7 +88,8 @@ export class VaultComponent implements OnInit, OnDestroy {
     private stateService: StateService,
     private organizationService: OrganizationService,
     private providerService: ProviderService,
-    private cipherService: CipherService
+    private cipherService: CipherService,
+    private passwordRepromptService: PasswordRepromptService
   ) {}
 
   async ngOnInit() {
@@ -358,6 +360,14 @@ export class VaultComponent implements OnInit, OnDestroy {
   }
 
   async editCipherId(id: string) {
+    const cipher = await this.cipherService.get(id);
+    if (cipher.reprompt != 0) {
+      if (!(await this.passwordRepromptService.showPasswordPrompt())) {
+        this.go({ cipherId: null });
+        return;
+      }
+    }
+
     const [modal, childComponent] = await this.modalService.openViewRef(
       AddEditComponent,
       this.cipherAddEditModalRef,
@@ -379,8 +389,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     );
 
     modal.onClosedPromise().then(() => {
-      this.route.params;
-      this.router.navigate([], { queryParams: { cipherId: null }, queryParamsHandling: "merge" });
+      this.go({ cipherId: null });
     });
 
     return childComponent;
