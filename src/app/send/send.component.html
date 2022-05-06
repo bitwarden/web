@@ -151,39 +151,34 @@
               <small appStopProp>{{ s.deletionDate | date: "medium" }}</small>
             </td>
             <td class="table-list-options">
-              <div class="dropdown" appListDropdown>
-                <button
-                  class="btn btn-outline-secondary dropdown-toggle"
-                  type="button"
-                  id="dropdownMenuButton"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                  appA11yTitle="{{ 'options' | i18n }}"
-                >
-                  <i class="bwi bwi-cog bwi-lg" aria-hidden="true"></i>
+              <button
+                [bitMenuTriggerFor]="sendOptions"
+                class="tw-border-none tw-bg-transparent tw-text-main"
+                type="button"
+                appA11yTitle="{{ 'options' | i18n }}"
+              >
+                <i class="bwi bwi-ellipsis-v bwi-lg" aria-hidden="true"></i>
+              </button>
+              <bit-menu #sendOptions>
+                <button bit-menu-item (click)="copy(s)">
+                  <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
+                  {{ "copySendLink" | i18n }}
                 </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                  <a class="dropdown-item" href="#" appStopClick (click)="copy(s)">
-                    <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
-                    {{ "copySendLink" | i18n }}
-                  </a>
-                  <a
-                    class="dropdown-item"
-                    href="#"
-                    appStopClick
-                    (click)="removePassword(s)"
-                    *ngIf="s.password && !disableSend"
-                  >
-                    <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
-                    {{ "removePassword" | i18n }}
-                  </a>
-                  <a class="dropdown-item text-danger" href="#" appStopClick (click)="delete(s)">
+                <button
+                  bit-menu-item
+                  (click)="removePassword(s)"
+                  *ngIf="s.password && !disableSend"
+                >
+                  <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
+                  {{ "removePassword" | i18n }}
+                </button>
+                <button bit-menu-item (click)="delete(s)">
+                  <span class="tw-text-danger">
                     <i class="bwi bwi-fw bwi-trash" aria-hidden="true"></i>
                     {{ "delete" | i18n }}
-                  </a>
-                </div>
-              </div>
+                  </span>
+                </button>
+              </bit-menu>
             </td>
           </tr>
         </tbody>

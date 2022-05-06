@@ -20,6 +20,7 @@ import { UpdateTempPasswordComponent } from "../accounts/update-temp-password.co
 import { VerifyEmailTokenComponent } from "../accounts/verify-email-token.component";
 import { VerifyRecoverDeleteComponent } from "../accounts/verify-recover-delete.component";
 import { NestedCheckboxComponent } from "../components/nested-checkbox.component";
+import { OrganizationSwitcherComponent } from "../components/organization-switcher.component";
 import { PasswordRepromptComponent } from "../components/password-reprompt.component";
 import { PasswordStrengthComponent } from "../components/password-strength.component";
 import { PremiumBadgeComponent } from "../components/premium-badge.component";
@@ -112,7 +113,6 @@ import { EmergencyAccessComponent } from "../settings/emergency-access.component
 import { EmergencyAddEditComponent } from "../settings/emergency-add-edit.component";
 import { LinkSsoComponent } from "../settings/link-sso.component";
 import { OrganizationPlansComponent } from "../settings/organization-plans.component";
-import { OrganizationsComponent } from "../settings/organizations.component";
 import { PaymentMethodComponent } from "../settings/payment-method.component";
 import { PaymentComponent } from "../settings/payment.component";
 import { PreferencesComponent } from "../settings/preferences.component";
@@ -223,12 +223,12 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     MasterPasswordPolicyComponent,
     NavbarComponent,
     NestedCheckboxComponent,
+    OrganizationSwitcherComponent,
     OrgAccountComponent,
     OrgAddEditComponent,
     OrganizationBillingComponent,
     OrganizationLayoutComponent,
     OrganizationPlansComponent,
-    OrganizationsComponent,
     OrganizationSubscriptionComponent,
     OrgAttachmentsComponent,
     OrgBulkConfirmComponent,
@@ -383,12 +383,12 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     MasterPasswordPolicyComponent,
     NavbarComponent,
     NestedCheckboxComponent,
+    OrganizationSwitcherComponent,
     OrgAccountComponent,
     OrgAddEditComponent,
     OrganizationBillingComponent,
     OrganizationLayoutComponent,
     OrganizationPlansComponent,
-    OrganizationsComponent,
     OrganizationSubscriptionComponent,
     OrgAttachmentsComponent,
     OrgBulkConfirmComponent,

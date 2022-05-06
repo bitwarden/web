@@ -1,31 +1,10 @@
 <div class="org-nav" *ngIf="organization">
   <div class="container d-flex">
     <div class="d-flex flex-column">
-      <div class="my-auto d-flex align-items-center pl-1">
-        <app-avatar [data]="organization.name" size="45" [circle]="true"></app-avatar>
-        <div class="org-name ml-3">
-          <span>{{ organization.name }}</span>
-          <small class="text-muted">{{ "organization" | i18n }}</small>
-        </div>
-        <div
-          class="ml-3 card border-danger text-danger bg-transparent"
-          *ngIf="!organization.enabled"
-        >
-          <div class="card-body py-2">
-            <i class="bwi bwi-exclamation-triangle" aria-hidden="true"></i>
-            {{ "organizationIsDisabled" | i18n }}
-          </div>
-        </div>
-        <div
-          class="ml-3 card border-info text-info bg-transparent"
-          *ngIf="organization.isProviderUser"
-        >
-          <div class="card-body py-2">
-            <i class="bwi bwi-exclamation-triangle" aria-hidden="true"></i>
-            {{ "accessingUsingProvider" | i18n: organization.providerName }}
-          </div>
-        </div>
-      </div>
+      <app-organization-switcher
+        class="my-auto pl-1"
+        [activeOrganization]="organization"
+      ></app-organization-switcher>
       <ul class="nav nav-tabs">
         <li class="nav-item">
           <a class="nav-link" routerLink="vault" routerLinkActive="active">

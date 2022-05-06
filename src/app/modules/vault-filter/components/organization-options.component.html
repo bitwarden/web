@@ -1,4 +1,12 @@
-<div class="tw-max-w-[300px] tw-min-w-[200px] tw-flex tw-flex-col">
+<ng-container *ngIf="!loaded">
+  <i
+    class="bwi bwi-spinner bwi-spin text-muted tw-m-2"
+    title="{{ 'loading' | i18n }}"
+    aria-hidden="true"
+  ></i>
+  <span class="sr-only">{{ "loading" | i18n }}</span>
+</ng-container>
+<div *ngIf="loaded" class="tw-max-w-[300px] tw-min-w-[200px] tw-flex tw-flex-col">
   <button
     *ngIf="allowEnrollmentChanges(organization) && !organization.resetPasswordEnrolled"
     class="dropdown-item"

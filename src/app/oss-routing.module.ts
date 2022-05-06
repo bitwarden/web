@@ -33,7 +33,6 @@ import { CreateOrganizationComponent } from "./settings/create-organization.comp
 import { DomainRulesComponent } from "./settings/domain-rules.component";
 import { EmergencyAccessViewComponent } from "./settings/emergency-access-view.component";
 import { EmergencyAccessComponent } from "./settings/emergency-access.component";
-import { OrganizationsComponent } from "./settings/organizations.component";
 import { PreferencesComponent } from "./settings/preferences.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { SponsoredFamiliesComponent } from "./settings/sponsored-families.component";
@@ -181,11 +180,6 @@ const routes: Routes = [
             path: "subscription",
             loadChildren: async () =>
               (await import("./settings/subscription-routing.module")).SubscriptionRoutingModule,
-          },
-          {
-            path: "organizations",
-            component: OrganizationsComponent,
-            data: { titleId: "organizations" },
           },
           {
             path: "create-organization",
