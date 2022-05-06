@@ -313,8 +313,7 @@ export class VaultComponent implements OnInit, OnDestroy {
     );
 
     modal.onClosedPromise().then(() => {
-      this.route.params;
-      this.router.navigate([], { queryParams: { cipherId: null }, queryParamsHandling: "merge" });
+      this.go({ cipherId: null });
     });
 
     return childComponent;

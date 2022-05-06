@@ -389,7 +389,6 @@ export class VaultComponent implements OnInit, OnDestroy {
     );
 
     modal.onClosedPromise().then(() => {
-      this.route.params;
       this.go({ cipherId: null });
     });
 
