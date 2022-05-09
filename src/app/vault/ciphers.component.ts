@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from "@angular/core";
 
 import { CiphersComponent as BaseCiphersComponent } from "jslib-angular/components/ciphers.component";
-import { ApiService } from "jslib-common/abstractions/api.service";
 import { CipherService } from "jslib-common/abstractions/cipher.service";
 import { EventService } from "jslib-common/abstractions/event.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
