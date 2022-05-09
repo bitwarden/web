@@ -186,6 +186,23 @@
   }
 }
 
+button.no-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:hover,
+  &:focus {
+    background: transparent;
+    box-shadow: none;
+    color: inherit;
+  }
+}
+
 .badge-primary {
   @include themify($themes) {
     background-color: themed("badgePrimaryBackground");

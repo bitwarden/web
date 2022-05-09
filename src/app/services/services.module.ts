@@ -39,12 +39,12 @@ import { StateService } from "../../services/state.service";
 import { StateMigrationService } from "../../services/stateMigration.service";
 import { WebPlatformUtilsService } from "../../services/webPlatformUtils.service";
 import { HomeGuard } from "../guards/home.guard";
+import { PermissionsGuard as OrgPermissionsGuard } from "../organizations/guards/permissions.guard";
+import { NavigationPermissionsService as OrgPermissionsService } from "../organizations/services/navigation-permissions.service";
 
 import { EventService } from "./event.service";
 import { InitService } from "./init.service";
 import { ModalService } from "./modal.service";
-import { OrganizationGuardService } from "./organization-guard.service";
-import { OrganizationTypeGuardService } from "./organization-type-guard.service";
 import { PolicyListService } from "./policy-list.service";
 import { RouterService } from "./router.service";
 
@@ -52,9 +52,9 @@ import { RouterService } from "./router.service";
   imports: [ToastrModule, JslibServicesModule],
   declarations: [],
   providers: [
+    OrgPermissionsService,
+    OrgPermissionsGuard,
     InitService,
-    OrganizationGuardService,
-    OrganizationTypeGuardService,
     RouterService,
     EventService,
     PolicyListService,
