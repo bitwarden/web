@@ -33,7 +33,7 @@ export class CiphersComponent extends BaseCiphersComponent {
     i18nService: I18nService,
     platformUtilsService: PlatformUtilsService,
     cipherService: CipherService,
-    private apiService: ApiService,
+    apiService: ApiService,
     eventService: EventService,
     totpService: TotpService,
     passwordRepromptService: PasswordRepromptService,
@@ -51,7 +51,8 @@ export class CiphersComponent extends BaseCiphersComponent {
       stateService,
       passwordRepromptService,
       logService,
-      organizationService
+      organizationService,
+      apiService
     );
   }
 

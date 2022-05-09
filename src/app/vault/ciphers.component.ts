@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnDestroy, Output } from "@angular/core";
 
 import { CiphersComponent as BaseCiphersComponent } from "jslib-angular/components/ciphers.component";
+import { ApiService } from "jslib-common/abstractions/api.service";
 import { CipherService } from "jslib-common/abstractions/cipher.service";
 import { EventService } from "jslib-common/abstractions/event.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
@@ -37,6 +38,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
   actionPromise: Promise<any>;
   userHasPremiumAccess = false;
   organizations: Organization[] = [];
+  profileName: string;
 
   private didScroll = false;
   private pagedCiphersCount = 0;
@@ -52,7 +54,8 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     protected stateService: StateService,
     protected passwordRepromptService: PasswordRepromptService,
     private logService: LogService,
-    private organizationService: OrganizationService
+    private organizationService: OrganizationService,
+    protected apiService: ApiService
   ) {
     super(searchService);
   }
@@ -65,6 +68,8 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
   // Do not use ngOnInit() for anything that requires sync data.
   async load(filter: (cipher: CipherView) => boolean = null, deleted = false) {
     await super.load(filter, deleted);
+    const profile = await this.apiService.getProfile();
+    this.profileName = profile.name;
     this.organizations = await this.organizationService.getAll();
     this.userHasPremiumAccess = await this.stateService.getCanAccessPremium();
   }
