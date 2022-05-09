@@ -10,6 +10,7 @@ import { PasswordRepromptService } from "jslib-common/abstractions/passwordRepro
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { SearchService } from "jslib-common/abstractions/search.service";
 import { StateService } from "jslib-common/abstractions/state.service";
+import { TokenService } from "jslib-common/abstractions/token.service";
 import { TotpService } from "jslib-common/abstractions/totp.service";
 import { Organization } from "jslib-common/models/domain/organization";
 import { CipherView } from "jslib-common/models/view/cipherView";
@@ -33,13 +34,14 @@ export class CiphersComponent extends BaseCiphersComponent {
     i18nService: I18nService,
     platformUtilsService: PlatformUtilsService,
     cipherService: CipherService,
-    apiService: ApiService,
     eventService: EventService,
     totpService: TotpService,
     passwordRepromptService: PasswordRepromptService,
     logService: LogService,
     stateService: StateService,
-    organizationService: OrganizationService
+    organizationService: OrganizationService,
+    tokenService: TokenService,
+    private apiService: ApiService
   ) {
     super(
       searchService,
@@ -52,7 +54,7 @@ export class CiphersComponent extends BaseCiphersComponent {
       passwordRepromptService,
       logService,
       organizationService,
-      apiService
+      tokenService
     );
   }
 

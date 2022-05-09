@@ -11,6 +11,7 @@ import { PasswordRepromptService } from "jslib-common/abstractions/passwordRepro
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { SearchService } from "jslib-common/abstractions/search.service";
 import { StateService } from "jslib-common/abstractions/state.service";
+import { TokenService } from "jslib-common/abstractions/token.service";
 import { TotpService } from "jslib-common/abstractions/totp.service";
 import { CipherRepromptType } from "jslib-common/enums/cipherRepromptType";
 import { CipherType } from "jslib-common/enums/cipherType";
@@ -55,7 +56,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     protected passwordRepromptService: PasswordRepromptService,
     private logService: LogService,
     private organizationService: OrganizationService,
-    protected apiService: ApiService
+    private tokenService: TokenService
   ) {
     super(searchService);
   }
@@ -68,8 +69,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
   // Do not use ngOnInit() for anything that requires sync data.
   async load(filter: (cipher: CipherView) => boolean = null, deleted = false) {
     await super.load(filter, deleted);
-    const profile = await this.apiService.getProfile();
-    this.profileName = profile.name;
+    this.profileName = await this.tokenService.getName();
     this.organizations = await this.organizationService.getAll();
     this.userHasPremiumAccess = await this.stateService.getCanAccessPremium();
   }
