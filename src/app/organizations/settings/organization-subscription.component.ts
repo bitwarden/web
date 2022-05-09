@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { DomSanitizer } from "@angular/platform-browser";
 import { ActivatedRoute } from "@angular/router";
 
 import { ApiService } from "jslib-common/abstractions/api.service";
@@ -44,8 +43,7 @@ export class OrganizationSubscriptionComponent implements OnInit {
     private messagingService: MessagingService,
     private route: ActivatedRoute,
     private organizationService: OrganizationService,
-    private logService: LogService,
-    private sanitizer: DomSanitizer
+    private logService: LogService
   ) {
     this.selfHosted = platformUtilsService.isSelfHost();
   }
