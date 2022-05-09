@@ -1,4 +1,5 @@
 import { DragDropModule } from "@angular/cdk/drag-drop";
+import { OverlayModule } from "@angular/cdk/overlay";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -20,6 +21,7 @@ import { MaximumVaultTimeoutPolicyComponent } from "./policies/maximum-vault-tim
 
 @NgModule({
   imports: [
+    OverlayModule,
     OssModule,
     JslibModule,
     BrowserAnimationsModule,

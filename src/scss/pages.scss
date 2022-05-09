@@ -26,89 +26,6 @@
   }
 }
 
-app-vault-groupings,
-app-org-vault-groupings,
-.groupings {
-  .card {
-    #search {
-      margin-bottom: 1rem;
-      @include themify($themes) {
-        background-color: themed("inputBackgroundColor");
-        border-color: themed("inputBorderColor");
-        color: themed("inputTextColor");
-      }
-
-      &::placeholder {
-        @include themify($themes) {
-          color: themed("inputPlaceholderColor");
-        }
-      }
-    }
-
-    h3 {
-      font-weight: normal;
-      text-transform: uppercase;
-      @include themify($themes) {
-        color: themed("textMuted");
-      }
-    }
-
-    ul:last-child {
-      margin-bottom: 0;
-    }
-
-    .card-body a {
-      @include themify($themes) {
-        color: themed("textHeadingColor");
-        font-weight: themed("linkWeight");
-      }
-
-      &:hover {
-        &.text-muted {
-          @include themify($themes) {
-            color: themed("iconHover") !important;
-          }
-        }
-      }
-    }
-
-    .show-active {
-      display: none;
-    }
-
-    li {
-      > .bwi,
-      > div > .bwi {
-        cursor: pointer;
-      }
-    }
-
-    li.active {
-      > .show-active,
-      > div .show-active {
-        display: inline;
-      }
-    }
-
-    li.active {
-      > a:first-of-type,
-      > div a:first-of-type {
-        font-weight: bold;
-        @include themify($themes) {
-          color: themed("linkColor");
-        }
-      }
-
-      > .bwi,
-      > div > .bwi {
-        @include themify($themes) {
-          color: themed("linkColor");
-        }
-      }
-    }
-  }
-}
-
 app-generator {
   #lengthRange {
     width: 100%;
@@ -257,6 +174,57 @@ app-sponsored-families {
     p {
       font-size: 1.5rem;
       margin: 10px 0 50px 0;
+    }
+  }
+}
+
+.collapsable-row {
+  display: flex;
+  padding-top: 15px;
+  i {
+    margin-top: 3px;
+  }
+  .filter-title {
+    padding-left: 5px;
+  }
+  &.active {
+    @include themify($themes) {
+      color: themed("primary");
+    }
+  }
+}
+
+.vault-filter-option {
+  padding-bottom: 3px;
+  &.active {
+    @include themify($themes) {
+      color: themed("primary");
+      font-weight: bold;
+    }
+  }
+  button.org-options {
+    background: none;
+    border: none;
+    padding: 0;
+
+    &:hover,
+    &:focus {
+      @include themify($themes) {
+        color: themed("iconHover") !important;
+        box-shadow: none;
+      }
+    }
+  }
+}
+
+.org-filter-heading {
+  @include themify($themes) {
+    color: themed("textColor");
+  }
+  &.active {
+    @include themify($themes) {
+      color: themed("primary");
+      font-weight: bold;
     }
   }
 }
