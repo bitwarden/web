@@ -11,16 +11,6 @@
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/sends">{{ "send" | i18n }}</a>
         </li>
-        <ng-container *ngIf="providers.length >= 1">
-          <li class="nav-item" routerLinkActive="active" *ngIf="providers.length == 1">
-            <a class="nav-link" [routerLink]="['/providers', providers[0].id]">{{
-              "provider" | i18n
-            }}</a>
-          </li>
-          <li class="nav-item" routerLinkActive="active" *ngIf="providers.length > 1">
-            <a class="nav-link" routerLink="/providers">{{ "provider" | i18n }}</a>
-          </li>
-        </ng-container>
         <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" routerLink="/tools">{{ "tools" | i18n }}</a>
         </li>
@@ -32,6 +22,16 @@
             "organizations" | i18n
           }}</a>
         </li>
+        <ng-container *ngIf="providers.length >= 1">
+          <li class="nav-item" routerLinkActive="active" *ngIf="providers.length == 1">
+            <a class="nav-link" [routerLink]="['/providers', providers[0].id]">{{
+              "provider" | i18n
+            }}</a>
+          </li>
+          <li class="nav-item" routerLinkActive="active" *ngIf="providers.length > 1">
+            <a class="nav-link" routerLink="/providers">{{ "provider" | i18n }}</a>
+          </li>
+        </ng-container>
       </ul>
     </div>
     <ul class="navbar-nav flex-row ml-md-auto d-none d-md-flex">
