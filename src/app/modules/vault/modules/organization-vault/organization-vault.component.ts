@@ -262,7 +262,7 @@ export class OrganizationVaultComponent implements OnInit, OnDestroy {
 
   async editCipherId(cipherId: string) {
     const cipher = await this.cipherService.get(cipherId);
-    if (cipher.reprompt != 0) {
+    if (cipher != null && cipher.reprompt != 0) {
       if (!(await this.passwordRepromptService.showPasswordPrompt())) {
         this.go({ cipherId: null });
         return;
