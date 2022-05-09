@@ -113,6 +113,7 @@ import { EmergencyAccessComponent } from "../settings/emergency-access.component
 import { EmergencyAddEditComponent } from "../settings/emergency-add-edit.component";
 import { LinkSsoComponent } from "../settings/link-sso.component";
 import { OrganizationPlansComponent } from "../settings/organization-plans.component";
+import { PaymentMethodComponent } from "../settings/payment-method.component";
 import { PaymentComponent } from "../settings/payment.component";
 import { PreferencesComponent } from "../settings/preferences.component";
 import { PremiumComponent } from "../settings/premium.component";
@@ -123,6 +124,7 @@ import { SecurityComponent } from "../settings/security.component";
 import { SettingsComponent } from "../settings/settings.component";
 import { SponsoredFamiliesComponent } from "../settings/sponsored-families.component";
 import { SponsoringOrgRowComponent } from "../settings/sponsoring-org-row.component";
+import { SubscriptionComponent } from "../settings/subscription.component";
 import { TaxInfoComponent } from "../settings/tax-info.component";
 import { TwoFactorAuthenticatorComponent } from "../settings/two-factor-authenticator.component";
 import { TwoFactorDuoComponent } from "../settings/two-factor-duo.component";
@@ -134,7 +136,7 @@ import { TwoFactorWebAuthnComponent } from "../settings/two-factor-webauthn.comp
 import { TwoFactorYubiKeyComponent } from "../settings/two-factor-yubikey.component";
 import { UpdateKeyComponent } from "../settings/update-key.component";
 import { UpdateLicenseComponent } from "../settings/update-license.component";
-import { UserBillingComponent } from "../settings/user-billing.component";
+import { UserBillingHistoryComponent } from "../settings/user-billing-history.component";
 import { UserSubscriptionComponent } from "../settings/user-subscription.component";
 import { VaultTimeoutInputComponent } from "../settings/vault-timeout-input.component";
 import { VerifyEmailComponent } from "../settings/verify-email.component";
@@ -265,6 +267,7 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     PasswordRepromptComponent,
     PasswordStrengthComponent,
     PaymentComponent,
+    PaymentMethodComponent,
     PersonalOwnershipPolicyComponent,
     PreferencesComponent,
     PremiumBadgeComponent,
@@ -295,6 +298,7 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     SponsoredFamiliesComponent,
     SponsoringOrgRowComponent,
     SsoComponent,
+    SubscriptionComponent,
     TaxInfoComponent,
     ToolsComponent,
     TwoFactorAuthenticationPolicyComponent,
@@ -313,7 +317,7 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     UpdateLicenseComponent,
     UpdatePasswordComponent,
     UpdateTempPasswordComponent,
-    UserBillingComponent,
+    UserBillingHistoryComponent,
     UserLayoutComponent,
     UserSubscriptionComponent,
     UserVerificationComponent,
@@ -423,6 +427,7 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     PasswordRepromptComponent,
     PasswordStrengthComponent,
     PaymentComponent,
+    PaymentMethodComponent,
     PersonalOwnershipPolicyComponent,
     PreferencesComponent,
     PremiumBadgeComponent,
@@ -453,6 +458,7 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     SponsoredFamiliesComponent,
     SponsoringOrgRowComponent,
     SsoComponent,
+    SubscriptionComponent,
     TaxInfoComponent,
     ToolsComponent,
     TwoFactorAuthenticationPolicyComponent,
@@ -471,7 +477,7 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     UpdateLicenseComponent,
     UpdatePasswordComponent,
     UpdateTempPasswordComponent,
-    UserBillingComponent,
+    UserBillingHistoryComponent,
     UserLayoutComponent,
     UserSubscriptionComponent,
     UserVerificationComponent,

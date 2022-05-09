@@ -1,40 +1,35 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
-import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PaymentMethodType } from "jslib-common/enums/paymentMethodType";
-import { TransactionType } from "jslib-common/enums/transactionType";
-import { VerifyBankRequest } from "jslib-common/models/request/verifyBankRequest";
-import { BillingResponse } from "jslib-common/models/response/billingResponse";
+import { BillingPaymentResponse } from "jslib-common/models/response/billingPaymentResponse";
 
 @Component({
-  selector: "app-user-billing",
-  templateUrl: "user-billing.component.html",
+  selector: "app-payment-method",
+  templateUrl: "payment-method.component.html",
 })
-export class UserBillingComponent implements OnInit {
+export class PaymentMethodComponent implements OnInit {
   loading = false;
   firstLoaded = false;
   showAdjustPayment = false;
   showAddCredit = false;
-  billing: BillingResponse;
+  billing: BillingPaymentResponse;
   paymentMethodType = PaymentMethodType;
-  transactionType = TransactionType;
-  organizationId: string;
-  verifyAmount1: number;
-  verifyAmount2: number;
-
-  verifyBankPromise: Promise<any>;
 
   constructor(
     protected apiService: ApiService,
     protected i18nService: I18nService,
     protected platformUtilsService: PlatformUtilsService,
-    private logService: LogService
+    private router: Router
   ) {}
 
   async ngOnInit() {
+    if (this.platformUtilsService.isSelfHost()) {
+      this.router.navigate(["/settings/subscription"]);
+    }
     await this.load();
     this.firstLoaded = true;
   }
@@ -44,39 +39,8 @@ export class UserBillingComponent implements OnInit {
       return;
     }
     this.loading = true;
-    if (this.organizationId != null) {
-      this.billing = await this.apiService.getOrganizationBilling(this.organizationId);
-    } else {
-      // let history = await this.apiService.getUserBillingHistory();
-      // let payment = await this.apiService.getUserBillingPayment();
-      this.billing = new BillingResponse(null);
-    }
+    this.billing = await this.apiService.getUserBillingPayment();
     this.loading = false;
-  }
-
-  async verifyBank() {
-    if (this.loading) {
-      return;
-    }
-
-    try {
-      const request = new VerifyBankRequest();
-      request.amount1 = this.verifyAmount1;
-      request.amount2 = this.verifyAmount2;
-      this.verifyBankPromise = this.apiService.postOrganizationVerifyBank(
-        this.organizationId,
-        request
-      );
-      await this.verifyBankPromise;
-      this.platformUtilsService.showToast(
-        "success",
-        null,
-        this.i18nService.t("verifiedBankAccount")
-      );
-      this.load();
-    } catch (e) {
-      this.logService.error(e);
-    }
   }
 
   addCredit() {
@@ -139,13 +103,5 @@ export class UserBillingComponent implements OnInit {
       (this.paymentSource.type === PaymentMethodType.AppleInApp ||
         this.paymentSource.type === PaymentMethodType.GoogleInApp)
     );
-  }
-
-  get invoices() {
-    return this.billing != null ? this.billing.invoices : null;
-  }
-
-  get transactions() {
-    return this.billing != null ? this.billing.transactions : null;
   }
 }

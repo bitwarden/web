@@ -47,7 +47,7 @@ export class PremiumComponent implements OnInit {
     this.canAccessPremium = await this.stateService.getCanAccessPremium();
     const premium = await this.tokenService.getPremium();
     if (premium) {
-      this.router.navigate(["/settings/subscription"]);
+      this.router.navigate(["/settings/subscription/user-subscription"]);
       return;
     }
   }
@@ -119,7 +119,7 @@ export class PremiumComponent implements OnInit {
     await this.syncService.fullSync(true);
     this.platformUtilsService.showToast("success", null, this.i18nService.t("premiumUpdated"));
     this.messagingService.send("purchasedPremium");
-    this.router.navigate(["/settings/subscription"]);
+    this.router.navigate(["/settings/subscription/user-subscription"]);
   }
 
   get additionalStorageTotal(): number {

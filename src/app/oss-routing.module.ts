@@ -34,11 +34,8 @@ import { DomainRulesComponent } from "./settings/domain-rules.component";
 import { EmergencyAccessViewComponent } from "./settings/emergency-access-view.component";
 import { EmergencyAccessComponent } from "./settings/emergency-access.component";
 import { PreferencesComponent } from "./settings/preferences.component";
-import { PremiumComponent } from "./settings/premium.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { SponsoredFamiliesComponent } from "./settings/sponsored-families.component";
-import { UserBillingComponent } from "./settings/user-billing.component";
-import { UserSubscriptionComponent } from "./settings/user-subscription.component";
 import { ExportComponent } from "./tools/export.component";
 import { GeneratorComponent } from "./tools/generator.component";
 import { ImportComponent } from "./tools/import.component";
@@ -179,12 +176,10 @@ const routes: Routes = [
             component: DomainRulesComponent,
             data: { titleId: "domainRules" },
           },
-          { path: "premium", component: PremiumComponent, data: { titleId: "goPremium" } },
-          { path: "billing", component: UserBillingComponent, data: { titleId: "billing" } },
           {
             path: "subscription",
-            component: UserSubscriptionComponent,
-            data: { titleId: "premiumMembership" },
+            loadChildren: async () =>
+              (await import("./settings/subscription-routing.module")).SubscriptionRoutingModule,
           },
           {
             path: "create-organization",
