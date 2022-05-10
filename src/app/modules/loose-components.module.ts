@@ -58,6 +58,7 @@ import { SingleOrgPolicyComponent } from "../organizations/policies/single-org.c
 import { TwoFactorAuthenticationPolicyComponent } from "../organizations/policies/two-factor-authentication.component";
 import { AccountComponent as OrgAccountComponent } from "../organizations/settings/account.component";
 import { AdjustSubscription } from "../organizations/settings/adjust-subscription.component";
+import { BillingSyncApiKeyComponent } from "../organizations/settings/billing-sync-api-key.component";
 import { ChangePlanComponent } from "../organizations/settings/change-plan.component";
 import { DeleteOrganizationComponent } from "../organizations/settings/delete-organization.component";
 import { DownloadLicenseComponent } from "../organizations/settings/download-license.component";
@@ -66,6 +67,7 @@ import { OrganizationBillingComponent } from "../organizations/settings/organiza
 import { OrganizationSubscriptionComponent } from "../organizations/settings/organization-subscription.component";
 import { SettingsComponent as OrgSettingComponent } from "../organizations/settings/settings.component";
 import { TwoFactorSetupComponent as OrgTwoFactorSetupComponent } from "../organizations/settings/two-factor-setup.component";
+import { AcceptFamilySponsorshipComponent } from "../organizations/sponsorships/accept-family-sponsorship.component";
 import { FamiliesForEnterpriseSetupComponent } from "../organizations/sponsorships/families-for-enterprise-setup.component";
 import { ExportComponent as OrgExportComponent } from "../organizations/tools/export.component";
 import { ExposedPasswordsReportComponent as OrgExposedPasswordsReportComponent } from "../organizations/tools/exposed-passwords-report.component";
@@ -98,6 +100,7 @@ import { AddCreditComponent } from "../settings/add-credit.component";
 import { AdjustPaymentComponent } from "../settings/adjust-payment.component";
 import { AdjustStorageComponent } from "../settings/adjust-storage.component";
 import { ApiKeyComponent } from "../settings/api-key.component";
+import { BillingSyncKeyComponent } from "../settings/billing-sync-key.component";
 import { ChangeEmailComponent } from "../settings/change-email.component";
 import { ChangeKdfComponent } from "../settings/change-kdf.component";
 import { ChangePasswordComponent } from "../settings/change-password.component";
@@ -171,6 +174,7 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
   declarations: [
     PremiumBadgeComponent,
     AcceptEmergencyComponent,
+    AcceptFamilySponsorshipComponent,
     AcceptOrganizationComponent,
     AccessComponent,
     AccountComponent,
@@ -183,6 +187,8 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     AdjustSubscription,
     ApiKeyComponent,
     AttachmentsComponent,
+    BillingSyncApiKeyComponent,
+    BillingSyncKeyComponent,
     BreachReportComponent,
     BulkActionsComponent,
     BulkDeleteComponent,
