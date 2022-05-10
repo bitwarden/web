@@ -33,4 +33,8 @@ export class VaultFilterComponent extends BaseVaultFilterComponent {
   async reloadOrganizations() {
     this.organizations = await this.vaultFilterService.buildOrganizations();
   }
+
+  async initCollections() {
+    return await this.vaultFilterService.buildCollections(this.organization?.id);
+  }
 }
