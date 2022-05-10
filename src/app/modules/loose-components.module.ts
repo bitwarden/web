@@ -61,6 +61,7 @@ import { AdjustSubscription } from "../organizations/settings/adjust-subscriptio
 import { ChangePlanComponent } from "../organizations/settings/change-plan.component";
 import { DeleteOrganizationComponent } from "../organizations/settings/delete-organization.component";
 import { DownloadLicenseComponent } from "../organizations/settings/download-license.component";
+import { ImageSubscriptionHiddenComponent as OrgSubscriptionHiddenComponent } from "../organizations/settings/image-subscription-hidden.component";
 import { OrganizationBillingComponent } from "../organizations/settings/organization-billing.component";
 import { OrganizationSubscriptionComponent } from "../organizations/settings/organization-subscription.component";
 import { SettingsComponent as OrgSettingComponent } from "../organizations/settings/settings.component";
@@ -256,6 +257,7 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     OrgSettingComponent,
     OrgToolsComponent,
     OrgTwoFactorSetupComponent,
+    OrgSubscriptionHiddenComponent,
     OrgUnsecuredWebsitesReportComponent,
     OrgUserAddEditComponent,
     OrgUserConfirmComponent,
