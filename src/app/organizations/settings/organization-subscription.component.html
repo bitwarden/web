@@ -18,7 +18,7 @@
 
 <ng-container *ngIf="firstLoaded && !userOrg.canManageBilling">
   <div class="tw-flex tw-flex-col tw-items-center tw-text-info">
-    <app-org-subscription-hidden></app-org-subscription-hidden>
+    <app-image-org-subscription-hidden></app-image-org-subscription-hidden>
     <p class="tw-font-bold">{{ "billingManagedByProvider" | i18n: this.userOrg.providerName }}</p>
     <p>{{ "billingContactProviderForAssistance" | i18n }}</p>
   </div>
