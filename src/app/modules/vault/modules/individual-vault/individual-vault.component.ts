@@ -139,24 +139,6 @@ export class IndividualVaultComponent implements OnInit, OnDestroy {
         }
       });
 
-      this.route.queryParams.subscribe(async (params) => {
-        if (params.cipherId) {
-          if ((await this.cipherService.get(params.cipherId)) != null) {
-            this.editCipherId(params.cipherId);
-          } else {
-            this.platformUtilsService.showToast(
-              "error",
-              this.i18nService.t("errorOccurred"),
-              this.i18nService.t("unknownCipher")
-            );
-            this.router.navigate([], {
-              queryParams: { cipherId: null },
-              queryParamsHandling: "merge",
-            });
-          }
-        }
-      });
-
       this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {
         this.ngZone.run(async () => {
           switch (message.command) {

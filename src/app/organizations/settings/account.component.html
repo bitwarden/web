@@ -37,7 +37,7 @@
           type="text"
           name="BillingEmail"
           [(ngModel)]="org.billingEmail"
-          [disabled]="selfHosted"
+          [disabled]="selfHosted || !canManageBilling"
         />
       </div>
       <div class="form-group">
@@ -48,7 +48,7 @@
           type="text"
           name="BusinessName"
           [(ngModel)]="org.businessName"
-          [disabled]="selfHosted"
+          [disabled]="selfHosted || !canManageBilling"
         />
       </div>
       <div class="form-group">

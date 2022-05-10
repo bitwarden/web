@@ -201,7 +201,8 @@ const routes: Routes = [
           {
             path: "billing",
             component: OrganizationBillingComponent,
-            data: { titleId: "billing" },
+            canActivate: [PermissionsGuard],
+            data: { titleId: "billing", permissions: [Permissions.ManageBilling] },
           },
           {
             path: "subscription",
