@@ -2,43 +2,24 @@
   <div class="row">
     <div class="col-3">
       <div class="card">
-        <div class="card-header">{{ "settings" | i18n }}</div>
+        <div class="card-header">{{ "accountSettings" | i18n }}</div>
         <div class="list-group list-group-flush">
           <a routerLink="account" class="list-group-item" routerLinkActive="active">
             {{ "myAccount" | i18n }}
           </a>
-          <a routerLink="options" class="list-group-item" routerLinkActive="active">
-            {{ "options" | i18n }}
+          <a routerLink="security" class="list-group-item" routerLinkActive="active">
+            {{ "security" | i18n }}
           </a>
-          <a routerLink="organizations" class="list-group-item" routerLinkActive="active">
-            {{ "organizations" | i18n }}
+          <a routerLink="preferences" class="list-group-item" routerLinkActive="active">
+            {{ "preferences" | i18n }}
           </a>
           <a
             routerLink="subscription"
             class="list-group-item"
             routerLinkActive="active"
-            *ngIf="premium"
+            *ngIf="!hideSubscription"
           >
-            {{ "premiumMembership" | i18n }}
-          </a>
-          <a
-            routerLink="premium"
-            class="list-group-item"
-            routerLinkActive="active"
-            *ngIf="!premium"
-          >
-            {{ "goPremium" | i18n }}
-          </a>
-          <a
-            routerLink="billing"
-            class="list-group-item"
-            routerLinkActive="active"
-            *ngIf="!selfHosted"
-          >
-            {{ "billing" | i18n }}
-          </a>
-          <a routerLink="two-factor" class="list-group-item" routerLinkActive="active">
-            {{ "twoStepLogin" | i18n }}
+            {{ "subscription" | i18n }}
           </a>
           <a routerLink="domain-rules" class="list-group-item" routerLinkActive="active">
             {{ "domainRules" | i18n }}

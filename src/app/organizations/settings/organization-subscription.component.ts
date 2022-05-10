@@ -63,7 +63,11 @@ export class OrganizationSubscriptionComponent implements OnInit {
 
     this.loading = true;
     this.userOrg = await this.organizationService.get(this.organizationId);
-    this.sub = await this.apiService.getOrganizationSubscription(this.organizationId);
+
+    if (this.userOrg.canManageBilling) {
+      this.sub = await this.apiService.getOrganizationSubscription(this.organizationId);
+    }
+
     this.loading = false;
   }
 
