@@ -35,7 +35,6 @@ export class OrganizationOptionsComponent {
   ) {}
 
   async ngOnInit() {
-    await this.syncService.fullSync(true);
     await this.load();
   }
 
