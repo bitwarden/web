@@ -3,7 +3,7 @@
     {{ "paymentMethod" | i18n }}
   </h1>
   <button
-    bit-button
+    bitButton
     buttonType="secondary"
     (click)="load()"
     class="tw-ml-auto"
@@ -28,7 +28,7 @@
     <strong>{{ creditOrBalance | currency: "$" }}</strong>
   </p>
   <p>{{ "creditAppliedDesc" | i18n }}</p>
-  <button bit-button buttonType="secondary" (click)="addCredit()" *ngIf="!showAddCredit">
+  <button bitButton buttonType="secondary" (click)="addCredit()" *ngIf="!showAddCredit">
     {{ "addCredit" | i18n }}
   </button>
   <app-add-credit
@@ -56,7 +56,7 @@
       {{ paymentSource.description }}
     </p>
   </ng-container>
-  <button bit-button buttonType="secondary" (click)="changePayment()" *ngIf="!showAdjustPayment">
+  <button bitButton buttonType="secondary" (click)="changePayment()" *ngIf="!showAdjustPayment">
     {{ (paymentSource ? "changePaymentMethod" : "addPaymentMethod") | i18n }}
   </button>
   <app-adjust-payment

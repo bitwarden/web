@@ -17,13 +17,7 @@
       <small class="form-text text-muted">{{ "breachCheckUsernameEmail" | i18n }}</small>
     </div>
   </div>
-  <button
-    bit-button
-    buttonType="primary"
-    class="btn-submit"
-    type="submit"
-    [disabled]="form.loading"
-  >
+  <button bitButton buttonType="primary" class="btn-submit" type="submit" [disabled]="form.loading">
     <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
     <span>{{ "checkBreaches" | i18n }}</span>
   </button>

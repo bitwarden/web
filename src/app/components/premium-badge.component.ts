@@ -5,7 +5,7 @@ import { MessagingService } from "jslib-common/abstractions/messaging.service";
 @Component({
   selector: "app-premium-badge",
   template: `
-    <button *appNotPremium bit-badge badgeType="success" (click)="premiumRequired()">
+    <button *appNotPremium bitBadge badgeType="success" (click)="premiumRequired()">
       {{ "premium" | i18n }}
     </button>
   `,

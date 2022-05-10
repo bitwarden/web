@@ -48,7 +48,7 @@
     {{ "premiumPrice" | i18n: (premiumPrice | currency: "$") }}
   </p>
   <a
-    bit-button
+    bitButton
     href="https://vault.bitwarden.com/#/settings/premium"
     target="_blank"
     rel="noopener"
@@ -69,7 +69,7 @@
       }}</small>
     </div>
     <button
-      bit-button
+      bitButton
       buttonType="primary"
       type="submit"
       class="btn-submit"
@@ -125,13 +125,7 @@
     </p>
   </div>
   <small class="text-muted font-italic">{{ "paymentChargedAnnually" | i18n }}</small>
-  <button
-    bit-button
-    buttonType="primary"
-    type="submit"
-    class="btn-submit"
-    [disabled]="form.loading"
-  >
+  <button bitButton buttonType="primary" type="submit" class="btn-submit" [disabled]="form.loading">
     <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
     <span>{{ "submit" | i18n }}</span>
   </button>
