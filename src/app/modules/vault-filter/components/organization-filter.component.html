@@ -10,6 +10,14 @@
             </button>
           </span>
         </li>
+        <li class="filter-option">
+          <span class="filter-buttons">
+            <a href="#" routerLink="/settings/create-organization" class="filter-button">
+              <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
+              {{ "newOrganization" | i18n }}
+            </a>
+          </span>
+        </li>
       </ul>
     </ng-container>
     <ng-container *ngSwitchCase="'personalOwnershipPolicy'">

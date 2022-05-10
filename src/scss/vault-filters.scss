@@ -95,7 +95,8 @@
   display: flex;
   align-items: center;
 
-  button {
+  button,
+  a {
     @extend .no-btn;
   }
 
@@ -115,6 +116,7 @@
       @include themify($themes) {
         color: themed("linkColor") !important;
       }
+      text-decoration: none;
     }
   }
 
