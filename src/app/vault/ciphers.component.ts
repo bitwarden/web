@@ -5,6 +5,7 @@ import { CipherService } from "jslib-common/abstractions/cipher.service";
 import { EventService } from "jslib-common/abstractions/event.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
+import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PasswordRepromptService } from "jslib-common/abstractions/passwordReprompt.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { SearchService } from "jslib-common/abstractions/search.service";
@@ -13,6 +14,7 @@ import { TotpService } from "jslib-common/abstractions/totp.service";
 import { CipherRepromptType } from "jslib-common/enums/cipherRepromptType";
 import { CipherType } from "jslib-common/enums/cipherType";
 import { EventType } from "jslib-common/enums/eventType";
+import { Organization } from "jslib-common/models/domain/organization";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
 const MaxCheckedCount = 500;
@@ -27,12 +29,14 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
   @Output() onShareClicked = new EventEmitter<CipherView>();
   @Output() onCollectionsClicked = new EventEmitter<CipherView>();
   @Output() onCloneClicked = new EventEmitter<CipherView>();
+  @Output() onOrganzationBadgeClicked = new EventEmitter<string>();
 
   pagedCiphers: CipherView[] = [];
   pageSize = 200;
   cipherType = CipherType;
   actionPromise: Promise<any>;
   userHasPremiumAccess = false;
+  organizations: Organization[] = [];
 
   private didScroll = false;
   private pagedCiphersCount = 0;
@@ -47,7 +51,8 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     protected totpService: TotpService,
     protected stateService: StateService,
     protected passwordRepromptService: PasswordRepromptService,
-    private logService: LogService
+    private logService: LogService,
+    private organizationService: OrganizationService
   ) {
     super(searchService);
   }
@@ -60,6 +65,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
   // Do not use ngOnInit() for anything that requires sync data.
   async load(filter: (cipher: CipherView) => boolean = null, deleted = false) {
     await super.load(filter, deleted);
+    this.organizations = await this.organizationService.getAll();
     this.userHasPremiumAccess = await this.stateService.getCanAccessPremium();
   }
 
@@ -271,6 +277,10 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     if (await this.repromptCipher(cipher)) {
       super.selectCipher(cipher);
     }
+  }
+
+  onOrganizationClicked(organizationId: string) {
+    this.onOrganzationBadgeClicked.emit(organizationId);
   }
 
   protected deleteCipher(id: string, permanent: boolean) {

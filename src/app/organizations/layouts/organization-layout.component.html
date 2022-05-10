@@ -1,0 +1,37 @@
+<div class="org-nav" *ngIf="organization">
+  <div class="container d-flex">
+    <div class="d-flex flex-column">
+      <app-organization-switcher
+        class="my-auto pl-1"
+        [activeOrganization]="organization"
+      ></app-organization-switcher>
+      <ul class="nav nav-tabs">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="vault" routerLinkActive="active">
+            <i class="bwi bwi-lock" aria-hidden="true"></i>
+            {{ "vault" | i18n }}
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="showManageTab">
+          <a class="nav-link" [routerLink]="manageRoute" routerLinkActive="active">
+            <i class="bwi bwi-sliders" aria-hidden="true"></i>
+            {{ "manage" | i18n }}
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="showToolsTab">
+          <a class="nav-link" [routerLink]="toolsRoute" routerLinkActive="active">
+            <i class="bwi bwi-wrench" aria-hidden="true"></i>
+            {{ "tools" | i18n }}
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="showSettingsTab">
+          <a class="nav-link" routerLink="settings" routerLinkActive="active">
+            <i class="bwi bwi-cogs" aria-hidden="true"></i>
+            {{ "settings" | i18n }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>

@@ -74,9 +74,11 @@
     text-align: right;
   }
 
+  // Deprecated: only used for old Bootstrap table-list-option menus before the End User Vault Refresh.
+  // New menus should be permanently visible.
   tr:not(:hover) td.table-list-options {
     > .dropdown:not(.show) button:not(:focus):not(:active),
-    > button:not(:focus):not(:active) {
+    > button.dropdown-toggle:not(:focus):not(:active) {
       @extend .sr-only;
     }
   }
