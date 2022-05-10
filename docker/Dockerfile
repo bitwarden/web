@@ -12,7 +12,7 @@ WORKDIR /source
 COPY . .
 
 RUN npm ci
-RUN npm run dist:oss:selfhost
+RUN npm run dist:bit:selfhost
 
 ###############################################
 #                 Build stage                 #

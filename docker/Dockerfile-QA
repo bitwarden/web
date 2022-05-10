@@ -12,7 +12,10 @@ WORKDIR /source
 COPY . .
 
 RUN npm ci
-RUN npm run dist:oss:selfhost
+# TODO: Make sure version is correct when building QA image.
+# RUN jq --arg version "$VERSION - ${GITHUB_SHA:0:7}" '.version = $version' package.json > package.json.tmp
+# RUN mv package.json.tmp package.json
+RUN npm run build:bit:qa
 
 ###############################################
 #                 Build stage                 #
