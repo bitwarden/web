@@ -14,7 +14,7 @@
             routerLink="billing"
             class="list-group-item"
             routerLinkActive="active"
-            *ngIf="!selfHosted"
+            *ngIf="showBilling"
           >
             {{ "billing" | i18n }}
           </a>
