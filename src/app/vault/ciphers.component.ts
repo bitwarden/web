@@ -10,6 +10,7 @@ import { PasswordRepromptService } from "jslib-common/abstractions/passwordRepro
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { SearchService } from "jslib-common/abstractions/search.service";
 import { StateService } from "jslib-common/abstractions/state.service";
+import { TokenService } from "jslib-common/abstractions/token.service";
 import { TotpService } from "jslib-common/abstractions/totp.service";
 import { CipherRepromptType } from "jslib-common/enums/cipherRepromptType";
 import { CipherType } from "jslib-common/enums/cipherType";
@@ -37,6 +38,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
   actionPromise: Promise<any>;
   userHasPremiumAccess = false;
   organizations: Organization[] = [];
+  profileName: string;
 
   private didScroll = false;
   private pagedCiphersCount = 0;
@@ -52,7 +54,8 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
     protected stateService: StateService,
     protected passwordRepromptService: PasswordRepromptService,
     private logService: LogService,
-    private organizationService: OrganizationService
+    private organizationService: OrganizationService,
+    private tokenService: TokenService
   ) {
     super(searchService);
   }
@@ -65,6 +68,7 @@ export class CiphersComponent extends BaseCiphersComponent implements OnDestroy 
   // Do not use ngOnInit() for anything that requires sync data.
   async load(filter: (cipher: CipherView) => boolean = null, deleted = false) {
     await super.load(filter, deleted);
+    this.profileName = await this.tokenService.getName();
     this.organizations = await this.organizationService.getAll();
     this.userHasPremiumAccess = await this.stateService.getCanAccessPremium();
   }

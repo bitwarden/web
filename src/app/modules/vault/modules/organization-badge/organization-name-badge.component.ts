@@ -8,10 +8,11 @@ import { I18nService } from "jslib-common/abstractions/i18n.service";
 })
 export class OrganizationNameBadgeComponent implements OnInit {
   @Input() organizationName: string;
-  @Input() color: string;
+  @Input() profileName: string;
 
   @Output() onOrganizationClicked = new EventEmitter<string>();
 
+  color: string;
   textColor: string;
 
   constructor(private i18nService: I18nService) {}
@@ -19,10 +20,10 @@ export class OrganizationNameBadgeComponent implements OnInit {
   ngOnInit(): void {
     if (this.organizationName == null || this.organizationName === "") {
       this.organizationName = this.i18nService.t("me");
+      this.color = this.stringToColor(this.profileName.toUpperCase());
     }
-    const upperData = this.organizationName.toUpperCase();
     if (this.color == null) {
-      this.color = this.stringToColor(upperData);
+      this.color = this.stringToColor(this.organizationName.toUpperCase());
     }
     this.textColor = this.pickTextColorBasedOnBgColor();
   }
@@ -49,18 +50,7 @@ export class OrganizationNameBadgeComponent implements OnInit {
     const r = parseInt(color.substring(0, 2), 16); // hexToR
     const g = parseInt(color.substring(2, 4), 16); // hexToG
     const b = parseInt(color.substring(4, 6), 16); // hexToB
-
-    const uicolors = [r / 255, g / 255, b / 255];
-    const c = uicolors.map((c) => {
-      if (c <= 0.03928) {
-        return c / 12.92;
-      } else {
-        return Math.pow((c + 0.055) / 1.055, 2.4);
-      }
-    });
-
-    const L = 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
-    return L > 0.179 ? "black !important" : "white !important";
+    return r * 0.299 + g * 0.587 + b * 0.114 > 186 ? "black !important" : "white !important";
   }
 
   emitOnOrganizationClicked() {
