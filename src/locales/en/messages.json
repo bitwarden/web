@@ -421,11 +421,23 @@
     "message": "Copy URI",
     "description": "Copy URI to clipboard"
   },
+  "me": {
+    "message": "Me"
+  },
   "myVault": {
     "message": "My Vault"
   },
+  "allVaults": {
+    "message": "All Vaults"
+  },
   "vault": {
     "message": "Vault"
+  },
+  "vaults": {
+    "message": "Vaults"
+  },
+  "vaultItems": {
+    "message": "Vault Items"
   },
   "moveSelectedToOrg": {
     "message": "Move Selected to Organization"
@@ -1124,11 +1136,14 @@
   "options": {
     "message": "Options"
   },
-  "optionsDesc": {
+  "preferences": {
+    "message": "Preferences"
+  },
+  "preferencesDesc": {
     "message": "Customize your web vault experience."
   },
-  "optionsUpdated": {
-    "message": "Options updated"
+  "preferencesUpdated": {
+    "message": "Preferences updated"
   },
   "language": {
     "message": "Language"
@@ -4851,8 +4866,33 @@
       }
     }
   },
+  "accessDenied": {
+    "message": "Access Denied. You do not have permission to view this page."
+  },
+  "masterPassword": {
+    "message": "Master Password"
+  },
+  "security": {
+    "message": "Security"
+  },
+  "keys": {
+    "message": "Keys"
+  },
+  "billingHistory": {
+    "message": "Billing History"
+  },
   "backToReports": {
     "message": "Back to Reports"
+  },
+  "organizationPicker": {
+    "message": "Organization picker"
+  },
+  "currentOrganization": {
+    "message": "Current organization",
+    "description": "This is used by screen readers to indicate the organization that is currently being shown to the user."
+  },
+  "accountSettings": {
+    "message": "Account Settings"
   },
   "generator": {
     "message": "Generator"
@@ -4886,13 +4926,27 @@
     "message": "Use your domain's configured catch-all inbox."
   },
   "random": {
-    "message": "Random"
+    "message": "Random",
+    "description": "Generates domain-based username using random letters"
   },
   "randomWord": {
     "message": "Random Word"
   },
   "service": {
     "message": "Service"
+  },
+  "billingManagedByProvider": {
+    "message": "Managed by $PROVIDER$",
+    "placeholders": {
+      "provider": {
+        "content": "$1",
+        "example": "Managed Services Company"
+      }
+    }
+  },
+  "billingContactProviderForAssistance": {
+    "message": "Please reach out to them for further assistance",
+    "description": "This text is displayed if an organization's billing is managed by a Provider. It tells the user to contact the Provider for assistance."
   },
   "forwardedEmail": {
     "message": "Forwarded Email Alias"

@@ -1,15 +1,18 @@
-<div class="page-header">
+<div *ngIf="selfHosted" class="page-header">
+  <h1>{{ "subscription" | i18n }}</h1>
+</div>
+<div *ngIf="!selfHosted" class="tabbed-header">
   <h1>{{ "goPremium" | i18n }}</h1>
 </div>
-<app-callout
+<bit-callout
   type="info"
   *ngIf="canAccessPremium"
   title="{{ 'youHavePremiumAccess' | i18n }}"
   icon="bwi bwi-star-f"
 >
   {{ "alreadyPremiumFromOrg" | i18n }}
-</app-callout>
-<app-callout type="success">
+</bit-callout>
+<bit-callout type="success">
   <p>{{ "premiumUpgradeUnlockFeatures" | i18n }}</p>
   <ul class="bwi-ul">
     <li>
@@ -45,15 +48,16 @@
     {{ "premiumPrice" | i18n: (premiumPrice | currency: "$") }}
   </p>
   <a
+    bit-button
     href="https://vault.bitwarden.com/#/settings/premium"
     target="_blank"
     rel="noopener"
-    class="btn btn-outline-secondary"
+    buttonType="secondary"
     *ngIf="selfHosted"
   >
     {{ "purchasePremium" | i18n }}
   </a>
-</app-callout>
+</bit-callout>
 <ng-container *ngIf="selfHosted">
   <p>{{ "uploadLicenseFilePremium" | i18n }}</p>
   <form #form (ngSubmit)="submit()" [appApiAction]="formPromise" ngNativeValidate>
@@ -64,7 +68,13 @@
         "licenseFileDesc" | i18n: "bitwarden_premium_license.json"
       }}</small>
     </div>
-    <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+    <button
+      bit-button
+      buttonType="primary"
+      type="submit"
+      class="btn-submit"
+      [disabled]="form.loading"
+    >
       <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
       <span>{{ "submit" | i18n }}</span>
     </button>
@@ -115,7 +125,13 @@
     </p>
   </div>
   <small class="text-muted font-italic">{{ "paymentChargedAnnually" | i18n }}</small>
-  <button type="submit" class="btn btn-primary btn-submit" [disabled]="form.loading">
+  <button
+    bit-button
+    buttonType="primary"
+    type="submit"
+    class="btn-submit"
+    [disabled]="form.loading"
+  >
     <i class="bwi bwi-spinner bwi-spin" title="{{ 'loading' | i18n }}" aria-hidden="true"></i>
     <span>{{ "submit" | i18n }}</span>
   </button>

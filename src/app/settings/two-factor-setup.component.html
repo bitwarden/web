@@ -1,14 +1,14 @@
-<div class="page-header">
+<div class="tabbed-header">
   <h1>{{ "twoStepLogin" | i18n }}</h1>
 </div>
 <p *ngIf="!organizationId">{{ "twoStepLoginDesc" | i18n }}</p>
 <p *ngIf="organizationId">{{ "twoStepLoginOrganizationDesc" | i18n }}</p>
-<app-callout type="warning" *ngIf="!organizationId">
+<bit-callout type="warning" *ngIf="!organizationId">
   <p>{{ "twoStepLoginRecoveryWarning" | i18n }}</p>
-  <button type="button" class="btn btn-outline-secondary" (click)="recoveryCode()">
+  <button bit-button buttonType="secondary" (click)="recoveryCode()">
     {{ "viewRecoveryCode" | i18n }}
   </button>
-</app-callout>
+</bit-callout>
 <h2 [ngClass]="{ 'mt-5': !organizationId }">
   {{ "providers" | i18n }}
   <small *ngIf="loading">
@@ -20,9 +20,9 @@
     <span class="sr-only">{{ "loading" | i18n }}</span>
   </small>
 </h2>
-<app-callout type="warning" *ngIf="showPolicyWarning">
+<bit-callout type="warning" *ngIf="showPolicyWarning">
   {{ "twoStepLoginPolicyUserWarning" | i18n }}
-</app-callout>
+</bit-callout>
 <ul class="list-group list-group-2fa">
   <li *ngFor="let p of providers" class="list-group-item d-flex align-items-center">
     <div class="logo-2fa d-flex justify-content-center">
@@ -45,8 +45,8 @@
     </div>
     <div class="ml-auto">
       <button
-        type="button"
-        class="btn btn-outline-secondary btn-sm"
+        bit-button
+        buttonType="secondary"
         [disabled]="!canAccessPremium && p.premium"
         (click)="manage(p.type)"
       >

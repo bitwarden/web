@@ -7,6 +7,7 @@ import { ApiService } from "jslib-common/abstractions/api.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
+import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
 import { OrganizationKeysRequest } from "jslib-common/models/request/organizationKeysRequest";
@@ -35,6 +36,7 @@ export class AccountComponent {
   @ViewChild(TaxInfoComponent) taxInfo: TaxInfoComponent;
 
   selfHosted = false;
+  canManageBilling = true;
   loading = true;
   canUseApi = false;
   org: OrganizationResponse;
@@ -60,7 +62,8 @@ export class AccountComponent {
     private platformUtilsService: PlatformUtilsService,
     private cryptoService: CryptoService,
     private logService: LogService,
-    private router: Router
+    private router: Router,
+    private organizationService: OrganizationService
   ) {}
 
   async ngOnInit() {
@@ -74,6 +77,9 @@ export class AccountComponent {
 
     this.route.parent.parent.params.subscribe(async (params) => {
       this.organizationId = params.organizationId;
+      this.canManageBilling = (
+        await this.organizationService.get(this.organizationId)
+      ).canManageBilling;
       try {
         this.org = await this.apiService.getOrganization(this.organizationId);
         this.canUseApi = this.org.useApi;
