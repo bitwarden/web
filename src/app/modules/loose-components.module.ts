@@ -22,9 +22,7 @@ import { VerifyRecoverDeleteComponent } from "../accounts/verify-recover-delete.
 import { NestedCheckboxComponent } from "../components/nested-checkbox.component";
 import { PasswordRepromptComponent } from "../components/password-reprompt.component";
 import { PremiumBadgeComponent } from "../components/premium-badge.component";
-import { FooterComponent } from "../layouts/footer.component";
-import { FrontendLayoutComponent } from "../layouts/frontend-layout.component";
-import { NavbarComponent } from "../layouts/navbar.component";
+import { LayoutsModule } from "../layouts/layouts.module";
 import { UserLayoutComponent } from "../layouts/user-layout.component";
 import { ProvidersComponent } from "../providers/providers.component";
 import { BreachReportComponent } from "../reports/breach-report.component";
@@ -113,7 +111,7 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
 // Please do not add to this list of declarations - we should refactor these into modules when doing so makes sense until there are none left.
 // If you are building new functionality, please create or extend a feature module instead.
 @NgModule({
-  imports: [SharedModule, VaultFilterModule, OrganizationBadgeModule, PipesModule],
+  imports: [SharedModule, VaultFilterModule, OrganizationBadgeModule, PipesModule, LayoutsModule],
   declarations: [
     PremiumBadgeComponent,
     AcceptEmergencyComponent,
@@ -154,15 +152,12 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     ExportComponent,
     ExposedPasswordsReportComponent,
     FolderAddEditComponent,
-    FooterComponent,
-    FrontendLayoutComponent,
     HintComponent,
     ImportComponent,
     InactiveTwoFactorReportComponent,
     LinkSsoComponent,
     LockComponent,
     LoginComponent,
-    NavbarComponent,
     NestedCheckboxComponent,
     GeneratorComponent,
     PasswordGeneratorHistoryComponent,
@@ -260,15 +255,12 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     ExportComponent,
     ExposedPasswordsReportComponent,
     FolderAddEditComponent,
-    FooterComponent,
-    FrontendLayoutComponent,
     HintComponent,
     ImportComponent,
     InactiveTwoFactorReportComponent,
     LinkSsoComponent,
     LockComponent,
     LoginComponent,
-    NavbarComponent,
     NestedCheckboxComponent,
     GeneratorComponent,
     PasswordGeneratorHistoryComponent,

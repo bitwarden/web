@@ -1,11 +1,9 @@
-import { CommonModule } from "@angular/common";
 import { ComponentFactoryResolver, NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
 
-import { JslibModule } from "jslib-angular/jslib.module";
 import { ModalService } from "jslib-angular/services/modal.service";
 
-import { OssModule } from "src/app/oss.module";
+import { LayoutsModule } from "src/app/layouts/layouts.module";
+import { SharedModule } from "src/app/modules/shared.module";
 
 import { AddOrganizationComponent } from "./clients/add-organization.component";
 import { ClientsComponent } from "./clients/clients.component";
@@ -28,7 +26,7 @@ import { SetupProviderComponent } from "./setup/setup-provider.component";
 import { SetupComponent } from "./setup/setup.component";
 
 @NgModule({
-  imports: [CommonModule, FormsModule, OssModule, JslibModule, ProvidersRoutingModule],
+  imports: [SharedModule, LayoutsModule, ProvidersRoutingModule],
   declarations: [
     AcceptProviderComponent,
     AccountComponent,
