@@ -71,7 +71,7 @@ export class RegisterComponent extends BaseRegisterComponent {
       } else if (qParams.org != null) {
         this.showCreateOrgMessage = true;
         this.referenceData.flow = qParams.org;
-        const route = this.router.createUrlTree(["settings/create-organization"], {
+        const route = this.router.createUrlTree(["create-organization"], {
           queryParams: { plan: qParams.org },
         });
         this.routerService.setPreviousUrl(route.toString());
