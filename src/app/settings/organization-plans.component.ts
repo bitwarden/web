@@ -5,6 +5,7 @@ import { ApiService } from "jslib-common/abstractions/api.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
+import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
@@ -68,7 +69,8 @@ export class OrganizationPlansComponent implements OnInit {
     private syncService: SyncService,
     private policyService: PolicyService,
     private organizationService: OrganizationService,
-    private logService: LogService
+    private logService: LogService,
+    private messagingService: MessagingService
   ) {
     this.selfHosted = platformUtilsService.isSelfHost();
   }
@@ -298,6 +300,7 @@ export class OrganizationPlansComponent implements OnInit {
       this.formPromise = doSubmit();
       const organizationId = await this.formPromise;
       this.onSuccess.emit({ organizationId: organizationId });
+      this.messagingService.send("organizationCreated", organizationId);
     } catch (e) {
       this.logService.error(e);
     }
