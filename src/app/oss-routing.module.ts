@@ -232,7 +232,7 @@ const routes: Routes = [
       {
         path: "organizations",
         loadChildren: () =>
-          import("./organizations/organization.module").then((m) => m.OrganizationModule),
+          import("./organizations/organizations.module").then((m) => m.OrganizationsModule),
       },
     ],
   },

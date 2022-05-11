@@ -4,7 +4,7 @@ import { PipesModule } from "../modules/pipes/pipes.module";
 import { SharedModule } from "../modules/shared.module";
 import { VaultFilterModule } from "../modules/vault-filter/vault-filter.module";
 import { OrganizationBadgeModule } from "../modules/vault/modules/organization-badge/organization-badge.module";
-import { RequireSsoPolicyComponent } from "../organizations/policies/require-sso.component";
+
 
 import { OrganizationLayoutComponent } from "./layouts/organization-layout.component";
 import { OrganizationSwitcherComponent } from "./layouts/organization-switcher.component";
@@ -26,11 +26,12 @@ import { ResetPasswordComponent } from "./manage/reset-password.component";
 import { UserAddEditComponent } from "./manage/user-add-edit.component";
 import { UserConfirmComponent } from "./manage/user-confirm.component";
 import { UserGroupsComponent } from "./manage/user-groups.component";
-import { OrganizationsRoutingModule } from "./organization-routing.module";
+import { OrganizationsRoutingModule } from "./organizations-routing.module";
 import { DisableSendPolicyComponent } from "./policies/disable-send.component";
 import { MasterPasswordPolicyComponent } from "./policies/master-password.component";
 import { PasswordGeneratorPolicyComponent } from "./policies/password-generator.component";
 import { PersonalOwnershipPolicyComponent } from "./policies/personal-ownership.component";
+import { RequireSsoPolicyComponent } from "./policies/require-sso.component";
 import { ResetPasswordPolicyComponent } from "./policies/reset-password.component";
 import { SendOptionsPolicyComponent } from "./policies/send-options.component";
 import { SingleOrgPolicyComponent } from "./policies/single-org.component";
@@ -95,55 +96,7 @@ import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.comp
     OrganizationBillingComponent,
     OrganizationLayoutComponent,
     OrganizationSubscriptionComponent,
-    PasswordGeneratorPolicyComponent,
-    PeopleComponent,
-    PersonalOwnershipPolicyComponent,
-    PoliciesComponent,
-    PolicyEditComponent,
-    RequireSsoPolicyComponent,
-    ResetPasswordComponent,
-    ResetPasswordPolicyComponent,
-    ReusedPasswordsReportComponent,
-    SendOptionsPolicyComponent,
-    SettingsComponent,
-    SingleOrgPolicyComponent,
-    ToolsComponent,
-    TwoFactorAuthenticationPolicyComponent,
-    TwoFactorSetupComponent,
-    UnsecuredWebsitesReportComponent,
-    UserAddEditComponent,
-    UserConfirmComponent,
-    UserGroupsComponent,
-    WeakPasswordsReportComponent,
     OrganizationSwitcherComponent,
-  ],
-  exports: [
-    AdjustSubscription,
-    BulkConfirmComponent,
-    BulkRemoveComponent,
-    BulkStatusComponent,
-    ChangePlanComponent,
-    CollectionAddEditComponent,
-    DeleteOrganizationComponent,
-    DisableSendPolicyComponent,
-    DownloadLicenseComponent,
-    EntityEventsComponent,
-    EntityUsersComponent,
-    EventsComponent,
-    ExportComponent,
-    ExposedPasswordsReportComponent,
-    FamiliesForEnterpriseSetupComponent,
-    GroupAddEditComponent,
-    GroupsComponent,
-    ImportComponent,
-    InactiveTwoFactorReportComponent,
-    ManageCollectionsComponent,
-    ManageComponent,
-    MasterPasswordPolicyComponent,
-    OrgAccountComponent,
-    OrganizationBillingComponent,
-    OrganizationLayoutComponent,
-    OrganizationSubscriptionComponent,
     PasswordGeneratorPolicyComponent,
     PeopleComponent,
     PersonalOwnershipPolicyComponent,
@@ -166,4 +119,4 @@ import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.comp
     WeakPasswordsReportComponent,
   ],
 })
-export class OrganizationModule {}
+export class OrganizationsModule {}
