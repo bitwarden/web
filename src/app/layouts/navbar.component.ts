@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, NgZone, OnInit } from "@angular/core";
 
+import { BroadcasterService } from "jslib-common/abstractions/broadcaster.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { MessagingService } from "jslib-common/abstractions/messaging.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
@@ -31,7 +32,9 @@ export class NavbarComponent implements OnInit {
     private providerService: ProviderService,
     private syncService: SyncService,
     private organizationService: OrganizationService,
-    private i18nService: I18nService
+    private i18nService: I18nService,
+    private broadcasterService: BroadcasterService,
+    private ngZone: NgZone
   ) {
     this.selfHosted = this.platformUtilsService.isSelfHost();
   }
@@ -49,8 +52,24 @@ export class NavbarComponent implements OnInit {
     }
     this.providers = await this.providerService.getAll();
 
+    this.organizations = await this.buildOrganizations();
+
+    this.broadcasterService.subscribe(this.constructor.name, async (message: any) => {
+      this.ngZone.run(async () => {
+        switch (message.command) {
+          case "organizationCreated":
+            if (this.organizations.length < 1) {
+              this.organizations = await this.buildOrganizations();
+            }
+            break;
+        }
+      });
+    });
+  }
+
+  async buildOrganizations() {
     const allOrgs = await this.organizationService.getAll();
-    this.organizations = allOrgs
+    return allOrgs
       .filter((org) => OrgNavigationPermissionsService.canAccessAdmin(org))
       .sort(Utils.getSortFunction(this.i18nService, "name"));
   }
