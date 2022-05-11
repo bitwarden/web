@@ -15,11 +15,11 @@ import { TotpService } from "jslib-common/abstractions/totp.service";
 import { Organization } from "jslib-common/models/domain/organization";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { CiphersComponent as BaseCiphersComponent } from "../../vault/ciphers.component";
+import { CiphersComponent as BaseCiphersComponent } from "../../../../vault/ciphers.component";
 
 @Component({
   selector: "app-org-vault-ciphers",
-  templateUrl: "../../vault/ciphers.component.html",
+  templateUrl: "../../../../vault/ciphers.component.html",
 })
 export class CiphersComponent extends BaseCiphersComponent {
   @Output() onEventsClicked = new EventEmitter<CipherView>();

@@ -5,7 +5,7 @@ import { OrganizationService } from "jslib-common/abstractions/organization.serv
 import { Utils } from "jslib-common/misc/utils";
 import { Organization } from "jslib-common/models/domain/organization";
 
-import { NavigationPermissionsService } from "../organizations/services/navigation-permissions.service";
+import { NavigationPermissionsService } from "../services/navigation-permissions.service";
 
 @Component({
   selector: "app-organization-switcher",

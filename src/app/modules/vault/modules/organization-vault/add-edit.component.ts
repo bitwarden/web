@@ -22,11 +22,11 @@ import { Organization } from "jslib-common/models/domain/organization";
 import { CipherCreateRequest } from "jslib-common/models/request/cipherCreateRequest";
 import { CipherRequest } from "jslib-common/models/request/cipherRequest";
 
-import { AddEditComponent as BaseAddEditComponent } from "../../vault/add-edit.component";
+import { AddEditComponent as BaseAddEditComponent } from "../../../../vault/add-edit.component";
 
 @Component({
   selector: "app-org-vault-add-edit",
-  templateUrl: "../../vault/add-edit.component.html",
+  templateUrl: "../../../../vault/add-edit.component.html",
 })
 export class AddEditComponent extends BaseAddEditComponent {
   organization: Organization;

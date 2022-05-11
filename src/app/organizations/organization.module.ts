@@ -7,6 +7,7 @@ import { OrganizationBadgeModule } from "../modules/vault/modules/organization-b
 import { RequireSsoPolicyComponent } from "../organizations/policies/require-sso.component";
 
 import { OrganizationLayoutComponent } from "./layouts/organization-layout.component";
+import { OrganizationSwitcherComponent } from "./layouts/organization-switcher.component";
 import { BulkConfirmComponent } from "./manage/bulk/bulk-confirm.component";
 import { BulkRemoveComponent } from "./manage/bulk/bulk-remove.component";
 import { BulkStatusComponent } from "./manage/bulk/bulk-status.component";
@@ -55,10 +56,6 @@ import { ReusedPasswordsReportComponent } from "./tools/reused-passwords-report.
 import { ToolsComponent } from "./tools/tools.component";
 import { UnsecuredWebsitesReportComponent } from "./tools/unsecured-websites-report.component";
 import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.component";
-import { AddEditComponent } from "./vault/add-edit.component";
-import { AttachmentsComponent } from "./vault/attachments.component";
-import { CiphersComponent } from "./vault/ciphers.component";
-import { CollectionsComponent } from "./vault/collections.component";
 
 @NgModule({
   imports: [
@@ -70,17 +67,13 @@ import { CollectionsComponent } from "./vault/collections.component";
   ],
   declarations: [
     AcceptFamilySponsorshipComponent,
-    AddEditComponent,
     AdjustSubscription,
-    AttachmentsComponent,
     BillingSyncApiKeyComponent,
     BulkConfirmComponent,
     BulkRemoveComponent,
     BulkStatusComponent,
     ChangePlanComponent,
-    CiphersComponent,
     CollectionAddEditComponent,
-    CollectionsComponent,
     DeleteOrganizationComponent,
     DisableSendPolicyComponent,
     DownloadLicenseComponent,
@@ -122,18 +115,15 @@ import { CollectionsComponent } from "./vault/collections.component";
     UserConfirmComponent,
     UserGroupsComponent,
     WeakPasswordsReportComponent,
+    OrganizationSwitcherComponent,
   ],
   exports: [
-    AddEditComponent,
     AdjustSubscription,
-    AttachmentsComponent,
     BulkConfirmComponent,
     BulkRemoveComponent,
     BulkStatusComponent,
     ChangePlanComponent,
-    CiphersComponent,
     CollectionAddEditComponent,
-    CollectionsComponent,
     DeleteOrganizationComponent,
     DisableSendPolicyComponent,
     DownloadLicenseComponent,

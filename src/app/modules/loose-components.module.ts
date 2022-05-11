@@ -20,7 +20,6 @@ import { UpdateTempPasswordComponent } from "../accounts/update-temp-password.co
 import { VerifyEmailTokenComponent } from "../accounts/verify-email-token.component";
 import { VerifyRecoverDeleteComponent } from "../accounts/verify-recover-delete.component";
 import { NestedCheckboxComponent } from "../components/nested-checkbox.component";
-import { OrganizationSwitcherComponent } from "../components/organization-switcher.component";
 import { PasswordRepromptComponent } from "../components/password-reprompt.component";
 import { PremiumBadgeComponent } from "../components/premium-badge.component";
 import { FooterComponent } from "../layouts/footer.component";
@@ -165,7 +164,6 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     LoginComponent,
     NavbarComponent,
     NestedCheckboxComponent,
-    OrganizationSwitcherComponent,
     GeneratorComponent,
     PasswordGeneratorHistoryComponent,
     PasswordRepromptComponent,
@@ -272,7 +270,6 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     LoginComponent,
     NavbarComponent,
     NestedCheckboxComponent,
-    OrganizationSwitcherComponent,
     GeneratorComponent,
     PasswordGeneratorHistoryComponent,
     PasswordRepromptComponent,

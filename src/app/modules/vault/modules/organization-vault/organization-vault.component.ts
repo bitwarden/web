@@ -25,12 +25,13 @@ import { Organization } from "jslib-common/models/domain/organization";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
 import { EntityEventsComponent } from "../../../../organizations/manage/entity-events.component";
-import { AddEditComponent } from "../../../../organizations/vault/add-edit.component";
-import { AttachmentsComponent } from "../../../../organizations/vault/attachments.component";
-import { CiphersComponent } from "../../../../organizations/vault/ciphers.component";
-import { CollectionsComponent } from "../../../../organizations/vault/collections.component";
 import { VaultFilterComponent } from "../../../vault-filter/vault-filter.component";
 import { VaultService } from "../../vault.service";
+
+import { AddEditComponent } from "./add-edit.component";
+import { AttachmentsComponent } from "./attachments.component";
+import { CiphersComponent } from "./ciphers.component";
+import { CollectionsComponent } from "./collections.component";
 
 const BroadcasterSubscriptionId = "OrgVaultComponent";
 

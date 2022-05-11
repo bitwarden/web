@@ -8,7 +8,7 @@ import { CipherRepromptType } from "jslib-common/enums/cipherRepromptType";
 import { Organization } from "jslib-common/models/domain/organization";
 import { CipherView } from "jslib-common/models/view/cipherView";
 
-import { AddEditComponent as OrgAddEditComponent } from "../organizations/vault/add-edit.component";
+import { AddEditComponent as OrgAddEditComponent } from "../modules/vault/modules/organization-vault/add-edit.component";
 import { AddEditComponent } from "../vault/add-edit.component";
 
 @Directive()

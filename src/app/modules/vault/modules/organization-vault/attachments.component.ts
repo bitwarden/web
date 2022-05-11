@@ -12,11 +12,11 @@ import { Cipher } from "jslib-common/models/domain/cipher";
 import { Organization } from "jslib-common/models/domain/organization";
 import { AttachmentView } from "jslib-common/models/view/attachmentView";
 
-import { AttachmentsComponent as BaseAttachmentsComponent } from "../../vault/attachments.component";
+import { AttachmentsComponent as BaseAttachmentsComponent } from "../../../../vault/attachments.component";
 
 @Component({
   selector: "app-org-vault-attachments",
-  templateUrl: "../../vault/attachments.component.html",
+  templateUrl: "../../../../vault/attachments.component.html",
 })
 export class AttachmentsComponent extends BaseAttachmentsComponent {
   viewOnly = false;
