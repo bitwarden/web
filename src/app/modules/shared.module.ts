@@ -63,7 +63,6 @@ import { PasswordStrengthComponent } from "../components/password-strength.compo
 import { OrganizationPlansComponent } from "../settings/organization-plans.component";
 import { PaymentComponent } from "../settings/payment.component";
 
-
 registerLocaleData(localeAf, "af");
 registerLocaleData(localeAz, "az");
 registerLocaleData(localeBe, "be");
