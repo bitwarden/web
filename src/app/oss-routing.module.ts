@@ -231,8 +231,8 @@ const routes: Routes = [
       { path: "setup/families-for-enterprise", component: FamiliesForEnterpriseSetupComponent },
       {
         path: "organizations",
-        loadChildren: () =>
-          import("./organizations/organizations.module").then((m) => m.OrganizationsModule),
+        loadChildren: async () =>
+          (await import("./organizations/organizations.module")).OrganizationsModule,
       },
     ],
   },
