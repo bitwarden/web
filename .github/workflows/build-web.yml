@@ -7,7 +7,7 @@ on:
       - 'l10n_master'
       - 'gh-pages'
     paths:
-      - 'apps/web'
+      - 'apps/web/**'
   workflow_dispatch:
     inputs:
         custom_tag_extension:

@@ -6,7 +6,7 @@ on:
     branches-ignore:
       - 'l10n_master'
     paths:
-      - 'apps/cli'
+      - 'apps/cli/**'
   workflow_dispatch: {}
 
 defaults:
