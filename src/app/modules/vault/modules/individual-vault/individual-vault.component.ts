@@ -352,7 +352,7 @@ export class IndividualVaultComponent implements OnInit, OnDestroy {
 
   async editCipherId(id: string) {
     const cipher = await this.cipherService.get(id);
-    if (cipher.reprompt != 0) {
+    if (cipher != null && cipher.reprompt != 0) {
       if (!(await this.passwordRepromptService.showPasswordPrompt())) {
         this.go({ cipherId: null });
         return;

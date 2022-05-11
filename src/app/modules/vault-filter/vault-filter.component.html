@@ -26,19 +26,17 @@
         autocomplete="off"
         appAutofocus
       />
-      <div class="filter">
-        <app-organization-filter
-          *ngIf="showOrgFilter"
-          [hide]="hideOrganizations"
-          [activeFilter]="activeFilter"
-          [collapsedFilterNodes]="collapsedFilterNodes"
-          [organizations]="organizations"
-          [activePersonalOwnershipPolicy]="activePersonalOwnershipPolicy"
-          [activeSingleOrganizationPolicy]="activeSingleOrganizationPolicy"
-          (onNodeCollapseStateChange)="toggleFilterNodeCollapseState($event)"
-          (onFilterChange)="applyFilter($event)"
-        ></app-organization-filter>
-      </div>
+      <app-organization-filter
+        *ngIf="showOrgFilter"
+        [hide]="hideOrganizations"
+        [activeFilter]="activeFilter"
+        [collapsedFilterNodes]="collapsedFilterNodes"
+        [organizations]="organizations"
+        [activePersonalOwnershipPolicy]="activePersonalOwnershipPolicy"
+        [activeSingleOrganizationPolicy]="activeSingleOrganizationPolicy"
+        (onNodeCollapseStateChange)="toggleFilterNodeCollapseState($event)"
+        (onFilterChange)="applyFilter($event)"
+      ></app-organization-filter>
       <div class="filter">
         <app-status-filter
           [hideFavorites]="!showFavorites"

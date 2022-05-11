@@ -86,7 +86,7 @@ export class OrganizationVaultComponent implements OnInit, OnDestroy {
       this.ciphersComponent.organization = this.organization;
 
       this.route.queryParams.pipe(first()).subscribe(async (qParams) => {
-        // this.ciphersComponent.searchText = this.vaultFilterComponent.search = qParams.search;
+        this.ciphersComponent.searchText = this.vaultFilterComponent.searchText = qParams.search;
         if (!this.organization.canViewAllCollections) {
           await this.syncService.fullSync(false);
           this.broadcasterService.subscribe(BroadcasterSubscriptionId, (message: any) => {

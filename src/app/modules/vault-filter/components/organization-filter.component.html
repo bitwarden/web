@@ -78,14 +78,12 @@
       </ul>
     </ng-container>
     <ng-container *ngSwitchCase="'singleOrganizationAndPersonalOwnershipPolicies'">
-      <ul class="filter-options">
-        <li class="filter-option active">
-          <button class="filter-button">
-            <i class="bwi bwi-fw bwi-business" aria-hidden="true"></i>
-            {{ organizations[0].name }}
-          </button>
-        </li>
-      </ul>
+      <div class="filter-heading">
+        <button class="filter-button active">
+          <i class="bwi bwi-fw bwi-business" aria-hidden="true"></i>
+          {{ organizations[0].name }}
+        </button>
+      </div>
     </ng-container>
     <ng-container *ngSwitchCase="'organizationMember'">
       <div class="filter-heading">
@@ -140,7 +138,7 @@
               <i class="bwi bwi-fw bwi-business" aria-hidden="true"></i>
               {{ organization.name }}
             </button>
-            <ng-container *ngIf="organization.id === activeFilter.selectedOrganizationId">
+            <ng-container>
               <button [bitMenuTriggerFor]="orgMenu" class="org-options ml-auto">
                 <i class="bwi bwi-ellipsis-v" aria-hidden="true"></i>
               </button>
