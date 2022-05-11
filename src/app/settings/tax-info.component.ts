@@ -73,10 +73,14 @@ export class TaxInfoComponent {
           this.logService.error(e);
         }
       } else {
-        const taxInfo = await this.apiService.getTaxInfo();
-        if (taxInfo) {
-          this.taxInfo.postalCode = taxInfo.postalCode;
-          this.taxInfo.country = taxInfo.country || "US";
+        try {
+          const taxInfo = await this.apiService.getTaxInfo();
+          if (taxInfo) {
+            this.taxInfo.postalCode = taxInfo.postalCode;
+            this.taxInfo.country = taxInfo.country || "US";
+          }
+        } catch (e) {
+          this.logService.error(e);
         }
       }
       this.pristine = Object.assign({}, this.taxInfo);
@@ -86,9 +90,16 @@ export class TaxInfoComponent {
       }
     });
 
-    const taxRates = await this.apiService.getTaxRates();
-    this.taxRates = taxRates.data;
-    this.loading = false;
+    try {
+      const taxRates = await this.apiService.getTaxRates();
+      if (taxRates) {
+        this.taxRates = taxRates.data;
+      }
+    } catch (e) {
+      this.logService.error(e);
+    } finally {
+      this.loading = false;
+    }
   }
 
   get taxRate() {
