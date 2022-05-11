@@ -12,9 +12,9 @@ import { BillingResponse } from "jslib-common/models/response/billingResponse";
 
 @Component({
   selector: "app-org-billing",
-  templateUrl: "./organization-billing.component.html",
+  templateUrl: "./billing.component.html",
 })
-export class OrganizationBillingComponent implements OnInit {
+export class BillingComponent implements OnInit {
   loading = false;
   firstLoaded = false;
   showAdjustPayment = false;

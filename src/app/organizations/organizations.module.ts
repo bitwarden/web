@@ -2,9 +2,6 @@ import { NgModule } from "@angular/core";
 
 import { PipesModule } from "../modules/pipes/pipes.module";
 import { SharedModule } from "../modules/shared.module";
-import { VaultFilterModule } from "../modules/vault-filter/vault-filter.module";
-import { OrganizationBadgeModule } from "../modules/vault/modules/organization-badge/organization-badge.module";
-
 
 import { OrganizationLayoutComponent } from "./layouts/organization-layout.component";
 import { OrganizationSwitcherComponent } from "./layouts/organization-switcher.component";
@@ -36,16 +33,16 @@ import { ResetPasswordPolicyComponent } from "./policies/reset-password.componen
 import { SendOptionsPolicyComponent } from "./policies/send-options.component";
 import { SingleOrgPolicyComponent } from "./policies/single-org.component";
 import { TwoFactorAuthenticationPolicyComponent } from "./policies/two-factor-authentication.component";
-import { AccountComponent as OrgAccountComponent } from "./settings/account.component";
+import { AccountComponent } from "./settings/account.component";
 import { AdjustSubscription } from "./settings/adjust-subscription.component";
 import { BillingSyncApiKeyComponent } from "./settings/billing-sync-api-key.component";
+import { BillingComponent } from "./settings/billing.component";
 import { ChangePlanComponent } from "./settings/change-plan.component";
 import { DeleteOrganizationComponent } from "./settings/delete-organization.component";
 import { DownloadLicenseComponent } from "./settings/download-license.component";
 import { ImageSubscriptionHiddenComponent } from "./settings/image-subscription-hidden.component";
-import { OrganizationBillingComponent } from "./settings/organization-billing.component";
-import { OrganizationSubscriptionComponent } from "./settings/organization-subscription.component";
 import { SettingsComponent } from "./settings/settings.component";
+import { SubscriptionComponent } from "./settings/subscription.component";
 import { TwoFactorSetupComponent } from "./settings/two-factor-setup.component";
 import { AcceptFamilySponsorshipComponent } from "./sponsorships/accept-family-sponsorship.component";
 import { FamiliesForEnterpriseSetupComponent } from "./sponsorships/families-for-enterprise-setup.component";
@@ -59,16 +56,12 @@ import { UnsecuredWebsitesReportComponent } from "./tools/unsecured-websites-rep
 import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.component";
 
 @NgModule({
-  imports: [
-    OrganizationsRoutingModule,
-    SharedModule,
-    VaultFilterModule,
-    OrganizationBadgeModule,
-    PipesModule,
-  ],
+  imports: [OrganizationsRoutingModule, SharedModule, PipesModule],
   declarations: [
     AcceptFamilySponsorshipComponent,
+    AccountComponent,
     AdjustSubscription,
+    BillingComponent,
     BillingSyncApiKeyComponent,
     BulkConfirmComponent,
     BulkRemoveComponent,
@@ -92,10 +85,7 @@ import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.comp
     ManageCollectionsComponent,
     ManageComponent,
     MasterPasswordPolicyComponent,
-    OrgAccountComponent,
-    OrganizationBillingComponent,
     OrganizationLayoutComponent,
-    OrganizationSubscriptionComponent,
     OrganizationSwitcherComponent,
     PasswordGeneratorPolicyComponent,
     PeopleComponent,
@@ -109,6 +99,7 @@ import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.comp
     SendOptionsPolicyComponent,
     SettingsComponent,
     SingleOrgPolicyComponent,
+    SubscriptionComponent,
     ToolsComponent,
     TwoFactorAuthenticationPolicyComponent,
     TwoFactorSetupComponent,

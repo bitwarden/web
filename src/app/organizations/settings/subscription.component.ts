@@ -23,9 +23,9 @@ import { BillingSyncApiKeyComponent } from "./billing-sync-api-key.component";
 
 @Component({
   selector: "app-org-subscription",
-  templateUrl: "organization-subscription.component.html",
+  templateUrl: "subscription.component.html",
 })
-export class OrganizationSubscriptionComponent implements OnInit {
+export class SubscriptionComponent implements OnInit {
   @ViewChild("setupBillingSyncTemplate", { read: ViewContainerRef, static: true })
   setupBillingSyncModalRef: ViewContainerRef;
 

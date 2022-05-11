@@ -14,9 +14,9 @@ import { PeopleComponent } from "./manage/people.component";
 import { PoliciesComponent } from "./manage/policies.component";
 import { NavigationPermissionsService } from "./services/navigation-permissions.service";
 import { AccountComponent } from "./settings/account.component";
-import { OrganizationBillingComponent } from "./settings/organization-billing.component";
-import { OrganizationSubscriptionComponent } from "./settings/organization-subscription.component";
+import { BillingComponent } from "./settings/billing.component";
 import { SettingsComponent } from "./settings/settings.component";
+import { SubscriptionComponent } from "./settings/subscription.component";
 import { TwoFactorSetupComponent } from "./settings/two-factor-setup.component";
 import { ExportComponent } from "./tools/export.component";
 import { ExposedPasswordsReportComponent } from "./tools/exposed-passwords-report.component";
@@ -200,13 +200,13 @@ const routes: Routes = [
           },
           {
             path: "billing",
-            component: OrganizationBillingComponent,
+            component: BillingComponent,
             canActivate: [PermissionsGuard],
             data: { titleId: "billing", permissions: [Permissions.ManageBilling] },
           },
           {
             path: "subscription",
-            component: OrganizationSubscriptionComponent,
+            component: SubscriptionComponent,
             data: { titleId: "subscription" },
           },
         ],
