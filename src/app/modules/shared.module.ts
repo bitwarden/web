@@ -59,6 +59,11 @@ import { ToastrModule } from "ngx-toastr";
 
 import { JslibModule } from "jslib-angular/jslib.module";
 
+import { PasswordStrengthComponent } from "../components/password-strength.component";
+import { OrganizationPlansComponent } from "../settings/organization-plans.component";
+import { PaymentComponent } from "../settings/payment.component";
+
+
 registerLocaleData(localeAf, "af");
 registerLocaleData(localeAz, "az");
 registerLocaleData(localeBe, "be");
@@ -127,6 +132,7 @@ registerLocaleData(localeZhTw, "zh-TW");
     ButtonModule,
     MenuModule,
   ],
+  declarations: [PasswordStrengthComponent, OrganizationPlansComponent, PaymentComponent],
   exports: [
     CommonModule,
     DragDropModule,
@@ -142,6 +148,9 @@ registerLocaleData(localeZhTw, "zh-TW");
     BadgeModule,
     ButtonModule,
     MenuModule,
+    PasswordStrengthComponent,
+    OrganizationPlansComponent,
+    PaymentComponent,
   ],
   providers: [DatePipe],
   bootstrap: [],

@@ -25,6 +25,7 @@ import { ResetPasswordComponent } from "./manage/reset-password.component";
 import { UserAddEditComponent } from "./manage/user-add-edit.component";
 import { UserConfirmComponent } from "./manage/user-confirm.component";
 import { UserGroupsComponent } from "./manage/user-groups.component";
+import { OrganizationsRoutingModule } from "./organization-routing.module";
 import { DisableSendPolicyComponent } from "./policies/disable-send.component";
 import { MasterPasswordPolicyComponent } from "./policies/master-password.component";
 import { PasswordGeneratorPolicyComponent } from "./policies/password-generator.component";
@@ -60,7 +61,13 @@ import { CiphersComponent } from "./vault/ciphers.component";
 import { CollectionsComponent } from "./vault/collections.component";
 
 @NgModule({
-  imports: [SharedModule, VaultFilterModule, OrganizationBadgeModule, PipesModule],
+  imports: [
+    OrganizationsRoutingModule,
+    SharedModule,
+    VaultFilterModule,
+    OrganizationBadgeModule,
+    PipesModule,
+  ],
   declarations: [
     AcceptFamilySponsorshipComponent,
     AddEditComponent,
