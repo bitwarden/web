@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 
 import { LooseComponentsModule } from "./modules/loose-components.module";
+import { OrganizationManageModule } from "./modules/organizations/manage/organization-manage.module";
 import { PipesModule } from "./modules/pipes/pipes.module";
 import { SharedModule } from "./modules/shared.module";
 import { VaultFilterModule } from "./modules/vault-filter/vault-filter.module";
@@ -13,6 +14,7 @@ import { OrganizationBadgeModule } from "./modules/vault/modules/organization-ba
     VaultFilterModule,
     OrganizationBadgeModule,
     PipesModule,
+    OrganizationManageModule,
   ],
   exports: [LooseComponentsModule, VaultFilterModule, OrganizationBadgeModule, PipesModule],
   bootstrap: [],
