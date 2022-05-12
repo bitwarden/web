@@ -300,7 +300,6 @@ export class OrganizationPlansComponent implements OnInit {
       this.formPromise = doSubmit();
       const organizationId = await this.formPromise;
       this.onSuccess.emit({ organizationId: organizationId });
-      this.messagingService.send("organizationCreated", organizationId);
     } catch (e) {
       this.logService.error(e);
     }
