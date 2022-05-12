@@ -37,6 +37,7 @@ export class PreferencesComponent implements OnInit {
     private messagingService: MessagingService
   ) {
     this.vaultTimeouts = [
+      { name: i18nService.t("immediately"), value: 0 },
       { name: i18nService.t("oneMinute"), value: 1 },
       { name: i18nService.t("fiveMinutes"), value: 5 },
       { name: i18nService.t("fifteenMinutes"), value: 15 },
