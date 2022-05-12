@@ -74,100 +74,96 @@
             <hr />
             {{ "noUsersInList" | i18n }}
           </ng-container>
-          <ng-container *ngIf="searchedUsers.length">
-            <table class="table table-hover table-list mb-0">
-              <thead>
-                <tr>
-                  <th>&nbsp;</th>
-                  <th>&nbsp;</th>
-                  <th>{{ "name" | i18n }}</th>
-                  <th *ngIf="entity === 'collection'">&nbsp;</th>
-                  <th>{{ "userType" | i18n }}</th>
-                  <th width="100" class="text-center" *ngIf="entity === 'collection'">
-                    {{ "hidePasswords" | i18n }}
-                  </th>
-                  <th width="100" class="text-center" *ngIf="entity === 'collection'">
-                    {{ "readOnly" | i18n }}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *cdkVirtualFor="let u of searchedUsers" class="">
-                  <td class="table-list-checkbox" (click)="check(u)">
-                    <input
-                      type="checkbox"
-                      [(ngModel)]="u.checked"
-                      name="{{ u.id.substr(0, 8) }}_Checked"
-                      [disabled]="entity === 'collection' && u.accessAll"
-                      (change)="selectedChanged(u)"
-                      appStopProp
-                    />
-                  </td>
-                  <td width="30" (click)="check(u)">
-                    <app-avatar
-                      [data]="u | userName"
-                      [email]="u.email"
-                      size="25"
-                      [circle]="true"
-                      [fontSize]="14"
-                    >
-                    </app-avatar>
-                  </td>
-                  <td>
-                    {{ u.email }}
-                    <span
-                      class="badge badge-secondary"
-                      *ngIf="u.status === organizationUserStatusType.Invited"
-                      >{{ "invited" | i18n }}</span
-                    >
-                    <span
-                      class="badge badge-warning"
-                      *ngIf="u.status === organizationUserStatusType.Accepted"
-                      >{{ "accepted" | i18n }}</span
-                    >
-                    <small class="text-muted d-block" *ngIf="u.name">{{ u.name }}</small>
-                  </td>
-                  <td *ngIf="entity === 'collection'">
-                    <ng-container *ngIf="u.accessAll">
-                      <i
-                        class="bwi bwi-filter"
-                        title="{{ 'userAccessAllItems' | i18n }}"
-                        aria-hidden="true"
-                      ></i>
-                      <span class="sr-only">{{ "userAccessAllItems" | i18n }}</span>
-                    </ng-container>
-                  </td>
-                  <td>
-                    <span *ngIf="u.type === organizationUserType.Owner">{{ "owner" | i18n }}</span>
-                    <span *ngIf="u.type === organizationUserType.Admin">{{ "admin" | i18n }}</span>
-                    <span *ngIf="u.type === organizationUserType.Manager">{{
-                      "manager" | i18n
-                    }}</span>
-                    <span *ngIf="u.type === organizationUserType.User">{{ "user" | i18n }}</span>
-                    <span *ngIf="u.type === organizationUserType.Custom">{{
-                      "custom" | i18n
-                    }}</span>
-                  </td>
-                  <td class="text-center" *ngIf="entity === 'collection'">
-                    <input
-                      type="checkbox"
-                      [(ngModel)]="u.hidePasswords"
-                      name="{{ u.id.substr(0, 8) }}_HidePasswords"
-                      [disabled]="u.accessAll || !u.checked"
-                    />
-                  </td>
-                  <td class="text-center" *ngIf="entity === 'collection'">
-                    <input
-                      type="checkbox"
-                      [(ngModel)]="u.readOnly"
-                      name="{{ u.id.substr(0, 8) }}_ReadOnly"
-                      [disabled]="u.accessAll || !u.checked"
-                    />
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </ng-container>
+          <table class="table table-hover table-list mb-0" [hidden]="!searchedUsers.length">
+            <thead>
+              <tr>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+                <th>{{ "name" | i18n }}</th>
+                <th *ngIf="entity === 'collection'">&nbsp;</th>
+                <th>{{ "userType" | i18n }}</th>
+                <th width="100" class="text-center" *ngIf="entity === 'collection'">
+                  {{ "hidePasswords" | i18n }}
+                </th>
+                <th width="100" class="text-center" *ngIf="entity === 'collection'">
+                  {{ "readOnly" | i18n }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *cdkVirtualFor="let u of searchedUsers" class="">
+                <td class="table-list-checkbox" (click)="check(u)">
+                  <input
+                    type="checkbox"
+                    [(ngModel)]="u.checked"
+                    name="{{ u.id.substr(0, 8) }}_Checked"
+                    [disabled]="entity === 'collection' && u.accessAll"
+                    (change)="selectedChanged(u)"
+                    appStopProp
+                  />
+                </td>
+                <td width="30" (click)="check(u)">
+                  <app-avatar
+                    [data]="u | userName"
+                    [email]="u.email"
+                    size="25"
+                    [circle]="true"
+                    [fontSize]="14"
+                  >
+                  </app-avatar>
+                </td>
+                <td>
+                  {{ u.email }}
+                  <span
+                    class="badge badge-secondary"
+                    *ngIf="u.status === organizationUserStatusType.Invited"
+                    >{{ "invited" | i18n }}</span
+                  >
+                  <span
+                    class="badge badge-warning"
+                    *ngIf="u.status === organizationUserStatusType.Accepted"
+                    >{{ "accepted" | i18n }}</span
+                  >
+                  <small class="text-muted d-block" *ngIf="u.name">{{ u.name }}</small>
+                </td>
+                <td *ngIf="entity === 'collection'">
+                  <ng-container *ngIf="u.accessAll">
+                    <i
+                      class="bwi bwi-filter"
+                      title="{{ 'userAccessAllItems' | i18n }}"
+                      aria-hidden="true"
+                    ></i>
+                    <span class="sr-only">{{ "userAccessAllItems" | i18n }}</span>
+                  </ng-container>
+                </td>
+                <td>
+                  <span *ngIf="u.type === organizationUserType.Owner">{{ "owner" | i18n }}</span>
+                  <span *ngIf="u.type === organizationUserType.Admin">{{ "admin" | i18n }}</span>
+                  <span *ngIf="u.type === organizationUserType.Manager">{{
+                    "manager" | i18n
+                  }}</span>
+                  <span *ngIf="u.type === organizationUserType.User">{{ "user" | i18n }}</span>
+                  <span *ngIf="u.type === organizationUserType.Custom">{{ "custom" | i18n }}</span>
+                </td>
+                <td class="text-center" *ngIf="entity === 'collection'">
+                  <input
+                    type="checkbox"
+                    [(ngModel)]="u.hidePasswords"
+                    name="{{ u.id.substr(0, 8) }}_HidePasswords"
+                    [disabled]="u.accessAll || !u.checked"
+                  />
+                </td>
+                <td class="text-center" *ngIf="entity === 'collection'">
+                  <input
+                    type="checkbox"
+                    [(ngModel)]="u.readOnly"
+                    name="{{ u.id.substr(0, 8) }}_ReadOnly"
+                    [disabled]="u.accessAll || !u.checked"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </cdk-virtual-scroll-viewport>
       <div class="modal-footer">
