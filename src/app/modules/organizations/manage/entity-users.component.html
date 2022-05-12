@@ -92,9 +92,6 @@
                 </tr>
               </thead>
               <tbody>
-                <!-- <app-user-row *cdkVirtualFor="let u of searchedUsers; let last = last" [user]="u" [last]="last"
-                  [entity]="entity" (onSelectedChanged)="selectedChanged($event)" (onChecked)="check($event)">
-                </app-user-row> -->
                 <tr *cdkVirtualFor="let u of searchedUsers" class="">
                   <td class="table-list-checkbox" (click)="check(u)">
                     <input
