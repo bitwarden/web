@@ -29,13 +29,13 @@
         ></i>
         <span class="sr-only">{{ "loading" | i18n }}</span>
       </div>
-      <cdk-virtual-scroll-viewport itemSize="46" minBufferPx="600" maxBufferPx="1200">
-        <div
-          class="modal-body"
-          *ngIf="
-            !loading && users && (users | search: searchText:'name':'email':'id') as searchedUsers
-          "
-        >
+      <cdk-virtual-scroll-viewport
+        itemSize="46"
+        minBufferPx="600"
+        maxBufferPx="1200"
+        [style]="scrollViewportStyle"
+      >
+        <div class="modal-body" *ngIf="!loading && users && searchedUsers">
           <div class="d-flex">
             <div class="mr-3">
               <label class="sr-only" for="search">{{ "search" | i18n }}</label>
