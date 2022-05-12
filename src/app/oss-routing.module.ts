@@ -229,14 +229,14 @@ const routes: Routes = [
           (await import("./reports/reports-routing.module")).ReportsRoutingModule,
       },
       { path: "setup/families-for-enterprise", component: FamiliesForEnterpriseSetupComponent },
-      {
-        path: "organizations",
-        loadChildren: () =>
-          import("./organizations/organization-routing.module").then(
-            (m) => m.OrganizationsRoutingModule
-          ),
-      },
     ],
+  },
+  {
+    path: "organizations",
+    loadChildren: () =>
+      import("./organizations/organization-routing.module").then(
+        (m) => m.OrganizationsRoutingModule
+      ),
   },
 ];
 
