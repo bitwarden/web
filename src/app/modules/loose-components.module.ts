@@ -35,7 +35,6 @@ import { BulkStatusComponent as OrgBulkStatusComponent } from "../organizations/
 import { CollectionAddEditComponent as OrgCollectionAddEditComponent } from "../organizations/manage/collection-add-edit.component";
 import { CollectionsComponent as OrgManageCollectionsComponent } from "../organizations/manage/collections.component";
 import { EntityEventsComponent as OrgEntityEventsComponent } from "../organizations/manage/entity-events.component";
-import { EntityUsersComponent as OrgEntityUsersComponent } from "../organizations/manage/entity-users.component";
 import { EventsComponent as OrgEventsComponent } from "../organizations/manage/events.component";
 import { GroupAddEditComponent as OrgGroupAddEditComponent } from "../organizations/manage/group-add-edit.component";
 import { GroupsComponent as OrgGroupsComponent } from "../organizations/manage/groups.component";
@@ -245,7 +244,6 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     OrgCollectionAddEditComponent,
     OrgCollectionsComponent,
     OrgEntityEventsComponent,
-    OrgEntityUsersComponent,
     OrgEventsComponent,
     OrgExportComponent,
     OrgExposedPasswordsReportComponent,
@@ -406,7 +404,6 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     OrgCollectionAddEditComponent,
     OrgCollectionsComponent,
     OrgEntityEventsComponent,
-    OrgEntityUsersComponent,
     OrgEventsComponent,
     OrgExportComponent,
     OrgExposedPasswordsReportComponent,
