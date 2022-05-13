@@ -295,16 +295,6 @@
           (blur)="saveUsernameOptions()"
         />
       </div>
-      <div class="form-group col-4">
-        <label for="simplelogin-hostname">{{ "hostname" | i18n }}</label>
-        <input
-          id="simplelogin-hostname"
-          class="form-control"
-          type="text"
-          [(ngModel)]="usernameOptions.forwardedSimpleLoginHostname"
-          (blur)="saveUsernameOptions()"
-        />
-      </div>
     </div>
     <div class="row" *ngIf="usernameOptions.forwardedService === 'anonaddy'">
       <div class="form-group col-4">
