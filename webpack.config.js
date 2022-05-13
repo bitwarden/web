@@ -216,9 +216,9 @@ const devServer =
                     'self'
                     https://assets.braintreegateway.com
                     https://*.paypal.com
-                    'sha256-0xHKHIT3+e2Gknxsm/cpErSprhL+o254L/y5bljg74U='
                     'sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU='
                     'sha256-JVRXyYPueLWdwGwY9m/7u4QlZ1xeQdqUj2t8OVIzZE4=';
+                    'sha256-0xHKHIT3+e2Gknxsm/cpErSprhL+o254L/y5bljg74U='
                   img-src
                     'self'
                     data:
