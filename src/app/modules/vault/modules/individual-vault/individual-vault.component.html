@@ -38,7 +38,7 @@
             type="button"
             class="btn btn-outline-primary btn-sm"
             (click)="addCipher()"
-            *ngIf="!deleted"
+            *ngIf="activeFilter.status !== 'trash'"
           >
             <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>{{ "addItem" | i18n }}
           </button>
