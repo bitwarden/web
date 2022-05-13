@@ -32,6 +32,10 @@ export class VaultFilterComponent extends BaseVaultFilterComponent {
   // It should be removed as soon as doing so makes sense.
   async reloadOrganizations() {
     this.organizations = await this.vaultFilterService.buildOrganizations();
+    this.activePersonalOwnershipPolicy =
+      await this.vaultFilterService.checkForPersonalOwnershipPolicy();
+    this.activeSingleOrganizationPolicy =
+      await this.vaultFilterService.checkForSingleOrganizationPolicy();
   }
 
   async initCollections() {
