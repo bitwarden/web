@@ -68,6 +68,7 @@ export class ChangePasswordComponent extends BaseChangePasswordComponent {
     if (await this.keyConnectorService.getUsesKeyConnector()) {
       this.router.navigate(["/settings/security/two-factor"]);
     }
+    await super.ngOnInit();
   }
 
   async rotateEncKeyClicked() {

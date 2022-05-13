@@ -22,9 +22,9 @@ const routes: Routes = [
         component: ManageComponent,
         canActivate: [PermissionsGuard],
         data: {
-          permissions: [
-            NavigationPermissionsService.getPermissions("manage").concat(Permissions.ManageSso),
-          ],
+          permissions: NavigationPermissionsService.getPermissions("manage").concat(
+            Permissions.ManageSso
+          ),
         },
         children: [
           {
