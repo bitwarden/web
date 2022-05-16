@@ -8,6 +8,7 @@
 <td class="table-action-right">
   <div class="dropdown" appListDropdown>
     <button
+      *ngIf="!sponsoringOrg.familySponsorshipToDelete"
       class="btn btn-outline-secondary dropdown-toggle"
       type="button"
       id="dropdownMenuButton"
@@ -21,7 +22,7 @@
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
       <button
         #resendEmailBtn
-        *ngIf="!isSelfHosted"
+        *ngIf="!isSelfHosted && !sponsoringOrg.familySponsorshipValidUntil"
         [appApiAction]="resendEmailPromise"
         class="dropdown-item btn-submit"
         [disabled]="resendEmailBtn.loading"
