@@ -20,8 +20,9 @@ import {
 import { ListResponse } from "jslib-common/models/response/listResponse";
 import { CollectionView } from "jslib-common/models/view/collectionView";
 
+import { EntityUsersComponent } from "../../modules/organizations/manage/entity-users.component";
+
 import { CollectionAddEditComponent } from "./collection-add-edit.component";
-import { EntityUsersComponent } from "./entity-users.component";
 
 @Component({
   selector: "app-org-manage-collections",
