@@ -123,74 +123,9 @@ export class OrganizationOptionsComponent {
     const ref = this.modalService.open(EnrollMasterPasswordReset, {
       allowMultipleModals: true,
       data: {
-        organizationId: this.organization.id,
-        userId: this.organization.userId,
+        organization: org,
+        onSuccess: () => ref.close(),
       },
     });
-    // // Set variables
-    // let keyString: string = null;
-    // let toastStringRef = "withdrawPasswordResetSuccess";
-
-    // // Enrolling
-    // if (!org.resetPasswordEnrolled) {
-    //   // Alert user about enrollment
-    //   const confirmed = await this.platformUtilsService.showDialog(
-    //     this.i18nService.t("resetPasswordEnrollmentWarning"),
-    //     null,
-    //     this.i18nService.t("yes"),
-    //     this.i18nService.t("no"),
-    //     "warning"
-    //   );
-    //   if (!confirmed) {
-    //     return;
-    //   }
-
-    //   // Retrieve Public Key
-    //   this.actionPromise = this.apiService
-    //     .getOrganizationKeys(org.id)
-    //     .then(async (response) => {
-    //       if (response == null) {
-    //         throw new Error(this.i18nService.t("resetPasswordOrgKeysError"));
-    //       }
-
-    //       const publicKey = Utils.fromB64ToArray(response.publicKey);
-
-    //       // RSA Encrypt user's encKey.key with organization public key
-    //       const encKey = await this.cryptoService.getEncKey();
-    //       const encryptedKey = await this.cryptoService.rsaEncrypt(encKey.key, publicKey.buffer);
-    //       keyString = encryptedKey.encryptedString;
-    //       toastStringRef = "enrollPasswordResetSuccess";
-
-    //       // Create request and execute enrollment
-    //       const request = new OrganizationUserResetPasswordEnrollmentRequest();
-    //       request.resetPasswordKey = keyString;
-    //       return this.apiService.putOrganizationUserResetPasswordEnrollment(
-    //         org.id,
-    //         org.userId,
-    //         request
-    //       );
-    //     })
-    //     .then(() => {
-    //       return this.syncService.fullSync(true);
-    //     });
-    // } else {
-    //   // Withdrawal
-    //   const request = new OrganizationUserResetPasswordEnrollmentRequest();
-    //   request.resetPasswordKey = keyString;
-    //   this.actionPromise = this.apiService
-    //     .putOrganizationUserResetPasswordEnrollment(org.id, org.userId, request)
-    //     .then(() => {
-    //       return this.syncService.fullSync(true);
-    //     });
-    // }
-
-    // try {
-    //   await this.actionPromise;
-    //   this.platformUtilsService.showToast("success", null, this.i18nService.t(toastStringRef));
-    //   await this.load();
-    // } catch (e) {
-    //   this.platformUtilsService.showToast("error", this.i18nService.t("errorOccurred"), e.message);
-    //   this.logService.error(e);
-    // }
   }
 }
