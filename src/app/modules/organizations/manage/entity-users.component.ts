@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
+import { SearchPipe } from "jslib-angular/pipes/search.pipe";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
@@ -13,6 +14,7 @@ import { OrganizationUserUserDetailsResponse } from "jslib-common/models/respons
 @Component({
   selector: "app-entity-users",
   templateUrl: "entity-users.component.html",
+  providers: [SearchPipe],
 })
 export class EntityUsersComponent implements OnInit {
   @Input() entity: "group" | "collection";
@@ -33,6 +35,7 @@ export class EntityUsersComponent implements OnInit {
   private allUsers: OrganizationUserUserDetailsResponse[] = [];
 
   constructor(
+    private search: SearchPipe,
     private apiService: ApiService,
     private i18nService: I18nService,
     private platformUtilsService: PlatformUtilsService,
@@ -50,6 +53,14 @@ export class EntityUsersComponent implements OnInit {
     } else {
       return this.allUsers;
     }
+  }
+
+  get searchedUsers() {
+    return this.search.transform(this.users, this.searchText, "name", "email", "id");
+  }
+
+  get scrollViewportStyle() {
+    return `min-height: 120px; height: ${120 + this.searchedUsers.length * 46}px`;
   }
 
   async loadUsers() {

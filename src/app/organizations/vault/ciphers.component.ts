@@ -58,7 +58,8 @@ export class CiphersComponent extends BaseCiphersComponent {
     );
   }
 
-  async load(filter: (cipher: CipherView) => boolean = null) {
+  async load(filter: (cipher: CipherView) => boolean = null, deleted = false) {
+    this.deleted = deleted || false;
     if (this.organization.canEditAnyCollection) {
       this.accessEvents = this.organization.useEvents;
       this.allCiphers = await this.cipherService.getAllFromApiForOrganization(this.organization.id);

@@ -12,7 +12,7 @@
         </li>
         <li class="filter-option">
           <span class="filter-buttons">
-            <a href="#" routerLink="/settings/create-organization" class="filter-button">
+            <a href="#" routerLink="/create-organization" class="filter-button">
               <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
               {{ "newOrganization" | i18n }}
             </a>
@@ -47,9 +47,9 @@
         </button>
         <a
           href="#"
-          routerLink="/settings/create-organization"
+          routerLink="/create-organization"
           class="text-muted ml-auto create-organization-link"
-          appA11yTitle="{{ 'addOrganization' | i18n }}"
+          appA11yTitle="{{ 'newOrganization' | i18n }}"
         >
           <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
         </a>
@@ -78,16 +78,14 @@
       </ul>
     </ng-container>
     <ng-container *ngSwitchCase="'singleOrganizationAndPersonalOwnershipPolicies'">
-      <ul class="filter-options">
-        <li class="filter-option active">
-          <button class="filter-button">
-            <i class="bwi bwi-fw bwi-business" aria-hidden="true"></i>
-            {{ organizations[0].name }}
-          </button>
-        </li>
-      </ul>
+      <div class="filter-heading">
+        <button class="filter-button active">
+          <i class="bwi bwi-fw bwi-business" aria-hidden="true"></i>
+          {{ organizations[0].name }}
+        </button>
+      </div>
     </ng-container>
-    <ng-container *ngSwitchCase="'organizationMember'">
+    <ng-container *ngSwitchDefault>
       <div class="filter-heading">
         <button
           class="toggle-button"
@@ -114,9 +112,10 @@
         </button>
         <a
           href="#"
-          routerLink="/settings/create-organization"
+          routerLink="/create-organization"
           class="text-muted ml-auto create-organization-link"
-          appA11yTitle="{{ 'addOrganization' | i18n }}"
+          appA11yTitle="{{ 'newOrganization' | i18n }}"
+          *ngIf="!(displayMode === 'singleOrganizationPolicy')"
         >
           <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
         </a>
@@ -140,7 +139,7 @@
               <i class="bwi bwi-fw bwi-business" aria-hidden="true"></i>
               {{ organization.name }}
             </button>
-            <ng-container *ngIf="organization.id === activeFilter.selectedOrganizationId">
+            <ng-container>
               <button [bitMenuTriggerFor]="orgMenu" class="org-options ml-auto">
                 <i class="bwi bwi-ellipsis-v" aria-hidden="true"></i>
               </button>

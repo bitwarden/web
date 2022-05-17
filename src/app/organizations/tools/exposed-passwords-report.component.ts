@@ -14,7 +14,7 @@ import { CipherView } from "jslib-common/models/view/cipherView";
 import { ExposedPasswordsReportComponent as BaseExposedPasswordsReportComponent } from "../../reports/exposed-passwords-report.component";
 
 @Component({
-  selector: "app-exposed-passwords-report",
+  selector: "app-org-exposed-passwords-report",
   templateUrl: "../../reports/exposed-passwords-report.component.html",
 })
 export class ExposedPasswordsReportComponent extends BaseExposedPasswordsReportComponent {
@@ -41,12 +41,10 @@ export class ExposedPasswordsReportComponent extends BaseExposedPasswordsReportC
   }
 
   ngOnInit() {
-    const dynamicSuper = Object.getPrototypeOf(this.constructor.prototype);
     this.route.parent.parent.params.subscribe(async (params) => {
       this.organization = await this.organizationService.get(params.organizationId);
       this.manageableCiphers = await this.cipherService.getAll();
-      // TODO: We should do something about this, calling super in an async function is bad
-      dynamicSuper.ngOnInit();
+      await this.checkAccess();
     });
   }
 
