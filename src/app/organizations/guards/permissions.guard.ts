@@ -40,6 +40,7 @@ export class PermissionsGuard implements CanActivate {
     const permissions = route.data == null ? [] : (route.data.permissions as Permissions[]);
     if (permissions != null && !org.hasAnyPermission(permissions)) {
       // Handle linkable ciphers for organizations the user only has view access to
+      // https://bitwarden.atlassian.net/browse/EC-203
       if (state.root.queryParamMap.has("cipherId")) {
         return this.router.createUrlTree(["/vault"], {
           queryParams: {
