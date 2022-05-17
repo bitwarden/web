@@ -98,6 +98,12 @@ export class AccountComponent {
   }
 
   async submit() {
+    this.formData.markAllAsTouched();
+
+    if (!this.formData.valid) {
+      return;
+    }
+
     try {
       const request = new OrganizationUpdateRequest();
       request.name = this.formData.get("name").value;
