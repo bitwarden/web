@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 
 import { VaultFilterComponent as BaseVaultFilterComponent } from "jslib-angular/modules/vault-filter/vault-filter.component";
-import { VaultFilterService } from "jslib-angular/modules/vault-filter/vault-filter.service";
 import { Organization } from "jslib-common/models/domain/organization";
+
+import { VaultFilterService } from "./vault-filter.service";
 
 @Component({
   selector: "app-vault-filter",
@@ -20,8 +21,15 @@ export class VaultFilterComponent extends BaseVaultFilterComponent {
 
   organization: Organization;
 
-  constructor(vaultFilterService: VaultFilterService) {
+  constructor(protected vaultFilterService: VaultFilterService) {
     super(vaultFilterService);
+  }
+
+  async ngOnInit() {
+    await super.ngOnInit();
+    this.vaultFilterService.collapsedFilterNodes.subscribe((nodes) => {
+      this.collapsedFilterNodes = nodes;
+    });
   }
 
   searchTextChanged() {

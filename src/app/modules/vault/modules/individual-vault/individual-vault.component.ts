@@ -34,6 +34,7 @@ import { CollectionsComponent } from "../../../../vault/collections.component";
 import { FolderAddEditComponent } from "../../../../vault/folder-add-edit.component";
 import { ShareComponent } from "../../../../vault/share.component";
 import { VaultFilterComponent } from "../../../vault-filter/vault-filter.component";
+import { VaultFilterService } from "../../../vault-filter/vault-filter.service";
 import { VaultService } from "../../vault.service";
 
 const BroadcasterSubscriptionId = "VaultComponent";
@@ -88,7 +89,8 @@ export class IndividualVaultComponent implements OnInit, OnDestroy {
     private organizationService: OrganizationService,
     private vaultService: VaultService,
     private cipherService: CipherService,
-    private passwordRepromptService: PasswordRepromptService
+    private passwordRepromptService: PasswordRepromptService,
+    private vaultFilterService: VaultFilterService
   ) {}
 
   async ngOnInit() {
@@ -187,6 +189,7 @@ export class IndividualVaultComponent implements OnInit, OnDestroy {
       this.activeFilter.myVaultOnly = true;
     } else {
       this.activeFilter.selectedOrganizationId = orgId;
+      await this.vaultFilterService.ensureVaultFiltersAreExpanded();
     }
     await this.applyVaultFilter(this.activeFilter);
   }

@@ -1,6 +1,5 @@
 import { NgModule } from "@angular/core";
 
-import { VaultFilterService } from "jslib-angular/modules/vault-filter/vault-filter.service";
 import { CipherService } from "jslib-common/abstractions/cipher.service";
 import { CollectionService } from "jslib-common/abstractions/collection.service";
 import { FolderService } from "jslib-common/abstractions/folder.service";
@@ -17,6 +16,7 @@ import { OrganizationOptionsComponent } from "./components/organization-options.
 import { StatusFilterComponent } from "./components/status-filter.component";
 import { TypeFilterComponent } from "./components/type-filter.component";
 import { VaultFilterComponent } from "./vault-filter.component";
+import { VaultFilterService } from "./vault-filter.service";
 
 @NgModule({
   imports: [SharedModule],
