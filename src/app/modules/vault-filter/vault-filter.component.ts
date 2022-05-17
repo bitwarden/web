@@ -25,7 +25,7 @@ export class VaultFilterComponent extends BaseVaultFilterComponent {
   }
 
   searchTextChanged() {
-    this.onSearchTextChanged.emit(this.searchText);
+    this.onSearchTextChanged.emit(this.searchText.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
   }
 
   // This method exists because the vault component gets its data mixed up during the initial sync on first login. It looks for data before the sync is complete.
