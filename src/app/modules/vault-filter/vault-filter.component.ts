@@ -27,7 +27,7 @@ export class VaultFilterComponent extends BaseVaultFilterComponent {
 
   async ngOnInit() {
     await super.ngOnInit();
-    this.vaultFilterService.collapsedFilterNodes.subscribe((nodes) => {
+    this.vaultFilterService.collapsedFilterNodes$.subscribe((nodes) => {
       this.collapsedFilterNodes = nodes;
     });
   }

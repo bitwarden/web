@@ -1,19 +1,20 @@
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 
 import { VaultFilterService as BaseVaultFilterService } from "jslib-angular/modules/vault-filter/vault-filter.service";
 
 export class VaultFilterService extends BaseVaultFilterService {
-  collapsedFilterNodes = new BehaviorSubject<Set<string>>(null);
+  private _collapsedFilterNodes = new BehaviorSubject<Set<string>>(null);
+  collapsedFilterNodes$: Observable<Set<string>> = this._collapsedFilterNodes.asObservable();
 
   async buildCollapsedFilterNodes(): Promise<Set<string>> {
     const nodes = await super.buildCollapsedFilterNodes();
-    this.collapsedFilterNodes.next(nodes);
+    this._collapsedFilterNodes.next(nodes);
     return nodes;
   }
 
   async storeCollapsedFilterNodes(collapsedFilterNodes: Set<string>): Promise<void> {
     await super.storeCollapsedFilterNodes(collapsedFilterNodes);
-    this.collapsedFilterNodes.next(collapsedFilterNodes);
+    this._collapsedFilterNodes.next(collapsedFilterNodes);
   }
 
   async ensureVaultFiltersAreExpanded() {
