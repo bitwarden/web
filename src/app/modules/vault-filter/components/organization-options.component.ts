@@ -82,6 +82,7 @@ export class OrganizationOptionsComponent {
       this.platformUtilsService.showToast("success", null, "Unlinked SSO");
       await this.load();
     } catch (e) {
+      this.platformUtilsService.showToast("error", this.i18nService.t("errorOccurred"), e.message);
       this.logService.error(e);
     }
   }
@@ -106,6 +107,7 @@ export class OrganizationOptionsComponent {
       this.platformUtilsService.showToast("success", null, this.i18nService.t("leftOrganization"));
       await this.load();
     } catch (e) {
+      this.platformUtilsService.showToast("error", this.i18nService.t("errorOccurred"), e.message);
       this.logService.error(e);
     }
   }
@@ -173,6 +175,7 @@ export class OrganizationOptionsComponent {
       this.platformUtilsService.showToast("success", null, this.i18nService.t(toastStringRef));
       await this.load();
     } catch (e) {
+      this.platformUtilsService.showToast("error", this.i18nService.t("errorOccurred"), e.message);
       this.logService.error(e);
     }
   }

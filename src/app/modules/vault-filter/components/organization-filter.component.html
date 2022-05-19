@@ -85,7 +85,7 @@
         </button>
       </div>
     </ng-container>
-    <ng-container *ngSwitchCase="'organizationMember'">
+    <ng-container *ngSwitchDefault>
       <div class="filter-heading">
         <button
           class="toggle-button"
@@ -115,6 +115,7 @@
           routerLink="/create-organization"
           class="text-muted ml-auto create-organization-link"
           appA11yTitle="{{ 'newOrganization' | i18n }}"
+          *ngIf="!(displayMode === 'singleOrganizationPolicy')"
         >
           <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
         </a>
