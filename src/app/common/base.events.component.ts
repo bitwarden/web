@@ -122,20 +122,17 @@ export abstract class BaseEventsComponent {
         const userId = r.actingUserId == null ? r.userId : r.actingUserId;
         const eventInfo = await this.eventService.getEventInfo(r);
         const user = this.getUserName(r, userId);
-        const userName = user != null ? user.name : this.i18nService.t("unknown");
-
         return new EventView({
           message: eventInfo.message,
           humanReadableMessage: eventInfo.humanReadableMessage,
           appIcon: eventInfo.appIcon,
           appName: eventInfo.appName,
           userId: userId,
-          userName: r.installationId != null ? `Installation: ${r.installationId}` : userName,
+          userName: user != null ? user.name : this.i18nService.t("unknown"),
           userEmail: user != null ? user.email : "",
           date: r.date,
           ip: r.ipAddress,
           type: r.type,
-          installationId: r.installationId,
         });
       })
     );
