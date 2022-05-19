@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, CanActivate, Router } from "@angular/router";
+import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
 
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
@@ -17,7 +17,7 @@ export class PermissionsGuard implements CanActivate {
     private syncService: SyncService
   ) {}
 
-  async canActivate(route: ActivatedRouteSnapshot) {
+  async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     // TODO: We need to fix this issue once and for all.
     if ((await this.syncService.getLastSync()) == null) {
       await this.syncService.fullSync(false);
@@ -39,6 +39,16 @@ export class PermissionsGuard implements CanActivate {
 
     const permissions = route.data == null ? [] : (route.data.permissions as Permissions[]);
     if (permissions != null && !org.hasAnyPermission(permissions)) {
+      // Handle linkable ciphers for organizations the user only has view access to
+      // https://bitwarden.atlassian.net/browse/EC-203
+      if (state.root.queryParamMap.has("cipherId")) {
+        return this.router.createUrlTree(["/vault"], {
+          queryParams: {
+            cipherId: state.root.queryParamMap.get("cipherId"),
+          },
+        });
+      }
+
       this.platformUtilsService.showToast("error", null, this.i18nService.t("accessDenied"));
       return this.router.createUrlTree(["/"]);
     }
