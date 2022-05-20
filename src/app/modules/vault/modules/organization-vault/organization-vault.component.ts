@@ -98,6 +98,7 @@ export class OrganizationVaultComponent implements OnInit, OnDestroy {
                       this.vaultFilterComponent.reloadCollectionsAndFolders(
                         new VaultFilter({
                           selectedOrganizationId: this.organization.id,
+                          useAdminCollections: this.organization.canEditAnyCollection,
                         } as Partial<VaultFilter>)
                       ),
                       this.ciphersComponent.refresh(),
@@ -110,7 +111,10 @@ export class OrganizationVaultComponent implements OnInit, OnDestroy {
           });
         }
         await this.vaultFilterComponent.reloadCollectionsAndFolders(
-          new VaultFilter({ selectedOrganizationId: this.organization.id } as Partial<VaultFilter>)
+          new VaultFilter({
+            selectedOrganizationId: this.organization.id,
+            useAdminCollections: this.organization.canEditAnyCollection,
+          } as Partial<VaultFilter>)
         );
         await this.ciphersComponent.reload();
 
