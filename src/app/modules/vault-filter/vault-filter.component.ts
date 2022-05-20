@@ -29,8 +29,6 @@ export class VaultFilterComponent extends BaseVaultFilterComponent {
   }
 
   async initCollections() {
-    this.vaultFilterService.getAllCollectionsFromServer =
-      this.organization?.canEditAnyCollection ?? false;
     return await this.vaultFilterService.buildCollections(this.organization?.id);
   }
 }
