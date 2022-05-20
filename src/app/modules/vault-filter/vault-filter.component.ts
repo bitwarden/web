@@ -27,8 +27,4 @@ export class VaultFilterComponent extends BaseVaultFilterComponent {
   searchTextChanged() {
     this.onSearchTextChanged.emit(this.searchText);
   }
-
-  async initCollections() {
-    return await this.vaultFilterService.buildCollections(this.organization?.id);
-  }
 }
