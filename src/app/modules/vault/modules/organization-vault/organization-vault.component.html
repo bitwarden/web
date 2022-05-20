@@ -4,7 +4,7 @@
       <div class="groupings">
         <div class="content">
           <div class="inner-content">
-            <app-vault-filter
+            <app-organization-vault-filter
               #vaultFilter
               [showFolders]="false"
               [showFavorites]="false"
@@ -12,7 +12,7 @@
               [showOrgFilter]="false"
               (onFilterChange)="applyVaultFilter($event)"
               (onSearchTextChanged)="filterSearchText($event)"
-            ></app-vault-filter>
+            ></app-organization-vault-filter>
           </div>
         </div>
       </div>
