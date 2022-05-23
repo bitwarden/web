@@ -37,6 +37,8 @@
         <bit-label>{{ "identifier" | i18n }}</bit-label>
         <input bitInput type="text" formControlName="identifier" />
       </bit-form-field>
+
+      <bit-error-summary *ngIf="showErrorSummary" [formGroup]="formData"></bit-error-summary>
     </div>
     <div class="col-6">
       <app-avatar

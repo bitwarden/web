@@ -42,6 +42,7 @@ export class AccountComponent {
   org: OrganizationResponse;
   formPromise: Promise<any>;
   taxFormPromise: Promise<any>;
+  showErrorSummary = false;
 
   private organizationId: string;
 
@@ -99,6 +100,7 @@ export class AccountComponent {
 
   async submit() {
     this.formData.markAllAsTouched();
+    this.showErrorSummary = true;
 
     if (!this.formData.valid) {
       return;
