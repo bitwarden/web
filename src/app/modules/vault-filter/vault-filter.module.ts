@@ -12,6 +12,7 @@ import { SharedModule } from "../shared.module";
 
 import { CollectionFilterComponent } from "./components/collection-filter.component";
 import { FolderFilterComponent } from "./components/folder-filter.component";
+import { LinkSsoComponent } from "./components/link-sso.component";
 import { OrganizationFilterComponent } from "./components/organization-filter.component";
 import { OrganizationOptionsComponent } from "./components/organization-options.component";
 import { StatusFilterComponent } from "./components/status-filter.component";
@@ -28,6 +29,7 @@ import { VaultFilterComponent } from "./vault-filter.component";
     OrganizationOptionsComponent,
     StatusFilterComponent,
     TypeFilterComponent,
+    LinkSsoComponent,
   ],
   exports: [VaultFilterComponent],
   providers: [
