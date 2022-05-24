@@ -25,13 +25,7 @@ export class VaultFilterComponent extends BaseVaultFilterComponent {
   }
 
   searchTextChanged() {
-    this.onSearchTextChanged.emit(this.searchText);
-  }
-
-  // This method exists because the vault component gets its data mixed up during the initial sync on first login. It looks for data before the sync is complete.
-  // It should be removed as soon as doing so makes sense.
-  async reloadOrganizations() {
-    this.organizations = await this.vaultFilterService.buildOrganizations();
+    this.onSearchTextChanged.emit(this.searchText.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
   }
 
   async initCollections() {

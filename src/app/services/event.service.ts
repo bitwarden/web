@@ -307,6 +307,9 @@ export class EventService {
       case EventType.Organization_DisabledKeyConnector:
         msg = humanReadableMsg = this.i18nService.t("disabledKeyConnector");
         break;
+      case EventType.Organization_SponsorshipsSynced:
+        msg = humanReadableMsg = this.i18nService.t("sponsorshipsSynced");
+        break;
       // Policies
       case EventType.Policy_Updated: {
         msg = this.i18nService.t("modifiedPolicyId", this.formatPolicyId(ev));
