@@ -45,14 +45,6 @@
         >
           &nbsp;{{ organizationGrouping.name | i18n }}
         </button>
-        <a
-          href="#"
-          routerLink="/create-organization"
-          class="text-muted ml-auto create-organization-link"
-          appA11yTitle="{{ 'newOrganization' | i18n }}"
-        >
-          <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
-        </a>
       </div>
       <ul id="organization-filters" *ngIf="!isCollapsed" class="filter-options">
         <li
@@ -73,6 +65,14 @@
                 <app-organization-options [organization]="organization"></app-organization-options>
               </bit-menu>
             </ng-container>
+          </span>
+        </li>
+        <li class="filter-option">
+          <span class="filter-buttons">
+            <a href="#" routerLink="/create-organization" class="filter-button">
+              <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
+              {{ "newOrganization" | i18n }}
+            </a>
           </span>
         </li>
       </ul>
@@ -110,15 +110,6 @@
         >
           &nbsp;{{ organizationGrouping.name | i18n }}
         </button>
-        <a
-          href="#"
-          routerLink="/create-organization"
-          class="text-muted ml-auto create-organization-link"
-          appA11yTitle="{{ 'newOrganization' | i18n }}"
-          *ngIf="!(displayMode === 'singleOrganizationPolicy')"
-        >
-          <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
-        </a>
       </div>
       <ul id="organization-filters" *ngIf="!isCollapsed" class="filter-options">
         <li class="filter-option" [ngClass]="{ active: activeFilter.myVaultOnly }">
@@ -147,6 +138,14 @@
                 <app-organization-options [organization]="organization"></app-organization-options>
               </bit-menu>
             </ng-container>
+          </span>
+        </li>
+        <li class="filter-option" *ngIf="!(displayMode === 'singleOrganizationPolicy')">
+          <span class="filter-buttons">
+            <a href="#" routerLink="/create-organization" class="filter-button">
+              <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
+              {{ "newOrganization" | i18n }}
+            </a>
           </span>
         </li>
       </ul>
