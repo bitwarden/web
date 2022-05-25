@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 
+import { ModalRef } from "jslib-angular/components/modal/modal.ref";
 import { ModalConfig } from "jslib-angular/services/modal.service";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { CryptoService } from "jslib-common/abstractions/crypto.service";
@@ -19,7 +20,6 @@ import { Verification } from "jslib-common/types/verification";
 })
 export class EnrollMasterPasswordReset {
   organization: Organization;
-  onSuccess: () => void;
 
   verification: Verification;
   formPromise: Promise<any>;
@@ -32,10 +32,10 @@ export class EnrollMasterPasswordReset {
     private cryptoService: CryptoService,
     private syncService: SyncService,
     private logService: LogService,
+    private modalRef: ModalRef,
     config: ModalConfig
   ) {
     this.organization = config.data.organization;
-    this.onSuccess = config.data.onSuccess;
   }
 
   async submit() {
@@ -84,15 +84,11 @@ export class EnrollMasterPasswordReset {
       });
     try {
       await this.formPromise;
-      this.onSuccess();
       this.platformUtilsService.showToast("success", null, this.i18nService.t(toastStringRef));
+      this.modalRef.close();
     } catch (e) {
       this.logService.error(e);
     }
-  }
-
-  close() {
-    this.close();
   }
 
   get isEnrolled(): boolean {

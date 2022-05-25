@@ -1,18 +1,15 @@
-import { Component, Input, ViewChild, ViewContainerRef } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 import { ModalService } from "jslib-angular/services/modal.service";
 import { ApiService } from "jslib-common/abstractions/api.service";
-import { CryptoService } from "jslib-common/abstractions/crypto.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { LogService } from "jslib-common/abstractions/log.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { PolicyService } from "jslib-common/abstractions/policy.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
 import { PolicyType } from "jslib-common/enums/policyType";
-import { Utils } from "jslib-common/misc/utils";
 import { Organization } from "jslib-common/models/domain/organization";
 import { Policy } from "jslib-common/models/domain/policy";
-import { OrganizationUserResetPasswordEnrollmentRequest } from "jslib-common/models/request/organizationUserResetPasswordEnrollmentRequest";
 
 import { EnrollMasterPasswordReset } from "../../organizations/users/enroll-master-password-reset.component";
 
@@ -25,9 +22,6 @@ export class OrganizationOptionsComponent {
   policies: Policy[];
   loaded = false;
 
-  @ViewChild("enrollResetPasswordTemplate", { read: ViewContainerRef, static: true })
-  enrollResetPasswordModalRef: ViewContainerRef;
-
   @Input() organization: Organization;
 
   constructor(
@@ -35,7 +29,6 @@ export class OrganizationOptionsComponent {
     private i18nService: I18nService,
     private apiService: ApiService,
     private syncService: SyncService,
-    private cryptoService: CryptoService,
     private policyService: PolicyService,
     private modalService: ModalService,
     private logService: LogService
@@ -120,11 +113,10 @@ export class OrganizationOptionsComponent {
   }
 
   async toggleResetPasswordEnrollment(org: Organization) {
-    const ref = this.modalService.open(EnrollMasterPasswordReset, {
+    this.modalService.open(EnrollMasterPasswordReset, {
       allowMultipleModals: true,
       data: {
         organization: org,
-        onSuccess: () => ref.close(),
       },
     });
   }
