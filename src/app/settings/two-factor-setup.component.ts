@@ -207,6 +207,23 @@ export class TwoFactorSetupComponent implements OnInit {
 
   async submit() {
     try {
+      if (this.enableDeviceVerification) {
+        const email = await this.stateService.getEmail();
+        const confirmed = await this.platformUtilsService.showDialog(
+          this.i18nService.t(
+            "areYouSureYouWantToEnableDeviceVerificationTheVerificationCodeEmailsWillArriveAtX",
+            email
+          ),
+          this.i18nService.t("deviceVerification"),
+          this.i18nService.t("yes"),
+          this.i18nService.t("no"),
+          "warning"
+        );
+        if (!confirmed) {
+          return;
+        }
+      }
+
       this.formPromise = this.apiService.putDeviceVerificationSettings(
         new DeviceVerificationRequest(this.enableDeviceVerification)
       );
