@@ -101,7 +101,7 @@
       <div [ngClass]="{ 'col-5': layout, 'col-12': !layout }">
         <div class="row justify-content-md-center mt-5">
           <div [ngClass]="{ 'col-5': !layout, 'col-12': layout }">
-            <p class="lead text-center mb-4" *ngIf="!layout">{{ "createAccount" | i18n }}</p>
+            <h1 class="lead text-center mb-4" *ngIf="!layout">{{ "createAccount" | i18n }}</h1>
             <div class="card d-block">
               <div class="card-body">
                 <app-callout
