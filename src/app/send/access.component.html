@@ -1,7 +1,7 @@
 <form #form (ngSubmit)="load()" [appApiAction]="formPromise" class="container" ngNativeValidate>
   <div class="row justify-content-center mt-5">
     <div class="col-12">
-      <p class="lead text-center mb-4">Bitwarden Send</p>
+      <h1 class="lead text-center mb-4">Bitwarden Send</h1>
     </div>
     <div class="col-12 text-center" *ngIf="creatorIdentifier != null">
       <p>{{ "sendCreatorIdentifier" | i18n: creatorIdentifier }}</p>
