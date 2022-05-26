@@ -19,4 +19,9 @@ import { VaultTimeoutInputComponent as VaultTimeoutInputComponentBase } from "js
     },
   ],
 })
-export class VaultTimeoutInputComponent extends VaultTimeoutInputComponentBase {}
+export class VaultTimeoutInputComponent extends VaultTimeoutInputComponentBase {
+  //checks if input minutes is valid
+  getValidMinutesInput(): boolean {
+    return this.form.get("custom.minutes")?.value > 0;
+  }
+}

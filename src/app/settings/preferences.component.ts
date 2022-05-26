@@ -23,7 +23,6 @@ export class PreferencesComponent implements OnInit {
   vaultTimeouts: { name: string; value: number }[];
   localeOptions: any[];
   themeOptions: any[];
-  static MIN_CUSTOM_MINUTES = 1;
 
   vaultTimeout: FormControl = new FormControl(null);
 
@@ -83,7 +82,7 @@ export class PreferencesComponent implements OnInit {
   }
 
   async submit() {
-    if (this.vaultTimeout.value < PreferencesComponent.MIN_CUSTOM_MINUTES) {
+    if (this.vaultTimeout.errors?.minTimeoutError) {
       this.platformUtilsService.showToast(
         "error",
         null,
