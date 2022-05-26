@@ -82,17 +82,12 @@ export class PreferencesComponent implements OnInit {
   }
 
   async submit() {
-    if (this.vaultTimeout.errors?.minTimeoutError) {
+    if (!this.vaultTimeout.valid) {
       this.platformUtilsService.showToast(
         "error",
         null,
-        this.i18nService.t("vaultCustomTimeoutMinimum")
+        this.i18nService.t("vaultTimeoutRangeError")
       );
-      return;
-    }
-
-    if (!this.vaultTimeout.valid) {
-      this.platformUtilsService.showToast("error", null, this.i18nService.t("vaultTimeoutToLarge"));
       return;
     }
 
