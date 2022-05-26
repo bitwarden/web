@@ -25,7 +25,7 @@ export class VaultFilterComponent extends BaseVaultFilterComponent {
   }
 
   searchTextChanged() {
-    this.onSearchTextChanged.emit(this.searchText.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+    this.onSearchTextChanged.emit(this.searchText);
   }
 
   async initCollections() {
