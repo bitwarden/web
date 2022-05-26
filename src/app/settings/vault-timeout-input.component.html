@@ -42,10 +42,8 @@
       </div>
     </div>
 
-    <small *ngIf="!getValidMinutesInput()" class="form-text text-danger">
+    <small *ngIf="!getValidMinutesInput()" class="tw-text-danger">
       <i class="bwi bwi-error" aria-hidden="true"></i> {{ "vaultCustomTimeoutMinimum" | i18n }}
     </small>
   </div>
-
-  <i class="bwi bwi-blocked" aria-hidden="true"></i>
 </div>
