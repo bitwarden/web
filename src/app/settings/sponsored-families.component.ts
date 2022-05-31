@@ -1,9 +1,12 @@
 import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
+import { notAllowedValueAsync } from "jslib-angular/validators/notAllowedValueAsync.validator";
 import { ApiService } from "jslib-common/abstractions/api.service";
 import { I18nService } from "jslib-common/abstractions/i18n.service";
 import { OrganizationService } from "jslib-common/abstractions/organization.service";
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
+import { StateService } from "jslib-common/abstractions/state.service";
 import { SyncService } from "jslib-common/abstractions/sync.service";
 import { PlanSponsorshipType } from "jslib-common/enums/planSponsorshipType";
 import { Organization } from "jslib-common/models/domain/organization";
@@ -17,30 +20,54 @@ export class SponsoredFamiliesComponent implements OnInit {
 
   availableSponsorshipOrgs: Organization[] = [];
   activeSponsorshipOrgs: Organization[] = [];
-  selectedSponsorshipOrgId = "";
-  sponsorshipEmail = "";
 
   // Conditional display properties
   formPromise: Promise<any>;
+
+  sponsorshipForm: FormGroup;
 
   constructor(
     private apiService: ApiService,
     private i18nService: I18nService,
     private platformUtilsService: PlatformUtilsService,
     private syncService: SyncService,
-    private organizationService: OrganizationService
-  ) {}
+    private organizationService: OrganizationService,
+    private formBuilder: FormBuilder,
+    private stateService: StateService
+  ) {
+    this.sponsorshipForm = this.formBuilder.group({
+      selectedSponsorshipOrgId: [
+        "",
+        {
+          validators: [Validators.required],
+        },
+      ],
+      sponsorshipEmail: [
+        "",
+        {
+          validators: [Validators.email],
+          asyncValidators: [
+            notAllowedValueAsync(async () => await this.stateService.getEmail(), true),
+          ],
+          updateOn: "blur",
+        },
+      ],
+    });
+  }
 
   async ngOnInit() {
     await this.load();
   }
 
   async submit() {
-    this.formPromise = this.apiService.postCreateSponsorship(this.selectedSponsorshipOrgId, {
-      sponsoredEmail: this.sponsorshipEmail,
-      planSponsorshipType: PlanSponsorshipType.FamiliesForEnterprise,
-      friendlyName: this.sponsorshipEmail,
-    });
+    this.formPromise = this.apiService.postCreateSponsorship(
+      this.sponsorshipForm.value.selectedSponsorshipOrgId,
+      {
+        sponsoredEmail: this.sponsorshipForm.value.sponsorshipEmail,
+        planSponsorshipType: PlanSponsorshipType.FamiliesForEnterprise,
+        friendlyName: this.sponsorshipForm.value.sponsorshipEmail,
+      }
+    );
 
     await this.formPromise;
     this.platformUtilsService.showToast("success", null, this.i18nService.t("sponsorshipCreated"));
@@ -67,14 +94,19 @@ export class SponsoredFamiliesComponent implements OnInit {
     );
 
     if (this.availableSponsorshipOrgs.length === 1) {
-      this.selectedSponsorshipOrgId = this.availableSponsorshipOrgs[0].id;
+      this.sponsorshipForm.patchValue({
+        selectedSponsorshipOrgId: this.availableSponsorshipOrgs[0].id,
+      });
     }
     this.loading = false;
   }
 
+  get sponsorshipEmailControl() {
+    return this.sponsorshipForm.controls["sponsorshipEmail"];
+  }
+
   private async resetForm() {
-    this.sponsorshipEmail = "";
-    this.selectedSponsorshipOrgId = "";
+    this.sponsorshipForm.reset();
   }
 
   get anyActiveSponsorships(): boolean {
@@ -85,7 +117,7 @@ export class SponsoredFamiliesComponent implements OnInit {
     return this.availableSponsorshipOrgs.length > 0;
   }
 
-  get moreThanOneOrgAvailable(): boolean {
-    return this.availableSponsorshipOrgs.length > 1;
+  get isSelfHosted(): boolean {
+    return this.platformUtilsService.isSelfHost();
   }
 }

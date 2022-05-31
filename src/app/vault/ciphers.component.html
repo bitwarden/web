@@ -48,9 +48,10 @@
         <td *ngIf="organizations.length > 0 && !organization" class="tw-w-28">
           <app-org-badge
             organizationName="{{ c.organizationId | orgNameFromId: organizations }}"
-            [color]="!c.organizationId ? '#175ddc' : null"
+            profileName="{{ profileName }}"
             (onOrganizationClicked)="onOrganizationClicked(c.organizationId)"
-          ></app-org-badge>
+          >
+          </app-org-badge>
         </td>
         <td class="table-list-options">
           <button

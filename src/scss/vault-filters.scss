@@ -14,22 +14,12 @@
     font-size: $font-size-base;
   }
 
-  a.create-organization-link {
-    &:hover {
-      @include themify($themes) {
-        color: themed("iconHover") !important;
-      }
-    }
-  }
-
   button {
     @extend .no-btn;
   }
 
   h3,
   button.filter-button {
-    text-transform: uppercase;
-    text-transform: uppercase;
     margin: 0;
     @include themify($themes) {
       color: themed("textMuted");
@@ -118,6 +108,7 @@
       }
       text-decoration: none;
     }
+    max-width: 90%;
   }
 
   .edit-button {

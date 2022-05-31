@@ -10,6 +10,7 @@ import { PasswordRepromptService } from "jslib-common/abstractions/passwordRepro
 import { PlatformUtilsService } from "jslib-common/abstractions/platformUtils.service";
 import { SearchService } from "jslib-common/abstractions/search.service";
 import { StateService } from "jslib-common/abstractions/state.service";
+import { TokenService } from "jslib-common/abstractions/token.service";
 import { TotpService } from "jslib-common/abstractions/totp.service";
 import { Organization } from "jslib-common/models/domain/organization";
 import { CipherView } from "jslib-common/models/view/cipherView";
@@ -33,13 +34,14 @@ export class CiphersComponent extends BaseCiphersComponent {
     i18nService: I18nService,
     platformUtilsService: PlatformUtilsService,
     cipherService: CipherService,
-    private apiService: ApiService,
     eventService: EventService,
     totpService: TotpService,
     passwordRepromptService: PasswordRepromptService,
     logService: LogService,
     stateService: StateService,
-    organizationService: OrganizationService
+    organizationService: OrganizationService,
+    tokenService: TokenService,
+    private apiService: ApiService
   ) {
     super(
       searchService,
@@ -51,11 +53,13 @@ export class CiphersComponent extends BaseCiphersComponent {
       stateService,
       passwordRepromptService,
       logService,
-      organizationService
+      organizationService,
+      tokenService
     );
   }
 
-  async load(filter: (cipher: CipherView) => boolean = null) {
+  async load(filter: (cipher: CipherView) => boolean = null, deleted = false) {
+    this.deleted = deleted || false;
     if (this.organization.canEditAnyCollection) {
       this.accessEvents = this.organization.useEvents;
       this.allCiphers = await this.cipherService.getAllFromApiForOrganization(this.organization.id);

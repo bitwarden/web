@@ -1,4 +1,4 @@
-<ng-container *ngIf="!hide && !activeFilter.selectedOrganizationId">
+<ng-container *ngIf="!hide">
   <div class="filter-heading">
     <button
       class="toggle-button"
@@ -16,9 +16,7 @@
         }"
       ></i>
     </button>
-    <h3 class="filter-title">
-      {{ "folders" | i18n }}
-    </h3>
+    <h3 class="filter-title">&nbsp;{{ "folders" | i18n }}</h3>
     <button
       class="text-muted ml-auto add-button"
       (click)="addFolder()"
@@ -56,7 +54,7 @@
           </button>
           <button class="filter-button" (click)="applyFilter(f.node)">
             <i *ngIf="f.children.length === 0" class="bwi bwi-fw bwi-folder" aria-hidden="true"></i
-            >{{ f.node.name }}
+            >&nbsp;{{ f.node.name }}
           </button>
           <button
             class="edit-button"
