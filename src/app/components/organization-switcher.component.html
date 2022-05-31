@@ -46,7 +46,7 @@
   <bit-menu #orgPickerMenu>
     <ul aria-labelledby="pickerButton" class="tw-p-0 tw-m-0">
       <li *ngFor="let org of organizations" class="tw-list-none tw-flex tw-flex-col" role="none">
-        <a bit-menu-item [routerLink]="['/organizations', org.id]">
+        <a bitMenuItem [routerLink]="['/organizations', org.id]">
           <i
             class="bwi bwi-check mr-2"
             [ngClass]="org.id === activeOrganization.id ? 'visible' : 'invisible'"
@@ -58,7 +58,7 @@
       </li>
       <bit-menu-divider></bit-menu-divider>
       <li class="tw-list-none" role="none">
-        <a bit-menu-item routerLink="/create-organization">
+        <a bitMenuItem routerLink="/create-organization">
           <i class="bwi bwi-plus mr-2"></i>
           {{ "newOrganization" | i18n }}</a
         >

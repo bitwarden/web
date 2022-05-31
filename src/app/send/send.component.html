@@ -160,19 +160,15 @@
                 <i class="bwi bwi-ellipsis-v bwi-lg" aria-hidden="true"></i>
               </button>
               <bit-menu #sendOptions>
-                <button bit-menu-item (click)="copy(s)">
+                <button bitMenuItem (click)="copy(s)">
                   <i class="bwi bwi-fw bwi-clone" aria-hidden="true"></i>
                   {{ "copySendLink" | i18n }}
                 </button>
-                <button
-                  bit-menu-item
-                  (click)="removePassword(s)"
-                  *ngIf="s.password && !disableSend"
-                >
+                <button bitMenuItem (click)="removePassword(s)" *ngIf="s.password && !disableSend">
                   <i class="bwi bwi-fw bwi-close" aria-hidden="true"></i>
                   {{ "removePassword" | i18n }}
                 </button>
-                <button bit-menu-item (click)="delete(s)">
+                <button bitMenuItem (click)="delete(s)">
                   <span class="tw-text-danger">
                     <i class="bwi bwi-fw bwi-trash" aria-hidden="true"></i>
                     {{ "delete" | i18n }}
