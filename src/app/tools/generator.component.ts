@@ -40,6 +40,9 @@ export class GeneratorComponent extends BaseGeneratorComponent {
       route,
       window
     );
+      if (platformUtilsService.isSelfHost()) {
+        // Remove firefox relay
+      }
   }
 
   async history() {
