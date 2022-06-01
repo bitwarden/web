@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-20.04
     outputs:
       release_version: ${{ steps.version.outputs.package }}
-      tag_version: ${{ steps.version.outputs.tag }}
+      tag_version: ${{ steps.version.outputs.version }}
       branch_name: ${{ steps.branch.outputs.branch_name }}
     steps:
       - name: Branch check
