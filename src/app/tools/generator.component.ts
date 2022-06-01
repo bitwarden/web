@@ -41,7 +41,11 @@ export class GeneratorComponent extends BaseGeneratorComponent {
       window
     );
       if (platformUtilsService.isSelfHost()) {
-        // Remove firefox relay
+        // Cannot use Firefox Relay on self hosted web vaults due to CORS issues with Firefox Relay API
+        this.forwardOptions.splice(
+          this.forwardOptions.findIndex((o) => o.value === "firefoxrelay"),
+          1
+        );
       }
   }
 
