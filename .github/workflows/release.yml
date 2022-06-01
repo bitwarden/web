@@ -19,7 +19,7 @@ jobs:
     name: Setup
     runs-on: ubuntu-20.04
     outputs:
-      release_version: ${{ steps.version.outputs.package }}
+      release_version: ${{ steps.version.outputs.version }}
       tag_version: ${{ steps.version.outputs.version }}
       branch_name: ${{ steps.branch.outputs.branch_name }}
     steps:
