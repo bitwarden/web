@@ -40,13 +40,13 @@ export class GeneratorComponent extends BaseGeneratorComponent {
       route,
       window
     );
-      if (platformUtilsService.isSelfHost()) {
-        // Cannot use Firefox Relay on self hosted web vaults due to CORS issues with Firefox Relay API
-        this.forwardOptions.splice(
-          this.forwardOptions.findIndex((o) => o.value === "firefoxrelay"),
-          1
-        );
-      }
+    if (platformUtilsService.isSelfHost()) {
+      // Cannot use Firefox Relay on self hosted web vaults due to CORS issues with Firefox Relay API
+      this.forwardOptions.splice(
+        this.forwardOptions.findIndex((o) => o.value === "firefoxrelay"),
+        1
+      );
+    }
   }
 
   async history() {
