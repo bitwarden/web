@@ -1,4 +1,13 @@
-import { Component, NgZone, OnDestroy, OnInit, SecurityContext } from "@angular/core";
+import { DOCUMENT } from "@angular/common";
+import {
+  Component,
+  Inject,
+  LOCALE_ID,
+  NgZone,
+  OnDestroy,
+  OnInit,
+  SecurityContext,
+} from "@angular/core";
 import { DomSanitizer } from "@angular/platform-browser";
 import { NavigationEnd, Router } from "@angular/router";
 import * as jq from "jquery";
@@ -50,6 +59,8 @@ export class AppComponent implements OnDestroy, OnInit {
   private isIdle = false;
 
   constructor(
+    @Inject(LOCALE_ID) public locale: string,
+    @Inject(DOCUMENT) private document: Document,
     private broadcasterService: BroadcasterService,
     private tokenService: TokenService,
     private folderService: FolderService,
@@ -78,6 +89,8 @@ export class AppComponent implements OnDestroy, OnInit {
   ) {}
 
   ngOnInit() {
+    this.document.documentElement.lang = this.locale;
+
     this.ngZone.runOutsideAngular(() => {
       window.onmousemove = () => this.recordActivity();
       window.onmousedown = () => this.recordActivity();
