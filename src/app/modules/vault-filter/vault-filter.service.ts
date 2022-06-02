@@ -22,12 +22,12 @@ export class VaultFilterService
   implements VaultFilterServiceInterface
 {
   constructor(
-    protected stateService: StateService,
-    protected organizationService: OrganizationService,
-    protected folderService: FolderService,
-    protected cipherService: CipherService,
-    protected collectionService: CollectionService,
-    protected policyService: PolicyService,
+    stateService: StateService,
+    organizationService: OrganizationService,
+    folderService: FolderService,
+    cipherService: CipherService,
+    collectionService: CollectionService,
+    policyService: PolicyService,
     protected apiService: ApiService
   ) {
     super(
