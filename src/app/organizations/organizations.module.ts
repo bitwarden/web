@@ -1,5 +1,7 @@
+import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 
+import { LayoutsModule } from "../layouts/layouts.module";
 import { PipesModule } from "../modules/pipes/pipes.module";
 import { SharedModule } from "../modules/shared.module";
 
@@ -11,7 +13,6 @@ import { BulkStatusComponent } from "./manage/bulk/bulk-status.component";
 import { CollectionAddEditComponent } from "./manage/collection-add-edit.component";
 import { CollectionsComponent as ManageCollectionsComponent } from "./manage/collections.component";
 import { EntityEventsComponent } from "./manage/entity-events.component";
-import { EntityUsersComponent } from "./manage/entity-users.component";
 import { EventsComponent } from "./manage/events.component";
 import { GroupAddEditComponent } from "./manage/group-add-edit.component";
 import { GroupsComponent } from "./manage/groups.component";
@@ -56,7 +57,7 @@ import { UnsecuredWebsitesReportComponent } from "./tools/unsecured-websites-rep
 import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.component";
 
 @NgModule({
-  imports: [OrganizationsRoutingModule, SharedModule, PipesModule],
+  imports: [CommonModule, OrganizationsRoutingModule, SharedModule, PipesModule, LayoutsModule],
   declarations: [
     AcceptFamilySponsorshipComponent,
     AccountComponent,
@@ -72,7 +73,6 @@ import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.comp
     DisableSendPolicyComponent,
     DownloadLicenseComponent,
     EntityEventsComponent,
-    EntityUsersComponent,
     EventsComponent,
     ExportComponent,
     ExposedPasswordsReportComponent,
