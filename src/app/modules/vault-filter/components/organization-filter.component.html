@@ -12,9 +12,9 @@
         </li>
         <li class="filter-option">
           <span class="filter-buttons">
-            <a href="#" routerLink="/settings/create-organization" class="filter-button">
+            <a href="#" routerLink="/create-organization" class="filter-button">
               <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
-              {{ "newOrganization" | i18n }}
+              &nbsp;{{ "newOrganization" | i18n }}
             </a>
           </span>
         </li>
@@ -45,14 +45,6 @@
         >
           &nbsp;{{ organizationGrouping.name | i18n }}
         </button>
-        <a
-          href="#"
-          routerLink="/settings/create-organization"
-          class="text-muted ml-auto create-organization-link"
-          appA11yTitle="{{ 'addOrganization' | i18n }}"
-        >
-          <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
-        </a>
       </div>
       <ul id="organization-filters" *ngIf="!isCollapsed" class="filter-options">
         <li
@@ -75,6 +67,14 @@
             </ng-container>
           </span>
         </li>
+        <li class="filter-option">
+          <span class="filter-buttons">
+            <a href="#" routerLink="/create-organization" class="filter-button">
+              <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
+              &nbsp;{{ "newOrganization" | i18n }}
+            </a>
+          </span>
+        </li>
       </ul>
     </ng-container>
     <ng-container *ngSwitchCase="'singleOrganizationAndPersonalOwnershipPolicies'">
@@ -85,7 +85,7 @@
         </button>
       </div>
     </ng-container>
-    <ng-container *ngSwitchCase="'organizationMember'">
+    <ng-container *ngSwitchDefault>
       <div class="filter-heading">
         <button
           class="toggle-button"
@@ -110,14 +110,6 @@
         >
           &nbsp;{{ organizationGrouping.name | i18n }}
         </button>
-        <a
-          href="#"
-          routerLink="/settings/create-organization"
-          class="text-muted ml-auto create-organization-link"
-          appA11yTitle="{{ 'addOrganization' | i18n }}"
-        >
-          <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
-        </a>
       </div>
       <ul id="organization-filters" *ngIf="!isCollapsed" class="filter-options">
         <li class="filter-option" [ngClass]="{ active: activeFilter.myVaultOnly }">
@@ -146,6 +138,14 @@
                 <app-organization-options [organization]="organization"></app-organization-options>
               </bit-menu>
             </ng-container>
+          </span>
+        </li>
+        <li class="filter-option" *ngIf="!(displayMode === 'singleOrganizationPolicy')">
+          <span class="filter-buttons">
+            <a href="#" routerLink="/create-organization" class="filter-button">
+              <i class="bwi bwi-plus bwi-fw" aria-hidden="true"></i>
+              &nbsp;{{ "newOrganization" | i18n }}
+            </a>
           </span>
         </li>
       </ul>

@@ -74,7 +74,7 @@ export class LoginComponent extends BaseLoginComponent {
       if (qParams.premium != null) {
         this.routerService.setPreviousUrl("/settings/premium");
       } else if (qParams.org != null) {
-        const route = this.router.createUrlTree(["settings/create-organization"], {
+        const route = this.router.createUrlTree(["create-organization"], {
           queryParams: { plan: qParams.org },
         });
         this.routerService.setPreviousUrl(route.toString());

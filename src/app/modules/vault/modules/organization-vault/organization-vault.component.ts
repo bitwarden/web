@@ -124,7 +124,11 @@ export class OrganizationVaultComponent implements OnInit, OnDestroy {
 
         this.route.queryParams.subscribe(async (params) => {
           if (params.cipherId) {
-            if ((await this.cipherService.get(params.cipherId)) != null) {
+            if (
+              // Handle users with implicit collection access since they use the admin endpoint
+              this.organization.canEditAnyCollection ||
+              (await this.cipherService.get(params.cipherId)) != null
+            ) {
               this.editCipherId(params.cipherId);
             } else {
               this.platformUtilsService.showToast(
@@ -169,7 +173,7 @@ export class OrganizationVaultComponent implements OnInit, OnDestroy {
         cipherPassesFilter = cipher.type === this.activeFilter.cipherType;
       }
       if (
-        this.activeFilter.selectedFolderId != null &&
+        this.activeFilter.selectedFolder != null &&
         this.activeFilter.selectedFolderId != "none" &&
         cipherPassesFilter
       ) {

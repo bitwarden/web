@@ -16,7 +16,7 @@
         aria-hidden="true"
       ></i>
     </button>
-    <h3 class="filter-title">{{ collectionsGrouping.name | i18n }}</h3>
+    <h3 class="filter-title">&nbsp;{{ collectionsGrouping.name | i18n }}</h3>
   </div>
   <ul id="collection-filters" *ngIf="!isCollapsed(collectionsGrouping)" class="filter-options">
     <ng-template #recursiveCollections let-collections>
@@ -31,7 +31,7 @@
           <button
             class="toggle-button"
             *ngIf="c.children.length"
-            (click)="collapse(c.node)"
+            (click)="toggleCollapse(c.node)"
             title="{{ 'toggleCollapse' | i18n }}"
             [attr.aria-expanded]="!isCollapsed(c.node)"
             [attr.aria-controls]="c.node.name + '_children'"
@@ -51,7 +51,7 @@
               class="bwi bwi-collection bwi-fw"
               aria-hidden="true"
             ></i
-            >{{ c.node.name }}
+            >&nbsp;{{ c.node.name }}
           </button>
         </span>
         <ul

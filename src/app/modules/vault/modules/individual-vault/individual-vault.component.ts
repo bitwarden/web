@@ -58,7 +58,6 @@ export class IndividualVaultComponent implements OnInit, OnDestroy {
   updateKeyModalRef: ViewContainerRef;
 
   favorites = false;
-  type: CipherType = null;
   folderId: string = null;
   collectionId: string = null;
   organizationId: string = null;
@@ -209,7 +208,7 @@ export class IndividualVaultComponent implements OnInit, OnDestroy {
         cipherPassesFilter = cipher.type === this.activeFilter.cipherType;
       }
       if (
-        this.activeFilter.selectedFolderId != null &&
+        this.activeFilter.selectedFolder &&
         this.activeFilter.selectedFolderId != "none" &&
         cipherPassesFilter
       ) {
@@ -327,7 +326,7 @@ export class IndividualVaultComponent implements OnInit, OnDestroy {
 
   async addCipher() {
     const component = await this.editCipher(null);
-    component.type = this.type;
+    component.type = this.activeFilter.cipherType;
     component.folderId = this.folderId === "none" ? null : this.folderId;
     if (this.activeFilter.selectedCollectionId != null) {
       const collection = this.filterComponent.collections.fullList.filter(
@@ -399,7 +398,7 @@ export class IndividualVaultComponent implements OnInit, OnDestroy {
     if (queryParams == null) {
       queryParams = {
         favorites: this.favorites ? true : null,
-        type: this.type,
+        type: this.activeFilter.cipherType,
         folderId: this.folderId,
         collectionId: this.collectionId,
         deleted: this.deleted ? true : null,

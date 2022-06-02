@@ -58,7 +58,6 @@ import { EmergencyAccessTakeoverComponent } from "../settings/emergency-access-t
 import { EmergencyAccessViewComponent } from "../settings/emergency-access-view.component";
 import { EmergencyAccessComponent } from "../settings/emergency-access.component";
 import { EmergencyAddEditComponent } from "../settings/emergency-add-edit.component";
-import { LinkSsoComponent } from "../settings/link-sso.component";
 import { PaymentMethodComponent } from "../settings/payment-method.component";
 import { PreferencesComponent } from "../settings/preferences.component";
 import { PremiumComponent } from "../settings/premium.component";
@@ -155,7 +154,6 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     HintComponent,
     ImportComponent,
     InactiveTwoFactorReportComponent,
-    LinkSsoComponent,
     LockComponent,
     LoginComponent,
     NestedCheckboxComponent,
@@ -258,7 +256,6 @@ import { OrganizationBadgeModule } from "./vault/modules/organization-badge/orga
     HintComponent,
     ImportComponent,
     InactiveTwoFactorReportComponent,
-    LinkSsoComponent,
     LockComponent,
     LoginComponent,
     NestedCheckboxComponent,

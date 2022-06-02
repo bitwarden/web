@@ -14,14 +14,6 @@
     font-size: $font-size-base;
   }
 
-  a.create-organization-link {
-    &:hover {
-      @include themify($themes) {
-        color: themed("iconHover") !important;
-      }
-    }
-  }
-
   button {
     @extend .no-btn;
   }
@@ -116,6 +108,7 @@
       }
       text-decoration: none;
     }
+    max-width: 90%;
   }
 
   .edit-button {

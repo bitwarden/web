@@ -156,6 +156,11 @@ const routes: Routes = [
       },
       { path: "sends", component: SendComponent, data: { title: "Send" } },
       {
+        path: "create-organization",
+        component: CreateOrganizationComponent,
+        data: { titleId: "newOrganization" },
+      },
+      {
         path: "settings",
         component: SettingsComponent,
         children: [
@@ -180,11 +185,6 @@ const routes: Routes = [
             path: "subscription",
             loadChildren: async () =>
               (await import("./settings/subscription-routing.module")).SubscriptionRoutingModule,
-          },
-          {
-            path: "create-organization",
-            component: CreateOrganizationComponent,
-            data: { titleId: "newOrganization" },
           },
           {
             path: "emergency-access",
@@ -229,12 +229,12 @@ const routes: Routes = [
           (await import("./reports/reports-routing.module")).ReportsRoutingModule,
       },
       { path: "setup/families-for-enterprise", component: FamiliesForEnterpriseSetupComponent },
-      {
-        path: "organizations",
-        loadChildren: async () =>
-          (await import("./organizations/organizations.module")).OrganizationsModule,
-      },
     ],
+  },
+  {
+    path: "organizations",
+    loadChildren: async () =>
+      (await import("./organizations/organizations.module")).OrganizationsModule,
   },
 ];
 
