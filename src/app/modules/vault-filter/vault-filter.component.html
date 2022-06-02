@@ -27,7 +27,6 @@
         appAutofocus
       />
       <app-organization-filter
-        *ngIf="showOrgFilter"
         [hide]="hideOrganizations"
         [activeFilter]="activeFilter"
         [collapsedFilterNodes]="collapsedFilterNodes"
@@ -39,7 +38,7 @@
       ></app-organization-filter>
       <div class="filter">
         <app-status-filter
-          [hideFavorites]="!showFavorites"
+          [hideFavorites]="hideFavorites"
           [hideTrash]="hideTrash"
           [activeFilter]="activeFilter"
           (onFilterChange)="applyFilter($event)"
@@ -55,7 +54,7 @@
       </div>
       <div class="filter">
         <app-folder-filter
-          [hide]="!showFolders"
+          [hide]="hideFolders"
           [activeFilter]="activeFilter"
           [collapsedFilterNodes]="collapsedFilterNodes"
           [folderNodes]="folders"

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Output } from "@angular/core";
 
 import { VaultFilterComponent as BaseVaultFilterComponent } from "jslib-angular/modules/vault-filter/vault-filter.component";
 
@@ -7,10 +7,6 @@ import { VaultFilterComponent as BaseVaultFilterComponent } from "jslib-angular/
   templateUrl: "vault-filter.component.html",
 })
 export class VaultFilterComponent extends BaseVaultFilterComponent {
-  @Input() showOrgFilter = true;
-  @Input() showFolders = true;
-  @Input() showFavorites = true;
-
   @Output() onSearchTextChanged = new EventEmitter<string>();
 
   searchPlaceholder: string;

@@ -6,10 +6,7 @@
           <div class="inner-content">
             <app-organization-vault-filter
               #vaultFilter
-              [showFolders]="false"
-              [showFavorites]="false"
               [activeFilter]="activeFilter"
-              [showOrgFilter]="false"
               (onFilterChange)="applyVaultFilter($event)"
               (onSearchTextChanged)="filterSearchText($event)"
             ></app-organization-vault-filter>

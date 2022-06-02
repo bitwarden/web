@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 import { Organization } from "jslib-common/models/domain/organization";
 
@@ -10,6 +10,10 @@ import { VaultFilterServiceInterface } from "./vault-filter.service.interface";
   templateUrl: "vault-filter.component.html",
 })
 export class OrganizationVaultFilterComponent extends VaultFilterComponent {
+  @Input() hideOrganizations = true;
+  @Input() hideFavorites = true;
+  @Input() hideFolders = true;
+
   organization: Organization;
 
   constructor(protected vaultFilterService: VaultFilterServiceInterface) {
