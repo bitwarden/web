@@ -10,9 +10,10 @@ import { Organization } from "jslib-common/models/domain/organization";
 import { PolicyResponse } from "jslib-common/models/response/policyResponse";
 
 import { PolicyListService } from "../../services/policy-list.service";
-import { BasePolicy } from "../policies/base-policy.component";
+import { PolicyEditComponent } from "../manage/policy-edit.component";
 
-import { PolicyEditComponent } from "./policy-edit.component";
+import { BasePolicy } from "./base-policy.component";
+
 
 @Component({
   selector: "app-org-policies",

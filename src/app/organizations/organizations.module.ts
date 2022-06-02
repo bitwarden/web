@@ -2,7 +2,6 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 
 import { LayoutsModule } from "../layouts/layouts.module";
-import { PipesModule } from "../modules/pipes/pipes.module";
 import { SharedModule } from "../modules/shared.module";
 
 import { OrganizationLayoutComponent } from "./layouts/organization-layout.component";
@@ -18,22 +17,13 @@ import { GroupAddEditComponent } from "./manage/group-add-edit.component";
 import { GroupsComponent } from "./manage/groups.component";
 import { ManageComponent } from "./manage/manage.component";
 import { PeopleComponent } from "./manage/people.component";
-import { PoliciesComponent } from "./manage/policies.component";
 import { PolicyEditComponent } from "./manage/policy-edit.component";
 import { ResetPasswordComponent } from "./manage/reset-password.component";
 import { UserAddEditComponent } from "./manage/user-add-edit.component";
 import { UserConfirmComponent } from "./manage/user-confirm.component";
 import { UserGroupsComponent } from "./manage/user-groups.component";
 import { OrganizationsRoutingModule } from "./organizations-routing.module";
-import { DisableSendPolicyComponent } from "./policies/disable-send.component";
-import { MasterPasswordPolicyComponent } from "./policies/master-password.component";
-import { PasswordGeneratorPolicyComponent } from "./policies/password-generator.component";
-import { PersonalOwnershipPolicyComponent } from "./policies/personal-ownership.component";
-import { RequireSsoPolicyComponent } from "./policies/require-sso.component";
-import { ResetPasswordPolicyComponent } from "./policies/reset-password.component";
-import { SendOptionsPolicyComponent } from "./policies/send-options.component";
-import { SingleOrgPolicyComponent } from "./policies/single-org.component";
-import { TwoFactorAuthenticationPolicyComponent } from "./policies/two-factor-authentication.component";
+import { PoliciesModule } from "./policies/policies.module";
 import { AccountComponent } from "./settings/account.component";
 import { AdjustSubscription } from "./settings/adjust-subscription.component";
 import { BillingSyncApiKeyComponent } from "./settings/billing-sync-api-key.component";
@@ -56,8 +46,9 @@ import { ToolsComponent } from "./tools/tools.component";
 import { UnsecuredWebsitesReportComponent } from "./tools/unsecured-websites-report.component";
 import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.component";
 
+
 @NgModule({
-  imports: [CommonModule, OrganizationsRoutingModule, SharedModule, PipesModule, LayoutsModule],
+  imports: [CommonModule, OrganizationsRoutingModule, SharedModule, LayoutsModule, PoliciesModule],
   declarations: [
     AcceptFamilySponsorshipComponent,
     AccountComponent,
@@ -70,7 +61,6 @@ import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.comp
     ChangePlanComponent,
     CollectionAddEditComponent,
     DeleteOrganizationComponent,
-    DisableSendPolicyComponent,
     DownloadLicenseComponent,
     EntityEventsComponent,
     EventsComponent,
@@ -84,24 +74,15 @@ import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.comp
     InactiveTwoFactorReportComponent,
     ManageCollectionsComponent,
     ManageComponent,
-    MasterPasswordPolicyComponent,
     OrganizationLayoutComponent,
     OrganizationSwitcherComponent,
-    PasswordGeneratorPolicyComponent,
     PeopleComponent,
-    PersonalOwnershipPolicyComponent,
-    PoliciesComponent,
     PolicyEditComponent,
-    RequireSsoPolicyComponent,
     ResetPasswordComponent,
-    ResetPasswordPolicyComponent,
     ReusedPasswordsReportComponent,
-    SendOptionsPolicyComponent,
     SettingsComponent,
-    SingleOrgPolicyComponent,
     SubscriptionComponent,
     ToolsComponent,
-    TwoFactorAuthenticationPolicyComponent,
     TwoFactorSetupComponent,
     UnsecuredWebsitesReportComponent,
     UserAddEditComponent,

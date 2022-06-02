@@ -11,7 +11,7 @@ import { EventsComponent } from "./manage/events.component";
 import { GroupsComponent } from "./manage/groups.component";
 import { ManageComponent } from "./manage/manage.component";
 import { PeopleComponent } from "./manage/people.component";
-import { PoliciesComponent } from "./manage/policies.component";
+import { PoliciesComponent } from "./policies/policies.component";
 import { NavigationPermissionsService } from "./services/navigation-permissions.service";
 import { AccountComponent } from "./settings/account.component";
 import { BillingComponent } from "./settings/billing.component";
