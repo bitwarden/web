@@ -107,29 +107,7 @@ const routes: Routes = [
       },
       {
         path: "settings",
-        component: SettingsComponent,
-        canActivate: [PermissionsGuard],
-        data: { permissions: NavigationPermissionsService.getPermissions("settings") },
-        children: [
-          { path: "", pathMatch: "full", redirectTo: "account" },
-          { path: "account", component: AccountComponent, data: { titleId: "myOrganization" } },
-          {
-            path: "two-factor",
-            component: TwoFactorSetupComponent,
-            data: { titleId: "twoStepLogin" },
-          },
-          {
-            path: "billing",
-            component: BillingComponent,
-            canActivate: [PermissionsGuard],
-            data: { titleId: "billing", permissions: [Permissions.ManageBilling] },
-          },
-          {
-            path: "subscription",
-            component: SubscriptionComponent,
-            data: { titleId: "subscription" },
-          },
-        ],
+        loadChildren: async () => (await import("./settings/settings.module")).SettingsModule,
       },
     ],
   },

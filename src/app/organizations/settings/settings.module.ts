@@ -11,12 +11,13 @@ import { ChangePlanComponent } from "./change-plan.component";
 import { DeleteOrganizationComponent } from "./delete-organization.component";
 import { DownloadLicenseComponent } from "./download-license.component";
 import { ImageSubscriptionHiddenComponent } from "./image-subscription-hidden.component";
+import { SettingsRoutingModule } from "./settings-routing.module";
 import { SettingsComponent } from "./settings.component";
 import { SubscriptionComponent } from "./subscription.component";
 import { TwoFactorSetupComponent } from "./two-factor-setup.component";
 
 @NgModule({
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, SharedModule, SettingsRoutingModule],
   declarations: [
     AccountComponent,
     AdjustSubscription,
