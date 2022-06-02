@@ -24,17 +24,7 @@ import { UserConfirmComponent } from "./manage/user-confirm.component";
 import { UserGroupsComponent } from "./manage/user-groups.component";
 import { OrganizationsRoutingModule } from "./organizations-routing.module";
 import { PoliciesModule } from "./policies/policies.module";
-import { AccountComponent } from "./settings/account.component";
-import { AdjustSubscription } from "./settings/adjust-subscription.component";
-import { BillingSyncApiKeyComponent } from "./settings/billing-sync-api-key.component";
-import { BillingComponent } from "./settings/billing.component";
-import { ChangePlanComponent } from "./settings/change-plan.component";
-import { DeleteOrganizationComponent } from "./settings/delete-organization.component";
-import { DownloadLicenseComponent } from "./settings/download-license.component";
-import { ImageSubscriptionHiddenComponent } from "./settings/image-subscription-hidden.component";
-import { SettingsComponent } from "./settings/settings.component";
-import { SubscriptionComponent } from "./settings/subscription.component";
-import { TwoFactorSetupComponent } from "./settings/two-factor-setup.component";
+import { SettingsModule } from "./settings/settings.module";
 import { AcceptFamilySponsorshipComponent } from "./sponsorships/accept-family-sponsorship.component";
 import { FamiliesForEnterpriseSetupComponent } from "./sponsorships/families-for-enterprise-setup.component";
 import { ExportComponent } from "./tools/export.component";
@@ -46,22 +36,21 @@ import { ToolsComponent } from "./tools/tools.component";
 import { UnsecuredWebsitesReportComponent } from "./tools/unsecured-websites-report.component";
 import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.component";
 
-
 @NgModule({
-  imports: [CommonModule, OrganizationsRoutingModule, SharedModule, LayoutsModule, PoliciesModule],
+  imports: [
+    CommonModule,
+    OrganizationsRoutingModule,
+    SharedModule,
+    LayoutsModule,
+    PoliciesModule,
+    SettingsModule,
+  ],
   declarations: [
     AcceptFamilySponsorshipComponent,
-    AccountComponent,
-    AdjustSubscription,
-    BillingComponent,
-    BillingSyncApiKeyComponent,
     BulkConfirmComponent,
     BulkRemoveComponent,
     BulkStatusComponent,
-    ChangePlanComponent,
     CollectionAddEditComponent,
-    DeleteOrganizationComponent,
-    DownloadLicenseComponent,
     EntityEventsComponent,
     EventsComponent,
     ExportComponent,
@@ -69,7 +58,6 @@ import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.comp
     FamiliesForEnterpriseSetupComponent,
     GroupAddEditComponent,
     GroupsComponent,
-    ImageSubscriptionHiddenComponent,
     ImportComponent,
     InactiveTwoFactorReportComponent,
     ManageCollectionsComponent,
@@ -80,10 +68,7 @@ import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.comp
     PolicyEditComponent,
     ResetPasswordComponent,
     ReusedPasswordsReportComponent,
-    SettingsComponent,
-    SubscriptionComponent,
     ToolsComponent,
-    TwoFactorSetupComponent,
     UnsecuredWebsitesReportComponent,
     UserAddEditComponent,
     UserConfirmComponent,
