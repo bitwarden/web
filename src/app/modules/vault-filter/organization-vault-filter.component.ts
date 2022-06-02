@@ -3,6 +3,7 @@ import { Component } from "@angular/core";
 import { Organization } from "jslib-common/models/domain/organization";
 
 import { VaultFilterComponent } from "./vault-filter.component";
+import { VaultFilterServiceInterface } from "./vault-filter.service.interface";
 
 @Component({
   selector: "app-organization-vault-filter",
@@ -10,6 +11,10 @@ import { VaultFilterComponent } from "./vault-filter.component";
 })
 export class OrganizationVaultFilterComponent extends VaultFilterComponent {
   organization: Organization;
+
+  constructor(protected vaultFilterService: VaultFilterServiceInterface) {
+    super(vaultFilterService);
+  }
 
   async initCollections() {
     if (this.organization.canEditAnyCollection) {

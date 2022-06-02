@@ -1,5 +1,7 @@
 import { NgModule } from "@angular/core";
 
+import { VaultFilterServiceInterface as BaseVaultFilterServiceInterface } from "jslib-angular/modules/vault-filter/vault-filter.service.interface";
+
 import { SharedModule } from "../shared.module";
 
 import { CollectionFilterComponent } from "./components/collection-filter.component";
@@ -12,6 +14,7 @@ import { TypeFilterComponent } from "./components/type-filter.component";
 import { OrganizationVaultFilterComponent } from "./organization-vault-filter.component";
 import { VaultFilterComponent } from "./vault-filter.component";
 import { VaultFilterService } from "./vault-filter.service";
+import { VaultFilterServiceInterface } from "./vault-filter.service.interface";
 
 @NgModule({
   imports: [SharedModule],
@@ -27,6 +30,15 @@ import { VaultFilterService } from "./vault-filter.service";
     LinkSsoComponent,
   ],
   exports: [VaultFilterComponent, OrganizationVaultFilterComponent],
-  providers: [VaultFilterService],
+  providers: [
+    {
+      provide: VaultFilterServiceInterface,
+      useClass: VaultFilterService,
+    },
+    {
+      provide: BaseVaultFilterServiceInterface,
+      useExisting: VaultFilterServiceInterface,
+    },
+  ],
 })
 export class VaultFilterModule {}

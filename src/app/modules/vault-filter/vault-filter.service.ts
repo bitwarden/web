@@ -14,8 +14,13 @@ import { Collection } from "jslib-common/models/domain/collection";
 import { CollectionDetailsResponse } from "jslib-common/models/response/collectionResponse";
 import { CollectionView } from "jslib-common/models/view/collectionView";
 
+import { VaultFilterServiceInterface } from "./vault-filter.service.interface";
+
 @Injectable()
-export class VaultFilterService extends BaseVaultFilterService {
+export class VaultFilterService
+  extends BaseVaultFilterService
+  implements VaultFilterServiceInterface
+{
   constructor(
     protected stateService: StateService,
     protected organizationService: OrganizationService,
