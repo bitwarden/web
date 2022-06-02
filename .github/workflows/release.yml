@@ -19,8 +19,8 @@ jobs:
     name: Setup
     runs-on: ubuntu-20.04
     outputs:
-      release_version: ${{ steps.version.outputs.package }}
-      tag_version: ${{ steps.version.outputs.tag }}
+      release_version: ${{ steps.version.outputs.version }}
+      tag_version: ${{ steps.version.outputs.version }}
       branch_name: ${{ steps.branch.outputs.branch_name }}
     steps:
       - name: Branch check
@@ -38,20 +38,11 @@ jobs:
 
       - name: Check Release Version
         id: version
-        run: |
-          version=$( jq -r ".version" package.json)
-          previous_release_tag_version=$(
-            curl -sL https://api.github.com/repos/$GITHUB_REPOSITORY/releases/latest | jq -r ".tag_name"
-          )
-
-          if [ "v$version" == "$previous_release_tag_version" ] && \
-          [ "${{ github.event.inputs.release_type }}" == "Initial Release" ]; then
-            echo "[!] Already released v$version. Please bump version to continue"
-            exit 1
-          fi
-
-          echo "::set-output name=package::$version"
-          echo "::set-output name=tag::v$version"
+        uses: bitwarden/gh-actions/release-version-check@ea9fab01d76940267b4147cc1c4542431246b9f6
+        with:
+          release-type: ${{ github.event.inputs.release_type }}
+          project-type: ts
+          file: package.json
 
       - name: Get branch name
         id: branch
