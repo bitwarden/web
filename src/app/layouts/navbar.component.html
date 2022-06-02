@@ -65,24 +65,24 @@
               </div>
             </div>
             <bit-menu-divider></bit-menu-divider>
-            <a bit-menu-item routerLink="/settings/account">
+            <a bitMenuItem routerLink="/settings/account">
               <i class="bwi bwi-fw bwi-user" aria-hidden="true"></i>
               {{ "accountSettings" | i18n }}
             </a>
-            <a bit-menu-item href="https://bitwarden.com/help/" target="_blank" rel="noopener">
+            <a bitMenuItem href="https://bitwarden.com/help/" target="_blank" rel="noopener">
               <i class="bwi bwi-fw bwi-question-circle" aria-hidden="true"></i>
               {{ "getHelp" | i18n }}
             </a>
-            <a bit-menu-item href="https://bitwarden.com/download/" target="_blank" rel="noopener">
+            <a bitMenuItem href="https://bitwarden.com/download/" target="_blank" rel="noopener">
               <i class="bwi bwi-fw bwi-download" aria-hidden="true"></i>
               {{ "getApps" | i18n }}
             </a>
             <bit-menu-divider></bit-menu-divider>
-            <button bit-menu-item type="button" (click)="lock()">
+            <button bitMenuItem type="button" (click)="lock()">
               <i class="bwi bwi-fw bwi-lock" aria-hidden="true"></i>
               {{ "lockNow" | i18n }}
             </button>
-            <button bit-menu-item type="button" (click)="logOut()">
+            <button bitMenuItem type="button" (click)="logOut()">
               <i class="bwi bwi-fw bwi-sign-out" aria-hidden="true"></i>
               {{ "logOut" | i18n }}
             </button>
