@@ -14,7 +14,6 @@ import { PolicyEditComponent } from "../manage/policy-edit.component";
 
 import { BasePolicy } from "./base-policy.component";
 
-
 @Component({
   selector: "app-org-policies",
   templateUrl: "policies.component.html",
