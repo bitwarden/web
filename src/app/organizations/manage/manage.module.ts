@@ -2,6 +2,7 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 
 import { SharedModule } from "../../modules/shared.module";
+import { PoliciesModule } from "../policies/policies.module";
 
 import { BulkConfirmComponent } from "./bulk/bulk-confirm.component";
 import { BulkRemoveComponent } from "./bulk/bulk-remove.component";
@@ -12,6 +13,7 @@ import { EntityEventsComponent } from "./entity-events.component";
 import { EventsComponent } from "./events.component";
 import { GroupAddEditComponent } from "./group-add-edit.component";
 import { GroupsComponent } from "./groups.component";
+import { ManageRoutingModule } from "./manage-routing.module";
 import { ManageComponent } from "./manage.component";
 import { PeopleComponent } from "./people.component";
 import { PolicyEditComponent } from "./policy-edit.component";
@@ -21,7 +23,7 @@ import { UserConfirmComponent } from "./user-confirm.component";
 import { UserGroupsComponent } from "./user-groups.component";
 
 @NgModule({
-  imports: [CommonModule, SharedModule],
+  imports: [CommonModule, SharedModule, PoliciesModule, ManageRoutingModule],
   declarations: [
     BulkConfirmComponent,
     BulkRemoveComponent,
