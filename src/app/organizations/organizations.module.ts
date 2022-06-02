@@ -12,7 +12,6 @@ import { PoliciesModule } from "./policies/policies.module";
 import { SettingsModule } from "./settings/settings.module";
 import { AcceptFamilySponsorshipComponent } from "./sponsorships/accept-family-sponsorship.component";
 import { FamiliesForEnterpriseSetupComponent } from "./sponsorships/families-for-enterprise-setup.component";
-import { ToolsModule } from "./tools/tools.module";
 
 @NgModule({
   imports: [
@@ -23,7 +22,6 @@ import { ToolsModule } from "./tools/tools.module";
     PoliciesModule,
     SettingsModule,
     ManageModule,
-    ToolsModule,
   ],
   declarations: [
     AcceptFamilySponsorshipComponent,

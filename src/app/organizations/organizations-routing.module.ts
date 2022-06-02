@@ -18,14 +18,6 @@ import { BillingComponent } from "./settings/billing.component";
 import { SettingsComponent } from "./settings/settings.component";
 import { SubscriptionComponent } from "./settings/subscription.component";
 import { TwoFactorSetupComponent } from "./settings/two-factor-setup.component";
-import { ExportComponent } from "./tools/export.component";
-import { ExposedPasswordsReportComponent } from "./tools/exposed-passwords-report.component";
-import { ImportComponent } from "./tools/import.component";
-import { InactiveTwoFactorReportComponent } from "./tools/inactive-two-factor-report.component";
-import { ReusedPasswordsReportComponent } from "./tools/reused-passwords-report.component";
-import { ToolsComponent } from "./tools/tools.component";
-import { UnsecuredWebsitesReportComponent } from "./tools/unsecured-websites-report.component";
-import { WeakPasswordsReportComponent } from "./tools/weak-passwords-report.component";
 
 const routes: Routes = [
   {
@@ -45,79 +37,7 @@ const routes: Routes = [
       },
       {
         path: "tools",
-        component: ToolsComponent,
-        canActivate: [PermissionsGuard],
-        data: { permissions: NavigationPermissionsService.getPermissions("tools") },
-        children: [
-          {
-            path: "",
-            pathMatch: "full",
-            redirectTo: "import",
-          },
-          {
-            path: "import",
-            component: ImportComponent,
-            canActivate: [PermissionsGuard],
-            data: {
-              titleId: "importData",
-              permissions: [Permissions.AccessImportExport],
-            },
-          },
-          {
-            path: "export",
-            component: ExportComponent,
-            canActivate: [PermissionsGuard],
-            data: {
-              titleId: "exportVault",
-              permissions: [Permissions.AccessImportExport],
-            },
-          },
-          {
-            path: "exposed-passwords-report",
-            component: ExposedPasswordsReportComponent,
-            canActivate: [PermissionsGuard],
-            data: {
-              titleId: "exposedPasswordsReport",
-              permissions: [Permissions.AccessReports],
-            },
-          },
-          {
-            path: "inactive-two-factor-report",
-            component: InactiveTwoFactorReportComponent,
-            canActivate: [PermissionsGuard],
-            data: {
-              titleId: "inactive2faReport",
-              permissions: [Permissions.AccessReports],
-            },
-          },
-          {
-            path: "reused-passwords-report",
-            component: ReusedPasswordsReportComponent,
-            canActivate: [PermissionsGuard],
-            data: {
-              titleId: "reusedPasswordsReport",
-              permissions: [Permissions.AccessReports],
-            },
-          },
-          {
-            path: "unsecured-websites-report",
-            component: UnsecuredWebsitesReportComponent,
-            canActivate: [PermissionsGuard],
-            data: {
-              titleId: "unsecuredWebsitesReport",
-              permissions: [Permissions.AccessReports],
-            },
-          },
-          {
-            path: "weak-passwords-report",
-            component: WeakPasswordsReportComponent,
-            canActivate: [PermissionsGuard],
-            data: {
-              titleId: "weakPasswordsReport",
-              permissions: [Permissions.AccessReports],
-            },
-          },
-        ],
+        loadChildren: async () => (await import("./tools/tools.module")).ToolsModule,
       },
       {
         path: "manage",
