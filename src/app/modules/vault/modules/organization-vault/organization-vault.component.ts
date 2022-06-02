@@ -61,7 +61,7 @@ export class OrganizationVaultComponent implements OnInit, OnDestroy {
   // This is a hack to avoid redundant api calls that fetch OrganizationVaultFilterComponent collections
   // When it makes sense to do so we should leverage some other communication method for change events that isn't directly tied to the query param for organizationId
   // i.e. exposing the VaultFiltersService to the OrganizationSwitcherComponent to make relevant updates from a change event instead of just depending on the router
-  skipFilterCollectionRefresh = true;
+  firstLoaded = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -112,10 +112,10 @@ export class OrganizationVaultComponent implements OnInit, OnDestroy {
           });
         }
 
-        if (!this.skipFilterCollectionRefresh) {
+        if (!this.firstLoaded) {
           await this.vaultFilterComponent.reloadCollectionsAndFolders();
         }
-        this.skipFilterCollectionRefresh = false;
+        this.firstLoaded = false;
 
         await this.ciphersComponent.reload();
 
