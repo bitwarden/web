@@ -31,7 +31,7 @@
           <button
             class="toggle-button"
             *ngIf="c.children.length"
-            (click)="collapse(c.node)"
+            (click)="toggleCollapse(c.node)"
             title="{{ 'toggleCollapse' | i18n }}"
             [attr.aria-expanded]="!isCollapsed(c.node)"
             [attr.aria-controls]="c.node.name + '_children'"
