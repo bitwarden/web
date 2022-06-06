@@ -15,6 +15,8 @@ export class VaultFilterComponent extends BaseVaultFilterComponent {
   searchText = "";
 
   constructor(protected vaultFilterService: VaultFilterService) {
+  // This empty constructor is required to provide the web vaultFilterService subclass to super()
+  // TODO: refactor this to use proper dependency injection
     super(vaultFilterService);
   }
 
