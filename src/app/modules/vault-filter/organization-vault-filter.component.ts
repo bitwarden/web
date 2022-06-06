@@ -9,9 +9,9 @@ import { VaultFilterComponent } from "./vault-filter.component";
   templateUrl: "vault-filter.component.html",
 })
 export class OrganizationVaultFilterComponent extends VaultFilterComponent {
-  @Input() hideOrganizations = true;
-  @Input() hideFavorites = true;
-  @Input() hideFolders = true;
+  hideOrganizations = true;
+  hideFavorites = true;
+  hideFolders = true;
 
   organization: Organization;
 
