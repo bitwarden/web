@@ -29,7 +29,7 @@ import { AddEditComponent } from "../../../../organizations/vault/add-edit.compo
 import { AttachmentsComponent } from "../../../../organizations/vault/attachments.component";
 import { CiphersComponent } from "../../../../organizations/vault/ciphers.component";
 import { CollectionsComponent } from "../../../../organizations/vault/collections.component";
-import { VaultFilterComponent } from "../../../vault-filter/vault-filter.component";
+import { OrganizationVaultFilterComponent } from "../../../vault-filter/organization-vault-filter.component";
 import { VaultService } from "../../vault.service";
 
 const BroadcasterSubscriptionId = "OrgVaultComponent";
@@ -39,7 +39,8 @@ const BroadcasterSubscriptionId = "OrgVaultComponent";
   templateUrl: "organization-vault.component.html",
 })
 export class OrganizationVaultComponent implements OnInit, OnDestroy {
-  @ViewChild("vaultFilter", { static: true }) vaultFilterComponent: VaultFilterComponent;
+  @ViewChild("vaultFilter", { static: true })
+  vaultFilterComponent: OrganizationVaultFilterComponent;
   @ViewChild(CiphersComponent, { static: true }) ciphersComponent: CiphersComponent;
   @ViewChild("attachments", { read: ViewContainerRef, static: true })
   attachmentsModalRef: ViewContainerRef;
@@ -56,6 +57,11 @@ export class OrganizationVaultComponent implements OnInit, OnDestroy {
   deleted = false;
   trashCleanupWarning: string = null;
   activeFilter: VaultFilter = new VaultFilter();
+
+  // This is a hack to avoid redundant api calls that fetch OrganizationVaultFilterComponent collections
+  // When it makes sense to do so we should leverage some other communication method for change events that isn't directly tied to the query param for organizationId
+  // i.e. exposing the VaultFiltersService to the OrganizationSwitcherComponent to make relevant updates from a change event instead of just depending on the router
+  firstLoaded = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -95,11 +101,7 @@ export class OrganizationVaultComponent implements OnInit, OnDestroy {
                 case "syncCompleted":
                   if (message.successfully) {
                     await Promise.all([
-                      this.vaultFilterComponent.reloadCollectionsAndFolders(
-                        new VaultFilter({
-                          selectedOrganizationId: this.organization.id,
-                        } as Partial<VaultFilter>)
-                      ),
+                      this.vaultFilterComponent.reloadCollectionsAndFolders(),
                       this.ciphersComponent.refresh(),
                     ]);
                     this.changeDetectorRef.detectChanges();
@@ -109,9 +111,12 @@ export class OrganizationVaultComponent implements OnInit, OnDestroy {
             });
           });
         }
-        await this.vaultFilterComponent.reloadCollectionsAndFolders(
-          new VaultFilter({ selectedOrganizationId: this.organization.id } as Partial<VaultFilter>)
-        );
+
+        if (!this.firstLoaded) {
+          await this.vaultFilterComponent.reloadCollectionsAndFolders();
+        }
+        this.firstLoaded = false;
+
         await this.ciphersComponent.reload();
 
         if (qParams.viewEvents != null) {
